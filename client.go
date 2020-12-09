@@ -14,6 +14,8 @@ import (
 	"time"
 
 	"github.com/cloudentity/acp-client-go/client"
+	o2 "github.com/cloudentity/acp-client-go/client/oauth2"
+	"github.com/cloudentity/acp-client-go/models"
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/pkg/errors"
 	"golang.org/x/oauth2"
@@ -144,4 +146,20 @@ func New(cfg *Config) (c Client, err error) {
 	), nil)
 
 	return c, nil
+}
+
+func (c *Client) IntrospectToken(token string) (*models.IntrospectResponse, error) {
+       var (
+               resp *o2.IntrospectOK
+               err  error
+       )
+
+       if resp, err = c.Oauth2.Introspect(o2.NewIntrospectParams().
+               WithTid(c.TenantID).
+               WithAid(c.ServerID).
+               WithToken(&token), nil); err != nil {
+               return nil, err
+       }
+
+       return resp.Payload, nil
 }
