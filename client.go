@@ -124,8 +124,8 @@ func New(cfg Config) (c Client, err error) {
 		return c, errors.New("invalid issuer url")
 	}
 
-	c.TenantID = paths[0]
-	c.ServerID = paths[1]
+	c.TenantID = paths[1]
+	c.ServerID = paths[2]
 
 	if c.c, err = cfg.newHTTPClient(); err != nil {
 		return c, err
