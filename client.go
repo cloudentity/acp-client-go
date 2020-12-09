@@ -67,37 +67,6 @@ type Config struct {
 	HttpClient *http.Client
 }
 
-func New(cfg *Config) (c Client, err error) {
-	paths := strings.Split(cfg.IssuerURL.Path, "/")
-
-	if len(paths) < 2 {
-		return c, errors.New("invalid issuer url")
-	}
-
-	c.TenantID = paths[0]
-	c.ServerID = paths[1]
-
-	if c.c, err = cfg.newHTTPClient(); err != nil {
-		return c, err
-	}
-
-	cc := clientcredentials.Config{
-		ClientID:     cfg.ClientID,
-		ClientSecret: cfg.ClientSecret,
-		Scopes:       cfg.Scopes,
-		TokenURL:     fmt.Sprintf("%s/oauth2/token", cfg.IssuerURL),
-	}
-
-	c.Acp = client.New(httptransport.NewWithClient(
-		cfg.IssuerURL.Host,
-		"/",
-		[]string{cfg.IssuerURL.Scheme},
-		cc.Client(context.WithValue(context.Background(), oauth2.HTTPClient, c.c)),
-	), nil)
-
-	return c, nil
-}
-
 func (c *Config) newHTTPClient() (*http.Client, error) {
 	var (
 		pool *x509.CertPool
@@ -144,4 +113,35 @@ func (c *Config) newHTTPClient() (*http.Client, error) {
 			},
 		},
 	}, nil
+}
+
+func New(cfg *Config) (c Client, err error) {
+	paths := strings.Split(cfg.IssuerURL.Path, "/")
+
+	if len(paths) < 2 {
+		return c, errors.New("invalid issuer url")
+	}
+
+	c.TenantID = paths[0]
+	c.ServerID = paths[1]
+
+	if c.c, err = cfg.newHTTPClient(); err != nil {
+		return c, err
+	}
+
+	cc := clientcredentials.Config{
+		ClientID:     cfg.ClientID,
+		ClientSecret: cfg.ClientSecret,
+		Scopes:       cfg.Scopes,
+		TokenURL:     fmt.Sprintf("%s/oauth2/token", cfg.IssuerURL),
+	}
+
+	c.Acp = client.New(httptransport.NewWithClient(
+		cfg.IssuerURL.Host,
+		"/",
+		[]string{cfg.IssuerURL.Scheme},
+		cc.Client(context.WithValue(context.Background(), oauth2.HTTPClient, c.c)),
+	), nil)
+
+	return c, nil
 }
