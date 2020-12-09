@@ -117,7 +117,7 @@ func (c *Config) newHTTPClient() (*http.Client, error) {
 	}, nil
 }
 
-func New(cfg *Config) (c Client, err error) {
+func New(cfg Config) (c Client, err error) {
 	paths := strings.Split(cfg.IssuerURL.Path, "/")
 
 	if len(paths) < 2 {
