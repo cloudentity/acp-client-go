@@ -2,9 +2,13 @@ package acpclient
 
 import (
 	"context"
+	"crypto/rand"
+	"crypto/sha256"
 	"crypto/tls"
 	"crypto/x509"
+	"encoding/base64"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"net"
 	"net/http"
@@ -20,6 +24,12 @@ import (
 	"github.com/pkg/errors"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/clientcredentials"
+)
+
+const (
+	NonceLength    = 20
+	StateLength    = 8
+	VerifierLength = 43
 )
 
 // Client provides a client to the ACP API
@@ -208,8 +218,19 @@ func authorizeHandler(fn func(*Client, url.Values, *CSRF) error) AuthorizeOption
 }
 
 func WithPKCE() AuthorizeOption {
-	return authorizeHandler(func(c *Client, v url.Values, csrf *CSRF) error {
-		// TODO generate verifier and inject code challange
+	return authorizeHandler(func(c *Client, v url.Values, csrf *CSRF) (err error) {
+		if csrf.Verifier, err = randomString(VerifierLength); err != nil {
+			return errors.Wrapf(err, "failed to generate random verifier for PKCE authentication")
+		}
+
+		hash := sha256.New()
+
+		if _, err = hash.Write([]byte(csrf.Verifier)); err != nil {
+			return errors.Wrapf(err, "failed to hash PKCE verifier")
+		}
+
+		v.Set("code_challenge", base64.RawURLEncoding.WithPadding(base64.NoPadding).EncodeToString(hash.Sum([]byte{})))
+		v.Set("code_challenge_method", "S256")
 
 		return nil
 	})
@@ -224,9 +245,18 @@ func WithOpenbankingIntentID(intentID string, acr []string) AuthorizeOption {
 }
 
 func (c *Client) AuthorizeURL(options ...AuthorizeOption) (authorizeURL string, csrf CSRF, err error) {
+	if csrf.State, err = randomString(StateLength); err != nil {
+		return authorizeURL, csrf, err
+	}
+
+	if csrf.Nonce, err = randomString(NonceLength); err != nil {
+		return authorizeURL, csrf, err
+	}
+
 	values := url.Values{
 		"response_type": {"code"},
 		"client_id":     {c.Config.ClientID},
+		"nonce":         {csrf.Nonce},
 	}
 
 	if c.Config.RedirectURL != nil {
@@ -264,4 +294,17 @@ func (c *Client) IntrospectToken(token string) (*models.IntrospectResponse, erro
 	}
 
 	return resp.Payload, nil
+}
+
+func randomString(length int) (string, error) {
+	var (
+		data = make([]byte, length)
+		err  error
+	)
+
+	if _, err = io.ReadFull(rand.Reader, data); err != nil {
+		return "", errors.Wrapf(err, "failed to generate random string")
+	}
+
+	return base64.RawURLEncoding.WithPadding(base64.NoPadding).EncodeToString(data), nil
 }
