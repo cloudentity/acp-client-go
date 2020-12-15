@@ -292,30 +292,37 @@ func WithPKCE() AuthorizeOption {
 func WithOpenbankingIntentID(intentID string, acr []string) AuthorizeOption {
 	return authorizeHandler(func(c *Client, v url.Values, csrf *CSRF) error {
 		var (
-			claims = jwt.MapClaims{
-				"nonce": csrf.Nonce,
-				"claims": ClaimRequests{
-					Userinfo: map[string]*ClaimRequest{
-						"openbanking_intent_id": {
-							Essential: true,
-							Value:     intentID,
-						},
-					},
-					IDToken: map[string]*ClaimRequest{
-						"openbanking_intent_id": {
-							Essential: true,
-							Value:     intentID,
-						},
-						"acr": {
-							Essential: true,
-							Values:    acr,
-						},
-					},
-				},
+			acrClaimRequest = ClaimRequest{
+				Essential: true,
 			}
 			signedToken string
 			err         error
 		)
+
+		if len(acr) == 1 {
+			acrClaimRequest.Value = acr[0]
+		} else {
+			acrClaimRequest.Values = acr
+		}
+
+		claims := jwt.MapClaims{
+			"nonce": csrf.Nonce,
+			"claims": ClaimRequests{
+				Userinfo: map[string]*ClaimRequest{
+					"openbanking_intent_id": {
+						Essential: true,
+						Value:     intentID,
+					},
+				},
+				IDToken: map[string]*ClaimRequest{
+					"openbanking_intent_id": {
+						Essential: true,
+						Value:     intentID,
+					},
+					"acr": &acrClaimRequest,
+				},
+			},
+		}
 
 		if c.Config.RedirectURL != nil {
 			claims["redirect_uri"] = c.Config.RedirectURL.String()
