@@ -346,7 +346,9 @@ func (c *Client) AuthorizeURL(options ...AuthorizeOption) (authorizeURL string, 
 	}
 
 	for _, o := range options {
-		o.apply(c, values, &csrf)
+		if err = o.apply(c, values, &csrf); err != nil {
+			return authorizeURL, csrf, err
+		}
 	}
 
 	return fmt.Sprintf("%s?%s", c.Config.GetAuthorizeURL(), values.Encode()), csrf, nil
