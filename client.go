@@ -7,6 +7,7 @@ import (
 	"crypto/tls"
 	"crypto/x509"
 	"encoding/base64"
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -20,6 +21,7 @@ import (
 	"github.com/cloudentity/acp-client-go/client"
 	o2 "github.com/cloudentity/acp-client-go/client/oauth2"
 	"github.com/cloudentity/acp-client-go/models"
+	"github.com/dgrijalva/jwt-go"
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/pkg/errors"
 	"golang.org/x/oauth2"
@@ -35,7 +37,8 @@ const (
 // Client provides a client to the ACP API
 type Client struct {
 	*client.Acp
-	c *http.Client
+	c          *http.Client
+	signingKey interface{}
 
 	// Client configuration
 	Config Config
@@ -201,6 +204,17 @@ type CSRF struct {
 	Verifier string
 }
 
+type ClaimRequests struct {
+	Userinfo map[string]*ClaimRequest `json:"userinfo"`
+	IDToken  map[string]*ClaimRequest `json:"id_token"`
+}
+
+type ClaimRequest struct {
+	Essential bool     `json:"essential"`
+	Value     string   `json:"value"`
+	Values    []string `json:"values"`
+}
+
 type AuthorizeOption interface {
 	apply(*Client, url.Values, *CSRF) error
 }
@@ -238,7 +252,47 @@ func WithPKCE() AuthorizeOption {
 
 func WithOpenbankingIntentID(intentID string, acr []string) AuthorizeOption {
 	return authorizeHandler(func(c *Client, v url.Values, csrf *CSRF) error {
-		// TODO create and sign request object
+		var (
+			claims = jwt.MapClaims{
+				"nonce": csrf.Nonce,
+				"claims": ClaimRequests{
+					Userinfo: map[string]*ClaimRequest{
+						"openbanking_intent_id": {
+							Essential: true,
+							Value:     intentID,
+						},
+					},
+					IDToken: map[string]*ClaimRequest{
+						"openbanking_intent_id": {
+							Essential: true,
+							Value:     intentID,
+						},
+						"acr": {
+							Essential: true,
+							Values:    acr,
+						},
+					},
+				},
+			}
+			signedToken string
+			err         error
+		)
+
+		if c.Config.RedirectURL != nil {
+			claims["redirect_uri"] = c.Config.RedirectURL.String()
+		}
+
+		if len(c.Config.Scopes) > 0 {
+			claims["scope"] = strings.Join(c.Config.Scopes, " ")
+		}
+
+		token := jwt.NewWithClaims(jwt.SigningMethodRS256, claims)
+
+		if signedToken, err = token.SignedString(c.signingKey); err != nil {
+			return errors.Wrapf(err, "failed to sign openbanking request object")
+		}
+
+		v.Set("request", signedToken)
 
 		return nil
 	})
@@ -274,8 +328,49 @@ func (c *Client) AuthorizeURL(options ...AuthorizeOption) (authorizeURL string, 
 	return fmt.Sprintf("%s/oauth2/authorize?%s", c.Config.IssuerURL.String(), values.Encode()), csrf, nil
 }
 
-func (c *Client) Exchange(code string, csrf CSRF) (token Token, err error) {
-	// TODO exchange and check stage/nonce/verifier
+func (c *Client) Exchange(code string, state string, csrf CSRF) (token Token, err error) {
+	var (
+		response *http.Response
+		body     []byte
+	)
+
+	values := url.Values{
+		"grant_type":   {"authorization_code"},
+		"code":         {code},
+		"client_id":    {c.Config.ClientID},
+		"redirect_uri": {c.Config.RedirectURL.String()},
+	}
+
+	if csrf.Verifier != "" {
+		values.Set("verifier", csrf.Verifier)
+	}
+
+	if response, err = c.c.PostForm(fmt.Sprintf("%s/oauth2/token", c.Config.IssuerURL.String()), values); err != nil {
+		return token, fmt.Errorf("failed to exchange token: %w", err)
+	}
+	defer response.Body.Close()
+
+	if response.StatusCode != http.StatusOK {
+		if body, err = ioutil.ReadAll(response.Body); err != nil {
+			return token, fmt.Errorf("failed to read exchange response body: %w", err)
+		}
+
+		return token, fmt.Errorf("failed to exchange token %d: %s", response.StatusCode, string(body))
+	}
+
+	if body, err = ioutil.ReadAll(response.Body); err != nil {
+		return token, fmt.Errorf("failed to read exchange response body: %w", err)
+	}
+
+	if err = json.Unmarshal(body, &token); err != nil {
+		return token, fmt.Errorf("failed to parse exchange response: %w", err)
+	}
+
+	if state != csrf.State {
+		return token, errors.New("invalid state")
+	}
+
+	// TODO check nonce
 
 	return token, nil
 }
