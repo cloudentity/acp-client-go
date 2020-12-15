@@ -61,9 +61,17 @@ type Config struct {
 	// RedirectURL is the URL to redirect users after authentication.
 	RedirectURL *url.URL `json:"redirect_url"`
 
-	// IssuerURL is the authorization server's url
+	// IssuerURL is the authorization server's url.
 	// example: https://localhost:8443/default/default
 	IssuerURL *url.URL `json:"issuer_url"`
+
+	// TokenURL is the authorization server's token url.
+	// Optional if issuerURL provided
+	TokenURL *url.URL
+
+	// AuthorizeURL is the authorization server's authorize url.
+	// Optional if issuerURL provided
+	AuthorizeURL *url.URL
 
 	// Scope specifies optional requested permissions.
 	Scopes []string `json:"scopes"`
@@ -89,6 +97,22 @@ type Config struct {
 
 	// HttpClient is the client to use. Default will be used if not provided.
 	HttpClient *http.Client `json:"-"`
+}
+
+func (c *Config) GetTokenURL() string {
+	if c.TokenURL != nil {
+		return c.TokenURL.String()
+	}
+
+	return fmt.Sprintf("%s/oauth2/token", c.IssuerURL.String())
+}
+
+func (c *Config) GetAuthorizeURL() string {
+	if c.AuthorizeURL != nil {
+		return c.AuthorizeURL.String()
+	}
+
+	return fmt.Sprintf("%s/oauth2/authorize", c.IssuerURL.String())
 }
 
 func (c *Config) newHTTPClient() (*http.Client, error) {
@@ -162,7 +186,7 @@ func New(cfg Config) (c Client, err error) {
 		ClientID:     cfg.ClientID,
 		ClientSecret: cfg.ClientSecret,
 		Scopes:       cfg.Scopes,
-		TokenURL:     fmt.Sprintf("%s/oauth2/token", cfg.IssuerURL),
+		TokenURL:     cfg.GetTokenURL(),
 	}
 
 	c.Acp = client.New(httptransport.NewWithClient(
@@ -325,7 +349,7 @@ func (c *Client) AuthorizeURL(options ...AuthorizeOption) (authorizeURL string, 
 		o.apply(c, values, &csrf)
 	}
 
-	return fmt.Sprintf("%s/oauth2/authorize?%s", c.Config.IssuerURL.String(), values.Encode()), csrf, nil
+	return fmt.Sprintf("%s?%s", c.Config.GetAuthorizeURL(), values.Encode()), csrf, nil
 }
 
 func (c *Client) Exchange(code string, state string, csrf CSRF) (token Token, err error) {
@@ -345,7 +369,7 @@ func (c *Client) Exchange(code string, state string, csrf CSRF) (token Token, er
 		values.Set("verifier", csrf.Verifier)
 	}
 
-	if response, err = c.c.PostForm(fmt.Sprintf("%s/oauth2/token", c.Config.IssuerURL.String()), values); err != nil {
+	if response, err = c.c.PostForm(c.Config.GetTokenURL(), values); err != nil {
 		return token, fmt.Errorf("failed to exchange token: %w", err)
 	}
 	defer response.Body.Close()
