@@ -8,6 +8,7 @@ import (
 	"crypto/x509"
 	"encoding/base64"
 	"encoding/json"
+	"encoding/pem"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -180,6 +181,20 @@ func New(cfg Config) (c Client, err error) {
 
 	if c.c, err = cfg.newHTTPClient(); err != nil {
 		return c, err
+	}
+
+	if cfg.RequestObjectSigningKeyFile != "" {
+		var bs []byte
+
+		if bs, err = ioutil.ReadFile(cfg.RequestObjectSigningKeyFile); err != nil {
+			return c, errors.Wrapf(err, "failed to read request object signing key")
+		}
+
+		block, _ := pem.Decode(bs)
+
+		if c.signingKey, err = x509.ParsePKCS1PrivateKey(block.Bytes); err != nil {
+			return c, errors.Wrapf(err, "failed to parse request object signing key")
+		}
 	}
 
 	cc := clientcredentials.Config{
