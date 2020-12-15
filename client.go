@@ -390,7 +390,7 @@ func (c *Client) Exchange(code string, state string, csrf CSRF) (token Token, er
 	}
 
 	if csrf.Verifier != "" {
-		values.Set("verifier", csrf.Verifier)
+		values.Set("code_verifier", csrf.Verifier)
 	}
 
 	if response, err = c.c.PostForm(c.Config.GetTokenURL(), values); err != nil {
