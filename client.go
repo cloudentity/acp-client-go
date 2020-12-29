@@ -112,7 +112,7 @@ func (c *Config) GetTokenURL() string {
 	return fmt.Sprintf("%s/oauth2/token", c.IssuerURL.String())
 }
 
-func (c *Config) GetUserinfoURL() string {
+func (c *Config) GetAuthorizeURL() string {
 	if c.AuthorizeURL != nil {
 		return c.AuthorizeURL.String()
 	}
@@ -120,7 +120,7 @@ func (c *Config) GetUserinfoURL() string {
 	return fmt.Sprintf("%s/oauth2/authorize", c.IssuerURL.String())
 }
 
-func (c *Config) GetAuthorizeURL() string {
+func (c *Config) GetUserinfoURL() string {
 	if c.UserinfoURL != nil {
 		return c.UserinfoURL.String()
 	}
