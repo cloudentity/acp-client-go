@@ -74,6 +74,10 @@ type Config struct {
 	// Optional if issuerURL provided
 	AuthorizeURL *url.URL
 
+	// UserinfoURL is the authorization server's userinfo url.
+	// Optional if issuerURL provided
+	UserinfoURL *url.URL
+
 	// Scope specifies optional requested permissions.
 	Scopes []string `json:"scopes"`
 
@@ -108,12 +112,20 @@ func (c *Config) GetTokenURL() string {
 	return fmt.Sprintf("%s/oauth2/token", c.IssuerURL.String())
 }
 
-func (c *Config) GetAuthorizeURL() string {
+func (c *Config) GetUserinfoURL() string {
 	if c.AuthorizeURL != nil {
 		return c.AuthorizeURL.String()
 	}
 
 	return fmt.Sprintf("%s/oauth2/authorize", c.IssuerURL.String())
+}
+
+func (c *Config) GetAuthorizeURL() string {
+	if c.UserinfoURL != nil {
+		return c.UserinfoURL.String()
+	}
+
+	return fmt.Sprintf("%s/userinfo", c.IssuerURL.String())
 }
 
 func (c *Config) newHTTPClient() (*http.Client, error) {
@@ -422,6 +434,44 @@ func (c *Client) Exchange(code string, state string, csrf CSRF) (token Token, er
 	// TODO check nonce
 
 	return token, nil
+}
+
+func (c *Client) Userinfo(token string) (body map[string]interface{}, err error) {
+	var (
+		request  *http.Request
+		response *http.Response
+		bs       []byte
+	)
+
+	if request, err = http.NewRequest("GET", c.Config.GetUserinfoURL(), nil); err != nil {
+		return body, fmt.Errorf("failed to build userinfo request: %w", err)
+	}
+	request.Header.Add("Authorization", fmt.Sprintf("Bearer %s", token))
+
+	if response, err = c.c.Do(request); err != nil {
+		return body, fmt.Errorf("failed to call userinfo endpoint: %w", err)
+	}
+	defer response.Body.Close()
+
+	if response.StatusCode != http.StatusOK {
+		var errorBody []byte
+
+		if errorBody, err = ioutil.ReadAll(response.Body); err != nil {
+			return body, fmt.Errorf("failed to read userinfo response body: %w", err)
+		}
+
+		return body, fmt.Errorf("failed to get userinfo %d: %s", response.StatusCode, string(errorBody))
+	}
+
+	if bs, err = ioutil.ReadAll(response.Body); err != nil {
+		return body, fmt.Errorf("failed to parse userinfo response: %w", err)
+	}
+
+	if err = json.Unmarshal(bs, &body); err != nil {
+		return body, err
+	}
+
+	return body, nil
 }
 
 func (c *Client) IntrospectToken(token string) (*models.IntrospectResponse, error) {
