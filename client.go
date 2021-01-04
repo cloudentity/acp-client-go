@@ -130,16 +130,19 @@ func (c *Config) GetUserinfoURL() string {
 
 func (c *Config) newHTTPClient() (*http.Client, error) {
 	var (
-		pool *x509.CertPool
-		cert tls.Certificate
-		data []byte
-		err  error
+		pool  *x509.CertPool
+		cert  tls.Certificate
+		certs = []tls.Certificate{}
+		data  []byte
+		err   error
 	)
 
 	if c.CertFile != "" && c.KeyFile != "" {
 		if cert, err = tls.LoadX509KeyPair(c.CertFile, c.KeyFile); err != nil {
 			return nil, errors.Wrapf(err, "failed to read certificate and private key")
 		}
+
+		certs = append(certs, cert)
 	}
 
 	if pool, err = x509.SystemCertPool(); err != nil {
@@ -172,7 +175,7 @@ func (c *Config) newHTTPClient() (*http.Client, error) {
 			TLSClientConfig: &tls.Config{
 				RootCAs:      pool,
 				MinVersion:   tls.VersionTLS12,
-				Certificates: []tls.Certificate{cert},
+				Certificates: certs,
 			},
 		},
 	}, nil
