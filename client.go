@@ -187,6 +187,10 @@ func New(cfg Config) (c Client, err error) {
 		return c, errors.New("client_id is missing")
 	}
 
+	if cfg.IssuerURL == nil {
+		return c, errors.New("issuer_url is missing")
+	}
+
 	paths := strings.Split(cfg.IssuerURL.Path, "/")
 
 	if len(paths) < 2 {
