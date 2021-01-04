@@ -136,8 +136,10 @@ func (c *Config) newHTTPClient() (*http.Client, error) {
 		err  error
 	)
 
-	if cert, err = tls.LoadX509KeyPair(c.CertFile, c.KeyFile); err != nil {
-		return nil, errors.Wrapf(err, "failed to read certificate and private key")
+	if c.CertFile != "" && c.KeyFile != "" {
+		if cert, err = tls.LoadX509KeyPair(c.CertFile, c.KeyFile); err != nil {
+			return nil, errors.Wrapf(err, "failed to read certificate and private key")
+		}
 	}
 
 	if pool, err = x509.SystemCertPool(); err != nil {
