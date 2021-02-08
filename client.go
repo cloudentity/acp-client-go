@@ -327,6 +327,7 @@ func WithOpenbankingIntentID(intentID string, acr []string) AuthorizeOption {
 		}
 
 		claims := jwt.MapClaims{
+			"exp":   time.Now().Add(time.Minute).Unix(),
 			"nonce": csrf.Nonce,
 			"state": csrf.State,
 			"claims": ClaimRequests{
