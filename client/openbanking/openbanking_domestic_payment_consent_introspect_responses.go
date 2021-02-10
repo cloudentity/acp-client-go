@@ -60,7 +60,7 @@ type OpenbankingDomesticPaymentConsentIntrospectOK struct {
 }
 
 func (o *OpenbankingDomesticPaymentConsentIntrospectOK) Error() string {
-	return fmt.Sprintf("[POST /{tid}/{aid}/open-banking/v3.1/aisp/account-access-consents/introspect][%d] openbankingDomesticPaymentConsentIntrospectOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /{tid}/{aid}/open-banking/v3.1/pisp/domestic-payment-consents/introspect][%d] openbankingDomesticPaymentConsentIntrospectOK  %+v", 200, o.Payload)
 }
 func (o *OpenbankingDomesticPaymentConsentIntrospectOK) GetPayload() *models.IntrospectOpenbankingDomesticPaymentConsentResponse {
 	return o.Payload
@@ -92,7 +92,7 @@ type OpenbankingDomesticPaymentConsentIntrospectUnauthorized struct {
 }
 
 func (o *OpenbankingDomesticPaymentConsentIntrospectUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /{tid}/{aid}/open-banking/v3.1/aisp/account-access-consents/introspect][%d] openbankingDomesticPaymentConsentIntrospectUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /{tid}/{aid}/open-banking/v3.1/pisp/domestic-payment-consents/introspect][%d] openbankingDomesticPaymentConsentIntrospectUnauthorized  %+v", 401, o.Payload)
 }
 func (o *OpenbankingDomesticPaymentConsentIntrospectUnauthorized) GetPayload() *models.GenericError {
 	return o.Payload
@@ -124,7 +124,7 @@ type OpenbankingDomesticPaymentConsentIntrospectNotFound struct {
 }
 
 func (o *OpenbankingDomesticPaymentConsentIntrospectNotFound) Error() string {
-	return fmt.Sprintf("[POST /{tid}/{aid}/open-banking/v3.1/aisp/account-access-consents/introspect][%d] openbankingDomesticPaymentConsentIntrospectNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /{tid}/{aid}/open-banking/v3.1/pisp/domestic-payment-consents/introspect][%d] openbankingDomesticPaymentConsentIntrospectNotFound  %+v", 404, o.Payload)
 }
 func (o *OpenbankingDomesticPaymentConsentIntrospectNotFound) GetPayload() *models.GenericError {
 	return o.Payload
