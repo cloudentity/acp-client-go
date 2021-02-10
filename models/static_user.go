@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -17,9 +19,11 @@ import (
 type StaticUser struct {
 
 	// user password
+	// Example: secret
 	Password string `json:"password,omitempty"`
 
 	// user login
+	// Example: peter
 	Username string `json:"username,omitempty"`
 
 	// authentication context
@@ -41,12 +45,39 @@ func (m *StaticUser) Validate(formats strfmt.Registry) error {
 }
 
 func (m *StaticUser) validateAuthenticationContext(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.AuthenticationContext) { // not required
 		return nil
 	}
 
-	if err := m.AuthenticationContext.Validate(formats); err != nil {
+	if m.AuthenticationContext != nil {
+		if err := m.AuthenticationContext.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("authentication_context")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this static user based on the context it is used
+func (m *StaticUser) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateAuthenticationContext(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *StaticUser) contextValidateAuthenticationContext(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.AuthenticationContext.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("authentication_context")
 		}

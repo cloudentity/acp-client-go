@@ -16,89 +16,103 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewGetAzureB2CIDPParams creates a new GetAzureB2CIDPParams object
-// with the default values initialized.
+// NewGetAzureB2CIDPParams creates a new GetAzureB2CIDPParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetAzureB2CIDPParams() *GetAzureB2CIDPParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &GetAzureB2CIDPParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetAzureB2CIDPParamsWithTimeout creates a new GetAzureB2CIDPParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetAzureB2CIDPParamsWithTimeout(timeout time.Duration) *GetAzureB2CIDPParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &GetAzureB2CIDPParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewGetAzureB2CIDPParamsWithContext creates a new GetAzureB2CIDPParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetAzureB2CIDPParamsWithContext(ctx context.Context) *GetAzureB2CIDPParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &GetAzureB2CIDPParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewGetAzureB2CIDPParamsWithHTTPClient creates a new GetAzureB2CIDPParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetAzureB2CIDPParamsWithHTTPClient(client *http.Client) *GetAzureB2CIDPParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &GetAzureB2CIDPParams{
-		Aid:        aidDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*GetAzureB2CIDPParams contains all the parameters to send to the API endpoint
-for the get azure b2 c ID p operation typically these are written to a http.Request
+/* GetAzureB2CIDPParams contains all the parameters to send to the API endpoint
+   for the get azure b2 c ID p operation.
+
+   Typically these are written to a http.Request.
 */
 type GetAzureB2CIDPParams struct {
 
-	/*Aid
-	  Authorization server id
+	/* Aid.
 
+	   Authorization server id
+
+	   Default: "default"
 	*/
 	Aid string
-	/*Iid
-	  IDP id
 
+	/* Iid.
+
+	   IDP id
 	*/
 	Iid string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get azure b2 c ID p params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetAzureB2CIDPParams) WithDefaults() *GetAzureB2CIDPParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get azure b2 c ID p params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetAzureB2CIDPParams) SetDefaults() {
+	var (
+		aidDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := GetAzureB2CIDPParams{
+		Aid: aidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the get azure b2 c ID p params

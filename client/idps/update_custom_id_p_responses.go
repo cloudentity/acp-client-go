@@ -59,7 +59,6 @@ func (o *UpdateCustomIDPReader) ReadResponse(response runtime.ClientResponse, co
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -70,7 +69,7 @@ func NewUpdateCustomIDPOK() *UpdateCustomIDPOK {
 	return &UpdateCustomIDPOK{}
 }
 
-/*UpdateCustomIDPOK handles this case with default header values.
+/* UpdateCustomIDPOK describes a response with status code 200, with default header values.
 
 CustomIDP
 */
@@ -81,7 +80,6 @@ type UpdateCustomIDPOK struct {
 func (o *UpdateCustomIDPOK) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/custom/{iid}][%d] updateCustomIdPOK  %+v", 200, o.Payload)
 }
-
 func (o *UpdateCustomIDPOK) GetPayload() *models.CustomIDP {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewUpdateCustomIDPBadRequest() *UpdateCustomIDPBadRequest {
 	return &UpdateCustomIDPBadRequest{}
 }
 
-/*UpdateCustomIDPBadRequest handles this case with default header values.
+/* UpdateCustomIDPBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -114,7 +112,6 @@ type UpdateCustomIDPBadRequest struct {
 func (o *UpdateCustomIDPBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/custom/{iid}][%d] updateCustomIdPBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *UpdateCustomIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -136,7 +133,7 @@ func NewUpdateCustomIDPUnauthorized() *UpdateCustomIDPUnauthorized {
 	return &UpdateCustomIDPUnauthorized{}
 }
 
-/*UpdateCustomIDPUnauthorized handles this case with default header values.
+/* UpdateCustomIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,7 +144,6 @@ type UpdateCustomIDPUnauthorized struct {
 func (o *UpdateCustomIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/custom/{iid}][%d] updateCustomIdPUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *UpdateCustomIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -169,7 +165,7 @@ func NewUpdateCustomIDPForbidden() *UpdateCustomIDPForbidden {
 	return &UpdateCustomIDPForbidden{}
 }
 
-/*UpdateCustomIDPForbidden handles this case with default header values.
+/* UpdateCustomIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -180,7 +176,6 @@ type UpdateCustomIDPForbidden struct {
 func (o *UpdateCustomIDPForbidden) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/custom/{iid}][%d] updateCustomIdPForbidden  %+v", 403, o.Payload)
 }
-
 func (o *UpdateCustomIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -202,7 +197,7 @@ func NewUpdateCustomIDPNotFound() *UpdateCustomIDPNotFound {
 	return &UpdateCustomIDPNotFound{}
 }
 
-/*UpdateCustomIDPNotFound handles this case with default header values.
+/* UpdateCustomIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -213,7 +208,6 @@ type UpdateCustomIDPNotFound struct {
 func (o *UpdateCustomIDPNotFound) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/custom/{iid}][%d] updateCustomIdPNotFound  %+v", 404, o.Payload)
 }
-
 func (o *UpdateCustomIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +229,7 @@ func NewUpdateCustomIDPUnprocessableEntity() *UpdateCustomIDPUnprocessableEntity
 	return &UpdateCustomIDPUnprocessableEntity{}
 }
 
-/*UpdateCustomIDPUnprocessableEntity handles this case with default header values.
+/* UpdateCustomIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -246,7 +240,6 @@ type UpdateCustomIDPUnprocessableEntity struct {
 func (o *UpdateCustomIDPUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/custom/{iid}][%d] updateCustomIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *UpdateCustomIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

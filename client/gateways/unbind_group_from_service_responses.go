@@ -59,7 +59,6 @@ func (o *UnbindGroupFromServiceReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -70,7 +69,7 @@ func NewUnbindGroupFromServiceOK() *UnbindGroupFromServiceOK {
 	return &UnbindGroupFromServiceOK{}
 }
 
-/*UnbindGroupFromServiceOK handles this case with default header values.
+/* UnbindGroupFromServiceOK describes a response with status code 200, with default header values.
 
 UnbindGroupFromServiceResponse
 */
@@ -81,7 +80,6 @@ type UnbindGroupFromServiceOK struct {
 func (o *UnbindGroupFromServiceOK) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceOK  %+v", 200, o.Payload)
 }
-
 func (o *UnbindGroupFromServiceOK) GetPayload() *models.UnbindGroupFromServiceResponse {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewUnbindGroupFromServiceBadRequest() *UnbindGroupFromServiceBadRequest {
 	return &UnbindGroupFromServiceBadRequest{}
 }
 
-/*UnbindGroupFromServiceBadRequest handles this case with default header values.
+/* UnbindGroupFromServiceBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -114,7 +112,6 @@ type UnbindGroupFromServiceBadRequest struct {
 func (o *UnbindGroupFromServiceBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *UnbindGroupFromServiceBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -136,7 +133,7 @@ func NewUnbindGroupFromServiceUnauthorized() *UnbindGroupFromServiceUnauthorized
 	return &UnbindGroupFromServiceUnauthorized{}
 }
 
-/*UnbindGroupFromServiceUnauthorized handles this case with default header values.
+/* UnbindGroupFromServiceUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,7 +144,6 @@ type UnbindGroupFromServiceUnauthorized struct {
 func (o *UnbindGroupFromServiceUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *UnbindGroupFromServiceUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -169,7 +165,7 @@ func NewUnbindGroupFromServiceForbidden() *UnbindGroupFromServiceForbidden {
 	return &UnbindGroupFromServiceForbidden{}
 }
 
-/*UnbindGroupFromServiceForbidden handles this case with default header values.
+/* UnbindGroupFromServiceForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -180,7 +176,6 @@ type UnbindGroupFromServiceForbidden struct {
 func (o *UnbindGroupFromServiceForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceForbidden  %+v", 403, o.Payload)
 }
-
 func (o *UnbindGroupFromServiceForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -202,7 +197,7 @@ func NewUnbindGroupFromServiceNotFound() *UnbindGroupFromServiceNotFound {
 	return &UnbindGroupFromServiceNotFound{}
 }
 
-/*UnbindGroupFromServiceNotFound handles this case with default header values.
+/* UnbindGroupFromServiceNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -213,7 +208,6 @@ type UnbindGroupFromServiceNotFound struct {
 func (o *UnbindGroupFromServiceNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceNotFound  %+v", 404, o.Payload)
 }
-
 func (o *UnbindGroupFromServiceNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +229,7 @@ func NewUnbindGroupFromServiceUnprocessableEntity() *UnbindGroupFromServiceUnpro
 	return &UnbindGroupFromServiceUnprocessableEntity{}
 }
 
-/*UnbindGroupFromServiceUnprocessableEntity handles this case with default header values.
+/* UnbindGroupFromServiceUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -246,7 +240,6 @@ type UnbindGroupFromServiceUnprocessableEntity struct {
 func (o *UnbindGroupFromServiceUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *UnbindGroupFromServiceUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

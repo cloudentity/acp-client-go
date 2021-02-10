@@ -26,31 +26,34 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	BindGroupToService(params *BindGroupToServiceParams, authInfo runtime.ClientAuthInfoWriter) (*BindGroupToServiceOK, error)
+	BindGroupToService(params *BindGroupToServiceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*BindGroupToServiceOK, error)
 
-	CreateGateway(params *CreateGatewayParams, authInfo runtime.ClientAuthInfoWriter) (*CreateGatewayCreated, error)
+	CreateGateway(params *CreateGatewayParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateGatewayCreated, error)
 
-	DeleteGateway(params *DeleteGatewayParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteGatewayNoContent, error)
+	DeleteGateway(params *DeleteGatewayParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteGatewayNoContent, error)
 
-	GetGateway(params *GetGatewayParams, authInfo runtime.ClientAuthInfoWriter) (*GetGatewayOK, error)
+	GetGateway(params *GetGatewayParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetGatewayOK, error)
 
-	GetGatewayConfiguration(params *GetGatewayConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*GetGatewayConfigurationOK, error)
+	GetGatewayConfiguration(params *GetGatewayConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetGatewayConfigurationOK, error)
 
-	GetGatewayPackage(params *GetGatewayPackageParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*GetGatewayPackageOK, error)
+	GetGatewayPackage(params *GetGatewayPackageParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer, opts ...ClientOption) (*GetGatewayPackageOK, error)
 
-	ListGatewayAPIGroups(params *ListGatewayAPIGroupsParams, authInfo runtime.ClientAuthInfoWriter) (*ListGatewayAPIGroupsOK, error)
+	ListGatewayAPIGroups(params *ListGatewayAPIGroupsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListGatewayAPIGroupsOK, error)
 
-	ListGateways(params *ListGatewaysParams, authInfo runtime.ClientAuthInfoWriter) (*ListGatewaysOK, error)
+	ListGateways(params *ListGatewaysParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListGatewaysOK, error)
 
-	PushGatewayRequests(params *PushGatewayRequestsParams, authInfo runtime.ClientAuthInfoWriter) (*PushGatewayRequestsOK, error)
+	PushGatewayRequests(params *PushGatewayRequestsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PushGatewayRequestsOK, error)
 
-	SetGatewayConfiguration(params *SetGatewayConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*SetGatewayConfigurationOK, error)
+	SetGatewayConfiguration(params *SetGatewayConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetGatewayConfigurationOK, error)
 
-	UnbindGroupFromService(params *UnbindGroupFromServiceParams, authInfo runtime.ClientAuthInfoWriter) (*UnbindGroupFromServiceOK, error)
+	UnbindGroupFromService(params *UnbindGroupFromServiceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UnbindGroupFromServiceOK, error)
 
-	UpdateGateway(params *UpdateGatewayParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGatewayOK, error)
+	UpdateGateway(params *UpdateGatewayParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateGatewayOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -64,13 +67,12 @@ It removes specification from a service, if it has specification imported alread
 
 It removes any APIs added manually to a service, if it contains any.
 */
-func (a *Client) BindGroupToService(params *BindGroupToServiceParams, authInfo runtime.ClientAuthInfoWriter) (*BindGroupToServiceOK, error) {
+func (a *Client) BindGroupToService(params *BindGroupToServiceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*BindGroupToServiceOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewBindGroupToServiceParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "bindGroupToService",
 		Method:             "POST",
 		PathPattern:        "/api/admin/{tid}/gateways/{gw}/groups/{apiGroup}/bind",
@@ -82,7 +84,12 @@ func (a *Client) BindGroupToService(params *BindGroupToServiceParams, authInfo r
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -101,13 +108,12 @@ func (a *Client) BindGroupToService(params *BindGroupToServiceParams, authInfo r
 
   Create gateway.
 */
-func (a *Client) CreateGateway(params *CreateGatewayParams, authInfo runtime.ClientAuthInfoWriter) (*CreateGatewayCreated, error) {
+func (a *Client) CreateGateway(params *CreateGatewayParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateGatewayCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateGatewayParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createGateway",
 		Method:             "POST",
 		PathPattern:        "/api/admin/{tid}/gateways",
@@ -119,7 +125,12 @@ func (a *Client) CreateGateway(params *CreateGatewayParams, authInfo runtime.Cli
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -138,13 +149,12 @@ func (a *Client) CreateGateway(params *CreateGatewayParams, authInfo runtime.Cli
 
   This removes configuration for all services connected to this gateway.
 */
-func (a *Client) DeleteGateway(params *DeleteGatewayParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteGatewayNoContent, error) {
+func (a *Client) DeleteGateway(params *DeleteGatewayParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteGatewayNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteGatewayParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "deleteGateway",
 		Method:             "DELETE",
 		PathPattern:        "/api/admin/{tid}/gateways/{gw}",
@@ -156,7 +166,12 @@ func (a *Client) DeleteGateway(params *DeleteGatewayParams, authInfo runtime.Cli
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -175,13 +190,12 @@ func (a *Client) DeleteGateway(params *DeleteGatewayParams, authInfo runtime.Cli
 
   Get gateway.
 */
-func (a *Client) GetGateway(params *GetGatewayParams, authInfo runtime.ClientAuthInfoWriter) (*GetGatewayOK, error) {
+func (a *Client) GetGateway(params *GetGatewayParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetGatewayOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetGatewayParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getGateway",
 		Method:             "GET",
 		PathPattern:        "/api/admin/{tid}/gateways/{gw}",
@@ -193,7 +207,12 @@ func (a *Client) GetGateway(params *GetGatewayParams, authInfo runtime.ClientAut
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -212,13 +231,12 @@ func (a *Client) GetGateway(params *GetGatewayParams, authInfo runtime.ClientAut
 
   This endpoint is used by api authorizers to fetch rules, policies and services to protect.
 */
-func (a *Client) GetGatewayConfiguration(params *GetGatewayConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*GetGatewayConfigurationOK, error) {
+func (a *Client) GetGatewayConfiguration(params *GetGatewayConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetGatewayConfigurationOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetGatewayConfigurationParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getGatewayConfiguration",
 		Method:             "GET",
 		PathPattern:        "/api/system/{tid}/gateways/configuration",
@@ -230,7 +248,12 @@ func (a *Client) GetGatewayConfiguration(params *GetGatewayConfigurationParams, 
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -249,13 +272,12 @@ func (a *Client) GetGatewayConfiguration(params *GetGatewayConfigurationParams, 
 
   Get package for a gateway.
 */
-func (a *Client) GetGatewayPackage(params *GetGatewayPackageParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer) (*GetGatewayPackageOK, error) {
+func (a *Client) GetGatewayPackage(params *GetGatewayPackageParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer, opts ...ClientOption) (*GetGatewayPackageOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetGatewayPackageParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getGatewayPackage",
 		Method:             "GET",
 		PathPattern:        "/api/admin/{tid}/gateways/{gw}/package",
@@ -267,7 +289,12 @@ func (a *Client) GetGatewayPackage(params *GetGatewayPackageParams, authInfo run
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -286,13 +313,12 @@ func (a *Client) GetGatewayPackage(params *GetGatewayPackageParams, authInfo run
 
   List gateway api groups.
 */
-func (a *Client) ListGatewayAPIGroups(params *ListGatewayAPIGroupsParams, authInfo runtime.ClientAuthInfoWriter) (*ListGatewayAPIGroupsOK, error) {
+func (a *Client) ListGatewayAPIGroups(params *ListGatewayAPIGroupsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListGatewayAPIGroupsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListGatewayAPIGroupsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "listGatewayAPIGroups",
 		Method:             "GET",
 		PathPattern:        "/api/admin/{tid}/gateways/{gw}/groups",
@@ -304,7 +330,12 @@ func (a *Client) ListGatewayAPIGroups(params *ListGatewayAPIGroupsParams, authIn
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -323,13 +354,12 @@ func (a *Client) ListGatewayAPIGroups(params *ListGatewayAPIGroupsParams, authIn
 
   List gateways.
 */
-func (a *Client) ListGateways(params *ListGatewaysParams, authInfo runtime.ClientAuthInfoWriter) (*ListGatewaysOK, error) {
+func (a *Client) ListGateways(params *ListGatewaysParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListGatewaysOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListGatewaysParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "listGateways",
 		Method:             "GET",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/gateways",
@@ -341,7 +371,12 @@ func (a *Client) ListGateways(params *ListGatewaysParams, authInfo runtime.Clien
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -360,13 +395,12 @@ func (a *Client) ListGateways(params *ListGatewaysParams, authInfo runtime.Clien
 
   Push gateway request.
 */
-func (a *Client) PushGatewayRequests(params *PushGatewayRequestsParams, authInfo runtime.ClientAuthInfoWriter) (*PushGatewayRequestsOK, error) {
+func (a *Client) PushGatewayRequests(params *PushGatewayRequestsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PushGatewayRequestsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPushGatewayRequestsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "pushGatewayRequests",
 		Method:             "POST",
 		PathPattern:        "/api/system/{tid}/gateways/requests",
@@ -378,7 +412,12 @@ func (a *Client) PushGatewayRequests(params *PushGatewayRequestsParams, authInfo
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -397,13 +436,12 @@ func (a *Client) PushGatewayRequests(params *PushGatewayRequestsParams, authInfo
 
   This endpoint is used to push apis protected by api gateway to acp.
 */
-func (a *Client) SetGatewayConfiguration(params *SetGatewayConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*SetGatewayConfigurationOK, error) {
+func (a *Client) SetGatewayConfiguration(params *SetGatewayConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetGatewayConfigurationOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSetGatewayConfigurationParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "setGatewayConfiguration",
 		Method:             "POST",
 		PathPattern:        "/api/system/{tid}/gateways/configuration",
@@ -415,7 +453,12 @@ func (a *Client) SetGatewayConfiguration(params *SetGatewayConfigurationParams, 
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -440,13 +483,12 @@ If service is connected to a gateway, it will be disconnected.
 
 If a gateway api group is connected to this service, it will be disconnected.
 */
-func (a *Client) UnbindGroupFromService(params *UnbindGroupFromServiceParams, authInfo runtime.ClientAuthInfoWriter) (*UnbindGroupFromServiceOK, error) {
+func (a *Client) UnbindGroupFromService(params *UnbindGroupFromServiceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UnbindGroupFromServiceOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUnbindGroupFromServiceParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "unbindGroupFromService",
 		Method:             "DELETE",
 		PathPattern:        "/api/admin/{tid}/gateways/{gw}/groups/{apiGroup}/unbind",
@@ -458,7 +500,12 @@ func (a *Client) UnbindGroupFromService(params *UnbindGroupFromServiceParams, au
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -477,13 +524,12 @@ func (a *Client) UnbindGroupFromService(params *UnbindGroupFromServiceParams, au
 
   Update gateway.
 */
-func (a *Client) UpdateGateway(params *UpdateGatewayParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGatewayOK, error) {
+func (a *Client) UpdateGateway(params *UpdateGatewayParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateGatewayOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateGatewayParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "updateGateway",
 		Method:             "PUT",
 		PathPattern:        "/api/admin/{tid}/gateways/{gw}",
@@ -495,7 +541,12 @@ func (a *Client) UpdateGateway(params *UpdateGatewayParams, authInfo runtime.Cli
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}

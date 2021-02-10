@@ -47,7 +47,6 @@ func (o *ListClientsWithAccessReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewListClientsWithAccessOK() *ListClientsWithAccessOK {
 	return &ListClientsWithAccessOK{}
 }
 
-/*ListClientsWithAccessOK handles this case with default header values.
+/* ListClientsWithAccessOK describes a response with status code 200, with default header values.
 
 ListClientsWithAccess
 */
@@ -69,7 +68,6 @@ type ListClientsWithAccessOK struct {
 func (o *ListClientsWithAccessOK) Error() string {
 	return fmt.Sprintf("[GET /{tid}/{aid}/clients][%d] listClientsWithAccessOK  %+v", 200, o.Payload)
 }
-
 func (o *ListClientsWithAccessOK) GetPayload() *models.ListClientsWithAccess {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewListClientsWithAccessUnauthorized() *ListClientsWithAccessUnauthorized {
 	return &ListClientsWithAccessUnauthorized{}
 }
 
-/*ListClientsWithAccessUnauthorized handles this case with default header values.
+/* ListClientsWithAccessUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -102,7 +100,6 @@ type ListClientsWithAccessUnauthorized struct {
 func (o *ListClientsWithAccessUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /{tid}/{aid}/clients][%d] listClientsWithAccessUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *ListClientsWithAccessUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -124,7 +121,7 @@ func NewListClientsWithAccessForbidden() *ListClientsWithAccessForbidden {
 	return &ListClientsWithAccessForbidden{}
 }
 
-/*ListClientsWithAccessForbidden handles this case with default header values.
+/* ListClientsWithAccessForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,7 +132,6 @@ type ListClientsWithAccessForbidden struct {
 func (o *ListClientsWithAccessForbidden) Error() string {
 	return fmt.Sprintf("[GET /{tid}/{aid}/clients][%d] listClientsWithAccessForbidden  %+v", 403, o.Payload)
 }
-
 func (o *ListClientsWithAccessForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -157,7 +153,7 @@ func NewListClientsWithAccessNotFound() *ListClientsWithAccessNotFound {
 	return &ListClientsWithAccessNotFound{}
 }
 
-/*ListClientsWithAccessNotFound handles this case with default header values.
+/* ListClientsWithAccessNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -168,7 +164,6 @@ type ListClientsWithAccessNotFound struct {
 func (o *ListClientsWithAccessNotFound) Error() string {
 	return fmt.Sprintf("[GET /{tid}/{aid}/clients][%d] listClientsWithAccessNotFound  %+v", 404, o.Payload)
 }
-
 func (o *ListClientsWithAccessNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

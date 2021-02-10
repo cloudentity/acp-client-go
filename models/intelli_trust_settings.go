@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -16,9 +18,11 @@ import (
 type IntelliTrustSettings struct {
 
 	// OAuth client identifier
+	// Example: client
 	ClientID string `json:"client_id,omitempty"`
 
 	// domain
+	// Example: cloudentity-dev.us.trustedauth.com
 	Domain string `json:"domain,omitempty"`
 
 	// flag to fetch groups. IDP must release groups claim in userinfo endpoint
@@ -28,14 +32,21 @@ type IntelliTrustSettings struct {
 	GetUserInfo bool `json:"get_user_info,omitempty"`
 
 	// OAuth redirect URL
+	// Example: https://example.com/callback
 	RedirectURL string `json:"redirect_url,omitempty"`
 
 	// OAuth scopes which client will be requesting
+	// Example: ["email","profile","openid"]
 	Scopes []string `json:"scopes"`
 }
 
 // Validate validates this intelli trust settings
 func (m *IntelliTrustSettings) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this intelli trust settings based on context it is used
+func (m *IntelliTrustSettings) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

@@ -59,7 +59,6 @@ func (o *CreateOktaIDPReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -70,7 +69,7 @@ func NewCreateOktaIDPCreated() *CreateOktaIDPCreated {
 	return &CreateOktaIDPCreated{}
 }
 
-/*CreateOktaIDPCreated handles this case with default header values.
+/* CreateOktaIDPCreated describes a response with status code 201, with default header values.
 
 OktaIDP
 */
@@ -81,7 +80,6 @@ type CreateOktaIDPCreated struct {
 func (o *CreateOktaIDPCreated) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/okta][%d] createOktaIdPCreated  %+v", 201, o.Payload)
 }
-
 func (o *CreateOktaIDPCreated) GetPayload() *models.OktaIDP {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewCreateOktaIDPBadRequest() *CreateOktaIDPBadRequest {
 	return &CreateOktaIDPBadRequest{}
 }
 
-/*CreateOktaIDPBadRequest handles this case with default header values.
+/* CreateOktaIDPBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -114,7 +112,6 @@ type CreateOktaIDPBadRequest struct {
 func (o *CreateOktaIDPBadRequest) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/okta][%d] createOktaIdPBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *CreateOktaIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -136,7 +133,7 @@ func NewCreateOktaIDPUnauthorized() *CreateOktaIDPUnauthorized {
 	return &CreateOktaIDPUnauthorized{}
 }
 
-/*CreateOktaIDPUnauthorized handles this case with default header values.
+/* CreateOktaIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,7 +144,6 @@ type CreateOktaIDPUnauthorized struct {
 func (o *CreateOktaIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/okta][%d] createOktaIdPUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *CreateOktaIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -169,7 +165,7 @@ func NewCreateOktaIDPForbidden() *CreateOktaIDPForbidden {
 	return &CreateOktaIDPForbidden{}
 }
 
-/*CreateOktaIDPForbidden handles this case with default header values.
+/* CreateOktaIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -180,7 +176,6 @@ type CreateOktaIDPForbidden struct {
 func (o *CreateOktaIDPForbidden) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/okta][%d] createOktaIdPForbidden  %+v", 403, o.Payload)
 }
-
 func (o *CreateOktaIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -202,7 +197,7 @@ func NewCreateOktaIDPNotFound() *CreateOktaIDPNotFound {
 	return &CreateOktaIDPNotFound{}
 }
 
-/*CreateOktaIDPNotFound handles this case with default header values.
+/* CreateOktaIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -213,7 +208,6 @@ type CreateOktaIDPNotFound struct {
 func (o *CreateOktaIDPNotFound) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/okta][%d] createOktaIdPNotFound  %+v", 404, o.Payload)
 }
-
 func (o *CreateOktaIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +229,7 @@ func NewCreateOktaIDPUnprocessableEntity() *CreateOktaIDPUnprocessableEntity {
 	return &CreateOktaIDPUnprocessableEntity{}
 }
 
-/*CreateOktaIDPUnprocessableEntity handles this case with default header values.
+/* CreateOktaIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -246,7 +240,6 @@ type CreateOktaIDPUnprocessableEntity struct {
 func (o *CreateOktaIDPUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/okta][%d] createOktaIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *CreateOktaIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

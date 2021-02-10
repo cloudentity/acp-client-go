@@ -25,15 +25,18 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateClaim(params *CreateClaimParams, authInfo runtime.ClientAuthInfoWriter) (*CreateClaimCreated, error)
+	CreateClaim(params *CreateClaimParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateClaimCreated, error)
 
-	DeleteClaim(params *DeleteClaimParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteClaimNoContent, error)
+	DeleteClaim(params *DeleteClaimParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteClaimNoContent, error)
 
-	ListClaims(params *ListClaimsParams, authInfo runtime.ClientAuthInfoWriter) (*ListClaimsOK, error)
+	ListClaims(params *ListClaimsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListClaimsOK, error)
 
-	UpdateClaim(params *UpdateClaimParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateClaimOK, error)
+	UpdateClaim(params *UpdateClaimParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateClaimOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -47,13 +50,12 @@ Authorization Server, Name, Mapping and Type are required fields.
 
 ID if not provided will be generated.
 */
-func (a *Client) CreateClaim(params *CreateClaimParams, authInfo runtime.ClientAuthInfoWriter) (*CreateClaimCreated, error) {
+func (a *Client) CreateClaim(params *CreateClaimParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateClaimCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateClaimParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createClaim",
 		Method:             "POST",
 		PathPattern:        "/api/admin/{tid}/claims",
@@ -65,7 +67,12 @@ func (a *Client) CreateClaim(params *CreateClaimParams, authInfo runtime.ClientA
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -84,13 +91,12 @@ func (a *Client) CreateClaim(params *CreateClaimParams, authInfo runtime.ClientA
 
   Delete claim.
 */
-func (a *Client) DeleteClaim(params *DeleteClaimParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteClaimNoContent, error) {
+func (a *Client) DeleteClaim(params *DeleteClaimParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteClaimNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteClaimParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "deleteClaim",
 		Method:             "DELETE",
 		PathPattern:        "/api/admin/{tid}/claims/{claim}",
@@ -102,7 +108,12 @@ func (a *Client) DeleteClaim(params *DeleteClaimParams, authInfo runtime.ClientA
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -121,13 +132,12 @@ func (a *Client) DeleteClaim(params *DeleteClaimParams, authInfo runtime.ClientA
 
   List claims.
 */
-func (a *Client) ListClaims(params *ListClaimsParams, authInfo runtime.ClientAuthInfoWriter) (*ListClaimsOK, error) {
+func (a *Client) ListClaims(params *ListClaimsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListClaimsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListClaimsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "listClaims",
 		Method:             "GET",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/claims",
@@ -139,7 +149,12 @@ func (a *Client) ListClaims(params *ListClaimsParams, authInfo runtime.ClientAut
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -158,13 +173,12 @@ func (a *Client) ListClaims(params *ListClaimsParams, authInfo runtime.ClientAut
 
   Update claim.
 */
-func (a *Client) UpdateClaim(params *UpdateClaimParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateClaimOK, error) {
+func (a *Client) UpdateClaim(params *UpdateClaimParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateClaimOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateClaimParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "updateClaim",
 		Method:             "PUT",
 		PathPattern:        "/api/admin/{tid}/claims/{claim}",
@@ -176,7 +190,12 @@ func (a *Client) UpdateClaim(params *UpdateClaimParams, authInfo runtime.ClientA
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}

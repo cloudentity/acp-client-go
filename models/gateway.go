@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -24,6 +26,7 @@ type Gateway struct {
 	Description string `json:"description,omitempty"`
 
 	// unique gateway id
+	// Example: 1
 	ID string `json:"id,omitempty"`
 
 	// last time a client fetched configuration
@@ -31,15 +34,19 @@ type Gateway struct {
 	LastActive strfmt.DateTime `json:"last_active,omitempty"`
 
 	// gateway name
+	// Example: Cloudentity Pyron
 	Name string `json:"name,omitempty"`
 
 	// authorization server id
+	// Example: default
 	ServerID string `json:"authorization_server_id,omitempty"`
 
 	// tenant id
+	// Example: default
 	TenantID string `json:"tenant_id,omitempty"`
 
 	// gateway type, one of: pyron, aws
+	// Example: pyron
 	Type string `json:"type,omitempty"`
 }
 
@@ -58,7 +65,6 @@ func (m *Gateway) Validate(formats strfmt.Registry) error {
 }
 
 func (m *Gateway) validateLastActive(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.LastActive) { // not required
 		return nil
 	}
@@ -67,6 +73,11 @@ func (m *Gateway) validateLastActive(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this gateway based on context it is used
+func (m *Gateway) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

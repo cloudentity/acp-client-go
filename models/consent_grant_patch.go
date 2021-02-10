@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -16,17 +18,25 @@ import (
 type ConsentGrantPatch struct {
 
 	// consent id
+	// Example: 1
 	ConsentID string `json:"consent_id,omitempty"`
 
 	// one of: implicit, explicit (explicit is the default value)
+	// Example: implicit
 	GrantType string `json:"grant_type,omitempty"`
 
 	// boolean flag marking if the user granted or revoked the consent
+	// Example: false
 	Granted bool `json:"granted,omitempty"`
 }
 
 // Validate validates this consent grant patch
 func (m *ConsentGrantPatch) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this consent grant patch based on context it is used
+func (m *ConsentGrantPatch) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

@@ -59,7 +59,6 @@ func (o *CreateClaimReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -70,7 +69,7 @@ func NewCreateClaimCreated() *CreateClaimCreated {
 	return &CreateClaimCreated{}
 }
 
-/*CreateClaimCreated handles this case with default header values.
+/* CreateClaimCreated describes a response with status code 201, with default header values.
 
 Claim
 */
@@ -81,7 +80,6 @@ type CreateClaimCreated struct {
 func (o *CreateClaimCreated) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/claims][%d] createClaimCreated  %+v", 201, o.Payload)
 }
-
 func (o *CreateClaimCreated) GetPayload() *models.Claim {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewCreateClaimUnauthorized() *CreateClaimUnauthorized {
 	return &CreateClaimUnauthorized{}
 }
 
-/*CreateClaimUnauthorized handles this case with default header values.
+/* CreateClaimUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -114,7 +112,6 @@ type CreateClaimUnauthorized struct {
 func (o *CreateClaimUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/claims][%d] createClaimUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *CreateClaimUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -136,7 +133,7 @@ func NewCreateClaimForbidden() *CreateClaimForbidden {
 	return &CreateClaimForbidden{}
 }
 
-/*CreateClaimForbidden handles this case with default header values.
+/* CreateClaimForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -147,7 +144,6 @@ type CreateClaimForbidden struct {
 func (o *CreateClaimForbidden) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/claims][%d] createClaimForbidden  %+v", 403, o.Payload)
 }
-
 func (o *CreateClaimForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -169,7 +165,7 @@ func NewCreateClaimNotFound() *CreateClaimNotFound {
 	return &CreateClaimNotFound{}
 }
 
-/*CreateClaimNotFound handles this case with default header values.
+/* CreateClaimNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -180,7 +176,6 @@ type CreateClaimNotFound struct {
 func (o *CreateClaimNotFound) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/claims][%d] createClaimNotFound  %+v", 404, o.Payload)
 }
-
 func (o *CreateClaimNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -202,7 +197,7 @@ func NewCreateClaimConflict() *CreateClaimConflict {
 	return &CreateClaimConflict{}
 }
 
-/*CreateClaimConflict handles this case with default header values.
+/* CreateClaimConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -213,7 +208,6 @@ type CreateClaimConflict struct {
 func (o *CreateClaimConflict) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/claims][%d] createClaimConflict  %+v", 409, o.Payload)
 }
-
 func (o *CreateClaimConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +229,7 @@ func NewCreateClaimUnprocessableEntity() *CreateClaimUnprocessableEntity {
 	return &CreateClaimUnprocessableEntity{}
 }
 
-/*CreateClaimUnprocessableEntity handles this case with default header values.
+/* CreateClaimUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -246,7 +240,6 @@ type CreateClaimUnprocessableEntity struct {
 func (o *CreateClaimUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/claims][%d] createClaimUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *CreateClaimUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

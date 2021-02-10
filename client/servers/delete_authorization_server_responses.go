@@ -53,7 +53,6 @@ func (o *DeleteAuthorizationServerReader) ReadResponse(response runtime.ClientRe
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -64,7 +63,7 @@ func NewDeleteAuthorizationServerNoContent() *DeleteAuthorizationServerNoContent
 	return &DeleteAuthorizationServerNoContent{}
 }
 
-/*DeleteAuthorizationServerNoContent handles this case with default header values.
+/* DeleteAuthorizationServerNoContent describes a response with status code 204, with default header values.
 
 Authorization server has been deleted
 */
@@ -85,7 +84,7 @@ func NewDeleteAuthorizationServerBadRequest() *DeleteAuthorizationServerBadReque
 	return &DeleteAuthorizationServerBadRequest{}
 }
 
-/*DeleteAuthorizationServerBadRequest handles this case with default header values.
+/* DeleteAuthorizationServerBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -96,7 +95,6 @@ type DeleteAuthorizationServerBadRequest struct {
 func (o *DeleteAuthorizationServerBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/servers/{aid}][%d] deleteAuthorizationServerBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *DeleteAuthorizationServerBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -118,7 +116,7 @@ func NewDeleteAuthorizationServerUnauthorized() *DeleteAuthorizationServerUnauth
 	return &DeleteAuthorizationServerUnauthorized{}
 }
 
-/*DeleteAuthorizationServerUnauthorized handles this case with default header values.
+/* DeleteAuthorizationServerUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -129,7 +127,6 @@ type DeleteAuthorizationServerUnauthorized struct {
 func (o *DeleteAuthorizationServerUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/servers/{aid}][%d] deleteAuthorizationServerUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *DeleteAuthorizationServerUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -151,7 +148,7 @@ func NewDeleteAuthorizationServerForbidden() *DeleteAuthorizationServerForbidden
 	return &DeleteAuthorizationServerForbidden{}
 }
 
-/*DeleteAuthorizationServerForbidden handles this case with default header values.
+/* DeleteAuthorizationServerForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -162,7 +159,6 @@ type DeleteAuthorizationServerForbidden struct {
 func (o *DeleteAuthorizationServerForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/servers/{aid}][%d] deleteAuthorizationServerForbidden  %+v", 403, o.Payload)
 }
-
 func (o *DeleteAuthorizationServerForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -184,7 +180,7 @@ func NewDeleteAuthorizationServerNotFound() *DeleteAuthorizationServerNotFound {
 	return &DeleteAuthorizationServerNotFound{}
 }
 
-/*DeleteAuthorizationServerNotFound handles this case with default header values.
+/* DeleteAuthorizationServerNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -195,7 +191,6 @@ type DeleteAuthorizationServerNotFound struct {
 func (o *DeleteAuthorizationServerNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/servers/{aid}][%d] deleteAuthorizationServerNotFound  %+v", 404, o.Payload)
 }
-
 func (o *DeleteAuthorizationServerNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

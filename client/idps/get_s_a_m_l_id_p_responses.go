@@ -47,7 +47,6 @@ func (o *GetSAMLIDPReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewGetSAMLIDPOK() *GetSAMLIDPOK {
 	return &GetSAMLIDPOK{}
 }
 
-/*GetSAMLIDPOK handles this case with default header values.
+/* GetSAMLIDPOK describes a response with status code 200, with default header values.
 
 SAMLIDP
 */
@@ -69,7 +68,6 @@ type GetSAMLIDPOK struct {
 func (o *GetSAMLIDPOK) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps/saml/{iid}][%d] getSAMLIdPOK  %+v", 200, o.Payload)
 }
-
 func (o *GetSAMLIDPOK) GetPayload() *models.SAMLIDP {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewGetSAMLIDPUnauthorized() *GetSAMLIDPUnauthorized {
 	return &GetSAMLIDPUnauthorized{}
 }
 
-/*GetSAMLIDPUnauthorized handles this case with default header values.
+/* GetSAMLIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -102,7 +100,6 @@ type GetSAMLIDPUnauthorized struct {
 func (o *GetSAMLIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps/saml/{iid}][%d] getSAMLIdPUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *GetSAMLIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -124,7 +121,7 @@ func NewGetSAMLIDPForbidden() *GetSAMLIDPForbidden {
 	return &GetSAMLIDPForbidden{}
 }
 
-/*GetSAMLIDPForbidden handles this case with default header values.
+/* GetSAMLIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,7 +132,6 @@ type GetSAMLIDPForbidden struct {
 func (o *GetSAMLIDPForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps/saml/{iid}][%d] getSAMLIdPForbidden  %+v", 403, o.Payload)
 }
-
 func (o *GetSAMLIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -157,7 +153,7 @@ func NewGetSAMLIDPNotFound() *GetSAMLIDPNotFound {
 	return &GetSAMLIDPNotFound{}
 }
 
-/*GetSAMLIDPNotFound handles this case with default header values.
+/* GetSAMLIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -168,7 +164,6 @@ type GetSAMLIDPNotFound struct {
 func (o *GetSAMLIDPNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps/saml/{iid}][%d] getSAMLIdPNotFound  %+v", 404, o.Payload)
 }
-
 func (o *GetSAMLIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

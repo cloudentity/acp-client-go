@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -16,20 +18,29 @@ import (
 type ClientDetails struct {
 
 	// url to a client website
+	// Example: https://example.com
 	ClientURI string `json:"client_uri,omitempty"`
 
 	// client id
+	// Example: default
 	ID string `json:"id,omitempty"`
 
 	// url to a page where client logo is served
+	// Example: https://example.com/logo.png
 	LogoURI string `json:"logo_uri,omitempty"`
 
 	// client name
+	// Example: My app
 	Name string `json:"name,omitempty"`
 }
 
 // Validate validates this client details
 func (m *ClientDetails) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this client details based on context it is used
+func (m *ClientDetails) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

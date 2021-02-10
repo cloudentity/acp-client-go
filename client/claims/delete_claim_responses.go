@@ -47,7 +47,6 @@ func (o *DeleteClaimReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewDeleteClaimNoContent() *DeleteClaimNoContent {
 	return &DeleteClaimNoContent{}
 }
 
-/*DeleteClaimNoContent handles this case with default header values.
+/* DeleteClaimNoContent describes a response with status code 204, with default header values.
 
 Claim has been deleted
 */
@@ -79,7 +78,7 @@ func NewDeleteClaimUnauthorized() *DeleteClaimUnauthorized {
 	return &DeleteClaimUnauthorized{}
 }
 
-/*DeleteClaimUnauthorized handles this case with default header values.
+/* DeleteClaimUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -90,7 +89,6 @@ type DeleteClaimUnauthorized struct {
 func (o *DeleteClaimUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/claims/{claim}][%d] deleteClaimUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *DeleteClaimUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -112,7 +110,7 @@ func NewDeleteClaimForbidden() *DeleteClaimForbidden {
 	return &DeleteClaimForbidden{}
 }
 
-/*DeleteClaimForbidden handles this case with default header values.
+/* DeleteClaimForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -123,7 +121,6 @@ type DeleteClaimForbidden struct {
 func (o *DeleteClaimForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/claims/{claim}][%d] deleteClaimForbidden  %+v", 403, o.Payload)
 }
-
 func (o *DeleteClaimForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -145,7 +142,7 @@ func NewDeleteClaimNotFound() *DeleteClaimNotFound {
 	return &DeleteClaimNotFound{}
 }
 
-/*DeleteClaimNotFound handles this case with default header values.
+/* DeleteClaimNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -156,7 +153,6 @@ type DeleteClaimNotFound struct {
 func (o *DeleteClaimNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/claims/{claim}][%d] deleteClaimNotFound  %+v", 404, o.Payload)
 }
-
 func (o *DeleteClaimNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

@@ -41,7 +41,6 @@ func (o *ListScopesReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -52,7 +51,7 @@ func NewListScopesOK() *ListScopesOK {
 	return &ListScopesOK{}
 }
 
-/*ListScopesOK handles this case with default header values.
+/* ListScopesOK describes a response with status code 200, with default header values.
 
 ScopesWithServices
 */
@@ -63,7 +62,6 @@ type ListScopesOK struct {
 func (o *ListScopesOK) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/scopes][%d] listScopesOK  %+v", 200, o.Payload)
 }
-
 func (o *ListScopesOK) GetPayload() *models.ScopesWithServices {
 	return o.Payload
 }
@@ -85,7 +83,7 @@ func NewListScopesUnauthorized() *ListScopesUnauthorized {
 	return &ListScopesUnauthorized{}
 }
 
-/*ListScopesUnauthorized handles this case with default header values.
+/* ListScopesUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -96,7 +94,6 @@ type ListScopesUnauthorized struct {
 func (o *ListScopesUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/scopes][%d] listScopesUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *ListScopesUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -118,7 +115,7 @@ func NewListScopesForbidden() *ListScopesForbidden {
 	return &ListScopesForbidden{}
 }
 
-/*ListScopesForbidden handles this case with default header values.
+/* ListScopesForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -129,7 +126,6 @@ type ListScopesForbidden struct {
 func (o *ListScopesForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/scopes][%d] listScopesForbidden  %+v", 403, o.Payload)
 }
-
 func (o *ListScopesForbidden) GetPayload() *models.Error {
 	return o.Payload
 }

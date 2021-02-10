@@ -16,84 +16,97 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewListClientsForDeveloperParams creates a new ListClientsForDeveloperParams object
-// with the default values initialized.
+// NewListClientsForDeveloperParams creates a new ListClientsForDeveloperParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewListClientsForDeveloperParams() *ListClientsForDeveloperParams {
-	var (
-		aidDefault = string("developer")
-		tidDefault = string("default")
-	)
 	return &ListClientsForDeveloperParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewListClientsForDeveloperParamsWithTimeout creates a new ListClientsForDeveloperParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewListClientsForDeveloperParamsWithTimeout(timeout time.Duration) *ListClientsForDeveloperParams {
-	var (
-		aidDefault = string("developer")
-		tidDefault = string("default")
-	)
 	return &ListClientsForDeveloperParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewListClientsForDeveloperParamsWithContext creates a new ListClientsForDeveloperParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewListClientsForDeveloperParamsWithContext(ctx context.Context) *ListClientsForDeveloperParams {
-	var (
-		aidDefault = string("developer")
-		tidDefault = string("default")
-	)
 	return &ListClientsForDeveloperParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewListClientsForDeveloperParamsWithHTTPClient creates a new ListClientsForDeveloperParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewListClientsForDeveloperParamsWithHTTPClient(client *http.Client) *ListClientsForDeveloperParams {
-	var (
-		aidDefault = string("developer")
-		tidDefault = string("default")
-	)
 	return &ListClientsForDeveloperParams{
-		Aid:        aidDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*ListClientsForDeveloperParams contains all the parameters to send to the API endpoint
-for the list clients for developer operation typically these are written to a http.Request
+/* ListClientsForDeveloperParams contains all the parameters to send to the API endpoint
+   for the list clients for developer operation.
+
+   Typically these are written to a http.Request.
 */
 type ListClientsForDeveloperParams struct {
 
-	/*Aid
-	  Developer server id
+	/* Aid.
 
+	   Developer server id
+
+	   Default: "developer"
 	*/
 	Aid string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the list clients for developer params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ListClientsForDeveloperParams) WithDefaults() *ListClientsForDeveloperParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the list clients for developer params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ListClientsForDeveloperParams) SetDefaults() {
+	var (
+		aidDefault = string("developer")
+
+		tidDefault = string("default")
+	)
+
+	val := ListClientsForDeveloperParams{
+		Aid: aidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the list clients for developer params

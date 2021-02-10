@@ -18,102 +18,114 @@ import (
 	"github.com/cloudentity/acp-client-go/models"
 )
 
-// NewUpdateSAMLIDPParams creates a new UpdateSAMLIDPParams object
-// with the default values initialized.
+// NewUpdateSAMLIDPParams creates a new UpdateSAMLIDPParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewUpdateSAMLIDPParams() *UpdateSAMLIDPParams {
-	var (
-		aidDefault = string("default")
-		iidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &UpdateSAMLIDPParams{
-		Aid: aidDefault,
-		Iid: iidDefault,
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewUpdateSAMLIDPParamsWithTimeout creates a new UpdateSAMLIDPParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewUpdateSAMLIDPParamsWithTimeout(timeout time.Duration) *UpdateSAMLIDPParams {
-	var (
-		aidDefault = string("default")
-		iidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &UpdateSAMLIDPParams{
-		Aid: aidDefault,
-		Iid: iidDefault,
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewUpdateSAMLIDPParamsWithContext creates a new UpdateSAMLIDPParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewUpdateSAMLIDPParamsWithContext(ctx context.Context) *UpdateSAMLIDPParams {
-	var (
-		aidDefault = string("default")
-		iidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &UpdateSAMLIDPParams{
-		Aid: aidDefault,
-		Iid: iidDefault,
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewUpdateSAMLIDPParamsWithHTTPClient creates a new UpdateSAMLIDPParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewUpdateSAMLIDPParamsWithHTTPClient(client *http.Client) *UpdateSAMLIDPParams {
-	var (
-		aidDefault = string("default")
-		iidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &UpdateSAMLIDPParams{
-		Aid:        aidDefault,
-		Iid:        iidDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*UpdateSAMLIDPParams contains all the parameters to send to the API endpoint
-for the update s a m l ID p operation typically these are written to a http.Request
+/* UpdateSAMLIDPParams contains all the parameters to send to the API endpoint
+   for the update s a m l ID p operation.
+
+   Typically these are written to a http.Request.
 */
 type UpdateSAMLIDPParams struct {
 
-	/*SAMLIDP
-	  SAMLIDP
+	/* SAMLIDP.
 
+	   SAMLIDP
 	*/
 	SAMLIDP *models.SAMLIDP
-	/*Aid
-	  Authorization server id
 
+	/* Aid.
+
+	   Authorization server id
+
+	   Default: "default"
 	*/
 	Aid string
-	/*Iid
-	  IDP id
 
+	/* Iid.
+
+	   IDP id
+
+	   Default: "default"
 	*/
 	Iid string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the update s a m l ID p params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateSAMLIDPParams) WithDefaults() *UpdateSAMLIDPParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the update s a m l ID p params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateSAMLIDPParams) SetDefaults() {
+	var (
+		aidDefault = string("default")
+
+		iidDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := UpdateSAMLIDPParams{
+		Aid: aidDefault,
+		Iid: iidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the update s a m l ID p params
@@ -200,7 +212,6 @@ func (o *UpdateSAMLIDPParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		return err
 	}
 	var res []error
-
 	if o.SAMLIDP != nil {
 		if err := r.SetBodyParam(o.SAMLIDP); err != nil {
 			return err

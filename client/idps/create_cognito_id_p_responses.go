@@ -59,7 +59,6 @@ func (o *CreateCognitoIDPReader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -70,7 +69,7 @@ func NewCreateCognitoIDPCreated() *CreateCognitoIDPCreated {
 	return &CreateCognitoIDPCreated{}
 }
 
-/*CreateCognitoIDPCreated handles this case with default header values.
+/* CreateCognitoIDPCreated describes a response with status code 201, with default header values.
 
 CognitoIDP
 */
@@ -81,7 +80,6 @@ type CreateCognitoIDPCreated struct {
 func (o *CreateCognitoIDPCreated) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/cognito][%d] createCognitoIdPCreated  %+v", 201, o.Payload)
 }
-
 func (o *CreateCognitoIDPCreated) GetPayload() *models.CognitoIDP {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewCreateCognitoIDPBadRequest() *CreateCognitoIDPBadRequest {
 	return &CreateCognitoIDPBadRequest{}
 }
 
-/*CreateCognitoIDPBadRequest handles this case with default header values.
+/* CreateCognitoIDPBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -114,7 +112,6 @@ type CreateCognitoIDPBadRequest struct {
 func (o *CreateCognitoIDPBadRequest) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/cognito][%d] createCognitoIdPBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *CreateCognitoIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -136,7 +133,7 @@ func NewCreateCognitoIDPUnauthorized() *CreateCognitoIDPUnauthorized {
 	return &CreateCognitoIDPUnauthorized{}
 }
 
-/*CreateCognitoIDPUnauthorized handles this case with default header values.
+/* CreateCognitoIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,7 +144,6 @@ type CreateCognitoIDPUnauthorized struct {
 func (o *CreateCognitoIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/cognito][%d] createCognitoIdPUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *CreateCognitoIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -169,7 +165,7 @@ func NewCreateCognitoIDPForbidden() *CreateCognitoIDPForbidden {
 	return &CreateCognitoIDPForbidden{}
 }
 
-/*CreateCognitoIDPForbidden handles this case with default header values.
+/* CreateCognitoIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -180,7 +176,6 @@ type CreateCognitoIDPForbidden struct {
 func (o *CreateCognitoIDPForbidden) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/cognito][%d] createCognitoIdPForbidden  %+v", 403, o.Payload)
 }
-
 func (o *CreateCognitoIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -202,7 +197,7 @@ func NewCreateCognitoIDPNotFound() *CreateCognitoIDPNotFound {
 	return &CreateCognitoIDPNotFound{}
 }
 
-/*CreateCognitoIDPNotFound handles this case with default header values.
+/* CreateCognitoIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -213,7 +208,6 @@ type CreateCognitoIDPNotFound struct {
 func (o *CreateCognitoIDPNotFound) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/cognito][%d] createCognitoIdPNotFound  %+v", 404, o.Payload)
 }
-
 func (o *CreateCognitoIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +229,7 @@ func NewCreateCognitoIDPUnprocessableEntity() *CreateCognitoIDPUnprocessableEnti
 	return &CreateCognitoIDPUnprocessableEntity{}
 }
 
-/*CreateCognitoIDPUnprocessableEntity handles this case with default header values.
+/* CreateCognitoIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -246,7 +240,6 @@ type CreateCognitoIDPUnprocessableEntity struct {
 func (o *CreateCognitoIDPUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/cognito][%d] createCognitoIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *CreateCognitoIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

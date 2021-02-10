@@ -18,102 +18,114 @@ import (
 	"github.com/cloudentity/acp-client-go/models"
 )
 
-// NewUpdateGithubIDPParams creates a new UpdateGithubIDPParams object
-// with the default values initialized.
+// NewUpdateGithubIDPParams creates a new UpdateGithubIDPParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewUpdateGithubIDPParams() *UpdateGithubIDPParams {
-	var (
-		aidDefault = string("default")
-		iidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &UpdateGithubIDPParams{
-		Aid: aidDefault,
-		Iid: iidDefault,
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewUpdateGithubIDPParamsWithTimeout creates a new UpdateGithubIDPParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewUpdateGithubIDPParamsWithTimeout(timeout time.Duration) *UpdateGithubIDPParams {
-	var (
-		aidDefault = string("default")
-		iidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &UpdateGithubIDPParams{
-		Aid: aidDefault,
-		Iid: iidDefault,
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewUpdateGithubIDPParamsWithContext creates a new UpdateGithubIDPParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewUpdateGithubIDPParamsWithContext(ctx context.Context) *UpdateGithubIDPParams {
-	var (
-		aidDefault = string("default")
-		iidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &UpdateGithubIDPParams{
-		Aid: aidDefault,
-		Iid: iidDefault,
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewUpdateGithubIDPParamsWithHTTPClient creates a new UpdateGithubIDPParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewUpdateGithubIDPParamsWithHTTPClient(client *http.Client) *UpdateGithubIDPParams {
-	var (
-		aidDefault = string("default")
-		iidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &UpdateGithubIDPParams{
-		Aid:        aidDefault,
-		Iid:        iidDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*UpdateGithubIDPParams contains all the parameters to send to the API endpoint
-for the update github ID p operation typically these are written to a http.Request
+/* UpdateGithubIDPParams contains all the parameters to send to the API endpoint
+   for the update github ID p operation.
+
+   Typically these are written to a http.Request.
 */
 type UpdateGithubIDPParams struct {
 
-	/*GithubIDP
-	  GithubIDP
+	/* GithubIDP.
 
+	   GithubIDP
 	*/
 	GithubIDP *models.GithubIDP
-	/*Aid
-	  Authorization server id
 
+	/* Aid.
+
+	   Authorization server id
+
+	   Default: "default"
 	*/
 	Aid string
-	/*Iid
-	  IDP id
 
+	/* Iid.
+
+	   IDP id
+
+	   Default: "default"
 	*/
 	Iid string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the update github ID p params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateGithubIDPParams) WithDefaults() *UpdateGithubIDPParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the update github ID p params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateGithubIDPParams) SetDefaults() {
+	var (
+		aidDefault = string("default")
+
+		iidDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := UpdateGithubIDPParams{
+		Aid: aidDefault,
+		Iid: iidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the update github ID p params
@@ -200,7 +212,6 @@ func (o *UpdateGithubIDPParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		return err
 	}
 	var res []error
-
 	if o.GithubIDP != nil {
 		if err := r.SetBodyParam(o.GithubIDP); err != nil {
 			return err

@@ -53,7 +53,6 @@ func (o *DeleteServiceReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -64,7 +63,7 @@ func NewDeleteServiceNoContent() *DeleteServiceNoContent {
 	return &DeleteServiceNoContent{}
 }
 
-/*DeleteServiceNoContent handles this case with default header values.
+/* DeleteServiceNoContent describes a response with status code 204, with default header values.
 
 Service has been deleted
 */
@@ -85,7 +84,7 @@ func NewDeleteServiceBadRequest() *DeleteServiceBadRequest {
 	return &DeleteServiceBadRequest{}
 }
 
-/*DeleteServiceBadRequest handles this case with default header values.
+/* DeleteServiceBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -96,7 +95,6 @@ type DeleteServiceBadRequest struct {
 func (o *DeleteServiceBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/services/{sid}][%d] deleteServiceBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *DeleteServiceBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -118,7 +116,7 @@ func NewDeleteServiceUnauthorized() *DeleteServiceUnauthorized {
 	return &DeleteServiceUnauthorized{}
 }
 
-/*DeleteServiceUnauthorized handles this case with default header values.
+/* DeleteServiceUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -129,7 +127,6 @@ type DeleteServiceUnauthorized struct {
 func (o *DeleteServiceUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/services/{sid}][%d] deleteServiceUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *DeleteServiceUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -151,7 +148,7 @@ func NewDeleteServiceForbidden() *DeleteServiceForbidden {
 	return &DeleteServiceForbidden{}
 }
 
-/*DeleteServiceForbidden handles this case with default header values.
+/* DeleteServiceForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -162,7 +159,6 @@ type DeleteServiceForbidden struct {
 func (o *DeleteServiceForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/services/{sid}][%d] deleteServiceForbidden  %+v", 403, o.Payload)
 }
-
 func (o *DeleteServiceForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -184,7 +180,7 @@ func NewDeleteServiceNotFound() *DeleteServiceNotFound {
 	return &DeleteServiceNotFound{}
 }
 
-/*DeleteServiceNotFound handles this case with default header values.
+/* DeleteServiceNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -195,7 +191,6 @@ type DeleteServiceNotFound struct {
 func (o *DeleteServiceNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/services/{sid}][%d] deleteServiceNotFound  %+v", 404, o.Payload)
 }
-
 func (o *DeleteServiceNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

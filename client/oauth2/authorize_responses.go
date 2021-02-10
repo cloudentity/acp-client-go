@@ -41,7 +41,6 @@ func (o *AuthorizeReader) ReadResponse(response runtime.ClientResponse, consumer
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -52,7 +51,7 @@ func NewAuthorizeFound() *AuthorizeFound {
 	return &AuthorizeFound{}
 }
 
-/*AuthorizeFound handles this case with default header values.
+/* AuthorizeFound describes a response with status code 302, with default header values.
 
 emptyResponse
 */
@@ -63,7 +62,6 @@ type AuthorizeFound struct {
 func (o *AuthorizeFound) Error() string {
 	return fmt.Sprintf("[GET /{tid}/{aid}/oauth2/authorize][%d] authorizeFound  %+v", 302, o.Payload)
 }
-
 func (o *AuthorizeFound) GetPayload() models.EmptyResponse {
 	return o.Payload
 }
@@ -83,7 +81,7 @@ func NewAuthorizeUnauthorized() *AuthorizeUnauthorized {
 	return &AuthorizeUnauthorized{}
 }
 
-/*AuthorizeUnauthorized handles this case with default header values.
+/* AuthorizeUnauthorized describes a response with status code 401, with default header values.
 
 genericError
 */
@@ -94,7 +92,6 @@ type AuthorizeUnauthorized struct {
 func (o *AuthorizeUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /{tid}/{aid}/oauth2/authorize][%d] authorizeUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *AuthorizeUnauthorized) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -116,7 +113,7 @@ func NewAuthorizeNotFound() *AuthorizeNotFound {
 	return &AuthorizeNotFound{}
 }
 
-/*AuthorizeNotFound handles this case with default header values.
+/* AuthorizeNotFound describes a response with status code 404, with default header values.
 
 genericError
 */
@@ -127,7 +124,6 @@ type AuthorizeNotFound struct {
 func (o *AuthorizeNotFound) Error() string {
 	return fmt.Sprintf("[GET /{tid}/{aid}/oauth2/authorize][%d] authorizeNotFound  %+v", 404, o.Payload)
 }
-
 func (o *AuthorizeNotFound) GetPayload() *models.GenericError {
 	return o.Payload
 }

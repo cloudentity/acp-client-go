@@ -47,7 +47,6 @@ func (o *GetAdminTenantReader) ReadResponse(response runtime.ClientResponse, con
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewGetAdminTenantOK() *GetAdminTenantOK {
 	return &GetAdminTenantOK{}
 }
 
-/*GetAdminTenantOK handles this case with default header values.
+/* GetAdminTenantOK describes a response with status code 200, with default header values.
 
 Tenant
 */
@@ -69,7 +68,6 @@ type GetAdminTenantOK struct {
 func (o *GetAdminTenantOK) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/tenant][%d] getAdminTenantOK  %+v", 200, o.Payload)
 }
-
 func (o *GetAdminTenantOK) GetPayload() *models.Tenant {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewGetAdminTenantUnauthorized() *GetAdminTenantUnauthorized {
 	return &GetAdminTenantUnauthorized{}
 }
 
-/*GetAdminTenantUnauthorized handles this case with default header values.
+/* GetAdminTenantUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -102,7 +100,6 @@ type GetAdminTenantUnauthorized struct {
 func (o *GetAdminTenantUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/tenant][%d] getAdminTenantUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *GetAdminTenantUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -124,7 +121,7 @@ func NewGetAdminTenantForbidden() *GetAdminTenantForbidden {
 	return &GetAdminTenantForbidden{}
 }
 
-/*GetAdminTenantForbidden handles this case with default header values.
+/* GetAdminTenantForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,7 +132,6 @@ type GetAdminTenantForbidden struct {
 func (o *GetAdminTenantForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/tenant][%d] getAdminTenantForbidden  %+v", 403, o.Payload)
 }
-
 func (o *GetAdminTenantForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -157,7 +153,7 @@ func NewGetAdminTenantNotFound() *GetAdminTenantNotFound {
 	return &GetAdminTenantNotFound{}
 }
 
-/*GetAdminTenantNotFound handles this case with default header values.
+/* GetAdminTenantNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -168,7 +164,6 @@ type GetAdminTenantNotFound struct {
 func (o *GetAdminTenantNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/tenant][%d] getAdminTenantNotFound  %+v", 404, o.Payload)
 }
-
 func (o *GetAdminTenantNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

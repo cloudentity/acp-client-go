@@ -59,7 +59,6 @@ func (o *CreateConsentReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -70,7 +69,7 @@ func NewCreateConsentCreated() *CreateConsentCreated {
 	return &CreateConsentCreated{}
 }
 
-/*CreateConsentCreated handles this case with default header values.
+/* CreateConsentCreated describes a response with status code 201, with default header values.
 
 Consent
 */
@@ -81,7 +80,6 @@ type CreateConsentCreated struct {
 func (o *CreateConsentCreated) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/consents][%d] createConsentCreated  %+v", 201, o.Payload)
 }
-
 func (o *CreateConsentCreated) GetPayload() *models.Consent {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewCreateConsentUnauthorized() *CreateConsentUnauthorized {
 	return &CreateConsentUnauthorized{}
 }
 
-/*CreateConsentUnauthorized handles this case with default header values.
+/* CreateConsentUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -114,7 +112,6 @@ type CreateConsentUnauthorized struct {
 func (o *CreateConsentUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/consents][%d] createConsentUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *CreateConsentUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -136,7 +133,7 @@ func NewCreateConsentForbidden() *CreateConsentForbidden {
 	return &CreateConsentForbidden{}
 }
 
-/*CreateConsentForbidden handles this case with default header values.
+/* CreateConsentForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -147,7 +144,6 @@ type CreateConsentForbidden struct {
 func (o *CreateConsentForbidden) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/consents][%d] createConsentForbidden  %+v", 403, o.Payload)
 }
-
 func (o *CreateConsentForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -169,7 +165,7 @@ func NewCreateConsentNotFound() *CreateConsentNotFound {
 	return &CreateConsentNotFound{}
 }
 
-/*CreateConsentNotFound handles this case with default header values.
+/* CreateConsentNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -180,7 +176,6 @@ type CreateConsentNotFound struct {
 func (o *CreateConsentNotFound) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/consents][%d] createConsentNotFound  %+v", 404, o.Payload)
 }
-
 func (o *CreateConsentNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -202,7 +197,7 @@ func NewCreateConsentConflict() *CreateConsentConflict {
 	return &CreateConsentConflict{}
 }
 
-/*CreateConsentConflict handles this case with default header values.
+/* CreateConsentConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -213,7 +208,6 @@ type CreateConsentConflict struct {
 func (o *CreateConsentConflict) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/consents][%d] createConsentConflict  %+v", 409, o.Payload)
 }
-
 func (o *CreateConsentConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +229,7 @@ func NewCreateConsentUnprocessableEntity() *CreateConsentUnprocessableEntity {
 	return &CreateConsentUnprocessableEntity{}
 }
 
-/*CreateConsentUnprocessableEntity handles this case with default header values.
+/* CreateConsentUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -246,7 +240,6 @@ type CreateConsentUnprocessableEntity struct {
 func (o *CreateConsentUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/consents][%d] createConsentUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *CreateConsentUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

@@ -16,97 +16,108 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewRevokeClientAccessParams creates a new RevokeClientAccessParams object
-// with the default values initialized.
+// NewRevokeClientAccessParams creates a new RevokeClientAccessParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewRevokeClientAccessParams() *RevokeClientAccessParams {
-	var (
-		aidDefault = string("default")
-		cidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &RevokeClientAccessParams{
-		Aid: aidDefault,
-		Cid: cidDefault,
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewRevokeClientAccessParamsWithTimeout creates a new RevokeClientAccessParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewRevokeClientAccessParamsWithTimeout(timeout time.Duration) *RevokeClientAccessParams {
-	var (
-		aidDefault = string("default")
-		cidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &RevokeClientAccessParams{
-		Aid: aidDefault,
-		Cid: cidDefault,
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewRevokeClientAccessParamsWithContext creates a new RevokeClientAccessParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewRevokeClientAccessParamsWithContext(ctx context.Context) *RevokeClientAccessParams {
-	var (
-		aidDefault = string("default")
-		cidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &RevokeClientAccessParams{
-		Aid: aidDefault,
-		Cid: cidDefault,
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewRevokeClientAccessParamsWithHTTPClient creates a new RevokeClientAccessParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewRevokeClientAccessParamsWithHTTPClient(client *http.Client) *RevokeClientAccessParams {
-	var (
-		aidDefault = string("default")
-		cidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &RevokeClientAccessParams{
-		Aid:        aidDefault,
-		Cid:        cidDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*RevokeClientAccessParams contains all the parameters to send to the API endpoint
-for the revoke client access operation typically these are written to a http.Request
+/* RevokeClientAccessParams contains all the parameters to send to the API endpoint
+   for the revoke client access operation.
+
+   Typically these are written to a http.Request.
 */
 type RevokeClientAccessParams struct {
 
-	/*Aid
-	  Authorization server id
+	/* Aid.
 
+	   Authorization server id
+
+	   Default: "default"
 	*/
 	Aid string
-	/*Cid
-	  Client id
 
+	/* Cid.
+
+	   Client id
+
+	   Default: "default"
 	*/
 	Cid string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the revoke client access params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *RevokeClientAccessParams) WithDefaults() *RevokeClientAccessParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the revoke client access params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *RevokeClientAccessParams) SetDefaults() {
+	var (
+		aidDefault = string("default")
+
+		cidDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := RevokeClientAccessParams{
+		Aid: aidDefault,
+		Cid: cidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the revoke client access params

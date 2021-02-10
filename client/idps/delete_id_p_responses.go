@@ -59,7 +59,6 @@ func (o *DeleteIDPReader) ReadResponse(response runtime.ClientResponse, consumer
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -70,7 +69,7 @@ func NewDeleteIDPNoContent() *DeleteIDPNoContent {
 	return &DeleteIDPNoContent{}
 }
 
-/*DeleteIDPNoContent handles this case with default header values.
+/* DeleteIDPNoContent describes a response with status code 204, with default header values.
 
 IDP has been deleted
 */
@@ -91,7 +90,7 @@ func NewDeleteIDPBadRequest() *DeleteIDPBadRequest {
 	return &DeleteIDPBadRequest{}
 }
 
-/*DeleteIDPBadRequest handles this case with default header values.
+/* DeleteIDPBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -102,7 +101,6 @@ type DeleteIDPBadRequest struct {
 func (o *DeleteIDPBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/servers/{aid}/idps/{iid}][%d] deleteIdPBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *DeleteIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -124,7 +122,7 @@ func NewDeleteIDPUnauthorized() *DeleteIDPUnauthorized {
 	return &DeleteIDPUnauthorized{}
 }
 
-/*DeleteIDPUnauthorized handles this case with default header values.
+/* DeleteIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -135,7 +133,6 @@ type DeleteIDPUnauthorized struct {
 func (o *DeleteIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/servers/{aid}/idps/{iid}][%d] deleteIdPUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *DeleteIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -157,7 +154,7 @@ func NewDeleteIDPForbidden() *DeleteIDPForbidden {
 	return &DeleteIDPForbidden{}
 }
 
-/*DeleteIDPForbidden handles this case with default header values.
+/* DeleteIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -168,7 +165,6 @@ type DeleteIDPForbidden struct {
 func (o *DeleteIDPForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/servers/{aid}/idps/{iid}][%d] deleteIdPForbidden  %+v", 403, o.Payload)
 }
-
 func (o *DeleteIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -190,7 +186,7 @@ func NewDeleteIDPNotFound() *DeleteIDPNotFound {
 	return &DeleteIDPNotFound{}
 }
 
-/*DeleteIDPNotFound handles this case with default header values.
+/* DeleteIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -201,7 +197,6 @@ type DeleteIDPNotFound struct {
 func (o *DeleteIDPNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/servers/{aid}/idps/{iid}][%d] deleteIdPNotFound  %+v", 404, o.Payload)
 }
-
 func (o *DeleteIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -223,7 +218,7 @@ func NewDeleteIDPUnprocessableEntity() *DeleteIDPUnprocessableEntity {
 	return &DeleteIDPUnprocessableEntity{}
 }
 
-/*DeleteIDPUnprocessableEntity handles this case with default header values.
+/* DeleteIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -234,7 +229,6 @@ type DeleteIDPUnprocessableEntity struct {
 func (o *DeleteIDPUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/servers/{aid}/idps/{iid}][%d] deleteIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *DeleteIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

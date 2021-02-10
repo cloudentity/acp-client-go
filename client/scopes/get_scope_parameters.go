@@ -16,73 +16,89 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewGetScopeParams creates a new GetScopeParams object
-// with the default values initialized.
+// NewGetScopeParams creates a new GetScopeParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetScopeParams() *GetScopeParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &GetScopeParams{
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetScopeParamsWithTimeout creates a new GetScopeParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetScopeParamsWithTimeout(timeout time.Duration) *GetScopeParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &GetScopeParams{
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewGetScopeParamsWithContext creates a new GetScopeParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetScopeParamsWithContext(ctx context.Context) *GetScopeParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &GetScopeParams{
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewGetScopeParamsWithHTTPClient creates a new GetScopeParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetScopeParamsWithHTTPClient(client *http.Client) *GetScopeParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &GetScopeParams{
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*GetScopeParams contains all the parameters to send to the API endpoint
-for the get scope operation typically these are written to a http.Request
+/* GetScopeParams contains all the parameters to send to the API endpoint
+   for the get scope operation.
+
+   Typically these are written to a http.Request.
 */
 type GetScopeParams struct {
 
-	/*Scp*/
+	// Scp.
 	ScopeID string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get scope params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetScopeParams) WithDefaults() *GetScopeParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get scope params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetScopeParams) SetDefaults() {
+	var (
+		tidDefault = string("default")
+	)
+
+	val := GetScopeParams{
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the get scope params

@@ -18,75 +18,92 @@ import (
 	"github.com/cloudentity/acp-client-go/models"
 )
 
-// NewAcceptScopeGrantRequestParams creates a new AcceptScopeGrantRequestParams object
-// with the default values initialized.
+// NewAcceptScopeGrantRequestParams creates a new AcceptScopeGrantRequestParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewAcceptScopeGrantRequestParams() *AcceptScopeGrantRequestParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &AcceptScopeGrantRequestParams{
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewAcceptScopeGrantRequestParamsWithTimeout creates a new AcceptScopeGrantRequestParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewAcceptScopeGrantRequestParamsWithTimeout(timeout time.Duration) *AcceptScopeGrantRequestParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &AcceptScopeGrantRequestParams{
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewAcceptScopeGrantRequestParamsWithContext creates a new AcceptScopeGrantRequestParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewAcceptScopeGrantRequestParamsWithContext(ctx context.Context) *AcceptScopeGrantRequestParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &AcceptScopeGrantRequestParams{
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewAcceptScopeGrantRequestParamsWithHTTPClient creates a new AcceptScopeGrantRequestParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewAcceptScopeGrantRequestParamsWithHTTPClient(client *http.Client) *AcceptScopeGrantRequestParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &AcceptScopeGrantRequestParams{
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*AcceptScopeGrantRequestParams contains all the parameters to send to the API endpoint
-for the accept scope grant request operation typically these are written to a http.Request
+/* AcceptScopeGrantRequestParams contains all the parameters to send to the API endpoint
+   for the accept scope grant request operation.
+
+   Typically these are written to a http.Request.
 */
 type AcceptScopeGrantRequestParams struct {
 
-	/*AcceptScopeGrant*/
+	// AcceptScopeGrant.
 	AcceptScopeGrant *models.AcceptScopeGrant
-	/*Login*/
-	LoginID string
-	/*Tid
-	  Tenant id
 
+	// Login.
+	LoginID string
+
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the accept scope grant request params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *AcceptScopeGrantRequestParams) WithDefaults() *AcceptScopeGrantRequestParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the accept scope grant request params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *AcceptScopeGrantRequestParams) SetDefaults() {
+	var (
+		tidDefault = string("default")
+	)
+
+	val := AcceptScopeGrantRequestParams{
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the accept scope grant request params
@@ -162,7 +179,6 @@ func (o *AcceptScopeGrantRequestParams) WriteToRequest(r runtime.ClientRequest, 
 		return err
 	}
 	var res []error
-
 	if o.AcceptScopeGrant != nil {
 		if err := r.SetBodyParam(o.AcceptScopeGrant); err != nil {
 			return err

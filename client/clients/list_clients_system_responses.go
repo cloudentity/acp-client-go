@@ -47,7 +47,6 @@ func (o *ListClientsSystemReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewListClientsSystemOK() *ListClientsSystemOK {
 	return &ListClientsSystemOK{}
 }
 
-/*ListClientsSystemOK handles this case with default header values.
+/* ListClientsSystemOK describes a response with status code 200, with default header values.
 
 Clients
 */
@@ -69,7 +68,6 @@ type ListClientsSystemOK struct {
 func (o *ListClientsSystemOK) Error() string {
 	return fmt.Sprintf("[GET /api/system/{tid}/clients/{aid}][%d] listClientsSystemOK  %+v", 200, o.Payload)
 }
-
 func (o *ListClientsSystemOK) GetPayload() *models.Clients {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewListClientsSystemUnauthorized() *ListClientsSystemUnauthorized {
 	return &ListClientsSystemUnauthorized{}
 }
 
-/*ListClientsSystemUnauthorized handles this case with default header values.
+/* ListClientsSystemUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -102,7 +100,6 @@ type ListClientsSystemUnauthorized struct {
 func (o *ListClientsSystemUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/system/{tid}/clients/{aid}][%d] listClientsSystemUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *ListClientsSystemUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -124,7 +121,7 @@ func NewListClientsSystemForbidden() *ListClientsSystemForbidden {
 	return &ListClientsSystemForbidden{}
 }
 
-/*ListClientsSystemForbidden handles this case with default header values.
+/* ListClientsSystemForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,7 +132,6 @@ type ListClientsSystemForbidden struct {
 func (o *ListClientsSystemForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/system/{tid}/clients/{aid}][%d] listClientsSystemForbidden  %+v", 403, o.Payload)
 }
-
 func (o *ListClientsSystemForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -157,7 +153,7 @@ func NewListClientsSystemNotFound() *ListClientsSystemNotFound {
 	return &ListClientsSystemNotFound{}
 }
 
-/*ListClientsSystemNotFound handles this case with default header values.
+/* ListClientsSystemNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -168,7 +164,6 @@ type ListClientsSystemNotFound struct {
 func (o *ListClientsSystemNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/system/{tid}/clients/{aid}][%d] listClientsSystemNotFound  %+v", 404, o.Payload)
 }
-
 func (o *ListClientsSystemNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

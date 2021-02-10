@@ -41,7 +41,6 @@ func (o *GatewayIntrospectReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -52,7 +51,7 @@ func NewGatewayIntrospectOK() *GatewayIntrospectOK {
 	return &GatewayIntrospectOK{}
 }
 
-/*GatewayIntrospectOK handles this case with default header values.
+/* GatewayIntrospectOK describes a response with status code 200, with default header values.
 
 IntrospectResponse
 */
@@ -63,7 +62,6 @@ type GatewayIntrospectOK struct {
 func (o *GatewayIntrospectOK) Error() string {
 	return fmt.Sprintf("[POST /api/system/{tid}/gateways/introspect][%d] gatewayIntrospectOK  %+v", 200, o.Payload)
 }
-
 func (o *GatewayIntrospectOK) GetPayload() *models.IntrospectResponse {
 	return o.Payload
 }
@@ -85,7 +83,7 @@ func NewGatewayIntrospectBadRequest() *GatewayIntrospectBadRequest {
 	return &GatewayIntrospectBadRequest{}
 }
 
-/*GatewayIntrospectBadRequest handles this case with default header values.
+/* GatewayIntrospectBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -96,7 +94,6 @@ type GatewayIntrospectBadRequest struct {
 func (o *GatewayIntrospectBadRequest) Error() string {
 	return fmt.Sprintf("[POST /api/system/{tid}/gateways/introspect][%d] gatewayIntrospectBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *GatewayIntrospectBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -118,7 +115,7 @@ func NewGatewayIntrospectUnprocessableEntity() *GatewayIntrospectUnprocessableEn
 	return &GatewayIntrospectUnprocessableEntity{}
 }
 
-/*GatewayIntrospectUnprocessableEntity handles this case with default header values.
+/* GatewayIntrospectUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -129,7 +126,6 @@ type GatewayIntrospectUnprocessableEntity struct {
 func (o *GatewayIntrospectUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /api/system/{tid}/gateways/introspect][%d] gatewayIntrospectUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *GatewayIntrospectUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

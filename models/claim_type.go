@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 )
 
@@ -17,5 +19,10 @@ type ClaimType string
 
 // Validate validates this claim type
 func (m ClaimType) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this claim type based on context it is used
+func (m ClaimType) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }

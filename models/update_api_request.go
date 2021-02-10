@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -19,11 +21,17 @@ type UpdateAPIRequest struct {
 	DataClassifications []string `json:"data_classifications"`
 
 	// optional id of a policy
+	// Example: block
 	PolicyID string `json:"policy_id,omitempty"`
 }
 
 // Validate validates this update API request
 func (m *UpdateAPIRequest) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this update API request based on context it is used
+func (m *UpdateAPIRequest) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

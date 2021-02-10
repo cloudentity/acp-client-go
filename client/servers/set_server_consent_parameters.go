@@ -18,89 +18,103 @@ import (
 	"github.com/cloudentity/acp-client-go/models"
 )
 
-// NewSetServerConsentParams creates a new SetServerConsentParams object
-// with the default values initialized.
+// NewSetServerConsentParams creates a new SetServerConsentParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewSetServerConsentParams() *SetServerConsentParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &SetServerConsentParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewSetServerConsentParamsWithTimeout creates a new SetServerConsentParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewSetServerConsentParamsWithTimeout(timeout time.Duration) *SetServerConsentParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &SetServerConsentParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewSetServerConsentParamsWithContext creates a new SetServerConsentParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewSetServerConsentParamsWithContext(ctx context.Context) *SetServerConsentParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &SetServerConsentParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewSetServerConsentParamsWithHTTPClient creates a new SetServerConsentParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewSetServerConsentParamsWithHTTPClient(client *http.Client) *SetServerConsentParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &SetServerConsentParams{
-		Aid:        aidDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*SetServerConsentParams contains all the parameters to send to the API endpoint
-for the set server consent operation typically these are written to a http.Request
+/* SetServerConsentParams contains all the parameters to send to the API endpoint
+   for the set server consent operation.
+
+   Typically these are written to a http.Request.
 */
 type SetServerConsentParams struct {
 
-	/*ServerConsent
-	  Server consent
+	/* ServerConsent.
 
+	   Server consent
 	*/
 	ServerConsent *models.ServerConsent
-	/*Aid
-	  Authorization server id
 
+	/* Aid.
+
+	   Authorization server id
+
+	   Default: "default"
 	*/
 	Aid string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the set server consent params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *SetServerConsentParams) WithDefaults() *SetServerConsentParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the set server consent params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *SetServerConsentParams) SetDefaults() {
+	var (
+		aidDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := SetServerConsentParams{
+		Aid: aidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the set server consent params
@@ -176,7 +190,6 @@ func (o *SetServerConsentParams) WriteToRequest(r runtime.ClientRequest, reg str
 		return err
 	}
 	var res []error
-
 	if o.ServerConsent != nil {
 		if err := r.SetBodyParam(o.ServerConsent); err != nil {
 			return err

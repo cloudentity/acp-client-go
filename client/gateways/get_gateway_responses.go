@@ -47,7 +47,6 @@ func (o *GetGatewayReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewGetGatewayOK() *GetGatewayOK {
 	return &GetGatewayOK{}
 }
 
-/*GetGatewayOK handles this case with default header values.
+/* GetGatewayOK describes a response with status code 200, with default header values.
 
 GatewayWithClient
 */
@@ -69,7 +68,6 @@ type GetGatewayOK struct {
 func (o *GetGatewayOK) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/gateways/{gw}][%d] getGatewayOK  %+v", 200, o.Payload)
 }
-
 func (o *GetGatewayOK) GetPayload() *models.GatewayWithClient {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewGetGatewayUnauthorized() *GetGatewayUnauthorized {
 	return &GetGatewayUnauthorized{}
 }
 
-/*GetGatewayUnauthorized handles this case with default header values.
+/* GetGatewayUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -102,7 +100,6 @@ type GetGatewayUnauthorized struct {
 func (o *GetGatewayUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/gateways/{gw}][%d] getGatewayUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *GetGatewayUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -124,7 +121,7 @@ func NewGetGatewayForbidden() *GetGatewayForbidden {
 	return &GetGatewayForbidden{}
 }
 
-/*GetGatewayForbidden handles this case with default header values.
+/* GetGatewayForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,7 +132,6 @@ type GetGatewayForbidden struct {
 func (o *GetGatewayForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/gateways/{gw}][%d] getGatewayForbidden  %+v", 403, o.Payload)
 }
-
 func (o *GetGatewayForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -157,7 +153,7 @@ func NewGetGatewayNotFound() *GetGatewayNotFound {
 	return &GetGatewayNotFound{}
 }
 
-/*GetGatewayNotFound handles this case with default header values.
+/* GetGatewayNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -168,7 +164,6 @@ type GetGatewayNotFound struct {
 func (o *GetGatewayNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/gateways/{gw}][%d] getGatewayNotFound  %+v", 404, o.Payload)
 }
-
 func (o *GetGatewayNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

@@ -18,102 +18,114 @@ import (
 	"github.com/cloudentity/acp-client-go/models"
 )
 
-// NewUpdateAzureIDPParams creates a new UpdateAzureIDPParams object
-// with the default values initialized.
+// NewUpdateAzureIDPParams creates a new UpdateAzureIDPParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewUpdateAzureIDPParams() *UpdateAzureIDPParams {
-	var (
-		aidDefault = string("default")
-		iidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &UpdateAzureIDPParams{
-		Aid: aidDefault,
-		Iid: iidDefault,
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewUpdateAzureIDPParamsWithTimeout creates a new UpdateAzureIDPParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewUpdateAzureIDPParamsWithTimeout(timeout time.Duration) *UpdateAzureIDPParams {
-	var (
-		aidDefault = string("default")
-		iidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &UpdateAzureIDPParams{
-		Aid: aidDefault,
-		Iid: iidDefault,
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewUpdateAzureIDPParamsWithContext creates a new UpdateAzureIDPParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewUpdateAzureIDPParamsWithContext(ctx context.Context) *UpdateAzureIDPParams {
-	var (
-		aidDefault = string("default")
-		iidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &UpdateAzureIDPParams{
-		Aid: aidDefault,
-		Iid: iidDefault,
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewUpdateAzureIDPParamsWithHTTPClient creates a new UpdateAzureIDPParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewUpdateAzureIDPParamsWithHTTPClient(client *http.Client) *UpdateAzureIDPParams {
-	var (
-		aidDefault = string("default")
-		iidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &UpdateAzureIDPParams{
-		Aid:        aidDefault,
-		Iid:        iidDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*UpdateAzureIDPParams contains all the parameters to send to the API endpoint
-for the update azure ID p operation typically these are written to a http.Request
+/* UpdateAzureIDPParams contains all the parameters to send to the API endpoint
+   for the update azure ID p operation.
+
+   Typically these are written to a http.Request.
 */
 type UpdateAzureIDPParams struct {
 
-	/*AzureIDP
-	  AzureIDP
+	/* AzureIDP.
 
+	   AzureIDP
 	*/
 	AzureIDP *models.AzureIDP
-	/*Aid
-	  Authorization server id
 
+	/* Aid.
+
+	   Authorization server id
+
+	   Default: "default"
 	*/
 	Aid string
-	/*Iid
-	  IDP id
 
+	/* Iid.
+
+	   IDP id
+
+	   Default: "default"
 	*/
 	Iid string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the update azure ID p params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateAzureIDPParams) WithDefaults() *UpdateAzureIDPParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the update azure ID p params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateAzureIDPParams) SetDefaults() {
+	var (
+		aidDefault = string("default")
+
+		iidDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := UpdateAzureIDPParams{
+		Aid: aidDefault,
+		Iid: iidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the update azure ID p params
@@ -200,7 +212,6 @@ func (o *UpdateAzureIDPParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 		return err
 	}
 	var res []error
-
 	if o.AzureIDP != nil {
 		if err := r.SetBodyParam(o.AzureIDP); err != nil {
 			return err

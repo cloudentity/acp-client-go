@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -17,21 +19,27 @@ import (
 type Claim struct {
 
 	// unique claim id
+	// Example: 1
 	ID string `json:"id,omitempty"`
 
 	// claim mapping - path to attribute in identity context from where claim value should be picked
+	// Example: email
 	Mapping string `json:"mapping,omitempty"`
 
 	// claim name in outgoing id / access token
+	// Example: email
 	Name string `json:"name,omitempty"`
 
 	// list of scopes - when at least one of listed scopes has been granted to a client, then claim will be added to id / access token. In case of empty array claim is always added.
+	// Example: ["email","email_verified"]
 	Scopes []string `json:"scopes"`
 
 	// authorization server id
+	// Example: default
 	ServerID string `json:"authorization_server_id,omitempty"`
 
 	// tenant id
+	// Example: default
 	TenantID string `json:"tenant_id,omitempty"`
 
 	// type
@@ -53,12 +61,37 @@ func (m *Claim) Validate(formats strfmt.Registry) error {
 }
 
 func (m *Claim) validateType(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Type) { // not required
 		return nil
 	}
 
 	if err := m.Type.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("type")
+		}
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this claim based on the context it is used
+func (m *Claim) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateType(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *Claim) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.Type.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("type")
 		}

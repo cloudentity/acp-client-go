@@ -65,7 +65,6 @@ func (o *SetPolicyExecutionPointsReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -76,7 +75,7 @@ func NewSetPolicyExecutionPointsOK() *SetPolicyExecutionPointsOK {
 	return &SetPolicyExecutionPointsOK{}
 }
 
-/*SetPolicyExecutionPointsOK handles this case with default header values.
+/* SetPolicyExecutionPointsOK describes a response with status code 200, with default header values.
 
 PolicyExecutionPoints
 */
@@ -87,7 +86,6 @@ type SetPolicyExecutionPointsOK struct {
 func (o *SetPolicyExecutionPointsOK) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/policy-execution-points][%d] setPolicyExecutionPointsOK  %+v", 200, o.Payload)
 }
-
 func (o *SetPolicyExecutionPointsOK) GetPayload() *models.PolicyExecutionPoints {
 	return o.Payload
 }
@@ -109,7 +107,7 @@ func NewSetPolicyExecutionPointsBadRequest() *SetPolicyExecutionPointsBadRequest
 	return &SetPolicyExecutionPointsBadRequest{}
 }
 
-/*SetPolicyExecutionPointsBadRequest handles this case with default header values.
+/* SetPolicyExecutionPointsBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -120,7 +118,6 @@ type SetPolicyExecutionPointsBadRequest struct {
 func (o *SetPolicyExecutionPointsBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/policy-execution-points][%d] setPolicyExecutionPointsBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *SetPolicyExecutionPointsBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -142,7 +139,7 @@ func NewSetPolicyExecutionPointsUnauthorized() *SetPolicyExecutionPointsUnauthor
 	return &SetPolicyExecutionPointsUnauthorized{}
 }
 
-/*SetPolicyExecutionPointsUnauthorized handles this case with default header values.
+/* SetPolicyExecutionPointsUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -153,7 +150,6 @@ type SetPolicyExecutionPointsUnauthorized struct {
 func (o *SetPolicyExecutionPointsUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/policy-execution-points][%d] setPolicyExecutionPointsUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *SetPolicyExecutionPointsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -175,7 +171,7 @@ func NewSetPolicyExecutionPointsForbidden() *SetPolicyExecutionPointsForbidden {
 	return &SetPolicyExecutionPointsForbidden{}
 }
 
-/*SetPolicyExecutionPointsForbidden handles this case with default header values.
+/* SetPolicyExecutionPointsForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -186,7 +182,6 @@ type SetPolicyExecutionPointsForbidden struct {
 func (o *SetPolicyExecutionPointsForbidden) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/policy-execution-points][%d] setPolicyExecutionPointsForbidden  %+v", 403, o.Payload)
 }
-
 func (o *SetPolicyExecutionPointsForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -208,7 +203,7 @@ func NewSetPolicyExecutionPointsNotFound() *SetPolicyExecutionPointsNotFound {
 	return &SetPolicyExecutionPointsNotFound{}
 }
 
-/*SetPolicyExecutionPointsNotFound handles this case with default header values.
+/* SetPolicyExecutionPointsNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -219,7 +214,6 @@ type SetPolicyExecutionPointsNotFound struct {
 func (o *SetPolicyExecutionPointsNotFound) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/policy-execution-points][%d] setPolicyExecutionPointsNotFound  %+v", 404, o.Payload)
 }
-
 func (o *SetPolicyExecutionPointsNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -241,7 +235,7 @@ func NewSetPolicyExecutionPointsConflict() *SetPolicyExecutionPointsConflict {
 	return &SetPolicyExecutionPointsConflict{}
 }
 
-/*SetPolicyExecutionPointsConflict handles this case with default header values.
+/* SetPolicyExecutionPointsConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -252,7 +246,6 @@ type SetPolicyExecutionPointsConflict struct {
 func (o *SetPolicyExecutionPointsConflict) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/policy-execution-points][%d] setPolicyExecutionPointsConflict  %+v", 409, o.Payload)
 }
-
 func (o *SetPolicyExecutionPointsConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -274,7 +267,7 @@ func NewSetPolicyExecutionPointsUnprocessableEntity() *SetPolicyExecutionPointsU
 	return &SetPolicyExecutionPointsUnprocessableEntity{}
 }
 
-/*SetPolicyExecutionPointsUnprocessableEntity handles this case with default header values.
+/* SetPolicyExecutionPointsUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -285,7 +278,6 @@ type SetPolicyExecutionPointsUnprocessableEntity struct {
 func (o *SetPolicyExecutionPointsUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/policy-execution-points][%d] setPolicyExecutionPointsUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *SetPolicyExecutionPointsUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

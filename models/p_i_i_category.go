@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -16,11 +18,17 @@ import (
 type PIICategory struct {
 
 	// name
+	// Example: HIPAA
 	Name string `json:"name,omitempty"`
 }
 
 // Validate validates this p i i category
 func (m *PIICategory) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this p i i category based on context it is used
+func (m *PIICategory) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

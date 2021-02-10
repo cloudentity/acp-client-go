@@ -16,73 +16,89 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewRemoveSpecificationParams creates a new RemoveSpecificationParams object
-// with the default values initialized.
+// NewRemoveSpecificationParams creates a new RemoveSpecificationParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewRemoveSpecificationParams() *RemoveSpecificationParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &RemoveSpecificationParams{
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewRemoveSpecificationParamsWithTimeout creates a new RemoveSpecificationParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewRemoveSpecificationParamsWithTimeout(timeout time.Duration) *RemoveSpecificationParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &RemoveSpecificationParams{
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewRemoveSpecificationParamsWithContext creates a new RemoveSpecificationParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewRemoveSpecificationParamsWithContext(ctx context.Context) *RemoveSpecificationParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &RemoveSpecificationParams{
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewRemoveSpecificationParamsWithHTTPClient creates a new RemoveSpecificationParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewRemoveSpecificationParamsWithHTTPClient(client *http.Client) *RemoveSpecificationParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &RemoveSpecificationParams{
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*RemoveSpecificationParams contains all the parameters to send to the API endpoint
-for the remove specification operation typically these are written to a http.Request
+/* RemoveSpecificationParams contains all the parameters to send to the API endpoint
+   for the remove specification operation.
+
+   Typically these are written to a http.Request.
 */
 type RemoveSpecificationParams struct {
 
-	/*Sid*/
+	// Sid.
 	Sid string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the remove specification params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *RemoveSpecificationParams) WithDefaults() *RemoveSpecificationParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the remove specification params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *RemoveSpecificationParams) SetDefaults() {
+	var (
+		tidDefault = string("default")
+	)
+
+	val := RemoveSpecificationParams{
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the remove specification params

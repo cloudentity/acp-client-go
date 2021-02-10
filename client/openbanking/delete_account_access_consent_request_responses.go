@@ -77,7 +77,6 @@ func (o *DeleteAccountAccessConsentRequestReader) ReadResponse(response runtime.
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -88,7 +87,7 @@ func NewDeleteAccountAccessConsentRequestNoContent() *DeleteAccountAccessConsent
 	return &DeleteAccountAccessConsentRequestNoContent{}
 }
 
-/*DeleteAccountAccessConsentRequestNoContent handles this case with default header values.
+/* DeleteAccountAccessConsentRequestNoContent describes a response with status code 204, with default header values.
 
 Consent has been deleted
 */
@@ -109,7 +108,7 @@ func NewDeleteAccountAccessConsentRequestBadRequest() *DeleteAccountAccessConsen
 	return &DeleteAccountAccessConsentRequestBadRequest{}
 }
 
-/*DeleteAccountAccessConsentRequestBadRequest handles this case with default header values.
+/* DeleteAccountAccessConsentRequestBadRequest describes a response with status code 400, with default header values.
 
 ErrorResponse
 */
@@ -120,7 +119,6 @@ type DeleteAccountAccessConsentRequestBadRequest struct {
 func (o *DeleteAccountAccessConsentRequestBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /{tid}/{aid}/open-banking/v3.1/aisp/account-access-consents/{consentID}][%d] deleteAccountAccessConsentRequestBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *DeleteAccountAccessConsentRequestBadRequest) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -142,7 +140,7 @@ func NewDeleteAccountAccessConsentRequestUnauthorized() *DeleteAccountAccessCons
 	return &DeleteAccountAccessConsentRequestUnauthorized{}
 }
 
-/*DeleteAccountAccessConsentRequestUnauthorized handles this case with default header values.
+/* DeleteAccountAccessConsentRequestUnauthorized describes a response with status code 401, with default header values.
 
 ErrorResponse
 */
@@ -153,7 +151,6 @@ type DeleteAccountAccessConsentRequestUnauthorized struct {
 func (o *DeleteAccountAccessConsentRequestUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /{tid}/{aid}/open-banking/v3.1/aisp/account-access-consents/{consentID}][%d] deleteAccountAccessConsentRequestUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *DeleteAccountAccessConsentRequestUnauthorized) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -175,7 +172,7 @@ func NewDeleteAccountAccessConsentRequestForbidden() *DeleteAccountAccessConsent
 	return &DeleteAccountAccessConsentRequestForbidden{}
 }
 
-/*DeleteAccountAccessConsentRequestForbidden handles this case with default header values.
+/* DeleteAccountAccessConsentRequestForbidden describes a response with status code 403, with default header values.
 
 ErrorResponse
 */
@@ -186,7 +183,6 @@ type DeleteAccountAccessConsentRequestForbidden struct {
 func (o *DeleteAccountAccessConsentRequestForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /{tid}/{aid}/open-banking/v3.1/aisp/account-access-consents/{consentID}][%d] deleteAccountAccessConsentRequestForbidden  %+v", 403, o.Payload)
 }
-
 func (o *DeleteAccountAccessConsentRequestForbidden) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -208,7 +204,7 @@ func NewDeleteAccountAccessConsentRequestMethodNotAllowed() *DeleteAccountAccess
 	return &DeleteAccountAccessConsentRequestMethodNotAllowed{}
 }
 
-/*DeleteAccountAccessConsentRequestMethodNotAllowed handles this case with default header values.
+/* DeleteAccountAccessConsentRequestMethodNotAllowed describes a response with status code 405, with default header values.
 
 ErrorResponse
 */
@@ -219,7 +215,6 @@ type DeleteAccountAccessConsentRequestMethodNotAllowed struct {
 func (o *DeleteAccountAccessConsentRequestMethodNotAllowed) Error() string {
 	return fmt.Sprintf("[DELETE /{tid}/{aid}/open-banking/v3.1/aisp/account-access-consents/{consentID}][%d] deleteAccountAccessConsentRequestMethodNotAllowed  %+v", 405, o.Payload)
 }
-
 func (o *DeleteAccountAccessConsentRequestMethodNotAllowed) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -241,7 +236,7 @@ func NewDeleteAccountAccessConsentRequestNotAcceptable() *DeleteAccountAccessCon
 	return &DeleteAccountAccessConsentRequestNotAcceptable{}
 }
 
-/*DeleteAccountAccessConsentRequestNotAcceptable handles this case with default header values.
+/* DeleteAccountAccessConsentRequestNotAcceptable describes a response with status code 406, with default header values.
 
 ErrorResponse
 */
@@ -252,7 +247,6 @@ type DeleteAccountAccessConsentRequestNotAcceptable struct {
 func (o *DeleteAccountAccessConsentRequestNotAcceptable) Error() string {
 	return fmt.Sprintf("[DELETE /{tid}/{aid}/open-banking/v3.1/aisp/account-access-consents/{consentID}][%d] deleteAccountAccessConsentRequestNotAcceptable  %+v", 406, o.Payload)
 }
-
 func (o *DeleteAccountAccessConsentRequestNotAcceptable) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -274,7 +268,7 @@ func NewDeleteAccountAccessConsentRequestUnsupportedMediaType() *DeleteAccountAc
 	return &DeleteAccountAccessConsentRequestUnsupportedMediaType{}
 }
 
-/*DeleteAccountAccessConsentRequestUnsupportedMediaType handles this case with default header values.
+/* DeleteAccountAccessConsentRequestUnsupportedMediaType describes a response with status code 415, with default header values.
 
 ErrorResponse
 */
@@ -285,7 +279,6 @@ type DeleteAccountAccessConsentRequestUnsupportedMediaType struct {
 func (o *DeleteAccountAccessConsentRequestUnsupportedMediaType) Error() string {
 	return fmt.Sprintf("[DELETE /{tid}/{aid}/open-banking/v3.1/aisp/account-access-consents/{consentID}][%d] deleteAccountAccessConsentRequestUnsupportedMediaType  %+v", 415, o.Payload)
 }
-
 func (o *DeleteAccountAccessConsentRequestUnsupportedMediaType) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -307,7 +300,7 @@ func NewDeleteAccountAccessConsentRequestTooManyRequests() *DeleteAccountAccessC
 	return &DeleteAccountAccessConsentRequestTooManyRequests{}
 }
 
-/*DeleteAccountAccessConsentRequestTooManyRequests handles this case with default header values.
+/* DeleteAccountAccessConsentRequestTooManyRequests describes a response with status code 429, with default header values.
 
 ErrorResponse
 */
@@ -318,7 +311,6 @@ type DeleteAccountAccessConsentRequestTooManyRequests struct {
 func (o *DeleteAccountAccessConsentRequestTooManyRequests) Error() string {
 	return fmt.Sprintf("[DELETE /{tid}/{aid}/open-banking/v3.1/aisp/account-access-consents/{consentID}][%d] deleteAccountAccessConsentRequestTooManyRequests  %+v", 429, o.Payload)
 }
-
 func (o *DeleteAccountAccessConsentRequestTooManyRequests) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -340,7 +332,7 @@ func NewDeleteAccountAccessConsentRequestInternalServerError() *DeleteAccountAcc
 	return &DeleteAccountAccessConsentRequestInternalServerError{}
 }
 
-/*DeleteAccountAccessConsentRequestInternalServerError handles this case with default header values.
+/* DeleteAccountAccessConsentRequestInternalServerError describes a response with status code 500, with default header values.
 
 ErrorResponse
 */
@@ -351,7 +343,6 @@ type DeleteAccountAccessConsentRequestInternalServerError struct {
 func (o *DeleteAccountAccessConsentRequestInternalServerError) Error() string {
 	return fmt.Sprintf("[DELETE /{tid}/{aid}/open-banking/v3.1/aisp/account-access-consents/{consentID}][%d] deleteAccountAccessConsentRequestInternalServerError  %+v", 500, o.Payload)
 }
-
 func (o *DeleteAccountAccessConsentRequestInternalServerError) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

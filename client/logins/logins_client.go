@@ -25,19 +25,22 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AcceptLoginRequest(params *AcceptLoginRequestParams, authInfo runtime.ClientAuthInfoWriter) (*AcceptLoginRequestOK, error)
+	AcceptLoginRequest(params *AcceptLoginRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptLoginRequestOK, error)
 
-	AcceptScopeGrantRequest(params *AcceptScopeGrantRequestParams, authInfo runtime.ClientAuthInfoWriter) (*AcceptScopeGrantRequestOK, error)
+	AcceptScopeGrantRequest(params *AcceptScopeGrantRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptScopeGrantRequestOK, error)
 
-	GetLoginRequest(params *GetLoginRequestParams, authInfo runtime.ClientAuthInfoWriter) (*GetLoginRequestOK, error)
+	GetLoginRequest(params *GetLoginRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetLoginRequestOK, error)
 
-	GetScopeGrantRequest(params *GetScopeGrantRequestParams, authInfo runtime.ClientAuthInfoWriter) (*GetScopeGrantRequestOK, error)
+	GetScopeGrantRequest(params *GetScopeGrantRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScopeGrantRequestOK, error)
 
-	RejectLoginRequest(params *RejectLoginRequestParams, authInfo runtime.ClientAuthInfoWriter) (*RejectLoginRequestOK, error)
+	RejectLoginRequest(params *RejectLoginRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectLoginRequestOK, error)
 
-	RejectScopeGrantRequest(params *RejectScopeGrantRequestParams, authInfo runtime.ClientAuthInfoWriter) (*RejectScopeGrantRequestOK, error)
+	RejectScopeGrantRequest(params *RejectScopeGrantRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectScopeGrantRequestOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -47,13 +50,12 @@ type ClientService interface {
 
   This API is used by a login page to notify ACP that user has successfully authenticated.
 */
-func (a *Client) AcceptLoginRequest(params *AcceptLoginRequestParams, authInfo runtime.ClientAuthInfoWriter) (*AcceptLoginRequestOK, error) {
+func (a *Client) AcceptLoginRequest(params *AcceptLoginRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptLoginRequestOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAcceptLoginRequestParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "acceptLoginRequest",
 		Method:             "POST",
 		PathPattern:        "/api/system/{tid}/logins/{login}/accept",
@@ -65,7 +67,12 @@ func (a *Client) AcceptLoginRequest(params *AcceptLoginRequestParams, authInfo r
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -84,13 +91,12 @@ func (a *Client) AcceptLoginRequest(params *AcceptLoginRequestParams, authInfo r
 
   This API is used by a consent page to notify ACP that user granted consent.
 */
-func (a *Client) AcceptScopeGrantRequest(params *AcceptScopeGrantRequestParams, authInfo runtime.ClientAuthInfoWriter) (*AcceptScopeGrantRequestOK, error) {
+func (a *Client) AcceptScopeGrantRequest(params *AcceptScopeGrantRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptScopeGrantRequestOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAcceptScopeGrantRequestParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "acceptScopeGrantRequest",
 		Method:             "POST",
 		PathPattern:        "/api/system/{tid}/scope-grants/{login}/accept",
@@ -102,7 +108,12 @@ func (a *Client) AcceptScopeGrantRequest(params *AcceptScopeGrantRequestParams, 
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -121,13 +132,12 @@ func (a *Client) AcceptScopeGrantRequest(params *AcceptScopeGrantRequestParams, 
 
   This API is used by a login page to make a decision if user should authenticate.
 */
-func (a *Client) GetLoginRequest(params *GetLoginRequestParams, authInfo runtime.ClientAuthInfoWriter) (*GetLoginRequestOK, error) {
+func (a *Client) GetLoginRequest(params *GetLoginRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetLoginRequestOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetLoginRequestParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getLoginRequest",
 		Method:             "GET",
 		PathPattern:        "/api/system/{tid}/logins/{login}",
@@ -139,7 +149,12 @@ func (a *Client) GetLoginRequest(params *GetLoginRequestParams, authInfo runtime
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -158,13 +173,12 @@ func (a *Client) GetLoginRequest(params *GetLoginRequestParams, authInfo runtime
 
   This API is used by a consent page to display requested scopes.
 */
-func (a *Client) GetScopeGrantRequest(params *GetScopeGrantRequestParams, authInfo runtime.ClientAuthInfoWriter) (*GetScopeGrantRequestOK, error) {
+func (a *Client) GetScopeGrantRequest(params *GetScopeGrantRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScopeGrantRequestOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetScopeGrantRequestParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getScopeGrantRequest",
 		Method:             "GET",
 		PathPattern:        "/api/system/{tid}/scope-grants/{login}",
@@ -176,7 +190,12 @@ func (a *Client) GetScopeGrantRequest(params *GetScopeGrantRequestParams, authIn
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -195,13 +214,12 @@ func (a *Client) GetScopeGrantRequest(params *GetScopeGrantRequestParams, authIn
 
   This API is used by a login page to notify ACP that login has been rejected.
 */
-func (a *Client) RejectLoginRequest(params *RejectLoginRequestParams, authInfo runtime.ClientAuthInfoWriter) (*RejectLoginRequestOK, error) {
+func (a *Client) RejectLoginRequest(params *RejectLoginRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectLoginRequestOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRejectLoginRequestParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "rejectLoginRequest",
 		Method:             "POST",
 		PathPattern:        "/api/system/{tid}/logins/{login}/reject",
@@ -213,7 +231,12 @@ func (a *Client) RejectLoginRequest(params *RejectLoginRequestParams, authInfo r
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -232,13 +255,12 @@ func (a *Client) RejectLoginRequest(params *RejectLoginRequestParams, authInfo r
 
   This API is used by a consent page to notify ACP that scope grant has been rejected.
 */
-func (a *Client) RejectScopeGrantRequest(params *RejectScopeGrantRequestParams, authInfo runtime.ClientAuthInfoWriter) (*RejectScopeGrantRequestOK, error) {
+func (a *Client) RejectScopeGrantRequest(params *RejectScopeGrantRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectScopeGrantRequestOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRejectScopeGrantRequestParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "rejectScopeGrantRequest",
 		Method:             "POST",
 		PathPattern:        "/api/system/{tid}/scope-grants/{login}/reject",
@@ -250,7 +272,12 @@ func (a *Client) RejectScopeGrantRequest(params *RejectScopeGrantRequestParams, 
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}

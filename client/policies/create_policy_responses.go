@@ -65,7 +65,6 @@ func (o *CreatePolicyReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -76,7 +75,7 @@ func NewCreatePolicyCreated() *CreatePolicyCreated {
 	return &CreatePolicyCreated{}
 }
 
-/*CreatePolicyCreated handles this case with default header values.
+/* CreatePolicyCreated describes a response with status code 201, with default header values.
 
 Policy
 */
@@ -87,7 +86,6 @@ type CreatePolicyCreated struct {
 func (o *CreatePolicyCreated) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/policies][%d] createPolicyCreated  %+v", 201, o.Payload)
 }
-
 func (o *CreatePolicyCreated) GetPayload() *models.Policy {
 	return o.Payload
 }
@@ -109,7 +107,7 @@ func NewCreatePolicyBadRequest() *CreatePolicyBadRequest {
 	return &CreatePolicyBadRequest{}
 }
 
-/*CreatePolicyBadRequest handles this case with default header values.
+/* CreatePolicyBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -120,7 +118,6 @@ type CreatePolicyBadRequest struct {
 func (o *CreatePolicyBadRequest) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/policies][%d] createPolicyBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *CreatePolicyBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -142,7 +139,7 @@ func NewCreatePolicyUnauthorized() *CreatePolicyUnauthorized {
 	return &CreatePolicyUnauthorized{}
 }
 
-/*CreatePolicyUnauthorized handles this case with default header values.
+/* CreatePolicyUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -153,7 +150,6 @@ type CreatePolicyUnauthorized struct {
 func (o *CreatePolicyUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/policies][%d] createPolicyUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *CreatePolicyUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -175,7 +171,7 @@ func NewCreatePolicyForbidden() *CreatePolicyForbidden {
 	return &CreatePolicyForbidden{}
 }
 
-/*CreatePolicyForbidden handles this case with default header values.
+/* CreatePolicyForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -186,7 +182,6 @@ type CreatePolicyForbidden struct {
 func (o *CreatePolicyForbidden) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/policies][%d] createPolicyForbidden  %+v", 403, o.Payload)
 }
-
 func (o *CreatePolicyForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -208,7 +203,7 @@ func NewCreatePolicyNotFound() *CreatePolicyNotFound {
 	return &CreatePolicyNotFound{}
 }
 
-/*CreatePolicyNotFound handles this case with default header values.
+/* CreatePolicyNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -219,7 +214,6 @@ type CreatePolicyNotFound struct {
 func (o *CreatePolicyNotFound) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/policies][%d] createPolicyNotFound  %+v", 404, o.Payload)
 }
-
 func (o *CreatePolicyNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -241,7 +235,7 @@ func NewCreatePolicyConflict() *CreatePolicyConflict {
 	return &CreatePolicyConflict{}
 }
 
-/*CreatePolicyConflict handles this case with default header values.
+/* CreatePolicyConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -252,7 +246,6 @@ type CreatePolicyConflict struct {
 func (o *CreatePolicyConflict) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/policies][%d] createPolicyConflict  %+v", 409, o.Payload)
 }
-
 func (o *CreatePolicyConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -274,7 +267,7 @@ func NewCreatePolicyUnprocessableEntity() *CreatePolicyUnprocessableEntity {
 	return &CreatePolicyUnprocessableEntity{}
 }
 
-/*CreatePolicyUnprocessableEntity handles this case with default header values.
+/* CreatePolicyUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -285,7 +278,6 @@ type CreatePolicyUnprocessableEntity struct {
 func (o *CreatePolicyUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/policies][%d] createPolicyUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *CreatePolicyUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

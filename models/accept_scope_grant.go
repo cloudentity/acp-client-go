@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -27,6 +29,11 @@ type AcceptScopeGrant struct {
 
 // Validate validates this accept scope grant
 func (m *AcceptScopeGrant) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this accept scope grant based on context it is used
+func (m *AcceptScopeGrant) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

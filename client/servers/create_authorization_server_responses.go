@@ -65,7 +65,6 @@ func (o *CreateAuthorizationServerReader) ReadResponse(response runtime.ClientRe
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -76,7 +75,7 @@ func NewCreateAuthorizationServerCreated() *CreateAuthorizationServerCreated {
 	return &CreateAuthorizationServerCreated{}
 }
 
-/*CreateAuthorizationServerCreated handles this case with default header values.
+/* CreateAuthorizationServerCreated describes a response with status code 201, with default header values.
 
 Server
 */
@@ -87,7 +86,6 @@ type CreateAuthorizationServerCreated struct {
 func (o *CreateAuthorizationServerCreated) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers][%d] createAuthorizationServerCreated  %+v", 201, o.Payload)
 }
-
 func (o *CreateAuthorizationServerCreated) GetPayload() *models.Server {
 	return o.Payload
 }
@@ -109,7 +107,7 @@ func NewCreateAuthorizationServerBadRequest() *CreateAuthorizationServerBadReque
 	return &CreateAuthorizationServerBadRequest{}
 }
 
-/*CreateAuthorizationServerBadRequest handles this case with default header values.
+/* CreateAuthorizationServerBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -120,7 +118,6 @@ type CreateAuthorizationServerBadRequest struct {
 func (o *CreateAuthorizationServerBadRequest) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers][%d] createAuthorizationServerBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *CreateAuthorizationServerBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -142,7 +139,7 @@ func NewCreateAuthorizationServerUnauthorized() *CreateAuthorizationServerUnauth
 	return &CreateAuthorizationServerUnauthorized{}
 }
 
-/*CreateAuthorizationServerUnauthorized handles this case with default header values.
+/* CreateAuthorizationServerUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -153,7 +150,6 @@ type CreateAuthorizationServerUnauthorized struct {
 func (o *CreateAuthorizationServerUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers][%d] createAuthorizationServerUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *CreateAuthorizationServerUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -175,7 +171,7 @@ func NewCreateAuthorizationServerForbidden() *CreateAuthorizationServerForbidden
 	return &CreateAuthorizationServerForbidden{}
 }
 
-/*CreateAuthorizationServerForbidden handles this case with default header values.
+/* CreateAuthorizationServerForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -186,7 +182,6 @@ type CreateAuthorizationServerForbidden struct {
 func (o *CreateAuthorizationServerForbidden) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers][%d] createAuthorizationServerForbidden  %+v", 403, o.Payload)
 }
-
 func (o *CreateAuthorizationServerForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -208,7 +203,7 @@ func NewCreateAuthorizationServerNotFound() *CreateAuthorizationServerNotFound {
 	return &CreateAuthorizationServerNotFound{}
 }
 
-/*CreateAuthorizationServerNotFound handles this case with default header values.
+/* CreateAuthorizationServerNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -219,7 +214,6 @@ type CreateAuthorizationServerNotFound struct {
 func (o *CreateAuthorizationServerNotFound) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers][%d] createAuthorizationServerNotFound  %+v", 404, o.Payload)
 }
-
 func (o *CreateAuthorizationServerNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -241,7 +235,7 @@ func NewCreateAuthorizationServerConflict() *CreateAuthorizationServerConflict {
 	return &CreateAuthorizationServerConflict{}
 }
 
-/*CreateAuthorizationServerConflict handles this case with default header values.
+/* CreateAuthorizationServerConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -252,7 +246,6 @@ type CreateAuthorizationServerConflict struct {
 func (o *CreateAuthorizationServerConflict) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers][%d] createAuthorizationServerConflict  %+v", 409, o.Payload)
 }
-
 func (o *CreateAuthorizationServerConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -274,7 +267,7 @@ func NewCreateAuthorizationServerUnprocessableEntity() *CreateAuthorizationServe
 	return &CreateAuthorizationServerUnprocessableEntity{}
 }
 
-/*CreateAuthorizationServerUnprocessableEntity handles this case with default header values.
+/* CreateAuthorizationServerUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -285,7 +278,6 @@ type CreateAuthorizationServerUnprocessableEntity struct {
 func (o *CreateAuthorizationServerUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers][%d] createAuthorizationServerUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *CreateAuthorizationServerUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

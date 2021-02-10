@@ -47,7 +47,6 @@ func (o *GetTenantReader) ReadResponse(response runtime.ClientResponse, consumer
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewGetTenantOK() *GetTenantOK {
 	return &GetTenantOK{}
 }
 
-/*GetTenantOK handles this case with default header values.
+/* GetTenantOK describes a response with status code 200, with default header values.
 
 Tenant
 */
@@ -69,7 +68,6 @@ type GetTenantOK struct {
 func (o *GetTenantOK) Error() string {
 	return fmt.Sprintf("[GET /api/system/tenants/{tid}][%d] getTenantOK  %+v", 200, o.Payload)
 }
-
 func (o *GetTenantOK) GetPayload() *models.Tenant {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewGetTenantUnauthorized() *GetTenantUnauthorized {
 	return &GetTenantUnauthorized{}
 }
 
-/*GetTenantUnauthorized handles this case with default header values.
+/* GetTenantUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -102,7 +100,6 @@ type GetTenantUnauthorized struct {
 func (o *GetTenantUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/system/tenants/{tid}][%d] getTenantUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *GetTenantUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -124,7 +121,7 @@ func NewGetTenantForbidden() *GetTenantForbidden {
 	return &GetTenantForbidden{}
 }
 
-/*GetTenantForbidden handles this case with default header values.
+/* GetTenantForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,7 +132,6 @@ type GetTenantForbidden struct {
 func (o *GetTenantForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/system/tenants/{tid}][%d] getTenantForbidden  %+v", 403, o.Payload)
 }
-
 func (o *GetTenantForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -157,7 +153,7 @@ func NewGetTenantNotFound() *GetTenantNotFound {
 	return &GetTenantNotFound{}
 }
 
-/*GetTenantNotFound handles this case with default header values.
+/* GetTenantNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -168,7 +164,6 @@ type GetTenantNotFound struct {
 func (o *GetTenantNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/system/tenants/{tid}][%d] getTenantNotFound  %+v", 404, o.Payload)
 }
-
 func (o *GetTenantNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

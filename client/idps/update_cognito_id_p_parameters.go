@@ -18,102 +18,114 @@ import (
 	"github.com/cloudentity/acp-client-go/models"
 )
 
-// NewUpdateCognitoIDPParams creates a new UpdateCognitoIDPParams object
-// with the default values initialized.
+// NewUpdateCognitoIDPParams creates a new UpdateCognitoIDPParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewUpdateCognitoIDPParams() *UpdateCognitoIDPParams {
-	var (
-		aidDefault = string("default")
-		iidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &UpdateCognitoIDPParams{
-		Aid: aidDefault,
-		Iid: iidDefault,
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewUpdateCognitoIDPParamsWithTimeout creates a new UpdateCognitoIDPParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewUpdateCognitoIDPParamsWithTimeout(timeout time.Duration) *UpdateCognitoIDPParams {
-	var (
-		aidDefault = string("default")
-		iidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &UpdateCognitoIDPParams{
-		Aid: aidDefault,
-		Iid: iidDefault,
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewUpdateCognitoIDPParamsWithContext creates a new UpdateCognitoIDPParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewUpdateCognitoIDPParamsWithContext(ctx context.Context) *UpdateCognitoIDPParams {
-	var (
-		aidDefault = string("default")
-		iidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &UpdateCognitoIDPParams{
-		Aid: aidDefault,
-		Iid: iidDefault,
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewUpdateCognitoIDPParamsWithHTTPClient creates a new UpdateCognitoIDPParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewUpdateCognitoIDPParamsWithHTTPClient(client *http.Client) *UpdateCognitoIDPParams {
-	var (
-		aidDefault = string("default")
-		iidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &UpdateCognitoIDPParams{
-		Aid:        aidDefault,
-		Iid:        iidDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*UpdateCognitoIDPParams contains all the parameters to send to the API endpoint
-for the update cognito ID p operation typically these are written to a http.Request
+/* UpdateCognitoIDPParams contains all the parameters to send to the API endpoint
+   for the update cognito ID p operation.
+
+   Typically these are written to a http.Request.
 */
 type UpdateCognitoIDPParams struct {
 
-	/*CognitoIDP
-	  CognitoIDP
+	/* CognitoIDP.
 
+	   CognitoIDP
 	*/
 	CognitoIDP *models.CognitoIDP
-	/*Aid
-	  Authorization server id
 
+	/* Aid.
+
+	   Authorization server id
+
+	   Default: "default"
 	*/
 	Aid string
-	/*Iid
-	  IDP id
 
+	/* Iid.
+
+	   IDP id
+
+	   Default: "default"
 	*/
 	Iid string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the update cognito ID p params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateCognitoIDPParams) WithDefaults() *UpdateCognitoIDPParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the update cognito ID p params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateCognitoIDPParams) SetDefaults() {
+	var (
+		aidDefault = string("default")
+
+		iidDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := UpdateCognitoIDPParams{
+		Aid: aidDefault,
+		Iid: iidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the update cognito ID p params
@@ -200,7 +212,6 @@ func (o *UpdateCognitoIDPParams) WriteToRequest(r runtime.ClientRequest, reg str
 		return err
 	}
 	var res []error
-
 	if o.CognitoIDP != nil {
 		if err := r.SetBodyParam(o.CognitoIDP); err != nil {
 			return err

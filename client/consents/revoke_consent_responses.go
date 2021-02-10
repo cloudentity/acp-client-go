@@ -53,7 +53,6 @@ func (o *RevokeConsentReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -64,7 +63,7 @@ func NewRevokeConsentOK() *RevokeConsentOK {
 	return &RevokeConsentOK{}
 }
 
-/*RevokeConsentOK handles this case with default header values.
+/* RevokeConsentOK describes a response with status code 200, with default header values.
 
 ConsentGrant
 */
@@ -75,7 +74,6 @@ type RevokeConsentOK struct {
 func (o *RevokeConsentOK) Error() string {
 	return fmt.Sprintf("[POST /{tid}/{aid}/privacy/consents/revoke][%d] revokeConsentOK  %+v", 200, o.Payload)
 }
-
 func (o *RevokeConsentOK) GetPayload() *models.ConsentGrant {
 	return o.Payload
 }
@@ -97,7 +95,7 @@ func NewRevokeConsentUnauthorized() *RevokeConsentUnauthorized {
 	return &RevokeConsentUnauthorized{}
 }
 
-/*RevokeConsentUnauthorized handles this case with default header values.
+/* RevokeConsentUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -108,7 +106,6 @@ type RevokeConsentUnauthorized struct {
 func (o *RevokeConsentUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /{tid}/{aid}/privacy/consents/revoke][%d] revokeConsentUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *RevokeConsentUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -130,7 +127,7 @@ func NewRevokeConsentForbidden() *RevokeConsentForbidden {
 	return &RevokeConsentForbidden{}
 }
 
-/*RevokeConsentForbidden handles this case with default header values.
+/* RevokeConsentForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -141,7 +138,6 @@ type RevokeConsentForbidden struct {
 func (o *RevokeConsentForbidden) Error() string {
 	return fmt.Sprintf("[POST /{tid}/{aid}/privacy/consents/revoke][%d] revokeConsentForbidden  %+v", 403, o.Payload)
 }
-
 func (o *RevokeConsentForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -163,7 +159,7 @@ func NewRevokeConsentNotFound() *RevokeConsentNotFound {
 	return &RevokeConsentNotFound{}
 }
 
-/*RevokeConsentNotFound handles this case with default header values.
+/* RevokeConsentNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -174,7 +170,6 @@ type RevokeConsentNotFound struct {
 func (o *RevokeConsentNotFound) Error() string {
 	return fmt.Sprintf("[POST /{tid}/{aid}/privacy/consents/revoke][%d] revokeConsentNotFound  %+v", 404, o.Payload)
 }
-
 func (o *RevokeConsentNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -196,7 +191,7 @@ func NewRevokeConsentUnprocessableEntity() *RevokeConsentUnprocessableEntity {
 	return &RevokeConsentUnprocessableEntity{}
 }
 
-/*RevokeConsentUnprocessableEntity handles this case with default header values.
+/* RevokeConsentUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -207,7 +202,6 @@ type RevokeConsentUnprocessableEntity struct {
 func (o *RevokeConsentUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /{tid}/{aid}/privacy/consents/revoke][%d] revokeConsentUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *RevokeConsentUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

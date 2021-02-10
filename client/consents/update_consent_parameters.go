@@ -18,75 +18,92 @@ import (
 	"github.com/cloudentity/acp-client-go/models"
 )
 
-// NewUpdateConsentParams creates a new UpdateConsentParams object
-// with the default values initialized.
+// NewUpdateConsentParams creates a new UpdateConsentParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewUpdateConsentParams() *UpdateConsentParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &UpdateConsentParams{
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewUpdateConsentParamsWithTimeout creates a new UpdateConsentParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewUpdateConsentParamsWithTimeout(timeout time.Duration) *UpdateConsentParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &UpdateConsentParams{
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewUpdateConsentParamsWithContext creates a new UpdateConsentParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewUpdateConsentParamsWithContext(ctx context.Context) *UpdateConsentParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &UpdateConsentParams{
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewUpdateConsentParamsWithHTTPClient creates a new UpdateConsentParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewUpdateConsentParamsWithHTTPClient(client *http.Client) *UpdateConsentParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &UpdateConsentParams{
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*UpdateConsentParams contains all the parameters to send to the API endpoint
-for the update consent operation typically these are written to a http.Request
+/* UpdateConsentParams contains all the parameters to send to the API endpoint
+   for the update consent operation.
+
+   Typically these are written to a http.Request.
 */
 type UpdateConsentParams struct {
 
-	/*ConsentBody*/
+	// ConsentBody.
 	ConsentBody *models.Consent
-	/*Consent*/
-	ConsentID string
-	/*Tid
-	  Tenant id
 
+	// Consent.
+	ConsentID string
+
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the update consent params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateConsentParams) WithDefaults() *UpdateConsentParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the update consent params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateConsentParams) SetDefaults() {
+	var (
+		tidDefault = string("default")
+	)
+
+	val := UpdateConsentParams{
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the update consent params
@@ -162,7 +179,6 @@ func (o *UpdateConsentParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		return err
 	}
 	var res []error
-
 	if o.ConsentBody != nil {
 		if err := r.SetBodyParam(o.ConsentBody); err != nil {
 			return err

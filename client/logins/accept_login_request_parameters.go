@@ -18,75 +18,92 @@ import (
 	"github.com/cloudentity/acp-client-go/models"
 )
 
-// NewAcceptLoginRequestParams creates a new AcceptLoginRequestParams object
-// with the default values initialized.
+// NewAcceptLoginRequestParams creates a new AcceptLoginRequestParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewAcceptLoginRequestParams() *AcceptLoginRequestParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &AcceptLoginRequestParams{
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewAcceptLoginRequestParamsWithTimeout creates a new AcceptLoginRequestParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewAcceptLoginRequestParamsWithTimeout(timeout time.Duration) *AcceptLoginRequestParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &AcceptLoginRequestParams{
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewAcceptLoginRequestParamsWithContext creates a new AcceptLoginRequestParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewAcceptLoginRequestParamsWithContext(ctx context.Context) *AcceptLoginRequestParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &AcceptLoginRequestParams{
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewAcceptLoginRequestParamsWithHTTPClient creates a new AcceptLoginRequestParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewAcceptLoginRequestParamsWithHTTPClient(client *http.Client) *AcceptLoginRequestParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &AcceptLoginRequestParams{
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*AcceptLoginRequestParams contains all the parameters to send to the API endpoint
-for the accept login request operation typically these are written to a http.Request
+/* AcceptLoginRequestParams contains all the parameters to send to the API endpoint
+   for the accept login request operation.
+
+   Typically these are written to a http.Request.
 */
 type AcceptLoginRequestParams struct {
 
-	/*AcceptLogin*/
+	// AcceptLogin.
 	AcceptLogin *models.AcceptLogin
-	/*Login*/
-	LoginID string
-	/*Tid
-	  Tenant id
 
+	// Login.
+	LoginID string
+
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the accept login request params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *AcceptLoginRequestParams) WithDefaults() *AcceptLoginRequestParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the accept login request params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *AcceptLoginRequestParams) SetDefaults() {
+	var (
+		tidDefault = string("default")
+	)
+
+	val := AcceptLoginRequestParams{
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the accept login request params
@@ -162,7 +179,6 @@ func (o *AcceptLoginRequestParams) WriteToRequest(r runtime.ClientRequest, reg s
 		return err
 	}
 	var res []error
-
 	if o.AcceptLogin != nil {
 		if err := r.SetBodyParam(o.AcceptLogin); err != nil {
 			return err

@@ -53,7 +53,6 @@ func (o *DynamicClientRegistrationGetClientReader) ReadResponse(response runtime
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -64,7 +63,7 @@ func NewDynamicClientRegistrationGetClientOK() *DynamicClientRegistrationGetClie
 	return &DynamicClientRegistrationGetClientOK{}
 }
 
-/*DynamicClientRegistrationGetClientOK handles this case with default header values.
+/* DynamicClientRegistrationGetClientOK describes a response with status code 200, with default header values.
 
 DynamicClientRegistrationResponse
 */
@@ -75,7 +74,6 @@ type DynamicClientRegistrationGetClientOK struct {
 func (o *DynamicClientRegistrationGetClientOK) Error() string {
 	return fmt.Sprintf("[GET /{tid}/{aid}/oauth2/register/{cid}][%d] dynamicClientRegistrationGetClientOK  %+v", 200, o.Payload)
 }
-
 func (o *DynamicClientRegistrationGetClientOK) GetPayload() *models.DynamicClientRegistrationResponse {
 	return o.Payload
 }
@@ -97,7 +95,7 @@ func NewDynamicClientRegistrationGetClientBadRequest() *DynamicClientRegistratio
 	return &DynamicClientRegistrationGetClientBadRequest{}
 }
 
-/*DynamicClientRegistrationGetClientBadRequest handles this case with default header values.
+/* DynamicClientRegistrationGetClientBadRequest describes a response with status code 400, with default header values.
 
 RFC6749Error
 */
@@ -108,7 +106,6 @@ type DynamicClientRegistrationGetClientBadRequest struct {
 func (o *DynamicClientRegistrationGetClientBadRequest) Error() string {
 	return fmt.Sprintf("[GET /{tid}/{aid}/oauth2/register/{cid}][%d] dynamicClientRegistrationGetClientBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *DynamicClientRegistrationGetClientBadRequest) GetPayload() *models.RFC6749Error {
 	return o.Payload
 }
@@ -130,7 +127,7 @@ func NewDynamicClientRegistrationGetClientUnauthorized() *DynamicClientRegistrat
 	return &DynamicClientRegistrationGetClientUnauthorized{}
 }
 
-/*DynamicClientRegistrationGetClientUnauthorized handles this case with default header values.
+/* DynamicClientRegistrationGetClientUnauthorized describes a response with status code 401, with default header values.
 
 RFC6749Error
 */
@@ -141,7 +138,6 @@ type DynamicClientRegistrationGetClientUnauthorized struct {
 func (o *DynamicClientRegistrationGetClientUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /{tid}/{aid}/oauth2/register/{cid}][%d] dynamicClientRegistrationGetClientUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *DynamicClientRegistrationGetClientUnauthorized) GetPayload() *models.RFC6749Error {
 	return o.Payload
 }
@@ -163,7 +159,7 @@ func NewDynamicClientRegistrationGetClientForbidden() *DynamicClientRegistration
 	return &DynamicClientRegistrationGetClientForbidden{}
 }
 
-/*DynamicClientRegistrationGetClientForbidden handles this case with default header values.
+/* DynamicClientRegistrationGetClientForbidden describes a response with status code 403, with default header values.
 
 RFC6749Error
 */
@@ -174,7 +170,6 @@ type DynamicClientRegistrationGetClientForbidden struct {
 func (o *DynamicClientRegistrationGetClientForbidden) Error() string {
 	return fmt.Sprintf("[GET /{tid}/{aid}/oauth2/register/{cid}][%d] dynamicClientRegistrationGetClientForbidden  %+v", 403, o.Payload)
 }
-
 func (o *DynamicClientRegistrationGetClientForbidden) GetPayload() *models.RFC6749Error {
 	return o.Payload
 }
@@ -196,7 +191,7 @@ func NewDynamicClientRegistrationGetClientNotFound() *DynamicClientRegistrationG
 	return &DynamicClientRegistrationGetClientNotFound{}
 }
 
-/*DynamicClientRegistrationGetClientNotFound handles this case with default header values.
+/* DynamicClientRegistrationGetClientNotFound describes a response with status code 404, with default header values.
 
 genericError
 */
@@ -207,7 +202,6 @@ type DynamicClientRegistrationGetClientNotFound struct {
 func (o *DynamicClientRegistrationGetClientNotFound) Error() string {
 	return fmt.Sprintf("[GET /{tid}/{aid}/oauth2/register/{cid}][%d] dynamicClientRegistrationGetClientNotFound  %+v", 404, o.Payload)
 }
-
 func (o *DynamicClientRegistrationGetClientNotFound) GetPayload() *models.GenericError {
 	return o.Payload
 }

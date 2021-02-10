@@ -47,7 +47,6 @@ func (o *GetAuthorizationServerReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewGetAuthorizationServerOK() *GetAuthorizationServerOK {
 	return &GetAuthorizationServerOK{}
 }
 
-/*GetAuthorizationServerOK handles this case with default header values.
+/* GetAuthorizationServerOK describes a response with status code 200, with default header values.
 
 Server
 */
@@ -69,7 +68,6 @@ type GetAuthorizationServerOK struct {
 func (o *GetAuthorizationServerOK) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}][%d] getAuthorizationServerOK  %+v", 200, o.Payload)
 }
-
 func (o *GetAuthorizationServerOK) GetPayload() *models.Server {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewGetAuthorizationServerUnauthorized() *GetAuthorizationServerUnauthorized
 	return &GetAuthorizationServerUnauthorized{}
 }
 
-/*GetAuthorizationServerUnauthorized handles this case with default header values.
+/* GetAuthorizationServerUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -102,7 +100,6 @@ type GetAuthorizationServerUnauthorized struct {
 func (o *GetAuthorizationServerUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}][%d] getAuthorizationServerUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *GetAuthorizationServerUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -124,7 +121,7 @@ func NewGetAuthorizationServerForbidden() *GetAuthorizationServerForbidden {
 	return &GetAuthorizationServerForbidden{}
 }
 
-/*GetAuthorizationServerForbidden handles this case with default header values.
+/* GetAuthorizationServerForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,7 +132,6 @@ type GetAuthorizationServerForbidden struct {
 func (o *GetAuthorizationServerForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}][%d] getAuthorizationServerForbidden  %+v", 403, o.Payload)
 }
-
 func (o *GetAuthorizationServerForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -157,7 +153,7 @@ func NewGetAuthorizationServerNotFound() *GetAuthorizationServerNotFound {
 	return &GetAuthorizationServerNotFound{}
 }
 
-/*GetAuthorizationServerNotFound handles this case with default header values.
+/* GetAuthorizationServerNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -168,7 +164,6 @@ type GetAuthorizationServerNotFound struct {
 func (o *GetAuthorizationServerNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}][%d] getAuthorizationServerNotFound  %+v", 404, o.Payload)
 }
-
 func (o *GetAuthorizationServerNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

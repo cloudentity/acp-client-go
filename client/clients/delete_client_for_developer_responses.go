@@ -53,7 +53,6 @@ func (o *DeleteClientForDeveloperReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -64,7 +63,7 @@ func NewDeleteClientForDeveloperNoContent() *DeleteClientForDeveloperNoContent {
 	return &DeleteClientForDeveloperNoContent{}
 }
 
-/*DeleteClientForDeveloperNoContent handles this case with default header values.
+/* DeleteClientForDeveloperNoContent describes a response with status code 204, with default header values.
 
 Client has been deleted
 */
@@ -85,7 +84,7 @@ func NewDeleteClientForDeveloperBadRequest() *DeleteClientForDeveloperBadRequest
 	return &DeleteClientForDeveloperBadRequest{}
 }
 
-/*DeleteClientForDeveloperBadRequest handles this case with default header values.
+/* DeleteClientForDeveloperBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -96,7 +95,6 @@ type DeleteClientForDeveloperBadRequest struct {
 func (o *DeleteClientForDeveloperBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /api/developer/{tid}/{aid}/clients/{cid}][%d] deleteClientForDeveloperBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *DeleteClientForDeveloperBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -118,7 +116,7 @@ func NewDeleteClientForDeveloperUnauthorized() *DeleteClientForDeveloperUnauthor
 	return &DeleteClientForDeveloperUnauthorized{}
 }
 
-/*DeleteClientForDeveloperUnauthorized handles this case with default header values.
+/* DeleteClientForDeveloperUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -129,7 +127,6 @@ type DeleteClientForDeveloperUnauthorized struct {
 func (o *DeleteClientForDeveloperUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /api/developer/{tid}/{aid}/clients/{cid}][%d] deleteClientForDeveloperUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *DeleteClientForDeveloperUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -151,7 +148,7 @@ func NewDeleteClientForDeveloperForbidden() *DeleteClientForDeveloperForbidden {
 	return &DeleteClientForDeveloperForbidden{}
 }
 
-/*DeleteClientForDeveloperForbidden handles this case with default header values.
+/* DeleteClientForDeveloperForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -162,7 +159,6 @@ type DeleteClientForDeveloperForbidden struct {
 func (o *DeleteClientForDeveloperForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /api/developer/{tid}/{aid}/clients/{cid}][%d] deleteClientForDeveloperForbidden  %+v", 403, o.Payload)
 }
-
 func (o *DeleteClientForDeveloperForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -184,7 +180,7 @@ func NewDeleteClientForDeveloperNotFound() *DeleteClientForDeveloperNotFound {
 	return &DeleteClientForDeveloperNotFound{}
 }
 
-/*DeleteClientForDeveloperNotFound handles this case with default header values.
+/* DeleteClientForDeveloperNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -195,7 +191,6 @@ type DeleteClientForDeveloperNotFound struct {
 func (o *DeleteClientForDeveloperNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /api/developer/{tid}/{aid}/clients/{cid}][%d] deleteClientForDeveloperNotFound  %+v", 404, o.Payload)
 }
-
 func (o *DeleteClientForDeveloperNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

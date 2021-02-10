@@ -16,73 +16,89 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewGetScopeGrantRequestParams creates a new GetScopeGrantRequestParams object
-// with the default values initialized.
+// NewGetScopeGrantRequestParams creates a new GetScopeGrantRequestParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetScopeGrantRequestParams() *GetScopeGrantRequestParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &GetScopeGrantRequestParams{
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetScopeGrantRequestParamsWithTimeout creates a new GetScopeGrantRequestParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetScopeGrantRequestParamsWithTimeout(timeout time.Duration) *GetScopeGrantRequestParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &GetScopeGrantRequestParams{
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewGetScopeGrantRequestParamsWithContext creates a new GetScopeGrantRequestParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetScopeGrantRequestParamsWithContext(ctx context.Context) *GetScopeGrantRequestParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &GetScopeGrantRequestParams{
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewGetScopeGrantRequestParamsWithHTTPClient creates a new GetScopeGrantRequestParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetScopeGrantRequestParamsWithHTTPClient(client *http.Client) *GetScopeGrantRequestParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &GetScopeGrantRequestParams{
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*GetScopeGrantRequestParams contains all the parameters to send to the API endpoint
-for the get scope grant request operation typically these are written to a http.Request
+/* GetScopeGrantRequestParams contains all the parameters to send to the API endpoint
+   for the get scope grant request operation.
+
+   Typically these are written to a http.Request.
 */
 type GetScopeGrantRequestParams struct {
 
-	/*Login*/
+	// Login.
 	LoginID string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get scope grant request params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetScopeGrantRequestParams) WithDefaults() *GetScopeGrantRequestParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get scope grant request params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetScopeGrantRequestParams) SetDefaults() {
+	var (
+		tidDefault = string("default")
+	)
+
+	val := GetScopeGrantRequestParams{
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the get scope grant request params

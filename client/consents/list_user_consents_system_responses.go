@@ -47,7 +47,6 @@ func (o *ListUserConsentsSystemReader) ReadResponse(response runtime.ClientRespo
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewListUserConsentsSystemOK() *ListUserConsentsSystemOK {
 	return &ListUserConsentsSystemOK{}
 }
 
-/*ListUserConsentsSystemOK handles this case with default header values.
+/* ListUserConsentsSystemOK describes a response with status code 200, with default header values.
 
 ConsentsWithGrants
 */
@@ -69,7 +68,6 @@ type ListUserConsentsSystemOK struct {
 func (o *ListUserConsentsSystemOK) Error() string {
 	return fmt.Sprintf("[GET /api/system/{tid}/consents][%d] listUserConsentsSystemOK  %+v", 200, o.Payload)
 }
-
 func (o *ListUserConsentsSystemOK) GetPayload() *models.ConsentsWithGrants {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewListUserConsentsSystemUnauthorized() *ListUserConsentsSystemUnauthorized
 	return &ListUserConsentsSystemUnauthorized{}
 }
 
-/*ListUserConsentsSystemUnauthorized handles this case with default header values.
+/* ListUserConsentsSystemUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -102,7 +100,6 @@ type ListUserConsentsSystemUnauthorized struct {
 func (o *ListUserConsentsSystemUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/system/{tid}/consents][%d] listUserConsentsSystemUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *ListUserConsentsSystemUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -124,7 +121,7 @@ func NewListUserConsentsSystemForbidden() *ListUserConsentsSystemForbidden {
 	return &ListUserConsentsSystemForbidden{}
 }
 
-/*ListUserConsentsSystemForbidden handles this case with default header values.
+/* ListUserConsentsSystemForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,7 +132,6 @@ type ListUserConsentsSystemForbidden struct {
 func (o *ListUserConsentsSystemForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/system/{tid}/consents][%d] listUserConsentsSystemForbidden  %+v", 403, o.Payload)
 }
-
 func (o *ListUserConsentsSystemForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -157,7 +153,7 @@ func NewListUserConsentsSystemNotFound() *ListUserConsentsSystemNotFound {
 	return &ListUserConsentsSystemNotFound{}
 }
 
-/*ListUserConsentsSystemNotFound handles this case with default header values.
+/* ListUserConsentsSystemNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -168,7 +164,6 @@ type ListUserConsentsSystemNotFound struct {
 func (o *ListUserConsentsSystemNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/system/{tid}/consents][%d] listUserConsentsSystemNotFound  %+v", 404, o.Payload)
 }
-
 func (o *ListUserConsentsSystemNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

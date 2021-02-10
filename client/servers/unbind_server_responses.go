@@ -47,7 +47,6 @@ func (o *UnbindServerReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewUnbindServerOK() *UnbindServerOK {
 	return &UnbindServerOK{}
 }
 
-/*UnbindServerOK handles this case with default header values.
+/* UnbindServerOK describes a response with status code 200, with default header values.
 
 ServerToServer
 */
@@ -69,7 +68,6 @@ type UnbindServerOK struct {
 func (o *UnbindServerOK) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/servers/{aid}/unbind/{rid}][%d] unbindServerOK  %+v", 200, o.Payload)
 }
-
 func (o *UnbindServerOK) GetPayload() *models.ServerToServer {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewUnbindServerUnauthorized() *UnbindServerUnauthorized {
 	return &UnbindServerUnauthorized{}
 }
 
-/*UnbindServerUnauthorized handles this case with default header values.
+/* UnbindServerUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -102,7 +100,6 @@ type UnbindServerUnauthorized struct {
 func (o *UnbindServerUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/servers/{aid}/unbind/{rid}][%d] unbindServerUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *UnbindServerUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -124,7 +121,7 @@ func NewUnbindServerForbidden() *UnbindServerForbidden {
 	return &UnbindServerForbidden{}
 }
 
-/*UnbindServerForbidden handles this case with default header values.
+/* UnbindServerForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,7 +132,6 @@ type UnbindServerForbidden struct {
 func (o *UnbindServerForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/servers/{aid}/unbind/{rid}][%d] unbindServerForbidden  %+v", 403, o.Payload)
 }
-
 func (o *UnbindServerForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -157,7 +153,7 @@ func NewUnbindServerNotFound() *UnbindServerNotFound {
 	return &UnbindServerNotFound{}
 }
 
-/*UnbindServerNotFound handles this case with default header values.
+/* UnbindServerNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -168,7 +164,6 @@ type UnbindServerNotFound struct {
 func (o *UnbindServerNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/servers/{aid}/unbind/{rid}][%d] unbindServerNotFound  %+v", 404, o.Payload)
 }
-
 func (o *UnbindServerNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

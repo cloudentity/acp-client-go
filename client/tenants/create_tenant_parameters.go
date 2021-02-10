@@ -19,61 +19,76 @@ import (
 	"github.com/cloudentity/acp-client-go/models"
 )
 
-// NewCreateTenantParams creates a new CreateTenantParams object
-// with the default values initialized.
+// NewCreateTenantParams creates a new CreateTenantParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewCreateTenantParams() *CreateTenantParams {
-	var ()
 	return &CreateTenantParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewCreateTenantParamsWithTimeout creates a new CreateTenantParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewCreateTenantParamsWithTimeout(timeout time.Duration) *CreateTenantParams {
-	var ()
 	return &CreateTenantParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewCreateTenantParamsWithContext creates a new CreateTenantParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewCreateTenantParamsWithContext(ctx context.Context) *CreateTenantParams {
-	var ()
 	return &CreateTenantParams{
-
 		Context: ctx,
 	}
 }
 
 // NewCreateTenantParamsWithHTTPClient creates a new CreateTenantParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewCreateTenantParamsWithHTTPClient(client *http.Client) *CreateTenantParams {
-	var ()
 	return &CreateTenantParams{
 		HTTPClient: client,
 	}
 }
 
-/*CreateTenantParams contains all the parameters to send to the API endpoint
-for the create tenant operation typically these are written to a http.Request
+/* CreateTenantParams contains all the parameters to send to the API endpoint
+   for the create tenant operation.
+
+   Typically these are written to a http.Request.
 */
 type CreateTenantParams struct {
 
-	/*Tenant*/
+	// Tenant.
 	Tenant *models.Tenant
-	/*WithDefaultWorkspaces
-	  Create tenant with default workspaces
 
+	/* WithDefaultWorkspaces.
+
+	   Create tenant with default workspaces
 	*/
 	WithDefaultWorkspaces *bool
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the create tenant params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateTenantParams) WithDefaults() *CreateTenantParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the create tenant params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateTenantParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the create tenant params
@@ -138,7 +153,6 @@ func (o *CreateTenantParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		return err
 	}
 	var res []error
-
 	if o.Tenant != nil {
 		if err := r.SetBodyParam(o.Tenant); err != nil {
 			return err
@@ -149,16 +163,17 @@ func (o *CreateTenantParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 
 		// query param with_default_workspaces
 		var qrWithDefaultWorkspaces bool
+
 		if o.WithDefaultWorkspaces != nil {
 			qrWithDefaultWorkspaces = *o.WithDefaultWorkspaces
 		}
 		qWithDefaultWorkspaces := swag.FormatBool(qrWithDefaultWorkspaces)
 		if qWithDefaultWorkspaces != "" {
+
 			if err := r.SetQueryParam("with_default_workspaces", qWithDefaultWorkspaces); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

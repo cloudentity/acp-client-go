@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -22,6 +23,7 @@ type TestPolicyDefinition struct {
 	Definition string `json:"definition,omitempty"`
 
 	// policy language
+	// Example: cloudentity
 	Language string `json:"language,omitempty"`
 
 	// query for rego policy
@@ -46,7 +48,6 @@ func (m *TestPolicyDefinition) Validate(formats strfmt.Registry) error {
 }
 
 func (m *TestPolicyDefinition) validateValidators(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Validators) { // not required
 		return nil
 	}
@@ -58,6 +59,38 @@ func (m *TestPolicyDefinition) validateValidators(formats strfmt.Registry) error
 
 		if m.Validators[i] != nil {
 			if err := m.Validators[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("validators" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this test policy definition based on the context it is used
+func (m *TestPolicyDefinition) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateValidators(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *TestPolicyDefinition) contextValidateValidators(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Validators); i++ {
+
+		if m.Validators[i] != nil {
+			if err := m.Validators[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("validators" + "." + strconv.Itoa(i))
 				}

@@ -18,102 +18,114 @@ import (
 	"github.com/cloudentity/acp-client-go/models"
 )
 
-// NewUpdateOktaIDPParams creates a new UpdateOktaIDPParams object
-// with the default values initialized.
+// NewUpdateOktaIDPParams creates a new UpdateOktaIDPParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewUpdateOktaIDPParams() *UpdateOktaIDPParams {
-	var (
-		aidDefault = string("default")
-		iidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &UpdateOktaIDPParams{
-		Aid: aidDefault,
-		Iid: iidDefault,
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewUpdateOktaIDPParamsWithTimeout creates a new UpdateOktaIDPParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewUpdateOktaIDPParamsWithTimeout(timeout time.Duration) *UpdateOktaIDPParams {
-	var (
-		aidDefault = string("default")
-		iidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &UpdateOktaIDPParams{
-		Aid: aidDefault,
-		Iid: iidDefault,
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewUpdateOktaIDPParamsWithContext creates a new UpdateOktaIDPParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewUpdateOktaIDPParamsWithContext(ctx context.Context) *UpdateOktaIDPParams {
-	var (
-		aidDefault = string("default")
-		iidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &UpdateOktaIDPParams{
-		Aid: aidDefault,
-		Iid: iidDefault,
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewUpdateOktaIDPParamsWithHTTPClient creates a new UpdateOktaIDPParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewUpdateOktaIDPParamsWithHTTPClient(client *http.Client) *UpdateOktaIDPParams {
-	var (
-		aidDefault = string("default")
-		iidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &UpdateOktaIDPParams{
-		Aid:        aidDefault,
-		Iid:        iidDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*UpdateOktaIDPParams contains all the parameters to send to the API endpoint
-for the update okta ID p operation typically these are written to a http.Request
+/* UpdateOktaIDPParams contains all the parameters to send to the API endpoint
+   for the update okta ID p operation.
+
+   Typically these are written to a http.Request.
 */
 type UpdateOktaIDPParams struct {
 
-	/*OktaIDP
-	  OktaIDP
+	/* OktaIDP.
 
+	   OktaIDP
 	*/
 	OktaIDP *models.OktaIDP
-	/*Aid
-	  Authorization server id
 
+	/* Aid.
+
+	   Authorization server id
+
+	   Default: "default"
 	*/
 	Aid string
-	/*Iid
-	  IDP id
 
+	/* Iid.
+
+	   IDP id
+
+	   Default: "default"
 	*/
 	Iid string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the update okta ID p params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateOktaIDPParams) WithDefaults() *UpdateOktaIDPParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the update okta ID p params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateOktaIDPParams) SetDefaults() {
+	var (
+		aidDefault = string("default")
+
+		iidDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := UpdateOktaIDPParams{
+		Aid: aidDefault,
+		Iid: iidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the update okta ID p params
@@ -200,7 +212,6 @@ func (o *UpdateOktaIDPParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		return err
 	}
 	var res []error
-
 	if o.OktaIDP != nil {
 		if err := r.SetBodyParam(o.OktaIDP); err != nil {
 			return err

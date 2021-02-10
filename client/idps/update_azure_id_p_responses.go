@@ -59,7 +59,6 @@ func (o *UpdateAzureIDPReader) ReadResponse(response runtime.ClientResponse, con
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -70,7 +69,7 @@ func NewUpdateAzureIDPOK() *UpdateAzureIDPOK {
 	return &UpdateAzureIDPOK{}
 }
 
-/*UpdateAzureIDPOK handles this case with default header values.
+/* UpdateAzureIDPOK describes a response with status code 200, with default header values.
 
 AzureIDP
 */
@@ -81,7 +80,6 @@ type UpdateAzureIDPOK struct {
 func (o *UpdateAzureIDPOK) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/azure/{iid}][%d] updateAzureIdPOK  %+v", 200, o.Payload)
 }
-
 func (o *UpdateAzureIDPOK) GetPayload() *models.AzureIDP {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewUpdateAzureIDPBadRequest() *UpdateAzureIDPBadRequest {
 	return &UpdateAzureIDPBadRequest{}
 }
 
-/*UpdateAzureIDPBadRequest handles this case with default header values.
+/* UpdateAzureIDPBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -114,7 +112,6 @@ type UpdateAzureIDPBadRequest struct {
 func (o *UpdateAzureIDPBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/azure/{iid}][%d] updateAzureIdPBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *UpdateAzureIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -136,7 +133,7 @@ func NewUpdateAzureIDPUnauthorized() *UpdateAzureIDPUnauthorized {
 	return &UpdateAzureIDPUnauthorized{}
 }
 
-/*UpdateAzureIDPUnauthorized handles this case with default header values.
+/* UpdateAzureIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,7 +144,6 @@ type UpdateAzureIDPUnauthorized struct {
 func (o *UpdateAzureIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/azure/{iid}][%d] updateAzureIdPUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *UpdateAzureIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -169,7 +165,7 @@ func NewUpdateAzureIDPForbidden() *UpdateAzureIDPForbidden {
 	return &UpdateAzureIDPForbidden{}
 }
 
-/*UpdateAzureIDPForbidden handles this case with default header values.
+/* UpdateAzureIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -180,7 +176,6 @@ type UpdateAzureIDPForbidden struct {
 func (o *UpdateAzureIDPForbidden) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/azure/{iid}][%d] updateAzureIdPForbidden  %+v", 403, o.Payload)
 }
-
 func (o *UpdateAzureIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -202,7 +197,7 @@ func NewUpdateAzureIDPNotFound() *UpdateAzureIDPNotFound {
 	return &UpdateAzureIDPNotFound{}
 }
 
-/*UpdateAzureIDPNotFound handles this case with default header values.
+/* UpdateAzureIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -213,7 +208,6 @@ type UpdateAzureIDPNotFound struct {
 func (o *UpdateAzureIDPNotFound) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/azure/{iid}][%d] updateAzureIdPNotFound  %+v", 404, o.Payload)
 }
-
 func (o *UpdateAzureIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +229,7 @@ func NewUpdateAzureIDPUnprocessableEntity() *UpdateAzureIDPUnprocessableEntity {
 	return &UpdateAzureIDPUnprocessableEntity{}
 }
 
-/*UpdateAzureIDPUnprocessableEntity handles this case with default header values.
+/* UpdateAzureIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -246,7 +240,6 @@ type UpdateAzureIDPUnprocessableEntity struct {
 func (o *UpdateAzureIDPUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/azure/{iid}][%d] updateAzureIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *UpdateAzureIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

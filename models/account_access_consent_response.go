@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -52,7 +54,6 @@ func (m *AccountAccessConsentResponse) Validate(formats strfmt.Registry) error {
 }
 
 func (m *AccountAccessConsentResponse) validateData(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Data) { // not required
 		return nil
 	}
@@ -70,7 +71,6 @@ func (m *AccountAccessConsentResponse) validateData(formats strfmt.Registry) err
 }
 
 func (m *AccountAccessConsentResponse) validateLinks(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Links) { // not required
 		return nil
 	}
@@ -88,13 +88,76 @@ func (m *AccountAccessConsentResponse) validateLinks(formats strfmt.Registry) er
 }
 
 func (m *AccountAccessConsentResponse) validateMeta(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Meta) { // not required
 		return nil
 	}
 
 	if m.Meta != nil {
 		if err := m.Meta.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("Meta")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this account access consent response based on the context it is used
+func (m *AccountAccessConsentResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLinks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateMeta(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *AccountAccessConsentResponse) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Data != nil {
+		if err := m.Data.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("Data")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AccountAccessConsentResponse) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Links != nil {
+		if err := m.Links.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("Links")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AccountAccessConsentResponse) contextValidateMeta(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Meta != nil {
+		if err := m.Meta.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Meta")
 			}

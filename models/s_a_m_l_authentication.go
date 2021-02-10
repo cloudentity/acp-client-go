@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -16,6 +18,7 @@ import (
 type SAMLAuthentication struct {
 
 	// unique id of a service provider, if not provided will be generated
+	// Example: https://localhost:8443/default/default/login
 	EntityIssuer string `json:"entity_issuer,omitempty"`
 
 	// attribute name from AttributeStatement saml response which will be used as identifier in ACP
@@ -29,9 +32,11 @@ type SAMLAuthentication struct {
 	IdpCertificate string `json:"idp_certificate,omitempty"`
 
 	// endpoint where IDP will post SamlResponse
+	// Example: https://localhost:8443/default/default/login
 	RedirectURL string `json:"redirect_url,omitempty"`
 
 	// endpoint where SamlRequest will be sent
+	// Example: https://test-dev-ed.my.salesforce.com/idp/endpoint/HttpPost
 	SSOURL string `json:"sso_url,omitempty"`
 
 	// name id format of saml subject
@@ -52,6 +57,11 @@ type SAMLAuthentication struct {
 
 // Validate validates this s a m l authentication
 func (m *SAMLAuthentication) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this s a m l authentication based on context it is used
+func (m *SAMLAuthentication) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

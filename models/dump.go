@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -177,7 +178,6 @@ func (m *Dump) Validate(formats strfmt.Registry) error {
 }
 
 func (m *Dump) validateAPIs(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.APIs) { // not required
 		return nil
 	}
@@ -202,7 +202,6 @@ func (m *Dump) validateAPIs(formats strfmt.Registry) error {
 }
 
 func (m *Dump) validateClaims(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Claims) { // not required
 		return nil
 	}
@@ -227,7 +226,6 @@ func (m *Dump) validateClaims(formats strfmt.Registry) error {
 }
 
 func (m *Dump) validateClients(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Clients) { // not required
 		return nil
 	}
@@ -252,7 +250,6 @@ func (m *Dump) validateClients(formats strfmt.Registry) error {
 }
 
 func (m *Dump) validateConsentActions(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.ConsentActions) { // not required
 		return nil
 	}
@@ -277,7 +274,6 @@ func (m *Dump) validateConsentActions(formats strfmt.Registry) error {
 }
 
 func (m *Dump) validateConsentGrants(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.ConsentGrants) { // not required
 		return nil
 	}
@@ -302,7 +298,6 @@ func (m *Dump) validateConsentGrants(formats strfmt.Registry) error {
 }
 
 func (m *Dump) validateConsents(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Consents) { // not required
 		return nil
 	}
@@ -327,7 +322,6 @@ func (m *Dump) validateConsents(formats strfmt.Registry) error {
 }
 
 func (m *Dump) validateGatewayAPIGroups(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.GatewayAPIGroups) { // not required
 		return nil
 	}
@@ -352,7 +346,6 @@ func (m *Dump) validateGatewayAPIGroups(formats strfmt.Registry) error {
 }
 
 func (m *Dump) validateGateways(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Gateways) { // not required
 		return nil
 	}
@@ -377,7 +370,6 @@ func (m *Dump) validateGateways(formats strfmt.Registry) error {
 }
 
 func (m *Dump) validateOpenbankingConsents(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.OpenbankingConsents) { // not required
 		return nil
 	}
@@ -402,7 +394,6 @@ func (m *Dump) validateOpenbankingConsents(formats strfmt.Registry) error {
 }
 
 func (m *Dump) validatePolicies(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Policies) { // not required
 		return nil
 	}
@@ -427,7 +418,6 @@ func (m *Dump) validatePolicies(formats strfmt.Registry) error {
 }
 
 func (m *Dump) validatePolicyDependencies(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.PolicyDependencies) { // not required
 		return nil
 	}
@@ -452,7 +442,6 @@ func (m *Dump) validatePolicyDependencies(formats strfmt.Registry) error {
 }
 
 func (m *Dump) validatePolicyExecutionPoints(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.PolicyExecutionPoints) { // not required
 		return nil
 	}
@@ -477,7 +466,6 @@ func (m *Dump) validatePolicyExecutionPoints(formats strfmt.Registry) error {
 }
 
 func (m *Dump) validatePrivacyLedgerEvents(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.PrivacyLedgerEvents) { // not required
 		return nil
 	}
@@ -502,7 +490,6 @@ func (m *Dump) validatePrivacyLedgerEvents(formats strfmt.Registry) error {
 }
 
 func (m *Dump) validateScopeGrants(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.ScopeGrants) { // not required
 		return nil
 	}
@@ -527,7 +514,6 @@ func (m *Dump) validateScopeGrants(formats strfmt.Registry) error {
 }
 
 func (m *Dump) validateScopesWithoutService(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.ScopesWithoutService) { // not required
 		return nil
 	}
@@ -552,7 +538,6 @@ func (m *Dump) validateScopesWithoutService(formats strfmt.Registry) error {
 }
 
 func (m *Dump) validateServerConsents(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.ServerConsents) { // not required
 		return nil
 	}
@@ -577,7 +562,6 @@ func (m *Dump) validateServerConsents(formats strfmt.Registry) error {
 }
 
 func (m *Dump) validateServers(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Servers) { // not required
 		return nil
 	}
@@ -602,7 +586,6 @@ func (m *Dump) validateServers(formats strfmt.Registry) error {
 }
 
 func (m *Dump) validateServersBindings(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.ServersBindings) { // not required
 		return nil
 	}
@@ -627,7 +610,6 @@ func (m *Dump) validateServersBindings(formats strfmt.Registry) error {
 }
 
 func (m *Dump) validateServices(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Services) { // not required
 		return nil
 	}
@@ -652,7 +634,6 @@ func (m *Dump) validateServices(formats strfmt.Registry) error {
 }
 
 func (m *Dump) validateTenants(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Tenants) { // not required
 		return nil
 	}
@@ -677,12 +658,477 @@ func (m *Dump) validateTenants(formats strfmt.Registry) error {
 }
 
 func (m *Dump) validateIdps(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Idps) { // not required
 		return nil
 	}
 
 	if err := m.Idps.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("idps")
+		}
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this dump based on the context it is used
+func (m *Dump) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateAPIs(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateClaims(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateClients(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateConsentActions(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateConsentGrants(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateConsents(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateGatewayAPIGroups(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateGateways(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateOpenbankingConsents(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePolicies(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePolicyDependencies(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePolicyExecutionPoints(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePrivacyLedgerEvents(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateScopeGrants(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateScopesWithoutService(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateServerConsents(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateServers(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateServersBindings(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateServices(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateTenants(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIdps(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *Dump) contextValidateAPIs(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.APIs); i++ {
+
+		if m.APIs[i] != nil {
+			if err := m.APIs[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("apis" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Dump) contextValidateClaims(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Claims); i++ {
+
+		if m.Claims[i] != nil {
+			if err := m.Claims[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("claims" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Dump) contextValidateClients(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Clients); i++ {
+
+		if m.Clients[i] != nil {
+			if err := m.Clients[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("clients" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Dump) contextValidateConsentActions(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.ConsentActions); i++ {
+
+		if m.ConsentActions[i] != nil {
+			if err := m.ConsentActions[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("consent_actions" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Dump) contextValidateConsentGrants(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.ConsentGrants); i++ {
+
+		if m.ConsentGrants[i] != nil {
+			if err := m.ConsentGrants[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("consent_grants" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Dump) contextValidateConsents(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Consents); i++ {
+
+		if m.Consents[i] != nil {
+			if err := m.Consents[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("consents" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Dump) contextValidateGatewayAPIGroups(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.GatewayAPIGroups); i++ {
+
+		if m.GatewayAPIGroups[i] != nil {
+			if err := m.GatewayAPIGroups[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("gateway_api_groups" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Dump) contextValidateGateways(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Gateways); i++ {
+
+		if m.Gateways[i] != nil {
+			if err := m.Gateways[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("gateways" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Dump) contextValidateOpenbankingConsents(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.OpenbankingConsents); i++ {
+
+		if m.OpenbankingConsents[i] != nil {
+			if err := m.OpenbankingConsents[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("openbanking_consents" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Dump) contextValidatePolicies(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Policies); i++ {
+
+		if m.Policies[i] != nil {
+			if err := m.Policies[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("policies" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Dump) contextValidatePolicyDependencies(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.PolicyDependencies); i++ {
+
+		if m.PolicyDependencies[i] != nil {
+			if err := m.PolicyDependencies[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("policy_dependencies" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Dump) contextValidatePolicyExecutionPoints(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.PolicyExecutionPoints); i++ {
+
+		if m.PolicyExecutionPoints[i] != nil {
+			if err := m.PolicyExecutionPoints[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("policy_execution_points" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Dump) contextValidatePrivacyLedgerEvents(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.PrivacyLedgerEvents); i++ {
+
+		if m.PrivacyLedgerEvents[i] != nil {
+			if err := m.PrivacyLedgerEvents[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("privacy_ledger_events" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Dump) contextValidateScopeGrants(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.ScopeGrants); i++ {
+
+		if m.ScopeGrants[i] != nil {
+			if err := m.ScopeGrants[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("scope_grants" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Dump) contextValidateScopesWithoutService(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.ScopesWithoutService); i++ {
+
+		if m.ScopesWithoutService[i] != nil {
+			if err := m.ScopesWithoutService[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("scopes_without_service" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Dump) contextValidateServerConsents(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.ServerConsents); i++ {
+
+		if m.ServerConsents[i] != nil {
+			if err := m.ServerConsents[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("server_consents" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Dump) contextValidateServers(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Servers); i++ {
+
+		if m.Servers[i] != nil {
+			if err := m.Servers[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("servers" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Dump) contextValidateServersBindings(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.ServersBindings); i++ {
+
+		if m.ServersBindings[i] != nil {
+			if err := m.ServersBindings[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("servers_bindings" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Dump) contextValidateServices(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Services); i++ {
+
+		if m.Services[i] != nil {
+			if err := m.Services[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("services" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Dump) contextValidateTenants(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Tenants); i++ {
+
+		if m.Tenants[i] != nil {
+			if err := m.Tenants[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("tenants" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Dump) contextValidateIdps(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.Idps.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("idps")
 		}

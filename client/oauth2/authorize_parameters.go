@@ -16,94 +16,112 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewAuthorizeParams creates a new AuthorizeParams object
-// with the default values initialized.
+// NewAuthorizeParams creates a new AuthorizeParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewAuthorizeParams() *AuthorizeParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &AuthorizeParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewAuthorizeParamsWithTimeout creates a new AuthorizeParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewAuthorizeParamsWithTimeout(timeout time.Duration) *AuthorizeParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &AuthorizeParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewAuthorizeParamsWithContext creates a new AuthorizeParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewAuthorizeParamsWithContext(ctx context.Context) *AuthorizeParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &AuthorizeParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewAuthorizeParamsWithHTTPClient creates a new AuthorizeParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewAuthorizeParamsWithHTTPClient(client *http.Client) *AuthorizeParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &AuthorizeParams{
-		Aid:        aidDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*AuthorizeParams contains all the parameters to send to the API endpoint
-for the authorize operation typically these are written to a http.Request
+/* AuthorizeParams contains all the parameters to send to the API endpoint
+   for the authorize operation.
+
+   Typically these are written to a http.Request.
 */
 type AuthorizeParams struct {
 
-	/*Aid
-	  Authorization server id
+	/* Aid.
 
+	   Authorization server id
+
+	   Default: "default"
 	*/
 	Aid string
-	/*ClientID*/
-	ClientID string
-	/*RedirectURI*/
-	RedirectURI *string
-	/*ResponseType*/
-	ResponseType string
-	/*Scope*/
-	Scope *string
-	/*State*/
-	State *string
-	/*Tid
-	  Tenant id
 
+	// ClientID.
+	ClientID string
+
+	// RedirectURI.
+	RedirectURI *string
+
+	// ResponseType.
+	ResponseType string
+
+	// Scope.
+	Scope *string
+
+	// State.
+	State *string
+
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the authorize params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *AuthorizeParams) WithDefaults() *AuthorizeParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the authorize params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *AuthorizeParams) SetDefaults() {
+	var (
+		aidDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := AuthorizeParams{
+		Aid: aidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the authorize params
@@ -233,6 +251,7 @@ func (o *AuthorizeParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 	qrClientID := o.ClientID
 	qClientID := qrClientID
 	if qClientID != "" {
+
 		if err := r.SetQueryParam("client_id", qClientID); err != nil {
 			return err
 		}
@@ -242,22 +261,24 @@ func (o *AuthorizeParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 
 		// query param redirect_uri
 		var qrRedirectURI string
+
 		if o.RedirectURI != nil {
 			qrRedirectURI = *o.RedirectURI
 		}
 		qRedirectURI := qrRedirectURI
 		if qRedirectURI != "" {
+
 			if err := r.SetQueryParam("redirect_uri", qRedirectURI); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	// query param response_type
 	qrResponseType := o.ResponseType
 	qResponseType := qrResponseType
 	if qResponseType != "" {
+
 		if err := r.SetQueryParam("response_type", qResponseType); err != nil {
 			return err
 		}
@@ -267,32 +288,34 @@ func (o *AuthorizeParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 
 		// query param scope
 		var qrScope string
+
 		if o.Scope != nil {
 			qrScope = *o.Scope
 		}
 		qScope := qrScope
 		if qScope != "" {
+
 			if err := r.SetQueryParam("scope", qScope); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if o.State != nil {
 
 		// query param state
 		var qrState string
+
 		if o.State != nil {
 			qrState = *o.State
 		}
 		qState := qrState
 		if qState != "" {
+
 			if err := r.SetQueryParam("state", qState); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	// path param tid

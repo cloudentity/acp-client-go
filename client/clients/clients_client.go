@@ -25,33 +25,36 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateClient(params *CreateClientParams, authInfo runtime.ClientAuthInfoWriter) (*CreateClientCreated, error)
+	CreateClient(params *CreateClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateClientCreated, error)
 
-	CreateClientForDeveloper(params *CreateClientForDeveloperParams, authInfo runtime.ClientAuthInfoWriter) (*CreateClientForDeveloperCreated, error)
+	CreateClientForDeveloper(params *CreateClientForDeveloperParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateClientForDeveloperCreated, error)
 
-	DeleteClient(params *DeleteClientParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteClientNoContent, error)
+	DeleteClient(params *DeleteClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteClientNoContent, error)
 
-	DeleteClientForDeveloper(params *DeleteClientForDeveloperParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteClientForDeveloperNoContent, error)
+	DeleteClientForDeveloper(params *DeleteClientForDeveloperParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteClientForDeveloperNoContent, error)
 
-	GetClient(params *GetClientParams, authInfo runtime.ClientAuthInfoWriter) (*GetClientOK, error)
+	GetClient(params *GetClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetClientOK, error)
 
-	GetClientForDeveloper(params *GetClientForDeveloperParams, authInfo runtime.ClientAuthInfoWriter) (*GetClientForDeveloperOK, error)
+	GetClientForDeveloper(params *GetClientForDeveloperParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetClientForDeveloperOK, error)
 
-	ListClients(params *ListClientsParams, authInfo runtime.ClientAuthInfoWriter) (*ListClientsOK, error)
+	ListClients(params *ListClientsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListClientsOK, error)
 
-	ListClientsForDeveloper(params *ListClientsForDeveloperParams, authInfo runtime.ClientAuthInfoWriter) (*ListClientsForDeveloperOK, error)
+	ListClientsForDeveloper(params *ListClientsForDeveloperParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListClientsForDeveloperOK, error)
 
-	ListClientsSystem(params *ListClientsSystemParams, authInfo runtime.ClientAuthInfoWriter) (*ListClientsSystemOK, error)
+	ListClientsSystem(params *ListClientsSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListClientsSystemOK, error)
 
-	ListClientsWithAccess(params *ListClientsWithAccessParams, authInfo runtime.ClientAuthInfoWriter) (*ListClientsWithAccessOK, error)
+	ListClientsWithAccess(params *ListClientsWithAccessParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListClientsWithAccessOK, error)
 
-	RevokeClientAccess(params *RevokeClientAccessParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeClientAccessNoContent, error)
+	RevokeClientAccess(params *RevokeClientAccessParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeClientAccessNoContent, error)
 
-	UpdateClient(params *UpdateClientParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateClientOK, error)
+	UpdateClient(params *UpdateClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateClientOK, error)
 
-	UpdateClientForDeveloper(params *UpdateClientForDeveloperParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateClientForDeveloperOK, error)
+	UpdateClientForDeveloper(params *UpdateClientForDeveloperParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateClientForDeveloperOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -69,13 +72,12 @@ If grant type is not set, client will get authorization code grant type assigned
 
 Default token authentication method is client_secret_basic.
 */
-func (a *Client) CreateClient(params *CreateClientParams, authInfo runtime.ClientAuthInfoWriter) (*CreateClientCreated, error) {
+func (a *Client) CreateClient(params *CreateClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateClientCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateClientParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createClient",
 		Method:             "POST",
 		PathPattern:        "/api/admin/{tid}/clients",
@@ -87,7 +89,12 @@ func (a *Client) CreateClient(params *CreateClientParams, authInfo runtime.Clien
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -119,13 +126,12 @@ Default token authentication method is client_secret_basic.
 It might happen that it won't be possible to create a client with specified scopes.
 Scopes assignment can be protected by policies defined by administrator.
 */
-func (a *Client) CreateClientForDeveloper(params *CreateClientForDeveloperParams, authInfo runtime.ClientAuthInfoWriter) (*CreateClientForDeveloperCreated, error) {
+func (a *Client) CreateClientForDeveloper(params *CreateClientForDeveloperParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateClientForDeveloperCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateClientForDeveloperParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createClientForDeveloper",
 		Method:             "POST",
 		PathPattern:        "/api/developer/{tid}/{aid}/clients",
@@ -137,7 +143,12 @@ func (a *Client) CreateClientForDeveloper(params *CreateClientForDeveloperParams
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -156,13 +167,12 @@ func (a *Client) CreateClientForDeveloper(params *CreateClientForDeveloperParams
 
   Delete client.
 */
-func (a *Client) DeleteClient(params *DeleteClientParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteClientNoContent, error) {
+func (a *Client) DeleteClient(params *DeleteClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteClientNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteClientParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "deleteClient",
 		Method:             "DELETE",
 		PathPattern:        "/api/admin/{tid}/clients/{cid}",
@@ -174,7 +184,12 @@ func (a *Client) DeleteClient(params *DeleteClientParams, authInfo runtime.Clien
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -193,13 +208,12 @@ func (a *Client) DeleteClient(params *DeleteClientParams, authInfo runtime.Clien
 
   Delete client owned by developer.
 */
-func (a *Client) DeleteClientForDeveloper(params *DeleteClientForDeveloperParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteClientForDeveloperNoContent, error) {
+func (a *Client) DeleteClientForDeveloper(params *DeleteClientForDeveloperParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteClientForDeveloperNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteClientForDeveloperParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "deleteClientForDeveloper",
 		Method:             "DELETE",
 		PathPattern:        "/api/developer/{tid}/{aid}/clients/{cid}",
@@ -211,7 +225,12 @@ func (a *Client) DeleteClientForDeveloper(params *DeleteClientForDeveloperParams
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -230,13 +249,12 @@ func (a *Client) DeleteClientForDeveloper(params *DeleteClientForDeveloperParams
 
   If client has been created by a developer, client's secret will be empty.
 */
-func (a *Client) GetClient(params *GetClientParams, authInfo runtime.ClientAuthInfoWriter) (*GetClientOK, error) {
+func (a *Client) GetClient(params *GetClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetClientOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetClientParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getClient",
 		Method:             "GET",
 		PathPattern:        "/api/admin/{tid}/clients/{cid}",
@@ -248,7 +266,12 @@ func (a *Client) GetClient(params *GetClientParams, authInfo runtime.ClientAuthI
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -267,13 +290,12 @@ func (a *Client) GetClient(params *GetClientParams, authInfo runtime.ClientAuthI
 
   Get client owned by developer.
 */
-func (a *Client) GetClientForDeveloper(params *GetClientForDeveloperParams, authInfo runtime.ClientAuthInfoWriter) (*GetClientForDeveloperOK, error) {
+func (a *Client) GetClientForDeveloper(params *GetClientForDeveloperParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetClientForDeveloperOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetClientForDeveloperParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getClientForDeveloper",
 		Method:             "GET",
 		PathPattern:        "/api/developer/{tid}/{aid}/clients/{cid}",
@@ -285,7 +307,12 @@ func (a *Client) GetClientForDeveloper(params *GetClientForDeveloperParams, auth
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -304,13 +331,12 @@ func (a *Client) GetClientForDeveloper(params *GetClientForDeveloperParams, auth
 
   Returns clients created by admins and developers. If client has been created by a developer, client secret will be empty.
 */
-func (a *Client) ListClients(params *ListClientsParams, authInfo runtime.ClientAuthInfoWriter) (*ListClientsOK, error) {
+func (a *Client) ListClients(params *ListClientsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListClientsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListClientsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "listClients",
 		Method:             "GET",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/clients",
@@ -322,7 +348,12 @@ func (a *Client) ListClients(params *ListClientsParams, authInfo runtime.ClientA
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -341,13 +372,12 @@ func (a *Client) ListClients(params *ListClientsParams, authInfo runtime.ClientA
 
   List clients owner by developer.
 */
-func (a *Client) ListClientsForDeveloper(params *ListClientsForDeveloperParams, authInfo runtime.ClientAuthInfoWriter) (*ListClientsForDeveloperOK, error) {
+func (a *Client) ListClientsForDeveloper(params *ListClientsForDeveloperParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListClientsForDeveloperOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListClientsForDeveloperParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "listClientsForDeveloper",
 		Method:             "GET",
 		PathPattern:        "/api/developer/{tid}/{aid}/clients",
@@ -359,7 +389,12 @@ func (a *Client) ListClientsForDeveloper(params *ListClientsForDeveloperParams, 
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -378,13 +413,12 @@ func (a *Client) ListClientsForDeveloper(params *ListClientsForDeveloperParams, 
 
   This API lists clients by server
 */
-func (a *Client) ListClientsSystem(params *ListClientsSystemParams, authInfo runtime.ClientAuthInfoWriter) (*ListClientsSystemOK, error) {
+func (a *Client) ListClientsSystem(params *ListClientsSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListClientsSystemOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListClientsSystemParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "listClientsSystem",
 		Method:             "GET",
 		PathPattern:        "/api/system/{tid}/clients/{aid}",
@@ -396,7 +430,12 @@ func (a *Client) ListClientsSystem(params *ListClientsSystemParams, authInfo run
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -415,13 +454,12 @@ func (a *Client) ListClientsSystem(params *ListClientsSystemParams, authInfo run
 
   Each client contains list of scopes that user agreed to.
 */
-func (a *Client) ListClientsWithAccess(params *ListClientsWithAccessParams, authInfo runtime.ClientAuthInfoWriter) (*ListClientsWithAccessOK, error) {
+func (a *Client) ListClientsWithAccess(params *ListClientsWithAccessParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListClientsWithAccessOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListClientsWithAccessParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "listClientsWithAccess",
 		Method:             "GET",
 		PathPattern:        "/{tid}/{aid}/clients",
@@ -433,7 +471,12 @@ func (a *Client) ListClientsWithAccess(params *ListClientsWithAccessParams, auth
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -452,13 +495,12 @@ func (a *Client) ListClientsWithAccess(params *ListClientsWithAccessParams, auth
 
   Upon removal client won't be able to use user data anymore.
 */
-func (a *Client) RevokeClientAccess(params *RevokeClientAccessParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeClientAccessNoContent, error) {
+func (a *Client) RevokeClientAccess(params *RevokeClientAccessParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeClientAccessNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRevokeClientAccessParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "revokeClientAccess",
 		Method:             "DELETE",
 		PathPattern:        "/{tid}/{aid}/clients/{cid}",
@@ -470,7 +512,12 @@ func (a *Client) RevokeClientAccess(params *RevokeClientAccessParams, authInfo r
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -492,13 +539,12 @@ func (a *Client) RevokeClientAccess(params *RevokeClientAccessParams, authInfo r
 For clients created by developers only metadata, system and trusted attributes
 can be updated.
 */
-func (a *Client) UpdateClient(params *UpdateClientParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateClientOK, error) {
+func (a *Client) UpdateClient(params *UpdateClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateClientOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateClientParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "updateClient",
 		Method:             "PUT",
 		PathPattern:        "/api/admin/{tid}/clients/{cid}",
@@ -510,7 +556,12 @@ func (a *Client) UpdateClient(params *UpdateClientParams, authInfo runtime.Clien
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -529,13 +580,12 @@ func (a *Client) UpdateClient(params *UpdateClientParams, authInfo runtime.Clien
 
   The entire client object must be send for update.
 */
-func (a *Client) UpdateClientForDeveloper(params *UpdateClientForDeveloperParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateClientForDeveloperOK, error) {
+func (a *Client) UpdateClientForDeveloper(params *UpdateClientForDeveloperParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateClientForDeveloperOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateClientForDeveloperParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "updateClientForDeveloper",
 		Method:             "PUT",
 		PathPattern:        "/api/developer/{tid}/{aid}/clients/{cid}",
@@ -547,7 +597,12 @@ func (a *Client) UpdateClientForDeveloper(params *UpdateClientForDeveloperParams
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}

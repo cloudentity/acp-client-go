@@ -47,7 +47,6 @@ func (o *GetConsentActionReader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewGetConsentActionOK() *GetConsentActionOK {
 	return &GetConsentActionOK{}
 }
 
-/*GetConsentActionOK handles this case with default header values.
+/* GetConsentActionOK describes a response with status code 200, with default header values.
 
 ConsentActionWithConsents
 */
@@ -69,7 +68,6 @@ type GetConsentActionOK struct {
 func (o *GetConsentActionOK) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/actions/{action}][%d] getConsentActionOK  %+v", 200, o.Payload)
 }
-
 func (o *GetConsentActionOK) GetPayload() *models.ConsentActionWithConsents {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewGetConsentActionUnauthorized() *GetConsentActionUnauthorized {
 	return &GetConsentActionUnauthorized{}
 }
 
-/*GetConsentActionUnauthorized handles this case with default header values.
+/* GetConsentActionUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -102,7 +100,6 @@ type GetConsentActionUnauthorized struct {
 func (o *GetConsentActionUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/actions/{action}][%d] getConsentActionUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *GetConsentActionUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -124,7 +121,7 @@ func NewGetConsentActionForbidden() *GetConsentActionForbidden {
 	return &GetConsentActionForbidden{}
 }
 
-/*GetConsentActionForbidden handles this case with default header values.
+/* GetConsentActionForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,7 +132,6 @@ type GetConsentActionForbidden struct {
 func (o *GetConsentActionForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/actions/{action}][%d] getConsentActionForbidden  %+v", 403, o.Payload)
 }
-
 func (o *GetConsentActionForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -157,7 +153,7 @@ func NewGetConsentActionNotFound() *GetConsentActionNotFound {
 	return &GetConsentActionNotFound{}
 }
 
-/*GetConsentActionNotFound handles this case with default header values.
+/* GetConsentActionNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -168,7 +164,6 @@ type GetConsentActionNotFound struct {
 func (o *GetConsentActionNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/actions/{action}][%d] getConsentActionNotFound  %+v", 404, o.Payload)
 }
-
 func (o *GetConsentActionNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

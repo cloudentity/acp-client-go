@@ -16,86 +16,100 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewIntrospectParams creates a new IntrospectParams object
-// with the default values initialized.
+// NewIntrospectParams creates a new IntrospectParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewIntrospectParams() *IntrospectParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &IntrospectParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewIntrospectParamsWithTimeout creates a new IntrospectParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewIntrospectParamsWithTimeout(timeout time.Duration) *IntrospectParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &IntrospectParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewIntrospectParamsWithContext creates a new IntrospectParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewIntrospectParamsWithContext(ctx context.Context) *IntrospectParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &IntrospectParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewIntrospectParamsWithHTTPClient creates a new IntrospectParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewIntrospectParamsWithHTTPClient(client *http.Client) *IntrospectParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &IntrospectParams{
-		Aid:        aidDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*IntrospectParams contains all the parameters to send to the API endpoint
-for the introspect operation typically these are written to a http.Request
+/* IntrospectParams contains all the parameters to send to the API endpoint
+   for the introspect operation.
+
+   Typically these are written to a http.Request.
 */
 type IntrospectParams struct {
 
-	/*Aid
-	  Authorization server id
+	/* Aid.
 
+	   Authorization server id
+
+	   Default: "default"
 	*/
 	Aid string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
-	/*Token*/
+
+	// Token.
 	Token *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the introspect params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *IntrospectParams) WithDefaults() *IntrospectParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the introspect params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *IntrospectParams) SetDefaults() {
+	var (
+		aidDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := IntrospectParams{
+		Aid: aidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the introspect params
@@ -195,7 +209,6 @@ func (o *IntrospectParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

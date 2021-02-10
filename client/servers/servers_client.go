@@ -25,33 +25,36 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	BindServer(params *BindServerParams, authInfo runtime.ClientAuthInfoWriter) (*BindServerOK, error)
+	BindServer(params *BindServerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*BindServerOK, error)
 
-	CreateAuthorizationServer(params *CreateAuthorizationServerParams, authInfo runtime.ClientAuthInfoWriter) (*CreateAuthorizationServerCreated, error)
+	CreateAuthorizationServer(params *CreateAuthorizationServerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateAuthorizationServerCreated, error)
 
-	DeleteAuthorizationServer(params *DeleteAuthorizationServerParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAuthorizationServerNoContent, error)
+	DeleteAuthorizationServer(params *DeleteAuthorizationServerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteAuthorizationServerNoContent, error)
 
-	GetAuthorizationServer(params *GetAuthorizationServerParams, authInfo runtime.ClientAuthInfoWriter) (*GetAuthorizationServerOK, error)
+	GetAuthorizationServer(params *GetAuthorizationServerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAuthorizationServerOK, error)
 
-	GetServerConsent(params *GetServerConsentParams, authInfo runtime.ClientAuthInfoWriter) (*GetServerConsentOK, error)
+	GetServerConsent(params *GetServerConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetServerConsentOK, error)
 
-	GetServerForDeveloper(params *GetServerForDeveloperParams, authInfo runtime.ClientAuthInfoWriter) (*GetServerForDeveloperOK, error)
+	GetServerForDeveloper(params *GetServerForDeveloperParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetServerForDeveloperOK, error)
 
-	ListAuthorizationServers(params *ListAuthorizationServersParams, authInfo runtime.ClientAuthInfoWriter) (*ListAuthorizationServersOK, error)
+	ListAuthorizationServers(params *ListAuthorizationServersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListAuthorizationServersOK, error)
 
-	ListDashboards(params *ListDashboardsParams, authInfo runtime.ClientAuthInfoWriter) (*ListDashboardsOK, error)
+	ListDashboards(params *ListDashboardsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListDashboardsOK, error)
 
-	ListServersBindings(params *ListServersBindingsParams, authInfo runtime.ClientAuthInfoWriter) (*ListServersBindingsOK, error)
+	ListServersBindings(params *ListServersBindingsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListServersBindingsOK, error)
 
-	ListServersForDeveloper(params *ListServersForDeveloperParams, authInfo runtime.ClientAuthInfoWriter) (*ListServersForDeveloperOK, error)
+	ListServersForDeveloper(params *ListServersForDeveloperParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListServersForDeveloperOK, error)
 
-	SetServerConsent(params *SetServerConsentParams, authInfo runtime.ClientAuthInfoWriter) (*SetServerConsentOK, error)
+	SetServerConsent(params *SetServerConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetServerConsentOK, error)
 
-	UnbindServer(params *UnbindServerParams, authInfo runtime.ClientAuthInfoWriter) (*UnbindServerOK, error)
+	UnbindServer(params *UnbindServerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UnbindServerOK, error)
 
-	UpdateAuthorizationServer(params *UpdateAuthorizationServerParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAuthorizationServerOK, error)
+	UpdateAuthorizationServer(params *UpdateAuthorizationServerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateAuthorizationServerOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -61,13 +64,12 @@ type ClientService interface {
 
   Bind server.
 */
-func (a *Client) BindServer(params *BindServerParams, authInfo runtime.ClientAuthInfoWriter) (*BindServerOK, error) {
+func (a *Client) BindServer(params *BindServerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*BindServerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewBindServerParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "bindServer",
 		Method:             "POST",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/bind/{rid}",
@@ -79,7 +81,12 @@ func (a *Client) BindServer(params *BindServerParams, authInfo runtime.ClientAut
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -118,13 +125,12 @@ If you want to create FAPI read write compliant server set: `{"profiles"": ["fap
 
 If you want to enforce PKCE set `{"enforce_pkce": true}`.
 */
-func (a *Client) CreateAuthorizationServer(params *CreateAuthorizationServerParams, authInfo runtime.ClientAuthInfoWriter) (*CreateAuthorizationServerCreated, error) {
+func (a *Client) CreateAuthorizationServer(params *CreateAuthorizationServerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateAuthorizationServerCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateAuthorizationServerParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createAuthorizationServer",
 		Method:             "POST",
 		PathPattern:        "/api/admin/{tid}/servers",
@@ -136,7 +142,12 @@ func (a *Client) CreateAuthorizationServer(params *CreateAuthorizationServerPara
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -155,13 +166,12 @@ func (a *Client) CreateAuthorizationServer(params *CreateAuthorizationServerPara
 
   Delete authorization server.
 */
-func (a *Client) DeleteAuthorizationServer(params *DeleteAuthorizationServerParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteAuthorizationServerNoContent, error) {
+func (a *Client) DeleteAuthorizationServer(params *DeleteAuthorizationServerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteAuthorizationServerNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteAuthorizationServerParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "deleteAuthorizationServer",
 		Method:             "DELETE",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}",
@@ -173,7 +183,12 @@ func (a *Client) DeleteAuthorizationServer(params *DeleteAuthorizationServerPara
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -192,13 +207,12 @@ func (a *Client) DeleteAuthorizationServer(params *DeleteAuthorizationServerPara
 
   Get authorization server.
 */
-func (a *Client) GetAuthorizationServer(params *GetAuthorizationServerParams, authInfo runtime.ClientAuthInfoWriter) (*GetAuthorizationServerOK, error) {
+func (a *Client) GetAuthorizationServer(params *GetAuthorizationServerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAuthorizationServerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAuthorizationServerParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getAuthorizationServer",
 		Method:             "GET",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}",
@@ -210,7 +224,12 @@ func (a *Client) GetAuthorizationServer(params *GetAuthorizationServerParams, au
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -229,13 +248,12 @@ func (a *Client) GetAuthorizationServer(params *GetAuthorizationServerParams, au
 
   Get server consent.
 */
-func (a *Client) GetServerConsent(params *GetServerConsentParams, authInfo runtime.ClientAuthInfoWriter) (*GetServerConsentOK, error) {
+func (a *Client) GetServerConsent(params *GetServerConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetServerConsentOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetServerConsentParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getServerConsent",
 		Method:             "GET",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/server-consent",
@@ -247,7 +265,12 @@ func (a *Client) GetServerConsent(params *GetServerConsentParams, authInfo runti
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -266,13 +289,12 @@ func (a *Client) GetServerConsent(params *GetServerConsentParams, authInfo runti
 
   Returns authorization server details with list of scopes.
 */
-func (a *Client) GetServerForDeveloper(params *GetServerForDeveloperParams, authInfo runtime.ClientAuthInfoWriter) (*GetServerForDeveloperOK, error) {
+func (a *Client) GetServerForDeveloper(params *GetServerForDeveloperParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetServerForDeveloperOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetServerForDeveloperParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getServerForDeveloper",
 		Method:             "GET",
 		PathPattern:        "/api/developer/{tid}/{aid}/servers/{rid}",
@@ -284,7 +306,12 @@ func (a *Client) GetServerForDeveloper(params *GetServerForDeveloperParams, auth
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -303,13 +330,12 @@ func (a *Client) GetServerForDeveloper(params *GetServerForDeveloperParams, auth
 
   List authorization servers.
 */
-func (a *Client) ListAuthorizationServers(params *ListAuthorizationServersParams, authInfo runtime.ClientAuthInfoWriter) (*ListAuthorizationServersOK, error) {
+func (a *Client) ListAuthorizationServers(params *ListAuthorizationServersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListAuthorizationServersOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListAuthorizationServersParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "listAuthorizationServers",
 		Method:             "GET",
 		PathPattern:        "/api/admin/{tid}/servers",
@@ -321,7 +347,12 @@ func (a *Client) ListAuthorizationServers(params *ListAuthorizationServersParams
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -340,13 +371,12 @@ func (a *Client) ListAuthorizationServers(params *ListAuthorizationServersParams
 
   List links to dashboards.
 */
-func (a *Client) ListDashboards(params *ListDashboardsParams, authInfo runtime.ClientAuthInfoWriter) (*ListDashboardsOK, error) {
+func (a *Client) ListDashboards(params *ListDashboardsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListDashboardsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListDashboardsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "listDashboards",
 		Method:             "GET",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/dashboards",
@@ -358,7 +388,12 @@ func (a *Client) ListDashboards(params *ListDashboardsParams, authInfo runtime.C
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -377,13 +412,12 @@ func (a *Client) ListDashboards(params *ListDashboardsParams, authInfo runtime.C
 
   List servers bindings.
 */
-func (a *Client) ListServersBindings(params *ListServersBindingsParams, authInfo runtime.ClientAuthInfoWriter) (*ListServersBindingsOK, error) {
+func (a *Client) ListServersBindings(params *ListServersBindingsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListServersBindingsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListServersBindingsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "listServersBindings",
 		Method:             "GET",
 		PathPattern:        "/api/admin/{tid}/servers-bindings",
@@ -395,7 +429,12 @@ func (a *Client) ListServersBindings(params *ListServersBindingsParams, authInfo
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -414,13 +453,12 @@ func (a *Client) ListServersBindings(params *ListServersBindingsParams, authInfo
 
   Returns list of authorization severs.
 */
-func (a *Client) ListServersForDeveloper(params *ListServersForDeveloperParams, authInfo runtime.ClientAuthInfoWriter) (*ListServersForDeveloperOK, error) {
+func (a *Client) ListServersForDeveloper(params *ListServersForDeveloperParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListServersForDeveloperOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListServersForDeveloperParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "listServersForDeveloper",
 		Method:             "GET",
 		PathPattern:        "/api/developer/{tid}/{aid}/servers",
@@ -432,7 +470,12 @@ func (a *Client) ListServersForDeveloper(params *ListServersForDeveloperParams, 
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -451,13 +494,12 @@ func (a *Client) ListServersForDeveloper(params *ListServersForDeveloperParams, 
 
   Set server consent. For custom server consent a client in system server is created automatically.
 */
-func (a *Client) SetServerConsent(params *SetServerConsentParams, authInfo runtime.ClientAuthInfoWriter) (*SetServerConsentOK, error) {
+func (a *Client) SetServerConsent(params *SetServerConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetServerConsentOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSetServerConsentParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "setServerConsent",
 		Method:             "PUT",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/server-consent",
@@ -469,7 +511,12 @@ func (a *Client) SetServerConsent(params *SetServerConsentParams, authInfo runti
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -488,13 +535,12 @@ func (a *Client) SetServerConsent(params *SetServerConsentParams, authInfo runti
 
   Unbind server.
 */
-func (a *Client) UnbindServer(params *UnbindServerParams, authInfo runtime.ClientAuthInfoWriter) (*UnbindServerOK, error) {
+func (a *Client) UnbindServer(params *UnbindServerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UnbindServerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUnbindServerParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "unbindServer",
 		Method:             "DELETE",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/unbind/{rid}",
@@ -506,7 +552,12 @@ func (a *Client) UnbindServer(params *UnbindServerParams, authInfo runtime.Clien
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -525,13 +576,12 @@ func (a *Client) UnbindServer(params *UnbindServerParams, authInfo runtime.Clien
 
   Update authorization server.
 */
-func (a *Client) UpdateAuthorizationServer(params *UpdateAuthorizationServerParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAuthorizationServerOK, error) {
+func (a *Client) UpdateAuthorizationServer(params *UpdateAuthorizationServerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateAuthorizationServerOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateAuthorizationServerParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "updateAuthorizationServer",
 		Method:             "PUT",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}",
@@ -543,7 +593,12 @@ func (a *Client) UpdateAuthorizationServer(params *UpdateAuthorizationServerPara
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}

@@ -18,73 +18,89 @@ import (
 	"github.com/cloudentity/acp-client-go/models"
 )
 
-// NewUpdateAdminTenantParams creates a new UpdateAdminTenantParams object
-// with the default values initialized.
+// NewUpdateAdminTenantParams creates a new UpdateAdminTenantParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewUpdateAdminTenantParams() *UpdateAdminTenantParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &UpdateAdminTenantParams{
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewUpdateAdminTenantParamsWithTimeout creates a new UpdateAdminTenantParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewUpdateAdminTenantParamsWithTimeout(timeout time.Duration) *UpdateAdminTenantParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &UpdateAdminTenantParams{
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewUpdateAdminTenantParamsWithContext creates a new UpdateAdminTenantParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewUpdateAdminTenantParamsWithContext(ctx context.Context) *UpdateAdminTenantParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &UpdateAdminTenantParams{
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewUpdateAdminTenantParamsWithHTTPClient creates a new UpdateAdminTenantParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewUpdateAdminTenantParamsWithHTTPClient(client *http.Client) *UpdateAdminTenantParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &UpdateAdminTenantParams{
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*UpdateAdminTenantParams contains all the parameters to send to the API endpoint
-for the update admin tenant operation typically these are written to a http.Request
+/* UpdateAdminTenantParams contains all the parameters to send to the API endpoint
+   for the update admin tenant operation.
+
+   Typically these are written to a http.Request.
 */
 type UpdateAdminTenantParams struct {
 
-	/*Tenant*/
+	// Tenant.
 	Tenant *models.Tenant
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the update admin tenant params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateAdminTenantParams) WithDefaults() *UpdateAdminTenantParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the update admin tenant params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateAdminTenantParams) SetDefaults() {
+	var (
+		tidDefault = string("default")
+	)
+
+	val := UpdateAdminTenantParams{
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the update admin tenant params
@@ -149,7 +165,6 @@ func (o *UpdateAdminTenantParams) WriteToRequest(r runtime.ClientRequest, reg st
 		return err
 	}
 	var res []error
-
 	if o.Tenant != nil {
 		if err := r.SetBodyParam(o.Tenant); err != nil {
 			return err

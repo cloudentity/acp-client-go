@@ -16,71 +16,86 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewListConsentsParams creates a new ListConsentsParams object
-// with the default values initialized.
+// NewListConsentsParams creates a new ListConsentsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewListConsentsParams() *ListConsentsParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &ListConsentsParams{
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewListConsentsParamsWithTimeout creates a new ListConsentsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewListConsentsParamsWithTimeout(timeout time.Duration) *ListConsentsParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &ListConsentsParams{
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewListConsentsParamsWithContext creates a new ListConsentsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewListConsentsParamsWithContext(ctx context.Context) *ListConsentsParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &ListConsentsParams{
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewListConsentsParamsWithHTTPClient creates a new ListConsentsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewListConsentsParamsWithHTTPClient(client *http.Client) *ListConsentsParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &ListConsentsParams{
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*ListConsentsParams contains all the parameters to send to the API endpoint
-for the list consents operation typically these are written to a http.Request
+/* ListConsentsParams contains all the parameters to send to the API endpoint
+   for the list consents operation.
+
+   Typically these are written to a http.Request.
 */
 type ListConsentsParams struct {
 
-	/*Tid
-	  Tenant id
+	/* Tid.
 
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the list consents params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ListConsentsParams) WithDefaults() *ListConsentsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the list consents params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ListConsentsParams) SetDefaults() {
+	var (
+		tidDefault = string("default")
+	)
+
+	val := ListConsentsParams{
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the list consents params

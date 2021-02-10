@@ -18,86 +18,100 @@ import (
 	"github.com/cloudentity/acp-client-go/models"
 )
 
-// NewPushGatewayRequestsParams creates a new PushGatewayRequestsParams object
-// with the default values initialized.
+// NewPushGatewayRequestsParams creates a new PushGatewayRequestsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewPushGatewayRequestsParams() *PushGatewayRequestsParams {
-	var (
-		authorizerVersionDefault = string("latest")
-		tidDefault               = string("default")
-	)
 	return &PushGatewayRequestsParams{
-		AuthorizerVersion: &authorizerVersionDefault,
-		Tid:               tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewPushGatewayRequestsParamsWithTimeout creates a new PushGatewayRequestsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewPushGatewayRequestsParamsWithTimeout(timeout time.Duration) *PushGatewayRequestsParams {
-	var (
-		authorizerVersionDefault = string("latest")
-		tidDefault               = string("default")
-	)
 	return &PushGatewayRequestsParams{
-		AuthorizerVersion: &authorizerVersionDefault,
-		Tid:               tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewPushGatewayRequestsParamsWithContext creates a new PushGatewayRequestsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewPushGatewayRequestsParamsWithContext(ctx context.Context) *PushGatewayRequestsParams {
-	var (
-		authorizerVersionDefault = string("latest")
-		tidDefault               = string("default")
-	)
 	return &PushGatewayRequestsParams{
-		AuthorizerVersion: &authorizerVersionDefault,
-		Tid:               tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewPushGatewayRequestsParamsWithHTTPClient creates a new PushGatewayRequestsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewPushGatewayRequestsParamsWithHTTPClient(client *http.Client) *PushGatewayRequestsParams {
-	var (
-		authorizerVersionDefault = string("latest")
-		tidDefault               = string("default")
-	)
 	return &PushGatewayRequestsParams{
-		AuthorizerVersion: &authorizerVersionDefault,
-		Tid:               tidDefault,
-		HTTPClient:        client,
+		HTTPClient: client,
 	}
 }
 
-/*PushGatewayRequestsParams contains all the parameters to send to the API endpoint
-for the push gateway requests operation typically these are written to a http.Request
+/* PushGatewayRequestsParams contains all the parameters to send to the API endpoint
+   for the push gateway requests operation.
+
+   Typically these are written to a http.Request.
 */
 type PushGatewayRequestsParams struct {
 
-	/*GatewayRequestEvents*/
+	// GatewayRequestEvents.
 	GatewayRequestEvents *models.GatewayRequestEvents
-	/*AuthorizerVersion
-	  Authorizer version
 
+	/* AuthorizerVersion.
+
+	   Authorizer version
+
+	   Default: "latest"
 	*/
 	AuthorizerVersion *string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the push gateway requests params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PushGatewayRequestsParams) WithDefaults() *PushGatewayRequestsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the push gateway requests params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PushGatewayRequestsParams) SetDefaults() {
+	var (
+		authorizerVersionDefault = string("latest")
+
+		tidDefault = string("default")
+	)
+
+	val := PushGatewayRequestsParams{
+		AuthorizerVersion: &authorizerVersionDefault,
+		Tid:               tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the push gateway requests params
@@ -173,7 +187,6 @@ func (o *PushGatewayRequestsParams) WriteToRequest(r runtime.ClientRequest, reg 
 		return err
 	}
 	var res []error
-
 	if o.GatewayRequestEvents != nil {
 		if err := r.SetBodyParam(o.GatewayRequestEvents); err != nil {
 			return err
@@ -184,16 +197,17 @@ func (o *PushGatewayRequestsParams) WriteToRequest(r runtime.ClientRequest, reg 
 
 		// query param authorizer_version
 		var qrAuthorizerVersion string
+
 		if o.AuthorizerVersion != nil {
 			qrAuthorizerVersion = *o.AuthorizerVersion
 		}
 		qAuthorizerVersion := qrAuthorizerVersion
 		if qAuthorizerVersion != "" {
+
 			if err := r.SetQueryParam("authorizer_version", qAuthorizerVersion); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	// path param tid

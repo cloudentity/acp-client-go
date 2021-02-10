@@ -59,7 +59,6 @@ func (o *UpdateConsentActionReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -70,7 +69,7 @@ func NewUpdateConsentActionCreated() *UpdateConsentActionCreated {
 	return &UpdateConsentActionCreated{}
 }
 
-/*UpdateConsentActionCreated handles this case with default header values.
+/* UpdateConsentActionCreated describes a response with status code 201, with default header values.
 
 ConsentActionWithConsents
 */
@@ -81,7 +80,6 @@ type UpdateConsentActionCreated struct {
 func (o *UpdateConsentActionCreated) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/actions/{action}][%d] updateConsentActionCreated  %+v", 201, o.Payload)
 }
-
 func (o *UpdateConsentActionCreated) GetPayload() *models.ConsentActionWithConsents {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewUpdateConsentActionUnauthorized() *UpdateConsentActionUnauthorized {
 	return &UpdateConsentActionUnauthorized{}
 }
 
-/*UpdateConsentActionUnauthorized handles this case with default header values.
+/* UpdateConsentActionUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -114,7 +112,6 @@ type UpdateConsentActionUnauthorized struct {
 func (o *UpdateConsentActionUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/actions/{action}][%d] updateConsentActionUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *UpdateConsentActionUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -136,7 +133,7 @@ func NewUpdateConsentActionForbidden() *UpdateConsentActionForbidden {
 	return &UpdateConsentActionForbidden{}
 }
 
-/*UpdateConsentActionForbidden handles this case with default header values.
+/* UpdateConsentActionForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -147,7 +144,6 @@ type UpdateConsentActionForbidden struct {
 func (o *UpdateConsentActionForbidden) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/actions/{action}][%d] updateConsentActionForbidden  %+v", 403, o.Payload)
 }
-
 func (o *UpdateConsentActionForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -169,7 +165,7 @@ func NewUpdateConsentActionNotFound() *UpdateConsentActionNotFound {
 	return &UpdateConsentActionNotFound{}
 }
 
-/*UpdateConsentActionNotFound handles this case with default header values.
+/* UpdateConsentActionNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -180,7 +176,6 @@ type UpdateConsentActionNotFound struct {
 func (o *UpdateConsentActionNotFound) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/actions/{action}][%d] updateConsentActionNotFound  %+v", 404, o.Payload)
 }
-
 func (o *UpdateConsentActionNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -202,7 +197,7 @@ func NewUpdateConsentActionConflict() *UpdateConsentActionConflict {
 	return &UpdateConsentActionConflict{}
 }
 
-/*UpdateConsentActionConflict handles this case with default header values.
+/* UpdateConsentActionConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -213,7 +208,6 @@ type UpdateConsentActionConflict struct {
 func (o *UpdateConsentActionConflict) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/actions/{action}][%d] updateConsentActionConflict  %+v", 409, o.Payload)
 }
-
 func (o *UpdateConsentActionConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +229,7 @@ func NewUpdateConsentActionUnprocessableEntity() *UpdateConsentActionUnprocessab
 	return &UpdateConsentActionUnprocessableEntity{}
 }
 
-/*UpdateConsentActionUnprocessableEntity handles this case with default header values.
+/* UpdateConsentActionUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -246,7 +240,6 @@ type UpdateConsentActionUnprocessableEntity struct {
 func (o *UpdateConsentActionUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/actions/{action}][%d] updateConsentActionUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *UpdateConsentActionUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

@@ -16,76 +16,92 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewListGatewayAPIGroupsParams creates a new ListGatewayAPIGroupsParams object
-// with the default values initialized.
+// NewListGatewayAPIGroupsParams creates a new ListGatewayAPIGroupsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewListGatewayAPIGroupsParams() *ListGatewayAPIGroupsParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &ListGatewayAPIGroupsParams{
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewListGatewayAPIGroupsParamsWithTimeout creates a new ListGatewayAPIGroupsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewListGatewayAPIGroupsParamsWithTimeout(timeout time.Duration) *ListGatewayAPIGroupsParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &ListGatewayAPIGroupsParams{
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewListGatewayAPIGroupsParamsWithContext creates a new ListGatewayAPIGroupsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewListGatewayAPIGroupsParamsWithContext(ctx context.Context) *ListGatewayAPIGroupsParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &ListGatewayAPIGroupsParams{
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewListGatewayAPIGroupsParamsWithHTTPClient creates a new ListGatewayAPIGroupsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewListGatewayAPIGroupsParamsWithHTTPClient(client *http.Client) *ListGatewayAPIGroupsParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &ListGatewayAPIGroupsParams{
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*ListGatewayAPIGroupsParams contains all the parameters to send to the API endpoint
-for the list gateway API groups operation typically these are written to a http.Request
+/* ListGatewayAPIGroupsParams contains all the parameters to send to the API endpoint
+   for the list gateway API groups operation.
+
+   Typically these are written to a http.Request.
 */
 type ListGatewayAPIGroupsParams struct {
 
-	/*Gw
-	  Gateway id
+	/* Gw.
 
+	   Gateway id
 	*/
 	Gw string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the list gateway API groups params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ListGatewayAPIGroupsParams) WithDefaults() *ListGatewayAPIGroupsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the list gateway API groups params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ListGatewayAPIGroupsParams) SetDefaults() {
+	var (
+		tidDefault = string("default")
+	)
+
+	val := ListGatewayAPIGroupsParams{
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the list gateway API groups params

@@ -47,7 +47,6 @@ func (o *DeleteTenantReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewDeleteTenantNoContent() *DeleteTenantNoContent {
 	return &DeleteTenantNoContent{}
 }
 
-/*DeleteTenantNoContent handles this case with default header values.
+/* DeleteTenantNoContent describes a response with status code 204, with default header values.
 
 Tenant has been deleted
 */
@@ -79,7 +78,7 @@ func NewDeleteTenantUnauthorized() *DeleteTenantUnauthorized {
 	return &DeleteTenantUnauthorized{}
 }
 
-/*DeleteTenantUnauthorized handles this case with default header values.
+/* DeleteTenantUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -90,7 +89,6 @@ type DeleteTenantUnauthorized struct {
 func (o *DeleteTenantUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /api/system/tenants/{tid}][%d] deleteTenantUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *DeleteTenantUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -112,7 +110,7 @@ func NewDeleteTenantForbidden() *DeleteTenantForbidden {
 	return &DeleteTenantForbidden{}
 }
 
-/*DeleteTenantForbidden handles this case with default header values.
+/* DeleteTenantForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -123,7 +121,6 @@ type DeleteTenantForbidden struct {
 func (o *DeleteTenantForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /api/system/tenants/{tid}][%d] deleteTenantForbidden  %+v", 403, o.Payload)
 }
-
 func (o *DeleteTenantForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -145,7 +142,7 @@ func NewDeleteTenantNotFound() *DeleteTenantNotFound {
 	return &DeleteTenantNotFound{}
 }
 
-/*DeleteTenantNotFound handles this case with default header values.
+/* DeleteTenantNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -156,7 +153,6 @@ type DeleteTenantNotFound struct {
 func (o *DeleteTenantNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /api/system/tenants/{tid}][%d] deleteTenantNotFound  %+v", 404, o.Payload)
 }
-
 func (o *DeleteTenantNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

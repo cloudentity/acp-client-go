@@ -47,7 +47,6 @@ func (o *ListServersBindingsReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewListServersBindingsOK() *ListServersBindingsOK {
 	return &ListServersBindingsOK{}
 }
 
-/*ListServersBindingsOK handles this case with default header values.
+/* ListServersBindingsOK describes a response with status code 200, with default header values.
 
 ServersBindings
 */
@@ -69,7 +68,6 @@ type ListServersBindingsOK struct {
 func (o *ListServersBindingsOK) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers-bindings][%d] listServersBindingsOK  %+v", 200, o.Payload)
 }
-
 func (o *ListServersBindingsOK) GetPayload() *models.ServersBindings {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewListServersBindingsUnauthorized() *ListServersBindingsUnauthorized {
 	return &ListServersBindingsUnauthorized{}
 }
 
-/*ListServersBindingsUnauthorized handles this case with default header values.
+/* ListServersBindingsUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -102,7 +100,6 @@ type ListServersBindingsUnauthorized struct {
 func (o *ListServersBindingsUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers-bindings][%d] listServersBindingsUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *ListServersBindingsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -124,7 +121,7 @@ func NewListServersBindingsForbidden() *ListServersBindingsForbidden {
 	return &ListServersBindingsForbidden{}
 }
 
-/*ListServersBindingsForbidden handles this case with default header values.
+/* ListServersBindingsForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,7 +132,6 @@ type ListServersBindingsForbidden struct {
 func (o *ListServersBindingsForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers-bindings][%d] listServersBindingsForbidden  %+v", 403, o.Payload)
 }
-
 func (o *ListServersBindingsForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -157,7 +153,7 @@ func NewListServersBindingsNotFound() *ListServersBindingsNotFound {
 	return &ListServersBindingsNotFound{}
 }
 
-/*ListServersBindingsNotFound handles this case with default header values.
+/* ListServersBindingsNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -168,7 +164,6 @@ type ListServersBindingsNotFound struct {
 func (o *ListServersBindingsNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers-bindings][%d] listServersBindingsNotFound  %+v", 404, o.Payload)
 }
-
 func (o *ListServersBindingsNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

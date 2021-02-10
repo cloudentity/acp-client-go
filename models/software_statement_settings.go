@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -41,13 +43,40 @@ func (m *SoftwareStatementSettings) Validate(formats strfmt.Registry) error {
 }
 
 func (m *SoftwareStatementSettings) validateJwks(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Jwks) { // not required
 		return nil
 	}
 
 	if m.Jwks != nil {
 		if err := m.Jwks.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("jwks")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this software statement settings based on the context it is used
+func (m *SoftwareStatementSettings) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateJwks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *SoftwareStatementSettings) contextValidateJwks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Jwks != nil {
+		if err := m.Jwks.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("jwks")
 			}

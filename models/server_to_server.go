@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -16,17 +18,25 @@ import (
 type ServerToServer struct {
 
 	// dependent server id
+	// Example: default
 	DependentServerID string `json:"dependent,omitempty"`
 
 	// authorization server id
+	// Example: developer
 	ServerID string `json:"server_id,omitempty"`
 
 	// tenant id
+	// Example: default
 	TenantID string `json:"tenant_id,omitempty"`
 }
 
 // Validate validates this server to server
 func (m *ServerToServer) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this server to server based on context it is used
+func (m *ServerToServer) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

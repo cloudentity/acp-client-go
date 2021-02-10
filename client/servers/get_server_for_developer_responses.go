@@ -47,7 +47,6 @@ func (o *GetServerForDeveloperReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewGetServerForDeveloperOK() *GetServerForDeveloperOK {
 	return &GetServerForDeveloperOK{}
 }
 
-/*GetServerForDeveloperOK handles this case with default header values.
+/* GetServerForDeveloperOK describes a response with status code 200, with default header values.
 
 GetServerWithScopesDeveloperResponse
 */
@@ -69,7 +68,6 @@ type GetServerForDeveloperOK struct {
 func (o *GetServerForDeveloperOK) Error() string {
 	return fmt.Sprintf("[GET /api/developer/{tid}/{aid}/servers/{rid}][%d] getServerForDeveloperOK  %+v", 200, o.Payload)
 }
-
 func (o *GetServerForDeveloperOK) GetPayload() *models.GetServerWithScopesDeveloperResponse {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewGetServerForDeveloperUnauthorized() *GetServerForDeveloperUnauthorized {
 	return &GetServerForDeveloperUnauthorized{}
 }
 
-/*GetServerForDeveloperUnauthorized handles this case with default header values.
+/* GetServerForDeveloperUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -102,7 +100,6 @@ type GetServerForDeveloperUnauthorized struct {
 func (o *GetServerForDeveloperUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/developer/{tid}/{aid}/servers/{rid}][%d] getServerForDeveloperUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *GetServerForDeveloperUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -124,7 +121,7 @@ func NewGetServerForDeveloperForbidden() *GetServerForDeveloperForbidden {
 	return &GetServerForDeveloperForbidden{}
 }
 
-/*GetServerForDeveloperForbidden handles this case with default header values.
+/* GetServerForDeveloperForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,7 +132,6 @@ type GetServerForDeveloperForbidden struct {
 func (o *GetServerForDeveloperForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/developer/{tid}/{aid}/servers/{rid}][%d] getServerForDeveloperForbidden  %+v", 403, o.Payload)
 }
-
 func (o *GetServerForDeveloperForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -157,7 +153,7 @@ func NewGetServerForDeveloperNotFound() *GetServerForDeveloperNotFound {
 	return &GetServerForDeveloperNotFound{}
 }
 
-/*GetServerForDeveloperNotFound handles this case with default header values.
+/* GetServerForDeveloperNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -168,7 +164,6 @@ type GetServerForDeveloperNotFound struct {
 func (o *GetServerForDeveloperNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/developer/{tid}/{aid}/servers/{rid}][%d] getServerForDeveloperNotFound  %+v", 404, o.Payload)
 }
-
 func (o *GetServerForDeveloperNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

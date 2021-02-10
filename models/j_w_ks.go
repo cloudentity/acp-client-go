@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -19,6 +20,7 @@ import (
 type JWKs struct {
 
 	// swagger keys
+	// Example: []
 	SwaggerKeys []*JWK `json:"keys"`
 }
 
@@ -37,7 +39,6 @@ func (m *JWKs) Validate(formats strfmt.Registry) error {
 }
 
 func (m *JWKs) validateSwaggerKeys(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.SwaggerKeys) { // not required
 		return nil
 	}
@@ -49,6 +50,38 @@ func (m *JWKs) validateSwaggerKeys(formats strfmt.Registry) error {
 
 		if m.SwaggerKeys[i] != nil {
 			if err := m.SwaggerKeys[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("keys" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this j w ks based on the context it is used
+func (m *JWKs) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateSwaggerKeys(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *JWKs) contextValidateSwaggerKeys(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.SwaggerKeys); i++ {
+
+		if m.SwaggerKeys[i] != nil {
+			if err := m.SwaggerKeys[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("keys" + "." + strconv.Itoa(i))
 				}

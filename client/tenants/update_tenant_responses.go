@@ -59,7 +59,6 @@ func (o *UpdateTenantReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -70,7 +69,7 @@ func NewUpdateTenantOK() *UpdateTenantOK {
 	return &UpdateTenantOK{}
 }
 
-/*UpdateTenantOK handles this case with default header values.
+/* UpdateTenantOK describes a response with status code 200, with default header values.
 
 Tenant
 */
@@ -81,7 +80,6 @@ type UpdateTenantOK struct {
 func (o *UpdateTenantOK) Error() string {
 	return fmt.Sprintf("[PUT /api/system/tenants/{tid}][%d] updateTenantOK  %+v", 200, o.Payload)
 }
-
 func (o *UpdateTenantOK) GetPayload() *models.Tenant {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewUpdateTenantBadRequest() *UpdateTenantBadRequest {
 	return &UpdateTenantBadRequest{}
 }
 
-/*UpdateTenantBadRequest handles this case with default header values.
+/* UpdateTenantBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -114,7 +112,6 @@ type UpdateTenantBadRequest struct {
 func (o *UpdateTenantBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /api/system/tenants/{tid}][%d] updateTenantBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *UpdateTenantBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -136,7 +133,7 @@ func NewUpdateTenantUnauthorized() *UpdateTenantUnauthorized {
 	return &UpdateTenantUnauthorized{}
 }
 
-/*UpdateTenantUnauthorized handles this case with default header values.
+/* UpdateTenantUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,7 +144,6 @@ type UpdateTenantUnauthorized struct {
 func (o *UpdateTenantUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /api/system/tenants/{tid}][%d] updateTenantUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *UpdateTenantUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -169,7 +165,7 @@ func NewUpdateTenantForbidden() *UpdateTenantForbidden {
 	return &UpdateTenantForbidden{}
 }
 
-/*UpdateTenantForbidden handles this case with default header values.
+/* UpdateTenantForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -180,7 +176,6 @@ type UpdateTenantForbidden struct {
 func (o *UpdateTenantForbidden) Error() string {
 	return fmt.Sprintf("[PUT /api/system/tenants/{tid}][%d] updateTenantForbidden  %+v", 403, o.Payload)
 }
-
 func (o *UpdateTenantForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -202,7 +197,7 @@ func NewUpdateTenantNotFound() *UpdateTenantNotFound {
 	return &UpdateTenantNotFound{}
 }
 
-/*UpdateTenantNotFound handles this case with default header values.
+/* UpdateTenantNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -213,7 +208,6 @@ type UpdateTenantNotFound struct {
 func (o *UpdateTenantNotFound) Error() string {
 	return fmt.Sprintf("[PUT /api/system/tenants/{tid}][%d] updateTenantNotFound  %+v", 404, o.Payload)
 }
-
 func (o *UpdateTenantNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +229,7 @@ func NewUpdateTenantUnprocessableEntity() *UpdateTenantUnprocessableEntity {
 	return &UpdateTenantUnprocessableEntity{}
 }
 
-/*UpdateTenantUnprocessableEntity handles this case with default header values.
+/* UpdateTenantUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -246,7 +240,6 @@ type UpdateTenantUnprocessableEntity struct {
 func (o *UpdateTenantUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /api/system/tenants/{tid}][%d] updateTenantUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *UpdateTenantUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

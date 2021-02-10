@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -21,6 +23,7 @@ type OpenbankingAccountAccessConsentWithClient struct {
 	AccountIDs []string `json:"account_ids"`
 
 	// url to a client website
+	// Example: https://example.com
 	ClientURI string `json:"client_uri,omitempty"`
 
 	// Unique identification as assigned to identify the account access consent resource.
@@ -36,12 +39,15 @@ type OpenbankingAccountAccessConsentWithClient struct {
 	ExpirationDateTime strfmt.DateTime `json:"expiration_date_time,omitempty"`
 
 	// client id
+	// Example: default
 	ID string `json:"id,omitempty"`
 
 	// url to a page where client logo is served
+	// Example: https://example.com/logo.png
 	LogoURI string `json:"logo_uri,omitempty"`
 
 	// client name
+	// Example: My app
 	Name string `json:"name,omitempty"`
 
 	// Specifies the Open Banking account access data types. This is a list of the data clusters
@@ -97,7 +103,6 @@ func (m *OpenbankingAccountAccessConsentWithClient) Validate(formats strfmt.Regi
 }
 
 func (m *OpenbankingAccountAccessConsentWithClient) validateCreationDateTime(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.CreationDateTime) { // not required
 		return nil
 	}
@@ -110,7 +115,6 @@ func (m *OpenbankingAccountAccessConsentWithClient) validateCreationDateTime(for
 }
 
 func (m *OpenbankingAccountAccessConsentWithClient) validateExpirationDateTime(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.ExpirationDateTime) { // not required
 		return nil
 	}
@@ -123,7 +127,6 @@ func (m *OpenbankingAccountAccessConsentWithClient) validateExpirationDateTime(f
 }
 
 func (m *OpenbankingAccountAccessConsentWithClient) validateStatusUpdateDateTime(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.StatusUpdateDateTime) { // not required
 		return nil
 	}
@@ -136,7 +139,6 @@ func (m *OpenbankingAccountAccessConsentWithClient) validateStatusUpdateDateTime
 }
 
 func (m *OpenbankingAccountAccessConsentWithClient) validateTransactionFromDateTime(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.TransactionFromDateTime) { // not required
 		return nil
 	}
@@ -149,7 +151,6 @@ func (m *OpenbankingAccountAccessConsentWithClient) validateTransactionFromDateT
 }
 
 func (m *OpenbankingAccountAccessConsentWithClient) validateTransactionToDateTime(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.TransactionToDateTime) { // not required
 		return nil
 	}
@@ -158,6 +159,11 @@ func (m *OpenbankingAccountAccessConsentWithClient) validateTransactionToDateTim
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this openbanking account access consent with client based on context it is used
+func (m *OpenbankingAccountAccessConsentWithClient) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

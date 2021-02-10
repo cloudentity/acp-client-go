@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -21,6 +23,7 @@ type OktaAuthentication struct {
 	AuthorizationServerID string `json:"authorization_server_id,omitempty"`
 
 	// domain
+	// Example: dev-316761.okta.com
 	Domain string `json:"domain,omitempty"`
 
 	// flag if additional user data should be fetched from userinfo endpoint
@@ -54,13 +57,40 @@ func (m *OktaAuthentication) Validate(formats strfmt.Registry) error {
 }
 
 func (m *OktaAuthentication) validateSupervisorClient(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.SupervisorClient) { // not required
 		return nil
 	}
 
 	if m.SupervisorClient != nil {
 		if err := m.SupervisorClient.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("supervisor_client")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this okta authentication based on the context it is used
+func (m *OktaAuthentication) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateSupervisorClient(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *OktaAuthentication) contextValidateSupervisorClient(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.SupervisorClient != nil {
+		if err := m.SupervisorClient.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("supervisor_client")
 			}

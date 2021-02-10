@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -17,18 +19,23 @@ import (
 type RequestedScope struct {
 
 	// server id
+	// Example: default
 	AuthorizationServerID string `json:"authorization_server_id,omitempty"`
 
 	// scope description which will be displayed as a hint on a consent page
+	// Example: This scope value requests offline access using refresh token
 	Description string `json:"description,omitempty"`
 
 	// scope display name which will be displayed on a consent page
+	// Example: Offline Access
 	DisplayName string `json:"display_name,omitempty"`
 
 	// scope id
+	// Example: 1
 	ID string `json:"id,omitempty"`
 
 	// scope name
+	// Example: offline_access
 	Name string `json:"name,omitempty"`
 
 	// params
@@ -38,6 +45,7 @@ type RequestedScope struct {
 	RequestedName string `json:"requested_name,omitempty"`
 
 	// tenant id
+	// Example: default
 	TenantID string `json:"tenant_id,omitempty"`
 
 	// with service
@@ -62,13 +70,40 @@ func (m *RequestedScope) Validate(formats strfmt.Registry) error {
 }
 
 func (m *RequestedScope) validateService(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Service) { // not required
 		return nil
 	}
 
 	if m.Service != nil {
 		if err := m.Service.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("service")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this requested scope based on the context it is used
+func (m *RequestedScope) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateService(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *RequestedScope) contextValidateService(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Service != nil {
+		if err := m.Service.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("service")
 			}

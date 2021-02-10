@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -19,6 +20,7 @@ import (
 type ConsentGrantPatchResponse struct {
 
 	// time when the grant occurred
+	// Example: 1257894000000000000
 	CollectionTimestamp int64 `json:"collection_timestamp,omitempty"`
 
 	// id of the consent grant action
@@ -28,9 +30,11 @@ type ConsentGrantPatchResponse struct {
 	Consents []*ConsentGrantPatch `json:"consents"`
 
 	// language in which the consent was obtained [ISO 639]
+	// Example: en
 	Language string `json:"language,omitempty"`
 
 	// optional string with action_id - can be set if the consent grant/withdraw request was caused when an app asked the user for consent required for a specific action
+	// Example: 1
 	TriggeredByAction string `json:"triggered_by_action,omitempty"`
 
 	// context
@@ -56,7 +60,6 @@ func (m *ConsentGrantPatchResponse) Validate(formats strfmt.Registry) error {
 }
 
 func (m *ConsentGrantPatchResponse) validateConsents(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Consents) { // not required
 		return nil
 	}
@@ -81,13 +84,62 @@ func (m *ConsentGrantPatchResponse) validateConsents(formats strfmt.Registry) er
 }
 
 func (m *ConsentGrantPatchResponse) validateContext(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Context) { // not required
 		return nil
 	}
 
 	if m.Context != nil {
 		if err := m.Context.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("context")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this consent grant patch response based on the context it is used
+func (m *ConsentGrantPatchResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateConsents(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateContext(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *ConsentGrantPatchResponse) contextValidateConsents(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Consents); i++ {
+
+		if m.Consents[i] != nil {
+			if err := m.Consents[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("consents" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *ConsentGrantPatchResponse) contextValidateContext(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Context != nil {
+		if err := m.Context.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("context")
 			}

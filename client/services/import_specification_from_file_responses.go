@@ -65,7 +65,6 @@ func (o *ImportSpecificationFromFileReader) ReadResponse(response runtime.Client
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -76,7 +75,7 @@ func NewImportSpecificationFromFileOK() *ImportSpecificationFromFileOK {
 	return &ImportSpecificationFromFileOK{}
 }
 
-/*ImportSpecificationFromFileOK handles this case with default header values.
+/* ImportSpecificationFromFileOK describes a response with status code 200, with default header values.
 
 ImportServiceConfigurationResult
 */
@@ -87,7 +86,6 @@ type ImportSpecificationFromFileOK struct {
 func (o *ImportSpecificationFromFileOK) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/services/{sid}/apis/import/file][%d] importSpecificationFromFileOK  %+v", 200, o.Payload)
 }
-
 func (o *ImportSpecificationFromFileOK) GetPayload() *models.ImportServiceConfigurationResult {
 	return o.Payload
 }
@@ -109,7 +107,7 @@ func NewImportSpecificationFromFileBadRequest() *ImportSpecificationFromFileBadR
 	return &ImportSpecificationFromFileBadRequest{}
 }
 
-/*ImportSpecificationFromFileBadRequest handles this case with default header values.
+/* ImportSpecificationFromFileBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -120,7 +118,6 @@ type ImportSpecificationFromFileBadRequest struct {
 func (o *ImportSpecificationFromFileBadRequest) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/services/{sid}/apis/import/file][%d] importSpecificationFromFileBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *ImportSpecificationFromFileBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -142,7 +139,7 @@ func NewImportSpecificationFromFileUnauthorized() *ImportSpecificationFromFileUn
 	return &ImportSpecificationFromFileUnauthorized{}
 }
 
-/*ImportSpecificationFromFileUnauthorized handles this case with default header values.
+/* ImportSpecificationFromFileUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -153,7 +150,6 @@ type ImportSpecificationFromFileUnauthorized struct {
 func (o *ImportSpecificationFromFileUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/services/{sid}/apis/import/file][%d] importSpecificationFromFileUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *ImportSpecificationFromFileUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -175,7 +171,7 @@ func NewImportSpecificationFromFileForbidden() *ImportSpecificationFromFileForbi
 	return &ImportSpecificationFromFileForbidden{}
 }
 
-/*ImportSpecificationFromFileForbidden handles this case with default header values.
+/* ImportSpecificationFromFileForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -186,7 +182,6 @@ type ImportSpecificationFromFileForbidden struct {
 func (o *ImportSpecificationFromFileForbidden) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/services/{sid}/apis/import/file][%d] importSpecificationFromFileForbidden  %+v", 403, o.Payload)
 }
-
 func (o *ImportSpecificationFromFileForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -208,7 +203,7 @@ func NewImportSpecificationFromFileNotFound() *ImportSpecificationFromFileNotFou
 	return &ImportSpecificationFromFileNotFound{}
 }
 
-/*ImportSpecificationFromFileNotFound handles this case with default header values.
+/* ImportSpecificationFromFileNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -219,7 +214,6 @@ type ImportSpecificationFromFileNotFound struct {
 func (o *ImportSpecificationFromFileNotFound) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/services/{sid}/apis/import/file][%d] importSpecificationFromFileNotFound  %+v", 404, o.Payload)
 }
-
 func (o *ImportSpecificationFromFileNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -241,7 +235,7 @@ func NewImportSpecificationFromFileConflict() *ImportSpecificationFromFileConfli
 	return &ImportSpecificationFromFileConflict{}
 }
 
-/*ImportSpecificationFromFileConflict handles this case with default header values.
+/* ImportSpecificationFromFileConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -252,7 +246,6 @@ type ImportSpecificationFromFileConflict struct {
 func (o *ImportSpecificationFromFileConflict) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/services/{sid}/apis/import/file][%d] importSpecificationFromFileConflict  %+v", 409, o.Payload)
 }
-
 func (o *ImportSpecificationFromFileConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -274,7 +267,7 @@ func NewImportSpecificationFromFileUnprocessableEntity() *ImportSpecificationFro
 	return &ImportSpecificationFromFileUnprocessableEntity{}
 }
 
-/*ImportSpecificationFromFileUnprocessableEntity handles this case with default header values.
+/* ImportSpecificationFromFileUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -285,7 +278,6 @@ type ImportSpecificationFromFileUnprocessableEntity struct {
 func (o *ImportSpecificationFromFileUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/services/{sid}/apis/import/file][%d] importSpecificationFromFileUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *ImportSpecificationFromFileUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

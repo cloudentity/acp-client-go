@@ -25,25 +25,28 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateService(params *CreateServiceParams, authInfo runtime.ClientAuthInfoWriter) (*CreateServiceCreated, error)
+	CreateService(params *CreateServiceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateServiceCreated, error)
 
-	DeleteService(params *DeleteServiceParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteServiceNoContent, error)
+	DeleteService(params *DeleteServiceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteServiceNoContent, error)
 
-	GetService(params *GetServiceParams, authInfo runtime.ClientAuthInfoWriter) (*GetServiceOK, error)
+	GetService(params *GetServiceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetServiceOK, error)
 
-	ImportSpecificationFromFile(params *ImportSpecificationFromFileParams, authInfo runtime.ClientAuthInfoWriter) (*ImportSpecificationFromFileOK, error)
+	ImportSpecificationFromFile(params *ImportSpecificationFromFileParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportSpecificationFromFileOK, error)
 
-	ImportSpecificationFromText(params *ImportSpecificationFromTextParams, authInfo runtime.ClientAuthInfoWriter) (*ImportSpecificationFromTextOK, error)
+	ImportSpecificationFromText(params *ImportSpecificationFromTextParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportSpecificationFromTextOK, error)
 
-	ImportSpecificationFromURL(params *ImportSpecificationFromURLParams, authInfo runtime.ClientAuthInfoWriter) (*ImportSpecificationFromURLOK, error)
+	ImportSpecificationFromURL(params *ImportSpecificationFromURLParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportSpecificationFromURLOK, error)
 
-	ListServices(params *ListServicesParams, authInfo runtime.ClientAuthInfoWriter) (*ListServicesOK, error)
+	ListServices(params *ListServicesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListServicesOK, error)
 
-	RemoveSpecification(params *RemoveSpecificationParams, authInfo runtime.ClientAuthInfoWriter) (*RemoveSpecificationOK, error)
+	RemoveSpecification(params *RemoveSpecificationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RemoveSpecificationOK, error)
 
-	UpdateService(params *UpdateServiceParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateServiceOK, error)
+	UpdateService(params *UpdateServiceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateServiceOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -53,13 +56,12 @@ type ClientService interface {
 
   Service name is required. Service id will be generated if not provided.
 */
-func (a *Client) CreateService(params *CreateServiceParams, authInfo runtime.ClientAuthInfoWriter) (*CreateServiceCreated, error) {
+func (a *Client) CreateService(params *CreateServiceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateServiceCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateServiceParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createService",
 		Method:             "POST",
 		PathPattern:        "/api/admin/{tid}/services",
@@ -71,7 +73,12 @@ func (a *Client) CreateService(params *CreateServiceParams, authInfo runtime.Cli
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -90,13 +97,12 @@ func (a *Client) CreateService(params *CreateServiceParams, authInfo runtime.Cli
 
   Delete service.
 */
-func (a *Client) DeleteService(params *DeleteServiceParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteServiceNoContent, error) {
+func (a *Client) DeleteService(params *DeleteServiceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteServiceNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteServiceParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "deleteService",
 		Method:             "DELETE",
 		PathPattern:        "/api/admin/{tid}/services/{sid}",
@@ -108,7 +114,12 @@ func (a *Client) DeleteService(params *DeleteServiceParams, authInfo runtime.Cli
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -127,13 +138,12 @@ func (a *Client) DeleteService(params *DeleteServiceParams, authInfo runtime.Cli
 
   Get service.
 */
-func (a *Client) GetService(params *GetServiceParams, authInfo runtime.ClientAuthInfoWriter) (*GetServiceOK, error) {
+func (a *Client) GetService(params *GetServiceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetServiceOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetServiceParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getService",
 		Method:             "GET",
 		PathPattern:        "/api/admin/{tid}/services/{sid}",
@@ -145,7 +155,12 @@ func (a *Client) GetService(params *GetServiceParams, authInfo runtime.ClientAut
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -164,13 +179,12 @@ func (a *Client) GetService(params *GetServiceParams, authInfo runtime.ClientAut
 
   It removes all apis before import.
 */
-func (a *Client) ImportSpecificationFromFile(params *ImportSpecificationFromFileParams, authInfo runtime.ClientAuthInfoWriter) (*ImportSpecificationFromFileOK, error) {
+func (a *Client) ImportSpecificationFromFile(params *ImportSpecificationFromFileParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportSpecificationFromFileOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewImportSpecificationFromFileParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "importSpecificationFromFile",
 		Method:             "POST",
 		PathPattern:        "/api/admin/{tid}/services/{sid}/apis/import/file",
@@ -182,7 +196,12 @@ func (a *Client) ImportSpecificationFromFile(params *ImportSpecificationFromFile
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -201,13 +220,12 @@ func (a *Client) ImportSpecificationFromFile(params *ImportSpecificationFromFile
 
   It removes all apis and policies (created by previous import) before import.
 */
-func (a *Client) ImportSpecificationFromText(params *ImportSpecificationFromTextParams, authInfo runtime.ClientAuthInfoWriter) (*ImportSpecificationFromTextOK, error) {
+func (a *Client) ImportSpecificationFromText(params *ImportSpecificationFromTextParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportSpecificationFromTextOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewImportSpecificationFromTextParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "importSpecificationFromText",
 		Method:             "POST",
 		PathPattern:        "/api/admin/{tid}/services/{sid}/apis/import/text",
@@ -219,7 +237,12 @@ func (a *Client) ImportSpecificationFromText(params *ImportSpecificationFromText
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -238,13 +261,12 @@ func (a *Client) ImportSpecificationFromText(params *ImportSpecificationFromText
 
   It removes all apis before import.
 */
-func (a *Client) ImportSpecificationFromURL(params *ImportSpecificationFromURLParams, authInfo runtime.ClientAuthInfoWriter) (*ImportSpecificationFromURLOK, error) {
+func (a *Client) ImportSpecificationFromURL(params *ImportSpecificationFromURLParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportSpecificationFromURLOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewImportSpecificationFromURLParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "importSpecificationFromURL",
 		Method:             "POST",
 		PathPattern:        "/api/admin/{tid}/services/{sid}/apis/import/url",
@@ -256,7 +278,12 @@ func (a *Client) ImportSpecificationFromURL(params *ImportSpecificationFromURLPa
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -275,13 +302,12 @@ func (a *Client) ImportSpecificationFromURL(params *ImportSpecificationFromURLPa
 
   List services.
 */
-func (a *Client) ListServices(params *ListServicesParams, authInfo runtime.ClientAuthInfoWriter) (*ListServicesOK, error) {
+func (a *Client) ListServices(params *ListServicesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListServicesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListServicesParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "listServices",
 		Method:             "GET",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/services",
@@ -293,7 +319,12 @@ func (a *Client) ListServices(params *ListServicesParams, authInfo runtime.Clien
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -318,13 +349,12 @@ If service is connected to a gateway, it will be disconnected.
 
 If a gateway api group is connected to this service, it will be disconnected.
 */
-func (a *Client) RemoveSpecification(params *RemoveSpecificationParams, authInfo runtime.ClientAuthInfoWriter) (*RemoveSpecificationOK, error) {
+func (a *Client) RemoveSpecification(params *RemoveSpecificationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RemoveSpecificationOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRemoveSpecificationParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "removeSpecification",
 		Method:             "DELETE",
 		PathPattern:        "/api/admin/{tid}/services/{sid}/apis",
@@ -336,7 +366,12 @@ func (a *Client) RemoveSpecification(params *RemoveSpecificationParams, authInfo
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -355,13 +390,12 @@ func (a *Client) RemoveSpecification(params *RemoveSpecificationParams, authInfo
 
   Update service.
 */
-func (a *Client) UpdateService(params *UpdateServiceParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateServiceOK, error) {
+func (a *Client) UpdateService(params *UpdateServiceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateServiceOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateServiceParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "updateService",
 		Method:             "PUT",
 		PathPattern:        "/api/admin/{tid}/services/{sid}",
@@ -373,7 +407,12 @@ func (a *Client) UpdateService(params *UpdateServiceParams, authInfo runtime.Cli
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}

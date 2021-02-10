@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -23,6 +25,7 @@ import (
 type WellKnown struct {
 
 	// URL of the OP's OAuth 2.0 Authorization Endpoint.
+	// Example: https://example.com/oauth2/auth
 	// Required: true
 	AuthURL *string `json:"authorization_endpoint"`
 
@@ -65,6 +68,7 @@ type WellKnown struct {
 	// URL using the https scheme with no query or fragment component that the OP asserts as its IssuerURL Identifier.
 	// If IssuerURL discovery is supported , this value MUST be identical to the issuer value returned
 	// by WebFinger. This also MUST be identical to the iss Claim value in ID Tokens issued from this IssuerURL.
+	// Example: https://example.com/
 	// Required: true
 	Issuer *string `json:"issuer"`
 
@@ -75,6 +79,7 @@ type WellKnown struct {
 	// Although some algorithms allow the same key to be used for both signatures and encryption, doing so is
 	// NOT RECOMMENDED, as it is less secure. The JWK x5c parameter MAY be used to provide X.509 representations of
 	// keys provided. When used, the bare key values MUST still be present and MUST match those in the certificate.
+	// Example: https://example.com/.well-known/jwks.json
 	// Required: true
 	JWKsURI *string `json:"jwks_uri"`
 
@@ -113,6 +118,7 @@ type WellKnown struct {
 
 	// JSON array containing a list of the Subject Identifier types that this OP supports. Valid types include
 	// pairwise and public.
+	// Example: public, pairwise
 	// Required: true
 	SubjectTypes []string `json:"subject_types_supported"`
 
@@ -130,6 +136,7 @@ type WellKnown struct {
 	TokenEndpointAuthSigningAlgValuesSupported []string `json:"token_endpoint_auth_signing_alg_values_supported"`
 
 	// URL of the OP's OAuth 2.0 Token Endpoint
+	// Example: https://example.com/oauth2/token
 	// Required: true
 	TokenURL *string `json:"token_endpoint"`
 
@@ -238,6 +245,11 @@ func (m *WellKnown) validateTokenURL(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this well known based on context it is used
+func (m *WellKnown) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

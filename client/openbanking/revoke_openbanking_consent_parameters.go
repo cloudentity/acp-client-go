@@ -16,73 +16,100 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewRevokeOpenbankingConsentParams creates a new RevokeOpenbankingConsentParams object
-// with the default values initialized.
+// NewRevokeOpenbankingConsentParams creates a new RevokeOpenbankingConsentParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewRevokeOpenbankingConsentParams() *RevokeOpenbankingConsentParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &RevokeOpenbankingConsentParams{
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewRevokeOpenbankingConsentParamsWithTimeout creates a new RevokeOpenbankingConsentParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewRevokeOpenbankingConsentParamsWithTimeout(timeout time.Duration) *RevokeOpenbankingConsentParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &RevokeOpenbankingConsentParams{
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewRevokeOpenbankingConsentParamsWithContext creates a new RevokeOpenbankingConsentParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewRevokeOpenbankingConsentParamsWithContext(ctx context.Context) *RevokeOpenbankingConsentParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &RevokeOpenbankingConsentParams{
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewRevokeOpenbankingConsentParamsWithHTTPClient creates a new RevokeOpenbankingConsentParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewRevokeOpenbankingConsentParamsWithHTTPClient(client *http.Client) *RevokeOpenbankingConsentParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &RevokeOpenbankingConsentParams{
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*RevokeOpenbankingConsentParams contains all the parameters to send to the API endpoint
-for the revoke openbanking consent operation typically these are written to a http.Request
+/* RevokeOpenbankingConsentParams contains all the parameters to send to the API endpoint
+   for the revoke openbanking consent operation.
+
+   Typically these are written to a http.Request.
 */
 type RevokeOpenbankingConsentParams struct {
 
-	/*ConsentID*/
-	ConsentID string
-	/*Tid
-	  Tenant id
+	/* Aid.
 
+	   Authorization server id
+
+	   Default: "default"
+	*/
+	Aid string
+
+	// ConsentID.
+	ConsentID string
+
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the revoke openbanking consent params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *RevokeOpenbankingConsentParams) WithDefaults() *RevokeOpenbankingConsentParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the revoke openbanking consent params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *RevokeOpenbankingConsentParams) SetDefaults() {
+	var (
+		aidDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := RevokeOpenbankingConsentParams{
+		Aid: aidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the revoke openbanking consent params
@@ -118,6 +145,17 @@ func (o *RevokeOpenbankingConsentParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAid adds the aid to the revoke openbanking consent params
+func (o *RevokeOpenbankingConsentParams) WithAid(aid string) *RevokeOpenbankingConsentParams {
+	o.SetAid(aid)
+	return o
+}
+
+// SetAid adds the aid to the revoke openbanking consent params
+func (o *RevokeOpenbankingConsentParams) SetAid(aid string) {
+	o.Aid = aid
+}
+
 // WithConsentID adds the consentID to the revoke openbanking consent params
 func (o *RevokeOpenbankingConsentParams) WithConsentID(consentID string) *RevokeOpenbankingConsentParams {
 	o.SetConsentID(consentID)
@@ -147,6 +185,11 @@ func (o *RevokeOpenbankingConsentParams) WriteToRequest(r runtime.ClientRequest,
 		return err
 	}
 	var res []error
+
+	// path param aid
+	if err := r.SetPathParam("aid", o.Aid); err != nil {
+		return err
+	}
 
 	// path param consentID
 	if err := r.SetPathParam("consentID", o.ConsentID); err != nil {

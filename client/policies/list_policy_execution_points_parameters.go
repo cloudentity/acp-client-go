@@ -16,84 +16,97 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewListPolicyExecutionPointsParams creates a new ListPolicyExecutionPointsParams object
-// with the default values initialized.
+// NewListPolicyExecutionPointsParams creates a new ListPolicyExecutionPointsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewListPolicyExecutionPointsParams() *ListPolicyExecutionPointsParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &ListPolicyExecutionPointsParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewListPolicyExecutionPointsParamsWithTimeout creates a new ListPolicyExecutionPointsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewListPolicyExecutionPointsParamsWithTimeout(timeout time.Duration) *ListPolicyExecutionPointsParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &ListPolicyExecutionPointsParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewListPolicyExecutionPointsParamsWithContext creates a new ListPolicyExecutionPointsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewListPolicyExecutionPointsParamsWithContext(ctx context.Context) *ListPolicyExecutionPointsParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &ListPolicyExecutionPointsParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewListPolicyExecutionPointsParamsWithHTTPClient creates a new ListPolicyExecutionPointsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewListPolicyExecutionPointsParamsWithHTTPClient(client *http.Client) *ListPolicyExecutionPointsParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &ListPolicyExecutionPointsParams{
-		Aid:        aidDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*ListPolicyExecutionPointsParams contains all the parameters to send to the API endpoint
-for the list policy execution points operation typically these are written to a http.Request
+/* ListPolicyExecutionPointsParams contains all the parameters to send to the API endpoint
+   for the list policy execution points operation.
+
+   Typically these are written to a http.Request.
 */
 type ListPolicyExecutionPointsParams struct {
 
-	/*Aid
-	  Authorization server id
+	/* Aid.
 
+	   Authorization server id
+
+	   Default: "default"
 	*/
 	Aid string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the list policy execution points params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ListPolicyExecutionPointsParams) WithDefaults() *ListPolicyExecutionPointsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the list policy execution points params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ListPolicyExecutionPointsParams) SetDefaults() {
+	var (
+		aidDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := ListPolicyExecutionPointsParams{
+		Aid: aidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the list policy execution points params

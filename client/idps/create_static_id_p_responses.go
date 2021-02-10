@@ -59,7 +59,6 @@ func (o *CreateStaticIDPReader) ReadResponse(response runtime.ClientResponse, co
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -70,7 +69,7 @@ func NewCreateStaticIDPCreated() *CreateStaticIDPCreated {
 	return &CreateStaticIDPCreated{}
 }
 
-/*CreateStaticIDPCreated handles this case with default header values.
+/* CreateStaticIDPCreated describes a response with status code 201, with default header values.
 
 StaticIDP
 */
@@ -81,7 +80,6 @@ type CreateStaticIDPCreated struct {
 func (o *CreateStaticIDPCreated) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/static][%d] createStaticIdPCreated  %+v", 201, o.Payload)
 }
-
 func (o *CreateStaticIDPCreated) GetPayload() *models.StaticIDP {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewCreateStaticIDPBadRequest() *CreateStaticIDPBadRequest {
 	return &CreateStaticIDPBadRequest{}
 }
 
-/*CreateStaticIDPBadRequest handles this case with default header values.
+/* CreateStaticIDPBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -114,7 +112,6 @@ type CreateStaticIDPBadRequest struct {
 func (o *CreateStaticIDPBadRequest) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/static][%d] createStaticIdPBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *CreateStaticIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -136,7 +133,7 @@ func NewCreateStaticIDPUnauthorized() *CreateStaticIDPUnauthorized {
 	return &CreateStaticIDPUnauthorized{}
 }
 
-/*CreateStaticIDPUnauthorized handles this case with default header values.
+/* CreateStaticIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,7 +144,6 @@ type CreateStaticIDPUnauthorized struct {
 func (o *CreateStaticIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/static][%d] createStaticIdPUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *CreateStaticIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -169,7 +165,7 @@ func NewCreateStaticIDPForbidden() *CreateStaticIDPForbidden {
 	return &CreateStaticIDPForbidden{}
 }
 
-/*CreateStaticIDPForbidden handles this case with default header values.
+/* CreateStaticIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -180,7 +176,6 @@ type CreateStaticIDPForbidden struct {
 func (o *CreateStaticIDPForbidden) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/static][%d] createStaticIdPForbidden  %+v", 403, o.Payload)
 }
-
 func (o *CreateStaticIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -202,7 +197,7 @@ func NewCreateStaticIDPNotFound() *CreateStaticIDPNotFound {
 	return &CreateStaticIDPNotFound{}
 }
 
-/*CreateStaticIDPNotFound handles this case with default header values.
+/* CreateStaticIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -213,7 +208,6 @@ type CreateStaticIDPNotFound struct {
 func (o *CreateStaticIDPNotFound) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/static][%d] createStaticIdPNotFound  %+v", 404, o.Payload)
 }
-
 func (o *CreateStaticIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +229,7 @@ func NewCreateStaticIDPUnprocessableEntity() *CreateStaticIDPUnprocessableEntity
 	return &CreateStaticIDPUnprocessableEntity{}
 }
 
-/*CreateStaticIDPUnprocessableEntity handles this case with default header values.
+/* CreateStaticIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -246,7 +240,6 @@ type CreateStaticIDPUnprocessableEntity struct {
 func (o *CreateStaticIDPUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/static][%d] createStaticIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *CreateStaticIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

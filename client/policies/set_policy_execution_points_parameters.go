@@ -18,86 +18,100 @@ import (
 	"github.com/cloudentity/acp-client-go/models"
 )
 
-// NewSetPolicyExecutionPointsParams creates a new SetPolicyExecutionPointsParams object
-// with the default values initialized.
+// NewSetPolicyExecutionPointsParams creates a new SetPolicyExecutionPointsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewSetPolicyExecutionPointsParams() *SetPolicyExecutionPointsParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &SetPolicyExecutionPointsParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewSetPolicyExecutionPointsParamsWithTimeout creates a new SetPolicyExecutionPointsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewSetPolicyExecutionPointsParamsWithTimeout(timeout time.Duration) *SetPolicyExecutionPointsParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &SetPolicyExecutionPointsParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewSetPolicyExecutionPointsParamsWithContext creates a new SetPolicyExecutionPointsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewSetPolicyExecutionPointsParamsWithContext(ctx context.Context) *SetPolicyExecutionPointsParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &SetPolicyExecutionPointsParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewSetPolicyExecutionPointsParamsWithHTTPClient creates a new SetPolicyExecutionPointsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewSetPolicyExecutionPointsParamsWithHTTPClient(client *http.Client) *SetPolicyExecutionPointsParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &SetPolicyExecutionPointsParams{
-		Aid:        aidDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*SetPolicyExecutionPointsParams contains all the parameters to send to the API endpoint
-for the set policy execution points operation typically these are written to a http.Request
+/* SetPolicyExecutionPointsParams contains all the parameters to send to the API endpoint
+   for the set policy execution points operation.
+
+   Typically these are written to a http.Request.
 */
 type SetPolicyExecutionPointsParams struct {
 
-	/*Executions*/
+	// Executions.
 	Executions *models.PolicyExecutionPoints
-	/*Aid
-	  Authorization server id
 
+	/* Aid.
+
+	   Authorization server id
+
+	   Default: "default"
 	*/
 	Aid string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the set policy execution points params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *SetPolicyExecutionPointsParams) WithDefaults() *SetPolicyExecutionPointsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the set policy execution points params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *SetPolicyExecutionPointsParams) SetDefaults() {
+	var (
+		aidDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := SetPolicyExecutionPointsParams{
+		Aid: aidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the set policy execution points params
@@ -173,7 +187,6 @@ func (o *SetPolicyExecutionPointsParams) WriteToRequest(r runtime.ClientRequest,
 		return err
 	}
 	var res []error
-
 	if o.Executions != nil {
 		if err := r.SetBodyParam(o.Executions); err != nil {
 			return err

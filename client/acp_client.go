@@ -21,10 +21,13 @@ import (
 	"github.com/cloudentity/acp-client-go/client/oauth2"
 	"github.com/cloudentity/acp-client-go/client/openbanking"
 	"github.com/cloudentity/acp-client-go/client/policies"
+	"github.com/cloudentity/acp-client-go/client/recent_activities"
 	"github.com/cloudentity/acp-client-go/client/scopes"
 	"github.com/cloudentity/acp-client-go/client/servers"
 	"github.com/cloudentity/acp-client-go/client/services"
+	"github.com/cloudentity/acp-client-go/client/stats"
 	"github.com/cloudentity/acp-client-go/client/tenants"
+	"github.com/cloudentity/acp-client-go/client/web"
 )
 
 // Default acp HTTP client.
@@ -80,10 +83,13 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *Acp {
 	cli.Oauth2 = oauth2.New(transport, formats)
 	cli.Openbanking = openbanking.New(transport, formats)
 	cli.Policies = policies.New(transport, formats)
+	cli.RecentActivities = recent_activities.New(transport, formats)
 	cli.Scopes = scopes.New(transport, formats)
 	cli.Servers = servers.New(transport, formats)
 	cli.Services = services.New(transport, formats)
+	cli.Stats = stats.New(transport, formats)
 	cli.Tenants = tenants.New(transport, formats)
+	cli.Web = web.New(transport, formats)
 	return cli
 }
 
@@ -150,13 +156,19 @@ type Acp struct {
 
 	Policies policies.ClientService
 
+	RecentActivities recent_activities.ClientService
+
 	Scopes scopes.ClientService
 
 	Servers servers.ClientService
 
 	Services services.ClientService
 
+	Stats stats.ClientService
+
 	Tenants tenants.ClientService
+
+	Web web.ClientService
 
 	Transport runtime.ClientTransport
 }
@@ -175,8 +187,11 @@ func (c *Acp) SetTransport(transport runtime.ClientTransport) {
 	c.Oauth2.SetTransport(transport)
 	c.Openbanking.SetTransport(transport)
 	c.Policies.SetTransport(transport)
+	c.RecentActivities.SetTransport(transport)
 	c.Scopes.SetTransport(transport)
 	c.Servers.SetTransport(transport)
 	c.Services.SetTransport(transport)
+	c.Stats.SetTransport(transport)
 	c.Tenants.SetTransport(transport)
+	c.Web.SetTransport(transport)
 }

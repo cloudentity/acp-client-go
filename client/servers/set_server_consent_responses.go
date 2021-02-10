@@ -47,7 +47,6 @@ func (o *SetServerConsentReader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewSetServerConsentOK() *SetServerConsentOK {
 	return &SetServerConsentOK{}
 }
 
-/*SetServerConsentOK handles this case with default header values.
+/* SetServerConsentOK describes a response with status code 200, with default header values.
 
 ServerConsent
 */
@@ -69,7 +68,6 @@ type SetServerConsentOK struct {
 func (o *SetServerConsentOK) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/server-consent][%d] setServerConsentOK  %+v", 200, o.Payload)
 }
-
 func (o *SetServerConsentOK) GetPayload() *models.ServerConsent {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewSetServerConsentUnauthorized() *SetServerConsentUnauthorized {
 	return &SetServerConsentUnauthorized{}
 }
 
-/*SetServerConsentUnauthorized handles this case with default header values.
+/* SetServerConsentUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -102,7 +100,6 @@ type SetServerConsentUnauthorized struct {
 func (o *SetServerConsentUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/server-consent][%d] setServerConsentUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *SetServerConsentUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -124,7 +121,7 @@ func NewSetServerConsentForbidden() *SetServerConsentForbidden {
 	return &SetServerConsentForbidden{}
 }
 
-/*SetServerConsentForbidden handles this case with default header values.
+/* SetServerConsentForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,7 +132,6 @@ type SetServerConsentForbidden struct {
 func (o *SetServerConsentForbidden) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/server-consent][%d] setServerConsentForbidden  %+v", 403, o.Payload)
 }
-
 func (o *SetServerConsentForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -157,7 +153,7 @@ func NewSetServerConsentNotFound() *SetServerConsentNotFound {
 	return &SetServerConsentNotFound{}
 }
 
-/*SetServerConsentNotFound handles this case with default header values.
+/* SetServerConsentNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -168,7 +164,6 @@ type SetServerConsentNotFound struct {
 func (o *SetServerConsentNotFound) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/server-consent][%d] setServerConsentNotFound  %+v", 404, o.Payload)
 }
-
 func (o *SetServerConsentNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

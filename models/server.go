@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -18,13 +20,16 @@ import (
 type Server struct {
 
 	// Access token strategy
+	// Example: jwt
 	AccessTokenStrategy string `json:"access_token_strategy,omitempty"`
 
 	// Access token time to live (default 1 hour)
+	// Example: 1h10m30s
 	// Format: duration
 	AccessTokenTTL strfmt.Duration `json:"access_token_ttl,omitempty"`
 
 	// Authorization code time to live (default 10 minutes)
+	// Example: 10m0s
 	// Format: duration
 	AuthorizationCodeTTL strfmt.Duration `json:"authorization_code_ttl,omitempty"`
 
@@ -32,43 +37,54 @@ type Server struct {
 	ClientCertificateHeader string `json:"client_certificate_header,omitempty"`
 
 	// Color
+	// Example: #007FFF
 	Color string `json:"color,omitempty"`
 
 	// Cookie max age (default 1 hour)
+	// Example: 1h10m30s
 	// Format: duration
 	CookieMaxAge strfmt.Duration `json:"cookie_max_age,omitempty"`
 
 	// Enforce pkce (default false)
+	// Example: false
 	EnforcePKCE bool `json:"enforce_pkce,omitempty"`
 
 	// Enforce pkce for public clients (default false)
+	// Example: false
 	EnforcePKCEForPublicClients bool `json:"enforce_pkce_for_public_clients,omitempty"`
 
 	// Supported grant types
+	// Example: ["authorization_code","implicit","refresh_token","client_credentials"]
 	GrantTypes []string `json:"grant_types"`
 
 	// Unique identifier. If not provided will be generated
+	// Example: 935ab21c-b20a-11e9-a2a3-2a2ae2dbcce4
 	ID string `json:"id,omitempty"`
 
 	// ID token time to live (default 1 hour)
+	// Example: 1h10m30s
 	// Format: duration
 	IDTokenTTL strfmt.Duration `json:"id_token_ttl,omitempty"`
 
 	// Authorization Server Issuer. If not provided will be set based on deployment configuration
+	// Example: http://example.com/default/default
 	IssuerURL string `json:"issuer_url,omitempty"`
 
 	// Key type used to generate key which will be used to sign access and id tokens
 	// Used only as input parameter in Create Authorization Server API
 	// Currently `rsa` and `ecdsa` are supported
+	// Example: rsa
 	KeyType string `json:"key_type,omitempty"`
 
 	// Logo URI
 	LogoURI string `json:"logo_uri,omitempty"`
 
 	// Name
+	// Example: Sample authorization server
 	Name string `json:"name,omitempty"`
 
 	// Server profile
+	// Example: default
 	Profile string `json:"profile,omitempty"`
 
 	// Flag indicating whether client certificate should be read from header.
@@ -77,6 +93,7 @@ type Server struct {
 	ReadClientCertificateFromHeader bool `json:"read_client_certificate_from_header,omitempty"`
 
 	// Refresh token time to live (default 30 days - 720 hours)
+	// Example: 720h0m0s
 	// Format: duration
 	RefreshTokenTTL strfmt.Duration `json:"refresh_token_ttl,omitempty"`
 
@@ -85,15 +102,18 @@ type Server struct {
 	RootCAs string `json:"root_cas,omitempty"`
 
 	// Rotated secrets used for validating old tokens
+	// Example: ["jFpwIvuKJP46J71WqszPv1SrzoUr-cSILP9EPdlClB4"]
 	RotatedSecrets []string `json:"rotated_secrets"`
 
 	// Secret used for hashing, must have at least 32 characters. If not provided will be generated.
+	// Example: hW5WhKX_7w7BLwUQ6mn7Cp70_OoKI_F1y1hLS5U8lIU
 	Secret string `json:"secret,omitempty"`
 
 	// Salt used to hash subject when pairwise subject type is used
 	SubjectIdentifierAlgorithmSalt string `json:"subject_identifier_algorithm_salt,omitempty"`
 
 	// Supported subject identifier types
+	// Example: ["public","pairwise"]
 	SubjectIdentifierTypes []string `json:"subject_identifier_types"`
 
 	// tenant ID
@@ -103,6 +123,7 @@ type Server struct {
 	TokenEndpointAuthnMethods []string `json:"token_endpoint_authn_methods"`
 
 	// Server type
+	// Example: regular
 	Type string `json:"type,omitempty"`
 
 	// dynamic client registration
@@ -151,7 +172,6 @@ func (m *Server) Validate(formats strfmt.Registry) error {
 }
 
 func (m *Server) validateAccessTokenTTL(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.AccessTokenTTL) { // not required
 		return nil
 	}
@@ -164,7 +184,6 @@ func (m *Server) validateAccessTokenTTL(formats strfmt.Registry) error {
 }
 
 func (m *Server) validateAuthorizationCodeTTL(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.AuthorizationCodeTTL) { // not required
 		return nil
 	}
@@ -177,7 +196,6 @@ func (m *Server) validateAuthorizationCodeTTL(formats strfmt.Registry) error {
 }
 
 func (m *Server) validateCookieMaxAge(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.CookieMaxAge) { // not required
 		return nil
 	}
@@ -190,7 +208,6 @@ func (m *Server) validateCookieMaxAge(formats strfmt.Registry) error {
 }
 
 func (m *Server) validateIDTokenTTL(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.IDTokenTTL) { // not required
 		return nil
 	}
@@ -203,7 +220,6 @@ func (m *Server) validateIDTokenTTL(formats strfmt.Registry) error {
 }
 
 func (m *Server) validateRefreshTokenTTL(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.RefreshTokenTTL) { // not required
 		return nil
 	}
@@ -216,7 +232,6 @@ func (m *Server) validateRefreshTokenTTL(formats strfmt.Registry) error {
 }
 
 func (m *Server) validateDynamicClientRegistration(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.DynamicClientRegistration) { // not required
 		return nil
 	}
@@ -234,13 +249,58 @@ func (m *Server) validateDynamicClientRegistration(formats strfmt.Registry) erro
 }
 
 func (m *Server) validateJwks(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Jwks) { // not required
 		return nil
 	}
 
 	if m.Jwks != nil {
 		if err := m.Jwks.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("jwks")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this server based on the context it is used
+func (m *Server) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateDynamicClientRegistration(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateJwks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *Server) contextValidateDynamicClientRegistration(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.DynamicClientRegistration != nil {
+		if err := m.DynamicClientRegistration.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("dynamic_client_registration")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *Server) contextValidateJwks(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Jwks != nil {
+		if err := m.Jwks.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("jwks")
 			}

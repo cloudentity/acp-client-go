@@ -18,86 +18,100 @@ import (
 	"github.com/cloudentity/acp-client-go/models"
 )
 
-// NewUpdateAuthorizationServerParams creates a new UpdateAuthorizationServerParams object
-// with the default values initialized.
+// NewUpdateAuthorizationServerParams creates a new UpdateAuthorizationServerParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewUpdateAuthorizationServerParams() *UpdateAuthorizationServerParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &UpdateAuthorizationServerParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewUpdateAuthorizationServerParamsWithTimeout creates a new UpdateAuthorizationServerParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewUpdateAuthorizationServerParamsWithTimeout(timeout time.Duration) *UpdateAuthorizationServerParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &UpdateAuthorizationServerParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewUpdateAuthorizationServerParamsWithContext creates a new UpdateAuthorizationServerParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewUpdateAuthorizationServerParamsWithContext(ctx context.Context) *UpdateAuthorizationServerParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &UpdateAuthorizationServerParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewUpdateAuthorizationServerParamsWithHTTPClient creates a new UpdateAuthorizationServerParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewUpdateAuthorizationServerParamsWithHTTPClient(client *http.Client) *UpdateAuthorizationServerParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &UpdateAuthorizationServerParams{
-		Aid:        aidDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*UpdateAuthorizationServerParams contains all the parameters to send to the API endpoint
-for the update authorization server operation typically these are written to a http.Request
+/* UpdateAuthorizationServerParams contains all the parameters to send to the API endpoint
+   for the update authorization server operation.
+
+   Typically these are written to a http.Request.
 */
 type UpdateAuthorizationServerParams struct {
 
-	/*Server*/
+	// Server.
 	Server *models.Server
-	/*Aid
-	  Authorization server id
 
+	/* Aid.
+
+	   Authorization server id
+
+	   Default: "default"
 	*/
 	Aid string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the update authorization server params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateAuthorizationServerParams) WithDefaults() *UpdateAuthorizationServerParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the update authorization server params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateAuthorizationServerParams) SetDefaults() {
+	var (
+		aidDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := UpdateAuthorizationServerParams{
+		Aid: aidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the update authorization server params
@@ -173,7 +187,6 @@ func (o *UpdateAuthorizationServerParams) WriteToRequest(r runtime.ClientRequest
 		return err
 	}
 	var res []error
-
 	if o.Server != nil {
 		if err := r.SetBodyParam(o.Server); err != nil {
 			return err

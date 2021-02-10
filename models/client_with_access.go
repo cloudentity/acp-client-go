@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -44,7 +45,6 @@ func (m *ClientWithAccess) Validate(formats strfmt.Registry) error {
 }
 
 func (m *ClientWithAccess) validateGrantedScopes(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.GrantedScopes) { // not required
 		return nil
 	}
@@ -69,13 +69,62 @@ func (m *ClientWithAccess) validateGrantedScopes(formats strfmt.Registry) error 
 }
 
 func (m *ClientWithAccess) validateClient(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Client) { // not required
 		return nil
 	}
 
 	if m.Client != nil {
 		if err := m.Client.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("client")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this client with access based on the context it is used
+func (m *ClientWithAccess) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateGrantedScopes(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateClient(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *ClientWithAccess) contextValidateGrantedScopes(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.GrantedScopes); i++ {
+
+		if m.GrantedScopes[i] != nil {
+			if err := m.GrantedScopes[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("granted_scopes" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *ClientWithAccess) contextValidateClient(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Client != nil {
+		if err := m.Client.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("client")
 			}

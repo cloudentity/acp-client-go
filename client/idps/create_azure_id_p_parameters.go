@@ -18,89 +18,103 @@ import (
 	"github.com/cloudentity/acp-client-go/models"
 )
 
-// NewCreateAzureIDPParams creates a new CreateAzureIDPParams object
-// with the default values initialized.
+// NewCreateAzureIDPParams creates a new CreateAzureIDPParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewCreateAzureIDPParams() *CreateAzureIDPParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &CreateAzureIDPParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewCreateAzureIDPParamsWithTimeout creates a new CreateAzureIDPParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewCreateAzureIDPParamsWithTimeout(timeout time.Duration) *CreateAzureIDPParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &CreateAzureIDPParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewCreateAzureIDPParamsWithContext creates a new CreateAzureIDPParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewCreateAzureIDPParamsWithContext(ctx context.Context) *CreateAzureIDPParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &CreateAzureIDPParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewCreateAzureIDPParamsWithHTTPClient creates a new CreateAzureIDPParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewCreateAzureIDPParamsWithHTTPClient(client *http.Client) *CreateAzureIDPParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &CreateAzureIDPParams{
-		Aid:        aidDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*CreateAzureIDPParams contains all the parameters to send to the API endpoint
-for the create azure ID p operation typically these are written to a http.Request
+/* CreateAzureIDPParams contains all the parameters to send to the API endpoint
+   for the create azure ID p operation.
+
+   Typically these are written to a http.Request.
 */
 type CreateAzureIDPParams struct {
 
-	/*AzureIDP
-	  AzureIDP
+	/* AzureIDP.
 
+	   AzureIDP
 	*/
 	AzureIDP *models.AzureIDP
-	/*Aid
-	  Authorization server id
 
+	/* Aid.
+
+	   Authorization server id
+
+	   Default: "default"
 	*/
 	Aid string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the create azure ID p params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateAzureIDPParams) WithDefaults() *CreateAzureIDPParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the create azure ID p params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateAzureIDPParams) SetDefaults() {
+	var (
+		aidDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := CreateAzureIDPParams{
+		Aid: aidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the create azure ID p params
@@ -176,7 +190,6 @@ func (o *CreateAzureIDPParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 		return err
 	}
 	var res []error
-
 	if o.AzureIDP != nil {
 		if err := r.SetBodyParam(o.AzureIDP); err != nil {
 			return err

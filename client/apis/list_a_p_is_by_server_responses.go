@@ -41,7 +41,6 @@ func (o *ListAPIsByServerReader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -52,7 +51,7 @@ func NewListAPIsByServerOK() *ListAPIsByServerOK {
 	return &ListAPIsByServerOK{}
 }
 
-/*ListAPIsByServerOK handles this case with default header values.
+/* ListAPIsByServerOK describes a response with status code 200, with default header values.
 
 ServerAPIs
 */
@@ -63,7 +62,6 @@ type ListAPIsByServerOK struct {
 func (o *ListAPIsByServerOK) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/apis][%d] listAPIsByServerOK  %+v", 200, o.Payload)
 }
-
 func (o *ListAPIsByServerOK) GetPayload() *models.ServerAPIs {
 	return o.Payload
 }
@@ -85,7 +83,7 @@ func NewListAPIsByServerUnauthorized() *ListAPIsByServerUnauthorized {
 	return &ListAPIsByServerUnauthorized{}
 }
 
-/*ListAPIsByServerUnauthorized handles this case with default header values.
+/* ListAPIsByServerUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -96,7 +94,6 @@ type ListAPIsByServerUnauthorized struct {
 func (o *ListAPIsByServerUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/apis][%d] listAPIsByServerUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *ListAPIsByServerUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -118,7 +115,7 @@ func NewListAPIsByServerForbidden() *ListAPIsByServerForbidden {
 	return &ListAPIsByServerForbidden{}
 }
 
-/*ListAPIsByServerForbidden handles this case with default header values.
+/* ListAPIsByServerForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -129,7 +126,6 @@ type ListAPIsByServerForbidden struct {
 func (o *ListAPIsByServerForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/apis][%d] listAPIsByServerForbidden  %+v", 403, o.Payload)
 }
-
 func (o *ListAPIsByServerForbidden) GetPayload() *models.Error {
 	return o.Payload
 }

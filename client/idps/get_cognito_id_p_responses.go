@@ -47,7 +47,6 @@ func (o *GetCognitoIDPReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewGetCognitoIDPOK() *GetCognitoIDPOK {
 	return &GetCognitoIDPOK{}
 }
 
-/*GetCognitoIDPOK handles this case with default header values.
+/* GetCognitoIDPOK describes a response with status code 200, with default header values.
 
 CognitoIDP
 */
@@ -69,7 +68,6 @@ type GetCognitoIDPOK struct {
 func (o *GetCognitoIDPOK) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps/cognito/{iid}][%d] getCognitoIdPOK  %+v", 200, o.Payload)
 }
-
 func (o *GetCognitoIDPOK) GetPayload() *models.CognitoIDP {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewGetCognitoIDPUnauthorized() *GetCognitoIDPUnauthorized {
 	return &GetCognitoIDPUnauthorized{}
 }
 
-/*GetCognitoIDPUnauthorized handles this case with default header values.
+/* GetCognitoIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -102,7 +100,6 @@ type GetCognitoIDPUnauthorized struct {
 func (o *GetCognitoIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps/cognito/{iid}][%d] getCognitoIdPUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *GetCognitoIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -124,7 +121,7 @@ func NewGetCognitoIDPForbidden() *GetCognitoIDPForbidden {
 	return &GetCognitoIDPForbidden{}
 }
 
-/*GetCognitoIDPForbidden handles this case with default header values.
+/* GetCognitoIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,7 +132,6 @@ type GetCognitoIDPForbidden struct {
 func (o *GetCognitoIDPForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps/cognito/{iid}][%d] getCognitoIdPForbidden  %+v", 403, o.Payload)
 }
-
 func (o *GetCognitoIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -157,7 +153,7 @@ func NewGetCognitoIDPNotFound() *GetCognitoIDPNotFound {
 	return &GetCognitoIDPNotFound{}
 }
 
-/*GetCognitoIDPNotFound handles this case with default header values.
+/* GetCognitoIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -168,7 +164,6 @@ type GetCognitoIDPNotFound struct {
 func (o *GetCognitoIDPNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps/cognito/{iid}][%d] getCognitoIdPNotFound  %+v", 404, o.Payload)
 }
-
 func (o *GetCognitoIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

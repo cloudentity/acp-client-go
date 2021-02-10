@@ -59,7 +59,6 @@ func (o *CreateAzureIDPReader) ReadResponse(response runtime.ClientResponse, con
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -70,7 +69,7 @@ func NewCreateAzureIDPCreated() *CreateAzureIDPCreated {
 	return &CreateAzureIDPCreated{}
 }
 
-/*CreateAzureIDPCreated handles this case with default header values.
+/* CreateAzureIDPCreated describes a response with status code 201, with default header values.
 
 AzureIDP
 */
@@ -81,7 +80,6 @@ type CreateAzureIDPCreated struct {
 func (o *CreateAzureIDPCreated) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/azure][%d] createAzureIdPCreated  %+v", 201, o.Payload)
 }
-
 func (o *CreateAzureIDPCreated) GetPayload() *models.AzureIDP {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewCreateAzureIDPBadRequest() *CreateAzureIDPBadRequest {
 	return &CreateAzureIDPBadRequest{}
 }
 
-/*CreateAzureIDPBadRequest handles this case with default header values.
+/* CreateAzureIDPBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -114,7 +112,6 @@ type CreateAzureIDPBadRequest struct {
 func (o *CreateAzureIDPBadRequest) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/azure][%d] createAzureIdPBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *CreateAzureIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -136,7 +133,7 @@ func NewCreateAzureIDPUnauthorized() *CreateAzureIDPUnauthorized {
 	return &CreateAzureIDPUnauthorized{}
 }
 
-/*CreateAzureIDPUnauthorized handles this case with default header values.
+/* CreateAzureIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,7 +144,6 @@ type CreateAzureIDPUnauthorized struct {
 func (o *CreateAzureIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/azure][%d] createAzureIdPUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *CreateAzureIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -169,7 +165,7 @@ func NewCreateAzureIDPForbidden() *CreateAzureIDPForbidden {
 	return &CreateAzureIDPForbidden{}
 }
 
-/*CreateAzureIDPForbidden handles this case with default header values.
+/* CreateAzureIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -180,7 +176,6 @@ type CreateAzureIDPForbidden struct {
 func (o *CreateAzureIDPForbidden) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/azure][%d] createAzureIdPForbidden  %+v", 403, o.Payload)
 }
-
 func (o *CreateAzureIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -202,7 +197,7 @@ func NewCreateAzureIDPNotFound() *CreateAzureIDPNotFound {
 	return &CreateAzureIDPNotFound{}
 }
 
-/*CreateAzureIDPNotFound handles this case with default header values.
+/* CreateAzureIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -213,7 +208,6 @@ type CreateAzureIDPNotFound struct {
 func (o *CreateAzureIDPNotFound) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/azure][%d] createAzureIdPNotFound  %+v", 404, o.Payload)
 }
-
 func (o *CreateAzureIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +229,7 @@ func NewCreateAzureIDPUnprocessableEntity() *CreateAzureIDPUnprocessableEntity {
 	return &CreateAzureIDPUnprocessableEntity{}
 }
 
-/*CreateAzureIDPUnprocessableEntity handles this case with default header values.
+/* CreateAzureIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -246,7 +240,6 @@ type CreateAzureIDPUnprocessableEntity struct {
 func (o *CreateAzureIDPUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/azure][%d] createAzureIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *CreateAzureIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

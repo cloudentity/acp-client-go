@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -36,12 +38,14 @@ type Mapping struct {
 	// slice of maps to a merged map
 	// single values are converted to slices if required. Each
 	// element is weakly decoded.
+	// Example: false
 	AllowWeakDecoding bool `json:"allow_weak_decoding,omitempty"`
 
 	// Source attribute.
 	//
 	// Source path to attribute(s) which should be copied to the identity context.
 	// Use '.' to copy everything.
+	// Example: access_token
 	// Required: true
 	Source *string `json:"source"`
 
@@ -49,12 +53,14 @@ type Mapping struct {
 	//
 	// Target path in the identity context where source attribute(s) should be pasted.
 	// Use '.' to paste to context top level object.
+	// Example: .
 	// Required: true
 	Target *string `json:"target"`
 
 	// Target type
 	//
 	// number, string, bool, number_array, string_array, bool_array or any
+	// Example: string
 	// Required: true
 	Type *string `json:"type"`
 }
@@ -105,6 +111,11 @@ func (m *Mapping) validateType(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this mapping based on context it is used
+func (m *Mapping) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

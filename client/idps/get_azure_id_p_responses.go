@@ -47,7 +47,6 @@ func (o *GetAzureIDPReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewGetAzureIDPOK() *GetAzureIDPOK {
 	return &GetAzureIDPOK{}
 }
 
-/*GetAzureIDPOK handles this case with default header values.
+/* GetAzureIDPOK describes a response with status code 200, with default header values.
 
 AzureIDP
 */
@@ -69,7 +68,6 @@ type GetAzureIDPOK struct {
 func (o *GetAzureIDPOK) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps/azure/{iid}][%d] getAzureIdPOK  %+v", 200, o.Payload)
 }
-
 func (o *GetAzureIDPOK) GetPayload() *models.AzureIDP {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewGetAzureIDPUnauthorized() *GetAzureIDPUnauthorized {
 	return &GetAzureIDPUnauthorized{}
 }
 
-/*GetAzureIDPUnauthorized handles this case with default header values.
+/* GetAzureIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -102,7 +100,6 @@ type GetAzureIDPUnauthorized struct {
 func (o *GetAzureIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps/azure/{iid}][%d] getAzureIdPUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *GetAzureIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -124,7 +121,7 @@ func NewGetAzureIDPForbidden() *GetAzureIDPForbidden {
 	return &GetAzureIDPForbidden{}
 }
 
-/*GetAzureIDPForbidden handles this case with default header values.
+/* GetAzureIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,7 +132,6 @@ type GetAzureIDPForbidden struct {
 func (o *GetAzureIDPForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps/azure/{iid}][%d] getAzureIdPForbidden  %+v", 403, o.Payload)
 }
-
 func (o *GetAzureIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -157,7 +153,7 @@ func NewGetAzureIDPNotFound() *GetAzureIDPNotFound {
 	return &GetAzureIDPNotFound{}
 }
 
-/*GetAzureIDPNotFound handles this case with default header values.
+/* GetAzureIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -168,7 +164,6 @@ type GetAzureIDPNotFound struct {
 func (o *GetAzureIDPNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps/azure/{iid}][%d] getAzureIdPNotFound  %+v", 404, o.Payload)
 }
-
 func (o *GetAzureIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

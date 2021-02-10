@@ -16,73 +16,89 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewGetPolicyParams creates a new GetPolicyParams object
-// with the default values initialized.
+// NewGetPolicyParams creates a new GetPolicyParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetPolicyParams() *GetPolicyParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &GetPolicyParams{
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetPolicyParamsWithTimeout creates a new GetPolicyParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetPolicyParamsWithTimeout(timeout time.Duration) *GetPolicyParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &GetPolicyParams{
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewGetPolicyParamsWithContext creates a new GetPolicyParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetPolicyParamsWithContext(ctx context.Context) *GetPolicyParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &GetPolicyParams{
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewGetPolicyParamsWithHTTPClient creates a new GetPolicyParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetPolicyParamsWithHTTPClient(client *http.Client) *GetPolicyParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &GetPolicyParams{
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*GetPolicyParams contains all the parameters to send to the API endpoint
-for the get policy operation typically these are written to a http.Request
+/* GetPolicyParams contains all the parameters to send to the API endpoint
+   for the get policy operation.
+
+   Typically these are written to a http.Request.
 */
 type GetPolicyParams struct {
 
-	/*Pid*/
+	// Pid.
 	PolicyID string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get policy params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetPolicyParams) WithDefaults() *GetPolicyParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get policy params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetPolicyParams) SetDefaults() {
+	var (
+		tidDefault = string("default")
+	)
+
+	val := GetPolicyParams{
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the get policy params

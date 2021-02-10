@@ -41,7 +41,6 @@ func (o *ListGatewayAPIGroupsReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -52,7 +51,7 @@ func NewListGatewayAPIGroupsOK() *ListGatewayAPIGroupsOK {
 	return &ListGatewayAPIGroupsOK{}
 }
 
-/*ListGatewayAPIGroupsOK handles this case with default header values.
+/* ListGatewayAPIGroupsOK describes a response with status code 200, with default header values.
 
 GatewayAPIGroups
 */
@@ -63,7 +62,6 @@ type ListGatewayAPIGroupsOK struct {
 func (o *ListGatewayAPIGroupsOK) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/gateways/{gw}/groups][%d] listGatewayApiGroupsOK  %+v", 200, o.Payload)
 }
-
 func (o *ListGatewayAPIGroupsOK) GetPayload() *models.GatewayAPIGroups {
 	return o.Payload
 }
@@ -85,7 +83,7 @@ func NewListGatewayAPIGroupsUnauthorized() *ListGatewayAPIGroupsUnauthorized {
 	return &ListGatewayAPIGroupsUnauthorized{}
 }
 
-/*ListGatewayAPIGroupsUnauthorized handles this case with default header values.
+/* ListGatewayAPIGroupsUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -96,7 +94,6 @@ type ListGatewayAPIGroupsUnauthorized struct {
 func (o *ListGatewayAPIGroupsUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/gateways/{gw}/groups][%d] listGatewayApiGroupsUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *ListGatewayAPIGroupsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -118,7 +115,7 @@ func NewListGatewayAPIGroupsForbidden() *ListGatewayAPIGroupsForbidden {
 	return &ListGatewayAPIGroupsForbidden{}
 }
 
-/*ListGatewayAPIGroupsForbidden handles this case with default header values.
+/* ListGatewayAPIGroupsForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -129,7 +126,6 @@ type ListGatewayAPIGroupsForbidden struct {
 func (o *ListGatewayAPIGroupsForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/gateways/{gw}/groups][%d] listGatewayApiGroupsForbidden  %+v", 403, o.Payload)
 }
-
 func (o *ListGatewayAPIGroupsForbidden) GetPayload() *models.Error {
 	return o.Payload
 }

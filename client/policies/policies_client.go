@@ -25,23 +25,26 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreatePolicy(params *CreatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicyCreated, error)
+	CreatePolicy(params *CreatePolicyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreatePolicyCreated, error)
 
-	DeletePolicy(params *DeletePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePolicyNoContent, error)
+	DeletePolicy(params *DeletePolicyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeletePolicyNoContent, error)
 
-	GetPolicy(params *GetPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*GetPolicyOK, error)
+	GetPolicy(params *GetPolicyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPolicyOK, error)
 
-	ListPolicies(params *ListPoliciesParams, authInfo runtime.ClientAuthInfoWriter) (*ListPoliciesOK, error)
+	ListPolicies(params *ListPoliciesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListPoliciesOK, error)
 
-	ListPolicyExecutionPoints(params *ListPolicyExecutionPointsParams, authInfo runtime.ClientAuthInfoWriter) (*ListPolicyExecutionPointsOK, error)
+	ListPolicyExecutionPoints(params *ListPolicyExecutionPointsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListPolicyExecutionPointsOK, error)
 
-	SetPolicyExecutionPoints(params *SetPolicyExecutionPointsParams, authInfo runtime.ClientAuthInfoWriter) (*SetPolicyExecutionPointsOK, error)
+	SetPolicyExecutionPoints(params *SetPolicyExecutionPointsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetPolicyExecutionPointsOK, error)
 
-	TestPolicy(params *TestPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*TestPolicyOK, error)
+	TestPolicy(params *TestPolicyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*TestPolicyOK, error)
 
-	UpdatePolicy(params *UpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyCreated, error)
+	UpdatePolicy(params *UpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdatePolicyCreated, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -55,13 +58,12 @@ ID and Name are required fields.
 
 Sample validators which can be used to build policies: identity-context, consent, header, true, false.
 */
-func (a *Client) CreatePolicy(params *CreatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*CreatePolicyCreated, error) {
+func (a *Client) CreatePolicy(params *CreatePolicyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreatePolicyCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreatePolicyParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createPolicy",
 		Method:             "POST",
 		PathPattern:        "/api/admin/{tid}/policies",
@@ -73,7 +75,12 @@ func (a *Client) CreatePolicy(params *CreatePolicyParams, authInfo runtime.Clien
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -94,13 +101,12 @@ func (a *Client) CreatePolicy(params *CreatePolicyParams, authInfo runtime.Clien
 
 A policy can't be removed if it's in use.
 */
-func (a *Client) DeletePolicy(params *DeletePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*DeletePolicyNoContent, error) {
+func (a *Client) DeletePolicy(params *DeletePolicyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeletePolicyNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeletePolicyParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "deletePolicy",
 		Method:             "DELETE",
 		PathPattern:        "/api/admin/{tid}/policies/{pid}",
@@ -112,7 +118,12 @@ func (a *Client) DeletePolicy(params *DeletePolicyParams, authInfo runtime.Clien
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -131,13 +142,12 @@ func (a *Client) DeletePolicy(params *DeletePolicyParams, authInfo runtime.Clien
 
   Get policy.
 */
-func (a *Client) GetPolicy(params *GetPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*GetPolicyOK, error) {
+func (a *Client) GetPolicy(params *GetPolicyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPolicyOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetPolicyParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getPolicy",
 		Method:             "GET",
 		PathPattern:        "/api/admin/{tid}/policies/{pid}",
@@ -149,7 +159,12 @@ func (a *Client) GetPolicy(params *GetPolicyParams, authInfo runtime.ClientAuthI
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -168,13 +183,12 @@ func (a *Client) GetPolicy(params *GetPolicyParams, authInfo runtime.ClientAuthI
 
   List server policies by type.
 */
-func (a *Client) ListPolicies(params *ListPoliciesParams, authInfo runtime.ClientAuthInfoWriter) (*ListPoliciesOK, error) {
+func (a *Client) ListPolicies(params *ListPoliciesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListPoliciesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListPoliciesParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "listPolicies",
 		Method:             "GET",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/policies",
@@ -186,7 +200,12 @@ func (a *Client) ListPolicies(params *ListPoliciesParams, authInfo runtime.Clien
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -205,13 +224,12 @@ func (a *Client) ListPolicies(params *ListPoliciesParams, authInfo runtime.Clien
 
   List policy execution points.
 */
-func (a *Client) ListPolicyExecutionPoints(params *ListPolicyExecutionPointsParams, authInfo runtime.ClientAuthInfoWriter) (*ListPolicyExecutionPointsOK, error) {
+func (a *Client) ListPolicyExecutionPoints(params *ListPolicyExecutionPointsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListPolicyExecutionPointsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListPolicyExecutionPointsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "listPolicyExecutionPoints",
 		Method:             "GET",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/policy-execution-points",
@@ -223,7 +241,12 @@ func (a *Client) ListPolicyExecutionPoints(params *ListPolicyExecutionPointsPara
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -250,13 +273,12 @@ server_user_token
 client_user_token
 api
 */
-func (a *Client) SetPolicyExecutionPoints(params *SetPolicyExecutionPointsParams, authInfo runtime.ClientAuthInfoWriter) (*SetPolicyExecutionPointsOK, error) {
+func (a *Client) SetPolicyExecutionPoints(params *SetPolicyExecutionPointsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetPolicyExecutionPointsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewSetPolicyExecutionPointsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "setPolicyExecutionPoints",
 		Method:             "PUT",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/policy-execution-points",
@@ -268,7 +290,12 @@ func (a *Client) SetPolicyExecutionPoints(params *SetPolicyExecutionPointsParams
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -287,13 +314,12 @@ func (a *Client) SetPolicyExecutionPoints(params *SetPolicyExecutionPointsParams
 
   Test policy.
 */
-func (a *Client) TestPolicy(params *TestPolicyParams, authInfo runtime.ClientAuthInfoWriter) (*TestPolicyOK, error) {
+func (a *Client) TestPolicy(params *TestPolicyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*TestPolicyOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewTestPolicyParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "testPolicy",
 		Method:             "POST",
 		PathPattern:        "/api/admin/{tid}/policies/test",
@@ -305,7 +331,12 @@ func (a *Client) TestPolicy(params *TestPolicyParams, authInfo runtime.ClientAut
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -324,13 +355,12 @@ func (a *Client) TestPolicy(params *TestPolicyParams, authInfo runtime.ClientAut
 
   Update policy.
 */
-func (a *Client) UpdatePolicy(params *UpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter) (*UpdatePolicyCreated, error) {
+func (a *Client) UpdatePolicy(params *UpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdatePolicyCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdatePolicyParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "updatePolicy",
 		Method:             "PUT",
 		PathPattern:        "/api/admin/{tid}/policies/{pid}",
@@ -342,7 +372,12 @@ func (a *Client) UpdatePolicy(params *UpdatePolicyParams, authInfo runtime.Clien
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}

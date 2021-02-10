@@ -18,73 +18,89 @@ import (
 	"github.com/cloudentity/acp-client-go/models"
 )
 
-// NewCreateServiceParams creates a new CreateServiceParams object
-// with the default values initialized.
+// NewCreateServiceParams creates a new CreateServiceParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewCreateServiceParams() *CreateServiceParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &CreateServiceParams{
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewCreateServiceParamsWithTimeout creates a new CreateServiceParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewCreateServiceParamsWithTimeout(timeout time.Duration) *CreateServiceParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &CreateServiceParams{
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewCreateServiceParamsWithContext creates a new CreateServiceParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewCreateServiceParamsWithContext(ctx context.Context) *CreateServiceParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &CreateServiceParams{
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewCreateServiceParamsWithHTTPClient creates a new CreateServiceParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewCreateServiceParamsWithHTTPClient(client *http.Client) *CreateServiceParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &CreateServiceParams{
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*CreateServiceParams contains all the parameters to send to the API endpoint
-for the create service operation typically these are written to a http.Request
+/* CreateServiceParams contains all the parameters to send to the API endpoint
+   for the create service operation.
+
+   Typically these are written to a http.Request.
 */
 type CreateServiceParams struct {
 
-	/*Service*/
+	// Service.
 	Service *models.Service
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the create service params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateServiceParams) WithDefaults() *CreateServiceParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the create service params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateServiceParams) SetDefaults() {
+	var (
+		tidDefault = string("default")
+	)
+
+	val := CreateServiceParams{
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the create service params
@@ -149,7 +165,6 @@ func (o *CreateServiceParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		return err
 	}
 	var res []error
-
 	if o.Service != nil {
 		if err := r.SetBodyParam(o.Service); err != nil {
 			return err

@@ -16,84 +16,97 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewListClientsWithAccessParams creates a new ListClientsWithAccessParams object
-// with the default values initialized.
+// NewListClientsWithAccessParams creates a new ListClientsWithAccessParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewListClientsWithAccessParams() *ListClientsWithAccessParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &ListClientsWithAccessParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewListClientsWithAccessParamsWithTimeout creates a new ListClientsWithAccessParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewListClientsWithAccessParamsWithTimeout(timeout time.Duration) *ListClientsWithAccessParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &ListClientsWithAccessParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewListClientsWithAccessParamsWithContext creates a new ListClientsWithAccessParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewListClientsWithAccessParamsWithContext(ctx context.Context) *ListClientsWithAccessParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &ListClientsWithAccessParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewListClientsWithAccessParamsWithHTTPClient creates a new ListClientsWithAccessParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewListClientsWithAccessParamsWithHTTPClient(client *http.Client) *ListClientsWithAccessParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &ListClientsWithAccessParams{
-		Aid:        aidDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*ListClientsWithAccessParams contains all the parameters to send to the API endpoint
-for the list clients with access operation typically these are written to a http.Request
+/* ListClientsWithAccessParams contains all the parameters to send to the API endpoint
+   for the list clients with access operation.
+
+   Typically these are written to a http.Request.
 */
 type ListClientsWithAccessParams struct {
 
-	/*Aid
-	  Authorization server id
+	/* Aid.
 
+	   Authorization server id
+
+	   Default: "default"
 	*/
 	Aid string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the list clients with access params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ListClientsWithAccessParams) WithDefaults() *ListClientsWithAccessParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the list clients with access params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ListClientsWithAccessParams) SetDefaults() {
+	var (
+		aidDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := ListClientsWithAccessParams{
+		Aid: aidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the list clients with access params

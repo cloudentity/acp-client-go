@@ -53,7 +53,6 @@ func (o *ListDashboardsReader) ReadResponse(response runtime.ClientResponse, con
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -64,7 +63,7 @@ func NewListDashboardsOK() *ListDashboardsOK {
 	return &ListDashboardsOK{}
 }
 
-/*ListDashboardsOK handles this case with default header values.
+/* ListDashboardsOK describes a response with status code 200, with default header values.
 
 Dashboards
 */
@@ -75,7 +74,6 @@ type ListDashboardsOK struct {
 func (o *ListDashboardsOK) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/dashboards][%d] listDashboardsOK  %+v", 200, o.Payload)
 }
-
 func (o *ListDashboardsOK) GetPayload() *models.Dashboards {
 	return o.Payload
 }
@@ -97,7 +95,7 @@ func NewListDashboardsBadRequest() *ListDashboardsBadRequest {
 	return &ListDashboardsBadRequest{}
 }
 
-/*ListDashboardsBadRequest handles this case with default header values.
+/* ListDashboardsBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -108,7 +106,6 @@ type ListDashboardsBadRequest struct {
 func (o *ListDashboardsBadRequest) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/dashboards][%d] listDashboardsBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *ListDashboardsBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -130,7 +127,7 @@ func NewListDashboardsUnauthorized() *ListDashboardsUnauthorized {
 	return &ListDashboardsUnauthorized{}
 }
 
-/*ListDashboardsUnauthorized handles this case with default header values.
+/* ListDashboardsUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -141,7 +138,6 @@ type ListDashboardsUnauthorized struct {
 func (o *ListDashboardsUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/dashboards][%d] listDashboardsUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *ListDashboardsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -163,7 +159,7 @@ func NewListDashboardsForbidden() *ListDashboardsForbidden {
 	return &ListDashboardsForbidden{}
 }
 
-/*ListDashboardsForbidden handles this case with default header values.
+/* ListDashboardsForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -174,7 +170,6 @@ type ListDashboardsForbidden struct {
 func (o *ListDashboardsForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/dashboards][%d] listDashboardsForbidden  %+v", 403, o.Payload)
 }
-
 func (o *ListDashboardsForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -196,7 +191,7 @@ func NewListDashboardsNotFound() *ListDashboardsNotFound {
 	return &ListDashboardsNotFound{}
 }
 
-/*ListDashboardsNotFound handles this case with default header values.
+/* ListDashboardsNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -207,7 +202,6 @@ type ListDashboardsNotFound struct {
 func (o *ListDashboardsNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/dashboards][%d] listDashboardsNotFound  %+v", 404, o.Payload)
 }
-
 func (o *ListDashboardsNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

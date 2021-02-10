@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -18,11 +20,17 @@ import (
 type CustomAuthentication struct {
 
 	// URL to custom login page
+	// Example: https://example.com/login
 	LoginURL string `json:"login_url,omitempty"`
 }
 
 // Validate validates this custom authentication
 func (m *CustomAuthentication) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this custom authentication based on context it is used
+func (m *CustomAuthentication) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

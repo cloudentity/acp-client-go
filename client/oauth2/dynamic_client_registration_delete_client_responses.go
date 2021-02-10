@@ -53,7 +53,6 @@ func (o *DynamicClientRegistrationDeleteClientReader) ReadResponse(response runt
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -64,7 +63,7 @@ func NewDynamicClientRegistrationDeleteClientNoContent() *DynamicClientRegistrat
 	return &DynamicClientRegistrationDeleteClientNoContent{}
 }
 
-/*DynamicClientRegistrationDeleteClientNoContent handles this case with default header values.
+/* DynamicClientRegistrationDeleteClientNoContent describes a response with status code 204, with default header values.
 
 Client has been deleted
 */
@@ -85,7 +84,7 @@ func NewDynamicClientRegistrationDeleteClientBadRequest() *DynamicClientRegistra
 	return &DynamicClientRegistrationDeleteClientBadRequest{}
 }
 
-/*DynamicClientRegistrationDeleteClientBadRequest handles this case with default header values.
+/* DynamicClientRegistrationDeleteClientBadRequest describes a response with status code 400, with default header values.
 
 RFC6749Error
 */
@@ -96,7 +95,6 @@ type DynamicClientRegistrationDeleteClientBadRequest struct {
 func (o *DynamicClientRegistrationDeleteClientBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /{tid}/{aid}/oauth2/register/{cid}][%d] dynamicClientRegistrationDeleteClientBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *DynamicClientRegistrationDeleteClientBadRequest) GetPayload() *models.RFC6749Error {
 	return o.Payload
 }
@@ -118,7 +116,7 @@ func NewDynamicClientRegistrationDeleteClientUnauthorized() *DynamicClientRegist
 	return &DynamicClientRegistrationDeleteClientUnauthorized{}
 }
 
-/*DynamicClientRegistrationDeleteClientUnauthorized handles this case with default header values.
+/* DynamicClientRegistrationDeleteClientUnauthorized describes a response with status code 401, with default header values.
 
 RFC6749Error
 */
@@ -129,7 +127,6 @@ type DynamicClientRegistrationDeleteClientUnauthorized struct {
 func (o *DynamicClientRegistrationDeleteClientUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /{tid}/{aid}/oauth2/register/{cid}][%d] dynamicClientRegistrationDeleteClientUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *DynamicClientRegistrationDeleteClientUnauthorized) GetPayload() *models.RFC6749Error {
 	return o.Payload
 }
@@ -151,7 +148,7 @@ func NewDynamicClientRegistrationDeleteClientForbidden() *DynamicClientRegistrat
 	return &DynamicClientRegistrationDeleteClientForbidden{}
 }
 
-/*DynamicClientRegistrationDeleteClientForbidden handles this case with default header values.
+/* DynamicClientRegistrationDeleteClientForbidden describes a response with status code 403, with default header values.
 
 RFC6749Error
 */
@@ -162,7 +159,6 @@ type DynamicClientRegistrationDeleteClientForbidden struct {
 func (o *DynamicClientRegistrationDeleteClientForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /{tid}/{aid}/oauth2/register/{cid}][%d] dynamicClientRegistrationDeleteClientForbidden  %+v", 403, o.Payload)
 }
-
 func (o *DynamicClientRegistrationDeleteClientForbidden) GetPayload() *models.RFC6749Error {
 	return o.Payload
 }
@@ -184,7 +180,7 @@ func NewDynamicClientRegistrationDeleteClientNotFound() *DynamicClientRegistrati
 	return &DynamicClientRegistrationDeleteClientNotFound{}
 }
 
-/*DynamicClientRegistrationDeleteClientNotFound handles this case with default header values.
+/* DynamicClientRegistrationDeleteClientNotFound describes a response with status code 404, with default header values.
 
 genericError
 */
@@ -195,7 +191,6 @@ type DynamicClientRegistrationDeleteClientNotFound struct {
 func (o *DynamicClientRegistrationDeleteClientNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /{tid}/{aid}/oauth2/register/{cid}][%d] dynamicClientRegistrationDeleteClientNotFound  %+v", 404, o.Payload)
 }
-
 func (o *DynamicClientRegistrationDeleteClientNotFound) GetPayload() *models.GenericError {
 	return o.Payload
 }

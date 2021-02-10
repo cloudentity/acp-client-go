@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -20,40 +21,49 @@ import (
 type ConsentActionConsent struct {
 
 	// flag determining if can user withdrawn consent
+	// Example: false
 	CanBeWithdrawn bool `json:"can_be_withdrawn,omitempty"`
 
 	// consent description
+	// Example: End User License Agreement
 	Description string `json:"description,omitempty"`
 
 	// consent unique identifier
+	// Example: 1
 	ID string `json:"id,omitempty"`
 
 	// internal services
 	InternalServices []*ConsentService `json:"internal_services"`
 
 	// consent name
+	// Example: EULA
 	Name string `json:"name,omitempty"`
 
 	// PII Categories
 	PIICategories []*PIICategory `json:"pii_categories"`
 
 	// is consent required
+	// Example: false
 	Required bool `json:"required,omitempty"`
 
 	// tenant id
+	// Example: default
 	TenantID string `json:"tenant_id,omitempty"`
 
 	// third party services
 	ThirdPartyServices []*ConsentService `json:"third_party_services"`
 
 	// strategy for upading existing grants, one of: explicitAll, implicitAll, keepCurrent
+	// Example: explicitAll
 	UpdateExistingGrants string `json:"update_existing_grants,omitempty"`
 
 	// marks the time from which the consent is in use. Can't be set to a future time
+	// Example: 2019-12-11T13:44:28.772101Z
 	// Format: date-time
 	ValidFrom strfmt.DateTime `json:"valid_from,omitempty"`
 
 	// consent version. When a consent is updated, version is incremented.
+	// Example: 1
 	Version int64 `json:"version,omitempty"`
 }
 
@@ -84,7 +94,6 @@ func (m *ConsentActionConsent) Validate(formats strfmt.Registry) error {
 }
 
 func (m *ConsentActionConsent) validateInternalServices(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.InternalServices) { // not required
 		return nil
 	}
@@ -109,7 +118,6 @@ func (m *ConsentActionConsent) validateInternalServices(formats strfmt.Registry)
 }
 
 func (m *ConsentActionConsent) validatePIICategories(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.PIICategories) { // not required
 		return nil
 	}
@@ -134,7 +142,6 @@ func (m *ConsentActionConsent) validatePIICategories(formats strfmt.Registry) er
 }
 
 func (m *ConsentActionConsent) validateThirdPartyServices(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.ThirdPartyServices) { // not required
 		return nil
 	}
@@ -159,13 +166,88 @@ func (m *ConsentActionConsent) validateThirdPartyServices(formats strfmt.Registr
 }
 
 func (m *ConsentActionConsent) validateValidFrom(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.ValidFrom) { // not required
 		return nil
 	}
 
 	if err := validate.FormatOf("valid_from", "body", "date-time", m.ValidFrom.String(), formats); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this consent action consent based on the context it is used
+func (m *ConsentActionConsent) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateInternalServices(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePIICategories(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateThirdPartyServices(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *ConsentActionConsent) contextValidateInternalServices(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.InternalServices); i++ {
+
+		if m.InternalServices[i] != nil {
+			if err := m.InternalServices[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("internal_services" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *ConsentActionConsent) contextValidatePIICategories(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.PIICategories); i++ {
+
+		if m.PIICategories[i] != nil {
+			if err := m.PIICategories[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("pii_categories" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *ConsentActionConsent) contextValidateThirdPartyServices(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.ThirdPartyServices); i++ {
+
+		if m.ThirdPartyServices[i] != nil {
+			if err := m.ThirdPartyServices[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("third_party_services" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil

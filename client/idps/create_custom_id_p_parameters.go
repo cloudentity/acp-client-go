@@ -18,89 +18,103 @@ import (
 	"github.com/cloudentity/acp-client-go/models"
 )
 
-// NewCreateCustomIDPParams creates a new CreateCustomIDPParams object
-// with the default values initialized.
+// NewCreateCustomIDPParams creates a new CreateCustomIDPParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewCreateCustomIDPParams() *CreateCustomIDPParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &CreateCustomIDPParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewCreateCustomIDPParamsWithTimeout creates a new CreateCustomIDPParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewCreateCustomIDPParamsWithTimeout(timeout time.Duration) *CreateCustomIDPParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &CreateCustomIDPParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewCreateCustomIDPParamsWithContext creates a new CreateCustomIDPParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewCreateCustomIDPParamsWithContext(ctx context.Context) *CreateCustomIDPParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &CreateCustomIDPParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewCreateCustomIDPParamsWithHTTPClient creates a new CreateCustomIDPParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewCreateCustomIDPParamsWithHTTPClient(client *http.Client) *CreateCustomIDPParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &CreateCustomIDPParams{
-		Aid:        aidDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*CreateCustomIDPParams contains all the parameters to send to the API endpoint
-for the create custom ID p operation typically these are written to a http.Request
+/* CreateCustomIDPParams contains all the parameters to send to the API endpoint
+   for the create custom ID p operation.
+
+   Typically these are written to a http.Request.
 */
 type CreateCustomIDPParams struct {
 
-	/*CustomIDP
-	  CustomIDP
+	/* CustomIDP.
 
+	   CustomIDP
 	*/
 	CustomIDP *models.CustomIDP
-	/*Aid
-	  Authorization server id
 
+	/* Aid.
+
+	   Authorization server id
+
+	   Default: "default"
 	*/
 	Aid string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the create custom ID p params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateCustomIDPParams) WithDefaults() *CreateCustomIDPParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the create custom ID p params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateCustomIDPParams) SetDefaults() {
+	var (
+		aidDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := CreateCustomIDPParams{
+		Aid: aidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the create custom ID p params
@@ -176,7 +190,6 @@ func (o *CreateCustomIDPParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		return err
 	}
 	var res []error
-
 	if o.CustomIDP != nil {
 		if err := r.SetBodyParam(o.CustomIDP); err != nil {
 			return err

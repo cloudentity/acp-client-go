@@ -16,84 +16,97 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewListClientsSystemParams creates a new ListClientsSystemParams object
-// with the default values initialized.
+// NewListClientsSystemParams creates a new ListClientsSystemParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewListClientsSystemParams() *ListClientsSystemParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &ListClientsSystemParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewListClientsSystemParamsWithTimeout creates a new ListClientsSystemParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewListClientsSystemParamsWithTimeout(timeout time.Duration) *ListClientsSystemParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &ListClientsSystemParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewListClientsSystemParamsWithContext creates a new ListClientsSystemParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewListClientsSystemParamsWithContext(ctx context.Context) *ListClientsSystemParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &ListClientsSystemParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewListClientsSystemParamsWithHTTPClient creates a new ListClientsSystemParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewListClientsSystemParamsWithHTTPClient(client *http.Client) *ListClientsSystemParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &ListClientsSystemParams{
-		Aid:        aidDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*ListClientsSystemParams contains all the parameters to send to the API endpoint
-for the list clients system operation typically these are written to a http.Request
+/* ListClientsSystemParams contains all the parameters to send to the API endpoint
+   for the list clients system operation.
+
+   Typically these are written to a http.Request.
 */
 type ListClientsSystemParams struct {
 
-	/*Aid
-	  Authorization server id
+	/* Aid.
 
+	   Authorization server id
+
+	   Default: "default"
 	*/
 	Aid string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the list clients system params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ListClientsSystemParams) WithDefaults() *ListClientsSystemParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the list clients system params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ListClientsSystemParams) SetDefaults() {
+	var (
+		aidDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := ListClientsSystemParams{
+		Aid: aidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the list clients system params

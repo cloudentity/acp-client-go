@@ -19,78 +19,95 @@ import (
 	"github.com/cloudentity/acp-client-go/models"
 )
 
-// NewCreateAuthorizationServerParams creates a new CreateAuthorizationServerParams object
-// with the default values initialized.
+// NewCreateAuthorizationServerParams creates a new CreateAuthorizationServerParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewCreateAuthorizationServerParams() *CreateAuthorizationServerParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &CreateAuthorizationServerParams{
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewCreateAuthorizationServerParamsWithTimeout creates a new CreateAuthorizationServerParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewCreateAuthorizationServerParamsWithTimeout(timeout time.Duration) *CreateAuthorizationServerParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &CreateAuthorizationServerParams{
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewCreateAuthorizationServerParamsWithContext creates a new CreateAuthorizationServerParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewCreateAuthorizationServerParamsWithContext(ctx context.Context) *CreateAuthorizationServerParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &CreateAuthorizationServerParams{
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewCreateAuthorizationServerParamsWithHTTPClient creates a new CreateAuthorizationServerParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewCreateAuthorizationServerParamsWithHTTPClient(client *http.Client) *CreateAuthorizationServerParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &CreateAuthorizationServerParams{
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*CreateAuthorizationServerParams contains all the parameters to send to the API endpoint
-for the create authorization server operation typically these are written to a http.Request
+/* CreateAuthorizationServerParams contains all the parameters to send to the API endpoint
+   for the create authorization server operation.
+
+   Typically these are written to a http.Request.
 */
 type CreateAuthorizationServerParams struct {
 
-	/*Server*/
+	// Server.
 	Server *models.Server
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
-	/*WithDemoClient
-	  With demo client
 
+	/* WithDemoClient.
+
+	   With demo client
 	*/
 	WithDemoClient *bool
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the create authorization server params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateAuthorizationServerParams) WithDefaults() *CreateAuthorizationServerParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the create authorization server params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateAuthorizationServerParams) SetDefaults() {
+	var (
+		tidDefault = string("default")
+	)
+
+	val := CreateAuthorizationServerParams{
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the create authorization server params
@@ -166,7 +183,6 @@ func (o *CreateAuthorizationServerParams) WriteToRequest(r runtime.ClientRequest
 		return err
 	}
 	var res []error
-
 	if o.Server != nil {
 		if err := r.SetBodyParam(o.Server); err != nil {
 			return err
@@ -182,16 +198,17 @@ func (o *CreateAuthorizationServerParams) WriteToRequest(r runtime.ClientRequest
 
 		// query param with_demo_client
 		var qrWithDemoClient bool
+
 		if o.WithDemoClient != nil {
 			qrWithDemoClient = *o.WithDemoClient
 		}
 		qWithDemoClient := swag.FormatBool(qrWithDemoClient)
 		if qWithDemoClient != "" {
+
 			if err := r.SetQueryParam("with_demo_client", qWithDemoClient); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

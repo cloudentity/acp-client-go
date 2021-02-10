@@ -47,7 +47,6 @@ func (o *DeleteAPIReader) ReadResponse(response runtime.ClientResponse, consumer
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewDeleteAPINoContent() *DeleteAPINoContent {
 	return &DeleteAPINoContent{}
 }
 
-/*DeleteAPINoContent handles this case with default header values.
+/* DeleteAPINoContent describes a response with status code 204, with default header values.
 
 API has been deleted
 */
@@ -79,7 +78,7 @@ func NewDeleteAPIUnauthorized() *DeleteAPIUnauthorized {
 	return &DeleteAPIUnauthorized{}
 }
 
-/*DeleteAPIUnauthorized handles this case with default header values.
+/* DeleteAPIUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -90,7 +89,6 @@ type DeleteAPIUnauthorized struct {
 func (o *DeleteAPIUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/apis/{api}][%d] deleteApiUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *DeleteAPIUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -112,7 +110,7 @@ func NewDeleteAPIForbidden() *DeleteAPIForbidden {
 	return &DeleteAPIForbidden{}
 }
 
-/*DeleteAPIForbidden handles this case with default header values.
+/* DeleteAPIForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -123,7 +121,6 @@ type DeleteAPIForbidden struct {
 func (o *DeleteAPIForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/apis/{api}][%d] deleteApiForbidden  %+v", 403, o.Payload)
 }
-
 func (o *DeleteAPIForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -145,7 +142,7 @@ func NewDeleteAPINotFound() *DeleteAPINotFound {
 	return &DeleteAPINotFound{}
 }
 
-/*DeleteAPINotFound handles this case with default header values.
+/* DeleteAPINotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -156,7 +153,6 @@ type DeleteAPINotFound struct {
 func (o *DeleteAPINotFound) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/apis/{api}][%d] deleteApiNotFound  %+v", 404, o.Payload)
 }
-
 func (o *DeleteAPINotFound) GetPayload() *models.Error {
 	return o.Payload
 }

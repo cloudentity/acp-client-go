@@ -59,7 +59,6 @@ func (o *CreateAPIReader) ReadResponse(response runtime.ClientResponse, consumer
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -70,7 +69,7 @@ func NewCreateAPICreated() *CreateAPICreated {
 	return &CreateAPICreated{}
 }
 
-/*CreateAPICreated handles this case with default header values.
+/* CreateAPICreated describes a response with status code 201, with default header values.
 
 API
 */
@@ -81,7 +80,6 @@ type CreateAPICreated struct {
 func (o *CreateAPICreated) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/apis][%d] createApiCreated  %+v", 201, o.Payload)
 }
-
 func (o *CreateAPICreated) GetPayload() *models.API {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewCreateAPIBadRequest() *CreateAPIBadRequest {
 	return &CreateAPIBadRequest{}
 }
 
-/*CreateAPIBadRequest handles this case with default header values.
+/* CreateAPIBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -114,7 +112,6 @@ type CreateAPIBadRequest struct {
 func (o *CreateAPIBadRequest) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/apis][%d] createApiBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *CreateAPIBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -136,7 +133,7 @@ func NewCreateAPIUnauthorized() *CreateAPIUnauthorized {
 	return &CreateAPIUnauthorized{}
 }
 
-/*CreateAPIUnauthorized handles this case with default header values.
+/* CreateAPIUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,7 +144,6 @@ type CreateAPIUnauthorized struct {
 func (o *CreateAPIUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/apis][%d] createApiUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *CreateAPIUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -169,7 +165,7 @@ func NewCreateAPIForbidden() *CreateAPIForbidden {
 	return &CreateAPIForbidden{}
 }
 
-/*CreateAPIForbidden handles this case with default header values.
+/* CreateAPIForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -180,7 +176,6 @@ type CreateAPIForbidden struct {
 func (o *CreateAPIForbidden) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/apis][%d] createApiForbidden  %+v", 403, o.Payload)
 }
-
 func (o *CreateAPIForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -202,7 +197,7 @@ func NewCreateAPINotFound() *CreateAPINotFound {
 	return &CreateAPINotFound{}
 }
 
-/*CreateAPINotFound handles this case with default header values.
+/* CreateAPINotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -213,7 +208,6 @@ type CreateAPINotFound struct {
 func (o *CreateAPINotFound) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/apis][%d] createApiNotFound  %+v", 404, o.Payload)
 }
-
 func (o *CreateAPINotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +229,7 @@ func NewCreateAPIUnprocessableEntity() *CreateAPIUnprocessableEntity {
 	return &CreateAPIUnprocessableEntity{}
 }
 
-/*CreateAPIUnprocessableEntity handles this case with default header values.
+/* CreateAPIUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -246,7 +240,6 @@ type CreateAPIUnprocessableEntity struct {
 func (o *CreateAPIUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/apis][%d] createApiUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *CreateAPIUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

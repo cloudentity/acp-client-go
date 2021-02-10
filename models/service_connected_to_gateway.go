@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -20,27 +22,34 @@ type ServiceConnectedToGateway struct {
 	APIGroupID string `json:"api_group_id,omitempty"`
 
 	// service audience
+	// Example: https://api.example.com
 	Audience string `json:"audience,omitempty"`
 
 	// server id
+	// Example: default
 	AuthorizationServerID string `json:"authorization_server_id,omitempty"`
 
 	// service description
+	// Example: Service description
 	Description string `json:"description,omitempty"`
 
 	// gateway id
 	GatewayID string `json:"gateway_id,omitempty"`
 
 	// unique service id
+	// Example: 1
 	ID string `json:"id,omitempty"`
 
 	// service name
+	// Example: Sample service
 	Name string `json:"name,omitempty"`
 
 	// Is service a system service
+	// Example: false
 	System bool `json:"system,omitempty"`
 
 	// tenant id
+	// Example: default
 	TenantID string `json:"tenant_id,omitempty"`
 
 	// true if service has openapi 3 specification
@@ -65,13 +74,40 @@ func (m *ServiceConnectedToGateway) Validate(formats strfmt.Registry) error {
 }
 
 func (m *ServiceConnectedToGateway) validateAPIGroupMetadata(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.APIGroupMetadata) { // not required
 		return nil
 	}
 
 	if m.APIGroupMetadata != nil {
 		if err := m.APIGroupMetadata.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("api_group_metadata")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this service connected to gateway based on the context it is used
+func (m *ServiceConnectedToGateway) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateAPIGroupMetadata(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *ServiceConnectedToGateway) contextValidateAPIGroupMetadata(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.APIGroupMetadata != nil {
+		if err := m.APIGroupMetadata.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("api_group_metadata")
 			}

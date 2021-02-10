@@ -16,71 +16,86 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewListServersBindingsParams creates a new ListServersBindingsParams object
-// with the default values initialized.
+// NewListServersBindingsParams creates a new ListServersBindingsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewListServersBindingsParams() *ListServersBindingsParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &ListServersBindingsParams{
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewListServersBindingsParamsWithTimeout creates a new ListServersBindingsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewListServersBindingsParamsWithTimeout(timeout time.Duration) *ListServersBindingsParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &ListServersBindingsParams{
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewListServersBindingsParamsWithContext creates a new ListServersBindingsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewListServersBindingsParamsWithContext(ctx context.Context) *ListServersBindingsParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &ListServersBindingsParams{
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewListServersBindingsParamsWithHTTPClient creates a new ListServersBindingsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewListServersBindingsParamsWithHTTPClient(client *http.Client) *ListServersBindingsParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &ListServersBindingsParams{
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*ListServersBindingsParams contains all the parameters to send to the API endpoint
-for the list servers bindings operation typically these are written to a http.Request
+/* ListServersBindingsParams contains all the parameters to send to the API endpoint
+   for the list servers bindings operation.
+
+   Typically these are written to a http.Request.
 */
 type ListServersBindingsParams struct {
 
-	/*Tid
-	  Tenant id
+	/* Tid.
 
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the list servers bindings params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ListServersBindingsParams) WithDefaults() *ListServersBindingsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the list servers bindings params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ListServersBindingsParams) SetDefaults() {
+	var (
+		tidDefault = string("default")
+	)
+
+	val := ListServersBindingsParams{
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the list servers bindings params

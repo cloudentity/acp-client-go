@@ -18,75 +18,92 @@ import (
 	"github.com/cloudentity/acp-client-go/models"
 )
 
-// NewRejectAccountAccessConsentSystemParams creates a new RejectAccountAccessConsentSystemParams object
-// with the default values initialized.
+// NewRejectAccountAccessConsentSystemParams creates a new RejectAccountAccessConsentSystemParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewRejectAccountAccessConsentSystemParams() *RejectAccountAccessConsentSystemParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &RejectAccountAccessConsentSystemParams{
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewRejectAccountAccessConsentSystemParamsWithTimeout creates a new RejectAccountAccessConsentSystemParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewRejectAccountAccessConsentSystemParamsWithTimeout(timeout time.Duration) *RejectAccountAccessConsentSystemParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &RejectAccountAccessConsentSystemParams{
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewRejectAccountAccessConsentSystemParamsWithContext creates a new RejectAccountAccessConsentSystemParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewRejectAccountAccessConsentSystemParamsWithContext(ctx context.Context) *RejectAccountAccessConsentSystemParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &RejectAccountAccessConsentSystemParams{
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewRejectAccountAccessConsentSystemParamsWithHTTPClient creates a new RejectAccountAccessConsentSystemParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewRejectAccountAccessConsentSystemParamsWithHTTPClient(client *http.Client) *RejectAccountAccessConsentSystemParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &RejectAccountAccessConsentSystemParams{
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*RejectAccountAccessConsentSystemParams contains all the parameters to send to the API endpoint
-for the reject account access consent system operation typically these are written to a http.Request
+/* RejectAccountAccessConsentSystemParams contains all the parameters to send to the API endpoint
+   for the reject account access consent system operation.
+
+   Typically these are written to a http.Request.
 */
 type RejectAccountAccessConsentSystemParams struct {
 
-	/*RejectAccountAccessConsent*/
+	// RejectAccountAccessConsent.
 	RejectAccountAccessConsent *models.RejectAccountAccessConsentRequest
-	/*Login*/
-	LoginID string
-	/*Tid
-	  Tenant id
 
+	// Login.
+	LoginID string
+
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the reject account access consent system params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *RejectAccountAccessConsentSystemParams) WithDefaults() *RejectAccountAccessConsentSystemParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the reject account access consent system params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *RejectAccountAccessConsentSystemParams) SetDefaults() {
+	var (
+		tidDefault = string("default")
+	)
+
+	val := RejectAccountAccessConsentSystemParams{
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the reject account access consent system params
@@ -162,7 +179,6 @@ func (o *RejectAccountAccessConsentSystemParams) WriteToRequest(r runtime.Client
 		return err
 	}
 	var res []error
-
 	if o.RejectAccountAccessConsent != nil {
 		if err := r.SetBodyParam(o.RejectAccountAccessConsent); err != nil {
 			return err

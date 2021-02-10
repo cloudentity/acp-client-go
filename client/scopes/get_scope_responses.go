@@ -47,7 +47,6 @@ func (o *GetScopeReader) ReadResponse(response runtime.ClientResponse, consumer 
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewGetScopeOK() *GetScopeOK {
 	return &GetScopeOK{}
 }
 
-/*GetScopeOK handles this case with default header values.
+/* GetScopeOK describes a response with status code 200, with default header values.
 
 ScopeWithService
 */
@@ -69,7 +68,6 @@ type GetScopeOK struct {
 func (o *GetScopeOK) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/scopes/{scp}][%d] getScopeOK  %+v", 200, o.Payload)
 }
-
 func (o *GetScopeOK) GetPayload() *models.ScopeWithService {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewGetScopeUnauthorized() *GetScopeUnauthorized {
 	return &GetScopeUnauthorized{}
 }
 
-/*GetScopeUnauthorized handles this case with default header values.
+/* GetScopeUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -102,7 +100,6 @@ type GetScopeUnauthorized struct {
 func (o *GetScopeUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/scopes/{scp}][%d] getScopeUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *GetScopeUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -124,7 +121,7 @@ func NewGetScopeForbidden() *GetScopeForbidden {
 	return &GetScopeForbidden{}
 }
 
-/*GetScopeForbidden handles this case with default header values.
+/* GetScopeForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,7 +132,6 @@ type GetScopeForbidden struct {
 func (o *GetScopeForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/scopes/{scp}][%d] getScopeForbidden  %+v", 403, o.Payload)
 }
-
 func (o *GetScopeForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -157,7 +153,7 @@ func NewGetScopeNotFound() *GetScopeNotFound {
 	return &GetScopeNotFound{}
 }
 
-/*GetScopeNotFound handles this case with default header values.
+/* GetScopeNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -168,7 +164,6 @@ type GetScopeNotFound struct {
 func (o *GetScopeNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/scopes/{scp}][%d] getScopeNotFound  %+v", 404, o.Payload)
 }
-
 func (o *GetScopeNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

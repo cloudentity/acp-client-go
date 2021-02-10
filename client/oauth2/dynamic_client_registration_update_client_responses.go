@@ -53,7 +53,6 @@ func (o *DynamicClientRegistrationUpdateClientReader) ReadResponse(response runt
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -64,7 +63,7 @@ func NewDynamicClientRegistrationUpdateClientOK() *DynamicClientRegistrationUpda
 	return &DynamicClientRegistrationUpdateClientOK{}
 }
 
-/*DynamicClientRegistrationUpdateClientOK handles this case with default header values.
+/* DynamicClientRegistrationUpdateClientOK describes a response with status code 200, with default header values.
 
 DynamicClientRegistrationResponse
 */
@@ -75,7 +74,6 @@ type DynamicClientRegistrationUpdateClientOK struct {
 func (o *DynamicClientRegistrationUpdateClientOK) Error() string {
 	return fmt.Sprintf("[PUT /{tid}/{aid}/oauth2/register/{cid}][%d] dynamicClientRegistrationUpdateClientOK  %+v", 200, o.Payload)
 }
-
 func (o *DynamicClientRegistrationUpdateClientOK) GetPayload() *models.DynamicClientRegistrationResponse {
 	return o.Payload
 }
@@ -97,7 +95,7 @@ func NewDynamicClientRegistrationUpdateClientBadRequest() *DynamicClientRegistra
 	return &DynamicClientRegistrationUpdateClientBadRequest{}
 }
 
-/*DynamicClientRegistrationUpdateClientBadRequest handles this case with default header values.
+/* DynamicClientRegistrationUpdateClientBadRequest describes a response with status code 400, with default header values.
 
 RFC6749Error
 */
@@ -108,7 +106,6 @@ type DynamicClientRegistrationUpdateClientBadRequest struct {
 func (o *DynamicClientRegistrationUpdateClientBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /{tid}/{aid}/oauth2/register/{cid}][%d] dynamicClientRegistrationUpdateClientBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *DynamicClientRegistrationUpdateClientBadRequest) GetPayload() *models.RFC6749Error {
 	return o.Payload
 }
@@ -130,7 +127,7 @@ func NewDynamicClientRegistrationUpdateClientUnauthorized() *DynamicClientRegist
 	return &DynamicClientRegistrationUpdateClientUnauthorized{}
 }
 
-/*DynamicClientRegistrationUpdateClientUnauthorized handles this case with default header values.
+/* DynamicClientRegistrationUpdateClientUnauthorized describes a response with status code 401, with default header values.
 
 RFC6749Error
 */
@@ -141,7 +138,6 @@ type DynamicClientRegistrationUpdateClientUnauthorized struct {
 func (o *DynamicClientRegistrationUpdateClientUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /{tid}/{aid}/oauth2/register/{cid}][%d] dynamicClientRegistrationUpdateClientUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *DynamicClientRegistrationUpdateClientUnauthorized) GetPayload() *models.RFC6749Error {
 	return o.Payload
 }
@@ -163,7 +159,7 @@ func NewDynamicClientRegistrationUpdateClientForbidden() *DynamicClientRegistrat
 	return &DynamicClientRegistrationUpdateClientForbidden{}
 }
 
-/*DynamicClientRegistrationUpdateClientForbidden handles this case with default header values.
+/* DynamicClientRegistrationUpdateClientForbidden describes a response with status code 403, with default header values.
 
 RFC6749Error
 */
@@ -174,7 +170,6 @@ type DynamicClientRegistrationUpdateClientForbidden struct {
 func (o *DynamicClientRegistrationUpdateClientForbidden) Error() string {
 	return fmt.Sprintf("[PUT /{tid}/{aid}/oauth2/register/{cid}][%d] dynamicClientRegistrationUpdateClientForbidden  %+v", 403, o.Payload)
 }
-
 func (o *DynamicClientRegistrationUpdateClientForbidden) GetPayload() *models.RFC6749Error {
 	return o.Payload
 }
@@ -196,7 +191,7 @@ func NewDynamicClientRegistrationUpdateClientNotFound() *DynamicClientRegistrati
 	return &DynamicClientRegistrationUpdateClientNotFound{}
 }
 
-/*DynamicClientRegistrationUpdateClientNotFound handles this case with default header values.
+/* DynamicClientRegistrationUpdateClientNotFound describes a response with status code 404, with default header values.
 
 genericError
 */
@@ -207,7 +202,6 @@ type DynamicClientRegistrationUpdateClientNotFound struct {
 func (o *DynamicClientRegistrationUpdateClientNotFound) Error() string {
 	return fmt.Sprintf("[PUT /{tid}/{aid}/oauth2/register/{cid}][%d] dynamicClientRegistrationUpdateClientNotFound  %+v", 404, o.Payload)
 }
-
 func (o *DynamicClientRegistrationUpdateClientNotFound) GetPayload() *models.GenericError {
 	return o.Payload
 }

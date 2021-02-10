@@ -77,7 +77,6 @@ func (o *CreateAccountAccessConsentRequestReader) ReadResponse(response runtime.
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -88,7 +87,7 @@ func NewCreateAccountAccessConsentRequestCreated() *CreateAccountAccessConsentRe
 	return &CreateAccountAccessConsentRequestCreated{}
 }
 
-/*CreateAccountAccessConsentRequestCreated handles this case with default header values.
+/* CreateAccountAccessConsentRequestCreated describes a response with status code 201, with default header values.
 
 AccountAccessConsentResponse
 */
@@ -99,7 +98,6 @@ type CreateAccountAccessConsentRequestCreated struct {
 func (o *CreateAccountAccessConsentRequestCreated) Error() string {
 	return fmt.Sprintf("[POST /{tid}/{aid}/open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestCreated  %+v", 201, o.Payload)
 }
-
 func (o *CreateAccountAccessConsentRequestCreated) GetPayload() *models.AccountAccessConsentResponse {
 	return o.Payload
 }
@@ -121,7 +119,7 @@ func NewCreateAccountAccessConsentRequestBadRequest() *CreateAccountAccessConsen
 	return &CreateAccountAccessConsentRequestBadRequest{}
 }
 
-/*CreateAccountAccessConsentRequestBadRequest handles this case with default header values.
+/* CreateAccountAccessConsentRequestBadRequest describes a response with status code 400, with default header values.
 
 ErrorResponse
 */
@@ -132,7 +130,6 @@ type CreateAccountAccessConsentRequestBadRequest struct {
 func (o *CreateAccountAccessConsentRequestBadRequest) Error() string {
 	return fmt.Sprintf("[POST /{tid}/{aid}/open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *CreateAccountAccessConsentRequestBadRequest) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -154,7 +151,7 @@ func NewCreateAccountAccessConsentRequestUnauthorized() *CreateAccountAccessCons
 	return &CreateAccountAccessConsentRequestUnauthorized{}
 }
 
-/*CreateAccountAccessConsentRequestUnauthorized handles this case with default header values.
+/* CreateAccountAccessConsentRequestUnauthorized describes a response with status code 401, with default header values.
 
 ErrorResponse
 */
@@ -165,7 +162,6 @@ type CreateAccountAccessConsentRequestUnauthorized struct {
 func (o *CreateAccountAccessConsentRequestUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /{tid}/{aid}/open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *CreateAccountAccessConsentRequestUnauthorized) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -187,7 +183,7 @@ func NewCreateAccountAccessConsentRequestForbidden() *CreateAccountAccessConsent
 	return &CreateAccountAccessConsentRequestForbidden{}
 }
 
-/*CreateAccountAccessConsentRequestForbidden handles this case with default header values.
+/* CreateAccountAccessConsentRequestForbidden describes a response with status code 403, with default header values.
 
 ErrorResponse
 */
@@ -198,7 +194,6 @@ type CreateAccountAccessConsentRequestForbidden struct {
 func (o *CreateAccountAccessConsentRequestForbidden) Error() string {
 	return fmt.Sprintf("[POST /{tid}/{aid}/open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestForbidden  %+v", 403, o.Payload)
 }
-
 func (o *CreateAccountAccessConsentRequestForbidden) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -220,7 +215,7 @@ func NewCreateAccountAccessConsentRequestMethodNotAllowed() *CreateAccountAccess
 	return &CreateAccountAccessConsentRequestMethodNotAllowed{}
 }
 
-/*CreateAccountAccessConsentRequestMethodNotAllowed handles this case with default header values.
+/* CreateAccountAccessConsentRequestMethodNotAllowed describes a response with status code 405, with default header values.
 
 ErrorResponse
 */
@@ -231,7 +226,6 @@ type CreateAccountAccessConsentRequestMethodNotAllowed struct {
 func (o *CreateAccountAccessConsentRequestMethodNotAllowed) Error() string {
 	return fmt.Sprintf("[POST /{tid}/{aid}/open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestMethodNotAllowed  %+v", 405, o.Payload)
 }
-
 func (o *CreateAccountAccessConsentRequestMethodNotAllowed) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -253,7 +247,7 @@ func NewCreateAccountAccessConsentRequestNotAcceptable() *CreateAccountAccessCon
 	return &CreateAccountAccessConsentRequestNotAcceptable{}
 }
 
-/*CreateAccountAccessConsentRequestNotAcceptable handles this case with default header values.
+/* CreateAccountAccessConsentRequestNotAcceptable describes a response with status code 406, with default header values.
 
 ErrorResponse
 */
@@ -264,7 +258,6 @@ type CreateAccountAccessConsentRequestNotAcceptable struct {
 func (o *CreateAccountAccessConsentRequestNotAcceptable) Error() string {
 	return fmt.Sprintf("[POST /{tid}/{aid}/open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestNotAcceptable  %+v", 406, o.Payload)
 }
-
 func (o *CreateAccountAccessConsentRequestNotAcceptable) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -286,7 +279,7 @@ func NewCreateAccountAccessConsentRequestUnsupportedMediaType() *CreateAccountAc
 	return &CreateAccountAccessConsentRequestUnsupportedMediaType{}
 }
 
-/*CreateAccountAccessConsentRequestUnsupportedMediaType handles this case with default header values.
+/* CreateAccountAccessConsentRequestUnsupportedMediaType describes a response with status code 415, with default header values.
 
 ErrorResponse
 */
@@ -297,7 +290,6 @@ type CreateAccountAccessConsentRequestUnsupportedMediaType struct {
 func (o *CreateAccountAccessConsentRequestUnsupportedMediaType) Error() string {
 	return fmt.Sprintf("[POST /{tid}/{aid}/open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestUnsupportedMediaType  %+v", 415, o.Payload)
 }
-
 func (o *CreateAccountAccessConsentRequestUnsupportedMediaType) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -319,7 +311,7 @@ func NewCreateAccountAccessConsentRequestTooManyRequests() *CreateAccountAccessC
 	return &CreateAccountAccessConsentRequestTooManyRequests{}
 }
 
-/*CreateAccountAccessConsentRequestTooManyRequests handles this case with default header values.
+/* CreateAccountAccessConsentRequestTooManyRequests describes a response with status code 429, with default header values.
 
 ErrorResponse
 */
@@ -330,7 +322,6 @@ type CreateAccountAccessConsentRequestTooManyRequests struct {
 func (o *CreateAccountAccessConsentRequestTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /{tid}/{aid}/open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestTooManyRequests  %+v", 429, o.Payload)
 }
-
 func (o *CreateAccountAccessConsentRequestTooManyRequests) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -352,7 +343,7 @@ func NewCreateAccountAccessConsentRequestInternalServerError() *CreateAccountAcc
 	return &CreateAccountAccessConsentRequestInternalServerError{}
 }
 
-/*CreateAccountAccessConsentRequestInternalServerError handles this case with default header values.
+/* CreateAccountAccessConsentRequestInternalServerError describes a response with status code 500, with default header values.
 
 ErrorResponse
 */
@@ -363,7 +354,6 @@ type CreateAccountAccessConsentRequestInternalServerError struct {
 func (o *CreateAccountAccessConsentRequestInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /{tid}/{aid}/open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestInternalServerError  %+v", 500, o.Payload)
 }
-
 func (o *CreateAccountAccessConsentRequestInternalServerError) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

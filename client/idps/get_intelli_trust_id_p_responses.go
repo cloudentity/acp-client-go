@@ -47,7 +47,6 @@ func (o *GetIntelliTrustIDPReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewGetIntelliTrustIDPOK() *GetIntelliTrustIDPOK {
 	return &GetIntelliTrustIDPOK{}
 }
 
-/*GetIntelliTrustIDPOK handles this case with default header values.
+/* GetIntelliTrustIDPOK describes a response with status code 200, with default header values.
 
 IntelliTrustIDP
 */
@@ -69,7 +68,6 @@ type GetIntelliTrustIDPOK struct {
 func (o *GetIntelliTrustIDPOK) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps/intelli_trust/{iid}][%d] getIntelliTrustIdPOK  %+v", 200, o.Payload)
 }
-
 func (o *GetIntelliTrustIDPOK) GetPayload() *models.IntelliTrustIDP {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewGetIntelliTrustIDPUnauthorized() *GetIntelliTrustIDPUnauthorized {
 	return &GetIntelliTrustIDPUnauthorized{}
 }
 
-/*GetIntelliTrustIDPUnauthorized handles this case with default header values.
+/* GetIntelliTrustIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -102,7 +100,6 @@ type GetIntelliTrustIDPUnauthorized struct {
 func (o *GetIntelliTrustIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps/intelli_trust/{iid}][%d] getIntelliTrustIdPUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *GetIntelliTrustIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -124,7 +121,7 @@ func NewGetIntelliTrustIDPForbidden() *GetIntelliTrustIDPForbidden {
 	return &GetIntelliTrustIDPForbidden{}
 }
 
-/*GetIntelliTrustIDPForbidden handles this case with default header values.
+/* GetIntelliTrustIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,7 +132,6 @@ type GetIntelliTrustIDPForbidden struct {
 func (o *GetIntelliTrustIDPForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps/intelli_trust/{iid}][%d] getIntelliTrustIdPForbidden  %+v", 403, o.Payload)
 }
-
 func (o *GetIntelliTrustIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -157,7 +153,7 @@ func NewGetIntelliTrustIDPNotFound() *GetIntelliTrustIDPNotFound {
 	return &GetIntelliTrustIDPNotFound{}
 }
 
-/*GetIntelliTrustIDPNotFound handles this case with default header values.
+/* GetIntelliTrustIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -168,7 +164,6 @@ type GetIntelliTrustIDPNotFound struct {
 func (o *GetIntelliTrustIDPNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps/intelli_trust/{iid}][%d] getIntelliTrustIdPNotFound  %+v", 404, o.Payload)
 }
-
 func (o *GetIntelliTrustIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

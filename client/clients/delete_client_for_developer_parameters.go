@@ -16,97 +16,108 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewDeleteClientForDeveloperParams creates a new DeleteClientForDeveloperParams object
-// with the default values initialized.
+// NewDeleteClientForDeveloperParams creates a new DeleteClientForDeveloperParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewDeleteClientForDeveloperParams() *DeleteClientForDeveloperParams {
-	var (
-		aidDefault = string("developer")
-		cidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &DeleteClientForDeveloperParams{
-		Aid: aidDefault,
-		Cid: cidDefault,
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewDeleteClientForDeveloperParamsWithTimeout creates a new DeleteClientForDeveloperParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewDeleteClientForDeveloperParamsWithTimeout(timeout time.Duration) *DeleteClientForDeveloperParams {
-	var (
-		aidDefault = string("developer")
-		cidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &DeleteClientForDeveloperParams{
-		Aid: aidDefault,
-		Cid: cidDefault,
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewDeleteClientForDeveloperParamsWithContext creates a new DeleteClientForDeveloperParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewDeleteClientForDeveloperParamsWithContext(ctx context.Context) *DeleteClientForDeveloperParams {
-	var (
-		aidDefault = string("developer")
-		cidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &DeleteClientForDeveloperParams{
-		Aid: aidDefault,
-		Cid: cidDefault,
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewDeleteClientForDeveloperParamsWithHTTPClient creates a new DeleteClientForDeveloperParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewDeleteClientForDeveloperParamsWithHTTPClient(client *http.Client) *DeleteClientForDeveloperParams {
-	var (
-		aidDefault = string("developer")
-		cidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &DeleteClientForDeveloperParams{
-		Aid:        aidDefault,
-		Cid:        cidDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*DeleteClientForDeveloperParams contains all the parameters to send to the API endpoint
-for the delete client for developer operation typically these are written to a http.Request
+/* DeleteClientForDeveloperParams contains all the parameters to send to the API endpoint
+   for the delete client for developer operation.
+
+   Typically these are written to a http.Request.
 */
 type DeleteClientForDeveloperParams struct {
 
-	/*Aid
-	  Developer server id
+	/* Aid.
 
+	   Developer server id
+
+	   Default: "developer"
 	*/
 	Aid string
-	/*Cid
-	  Client id
 
+	/* Cid.
+
+	   Client id
+
+	   Default: "default"
 	*/
 	Cid string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the delete client for developer params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteClientForDeveloperParams) WithDefaults() *DeleteClientForDeveloperParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the delete client for developer params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteClientForDeveloperParams) SetDefaults() {
+	var (
+		aidDefault = string("developer")
+
+		cidDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := DeleteClientForDeveloperParams{
+		Aid: aidDefault,
+		Cid: cidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the delete client for developer params

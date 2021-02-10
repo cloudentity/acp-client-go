@@ -17,94 +17,113 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// NewListPrivacyLedgerEventsParams creates a new ListPrivacyLedgerEventsParams object
-// with the default values initialized.
+// NewListPrivacyLedgerEventsParams creates a new ListPrivacyLedgerEventsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewListPrivacyLedgerEventsParams() *ListPrivacyLedgerEventsParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &ListPrivacyLedgerEventsParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewListPrivacyLedgerEventsParamsWithTimeout creates a new ListPrivacyLedgerEventsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewListPrivacyLedgerEventsParamsWithTimeout(timeout time.Duration) *ListPrivacyLedgerEventsParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &ListPrivacyLedgerEventsParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewListPrivacyLedgerEventsParamsWithContext creates a new ListPrivacyLedgerEventsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewListPrivacyLedgerEventsParamsWithContext(ctx context.Context) *ListPrivacyLedgerEventsParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &ListPrivacyLedgerEventsParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewListPrivacyLedgerEventsParamsWithHTTPClient creates a new ListPrivacyLedgerEventsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewListPrivacyLedgerEventsParamsWithHTTPClient(client *http.Client) *ListPrivacyLedgerEventsParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &ListPrivacyLedgerEventsParams{
-		Aid:        aidDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*ListPrivacyLedgerEventsParams contains all the parameters to send to the API endpoint
-for the list privacy ledger events operation typically these are written to a http.Request
+/* ListPrivacyLedgerEventsParams contains all the parameters to send to the API endpoint
+   for the list privacy ledger events operation.
+
+   Typically these are written to a http.Request.
 */
 type ListPrivacyLedgerEventsParams struct {
 
-	/*Aid
-	  Authorization server id
+	/* Aid.
 
+	   Authorization server id
+
+	   Default: "default"
 	*/
 	Aid string
-	/*From
-	  Query events from timestamp (default 0)
 
+	/* From.
+
+	   Query events from timestamp (default 0)
+
+	   Format: int64
 	*/
 	From *int64
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
-	/*To
-	  Query events to timestamp (default current time)
 
+	/* To.
+
+	   Query events to timestamp (default current time)
+
+	   Format: int64
 	*/
 	To *int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the list privacy ledger events params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ListPrivacyLedgerEventsParams) WithDefaults() *ListPrivacyLedgerEventsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the list privacy ledger events params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ListPrivacyLedgerEventsParams) SetDefaults() {
+	var (
+		aidDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := ListPrivacyLedgerEventsParams{
+		Aid: aidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the list privacy ledger events params
@@ -201,16 +220,17 @@ func (o *ListPrivacyLedgerEventsParams) WriteToRequest(r runtime.ClientRequest, 
 
 		// query param from
 		var qrFrom int64
+
 		if o.From != nil {
 			qrFrom = *o.From
 		}
 		qFrom := swag.FormatInt64(qrFrom)
 		if qFrom != "" {
+
 			if err := r.SetQueryParam("from", qFrom); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	// path param tid
@@ -222,16 +242,17 @@ func (o *ListPrivacyLedgerEventsParams) WriteToRequest(r runtime.ClientRequest, 
 
 		// query param to
 		var qrTo int64
+
 		if o.To != nil {
 			qrTo = *o.To
 		}
 		qTo := swag.FormatInt64(qrTo)
 		if qTo != "" {
+
 			if err := r.SetQueryParam("to", qTo); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

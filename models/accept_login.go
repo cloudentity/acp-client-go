@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -34,6 +36,7 @@ type AcceptLogin struct {
 	LoginState string `json:"login_state,omitempty"`
 
 	// user identifier
+	// Example: user
 	Subject string `json:"subject,omitempty"`
 
 	// authentication context
@@ -59,7 +62,6 @@ func (m *AcceptLogin) Validate(formats strfmt.Registry) error {
 }
 
 func (m *AcceptLogin) validateAuthTime(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.AuthTime) { // not required
 		return nil
 	}
@@ -72,12 +74,39 @@ func (m *AcceptLogin) validateAuthTime(formats strfmt.Registry) error {
 }
 
 func (m *AcceptLogin) validateAuthenticationContext(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.AuthenticationContext) { // not required
 		return nil
 	}
 
-	if err := m.AuthenticationContext.Validate(formats); err != nil {
+	if m.AuthenticationContext != nil {
+		if err := m.AuthenticationContext.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("authentication_context")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this accept login based on the context it is used
+func (m *AcceptLogin) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateAuthenticationContext(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *AcceptLogin) contextValidateAuthenticationContext(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.AuthenticationContext.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("authentication_context")
 		}

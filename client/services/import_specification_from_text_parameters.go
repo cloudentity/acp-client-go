@@ -16,75 +16,92 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewImportSpecificationFromTextParams creates a new ImportSpecificationFromTextParams object
-// with the default values initialized.
+// NewImportSpecificationFromTextParams creates a new ImportSpecificationFromTextParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewImportSpecificationFromTextParams() *ImportSpecificationFromTextParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &ImportSpecificationFromTextParams{
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewImportSpecificationFromTextParamsWithTimeout creates a new ImportSpecificationFromTextParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewImportSpecificationFromTextParamsWithTimeout(timeout time.Duration) *ImportSpecificationFromTextParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &ImportSpecificationFromTextParams{
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewImportSpecificationFromTextParamsWithContext creates a new ImportSpecificationFromTextParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewImportSpecificationFromTextParamsWithContext(ctx context.Context) *ImportSpecificationFromTextParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &ImportSpecificationFromTextParams{
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewImportSpecificationFromTextParamsWithHTTPClient creates a new ImportSpecificationFromTextParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewImportSpecificationFromTextParamsWithHTTPClient(client *http.Client) *ImportSpecificationFromTextParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &ImportSpecificationFromTextParams{
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*ImportSpecificationFromTextParams contains all the parameters to send to the API endpoint
-for the import specification from text operation typically these are written to a http.Request
+/* ImportSpecificationFromTextParams contains all the parameters to send to the API endpoint
+   for the import specification from text operation.
+
+   Typically these are written to a http.Request.
 */
 type ImportSpecificationFromTextParams struct {
 
-	/*Sid*/
+	// Sid.
 	Sid string
-	/*Text*/
-	Text string
-	/*Tid
-	  Tenant id
 
+	// Text.
+	Text string
+
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the import specification from text params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ImportSpecificationFromTextParams) WithDefaults() *ImportSpecificationFromTextParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the import specification from text params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ImportSpecificationFromTextParams) SetDefaults() {
+	var (
+		tidDefault = string("default")
+	)
+
+	val := ImportSpecificationFromTextParams{
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the import specification from text params
@@ -165,7 +182,6 @@ func (o *ImportSpecificationFromTextParams) WriteToRequest(r runtime.ClientReque
 	if err := r.SetPathParam("sid", o.Sid); err != nil {
 		return err
 	}
-
 	if err := r.SetBodyParam(o.Text); err != nil {
 		return err
 	}

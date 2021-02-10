@@ -18,73 +18,89 @@ import (
 	"github.com/cloudentity/acp-client-go/models"
 )
 
-// NewCreateConsentActionParams creates a new CreateConsentActionParams object
-// with the default values initialized.
+// NewCreateConsentActionParams creates a new CreateConsentActionParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewCreateConsentActionParams() *CreateConsentActionParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &CreateConsentActionParams{
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewCreateConsentActionParamsWithTimeout creates a new CreateConsentActionParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewCreateConsentActionParamsWithTimeout(timeout time.Duration) *CreateConsentActionParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &CreateConsentActionParams{
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewCreateConsentActionParamsWithContext creates a new CreateConsentActionParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewCreateConsentActionParamsWithContext(ctx context.Context) *CreateConsentActionParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &CreateConsentActionParams{
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewCreateConsentActionParamsWithHTTPClient creates a new CreateConsentActionParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewCreateConsentActionParamsWithHTTPClient(client *http.Client) *CreateConsentActionParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &CreateConsentActionParams{
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*CreateConsentActionParams contains all the parameters to send to the API endpoint
-for the create consent action operation typically these are written to a http.Request
+/* CreateConsentActionParams contains all the parameters to send to the API endpoint
+   for the create consent action operation.
+
+   Typically these are written to a http.Request.
 */
 type CreateConsentActionParams struct {
 
-	/*ConsentAction*/
+	// ConsentAction.
 	ConsentAction *models.ConsentActionWithConsents
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the create consent action params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateConsentActionParams) WithDefaults() *CreateConsentActionParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the create consent action params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateConsentActionParams) SetDefaults() {
+	var (
+		tidDefault = string("default")
+	)
+
+	val := CreateConsentActionParams{
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the create consent action params
@@ -149,7 +165,6 @@ func (o *CreateConsentActionParams) WriteToRequest(r runtime.ClientRequest, reg 
 		return err
 	}
 	var res []error
-
 	if o.ConsentAction != nil {
 		if err := r.SetBodyParam(o.ConsentAction); err != nil {
 			return err

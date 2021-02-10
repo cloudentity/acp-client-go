@@ -16,89 +16,103 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewListUserConsentsByActionSystemParams creates a new ListUserConsentsByActionSystemParams object
-// with the default values initialized.
+// NewListUserConsentsByActionSystemParams creates a new ListUserConsentsByActionSystemParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewListUserConsentsByActionSystemParams() *ListUserConsentsByActionSystemParams {
-	var (
-		actionDefault = string("default")
-		tidDefault    = string("default")
-	)
 	return &ListUserConsentsByActionSystemParams{
-		Action: actionDefault,
-		Tid:    tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewListUserConsentsByActionSystemParamsWithTimeout creates a new ListUserConsentsByActionSystemParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewListUserConsentsByActionSystemParamsWithTimeout(timeout time.Duration) *ListUserConsentsByActionSystemParams {
-	var (
-		actionDefault = string("default")
-		tidDefault    = string("default")
-	)
 	return &ListUserConsentsByActionSystemParams{
-		Action: actionDefault,
-		Tid:    tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewListUserConsentsByActionSystemParamsWithContext creates a new ListUserConsentsByActionSystemParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewListUserConsentsByActionSystemParamsWithContext(ctx context.Context) *ListUserConsentsByActionSystemParams {
-	var (
-		actionDefault = string("default")
-		tidDefault    = string("default")
-	)
 	return &ListUserConsentsByActionSystemParams{
-		Action: actionDefault,
-		Tid:    tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewListUserConsentsByActionSystemParamsWithHTTPClient creates a new ListUserConsentsByActionSystemParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewListUserConsentsByActionSystemParamsWithHTTPClient(client *http.Client) *ListUserConsentsByActionSystemParams {
-	var (
-		actionDefault = string("default")
-		tidDefault    = string("default")
-	)
 	return &ListUserConsentsByActionSystemParams{
-		Action:     actionDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*ListUserConsentsByActionSystemParams contains all the parameters to send to the API endpoint
-for the list user consents by action system operation typically these are written to a http.Request
+/* ListUserConsentsByActionSystemParams contains all the parameters to send to the API endpoint
+   for the list user consents by action system operation.
+
+   Typically these are written to a http.Request.
 */
 type ListUserConsentsByActionSystemParams struct {
 
-	/*Action
-	  Consent action id
+	/* Action.
 
+	   Consent action id
+
+	   Default: "default"
 	*/
 	Action string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
-	/*XSubject
-	  user identifier
 
+	/* XSubject.
+
+	   user identifier
 	*/
 	Subject *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the list user consents by action system params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ListUserConsentsByActionSystemParams) WithDefaults() *ListUserConsentsByActionSystemParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the list user consents by action system params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ListUserConsentsByActionSystemParams) SetDefaults() {
+	var (
+		actionDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := ListUserConsentsByActionSystemParams{
+		Action: actionDefault,
+		Tid:    tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the list user consents by action system params
@@ -191,7 +205,6 @@ func (o *ListUserConsentsByActionSystemParams) WriteToRequest(r runtime.ClientRe
 		if err := r.SetHeaderParam("x-subject", *o.Subject); err != nil {
 			return err
 		}
-
 	}
 
 	if len(res) > 0 {
