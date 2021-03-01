@@ -21,6 +21,9 @@ type Styling struct {
 	// font URL
 	FontURL string `json:"font_url,omitempty"`
 
+	// logo size
+	LogoSize string `json:"logo_size,omitempty"`
+
 	// logo URL
 	LogoURL string `json:"logo_url,omitempty"`
 
@@ -118,21 +121,6 @@ type Colors struct {
 
 	// primary
 	Primary string `json:"primary,omitempty"`
-
-	// primary dark
-	PrimaryDark string `json:"primary_dark,omitempty"`
-
-	// primary light
-	PrimaryLight string `json:"primary_light,omitempty"`
-
-	// secondary
-	Secondary string `json:"secondary,omitempty"`
-
-	// secondary dark
-	SecondaryDark string `json:"secondary_dark,omitempty"`
-
-	// secondary light
-	SecondaryLight string `json:"secondary_light,omitempty"`
 }
 
 // Validate validates this colors

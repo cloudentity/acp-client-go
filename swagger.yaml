@@ -8,7 +8,7 @@ swagger: "2.0"
 info:
   description: Cloudentity Authorization Control Plane API
   title: Cloudentity Authorization Control Plane API
-  version: 1.7.0
+  version: 1.8.0
 host: localhost:8443
 basePath: /
 paths:
@@ -5458,7 +5458,6 @@ paths:
       - type: string
         format: insertMode
         x-go-name: Mode
-        description: Insert mode
         name: mode
         in: query
       responses:
@@ -5481,6 +5480,57 @@ paths:
           schema:
             $ref: '#/definitions/Error'
         "409":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "422":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+    patch:
+      security:
+      - setup: []
+      description: Patch tenant configuration using RFC 6902 JSON Patch.
+      tags:
+      - tenants
+      summary: Patch configuration
+      operationId: patchConfiguration
+      parameters:
+      - type: string
+        default: default
+        x-go-name: Tid
+        description: Tenant id
+        name: tid
+        in: query
+      - name: Patch
+        in: body
+        schema:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: object
+      - type: string
+        format: insertMode
+        x-go-name: Mode
+        name: mode
+        in: query
+      responses:
+        "204":
+          description: ' patch applied'
+        "400":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "401":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "403":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
           description: HttpError
           schema:
             $ref: '#/definitions/Error'
@@ -16078,9 +16128,16 @@ definitions:
       action:
         type: string
         x-go-name: Action
-      display_name:
+      count:
+        type: integer
+        format: int64
+        x-go-name: Count
+      primary_name:
         type: string
-        x-go-name: DisplayName
+        x-go-name: PrimaryName
+      secondary_name:
+        type: string
+        x-go-name: SecondaryName
       subject:
         type: string
         x-go-name: Subject
@@ -17556,10 +17613,10 @@ definitions:
   Stats:
     type: object
     properties:
-      active_tokens:
+      all_access_tokens:
         type: integer
         format: int64
-        x-go-name: ActiveTokens
+        x-go-name: AllAccessTokens
       apis:
         type: integer
         format: int64
@@ -17568,6 +17625,10 @@ definitions:
         type: integer
         format: int64
         x-go-name: Applications
+      machine_access_tokens:
+        type: integer
+        format: int64
+        x-go-name: MachineAccessToken
       scopes:
         type: integer
         format: int64
@@ -17576,6 +17637,10 @@ definitions:
         type: integer
         format: int64
         x-go-name: Services
+      user_access_tokens:
+        type: integer
+        format: int64
+        x-go-name: UserAccessToken
     x-go-package: github.com/cloudentity/acp/internal/domain
   Styling:
     type: object
@@ -17592,25 +17657,13 @@ definitions:
           primary:
             type: string
             x-go-name: Primary
-          primary_dark:
-            type: string
-            x-go-name: PrimaryDark
-          primary_light:
-            type: string
-            x-go-name: PrimaryLight
-          secondary:
-            type: string
-            x-go-name: Secondary
-          secondary_dark:
-            type: string
-            x-go-name: SecondaryDark
-          secondary_light:
-            type: string
-            x-go-name: SecondaryLight
         x-go-name: Colors
       font_url:
         type: string
         x-go-name: FontURL
+      logo_size:
+        type: string
+        x-go-name: LogoSize
       logo_url:
         type: string
         x-go-name: LogoURL

@@ -20,8 +20,14 @@ type RecentActivityPayload struct {
 	// action
 	Action string `json:"action,omitempty"`
 
-	// display name
-	DisplayName string `json:"display_name,omitempty"`
+	// count
+	Count int64 `json:"count,omitempty"`
+
+	// primary name
+	PrimaryName string `json:"primary_name,omitempty"`
+
+	// secondary name
+	SecondaryName string `json:"secondary_name,omitempty"`
 
 	// subject
 	Subject string `json:"subject,omitempty"`

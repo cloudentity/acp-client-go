@@ -9,6 +9,7 @@ require (
 	github.com/go-openapi/strfmt v0.19.11
 	github.com/go-openapi/swag v0.19.12
 	github.com/go-openapi/validate v0.20.0
+	github.com/google/go-cmp v0.5.4 // indirect
 	github.com/pkg/errors v0.9.1
 	golang.org/x/net v0.0.0-20201207224615-747e23833adb // indirect
 	golang.org/x/oauth2 v0.0.0-20201208152858-08078c50e5b5

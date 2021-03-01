@@ -17,8 +17,8 @@ import (
 // swagger:model Stats
 type Stats struct {
 
-	// active tokens
-	ActiveTokens int64 `json:"active_tokens,omitempty"`
+	// all access tokens
+	AllAccessTokens int64 `json:"all_access_tokens,omitempty"`
 
 	// apis
 	Apis int64 `json:"apis,omitempty"`
@@ -26,11 +26,17 @@ type Stats struct {
 	// applications
 	Applications int64 `json:"applications,omitempty"`
 
+	// machine access token
+	MachineAccessToken int64 `json:"machine_access_tokens,omitempty"`
+
 	// scopes
 	Scopes int64 `json:"scopes,omitempty"`
 
 	// services
 	Services int64 `json:"services,omitempty"`
+
+	// user access token
+	UserAccessToken int64 `json:"user_access_tokens,omitempty"`
 }
 
 // Validate validates this stats

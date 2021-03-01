@@ -64,12 +64,9 @@ type ImportConfigurationParams struct {
 	// Dump.
 	Dump *models.Dump
 
-	/* Mode.
-
-	   Insert mode
-
-	   Format: insertMode
-	*/
+	// Mode.
+	//
+	// Format: insertMode
 	Mode *string
 
 	timeout    time.Duration

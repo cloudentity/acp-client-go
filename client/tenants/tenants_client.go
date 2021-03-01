@@ -42,6 +42,8 @@ type ClientService interface {
 
 	ImportConfiguration(params *ImportConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportConfigurationNoContent, error)
 
+	PatchConfiguration(params *PatchConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchConfigurationNoContent, error)
+
 	UpdateAdminTenant(params *UpdateAdminTenantParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateAdminTenantOK, error)
 
 	UpdateTenant(params *UpdateTenantParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateTenantOK, error)
@@ -300,6 +302,47 @@ func (a *Client) ImportConfiguration(params *ImportConfigurationParams, authInfo
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for importConfiguration: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  PatchConfiguration patches configuration
+
+  Patch tenant configuration using RFC 6902 JSON Patch.
+*/
+func (a *Client) PatchConfiguration(params *PatchConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchConfigurationNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPatchConfigurationParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "patchConfiguration",
+		Method:             "PATCH",
+		PathPattern:        "/api/system/configuration",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PatchConfigurationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PatchConfigurationNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for patchConfiguration: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
