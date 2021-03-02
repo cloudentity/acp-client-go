@@ -16,89 +16,103 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewGetOktaIDPParams creates a new GetOktaIDPParams object
-// with the default values initialized.
+// NewGetOktaIDPParams creates a new GetOktaIDPParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetOktaIDPParams() *GetOktaIDPParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &GetOktaIDPParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetOktaIDPParamsWithTimeout creates a new GetOktaIDPParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetOktaIDPParamsWithTimeout(timeout time.Duration) *GetOktaIDPParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &GetOktaIDPParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewGetOktaIDPParamsWithContext creates a new GetOktaIDPParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetOktaIDPParamsWithContext(ctx context.Context) *GetOktaIDPParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &GetOktaIDPParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewGetOktaIDPParamsWithHTTPClient creates a new GetOktaIDPParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetOktaIDPParamsWithHTTPClient(client *http.Client) *GetOktaIDPParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &GetOktaIDPParams{
-		Aid:        aidDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*GetOktaIDPParams contains all the parameters to send to the API endpoint
-for the get okta ID p operation typically these are written to a http.Request
+/* GetOktaIDPParams contains all the parameters to send to the API endpoint
+   for the get okta ID p operation.
+
+   Typically these are written to a http.Request.
 */
 type GetOktaIDPParams struct {
 
-	/*Aid
-	  Authorization server id
+	/* Aid.
 
+	   Authorization server id
+
+	   Default: "default"
 	*/
 	Aid string
-	/*Iid
-	  IDP id
 
+	/* Iid.
+
+	   IDP id
 	*/
 	Iid string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get okta ID p params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetOktaIDPParams) WithDefaults() *GetOktaIDPParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get okta ID p params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetOktaIDPParams) SetDefaults() {
+	var (
+		aidDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := GetOktaIDPParams{
+		Aid: aidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the get okta ID p params

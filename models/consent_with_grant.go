@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -20,12 +21,15 @@ import (
 type ConsentWithGrant struct {
 
 	// flag determining if can user withdrawn consent
+	// Example: false
 	CanBeWithdrawn bool `json:"can_be_withdrawn,omitempty"`
 
 	// consent grant id
+	// Example: 27fa83a8-d0a6-48da-8529-42105bfa0ede
 	ConsentGrantActID string `json:"consent_grant_id,omitempty"`
 
 	// consent description
+	// Example: End User License Agreement
 	Description string `json:"description,omitempty"`
 
 	// given at timestamp
@@ -33,43 +37,53 @@ type ConsentWithGrant struct {
 	GivenAt strfmt.DateTime `json:"given_at,omitempty"`
 
 	// grant type
+	// Example: implicit
 	GrantType string `json:"grant_type,omitempty"`
 
 	// grant version
+	// Example: 1
 	GrantVersion int64 `json:"grant_version,omitempty"`
 
 	// is consent granted
+	// Example: false
 	Granted bool `json:"granted,omitempty"`
 
 	// consent unique identifier
+	// Example: 1
 	ID string `json:"id,omitempty"`
 
 	// internal services
 	InternalServices []*ConsentService `json:"internal_services"`
 
 	// consent name
+	// Example: EULA
 	Name string `json:"name,omitempty"`
 
 	// PII Categories
 	PIICategories []*PIICategory `json:"pii_categories"`
 
 	// subject
+	// Example: peter
 	Subject string `json:"subject,omitempty"`
 
 	// tenant id
+	// Example: default
 	TenantID string `json:"tenant_id,omitempty"`
 
 	// third party services
 	ThirdPartyServices []*ConsentService `json:"third_party_services"`
 
 	// strategy for upading existing grants, one of: explicitAll, implicitAll, keepCurrent
+	// Example: explicitAll
 	UpdateExistingGrants string `json:"update_existing_grants,omitempty"`
 
 	// marks the time from which the consent is in use. Can't be set to a future time
+	// Example: 2019-12-11T13:44:28.772101Z
 	// Format: date-time
 	ValidFrom strfmt.DateTime `json:"valid_from,omitempty"`
 
 	// consent version. When a consent is updated, version is incremented.
+	// Example: 1
 	Version int64 `json:"version,omitempty"`
 }
 
@@ -104,7 +118,6 @@ func (m *ConsentWithGrant) Validate(formats strfmt.Registry) error {
 }
 
 func (m *ConsentWithGrant) validateGivenAt(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.GivenAt) { // not required
 		return nil
 	}
@@ -117,7 +130,6 @@ func (m *ConsentWithGrant) validateGivenAt(formats strfmt.Registry) error {
 }
 
 func (m *ConsentWithGrant) validateInternalServices(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.InternalServices) { // not required
 		return nil
 	}
@@ -142,7 +154,6 @@ func (m *ConsentWithGrant) validateInternalServices(formats strfmt.Registry) err
 }
 
 func (m *ConsentWithGrant) validatePIICategories(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.PIICategories) { // not required
 		return nil
 	}
@@ -167,7 +178,6 @@ func (m *ConsentWithGrant) validatePIICategories(formats strfmt.Registry) error 
 }
 
 func (m *ConsentWithGrant) validateThirdPartyServices(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.ThirdPartyServices) { // not required
 		return nil
 	}
@@ -192,13 +202,88 @@ func (m *ConsentWithGrant) validateThirdPartyServices(formats strfmt.Registry) e
 }
 
 func (m *ConsentWithGrant) validateValidFrom(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.ValidFrom) { // not required
 		return nil
 	}
 
 	if err := validate.FormatOf("valid_from", "body", "date-time", m.ValidFrom.String(), formats); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this consent with grant based on the context it is used
+func (m *ConsentWithGrant) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateInternalServices(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePIICategories(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateThirdPartyServices(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *ConsentWithGrant) contextValidateInternalServices(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.InternalServices); i++ {
+
+		if m.InternalServices[i] != nil {
+			if err := m.InternalServices[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("internal_services" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *ConsentWithGrant) contextValidatePIICategories(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.PIICategories); i++ {
+
+		if m.PIICategories[i] != nil {
+			if err := m.PIICategories[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("pii_categories" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *ConsentWithGrant) contextValidateThirdPartyServices(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.ThirdPartyServices); i++ {
+
+		if m.ThirdPartyServices[i] != nil {
+			if err := m.ThirdPartyServices[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("third_party_services" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil

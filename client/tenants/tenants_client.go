@@ -25,23 +25,28 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateTenant(params *CreateTenantParams, authInfo runtime.ClientAuthInfoWriter) (*CreateTenantCreated, error)
+	CreateTenant(params *CreateTenantParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateTenantCreated, error)
 
-	DeleteTenant(params *DeleteTenantParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTenantNoContent, error)
+	DeleteTenant(params *DeleteTenantParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteTenantNoContent, error)
 
-	ExportConfiguration(params *ExportConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*ExportConfigurationOK, error)
+	ExportConfiguration(params *ExportConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ExportConfigurationOK, error)
 
-	GetAdminTenant(params *GetAdminTenantParams, authInfo runtime.ClientAuthInfoWriter) (*GetAdminTenantOK, error)
+	GetAdminTenant(params *GetAdminTenantParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAdminTenantOK, error)
 
-	GetTenant(params *GetTenantParams, authInfo runtime.ClientAuthInfoWriter) (*GetTenantOK, error)
+	GetTenant(params *GetTenantParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetTenantOK, error)
 
-	ImportConfiguration(params *ImportConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*ImportConfigurationNoContent, error)
+	ImportConfiguration(params *ImportConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportConfigurationNoContent, error)
 
-	UpdateAdminTenant(params *UpdateAdminTenantParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAdminTenantOK, error)
+	PatchConfiguration(params *PatchConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchConfigurationNoContent, error)
 
-	UpdateTenant(params *UpdateTenantParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateTenantOK, error)
+	UpdateAdminTenant(params *UpdateAdminTenantParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateAdminTenantOK, error)
+
+	UpdateTenant(params *UpdateTenantParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateTenantOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -59,13 +64,12 @@ appened id of a tenant, example: https://example.com/default.
 When tenant is created, preconfigured authorization servers with default scopes,
 services and oauth clients are automatically created underneath. See API response for more details.
 */
-func (a *Client) CreateTenant(params *CreateTenantParams, authInfo runtime.ClientAuthInfoWriter) (*CreateTenantCreated, error) {
+func (a *Client) CreateTenant(params *CreateTenantParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateTenantCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateTenantParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createTenant",
 		Method:             "POST",
 		PathPattern:        "/api/system/tenants",
@@ -77,7 +81,12 @@ func (a *Client) CreateTenant(params *CreateTenantParams, authInfo runtime.Clien
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -96,13 +105,12 @@ func (a *Client) CreateTenant(params *CreateTenantParams, authInfo runtime.Clien
 
   Deletes index in elasticsearch if exists as well.
 */
-func (a *Client) DeleteTenant(params *DeleteTenantParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteTenantNoContent, error) {
+func (a *Client) DeleteTenant(params *DeleteTenantParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteTenantNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteTenantParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "deleteTenant",
 		Method:             "DELETE",
 		PathPattern:        "/api/system/tenants/{tid}",
@@ -114,7 +122,12 @@ func (a *Client) DeleteTenant(params *DeleteTenantParams, authInfo runtime.Clien
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -133,13 +146,12 @@ func (a *Client) DeleteTenant(params *DeleteTenantParams, authInfo runtime.Clien
 
   Export entire tenant configuration as json.
 */
-func (a *Client) ExportConfiguration(params *ExportConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*ExportConfigurationOK, error) {
+func (a *Client) ExportConfiguration(params *ExportConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ExportConfigurationOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewExportConfigurationParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "exportConfiguration",
 		Method:             "GET",
 		PathPattern:        "/api/system/configuration",
@@ -151,7 +163,12 @@ func (a *Client) ExportConfiguration(params *ExportConfigurationParams, authInfo
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -170,13 +187,12 @@ func (a *Client) ExportConfiguration(params *ExportConfigurationParams, authInfo
 
   Get tenant.
 */
-func (a *Client) GetAdminTenant(params *GetAdminTenantParams, authInfo runtime.ClientAuthInfoWriter) (*GetAdminTenantOK, error) {
+func (a *Client) GetAdminTenant(params *GetAdminTenantParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAdminTenantOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAdminTenantParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getAdminTenant",
 		Method:             "GET",
 		PathPattern:        "/api/admin/{tid}/tenant",
@@ -188,7 +204,12 @@ func (a *Client) GetAdminTenant(params *GetAdminTenantParams, authInfo runtime.C
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -207,13 +228,12 @@ func (a *Client) GetAdminTenant(params *GetAdminTenantParams, authInfo runtime.C
 
   Get tenant system api.
 */
-func (a *Client) GetTenant(params *GetTenantParams, authInfo runtime.ClientAuthInfoWriter) (*GetTenantOK, error) {
+func (a *Client) GetTenant(params *GetTenantParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetTenantOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetTenantParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getTenant",
 		Method:             "GET",
 		PathPattern:        "/api/system/tenants/{tid}",
@@ -225,7 +245,12 @@ func (a *Client) GetTenant(params *GetTenantParams, authInfo runtime.ClientAuthI
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -244,13 +269,12 @@ func (a *Client) GetTenant(params *GetTenantParams, authInfo runtime.ClientAuthI
 
   Allows to quickly import tenant basic configuration.
 */
-func (a *Client) ImportConfiguration(params *ImportConfigurationParams, authInfo runtime.ClientAuthInfoWriter) (*ImportConfigurationNoContent, error) {
+func (a *Client) ImportConfiguration(params *ImportConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportConfigurationNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewImportConfigurationParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "importConfiguration",
 		Method:             "PUT",
 		PathPattern:        "/api/system/configuration",
@@ -262,7 +286,12 @@ func (a *Client) ImportConfiguration(params *ImportConfigurationParams, authInfo
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -277,17 +306,57 @@ func (a *Client) ImportConfiguration(params *ImportConfigurationParams, authInfo
 }
 
 /*
+  PatchConfiguration patches configuration
+
+  Patch tenant configuration using RFC 6902 JSON Patch.
+*/
+func (a *Client) PatchConfiguration(params *PatchConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchConfigurationNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPatchConfigurationParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "patchConfiguration",
+		Method:             "PATCH",
+		PathPattern:        "/api/system/configuration",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PatchConfigurationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PatchConfigurationNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for patchConfiguration: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
   UpdateAdminTenant updates tenant
 
   Update tenant.
 */
-func (a *Client) UpdateAdminTenant(params *UpdateAdminTenantParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAdminTenantOK, error) {
+func (a *Client) UpdateAdminTenant(params *UpdateAdminTenantParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateAdminTenantOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateAdminTenantParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "updateAdminTenant",
 		Method:             "PUT",
 		PathPattern:        "/api/admin/{tid}/tenant",
@@ -299,7 +368,12 @@ func (a *Client) UpdateAdminTenant(params *UpdateAdminTenantParams, authInfo run
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -318,13 +392,12 @@ func (a *Client) UpdateAdminTenant(params *UpdateAdminTenantParams, authInfo run
 
   Update tenant system api.
 */
-func (a *Client) UpdateTenant(params *UpdateTenantParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateTenantOK, error) {
+func (a *Client) UpdateTenant(params *UpdateTenantParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateTenantOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateTenantParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "updateTenant",
 		Method:             "PUT",
 		PathPattern:        "/api/system/tenants/{tid}",
@@ -336,7 +409,12 @@ func (a *Client) UpdateTenant(params *UpdateTenantParams, authInfo runtime.Clien
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}

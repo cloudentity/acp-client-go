@@ -16,89 +16,103 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewGetIntelliTrustIDPParams creates a new GetIntelliTrustIDPParams object
-// with the default values initialized.
+// NewGetIntelliTrustIDPParams creates a new GetIntelliTrustIDPParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetIntelliTrustIDPParams() *GetIntelliTrustIDPParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &GetIntelliTrustIDPParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetIntelliTrustIDPParamsWithTimeout creates a new GetIntelliTrustIDPParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetIntelliTrustIDPParamsWithTimeout(timeout time.Duration) *GetIntelliTrustIDPParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &GetIntelliTrustIDPParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewGetIntelliTrustIDPParamsWithContext creates a new GetIntelliTrustIDPParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetIntelliTrustIDPParamsWithContext(ctx context.Context) *GetIntelliTrustIDPParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &GetIntelliTrustIDPParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewGetIntelliTrustIDPParamsWithHTTPClient creates a new GetIntelliTrustIDPParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetIntelliTrustIDPParamsWithHTTPClient(client *http.Client) *GetIntelliTrustIDPParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &GetIntelliTrustIDPParams{
-		Aid:        aidDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*GetIntelliTrustIDPParams contains all the parameters to send to the API endpoint
-for the get intelli trust ID p operation typically these are written to a http.Request
+/* GetIntelliTrustIDPParams contains all the parameters to send to the API endpoint
+   for the get intelli trust ID p operation.
+
+   Typically these are written to a http.Request.
 */
 type GetIntelliTrustIDPParams struct {
 
-	/*Aid
-	  Authorization server id
+	/* Aid.
 
+	   Authorization server id
+
+	   Default: "default"
 	*/
 	Aid string
-	/*Iid
-	  IDP id
 
+	/* Iid.
+
+	   IDP id
 	*/
 	Iid string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get intelli trust ID p params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetIntelliTrustIDPParams) WithDefaults() *GetIntelliTrustIDPParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get intelli trust ID p params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetIntelliTrustIDPParams) SetDefaults() {
+	var (
+		aidDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := GetIntelliTrustIDPParams{
+		Aid: aidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the get intelli trust ID p params

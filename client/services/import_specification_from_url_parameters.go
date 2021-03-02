@@ -16,77 +16,95 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewImportSpecificationFromURLParams creates a new ImportSpecificationFromURLParams object
-// with the default values initialized.
+// NewImportSpecificationFromURLParams creates a new ImportSpecificationFromURLParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewImportSpecificationFromURLParams() *ImportSpecificationFromURLParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &ImportSpecificationFromURLParams{
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewImportSpecificationFromURLParamsWithTimeout creates a new ImportSpecificationFromURLParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewImportSpecificationFromURLParamsWithTimeout(timeout time.Duration) *ImportSpecificationFromURLParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &ImportSpecificationFromURLParams{
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewImportSpecificationFromURLParamsWithContext creates a new ImportSpecificationFromURLParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewImportSpecificationFromURLParamsWithContext(ctx context.Context) *ImportSpecificationFromURLParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &ImportSpecificationFromURLParams{
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewImportSpecificationFromURLParamsWithHTTPClient creates a new ImportSpecificationFromURLParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewImportSpecificationFromURLParamsWithHTTPClient(client *http.Client) *ImportSpecificationFromURLParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &ImportSpecificationFromURLParams{
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*ImportSpecificationFromURLParams contains all the parameters to send to the API endpoint
-for the import specification from URL operation typically these are written to a http.Request
+/* ImportSpecificationFromURLParams contains all the parameters to send to the API endpoint
+   for the import specification from URL operation.
+
+   Typically these are written to a http.Request.
 */
 type ImportSpecificationFromURLParams struct {
 
-	/*GatewayType*/
+	// GatewayType.
 	GatewayType *string
-	/*Sid*/
-	Sid string
-	/*Tid
-	  Tenant id
 
+	// Sid.
+	Sid string
+
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
-	/*URL*/
+
+	// URL.
 	URL *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the import specification from URL params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ImportSpecificationFromURLParams) WithDefaults() *ImportSpecificationFromURLParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the import specification from URL params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ImportSpecificationFromURLParams) SetDefaults() {
+	var (
+		tidDefault = string("default")
+	)
+
+	val := ImportSpecificationFromURLParams{
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the import specification from URL params
@@ -178,16 +196,17 @@ func (o *ImportSpecificationFromURLParams) WriteToRequest(r runtime.ClientReques
 
 		// query param gateway_type
 		var qrGatewayType string
+
 		if o.GatewayType != nil {
 			qrGatewayType = *o.GatewayType
 		}
 		qGatewayType := qrGatewayType
 		if qGatewayType != "" {
+
 			if err := r.SetQueryParam("gateway_type", qGatewayType); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	// path param sid
@@ -213,7 +232,6 @@ func (o *ImportSpecificationFromURLParams) WriteToRequest(r runtime.ClientReques
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

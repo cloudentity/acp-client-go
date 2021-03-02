@@ -47,7 +47,6 @@ func (o *GetCustomIDPReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewGetCustomIDPOK() *GetCustomIDPOK {
 	return &GetCustomIDPOK{}
 }
 
-/*GetCustomIDPOK handles this case with default header values.
+/* GetCustomIDPOK describes a response with status code 200, with default header values.
 
 CustomIDP
 */
@@ -69,7 +68,6 @@ type GetCustomIDPOK struct {
 func (o *GetCustomIDPOK) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps/custom/{iid}][%d] getCustomIdPOK  %+v", 200, o.Payload)
 }
-
 func (o *GetCustomIDPOK) GetPayload() *models.CustomIDP {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewGetCustomIDPUnauthorized() *GetCustomIDPUnauthorized {
 	return &GetCustomIDPUnauthorized{}
 }
 
-/*GetCustomIDPUnauthorized handles this case with default header values.
+/* GetCustomIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -102,7 +100,6 @@ type GetCustomIDPUnauthorized struct {
 func (o *GetCustomIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps/custom/{iid}][%d] getCustomIdPUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *GetCustomIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -124,7 +121,7 @@ func NewGetCustomIDPForbidden() *GetCustomIDPForbidden {
 	return &GetCustomIDPForbidden{}
 }
 
-/*GetCustomIDPForbidden handles this case with default header values.
+/* GetCustomIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,7 +132,6 @@ type GetCustomIDPForbidden struct {
 func (o *GetCustomIDPForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps/custom/{iid}][%d] getCustomIdPForbidden  %+v", 403, o.Payload)
 }
-
 func (o *GetCustomIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -157,7 +153,7 @@ func NewGetCustomIDPNotFound() *GetCustomIDPNotFound {
 	return &GetCustomIDPNotFound{}
 }
 
-/*GetCustomIDPNotFound handles this case with default header values.
+/* GetCustomIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -168,7 +164,6 @@ type GetCustomIDPNotFound struct {
 func (o *GetCustomIDPNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps/custom/{iid}][%d] getCustomIdPNotFound  %+v", 404, o.Payload)
 }
-
 func (o *GetCustomIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

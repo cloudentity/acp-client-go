@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -45,12 +47,60 @@ func (m *TestPolicyInput) Validate(formats strfmt.Registry) error {
 }
 
 func (m *TestPolicyInput) validateAuthnCtx(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.AuthnCtx) { // not required
 		return nil
 	}
 
-	if err := m.AuthnCtx.Validate(formats); err != nil {
+	if m.AuthnCtx != nil {
+		if err := m.AuthnCtx.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("authn_ctx")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *TestPolicyInput) validateRequest(formats strfmt.Registry) error {
+	if swag.IsZero(m.Request) { // not required
+		return nil
+	}
+
+	if m.Request != nil {
+		if err := m.Request.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("request")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this test policy input based on the context it is used
+func (m *TestPolicyInput) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateAuthnCtx(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateRequest(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *TestPolicyInput) contextValidateAuthnCtx(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.AuthnCtx.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("authn_ctx")
 		}
@@ -60,14 +110,10 @@ func (m *TestPolicyInput) validateAuthnCtx(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *TestPolicyInput) validateRequest(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Request) { // not required
-		return nil
-	}
+func (m *TestPolicyInput) contextValidateRequest(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Request != nil {
-		if err := m.Request.Validate(formats); err != nil {
+		if err := m.Request.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("request")
 			}

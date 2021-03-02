@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -70,7 +71,6 @@ func (m *GatewayConfiguration) Validate(formats strfmt.Registry) error {
 }
 
 func (m *GatewayConfiguration) validateAPIs(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.APIs) { // not required
 		return nil
 	}
@@ -95,7 +95,6 @@ func (m *GatewayConfiguration) validateAPIs(formats strfmt.Registry) error {
 }
 
 func (m *GatewayConfiguration) validatePolicies(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Policies) { // not required
 		return nil
 	}
@@ -120,7 +119,6 @@ func (m *GatewayConfiguration) validatePolicies(formats strfmt.Registry) error {
 }
 
 func (m *GatewayConfiguration) validateScopes(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Scopes) { // not required
 		return nil
 	}
@@ -145,7 +143,6 @@ func (m *GatewayConfiguration) validateScopes(formats strfmt.Registry) error {
 }
 
 func (m *GatewayConfiguration) validateServices(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Services) { // not required
 		return nil
 	}
@@ -157,6 +154,104 @@ func (m *GatewayConfiguration) validateServices(formats strfmt.Registry) error {
 
 		if m.Services[i] != nil {
 			if err := m.Services[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("services" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this gateway configuration based on the context it is used
+func (m *GatewayConfiguration) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateAPIs(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePolicies(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateScopes(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateServices(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GatewayConfiguration) contextValidateAPIs(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.APIs); i++ {
+
+		if m.APIs[i] != nil {
+			if err := m.APIs[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("apis" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *GatewayConfiguration) contextValidatePolicies(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Policies); i++ {
+
+		if m.Policies[i] != nil {
+			if err := m.Policies[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("policies" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *GatewayConfiguration) contextValidateScopes(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Scopes); i++ {
+
+		if m.Scopes[i] != nil {
+			if err := m.Scopes[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("scopes" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *GatewayConfiguration) contextValidateServices(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Services); i++ {
+
+		if m.Services[i] != nil {
+			if err := m.Services[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("services" + "." + strconv.Itoa(i))
 				}

@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -38,7 +39,6 @@ func (m *ServerAPIs) Validate(formats strfmt.Registry) error {
 }
 
 func (m *ServerAPIs) validateAPIsByServices(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.APIsByServices) { // not required
 		return nil
 	}
@@ -52,6 +52,40 @@ func (m *ServerAPIs) validateAPIsByServices(formats strfmt.Registry) error {
 		for i := 0; i < len(m.APIsByServices[k]); i++ {
 
 			if err := m.APIsByServices[k][i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("apis_by_services" + "." + k + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this server a p is based on the context it is used
+func (m *ServerAPIs) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateAPIsByServices(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *ServerAPIs) contextValidateAPIsByServices(ctx context.Context, formats strfmt.Registry) error {
+
+	for k := range m.APIsByServices {
+
+		for i := 0; i < len(m.APIsByServices[k]); i++ {
+
+			if err := m.APIsByServices[k][i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("apis_by_services" + "." + k + "." + strconv.Itoa(i))
 				}

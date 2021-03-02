@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -33,6 +35,11 @@ type RejectLogin struct {
 
 // Validate validates this reject login
 func (m *RejectLogin) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this reject login based on context it is used
+func (m *RejectLogin) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

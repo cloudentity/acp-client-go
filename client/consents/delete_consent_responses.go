@@ -47,7 +47,6 @@ func (o *DeleteConsentReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewDeleteConsentNoContent() *DeleteConsentNoContent {
 	return &DeleteConsentNoContent{}
 }
 
-/*DeleteConsentNoContent handles this case with default header values.
+/* DeleteConsentNoContent describes a response with status code 204, with default header values.
 
 Consent has been deleted
 */
@@ -79,7 +78,7 @@ func NewDeleteConsentUnauthorized() *DeleteConsentUnauthorized {
 	return &DeleteConsentUnauthorized{}
 }
 
-/*DeleteConsentUnauthorized handles this case with default header values.
+/* DeleteConsentUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -90,7 +89,6 @@ type DeleteConsentUnauthorized struct {
 func (o *DeleteConsentUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/consents/{consent}][%d] deleteConsentUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *DeleteConsentUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -112,7 +110,7 @@ func NewDeleteConsentForbidden() *DeleteConsentForbidden {
 	return &DeleteConsentForbidden{}
 }
 
-/*DeleteConsentForbidden handles this case with default header values.
+/* DeleteConsentForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -123,7 +121,6 @@ type DeleteConsentForbidden struct {
 func (o *DeleteConsentForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/consents/{consent}][%d] deleteConsentForbidden  %+v", 403, o.Payload)
 }
-
 func (o *DeleteConsentForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -145,7 +142,7 @@ func NewDeleteConsentNotFound() *DeleteConsentNotFound {
 	return &DeleteConsentNotFound{}
 }
 
-/*DeleteConsentNotFound handles this case with default header values.
+/* DeleteConsentNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -156,7 +153,6 @@ type DeleteConsentNotFound struct {
 func (o *DeleteConsentNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/consents/{consent}][%d] deleteConsentNotFound  %+v", 404, o.Payload)
 }
-
 func (o *DeleteConsentNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

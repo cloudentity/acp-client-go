@@ -47,7 +47,6 @@ func (o *GetPolicyReader) ReadResponse(response runtime.ClientResponse, consumer
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewGetPolicyOK() *GetPolicyOK {
 	return &GetPolicyOK{}
 }
 
-/*GetPolicyOK handles this case with default header values.
+/* GetPolicyOK describes a response with status code 200, with default header values.
 
 Policy
 */
@@ -69,7 +68,6 @@ type GetPolicyOK struct {
 func (o *GetPolicyOK) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/policies/{pid}][%d] getPolicyOK  %+v", 200, o.Payload)
 }
-
 func (o *GetPolicyOK) GetPayload() *models.Policy {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewGetPolicyUnauthorized() *GetPolicyUnauthorized {
 	return &GetPolicyUnauthorized{}
 }
 
-/*GetPolicyUnauthorized handles this case with default header values.
+/* GetPolicyUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -102,7 +100,6 @@ type GetPolicyUnauthorized struct {
 func (o *GetPolicyUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/policies/{pid}][%d] getPolicyUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *GetPolicyUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -124,7 +121,7 @@ func NewGetPolicyForbidden() *GetPolicyForbidden {
 	return &GetPolicyForbidden{}
 }
 
-/*GetPolicyForbidden handles this case with default header values.
+/* GetPolicyForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,7 +132,6 @@ type GetPolicyForbidden struct {
 func (o *GetPolicyForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/policies/{pid}][%d] getPolicyForbidden  %+v", 403, o.Payload)
 }
-
 func (o *GetPolicyForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -157,7 +153,7 @@ func NewGetPolicyNotFound() *GetPolicyNotFound {
 	return &GetPolicyNotFound{}
 }
 
-/*GetPolicyNotFound handles this case with default header values.
+/* GetPolicyNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -168,7 +164,6 @@ type GetPolicyNotFound struct {
 func (o *GetPolicyNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/policies/{pid}][%d] getPolicyNotFound  %+v", 404, o.Payload)
 }
-
 func (o *GetPolicyNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

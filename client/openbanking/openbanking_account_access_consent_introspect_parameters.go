@@ -16,86 +16,100 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewOpenbankingAccountAccessConsentIntrospectParams creates a new OpenbankingAccountAccessConsentIntrospectParams object
-// with the default values initialized.
+// NewOpenbankingAccountAccessConsentIntrospectParams creates a new OpenbankingAccountAccessConsentIntrospectParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewOpenbankingAccountAccessConsentIntrospectParams() *OpenbankingAccountAccessConsentIntrospectParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &OpenbankingAccountAccessConsentIntrospectParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewOpenbankingAccountAccessConsentIntrospectParamsWithTimeout creates a new OpenbankingAccountAccessConsentIntrospectParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewOpenbankingAccountAccessConsentIntrospectParamsWithTimeout(timeout time.Duration) *OpenbankingAccountAccessConsentIntrospectParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &OpenbankingAccountAccessConsentIntrospectParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewOpenbankingAccountAccessConsentIntrospectParamsWithContext creates a new OpenbankingAccountAccessConsentIntrospectParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewOpenbankingAccountAccessConsentIntrospectParamsWithContext(ctx context.Context) *OpenbankingAccountAccessConsentIntrospectParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &OpenbankingAccountAccessConsentIntrospectParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewOpenbankingAccountAccessConsentIntrospectParamsWithHTTPClient creates a new OpenbankingAccountAccessConsentIntrospectParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewOpenbankingAccountAccessConsentIntrospectParamsWithHTTPClient(client *http.Client) *OpenbankingAccountAccessConsentIntrospectParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &OpenbankingAccountAccessConsentIntrospectParams{
-		Aid:        aidDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*OpenbankingAccountAccessConsentIntrospectParams contains all the parameters to send to the API endpoint
-for the openbanking account access consent introspect operation typically these are written to a http.Request
+/* OpenbankingAccountAccessConsentIntrospectParams contains all the parameters to send to the API endpoint
+   for the openbanking account access consent introspect operation.
+
+   Typically these are written to a http.Request.
 */
 type OpenbankingAccountAccessConsentIntrospectParams struct {
 
-	/*Aid
-	  Authorization server id
+	/* Aid.
 
+	   Authorization server id
+
+	   Default: "default"
 	*/
 	Aid string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
-	/*Token*/
+
+	// Token.
 	Token *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the openbanking account access consent introspect params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *OpenbankingAccountAccessConsentIntrospectParams) WithDefaults() *OpenbankingAccountAccessConsentIntrospectParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the openbanking account access consent introspect params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *OpenbankingAccountAccessConsentIntrospectParams) SetDefaults() {
+	var (
+		aidDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := OpenbankingAccountAccessConsentIntrospectParams{
+		Aid: aidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the openbanking account access consent introspect params
@@ -195,7 +209,6 @@ func (o *OpenbankingAccountAccessConsentIntrospectParams) WriteToRequest(r runti
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

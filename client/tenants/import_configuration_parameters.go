@@ -18,61 +18,75 @@ import (
 	"github.com/cloudentity/acp-client-go/models"
 )
 
-// NewImportConfigurationParams creates a new ImportConfigurationParams object
-// with the default values initialized.
+// NewImportConfigurationParams creates a new ImportConfigurationParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewImportConfigurationParams() *ImportConfigurationParams {
-	var ()
 	return &ImportConfigurationParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewImportConfigurationParamsWithTimeout creates a new ImportConfigurationParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewImportConfigurationParamsWithTimeout(timeout time.Duration) *ImportConfigurationParams {
-	var ()
 	return &ImportConfigurationParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewImportConfigurationParamsWithContext creates a new ImportConfigurationParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewImportConfigurationParamsWithContext(ctx context.Context) *ImportConfigurationParams {
-	var ()
 	return &ImportConfigurationParams{
-
 		Context: ctx,
 	}
 }
 
 // NewImportConfigurationParamsWithHTTPClient creates a new ImportConfigurationParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewImportConfigurationParamsWithHTTPClient(client *http.Client) *ImportConfigurationParams {
-	var ()
 	return &ImportConfigurationParams{
 		HTTPClient: client,
 	}
 }
 
-/*ImportConfigurationParams contains all the parameters to send to the API endpoint
-for the import configuration operation typically these are written to a http.Request
+/* ImportConfigurationParams contains all the parameters to send to the API endpoint
+   for the import configuration operation.
+
+   Typically these are written to a http.Request.
 */
 type ImportConfigurationParams struct {
 
-	/*Configuration*/
-	Configuration *models.Dump
-	/*Mode
-	  Insert mode
+	// Dump.
+	Dump *models.Dump
 
-	*/
+	// Mode.
+	//
+	// Format: insertMode
 	Mode *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the import configuration params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ImportConfigurationParams) WithDefaults() *ImportConfigurationParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the import configuration params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ImportConfigurationParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the import configuration params
@@ -108,15 +122,15 @@ func (o *ImportConfigurationParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithConfiguration adds the configuration to the import configuration params
-func (o *ImportConfigurationParams) WithConfiguration(configuration *models.Dump) *ImportConfigurationParams {
-	o.SetConfiguration(configuration)
+// WithDump adds the dump to the import configuration params
+func (o *ImportConfigurationParams) WithDump(dump *models.Dump) *ImportConfigurationParams {
+	o.SetDump(dump)
 	return o
 }
 
-// SetConfiguration adds the configuration to the import configuration params
-func (o *ImportConfigurationParams) SetConfiguration(configuration *models.Dump) {
-	o.Configuration = configuration
+// SetDump adds the dump to the import configuration params
+func (o *ImportConfigurationParams) SetDump(dump *models.Dump) {
+	o.Dump = dump
 }
 
 // WithMode adds the mode to the import configuration params
@@ -137,9 +151,8 @@ func (o *ImportConfigurationParams) WriteToRequest(r runtime.ClientRequest, reg 
 		return err
 	}
 	var res []error
-
-	if o.Configuration != nil {
-		if err := r.SetBodyParam(o.Configuration); err != nil {
+	if o.Dump != nil {
+		if err := r.SetBodyParam(o.Dump); err != nil {
 			return err
 		}
 	}
@@ -148,16 +161,17 @@ func (o *ImportConfigurationParams) WriteToRequest(r runtime.ClientRequest, reg 
 
 		// query param mode
 		var qrMode string
+
 		if o.Mode != nil {
 			qrMode = *o.Mode
 		}
 		qMode := qrMode
 		if qMode != "" {
+
 			if err := r.SetQueryParam("mode", qMode); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

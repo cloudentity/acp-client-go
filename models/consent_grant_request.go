@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -17,6 +19,7 @@ import (
 type ConsentGrantRequest struct {
 
 	// time when the grant occurred
+	// Example: 1257894000000000000
 	CollectionTimestamp int64 `json:"collection_timestamp,omitempty"`
 
 	// consent id
@@ -26,9 +29,11 @@ type ConsentGrantRequest struct {
 	GrantType string `json:"grant_type,omitempty"`
 
 	// language in which the consent was obtained [ISO 639]
+	// Example: en
 	Language string `json:"language,omitempty"`
 
 	// optional string with action_id - can be set if the consent grant/withdraw request was caused when an app asked the user for consent required for a specific action
+	// Example: 1
 	TriggeredByAction string `json:"triggered_by_action,omitempty"`
 
 	// context
@@ -50,13 +55,40 @@ func (m *ConsentGrantRequest) Validate(formats strfmt.Registry) error {
 }
 
 func (m *ConsentGrantRequest) validateContext(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Context) { // not required
 		return nil
 	}
 
 	if m.Context != nil {
 		if err := m.Context.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("context")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this consent grant request based on the context it is used
+func (m *ConsentGrantRequest) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateContext(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *ConsentGrantRequest) contextValidateContext(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Context != nil {
+		if err := m.Context.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("context")
 			}

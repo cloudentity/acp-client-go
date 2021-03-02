@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -16,23 +18,33 @@ import (
 type PolicyExecutionPoint struct {
 
 	// optional policy id
+	// Example: 1
 	PolicyID string `json:"policy_id,omitempty"`
 
 	// server id
+	// Example: default
 	ServerID string `json:"server_id,omitempty"`
 
 	// target id
+	// Example: 1
 	TargetID string `json:"target_fk,omitempty"`
 
 	// tenant id
+	// Example: default
 	TenantID string `json:"tenant_id,omitempty"`
 
 	// policy execution point type
+	// Example: scope_client_assignment
 	Type string `json:"type,omitempty"`
 }
 
 // Validate validates this policy execution point
 func (m *PolicyExecutionPoint) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this policy execution point based on context it is used
+func (m *PolicyExecutionPoint) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

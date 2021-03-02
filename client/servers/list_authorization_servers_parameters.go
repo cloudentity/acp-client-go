@@ -16,71 +16,86 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewListAuthorizationServersParams creates a new ListAuthorizationServersParams object
-// with the default values initialized.
+// NewListAuthorizationServersParams creates a new ListAuthorizationServersParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewListAuthorizationServersParams() *ListAuthorizationServersParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &ListAuthorizationServersParams{
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewListAuthorizationServersParamsWithTimeout creates a new ListAuthorizationServersParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewListAuthorizationServersParamsWithTimeout(timeout time.Duration) *ListAuthorizationServersParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &ListAuthorizationServersParams{
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewListAuthorizationServersParamsWithContext creates a new ListAuthorizationServersParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewListAuthorizationServersParamsWithContext(ctx context.Context) *ListAuthorizationServersParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &ListAuthorizationServersParams{
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewListAuthorizationServersParamsWithHTTPClient creates a new ListAuthorizationServersParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewListAuthorizationServersParamsWithHTTPClient(client *http.Client) *ListAuthorizationServersParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &ListAuthorizationServersParams{
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*ListAuthorizationServersParams contains all the parameters to send to the API endpoint
-for the list authorization servers operation typically these are written to a http.Request
+/* ListAuthorizationServersParams contains all the parameters to send to the API endpoint
+   for the list authorization servers operation.
+
+   Typically these are written to a http.Request.
 */
 type ListAuthorizationServersParams struct {
 
-	/*Tid
-	  Tenant id
+	/* Tid.
 
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the list authorization servers params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ListAuthorizationServersParams) WithDefaults() *ListAuthorizationServersParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the list authorization servers params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ListAuthorizationServersParams) SetDefaults() {
+	var (
+		tidDefault = string("default")
+	)
+
+	val := ListAuthorizationServersParams{
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the list authorization servers params

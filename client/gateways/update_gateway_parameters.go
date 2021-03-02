@@ -18,75 +18,92 @@ import (
 	"github.com/cloudentity/acp-client-go/models"
 )
 
-// NewUpdateGatewayParams creates a new UpdateGatewayParams object
-// with the default values initialized.
+// NewUpdateGatewayParams creates a new UpdateGatewayParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewUpdateGatewayParams() *UpdateGatewayParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &UpdateGatewayParams{
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewUpdateGatewayParamsWithTimeout creates a new UpdateGatewayParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewUpdateGatewayParamsWithTimeout(timeout time.Duration) *UpdateGatewayParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &UpdateGatewayParams{
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewUpdateGatewayParamsWithContext creates a new UpdateGatewayParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewUpdateGatewayParamsWithContext(ctx context.Context) *UpdateGatewayParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &UpdateGatewayParams{
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewUpdateGatewayParamsWithHTTPClient creates a new UpdateGatewayParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewUpdateGatewayParamsWithHTTPClient(client *http.Client) *UpdateGatewayParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &UpdateGatewayParams{
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*UpdateGatewayParams contains all the parameters to send to the API endpoint
-for the update gateway operation typically these are written to a http.Request
+/* UpdateGatewayParams contains all the parameters to send to the API endpoint
+   for the update gateway operation.
+
+   Typically these are written to a http.Request.
 */
 type UpdateGatewayParams struct {
 
-	/*UpdateGatewayBody*/
+	// UpdateGatewayBody.
 	UpdateGatewayBody *models.UpdateGatewayRequest
-	/*Gw*/
-	Gw string
-	/*Tid
-	  Tenant id
 
+	// Gw.
+	Gw string
+
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the update gateway params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateGatewayParams) WithDefaults() *UpdateGatewayParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the update gateway params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateGatewayParams) SetDefaults() {
+	var (
+		tidDefault = string("default")
+	)
+
+	val := UpdateGatewayParams{
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the update gateway params
@@ -162,7 +179,6 @@ func (o *UpdateGatewayParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		return err
 	}
 	var res []error
-
 	if o.UpdateGatewayBody != nil {
 		if err := r.SetBodyParam(o.UpdateGatewayBody); err != nil {
 			return err

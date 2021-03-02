@@ -16,84 +16,97 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewListScopesParams creates a new ListScopesParams object
-// with the default values initialized.
+// NewListScopesParams creates a new ListScopesParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewListScopesParams() *ListScopesParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &ListScopesParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewListScopesParamsWithTimeout creates a new ListScopesParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewListScopesParamsWithTimeout(timeout time.Duration) *ListScopesParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &ListScopesParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewListScopesParamsWithContext creates a new ListScopesParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewListScopesParamsWithContext(ctx context.Context) *ListScopesParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &ListScopesParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewListScopesParamsWithHTTPClient creates a new ListScopesParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewListScopesParamsWithHTTPClient(client *http.Client) *ListScopesParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &ListScopesParams{
-		Aid:        aidDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*ListScopesParams contains all the parameters to send to the API endpoint
-for the list scopes operation typically these are written to a http.Request
+/* ListScopesParams contains all the parameters to send to the API endpoint
+   for the list scopes operation.
+
+   Typically these are written to a http.Request.
 */
 type ListScopesParams struct {
 
-	/*Aid
-	  Authorization server id
+	/* Aid.
 
+	   Authorization server id
+
+	   Default: "default"
 	*/
 	Aid string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the list scopes params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ListScopesParams) WithDefaults() *ListScopesParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the list scopes params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ListScopesParams) SetDefaults() {
+	var (
+		aidDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := ListScopesParams{
+		Aid: aidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the list scopes params

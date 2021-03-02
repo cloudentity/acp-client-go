@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -85,7 +87,6 @@ func (m *AccountAccessConsent) Validate(formats strfmt.Registry) error {
 }
 
 func (m *AccountAccessConsent) validateCreationDateTime(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.CreationDateTime) { // not required
 		return nil
 	}
@@ -98,7 +99,6 @@ func (m *AccountAccessConsent) validateCreationDateTime(formats strfmt.Registry)
 }
 
 func (m *AccountAccessConsent) validateExpirationDateTime(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.ExpirationDateTime) { // not required
 		return nil
 	}
@@ -111,7 +111,6 @@ func (m *AccountAccessConsent) validateExpirationDateTime(formats strfmt.Registr
 }
 
 func (m *AccountAccessConsent) validateStatusUpdateDateTime(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.StatusUpdateDateTime) { // not required
 		return nil
 	}
@@ -124,7 +123,6 @@ func (m *AccountAccessConsent) validateStatusUpdateDateTime(formats strfmt.Regis
 }
 
 func (m *AccountAccessConsent) validateTransactionFromDateTime(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.TransactionFromDateTime) { // not required
 		return nil
 	}
@@ -137,7 +135,6 @@ func (m *AccountAccessConsent) validateTransactionFromDateTime(formats strfmt.Re
 }
 
 func (m *AccountAccessConsent) validateTransactionToDateTime(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.TransactionToDateTime) { // not required
 		return nil
 	}
@@ -146,6 +143,11 @@ func (m *AccountAccessConsent) validateTransactionToDateTime(formats strfmt.Regi
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this account access consent based on context it is used
+func (m *AccountAccessConsent) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

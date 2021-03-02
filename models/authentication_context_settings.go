@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -37,7 +38,6 @@ func (m *AuthenticationContextSettings) Validate(formats strfmt.Registry) error 
 }
 
 func (m *AuthenticationContextSettings) validateAttributes(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Attributes) { // not required
 		return nil
 	}
@@ -49,6 +49,38 @@ func (m *AuthenticationContextSettings) validateAttributes(formats strfmt.Regist
 
 		if m.Attributes[i] != nil {
 			if err := m.Attributes[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("attributes" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this authentication context settings based on the context it is used
+func (m *AuthenticationContextSettings) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateAttributes(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *AuthenticationContextSettings) contextValidateAttributes(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Attributes); i++ {
+
+		if m.Attributes[i] != nil {
+			if err := m.Attributes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("attributes" + "." + strconv.Itoa(i))
 				}

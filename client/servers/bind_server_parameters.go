@@ -16,97 +16,108 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewBindServerParams creates a new BindServerParams object
-// with the default values initialized.
+// NewBindServerParams creates a new BindServerParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewBindServerParams() *BindServerParams {
-	var (
-		aidDefault = string("default")
-		ridDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &BindServerParams{
-		Aid: aidDefault,
-		Rid: ridDefault,
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewBindServerParamsWithTimeout creates a new BindServerParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewBindServerParamsWithTimeout(timeout time.Duration) *BindServerParams {
-	var (
-		aidDefault = string("default")
-		ridDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &BindServerParams{
-		Aid: aidDefault,
-		Rid: ridDefault,
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewBindServerParamsWithContext creates a new BindServerParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewBindServerParamsWithContext(ctx context.Context) *BindServerParams {
-	var (
-		aidDefault = string("default")
-		ridDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &BindServerParams{
-		Aid: aidDefault,
-		Rid: ridDefault,
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewBindServerParamsWithHTTPClient creates a new BindServerParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewBindServerParamsWithHTTPClient(client *http.Client) *BindServerParams {
-	var (
-		aidDefault = string("default")
-		ridDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &BindServerParams{
-		Aid:        aidDefault,
-		Rid:        ridDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*BindServerParams contains all the parameters to send to the API endpoint
-for the bind server operation typically these are written to a http.Request
+/* BindServerParams contains all the parameters to send to the API endpoint
+   for the bind server operation.
+
+   Typically these are written to a http.Request.
 */
 type BindServerParams struct {
 
-	/*Aid
-	  Authorization server id
+	/* Aid.
 
+	   Authorization server id
+
+	   Default: "default"
 	*/
 	Aid string
-	/*Rid
-	  Dependent server id
 
+	/* Rid.
+
+	   Dependent server id
+
+	   Default: "default"
 	*/
 	Rid string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the bind server params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *BindServerParams) WithDefaults() *BindServerParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the bind server params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *BindServerParams) SetDefaults() {
+	var (
+		aidDefault = string("default")
+
+		ridDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := BindServerParams{
+		Aid: aidDefault,
+		Rid: ridDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the bind server params

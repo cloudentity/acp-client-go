@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -43,7 +45,6 @@ func (m *ClaimsRequests) Validate(formats strfmt.Registry) error {
 }
 
 func (m *ClaimsRequests) validateIDToken(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.IDToken) { // not required
 		return nil
 	}
@@ -65,7 +66,6 @@ func (m *ClaimsRequests) validateIDToken(formats strfmt.Registry) error {
 }
 
 func (m *ClaimsRequests) validateUserinfo(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Userinfo) { // not required
 		return nil
 	}
@@ -77,6 +77,54 @@ func (m *ClaimsRequests) validateUserinfo(formats strfmt.Registry) error {
 		}
 		if val, ok := m.Userinfo[k]; ok {
 			if err := val.Validate(formats); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this claims requests based on the context it is used
+func (m *ClaimsRequests) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateIDToken(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUserinfo(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *ClaimsRequests) contextValidateIDToken(ctx context.Context, formats strfmt.Registry) error {
+
+	for k := range m.IDToken {
+
+		if val, ok := m.IDToken[k]; ok {
+			if err := val.ContextValidate(ctx, formats); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *ClaimsRequests) contextValidateUserinfo(ctx context.Context, formats strfmt.Registry) error {
+
+	for k := range m.Userinfo {
+
+		if val, ok := m.Userinfo[k]; ok {
+			if err := val.ContextValidate(ctx, formats); err != nil {
 				return err
 			}
 		}

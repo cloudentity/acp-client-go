@@ -18,102 +18,114 @@ import (
 	"github.com/cloudentity/acp-client-go/models"
 )
 
-// NewUpdateIntelliTrustIDPParams creates a new UpdateIntelliTrustIDPParams object
-// with the default values initialized.
+// NewUpdateIntelliTrustIDPParams creates a new UpdateIntelliTrustIDPParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewUpdateIntelliTrustIDPParams() *UpdateIntelliTrustIDPParams {
-	var (
-		aidDefault = string("default")
-		iidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &UpdateIntelliTrustIDPParams{
-		Aid: aidDefault,
-		Iid: iidDefault,
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewUpdateIntelliTrustIDPParamsWithTimeout creates a new UpdateIntelliTrustIDPParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewUpdateIntelliTrustIDPParamsWithTimeout(timeout time.Duration) *UpdateIntelliTrustIDPParams {
-	var (
-		aidDefault = string("default")
-		iidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &UpdateIntelliTrustIDPParams{
-		Aid: aidDefault,
-		Iid: iidDefault,
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewUpdateIntelliTrustIDPParamsWithContext creates a new UpdateIntelliTrustIDPParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewUpdateIntelliTrustIDPParamsWithContext(ctx context.Context) *UpdateIntelliTrustIDPParams {
-	var (
-		aidDefault = string("default")
-		iidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &UpdateIntelliTrustIDPParams{
-		Aid: aidDefault,
-		Iid: iidDefault,
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewUpdateIntelliTrustIDPParamsWithHTTPClient creates a new UpdateIntelliTrustIDPParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewUpdateIntelliTrustIDPParamsWithHTTPClient(client *http.Client) *UpdateIntelliTrustIDPParams {
-	var (
-		aidDefault = string("default")
-		iidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &UpdateIntelliTrustIDPParams{
-		Aid:        aidDefault,
-		Iid:        iidDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*UpdateIntelliTrustIDPParams contains all the parameters to send to the API endpoint
-for the update intelli trust ID p operation typically these are written to a http.Request
+/* UpdateIntelliTrustIDPParams contains all the parameters to send to the API endpoint
+   for the update intelli trust ID p operation.
+
+   Typically these are written to a http.Request.
 */
 type UpdateIntelliTrustIDPParams struct {
 
-	/*IntelliTrustIDP
-	  IntelliTrustIDP
+	/* IntelliTrustIDP.
 
+	   IntelliTrustIDP
 	*/
 	IntelliTrustIDP *models.IntelliTrustIDP
-	/*Aid
-	  Authorization server id
 
+	/* Aid.
+
+	   Authorization server id
+
+	   Default: "default"
 	*/
 	Aid string
-	/*Iid
-	  IDP id
 
+	/* Iid.
+
+	   IDP id
+
+	   Default: "default"
 	*/
 	Iid string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the update intelli trust ID p params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateIntelliTrustIDPParams) WithDefaults() *UpdateIntelliTrustIDPParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the update intelli trust ID p params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateIntelliTrustIDPParams) SetDefaults() {
+	var (
+		aidDefault = string("default")
+
+		iidDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := UpdateIntelliTrustIDPParams{
+		Aid: aidDefault,
+		Iid: iidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the update intelli trust ID p params
@@ -200,7 +212,6 @@ func (o *UpdateIntelliTrustIDPParams) WriteToRequest(r runtime.ClientRequest, re
 		return err
 	}
 	var res []error
-
 	if o.IntelliTrustIDP != nil {
 		if err := r.SetBodyParam(o.IntelliTrustIDP); err != nil {
 			return err

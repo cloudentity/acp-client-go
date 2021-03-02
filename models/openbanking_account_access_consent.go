@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -85,7 +87,6 @@ func (m *OpenbankingAccountAccessConsent) Validate(formats strfmt.Registry) erro
 }
 
 func (m *OpenbankingAccountAccessConsent) validateCreationDateTime(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.CreationDateTime) { // not required
 		return nil
 	}
@@ -98,7 +99,6 @@ func (m *OpenbankingAccountAccessConsent) validateCreationDateTime(formats strfm
 }
 
 func (m *OpenbankingAccountAccessConsent) validateExpirationDateTime(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.ExpirationDateTime) { // not required
 		return nil
 	}
@@ -111,7 +111,6 @@ func (m *OpenbankingAccountAccessConsent) validateExpirationDateTime(formats str
 }
 
 func (m *OpenbankingAccountAccessConsent) validateStatusUpdateDateTime(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.StatusUpdateDateTime) { // not required
 		return nil
 	}
@@ -124,7 +123,6 @@ func (m *OpenbankingAccountAccessConsent) validateStatusUpdateDateTime(formats s
 }
 
 func (m *OpenbankingAccountAccessConsent) validateTransactionFromDateTime(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.TransactionFromDateTime) { // not required
 		return nil
 	}
@@ -137,7 +135,6 @@ func (m *OpenbankingAccountAccessConsent) validateTransactionFromDateTime(format
 }
 
 func (m *OpenbankingAccountAccessConsent) validateTransactionToDateTime(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.TransactionToDateTime) { // not required
 		return nil
 	}
@@ -146,6 +143,11 @@ func (m *OpenbankingAccountAccessConsent) validateTransactionToDateTime(formats 
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this openbanking account access consent based on context it is used
+func (m *OpenbankingAccountAccessConsent) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

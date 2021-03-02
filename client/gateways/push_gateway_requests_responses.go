@@ -53,7 +53,6 @@ func (o *PushGatewayRequestsReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -64,7 +63,7 @@ func NewPushGatewayRequestsOK() *PushGatewayRequestsOK {
 	return &PushGatewayRequestsOK{}
 }
 
-/*PushGatewayRequestsOK handles this case with default header values.
+/* PushGatewayRequestsOK describes a response with status code 200, with default header values.
 
 GatewayRequestsEventsResponse
 */
@@ -75,7 +74,6 @@ type PushGatewayRequestsOK struct {
 func (o *PushGatewayRequestsOK) Error() string {
 	return fmt.Sprintf("[POST /api/system/{tid}/gateways/requests][%d] pushGatewayRequestsOK  %+v", 200, o.Payload)
 }
-
 func (o *PushGatewayRequestsOK) GetPayload() *models.GatewayRequestsEventsResponse {
 	return o.Payload
 }
@@ -97,7 +95,7 @@ func NewPushGatewayRequestsUnauthorized() *PushGatewayRequestsUnauthorized {
 	return &PushGatewayRequestsUnauthorized{}
 }
 
-/*PushGatewayRequestsUnauthorized handles this case with default header values.
+/* PushGatewayRequestsUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -108,7 +106,6 @@ type PushGatewayRequestsUnauthorized struct {
 func (o *PushGatewayRequestsUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /api/system/{tid}/gateways/requests][%d] pushGatewayRequestsUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *PushGatewayRequestsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -130,7 +127,7 @@ func NewPushGatewayRequestsForbidden() *PushGatewayRequestsForbidden {
 	return &PushGatewayRequestsForbidden{}
 }
 
-/*PushGatewayRequestsForbidden handles this case with default header values.
+/* PushGatewayRequestsForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -141,7 +138,6 @@ type PushGatewayRequestsForbidden struct {
 func (o *PushGatewayRequestsForbidden) Error() string {
 	return fmt.Sprintf("[POST /api/system/{tid}/gateways/requests][%d] pushGatewayRequestsForbidden  %+v", 403, o.Payload)
 }
-
 func (o *PushGatewayRequestsForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -163,7 +159,7 @@ func NewPushGatewayRequestsNotFound() *PushGatewayRequestsNotFound {
 	return &PushGatewayRequestsNotFound{}
 }
 
-/*PushGatewayRequestsNotFound handles this case with default header values.
+/* PushGatewayRequestsNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -174,7 +170,6 @@ type PushGatewayRequestsNotFound struct {
 func (o *PushGatewayRequestsNotFound) Error() string {
 	return fmt.Sprintf("[POST /api/system/{tid}/gateways/requests][%d] pushGatewayRequestsNotFound  %+v", 404, o.Payload)
 }
-
 func (o *PushGatewayRequestsNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -196,7 +191,7 @@ func NewPushGatewayRequestsTooManyRequests() *PushGatewayRequestsTooManyRequests
 	return &PushGatewayRequestsTooManyRequests{}
 }
 
-/*PushGatewayRequestsTooManyRequests handles this case with default header values.
+/* PushGatewayRequestsTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -207,7 +202,6 @@ type PushGatewayRequestsTooManyRequests struct {
 func (o *PushGatewayRequestsTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /api/system/{tid}/gateways/requests][%d] pushGatewayRequestsTooManyRequests  %+v", 429, o.Payload)
 }
-
 func (o *PushGatewayRequestsTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

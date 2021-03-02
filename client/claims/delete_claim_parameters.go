@@ -16,73 +16,89 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewDeleteClaimParams creates a new DeleteClaimParams object
-// with the default values initialized.
+// NewDeleteClaimParams creates a new DeleteClaimParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewDeleteClaimParams() *DeleteClaimParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &DeleteClaimParams{
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewDeleteClaimParamsWithTimeout creates a new DeleteClaimParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewDeleteClaimParamsWithTimeout(timeout time.Duration) *DeleteClaimParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &DeleteClaimParams{
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewDeleteClaimParamsWithContext creates a new DeleteClaimParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewDeleteClaimParamsWithContext(ctx context.Context) *DeleteClaimParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &DeleteClaimParams{
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewDeleteClaimParamsWithHTTPClient creates a new DeleteClaimParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewDeleteClaimParamsWithHTTPClient(client *http.Client) *DeleteClaimParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &DeleteClaimParams{
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*DeleteClaimParams contains all the parameters to send to the API endpoint
-for the delete claim operation typically these are written to a http.Request
+/* DeleteClaimParams contains all the parameters to send to the API endpoint
+   for the delete claim operation.
+
+   Typically these are written to a http.Request.
 */
 type DeleteClaimParams struct {
 
-	/*Claim*/
+	// Claim.
 	ClaimID string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the delete claim params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteClaimParams) WithDefaults() *DeleteClaimParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the delete claim params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteClaimParams) SetDefaults() {
+	var (
+		tidDefault = string("default")
+	)
+
+	val := DeleteClaimParams{
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the delete claim params

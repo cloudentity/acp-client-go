@@ -47,7 +47,6 @@ func (o *GetOktaIDPReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewGetOktaIDPOK() *GetOktaIDPOK {
 	return &GetOktaIDPOK{}
 }
 
-/*GetOktaIDPOK handles this case with default header values.
+/* GetOktaIDPOK describes a response with status code 200, with default header values.
 
 OktaIDP
 */
@@ -69,7 +68,6 @@ type GetOktaIDPOK struct {
 func (o *GetOktaIDPOK) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps/okta/{iid}][%d] getOktaIdPOK  %+v", 200, o.Payload)
 }
-
 func (o *GetOktaIDPOK) GetPayload() *models.OktaIDP {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewGetOktaIDPUnauthorized() *GetOktaIDPUnauthorized {
 	return &GetOktaIDPUnauthorized{}
 }
 
-/*GetOktaIDPUnauthorized handles this case with default header values.
+/* GetOktaIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -102,7 +100,6 @@ type GetOktaIDPUnauthorized struct {
 func (o *GetOktaIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps/okta/{iid}][%d] getOktaIdPUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *GetOktaIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -124,7 +121,7 @@ func NewGetOktaIDPForbidden() *GetOktaIDPForbidden {
 	return &GetOktaIDPForbidden{}
 }
 
-/*GetOktaIDPForbidden handles this case with default header values.
+/* GetOktaIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,7 +132,6 @@ type GetOktaIDPForbidden struct {
 func (o *GetOktaIDPForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps/okta/{iid}][%d] getOktaIdPForbidden  %+v", 403, o.Payload)
 }
-
 func (o *GetOktaIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -157,7 +153,7 @@ func NewGetOktaIDPNotFound() *GetOktaIDPNotFound {
 	return &GetOktaIDPNotFound{}
 }
 
-/*GetOktaIDPNotFound handles this case with default header values.
+/* GetOktaIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -168,7 +164,6 @@ type GetOktaIDPNotFound struct {
 func (o *GetOktaIDPNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps/okta/{iid}][%d] getOktaIdPNotFound  %+v", 404, o.Payload)
 }
-
 func (o *GetOktaIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

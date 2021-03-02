@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -31,6 +33,9 @@ type OBConsent struct {
 	// account access consent
 	AccountAccessConsent *AccountAccessConsent `json:"account_access_consent,omitempty"`
 
+	// domestic payment consent
+	DomesticPaymentConsent *DomesticPaymentConsent `json:"domestic_payment_consent,omitempty"`
+
 	// type
 	Type ConsentType `json:"type,omitempty"`
 }
@@ -40,6 +45,10 @@ func (m *OBConsent) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAccountAccessConsent(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDomesticPaymentConsent(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -54,7 +63,6 @@ func (m *OBConsent) Validate(formats strfmt.Registry) error {
 }
 
 func (m *OBConsent) validateAccountAccessConsent(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.AccountAccessConsent) { // not required
 		return nil
 	}
@@ -71,13 +79,91 @@ func (m *OBConsent) validateAccountAccessConsent(formats strfmt.Registry) error 
 	return nil
 }
 
-func (m *OBConsent) validateType(formats strfmt.Registry) error {
+func (m *OBConsent) validateDomesticPaymentConsent(formats strfmt.Registry) error {
+	if swag.IsZero(m.DomesticPaymentConsent) { // not required
+		return nil
+	}
 
+	if m.DomesticPaymentConsent != nil {
+		if err := m.DomesticPaymentConsent.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("domestic_payment_consent")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *OBConsent) validateType(formats strfmt.Registry) error {
 	if swag.IsZero(m.Type) { // not required
 		return nil
 	}
 
 	if err := m.Type.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("type")
+		}
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this o b consent based on the context it is used
+func (m *OBConsent) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateAccountAccessConsent(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDomesticPaymentConsent(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateType(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *OBConsent) contextValidateAccountAccessConsent(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.AccountAccessConsent != nil {
+		if err := m.AccountAccessConsent.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("account_access_consent")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *OBConsent) contextValidateDomesticPaymentConsent(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.DomesticPaymentConsent != nil {
+		if err := m.DomesticPaymentConsent.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("domestic_payment_consent")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *OBConsent) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.Type.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("type")
 		}

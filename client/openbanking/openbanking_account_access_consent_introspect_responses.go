@@ -41,7 +41,6 @@ func (o *OpenbankingAccountAccessConsentIntrospectReader) ReadResponse(response 
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -52,7 +51,7 @@ func NewOpenbankingAccountAccessConsentIntrospectOK() *OpenbankingAccountAccessC
 	return &OpenbankingAccountAccessConsentIntrospectOK{}
 }
 
-/*OpenbankingAccountAccessConsentIntrospectOK handles this case with default header values.
+/* OpenbankingAccountAccessConsentIntrospectOK describes a response with status code 200, with default header values.
 
 IntrospectOpenbankingAccountAccessConsentResponse
 */
@@ -63,7 +62,6 @@ type OpenbankingAccountAccessConsentIntrospectOK struct {
 func (o *OpenbankingAccountAccessConsentIntrospectOK) Error() string {
 	return fmt.Sprintf("[POST /{tid}/{aid}/open-banking/v3.1/aisp/account-access-consents/introspect][%d] openbankingAccountAccessConsentIntrospectOK  %+v", 200, o.Payload)
 }
-
 func (o *OpenbankingAccountAccessConsentIntrospectOK) GetPayload() *models.IntrospectOpenbankingAccountAccessConsentResponse {
 	return o.Payload
 }
@@ -85,7 +83,7 @@ func NewOpenbankingAccountAccessConsentIntrospectUnauthorized() *OpenbankingAcco
 	return &OpenbankingAccountAccessConsentIntrospectUnauthorized{}
 }
 
-/*OpenbankingAccountAccessConsentIntrospectUnauthorized handles this case with default header values.
+/* OpenbankingAccountAccessConsentIntrospectUnauthorized describes a response with status code 401, with default header values.
 
 genericError
 */
@@ -96,7 +94,6 @@ type OpenbankingAccountAccessConsentIntrospectUnauthorized struct {
 func (o *OpenbankingAccountAccessConsentIntrospectUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /{tid}/{aid}/open-banking/v3.1/aisp/account-access-consents/introspect][%d] openbankingAccountAccessConsentIntrospectUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *OpenbankingAccountAccessConsentIntrospectUnauthorized) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -118,7 +115,7 @@ func NewOpenbankingAccountAccessConsentIntrospectNotFound() *OpenbankingAccountA
 	return &OpenbankingAccountAccessConsentIntrospectNotFound{}
 }
 
-/*OpenbankingAccountAccessConsentIntrospectNotFound handles this case with default header values.
+/* OpenbankingAccountAccessConsentIntrospectNotFound describes a response with status code 404, with default header values.
 
 genericError
 */
@@ -129,7 +126,6 @@ type OpenbankingAccountAccessConsentIntrospectNotFound struct {
 func (o *OpenbankingAccountAccessConsentIntrospectNotFound) Error() string {
 	return fmt.Sprintf("[POST /{tid}/{aid}/open-banking/v3.1/aisp/account-access-consents/introspect][%d] openbankingAccountAccessConsentIntrospectNotFound  %+v", 404, o.Payload)
 }
-
 func (o *OpenbankingAccountAccessConsentIntrospectNotFound) GetPayload() *models.GenericError {
 	return o.Payload
 }

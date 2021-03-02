@@ -53,7 +53,6 @@ func (o *DeleteClientReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -64,7 +63,7 @@ func NewDeleteClientNoContent() *DeleteClientNoContent {
 	return &DeleteClientNoContent{}
 }
 
-/*DeleteClientNoContent handles this case with default header values.
+/* DeleteClientNoContent describes a response with status code 204, with default header values.
 
 Client has been deleted
 */
@@ -85,7 +84,7 @@ func NewDeleteClientBadRequest() *DeleteClientBadRequest {
 	return &DeleteClientBadRequest{}
 }
 
-/*DeleteClientBadRequest handles this case with default header values.
+/* DeleteClientBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -96,7 +95,6 @@ type DeleteClientBadRequest struct {
 func (o *DeleteClientBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/clients/{cid}][%d] deleteClientBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *DeleteClientBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -118,7 +116,7 @@ func NewDeleteClientUnauthorized() *DeleteClientUnauthorized {
 	return &DeleteClientUnauthorized{}
 }
 
-/*DeleteClientUnauthorized handles this case with default header values.
+/* DeleteClientUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -129,7 +127,6 @@ type DeleteClientUnauthorized struct {
 func (o *DeleteClientUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/clients/{cid}][%d] deleteClientUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *DeleteClientUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -151,7 +148,7 @@ func NewDeleteClientForbidden() *DeleteClientForbidden {
 	return &DeleteClientForbidden{}
 }
 
-/*DeleteClientForbidden handles this case with default header values.
+/* DeleteClientForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -162,7 +159,6 @@ type DeleteClientForbidden struct {
 func (o *DeleteClientForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/clients/{cid}][%d] deleteClientForbidden  %+v", 403, o.Payload)
 }
-
 func (o *DeleteClientForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -184,7 +180,7 @@ func NewDeleteClientNotFound() *DeleteClientNotFound {
 	return &DeleteClientNotFound{}
 }
 
-/*DeleteClientNotFound handles this case with default header values.
+/* DeleteClientNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -195,7 +191,6 @@ type DeleteClientNotFound struct {
 func (o *DeleteClientNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/clients/{cid}][%d] deleteClientNotFound  %+v", 404, o.Payload)
 }
-
 func (o *DeleteClientNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

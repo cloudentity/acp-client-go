@@ -59,7 +59,6 @@ func (o *UpdateServiceReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -70,7 +69,7 @@ func NewUpdateServiceOK() *UpdateServiceOK {
 	return &UpdateServiceOK{}
 }
 
-/*UpdateServiceOK handles this case with default header values.
+/* UpdateServiceOK describes a response with status code 200, with default header values.
 
 Service
 */
@@ -81,7 +80,6 @@ type UpdateServiceOK struct {
 func (o *UpdateServiceOK) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/services/{sid}][%d] updateServiceOK  %+v", 200, o.Payload)
 }
-
 func (o *UpdateServiceOK) GetPayload() *models.Service {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewUpdateServiceBadRequest() *UpdateServiceBadRequest {
 	return &UpdateServiceBadRequest{}
 }
 
-/*UpdateServiceBadRequest handles this case with default header values.
+/* UpdateServiceBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -114,7 +112,6 @@ type UpdateServiceBadRequest struct {
 func (o *UpdateServiceBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/services/{sid}][%d] updateServiceBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *UpdateServiceBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -136,7 +133,7 @@ func NewUpdateServiceUnauthorized() *UpdateServiceUnauthorized {
 	return &UpdateServiceUnauthorized{}
 }
 
-/*UpdateServiceUnauthorized handles this case with default header values.
+/* UpdateServiceUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,7 +144,6 @@ type UpdateServiceUnauthorized struct {
 func (o *UpdateServiceUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/services/{sid}][%d] updateServiceUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *UpdateServiceUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -169,7 +165,7 @@ func NewUpdateServiceForbidden() *UpdateServiceForbidden {
 	return &UpdateServiceForbidden{}
 }
 
-/*UpdateServiceForbidden handles this case with default header values.
+/* UpdateServiceForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -180,7 +176,6 @@ type UpdateServiceForbidden struct {
 func (o *UpdateServiceForbidden) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/services/{sid}][%d] updateServiceForbidden  %+v", 403, o.Payload)
 }
-
 func (o *UpdateServiceForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -202,7 +197,7 @@ func NewUpdateServiceNotFound() *UpdateServiceNotFound {
 	return &UpdateServiceNotFound{}
 }
 
-/*UpdateServiceNotFound handles this case with default header values.
+/* UpdateServiceNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -213,7 +208,6 @@ type UpdateServiceNotFound struct {
 func (o *UpdateServiceNotFound) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/services/{sid}][%d] updateServiceNotFound  %+v", 404, o.Payload)
 }
-
 func (o *UpdateServiceNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +229,7 @@ func NewUpdateServiceUnprocessableEntity() *UpdateServiceUnprocessableEntity {
 	return &UpdateServiceUnprocessableEntity{}
 }
 
-/*UpdateServiceUnprocessableEntity handles this case with default header values.
+/* UpdateServiceUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -246,7 +240,6 @@ type UpdateServiceUnprocessableEntity struct {
 func (o *UpdateServiceUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/services/{sid}][%d] updateServiceUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *UpdateServiceUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

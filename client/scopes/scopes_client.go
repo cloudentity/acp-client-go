@@ -25,17 +25,20 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateScope(params *CreateScopeParams, authInfo runtime.ClientAuthInfoWriter) (*CreateScopeCreated, error)
+	CreateScope(params *CreateScopeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateScopeCreated, error)
 
-	DeleteScope(params *DeleteScopeParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteScopeNoContent, error)
+	DeleteScope(params *DeleteScopeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteScopeNoContent, error)
 
-	GetScope(params *GetScopeParams, authInfo runtime.ClientAuthInfoWriter) (*GetScopeOK, error)
+	GetScope(params *GetScopeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScopeOK, error)
 
-	ListScopes(params *ListScopesParams, authInfo runtime.ClientAuthInfoWriter) (*ListScopesOK, error)
+	ListScopes(params *ListScopesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListScopesOK, error)
 
-	UpdateScope(params *UpdateScopeParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateScopeOK, error)
+	UpdateScope(params *UpdateScopeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateScopeOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -46,13 +49,12 @@ type ClientService interface {
   Scope name is required. If scope id is not provided, will be generated.
 If you want to assign scope to a service, provide service id.
 */
-func (a *Client) CreateScope(params *CreateScopeParams, authInfo runtime.ClientAuthInfoWriter) (*CreateScopeCreated, error) {
+func (a *Client) CreateScope(params *CreateScopeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateScopeCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateScopeParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createScope",
 		Method:             "POST",
 		PathPattern:        "/api/admin/{tid}/scopes",
@@ -64,7 +66,12 @@ func (a *Client) CreateScope(params *CreateScopeParams, authInfo runtime.ClientA
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -83,13 +90,12 @@ func (a *Client) CreateScope(params *CreateScopeParams, authInfo runtime.ClientA
 
   Delete scope.
 */
-func (a *Client) DeleteScope(params *DeleteScopeParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteScopeNoContent, error) {
+func (a *Client) DeleteScope(params *DeleteScopeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteScopeNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteScopeParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "deleteScope",
 		Method:             "DELETE",
 		PathPattern:        "/api/admin/{tid}/scopes/{scp}",
@@ -101,7 +107,12 @@ func (a *Client) DeleteScope(params *DeleteScopeParams, authInfo runtime.ClientA
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -120,13 +131,12 @@ func (a *Client) DeleteScope(params *DeleteScopeParams, authInfo runtime.ClientA
 
   Get scope.
 */
-func (a *Client) GetScope(params *GetScopeParams, authInfo runtime.ClientAuthInfoWriter) (*GetScopeOK, error) {
+func (a *Client) GetScope(params *GetScopeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScopeOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetScopeParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getScope",
 		Method:             "GET",
 		PathPattern:        "/api/admin/{tid}/scopes/{scp}",
@@ -138,7 +148,12 @@ func (a *Client) GetScope(params *GetScopeParams, authInfo runtime.ClientAuthInf
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -157,13 +172,12 @@ func (a *Client) GetScope(params *GetScopeParams, authInfo runtime.ClientAuthInf
 
   List scopes.
 */
-func (a *Client) ListScopes(params *ListScopesParams, authInfo runtime.ClientAuthInfoWriter) (*ListScopesOK, error) {
+func (a *Client) ListScopes(params *ListScopesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListScopesOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListScopesParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "listScopes",
 		Method:             "GET",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/scopes",
@@ -175,7 +189,12 @@ func (a *Client) ListScopes(params *ListScopesParams, authInfo runtime.ClientAut
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -194,13 +213,12 @@ func (a *Client) ListScopes(params *ListScopesParams, authInfo runtime.ClientAut
 
   Update scope.
 */
-func (a *Client) UpdateScope(params *UpdateScopeParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateScopeOK, error) {
+func (a *Client) UpdateScope(params *UpdateScopeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateScopeOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateScopeParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "updateScope",
 		Method:             "PUT",
 		PathPattern:        "/api/admin/{tid}/scopes/{scp}",
@@ -212,7 +230,12 @@ func (a *Client) UpdateScope(params *UpdateScopeParams, authInfo runtime.ClientA
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}

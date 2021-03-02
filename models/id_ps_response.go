@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -37,7 +38,6 @@ func (m *IDPsResponse) Validate(formats strfmt.Registry) error {
 }
 
 func (m *IDPsResponse) validateIDPs(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.IDPs) { // not required
 		return nil
 	}
@@ -49,6 +49,38 @@ func (m *IDPsResponse) validateIDPs(formats strfmt.Registry) error {
 
 		if m.IDPs[i] != nil {
 			if err := m.IDPs[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("idps" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this ID ps response based on the context it is used
+func (m *IDPsResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateIDPs(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *IDPsResponse) contextValidateIDPs(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.IDPs); i++ {
+
+		if m.IDPs[i] != nil {
+			if err := m.IDPs[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("idps" + "." + strconv.Itoa(i))
 				}

@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -43,6 +45,9 @@ type OktaIDP struct {
 	// attributes
 	Attributes Attributes `json:"attributes,omitempty"`
 
+	// config
+	Config *IDPConfiguration `json:"config,omitempty"`
+
 	// credentials
 	Credentials *OktaCredentials `json:"credentials,omitempty"`
 
@@ -61,6 +66,10 @@ func (m *OktaIDP) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAttributes(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateConfig(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -87,7 +96,6 @@ func (m *OktaIDP) Validate(formats strfmt.Registry) error {
 }
 
 func (m *OktaIDP) validateAttributes(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Attributes) { // not required
 		return nil
 	}
@@ -102,8 +110,24 @@ func (m *OktaIDP) validateAttributes(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *OktaIDP) validateCredentials(formats strfmt.Registry) error {
+func (m *OktaIDP) validateConfig(formats strfmt.Registry) error {
+	if swag.IsZero(m.Config) { // not required
+		return nil
+	}
 
+	if m.Config != nil {
+		if err := m.Config.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("config")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *OktaIDP) validateCredentials(formats strfmt.Registry) error {
 	if swag.IsZero(m.Credentials) { // not required
 		return nil
 	}
@@ -121,7 +145,6 @@ func (m *OktaIDP) validateCredentials(formats strfmt.Registry) error {
 }
 
 func (m *OktaIDP) validateMappings(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Mappings) { // not required
 		return nil
 	}
@@ -137,7 +160,6 @@ func (m *OktaIDP) validateMappings(formats strfmt.Registry) error {
 }
 
 func (m *OktaIDP) validateSettings(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Settings) { // not required
 		return nil
 	}
@@ -155,13 +177,126 @@ func (m *OktaIDP) validateSettings(formats strfmt.Registry) error {
 }
 
 func (m *OktaIDP) validateTransformer(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Transformer) { // not required
 		return nil
 	}
 
 	if m.Transformer != nil {
 		if err := m.Transformer.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("transformer")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this okta ID p based on the context it is used
+func (m *OktaIDP) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateAttributes(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateConfig(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCredentials(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateMappings(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSettings(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateTransformer(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *OktaIDP) contextValidateAttributes(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.Attributes.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("attributes")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *OktaIDP) contextValidateConfig(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Config != nil {
+		if err := m.Config.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("config")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *OktaIDP) contextValidateCredentials(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Credentials != nil {
+		if err := m.Credentials.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("credentials")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *OktaIDP) contextValidateMappings(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.Mappings.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("mappings")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *OktaIDP) contextValidateSettings(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Settings != nil {
+		if err := m.Settings.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("settings")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *OktaIDP) contextValidateTransformer(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Transformer != nil {
+		if err := m.Transformer.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("transformer")
 			}

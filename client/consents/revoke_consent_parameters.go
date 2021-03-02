@@ -18,86 +18,100 @@ import (
 	"github.com/cloudentity/acp-client-go/models"
 )
 
-// NewRevokeConsentParams creates a new RevokeConsentParams object
-// with the default values initialized.
+// NewRevokeConsentParams creates a new RevokeConsentParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewRevokeConsentParams() *RevokeConsentParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &RevokeConsentParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewRevokeConsentParamsWithTimeout creates a new RevokeConsentParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewRevokeConsentParamsWithTimeout(timeout time.Duration) *RevokeConsentParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &RevokeConsentParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewRevokeConsentParamsWithContext creates a new RevokeConsentParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewRevokeConsentParamsWithContext(ctx context.Context) *RevokeConsentParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &RevokeConsentParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewRevokeConsentParamsWithHTTPClient creates a new RevokeConsentParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewRevokeConsentParamsWithHTTPClient(client *http.Client) *RevokeConsentParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &RevokeConsentParams{
-		Aid:        aidDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*RevokeConsentParams contains all the parameters to send to the API endpoint
-for the revoke consent operation typically these are written to a http.Request
+/* RevokeConsentParams contains all the parameters to send to the API endpoint
+   for the revoke consent operation.
+
+   Typically these are written to a http.Request.
 */
 type RevokeConsentParams struct {
 
-	/*ConsentGrant*/
+	// ConsentGrant.
 	ConsentGrant *models.ConsentGrantRequest
-	/*Aid
-	  Authorization server id
 
+	/* Aid.
+
+	   Authorization server id
+
+	   Default: "default"
 	*/
 	Aid string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the revoke consent params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *RevokeConsentParams) WithDefaults() *RevokeConsentParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the revoke consent params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *RevokeConsentParams) SetDefaults() {
+	var (
+		aidDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := RevokeConsentParams{
+		Aid: aidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the revoke consent params
@@ -173,7 +187,6 @@ func (o *RevokeConsentParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		return err
 	}
 	var res []error
-
 	if o.ConsentGrant != nil {
 		if err := r.SetBodyParam(o.ConsentGrant); err != nil {
 			return err

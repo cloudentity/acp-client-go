@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -18,8 +20,8 @@ type Environment struct {
 	// commit
 	Commit string `json:"commit,omitempty"`
 
-	// demo mode
-	DemoMode bool `json:"demo_mode,omitempty"`
+	// demo app
+	DemoApp bool `json:"demo_app,omitempty"`
 
 	// dev mode
 	DevMode bool `json:"dev_mode,omitempty"`
@@ -27,8 +29,26 @@ type Environment struct {
 	// display workspace wizard
 	DisplayWorkspaceWizard bool `json:"display_workspace_wizard,omitempty"`
 
-	// swagger mode
-	SwaggerMode bool `json:"swagger_mode,omitempty"`
+	// integration endpoints
+	IntegrationEndpoints bool `json:"integration_endpoints,omitempty"`
+
+	// j w t bearer grant type
+	JWTBearerGrantType bool `json:"jwt_bearer_grant_type,omitempty"`
+
+	// pyron on prem
+	PyronOnPrem bool `json:"pyron_on_prem,omitempty"`
+
+	// script transformer
+	ScriptTransformer bool `json:"script_transformer,omitempty"`
+
+	// swagger UI
+	SwaggerUI bool `json:"swagger_ui,omitempty"`
+
+	// system clients management
+	SystemClientsManagement bool `json:"system_clients_management,omitempty"`
+
+	// system openbanking consents management
+	SystemOpenbankingConsentsManagement bool `json:"system_openbanking_consents_management,omitempty"`
 
 	// version
 	Version string `json:"version,omitempty"`
@@ -36,6 +56,11 @@ type Environment struct {
 
 // Validate validates this environment
 func (m *Environment) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this environment based on context it is used
+func (m *Environment) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

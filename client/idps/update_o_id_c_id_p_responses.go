@@ -59,7 +59,6 @@ func (o *UpdateOIDCIDPReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -70,7 +69,7 @@ func NewUpdateOIDCIDPOK() *UpdateOIDCIDPOK {
 	return &UpdateOIDCIDPOK{}
 }
 
-/*UpdateOIDCIDPOK handles this case with default header values.
+/* UpdateOIDCIDPOK describes a response with status code 200, with default header values.
 
 OIDCIDP
 */
@@ -81,7 +80,6 @@ type UpdateOIDCIDPOK struct {
 func (o *UpdateOIDCIDPOK) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/oidc/{iid}][%d] updateOIdCIdPOK  %+v", 200, o.Payload)
 }
-
 func (o *UpdateOIDCIDPOK) GetPayload() *models.OIDCIDP {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewUpdateOIDCIDPBadRequest() *UpdateOIDCIDPBadRequest {
 	return &UpdateOIDCIDPBadRequest{}
 }
 
-/*UpdateOIDCIDPBadRequest handles this case with default header values.
+/* UpdateOIDCIDPBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -114,7 +112,6 @@ type UpdateOIDCIDPBadRequest struct {
 func (o *UpdateOIDCIDPBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/oidc/{iid}][%d] updateOIdCIdPBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *UpdateOIDCIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -136,7 +133,7 @@ func NewUpdateOIDCIDPUnauthorized() *UpdateOIDCIDPUnauthorized {
 	return &UpdateOIDCIDPUnauthorized{}
 }
 
-/*UpdateOIDCIDPUnauthorized handles this case with default header values.
+/* UpdateOIDCIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,7 +144,6 @@ type UpdateOIDCIDPUnauthorized struct {
 func (o *UpdateOIDCIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/oidc/{iid}][%d] updateOIdCIdPUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *UpdateOIDCIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -169,7 +165,7 @@ func NewUpdateOIDCIDPForbidden() *UpdateOIDCIDPForbidden {
 	return &UpdateOIDCIDPForbidden{}
 }
 
-/*UpdateOIDCIDPForbidden handles this case with default header values.
+/* UpdateOIDCIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -180,7 +176,6 @@ type UpdateOIDCIDPForbidden struct {
 func (o *UpdateOIDCIDPForbidden) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/oidc/{iid}][%d] updateOIdCIdPForbidden  %+v", 403, o.Payload)
 }
-
 func (o *UpdateOIDCIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -202,7 +197,7 @@ func NewUpdateOIDCIDPNotFound() *UpdateOIDCIDPNotFound {
 	return &UpdateOIDCIDPNotFound{}
 }
 
-/*UpdateOIDCIDPNotFound handles this case with default header values.
+/* UpdateOIDCIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -213,7 +208,6 @@ type UpdateOIDCIDPNotFound struct {
 func (o *UpdateOIDCIDPNotFound) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/oidc/{iid}][%d] updateOIdCIdPNotFound  %+v", 404, o.Payload)
 }
-
 func (o *UpdateOIDCIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +229,7 @@ func NewUpdateOIDCIDPUnprocessableEntity() *UpdateOIDCIDPUnprocessableEntity {
 	return &UpdateOIDCIDPUnprocessableEntity{}
 }
 
-/*UpdateOIDCIDPUnprocessableEntity handles this case with default header values.
+/* UpdateOIDCIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -246,7 +240,6 @@ type UpdateOIDCIDPUnprocessableEntity struct {
 func (o *UpdateOIDCIDPUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/oidc/{iid}][%d] updateOIdCIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *UpdateOIDCIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

@@ -16,73 +16,89 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewDeleteConsentActionParams creates a new DeleteConsentActionParams object
-// with the default values initialized.
+// NewDeleteConsentActionParams creates a new DeleteConsentActionParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewDeleteConsentActionParams() *DeleteConsentActionParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &DeleteConsentActionParams{
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewDeleteConsentActionParamsWithTimeout creates a new DeleteConsentActionParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewDeleteConsentActionParamsWithTimeout(timeout time.Duration) *DeleteConsentActionParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &DeleteConsentActionParams{
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewDeleteConsentActionParamsWithContext creates a new DeleteConsentActionParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewDeleteConsentActionParamsWithContext(ctx context.Context) *DeleteConsentActionParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &DeleteConsentActionParams{
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewDeleteConsentActionParamsWithHTTPClient creates a new DeleteConsentActionParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewDeleteConsentActionParamsWithHTTPClient(client *http.Client) *DeleteConsentActionParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &DeleteConsentActionParams{
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*DeleteConsentActionParams contains all the parameters to send to the API endpoint
-for the delete consent action operation typically these are written to a http.Request
+/* DeleteConsentActionParams contains all the parameters to send to the API endpoint
+   for the delete consent action operation.
+
+   Typically these are written to a http.Request.
 */
 type DeleteConsentActionParams struct {
 
-	/*Action*/
+	// Action.
 	Action string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the delete consent action params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteConsentActionParams) WithDefaults() *DeleteConsentActionParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the delete consent action params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteConsentActionParams) SetDefaults() {
+	var (
+		tidDefault = string("default")
+	)
+
+	val := DeleteConsentActionParams{
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the delete consent action params

@@ -16,97 +16,108 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewDynamicClientRegistrationDeleteClientParams creates a new DynamicClientRegistrationDeleteClientParams object
-// with the default values initialized.
+// NewDynamicClientRegistrationDeleteClientParams creates a new DynamicClientRegistrationDeleteClientParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewDynamicClientRegistrationDeleteClientParams() *DynamicClientRegistrationDeleteClientParams {
-	var (
-		aidDefault = string("default")
-		cidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &DynamicClientRegistrationDeleteClientParams{
-		Aid: aidDefault,
-		Cid: cidDefault,
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewDynamicClientRegistrationDeleteClientParamsWithTimeout creates a new DynamicClientRegistrationDeleteClientParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewDynamicClientRegistrationDeleteClientParamsWithTimeout(timeout time.Duration) *DynamicClientRegistrationDeleteClientParams {
-	var (
-		aidDefault = string("default")
-		cidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &DynamicClientRegistrationDeleteClientParams{
-		Aid: aidDefault,
-		Cid: cidDefault,
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewDynamicClientRegistrationDeleteClientParamsWithContext creates a new DynamicClientRegistrationDeleteClientParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewDynamicClientRegistrationDeleteClientParamsWithContext(ctx context.Context) *DynamicClientRegistrationDeleteClientParams {
-	var (
-		aidDefault = string("default")
-		cidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &DynamicClientRegistrationDeleteClientParams{
-		Aid: aidDefault,
-		Cid: cidDefault,
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewDynamicClientRegistrationDeleteClientParamsWithHTTPClient creates a new DynamicClientRegistrationDeleteClientParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewDynamicClientRegistrationDeleteClientParamsWithHTTPClient(client *http.Client) *DynamicClientRegistrationDeleteClientParams {
-	var (
-		aidDefault = string("default")
-		cidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &DynamicClientRegistrationDeleteClientParams{
-		Aid:        aidDefault,
-		Cid:        cidDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*DynamicClientRegistrationDeleteClientParams contains all the parameters to send to the API endpoint
-for the dynamic client registration delete client operation typically these are written to a http.Request
+/* DynamicClientRegistrationDeleteClientParams contains all the parameters to send to the API endpoint
+   for the dynamic client registration delete client operation.
+
+   Typically these are written to a http.Request.
 */
 type DynamicClientRegistrationDeleteClientParams struct {
 
-	/*Aid
-	  Authorization server id
+	/* Aid.
 
+	   Authorization server id
+
+	   Default: "default"
 	*/
 	Aid string
-	/*Cid
-	  Client id
 
+	/* Cid.
+
+	   Client id
+
+	   Default: "default"
 	*/
 	Cid string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the dynamic client registration delete client params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DynamicClientRegistrationDeleteClientParams) WithDefaults() *DynamicClientRegistrationDeleteClientParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the dynamic client registration delete client params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DynamicClientRegistrationDeleteClientParams) SetDefaults() {
+	var (
+		aidDefault = string("default")
+
+		cidDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := DynamicClientRegistrationDeleteClientParams{
+		Aid: aidDefault,
+		Cid: cidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the dynamic client registration delete client params

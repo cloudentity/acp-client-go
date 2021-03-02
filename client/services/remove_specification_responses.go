@@ -65,7 +65,6 @@ func (o *RemoveSpecificationReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -76,7 +75,7 @@ func NewRemoveSpecificationOK() *RemoveSpecificationOK {
 	return &RemoveSpecificationOK{}
 }
 
-/*RemoveSpecificationOK handles this case with default header values.
+/* RemoveSpecificationOK describes a response with status code 200, with default header values.
 
 RemoveServiceConfigurationResult
 */
@@ -87,7 +86,6 @@ type RemoveSpecificationOK struct {
 func (o *RemoveSpecificationOK) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/services/{sid}/apis][%d] removeSpecificationOK  %+v", 200, o.Payload)
 }
-
 func (o *RemoveSpecificationOK) GetPayload() *models.RemoveServiceConfigurationResult {
 	return o.Payload
 }
@@ -109,7 +107,7 @@ func NewRemoveSpecificationBadRequest() *RemoveSpecificationBadRequest {
 	return &RemoveSpecificationBadRequest{}
 }
 
-/*RemoveSpecificationBadRequest handles this case with default header values.
+/* RemoveSpecificationBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -120,7 +118,6 @@ type RemoveSpecificationBadRequest struct {
 func (o *RemoveSpecificationBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/services/{sid}/apis][%d] removeSpecificationBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *RemoveSpecificationBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -142,7 +139,7 @@ func NewRemoveSpecificationUnauthorized() *RemoveSpecificationUnauthorized {
 	return &RemoveSpecificationUnauthorized{}
 }
 
-/*RemoveSpecificationUnauthorized handles this case with default header values.
+/* RemoveSpecificationUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -153,7 +150,6 @@ type RemoveSpecificationUnauthorized struct {
 func (o *RemoveSpecificationUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/services/{sid}/apis][%d] removeSpecificationUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *RemoveSpecificationUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -175,7 +171,7 @@ func NewRemoveSpecificationForbidden() *RemoveSpecificationForbidden {
 	return &RemoveSpecificationForbidden{}
 }
 
-/*RemoveSpecificationForbidden handles this case with default header values.
+/* RemoveSpecificationForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -186,7 +182,6 @@ type RemoveSpecificationForbidden struct {
 func (o *RemoveSpecificationForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/services/{sid}/apis][%d] removeSpecificationForbidden  %+v", 403, o.Payload)
 }
-
 func (o *RemoveSpecificationForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -208,7 +203,7 @@ func NewRemoveSpecificationNotFound() *RemoveSpecificationNotFound {
 	return &RemoveSpecificationNotFound{}
 }
 
-/*RemoveSpecificationNotFound handles this case with default header values.
+/* RemoveSpecificationNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -219,7 +214,6 @@ type RemoveSpecificationNotFound struct {
 func (o *RemoveSpecificationNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/services/{sid}/apis][%d] removeSpecificationNotFound  %+v", 404, o.Payload)
 }
-
 func (o *RemoveSpecificationNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -241,7 +235,7 @@ func NewRemoveSpecificationConflict() *RemoveSpecificationConflict {
 	return &RemoveSpecificationConflict{}
 }
 
-/*RemoveSpecificationConflict handles this case with default header values.
+/* RemoveSpecificationConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -252,7 +246,6 @@ type RemoveSpecificationConflict struct {
 func (o *RemoveSpecificationConflict) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/services/{sid}/apis][%d] removeSpecificationConflict  %+v", 409, o.Payload)
 }
-
 func (o *RemoveSpecificationConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -274,7 +267,7 @@ func NewRemoveSpecificationUnprocessableEntity() *RemoveSpecificationUnprocessab
 	return &RemoveSpecificationUnprocessableEntity{}
 }
 
-/*RemoveSpecificationUnprocessableEntity handles this case with default header values.
+/* RemoveSpecificationUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -285,7 +278,6 @@ type RemoveSpecificationUnprocessableEntity struct {
 func (o *RemoveSpecificationUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/services/{sid}/apis][%d] removeSpecificationUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *RemoveSpecificationUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

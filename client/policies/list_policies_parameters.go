@@ -16,97 +16,108 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewListPoliciesParams creates a new ListPoliciesParams object
-// with the default values initialized.
+// NewListPoliciesParams creates a new ListPoliciesParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewListPoliciesParams() *ListPoliciesParams {
-	var (
-		aidDefault        = string("default")
-		policyTypeDefault = string("api")
-		tidDefault        = string("default")
-	)
 	return &ListPoliciesParams{
-		Aid:        aidDefault,
-		PolicyType: &policyTypeDefault,
-		Tid:        tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewListPoliciesParamsWithTimeout creates a new ListPoliciesParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewListPoliciesParamsWithTimeout(timeout time.Duration) *ListPoliciesParams {
-	var (
-		aidDefault        = string("default")
-		policyTypeDefault = string("api")
-		tidDefault        = string("default")
-	)
 	return &ListPoliciesParams{
-		Aid:        aidDefault,
-		PolicyType: &policyTypeDefault,
-		Tid:        tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewListPoliciesParamsWithContext creates a new ListPoliciesParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewListPoliciesParamsWithContext(ctx context.Context) *ListPoliciesParams {
-	var (
-		aidDefault        = string("default")
-		policyTypeDefault = string("api")
-		tidDefault        = string("default")
-	)
 	return &ListPoliciesParams{
-		Aid:        aidDefault,
-		PolicyType: &policyTypeDefault,
-		Tid:        tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewListPoliciesParamsWithHTTPClient creates a new ListPoliciesParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewListPoliciesParamsWithHTTPClient(client *http.Client) *ListPoliciesParams {
-	var (
-		aidDefault        = string("default")
-		policyTypeDefault = string("api")
-		tidDefault        = string("default")
-	)
 	return &ListPoliciesParams{
-		Aid:        aidDefault,
-		PolicyType: &policyTypeDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*ListPoliciesParams contains all the parameters to send to the API endpoint
-for the list policies operation typically these are written to a http.Request
+/* ListPoliciesParams contains all the parameters to send to the API endpoint
+   for the list policies operation.
+
+   Typically these are written to a http.Request.
 */
 type ListPoliciesParams struct {
 
-	/*Aid
-	  Authorization server id
+	/* Aid.
 
+	   Authorization server id
+
+	   Default: "default"
 	*/
 	Aid string
-	/*PolicyType
-	  Policy type
 
+	/* PolicyType.
+
+	   Policy type
+
+	   Default: "api"
 	*/
 	PolicyType *string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the list policies params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ListPoliciesParams) WithDefaults() *ListPoliciesParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the list policies params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ListPoliciesParams) SetDefaults() {
+	var (
+		aidDefault = string("default")
+
+		policyTypeDefault = string("api")
+
+		tidDefault = string("default")
+	)
+
+	val := ListPoliciesParams{
+		Aid:        aidDefault,
+		PolicyType: &policyTypeDefault,
+		Tid:        tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the list policies params
@@ -192,16 +203,17 @@ func (o *ListPoliciesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 
 		// query param policy_type
 		var qrPolicyType string
+
 		if o.PolicyType != nil {
 			qrPolicyType = *o.PolicyType
 		}
 		qPolicyType := qrPolicyType
 		if qPolicyType != "" {
+
 			if err := r.SetQueryParam("policy_type", qPolicyType); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	// path param tid

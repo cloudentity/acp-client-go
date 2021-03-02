@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -19,17 +21,24 @@ type CreateGatewayRequest struct {
 	Description string `json:"description,omitempty"`
 
 	// gateway name
+	// Example: Cloudentity Pyron
 	Name string `json:"name,omitempty"`
 
 	// ServerID that this gateway should protect
 	ServerID string `json:"server_id,omitempty"`
 
 	// gateway type, one of: pyron, aws, azure
+	// Example: pyron
 	Type string `json:"type,omitempty"`
 }
 
 // Validate validates this create gateway request
 func (m *CreateGatewayRequest) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this create gateway request based on context it is used
+func (m *CreateGatewayRequest) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

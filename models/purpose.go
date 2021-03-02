@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -16,14 +18,21 @@ import (
 type Purpose struct {
 
 	// name
+	// Example: Core Function
 	Name string `json:"name,omitempty"`
 
 	// is the purpose primary. If there are multiple purposes defined, one of them must be marked as primary.
+	// Example: true
 	Primary bool `json:"primary,omitempty"`
 }
 
 // Validate validates this purpose
 func (m *Purpose) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this purpose based on context it is used
+func (m *Purpose) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

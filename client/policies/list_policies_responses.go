@@ -41,7 +41,6 @@ func (o *ListPoliciesReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -52,7 +51,7 @@ func NewListPoliciesOK() *ListPoliciesOK {
 	return &ListPoliciesOK{}
 }
 
-/*ListPoliciesOK handles this case with default header values.
+/* ListPoliciesOK describes a response with status code 200, with default header values.
 
 Policies
 */
@@ -63,7 +62,6 @@ type ListPoliciesOK struct {
 func (o *ListPoliciesOK) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/policies][%d] listPoliciesOK  %+v", 200, o.Payload)
 }
-
 func (o *ListPoliciesOK) GetPayload() *models.Policies {
 	return o.Payload
 }
@@ -85,7 +83,7 @@ func NewListPoliciesUnauthorized() *ListPoliciesUnauthorized {
 	return &ListPoliciesUnauthorized{}
 }
 
-/*ListPoliciesUnauthorized handles this case with default header values.
+/* ListPoliciesUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -96,7 +94,6 @@ type ListPoliciesUnauthorized struct {
 func (o *ListPoliciesUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/policies][%d] listPoliciesUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *ListPoliciesUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -118,7 +115,7 @@ func NewListPoliciesForbidden() *ListPoliciesForbidden {
 	return &ListPoliciesForbidden{}
 }
 
-/*ListPoliciesForbidden handles this case with default header values.
+/* ListPoliciesForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -129,7 +126,6 @@ type ListPoliciesForbidden struct {
 func (o *ListPoliciesForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/policies][%d] listPoliciesForbidden  %+v", 403, o.Payload)
 }
-
 func (o *ListPoliciesForbidden) GetPayload() *models.Error {
 	return o.Payload
 }

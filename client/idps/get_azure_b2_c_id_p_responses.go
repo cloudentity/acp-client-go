@@ -47,7 +47,6 @@ func (o *GetAzureB2CIDPReader) ReadResponse(response runtime.ClientResponse, con
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewGetAzureB2CIDPOK() *GetAzureB2CIDPOK {
 	return &GetAzureB2CIDPOK{}
 }
 
-/*GetAzureB2CIDPOK handles this case with default header values.
+/* GetAzureB2CIDPOK describes a response with status code 200, with default header values.
 
 AzureB2CIDP
 */
@@ -69,7 +68,6 @@ type GetAzureB2CIDPOK struct {
 func (o *GetAzureB2CIDPOK) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPOK  %+v", 200, o.Payload)
 }
-
 func (o *GetAzureB2CIDPOK) GetPayload() *models.AzureB2CIDP {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewGetAzureB2CIDPUnauthorized() *GetAzureB2CIDPUnauthorized {
 	return &GetAzureB2CIDPUnauthorized{}
 }
 
-/*GetAzureB2CIDPUnauthorized handles this case with default header values.
+/* GetAzureB2CIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -102,7 +100,6 @@ type GetAzureB2CIDPUnauthorized struct {
 func (o *GetAzureB2CIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *GetAzureB2CIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -124,7 +121,7 @@ func NewGetAzureB2CIDPForbidden() *GetAzureB2CIDPForbidden {
 	return &GetAzureB2CIDPForbidden{}
 }
 
-/*GetAzureB2CIDPForbidden handles this case with default header values.
+/* GetAzureB2CIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,7 +132,6 @@ type GetAzureB2CIDPForbidden struct {
 func (o *GetAzureB2CIDPForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPForbidden  %+v", 403, o.Payload)
 }
-
 func (o *GetAzureB2CIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -157,7 +153,7 @@ func NewGetAzureB2CIDPNotFound() *GetAzureB2CIDPNotFound {
 	return &GetAzureB2CIDPNotFound{}
 }
 
-/*GetAzureB2CIDPNotFound handles this case with default header values.
+/* GetAzureB2CIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -168,7 +164,6 @@ type GetAzureB2CIDPNotFound struct {
 func (o *GetAzureB2CIDPNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPNotFound  %+v", 404, o.Payload)
 }
-
 func (o *GetAzureB2CIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

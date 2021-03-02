@@ -41,7 +41,6 @@ func (o *TokenReader) ReadResponse(response runtime.ClientResponse, consumer run
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -52,7 +51,7 @@ func NewTokenOK() *TokenOK {
 	return &TokenOK{}
 }
 
-/*TokenOK handles this case with default header values.
+/* TokenOK describes a response with status code 200, with default header values.
 
 tokenResponse
 */
@@ -63,7 +62,6 @@ type TokenOK struct {
 func (o *TokenOK) Error() string {
 	return fmt.Sprintf("[POST /{tid}/{aid}/oauth2/token][%d] tokenOK  %+v", 200, o.Payload)
 }
-
 func (o *TokenOK) GetPayload() *models.TokenResponse {
 	return o.Payload
 }
@@ -85,7 +83,7 @@ func NewTokenUnauthorized() *TokenUnauthorized {
 	return &TokenUnauthorized{}
 }
 
-/*TokenUnauthorized handles this case with default header values.
+/* TokenUnauthorized describes a response with status code 401, with default header values.
 
 genericError
 */
@@ -96,7 +94,6 @@ type TokenUnauthorized struct {
 func (o *TokenUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /{tid}/{aid}/oauth2/token][%d] tokenUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *TokenUnauthorized) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -118,7 +115,7 @@ func NewTokenNotFound() *TokenNotFound {
 	return &TokenNotFound{}
 }
 
-/*TokenNotFound handles this case with default header values.
+/* TokenNotFound describes a response with status code 404, with default header values.
 
 genericError
 */
@@ -129,7 +126,6 @@ type TokenNotFound struct {
 func (o *TokenNotFound) Error() string {
 	return fmt.Sprintf("[POST /{tid}/{aid}/oauth2/token][%d] tokenNotFound  %+v", 404, o.Payload)
 }
-
 func (o *TokenNotFound) GetPayload() *models.GenericError {
 	return o.Payload
 }

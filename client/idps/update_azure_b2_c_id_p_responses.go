@@ -59,7 +59,6 @@ func (o *UpdateAzureB2CIDPReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -70,7 +69,7 @@ func NewUpdateAzureB2CIDPOK() *UpdateAzureB2CIDPOK {
 	return &UpdateAzureB2CIDPOK{}
 }
 
-/*UpdateAzureB2CIDPOK handles this case with default header values.
+/* UpdateAzureB2CIDPOK describes a response with status code 200, with default header values.
 
 AzureB2CIDP
 */
@@ -81,7 +80,6 @@ type UpdateAzureB2CIDPOK struct {
 func (o *UpdateAzureB2CIDPOK) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/azureb2c/{iid}][%d] updateAzureB2CIdPOK  %+v", 200, o.Payload)
 }
-
 func (o *UpdateAzureB2CIDPOK) GetPayload() *models.AzureB2CIDP {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewUpdateAzureB2CIDPBadRequest() *UpdateAzureB2CIDPBadRequest {
 	return &UpdateAzureB2CIDPBadRequest{}
 }
 
-/*UpdateAzureB2CIDPBadRequest handles this case with default header values.
+/* UpdateAzureB2CIDPBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -114,7 +112,6 @@ type UpdateAzureB2CIDPBadRequest struct {
 func (o *UpdateAzureB2CIDPBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/azureb2c/{iid}][%d] updateAzureB2CIdPBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *UpdateAzureB2CIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -136,7 +133,7 @@ func NewUpdateAzureB2CIDPUnauthorized() *UpdateAzureB2CIDPUnauthorized {
 	return &UpdateAzureB2CIDPUnauthorized{}
 }
 
-/*UpdateAzureB2CIDPUnauthorized handles this case with default header values.
+/* UpdateAzureB2CIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,7 +144,6 @@ type UpdateAzureB2CIDPUnauthorized struct {
 func (o *UpdateAzureB2CIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/azureb2c/{iid}][%d] updateAzureB2CIdPUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *UpdateAzureB2CIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -169,7 +165,7 @@ func NewUpdateAzureB2CIDPForbidden() *UpdateAzureB2CIDPForbidden {
 	return &UpdateAzureB2CIDPForbidden{}
 }
 
-/*UpdateAzureB2CIDPForbidden handles this case with default header values.
+/* UpdateAzureB2CIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -180,7 +176,6 @@ type UpdateAzureB2CIDPForbidden struct {
 func (o *UpdateAzureB2CIDPForbidden) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/azureb2c/{iid}][%d] updateAzureB2CIdPForbidden  %+v", 403, o.Payload)
 }
-
 func (o *UpdateAzureB2CIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -202,7 +197,7 @@ func NewUpdateAzureB2CIDPNotFound() *UpdateAzureB2CIDPNotFound {
 	return &UpdateAzureB2CIDPNotFound{}
 }
 
-/*UpdateAzureB2CIDPNotFound handles this case with default header values.
+/* UpdateAzureB2CIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -213,7 +208,6 @@ type UpdateAzureB2CIDPNotFound struct {
 func (o *UpdateAzureB2CIDPNotFound) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/azureb2c/{iid}][%d] updateAzureB2CIdPNotFound  %+v", 404, o.Payload)
 }
-
 func (o *UpdateAzureB2CIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +229,7 @@ func NewUpdateAzureB2CIDPUnprocessableEntity() *UpdateAzureB2CIDPUnprocessableEn
 	return &UpdateAzureB2CIDPUnprocessableEntity{}
 }
 
-/*UpdateAzureB2CIDPUnprocessableEntity handles this case with default header values.
+/* UpdateAzureB2CIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -246,7 +240,6 @@ type UpdateAzureB2CIDPUnprocessableEntity struct {
 func (o *UpdateAzureB2CIDPUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/azureb2c/{iid}][%d] updateAzureB2CIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *UpdateAzureB2CIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

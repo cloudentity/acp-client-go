@@ -41,7 +41,6 @@ func (o *ListConsentActionsReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -52,7 +51,7 @@ func NewListConsentActionsOK() *ListConsentActionsOK {
 	return &ListConsentActionsOK{}
 }
 
-/*ListConsentActionsOK handles this case with default header values.
+/* ListConsentActionsOK describes a response with status code 200, with default header values.
 
 ConsentActions
 */
@@ -63,7 +62,6 @@ type ListConsentActionsOK struct {
 func (o *ListConsentActionsOK) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/actions][%d] listConsentActionsOK  %+v", 200, o.Payload)
 }
-
 func (o *ListConsentActionsOK) GetPayload() *models.ConsentActions {
 	return o.Payload
 }
@@ -85,7 +83,7 @@ func NewListConsentActionsUnauthorized() *ListConsentActionsUnauthorized {
 	return &ListConsentActionsUnauthorized{}
 }
 
-/*ListConsentActionsUnauthorized handles this case with default header values.
+/* ListConsentActionsUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -96,7 +94,6 @@ type ListConsentActionsUnauthorized struct {
 func (o *ListConsentActionsUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/actions][%d] listConsentActionsUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *ListConsentActionsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -118,7 +115,7 @@ func NewListConsentActionsForbidden() *ListConsentActionsForbidden {
 	return &ListConsentActionsForbidden{}
 }
 
-/*ListConsentActionsForbidden handles this case with default header values.
+/* ListConsentActionsForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -129,7 +126,6 @@ type ListConsentActionsForbidden struct {
 func (o *ListConsentActionsForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/actions][%d] listConsentActionsForbidden  %+v", 403, o.Payload)
 }
-
 func (o *ListConsentActionsForbidden) GetPayload() *models.Error {
 	return o.Payload
 }

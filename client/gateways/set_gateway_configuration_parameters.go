@@ -18,86 +18,100 @@ import (
 	"github.com/cloudentity/acp-client-go/models"
 )
 
-// NewSetGatewayConfigurationParams creates a new SetGatewayConfigurationParams object
-// with the default values initialized.
+// NewSetGatewayConfigurationParams creates a new SetGatewayConfigurationParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewSetGatewayConfigurationParams() *SetGatewayConfigurationParams {
-	var (
-		authorizerVersionDefault = string("latest")
-		tidDefault               = string("default")
-	)
 	return &SetGatewayConfigurationParams{
-		AuthorizerVersion: &authorizerVersionDefault,
-		Tid:               tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewSetGatewayConfigurationParamsWithTimeout creates a new SetGatewayConfigurationParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewSetGatewayConfigurationParamsWithTimeout(timeout time.Duration) *SetGatewayConfigurationParams {
-	var (
-		authorizerVersionDefault = string("latest")
-		tidDefault               = string("default")
-	)
 	return &SetGatewayConfigurationParams{
-		AuthorizerVersion: &authorizerVersionDefault,
-		Tid:               tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewSetGatewayConfigurationParamsWithContext creates a new SetGatewayConfigurationParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewSetGatewayConfigurationParamsWithContext(ctx context.Context) *SetGatewayConfigurationParams {
-	var (
-		authorizerVersionDefault = string("latest")
-		tidDefault               = string("default")
-	)
 	return &SetGatewayConfigurationParams{
-		AuthorizerVersion: &authorizerVersionDefault,
-		Tid:               tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewSetGatewayConfigurationParamsWithHTTPClient creates a new SetGatewayConfigurationParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewSetGatewayConfigurationParamsWithHTTPClient(client *http.Client) *SetGatewayConfigurationParams {
-	var (
-		authorizerVersionDefault = string("latest")
-		tidDefault               = string("default")
-	)
 	return &SetGatewayConfigurationParams{
-		AuthorizerVersion: &authorizerVersionDefault,
-		Tid:               tidDefault,
-		HTTPClient:        client,
+		HTTPClient: client,
 	}
 }
 
-/*SetGatewayConfigurationParams contains all the parameters to send to the API endpoint
-for the set gateway configuration operation typically these are written to a http.Request
+/* SetGatewayConfigurationParams contains all the parameters to send to the API endpoint
+   for the set gateway configuration operation.
+
+   Typically these are written to a http.Request.
 */
 type SetGatewayConfigurationParams struct {
 
-	/*SetGatewayConfigurationRequest*/
+	// SetGatewayConfigurationRequest.
 	SetGatewayConfigurationRequest *models.SetGatewayConfigurationRequest
-	/*AuthorizerVersion
-	  Authorizer version
 
+	/* AuthorizerVersion.
+
+	   Authorizer version
+
+	   Default: "latest"
 	*/
 	AuthorizerVersion *string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the set gateway configuration params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *SetGatewayConfigurationParams) WithDefaults() *SetGatewayConfigurationParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the set gateway configuration params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *SetGatewayConfigurationParams) SetDefaults() {
+	var (
+		authorizerVersionDefault = string("latest")
+
+		tidDefault = string("default")
+	)
+
+	val := SetGatewayConfigurationParams{
+		AuthorizerVersion: &authorizerVersionDefault,
+		Tid:               tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the set gateway configuration params
@@ -173,7 +187,6 @@ func (o *SetGatewayConfigurationParams) WriteToRequest(r runtime.ClientRequest, 
 		return err
 	}
 	var res []error
-
 	if o.SetGatewayConfigurationRequest != nil {
 		if err := r.SetBodyParam(o.SetGatewayConfigurationRequest); err != nil {
 			return err
@@ -184,16 +197,17 @@ func (o *SetGatewayConfigurationParams) WriteToRequest(r runtime.ClientRequest, 
 
 		// query param authorizer_version
 		var qrAuthorizerVersion string
+
 		if o.AuthorizerVersion != nil {
 			qrAuthorizerVersion = *o.AuthorizerVersion
 		}
 		qAuthorizerVersion := qrAuthorizerVersion
 		if qAuthorizerVersion != "" {
+
 			if err := r.SetQueryParam("authorizer_version", qAuthorizerVersion); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	// path param tid

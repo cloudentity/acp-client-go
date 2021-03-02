@@ -59,7 +59,6 @@ func (o *UpdateStaticIDPReader) ReadResponse(response runtime.ClientResponse, co
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -70,7 +69,7 @@ func NewUpdateStaticIDPOK() *UpdateStaticIDPOK {
 	return &UpdateStaticIDPOK{}
 }
 
-/*UpdateStaticIDPOK handles this case with default header values.
+/* UpdateStaticIDPOK describes a response with status code 200, with default header values.
 
 StaticIDP
 */
@@ -81,7 +80,6 @@ type UpdateStaticIDPOK struct {
 func (o *UpdateStaticIDPOK) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/static/{iid}][%d] updateStaticIdPOK  %+v", 200, o.Payload)
 }
-
 func (o *UpdateStaticIDPOK) GetPayload() *models.StaticIDP {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewUpdateStaticIDPBadRequest() *UpdateStaticIDPBadRequest {
 	return &UpdateStaticIDPBadRequest{}
 }
 
-/*UpdateStaticIDPBadRequest handles this case with default header values.
+/* UpdateStaticIDPBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -114,7 +112,6 @@ type UpdateStaticIDPBadRequest struct {
 func (o *UpdateStaticIDPBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/static/{iid}][%d] updateStaticIdPBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *UpdateStaticIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -136,7 +133,7 @@ func NewUpdateStaticIDPUnauthorized() *UpdateStaticIDPUnauthorized {
 	return &UpdateStaticIDPUnauthorized{}
 }
 
-/*UpdateStaticIDPUnauthorized handles this case with default header values.
+/* UpdateStaticIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,7 +144,6 @@ type UpdateStaticIDPUnauthorized struct {
 func (o *UpdateStaticIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/static/{iid}][%d] updateStaticIdPUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *UpdateStaticIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -169,7 +165,7 @@ func NewUpdateStaticIDPForbidden() *UpdateStaticIDPForbidden {
 	return &UpdateStaticIDPForbidden{}
 }
 
-/*UpdateStaticIDPForbidden handles this case with default header values.
+/* UpdateStaticIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -180,7 +176,6 @@ type UpdateStaticIDPForbidden struct {
 func (o *UpdateStaticIDPForbidden) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/static/{iid}][%d] updateStaticIdPForbidden  %+v", 403, o.Payload)
 }
-
 func (o *UpdateStaticIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -202,7 +197,7 @@ func NewUpdateStaticIDPNotFound() *UpdateStaticIDPNotFound {
 	return &UpdateStaticIDPNotFound{}
 }
 
-/*UpdateStaticIDPNotFound handles this case with default header values.
+/* UpdateStaticIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -213,7 +208,6 @@ type UpdateStaticIDPNotFound struct {
 func (o *UpdateStaticIDPNotFound) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/static/{iid}][%d] updateStaticIdPNotFound  %+v", 404, o.Payload)
 }
-
 func (o *UpdateStaticIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +229,7 @@ func NewUpdateStaticIDPUnprocessableEntity() *UpdateStaticIDPUnprocessableEntity
 	return &UpdateStaticIDPUnprocessableEntity{}
 }
 
-/*UpdateStaticIDPUnprocessableEntity handles this case with default header values.
+/* UpdateStaticIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -246,7 +240,6 @@ type UpdateStaticIDPUnprocessableEntity struct {
 func (o *UpdateStaticIDPUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/static/{iid}][%d] updateStaticIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *UpdateStaticIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

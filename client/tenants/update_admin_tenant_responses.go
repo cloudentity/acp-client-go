@@ -59,7 +59,6 @@ func (o *UpdateAdminTenantReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -70,7 +69,7 @@ func NewUpdateAdminTenantOK() *UpdateAdminTenantOK {
 	return &UpdateAdminTenantOK{}
 }
 
-/*UpdateAdminTenantOK handles this case with default header values.
+/* UpdateAdminTenantOK describes a response with status code 200, with default header values.
 
 Tenant
 */
@@ -81,7 +80,6 @@ type UpdateAdminTenantOK struct {
 func (o *UpdateAdminTenantOK) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/tenant][%d] updateAdminTenantOK  %+v", 200, o.Payload)
 }
-
 func (o *UpdateAdminTenantOK) GetPayload() *models.Tenant {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewUpdateAdminTenantBadRequest() *UpdateAdminTenantBadRequest {
 	return &UpdateAdminTenantBadRequest{}
 }
 
-/*UpdateAdminTenantBadRequest handles this case with default header values.
+/* UpdateAdminTenantBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -114,7 +112,6 @@ type UpdateAdminTenantBadRequest struct {
 func (o *UpdateAdminTenantBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/tenant][%d] updateAdminTenantBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *UpdateAdminTenantBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -136,7 +133,7 @@ func NewUpdateAdminTenantUnauthorized() *UpdateAdminTenantUnauthorized {
 	return &UpdateAdminTenantUnauthorized{}
 }
 
-/*UpdateAdminTenantUnauthorized handles this case with default header values.
+/* UpdateAdminTenantUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,7 +144,6 @@ type UpdateAdminTenantUnauthorized struct {
 func (o *UpdateAdminTenantUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/tenant][%d] updateAdminTenantUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *UpdateAdminTenantUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -169,7 +165,7 @@ func NewUpdateAdminTenantForbidden() *UpdateAdminTenantForbidden {
 	return &UpdateAdminTenantForbidden{}
 }
 
-/*UpdateAdminTenantForbidden handles this case with default header values.
+/* UpdateAdminTenantForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -180,7 +176,6 @@ type UpdateAdminTenantForbidden struct {
 func (o *UpdateAdminTenantForbidden) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/tenant][%d] updateAdminTenantForbidden  %+v", 403, o.Payload)
 }
-
 func (o *UpdateAdminTenantForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -202,7 +197,7 @@ func NewUpdateAdminTenantNotFound() *UpdateAdminTenantNotFound {
 	return &UpdateAdminTenantNotFound{}
 }
 
-/*UpdateAdminTenantNotFound handles this case with default header values.
+/* UpdateAdminTenantNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -213,7 +208,6 @@ type UpdateAdminTenantNotFound struct {
 func (o *UpdateAdminTenantNotFound) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/tenant][%d] updateAdminTenantNotFound  %+v", 404, o.Payload)
 }
-
 func (o *UpdateAdminTenantNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +229,7 @@ func NewUpdateAdminTenantUnprocessableEntity() *UpdateAdminTenantUnprocessableEn
 	return &UpdateAdminTenantUnprocessableEntity{}
 }
 
-/*UpdateAdminTenantUnprocessableEntity handles this case with default header values.
+/* UpdateAdminTenantUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -246,7 +240,6 @@ type UpdateAdminTenantUnprocessableEntity struct {
 func (o *UpdateAdminTenantUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/tenant][%d] updateAdminTenantUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *UpdateAdminTenantUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

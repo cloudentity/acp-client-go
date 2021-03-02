@@ -25,47 +25,50 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateConsent(params *CreateConsentParams, authInfo runtime.ClientAuthInfoWriter) (*CreateConsentCreated, error)
+	CreateConsent(params *CreateConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateConsentCreated, error)
 
-	CreateConsentAction(params *CreateConsentActionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateConsentActionCreated, error)
+	CreateConsentAction(params *CreateConsentActionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateConsentActionCreated, error)
 
-	DeleteConsent(params *DeleteConsentParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteConsentNoContent, error)
+	DeleteConsent(params *DeleteConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteConsentNoContent, error)
 
-	DeleteConsentAction(params *DeleteConsentActionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteConsentActionNoContent, error)
+	DeleteConsentAction(params *DeleteConsentActionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteConsentActionNoContent, error)
 
-	GetConsent(params *GetConsentParams, authInfo runtime.ClientAuthInfoWriter) (*GetConsentOK, error)
+	GetConsent(params *GetConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetConsentOK, error)
 
-	GetConsentAction(params *GetConsentActionParams, authInfo runtime.ClientAuthInfoWriter) (*GetConsentActionOK, error)
+	GetConsentAction(params *GetConsentActionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetConsentActionOK, error)
 
-	GrantConsent(params *GrantConsentParams, authInfo runtime.ClientAuthInfoWriter) (*GrantConsentCreated, error)
+	GrantConsent(params *GrantConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GrantConsentCreated, error)
 
-	ListConsentActions(params *ListConsentActionsParams, authInfo runtime.ClientAuthInfoWriter) (*ListConsentActionsOK, error)
+	ListConsentActions(params *ListConsentActionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListConsentActionsOK, error)
 
-	ListConsents(params *ListConsentsParams, authInfo runtime.ClientAuthInfoWriter) (*ListConsentsOK, error)
+	ListConsents(params *ListConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListConsentsOK, error)
 
-	ListPrivacyLedgerEvents(params *ListPrivacyLedgerEventsParams, authInfo runtime.ClientAuthInfoWriter) (*ListPrivacyLedgerEventsOK, error)
+	ListPrivacyLedgerEvents(params *ListPrivacyLedgerEventsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListPrivacyLedgerEventsOK, error)
 
-	ListPrivacyLedgerEventsBySubject(params *ListPrivacyLedgerEventsBySubjectParams, authInfo runtime.ClientAuthInfoWriter) (*ListPrivacyLedgerEventsBySubjectOK, error)
+	ListPrivacyLedgerEventsBySubject(params *ListPrivacyLedgerEventsBySubjectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListPrivacyLedgerEventsBySubjectOK, error)
 
-	ListUserConsents(params *ListUserConsentsParams, authInfo runtime.ClientAuthInfoWriter) (*ListUserConsentsOK, error)
+	ListUserConsents(params *ListUserConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListUserConsentsOK, error)
 
-	ListUserConsentsByAction(params *ListUserConsentsByActionParams, authInfo runtime.ClientAuthInfoWriter) (*ListUserConsentsByActionOK, error)
+	ListUserConsentsByAction(params *ListUserConsentsByActionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListUserConsentsByActionOK, error)
 
-	ListUserConsentsByActionSystem(params *ListUserConsentsByActionSystemParams, authInfo runtime.ClientAuthInfoWriter) (*ListUserConsentsByActionSystemOK, error)
+	ListUserConsentsByActionSystem(params *ListUserConsentsByActionSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListUserConsentsByActionSystemOK, error)
 
-	ListUserConsentsSystem(params *ListUserConsentsSystemParams, authInfo runtime.ClientAuthInfoWriter) (*ListUserConsentsSystemOK, error)
+	ListUserConsentsSystem(params *ListUserConsentsSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListUserConsentsSystemOK, error)
 
-	PatchConsentGrants(params *PatchConsentGrantsParams, authInfo runtime.ClientAuthInfoWriter) (*PatchConsentGrantsCreated, error)
+	PatchConsentGrants(params *PatchConsentGrantsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchConsentGrantsCreated, error)
 
-	PatchConsentGrantsSystem(params *PatchConsentGrantsSystemParams, authInfo runtime.ClientAuthInfoWriter) (*PatchConsentGrantsSystemCreated, error)
+	PatchConsentGrantsSystem(params *PatchConsentGrantsSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchConsentGrantsSystemCreated, error)
 
-	RevokeConsent(params *RevokeConsentParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeConsentOK, error)
+	RevokeConsent(params *RevokeConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeConsentOK, error)
 
-	UpdateConsent(params *UpdateConsentParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateConsentCreated, error)
+	UpdateConsent(params *UpdateConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateConsentCreated, error)
 
-	UpdateConsentAction(params *UpdateConsentActionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateConsentActionCreated, error)
+	UpdateConsentAction(params *UpdateConsentActionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateConsentActionCreated, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -88,13 +91,12 @@ keepCurrent - if a previously existing consent grant was set implicitly, it is a
 consent grant is produced, which is also implicit. if a previously existing consent grant was set
 explicitly, it should not be updated. It is required that the user grants the consent explicitly.
 */
-func (a *Client) CreateConsent(params *CreateConsentParams, authInfo runtime.ClientAuthInfoWriter) (*CreateConsentCreated, error) {
+func (a *Client) CreateConsent(params *CreateConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateConsentCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateConsentParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createConsent",
 		Method:             "POST",
 		PathPattern:        "/api/admin/{tid}/consents",
@@ -106,7 +108,12 @@ func (a *Client) CreateConsent(params *CreateConsentParams, authInfo runtime.Cli
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -131,13 +138,12 @@ ID and Name are required fields.
 
 For each consent provide id and specify if it is required.
 */
-func (a *Client) CreateConsentAction(params *CreateConsentActionParams, authInfo runtime.ClientAuthInfoWriter) (*CreateConsentActionCreated, error) {
+func (a *Client) CreateConsentAction(params *CreateConsentActionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateConsentActionCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateConsentActionParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createConsentAction",
 		Method:             "POST",
 		PathPattern:        "/api/admin/{tid}/actions",
@@ -149,7 +155,12 @@ func (a *Client) CreateConsentAction(params *CreateConsentActionParams, authInfo
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -168,13 +179,12 @@ func (a *Client) CreateConsentAction(params *CreateConsentActionParams, authInfo
 
   Delete consent.
 */
-func (a *Client) DeleteConsent(params *DeleteConsentParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteConsentNoContent, error) {
+func (a *Client) DeleteConsent(params *DeleteConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteConsentNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteConsentParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "deleteConsent",
 		Method:             "DELETE",
 		PathPattern:        "/api/admin/{tid}/consents/{consent}",
@@ -186,7 +196,12 @@ func (a *Client) DeleteConsent(params *DeleteConsentParams, authInfo runtime.Cli
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -205,13 +220,12 @@ func (a *Client) DeleteConsent(params *DeleteConsentParams, authInfo runtime.Cli
 
   Delete consent action.
 */
-func (a *Client) DeleteConsentAction(params *DeleteConsentActionParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteConsentActionNoContent, error) {
+func (a *Client) DeleteConsentAction(params *DeleteConsentActionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteConsentActionNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteConsentActionParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "deleteConsentAction",
 		Method:             "DELETE",
 		PathPattern:        "/api/admin/{tid}/actions/{action}",
@@ -223,7 +237,12 @@ func (a *Client) DeleteConsentAction(params *DeleteConsentActionParams, authInfo
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -242,13 +261,12 @@ func (a *Client) DeleteConsentAction(params *DeleteConsentActionParams, authInfo
 
   Get consent details.
 */
-func (a *Client) GetConsent(params *GetConsentParams, authInfo runtime.ClientAuthInfoWriter) (*GetConsentOK, error) {
+func (a *Client) GetConsent(params *GetConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetConsentOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetConsentParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getConsent",
 		Method:             "GET",
 		PathPattern:        "/api/admin/{tid}/consents/{consent}",
@@ -260,7 +278,12 @@ func (a *Client) GetConsent(params *GetConsentParams, authInfo runtime.ClientAut
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -279,13 +302,12 @@ func (a *Client) GetConsent(params *GetConsentParams, authInfo runtime.ClientAut
 
   Get consent action with consents.
 */
-func (a *Client) GetConsentAction(params *GetConsentActionParams, authInfo runtime.ClientAuthInfoWriter) (*GetConsentActionOK, error) {
+func (a *Client) GetConsentAction(params *GetConsentActionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetConsentActionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetConsentActionParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getConsentAction",
 		Method:             "GET",
 		PathPattern:        "/api/admin/{tid}/actions/{action}",
@@ -297,7 +319,12 @@ func (a *Client) GetConsentAction(params *GetConsentActionParams, authInfo runti
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -318,13 +345,12 @@ func (a *Client) GetConsentAction(params *GetConsentActionParams, authInfo runti
 
 When a user grants consent which was already granted, it does not result in an error but it silently skipped instead.
 */
-func (a *Client) GrantConsent(params *GrantConsentParams, authInfo runtime.ClientAuthInfoWriter) (*GrantConsentCreated, error) {
+func (a *Client) GrantConsent(params *GrantConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GrantConsentCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGrantConsentParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "grantConsent",
 		Method:             "POST",
 		PathPattern:        "/{tid}/{aid}/privacy/consents/grant",
@@ -336,7 +362,12 @@ func (a *Client) GrantConsent(params *GrantConsentParams, authInfo runtime.Clien
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -355,13 +386,12 @@ func (a *Client) GrantConsent(params *GrantConsentParams, authInfo runtime.Clien
 
   List consent actions.
 */
-func (a *Client) ListConsentActions(params *ListConsentActionsParams, authInfo runtime.ClientAuthInfoWriter) (*ListConsentActionsOK, error) {
+func (a *Client) ListConsentActions(params *ListConsentActionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListConsentActionsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListConsentActionsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "listConsentActions",
 		Method:             "GET",
 		PathPattern:        "/api/admin/{tid}/actions",
@@ -373,7 +403,12 @@ func (a *Client) ListConsentActions(params *ListConsentActionsParams, authInfo r
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -392,13 +427,12 @@ func (a *Client) ListConsentActions(params *ListConsentActionsParams, authInfo r
 
   List consents.
 */
-func (a *Client) ListConsents(params *ListConsentsParams, authInfo runtime.ClientAuthInfoWriter) (*ListConsentsOK, error) {
+func (a *Client) ListConsents(params *ListConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListConsentsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListConsentsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "listConsents",
 		Method:             "GET",
 		PathPattern:        "/api/admin/{tid}/consents",
@@ -410,7 +444,12 @@ func (a *Client) ListConsents(params *ListConsentsParams, authInfo runtime.Clien
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -429,13 +468,12 @@ func (a *Client) ListConsents(params *ListConsentsParams, authInfo runtime.Clien
 
   It is possible to provide time constraints using from and to query params.
 */
-func (a *Client) ListPrivacyLedgerEvents(params *ListPrivacyLedgerEventsParams, authInfo runtime.ClientAuthInfoWriter) (*ListPrivacyLedgerEventsOK, error) {
+func (a *Client) ListPrivacyLedgerEvents(params *ListPrivacyLedgerEventsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListPrivacyLedgerEventsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListPrivacyLedgerEventsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "listPrivacyLedgerEvents",
 		Method:             "GET",
 		PathPattern:        "/{tid}/{aid}/privacy/events",
@@ -447,7 +485,12 @@ func (a *Client) ListPrivacyLedgerEvents(params *ListPrivacyLedgerEventsParams, 
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -466,13 +509,12 @@ func (a *Client) ListPrivacyLedgerEvents(params *ListPrivacyLedgerEventsParams, 
 
   List privacy ledger events.
 */
-func (a *Client) ListPrivacyLedgerEventsBySubject(params *ListPrivacyLedgerEventsBySubjectParams, authInfo runtime.ClientAuthInfoWriter) (*ListPrivacyLedgerEventsBySubjectOK, error) {
+func (a *Client) ListPrivacyLedgerEventsBySubject(params *ListPrivacyLedgerEventsBySubjectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListPrivacyLedgerEventsBySubjectOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListPrivacyLedgerEventsBySubjectParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "listPrivacyLedgerEventsBySubject",
 		Method:             "GET",
 		PathPattern:        "/api/admin/{tid}/events",
@@ -484,7 +526,12 @@ func (a *Client) ListPrivacyLedgerEventsBySubject(params *ListPrivacyLedgerEvent
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -503,13 +550,12 @@ func (a *Client) ListPrivacyLedgerEventsBySubject(params *ListPrivacyLedgerEvent
 
   If you want to list only specific consents, provide consent identifiers in query params.
 */
-func (a *Client) ListUserConsents(params *ListUserConsentsParams, authInfo runtime.ClientAuthInfoWriter) (*ListUserConsentsOK, error) {
+func (a *Client) ListUserConsents(params *ListUserConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListUserConsentsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListUserConsentsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "listUserConsents",
 		Method:             "GET",
 		PathPattern:        "/{tid}/{aid}/privacy/consents",
@@ -521,7 +567,12 @@ func (a *Client) ListUserConsents(params *ListUserConsentsParams, authInfo runti
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -543,13 +594,12 @@ func (a *Client) ListUserConsents(params *ListUserConsentsParams, authInfo runti
 The response includes a list of consents (including the ones user already agreed to).
 Inclusion of the consents which the user already agreed to can be used to inform the user what he already agreed to.
 */
-func (a *Client) ListUserConsentsByAction(params *ListUserConsentsByActionParams, authInfo runtime.ClientAuthInfoWriter) (*ListUserConsentsByActionOK, error) {
+func (a *Client) ListUserConsentsByAction(params *ListUserConsentsByActionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListUserConsentsByActionOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListUserConsentsByActionParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "listUserConsentsByAction",
 		Method:             "GET",
 		PathPattern:        "/{tid}/{aid}/privacy/consents/{action}",
@@ -561,7 +611,12 @@ func (a *Client) ListUserConsentsByAction(params *ListUserConsentsByActionParams
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -580,13 +635,12 @@ func (a *Client) ListUserConsentsByAction(params *ListUserConsentsByActionParams
 
   User identifier must be provided in the header.
 */
-func (a *Client) ListUserConsentsByActionSystem(params *ListUserConsentsByActionSystemParams, authInfo runtime.ClientAuthInfoWriter) (*ListUserConsentsByActionSystemOK, error) {
+func (a *Client) ListUserConsentsByActionSystem(params *ListUserConsentsByActionSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListUserConsentsByActionSystemOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListUserConsentsByActionSystemParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "listUserConsentsByActionSystem",
 		Method:             "GET",
 		PathPattern:        "/api/system/{tid}/consents/{action}",
@@ -598,7 +652,12 @@ func (a *Client) ListUserConsentsByActionSystem(params *ListUserConsentsByAction
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -619,13 +678,12 @@ func (a *Client) ListUserConsentsByActionSystem(params *ListUserConsentsByAction
 
 To limit list of consents, you can provide consent identifiers in query param.
 */
-func (a *Client) ListUserConsentsSystem(params *ListUserConsentsSystemParams, authInfo runtime.ClientAuthInfoWriter) (*ListUserConsentsSystemOK, error) {
+func (a *Client) ListUserConsentsSystem(params *ListUserConsentsSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListUserConsentsSystemOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListUserConsentsSystemParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "listUserConsentsSystem",
 		Method:             "GET",
 		PathPattern:        "/api/system/{tid}/consents",
@@ -637,7 +695,12 @@ func (a *Client) ListUserConsentsSystem(params *ListUserConsentsSystemParams, au
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -660,13 +723,12 @@ Allows to update multiple consents approval in one API call.
 
 See ConsentGrantPatchRequest object for more information.
 */
-func (a *Client) PatchConsentGrants(params *PatchConsentGrantsParams, authInfo runtime.ClientAuthInfoWriter) (*PatchConsentGrantsCreated, error) {
+func (a *Client) PatchConsentGrants(params *PatchConsentGrantsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchConsentGrantsCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPatchConsentGrantsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "patchConsentGrants",
 		Method:             "PATCH",
 		PathPattern:        "/{tid}/{aid}/privacy/consents",
@@ -678,7 +740,12 @@ func (a *Client) PatchConsentGrants(params *PatchConsentGrantsParams, authInfo r
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -703,13 +770,12 @@ User identifier must be provided in the header.
 
 See ConsentGrantPatchRequest object for more information.
 */
-func (a *Client) PatchConsentGrantsSystem(params *PatchConsentGrantsSystemParams, authInfo runtime.ClientAuthInfoWriter) (*PatchConsentGrantsSystemCreated, error) {
+func (a *Client) PatchConsentGrantsSystem(params *PatchConsentGrantsSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchConsentGrantsSystemCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPatchConsentGrantsSystemParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "patchConsentGrantsSystem",
 		Method:             "PATCH",
 		PathPattern:        "/api/system/{tid}/consents",
@@ -721,7 +787,12 @@ func (a *Client) PatchConsentGrantsSystem(params *PatchConsentGrantsSystemParams
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -745,13 +816,12 @@ Consent id must be provided in the request body.
 When consent has the can_be_withdrawn flag set to false the API fails with an error saying that the consent cannot be revoked.
 This flag is useful for scenarios in which the application cannot function without the consent from a User.
 */
-func (a *Client) RevokeConsent(params *RevokeConsentParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeConsentOK, error) {
+func (a *Client) RevokeConsent(params *RevokeConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeConsentOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRevokeConsentParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "revokeConsent",
 		Method:             "POST",
 		PathPattern:        "/{tid}/{aid}/privacy/consents/revoke",
@@ -763,7 +833,12 @@ func (a *Client) RevokeConsent(params *RevokeConsentParams, authInfo runtime.Cli
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -784,13 +859,12 @@ func (a *Client) RevokeConsent(params *RevokeConsentParams, authInfo runtime.Cli
 
 If ValidFrom attribute is not provided it will be set to current time.
 */
-func (a *Client) UpdateConsent(params *UpdateConsentParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateConsentCreated, error) {
+func (a *Client) UpdateConsent(params *UpdateConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateConsentCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateConsentParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "updateConsent",
 		Method:             "PUT",
 		PathPattern:        "/api/admin/{tid}/consents/{consent}",
@@ -802,7 +876,12 @@ func (a *Client) UpdateConsent(params *UpdateConsentParams, authInfo runtime.Cli
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -821,13 +900,12 @@ func (a *Client) UpdateConsent(params *UpdateConsentParams, authInfo runtime.Cli
 
   Update consent action.
 */
-func (a *Client) UpdateConsentAction(params *UpdateConsentActionParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateConsentActionCreated, error) {
+func (a *Client) UpdateConsentAction(params *UpdateConsentActionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateConsentActionCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateConsentActionParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "updateConsentAction",
 		Method:             "PUT",
 		PathPattern:        "/api/admin/{tid}/actions/{action}",
@@ -839,7 +917,12 @@ func (a *Client) UpdateConsentAction(params *UpdateConsentActionParams, authInfo
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}

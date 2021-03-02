@@ -47,7 +47,6 @@ func (o *DeleteScopeReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewDeleteScopeNoContent() *DeleteScopeNoContent {
 	return &DeleteScopeNoContent{}
 }
 
-/*DeleteScopeNoContent handles this case with default header values.
+/* DeleteScopeNoContent describes a response with status code 204, with default header values.
 
 Scope has been deleted
 */
@@ -79,7 +78,7 @@ func NewDeleteScopeUnauthorized() *DeleteScopeUnauthorized {
 	return &DeleteScopeUnauthorized{}
 }
 
-/*DeleteScopeUnauthorized handles this case with default header values.
+/* DeleteScopeUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -90,7 +89,6 @@ type DeleteScopeUnauthorized struct {
 func (o *DeleteScopeUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/scopes/{scp}][%d] deleteScopeUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *DeleteScopeUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -112,7 +110,7 @@ func NewDeleteScopeForbidden() *DeleteScopeForbidden {
 	return &DeleteScopeForbidden{}
 }
 
-/*DeleteScopeForbidden handles this case with default header values.
+/* DeleteScopeForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -123,7 +121,6 @@ type DeleteScopeForbidden struct {
 func (o *DeleteScopeForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/scopes/{scp}][%d] deleteScopeForbidden  %+v", 403, o.Payload)
 }
-
 func (o *DeleteScopeForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -145,7 +142,7 @@ func NewDeleteScopeNotFound() *DeleteScopeNotFound {
 	return &DeleteScopeNotFound{}
 }
 
-/*DeleteScopeNotFound handles this case with default header values.
+/* DeleteScopeNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -156,7 +153,6 @@ type DeleteScopeNotFound struct {
 func (o *DeleteScopeNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/{tid}/scopes/{scp}][%d] deleteScopeNotFound  %+v", 404, o.Payload)
 }
-
 func (o *DeleteScopeNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

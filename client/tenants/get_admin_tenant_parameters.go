@@ -16,71 +16,86 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewGetAdminTenantParams creates a new GetAdminTenantParams object
-// with the default values initialized.
+// NewGetAdminTenantParams creates a new GetAdminTenantParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetAdminTenantParams() *GetAdminTenantParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &GetAdminTenantParams{
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetAdminTenantParamsWithTimeout creates a new GetAdminTenantParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetAdminTenantParamsWithTimeout(timeout time.Duration) *GetAdminTenantParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &GetAdminTenantParams{
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewGetAdminTenantParamsWithContext creates a new GetAdminTenantParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetAdminTenantParamsWithContext(ctx context.Context) *GetAdminTenantParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &GetAdminTenantParams{
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewGetAdminTenantParamsWithHTTPClient creates a new GetAdminTenantParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetAdminTenantParamsWithHTTPClient(client *http.Client) *GetAdminTenantParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &GetAdminTenantParams{
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*GetAdminTenantParams contains all the parameters to send to the API endpoint
-for the get admin tenant operation typically these are written to a http.Request
+/* GetAdminTenantParams contains all the parameters to send to the API endpoint
+   for the get admin tenant operation.
+
+   Typically these are written to a http.Request.
 */
 type GetAdminTenantParams struct {
 
-	/*Tid
-	  Tenant id
+	/* Tid.
 
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get admin tenant params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetAdminTenantParams) WithDefaults() *GetAdminTenantParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get admin tenant params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetAdminTenantParams) SetDefaults() {
+	var (
+		tidDefault = string("default")
+	)
+
+	val := GetAdminTenantParams{
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the get admin tenant params

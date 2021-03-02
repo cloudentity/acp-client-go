@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -24,6 +26,7 @@ type GatewayWithClient struct {
 	Description string `json:"description,omitempty"`
 
 	// unique gateway id
+	// Example: 1
 	ID string `json:"id,omitempty"`
 
 	// issuer URL
@@ -34,18 +37,22 @@ type GatewayWithClient struct {
 	LastActive strfmt.DateTime `json:"last_active,omitempty"`
 
 	// gateway name
+	// Example: Cloudentity Pyron
 	Name string `json:"name,omitempty"`
 
 	// authorization server id
+	// Example: default
 	ServerID string `json:"authorization_server_id,omitempty"`
 
 	// server URL
 	ServerURL string `json:"server_url,omitempty"`
 
 	// tenant id
+	// Example: default
 	TenantID string `json:"tenant_id,omitempty"`
 
 	// gateway type, one of: pyron, aws
+	// Example: pyron
 	Type string `json:"type,omitempty"`
 
 	// client
@@ -71,7 +78,6 @@ func (m *GatewayWithClient) Validate(formats strfmt.Registry) error {
 }
 
 func (m *GatewayWithClient) validateLastActive(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.LastActive) { // not required
 		return nil
 	}
@@ -84,13 +90,40 @@ func (m *GatewayWithClient) validateLastActive(formats strfmt.Registry) error {
 }
 
 func (m *GatewayWithClient) validateClient(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Client) { // not required
 		return nil
 	}
 
 	if m.Client != nil {
 		if err := m.Client.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("client")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this gateway with client based on the context it is used
+func (m *GatewayWithClient) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateClient(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GatewayWithClient) contextValidateClient(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Client != nil {
+		if err := m.Client.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("client")
 			}

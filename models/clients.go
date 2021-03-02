@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -37,7 +38,6 @@ func (m *Clients) Validate(formats strfmt.Registry) error {
 }
 
 func (m *Clients) validateClients(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Clients) { // not required
 		return nil
 	}
@@ -49,6 +49,38 @@ func (m *Clients) validateClients(formats strfmt.Registry) error {
 
 		if m.Clients[i] != nil {
 			if err := m.Clients[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("clients" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this clients based on the context it is used
+func (m *Clients) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateClients(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *Clients) contextValidateClients(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Clients); i++ {
+
+		if m.Clients[i] != nil {
+			if err := m.Clients[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("clients" + "." + strconv.Itoa(i))
 				}

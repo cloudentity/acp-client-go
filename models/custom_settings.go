@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -16,6 +18,7 @@ import (
 type CustomSettings struct {
 
 	// URL to custom login page
+	// Example: https://example.com/login
 	LoginURL string `json:"login_url,omitempty"`
 
 	// type metadata, allowed values: generic, cloudentity. If not provided, it is set to generic
@@ -24,6 +27,11 @@ type CustomSettings struct {
 
 // Validate validates this custom settings
 func (m *CustomSettings) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this custom settings based on context it is used
+func (m *CustomSettings) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

@@ -16,73 +16,89 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewDeleteAPIParams creates a new DeleteAPIParams object
-// with the default values initialized.
+// NewDeleteAPIParams creates a new DeleteAPIParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewDeleteAPIParams() *DeleteAPIParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &DeleteAPIParams{
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewDeleteAPIParamsWithTimeout creates a new DeleteAPIParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewDeleteAPIParamsWithTimeout(timeout time.Duration) *DeleteAPIParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &DeleteAPIParams{
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewDeleteAPIParamsWithContext creates a new DeleteAPIParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewDeleteAPIParamsWithContext(ctx context.Context) *DeleteAPIParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &DeleteAPIParams{
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewDeleteAPIParamsWithHTTPClient creates a new DeleteAPIParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewDeleteAPIParamsWithHTTPClient(client *http.Client) *DeleteAPIParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &DeleteAPIParams{
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*DeleteAPIParams contains all the parameters to send to the API endpoint
-for the delete API operation typically these are written to a http.Request
+/* DeleteAPIParams contains all the parameters to send to the API endpoint
+   for the delete API operation.
+
+   Typically these are written to a http.Request.
 */
 type DeleteAPIParams struct {
 
-	/*API*/
+	// API.
 	APIID string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the delete API params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteAPIParams) WithDefaults() *DeleteAPIParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the delete API params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteAPIParams) SetDefaults() {
+	var (
+		tidDefault = string("default")
+	)
+
+	val := DeleteAPIParams{
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the delete API params

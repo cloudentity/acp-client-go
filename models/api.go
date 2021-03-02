@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -22,32 +24,45 @@ type API struct {
 	DataClassifications []string `json:"data_classifications"`
 
 	// scope id
+	// Example: 1
 	ID string `json:"id,omitempty"`
 
 	// HTTP request method
+	// Example: GET
 	Method string `json:"method,omitempty"`
 
 	// HTTP request path
+	// Example: /pets
 	Path string `json:"path,omitempty"`
 
 	// optional id of a policy
+	// Example: block
 	PolicyID string `json:"policy_id,omitempty"`
 
 	// position of the api in the apis list
+	// Example: 1
 	Position int64 `json:"position,omitempty"`
 
 	// server id
+	// Example: default
 	ServerID string `json:"server_id,omitempty"`
 
 	// service id
+	// Example: 1
 	ServiceID string `json:"service_id,omitempty"`
 
 	// tenant id
+	// Example: default
 	TenantID string `json:"tenant_id,omitempty"`
 }
 
 // Validate validates this API
 func (m *API) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this API based on context it is used
+func (m *API) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

@@ -47,7 +47,6 @@ func (o *ListPrivacyLedgerEventsReader) ReadResponse(response runtime.ClientResp
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewListPrivacyLedgerEventsOK() *ListPrivacyLedgerEventsOK {
 	return &ListPrivacyLedgerEventsOK{}
 }
 
-/*ListPrivacyLedgerEventsOK handles this case with default header values.
+/* ListPrivacyLedgerEventsOK describes a response with status code 200, with default header values.
 
 PrivacyLedgerEvents
 */
@@ -69,7 +68,6 @@ type ListPrivacyLedgerEventsOK struct {
 func (o *ListPrivacyLedgerEventsOK) Error() string {
 	return fmt.Sprintf("[GET /{tid}/{aid}/privacy/events][%d] listPrivacyLedgerEventsOK  %+v", 200, o.Payload)
 }
-
 func (o *ListPrivacyLedgerEventsOK) GetPayload() *models.PrivacyLedgerEvents {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewListPrivacyLedgerEventsUnauthorized() *ListPrivacyLedgerEventsUnauthoriz
 	return &ListPrivacyLedgerEventsUnauthorized{}
 }
 
-/*ListPrivacyLedgerEventsUnauthorized handles this case with default header values.
+/* ListPrivacyLedgerEventsUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -102,7 +100,6 @@ type ListPrivacyLedgerEventsUnauthorized struct {
 func (o *ListPrivacyLedgerEventsUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /{tid}/{aid}/privacy/events][%d] listPrivacyLedgerEventsUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *ListPrivacyLedgerEventsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -124,7 +121,7 @@ func NewListPrivacyLedgerEventsForbidden() *ListPrivacyLedgerEventsForbidden {
 	return &ListPrivacyLedgerEventsForbidden{}
 }
 
-/*ListPrivacyLedgerEventsForbidden handles this case with default header values.
+/* ListPrivacyLedgerEventsForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,7 +132,6 @@ type ListPrivacyLedgerEventsForbidden struct {
 func (o *ListPrivacyLedgerEventsForbidden) Error() string {
 	return fmt.Sprintf("[GET /{tid}/{aid}/privacy/events][%d] listPrivacyLedgerEventsForbidden  %+v", 403, o.Payload)
 }
-
 func (o *ListPrivacyLedgerEventsForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -157,7 +153,7 @@ func NewListPrivacyLedgerEventsNotFound() *ListPrivacyLedgerEventsNotFound {
 	return &ListPrivacyLedgerEventsNotFound{}
 }
 
-/*ListPrivacyLedgerEventsNotFound handles this case with default header values.
+/* ListPrivacyLedgerEventsNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -168,7 +164,6 @@ type ListPrivacyLedgerEventsNotFound struct {
 func (o *ListPrivacyLedgerEventsNotFound) Error() string {
 	return fmt.Sprintf("[GET /{tid}/{aid}/privacy/events][%d] listPrivacyLedgerEventsNotFound  %+v", 404, o.Payload)
 }
-
 func (o *ListPrivacyLedgerEventsNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

@@ -47,7 +47,6 @@ func (o *ListUserConsentsReader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewListUserConsentsOK() *ListUserConsentsOK {
 	return &ListUserConsentsOK{}
 }
 
-/*ListUserConsentsOK handles this case with default header values.
+/* ListUserConsentsOK describes a response with status code 200, with default header values.
 
 ConsentsWithGrants
 */
@@ -69,7 +68,6 @@ type ListUserConsentsOK struct {
 func (o *ListUserConsentsOK) Error() string {
 	return fmt.Sprintf("[GET /{tid}/{aid}/privacy/consents][%d] listUserConsentsOK  %+v", 200, o.Payload)
 }
-
 func (o *ListUserConsentsOK) GetPayload() *models.ConsentsWithGrants {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewListUserConsentsUnauthorized() *ListUserConsentsUnauthorized {
 	return &ListUserConsentsUnauthorized{}
 }
 
-/*ListUserConsentsUnauthorized handles this case with default header values.
+/* ListUserConsentsUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -102,7 +100,6 @@ type ListUserConsentsUnauthorized struct {
 func (o *ListUserConsentsUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /{tid}/{aid}/privacy/consents][%d] listUserConsentsUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *ListUserConsentsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -124,7 +121,7 @@ func NewListUserConsentsForbidden() *ListUserConsentsForbidden {
 	return &ListUserConsentsForbidden{}
 }
 
-/*ListUserConsentsForbidden handles this case with default header values.
+/* ListUserConsentsForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,7 +132,6 @@ type ListUserConsentsForbidden struct {
 func (o *ListUserConsentsForbidden) Error() string {
 	return fmt.Sprintf("[GET /{tid}/{aid}/privacy/consents][%d] listUserConsentsForbidden  %+v", 403, o.Payload)
 }
-
 func (o *ListUserConsentsForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -157,7 +153,7 @@ func NewListUserConsentsNotFound() *ListUserConsentsNotFound {
 	return &ListUserConsentsNotFound{}
 }
 
-/*ListUserConsentsNotFound handles this case with default header values.
+/* ListUserConsentsNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -168,7 +164,6 @@ type ListUserConsentsNotFound struct {
 func (o *ListUserConsentsNotFound) Error() string {
 	return fmt.Sprintf("[GET /{tid}/{aid}/privacy/consents][%d] listUserConsentsNotFound  %+v", 404, o.Payload)
 }
-
 func (o *ListUserConsentsNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

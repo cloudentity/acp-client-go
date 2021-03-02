@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -16,26 +18,37 @@ import (
 type GetServerDeveloperResponse struct {
 
 	// Color
+	// Example: #007FFF
 	Color string `json:"color,omitempty"`
 
 	// supported grant types
+	// Example: ["implicit","authorization_code","refresh_token"]
 	GrantTypes []string `json:"grant_types"`
 
 	// authorization server id
+	// Example: default
 	ID string `json:"id,omitempty"`
 
 	// issuer URL
+	// Example: https://example.com/default/default
 	IssuerURL string `json:"issuer_url,omitempty"`
 
 	// authorizations server name
+	// Example: ACP
 	Name string `json:"name,omitempty"`
 
 	// supported subject identifier types
+	// Example: ["public","pairwise"]
 	SubjectIdentifierTypes []string `json:"subject_identifier_types"`
 }
 
 // Validate validates this get server developer response
 func (m *GetServerDeveloperResponse) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this get server developer response based on context it is used
+func (m *GetServerDeveloperResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

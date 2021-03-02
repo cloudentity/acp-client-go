@@ -18,89 +18,103 @@ import (
 	"github.com/cloudentity/acp-client-go/models"
 )
 
-// NewCreateOIDCIDPParams creates a new CreateOIDCIDPParams object
-// with the default values initialized.
+// NewCreateOIDCIDPParams creates a new CreateOIDCIDPParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewCreateOIDCIDPParams() *CreateOIDCIDPParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &CreateOIDCIDPParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewCreateOIDCIDPParamsWithTimeout creates a new CreateOIDCIDPParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewCreateOIDCIDPParamsWithTimeout(timeout time.Duration) *CreateOIDCIDPParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &CreateOIDCIDPParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewCreateOIDCIDPParamsWithContext creates a new CreateOIDCIDPParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewCreateOIDCIDPParamsWithContext(ctx context.Context) *CreateOIDCIDPParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &CreateOIDCIDPParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewCreateOIDCIDPParamsWithHTTPClient creates a new CreateOIDCIDPParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewCreateOIDCIDPParamsWithHTTPClient(client *http.Client) *CreateOIDCIDPParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &CreateOIDCIDPParams{
-		Aid:        aidDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*CreateOIDCIDPParams contains all the parameters to send to the API endpoint
-for the create o ID c ID p operation typically these are written to a http.Request
+/* CreateOIDCIDPParams contains all the parameters to send to the API endpoint
+   for the create o ID c ID p operation.
+
+   Typically these are written to a http.Request.
 */
 type CreateOIDCIDPParams struct {
 
-	/*OIDCIDP
-	  OIDCIDP
+	/* OIDCIDP.
 
+	   OIDCIDP
 	*/
 	OIDCIDP *models.OIDCIDP
-	/*Aid
-	  Authorization server id
 
+	/* Aid.
+
+	   Authorization server id
+
+	   Default: "default"
 	*/
 	Aid string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the create o ID c ID p params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateOIDCIDPParams) WithDefaults() *CreateOIDCIDPParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the create o ID c ID p params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateOIDCIDPParams) SetDefaults() {
+	var (
+		aidDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := CreateOIDCIDPParams{
+		Aid: aidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the create o ID c ID p params
@@ -176,7 +190,6 @@ func (o *CreateOIDCIDPParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		return err
 	}
 	var res []error
-
 	if o.OIDCIDP != nil {
 		if err := r.SetBodyParam(o.OIDCIDP); err != nil {
 			return err

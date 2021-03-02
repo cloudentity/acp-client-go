@@ -47,7 +47,6 @@ func (o *ListClientsReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewListClientsOK() *ListClientsOK {
 	return &ListClientsOK{}
 }
 
-/*ListClientsOK handles this case with default header values.
+/* ListClientsOK describes a response with status code 200, with default header values.
 
 ClientsForAdmin
 */
@@ -69,7 +68,6 @@ type ListClientsOK struct {
 func (o *ListClientsOK) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/clients][%d] listClientsOK  %+v", 200, o.Payload)
 }
-
 func (o *ListClientsOK) GetPayload() *models.ClientsForAdmin {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewListClientsUnauthorized() *ListClientsUnauthorized {
 	return &ListClientsUnauthorized{}
 }
 
-/*ListClientsUnauthorized handles this case with default header values.
+/* ListClientsUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -102,7 +100,6 @@ type ListClientsUnauthorized struct {
 func (o *ListClientsUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/clients][%d] listClientsUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *ListClientsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -124,7 +121,7 @@ func NewListClientsForbidden() *ListClientsForbidden {
 	return &ListClientsForbidden{}
 }
 
-/*ListClientsForbidden handles this case with default header values.
+/* ListClientsForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,7 +132,6 @@ type ListClientsForbidden struct {
 func (o *ListClientsForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/clients][%d] listClientsForbidden  %+v", 403, o.Payload)
 }
-
 func (o *ListClientsForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -157,7 +153,7 @@ func NewListClientsNotFound() *ListClientsNotFound {
 	return &ListClientsNotFound{}
 }
 
-/*ListClientsNotFound handles this case with default header values.
+/* ListClientsNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -168,7 +164,6 @@ type ListClientsNotFound struct {
 func (o *ListClientsNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/clients][%d] listClientsNotFound  %+v", 404, o.Payload)
 }
-
 func (o *ListClientsNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

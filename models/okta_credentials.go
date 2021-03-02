@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -35,13 +37,40 @@ func (m *OktaCredentials) Validate(formats strfmt.Registry) error {
 }
 
 func (m *OktaCredentials) validateSupervisorClient(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.SupervisorClient) { // not required
 		return nil
 	}
 
 	if m.SupervisorClient != nil {
 		if err := m.SupervisorClient.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("supervisor_client")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this okta credentials based on the context it is used
+func (m *OktaCredentials) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateSupervisorClient(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *OktaCredentials) contextValidateSupervisorClient(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.SupervisorClient != nil {
+		if err := m.SupervisorClient.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("supervisor_client")
 			}

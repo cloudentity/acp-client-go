@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -14,6 +16,9 @@ import (
 //
 // swagger:model UserinfoResponse
 type UserinfoResponse struct {
+
+	// Audience - Audiences that this ID Token is intended for.
+	Audience []string `json:"aud"`
 
 	// End-User's birthday, represented as an ISO 8601:2004 [ISO8601‑2004] YYYY-MM-DD format. The year MAY be 0000, indicating that it is omitted. To represent only the year, YYYY format is allowed. Note that depending on the underlying platform's date related function, providing just year can result in varying month and day, so the implementers need to take this factor into account to correctly process the dates.
 	Birthdate string `json:"birthdate,omitempty"`
@@ -75,6 +80,11 @@ type UserinfoResponse struct {
 
 // Validate validates this userinfo response
 func (m *UserinfoResponse) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this userinfo response based on context it is used
+func (m *UserinfoResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

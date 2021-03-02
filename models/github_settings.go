@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -16,20 +18,28 @@ import (
 type GithubSettings struct {
 
 	// OAuth client identifier
+	// Example: client
 	ClientID string `json:"client_id,omitempty"`
 
 	// flag to fetch groups
 	FetchGroups bool `json:"fetch_groups,omitempty"`
 
 	// OAuth redirect URL
+	// Example: https://example.com/callback
 	RedirectURL string `json:"redirect_url,omitempty"`
 
 	// OAuth scopes which client will be requesting
+	// Example: ["email","profile","openid"]
 	Scopes []string `json:"scopes"`
 }
 
 // Validate validates this github settings
 func (m *GithubSettings) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this github settings based on context it is used
+func (m *GithubSettings) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

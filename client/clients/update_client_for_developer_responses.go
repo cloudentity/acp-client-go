@@ -59,7 +59,6 @@ func (o *UpdateClientForDeveloperReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -70,7 +69,7 @@ func NewUpdateClientForDeveloperOK() *UpdateClientForDeveloperOK {
 	return &UpdateClientForDeveloperOK{}
 }
 
-/*UpdateClientForDeveloperOK handles this case with default header values.
+/* UpdateClientForDeveloperOK describes a response with status code 200, with default header values.
 
 ClientDeveloperResponse
 */
@@ -81,7 +80,6 @@ type UpdateClientForDeveloperOK struct {
 func (o *UpdateClientForDeveloperOK) Error() string {
 	return fmt.Sprintf("[PUT /api/developer/{tid}/{aid}/clients/{cid}][%d] updateClientForDeveloperOK  %+v", 200, o.Payload)
 }
-
 func (o *UpdateClientForDeveloperOK) GetPayload() *models.ClientDeveloperResponse {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewUpdateClientForDeveloperBadRequest() *UpdateClientForDeveloperBadRequest
 	return &UpdateClientForDeveloperBadRequest{}
 }
 
-/*UpdateClientForDeveloperBadRequest handles this case with default header values.
+/* UpdateClientForDeveloperBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -114,7 +112,6 @@ type UpdateClientForDeveloperBadRequest struct {
 func (o *UpdateClientForDeveloperBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /api/developer/{tid}/{aid}/clients/{cid}][%d] updateClientForDeveloperBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *UpdateClientForDeveloperBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -136,7 +133,7 @@ func NewUpdateClientForDeveloperUnauthorized() *UpdateClientForDeveloperUnauthor
 	return &UpdateClientForDeveloperUnauthorized{}
 }
 
-/*UpdateClientForDeveloperUnauthorized handles this case with default header values.
+/* UpdateClientForDeveloperUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,7 +144,6 @@ type UpdateClientForDeveloperUnauthorized struct {
 func (o *UpdateClientForDeveloperUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /api/developer/{tid}/{aid}/clients/{cid}][%d] updateClientForDeveloperUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *UpdateClientForDeveloperUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -169,7 +165,7 @@ func NewUpdateClientForDeveloperForbidden() *UpdateClientForDeveloperForbidden {
 	return &UpdateClientForDeveloperForbidden{}
 }
 
-/*UpdateClientForDeveloperForbidden handles this case with default header values.
+/* UpdateClientForDeveloperForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -180,7 +176,6 @@ type UpdateClientForDeveloperForbidden struct {
 func (o *UpdateClientForDeveloperForbidden) Error() string {
 	return fmt.Sprintf("[PUT /api/developer/{tid}/{aid}/clients/{cid}][%d] updateClientForDeveloperForbidden  %+v", 403, o.Payload)
 }
-
 func (o *UpdateClientForDeveloperForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -202,7 +197,7 @@ func NewUpdateClientForDeveloperNotFound() *UpdateClientForDeveloperNotFound {
 	return &UpdateClientForDeveloperNotFound{}
 }
 
-/*UpdateClientForDeveloperNotFound handles this case with default header values.
+/* UpdateClientForDeveloperNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -213,7 +208,6 @@ type UpdateClientForDeveloperNotFound struct {
 func (o *UpdateClientForDeveloperNotFound) Error() string {
 	return fmt.Sprintf("[PUT /api/developer/{tid}/{aid}/clients/{cid}][%d] updateClientForDeveloperNotFound  %+v", 404, o.Payload)
 }
-
 func (o *UpdateClientForDeveloperNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +229,7 @@ func NewUpdateClientForDeveloperUnprocessableEntity() *UpdateClientForDeveloperU
 	return &UpdateClientForDeveloperUnprocessableEntity{}
 }
 
-/*UpdateClientForDeveloperUnprocessableEntity handles this case with default header values.
+/* UpdateClientForDeveloperUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -246,7 +240,6 @@ type UpdateClientForDeveloperUnprocessableEntity struct {
 func (o *UpdateClientForDeveloperUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /api/developer/{tid}/{aid}/clients/{cid}][%d] updateClientForDeveloperUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *UpdateClientForDeveloperUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

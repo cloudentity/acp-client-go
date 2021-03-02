@@ -16,84 +16,97 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewDeleteAuthorizationServerParams creates a new DeleteAuthorizationServerParams object
-// with the default values initialized.
+// NewDeleteAuthorizationServerParams creates a new DeleteAuthorizationServerParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewDeleteAuthorizationServerParams() *DeleteAuthorizationServerParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &DeleteAuthorizationServerParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewDeleteAuthorizationServerParamsWithTimeout creates a new DeleteAuthorizationServerParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewDeleteAuthorizationServerParamsWithTimeout(timeout time.Duration) *DeleteAuthorizationServerParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &DeleteAuthorizationServerParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewDeleteAuthorizationServerParamsWithContext creates a new DeleteAuthorizationServerParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewDeleteAuthorizationServerParamsWithContext(ctx context.Context) *DeleteAuthorizationServerParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &DeleteAuthorizationServerParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewDeleteAuthorizationServerParamsWithHTTPClient creates a new DeleteAuthorizationServerParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewDeleteAuthorizationServerParamsWithHTTPClient(client *http.Client) *DeleteAuthorizationServerParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &DeleteAuthorizationServerParams{
-		Aid:        aidDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*DeleteAuthorizationServerParams contains all the parameters to send to the API endpoint
-for the delete authorization server operation typically these are written to a http.Request
+/* DeleteAuthorizationServerParams contains all the parameters to send to the API endpoint
+   for the delete authorization server operation.
+
+   Typically these are written to a http.Request.
 */
 type DeleteAuthorizationServerParams struct {
 
-	/*Aid
-	  Authorization server id
+	/* Aid.
 
+	   Authorization server id
+
+	   Default: "default"
 	*/
 	Aid string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the delete authorization server params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteAuthorizationServerParams) WithDefaults() *DeleteAuthorizationServerParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the delete authorization server params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteAuthorizationServerParams) SetDefaults() {
+	var (
+		aidDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := DeleteAuthorizationServerParams{
+		Aid: aidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the delete authorization server params

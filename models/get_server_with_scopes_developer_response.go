@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -19,24 +20,30 @@ import (
 type GetServerWithScopesDeveloperResponse struct {
 
 	// Color
+	// Example: #007FFF
 	Color string `json:"color,omitempty"`
 
 	// supported grant types
+	// Example: ["implicit","authorization_code","refresh_token"]
 	GrantTypes []string `json:"grant_types"`
 
 	// authorization server id
+	// Example: default
 	ID string `json:"id,omitempty"`
 
 	// issuer URL
+	// Example: https://example.com/default/default
 	IssuerURL string `json:"issuer_url,omitempty"`
 
 	// authorizations server name
+	// Example: ACP
 	Name string `json:"name,omitempty"`
 
 	// list of scopes
 	Scopes []*ScopeWithServiceDeveloperResponse `json:"scopes"`
 
 	// supported subject identifier types
+	// Example: ["public","pairwise"]
 	SubjectIdentifierTypes []string `json:"subject_identifier_types"`
 }
 
@@ -55,7 +62,6 @@ func (m *GetServerWithScopesDeveloperResponse) Validate(formats strfmt.Registry)
 }
 
 func (m *GetServerWithScopesDeveloperResponse) validateScopes(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Scopes) { // not required
 		return nil
 	}
@@ -67,6 +73,38 @@ func (m *GetServerWithScopesDeveloperResponse) validateScopes(formats strfmt.Reg
 
 		if m.Scopes[i] != nil {
 			if err := m.Scopes[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("scopes" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this get server with scopes developer response based on the context it is used
+func (m *GetServerWithScopesDeveloperResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateScopes(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GetServerWithScopesDeveloperResponse) contextValidateScopes(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Scopes); i++ {
+
+		if m.Scopes[i] != nil {
+			if err := m.Scopes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("scopes" + "." + strconv.Itoa(i))
 				}

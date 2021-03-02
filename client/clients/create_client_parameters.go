@@ -18,73 +18,89 @@ import (
 	"github.com/cloudentity/acp-client-go/models"
 )
 
-// NewCreateClientParams creates a new CreateClientParams object
-// with the default values initialized.
+// NewCreateClientParams creates a new CreateClientParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewCreateClientParams() *CreateClientParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &CreateClientParams{
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewCreateClientParamsWithTimeout creates a new CreateClientParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewCreateClientParamsWithTimeout(timeout time.Duration) *CreateClientParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &CreateClientParams{
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewCreateClientParamsWithContext creates a new CreateClientParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewCreateClientParamsWithContext(ctx context.Context) *CreateClientParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &CreateClientParams{
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewCreateClientParamsWithHTTPClient creates a new CreateClientParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewCreateClientParamsWithHTTPClient(client *http.Client) *CreateClientParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &CreateClientParams{
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*CreateClientParams contains all the parameters to send to the API endpoint
-for the create client operation typically these are written to a http.Request
+/* CreateClientParams contains all the parameters to send to the API endpoint
+   for the create client operation.
+
+   Typically these are written to a http.Request.
 */
 type CreateClientParams struct {
 
-	/*Client*/
+	// Client.
 	Client *models.CreateClientAdminRequest
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the create client params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateClientParams) WithDefaults() *CreateClientParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the create client params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateClientParams) SetDefaults() {
+	var (
+		tidDefault = string("default")
+	)
+
+	val := CreateClientParams{
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the create client params
@@ -149,7 +165,6 @@ func (o *CreateClientParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		return err
 	}
 	var res []error
-
 	if o.Client != nil {
 		if err := r.SetBodyParam(o.Client); err != nil {
 			return err

@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -43,6 +45,9 @@ type IDPBase struct {
 	// attributes
 	Attributes Attributes `json:"attributes,omitempty"`
 
+	// config
+	Config *IDPConfiguration `json:"config,omitempty"`
+
 	// mappings
 	Mappings Mappings `json:"mappings,omitempty"`
 
@@ -55,6 +60,10 @@ func (m *IDPBase) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAttributes(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateConfig(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -73,7 +82,6 @@ func (m *IDPBase) Validate(formats strfmt.Registry) error {
 }
 
 func (m *IDPBase) validateAttributes(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Attributes) { // not required
 		return nil
 	}
@@ -88,8 +96,24 @@ func (m *IDPBase) validateAttributes(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *IDPBase) validateMappings(formats strfmt.Registry) error {
+func (m *IDPBase) validateConfig(formats strfmt.Registry) error {
+	if swag.IsZero(m.Config) { // not required
+		return nil
+	}
 
+	if m.Config != nil {
+		if err := m.Config.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("config")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IDPBase) validateMappings(formats strfmt.Registry) error {
 	if swag.IsZero(m.Mappings) { // not required
 		return nil
 	}
@@ -105,13 +129,90 @@ func (m *IDPBase) validateMappings(formats strfmt.Registry) error {
 }
 
 func (m *IDPBase) validateTransformer(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Transformer) { // not required
 		return nil
 	}
 
 	if m.Transformer != nil {
 		if err := m.Transformer.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("transformer")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this ID p base based on the context it is used
+func (m *IDPBase) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateAttributes(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateConfig(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateMappings(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateTransformer(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *IDPBase) contextValidateAttributes(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.Attributes.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("attributes")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *IDPBase) contextValidateConfig(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Config != nil {
+		if err := m.Config.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("config")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IDPBase) contextValidateMappings(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.Mappings.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("mappings")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *IDPBase) contextValidateTransformer(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Transformer != nil {
+		if err := m.Transformer.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("transformer")
 			}

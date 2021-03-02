@@ -41,7 +41,6 @@ func (o *RevokeReader) ReadResponse(response runtime.ClientResponse, consumer ru
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -52,7 +51,7 @@ func NewRevokeOK() *RevokeOK {
 	return &RevokeOK{}
 }
 
-/*RevokeOK handles this case with default header values.
+/* RevokeOK describes a response with status code 200, with default header values.
 
 emptyResponse
 */
@@ -63,7 +62,6 @@ type RevokeOK struct {
 func (o *RevokeOK) Error() string {
 	return fmt.Sprintf("[POST /{tid}/{aid}/oauth2/revoke][%d] revokeOK  %+v", 200, o.Payload)
 }
-
 func (o *RevokeOK) GetPayload() models.EmptyResponse {
 	return o.Payload
 }
@@ -83,7 +81,7 @@ func NewRevokeUnauthorized() *RevokeUnauthorized {
 	return &RevokeUnauthorized{}
 }
 
-/*RevokeUnauthorized handles this case with default header values.
+/* RevokeUnauthorized describes a response with status code 401, with default header values.
 
 genericError
 */
@@ -94,7 +92,6 @@ type RevokeUnauthorized struct {
 func (o *RevokeUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /{tid}/{aid}/oauth2/revoke][%d] revokeUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *RevokeUnauthorized) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -116,7 +113,7 @@ func NewRevokeNotFound() *RevokeNotFound {
 	return &RevokeNotFound{}
 }
 
-/*RevokeNotFound handles this case with default header values.
+/* RevokeNotFound describes a response with status code 404, with default header values.
 
 genericError
 */
@@ -127,7 +124,6 @@ type RevokeNotFound struct {
 func (o *RevokeNotFound) Error() string {
 	return fmt.Sprintf("[POST /{tid}/{aid}/oauth2/revoke][%d] revokeNotFound  %+v", 404, o.Payload)
 }
-
 func (o *RevokeNotFound) GetPayload() *models.GenericError {
 	return o.Payload
 }

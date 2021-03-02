@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -19,14 +21,21 @@ type ConsentGrantContext struct {
 	Device map[string]interface{} `json:"device,omitempty"`
 
 	// string in the form of a valid IP v 4 address, represents the current IP of the End User
+	// Example: 52.14.142.76
 	IP string `json:"ip,omitempty"`
 
 	// 2 element array of floats - current geolocation of the end-user, the format is [lat, long]
+	// Example: [25.2084,55.2719]
 	Location []float64 `json:"location"`
 }
 
 // Validate validates this consent grant context
 func (m *ConsentGrantContext) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this consent grant context based on context it is used
+func (m *ConsentGrantContext) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

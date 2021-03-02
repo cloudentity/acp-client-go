@@ -59,7 +59,6 @@ func (o *UpdateConsentReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -70,7 +69,7 @@ func NewUpdateConsentCreated() *UpdateConsentCreated {
 	return &UpdateConsentCreated{}
 }
 
-/*UpdateConsentCreated handles this case with default header values.
+/* UpdateConsentCreated describes a response with status code 201, with default header values.
 
 Consent
 */
@@ -81,7 +80,6 @@ type UpdateConsentCreated struct {
 func (o *UpdateConsentCreated) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/consents/{consent}][%d] updateConsentCreated  %+v", 201, o.Payload)
 }
-
 func (o *UpdateConsentCreated) GetPayload() *models.Consent {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewUpdateConsentUnauthorized() *UpdateConsentUnauthorized {
 	return &UpdateConsentUnauthorized{}
 }
 
-/*UpdateConsentUnauthorized handles this case with default header values.
+/* UpdateConsentUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -114,7 +112,6 @@ type UpdateConsentUnauthorized struct {
 func (o *UpdateConsentUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/consents/{consent}][%d] updateConsentUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *UpdateConsentUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -136,7 +133,7 @@ func NewUpdateConsentForbidden() *UpdateConsentForbidden {
 	return &UpdateConsentForbidden{}
 }
 
-/*UpdateConsentForbidden handles this case with default header values.
+/* UpdateConsentForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -147,7 +144,6 @@ type UpdateConsentForbidden struct {
 func (o *UpdateConsentForbidden) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/consents/{consent}][%d] updateConsentForbidden  %+v", 403, o.Payload)
 }
-
 func (o *UpdateConsentForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -169,7 +165,7 @@ func NewUpdateConsentNotFound() *UpdateConsentNotFound {
 	return &UpdateConsentNotFound{}
 }
 
-/*UpdateConsentNotFound handles this case with default header values.
+/* UpdateConsentNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -180,7 +176,6 @@ type UpdateConsentNotFound struct {
 func (o *UpdateConsentNotFound) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/consents/{consent}][%d] updateConsentNotFound  %+v", 404, o.Payload)
 }
-
 func (o *UpdateConsentNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -202,7 +197,7 @@ func NewUpdateConsentConflict() *UpdateConsentConflict {
 	return &UpdateConsentConflict{}
 }
 
-/*UpdateConsentConflict handles this case with default header values.
+/* UpdateConsentConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -213,7 +208,6 @@ type UpdateConsentConflict struct {
 func (o *UpdateConsentConflict) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/consents/{consent}][%d] updateConsentConflict  %+v", 409, o.Payload)
 }
-
 func (o *UpdateConsentConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +229,7 @@ func NewUpdateConsentUnprocessableEntity() *UpdateConsentUnprocessableEntity {
 	return &UpdateConsentUnprocessableEntity{}
 }
 
-/*UpdateConsentUnprocessableEntity handles this case with default header values.
+/* UpdateConsentUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -246,7 +240,6 @@ type UpdateConsentUnprocessableEntity struct {
 func (o *UpdateConsentUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/consents/{consent}][%d] updateConsentUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *UpdateConsentUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

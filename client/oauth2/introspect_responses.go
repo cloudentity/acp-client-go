@@ -41,7 +41,6 @@ func (o *IntrospectReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -52,7 +51,7 @@ func NewIntrospectOK() *IntrospectOK {
 	return &IntrospectOK{}
 }
 
-/*IntrospectOK handles this case with default header values.
+/* IntrospectOK describes a response with status code 200, with default header values.
 
 IntrospectResponse
 */
@@ -63,7 +62,6 @@ type IntrospectOK struct {
 func (o *IntrospectOK) Error() string {
 	return fmt.Sprintf("[POST /{tid}/{aid}/oauth2/introspect][%d] introspectOK  %+v", 200, o.Payload)
 }
-
 func (o *IntrospectOK) GetPayload() *models.IntrospectResponse {
 	return o.Payload
 }
@@ -85,7 +83,7 @@ func NewIntrospectUnauthorized() *IntrospectUnauthorized {
 	return &IntrospectUnauthorized{}
 }
 
-/*IntrospectUnauthorized handles this case with default header values.
+/* IntrospectUnauthorized describes a response with status code 401, with default header values.
 
 genericError
 */
@@ -96,7 +94,6 @@ type IntrospectUnauthorized struct {
 func (o *IntrospectUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /{tid}/{aid}/oauth2/introspect][%d] introspectUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *IntrospectUnauthorized) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -118,7 +115,7 @@ func NewIntrospectNotFound() *IntrospectNotFound {
 	return &IntrospectNotFound{}
 }
 
-/*IntrospectNotFound handles this case with default header values.
+/* IntrospectNotFound describes a response with status code 404, with default header values.
 
 genericError
 */
@@ -129,7 +126,6 @@ type IntrospectNotFound struct {
 func (o *IntrospectNotFound) Error() string {
 	return fmt.Sprintf("[POST /{tid}/{aid}/oauth2/introspect][%d] introspectNotFound  %+v", 404, o.Payload)
 }
-
 func (o *IntrospectNotFound) GetPayload() *models.GenericError {
 	return o.Payload
 }

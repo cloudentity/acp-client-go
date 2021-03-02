@@ -25,71 +25,74 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	CreateAzureB2CIDP(params *CreateAzureB2CIDPParams, authInfo runtime.ClientAuthInfoWriter) (*CreateAzureB2CIDPCreated, error)
+	CreateAzureB2CIDP(params *CreateAzureB2CIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateAzureB2CIDPCreated, error)
 
-	CreateAzureIDP(params *CreateAzureIDPParams, authInfo runtime.ClientAuthInfoWriter) (*CreateAzureIDPCreated, error)
+	CreateAzureIDP(params *CreateAzureIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateAzureIDPCreated, error)
 
-	CreateCognitoIDP(params *CreateCognitoIDPParams, authInfo runtime.ClientAuthInfoWriter) (*CreateCognitoIDPCreated, error)
+	CreateCognitoIDP(params *CreateCognitoIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateCognitoIDPCreated, error)
 
-	CreateCustomIDP(params *CreateCustomIDPParams, authInfo runtime.ClientAuthInfoWriter) (*CreateCustomIDPCreated, error)
+	CreateCustomIDP(params *CreateCustomIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateCustomIDPCreated, error)
 
-	CreateGithubIDP(params *CreateGithubIDPParams, authInfo runtime.ClientAuthInfoWriter) (*CreateGithubIDPCreated, error)
+	CreateGithubIDP(params *CreateGithubIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateGithubIDPCreated, error)
 
-	CreateIntelliTrustIDP(params *CreateIntelliTrustIDPParams, authInfo runtime.ClientAuthInfoWriter) (*CreateIntelliTrustIDPCreated, error)
+	CreateIntelliTrustIDP(params *CreateIntelliTrustIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateIntelliTrustIDPCreated, error)
 
-	CreateOIDCIDP(params *CreateOIDCIDPParams, authInfo runtime.ClientAuthInfoWriter) (*CreateOIDCIDPCreated, error)
+	CreateOIDCIDP(params *CreateOIDCIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateOIDCIDPCreated, error)
 
-	CreateOktaIDP(params *CreateOktaIDPParams, authInfo runtime.ClientAuthInfoWriter) (*CreateOktaIDPCreated, error)
+	CreateOktaIDP(params *CreateOktaIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateOktaIDPCreated, error)
 
-	CreateSAMLIDP(params *CreateSAMLIDPParams, authInfo runtime.ClientAuthInfoWriter) (*CreateSAMLIDPCreated, error)
+	CreateSAMLIDP(params *CreateSAMLIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateSAMLIDPCreated, error)
 
-	CreateStaticIDP(params *CreateStaticIDPParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStaticIDPCreated, error)
+	CreateStaticIDP(params *CreateStaticIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateStaticIDPCreated, error)
 
-	DeleteIDP(params *DeleteIDPParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteIDPNoContent, error)
+	DeleteIDP(params *DeleteIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteIDPNoContent, error)
 
-	GetAzureB2CIDP(params *GetAzureB2CIDPParams, authInfo runtime.ClientAuthInfoWriter) (*GetAzureB2CIDPOK, error)
+	GetAzureB2CIDP(params *GetAzureB2CIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAzureB2CIDPOK, error)
 
-	GetAzureIDP(params *GetAzureIDPParams, authInfo runtime.ClientAuthInfoWriter) (*GetAzureIDPOK, error)
+	GetAzureIDP(params *GetAzureIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAzureIDPOK, error)
 
-	GetCognitoIDP(params *GetCognitoIDPParams, authInfo runtime.ClientAuthInfoWriter) (*GetCognitoIDPOK, error)
+	GetCognitoIDP(params *GetCognitoIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCognitoIDPOK, error)
 
-	GetCustomIDP(params *GetCustomIDPParams, authInfo runtime.ClientAuthInfoWriter) (*GetCustomIDPOK, error)
+	GetCustomIDP(params *GetCustomIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCustomIDPOK, error)
 
-	GetGithubIDP(params *GetGithubIDPParams, authInfo runtime.ClientAuthInfoWriter) (*GetGithubIDPOK, error)
+	GetGithubIDP(params *GetGithubIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetGithubIDPOK, error)
 
-	GetIntelliTrustIDP(params *GetIntelliTrustIDPParams, authInfo runtime.ClientAuthInfoWriter) (*GetIntelliTrustIDPOK, error)
+	GetIntelliTrustIDP(params *GetIntelliTrustIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetIntelliTrustIDPOK, error)
 
-	GetOIDCIDP(params *GetOIDCIDPParams, authInfo runtime.ClientAuthInfoWriter) (*GetOIDCIDPOK, error)
+	GetOIDCIDP(params *GetOIDCIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOIDCIDPOK, error)
 
-	GetOktaIDP(params *GetOktaIDPParams, authInfo runtime.ClientAuthInfoWriter) (*GetOktaIDPOK, error)
+	GetOktaIDP(params *GetOktaIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOktaIDPOK, error)
 
-	GetSAMLIDP(params *GetSAMLIDPParams, authInfo runtime.ClientAuthInfoWriter) (*GetSAMLIDPOK, error)
+	GetSAMLIDP(params *GetSAMLIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetSAMLIDPOK, error)
 
-	GetStaticIDP(params *GetStaticIDPParams, authInfo runtime.ClientAuthInfoWriter) (*GetStaticIDPOK, error)
+	GetStaticIDP(params *GetStaticIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetStaticIDPOK, error)
 
-	ListIDPs(params *ListIDPsParams, authInfo runtime.ClientAuthInfoWriter) (*ListIDPsOK, error)
+	ListIDPs(params *ListIDPsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListIDPsOK, error)
 
-	UpdateAzureB2CIDP(params *UpdateAzureB2CIDPParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAzureB2CIDPOK, error)
+	UpdateAzureB2CIDP(params *UpdateAzureB2CIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateAzureB2CIDPOK, error)
 
-	UpdateAzureIDP(params *UpdateAzureIDPParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAzureIDPOK, error)
+	UpdateAzureIDP(params *UpdateAzureIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateAzureIDPOK, error)
 
-	UpdateCognitoIDP(params *UpdateCognitoIDPParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCognitoIDPOK, error)
+	UpdateCognitoIDP(params *UpdateCognitoIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateCognitoIDPOK, error)
 
-	UpdateCustomIDP(params *UpdateCustomIDPParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCustomIDPOK, error)
+	UpdateCustomIDP(params *UpdateCustomIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateCustomIDPOK, error)
 
-	UpdateGithubIDP(params *UpdateGithubIDPParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGithubIDPOK, error)
+	UpdateGithubIDP(params *UpdateGithubIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateGithubIDPOK, error)
 
-	UpdateIntelliTrustIDP(params *UpdateIntelliTrustIDPParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateIntelliTrustIDPOK, error)
+	UpdateIntelliTrustIDP(params *UpdateIntelliTrustIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateIntelliTrustIDPOK, error)
 
-	UpdateOIDCIDP(params *UpdateOIDCIDPParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateOIDCIDPOK, error)
+	UpdateOIDCIDP(params *UpdateOIDCIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateOIDCIDPOK, error)
 
-	UpdateOktaIDP(params *UpdateOktaIDPParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateOktaIDPOK, error)
+	UpdateOktaIDP(params *UpdateOktaIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateOktaIDPOK, error)
 
-	UpdateSAMLIDP(params *UpdateSAMLIDPParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSAMLIDPOK, error)
+	UpdateSAMLIDP(params *UpdateSAMLIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateSAMLIDPOK, error)
 
-	UpdateStaticIDP(params *UpdateStaticIDPParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStaticIDPOK, error)
+	UpdateStaticIDP(params *UpdateStaticIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateStaticIDPOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -99,13 +102,12 @@ type ClientService interface {
 
   Create AzureB2C IDP.
 */
-func (a *Client) CreateAzureB2CIDP(params *CreateAzureB2CIDPParams, authInfo runtime.ClientAuthInfoWriter) (*CreateAzureB2CIDPCreated, error) {
+func (a *Client) CreateAzureB2CIDP(params *CreateAzureB2CIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateAzureB2CIDPCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateAzureB2CIDPParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createAzureB2CIDP",
 		Method:             "POST",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/azureb2c",
@@ -117,7 +119,12 @@ func (a *Client) CreateAzureB2CIDP(params *CreateAzureB2CIDPParams, authInfo run
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -136,13 +143,12 @@ func (a *Client) CreateAzureB2CIDP(params *CreateAzureB2CIDPParams, authInfo run
 
   Create Azure IDP.
 */
-func (a *Client) CreateAzureIDP(params *CreateAzureIDPParams, authInfo runtime.ClientAuthInfoWriter) (*CreateAzureIDPCreated, error) {
+func (a *Client) CreateAzureIDP(params *CreateAzureIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateAzureIDPCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateAzureIDPParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createAzureIDP",
 		Method:             "POST",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/azure",
@@ -154,7 +160,12 @@ func (a *Client) CreateAzureIDP(params *CreateAzureIDPParams, authInfo runtime.C
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -173,13 +184,12 @@ func (a *Client) CreateAzureIDP(params *CreateAzureIDPParams, authInfo runtime.C
 
   Create Cognito IDP.
 */
-func (a *Client) CreateCognitoIDP(params *CreateCognitoIDPParams, authInfo runtime.ClientAuthInfoWriter) (*CreateCognitoIDPCreated, error) {
+func (a *Client) CreateCognitoIDP(params *CreateCognitoIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateCognitoIDPCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateCognitoIDPParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createCognitoIDP",
 		Method:             "POST",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/cognito",
@@ -191,7 +201,12 @@ func (a *Client) CreateCognitoIDP(params *CreateCognitoIDPParams, authInfo runti
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -210,13 +225,12 @@ func (a *Client) CreateCognitoIDP(params *CreateCognitoIDPParams, authInfo runti
 
   Create Custom IDP.
 */
-func (a *Client) CreateCustomIDP(params *CreateCustomIDPParams, authInfo runtime.ClientAuthInfoWriter) (*CreateCustomIDPCreated, error) {
+func (a *Client) CreateCustomIDP(params *CreateCustomIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateCustomIDPCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateCustomIDPParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createCustomIDP",
 		Method:             "POST",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/custom",
@@ -228,7 +242,12 @@ func (a *Client) CreateCustomIDP(params *CreateCustomIDPParams, authInfo runtime
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -247,13 +266,12 @@ func (a *Client) CreateCustomIDP(params *CreateCustomIDPParams, authInfo runtime
 
   Create Github IDP.
 */
-func (a *Client) CreateGithubIDP(params *CreateGithubIDPParams, authInfo runtime.ClientAuthInfoWriter) (*CreateGithubIDPCreated, error) {
+func (a *Client) CreateGithubIDP(params *CreateGithubIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateGithubIDPCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateGithubIDPParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createGithubIDP",
 		Method:             "POST",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/github",
@@ -265,7 +283,12 @@ func (a *Client) CreateGithubIDP(params *CreateGithubIDPParams, authInfo runtime
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -284,13 +307,12 @@ func (a *Client) CreateGithubIDP(params *CreateGithubIDPParams, authInfo runtime
 
   Create IntelliTrust IDP.
 */
-func (a *Client) CreateIntelliTrustIDP(params *CreateIntelliTrustIDPParams, authInfo runtime.ClientAuthInfoWriter) (*CreateIntelliTrustIDPCreated, error) {
+func (a *Client) CreateIntelliTrustIDP(params *CreateIntelliTrustIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateIntelliTrustIDPCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateIntelliTrustIDPParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createIntelliTrustIDP",
 		Method:             "POST",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/intelli_trust",
@@ -302,7 +324,12 @@ func (a *Client) CreateIntelliTrustIDP(params *CreateIntelliTrustIDPParams, auth
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -321,13 +348,12 @@ func (a *Client) CreateIntelliTrustIDP(params *CreateIntelliTrustIDPParams, auth
 
   Create OIDC IDP.
 */
-func (a *Client) CreateOIDCIDP(params *CreateOIDCIDPParams, authInfo runtime.ClientAuthInfoWriter) (*CreateOIDCIDPCreated, error) {
+func (a *Client) CreateOIDCIDP(params *CreateOIDCIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateOIDCIDPCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateOIDCIDPParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createOIDCIDP",
 		Method:             "POST",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/oidc",
@@ -339,7 +365,12 @@ func (a *Client) CreateOIDCIDP(params *CreateOIDCIDPParams, authInfo runtime.Cli
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -358,13 +389,12 @@ func (a *Client) CreateOIDCIDP(params *CreateOIDCIDPParams, authInfo runtime.Cli
 
   Create Okta IDP.
 */
-func (a *Client) CreateOktaIDP(params *CreateOktaIDPParams, authInfo runtime.ClientAuthInfoWriter) (*CreateOktaIDPCreated, error) {
+func (a *Client) CreateOktaIDP(params *CreateOktaIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateOktaIDPCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateOktaIDPParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createOktaIDP",
 		Method:             "POST",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/okta",
@@ -376,7 +406,12 @@ func (a *Client) CreateOktaIDP(params *CreateOktaIDPParams, authInfo runtime.Cli
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -395,13 +430,12 @@ func (a *Client) CreateOktaIDP(params *CreateOktaIDPParams, authInfo runtime.Cli
 
   Create SAML IDP.
 */
-func (a *Client) CreateSAMLIDP(params *CreateSAMLIDPParams, authInfo runtime.ClientAuthInfoWriter) (*CreateSAMLIDPCreated, error) {
+func (a *Client) CreateSAMLIDP(params *CreateSAMLIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateSAMLIDPCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateSAMLIDPParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createSAMLIDP",
 		Method:             "POST",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/saml",
@@ -413,7 +447,12 @@ func (a *Client) CreateSAMLIDP(params *CreateSAMLIDPParams, authInfo runtime.Cli
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -432,13 +471,12 @@ func (a *Client) CreateSAMLIDP(params *CreateSAMLIDPParams, authInfo runtime.Cli
 
   Create Static IDP.
 */
-func (a *Client) CreateStaticIDP(params *CreateStaticIDPParams, authInfo runtime.ClientAuthInfoWriter) (*CreateStaticIDPCreated, error) {
+func (a *Client) CreateStaticIDP(params *CreateStaticIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateStaticIDPCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateStaticIDPParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "createStaticIDP",
 		Method:             "POST",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/static",
@@ -450,7 +488,12 @@ func (a *Client) CreateStaticIDP(params *CreateStaticIDPParams, authInfo runtime
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -467,13 +510,12 @@ func (a *Client) CreateStaticIDP(params *CreateStaticIDPParams, authInfo runtime
 /*
   DeleteIDP deletes ID p
 */
-func (a *Client) DeleteIDP(params *DeleteIDPParams, authInfo runtime.ClientAuthInfoWriter) (*DeleteIDPNoContent, error) {
+func (a *Client) DeleteIDP(params *DeleteIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteIDPNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDeleteIDPParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "deleteIDP",
 		Method:             "DELETE",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/{iid}",
@@ -485,7 +527,12 @@ func (a *Client) DeleteIDP(params *DeleteIDPParams, authInfo runtime.ClientAuthI
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -504,13 +551,12 @@ func (a *Client) DeleteIDP(params *DeleteIDPParams, authInfo runtime.ClientAuthI
 
   Get AzureB2C IDP.
 */
-func (a *Client) GetAzureB2CIDP(params *GetAzureB2CIDPParams, authInfo runtime.ClientAuthInfoWriter) (*GetAzureB2CIDPOK, error) {
+func (a *Client) GetAzureB2CIDP(params *GetAzureB2CIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAzureB2CIDPOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAzureB2CIDPParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getAzureB2CIDP",
 		Method:             "GET",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/azureb2c/{iid}",
@@ -522,7 +568,12 @@ func (a *Client) GetAzureB2CIDP(params *GetAzureB2CIDPParams, authInfo runtime.C
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -541,13 +592,12 @@ func (a *Client) GetAzureB2CIDP(params *GetAzureB2CIDPParams, authInfo runtime.C
 
   Get Azure IDP.
 */
-func (a *Client) GetAzureIDP(params *GetAzureIDPParams, authInfo runtime.ClientAuthInfoWriter) (*GetAzureIDPOK, error) {
+func (a *Client) GetAzureIDP(params *GetAzureIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAzureIDPOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAzureIDPParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getAzureIDP",
 		Method:             "GET",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/azure/{iid}",
@@ -559,7 +609,12 @@ func (a *Client) GetAzureIDP(params *GetAzureIDPParams, authInfo runtime.ClientA
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -578,13 +633,12 @@ func (a *Client) GetAzureIDP(params *GetAzureIDPParams, authInfo runtime.ClientA
 
   Get Cognito IDP.
 */
-func (a *Client) GetCognitoIDP(params *GetCognitoIDPParams, authInfo runtime.ClientAuthInfoWriter) (*GetCognitoIDPOK, error) {
+func (a *Client) GetCognitoIDP(params *GetCognitoIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCognitoIDPOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetCognitoIDPParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getCognitoIDP",
 		Method:             "GET",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/cognito/{iid}",
@@ -596,7 +650,12 @@ func (a *Client) GetCognitoIDP(params *GetCognitoIDPParams, authInfo runtime.Cli
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -615,13 +674,12 @@ func (a *Client) GetCognitoIDP(params *GetCognitoIDPParams, authInfo runtime.Cli
 
   Get Custom IDP.
 */
-func (a *Client) GetCustomIDP(params *GetCustomIDPParams, authInfo runtime.ClientAuthInfoWriter) (*GetCustomIDPOK, error) {
+func (a *Client) GetCustomIDP(params *GetCustomIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCustomIDPOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetCustomIDPParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getCustomIDP",
 		Method:             "GET",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/custom/{iid}",
@@ -633,7 +691,12 @@ func (a *Client) GetCustomIDP(params *GetCustomIDPParams, authInfo runtime.Clien
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -652,13 +715,12 @@ func (a *Client) GetCustomIDP(params *GetCustomIDPParams, authInfo runtime.Clien
 
   Get Github IDP.
 */
-func (a *Client) GetGithubIDP(params *GetGithubIDPParams, authInfo runtime.ClientAuthInfoWriter) (*GetGithubIDPOK, error) {
+func (a *Client) GetGithubIDP(params *GetGithubIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetGithubIDPOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetGithubIDPParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getGithubIDP",
 		Method:             "GET",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/github/{iid}",
@@ -670,7 +732,12 @@ func (a *Client) GetGithubIDP(params *GetGithubIDPParams, authInfo runtime.Clien
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -689,13 +756,12 @@ func (a *Client) GetGithubIDP(params *GetGithubIDPParams, authInfo runtime.Clien
 
   Get IntelliTrust IDP.
 */
-func (a *Client) GetIntelliTrustIDP(params *GetIntelliTrustIDPParams, authInfo runtime.ClientAuthInfoWriter) (*GetIntelliTrustIDPOK, error) {
+func (a *Client) GetIntelliTrustIDP(params *GetIntelliTrustIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetIntelliTrustIDPOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetIntelliTrustIDPParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getIntelliTrustIDP",
 		Method:             "GET",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/intelli_trust/{iid}",
@@ -707,7 +773,12 @@ func (a *Client) GetIntelliTrustIDP(params *GetIntelliTrustIDPParams, authInfo r
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -726,13 +797,12 @@ func (a *Client) GetIntelliTrustIDP(params *GetIntelliTrustIDPParams, authInfo r
 
   Get OIDC IDP.
 */
-func (a *Client) GetOIDCIDP(params *GetOIDCIDPParams, authInfo runtime.ClientAuthInfoWriter) (*GetOIDCIDPOK, error) {
+func (a *Client) GetOIDCIDP(params *GetOIDCIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOIDCIDPOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetOIDCIDPParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getOIDCIDP",
 		Method:             "GET",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/oidc/{iid}",
@@ -744,7 +814,12 @@ func (a *Client) GetOIDCIDP(params *GetOIDCIDPParams, authInfo runtime.ClientAut
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -763,13 +838,12 @@ func (a *Client) GetOIDCIDP(params *GetOIDCIDPParams, authInfo runtime.ClientAut
 
   Get Okta IDP.
 */
-func (a *Client) GetOktaIDP(params *GetOktaIDPParams, authInfo runtime.ClientAuthInfoWriter) (*GetOktaIDPOK, error) {
+func (a *Client) GetOktaIDP(params *GetOktaIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOktaIDPOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetOktaIDPParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getOktaIDP",
 		Method:             "GET",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/okta/{iid}",
@@ -781,7 +855,12 @@ func (a *Client) GetOktaIDP(params *GetOktaIDPParams, authInfo runtime.ClientAut
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -800,13 +879,12 @@ func (a *Client) GetOktaIDP(params *GetOktaIDPParams, authInfo runtime.ClientAut
 
   Get SAML IDP.
 */
-func (a *Client) GetSAMLIDP(params *GetSAMLIDPParams, authInfo runtime.ClientAuthInfoWriter) (*GetSAMLIDPOK, error) {
+func (a *Client) GetSAMLIDP(params *GetSAMLIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetSAMLIDPOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetSAMLIDPParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getSAMLIDP",
 		Method:             "GET",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/saml/{iid}",
@@ -818,7 +896,12 @@ func (a *Client) GetSAMLIDP(params *GetSAMLIDPParams, authInfo runtime.ClientAut
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -837,13 +920,12 @@ func (a *Client) GetSAMLIDP(params *GetSAMLIDPParams, authInfo runtime.ClientAut
 
   Get Static IDP.
 */
-func (a *Client) GetStaticIDP(params *GetStaticIDPParams, authInfo runtime.ClientAuthInfoWriter) (*GetStaticIDPOK, error) {
+func (a *Client) GetStaticIDP(params *GetStaticIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetStaticIDPOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetStaticIDPParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "getStaticIDP",
 		Method:             "GET",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/static/{iid}",
@@ -855,7 +937,12 @@ func (a *Client) GetStaticIDP(params *GetStaticIDPParams, authInfo runtime.Clien
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -872,13 +959,12 @@ func (a *Client) GetStaticIDP(params *GetStaticIDPParams, authInfo runtime.Clien
 /*
   ListIDPs List IDPs
 */
-func (a *Client) ListIDPs(params *ListIDPsParams, authInfo runtime.ClientAuthInfoWriter) (*ListIDPsOK, error) {
+func (a *Client) ListIDPs(params *ListIDPsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListIDPsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewListIDPsParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "listIDPs",
 		Method:             "GET",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps",
@@ -890,7 +976,12 @@ func (a *Client) ListIDPs(params *ListIDPsParams, authInfo runtime.ClientAuthInf
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -909,13 +1000,12 @@ func (a *Client) ListIDPs(params *ListIDPsParams, authInfo runtime.ClientAuthInf
 
   Update AzureB2C IDP.
 */
-func (a *Client) UpdateAzureB2CIDP(params *UpdateAzureB2CIDPParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAzureB2CIDPOK, error) {
+func (a *Client) UpdateAzureB2CIDP(params *UpdateAzureB2CIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateAzureB2CIDPOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateAzureB2CIDPParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "updateAzureB2CIDP",
 		Method:             "PUT",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/azureb2c/{iid}",
@@ -927,7 +1017,12 @@ func (a *Client) UpdateAzureB2CIDP(params *UpdateAzureB2CIDPParams, authInfo run
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -946,13 +1041,12 @@ func (a *Client) UpdateAzureB2CIDP(params *UpdateAzureB2CIDPParams, authInfo run
 
   Update Azure IDP.
 */
-func (a *Client) UpdateAzureIDP(params *UpdateAzureIDPParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAzureIDPOK, error) {
+func (a *Client) UpdateAzureIDP(params *UpdateAzureIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateAzureIDPOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateAzureIDPParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "updateAzureIDP",
 		Method:             "PUT",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/azure/{iid}",
@@ -964,7 +1058,12 @@ func (a *Client) UpdateAzureIDP(params *UpdateAzureIDPParams, authInfo runtime.C
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -983,13 +1082,12 @@ func (a *Client) UpdateAzureIDP(params *UpdateAzureIDPParams, authInfo runtime.C
 
   Update Cognito IDP.
 */
-func (a *Client) UpdateCognitoIDP(params *UpdateCognitoIDPParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCognitoIDPOK, error) {
+func (a *Client) UpdateCognitoIDP(params *UpdateCognitoIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateCognitoIDPOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateCognitoIDPParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "updateCognitoIDP",
 		Method:             "PUT",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/cognito/{iid}",
@@ -1001,7 +1099,12 @@ func (a *Client) UpdateCognitoIDP(params *UpdateCognitoIDPParams, authInfo runti
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1020,13 +1123,12 @@ func (a *Client) UpdateCognitoIDP(params *UpdateCognitoIDPParams, authInfo runti
 
   Update Custom IDP.
 */
-func (a *Client) UpdateCustomIDP(params *UpdateCustomIDPParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateCustomIDPOK, error) {
+func (a *Client) UpdateCustomIDP(params *UpdateCustomIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateCustomIDPOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateCustomIDPParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "updateCustomIDP",
 		Method:             "PUT",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/custom/{iid}",
@@ -1038,7 +1140,12 @@ func (a *Client) UpdateCustomIDP(params *UpdateCustomIDPParams, authInfo runtime
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1057,13 +1164,12 @@ func (a *Client) UpdateCustomIDP(params *UpdateCustomIDPParams, authInfo runtime
 
   Update Github IDP.
 */
-func (a *Client) UpdateGithubIDP(params *UpdateGithubIDPParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateGithubIDPOK, error) {
+func (a *Client) UpdateGithubIDP(params *UpdateGithubIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateGithubIDPOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateGithubIDPParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "updateGithubIDP",
 		Method:             "PUT",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/github/{iid}",
@@ -1075,7 +1181,12 @@ func (a *Client) UpdateGithubIDP(params *UpdateGithubIDPParams, authInfo runtime
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1094,13 +1205,12 @@ func (a *Client) UpdateGithubIDP(params *UpdateGithubIDPParams, authInfo runtime
 
   Update IntelliTrust IDP.
 */
-func (a *Client) UpdateIntelliTrustIDP(params *UpdateIntelliTrustIDPParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateIntelliTrustIDPOK, error) {
+func (a *Client) UpdateIntelliTrustIDP(params *UpdateIntelliTrustIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateIntelliTrustIDPOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateIntelliTrustIDPParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "updateIntelliTrustIDP",
 		Method:             "PUT",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/intelli_trust/{iid}",
@@ -1112,7 +1222,12 @@ func (a *Client) UpdateIntelliTrustIDP(params *UpdateIntelliTrustIDPParams, auth
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1131,13 +1246,12 @@ func (a *Client) UpdateIntelliTrustIDP(params *UpdateIntelliTrustIDPParams, auth
 
   Update OIDC IDP.
 */
-func (a *Client) UpdateOIDCIDP(params *UpdateOIDCIDPParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateOIDCIDPOK, error) {
+func (a *Client) UpdateOIDCIDP(params *UpdateOIDCIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateOIDCIDPOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateOIDCIDPParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "updateOIDCIDP",
 		Method:             "PUT",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/oidc/{iid}",
@@ -1149,7 +1263,12 @@ func (a *Client) UpdateOIDCIDP(params *UpdateOIDCIDPParams, authInfo runtime.Cli
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1168,13 +1287,12 @@ func (a *Client) UpdateOIDCIDP(params *UpdateOIDCIDPParams, authInfo runtime.Cli
 
   Update Okta IDP.
 */
-func (a *Client) UpdateOktaIDP(params *UpdateOktaIDPParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateOktaIDPOK, error) {
+func (a *Client) UpdateOktaIDP(params *UpdateOktaIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateOktaIDPOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateOktaIDPParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "updateOktaIDP",
 		Method:             "PUT",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/okta/{iid}",
@@ -1186,7 +1304,12 @@ func (a *Client) UpdateOktaIDP(params *UpdateOktaIDPParams, authInfo runtime.Cli
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1205,13 +1328,12 @@ func (a *Client) UpdateOktaIDP(params *UpdateOktaIDPParams, authInfo runtime.Cli
 
   Update SAML IDP.
 */
-func (a *Client) UpdateSAMLIDP(params *UpdateSAMLIDPParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateSAMLIDPOK, error) {
+func (a *Client) UpdateSAMLIDP(params *UpdateSAMLIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateSAMLIDPOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateSAMLIDPParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "updateSAMLIDP",
 		Method:             "PUT",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/saml/{iid}",
@@ -1223,7 +1345,12 @@ func (a *Client) UpdateSAMLIDP(params *UpdateSAMLIDPParams, authInfo runtime.Cli
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -1242,13 +1369,12 @@ func (a *Client) UpdateSAMLIDP(params *UpdateSAMLIDPParams, authInfo runtime.Cli
 
   Update Static IDP.
 */
-func (a *Client) UpdateStaticIDP(params *UpdateStaticIDPParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateStaticIDPOK, error) {
+func (a *Client) UpdateStaticIDP(params *UpdateStaticIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateStaticIDPOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUpdateStaticIDPParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "updateStaticIDP",
 		Method:             "PUT",
 		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/static/{iid}",
@@ -1260,7 +1386,12 @@ func (a *Client) UpdateStaticIDP(params *UpdateStaticIDPParams, authInfo runtime
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}

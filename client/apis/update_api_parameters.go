@@ -18,81 +18,98 @@ import (
 	"github.com/cloudentity/acp-client-go/models"
 )
 
-// NewUpdateAPIParams creates a new UpdateAPIParams object
-// with the default values initialized.
+// NewUpdateAPIParams creates a new UpdateAPIParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewUpdateAPIParams() *UpdateAPIParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &UpdateAPIParams{
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewUpdateAPIParamsWithTimeout creates a new UpdateAPIParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewUpdateAPIParamsWithTimeout(timeout time.Duration) *UpdateAPIParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &UpdateAPIParams{
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewUpdateAPIParamsWithContext creates a new UpdateAPIParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewUpdateAPIParamsWithContext(ctx context.Context) *UpdateAPIParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &UpdateAPIParams{
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewUpdateAPIParamsWithHTTPClient creates a new UpdateAPIParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewUpdateAPIParamsWithHTTPClient(client *http.Client) *UpdateAPIParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &UpdateAPIParams{
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*UpdateAPIParams contains all the parameters to send to the API endpoint
-for the update API operation typically these are written to a http.Request
+/* UpdateAPIParams contains all the parameters to send to the API endpoint
+   for the update API operation.
+
+   Typically these are written to a http.Request.
 */
 type UpdateAPIParams struct {
 
-	/*APIBody
-	  APIBody
+	/* APIBody.
 
+	   APIBody
 	*/
 	APIBody *models.UpdateAPIRequest
-	/*API
-	  API ID
 
+	/* API.
+
+	   API ID
 	*/
 	APIID string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the update API params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateAPIParams) WithDefaults() *UpdateAPIParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the update API params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateAPIParams) SetDefaults() {
+	var (
+		tidDefault = string("default")
+	)
+
+	val := UpdateAPIParams{
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the update API params
@@ -168,7 +185,6 @@ func (o *UpdateAPIParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 		return err
 	}
 	var res []error
-
 	if o.APIBody != nil {
 		if err := r.SetBodyParam(o.APIBody); err != nil {
 			return err

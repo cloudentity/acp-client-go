@@ -18,99 +18,111 @@ import (
 	"github.com/cloudentity/acp-client-go/models"
 )
 
-// NewDynamicClientRegistrationUpdateClientParams creates a new DynamicClientRegistrationUpdateClientParams object
-// with the default values initialized.
+// NewDynamicClientRegistrationUpdateClientParams creates a new DynamicClientRegistrationUpdateClientParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewDynamicClientRegistrationUpdateClientParams() *DynamicClientRegistrationUpdateClientParams {
-	var (
-		aidDefault = string("default")
-		cidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &DynamicClientRegistrationUpdateClientParams{
-		Aid: aidDefault,
-		Cid: cidDefault,
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewDynamicClientRegistrationUpdateClientParamsWithTimeout creates a new DynamicClientRegistrationUpdateClientParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewDynamicClientRegistrationUpdateClientParamsWithTimeout(timeout time.Duration) *DynamicClientRegistrationUpdateClientParams {
-	var (
-		aidDefault = string("default")
-		cidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &DynamicClientRegistrationUpdateClientParams{
-		Aid: aidDefault,
-		Cid: cidDefault,
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewDynamicClientRegistrationUpdateClientParamsWithContext creates a new DynamicClientRegistrationUpdateClientParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewDynamicClientRegistrationUpdateClientParamsWithContext(ctx context.Context) *DynamicClientRegistrationUpdateClientParams {
-	var (
-		aidDefault = string("default")
-		cidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &DynamicClientRegistrationUpdateClientParams{
-		Aid: aidDefault,
-		Cid: cidDefault,
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewDynamicClientRegistrationUpdateClientParamsWithHTTPClient creates a new DynamicClientRegistrationUpdateClientParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewDynamicClientRegistrationUpdateClientParamsWithHTTPClient(client *http.Client) *DynamicClientRegistrationUpdateClientParams {
-	var (
-		aidDefault = string("default")
-		cidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &DynamicClientRegistrationUpdateClientParams{
-		Aid:        aidDefault,
-		Cid:        cidDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*DynamicClientRegistrationUpdateClientParams contains all the parameters to send to the API endpoint
-for the dynamic client registration update client operation typically these are written to a http.Request
+/* DynamicClientRegistrationUpdateClientParams contains all the parameters to send to the API endpoint
+   for the dynamic client registration update client operation.
+
+   Typically these are written to a http.Request.
 */
 type DynamicClientRegistrationUpdateClientParams struct {
 
-	/*Client*/
+	// Client.
 	Client *models.DynamicClientRegistrationRequest
-	/*Aid
-	  Authorization server id
 
+	/* Aid.
+
+	   Authorization server id
+
+	   Default: "default"
 	*/
 	Aid string
-	/*Cid
-	  Client id
 
+	/* Cid.
+
+	   Client id
+
+	   Default: "default"
 	*/
 	Cid string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the dynamic client registration update client params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DynamicClientRegistrationUpdateClientParams) WithDefaults() *DynamicClientRegistrationUpdateClientParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the dynamic client registration update client params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DynamicClientRegistrationUpdateClientParams) SetDefaults() {
+	var (
+		aidDefault = string("default")
+
+		cidDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := DynamicClientRegistrationUpdateClientParams{
+		Aid: aidDefault,
+		Cid: cidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the dynamic client registration update client params
@@ -197,7 +209,6 @@ func (o *DynamicClientRegistrationUpdateClientParams) WriteToRequest(r runtime.C
 		return err
 	}
 	var res []error
-
 	if o.Client != nil {
 		if err := r.SetBodyParam(o.Client); err != nil {
 			return err

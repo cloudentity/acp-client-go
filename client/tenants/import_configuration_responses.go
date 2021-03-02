@@ -65,7 +65,6 @@ func (o *ImportConfigurationReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -76,7 +75,7 @@ func NewImportConfigurationNoContent() *ImportConfigurationNoContent {
 	return &ImportConfigurationNoContent{}
 }
 
-/*ImportConfigurationNoContent handles this case with default header values.
+/* ImportConfigurationNoContent describes a response with status code 204, with default header values.
 
 configuration has been imported
 */
@@ -97,7 +96,7 @@ func NewImportConfigurationBadRequest() *ImportConfigurationBadRequest {
 	return &ImportConfigurationBadRequest{}
 }
 
-/*ImportConfigurationBadRequest handles this case with default header values.
+/* ImportConfigurationBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -108,7 +107,6 @@ type ImportConfigurationBadRequest struct {
 func (o *ImportConfigurationBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /api/system/configuration][%d] importConfigurationBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *ImportConfigurationBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -130,7 +128,7 @@ func NewImportConfigurationUnauthorized() *ImportConfigurationUnauthorized {
 	return &ImportConfigurationUnauthorized{}
 }
 
-/*ImportConfigurationUnauthorized handles this case with default header values.
+/* ImportConfigurationUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -141,7 +139,6 @@ type ImportConfigurationUnauthorized struct {
 func (o *ImportConfigurationUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /api/system/configuration][%d] importConfigurationUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *ImportConfigurationUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -163,7 +160,7 @@ func NewImportConfigurationForbidden() *ImportConfigurationForbidden {
 	return &ImportConfigurationForbidden{}
 }
 
-/*ImportConfigurationForbidden handles this case with default header values.
+/* ImportConfigurationForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -174,7 +171,6 @@ type ImportConfigurationForbidden struct {
 func (o *ImportConfigurationForbidden) Error() string {
 	return fmt.Sprintf("[PUT /api/system/configuration][%d] importConfigurationForbidden  %+v", 403, o.Payload)
 }
-
 func (o *ImportConfigurationForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -196,7 +192,7 @@ func NewImportConfigurationNotFound() *ImportConfigurationNotFound {
 	return &ImportConfigurationNotFound{}
 }
 
-/*ImportConfigurationNotFound handles this case with default header values.
+/* ImportConfigurationNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -207,7 +203,6 @@ type ImportConfigurationNotFound struct {
 func (o *ImportConfigurationNotFound) Error() string {
 	return fmt.Sprintf("[PUT /api/system/configuration][%d] importConfigurationNotFound  %+v", 404, o.Payload)
 }
-
 func (o *ImportConfigurationNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -229,7 +224,7 @@ func NewImportConfigurationConflict() *ImportConfigurationConflict {
 	return &ImportConfigurationConflict{}
 }
 
-/*ImportConfigurationConflict handles this case with default header values.
+/* ImportConfigurationConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -240,7 +235,6 @@ type ImportConfigurationConflict struct {
 func (o *ImportConfigurationConflict) Error() string {
 	return fmt.Sprintf("[PUT /api/system/configuration][%d] importConfigurationConflict  %+v", 409, o.Payload)
 }
-
 func (o *ImportConfigurationConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -262,7 +256,7 @@ func NewImportConfigurationUnprocessableEntity() *ImportConfigurationUnprocessab
 	return &ImportConfigurationUnprocessableEntity{}
 }
 
-/*ImportConfigurationUnprocessableEntity handles this case with default header values.
+/* ImportConfigurationUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -273,7 +267,6 @@ type ImportConfigurationUnprocessableEntity struct {
 func (o *ImportConfigurationUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /api/system/configuration][%d] importConfigurationUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *ImportConfigurationUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

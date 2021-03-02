@@ -59,7 +59,6 @@ func (o *PatchConsentGrantsReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -70,7 +69,7 @@ func NewPatchConsentGrantsCreated() *PatchConsentGrantsCreated {
 	return &PatchConsentGrantsCreated{}
 }
 
-/*PatchConsentGrantsCreated handles this case with default header values.
+/* PatchConsentGrantsCreated describes a response with status code 201, with default header values.
 
 ConsentGrantPatchResponse
 */
@@ -81,7 +80,6 @@ type PatchConsentGrantsCreated struct {
 func (o *PatchConsentGrantsCreated) Error() string {
 	return fmt.Sprintf("[PATCH /{tid}/{aid}/privacy/consents][%d] patchConsentGrantsCreated  %+v", 201, o.Payload)
 }
-
 func (o *PatchConsentGrantsCreated) GetPayload() *models.ConsentGrantPatchResponse {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewPatchConsentGrantsUnauthorized() *PatchConsentGrantsUnauthorized {
 	return &PatchConsentGrantsUnauthorized{}
 }
 
-/*PatchConsentGrantsUnauthorized handles this case with default header values.
+/* PatchConsentGrantsUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -114,7 +112,6 @@ type PatchConsentGrantsUnauthorized struct {
 func (o *PatchConsentGrantsUnauthorized) Error() string {
 	return fmt.Sprintf("[PATCH /{tid}/{aid}/privacy/consents][%d] patchConsentGrantsUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *PatchConsentGrantsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -136,7 +133,7 @@ func NewPatchConsentGrantsForbidden() *PatchConsentGrantsForbidden {
 	return &PatchConsentGrantsForbidden{}
 }
 
-/*PatchConsentGrantsForbidden handles this case with default header values.
+/* PatchConsentGrantsForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -147,7 +144,6 @@ type PatchConsentGrantsForbidden struct {
 func (o *PatchConsentGrantsForbidden) Error() string {
 	return fmt.Sprintf("[PATCH /{tid}/{aid}/privacy/consents][%d] patchConsentGrantsForbidden  %+v", 403, o.Payload)
 }
-
 func (o *PatchConsentGrantsForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -169,7 +165,7 @@ func NewPatchConsentGrantsNotFound() *PatchConsentGrantsNotFound {
 	return &PatchConsentGrantsNotFound{}
 }
 
-/*PatchConsentGrantsNotFound handles this case with default header values.
+/* PatchConsentGrantsNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -180,7 +176,6 @@ type PatchConsentGrantsNotFound struct {
 func (o *PatchConsentGrantsNotFound) Error() string {
 	return fmt.Sprintf("[PATCH /{tid}/{aid}/privacy/consents][%d] patchConsentGrantsNotFound  %+v", 404, o.Payload)
 }
-
 func (o *PatchConsentGrantsNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -202,7 +197,7 @@ func NewPatchConsentGrantsConflict() *PatchConsentGrantsConflict {
 	return &PatchConsentGrantsConflict{}
 }
 
-/*PatchConsentGrantsConflict handles this case with default header values.
+/* PatchConsentGrantsConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -213,7 +208,6 @@ type PatchConsentGrantsConflict struct {
 func (o *PatchConsentGrantsConflict) Error() string {
 	return fmt.Sprintf("[PATCH /{tid}/{aid}/privacy/consents][%d] patchConsentGrantsConflict  %+v", 409, o.Payload)
 }
-
 func (o *PatchConsentGrantsConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +229,7 @@ func NewPatchConsentGrantsUnprocessableEntity() *PatchConsentGrantsUnprocessable
 	return &PatchConsentGrantsUnprocessableEntity{}
 }
 
-/*PatchConsentGrantsUnprocessableEntity handles this case with default header values.
+/* PatchConsentGrantsUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -246,7 +240,6 @@ type PatchConsentGrantsUnprocessableEntity struct {
 func (o *PatchConsentGrantsUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PATCH /{tid}/{aid}/privacy/consents][%d] patchConsentGrantsUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *PatchConsentGrantsUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

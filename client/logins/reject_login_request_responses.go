@@ -47,7 +47,6 @@ func (o *RejectLoginRequestReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewRejectLoginRequestOK() *RejectLoginRequestOK {
 	return &RejectLoginRequestOK{}
 }
 
-/*RejectLoginRequestOK handles this case with default header values.
+/* RejectLoginRequestOK describes a response with status code 200, with default header values.
 
 LoginRejected
 */
@@ -69,7 +68,6 @@ type RejectLoginRequestOK struct {
 func (o *RejectLoginRequestOK) Error() string {
 	return fmt.Sprintf("[POST /api/system/{tid}/logins/{login}/reject][%d] rejectLoginRequestOK  %+v", 200, o.Payload)
 }
-
 func (o *RejectLoginRequestOK) GetPayload() *models.LoginRejected {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewRejectLoginRequestUnauthorized() *RejectLoginRequestUnauthorized {
 	return &RejectLoginRequestUnauthorized{}
 }
 
-/*RejectLoginRequestUnauthorized handles this case with default header values.
+/* RejectLoginRequestUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -102,7 +100,6 @@ type RejectLoginRequestUnauthorized struct {
 func (o *RejectLoginRequestUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /api/system/{tid}/logins/{login}/reject][%d] rejectLoginRequestUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *RejectLoginRequestUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -124,7 +121,7 @@ func NewRejectLoginRequestForbidden() *RejectLoginRequestForbidden {
 	return &RejectLoginRequestForbidden{}
 }
 
-/*RejectLoginRequestForbidden handles this case with default header values.
+/* RejectLoginRequestForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,7 +132,6 @@ type RejectLoginRequestForbidden struct {
 func (o *RejectLoginRequestForbidden) Error() string {
 	return fmt.Sprintf("[POST /api/system/{tid}/logins/{login}/reject][%d] rejectLoginRequestForbidden  %+v", 403, o.Payload)
 }
-
 func (o *RejectLoginRequestForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -157,7 +153,7 @@ func NewRejectLoginRequestNotFound() *RejectLoginRequestNotFound {
 	return &RejectLoginRequestNotFound{}
 }
 
-/*RejectLoginRequestNotFound handles this case with default header values.
+/* RejectLoginRequestNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -168,7 +164,6 @@ type RejectLoginRequestNotFound struct {
 func (o *RejectLoginRequestNotFound) Error() string {
 	return fmt.Sprintf("[POST /api/system/{tid}/logins/{login}/reject][%d] rejectLoginRequestNotFound  %+v", 404, o.Payload)
 }
-
 func (o *RejectLoginRequestNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

@@ -59,7 +59,6 @@ func (o *GrantConsentReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -70,7 +69,7 @@ func NewGrantConsentCreated() *GrantConsentCreated {
 	return &GrantConsentCreated{}
 }
 
-/*GrantConsentCreated handles this case with default header values.
+/* GrantConsentCreated describes a response with status code 201, with default header values.
 
 ConsentGrant
 */
@@ -81,7 +80,6 @@ type GrantConsentCreated struct {
 func (o *GrantConsentCreated) Error() string {
 	return fmt.Sprintf("[POST /{tid}/{aid}/privacy/consents/grant][%d] grantConsentCreated  %+v", 201, o.Payload)
 }
-
 func (o *GrantConsentCreated) GetPayload() *models.ConsentGrant {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewGrantConsentUnauthorized() *GrantConsentUnauthorized {
 	return &GrantConsentUnauthorized{}
 }
 
-/*GrantConsentUnauthorized handles this case with default header values.
+/* GrantConsentUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -114,7 +112,6 @@ type GrantConsentUnauthorized struct {
 func (o *GrantConsentUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /{tid}/{aid}/privacy/consents/grant][%d] grantConsentUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *GrantConsentUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -136,7 +133,7 @@ func NewGrantConsentForbidden() *GrantConsentForbidden {
 	return &GrantConsentForbidden{}
 }
 
-/*GrantConsentForbidden handles this case with default header values.
+/* GrantConsentForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -147,7 +144,6 @@ type GrantConsentForbidden struct {
 func (o *GrantConsentForbidden) Error() string {
 	return fmt.Sprintf("[POST /{tid}/{aid}/privacy/consents/grant][%d] grantConsentForbidden  %+v", 403, o.Payload)
 }
-
 func (o *GrantConsentForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -169,7 +165,7 @@ func NewGrantConsentNotFound() *GrantConsentNotFound {
 	return &GrantConsentNotFound{}
 }
 
-/*GrantConsentNotFound handles this case with default header values.
+/* GrantConsentNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -180,7 +176,6 @@ type GrantConsentNotFound struct {
 func (o *GrantConsentNotFound) Error() string {
 	return fmt.Sprintf("[POST /{tid}/{aid}/privacy/consents/grant][%d] grantConsentNotFound  %+v", 404, o.Payload)
 }
-
 func (o *GrantConsentNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -202,7 +197,7 @@ func NewGrantConsentConflict() *GrantConsentConflict {
 	return &GrantConsentConflict{}
 }
 
-/*GrantConsentConflict handles this case with default header values.
+/* GrantConsentConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -213,7 +208,6 @@ type GrantConsentConflict struct {
 func (o *GrantConsentConflict) Error() string {
 	return fmt.Sprintf("[POST /{tid}/{aid}/privacy/consents/grant][%d] grantConsentConflict  %+v", 409, o.Payload)
 }
-
 func (o *GrantConsentConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +229,7 @@ func NewGrantConsentUnprocessableEntity() *GrantConsentUnprocessableEntity {
 	return &GrantConsentUnprocessableEntity{}
 }
 
-/*GrantConsentUnprocessableEntity handles this case with default header values.
+/* GrantConsentUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -246,7 +240,6 @@ type GrantConsentUnprocessableEntity struct {
 func (o *GrantConsentUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /{tid}/{aid}/privacy/consents/grant][%d] grantConsentUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *GrantConsentUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

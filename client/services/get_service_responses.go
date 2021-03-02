@@ -47,7 +47,6 @@ func (o *GetServiceReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewGetServiceOK() *GetServiceOK {
 	return &GetServiceOK{}
 }
 
-/*GetServiceOK handles this case with default header values.
+/* GetServiceOK describes a response with status code 200, with default header values.
 
 ServiceWithScopesResponse
 */
@@ -69,7 +68,6 @@ type GetServiceOK struct {
 func (o *GetServiceOK) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/services/{sid}][%d] getServiceOK  %+v", 200, o.Payload)
 }
-
 func (o *GetServiceOK) GetPayload() *models.ServiceWithScopesResponse {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewGetServiceUnauthorized() *GetServiceUnauthorized {
 	return &GetServiceUnauthorized{}
 }
 
-/*GetServiceUnauthorized handles this case with default header values.
+/* GetServiceUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -102,7 +100,6 @@ type GetServiceUnauthorized struct {
 func (o *GetServiceUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/services/{sid}][%d] getServiceUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *GetServiceUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -124,7 +121,7 @@ func NewGetServiceForbidden() *GetServiceForbidden {
 	return &GetServiceForbidden{}
 }
 
-/*GetServiceForbidden handles this case with default header values.
+/* GetServiceForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,7 +132,6 @@ type GetServiceForbidden struct {
 func (o *GetServiceForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/services/{sid}][%d] getServiceForbidden  %+v", 403, o.Payload)
 }
-
 func (o *GetServiceForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -157,7 +153,7 @@ func NewGetServiceNotFound() *GetServiceNotFound {
 	return &GetServiceNotFound{}
 }
 
-/*GetServiceNotFound handles this case with default header values.
+/* GetServiceNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -168,7 +164,6 @@ type GetServiceNotFound struct {
 func (o *GetServiceNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/services/{sid}][%d] getServiceNotFound  %+v", 404, o.Payload)
 }
-
 func (o *GetServiceNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

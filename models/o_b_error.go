@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -32,6 +34,11 @@ type OBError struct {
 
 // Validate validates this o b error
 func (m *OBError) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this o b error based on context it is used
+func (m *OBError) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

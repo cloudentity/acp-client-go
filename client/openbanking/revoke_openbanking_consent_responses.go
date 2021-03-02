@@ -47,7 +47,6 @@ func (o *RevokeOpenbankingConsentReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewRevokeOpenbankingConsentNoContent() *RevokeOpenbankingConsentNoContent {
 	return &RevokeOpenbankingConsentNoContent{}
 }
 
-/*RevokeOpenbankingConsentNoContent handles this case with default header values.
+/* RevokeOpenbankingConsentNoContent describes a response with status code 204, with default header values.
 
 Consent has been revoked
 */
@@ -66,7 +65,7 @@ type RevokeOpenbankingConsentNoContent struct {
 }
 
 func (o *RevokeOpenbankingConsentNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /api/system/{tid}/open-banking/consents/{consentID}][%d] revokeOpenbankingConsentNoContent ", 204)
+	return fmt.Sprintf("[DELETE /api/system/{tid}/servers/{aid}/open-banking/consents/{consentID}][%d] revokeOpenbankingConsentNoContent ", 204)
 }
 
 func (o *RevokeOpenbankingConsentNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -79,7 +78,7 @@ func NewRevokeOpenbankingConsentUnauthorized() *RevokeOpenbankingConsentUnauthor
 	return &RevokeOpenbankingConsentUnauthorized{}
 }
 
-/*RevokeOpenbankingConsentUnauthorized handles this case with default header values.
+/* RevokeOpenbankingConsentUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -88,9 +87,8 @@ type RevokeOpenbankingConsentUnauthorized struct {
 }
 
 func (o *RevokeOpenbankingConsentUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /api/system/{tid}/open-banking/consents/{consentID}][%d] revokeOpenbankingConsentUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /api/system/{tid}/servers/{aid}/open-banking/consents/{consentID}][%d] revokeOpenbankingConsentUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *RevokeOpenbankingConsentUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -112,7 +110,7 @@ func NewRevokeOpenbankingConsentForbidden() *RevokeOpenbankingConsentForbidden {
 	return &RevokeOpenbankingConsentForbidden{}
 }
 
-/*RevokeOpenbankingConsentForbidden handles this case with default header values.
+/* RevokeOpenbankingConsentForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -121,9 +119,8 @@ type RevokeOpenbankingConsentForbidden struct {
 }
 
 func (o *RevokeOpenbankingConsentForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /api/system/{tid}/open-banking/consents/{consentID}][%d] revokeOpenbankingConsentForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /api/system/{tid}/servers/{aid}/open-banking/consents/{consentID}][%d] revokeOpenbankingConsentForbidden  %+v", 403, o.Payload)
 }
-
 func (o *RevokeOpenbankingConsentForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -145,7 +142,7 @@ func NewRevokeOpenbankingConsentNotFound() *RevokeOpenbankingConsentNotFound {
 	return &RevokeOpenbankingConsentNotFound{}
 }
 
-/*RevokeOpenbankingConsentNotFound handles this case with default header values.
+/* RevokeOpenbankingConsentNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -154,9 +151,8 @@ type RevokeOpenbankingConsentNotFound struct {
 }
 
 func (o *RevokeOpenbankingConsentNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /api/system/{tid}/open-banking/consents/{consentID}][%d] revokeOpenbankingConsentNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /api/system/{tid}/servers/{aid}/open-banking/consents/{consentID}][%d] revokeOpenbankingConsentNotFound  %+v", 404, o.Payload)
 }
-
 func (o *RevokeOpenbankingConsentNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

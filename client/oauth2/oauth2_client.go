@@ -25,31 +25,42 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
+// ClientOption is the option for Client methods
+type ClientOption func(*runtime.ClientOperation)
+
 // ClientService is the interface for Client methods
 type ClientService interface {
-	Authorize(params *AuthorizeParams) error
+	Authorize(params *AuthorizeParams, opts ...ClientOption) error
 
-	DynamicClientRegistration(params *DynamicClientRegistrationParams, authInfo runtime.ClientAuthInfoWriter) (*DynamicClientRegistrationCreated, error)
+	DynamicClientRegistration(params *DynamicClientRegistrationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationCreated, error)
 
-	DynamicClientRegistrationDeleteClient(params *DynamicClientRegistrationDeleteClientParams, authInfo runtime.ClientAuthInfoWriter) (*DynamicClientRegistrationDeleteClientNoContent, error)
+	DynamicClientRegistrationDeleteClient(params *DynamicClientRegistrationDeleteClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationDeleteClientNoContent, error)
 
-	DynamicClientRegistrationGetClient(params *DynamicClientRegistrationGetClientParams, authInfo runtime.ClientAuthInfoWriter) (*DynamicClientRegistrationGetClientOK, error)
+	DynamicClientRegistrationGetClient(params *DynamicClientRegistrationGetClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationGetClientOK, error)
 
-	DynamicClientRegistrationUpdateClient(params *DynamicClientRegistrationUpdateClientParams, authInfo runtime.ClientAuthInfoWriter) (*DynamicClientRegistrationUpdateClientOK, error)
+	DynamicClientRegistrationOpenbankingUK(params *DynamicClientRegistrationOpenbankingUKParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationOpenbankingUKCreated, error)
 
-	GatewayIntrospect(params *GatewayIntrospectParams, authInfo runtime.ClientAuthInfoWriter) (*GatewayIntrospectOK, error)
+	DynamicClientRegistrationOpenbankingUKDeleteClient(params *DynamicClientRegistrationOpenbankingUKDeleteClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationOpenbankingUKDeleteClientNoContent, error)
 
-	Introspect(params *IntrospectParams, authInfo runtime.ClientAuthInfoWriter) (*IntrospectOK, error)
+	DynamicClientRegistrationOpenbankingUKGetClient(params *DynamicClientRegistrationOpenbankingUKGetClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationOpenbankingUKGetClientOK, error)
 
-	Jwks(params *JwksParams) (*JwksOK, error)
+	DynamicClientRegistrationOpenbankingUKUpdateClient(params *DynamicClientRegistrationOpenbankingUKUpdateClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationOpenbankingUKUpdateClientOK, error)
 
-	Revoke(params *RevokeParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeOK, error)
+	DynamicClientRegistrationUpdateClient(params *DynamicClientRegistrationUpdateClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationUpdateClientOK, error)
 
-	Token(params *TokenParams) (*TokenOK, error)
+	GatewayIntrospect(params *GatewayIntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GatewayIntrospectOK, error)
 
-	Userinfo(params *UserinfoParams, authInfo runtime.ClientAuthInfoWriter) (*UserinfoOK, error)
+	Introspect(params *IntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*IntrospectOK, error)
 
-	WellKnown(params *WellKnownParams) (*WellKnownOK, error)
+	Jwks(params *JwksParams, opts ...ClientOption) (*JwksOK, error)
+
+	Revoke(params *RevokeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeOK, error)
+
+	Token(params *TokenParams, opts ...ClientOption) (*TokenOK, error)
+
+	Userinfo(params *UserinfoParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UserinfoOK, error)
+
+	WellKnown(params *WellKnownParams, opts ...ClientOption) (*WellKnownOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -60,13 +71,12 @@ type ClientService interface {
   The authorization endpoint is used to interact with the resource
 owner and obtain an authorization grant.
 */
-func (a *Client) Authorize(params *AuthorizeParams) error {
+func (a *Client) Authorize(params *AuthorizeParams, opts ...ClientOption) error {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewAuthorizeParams()
 	}
-
-	_, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "authorize",
 		Method:             "GET",
 		PathPattern:        "/{tid}/{aid}/oauth2/authorize",
@@ -77,7 +87,12 @@ func (a *Client) Authorize(params *AuthorizeParams) error {
 		Reader:             &AuthorizeReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	_, err := a.transport.Submit(op)
 	if err != nil {
 		return err
 	}
@@ -87,13 +102,12 @@ func (a *Client) Authorize(params *AuthorizeParams) error {
 /*
   DynamicClientRegistration The OAuth 2.0 Dynamic Client Registration endpoint
 */
-func (a *Client) DynamicClientRegistration(params *DynamicClientRegistrationParams, authInfo runtime.ClientAuthInfoWriter) (*DynamicClientRegistrationCreated, error) {
+func (a *Client) DynamicClientRegistration(params *DynamicClientRegistrationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDynamicClientRegistrationParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "dynamicClientRegistration",
 		Method:             "POST",
 		PathPattern:        "/{tid}/{aid}/oauth2/register",
@@ -105,7 +119,12 @@ func (a *Client) DynamicClientRegistration(params *DynamicClientRegistrationPara
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -122,13 +141,12 @@ func (a *Client) DynamicClientRegistration(params *DynamicClientRegistrationPara
 /*
   DynamicClientRegistrationDeleteClient The OAuth 2.0 Dynamic Client Registration Delete Client endpoint
 */
-func (a *Client) DynamicClientRegistrationDeleteClient(params *DynamicClientRegistrationDeleteClientParams, authInfo runtime.ClientAuthInfoWriter) (*DynamicClientRegistrationDeleteClientNoContent, error) {
+func (a *Client) DynamicClientRegistrationDeleteClient(params *DynamicClientRegistrationDeleteClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationDeleteClientNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDynamicClientRegistrationDeleteClientParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "dynamicClientRegistrationDeleteClient",
 		Method:             "DELETE",
 		PathPattern:        "/{tid}/{aid}/oauth2/register/{cid}",
@@ -140,7 +158,12 @@ func (a *Client) DynamicClientRegistrationDeleteClient(params *DynamicClientRegi
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -157,13 +180,12 @@ func (a *Client) DynamicClientRegistrationDeleteClient(params *DynamicClientRegi
 /*
   DynamicClientRegistrationGetClient The OAuth 2.0 Dynamic Client Registration Get Client endpoint
 */
-func (a *Client) DynamicClientRegistrationGetClient(params *DynamicClientRegistrationGetClientParams, authInfo runtime.ClientAuthInfoWriter) (*DynamicClientRegistrationGetClientOK, error) {
+func (a *Client) DynamicClientRegistrationGetClient(params *DynamicClientRegistrationGetClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationGetClientOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDynamicClientRegistrationGetClientParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "dynamicClientRegistrationGetClient",
 		Method:             "GET",
 		PathPattern:        "/{tid}/{aid}/oauth2/register/{cid}",
@@ -175,7 +197,12 @@ func (a *Client) DynamicClientRegistrationGetClient(params *DynamicClientRegistr
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -190,15 +217,185 @@ func (a *Client) DynamicClientRegistrationGetClient(params *DynamicClientRegistr
 }
 
 /*
+  DynamicClientRegistrationOpenbankingUK openbankings u k compliant dynamic client registration endpoint
+
+  This endpoint can be used to dynamically register new clients.
+Request body must be signed.
+Please take a look at reference to see what fields are required:
+https://openbankinguk.github.io/dcr-docs-pub/v3.2/dynamic-client-registration.html
+Consider adding client credentials grant type to a client to be able to modify it later on.
+*/
+func (a *Client) DynamicClientRegistrationOpenbankingUK(params *DynamicClientRegistrationOpenbankingUKParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationOpenbankingUKCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDynamicClientRegistrationOpenbankingUKParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "dynamicClientRegistrationOpenbankingUK",
+		Method:             "POST",
+		PathPattern:        "/{tid}/{aid}/openbankinguk/dcr/v3.2/register",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/jose"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DynamicClientRegistrationOpenbankingUKReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DynamicClientRegistrationOpenbankingUKCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for dynamicClientRegistrationOpenbankingUK: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  DynamicClientRegistrationOpenbankingUKDeleteClient openbankings u k compliant dynamic delete client endpoint
+
+  This endpoint can be used to delete registered client details.
+Use client credentials flow to authorize to this api.
+*/
+func (a *Client) DynamicClientRegistrationOpenbankingUKDeleteClient(params *DynamicClientRegistrationOpenbankingUKDeleteClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationOpenbankingUKDeleteClientNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDynamicClientRegistrationOpenbankingUKDeleteClientParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "dynamicClientRegistrationOpenbankingUKDeleteClient",
+		Method:             "DELETE",
+		PathPattern:        "/{tid}/{aid}/openbankinguk/dcr/v3.2/register/{cid}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DynamicClientRegistrationOpenbankingUKDeleteClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DynamicClientRegistrationOpenbankingUKDeleteClientNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for dynamicClientRegistrationOpenbankingUKDeleteClient: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  DynamicClientRegistrationOpenbankingUKGetClient openbankings u k compliant dynamic get client endpoint
+
+  This endpoint can be used to get registered client details.
+Use client credentials flow to authorize to this api.
+*/
+func (a *Client) DynamicClientRegistrationOpenbankingUKGetClient(params *DynamicClientRegistrationOpenbankingUKGetClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationOpenbankingUKGetClientOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDynamicClientRegistrationOpenbankingUKGetClientParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "dynamicClientRegistrationOpenbankingUKGetClient",
+		Method:             "GET",
+		PathPattern:        "/{tid}/{aid}/openbankinguk/dcr/v3.2/register/{cid}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DynamicClientRegistrationOpenbankingUKGetClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DynamicClientRegistrationOpenbankingUKGetClientOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for dynamicClientRegistrationOpenbankingUKGetClient: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  DynamicClientRegistrationOpenbankingUKUpdateClient openbankings u k compliant dynamic update client endpoint
+
+  This endpoint can be used to update registered client details.
+Use client credentials flow to authorize to this api.
+*/
+func (a *Client) DynamicClientRegistrationOpenbankingUKUpdateClient(params *DynamicClientRegistrationOpenbankingUKUpdateClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationOpenbankingUKUpdateClientOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDynamicClientRegistrationOpenbankingUKUpdateClientParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "dynamicClientRegistrationOpenbankingUKUpdateClient",
+		Method:             "PUT",
+		PathPattern:        "/{tid}/{aid}/openbankinguk/dcr/v3.2/register/{cid}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/jose"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DynamicClientRegistrationOpenbankingUKUpdateClientReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DynamicClientRegistrationOpenbankingUKUpdateClientOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for dynamicClientRegistrationOpenbankingUKUpdateClient: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
   DynamicClientRegistrationUpdateClient The OAuth 2.0 Dynamic Client Registration Update Client endpoint
 */
-func (a *Client) DynamicClientRegistrationUpdateClient(params *DynamicClientRegistrationUpdateClientParams, authInfo runtime.ClientAuthInfoWriter) (*DynamicClientRegistrationUpdateClientOK, error) {
+func (a *Client) DynamicClientRegistrationUpdateClient(params *DynamicClientRegistrationUpdateClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationUpdateClientOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewDynamicClientRegistrationUpdateClientParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "dynamicClientRegistrationUpdateClient",
 		Method:             "PUT",
 		PathPattern:        "/{tid}/{aid}/oauth2/register/{cid}",
@@ -210,7 +407,12 @@ func (a *Client) DynamicClientRegistrationUpdateClient(params *DynamicClientRegi
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -227,13 +429,12 @@ func (a *Client) DynamicClientRegistrationUpdateClient(params *DynamicClientRegi
 /*
   GatewayIntrospect Introspect access token endpoint as a gateway
 */
-func (a *Client) GatewayIntrospect(params *GatewayIntrospectParams, authInfo runtime.ClientAuthInfoWriter) (*GatewayIntrospectOK, error) {
+func (a *Client) GatewayIntrospect(params *GatewayIntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GatewayIntrospectOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGatewayIntrospectParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "gatewayIntrospect",
 		Method:             "POST",
 		PathPattern:        "/api/system/{tid}/gateways/introspect",
@@ -245,7 +446,12 @@ func (a *Client) GatewayIntrospect(params *GatewayIntrospectParams, authInfo run
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -267,13 +473,12 @@ parameter representing an OAuth 2.0 token and returns a JSON
 document representing the meta information surrounding the
 token, including whether this token is currently active.
 */
-func (a *Client) Introspect(params *IntrospectParams, authInfo runtime.ClientAuthInfoWriter) (*IntrospectOK, error) {
+func (a *Client) Introspect(params *IntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*IntrospectOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewIntrospectParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "introspect",
 		Method:             "POST",
 		PathPattern:        "/{tid}/{aid}/oauth2/introspect",
@@ -285,7 +490,12 @@ func (a *Client) Introspect(params *IntrospectParams, authInfo runtime.ClientAut
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -305,13 +515,12 @@ func (a *Client) Introspect(params *IntrospectParams, authInfo runtime.ClientAut
   This endpoint returns the signing key(s) the client uses to validate
 signatures from the authorization server.
 */
-func (a *Client) Jwks(params *JwksParams) (*JwksOK, error) {
+func (a *Client) Jwks(params *JwksParams, opts ...ClientOption) (*JwksOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewJwksParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "jwks",
 		Method:             "GET",
 		PathPattern:        "/{tid}/{aid}/.well-known/jwks.json",
@@ -322,7 +531,12 @@ func (a *Client) Jwks(params *JwksParams) (*JwksOK, error) {
 		Reader:             &JwksReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -341,13 +555,12 @@ func (a *Client) Jwks(params *JwksParams) (*JwksOK, error) {
 
   Supports revocation of access and refresh tokens.
 */
-func (a *Client) Revoke(params *RevokeParams, authInfo runtime.ClientAuthInfoWriter) (*RevokeOK, error) {
+func (a *Client) Revoke(params *RevokeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewRevokeParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "revoke",
 		Method:             "POST",
 		PathPattern:        "/{tid}/{aid}/oauth2/revoke",
@@ -359,7 +572,12 @@ func (a *Client) Revoke(params *RevokeParams, authInfo runtime.ClientAuthInfoWri
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -379,13 +597,12 @@ func (a *Client) Revoke(params *RevokeParams, authInfo runtime.ClientAuthInfoWri
   The token endpoint is used by the client to obtain an access token by
 presenting its authorization grant or refresh token.
 */
-func (a *Client) Token(params *TokenParams) (*TokenOK, error) {
+func (a *Client) Token(params *TokenParams, opts ...ClientOption) (*TokenOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewTokenParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "token",
 		Method:             "POST",
 		PathPattern:        "/{tid}/{aid}/oauth2/token",
@@ -396,7 +613,12 @@ func (a *Client) Token(params *TokenParams) (*TokenOK, error) {
 		Reader:             &TokenReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -420,13 +642,12 @@ using an Access Token obtained through OpenID Connect Authentication. These Clai
 are represented by a JSON object that contains a collection of name and value
 pairs for the Claims.
 */
-func (a *Client) Userinfo(params *UserinfoParams, authInfo runtime.ClientAuthInfoWriter) (*UserinfoOK, error) {
+func (a *Client) Userinfo(params *UserinfoParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UserinfoOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewUserinfoParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "userinfo",
 		Method:             "GET",
 		PathPattern:        "/{tid}/{aid}/userinfo",
@@ -438,7 +659,12 @@ func (a *Client) Userinfo(params *UserinfoParams, authInfo runtime.ClientAuthInf
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}
@@ -457,13 +683,12 @@ func (a *Client) Userinfo(params *UserinfoParams, authInfo runtime.ClientAuthInf
 
   Returns OpenID configuration.
 */
-func (a *Client) WellKnown(params *WellKnownParams) (*WellKnownOK, error) {
+func (a *Client) WellKnown(params *WellKnownParams, opts ...ClientOption) (*WellKnownOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewWellKnownParams()
 	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
+	op := &runtime.ClientOperation{
 		ID:                 "wellKnown",
 		Method:             "GET",
 		PathPattern:        "/{tid}/{aid}/.well-known/openid-configuration",
@@ -474,7 +699,12 @@ func (a *Client) WellKnown(params *WellKnownParams) (*WellKnownOK, error) {
 		Reader:             &WellKnownReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
-	})
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
 	if err != nil {
 		return nil, err
 	}

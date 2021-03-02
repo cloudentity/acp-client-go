@@ -59,7 +59,6 @@ func (o *CreateGithubIDPReader) ReadResponse(response runtime.ClientResponse, co
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -70,7 +69,7 @@ func NewCreateGithubIDPCreated() *CreateGithubIDPCreated {
 	return &CreateGithubIDPCreated{}
 }
 
-/*CreateGithubIDPCreated handles this case with default header values.
+/* CreateGithubIDPCreated describes a response with status code 201, with default header values.
 
 GithubIDP
 */
@@ -81,7 +80,6 @@ type CreateGithubIDPCreated struct {
 func (o *CreateGithubIDPCreated) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/github][%d] createGithubIdPCreated  %+v", 201, o.Payload)
 }
-
 func (o *CreateGithubIDPCreated) GetPayload() *models.GithubIDP {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewCreateGithubIDPBadRequest() *CreateGithubIDPBadRequest {
 	return &CreateGithubIDPBadRequest{}
 }
 
-/*CreateGithubIDPBadRequest handles this case with default header values.
+/* CreateGithubIDPBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -114,7 +112,6 @@ type CreateGithubIDPBadRequest struct {
 func (o *CreateGithubIDPBadRequest) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/github][%d] createGithubIdPBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *CreateGithubIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -136,7 +133,7 @@ func NewCreateGithubIDPUnauthorized() *CreateGithubIDPUnauthorized {
 	return &CreateGithubIDPUnauthorized{}
 }
 
-/*CreateGithubIDPUnauthorized handles this case with default header values.
+/* CreateGithubIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,7 +144,6 @@ type CreateGithubIDPUnauthorized struct {
 func (o *CreateGithubIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/github][%d] createGithubIdPUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *CreateGithubIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -169,7 +165,7 @@ func NewCreateGithubIDPForbidden() *CreateGithubIDPForbidden {
 	return &CreateGithubIDPForbidden{}
 }
 
-/*CreateGithubIDPForbidden handles this case with default header values.
+/* CreateGithubIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -180,7 +176,6 @@ type CreateGithubIDPForbidden struct {
 func (o *CreateGithubIDPForbidden) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/github][%d] createGithubIdPForbidden  %+v", 403, o.Payload)
 }
-
 func (o *CreateGithubIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -202,7 +197,7 @@ func NewCreateGithubIDPNotFound() *CreateGithubIDPNotFound {
 	return &CreateGithubIDPNotFound{}
 }
 
-/*CreateGithubIDPNotFound handles this case with default header values.
+/* CreateGithubIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -213,7 +208,6 @@ type CreateGithubIDPNotFound struct {
 func (o *CreateGithubIDPNotFound) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/github][%d] createGithubIdPNotFound  %+v", 404, o.Payload)
 }
-
 func (o *CreateGithubIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +229,7 @@ func NewCreateGithubIDPUnprocessableEntity() *CreateGithubIDPUnprocessableEntity
 	return &CreateGithubIDPUnprocessableEntity{}
 }
 
-/*CreateGithubIDPUnprocessableEntity handles this case with default header values.
+/* CreateGithubIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -246,7 +240,6 @@ type CreateGithubIDPUnprocessableEntity struct {
 func (o *CreateGithubIDPUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/github][%d] createGithubIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *CreateGithubIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

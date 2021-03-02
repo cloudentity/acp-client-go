@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -50,13 +52,40 @@ func (m *GatewayRequestEvent) Validate(formats strfmt.Registry) error {
 }
 
 func (m *GatewayRequestEvent) validateResult(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Result) { // not required
 		return nil
 	}
 
 	if m.Result != nil {
 		if err := m.Result.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("result")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this gateway request event based on the context it is used
+func (m *GatewayRequestEvent) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateResult(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GatewayRequestEvent) contextValidateResult(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Result != nil {
+		if err := m.Result.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("result")
 			}

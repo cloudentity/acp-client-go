@@ -53,7 +53,6 @@ func (o *ListIDPsReader) ReadResponse(response runtime.ClientResponse, consumer 
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -64,7 +63,7 @@ func NewListIDPsOK() *ListIDPsOK {
 	return &ListIDPsOK{}
 }
 
-/*ListIDPsOK handles this case with default header values.
+/* ListIDPsOK describes a response with status code 200, with default header values.
 
 IDPsResponse
 */
@@ -75,7 +74,6 @@ type ListIDPsOK struct {
 func (o *ListIDPsOK) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps][%d] listIdPsOK  %+v", 200, o.Payload)
 }
-
 func (o *ListIDPsOK) GetPayload() *models.IDPsResponse {
 	return o.Payload
 }
@@ -97,7 +95,7 @@ func NewListIDPsBadRequest() *ListIDPsBadRequest {
 	return &ListIDPsBadRequest{}
 }
 
-/*ListIDPsBadRequest handles this case with default header values.
+/* ListIDPsBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -108,7 +106,6 @@ type ListIDPsBadRequest struct {
 func (o *ListIDPsBadRequest) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps][%d] listIdPsBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *ListIDPsBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -130,7 +127,7 @@ func NewListIDPsUnauthorized() *ListIDPsUnauthorized {
 	return &ListIDPsUnauthorized{}
 }
 
-/*ListIDPsUnauthorized handles this case with default header values.
+/* ListIDPsUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -141,7 +138,6 @@ type ListIDPsUnauthorized struct {
 func (o *ListIDPsUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps][%d] listIdPsUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *ListIDPsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -163,7 +159,7 @@ func NewListIDPsForbidden() *ListIDPsForbidden {
 	return &ListIDPsForbidden{}
 }
 
-/*ListIDPsForbidden handles this case with default header values.
+/* ListIDPsForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -174,7 +170,6 @@ type ListIDPsForbidden struct {
 func (o *ListIDPsForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps][%d] listIdPsForbidden  %+v", 403, o.Payload)
 }
-
 func (o *ListIDPsForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -196,7 +191,7 @@ func NewListIDPsNotFound() *ListIDPsNotFound {
 	return &ListIDPsNotFound{}
 }
 
-/*ListIDPsNotFound handles this case with default header values.
+/* ListIDPsNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -207,7 +202,6 @@ type ListIDPsNotFound struct {
 func (o *ListIDPsNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps][%d] listIdPsNotFound  %+v", 404, o.Payload)
 }
-
 func (o *ListIDPsNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

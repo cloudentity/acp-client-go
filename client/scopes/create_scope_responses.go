@@ -65,7 +65,6 @@ func (o *CreateScopeReader) ReadResponse(response runtime.ClientResponse, consum
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -76,7 +75,7 @@ func NewCreateScopeCreated() *CreateScopeCreated {
 	return &CreateScopeCreated{}
 }
 
-/*CreateScopeCreated handles this case with default header values.
+/* CreateScopeCreated describes a response with status code 201, with default header values.
 
 Scope
 */
@@ -87,7 +86,6 @@ type CreateScopeCreated struct {
 func (o *CreateScopeCreated) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/scopes][%d] createScopeCreated  %+v", 201, o.Payload)
 }
-
 func (o *CreateScopeCreated) GetPayload() *models.Scope {
 	return o.Payload
 }
@@ -109,7 +107,7 @@ func NewCreateScopeBadRequest() *CreateScopeBadRequest {
 	return &CreateScopeBadRequest{}
 }
 
-/*CreateScopeBadRequest handles this case with default header values.
+/* CreateScopeBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -120,7 +118,6 @@ type CreateScopeBadRequest struct {
 func (o *CreateScopeBadRequest) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/scopes][%d] createScopeBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *CreateScopeBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -142,7 +139,7 @@ func NewCreateScopeUnauthorized() *CreateScopeUnauthorized {
 	return &CreateScopeUnauthorized{}
 }
 
-/*CreateScopeUnauthorized handles this case with default header values.
+/* CreateScopeUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -153,7 +150,6 @@ type CreateScopeUnauthorized struct {
 func (o *CreateScopeUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/scopes][%d] createScopeUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *CreateScopeUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -175,7 +171,7 @@ func NewCreateScopeForbidden() *CreateScopeForbidden {
 	return &CreateScopeForbidden{}
 }
 
-/*CreateScopeForbidden handles this case with default header values.
+/* CreateScopeForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -186,7 +182,6 @@ type CreateScopeForbidden struct {
 func (o *CreateScopeForbidden) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/scopes][%d] createScopeForbidden  %+v", 403, o.Payload)
 }
-
 func (o *CreateScopeForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -208,7 +203,7 @@ func NewCreateScopeNotFound() *CreateScopeNotFound {
 	return &CreateScopeNotFound{}
 }
 
-/*CreateScopeNotFound handles this case with default header values.
+/* CreateScopeNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -219,7 +214,6 @@ type CreateScopeNotFound struct {
 func (o *CreateScopeNotFound) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/scopes][%d] createScopeNotFound  %+v", 404, o.Payload)
 }
-
 func (o *CreateScopeNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -241,7 +235,7 @@ func NewCreateScopeConflict() *CreateScopeConflict {
 	return &CreateScopeConflict{}
 }
 
-/*CreateScopeConflict handles this case with default header values.
+/* CreateScopeConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -252,7 +246,6 @@ type CreateScopeConflict struct {
 func (o *CreateScopeConflict) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/scopes][%d] createScopeConflict  %+v", 409, o.Payload)
 }
-
 func (o *CreateScopeConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -274,7 +267,7 @@ func NewCreateScopeUnprocessableEntity() *CreateScopeUnprocessableEntity {
 	return &CreateScopeUnprocessableEntity{}
 }
 
-/*CreateScopeUnprocessableEntity handles this case with default header values.
+/* CreateScopeUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -285,7 +278,6 @@ type CreateScopeUnprocessableEntity struct {
 func (o *CreateScopeUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/scopes][%d] createScopeUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *CreateScopeUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

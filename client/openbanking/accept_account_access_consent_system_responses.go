@@ -47,7 +47,6 @@ func (o *AcceptAccountAccessConsentSystemReader) ReadResponse(response runtime.C
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewAcceptAccountAccessConsentSystemOK() *AcceptAccountAccessConsentSystemOK
 	return &AcceptAccountAccessConsentSystemOK{}
 }
 
-/*AcceptAccountAccessConsentSystemOK handles this case with default header values.
+/* AcceptAccountAccessConsentSystemOK describes a response with status code 200, with default header values.
 
 AccountAccessConsentAccepted
 */
@@ -69,7 +68,6 @@ type AcceptAccountAccessConsentSystemOK struct {
 func (o *AcceptAccountAccessConsentSystemOK) Error() string {
 	return fmt.Sprintf("[POST /api/system/{tid}/open-banking/account-access-consent/{login}/accept][%d] acceptAccountAccessConsentSystemOK  %+v", 200, o.Payload)
 }
-
 func (o *AcceptAccountAccessConsentSystemOK) GetPayload() *models.AccountAccessConsentAccepted {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewAcceptAccountAccessConsentSystemUnauthorized() *AcceptAccountAccessConse
 	return &AcceptAccountAccessConsentSystemUnauthorized{}
 }
 
-/*AcceptAccountAccessConsentSystemUnauthorized handles this case with default header values.
+/* AcceptAccountAccessConsentSystemUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -102,7 +100,6 @@ type AcceptAccountAccessConsentSystemUnauthorized struct {
 func (o *AcceptAccountAccessConsentSystemUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /api/system/{tid}/open-banking/account-access-consent/{login}/accept][%d] acceptAccountAccessConsentSystemUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *AcceptAccountAccessConsentSystemUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -124,7 +121,7 @@ func NewAcceptAccountAccessConsentSystemForbidden() *AcceptAccountAccessConsentS
 	return &AcceptAccountAccessConsentSystemForbidden{}
 }
 
-/*AcceptAccountAccessConsentSystemForbidden handles this case with default header values.
+/* AcceptAccountAccessConsentSystemForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,7 +132,6 @@ type AcceptAccountAccessConsentSystemForbidden struct {
 func (o *AcceptAccountAccessConsentSystemForbidden) Error() string {
 	return fmt.Sprintf("[POST /api/system/{tid}/open-banking/account-access-consent/{login}/accept][%d] acceptAccountAccessConsentSystemForbidden  %+v", 403, o.Payload)
 }
-
 func (o *AcceptAccountAccessConsentSystemForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -157,7 +153,7 @@ func NewAcceptAccountAccessConsentSystemNotFound() *AcceptAccountAccessConsentSy
 	return &AcceptAccountAccessConsentSystemNotFound{}
 }
 
-/*AcceptAccountAccessConsentSystemNotFound handles this case with default header values.
+/* AcceptAccountAccessConsentSystemNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -168,7 +164,6 @@ type AcceptAccountAccessConsentSystemNotFound struct {
 func (o *AcceptAccountAccessConsentSystemNotFound) Error() string {
 	return fmt.Sprintf("[POST /api/system/{tid}/open-banking/account-access-consent/{login}/accept][%d] acceptAccountAccessConsentSystemNotFound  %+v", 404, o.Payload)
 }
-
 func (o *AcceptAccountAccessConsentSystemNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

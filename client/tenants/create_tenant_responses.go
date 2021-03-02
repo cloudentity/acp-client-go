@@ -59,7 +59,6 @@ func (o *CreateTenantReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -70,7 +69,7 @@ func NewCreateTenantCreated() *CreateTenantCreated {
 	return &CreateTenantCreated{}
 }
 
-/*CreateTenantCreated handles this case with default header values.
+/* CreateTenantCreated describes a response with status code 201, with default header values.
 
 TenantCreated
 */
@@ -81,7 +80,6 @@ type CreateTenantCreated struct {
 func (o *CreateTenantCreated) Error() string {
 	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantCreated  %+v", 201, o.Payload)
 }
-
 func (o *CreateTenantCreated) GetPayload() *models.TenantCreated {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewCreateTenantBadRequest() *CreateTenantBadRequest {
 	return &CreateTenantBadRequest{}
 }
 
-/*CreateTenantBadRequest handles this case with default header values.
+/* CreateTenantBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -114,7 +112,6 @@ type CreateTenantBadRequest struct {
 func (o *CreateTenantBadRequest) Error() string {
 	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *CreateTenantBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -136,7 +133,7 @@ func NewCreateTenantUnauthorized() *CreateTenantUnauthorized {
 	return &CreateTenantUnauthorized{}
 }
 
-/*CreateTenantUnauthorized handles this case with default header values.
+/* CreateTenantUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,7 +144,6 @@ type CreateTenantUnauthorized struct {
 func (o *CreateTenantUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *CreateTenantUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -169,7 +165,7 @@ func NewCreateTenantForbidden() *CreateTenantForbidden {
 	return &CreateTenantForbidden{}
 }
 
-/*CreateTenantForbidden handles this case with default header values.
+/* CreateTenantForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -180,7 +176,6 @@ type CreateTenantForbidden struct {
 func (o *CreateTenantForbidden) Error() string {
 	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantForbidden  %+v", 403, o.Payload)
 }
-
 func (o *CreateTenantForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -202,7 +197,7 @@ func NewCreateTenantConflict() *CreateTenantConflict {
 	return &CreateTenantConflict{}
 }
 
-/*CreateTenantConflict handles this case with default header values.
+/* CreateTenantConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -213,7 +208,6 @@ type CreateTenantConflict struct {
 func (o *CreateTenantConflict) Error() string {
 	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantConflict  %+v", 409, o.Payload)
 }
-
 func (o *CreateTenantConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +229,7 @@ func NewCreateTenantUnprocessableEntity() *CreateTenantUnprocessableEntity {
 	return &CreateTenantUnprocessableEntity{}
 }
 
-/*CreateTenantUnprocessableEntity handles this case with default header values.
+/* CreateTenantUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -246,7 +240,6 @@ type CreateTenantUnprocessableEntity struct {
 func (o *CreateTenantUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *CreateTenantUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

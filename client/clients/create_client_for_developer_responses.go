@@ -59,7 +59,6 @@ func (o *CreateClientForDeveloperReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -70,7 +69,7 @@ func NewCreateClientForDeveloperCreated() *CreateClientForDeveloperCreated {
 	return &CreateClientForDeveloperCreated{}
 }
 
-/*CreateClientForDeveloperCreated handles this case with default header values.
+/* CreateClientForDeveloperCreated describes a response with status code 201, with default header values.
 
 ClientDeveloperResponse
 */
@@ -81,7 +80,6 @@ type CreateClientForDeveloperCreated struct {
 func (o *CreateClientForDeveloperCreated) Error() string {
 	return fmt.Sprintf("[POST /api/developer/{tid}/{aid}/clients][%d] createClientForDeveloperCreated  %+v", 201, o.Payload)
 }
-
 func (o *CreateClientForDeveloperCreated) GetPayload() *models.ClientDeveloperResponse {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewCreateClientForDeveloperUnauthorized() *CreateClientForDeveloperUnauthor
 	return &CreateClientForDeveloperUnauthorized{}
 }
 
-/*CreateClientForDeveloperUnauthorized handles this case with default header values.
+/* CreateClientForDeveloperUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -114,7 +112,6 @@ type CreateClientForDeveloperUnauthorized struct {
 func (o *CreateClientForDeveloperUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /api/developer/{tid}/{aid}/clients][%d] createClientForDeveloperUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *CreateClientForDeveloperUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -136,7 +133,7 @@ func NewCreateClientForDeveloperForbidden() *CreateClientForDeveloperForbidden {
 	return &CreateClientForDeveloperForbidden{}
 }
 
-/*CreateClientForDeveloperForbidden handles this case with default header values.
+/* CreateClientForDeveloperForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -147,7 +144,6 @@ type CreateClientForDeveloperForbidden struct {
 func (o *CreateClientForDeveloperForbidden) Error() string {
 	return fmt.Sprintf("[POST /api/developer/{tid}/{aid}/clients][%d] createClientForDeveloperForbidden  %+v", 403, o.Payload)
 }
-
 func (o *CreateClientForDeveloperForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -169,7 +165,7 @@ func NewCreateClientForDeveloperNotFound() *CreateClientForDeveloperNotFound {
 	return &CreateClientForDeveloperNotFound{}
 }
 
-/*CreateClientForDeveloperNotFound handles this case with default header values.
+/* CreateClientForDeveloperNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -180,7 +176,6 @@ type CreateClientForDeveloperNotFound struct {
 func (o *CreateClientForDeveloperNotFound) Error() string {
 	return fmt.Sprintf("[POST /api/developer/{tid}/{aid}/clients][%d] createClientForDeveloperNotFound  %+v", 404, o.Payload)
 }
-
 func (o *CreateClientForDeveloperNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -202,7 +197,7 @@ func NewCreateClientForDeveloperConflict() *CreateClientForDeveloperConflict {
 	return &CreateClientForDeveloperConflict{}
 }
 
-/*CreateClientForDeveloperConflict handles this case with default header values.
+/* CreateClientForDeveloperConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -213,7 +208,6 @@ type CreateClientForDeveloperConflict struct {
 func (o *CreateClientForDeveloperConflict) Error() string {
 	return fmt.Sprintf("[POST /api/developer/{tid}/{aid}/clients][%d] createClientForDeveloperConflict  %+v", 409, o.Payload)
 }
-
 func (o *CreateClientForDeveloperConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +229,7 @@ func NewCreateClientForDeveloperUnprocessableEntity() *CreateClientForDeveloperU
 	return &CreateClientForDeveloperUnprocessableEntity{}
 }
 
-/*CreateClientForDeveloperUnprocessableEntity handles this case with default header values.
+/* CreateClientForDeveloperUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -246,7 +240,6 @@ type CreateClientForDeveloperUnprocessableEntity struct {
 func (o *CreateClientForDeveloperUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /api/developer/{tid}/{aid}/clients][%d] createClientForDeveloperUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *CreateClientForDeveloperUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

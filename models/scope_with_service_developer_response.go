@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -16,32 +18,45 @@ import (
 type ScopeWithServiceDeveloperResponse struct {
 
 	// scope description
+	// Example: This scope value requests offline access using refresh token
 	ScopeDescription string `json:"scope_description,omitempty"`
 
 	// scope display name
+	// Example: Offline access
 	ScopeDisplayName string `json:"scope_display_name,omitempty"`
 
 	// scope id
+	// Example: 1
 	ScopeID string `json:"scope_id,omitempty"`
 
 	// scope name
+	// Example: offline_access
 	ScopeName string `json:"scope_name,omitempty"`
 
 	// service description
+	// Example: service description
 	ServiceDescription string `json:"service_description,omitempty"`
 
 	// service id
+	// Example: 1
 	ServiceID string `json:"service_id,omitempty"`
 
 	// service name
+	// Example: service
 	ServiceName string `json:"service_name,omitempty"`
 
 	// is scope assigned to a service
+	// Example: false
 	WithService bool `json:"with_service,omitempty"`
 }
 
 // Validate validates this scope with service developer response
 func (m *ScopeWithServiceDeveloperResponse) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this scope with service developer response based on context it is used
+func (m *ScopeWithServiceDeveloperResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

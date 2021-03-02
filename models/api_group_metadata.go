@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -45,7 +47,6 @@ func (m *APIGroupMetadata) Validate(formats strfmt.Registry) error {
 }
 
 func (m *APIGroupMetadata) validateAws(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Aws) { // not required
 		return nil
 	}
@@ -63,13 +64,58 @@ func (m *APIGroupMetadata) validateAws(formats strfmt.Registry) error {
 }
 
 func (m *APIGroupMetadata) validateAzure(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Azure) { // not required
 		return nil
 	}
 
 	if m.Azure != nil {
 		if err := m.Azure.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("azure")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this API group metadata based on the context it is used
+func (m *APIGroupMetadata) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateAws(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateAzure(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *APIGroupMetadata) contextValidateAws(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Aws != nil {
+		if err := m.Aws.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("aws")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *APIGroupMetadata) contextValidateAzure(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Azure != nil {
+		if err := m.Azure.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("azure")
 			}

@@ -47,7 +47,6 @@ func (o *GetOIDCIDPReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewGetOIDCIDPOK() *GetOIDCIDPOK {
 	return &GetOIDCIDPOK{}
 }
 
-/*GetOIDCIDPOK handles this case with default header values.
+/* GetOIDCIDPOK describes a response with status code 200, with default header values.
 
 OIDCIDP
 */
@@ -69,7 +68,6 @@ type GetOIDCIDPOK struct {
 func (o *GetOIDCIDPOK) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps/oidc/{iid}][%d] getOIdCIdPOK  %+v", 200, o.Payload)
 }
-
 func (o *GetOIDCIDPOK) GetPayload() *models.OIDCIDP {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewGetOIDCIDPUnauthorized() *GetOIDCIDPUnauthorized {
 	return &GetOIDCIDPUnauthorized{}
 }
 
-/*GetOIDCIDPUnauthorized handles this case with default header values.
+/* GetOIDCIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -102,7 +100,6 @@ type GetOIDCIDPUnauthorized struct {
 func (o *GetOIDCIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps/oidc/{iid}][%d] getOIdCIdPUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *GetOIDCIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -124,7 +121,7 @@ func NewGetOIDCIDPForbidden() *GetOIDCIDPForbidden {
 	return &GetOIDCIDPForbidden{}
 }
 
-/*GetOIDCIDPForbidden handles this case with default header values.
+/* GetOIDCIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,7 +132,6 @@ type GetOIDCIDPForbidden struct {
 func (o *GetOIDCIDPForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps/oidc/{iid}][%d] getOIdCIdPForbidden  %+v", 403, o.Payload)
 }
-
 func (o *GetOIDCIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -157,7 +153,7 @@ func NewGetOIDCIDPNotFound() *GetOIDCIDPNotFound {
 	return &GetOIDCIDPNotFound{}
 }
 
-/*GetOIDCIDPNotFound handles this case with default header values.
+/* GetOIDCIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -168,7 +164,6 @@ type GetOIDCIDPNotFound struct {
 func (o *GetOIDCIDPNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps/oidc/{iid}][%d] getOIdCIdPNotFound  %+v", 404, o.Payload)
 }
-
 func (o *GetOIDCIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

@@ -59,7 +59,6 @@ func (o *CreateAzureB2CIDPReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -70,7 +69,7 @@ func NewCreateAzureB2CIDPCreated() *CreateAzureB2CIDPCreated {
 	return &CreateAzureB2CIDPCreated{}
 }
 
-/*CreateAzureB2CIDPCreated handles this case with default header values.
+/* CreateAzureB2CIDPCreated describes a response with status code 201, with default header values.
 
 AzureB2CIDP
 */
@@ -81,7 +80,6 @@ type CreateAzureB2CIDPCreated struct {
 func (o *CreateAzureB2CIDPCreated) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/azureb2c][%d] createAzureB2CIdPCreated  %+v", 201, o.Payload)
 }
-
 func (o *CreateAzureB2CIDPCreated) GetPayload() *models.AzureB2CIDP {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewCreateAzureB2CIDPBadRequest() *CreateAzureB2CIDPBadRequest {
 	return &CreateAzureB2CIDPBadRequest{}
 }
 
-/*CreateAzureB2CIDPBadRequest handles this case with default header values.
+/* CreateAzureB2CIDPBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -114,7 +112,6 @@ type CreateAzureB2CIDPBadRequest struct {
 func (o *CreateAzureB2CIDPBadRequest) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/azureb2c][%d] createAzureB2CIdPBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *CreateAzureB2CIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -136,7 +133,7 @@ func NewCreateAzureB2CIDPUnauthorized() *CreateAzureB2CIDPUnauthorized {
 	return &CreateAzureB2CIDPUnauthorized{}
 }
 
-/*CreateAzureB2CIDPUnauthorized handles this case with default header values.
+/* CreateAzureB2CIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,7 +144,6 @@ type CreateAzureB2CIDPUnauthorized struct {
 func (o *CreateAzureB2CIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/azureb2c][%d] createAzureB2CIdPUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *CreateAzureB2CIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -169,7 +165,7 @@ func NewCreateAzureB2CIDPForbidden() *CreateAzureB2CIDPForbidden {
 	return &CreateAzureB2CIDPForbidden{}
 }
 
-/*CreateAzureB2CIDPForbidden handles this case with default header values.
+/* CreateAzureB2CIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -180,7 +176,6 @@ type CreateAzureB2CIDPForbidden struct {
 func (o *CreateAzureB2CIDPForbidden) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/azureb2c][%d] createAzureB2CIdPForbidden  %+v", 403, o.Payload)
 }
-
 func (o *CreateAzureB2CIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -202,7 +197,7 @@ func NewCreateAzureB2CIDPNotFound() *CreateAzureB2CIDPNotFound {
 	return &CreateAzureB2CIDPNotFound{}
 }
 
-/*CreateAzureB2CIDPNotFound handles this case with default header values.
+/* CreateAzureB2CIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -213,7 +208,6 @@ type CreateAzureB2CIDPNotFound struct {
 func (o *CreateAzureB2CIDPNotFound) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/azureb2c][%d] createAzureB2CIdPNotFound  %+v", 404, o.Payload)
 }
-
 func (o *CreateAzureB2CIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +229,7 @@ func NewCreateAzureB2CIDPUnprocessableEntity() *CreateAzureB2CIDPUnprocessableEn
 	return &CreateAzureB2CIDPUnprocessableEntity{}
 }
 
-/*CreateAzureB2CIDPUnprocessableEntity handles this case with default header values.
+/* CreateAzureB2CIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -246,7 +240,6 @@ type CreateAzureB2CIDPUnprocessableEntity struct {
 func (o *CreateAzureB2CIDPUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/azureb2c][%d] createAzureB2CIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *CreateAzureB2CIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

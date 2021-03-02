@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -58,7 +59,6 @@ func (m *TenantCreated) Validate(formats strfmt.Registry) error {
 }
 
 func (m *TenantCreated) validateClients(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Clients) { // not required
 		return nil
 	}
@@ -83,7 +83,6 @@ func (m *TenantCreated) validateClients(formats strfmt.Registry) error {
 }
 
 func (m *TenantCreated) validateIDPs(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.IDPs) { // not required
 		return nil
 	}
@@ -108,7 +107,6 @@ func (m *TenantCreated) validateIDPs(formats strfmt.Registry) error {
 }
 
 func (m *TenantCreated) validateServers(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Servers) { // not required
 		return nil
 	}
@@ -133,13 +131,106 @@ func (m *TenantCreated) validateServers(formats strfmt.Registry) error {
 }
 
 func (m *TenantCreated) validateTenant(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Tenant) { // not required
 		return nil
 	}
 
 	if m.Tenant != nil {
 		if err := m.Tenant.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("tenant")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this tenant created based on the context it is used
+func (m *TenantCreated) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateClients(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIDPs(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateServers(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateTenant(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *TenantCreated) contextValidateClients(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Clients); i++ {
+
+		if m.Clients[i] != nil {
+			if err := m.Clients[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("clients" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *TenantCreated) contextValidateIDPs(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.IDPs); i++ {
+
+		if m.IDPs[i] != nil {
+			if err := m.IDPs[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("idps" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *TenantCreated) contextValidateServers(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Servers); i++ {
+
+		if m.Servers[i] != nil {
+			if err := m.Servers[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("servers" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *TenantCreated) contextValidateTenant(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Tenant != nil {
+		if err := m.Tenant.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("tenant")
 			}

@@ -59,7 +59,6 @@ func (o *UpdateSAMLIDPReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -70,7 +69,7 @@ func NewUpdateSAMLIDPOK() *UpdateSAMLIDPOK {
 	return &UpdateSAMLIDPOK{}
 }
 
-/*UpdateSAMLIDPOK handles this case with default header values.
+/* UpdateSAMLIDPOK describes a response with status code 200, with default header values.
 
 SAMLIDP
 */
@@ -81,7 +80,6 @@ type UpdateSAMLIDPOK struct {
 func (o *UpdateSAMLIDPOK) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/saml/{iid}][%d] updateSAMLIdPOK  %+v", 200, o.Payload)
 }
-
 func (o *UpdateSAMLIDPOK) GetPayload() *models.SAMLIDP {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewUpdateSAMLIDPBadRequest() *UpdateSAMLIDPBadRequest {
 	return &UpdateSAMLIDPBadRequest{}
 }
 
-/*UpdateSAMLIDPBadRequest handles this case with default header values.
+/* UpdateSAMLIDPBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -114,7 +112,6 @@ type UpdateSAMLIDPBadRequest struct {
 func (o *UpdateSAMLIDPBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/saml/{iid}][%d] updateSAMLIdPBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *UpdateSAMLIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -136,7 +133,7 @@ func NewUpdateSAMLIDPUnauthorized() *UpdateSAMLIDPUnauthorized {
 	return &UpdateSAMLIDPUnauthorized{}
 }
 
-/*UpdateSAMLIDPUnauthorized handles this case with default header values.
+/* UpdateSAMLIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,7 +144,6 @@ type UpdateSAMLIDPUnauthorized struct {
 func (o *UpdateSAMLIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/saml/{iid}][%d] updateSAMLIdPUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *UpdateSAMLIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -169,7 +165,7 @@ func NewUpdateSAMLIDPForbidden() *UpdateSAMLIDPForbidden {
 	return &UpdateSAMLIDPForbidden{}
 }
 
-/*UpdateSAMLIDPForbidden handles this case with default header values.
+/* UpdateSAMLIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -180,7 +176,6 @@ type UpdateSAMLIDPForbidden struct {
 func (o *UpdateSAMLIDPForbidden) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/saml/{iid}][%d] updateSAMLIdPForbidden  %+v", 403, o.Payload)
 }
-
 func (o *UpdateSAMLIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -202,7 +197,7 @@ func NewUpdateSAMLIDPNotFound() *UpdateSAMLIDPNotFound {
 	return &UpdateSAMLIDPNotFound{}
 }
 
-/*UpdateSAMLIDPNotFound handles this case with default header values.
+/* UpdateSAMLIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -213,7 +208,6 @@ type UpdateSAMLIDPNotFound struct {
 func (o *UpdateSAMLIDPNotFound) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/saml/{iid}][%d] updateSAMLIdPNotFound  %+v", 404, o.Payload)
 }
-
 func (o *UpdateSAMLIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +229,7 @@ func NewUpdateSAMLIDPUnprocessableEntity() *UpdateSAMLIDPUnprocessableEntity {
 	return &UpdateSAMLIDPUnprocessableEntity{}
 }
 
-/*UpdateSAMLIDPUnprocessableEntity handles this case with default header values.
+/* UpdateSAMLIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -246,7 +240,6 @@ type UpdateSAMLIDPUnprocessableEntity struct {
 func (o *UpdateSAMLIDPUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/saml/{iid}][%d] updateSAMLIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *UpdateSAMLIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

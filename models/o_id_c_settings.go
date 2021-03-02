@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -16,6 +18,7 @@ import (
 type OIDCSettings struct {
 
 	// OAuth client identifier
+	// Example: client
 	ClientID string `json:"client_id,omitempty"`
 
 	// flag to fetch additional user attributes from userinfo endpoint
@@ -25,14 +28,21 @@ type OIDCSettings struct {
 	IssuerURL string `json:"issuer_url,omitempty"`
 
 	// OAuth redirect URL
+	// Example: https://example.com/callback
 	RedirectURL string `json:"redirect_url,omitempty"`
 
 	// OAuth scopes which client will be requesting
+	// Example: ["email","profile","openid"]
 	Scopes []string `json:"scopes"`
 }
 
 // Validate validates this o ID c settings
 func (m *OIDCSettings) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this o ID c settings based on context it is used
+func (m *OIDCSettings) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

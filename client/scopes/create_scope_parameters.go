@@ -18,73 +18,89 @@ import (
 	"github.com/cloudentity/acp-client-go/models"
 )
 
-// NewCreateScopeParams creates a new CreateScopeParams object
-// with the default values initialized.
+// NewCreateScopeParams creates a new CreateScopeParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewCreateScopeParams() *CreateScopeParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &CreateScopeParams{
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewCreateScopeParamsWithTimeout creates a new CreateScopeParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewCreateScopeParamsWithTimeout(timeout time.Duration) *CreateScopeParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &CreateScopeParams{
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewCreateScopeParamsWithContext creates a new CreateScopeParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewCreateScopeParamsWithContext(ctx context.Context) *CreateScopeParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &CreateScopeParams{
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewCreateScopeParamsWithHTTPClient creates a new CreateScopeParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewCreateScopeParamsWithHTTPClient(client *http.Client) *CreateScopeParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &CreateScopeParams{
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*CreateScopeParams contains all the parameters to send to the API endpoint
-for the create scope operation typically these are written to a http.Request
+/* CreateScopeParams contains all the parameters to send to the API endpoint
+   for the create scope operation.
+
+   Typically these are written to a http.Request.
 */
 type CreateScopeParams struct {
 
-	/*ScopeWithService*/
+	// ScopeWithService.
 	ScopeWithService *models.ScopeWithServiceID
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the create scope params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateScopeParams) WithDefaults() *CreateScopeParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the create scope params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateScopeParams) SetDefaults() {
+	var (
+		tidDefault = string("default")
+	)
+
+	val := CreateScopeParams{
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the create scope params
@@ -149,7 +165,6 @@ func (o *CreateScopeParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 		return err
 	}
 	var res []error
-
 	if o.ScopeWithService != nil {
 		if err := r.SetBodyParam(o.ScopeWithService); err != nil {
 			return err

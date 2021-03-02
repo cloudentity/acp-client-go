@@ -59,7 +59,6 @@ func (o *UpdateGithubIDPReader) ReadResponse(response runtime.ClientResponse, co
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -70,7 +69,7 @@ func NewUpdateGithubIDPOK() *UpdateGithubIDPOK {
 	return &UpdateGithubIDPOK{}
 }
 
-/*UpdateGithubIDPOK handles this case with default header values.
+/* UpdateGithubIDPOK describes a response with status code 200, with default header values.
 
 GithubIDP
 */
@@ -81,7 +80,6 @@ type UpdateGithubIDPOK struct {
 func (o *UpdateGithubIDPOK) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/github/{iid}][%d] updateGithubIdPOK  %+v", 200, o.Payload)
 }
-
 func (o *UpdateGithubIDPOK) GetPayload() *models.GithubIDP {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewUpdateGithubIDPBadRequest() *UpdateGithubIDPBadRequest {
 	return &UpdateGithubIDPBadRequest{}
 }
 
-/*UpdateGithubIDPBadRequest handles this case with default header values.
+/* UpdateGithubIDPBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -114,7 +112,6 @@ type UpdateGithubIDPBadRequest struct {
 func (o *UpdateGithubIDPBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/github/{iid}][%d] updateGithubIdPBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *UpdateGithubIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -136,7 +133,7 @@ func NewUpdateGithubIDPUnauthorized() *UpdateGithubIDPUnauthorized {
 	return &UpdateGithubIDPUnauthorized{}
 }
 
-/*UpdateGithubIDPUnauthorized handles this case with default header values.
+/* UpdateGithubIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,7 +144,6 @@ type UpdateGithubIDPUnauthorized struct {
 func (o *UpdateGithubIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/github/{iid}][%d] updateGithubIdPUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *UpdateGithubIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -169,7 +165,7 @@ func NewUpdateGithubIDPForbidden() *UpdateGithubIDPForbidden {
 	return &UpdateGithubIDPForbidden{}
 }
 
-/*UpdateGithubIDPForbidden handles this case with default header values.
+/* UpdateGithubIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -180,7 +176,6 @@ type UpdateGithubIDPForbidden struct {
 func (o *UpdateGithubIDPForbidden) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/github/{iid}][%d] updateGithubIdPForbidden  %+v", 403, o.Payload)
 }
-
 func (o *UpdateGithubIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -202,7 +197,7 @@ func NewUpdateGithubIDPNotFound() *UpdateGithubIDPNotFound {
 	return &UpdateGithubIDPNotFound{}
 }
 
-/*UpdateGithubIDPNotFound handles this case with default header values.
+/* UpdateGithubIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -213,7 +208,6 @@ type UpdateGithubIDPNotFound struct {
 func (o *UpdateGithubIDPNotFound) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/github/{iid}][%d] updateGithubIdPNotFound  %+v", 404, o.Payload)
 }
-
 func (o *UpdateGithubIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +229,7 @@ func NewUpdateGithubIDPUnprocessableEntity() *UpdateGithubIDPUnprocessableEntity
 	return &UpdateGithubIDPUnprocessableEntity{}
 }
 
-/*UpdateGithubIDPUnprocessableEntity handles this case with default header values.
+/* UpdateGithubIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -246,7 +240,6 @@ type UpdateGithubIDPUnprocessableEntity struct {
 func (o *UpdateGithubIDPUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/github/{iid}][%d] updateGithubIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *UpdateGithubIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

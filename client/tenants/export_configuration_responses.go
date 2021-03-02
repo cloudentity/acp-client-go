@@ -59,7 +59,6 @@ func (o *ExportConfigurationReader) ReadResponse(response runtime.ClientResponse
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -70,7 +69,7 @@ func NewExportConfigurationOK() *ExportConfigurationOK {
 	return &ExportConfigurationOK{}
 }
 
-/*ExportConfigurationOK handles this case with default header values.
+/* ExportConfigurationOK describes a response with status code 200, with default header values.
 
 Dump
 */
@@ -81,7 +80,6 @@ type ExportConfigurationOK struct {
 func (o *ExportConfigurationOK) Error() string {
 	return fmt.Sprintf("[GET /api/system/configuration][%d] exportConfigurationOK  %+v", 200, o.Payload)
 }
-
 func (o *ExportConfigurationOK) GetPayload() *models.Dump {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewExportConfigurationBadRequest() *ExportConfigurationBadRequest {
 	return &ExportConfigurationBadRequest{}
 }
 
-/*ExportConfigurationBadRequest handles this case with default header values.
+/* ExportConfigurationBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -114,7 +112,6 @@ type ExportConfigurationBadRequest struct {
 func (o *ExportConfigurationBadRequest) Error() string {
 	return fmt.Sprintf("[GET /api/system/configuration][%d] exportConfigurationBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *ExportConfigurationBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -136,7 +133,7 @@ func NewExportConfigurationUnauthorized() *ExportConfigurationUnauthorized {
 	return &ExportConfigurationUnauthorized{}
 }
 
-/*ExportConfigurationUnauthorized handles this case with default header values.
+/* ExportConfigurationUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,7 +144,6 @@ type ExportConfigurationUnauthorized struct {
 func (o *ExportConfigurationUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/system/configuration][%d] exportConfigurationUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *ExportConfigurationUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -169,7 +165,7 @@ func NewExportConfigurationForbidden() *ExportConfigurationForbidden {
 	return &ExportConfigurationForbidden{}
 }
 
-/*ExportConfigurationForbidden handles this case with default header values.
+/* ExportConfigurationForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -180,7 +176,6 @@ type ExportConfigurationForbidden struct {
 func (o *ExportConfigurationForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/system/configuration][%d] exportConfigurationForbidden  %+v", 403, o.Payload)
 }
-
 func (o *ExportConfigurationForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -202,7 +197,7 @@ func NewExportConfigurationNotFound() *ExportConfigurationNotFound {
 	return &ExportConfigurationNotFound{}
 }
 
-/*ExportConfigurationNotFound handles this case with default header values.
+/* ExportConfigurationNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -213,7 +208,6 @@ type ExportConfigurationNotFound struct {
 func (o *ExportConfigurationNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/system/configuration][%d] exportConfigurationNotFound  %+v", 404, o.Payload)
 }
-
 func (o *ExportConfigurationNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +229,7 @@ func NewExportConfigurationUnprocessableEntity() *ExportConfigurationUnprocessab
 	return &ExportConfigurationUnprocessableEntity{}
 }
 
-/*ExportConfigurationUnprocessableEntity handles this case with default header values.
+/* ExportConfigurationUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -246,7 +240,6 @@ type ExportConfigurationUnprocessableEntity struct {
 func (o *ExportConfigurationUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[GET /api/system/configuration][%d] exportConfigurationUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *ExportConfigurationUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -18,9 +20,11 @@ import (
 type ConsentGrant struct {
 
 	// consent grant id
+	// Example: 27fa83a8-d0a6-48da-8529-42105bfa0ede
 	ConsentGrantActID string `json:"consent_grant_act_id,omitempty"`
 
 	// consent id
+	// Example: 1
 	ConsentID string `json:"consent_id,omitempty"`
 
 	// given at timestamp
@@ -28,15 +32,19 @@ type ConsentGrant struct {
 	GivenAt strfmt.DateTime `json:"given_at,omitempty"`
 
 	// grant type, one of: implicit, explicit
+	// Example: implicit
 	GrantType string `json:"grant_type,omitempty"`
 
 	// subject
+	// Example: peter
 	Subject string `json:"subject,omitempty"`
 
 	// tenant id
+	// Example: default
 	TenantID string `json:"tenant_id,omitempty"`
 
 	// version
+	// Example: 1
 	Version int64 `json:"version,omitempty"`
 }
 
@@ -55,7 +63,6 @@ func (m *ConsentGrant) Validate(formats strfmt.Registry) error {
 }
 
 func (m *ConsentGrant) validateGivenAt(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.GivenAt) { // not required
 		return nil
 	}
@@ -64,6 +71,11 @@ func (m *ConsentGrant) validateGivenAt(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this consent grant based on context it is used
+func (m *ConsentGrant) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

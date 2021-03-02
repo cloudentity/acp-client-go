@@ -59,7 +59,6 @@ func (o *CreateSAMLIDPReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -70,7 +69,7 @@ func NewCreateSAMLIDPCreated() *CreateSAMLIDPCreated {
 	return &CreateSAMLIDPCreated{}
 }
 
-/*CreateSAMLIDPCreated handles this case with default header values.
+/* CreateSAMLIDPCreated describes a response with status code 201, with default header values.
 
 SAMLIDP
 */
@@ -81,7 +80,6 @@ type CreateSAMLIDPCreated struct {
 func (o *CreateSAMLIDPCreated) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/saml][%d] createSAMLIdPCreated  %+v", 201, o.Payload)
 }
-
 func (o *CreateSAMLIDPCreated) GetPayload() *models.SAMLIDP {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewCreateSAMLIDPBadRequest() *CreateSAMLIDPBadRequest {
 	return &CreateSAMLIDPBadRequest{}
 }
 
-/*CreateSAMLIDPBadRequest handles this case with default header values.
+/* CreateSAMLIDPBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -114,7 +112,6 @@ type CreateSAMLIDPBadRequest struct {
 func (o *CreateSAMLIDPBadRequest) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/saml][%d] createSAMLIdPBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *CreateSAMLIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -136,7 +133,7 @@ func NewCreateSAMLIDPUnauthorized() *CreateSAMLIDPUnauthorized {
 	return &CreateSAMLIDPUnauthorized{}
 }
 
-/*CreateSAMLIDPUnauthorized handles this case with default header values.
+/* CreateSAMLIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,7 +144,6 @@ type CreateSAMLIDPUnauthorized struct {
 func (o *CreateSAMLIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/saml][%d] createSAMLIdPUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *CreateSAMLIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -169,7 +165,7 @@ func NewCreateSAMLIDPForbidden() *CreateSAMLIDPForbidden {
 	return &CreateSAMLIDPForbidden{}
 }
 
-/*CreateSAMLIDPForbidden handles this case with default header values.
+/* CreateSAMLIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -180,7 +176,6 @@ type CreateSAMLIDPForbidden struct {
 func (o *CreateSAMLIDPForbidden) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/saml][%d] createSAMLIdPForbidden  %+v", 403, o.Payload)
 }
-
 func (o *CreateSAMLIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -202,7 +197,7 @@ func NewCreateSAMLIDPNotFound() *CreateSAMLIDPNotFound {
 	return &CreateSAMLIDPNotFound{}
 }
 
-/*CreateSAMLIDPNotFound handles this case with default header values.
+/* CreateSAMLIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -213,7 +208,6 @@ type CreateSAMLIDPNotFound struct {
 func (o *CreateSAMLIDPNotFound) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/saml][%d] createSAMLIdPNotFound  %+v", 404, o.Payload)
 }
-
 func (o *CreateSAMLIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +229,7 @@ func NewCreateSAMLIDPUnprocessableEntity() *CreateSAMLIDPUnprocessableEntity {
 	return &CreateSAMLIDPUnprocessableEntity{}
 }
 
-/*CreateSAMLIDPUnprocessableEntity handles this case with default header values.
+/* CreateSAMLIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -246,7 +240,6 @@ type CreateSAMLIDPUnprocessableEntity struct {
 func (o *CreateSAMLIDPUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/idps/saml][%d] createSAMLIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *CreateSAMLIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -94,7 +96,6 @@ func (m *IDPCredentials) Validate(formats strfmt.Registry) error {
 }
 
 func (m *IDPCredentials) validateAzure(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Azure) { // not required
 		return nil
 	}
@@ -112,7 +113,6 @@ func (m *IDPCredentials) validateAzure(formats strfmt.Registry) error {
 }
 
 func (m *IDPCredentials) validateAzureb2c(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Azureb2c) { // not required
 		return nil
 	}
@@ -130,7 +130,6 @@ func (m *IDPCredentials) validateAzureb2c(formats strfmt.Registry) error {
 }
 
 func (m *IDPCredentials) validateCognito(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Cognito) { // not required
 		return nil
 	}
@@ -148,7 +147,6 @@ func (m *IDPCredentials) validateCognito(formats strfmt.Registry) error {
 }
 
 func (m *IDPCredentials) validateGithub(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Github) { // not required
 		return nil
 	}
@@ -166,7 +164,6 @@ func (m *IDPCredentials) validateGithub(formats strfmt.Registry) error {
 }
 
 func (m *IDPCredentials) validateIntelliTrust(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.IntelliTrust) { // not required
 		return nil
 	}
@@ -184,7 +181,6 @@ func (m *IDPCredentials) validateIntelliTrust(formats strfmt.Registry) error {
 }
 
 func (m *IDPCredentials) validateOidc(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Oidc) { // not required
 		return nil
 	}
@@ -202,7 +198,6 @@ func (m *IDPCredentials) validateOidc(formats strfmt.Registry) error {
 }
 
 func (m *IDPCredentials) validateOkta(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Okta) { // not required
 		return nil
 	}
@@ -220,7 +215,6 @@ func (m *IDPCredentials) validateOkta(formats strfmt.Registry) error {
 }
 
 func (m *IDPCredentials) validateSaml(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Saml) { // not required
 		return nil
 	}
@@ -238,13 +232,184 @@ func (m *IDPCredentials) validateSaml(formats strfmt.Registry) error {
 }
 
 func (m *IDPCredentials) validateStatic(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Static) { // not required
 		return nil
 	}
 
 	if m.Static != nil {
 		if err := m.Static.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("static")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this ID p credentials based on the context it is used
+func (m *IDPCredentials) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateAzure(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateAzureb2c(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCognito(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateGithub(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIntelliTrust(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateOidc(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateOkta(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSaml(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStatic(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *IDPCredentials) contextValidateAzure(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Azure != nil {
+		if err := m.Azure.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("azure")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IDPCredentials) contextValidateAzureb2c(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Azureb2c != nil {
+		if err := m.Azureb2c.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("azureb2c")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IDPCredentials) contextValidateCognito(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Cognito != nil {
+		if err := m.Cognito.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cognito")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IDPCredentials) contextValidateGithub(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Github != nil {
+		if err := m.Github.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("github")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IDPCredentials) contextValidateIntelliTrust(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.IntelliTrust != nil {
+		if err := m.IntelliTrust.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("intelli_trust")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IDPCredentials) contextValidateOidc(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Oidc != nil {
+		if err := m.Oidc.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("oidc")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IDPCredentials) contextValidateOkta(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Okta != nil {
+		if err := m.Okta.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("okta")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IDPCredentials) contextValidateSaml(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Saml != nil {
+		if err := m.Saml.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("saml")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IDPCredentials) contextValidateStatic(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Static != nil {
+		if err := m.Static.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("static")
 			}

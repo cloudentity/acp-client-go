@@ -47,7 +47,6 @@ func (o *GetGithubIDPReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewGetGithubIDPOK() *GetGithubIDPOK {
 	return &GetGithubIDPOK{}
 }
 
-/*GetGithubIDPOK handles this case with default header values.
+/* GetGithubIDPOK describes a response with status code 200, with default header values.
 
 GithubIDP
 */
@@ -69,7 +68,6 @@ type GetGithubIDPOK struct {
 func (o *GetGithubIDPOK) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps/github/{iid}][%d] getGithubIdPOK  %+v", 200, o.Payload)
 }
-
 func (o *GetGithubIDPOK) GetPayload() *models.GithubIDP {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewGetGithubIDPUnauthorized() *GetGithubIDPUnauthorized {
 	return &GetGithubIDPUnauthorized{}
 }
 
-/*GetGithubIDPUnauthorized handles this case with default header values.
+/* GetGithubIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -102,7 +100,6 @@ type GetGithubIDPUnauthorized struct {
 func (o *GetGithubIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps/github/{iid}][%d] getGithubIdPUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *GetGithubIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -124,7 +121,7 @@ func NewGetGithubIDPForbidden() *GetGithubIDPForbidden {
 	return &GetGithubIDPForbidden{}
 }
 
-/*GetGithubIDPForbidden handles this case with default header values.
+/* GetGithubIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,7 +132,6 @@ type GetGithubIDPForbidden struct {
 func (o *GetGithubIDPForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps/github/{iid}][%d] getGithubIdPForbidden  %+v", 403, o.Payload)
 }
-
 func (o *GetGithubIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -157,7 +153,7 @@ func NewGetGithubIDPNotFound() *GetGithubIDPNotFound {
 	return &GetGithubIDPNotFound{}
 }
 
-/*GetGithubIDPNotFound handles this case with default header values.
+/* GetGithubIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -168,7 +164,6 @@ type GetGithubIDPNotFound struct {
 func (o *GetGithubIDPNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/idps/github/{iid}][%d] getGithubIdPNotFound  %+v", 404, o.Payload)
 }
-
 func (o *GetGithubIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

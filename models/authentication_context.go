@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 )
 
@@ -16,5 +18,10 @@ type AuthenticationContext map[string]interface{}
 
 // Validate validates this authentication context
 func (m AuthenticationContext) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this authentication context based on context it is used
+func (m AuthenticationContext) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }

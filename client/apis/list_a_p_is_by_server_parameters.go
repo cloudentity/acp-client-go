@@ -17,94 +17,109 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// NewListAPIsByServerParams creates a new ListAPIsByServerParams object
-// with the default values initialized.
+// NewListAPIsByServerParams creates a new ListAPIsByServerParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewListAPIsByServerParams() *ListAPIsByServerParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &ListAPIsByServerParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewListAPIsByServerParamsWithTimeout creates a new ListAPIsByServerParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewListAPIsByServerParamsWithTimeout(timeout time.Duration) *ListAPIsByServerParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &ListAPIsByServerParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewListAPIsByServerParamsWithContext creates a new ListAPIsByServerParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewListAPIsByServerParamsWithContext(ctx context.Context) *ListAPIsByServerParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &ListAPIsByServerParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewListAPIsByServerParamsWithHTTPClient creates a new ListAPIsByServerParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewListAPIsByServerParamsWithHTTPClient(client *http.Client) *ListAPIsByServerParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &ListAPIsByServerParams{
-		Aid:        aidDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*ListAPIsByServerParams contains all the parameters to send to the API endpoint
-for the list a p is by server operation typically these are written to a http.Request
+/* ListAPIsByServerParams contains all the parameters to send to the API endpoint
+   for the list a p is by server operation.
+
+   Typically these are written to a http.Request.
 */
 type ListAPIsByServerParams struct {
 
-	/*Aid
-	  Server id
+	/* Aid.
 
+	   Server id
+
+	   Default: "default"
 	*/
 	Aid string
-	/*DataClassification
-	  List apis that have given data classifications
 
+	/* DataClassification.
+
+	   List apis that have given data classifications
 	*/
 	DataClassification []string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
-	/*WithoutDataClassifications
-	  List apis that have no data classifications
 
+	/* WithoutDataClassifications.
+
+	   List apis that have no data classifications
 	*/
 	WithoutDataClassifications *bool
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the list a p is by server params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ListAPIsByServerParams) WithDefaults() *ListAPIsByServerParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the list a p is by server params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ListAPIsByServerParams) SetDefaults() {
+	var (
+		aidDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := ListAPIsByServerParams{
+		Aid: aidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the list a p is by server params
@@ -197,12 +212,15 @@ func (o *ListAPIsByServerParams) WriteToRequest(r runtime.ClientRequest, reg str
 		return err
 	}
 
-	valuesDataClassification := o.DataClassification
+	if o.DataClassification != nil {
 
-	joinedDataClassification := swag.JoinByFormat(valuesDataClassification, "")
-	// query array param data_classification
-	if err := r.SetQueryParam("data_classification", joinedDataClassification...); err != nil {
-		return err
+		// binding items for data_classification
+		joinedDataClassification := o.bindParamDataClassification(reg)
+
+		// query array param data_classification
+		if err := r.SetQueryParam("data_classification", joinedDataClassification...); err != nil {
+			return err
+		}
 	}
 
 	// path param tid
@@ -214,20 +232,38 @@ func (o *ListAPIsByServerParams) WriteToRequest(r runtime.ClientRequest, reg str
 
 		// query param without_data_classifications
 		var qrWithoutDataClassifications bool
+
 		if o.WithoutDataClassifications != nil {
 			qrWithoutDataClassifications = *o.WithoutDataClassifications
 		}
 		qWithoutDataClassifications := swag.FormatBool(qrWithoutDataClassifications)
 		if qWithoutDataClassifications != "" {
+
 			if err := r.SetQueryParam("without_data_classifications", qWithoutDataClassifications); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
+}
+
+// bindParamListAPIsByServer binds the parameter data_classification
+func (o *ListAPIsByServerParams) bindParamDataClassification(formats strfmt.Registry) []string {
+	dataClassificationIR := o.DataClassification
+
+	var dataClassificationIC []string
+	for _, dataClassificationIIR := range dataClassificationIR { // explode []string
+
+		dataClassificationIIV := dataClassificationIIR // string as string
+		dataClassificationIC = append(dataClassificationIC, dataClassificationIIV)
+	}
+
+	// items.CollectionFormat: ""
+	dataClassificationIS := swag.JoinByFormat(dataClassificationIC, "")
+
+	return dataClassificationIS
 }

@@ -84,6 +84,10 @@ type Config struct {
 	// Path to the file with private key for signing request object.
 	RequestObjectSigningKeyFile string `json:"request_object_signing_key_file"`
 
+	// Optional request object expiration time
+	// If not provided, it will be se to 1 minute
+	RequestObjectExpiration *time.Duration `json:"request_object_expiration"`
+
 	// Default HttpClient timeout.
 	// Ignored if HttpClient is provided.
 	Timeout time.Duration `json:"timeout"`
@@ -316,8 +320,9 @@ func WithOpenbankingIntentID(intentID string, acr []string) AuthorizeOption {
 			acrClaimRequest = ClaimRequest{
 				Essential: true,
 			}
-			signedToken string
-			err         error
+			signedToken             string
+			requestObjectExpiration = time.Minute
+			err                     error
 		)
 
 		if len(acr) == 1 {
@@ -326,8 +331,12 @@ func WithOpenbankingIntentID(intentID string, acr []string) AuthorizeOption {
 			acrClaimRequest.Values = acr
 		}
 
+		if c.Config.RequestObjectExpiration != nil {
+			requestObjectExpiration = *c.Config.RequestObjectExpiration
+		}
+
 		claims := jwt.MapClaims{
-			"exp":   time.Now().Add(time.Minute).Unix(),
+			"exp":   time.Now().Add(requestObjectExpiration).Unix(),
 			"nonce": csrf.Nonce,
 			"state": csrf.State,
 			"claims": ClaimRequests{

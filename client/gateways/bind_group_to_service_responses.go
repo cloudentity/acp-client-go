@@ -59,7 +59,6 @@ func (o *BindGroupToServiceReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -70,7 +69,7 @@ func NewBindGroupToServiceOK() *BindGroupToServiceOK {
 	return &BindGroupToServiceOK{}
 }
 
-/*BindGroupToServiceOK handles this case with default header values.
+/* BindGroupToServiceOK describes a response with status code 200, with default header values.
 
 BindGroupToServiceResponse
 */
@@ -81,7 +80,6 @@ type BindGroupToServiceOK struct {
 func (o *BindGroupToServiceOK) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceOK  %+v", 200, o.Payload)
 }
-
 func (o *BindGroupToServiceOK) GetPayload() *models.BindGroupToServiceResponse {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewBindGroupToServiceBadRequest() *BindGroupToServiceBadRequest {
 	return &BindGroupToServiceBadRequest{}
 }
 
-/*BindGroupToServiceBadRequest handles this case with default header values.
+/* BindGroupToServiceBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -114,7 +112,6 @@ type BindGroupToServiceBadRequest struct {
 func (o *BindGroupToServiceBadRequest) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *BindGroupToServiceBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -136,7 +133,7 @@ func NewBindGroupToServiceUnauthorized() *BindGroupToServiceUnauthorized {
 	return &BindGroupToServiceUnauthorized{}
 }
 
-/*BindGroupToServiceUnauthorized handles this case with default header values.
+/* BindGroupToServiceUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,7 +144,6 @@ type BindGroupToServiceUnauthorized struct {
 func (o *BindGroupToServiceUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *BindGroupToServiceUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -169,7 +165,7 @@ func NewBindGroupToServiceForbidden() *BindGroupToServiceForbidden {
 	return &BindGroupToServiceForbidden{}
 }
 
-/*BindGroupToServiceForbidden handles this case with default header values.
+/* BindGroupToServiceForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -180,7 +176,6 @@ type BindGroupToServiceForbidden struct {
 func (o *BindGroupToServiceForbidden) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceForbidden  %+v", 403, o.Payload)
 }
-
 func (o *BindGroupToServiceForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -202,7 +197,7 @@ func NewBindGroupToServiceNotFound() *BindGroupToServiceNotFound {
 	return &BindGroupToServiceNotFound{}
 }
 
-/*BindGroupToServiceNotFound handles this case with default header values.
+/* BindGroupToServiceNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -213,7 +208,6 @@ type BindGroupToServiceNotFound struct {
 func (o *BindGroupToServiceNotFound) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceNotFound  %+v", 404, o.Payload)
 }
-
 func (o *BindGroupToServiceNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +229,7 @@ func NewBindGroupToServiceUnprocessableEntity() *BindGroupToServiceUnprocessable
 	return &BindGroupToServiceUnprocessableEntity{}
 }
 
-/*BindGroupToServiceUnprocessableEntity handles this case with default header values.
+/* BindGroupToServiceUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -246,7 +240,6 @@ type BindGroupToServiceUnprocessableEntity struct {
 func (o *BindGroupToServiceUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *BindGroupToServiceUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

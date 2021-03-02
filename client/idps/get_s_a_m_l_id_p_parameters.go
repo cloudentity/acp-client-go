@@ -16,89 +16,103 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewGetSAMLIDPParams creates a new GetSAMLIDPParams object
-// with the default values initialized.
+// NewGetSAMLIDPParams creates a new GetSAMLIDPParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetSAMLIDPParams() *GetSAMLIDPParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &GetSAMLIDPParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetSAMLIDPParamsWithTimeout creates a new GetSAMLIDPParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetSAMLIDPParamsWithTimeout(timeout time.Duration) *GetSAMLIDPParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &GetSAMLIDPParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewGetSAMLIDPParamsWithContext creates a new GetSAMLIDPParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetSAMLIDPParamsWithContext(ctx context.Context) *GetSAMLIDPParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &GetSAMLIDPParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewGetSAMLIDPParamsWithHTTPClient creates a new GetSAMLIDPParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetSAMLIDPParamsWithHTTPClient(client *http.Client) *GetSAMLIDPParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &GetSAMLIDPParams{
-		Aid:        aidDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*GetSAMLIDPParams contains all the parameters to send to the API endpoint
-for the get s a m l ID p operation typically these are written to a http.Request
+/* GetSAMLIDPParams contains all the parameters to send to the API endpoint
+   for the get s a m l ID p operation.
+
+   Typically these are written to a http.Request.
 */
 type GetSAMLIDPParams struct {
 
-	/*Aid
-	  Authorization server id
+	/* Aid.
 
+	   Authorization server id
+
+	   Default: "default"
 	*/
 	Aid string
-	/*Iid
-	  IDP id
 
+	/* Iid.
+
+	   IDP id
 	*/
 	Iid string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get s a m l ID p params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetSAMLIDPParams) WithDefaults() *GetSAMLIDPParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get s a m l ID p params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetSAMLIDPParams) SetDefaults() {
+	var (
+		aidDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := GetSAMLIDPParams{
+		Aid: aidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the get s a m l ID p params

@@ -59,7 +59,6 @@ func (o *CreateGatewayReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -70,7 +69,7 @@ func NewCreateGatewayCreated() *CreateGatewayCreated {
 	return &CreateGatewayCreated{}
 }
 
-/*CreateGatewayCreated handles this case with default header values.
+/* CreateGatewayCreated describes a response with status code 201, with default header values.
 
 GatewayWithClient
 */
@@ -81,7 +80,6 @@ type CreateGatewayCreated struct {
 func (o *CreateGatewayCreated) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/gateways][%d] createGatewayCreated  %+v", 201, o.Payload)
 }
-
 func (o *CreateGatewayCreated) GetPayload() *models.GatewayWithClient {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewCreateGatewayUnauthorized() *CreateGatewayUnauthorized {
 	return &CreateGatewayUnauthorized{}
 }
 
-/*CreateGatewayUnauthorized handles this case with default header values.
+/* CreateGatewayUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -114,7 +112,6 @@ type CreateGatewayUnauthorized struct {
 func (o *CreateGatewayUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/gateways][%d] createGatewayUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *CreateGatewayUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -136,7 +133,7 @@ func NewCreateGatewayForbidden() *CreateGatewayForbidden {
 	return &CreateGatewayForbidden{}
 }
 
-/*CreateGatewayForbidden handles this case with default header values.
+/* CreateGatewayForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -147,7 +144,6 @@ type CreateGatewayForbidden struct {
 func (o *CreateGatewayForbidden) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/gateways][%d] createGatewayForbidden  %+v", 403, o.Payload)
 }
-
 func (o *CreateGatewayForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -169,7 +165,7 @@ func NewCreateGatewayNotFound() *CreateGatewayNotFound {
 	return &CreateGatewayNotFound{}
 }
 
-/*CreateGatewayNotFound handles this case with default header values.
+/* CreateGatewayNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -180,7 +176,6 @@ type CreateGatewayNotFound struct {
 func (o *CreateGatewayNotFound) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/gateways][%d] createGatewayNotFound  %+v", 404, o.Payload)
 }
-
 func (o *CreateGatewayNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -202,7 +197,7 @@ func NewCreateGatewayConflict() *CreateGatewayConflict {
 	return &CreateGatewayConflict{}
 }
 
-/*CreateGatewayConflict handles this case with default header values.
+/* CreateGatewayConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -213,7 +208,6 @@ type CreateGatewayConflict struct {
 func (o *CreateGatewayConflict) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/gateways][%d] createGatewayConflict  %+v", 409, o.Payload)
 }
-
 func (o *CreateGatewayConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +229,7 @@ func NewCreateGatewayUnprocessableEntity() *CreateGatewayUnprocessableEntity {
 	return &CreateGatewayUnprocessableEntity{}
 }
 
-/*CreateGatewayUnprocessableEntity handles this case with default header values.
+/* CreateGatewayUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -246,7 +240,6 @@ type CreateGatewayUnprocessableEntity struct {
 func (o *CreateGatewayUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/gateways][%d] createGatewayUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *CreateGatewayUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

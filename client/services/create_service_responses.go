@@ -65,7 +65,6 @@ func (o *CreateServiceReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -76,7 +75,7 @@ func NewCreateServiceCreated() *CreateServiceCreated {
 	return &CreateServiceCreated{}
 }
 
-/*CreateServiceCreated handles this case with default header values.
+/* CreateServiceCreated describes a response with status code 201, with default header values.
 
 Service
 */
@@ -87,7 +86,6 @@ type CreateServiceCreated struct {
 func (o *CreateServiceCreated) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/services][%d] createServiceCreated  %+v", 201, o.Payload)
 }
-
 func (o *CreateServiceCreated) GetPayload() *models.Service {
 	return o.Payload
 }
@@ -109,7 +107,7 @@ func NewCreateServiceBadRequest() *CreateServiceBadRequest {
 	return &CreateServiceBadRequest{}
 }
 
-/*CreateServiceBadRequest handles this case with default header values.
+/* CreateServiceBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -120,7 +118,6 @@ type CreateServiceBadRequest struct {
 func (o *CreateServiceBadRequest) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/services][%d] createServiceBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *CreateServiceBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -142,7 +139,7 @@ func NewCreateServiceUnauthorized() *CreateServiceUnauthorized {
 	return &CreateServiceUnauthorized{}
 }
 
-/*CreateServiceUnauthorized handles this case with default header values.
+/* CreateServiceUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -153,7 +150,6 @@ type CreateServiceUnauthorized struct {
 func (o *CreateServiceUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/services][%d] createServiceUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *CreateServiceUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -175,7 +171,7 @@ func NewCreateServiceForbidden() *CreateServiceForbidden {
 	return &CreateServiceForbidden{}
 }
 
-/*CreateServiceForbidden handles this case with default header values.
+/* CreateServiceForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -186,7 +182,6 @@ type CreateServiceForbidden struct {
 func (o *CreateServiceForbidden) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/services][%d] createServiceForbidden  %+v", 403, o.Payload)
 }
-
 func (o *CreateServiceForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -208,7 +203,7 @@ func NewCreateServiceNotFound() *CreateServiceNotFound {
 	return &CreateServiceNotFound{}
 }
 
-/*CreateServiceNotFound handles this case with default header values.
+/* CreateServiceNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -219,7 +214,6 @@ type CreateServiceNotFound struct {
 func (o *CreateServiceNotFound) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/services][%d] createServiceNotFound  %+v", 404, o.Payload)
 }
-
 func (o *CreateServiceNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -241,7 +235,7 @@ func NewCreateServiceConflict() *CreateServiceConflict {
 	return &CreateServiceConflict{}
 }
 
-/*CreateServiceConflict handles this case with default header values.
+/* CreateServiceConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -252,7 +246,6 @@ type CreateServiceConflict struct {
 func (o *CreateServiceConflict) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/services][%d] createServiceConflict  %+v", 409, o.Payload)
 }
-
 func (o *CreateServiceConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -274,7 +267,7 @@ func NewCreateServiceUnprocessableEntity() *CreateServiceUnprocessableEntity {
 	return &CreateServiceUnprocessableEntity{}
 }
 
-/*CreateServiceUnprocessableEntity handles this case with default header values.
+/* CreateServiceUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -285,7 +278,6 @@ type CreateServiceUnprocessableEntity struct {
 func (o *CreateServiceUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/services][%d] createServiceUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *CreateServiceUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

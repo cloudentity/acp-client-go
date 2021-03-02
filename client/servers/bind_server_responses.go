@@ -47,7 +47,6 @@ func (o *BindServerReader) ReadResponse(response runtime.ClientResponse, consume
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewBindServerOK() *BindServerOK {
 	return &BindServerOK{}
 }
 
-/*BindServerOK handles this case with default header values.
+/* BindServerOK describes a response with status code 200, with default header values.
 
 ServerToServer
 */
@@ -69,7 +68,6 @@ type BindServerOK struct {
 func (o *BindServerOK) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/bind/{rid}][%d] bindServerOK  %+v", 200, o.Payload)
 }
-
 func (o *BindServerOK) GetPayload() *models.ServerToServer {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewBindServerUnauthorized() *BindServerUnauthorized {
 	return &BindServerUnauthorized{}
 }
 
-/*BindServerUnauthorized handles this case with default header values.
+/* BindServerUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -102,7 +100,6 @@ type BindServerUnauthorized struct {
 func (o *BindServerUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/bind/{rid}][%d] bindServerUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *BindServerUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -124,7 +121,7 @@ func NewBindServerForbidden() *BindServerForbidden {
 	return &BindServerForbidden{}
 }
 
-/*BindServerForbidden handles this case with default header values.
+/* BindServerForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,7 +132,6 @@ type BindServerForbidden struct {
 func (o *BindServerForbidden) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/bind/{rid}][%d] bindServerForbidden  %+v", 403, o.Payload)
 }
-
 func (o *BindServerForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -157,7 +153,7 @@ func NewBindServerNotFound() *BindServerNotFound {
 	return &BindServerNotFound{}
 }
 
-/*BindServerNotFound handles this case with default header values.
+/* BindServerNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -168,7 +164,6 @@ type BindServerNotFound struct {
 func (o *BindServerNotFound) Error() string {
 	return fmt.Sprintf("[POST /api/admin/{tid}/servers/{aid}/bind/{rid}][%d] bindServerNotFound  %+v", 404, o.Payload)
 }
-
 func (o *BindServerNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

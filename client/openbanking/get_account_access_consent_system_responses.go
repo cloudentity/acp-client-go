@@ -47,7 +47,6 @@ func (o *GetAccountAccessConsentSystemReader) ReadResponse(response runtime.Clie
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewGetAccountAccessConsentSystemOK() *GetAccountAccessConsentSystemOK {
 	return &GetAccountAccessConsentSystemOK{}
 }
 
-/*GetAccountAccessConsentSystemOK handles this case with default header values.
+/* GetAccountAccessConsentSystemOK describes a response with status code 200, with default header values.
 
 GetAccountAccessConsentResponse
 */
@@ -69,7 +68,6 @@ type GetAccountAccessConsentSystemOK struct {
 func (o *GetAccountAccessConsentSystemOK) Error() string {
 	return fmt.Sprintf("[GET /api/system/{tid}/open-banking/account-access-consent/{login}][%d] getAccountAccessConsentSystemOK  %+v", 200, o.Payload)
 }
-
 func (o *GetAccountAccessConsentSystemOK) GetPayload() *models.GetAccountAccessConsentResponse {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewGetAccountAccessConsentSystemUnauthorized() *GetAccountAccessConsentSyst
 	return &GetAccountAccessConsentSystemUnauthorized{}
 }
 
-/*GetAccountAccessConsentSystemUnauthorized handles this case with default header values.
+/* GetAccountAccessConsentSystemUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -102,7 +100,6 @@ type GetAccountAccessConsentSystemUnauthorized struct {
 func (o *GetAccountAccessConsentSystemUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/system/{tid}/open-banking/account-access-consent/{login}][%d] getAccountAccessConsentSystemUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *GetAccountAccessConsentSystemUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -124,7 +121,7 @@ func NewGetAccountAccessConsentSystemForbidden() *GetAccountAccessConsentSystemF
 	return &GetAccountAccessConsentSystemForbidden{}
 }
 
-/*GetAccountAccessConsentSystemForbidden handles this case with default header values.
+/* GetAccountAccessConsentSystemForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,7 +132,6 @@ type GetAccountAccessConsentSystemForbidden struct {
 func (o *GetAccountAccessConsentSystemForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/system/{tid}/open-banking/account-access-consent/{login}][%d] getAccountAccessConsentSystemForbidden  %+v", 403, o.Payload)
 }
-
 func (o *GetAccountAccessConsentSystemForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -157,7 +153,7 @@ func NewGetAccountAccessConsentSystemNotFound() *GetAccountAccessConsentSystemNo
 	return &GetAccountAccessConsentSystemNotFound{}
 }
 
-/*GetAccountAccessConsentSystemNotFound handles this case with default header values.
+/* GetAccountAccessConsentSystemNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -168,7 +164,6 @@ type GetAccountAccessConsentSystemNotFound struct {
 func (o *GetAccountAccessConsentSystemNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/system/{tid}/open-banking/account-access-consent/{login}][%d] getAccountAccessConsentSystemNotFound  %+v", 404, o.Payload)
 }
-
 func (o *GetAccountAccessConsentSystemNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

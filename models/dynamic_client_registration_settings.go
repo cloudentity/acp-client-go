@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -22,6 +24,9 @@ type DynamicClientRegistrationSettings struct {
 	// initial access token
 	InitialAccessToken *InitialAccessTokenSettings `json:"initial_access_token,omitempty"`
 
+	// payload
+	Payload *PayloadSettings `json:"payload,omitempty"`
+
 	// software statement
 	SoftwareStatement *SoftwareStatementSettings `json:"software_statement,omitempty"`
 }
@@ -31,6 +36,10 @@ func (m *DynamicClientRegistrationSettings) Validate(formats strfmt.Registry) er
 	var res []error
 
 	if err := m.validateInitialAccessToken(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePayload(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -45,7 +54,6 @@ func (m *DynamicClientRegistrationSettings) Validate(formats strfmt.Registry) er
 }
 
 func (m *DynamicClientRegistrationSettings) validateInitialAccessToken(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.InitialAccessToken) { // not required
 		return nil
 	}
@@ -62,14 +70,94 @@ func (m *DynamicClientRegistrationSettings) validateInitialAccessToken(formats s
 	return nil
 }
 
-func (m *DynamicClientRegistrationSettings) validateSoftwareStatement(formats strfmt.Registry) error {
+func (m *DynamicClientRegistrationSettings) validatePayload(formats strfmt.Registry) error {
+	if swag.IsZero(m.Payload) { // not required
+		return nil
+	}
 
+	if m.Payload != nil {
+		if err := m.Payload.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("payload")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *DynamicClientRegistrationSettings) validateSoftwareStatement(formats strfmt.Registry) error {
 	if swag.IsZero(m.SoftwareStatement) { // not required
 		return nil
 	}
 
 	if m.SoftwareStatement != nil {
 		if err := m.SoftwareStatement.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("software_statement")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this dynamic client registration settings based on the context it is used
+func (m *DynamicClientRegistrationSettings) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateInitialAccessToken(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePayload(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSoftwareStatement(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *DynamicClientRegistrationSettings) contextValidateInitialAccessToken(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.InitialAccessToken != nil {
+		if err := m.InitialAccessToken.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("initial_access_token")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *DynamicClientRegistrationSettings) contextValidatePayload(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Payload != nil {
+		if err := m.Payload.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("payload")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *DynamicClientRegistrationSettings) contextValidateSoftwareStatement(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.SoftwareStatement != nil {
+		if err := m.SoftwareStatement.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("software_statement")
 			}

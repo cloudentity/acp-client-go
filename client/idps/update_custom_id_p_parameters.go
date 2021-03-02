@@ -18,102 +18,114 @@ import (
 	"github.com/cloudentity/acp-client-go/models"
 )
 
-// NewUpdateCustomIDPParams creates a new UpdateCustomIDPParams object
-// with the default values initialized.
+// NewUpdateCustomIDPParams creates a new UpdateCustomIDPParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewUpdateCustomIDPParams() *UpdateCustomIDPParams {
-	var (
-		aidDefault = string("default")
-		iidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &UpdateCustomIDPParams{
-		Aid: aidDefault,
-		Iid: iidDefault,
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewUpdateCustomIDPParamsWithTimeout creates a new UpdateCustomIDPParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewUpdateCustomIDPParamsWithTimeout(timeout time.Duration) *UpdateCustomIDPParams {
-	var (
-		aidDefault = string("default")
-		iidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &UpdateCustomIDPParams{
-		Aid: aidDefault,
-		Iid: iidDefault,
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewUpdateCustomIDPParamsWithContext creates a new UpdateCustomIDPParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewUpdateCustomIDPParamsWithContext(ctx context.Context) *UpdateCustomIDPParams {
-	var (
-		aidDefault = string("default")
-		iidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &UpdateCustomIDPParams{
-		Aid: aidDefault,
-		Iid: iidDefault,
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewUpdateCustomIDPParamsWithHTTPClient creates a new UpdateCustomIDPParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewUpdateCustomIDPParamsWithHTTPClient(client *http.Client) *UpdateCustomIDPParams {
-	var (
-		aidDefault = string("default")
-		iidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &UpdateCustomIDPParams{
-		Aid:        aidDefault,
-		Iid:        iidDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*UpdateCustomIDPParams contains all the parameters to send to the API endpoint
-for the update custom ID p operation typically these are written to a http.Request
+/* UpdateCustomIDPParams contains all the parameters to send to the API endpoint
+   for the update custom ID p operation.
+
+   Typically these are written to a http.Request.
 */
 type UpdateCustomIDPParams struct {
 
-	/*CustomIDP
-	  CustomIDP
+	/* CustomIDP.
 
+	   CustomIDP
 	*/
 	CustomIDP *models.CustomIDP
-	/*Aid
-	  Authorization server id
 
+	/* Aid.
+
+	   Authorization server id
+
+	   Default: "default"
 	*/
 	Aid string
-	/*Iid
-	  IDP id
 
+	/* Iid.
+
+	   IDP id
+
+	   Default: "default"
 	*/
 	Iid string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the update custom ID p params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateCustomIDPParams) WithDefaults() *UpdateCustomIDPParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the update custom ID p params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateCustomIDPParams) SetDefaults() {
+	var (
+		aidDefault = string("default")
+
+		iidDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := UpdateCustomIDPParams{
+		Aid: aidDefault,
+		Iid: iidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the update custom ID p params
@@ -200,7 +212,6 @@ func (o *UpdateCustomIDPParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		return err
 	}
 	var res []error
-
 	if o.CustomIDP != nil {
 		if err := r.SetBodyParam(o.CustomIDP); err != nil {
 			return err

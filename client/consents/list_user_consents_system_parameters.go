@@ -17,78 +17,95 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// NewListUserConsentsSystemParams creates a new ListUserConsentsSystemParams object
-// with the default values initialized.
+// NewListUserConsentsSystemParams creates a new ListUserConsentsSystemParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewListUserConsentsSystemParams() *ListUserConsentsSystemParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &ListUserConsentsSystemParams{
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewListUserConsentsSystemParamsWithTimeout creates a new ListUserConsentsSystemParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewListUserConsentsSystemParamsWithTimeout(timeout time.Duration) *ListUserConsentsSystemParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &ListUserConsentsSystemParams{
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewListUserConsentsSystemParamsWithContext creates a new ListUserConsentsSystemParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewListUserConsentsSystemParamsWithContext(ctx context.Context) *ListUserConsentsSystemParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &ListUserConsentsSystemParams{
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewListUserConsentsSystemParamsWithHTTPClient creates a new ListUserConsentsSystemParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewListUserConsentsSystemParamsWithHTTPClient(client *http.Client) *ListUserConsentsSystemParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &ListUserConsentsSystemParams{
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*ListUserConsentsSystemParams contains all the parameters to send to the API endpoint
-for the list user consents system operation typically these are written to a http.Request
+/* ListUserConsentsSystemParams contains all the parameters to send to the API endpoint
+   for the list user consents system operation.
+
+   Typically these are written to a http.Request.
 */
 type ListUserConsentsSystemParams struct {
 
-	/*ConsentID*/
+	// ConsentID.
 	ConsentIDs []string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
-	/*XSubject
-	  user identifier
 
+	/* XSubject.
+
+	   user identifier
 	*/
 	Subject *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the list user consents system params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ListUserConsentsSystemParams) WithDefaults() *ListUserConsentsSystemParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the list user consents system params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ListUserConsentsSystemParams) SetDefaults() {
+	var (
+		tidDefault = string("default")
+	)
+
+	val := ListUserConsentsSystemParams{
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the list user consents system params
@@ -165,12 +182,15 @@ func (o *ListUserConsentsSystemParams) WriteToRequest(r runtime.ClientRequest, r
 	}
 	var res []error
 
-	valuesConsentID := o.ConsentIDs
+	if o.ConsentIDs != nil {
 
-	joinedConsentID := swag.JoinByFormat(valuesConsentID, "")
-	// query array param consent_id
-	if err := r.SetQueryParam("consent_id", joinedConsentID...); err != nil {
-		return err
+		// binding items for consent_id
+		joinedConsentID := o.bindParamConsentID(reg)
+
+		// query array param consent_id
+		if err := r.SetQueryParam("consent_id", joinedConsentID...); err != nil {
+			return err
+		}
 	}
 
 	// path param tid
@@ -184,11 +204,27 @@ func (o *ListUserConsentsSystemParams) WriteToRequest(r runtime.ClientRequest, r
 		if err := r.SetHeaderParam("x-subject", *o.Subject); err != nil {
 			return err
 		}
-
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
+}
+
+// bindParamListUserConsentsSystem binds the parameter consent_id
+func (o *ListUserConsentsSystemParams) bindParamConsentID(formats strfmt.Registry) []string {
+	consentIDIR := o.ConsentIDs
+
+	var consentIDIC []string
+	for _, consentIDIIR := range consentIDIR { // explode []string
+
+		consentIDIIV := consentIDIIR // string as string
+		consentIDIC = append(consentIDIC, consentIDIIV)
+	}
+
+	// items.CollectionFormat: ""
+	consentIDIS := swag.JoinByFormat(consentIDIC, "")
+
+	return consentIDIS
 }

@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -153,7 +155,6 @@ func (m *IntrospectOpenbankingAccountAccessConsentResponse) Validate(formats str
 }
 
 func (m *IntrospectOpenbankingAccountAccessConsentResponse) validateCreationDateTime(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.CreationDateTime) { // not required
 		return nil
 	}
@@ -166,7 +167,6 @@ func (m *IntrospectOpenbankingAccountAccessConsentResponse) validateCreationDate
 }
 
 func (m *IntrospectOpenbankingAccountAccessConsentResponse) validateExpirationDateTime(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.ExpirationDateTime) { // not required
 		return nil
 	}
@@ -179,7 +179,6 @@ func (m *IntrospectOpenbankingAccountAccessConsentResponse) validateExpirationDa
 }
 
 func (m *IntrospectOpenbankingAccountAccessConsentResponse) validateStatusUpdateDateTime(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.StatusUpdateDateTime) { // not required
 		return nil
 	}
@@ -192,7 +191,6 @@ func (m *IntrospectOpenbankingAccountAccessConsentResponse) validateStatusUpdate
 }
 
 func (m *IntrospectOpenbankingAccountAccessConsentResponse) validateTransactionFromDateTime(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.TransactionFromDateTime) { // not required
 		return nil
 	}
@@ -205,7 +203,6 @@ func (m *IntrospectOpenbankingAccountAccessConsentResponse) validateTransactionF
 }
 
 func (m *IntrospectOpenbankingAccountAccessConsentResponse) validateTransactionToDateTime(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.TransactionToDateTime) { // not required
 		return nil
 	}
@@ -214,6 +211,11 @@ func (m *IntrospectOpenbankingAccountAccessConsentResponse) validateTransactionT
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this introspect openbanking account access consent response based on context it is used
+func (m *IntrospectOpenbankingAccountAccessConsentResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

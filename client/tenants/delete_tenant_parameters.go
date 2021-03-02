@@ -16,71 +16,86 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewDeleteTenantParams creates a new DeleteTenantParams object
-// with the default values initialized.
+// NewDeleteTenantParams creates a new DeleteTenantParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewDeleteTenantParams() *DeleteTenantParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &DeleteTenantParams{
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewDeleteTenantParamsWithTimeout creates a new DeleteTenantParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewDeleteTenantParamsWithTimeout(timeout time.Duration) *DeleteTenantParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &DeleteTenantParams{
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewDeleteTenantParamsWithContext creates a new DeleteTenantParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewDeleteTenantParamsWithContext(ctx context.Context) *DeleteTenantParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &DeleteTenantParams{
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewDeleteTenantParamsWithHTTPClient creates a new DeleteTenantParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewDeleteTenantParamsWithHTTPClient(client *http.Client) *DeleteTenantParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &DeleteTenantParams{
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*DeleteTenantParams contains all the parameters to send to the API endpoint
-for the delete tenant operation typically these are written to a http.Request
+/* DeleteTenantParams contains all the parameters to send to the API endpoint
+   for the delete tenant operation.
+
+   Typically these are written to a http.Request.
 */
 type DeleteTenantParams struct {
 
-	/*Tid
-	  Tenant id
+	/* Tid.
 
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the delete tenant params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteTenantParams) WithDefaults() *DeleteTenantParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the delete tenant params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteTenantParams) SetDefaults() {
+	var (
+		tidDefault = string("default")
+	)
+
+	val := DeleteTenantParams{
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the delete tenant params

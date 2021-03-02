@@ -59,7 +59,6 @@ func (o *UpdateCognitoIDPReader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -70,7 +69,7 @@ func NewUpdateCognitoIDPOK() *UpdateCognitoIDPOK {
 	return &UpdateCognitoIDPOK{}
 }
 
-/*UpdateCognitoIDPOK handles this case with default header values.
+/* UpdateCognitoIDPOK describes a response with status code 200, with default header values.
 
 CognitoIDP
 */
@@ -81,7 +80,6 @@ type UpdateCognitoIDPOK struct {
 func (o *UpdateCognitoIDPOK) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/cognito/{iid}][%d] updateCognitoIdPOK  %+v", 200, o.Payload)
 }
-
 func (o *UpdateCognitoIDPOK) GetPayload() *models.CognitoIDP {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewUpdateCognitoIDPBadRequest() *UpdateCognitoIDPBadRequest {
 	return &UpdateCognitoIDPBadRequest{}
 }
 
-/*UpdateCognitoIDPBadRequest handles this case with default header values.
+/* UpdateCognitoIDPBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -114,7 +112,6 @@ type UpdateCognitoIDPBadRequest struct {
 func (o *UpdateCognitoIDPBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/cognito/{iid}][%d] updateCognitoIdPBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *UpdateCognitoIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -136,7 +133,7 @@ func NewUpdateCognitoIDPUnauthorized() *UpdateCognitoIDPUnauthorized {
 	return &UpdateCognitoIDPUnauthorized{}
 }
 
-/*UpdateCognitoIDPUnauthorized handles this case with default header values.
+/* UpdateCognitoIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,7 +144,6 @@ type UpdateCognitoIDPUnauthorized struct {
 func (o *UpdateCognitoIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/cognito/{iid}][%d] updateCognitoIdPUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *UpdateCognitoIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -169,7 +165,7 @@ func NewUpdateCognitoIDPForbidden() *UpdateCognitoIDPForbidden {
 	return &UpdateCognitoIDPForbidden{}
 }
 
-/*UpdateCognitoIDPForbidden handles this case with default header values.
+/* UpdateCognitoIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -180,7 +176,6 @@ type UpdateCognitoIDPForbidden struct {
 func (o *UpdateCognitoIDPForbidden) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/cognito/{iid}][%d] updateCognitoIdPForbidden  %+v", 403, o.Payload)
 }
-
 func (o *UpdateCognitoIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -202,7 +197,7 @@ func NewUpdateCognitoIDPNotFound() *UpdateCognitoIDPNotFound {
 	return &UpdateCognitoIDPNotFound{}
 }
 
-/*UpdateCognitoIDPNotFound handles this case with default header values.
+/* UpdateCognitoIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -213,7 +208,6 @@ type UpdateCognitoIDPNotFound struct {
 func (o *UpdateCognitoIDPNotFound) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/cognito/{iid}][%d] updateCognitoIdPNotFound  %+v", 404, o.Payload)
 }
-
 func (o *UpdateCognitoIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +229,7 @@ func NewUpdateCognitoIDPUnprocessableEntity() *UpdateCognitoIDPUnprocessableEnti
 	return &UpdateCognitoIDPUnprocessableEntity{}
 }
 
-/*UpdateCognitoIDPUnprocessableEntity handles this case with default header values.
+/* UpdateCognitoIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -246,7 +240,6 @@ type UpdateCognitoIDPUnprocessableEntity struct {
 func (o *UpdateCognitoIDPUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/cognito/{iid}][%d] updateCognitoIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *UpdateCognitoIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

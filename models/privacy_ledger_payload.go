@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -49,7 +51,6 @@ func (m *PrivacyLedgerPayload) Validate(formats strfmt.Registry) error {
 }
 
 func (m *PrivacyLedgerPayload) validateConsentGranted(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.ConsentGranted) { // not required
 		return nil
 	}
@@ -67,7 +68,6 @@ func (m *PrivacyLedgerPayload) validateConsentGranted(formats strfmt.Registry) e
 }
 
 func (m *PrivacyLedgerPayload) validateConsentRevoked(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.ConsentRevoked) { // not required
 		return nil
 	}
@@ -85,12 +85,73 @@ func (m *PrivacyLedgerPayload) validateConsentRevoked(formats strfmt.Registry) e
 }
 
 func (m *PrivacyLedgerPayload) validateEventType(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.EventType) { // not required
 		return nil
 	}
 
 	if err := m.EventType.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("event_type")
+		}
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this privacy ledger payload based on the context it is used
+func (m *PrivacyLedgerPayload) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateConsentGranted(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateConsentRevoked(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEventType(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *PrivacyLedgerPayload) contextValidateConsentGranted(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ConsentGranted != nil {
+		if err := m.ConsentGranted.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("consent_granted")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *PrivacyLedgerPayload) contextValidateConsentRevoked(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ConsentRevoked != nil {
+		if err := m.ConsentRevoked.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("consent_revoked")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *PrivacyLedgerPayload) contextValidateEventType(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.EventType.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("event_type")
 		}

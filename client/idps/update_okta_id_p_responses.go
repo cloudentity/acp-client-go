@@ -59,7 +59,6 @@ func (o *UpdateOktaIDPReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -70,7 +69,7 @@ func NewUpdateOktaIDPOK() *UpdateOktaIDPOK {
 	return &UpdateOktaIDPOK{}
 }
 
-/*UpdateOktaIDPOK handles this case with default header values.
+/* UpdateOktaIDPOK describes a response with status code 200, with default header values.
 
 OktaIDP
 */
@@ -81,7 +80,6 @@ type UpdateOktaIDPOK struct {
 func (o *UpdateOktaIDPOK) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/okta/{iid}][%d] updateOktaIdPOK  %+v", 200, o.Payload)
 }
-
 func (o *UpdateOktaIDPOK) GetPayload() *models.OktaIDP {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewUpdateOktaIDPBadRequest() *UpdateOktaIDPBadRequest {
 	return &UpdateOktaIDPBadRequest{}
 }
 
-/*UpdateOktaIDPBadRequest handles this case with default header values.
+/* UpdateOktaIDPBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -114,7 +112,6 @@ type UpdateOktaIDPBadRequest struct {
 func (o *UpdateOktaIDPBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/okta/{iid}][%d] updateOktaIdPBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *UpdateOktaIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -136,7 +133,7 @@ func NewUpdateOktaIDPUnauthorized() *UpdateOktaIDPUnauthorized {
 	return &UpdateOktaIDPUnauthorized{}
 }
 
-/*UpdateOktaIDPUnauthorized handles this case with default header values.
+/* UpdateOktaIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,7 +144,6 @@ type UpdateOktaIDPUnauthorized struct {
 func (o *UpdateOktaIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/okta/{iid}][%d] updateOktaIdPUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *UpdateOktaIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -169,7 +165,7 @@ func NewUpdateOktaIDPForbidden() *UpdateOktaIDPForbidden {
 	return &UpdateOktaIDPForbidden{}
 }
 
-/*UpdateOktaIDPForbidden handles this case with default header values.
+/* UpdateOktaIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -180,7 +176,6 @@ type UpdateOktaIDPForbidden struct {
 func (o *UpdateOktaIDPForbidden) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/okta/{iid}][%d] updateOktaIdPForbidden  %+v", 403, o.Payload)
 }
-
 func (o *UpdateOktaIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -202,7 +197,7 @@ func NewUpdateOktaIDPNotFound() *UpdateOktaIDPNotFound {
 	return &UpdateOktaIDPNotFound{}
 }
 
-/*UpdateOktaIDPNotFound handles this case with default header values.
+/* UpdateOktaIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -213,7 +208,6 @@ type UpdateOktaIDPNotFound struct {
 func (o *UpdateOktaIDPNotFound) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/okta/{iid}][%d] updateOktaIdPNotFound  %+v", 404, o.Payload)
 }
-
 func (o *UpdateOktaIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +229,7 @@ func NewUpdateOktaIDPUnprocessableEntity() *UpdateOktaIDPUnprocessableEntity {
 	return &UpdateOktaIDPUnprocessableEntity{}
 }
 
-/*UpdateOktaIDPUnprocessableEntity handles this case with default header values.
+/* UpdateOktaIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -246,7 +240,6 @@ type UpdateOktaIDPUnprocessableEntity struct {
 func (o *UpdateOktaIDPUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/okta/{iid}][%d] updateOktaIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *UpdateOktaIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

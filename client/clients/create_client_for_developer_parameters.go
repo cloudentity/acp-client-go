@@ -18,86 +18,100 @@ import (
 	"github.com/cloudentity/acp-client-go/models"
 )
 
-// NewCreateClientForDeveloperParams creates a new CreateClientForDeveloperParams object
-// with the default values initialized.
+// NewCreateClientForDeveloperParams creates a new CreateClientForDeveloperParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewCreateClientForDeveloperParams() *CreateClientForDeveloperParams {
-	var (
-		aidDefault = string("developer")
-		tidDefault = string("default")
-	)
 	return &CreateClientForDeveloperParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewCreateClientForDeveloperParamsWithTimeout creates a new CreateClientForDeveloperParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewCreateClientForDeveloperParamsWithTimeout(timeout time.Duration) *CreateClientForDeveloperParams {
-	var (
-		aidDefault = string("developer")
-		tidDefault = string("default")
-	)
 	return &CreateClientForDeveloperParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewCreateClientForDeveloperParamsWithContext creates a new CreateClientForDeveloperParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewCreateClientForDeveloperParamsWithContext(ctx context.Context) *CreateClientForDeveloperParams {
-	var (
-		aidDefault = string("developer")
-		tidDefault = string("default")
-	)
 	return &CreateClientForDeveloperParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewCreateClientForDeveloperParamsWithHTTPClient creates a new CreateClientForDeveloperParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewCreateClientForDeveloperParamsWithHTTPClient(client *http.Client) *CreateClientForDeveloperParams {
-	var (
-		aidDefault = string("developer")
-		tidDefault = string("default")
-	)
 	return &CreateClientForDeveloperParams{
-		Aid:        aidDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*CreateClientForDeveloperParams contains all the parameters to send to the API endpoint
-for the create client for developer operation typically these are written to a http.Request
+/* CreateClientForDeveloperParams contains all the parameters to send to the API endpoint
+   for the create client for developer operation.
+
+   Typically these are written to a http.Request.
 */
 type CreateClientForDeveloperParams struct {
 
-	/*Client*/
+	// Client.
 	Client *models.CreateClientDeveloperRequest
-	/*Aid
-	  Developer server id
 
+	/* Aid.
+
+	   Developer server id
+
+	   Default: "developer"
 	*/
 	Aid string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the create client for developer params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateClientForDeveloperParams) WithDefaults() *CreateClientForDeveloperParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the create client for developer params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateClientForDeveloperParams) SetDefaults() {
+	var (
+		aidDefault = string("developer")
+
+		tidDefault = string("default")
+	)
+
+	val := CreateClientForDeveloperParams{
+		Aid: aidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the create client for developer params
@@ -173,7 +187,6 @@ func (o *CreateClientForDeveloperParams) WriteToRequest(r runtime.ClientRequest,
 		return err
 	}
 	var res []error
-
 	if o.Client != nil {
 		if err := r.SetBodyParam(o.Client); err != nil {
 			return err

@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -20,6 +22,7 @@ type OktaSettings struct {
 	AuthorizationServerID string `json:"authorization_server_id,omitempty"`
 
 	// domain
+	// Example: dev-316761.okta.com
 	Domain string `json:"domain,omitempty"`
 
 	// flag if additional user data should be fetched from userinfo endpoint
@@ -37,6 +40,11 @@ type OktaSettings struct {
 
 // Validate validates this okta settings
 func (m *OktaSettings) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this okta settings based on context it is used
+func (m *OktaSettings) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

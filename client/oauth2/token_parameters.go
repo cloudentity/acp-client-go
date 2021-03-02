@@ -16,102 +16,124 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewTokenParams creates a new TokenParams object
-// with the default values initialized.
+// NewTokenParams creates a new TokenParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewTokenParams() *TokenParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &TokenParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewTokenParamsWithTimeout creates a new TokenParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewTokenParamsWithTimeout(timeout time.Duration) *TokenParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &TokenParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewTokenParamsWithContext creates a new TokenParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewTokenParamsWithContext(ctx context.Context) *TokenParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &TokenParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewTokenParamsWithHTTPClient creates a new TokenParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewTokenParamsWithHTTPClient(client *http.Client) *TokenParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &TokenParams{
-		Aid:        aidDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*TokenParams contains all the parameters to send to the API endpoint
-for the token operation typically these are written to a http.Request
+/* TokenParams contains all the parameters to send to the API endpoint
+   for the token operation.
+
+   Typically these are written to a http.Request.
 */
 type TokenParams struct {
 
-	/*Aid
-	  Authorization server id
+	/* Aid.
 
+	   Authorization server id
+
+	   Default: "default"
 	*/
 	Aid string
-	/*ClientID*/
-	ClientID *string
-	/*ClientSecret*/
-	ClientSecret *string
-	/*Code*/
-	Code *string
-	/*GrantType*/
-	GrantType string
-	/*Password*/
-	Password *string
-	/*RedirectURI*/
-	RedirectURI *string
-	/*RefreshToken*/
-	RefreshToken *string
-	/*Scope*/
-	Scope *string
-	/*Tid
-	  Tenant id
 
+	// ClientID.
+	ClientID *string
+
+	// ClientSecret.
+	ClientSecret *string
+
+	// Code.
+	Code *string
+
+	// GrantType.
+	GrantType string
+
+	// Password.
+	Password *string
+
+	// RedirectURI.
+	RedirectURI *string
+
+	// RefreshToken.
+	RefreshToken *string
+
+	// Scope.
+	Scope *string
+
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
-	/*Username*/
+
+	// Username.
 	Username *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the token params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *TokenParams) WithDefaults() *TokenParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the token params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *TokenParams) SetDefaults() {
+	var (
+		aidDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := TokenParams{
+		Aid: aidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the token params
@@ -294,7 +316,6 @@ func (o *TokenParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registr
 				return err
 			}
 		}
-
 	}
 
 	if o.ClientSecret != nil {
@@ -310,7 +331,6 @@ func (o *TokenParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registr
 				return err
 			}
 		}
-
 	}
 
 	if o.Code != nil {
@@ -326,7 +346,6 @@ func (o *TokenParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registr
 				return err
 			}
 		}
-
 	}
 
 	// form param grant_type
@@ -351,7 +370,6 @@ func (o *TokenParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registr
 				return err
 			}
 		}
-
 	}
 
 	if o.RedirectURI != nil {
@@ -367,7 +385,6 @@ func (o *TokenParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registr
 				return err
 			}
 		}
-
 	}
 
 	if o.RefreshToken != nil {
@@ -383,7 +400,6 @@ func (o *TokenParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registr
 				return err
 			}
 		}
-
 	}
 
 	if o.Scope != nil {
@@ -399,7 +415,6 @@ func (o *TokenParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registr
 				return err
 			}
 		}
-
 	}
 
 	// path param tid
@@ -420,7 +435,6 @@ func (o *TokenParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registr
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

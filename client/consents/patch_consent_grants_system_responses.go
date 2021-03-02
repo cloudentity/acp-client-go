@@ -59,7 +59,6 @@ func (o *PatchConsentGrantsSystemReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -70,7 +69,7 @@ func NewPatchConsentGrantsSystemCreated() *PatchConsentGrantsSystemCreated {
 	return &PatchConsentGrantsSystemCreated{}
 }
 
-/*PatchConsentGrantsSystemCreated handles this case with default header values.
+/* PatchConsentGrantsSystemCreated describes a response with status code 201, with default header values.
 
 ConsentGrantPatchResponse
 */
@@ -81,7 +80,6 @@ type PatchConsentGrantsSystemCreated struct {
 func (o *PatchConsentGrantsSystemCreated) Error() string {
 	return fmt.Sprintf("[PATCH /api/system/{tid}/consents][%d] patchConsentGrantsSystemCreated  %+v", 201, o.Payload)
 }
-
 func (o *PatchConsentGrantsSystemCreated) GetPayload() *models.ConsentGrantPatchResponse {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewPatchConsentGrantsSystemUnauthorized() *PatchConsentGrantsSystemUnauthor
 	return &PatchConsentGrantsSystemUnauthorized{}
 }
 
-/*PatchConsentGrantsSystemUnauthorized handles this case with default header values.
+/* PatchConsentGrantsSystemUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -114,7 +112,6 @@ type PatchConsentGrantsSystemUnauthorized struct {
 func (o *PatchConsentGrantsSystemUnauthorized) Error() string {
 	return fmt.Sprintf("[PATCH /api/system/{tid}/consents][%d] patchConsentGrantsSystemUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *PatchConsentGrantsSystemUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -136,7 +133,7 @@ func NewPatchConsentGrantsSystemForbidden() *PatchConsentGrantsSystemForbidden {
 	return &PatchConsentGrantsSystemForbidden{}
 }
 
-/*PatchConsentGrantsSystemForbidden handles this case with default header values.
+/* PatchConsentGrantsSystemForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -147,7 +144,6 @@ type PatchConsentGrantsSystemForbidden struct {
 func (o *PatchConsentGrantsSystemForbidden) Error() string {
 	return fmt.Sprintf("[PATCH /api/system/{tid}/consents][%d] patchConsentGrantsSystemForbidden  %+v", 403, o.Payload)
 }
-
 func (o *PatchConsentGrantsSystemForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -169,7 +165,7 @@ func NewPatchConsentGrantsSystemNotFound() *PatchConsentGrantsSystemNotFound {
 	return &PatchConsentGrantsSystemNotFound{}
 }
 
-/*PatchConsentGrantsSystemNotFound handles this case with default header values.
+/* PatchConsentGrantsSystemNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -180,7 +176,6 @@ type PatchConsentGrantsSystemNotFound struct {
 func (o *PatchConsentGrantsSystemNotFound) Error() string {
 	return fmt.Sprintf("[PATCH /api/system/{tid}/consents][%d] patchConsentGrantsSystemNotFound  %+v", 404, o.Payload)
 }
-
 func (o *PatchConsentGrantsSystemNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -202,7 +197,7 @@ func NewPatchConsentGrantsSystemConflict() *PatchConsentGrantsSystemConflict {
 	return &PatchConsentGrantsSystemConflict{}
 }
 
-/*PatchConsentGrantsSystemConflict handles this case with default header values.
+/* PatchConsentGrantsSystemConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -213,7 +208,6 @@ type PatchConsentGrantsSystemConflict struct {
 func (o *PatchConsentGrantsSystemConflict) Error() string {
 	return fmt.Sprintf("[PATCH /api/system/{tid}/consents][%d] patchConsentGrantsSystemConflict  %+v", 409, o.Payload)
 }
-
 func (o *PatchConsentGrantsSystemConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +229,7 @@ func NewPatchConsentGrantsSystemUnprocessableEntity() *PatchConsentGrantsSystemU
 	return &PatchConsentGrantsSystemUnprocessableEntity{}
 }
 
-/*PatchConsentGrantsSystemUnprocessableEntity handles this case with default header values.
+/* PatchConsentGrantsSystemUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -246,7 +240,6 @@ type PatchConsentGrantsSystemUnprocessableEntity struct {
 func (o *PatchConsentGrantsSystemUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PATCH /api/system/{tid}/consents][%d] patchConsentGrantsSystemUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *PatchConsentGrantsSystemUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

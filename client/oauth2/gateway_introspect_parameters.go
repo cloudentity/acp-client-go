@@ -16,73 +16,89 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewGatewayIntrospectParams creates a new GatewayIntrospectParams object
-// with the default values initialized.
+// NewGatewayIntrospectParams creates a new GatewayIntrospectParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGatewayIntrospectParams() *GatewayIntrospectParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &GatewayIntrospectParams{
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGatewayIntrospectParamsWithTimeout creates a new GatewayIntrospectParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGatewayIntrospectParamsWithTimeout(timeout time.Duration) *GatewayIntrospectParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &GatewayIntrospectParams{
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewGatewayIntrospectParamsWithContext creates a new GatewayIntrospectParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGatewayIntrospectParamsWithContext(ctx context.Context) *GatewayIntrospectParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &GatewayIntrospectParams{
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewGatewayIntrospectParamsWithHTTPClient creates a new GatewayIntrospectParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGatewayIntrospectParamsWithHTTPClient(client *http.Client) *GatewayIntrospectParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &GatewayIntrospectParams{
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*GatewayIntrospectParams contains all the parameters to send to the API endpoint
-for the gateway introspect operation typically these are written to a http.Request
+/* GatewayIntrospectParams contains all the parameters to send to the API endpoint
+   for the gateway introspect operation.
+
+   Typically these are written to a http.Request.
 */
 type GatewayIntrospectParams struct {
 
-	/*Tid
-	  Tenant id
+	/* Tid.
 
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
-	/*Token*/
+
+	// Token.
 	Token *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the gateway introspect params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GatewayIntrospectParams) WithDefaults() *GatewayIntrospectParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the gateway introspect params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GatewayIntrospectParams) SetDefaults() {
+	var (
+		tidDefault = string("default")
+	)
+
+	val := GatewayIntrospectParams{
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the gateway introspect params
@@ -166,7 +182,6 @@ func (o *GatewayIntrospectParams) WriteToRequest(r runtime.ClientRequest, reg st
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

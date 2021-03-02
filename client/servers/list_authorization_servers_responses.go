@@ -47,7 +47,6 @@ func (o *ListAuthorizationServersReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewListAuthorizationServersOK() *ListAuthorizationServersOK {
 	return &ListAuthorizationServersOK{}
 }
 
-/*ListAuthorizationServersOK handles this case with default header values.
+/* ListAuthorizationServersOK describes a response with status code 200, with default header values.
 
 Servers
 */
@@ -69,7 +68,6 @@ type ListAuthorizationServersOK struct {
 func (o *ListAuthorizationServersOK) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers][%d] listAuthorizationServersOK  %+v", 200, o.Payload)
 }
-
 func (o *ListAuthorizationServersOK) GetPayload() *models.Servers {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewListAuthorizationServersUnauthorized() *ListAuthorizationServersUnauthor
 	return &ListAuthorizationServersUnauthorized{}
 }
 
-/*ListAuthorizationServersUnauthorized handles this case with default header values.
+/* ListAuthorizationServersUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -102,7 +100,6 @@ type ListAuthorizationServersUnauthorized struct {
 func (o *ListAuthorizationServersUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers][%d] listAuthorizationServersUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *ListAuthorizationServersUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -124,7 +121,7 @@ func NewListAuthorizationServersForbidden() *ListAuthorizationServersForbidden {
 	return &ListAuthorizationServersForbidden{}
 }
 
-/*ListAuthorizationServersForbidden handles this case with default header values.
+/* ListAuthorizationServersForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,7 +132,6 @@ type ListAuthorizationServersForbidden struct {
 func (o *ListAuthorizationServersForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers][%d] listAuthorizationServersForbidden  %+v", 403, o.Payload)
 }
-
 func (o *ListAuthorizationServersForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -157,7 +153,7 @@ func NewListAuthorizationServersNotFound() *ListAuthorizationServersNotFound {
 	return &ListAuthorizationServersNotFound{}
 }
 
-/*ListAuthorizationServersNotFound handles this case with default header values.
+/* ListAuthorizationServersNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -168,7 +164,6 @@ type ListAuthorizationServersNotFound struct {
 func (o *ListAuthorizationServersNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/admin/{tid}/servers][%d] listAuthorizationServersNotFound  %+v", 404, o.Payload)
 }
-
 func (o *ListAuthorizationServersNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

@@ -59,7 +59,6 @@ func (o *UpdateIntelliTrustIDPReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -70,7 +69,7 @@ func NewUpdateIntelliTrustIDPOK() *UpdateIntelliTrustIDPOK {
 	return &UpdateIntelliTrustIDPOK{}
 }
 
-/*UpdateIntelliTrustIDPOK handles this case with default header values.
+/* UpdateIntelliTrustIDPOK describes a response with status code 200, with default header values.
 
 IntelliTrustIDP
 */
@@ -81,7 +80,6 @@ type UpdateIntelliTrustIDPOK struct {
 func (o *UpdateIntelliTrustIDPOK) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPOK  %+v", 200, o.Payload)
 }
-
 func (o *UpdateIntelliTrustIDPOK) GetPayload() *models.IntelliTrustIDP {
 	return o.Payload
 }
@@ -103,7 +101,7 @@ func NewUpdateIntelliTrustIDPBadRequest() *UpdateIntelliTrustIDPBadRequest {
 	return &UpdateIntelliTrustIDPBadRequest{}
 }
 
-/*UpdateIntelliTrustIDPBadRequest handles this case with default header values.
+/* UpdateIntelliTrustIDPBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -114,7 +112,6 @@ type UpdateIntelliTrustIDPBadRequest struct {
 func (o *UpdateIntelliTrustIDPBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPBadRequest  %+v", 400, o.Payload)
 }
-
 func (o *UpdateIntelliTrustIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -136,7 +133,7 @@ func NewUpdateIntelliTrustIDPUnauthorized() *UpdateIntelliTrustIDPUnauthorized {
 	return &UpdateIntelliTrustIDPUnauthorized{}
 }
 
-/*UpdateIntelliTrustIDPUnauthorized handles this case with default header values.
+/* UpdateIntelliTrustIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,7 +144,6 @@ type UpdateIntelliTrustIDPUnauthorized struct {
 func (o *UpdateIntelliTrustIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *UpdateIntelliTrustIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -169,7 +165,7 @@ func NewUpdateIntelliTrustIDPForbidden() *UpdateIntelliTrustIDPForbidden {
 	return &UpdateIntelliTrustIDPForbidden{}
 }
 
-/*UpdateIntelliTrustIDPForbidden handles this case with default header values.
+/* UpdateIntelliTrustIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -180,7 +176,6 @@ type UpdateIntelliTrustIDPForbidden struct {
 func (o *UpdateIntelliTrustIDPForbidden) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPForbidden  %+v", 403, o.Payload)
 }
-
 func (o *UpdateIntelliTrustIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -202,7 +197,7 @@ func NewUpdateIntelliTrustIDPNotFound() *UpdateIntelliTrustIDPNotFound {
 	return &UpdateIntelliTrustIDPNotFound{}
 }
 
-/*UpdateIntelliTrustIDPNotFound handles this case with default header values.
+/* UpdateIntelliTrustIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -213,7 +208,6 @@ type UpdateIntelliTrustIDPNotFound struct {
 func (o *UpdateIntelliTrustIDPNotFound) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPNotFound  %+v", 404, o.Payload)
 }
-
 func (o *UpdateIntelliTrustIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +229,7 @@ func NewUpdateIntelliTrustIDPUnprocessableEntity() *UpdateIntelliTrustIDPUnproce
 	return &UpdateIntelliTrustIDPUnprocessableEntity{}
 }
 
-/*UpdateIntelliTrustIDPUnprocessableEntity handles this case with default header values.
+/* UpdateIntelliTrustIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -246,7 +240,6 @@ type UpdateIntelliTrustIDPUnprocessableEntity struct {
 func (o *UpdateIntelliTrustIDPUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/{tid}/servers/{aid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
-
 func (o *UpdateIntelliTrustIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

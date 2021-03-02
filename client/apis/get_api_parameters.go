@@ -16,73 +16,89 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewGetAPIParams creates a new GetAPIParams object
-// with the default values initialized.
+// NewGetAPIParams creates a new GetAPIParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetAPIParams() *GetAPIParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &GetAPIParams{
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetAPIParamsWithTimeout creates a new GetAPIParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetAPIParamsWithTimeout(timeout time.Duration) *GetAPIParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &GetAPIParams{
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewGetAPIParamsWithContext creates a new GetAPIParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetAPIParamsWithContext(ctx context.Context) *GetAPIParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &GetAPIParams{
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewGetAPIParamsWithHTTPClient creates a new GetAPIParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetAPIParamsWithHTTPClient(client *http.Client) *GetAPIParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &GetAPIParams{
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*GetAPIParams contains all the parameters to send to the API endpoint
-for the get API operation typically these are written to a http.Request
+/* GetAPIParams contains all the parameters to send to the API endpoint
+   for the get API operation.
+
+   Typically these are written to a http.Request.
 */
 type GetAPIParams struct {
 
-	/*API*/
+	// API.
 	APIID string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get API params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetAPIParams) WithDefaults() *GetAPIParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get API params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetAPIParams) SetDefaults() {
+	var (
+		tidDefault = string("default")
+	)
+
+	val := GetAPIParams{
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the get API params

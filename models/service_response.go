@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -16,30 +18,37 @@ import (
 type ServiceResponse struct {
 
 	// service audience
+	// Example: https://api.example.com
 	Audience string `json:"audience,omitempty"`
 
 	// server id
+	// Example: default
 	AuthorizationServerID string `json:"authorization_server_id,omitempty"`
 
 	// service description
+	// Example: Service description
 	Description string `json:"description,omitempty"`
 
 	// gateway id
 	GatewayID string `json:"gateway_id,omitempty"`
 
 	// unique service id
+	// Example: 1
 	ID string `json:"id,omitempty"`
 
 	// service name
+	// Example: Sample service
 	Name string `json:"name,omitempty"`
 
 	// number of scopes
 	NumberOfScopes int64 `json:"number_of_scopes,omitempty"`
 
 	// Is service a system service
+	// Example: false
 	System bool `json:"system,omitempty"`
 
 	// tenant id
+	// Example: default
 	TenantID string `json:"tenant_id,omitempty"`
 
 	// true if service has openapi 3 specification
@@ -48,6 +57,11 @@ type ServiceResponse struct {
 
 // Validate validates this service response
 func (m *ServiceResponse) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this service response based on context it is used
+func (m *ServiceResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

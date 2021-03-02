@@ -41,7 +41,6 @@ func (o *RevokeClientAccessReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -52,7 +51,7 @@ func NewRevokeClientAccessNoContent() *RevokeClientAccessNoContent {
 	return &RevokeClientAccessNoContent{}
 }
 
-/*RevokeClientAccessNoContent handles this case with default header values.
+/* RevokeClientAccessNoContent describes a response with status code 204, with default header values.
 
 Client access has been revoked
 */
@@ -73,7 +72,7 @@ func NewRevokeClientAccessUnauthorized() *RevokeClientAccessUnauthorized {
 	return &RevokeClientAccessUnauthorized{}
 }
 
-/*RevokeClientAccessUnauthorized handles this case with default header values.
+/* RevokeClientAccessUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -84,7 +83,6 @@ type RevokeClientAccessUnauthorized struct {
 func (o *RevokeClientAccessUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /{tid}/{aid}/clients/{cid}][%d] revokeClientAccessUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *RevokeClientAccessUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -106,7 +104,7 @@ func NewRevokeClientAccessForbidden() *RevokeClientAccessForbidden {
 	return &RevokeClientAccessForbidden{}
 }
 
-/*RevokeClientAccessForbidden handles this case with default header values.
+/* RevokeClientAccessForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -117,7 +115,6 @@ type RevokeClientAccessForbidden struct {
 func (o *RevokeClientAccessForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /{tid}/{aid}/clients/{cid}][%d] revokeClientAccessForbidden  %+v", 403, o.Payload)
 }
-
 func (o *RevokeClientAccessForbidden) GetPayload() *models.Error {
 	return o.Payload
 }

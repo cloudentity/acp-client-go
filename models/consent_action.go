@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -16,20 +18,29 @@ import (
 type ConsentAction struct {
 
 	// consent description
+	// Example: Consents required by application X
 	Description string `json:"description,omitempty"`
 
 	// unique consent action id
+	// Example: 1
 	ID string `json:"id,omitempty"`
 
 	// consent action name
+	// Example: application_x
 	Name string `json:"name,omitempty"`
 
 	// tenant id
+	// Example: default
 	TenantID string `json:"tenant_id,omitempty"`
 }
 
 // Validate validates this consent action
 func (m *ConsentAction) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this consent action based on context it is used
+func (m *ConsentAction) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

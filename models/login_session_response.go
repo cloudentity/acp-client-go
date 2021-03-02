@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -33,12 +34,14 @@ type LoginSessionResponse struct {
 	AuthTime strfmt.DateTime `json:"auth_time,omitempty"`
 
 	// OAuth client identifier
+	// Example: default
 	ClientID string `json:"client_id,omitempty"`
 
 	// list of granted audience
 	GrantedAudience []string `json:"granted_audience"`
 
 	// list of granted scopes
+	// Example: ["email","profile","openid"]
 	GrantedScopes []string `json:"granted_scopes"`
 
 	// unique id of login session
@@ -48,9 +51,11 @@ type LoginSessionResponse struct {
 	IDPID string `json:"idp_id,omitempty"`
 
 	// is login approved
+	// Example: false
 	LoginApproved bool `json:"login_approved,omitempty"`
 
 	// is login rejected
+	// Example: false
 	LoginRejected bool `json:"login_rejected,omitempty"`
 
 	// max age for a session to live
@@ -77,18 +82,22 @@ type LoginSessionResponse struct {
 	RequestedScopes []*RequestedScope `json:"requested_scopes"`
 
 	// is scope grant approved
+	// Example: true
 	ScopeGrantApproved bool `json:"scope_grant_approved,omitempty"`
 
 	// is scope grant rejected
+	// Example: false
 	ScopeGrantRejected bool `json:"scope_grant_rejected,omitempty"`
 
 	// authorization server identifier
+	// Example: default
 	ServerID string `json:"server_id,omitempty"`
 
 	// user identifier
 	Subject string `json:"subject,omitempty"`
 
 	// tenant identifier
+	// Example: default
 	TenantID string `json:"tenant_id,omitempty"`
 
 	// authentication context
@@ -147,7 +156,6 @@ func (m *LoginSessionResponse) Validate(formats strfmt.Registry) error {
 }
 
 func (m *LoginSessionResponse) validateAuthTime(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.AuthTime) { // not required
 		return nil
 	}
@@ -160,7 +168,6 @@ func (m *LoginSessionResponse) validateAuthTime(formats strfmt.Registry) error {
 }
 
 func (m *LoginSessionResponse) validateMaxAge(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.MaxAge) { // not required
 		return nil
 	}
@@ -173,7 +180,6 @@ func (m *LoginSessionResponse) validateMaxAge(formats strfmt.Registry) error {
 }
 
 func (m *LoginSessionResponse) validateRequestedAt(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.RequestedAt) { // not required
 		return nil
 	}
@@ -186,7 +192,6 @@ func (m *LoginSessionResponse) validateRequestedAt(formats strfmt.Registry) erro
 }
 
 func (m *LoginSessionResponse) validateRequestedScopes(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.RequestedScopes) { // not required
 		return nil
 	}
@@ -211,23 +216,23 @@ func (m *LoginSessionResponse) validateRequestedScopes(formats strfmt.Registry) 
 }
 
 func (m *LoginSessionResponse) validateAuthenticationContext(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.AuthenticationContext) { // not required
 		return nil
 	}
 
-	if err := m.AuthenticationContext.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("authentication_context")
+	if m.AuthenticationContext != nil {
+		if err := m.AuthenticationContext.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("authentication_context")
+			}
+			return err
 		}
-		return err
 	}
 
 	return nil
 }
 
 func (m *LoginSessionResponse) validateError(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Error) { // not required
 		return nil
 	}
@@ -245,12 +250,116 @@ func (m *LoginSessionResponse) validateError(formats strfmt.Registry) error {
 }
 
 func (m *LoginSessionResponse) validateRequestQueryParams(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.RequestQueryParams) { // not required
 		return nil
 	}
 
-	if err := m.RequestQueryParams.Validate(formats); err != nil {
+	if m.RequestQueryParams != nil {
+		if err := m.RequestQueryParams.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("request_query_params")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *LoginSessionResponse) validateRequestedClaims(formats strfmt.Registry) error {
+	if swag.IsZero(m.RequestedClaims) { // not required
+		return nil
+	}
+
+	if m.RequestedClaims != nil {
+		if err := m.RequestedClaims.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("requested_claims")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this login session response based on the context it is used
+func (m *LoginSessionResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateRequestedScopes(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateAuthenticationContext(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateError(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateRequestQueryParams(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateRequestedClaims(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *LoginSessionResponse) contextValidateRequestedScopes(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.RequestedScopes); i++ {
+
+		if m.RequestedScopes[i] != nil {
+			if err := m.RequestedScopes[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("requested_scopes" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *LoginSessionResponse) contextValidateAuthenticationContext(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.AuthenticationContext.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("authentication_context")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *LoginSessionResponse) contextValidateError(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Error != nil {
+		if err := m.Error.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("error")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *LoginSessionResponse) contextValidateRequestQueryParams(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.RequestQueryParams.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("request_query_params")
 		}
@@ -260,14 +369,10 @@ func (m *LoginSessionResponse) validateRequestQueryParams(formats strfmt.Registr
 	return nil
 }
 
-func (m *LoginSessionResponse) validateRequestedClaims(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.RequestedClaims) { // not required
-		return nil
-	}
+func (m *LoginSessionResponse) contextValidateRequestedClaims(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.RequestedClaims != nil {
-		if err := m.RequestedClaims.Validate(formats); err != nil {
+		if err := m.RequestedClaims.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("requested_claims")
 			}

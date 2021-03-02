@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -33,6 +35,11 @@ type RFC6749Error struct {
 
 // Validate validates this r f c6749 error
 func (m *RFC6749Error) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this r f c6749 error based on context it is used
+func (m *RFC6749Error) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

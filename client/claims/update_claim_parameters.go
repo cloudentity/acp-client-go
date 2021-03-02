@@ -18,75 +18,92 @@ import (
 	"github.com/cloudentity/acp-client-go/models"
 )
 
-// NewUpdateClaimParams creates a new UpdateClaimParams object
-// with the default values initialized.
+// NewUpdateClaimParams creates a new UpdateClaimParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewUpdateClaimParams() *UpdateClaimParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &UpdateClaimParams{
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewUpdateClaimParamsWithTimeout creates a new UpdateClaimParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewUpdateClaimParamsWithTimeout(timeout time.Duration) *UpdateClaimParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &UpdateClaimParams{
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewUpdateClaimParamsWithContext creates a new UpdateClaimParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewUpdateClaimParamsWithContext(ctx context.Context) *UpdateClaimParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &UpdateClaimParams{
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewUpdateClaimParamsWithHTTPClient creates a new UpdateClaimParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewUpdateClaimParamsWithHTTPClient(client *http.Client) *UpdateClaimParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &UpdateClaimParams{
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*UpdateClaimParams contains all the parameters to send to the API endpoint
-for the update claim operation typically these are written to a http.Request
+/* UpdateClaimParams contains all the parameters to send to the API endpoint
+   for the update claim operation.
+
+   Typically these are written to a http.Request.
 */
 type UpdateClaimParams struct {
 
-	/*UpdateClaimBody*/
+	// UpdateClaimBody.
 	UpdateClaimBody *models.Claim
-	/*Claim*/
-	ClaimID string
-	/*Tid
-	  Tenant id
 
+	// Claim.
+	ClaimID string
+
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the update claim params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateClaimParams) WithDefaults() *UpdateClaimParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the update claim params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateClaimParams) SetDefaults() {
+	var (
+		tidDefault = string("default")
+	)
+
+	val := UpdateClaimParams{
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the update claim params
@@ -162,7 +179,6 @@ func (o *UpdateClaimParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 		return err
 	}
 	var res []error
-
 	if o.UpdateClaimBody != nil {
 		if err := r.SetBodyParam(o.UpdateClaimBody); err != nil {
 			return err

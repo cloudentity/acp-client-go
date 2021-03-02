@@ -16,84 +16,97 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewGetGatewayConfigurationParams creates a new GetGatewayConfigurationParams object
-// with the default values initialized.
+// NewGetGatewayConfigurationParams creates a new GetGatewayConfigurationParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetGatewayConfigurationParams() *GetGatewayConfigurationParams {
-	var (
-		authorizerVersionDefault = string("latest")
-		tidDefault               = string("default")
-	)
 	return &GetGatewayConfigurationParams{
-		AuthorizerVersion: &authorizerVersionDefault,
-		Tid:               tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetGatewayConfigurationParamsWithTimeout creates a new GetGatewayConfigurationParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetGatewayConfigurationParamsWithTimeout(timeout time.Duration) *GetGatewayConfigurationParams {
-	var (
-		authorizerVersionDefault = string("latest")
-		tidDefault               = string("default")
-	)
 	return &GetGatewayConfigurationParams{
-		AuthorizerVersion: &authorizerVersionDefault,
-		Tid:               tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewGetGatewayConfigurationParamsWithContext creates a new GetGatewayConfigurationParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetGatewayConfigurationParamsWithContext(ctx context.Context) *GetGatewayConfigurationParams {
-	var (
-		authorizerVersionDefault = string("latest")
-		tidDefault               = string("default")
-	)
 	return &GetGatewayConfigurationParams{
-		AuthorizerVersion: &authorizerVersionDefault,
-		Tid:               tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewGetGatewayConfigurationParamsWithHTTPClient creates a new GetGatewayConfigurationParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetGatewayConfigurationParamsWithHTTPClient(client *http.Client) *GetGatewayConfigurationParams {
-	var (
-		authorizerVersionDefault = string("latest")
-		tidDefault               = string("default")
-	)
 	return &GetGatewayConfigurationParams{
-		AuthorizerVersion: &authorizerVersionDefault,
-		Tid:               tidDefault,
-		HTTPClient:        client,
+		HTTPClient: client,
 	}
 }
 
-/*GetGatewayConfigurationParams contains all the parameters to send to the API endpoint
-for the get gateway configuration operation typically these are written to a http.Request
+/* GetGatewayConfigurationParams contains all the parameters to send to the API endpoint
+   for the get gateway configuration operation.
+
+   Typically these are written to a http.Request.
 */
 type GetGatewayConfigurationParams struct {
 
-	/*AuthorizerVersion
-	  Authorizer version
+	/* AuthorizerVersion.
 
+	   Authorizer version
+
+	   Default: "latest"
 	*/
 	AuthorizerVersion *string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get gateway configuration params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetGatewayConfigurationParams) WithDefaults() *GetGatewayConfigurationParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get gateway configuration params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetGatewayConfigurationParams) SetDefaults() {
+	var (
+		authorizerVersionDefault = string("latest")
+
+		tidDefault = string("default")
+	)
+
+	val := GetGatewayConfigurationParams{
+		AuthorizerVersion: &authorizerVersionDefault,
+		Tid:               tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the get gateway configuration params
@@ -163,16 +176,17 @@ func (o *GetGatewayConfigurationParams) WriteToRequest(r runtime.ClientRequest, 
 
 		// query param authorizer_version
 		var qrAuthorizerVersion string
+
 		if o.AuthorizerVersion != nil {
 			qrAuthorizerVersion = *o.AuthorizerVersion
 		}
 		qAuthorizerVersion := qrAuthorizerVersion
 		if qAuthorizerVersion != "" {
+
 			if err := r.SetQueryParam("authorizer_version", qAuthorizerVersion); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	// path param tid

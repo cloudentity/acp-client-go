@@ -35,7 +35,6 @@ func (o *JwksReader) ReadResponse(response runtime.ClientResponse, consumer runt
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -46,7 +45,7 @@ func NewJwksOK() *JwksOK {
 	return &JwksOK{}
 }
 
-/*JwksOK handles this case with default header values.
+/* JwksOK describes a response with status code 200, with default header values.
 
 JWKs
 */
@@ -57,7 +56,6 @@ type JwksOK struct {
 func (o *JwksOK) Error() string {
 	return fmt.Sprintf("[GET /{tid}/{aid}/.well-known/jwks.json][%d] jwksOK  %+v", 200, o.Payload)
 }
-
 func (o *JwksOK) GetPayload() *models.JWKs {
 	return o.Payload
 }
@@ -79,7 +77,7 @@ func NewJwksNotFound() *JwksNotFound {
 	return &JwksNotFound{}
 }
 
-/*JwksNotFound handles this case with default header values.
+/* JwksNotFound describes a response with status code 404, with default header values.
 
 genericError
 */
@@ -90,7 +88,6 @@ type JwksNotFound struct {
 func (o *JwksNotFound) Error() string {
 	return fmt.Sprintf("[GET /{tid}/{aid}/.well-known/jwks.json][%d] jwksNotFound  %+v", 404, o.Payload)
 }
-
 func (o *JwksNotFound) GetPayload() *models.GenericError {
 	return o.Payload
 }

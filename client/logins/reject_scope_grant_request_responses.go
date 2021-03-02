@@ -47,7 +47,6 @@ func (o *RejectScopeGrantRequestReader) ReadResponse(response runtime.ClientResp
 			return nil, err
 		}
 		return nil, result
-
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -58,7 +57,7 @@ func NewRejectScopeGrantRequestOK() *RejectScopeGrantRequestOK {
 	return &RejectScopeGrantRequestOK{}
 }
 
-/*RejectScopeGrantRequestOK handles this case with default header values.
+/* RejectScopeGrantRequestOK describes a response with status code 200, with default header values.
 
 ScopeGrantRejected
 */
@@ -69,7 +68,6 @@ type RejectScopeGrantRequestOK struct {
 func (o *RejectScopeGrantRequestOK) Error() string {
 	return fmt.Sprintf("[POST /api/system/{tid}/scope-grants/{login}/reject][%d] rejectScopeGrantRequestOK  %+v", 200, o.Payload)
 }
-
 func (o *RejectScopeGrantRequestOK) GetPayload() *models.ScopeGrantRejected {
 	return o.Payload
 }
@@ -91,7 +89,7 @@ func NewRejectScopeGrantRequestUnauthorized() *RejectScopeGrantRequestUnauthoriz
 	return &RejectScopeGrantRequestUnauthorized{}
 }
 
-/*RejectScopeGrantRequestUnauthorized handles this case with default header values.
+/* RejectScopeGrantRequestUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -102,7 +100,6 @@ type RejectScopeGrantRequestUnauthorized struct {
 func (o *RejectScopeGrantRequestUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /api/system/{tid}/scope-grants/{login}/reject][%d] rejectScopeGrantRequestUnauthorized  %+v", 401, o.Payload)
 }
-
 func (o *RejectScopeGrantRequestUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -124,7 +121,7 @@ func NewRejectScopeGrantRequestForbidden() *RejectScopeGrantRequestForbidden {
 	return &RejectScopeGrantRequestForbidden{}
 }
 
-/*RejectScopeGrantRequestForbidden handles this case with default header values.
+/* RejectScopeGrantRequestForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,7 +132,6 @@ type RejectScopeGrantRequestForbidden struct {
 func (o *RejectScopeGrantRequestForbidden) Error() string {
 	return fmt.Sprintf("[POST /api/system/{tid}/scope-grants/{login}/reject][%d] rejectScopeGrantRequestForbidden  %+v", 403, o.Payload)
 }
-
 func (o *RejectScopeGrantRequestForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -157,7 +153,7 @@ func NewRejectScopeGrantRequestNotFound() *RejectScopeGrantRequestNotFound {
 	return &RejectScopeGrantRequestNotFound{}
 }
 
-/*RejectScopeGrantRequestNotFound handles this case with default header values.
+/* RejectScopeGrantRequestNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -168,7 +164,6 @@ type RejectScopeGrantRequestNotFound struct {
 func (o *RejectScopeGrantRequestNotFound) Error() string {
 	return fmt.Sprintf("[POST /api/system/{tid}/scope-grants/{login}/reject][%d] rejectScopeGrantRequestNotFound  %+v", 404, o.Payload)
 }
-
 func (o *RejectScopeGrantRequestNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

@@ -6,6 +6,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
+
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
@@ -60,7 +62,6 @@ func (m *AccountAccessConsentRequestData) Validate(formats strfmt.Registry) erro
 }
 
 func (m *AccountAccessConsentRequestData) validateExpirationDateTime(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.ExpirationDateTime) { // not required
 		return nil
 	}
@@ -73,7 +74,6 @@ func (m *AccountAccessConsentRequestData) validateExpirationDateTime(formats str
 }
 
 func (m *AccountAccessConsentRequestData) validateTransactionFromDateTime(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.TransactionFromDateTime) { // not required
 		return nil
 	}
@@ -86,7 +86,6 @@ func (m *AccountAccessConsentRequestData) validateTransactionFromDateTime(format
 }
 
 func (m *AccountAccessConsentRequestData) validateTransactionToDateTime(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.TransactionToDateTime) { // not required
 		return nil
 	}
@@ -95,6 +94,11 @@ func (m *AccountAccessConsentRequestData) validateTransactionToDateTime(formats 
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this account access consent request data based on context it is used
+func (m *AccountAccessConsentRequestData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

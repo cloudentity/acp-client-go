@@ -6,6 +6,7 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -51,7 +52,6 @@ func (m *RemoveServiceConfigurationResult) Validate(formats strfmt.Registry) err
 }
 
 func (m *RemoveServiceConfigurationResult) validateNotRemovedPolicies(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.NotRemovedPolicies) { // not required
 		return nil
 	}
@@ -76,7 +76,6 @@ func (m *RemoveServiceConfigurationResult) validateNotRemovedPolicies(formats st
 }
 
 func (m *RemoveServiceConfigurationResult) validateRemovedAPIs(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.RemovedAPIs) { // not required
 		return nil
 	}
@@ -101,7 +100,6 @@ func (m *RemoveServiceConfigurationResult) validateRemovedAPIs(formats strfmt.Re
 }
 
 func (m *RemoveServiceConfigurationResult) validateRemovedPolicies(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.RemovedPolicies) { // not required
 		return nil
 	}
@@ -113,6 +111,82 @@ func (m *RemoveServiceConfigurationResult) validateRemovedPolicies(formats strfm
 
 		if m.RemovedPolicies[i] != nil {
 			if err := m.RemovedPolicies[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("removed_policies" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this remove service configuration result based on the context it is used
+func (m *RemoveServiceConfigurationResult) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateNotRemovedPolicies(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateRemovedAPIs(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateRemovedPolicies(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *RemoveServiceConfigurationResult) contextValidateNotRemovedPolicies(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.NotRemovedPolicies); i++ {
+
+		if m.NotRemovedPolicies[i] != nil {
+			if err := m.NotRemovedPolicies[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("not_removed_policies" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *RemoveServiceConfigurationResult) contextValidateRemovedAPIs(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.RemovedAPIs); i++ {
+
+		if m.RemovedAPIs[i] != nil {
+			if err := m.RemovedAPIs[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("removed_apis" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *RemoveServiceConfigurationResult) contextValidateRemovedPolicies(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.RemovedPolicies); i++ {
+
+		if m.RemovedPolicies[i] != nil {
+			if err := m.RemovedPolicies[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("removed_policies" + "." + strconv.Itoa(i))
 				}

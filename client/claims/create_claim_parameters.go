@@ -18,73 +18,89 @@ import (
 	"github.com/cloudentity/acp-client-go/models"
 )
 
-// NewCreateClaimParams creates a new CreateClaimParams object
-// with the default values initialized.
+// NewCreateClaimParams creates a new CreateClaimParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewCreateClaimParams() *CreateClaimParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &CreateClaimParams{
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewCreateClaimParamsWithTimeout creates a new CreateClaimParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewCreateClaimParamsWithTimeout(timeout time.Duration) *CreateClaimParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &CreateClaimParams{
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewCreateClaimParamsWithContext creates a new CreateClaimParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewCreateClaimParamsWithContext(ctx context.Context) *CreateClaimParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &CreateClaimParams{
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewCreateClaimParamsWithHTTPClient creates a new CreateClaimParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewCreateClaimParamsWithHTTPClient(client *http.Client) *CreateClaimParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &CreateClaimParams{
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*CreateClaimParams contains all the parameters to send to the API endpoint
-for the create claim operation typically these are written to a http.Request
+/* CreateClaimParams contains all the parameters to send to the API endpoint
+   for the create claim operation.
+
+   Typically these are written to a http.Request.
 */
 type CreateClaimParams struct {
 
-	/*Claim*/
+	// Claim.
 	Claim *models.Claim
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the create claim params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateClaimParams) WithDefaults() *CreateClaimParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the create claim params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *CreateClaimParams) SetDefaults() {
+	var (
+		tidDefault = string("default")
+	)
+
+	val := CreateClaimParams{
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the create claim params
@@ -149,7 +165,6 @@ func (o *CreateClaimParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 		return err
 	}
 	var res []error
-
 	if o.Claim != nil {
 		if err := r.SetBodyParam(o.Claim); err != nil {
 			return err

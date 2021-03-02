@@ -16,73 +16,109 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewRevokeOpenbankingConsentsParams creates a new RevokeOpenbankingConsentsParams object
-// with the default values initialized.
+// NewRevokeOpenbankingConsentsParams creates a new RevokeOpenbankingConsentsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewRevokeOpenbankingConsentsParams() *RevokeOpenbankingConsentsParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &RevokeOpenbankingConsentsParams{
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewRevokeOpenbankingConsentsParamsWithTimeout creates a new RevokeOpenbankingConsentsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewRevokeOpenbankingConsentsParamsWithTimeout(timeout time.Duration) *RevokeOpenbankingConsentsParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &RevokeOpenbankingConsentsParams{
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewRevokeOpenbankingConsentsParamsWithContext creates a new RevokeOpenbankingConsentsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewRevokeOpenbankingConsentsParamsWithContext(ctx context.Context) *RevokeOpenbankingConsentsParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &RevokeOpenbankingConsentsParams{
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewRevokeOpenbankingConsentsParamsWithHTTPClient creates a new RevokeOpenbankingConsentsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewRevokeOpenbankingConsentsParamsWithHTTPClient(client *http.Client) *RevokeOpenbankingConsentsParams {
-	var (
-		tidDefault = string("default")
-	)
 	return &RevokeOpenbankingConsentsParams{
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*RevokeOpenbankingConsentsParams contains all the parameters to send to the API endpoint
-for the revoke openbanking consents operation typically these are written to a http.Request
+/* RevokeOpenbankingConsentsParams contains all the parameters to send to the API endpoint
+   for the revoke openbanking consents operation.
+
+   Typically these are written to a http.Request.
 */
 type RevokeOpenbankingConsentsParams struct {
 
-	/*ClientID*/
-	ClientID *string
-	/*Tid
-	  Tenant id
+	/* Aid.
 
+	   Authorization server id
+
+	   Default: "default"
+	*/
+	Aid string
+
+	/* ClientID.
+
+	   Client ID
+	*/
+	ClientID *string
+
+	/* ConsentType.
+
+	   Optional consent type
+	*/
+	ConsentType *string
+
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the revoke openbanking consents params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *RevokeOpenbankingConsentsParams) WithDefaults() *RevokeOpenbankingConsentsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the revoke openbanking consents params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *RevokeOpenbankingConsentsParams) SetDefaults() {
+	var (
+		aidDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := RevokeOpenbankingConsentsParams{
+		Aid: aidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the revoke openbanking consents params
@@ -118,6 +154,17 @@ func (o *RevokeOpenbankingConsentsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAid adds the aid to the revoke openbanking consents params
+func (o *RevokeOpenbankingConsentsParams) WithAid(aid string) *RevokeOpenbankingConsentsParams {
+	o.SetAid(aid)
+	return o
+}
+
+// SetAid adds the aid to the revoke openbanking consents params
+func (o *RevokeOpenbankingConsentsParams) SetAid(aid string) {
+	o.Aid = aid
+}
+
 // WithClientID adds the clientID to the revoke openbanking consents params
 func (o *RevokeOpenbankingConsentsParams) WithClientID(clientID *string) *RevokeOpenbankingConsentsParams {
 	o.SetClientID(clientID)
@@ -127,6 +174,17 @@ func (o *RevokeOpenbankingConsentsParams) WithClientID(clientID *string) *Revoke
 // SetClientID adds the clientId to the revoke openbanking consents params
 func (o *RevokeOpenbankingConsentsParams) SetClientID(clientID *string) {
 	o.ClientID = clientID
+}
+
+// WithConsentType adds the consentType to the revoke openbanking consents params
+func (o *RevokeOpenbankingConsentsParams) WithConsentType(consentType *string) *RevokeOpenbankingConsentsParams {
+	o.SetConsentType(consentType)
+	return o
+}
+
+// SetConsentType adds the consentType to the revoke openbanking consents params
+func (o *RevokeOpenbankingConsentsParams) SetConsentType(consentType *string) {
+	o.ConsentType = consentType
 }
 
 // WithTid adds the tid to the revoke openbanking consents params
@@ -148,20 +206,43 @@ func (o *RevokeOpenbankingConsentsParams) WriteToRequest(r runtime.ClientRequest
 	}
 	var res []error
 
+	// path param aid
+	if err := r.SetPathParam("aid", o.Aid); err != nil {
+		return err
+	}
+
 	if o.ClientID != nil {
 
-		// query param clientID
+		// query param client_id
 		var qrClientID string
+
 		if o.ClientID != nil {
 			qrClientID = *o.ClientID
 		}
 		qClientID := qrClientID
 		if qClientID != "" {
-			if err := r.SetQueryParam("clientID", qClientID); err != nil {
+
+			if err := r.SetQueryParam("client_id", qClientID); err != nil {
 				return err
 			}
 		}
+	}
 
+	if o.ConsentType != nil {
+
+		// query param consent_type
+		var qrConsentType string
+
+		if o.ConsentType != nil {
+			qrConsentType = *o.ConsentType
+		}
+		qConsentType := qrConsentType
+		if qConsentType != "" {
+
+			if err := r.SetQueryParam("consent_type", qConsentType); err != nil {
+				return err
+			}
+		}
 	}
 
 	// path param tid

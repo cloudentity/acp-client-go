@@ -18,86 +18,100 @@ import (
 	"github.com/cloudentity/acp-client-go/models"
 )
 
-// NewGrantConsentParams creates a new GrantConsentParams object
-// with the default values initialized.
+// NewGrantConsentParams creates a new GrantConsentParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGrantConsentParams() *GrantConsentParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &GrantConsentParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGrantConsentParamsWithTimeout creates a new GrantConsentParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGrantConsentParamsWithTimeout(timeout time.Duration) *GrantConsentParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &GrantConsentParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewGrantConsentParamsWithContext creates a new GrantConsentParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGrantConsentParamsWithContext(ctx context.Context) *GrantConsentParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &GrantConsentParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewGrantConsentParamsWithHTTPClient creates a new GrantConsentParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGrantConsentParamsWithHTTPClient(client *http.Client) *GrantConsentParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &GrantConsentParams{
-		Aid:        aidDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*GrantConsentParams contains all the parameters to send to the API endpoint
-for the grant consent operation typically these are written to a http.Request
+/* GrantConsentParams contains all the parameters to send to the API endpoint
+   for the grant consent operation.
+
+   Typically these are written to a http.Request.
 */
 type GrantConsentParams struct {
 
-	/*ConsentGrant*/
+	// ConsentGrant.
 	ConsentGrant *models.ConsentGrantRequest
-	/*Aid
-	  Authorization server id
 
+	/* Aid.
+
+	   Authorization server id
+
+	   Default: "default"
 	*/
 	Aid string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the grant consent params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GrantConsentParams) WithDefaults() *GrantConsentParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the grant consent params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GrantConsentParams) SetDefaults() {
+	var (
+		aidDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := GrantConsentParams{
+		Aid: aidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the grant consent params
@@ -173,7 +187,6 @@ func (o *GrantConsentParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		return err
 	}
 	var res []error
-
 	if o.ConsentGrant != nil {
 		if err := r.SetBodyParam(o.ConsentGrant); err != nil {
 			return err

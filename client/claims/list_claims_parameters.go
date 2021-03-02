@@ -16,84 +16,97 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// NewListClaimsParams creates a new ListClaimsParams object
-// with the default values initialized.
+// NewListClaimsParams creates a new ListClaimsParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewListClaimsParams() *ListClaimsParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &ListClaimsParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewListClaimsParamsWithTimeout creates a new ListClaimsParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewListClaimsParamsWithTimeout(timeout time.Duration) *ListClaimsParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &ListClaimsParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewListClaimsParamsWithContext creates a new ListClaimsParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewListClaimsParamsWithContext(ctx context.Context) *ListClaimsParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &ListClaimsParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewListClaimsParamsWithHTTPClient creates a new ListClaimsParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewListClaimsParamsWithHTTPClient(client *http.Client) *ListClaimsParams {
-	var (
-		aidDefault = string("default")
-		tidDefault = string("default")
-	)
 	return &ListClaimsParams{
-		Aid:        aidDefault,
-		Tid:        tidDefault,
 		HTTPClient: client,
 	}
 }
 
-/*ListClaimsParams contains all the parameters to send to the API endpoint
-for the list claims operation typically these are written to a http.Request
+/* ListClaimsParams contains all the parameters to send to the API endpoint
+   for the list claims operation.
+
+   Typically these are written to a http.Request.
 */
 type ListClaimsParams struct {
 
-	/*Aid
-	  Authorization server id
+	/* Aid.
 
+	   Authorization server id
+
+	   Default: "default"
 	*/
 	Aid string
-	/*Tid
-	  Tenant id
 
+	/* Tid.
+
+	   Tenant id
+
+	   Default: "default"
 	*/
 	Tid string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the list claims params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ListClaimsParams) WithDefaults() *ListClaimsParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the list claims params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ListClaimsParams) SetDefaults() {
+	var (
+		aidDefault = string("default")
+
+		tidDefault = string("default")
+	)
+
+	val := ListClaimsParams{
+		Aid: aidDefault,
+		Tid: tidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the list claims params
