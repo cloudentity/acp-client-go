@@ -29,11 +29,20 @@ type Environment struct {
 	// display workspace wizard
 	DisplayWorkspaceWizard bool `json:"display_workspace_wizard,omitempty"`
 
+	// faas provider
+	FaasProvider string `json:"faas_provider,omitempty"`
+
 	// integration endpoints
 	IntegrationEndpoints bool `json:"integration_endpoints,omitempty"`
 
 	// j w t bearer grant type
 	JWTBearerGrantType bool `json:"jwt_bearer_grant_type,omitempty"`
+
+	// openbanking domestic payment consents
+	OpenbankingDomesticPaymentConsents bool `json:"openbanking_domestic_payment_consents,omitempty"`
+
+	// openbanking domestic scheduled payment consents
+	OpenbankingDomesticScheduledPaymentConsents bool `json:"openbanking_domestic_scheduled_payment_consents,omitempty"`
 
 	// pyron on prem
 	PyronOnPrem bool `json:"pyron_on_prem,omitempty"`

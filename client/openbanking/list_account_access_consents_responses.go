@@ -47,6 +47,12 @@ func (o *ListAccountAccessConsentsReader) ReadResponse(response runtime.ClientRe
 			return nil, err
 		}
 		return nil, result
+	case 422:
+		result := NewListAccountAccessConsentsUnprocessableEntity()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -169,6 +175,38 @@ func (o *ListAccountAccessConsentsNotFound) GetPayload() *models.Error {
 }
 
 func (o *ListAccountAccessConsentsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewListAccountAccessConsentsUnprocessableEntity creates a ListAccountAccessConsentsUnprocessableEntity with default headers values
+func NewListAccountAccessConsentsUnprocessableEntity() *ListAccountAccessConsentsUnprocessableEntity {
+	return &ListAccountAccessConsentsUnprocessableEntity{}
+}
+
+/* ListAccountAccessConsentsUnprocessableEntity describes a response with status code 422, with default header values.
+
+HttpError
+*/
+type ListAccountAccessConsentsUnprocessableEntity struct {
+	Payload *models.Error
+}
+
+func (o *ListAccountAccessConsentsUnprocessableEntity) Error() string {
+	return fmt.Sprintf("[POST /api/system/{tid}/servers/{aid}/open-banking/account-access-consents][%d] listAccountAccessConsentsUnprocessableEntity  %+v", 422, o.Payload)
+}
+func (o *ListAccountAccessConsentsUnprocessableEntity) GetPayload() *models.Error {
+	return o.Payload
+}
+
+func (o *ListAccountAccessConsentsUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.Error)
 

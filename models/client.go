@@ -51,9 +51,6 @@ type Client struct {
 	// Example: ["password","refresh_token","client_credentials","implicit","authorization_code"]
 	GrantTypes []string `json:"grant_types"`
 
-	// hashed secret
-	HashedSecret string `json:"client_hashed_secret,omitempty"`
-
 	// oauth client id
 	ID string `json:"client_id,omitempty"`
 
@@ -89,6 +86,9 @@ type Client struct {
 	// oauth client response types, allowed values: token, id_token, code
 	// Example: ["token","id_token","code"]
 	ResponseTypes []string `json:"response_types"`
+
+	// rotated oauth client secrets
+	RotatedSecrets []string `json:"rotated_secrets"`
 
 	// A string containing the value of an expected dNSName SAN entry in the certificate
 	SanDNS string `json:"tls_client_auth_san_dns,omitempty"`

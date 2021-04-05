@@ -21,6 +21,9 @@ import (
 // swagger:model GetDomesticPaymentConsentResponse
 type GetDomesticPaymentConsentResponse struct {
 
+	// todo added here for simplification before generalization effort
+	AccountIDs []string `json:"AccountIDs"`
+
 	// authorisation
 	Authorisation *DomesticPaymentConsentAuthorisation `json:"Authorisation,omitempty"`
 
@@ -70,6 +73,9 @@ type GetDomesticPaymentConsentResponse struct {
 
 	// subject
 	Subject string `json:"subject,omitempty"`
+
+	// authentication context
+	AuthenticationContext AuthenticationContext `json:"authentication_context,omitempty"`
 }
 
 // Validate validates this get domestic payment consent response
@@ -117,6 +123,10 @@ func (m *GetDomesticPaymentConsentResponse) Validate(formats strfmt.Registry) er
 	}
 
 	if err := m.validateStatusUpdateDateTime(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateAuthenticationContext(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -352,6 +362,23 @@ func (m *GetDomesticPaymentConsentResponse) validateStatusUpdateDateTime(formats
 	return nil
 }
 
+func (m *GetDomesticPaymentConsentResponse) validateAuthenticationContext(formats strfmt.Registry) error {
+	if swag.IsZero(m.AuthenticationContext) { // not required
+		return nil
+	}
+
+	if m.AuthenticationContext != nil {
+		if err := m.AuthenticationContext.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("authentication_context")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 // ContextValidate validate this get domestic payment consent response based on the context it is used
 func (m *GetDomesticPaymentConsentResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
@@ -373,6 +400,10 @@ func (m *GetDomesticPaymentConsentResponse) ContextValidate(ctx context.Context,
 	}
 
 	if err := m.contextValidateSCASupportData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateAuthenticationContext(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -451,6 +482,18 @@ func (m *GetDomesticPaymentConsentResponse) contextValidateSCASupportData(ctx co
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *GetDomesticPaymentConsentResponse) contextValidateAuthenticationContext(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.AuthenticationContext.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("authentication_context")
+		}
+		return err
 	}
 
 	return nil

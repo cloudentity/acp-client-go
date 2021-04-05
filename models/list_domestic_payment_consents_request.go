@@ -8,6 +8,7 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -17,17 +18,90 @@ import (
 // swagger:model ListDomesticPaymentConsentsRequest
 type ListDomesticPaymentConsentsRequest struct {
 
+	// optional list consents after given id
+	// AfterConsentID
+	// in:query
+	AfterConsentID string `json:"after_consent_id,omitempty"`
+
+	// optional list consents before given id
+	// BeforeConsentID
+	// in:query
+	BeforeConsentID string `json:"before_consent_id,omitempty"`
+
 	// optional client ID
 	ClientID string `json:"client_id,omitempty"`
+
+	// optional limit results
+	// Limit
+	// in:query
+	Limit *int64 `json:"limit,omitempty"`
+
+	// optional sort consents by given fields
+	// Sort
+	// in:query
+	Sort string `json:"sort,omitempty"`
+
+	// Optional consent status
+	// Status
+	// in:query
+	Status string `json:"status,omitempty"`
+
+	// order
+	Order SeekOrder `json:"order,omitempty"`
 }
 
 // Validate validates this list domestic payment consents request
 func (m *ListDomesticPaymentConsentsRequest) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateOrder(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 
-// ContextValidate validates this list domestic payment consents request based on context it is used
+func (m *ListDomesticPaymentConsentsRequest) validateOrder(formats strfmt.Registry) error {
+	if swag.IsZero(m.Order) { // not required
+		return nil
+	}
+
+	if err := m.Order.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("order")
+		}
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this list domestic payment consents request based on the context it is used
 func (m *ListDomesticPaymentConsentsRequest) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateOrder(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *ListDomesticPaymentConsentsRequest) contextValidateOrder(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.Order.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("order")
+		}
+		return err
+	}
+
 	return nil
 }
 

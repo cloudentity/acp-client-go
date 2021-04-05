@@ -23,6 +23,9 @@ type TokenResponse struct {
 	// expires in
 	ExpiresIn int64 `json:"expires_in,omitempty"`
 
+	// ID token
+	IDToken string `json:"id_token,omitempty"`
+
 	// refresh token
 	RefreshToken string `json:"refresh_token,omitempty"`
 

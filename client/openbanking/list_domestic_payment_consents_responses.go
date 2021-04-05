@@ -47,6 +47,12 @@ func (o *ListDomesticPaymentConsentsReader) ReadResponse(response runtime.Client
 			return nil, err
 		}
 		return nil, result
+	case 422:
+		result := NewListDomesticPaymentConsentsUnprocessableEntity()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -169,6 +175,38 @@ func (o *ListDomesticPaymentConsentsNotFound) GetPayload() *models.Error {
 }
 
 func (o *ListDomesticPaymentConsentsNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewListDomesticPaymentConsentsUnprocessableEntity creates a ListDomesticPaymentConsentsUnprocessableEntity with default headers values
+func NewListDomesticPaymentConsentsUnprocessableEntity() *ListDomesticPaymentConsentsUnprocessableEntity {
+	return &ListDomesticPaymentConsentsUnprocessableEntity{}
+}
+
+/* ListDomesticPaymentConsentsUnprocessableEntity describes a response with status code 422, with default header values.
+
+HttpError
+*/
+type ListDomesticPaymentConsentsUnprocessableEntity struct {
+	Payload *models.Error
+}
+
+func (o *ListDomesticPaymentConsentsUnprocessableEntity) Error() string {
+	return fmt.Sprintf("[POST /api/system/{tid}/servers/{aid}/open-banking/domestic-payment-consents][%d] listDomesticPaymentConsentsUnprocessableEntity  %+v", 422, o.Payload)
+}
+func (o *ListDomesticPaymentConsentsUnprocessableEntity) GetPayload() *models.Error {
+	return o.Payload
+}
+
+func (o *ListDomesticPaymentConsentsUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.Error)
 

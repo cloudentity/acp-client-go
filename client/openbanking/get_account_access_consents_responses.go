@@ -29,6 +29,12 @@ func (o *GetAccountAccessConsentsReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetAccountAccessConsentsBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewGetAccountAccessConsentsUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -75,6 +81,38 @@ func (o *GetAccountAccessConsentsOK) GetPayload() *models.ListAccountAccessConse
 func (o *GetAccountAccessConsentsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ListAccountAccessConsentsWithClient)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetAccountAccessConsentsBadRequest creates a GetAccountAccessConsentsBadRequest with default headers values
+func NewGetAccountAccessConsentsBadRequest() *GetAccountAccessConsentsBadRequest {
+	return &GetAccountAccessConsentsBadRequest{}
+}
+
+/* GetAccountAccessConsentsBadRequest describes a response with status code 400, with default header values.
+
+HttpError
+*/
+type GetAccountAccessConsentsBadRequest struct {
+	Payload *models.Error
+}
+
+func (o *GetAccountAccessConsentsBadRequest) Error() string {
+	return fmt.Sprintf("[GET /api/system/{tid}/servers/{aid}/open-banking/account-access-consents][%d] getAccountAccessConsentsBadRequest  %+v", 400, o.Payload)
+}
+func (o *GetAccountAccessConsentsBadRequest) GetPayload() *models.Error {
+	return o.Payload
+}
+
+func (o *GetAccountAccessConsentsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

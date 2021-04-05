@@ -29,6 +29,12 @@ func (o *GetDomesticPaymentConsentsReader) ReadResponse(response runtime.ClientR
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewGetDomesticPaymentConsentsBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewGetDomesticPaymentConsentsUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -75,6 +81,38 @@ func (o *GetDomesticPaymentConsentsOK) GetPayload() *models.ListDomesticPaymentC
 func (o *GetDomesticPaymentConsentsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ListDomesticPaymentConsentsWithClient)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewGetDomesticPaymentConsentsBadRequest creates a GetDomesticPaymentConsentsBadRequest with default headers values
+func NewGetDomesticPaymentConsentsBadRequest() *GetDomesticPaymentConsentsBadRequest {
+	return &GetDomesticPaymentConsentsBadRequest{}
+}
+
+/* GetDomesticPaymentConsentsBadRequest describes a response with status code 400, with default header values.
+
+HttpError
+*/
+type GetDomesticPaymentConsentsBadRequest struct {
+	Payload *models.Error
+}
+
+func (o *GetDomesticPaymentConsentsBadRequest) Error() string {
+	return fmt.Sprintf("[GET /api/system/{tid}/servers/{aid}/open-banking/domestic-payment-consents][%d] getDomesticPaymentConsentsBadRequest  %+v", 400, o.Payload)
+}
+func (o *GetDomesticPaymentConsentsBadRequest) GetPayload() *models.Error {
+	return o.Payload
+}
+
+func (o *GetDomesticPaymentConsentsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

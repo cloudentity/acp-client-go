@@ -96,7 +96,7 @@ type GetDomesticPaymentConsentRequestCreated struct {
 }
 
 func (o *GetDomesticPaymentConsentRequestCreated) Error() string {
-	return fmt.Sprintf("[GET /{tid}/{aid}/open-banking/v3.1/pisp/domestic-access-consents/{consentID}][%d] getDomesticPaymentConsentRequestCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[GET /{tid}/{aid}/open-banking/v3.1/pisp/domestic-payment-consents/{consentID}][%d] getDomesticPaymentConsentRequestCreated  %+v", 201, o.Payload)
 }
 func (o *GetDomesticPaymentConsentRequestCreated) GetPayload() *models.DomesticPaymentConsentResponse {
 	return o.Payload
@@ -128,7 +128,7 @@ type GetDomesticPaymentConsentRequestBadRequest struct {
 }
 
 func (o *GetDomesticPaymentConsentRequestBadRequest) Error() string {
-	return fmt.Sprintf("[GET /{tid}/{aid}/open-banking/v3.1/pisp/domestic-access-consents/{consentID}][%d] getDomesticPaymentConsentRequestBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /{tid}/{aid}/open-banking/v3.1/pisp/domestic-payment-consents/{consentID}][%d] getDomesticPaymentConsentRequestBadRequest  %+v", 400, o.Payload)
 }
 func (o *GetDomesticPaymentConsentRequestBadRequest) GetPayload() *models.ErrorResponse {
 	return o.Payload
@@ -160,7 +160,7 @@ type GetDomesticPaymentConsentRequestUnauthorized struct {
 }
 
 func (o *GetDomesticPaymentConsentRequestUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /{tid}/{aid}/open-banking/v3.1/pisp/domestic-access-consents/{consentID}][%d] getDomesticPaymentConsentRequestUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /{tid}/{aid}/open-banking/v3.1/pisp/domestic-payment-consents/{consentID}][%d] getDomesticPaymentConsentRequestUnauthorized  %+v", 401, o.Payload)
 }
 func (o *GetDomesticPaymentConsentRequestUnauthorized) GetPayload() *models.ErrorResponse {
 	return o.Payload
@@ -192,7 +192,7 @@ type GetDomesticPaymentConsentRequestForbidden struct {
 }
 
 func (o *GetDomesticPaymentConsentRequestForbidden) Error() string {
-	return fmt.Sprintf("[GET /{tid}/{aid}/open-banking/v3.1/pisp/domestic-access-consents/{consentID}][%d] getDomesticPaymentConsentRequestForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /{tid}/{aid}/open-banking/v3.1/pisp/domestic-payment-consents/{consentID}][%d] getDomesticPaymentConsentRequestForbidden  %+v", 403, o.Payload)
 }
 func (o *GetDomesticPaymentConsentRequestForbidden) GetPayload() *models.ErrorResponse {
 	return o.Payload
@@ -224,7 +224,7 @@ type GetDomesticPaymentConsentRequestMethodNotAllowed struct {
 }
 
 func (o *GetDomesticPaymentConsentRequestMethodNotAllowed) Error() string {
-	return fmt.Sprintf("[GET /{tid}/{aid}/open-banking/v3.1/pisp/domestic-access-consents/{consentID}][%d] getDomesticPaymentConsentRequestMethodNotAllowed  %+v", 405, o.Payload)
+	return fmt.Sprintf("[GET /{tid}/{aid}/open-banking/v3.1/pisp/domestic-payment-consents/{consentID}][%d] getDomesticPaymentConsentRequestMethodNotAllowed  %+v", 405, o.Payload)
 }
 func (o *GetDomesticPaymentConsentRequestMethodNotAllowed) GetPayload() *models.ErrorResponse {
 	return o.Payload
@@ -256,7 +256,7 @@ type GetDomesticPaymentConsentRequestNotAcceptable struct {
 }
 
 func (o *GetDomesticPaymentConsentRequestNotAcceptable) Error() string {
-	return fmt.Sprintf("[GET /{tid}/{aid}/open-banking/v3.1/pisp/domestic-access-consents/{consentID}][%d] getDomesticPaymentConsentRequestNotAcceptable  %+v", 406, o.Payload)
+	return fmt.Sprintf("[GET /{tid}/{aid}/open-banking/v3.1/pisp/domestic-payment-consents/{consentID}][%d] getDomesticPaymentConsentRequestNotAcceptable  %+v", 406, o.Payload)
 }
 func (o *GetDomesticPaymentConsentRequestNotAcceptable) GetPayload() *models.ErrorResponse {
 	return o.Payload
@@ -288,7 +288,7 @@ type GetDomesticPaymentConsentRequestUnsupportedMediaType struct {
 }
 
 func (o *GetDomesticPaymentConsentRequestUnsupportedMediaType) Error() string {
-	return fmt.Sprintf("[GET /{tid}/{aid}/open-banking/v3.1/pisp/domestic-access-consents/{consentID}][%d] getDomesticPaymentConsentRequestUnsupportedMediaType  %+v", 415, o.Payload)
+	return fmt.Sprintf("[GET /{tid}/{aid}/open-banking/v3.1/pisp/domestic-payment-consents/{consentID}][%d] getDomesticPaymentConsentRequestUnsupportedMediaType  %+v", 415, o.Payload)
 }
 func (o *GetDomesticPaymentConsentRequestUnsupportedMediaType) GetPayload() *models.ErrorResponse {
 	return o.Payload
@@ -320,7 +320,7 @@ type GetDomesticPaymentConsentRequestTooManyRequests struct {
 }
 
 func (o *GetDomesticPaymentConsentRequestTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /{tid}/{aid}/open-banking/v3.1/pisp/domestic-access-consents/{consentID}][%d] getDomesticPaymentConsentRequestTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[GET /{tid}/{aid}/open-banking/v3.1/pisp/domestic-payment-consents/{consentID}][%d] getDomesticPaymentConsentRequestTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *GetDomesticPaymentConsentRequestTooManyRequests) GetPayload() *models.ErrorResponse {
 	return o.Payload
@@ -352,7 +352,7 @@ type GetDomesticPaymentConsentRequestInternalServerError struct {
 }
 
 func (o *GetDomesticPaymentConsentRequestInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /{tid}/{aid}/open-banking/v3.1/pisp/domestic-access-consents/{consentID}][%d] getDomesticPaymentConsentRequestInternalServerError  %+v", 500, o.Payload)
+	return fmt.Sprintf("[GET /{tid}/{aid}/open-banking/v3.1/pisp/domestic-payment-consents/{consentID}][%d] getDomesticPaymentConsentRequestInternalServerError  %+v", 500, o.Payload)
 }
 func (o *GetDomesticPaymentConsentRequestInternalServerError) GetPayload() *models.ErrorResponse {
 	return o.Payload

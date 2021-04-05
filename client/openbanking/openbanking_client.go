@@ -34,9 +34,13 @@ type ClientService interface {
 
 	AcceptDomesticPaymentConsentSystem(params *AcceptDomesticPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptDomesticPaymentConsentSystemOK, error)
 
+	AcceptDomesticScheduledPaymentConsentSystem(params *AcceptDomesticScheduledPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptDomesticScheduledPaymentConsentSystemOK, error)
+
 	CreateAccountAccessConsentRequest(params *CreateAccountAccessConsentRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateAccountAccessConsentRequestCreated, error)
 
 	CreateDomesticPaymentConsent(params *CreateDomesticPaymentConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateDomesticPaymentConsentCreated, error)
+
+	CreateDomesticScheduledPaymentConsentRequest(params *CreateDomesticScheduledPaymentConsentRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateDomesticScheduledPaymentConsentRequestCreated, error)
 
 	DeleteAccountAccessConsentRequest(params *DeleteAccountAccessConsentRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteAccountAccessConsentRequestNoContent, error)
 
@@ -52,17 +56,33 @@ type ClientService interface {
 
 	GetDomesticPaymentConsents(params *GetDomesticPaymentConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDomesticPaymentConsentsOK, error)
 
+	GetDomesticScheduledPaymentConsentRequest(params *GetDomesticScheduledPaymentConsentRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDomesticScheduledPaymentConsentRequestCreated, error)
+
+	GetDomesticScheduledPaymentConsentSystem(params *GetDomesticScheduledPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDomesticScheduledPaymentConsentSystemOK, error)
+
+	GetDomesticScheduledPaymentConsents(params *GetDomesticScheduledPaymentConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDomesticScheduledPaymentConsentsOK, error)
+
+	GetOBConsents(params *GetOBConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOBConsentsOK, error)
+
 	ListAccountAccessConsents(params *ListAccountAccessConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListAccountAccessConsentsOK, error)
 
 	ListDomesticPaymentConsents(params *ListDomesticPaymentConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListDomesticPaymentConsentsOK, error)
+
+	ListDomesticScheduledPaymentConsents(params *ListDomesticScheduledPaymentConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListDomesticScheduledPaymentConsentsOK, error)
+
+	ListOBConsents(params *ListOBConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListOBConsentsOK, error)
 
 	OpenbankingAccountAccessConsentIntrospect(params *OpenbankingAccountAccessConsentIntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*OpenbankingAccountAccessConsentIntrospectOK, error)
 
 	OpenbankingDomesticPaymentConsentIntrospect(params *OpenbankingDomesticPaymentConsentIntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*OpenbankingDomesticPaymentConsentIntrospectOK, error)
 
+	OpenbankingDomesticScheduledPaymentConsentIntrospect(params *OpenbankingDomesticScheduledPaymentConsentIntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*OpenbankingDomesticScheduledPaymentConsentIntrospectOK, error)
+
 	RejectAccountAccessConsentSystem(params *RejectAccountAccessConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectAccountAccessConsentSystemOK, error)
 
 	RejectDomesticPaymentConsentSystem(params *RejectDomesticPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectDomesticPaymentConsentSystemOK, error)
+
+	RejectDomesticScheduledPaymentConsentSystem(params *RejectDomesticScheduledPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectDomesticScheduledPaymentConsentSystemOK, error)
 
 	RevokeOpenbankingConsent(params *RevokeOpenbankingConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeOpenbankingConsentNoContent, error)
 
@@ -150,6 +170,48 @@ func (a *Client) AcceptDomesticPaymentConsentSystem(params *AcceptDomesticPaymen
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for acceptDomesticPaymentConsentSystem: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  AcceptDomesticScheduledPaymentConsentSystem accepts domestic scheduled payment consent
+
+  This API can be used by a custom openbanking consent page to notify ACP that user granted consent to a given domestic scheduled payment.
+ALPHA_FEATURE
+*/
+func (a *Client) AcceptDomesticScheduledPaymentConsentSystem(params *AcceptDomesticScheduledPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptDomesticScheduledPaymentConsentSystemOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAcceptDomesticScheduledPaymentConsentSystemParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "acceptDomesticScheduledPaymentConsentSystem",
+		Method:             "POST",
+		PathPattern:        "/api/system/{tid}/open-banking/domestic-scheduled-payment-consent/{login}/accept",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AcceptDomesticScheduledPaymentConsentSystemReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*AcceptDomesticScheduledPaymentConsentSystemOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for acceptDomesticScheduledPaymentConsentSystem: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -246,6 +308,52 @@ func (a *Client) CreateDomesticPaymentConsent(params *CreateDomesticPaymentConse
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for createDomesticPaymentConsent: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  CreateDomesticScheduledPaymentConsentRequest creates domestic scheduled payment consent
+
+  The API endpoint allows the PISP to ask an ASPSP to create a new domestic-scheduled-payment-consent resource.
+The POST action indicates to the ASPSP that a domestic scheduled payment consent has been staged. At this point, the PSU may not have been identified by the ASPSP, and the request payload may not contain any information of the account that should be debited.
+The endpoint allows the PISP to send a copy of the consent (between PSU and PISP) to the ASPSP for the PSU to authorize.
+The ASPSP creates the domestic-scheduled-payment-consent resource and responds with a unique ConsentId to refer to the resource.
+ALPHA_FEATURE
+The default Status is "AwaitingAuthorisation" immediately after the domestic-scheduled-payment-consent has been created.
+*/
+func (a *Client) CreateDomesticScheduledPaymentConsentRequest(params *CreateDomesticScheduledPaymentConsentRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateDomesticScheduledPaymentConsentRequestCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateDomesticScheduledPaymentConsentRequestParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "createDomesticScheduledPaymentConsentRequest",
+		Method:             "POST",
+		PathPattern:        "/{tid}/{aid}/open-banking/v3.1/pisp/domestic-scheduled-payment-consents",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateDomesticScheduledPaymentConsentRequestReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CreateDomesticScheduledPaymentConsentRequestCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for createDomesticScheduledPaymentConsentRequest: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -434,7 +542,7 @@ func (a *Client) GetDomesticPaymentConsentRequest(params *GetDomesticPaymentCons
 	op := &runtime.ClientOperation{
 		ID:                 "getDomesticPaymentConsentRequest",
 		Method:             "GET",
-		PathPattern:        "/{tid}/{aid}/open-banking/v3.1/pisp/domestic-access-consents/{consentID}",
+		PathPattern:        "/{tid}/{aid}/open-banking/v3.1/pisp/domestic-payment-consents/{consentID}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -549,6 +657,180 @@ func (a *Client) GetDomesticPaymentConsents(params *GetDomesticPaymentConsentsPa
 }
 
 /*
+  GetDomesticScheduledPaymentConsentRequest gets domestic scheduled payment consent
+
+  A PISP can optionally retrieve a payment consent resource that they have created to check its status.
+Once the PSU authorizes the payment-consent resource, the Status of the payment-consent resource will be updated with "Authorised".
+If the PSU rejects the consent or the domestic-scheduled-payment-consent has failed some other ASPSP validation, the Status will be set to "Rejected".
+Once a domestic-scheduled-payment has been successfully created using the domestic-scheduled-payment-consent, the Status of the domestic-scheduled-payment-consent will be set to "Consumed".
+ALPHA_FEATURE
+*/
+func (a *Client) GetDomesticScheduledPaymentConsentRequest(params *GetDomesticScheduledPaymentConsentRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDomesticScheduledPaymentConsentRequestCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetDomesticScheduledPaymentConsentRequestParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getDomesticScheduledPaymentConsentRequest",
+		Method:             "GET",
+		PathPattern:        "/{tid}/{aid}/open-banking/v3.1/pisp/domestic-scheduled-payment-consents/{consentID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetDomesticScheduledPaymentConsentRequestReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetDomesticScheduledPaymentConsentRequestCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getDomesticScheduledPaymentConsentRequest: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetDomesticScheduledPaymentConsentSystem gets domestic scheduled payment consent
+
+  This API can be used by a custom openbanking consent page.
+The consent page must first use authorization flow to create domestic scheduled payment consent.
+ALPHA_FEATURE
+*/
+func (a *Client) GetDomesticScheduledPaymentConsentSystem(params *GetDomesticScheduledPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDomesticScheduledPaymentConsentSystemOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetDomesticScheduledPaymentConsentSystemParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getDomesticScheduledPaymentConsentSystem",
+		Method:             "GET",
+		PathPattern:        "/api/system/{tid}/open-banking/domestic-scheduled-payment-consent/{login}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetDomesticScheduledPaymentConsentSystemReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetDomesticScheduledPaymentConsentSystemOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getDomesticScheduledPaymentConsentSystem: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetDomesticScheduledPaymentConsents gets openbanking domestic scheduled payment consents
+
+  This API returns the list of openbanking domestic scheduled payment consents.
+You can specify client id to narrow the list of returned consents.
+If filters are not provided all domestic scheduled payment consents will be returned.
+*/
+func (a *Client) GetDomesticScheduledPaymentConsents(params *GetDomesticScheduledPaymentConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDomesticScheduledPaymentConsentsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetDomesticScheduledPaymentConsentsParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getDomesticScheduledPaymentConsents",
+		Method:             "GET",
+		PathPattern:        "/api/system/{tid}/servers/{aid}/open-banking/domestic-scheduled-payment-consents",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetDomesticScheduledPaymentConsentsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetDomesticScheduledPaymentConsentsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getDomesticScheduledPaymentConsents: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetOBConsents gets openbanking consents
+
+  This API returns the list of openbanking consents.
+You can narrow the list of returned consents using filters defined in query parameters.
+See GetConsentsParams for details.
+*/
+func (a *Client) GetOBConsents(params *GetOBConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOBConsentsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetOBConsentsParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getOBConsents",
+		Method:             "GET",
+		PathPattern:        "/api/system/{tid}/servers/{aid}/open-banking/consents",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetOBConsentsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetOBConsentsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getOBConsents: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
   ListAccountAccessConsents lists openbanking account access consents
 
   This API returns the list of openbanking account access consents.
@@ -629,6 +911,90 @@ func (a *Client) ListDomesticPaymentConsents(params *ListDomesticPaymentConsents
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for listDomesticPaymentConsents: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  ListDomesticScheduledPaymentConsents lists openbanking domestic scheduled payment consents
+
+  This API returns the list of openbanking domestic scheduled payment consents.
+*/
+func (a *Client) ListDomesticScheduledPaymentConsents(params *ListDomesticScheduledPaymentConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListDomesticScheduledPaymentConsentsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListDomesticScheduledPaymentConsentsParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "listDomesticScheduledPaymentConsents",
+		Method:             "POST",
+		PathPattern:        "/api/system/{tid}/servers/{aid}/open-banking/domestic-scheduled-payment-consents",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListDomesticScheduledPaymentConsentsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ListDomesticScheduledPaymentConsentsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for listDomesticScheduledPaymentConsents: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  ListOBConsents lists openbanking consents
+
+  This API returns the list of openbanking consents.
+You can narrow the list of returned consents using filters defined in request body.
+See ListConsentsParams for details.
+*/
+func (a *Client) ListOBConsents(params *ListOBConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListOBConsentsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListOBConsentsParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "listOBConsents",
+		Method:             "POST",
+		PathPattern:        "/api/system/{tid}/servers/{aid}/open-banking/consents",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListOBConsentsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ListOBConsentsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for listOBConsents: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -715,6 +1081,47 @@ func (a *Client) OpenbankingDomesticPaymentConsentIntrospect(params *Openbanking
 }
 
 /*
+  OpenbankingDomesticScheduledPaymentConsentIntrospect introspects openbanking domestic scheduled payment consent
+
+  Introspect openbanking domestic scheduled payment consent.
+*/
+func (a *Client) OpenbankingDomesticScheduledPaymentConsentIntrospect(params *OpenbankingDomesticScheduledPaymentConsentIntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*OpenbankingDomesticScheduledPaymentConsentIntrospectOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewOpenbankingDomesticScheduledPaymentConsentIntrospectParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "openbankingDomesticScheduledPaymentConsentIntrospect",
+		Method:             "POST",
+		PathPattern:        "/{tid}/{aid}/open-banking/v3.1/pisp/domestic-scheduled-payment-consents/introspect",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &OpenbankingDomesticScheduledPaymentConsentIntrospectReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*OpenbankingDomesticScheduledPaymentConsentIntrospectOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for openbankingDomesticScheduledPaymentConsentIntrospect: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
   RejectAccountAccessConsentSystem rejects account access consent
 
   This API can be used by a custom openbanking consent page to notify ACP that user rejected access to accounts.
@@ -793,6 +1200,48 @@ func (a *Client) RejectDomesticPaymentConsentSystem(params *RejectDomesticPaymen
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for rejectDomesticPaymentConsentSystem: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  RejectDomesticScheduledPaymentConsentSystem rejects domestic scheduled payment consent
+
+  This API can be used by a custom openbanking consent page to notify ACP that user rejected access to a given domestic scheduled payment.
+ALPHA_FEATURE
+*/
+func (a *Client) RejectDomesticScheduledPaymentConsentSystem(params *RejectDomesticScheduledPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectDomesticScheduledPaymentConsentSystemOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRejectDomesticScheduledPaymentConsentSystemParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "rejectDomesticScheduledPaymentConsentSystem",
+		Method:             "POST",
+		PathPattern:        "/api/system/{tid}/open-banking/domestic-scheduled-payment-consent/{login}/reject",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RejectDomesticScheduledPaymentConsentSystemReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*RejectDomesticScheduledPaymentConsentSystemOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for rejectDomesticScheduledPaymentConsentSystem: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

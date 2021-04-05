@@ -34,9 +34,6 @@ type Policy struct {
 	// Example: check_consent
 	PolicyName string `json:"policy_name,omitempty"`
 
-	// query for rego policy
-	Query string `json:"query,omitempty"`
-
 	// server id
 	// Example: default
 	ServerID string `json:"server_id,omitempty"`

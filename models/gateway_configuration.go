@@ -28,7 +28,7 @@ type GatewayConfiguration struct {
 	// Authorization server JWKs url.
 	JWKsURL string `json:"jwks_url,omitempty"`
 
-	// List of policies that this gateway should use to protect APIs.
+	// List of policies that can be used to protect APIs.
 	Policies []*Policy `json:"policies"`
 
 	// List of scopes available in the server.

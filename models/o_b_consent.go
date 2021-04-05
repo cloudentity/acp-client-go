@@ -11,6 +11,7 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // OBConsent o b consent
@@ -24,6 +25,10 @@ type OBConsent struct {
 	// consent ID
 	ConsentID string `json:"consent_id,omitempty"`
 
+	// created at
+	// Format: date-time
+	CreatedAt strfmt.DateTime `json:"created_at,omitempty"`
+
 	// server ID
 	ServerID string `json:"server_id,omitempty"`
 
@@ -36,6 +41,9 @@ type OBConsent struct {
 	// domestic payment consent
 	DomesticPaymentConsent *DomesticPaymentConsent `json:"domestic_payment_consent,omitempty"`
 
+	// domestic scheduled payment consent
+	DomesticScheduledPaymentConsent *DomesticScheduledPaymentConsent `json:"domestic_scheduled_payment_consent,omitempty"`
+
 	// type
 	Type ConsentType `json:"type,omitempty"`
 }
@@ -44,11 +52,19 @@ type OBConsent struct {
 func (m *OBConsent) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateCreatedAt(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateAccountAccessConsent(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateDomesticPaymentConsent(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDomesticScheduledPaymentConsent(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -59,6 +75,18 @@ func (m *OBConsent) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *OBConsent) validateCreatedAt(formats strfmt.Registry) error {
+	if swag.IsZero(m.CreatedAt) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("created_at", "body", "date-time", m.CreatedAt.String(), formats); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -96,6 +124,23 @@ func (m *OBConsent) validateDomesticPaymentConsent(formats strfmt.Registry) erro
 	return nil
 }
 
+func (m *OBConsent) validateDomesticScheduledPaymentConsent(formats strfmt.Registry) error {
+	if swag.IsZero(m.DomesticScheduledPaymentConsent) { // not required
+		return nil
+	}
+
+	if m.DomesticScheduledPaymentConsent != nil {
+		if err := m.DomesticScheduledPaymentConsent.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("domestic_scheduled_payment_consent")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *OBConsent) validateType(formats strfmt.Registry) error {
 	if swag.IsZero(m.Type) { // not required
 		return nil
@@ -120,6 +165,10 @@ func (m *OBConsent) ContextValidate(ctx context.Context, formats strfmt.Registry
 	}
 
 	if err := m.contextValidateDomesticPaymentConsent(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDomesticScheduledPaymentConsent(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -153,6 +202,20 @@ func (m *OBConsent) contextValidateDomesticPaymentConsent(ctx context.Context, f
 		if err := m.DomesticPaymentConsent.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("domestic_payment_consent")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *OBConsent) contextValidateDomesticScheduledPaymentConsent(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.DomesticScheduledPaymentConsent != nil {
+		if err := m.DomesticScheduledPaymentConsent.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("domestic_scheduled_payment_consent")
 			}
 			return err
 		}

@@ -67,6 +67,13 @@ type GetAccountAccessConsentsParams struct {
 	*/
 	Accounts []string
 
+	/* AfterConsentID.
+
+	     optional list consents after given id
+	AfterConsentID
+	*/
+	AfterConsentID *string
+
 	/* Aid.
 
 	   Authorization server id
@@ -75,12 +82,43 @@ type GetAccountAccessConsentsParams struct {
 	*/
 	Aid string
 
+	/* BeforeConsentID.
+
+	     optional list consents before given id
+	BeforeConsentID
+	*/
+	BeforeConsentID *string
+
 	/* ClientID.
 
 	     Optional client id
 	ClientID
 	*/
 	ClientID *string
+
+	/* Limit.
+
+	     optional limit results
+	Limit
+
+	     Format: int64
+	     Default: 20
+	*/
+	Limit *int64
+
+	/* Sort.
+
+	     optional sort consents by given fields
+	Sort
+	*/
+	Sort *string
+
+	/* Status.
+
+	     Optional status
+	Status
+	*/
+	Status *string
 
 	// Tid.
 	//
@@ -107,12 +145,15 @@ func (o *GetAccountAccessConsentsParams) SetDefaults() {
 	var (
 		aidDefault = string("default")
 
+		limitDefault = int64(20)
+
 		tidDefault = string("default")
 	)
 
 	val := GetAccountAccessConsentsParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
+		Aid:   aidDefault,
+		Limit: &limitDefault,
+		Tid:   tidDefault,
 	}
 
 	val.timeout = o.timeout
@@ -165,6 +206,17 @@ func (o *GetAccountAccessConsentsParams) SetAccounts(accounts []string) {
 	o.Accounts = accounts
 }
 
+// WithAfterConsentID adds the afterConsentID to the get account access consents params
+func (o *GetAccountAccessConsentsParams) WithAfterConsentID(afterConsentID *string) *GetAccountAccessConsentsParams {
+	o.SetAfterConsentID(afterConsentID)
+	return o
+}
+
+// SetAfterConsentID adds the afterConsentId to the get account access consents params
+func (o *GetAccountAccessConsentsParams) SetAfterConsentID(afterConsentID *string) {
+	o.AfterConsentID = afterConsentID
+}
+
 // WithAid adds the aid to the get account access consents params
 func (o *GetAccountAccessConsentsParams) WithAid(aid string) *GetAccountAccessConsentsParams {
 	o.SetAid(aid)
@@ -176,6 +228,17 @@ func (o *GetAccountAccessConsentsParams) SetAid(aid string) {
 	o.Aid = aid
 }
 
+// WithBeforeConsentID adds the beforeConsentID to the get account access consents params
+func (o *GetAccountAccessConsentsParams) WithBeforeConsentID(beforeConsentID *string) *GetAccountAccessConsentsParams {
+	o.SetBeforeConsentID(beforeConsentID)
+	return o
+}
+
+// SetBeforeConsentID adds the beforeConsentId to the get account access consents params
+func (o *GetAccountAccessConsentsParams) SetBeforeConsentID(beforeConsentID *string) {
+	o.BeforeConsentID = beforeConsentID
+}
+
 // WithClientID adds the clientID to the get account access consents params
 func (o *GetAccountAccessConsentsParams) WithClientID(clientID *string) *GetAccountAccessConsentsParams {
 	o.SetClientID(clientID)
@@ -185,6 +248,39 @@ func (o *GetAccountAccessConsentsParams) WithClientID(clientID *string) *GetAcco
 // SetClientID adds the clientId to the get account access consents params
 func (o *GetAccountAccessConsentsParams) SetClientID(clientID *string) {
 	o.ClientID = clientID
+}
+
+// WithLimit adds the limit to the get account access consents params
+func (o *GetAccountAccessConsentsParams) WithLimit(limit *int64) *GetAccountAccessConsentsParams {
+	o.SetLimit(limit)
+	return o
+}
+
+// SetLimit adds the limit to the get account access consents params
+func (o *GetAccountAccessConsentsParams) SetLimit(limit *int64) {
+	o.Limit = limit
+}
+
+// WithSort adds the sort to the get account access consents params
+func (o *GetAccountAccessConsentsParams) WithSort(sort *string) *GetAccountAccessConsentsParams {
+	o.SetSort(sort)
+	return o
+}
+
+// SetSort adds the sort to the get account access consents params
+func (o *GetAccountAccessConsentsParams) SetSort(sort *string) {
+	o.Sort = sort
+}
+
+// WithStatus adds the status to the get account access consents params
+func (o *GetAccountAccessConsentsParams) WithStatus(status *string) *GetAccountAccessConsentsParams {
+	o.SetStatus(status)
+	return o
+}
+
+// SetStatus adds the status to the get account access consents params
+func (o *GetAccountAccessConsentsParams) SetStatus(status *string) {
+	o.Status = status
 }
 
 // WithTid adds the tid to the get account access consents params
@@ -217,9 +313,43 @@ func (o *GetAccountAccessConsentsParams) WriteToRequest(r runtime.ClientRequest,
 		}
 	}
 
+	if o.AfterConsentID != nil {
+
+		// query param after_consent_id
+		var qrAfterConsentID string
+
+		if o.AfterConsentID != nil {
+			qrAfterConsentID = *o.AfterConsentID
+		}
+		qAfterConsentID := qrAfterConsentID
+		if qAfterConsentID != "" {
+
+			if err := r.SetQueryParam("after_consent_id", qAfterConsentID); err != nil {
+				return err
+			}
+		}
+	}
+
 	// path param aid
 	if err := r.SetPathParam("aid", o.Aid); err != nil {
 		return err
+	}
+
+	if o.BeforeConsentID != nil {
+
+		// query param before_consent_id
+		var qrBeforeConsentID string
+
+		if o.BeforeConsentID != nil {
+			qrBeforeConsentID = *o.BeforeConsentID
+		}
+		qBeforeConsentID := qrBeforeConsentID
+		if qBeforeConsentID != "" {
+
+			if err := r.SetQueryParam("before_consent_id", qBeforeConsentID); err != nil {
+				return err
+			}
+		}
 	}
 
 	if o.ClientID != nil {
@@ -234,6 +364,57 @@ func (o *GetAccountAccessConsentsParams) WriteToRequest(r runtime.ClientRequest,
 		if qClientID != "" {
 
 			if err := r.SetQueryParam("client_id", qClientID); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Limit != nil {
+
+		// query param limit
+		var qrLimit int64
+
+		if o.Limit != nil {
+			qrLimit = *o.Limit
+		}
+		qLimit := swag.FormatInt64(qrLimit)
+		if qLimit != "" {
+
+			if err := r.SetQueryParam("limit", qLimit); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Sort != nil {
+
+		// query param sort
+		var qrSort string
+
+		if o.Sort != nil {
+			qrSort = *o.Sort
+		}
+		qSort := qrSort
+		if qSort != "" {
+
+			if err := r.SetQueryParam("sort", qSort); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Status != nil {
+
+		// query param status
+		var qrStatus string
+
+		if o.Status != nil {
+			qrStatus = *o.Status
+		}
+		qStatus := qrStatus
+		if qStatus != "" {
+
+			if err := r.SetQueryParam("status", qStatus); err != nil {
 				return err
 			}
 		}

@@ -20,6 +20,9 @@ import (
 // swagger:model OpenbankingDomesticPaymentConsentWithClient
 type OpenbankingDomesticPaymentConsentWithClient struct {
 
+	// todo added here for simplification before generalization effort
+	AccountIDs []string `json:"AccountIDs"`
+
 	// authorisation
 	Authorisation *DomesticPaymentConsentAuthorisation `json:"Authorisation,omitempty"`
 

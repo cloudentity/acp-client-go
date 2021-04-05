@@ -17,6 +17,9 @@ import (
 // swagger:model AcceptDomesticPaymentConsentRequest
 type AcceptDomesticPaymentConsentRequest struct {
 
+	// account i ds
+	AccountIDs []string `json:"account_ids"`
+
 	// granted scopes
 	GrantedScopes []string `json:"granted_scopes"`
 

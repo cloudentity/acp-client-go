@@ -84,6 +84,9 @@ type UpdateClientAdminRequest struct {
 	// Example: ["token","id_token","code"]
 	ResponseTypes []string `json:"response_types"`
 
+	// rotated oauth client secrets
+	RotatedSecrets []string `json:"rotated_secrets"`
+
 	// A string containing the value of an expected dNSName SAN entry in the certificate
 	SanDNS string `json:"tls_client_auth_san_dns,omitempty"`
 

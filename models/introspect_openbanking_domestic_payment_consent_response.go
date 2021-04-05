@@ -20,6 +20,9 @@ import (
 // swagger:model IntrospectOpenbankingDomesticPaymentConsentResponse
 type IntrospectOpenbankingDomesticPaymentConsentResponse struct {
 
+	// todo added here for simplification before generalization effort
+	AccountIDs []string `json:"AccountIDs"`
+
 	// Authentication Context Class Reference
 	Acr string `json:"acr,omitempty"`
 

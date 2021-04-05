@@ -61,6 +61,9 @@ type GetAccountAccessConsentResponse struct {
 	// the end date will be open ended, and data will be returned to the latest available transaction.
 	// Format: date-time
 	TransactionToDateTime strfmt.DateTime `json:"transaction_to_date_time,omitempty"`
+
+	// authentication context
+	AuthenticationContext AuthenticationContext `json:"authentication_context,omitempty"`
 }
 
 // Validate validates this get account access consent response
@@ -88,6 +91,10 @@ func (m *GetAccountAccessConsentResponse) Validate(formats strfmt.Registry) erro
 	}
 
 	if err := m.validateTransactionToDateTime(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateAuthenticationContext(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -181,11 +188,32 @@ func (m *GetAccountAccessConsentResponse) validateTransactionToDateTime(formats 
 	return nil
 }
 
+func (m *GetAccountAccessConsentResponse) validateAuthenticationContext(formats strfmt.Registry) error {
+	if swag.IsZero(m.AuthenticationContext) { // not required
+		return nil
+	}
+
+	if m.AuthenticationContext != nil {
+		if err := m.AuthenticationContext.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("authentication_context")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 // ContextValidate validate this get account access consent response based on the context it is used
 func (m *GetAccountAccessConsentResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateRequestedScopes(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateAuthenticationContext(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -208,6 +236,18 @@ func (m *GetAccountAccessConsentResponse) contextValidateRequestedScopes(ctx con
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *GetAccountAccessConsentResponse) contextValidateAuthenticationContext(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.AuthenticationContext.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("authentication_context")
+		}
+		return err
 	}
 
 	return nil

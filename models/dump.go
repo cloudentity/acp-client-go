@@ -58,6 +58,9 @@ type Dump struct {
 	// privacy ledger events
 	PrivacyLedgerEvents []*PrivacyLedgerEvent `json:"privacy_ledger_events"`
 
+	// recurring jobs
+	RecurringJobs []*RecurringJob `json:"recurring_jobs"`
+
 	// scope grants
 	ScopeGrants []*ScopeGrant `json:"scope_grants"`
 
@@ -136,6 +139,10 @@ func (m *Dump) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validatePrivacyLedgerEvents(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRecurringJobs(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -489,6 +496,30 @@ func (m *Dump) validatePrivacyLedgerEvents(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Dump) validateRecurringJobs(formats strfmt.Registry) error {
+	if swag.IsZero(m.RecurringJobs) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.RecurringJobs); i++ {
+		if swag.IsZero(m.RecurringJobs[i]) { // not required
+			continue
+		}
+
+		if m.RecurringJobs[i] != nil {
+			if err := m.RecurringJobs[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("recurring_jobs" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *Dump) validateScopeGrants(formats strfmt.Registry) error {
 	if swag.IsZero(m.ScopeGrants) { // not required
 		return nil
@@ -725,6 +756,10 @@ func (m *Dump) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 	}
 
 	if err := m.contextValidatePrivacyLedgerEvents(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateRecurringJobs(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -990,6 +1025,24 @@ func (m *Dump) contextValidatePrivacyLedgerEvents(ctx context.Context, formats s
 			if err := m.PrivacyLedgerEvents[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("privacy_ledger_events" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Dump) contextValidateRecurringJobs(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.RecurringJobs); i++ {
+
+		if m.RecurringJobs[i] != nil {
+			if err := m.RecurringJobs[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("recurring_jobs" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
