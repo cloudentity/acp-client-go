@@ -23,8 +23,8 @@ type GetDomesticPaymentConsentRequestReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetDomesticPaymentConsentRequestReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 201:
-		result := NewGetDomesticPaymentConsentRequestCreated()
+	case 200:
+		result := NewGetDomesticPaymentConsentRequestOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -82,27 +82,27 @@ func (o *GetDomesticPaymentConsentRequestReader) ReadResponse(response runtime.C
 	}
 }
 
-// NewGetDomesticPaymentConsentRequestCreated creates a GetDomesticPaymentConsentRequestCreated with default headers values
-func NewGetDomesticPaymentConsentRequestCreated() *GetDomesticPaymentConsentRequestCreated {
-	return &GetDomesticPaymentConsentRequestCreated{}
+// NewGetDomesticPaymentConsentRequestOK creates a GetDomesticPaymentConsentRequestOK with default headers values
+func NewGetDomesticPaymentConsentRequestOK() *GetDomesticPaymentConsentRequestOK {
+	return &GetDomesticPaymentConsentRequestOK{}
 }
 
-/* GetDomesticPaymentConsentRequestCreated describes a response with status code 201, with default header values.
+/* GetDomesticPaymentConsentRequestOK describes a response with status code 200, with default header values.
 
 DomesticPaymentConsentResponse
 */
-type GetDomesticPaymentConsentRequestCreated struct {
+type GetDomesticPaymentConsentRequestOK struct {
 	Payload *models.DomesticPaymentConsentResponse
 }
 
-func (o *GetDomesticPaymentConsentRequestCreated) Error() string {
-	return fmt.Sprintf("[GET /{tid}/{aid}/open-banking/v3.1/pisp/domestic-payment-consents/{consentID}][%d] getDomesticPaymentConsentRequestCreated  %+v", 201, o.Payload)
+func (o *GetDomesticPaymentConsentRequestOK) Error() string {
+	return fmt.Sprintf("[GET /{tid}/{aid}/open-banking/v3.1/pisp/domestic-payment-consents/{consentID}][%d] getDomesticPaymentConsentRequestOK  %+v", 200, o.Payload)
 }
-func (o *GetDomesticPaymentConsentRequestCreated) GetPayload() *models.DomesticPaymentConsentResponse {
+func (o *GetDomesticPaymentConsentRequestOK) GetPayload() *models.DomesticPaymentConsentResponse {
 	return o.Payload
 }
 
-func (o *GetDomesticPaymentConsentRequestCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *GetDomesticPaymentConsentRequestOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.DomesticPaymentConsentResponse)
 

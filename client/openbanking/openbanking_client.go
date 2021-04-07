@@ -44,19 +44,19 @@ type ClientService interface {
 
 	DeleteAccountAccessConsentRequest(params *DeleteAccountAccessConsentRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteAccountAccessConsentRequestNoContent, error)
 
-	GetAccountAccessConsentRequest(params *GetAccountAccessConsentRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountAccessConsentRequestCreated, error)
+	GetAccountAccessConsentRequest(params *GetAccountAccessConsentRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountAccessConsentRequestOK, error)
 
 	GetAccountAccessConsentSystem(params *GetAccountAccessConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountAccessConsentSystemOK, error)
 
 	GetAccountAccessConsents(params *GetAccountAccessConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountAccessConsentsOK, error)
 
-	GetDomesticPaymentConsentRequest(params *GetDomesticPaymentConsentRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDomesticPaymentConsentRequestCreated, error)
+	GetDomesticPaymentConsentRequest(params *GetDomesticPaymentConsentRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDomesticPaymentConsentRequestOK, error)
 
 	GetDomesticPaymentConsentSystem(params *GetDomesticPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDomesticPaymentConsentSystemOK, error)
 
 	GetDomesticPaymentConsents(params *GetDomesticPaymentConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDomesticPaymentConsentsOK, error)
 
-	GetDomesticScheduledPaymentConsentRequest(params *GetDomesticScheduledPaymentConsentRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDomesticScheduledPaymentConsentRequestCreated, error)
+	GetDomesticScheduledPaymentConsentRequest(params *GetDomesticScheduledPaymentConsentRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDomesticScheduledPaymentConsentRequestOK, error)
 
 	GetDomesticScheduledPaymentConsentSystem(params *GetDomesticScheduledPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDomesticScheduledPaymentConsentSystemOK, error)
 
@@ -407,7 +407,7 @@ Prior to calling the API, the AISP must have an access token issued by the ASPSP
 
 The usage of this API endpoint will be subject to an ASPSP's fair usage policies.
 */
-func (a *Client) GetAccountAccessConsentRequest(params *GetAccountAccessConsentRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountAccessConsentRequestCreated, error) {
+func (a *Client) GetAccountAccessConsentRequest(params *GetAccountAccessConsentRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountAccessConsentRequestOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetAccountAccessConsentRequestParams()
@@ -433,7 +433,7 @@ func (a *Client) GetAccountAccessConsentRequest(params *GetAccountAccessConsentR
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*GetAccountAccessConsentRequestCreated)
+	success, ok := result.(*GetAccountAccessConsentRequestOK)
 	if ok {
 		return success, nil
 	}
@@ -534,7 +534,7 @@ func (a *Client) GetAccountAccessConsents(params *GetAccountAccessConsentsParams
 
   A PISP can optionally retrieve a payment consent resource that they have created to check its status.
 */
-func (a *Client) GetDomesticPaymentConsentRequest(params *GetDomesticPaymentConsentRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDomesticPaymentConsentRequestCreated, error) {
+func (a *Client) GetDomesticPaymentConsentRequest(params *GetDomesticPaymentConsentRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDomesticPaymentConsentRequestOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetDomesticPaymentConsentRequestParams()
@@ -560,7 +560,7 @@ func (a *Client) GetDomesticPaymentConsentRequest(params *GetDomesticPaymentCons
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*GetDomesticPaymentConsentRequestCreated)
+	success, ok := result.(*GetDomesticPaymentConsentRequestOK)
 	if ok {
 		return success, nil
 	}
@@ -665,7 +665,7 @@ If the PSU rejects the consent or the domestic-scheduled-payment-consent has fai
 Once a domestic-scheduled-payment has been successfully created using the domestic-scheduled-payment-consent, the Status of the domestic-scheduled-payment-consent will be set to "Consumed".
 ALPHA_FEATURE
 */
-func (a *Client) GetDomesticScheduledPaymentConsentRequest(params *GetDomesticScheduledPaymentConsentRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDomesticScheduledPaymentConsentRequestCreated, error) {
+func (a *Client) GetDomesticScheduledPaymentConsentRequest(params *GetDomesticScheduledPaymentConsentRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDomesticScheduledPaymentConsentRequestOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewGetDomesticScheduledPaymentConsentRequestParams()
@@ -691,7 +691,7 @@ func (a *Client) GetDomesticScheduledPaymentConsentRequest(params *GetDomesticSc
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*GetDomesticScheduledPaymentConsentRequestCreated)
+	success, ok := result.(*GetDomesticScheduledPaymentConsentRequestOK)
 	if ok {
 		return success, nil
 	}

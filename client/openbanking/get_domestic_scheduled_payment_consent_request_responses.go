@@ -23,8 +23,8 @@ type GetDomesticScheduledPaymentConsentRequestReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetDomesticScheduledPaymentConsentRequestReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 201:
-		result := NewGetDomesticScheduledPaymentConsentRequestCreated()
+	case 200:
+		result := NewGetDomesticScheduledPaymentConsentRequestOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -82,27 +82,27 @@ func (o *GetDomesticScheduledPaymentConsentRequestReader) ReadResponse(response 
 	}
 }
 
-// NewGetDomesticScheduledPaymentConsentRequestCreated creates a GetDomesticScheduledPaymentConsentRequestCreated with default headers values
-func NewGetDomesticScheduledPaymentConsentRequestCreated() *GetDomesticScheduledPaymentConsentRequestCreated {
-	return &GetDomesticScheduledPaymentConsentRequestCreated{}
+// NewGetDomesticScheduledPaymentConsentRequestOK creates a GetDomesticScheduledPaymentConsentRequestOK with default headers values
+func NewGetDomesticScheduledPaymentConsentRequestOK() *GetDomesticScheduledPaymentConsentRequestOK {
+	return &GetDomesticScheduledPaymentConsentRequestOK{}
 }
 
-/* GetDomesticScheduledPaymentConsentRequestCreated describes a response with status code 201, with default header values.
+/* GetDomesticScheduledPaymentConsentRequestOK describes a response with status code 200, with default header values.
 
 DomesticScheduledPaymentConsentResponse
 */
-type GetDomesticScheduledPaymentConsentRequestCreated struct {
+type GetDomesticScheduledPaymentConsentRequestOK struct {
 	Payload *models.DomesticScheduledPaymentConsentResponse
 }
 
-func (o *GetDomesticScheduledPaymentConsentRequestCreated) Error() string {
-	return fmt.Sprintf("[GET /{tid}/{aid}/open-banking/v3.1/pisp/domestic-scheduled-payment-consents/{consentID}][%d] getDomesticScheduledPaymentConsentRequestCreated  %+v", 201, o.Payload)
+func (o *GetDomesticScheduledPaymentConsentRequestOK) Error() string {
+	return fmt.Sprintf("[GET /{tid}/{aid}/open-banking/v3.1/pisp/domestic-scheduled-payment-consents/{consentID}][%d] getDomesticScheduledPaymentConsentRequestOK  %+v", 200, o.Payload)
 }
-func (o *GetDomesticScheduledPaymentConsentRequestCreated) GetPayload() *models.DomesticScheduledPaymentConsentResponse {
+func (o *GetDomesticScheduledPaymentConsentRequestOK) GetPayload() *models.DomesticScheduledPaymentConsentResponse {
 	return o.Payload
 }
 
-func (o *GetDomesticScheduledPaymentConsentRequestCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *GetDomesticScheduledPaymentConsentRequestOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.DomesticScheduledPaymentConsentResponse)
 
