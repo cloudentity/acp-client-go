@@ -22,7 +22,7 @@ type JWSPayloadSettings struct {
 	JWKsURI string `json:"jwks_uri,omitempty"`
 
 	// jwks
-	Jwks *JWKs `json:"jwks,omitempty"`
+	Jwks *ClientJWKs `json:"jwks,omitempty"`
 }
 
 // Validate validates this j w s payload settings

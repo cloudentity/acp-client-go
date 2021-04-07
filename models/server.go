@@ -130,7 +130,7 @@ type Server struct {
 	DynamicClientRegistration *DynamicClientRegistrationSettings `json:"dynamic_client_registration,omitempty"`
 
 	// jwks
-	Jwks *JWKs `json:"jwks,omitempty"`
+	Jwks *ServerJWKs `json:"jwks,omitempty"`
 }
 
 // Validate validates this server

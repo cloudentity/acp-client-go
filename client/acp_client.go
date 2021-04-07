@@ -17,6 +17,7 @@ import (
 	"github.com/cloudentity/acp-client-go/client/environment"
 	"github.com/cloudentity/acp-client-go/client/gateways"
 	"github.com/cloudentity/acp-client-go/client/idps"
+	"github.com/cloudentity/acp-client-go/client/keys"
 	"github.com/cloudentity/acp-client-go/client/logins"
 	"github.com/cloudentity/acp-client-go/client/oauth2"
 	"github.com/cloudentity/acp-client-go/client/openbanking"
@@ -79,6 +80,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *Acp {
 	cli.Environment = environment.New(transport, formats)
 	cli.Gateways = gateways.New(transport, formats)
 	cli.Idps = idps.New(transport, formats)
+	cli.Keys = keys.New(transport, formats)
 	cli.Logins = logins.New(transport, formats)
 	cli.Oauth2 = oauth2.New(transport, formats)
 	cli.Openbanking = openbanking.New(transport, formats)
@@ -148,6 +150,8 @@ type Acp struct {
 
 	Idps idps.ClientService
 
+	Keys keys.ClientService
+
 	Logins logins.ClientService
 
 	Oauth2 oauth2.ClientService
@@ -183,6 +187,7 @@ func (c *Acp) SetTransport(transport runtime.ClientTransport) {
 	c.Environment.SetTransport(transport)
 	c.Gateways.SetTransport(transport)
 	c.Idps.SetTransport(transport)
+	c.Keys.SetTransport(transport)
 	c.Logins.SetTransport(transport)
 	c.Oauth2.SetTransport(transport)
 	c.Openbanking.SetTransport(transport)

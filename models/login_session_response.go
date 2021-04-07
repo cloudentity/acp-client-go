@@ -103,6 +103,9 @@ type LoginSessionResponse struct {
 	// authentication context
 	AuthenticationContext AuthenticationContext `json:"authentication_context,omitempty"`
 
+	// client info
+	ClientInfo *ClientInfo `json:"client_info,omitempty"`
+
 	// error
 	Error *RFC6749Error `json:"error,omitempty"`
 
@@ -134,6 +137,10 @@ func (m *LoginSessionResponse) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateAuthenticationContext(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateClientInfo(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -232,6 +239,23 @@ func (m *LoginSessionResponse) validateAuthenticationContext(formats strfmt.Regi
 	return nil
 }
 
+func (m *LoginSessionResponse) validateClientInfo(formats strfmt.Registry) error {
+	if swag.IsZero(m.ClientInfo) { // not required
+		return nil
+	}
+
+	if m.ClientInfo != nil {
+		if err := m.ClientInfo.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("client_info")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *LoginSessionResponse) validateError(formats strfmt.Registry) error {
 	if swag.IsZero(m.Error) { // not required
 		return nil
@@ -295,6 +319,10 @@ func (m *LoginSessionResponse) ContextValidate(ctx context.Context, formats strf
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateClientInfo(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateError(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -338,6 +366,20 @@ func (m *LoginSessionResponse) contextValidateAuthenticationContext(ctx context.
 			return ve.ValidateName("authentication_context")
 		}
 		return err
+	}
+
+	return nil
+}
+
+func (m *LoginSessionResponse) contextValidateClientInfo(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ClientInfo != nil {
+		if err := m.ClientInfo.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("client_info")
+			}
+			return err
+		}
 	}
 
 	return nil

@@ -25,7 +25,7 @@ type SoftwareStatementSettings struct {
 	Required bool `json:"required,omitempty"`
 
 	// jwks
-	Jwks *JWKs `json:"jwks,omitempty"`
+	Jwks *ClientJWKs `json:"jwks,omitempty"`
 }
 
 // Validate validates this software statement settings

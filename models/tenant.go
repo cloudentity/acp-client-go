@@ -34,7 +34,7 @@ type Tenant struct {
 	AuthenticationContextSettings *AuthenticationContextSettings `json:"authentication_context_settings,omitempty"`
 
 	// jwks
-	Jwks *JWKs `json:"jwks,omitempty"`
+	Jwks *ServerJWKs `json:"jwks,omitempty"`
 
 	// styling
 	Styling *Styling `json:"styling,omitempty"`

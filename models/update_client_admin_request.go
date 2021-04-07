@@ -152,7 +152,7 @@ type UpdateClientAdminRequest struct {
 	DeveloperMetadata Metadata `json:"developer_metadata,omitempty"`
 
 	// jwks
-	Jwks *JWKs `json:"jwks,omitempty"`
+	Jwks *ClientJWKs `json:"jwks,omitempty"`
 
 	// metadata
 	Metadata Metadata `json:"metadata,omitempty"`

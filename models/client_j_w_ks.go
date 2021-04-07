@@ -14,18 +14,18 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// JWKs j w ks
+// ClientJWKs client j w ks
 //
-// swagger:model JWKs
-type JWKs struct {
+// swagger:model ClientJWKs
+type ClientJWKs struct {
 
 	// swagger keys
 	// Example: []
-	SwaggerKeys []*JWK `json:"keys"`
+	SwaggerKeys []*ClientJWK `json:"keys"`
 }
 
-// Validate validates this j w ks
-func (m *JWKs) Validate(formats strfmt.Registry) error {
+// Validate validates this client j w ks
+func (m *ClientJWKs) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateSwaggerKeys(formats); err != nil {
@@ -38,7 +38,7 @@ func (m *JWKs) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *JWKs) validateSwaggerKeys(formats strfmt.Registry) error {
+func (m *ClientJWKs) validateSwaggerKeys(formats strfmt.Registry) error {
 	if swag.IsZero(m.SwaggerKeys) { // not required
 		return nil
 	}
@@ -62,8 +62,8 @@ func (m *JWKs) validateSwaggerKeys(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validate this j w ks based on the context it is used
-func (m *JWKs) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validate this client j w ks based on the context it is used
+func (m *ClientJWKs) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateSwaggerKeys(ctx, formats); err != nil {
@@ -76,7 +76,7 @@ func (m *JWKs) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 	return nil
 }
 
-func (m *JWKs) contextValidateSwaggerKeys(ctx context.Context, formats strfmt.Registry) error {
+func (m *ClientJWKs) contextValidateSwaggerKeys(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.SwaggerKeys); i++ {
 
@@ -95,7 +95,7 @@ func (m *JWKs) contextValidateSwaggerKeys(ctx context.Context, formats strfmt.Re
 }
 
 // MarshalBinary interface implementation
-func (m *JWKs) MarshalBinary() ([]byte, error) {
+func (m *ClientJWKs) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -103,8 +103,8 @@ func (m *JWKs) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *JWKs) UnmarshalBinary(b []byte) error {
-	var res JWKs
+func (m *ClientJWKs) UnmarshalBinary(b []byte) error {
+	var res ClientJWKs
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

@@ -47,22 +47,22 @@ func NewJwksOK() *JwksOK {
 
 /* JwksOK describes a response with status code 200, with default header values.
 
-JWKs
+ClientJWKs
 */
 type JwksOK struct {
-	Payload *models.JWKs
+	Payload *models.ClientJWKs
 }
 
 func (o *JwksOK) Error() string {
 	return fmt.Sprintf("[GET /{tid}/{aid}/.well-known/jwks.json][%d] jwksOK  %+v", 200, o.Payload)
 }
-func (o *JwksOK) GetPayload() *models.JWKs {
+func (o *JwksOK) GetPayload() *models.ClientJWKs {
 	return o.Payload
 }
 
 func (o *JwksOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.JWKs)
+	o.Payload = new(models.ClientJWKs)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

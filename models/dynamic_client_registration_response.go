@@ -164,7 +164,7 @@ type DynamicClientRegistrationResponse struct {
 	UserinfoSignedResponseAlg string `json:"userinfo_signed_response_alg,omitempty"`
 
 	// jwks
-	Jwks *JWKs `json:"jwks,omitempty"`
+	Jwks *ClientJWKs `json:"jwks,omitempty"`
 
 	// privacy
 	Privacy *ClientPrivacy `json:"privacy,omitempty"`

@@ -4065,6 +4065,161 @@ paths:
           description: HttpError
           schema:
             $ref: '#/definitions/Error'
+  /api/admin/{tid}/servers/{aid}/keys:
+    get:
+      security:
+      - admin: []
+      description: Get server encryption or signing keys.
+      tags:
+      - keys
+      summary: Get server keys
+      operationId: getKeys
+      parameters:
+      - type: string
+        default: default
+        x-go-name: Tid
+        description: Tenant id
+        name: tid
+        in: path
+        required: true
+      - type: string
+        default: default
+        x-go-name: Aid
+        description: Authorization server id
+        name: aid
+        in: path
+        required: true
+      - type: string
+        default: sig
+        x-go-name: Use
+        description: Key use (sig or enc)
+        name: use
+        in: query
+      responses:
+        "200":
+          description: KeysResponse
+          schema:
+            $ref: '#/definitions/KeysResponse'
+        "401":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "403":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+  /api/admin/{tid}/servers/{aid}/keys/revoke/{kid}:
+    post:
+      security:
+      - admin: []
+      description: Revoke rotated key
+      tags:
+      - keys
+      summary: Revoke key
+      operationId: revokeKey
+      parameters:
+      - type: string
+        default: default
+        x-go-name: Tid
+        description: Tenant id
+        name: tid
+        in: path
+        required: true
+      - type: string
+        default: default
+        x-go-name: Aid
+        description: Authorization server id
+        name: aid
+        in: path
+        required: true
+      - type: string
+        x-go-name: Kid
+        description: Key id
+        name: kid
+        in: path
+        required: true
+      - type: string
+        default: sig
+        x-go-name: Use
+        description: Key use (sig or enc)
+        name: use
+        in: query
+      responses:
+        "200":
+          description: ServerJWK
+          schema:
+            $ref: '#/definitions/ServerJWK'
+        "400":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "401":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "403":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+  /api/admin/{tid}/servers/{aid}/keys/rotate:
+    post:
+      security:
+      - admin: []
+      description: Rotate encryption or signing key.
+      tags:
+      - keys
+      summary: Rotate key
+      operationId: rotateKey
+      parameters:
+      - type: string
+        default: default
+        x-go-name: Tid
+        description: Tenant id
+        name: tid
+        in: path
+        required: true
+      - type: string
+        default: default
+        x-go-name: Aid
+        description: Authorization server id
+        name: aid
+        in: path
+        required: true
+      - type: string
+        default: sig
+        x-go-name: Use
+        description: Key use (sig or enc)
+        name: use
+        in: query
+      responses:
+        "200":
+          description: ServerJWK
+          schema:
+            $ref: '#/definitions/ServerJWK'
+        "400":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "401":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "403":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
   /api/admin/{tid}/servers/{aid}/policies:
     get:
       security:
@@ -7449,9 +7604,9 @@ paths:
         required: true
       responses:
         "200":
-          description: JWKs
+          description: ClientJWKs
           schema:
-            $ref: '#/definitions/JWKs'
+            $ref: '#/definitions/ClientJWKs'
         "404":
           description: genericError
           schema:
@@ -10546,7 +10701,7 @@ definitions:
         x-go-name: IDTokenSignedResponseAlg
         example: ES256
       jwks:
-        $ref: '#/definitions/JWKs'
+        $ref: '#/definitions/ClientJWKs'
       jwks_uri:
         description: URL of JSON Web Key Set containing the public keys used by the
           client to authenticate
@@ -10815,7 +10970,7 @@ definitions:
         x-go-name: IDTokenSignedResponseAlg
         example: ES256
       jwks:
-        $ref: '#/definitions/JWKs'
+        $ref: '#/definitions/ClientJWKs'
       jwks_uri:
         description: URL of JSON Web Key Set containing the public keys used by the
           client to authenticate
@@ -11085,7 +11240,7 @@ definitions:
         x-go-name: IDTokenSignedResponseAlg
         example: ES256
       jwks:
-        $ref: '#/definitions/JWKs'
+        $ref: '#/definitions/ClientJWKs'
       jwks_uri:
         description: URL of JSON Web Key Set containing the public keys used by the
           client to authenticate
@@ -11222,6 +11377,163 @@ definitions:
         x-go-name: UserinfoSignedResponseAlg
         example: none
     x-go-package: github.com/cloudentity/acp/internal/handler/developer
+  ClientInfo:
+    type: object
+    properties:
+      client_name:
+        description: human redable name
+        type: string
+        x-go-name: Name
+        example: My app
+      client_uri:
+        description: client URI
+        type: string
+        x-go-name: ClientURI
+      description:
+        description: description
+        type: string
+        x-go-name: Description
+      logo_uri:
+        description: logo URI
+        type: string
+        x-go-name: LogoURI
+      policy_uri:
+        description: policy url to read about how the profile data will be used
+        type: string
+        x-go-name: PolicyURI
+      tos_uri:
+        description: terms of service url
+        type: string
+        x-go-name: TosURI
+    x-go-package: github.com/cloudentity/acp/internal/domain
+  ClientJWK:
+    type: object
+    required:
+    - kty
+    properties:
+      alg:
+        description: |-
+          The "alg" (algorithm) parameter identifies the algorithm intended for
+          use with the key.  The values used should either be registered in the
+          IANA "JSON Web Signature and Encryption Algorithms" registry
+          established by [JWA] or be a value that contains a Collision-
+          Resistant Name.
+        type: string
+        x-go-name: Alg
+        example: RS256
+      crv:
+        type: string
+        x-go-name: Crv
+        example: P-256
+      d:
+        type: string
+        x-go-name: D
+        example: T_N8I-6He3M8a7X1vWt6TGIx4xB_GP3Mb4SsZSA4v-orvJzzRiQhLlRR81naWYxfQAYt5isDI6_C2L9bdWo4FFPjGQFvNoRX-_sBJyBI_rl-TBgsZYoUlAj3J92WmY2inbA-PwyJfsaIIDceYBC-eX-xiCu6qMqkZi3MwQAFL6bMdPEM0z4JBcwFT3VdiWAIRUuACWQwrXMq672x7fMuaIaHi7XDGgt1ith23CLfaREmJku9PQcchbt_uEY-hqrFY6ntTtS4paWWQj86xLL94S-Tf6v6xkL918PfLSOTq6XCzxvlFwzBJqApnAhbwqLjpPhgUG04EDRrqrSBc5Y1BLevn6Ip5h1AhessBp3wLkQgz_roeckt-ybvzKTjESMuagnpqLvOT7Y9veIug2MwPJZI2VjczRc1vzMs25XrFQ8DpUy-bNdp89TmvAXwctUMiJdgHloJw23Cv03gIUAkDnsTqZmkpbIf-crpgNKFmQP_EDKoe8p_PXZZgfbRri3NoEVGP7Mk6yEu8LjJhClhZaBNjuWw2-KlBfOA3g79mhfBnkInee5KO9mGR50qPk1V-MorUYNTFMZIm0kFE6eYVWFBwJHLKYhHU34DoiK1VP-svZpC2uAMFNA_UJEwM9CQ2b8qe4-5e9aywMvwcuArRkAB5mBIfOaOJao3mfukKAE
+      dp:
+        type: string
+        x-go-name: Dp
+        example: G4sPXkc6Ya9y8oJW9_ILj4xuppu0lzi_H7VTkS8xj5SdX3coE0oimYwxIi2emTAue0UOa5dpgFGyBJ4c8tQ2VF402XRugKDTP8akYhFo5tAA77Qe_NmtuYZc3C3m3I24G2GvR5sSDxUyAN2zq8Lfn9EUms6rY3Ob8YeiKkTiBj0
+      dq:
+        type: string
+        x-go-name: Dq
+        example: s9lAH9fggBsoFR8Oac2R_E2gw282rT2kGOAhvIllETE1efrA6huUUvMfBcMpn8lqeW6vzznYY5SSQF7pMdC_agI3nG8Ibp1BUb0JUiraRNqUfLhcQb_d9GF4Dh7e74WbRsobRonujTYN1xCaP6TO61jvWrX-L18txXw494Q_cgk
+      e:
+        type: string
+        x-go-name: E
+        example: AQAB
+      k:
+        type: string
+        x-go-name: K
+        example: GawgguFyGrWKav7AX4VKUg
+      kid:
+        description: |-
+          The "kid" (key ID) parameter is used to match a specific key.  This
+          is used, for instance, to choose among a set of keys within a JWK Set
+          during key rollover.  The structure of the "kid" value is
+          unspecified.  When "kid" values are used within a JWK Set, different
+          keys within the JWK Set SHOULD use distinct "kid" values.  (One
+          example in which different keys might use the same "kid" value is if
+          they have different "kty" (key type) values but are considered to be
+          equivalent alternatives by the application using them.)  The "kid"
+          value is a case-sensitive string.
+        type: string
+        x-go-name: Kid
+        example: 1603dfe0af8f4596
+      kty:
+        description: |-
+          The "kty" (key type) parameter identifies the cryptographic algorithm
+          family used with the key, such as "RSA" or "EC". "kty" values should
+          either be registered in the IANA "JSON Web Key Types" registry
+          established by [JWA] or be a value that contains a Collision-
+          Resistant Name.  The "kty" value is a case-sensitive string.
+        type: string
+        x-go-name: Kty
+        example: RSA
+      "n":
+        type: string
+        x-go-name: "N"
+        example: vTqrxUyQPl_20aqf5kXHwDZrel-KovIp8s7ewJod2EXHl8tWlRB3_Rem34KwBfqlKQGp1nqah-51H4Jzruqe0cFP58hPEIt6WqrvnmJCXxnNuIB53iX_uUUXXHDHBeaPCSRoNJzNysjoJ30TIUsKBiirhBa7f235PXbKiHducLevV6PcKxJ5cY8zO286qJLBWSPm-OIevwqsIsSIH44Qtm9sioFikhkbLwoqwWORGAY0nl6XvVOlhADdLjBSqSAeT1FPuCDCnXwzCDR8N9IFB_IjdStFkC-rVt2K5BYfPd0c3yFp_vHR15eRd0zJ8XQ7woBC8Vnsac6Et1pKS59pX6256DPWu8UDdEOolKAPgcd_g2NpA76cAaF_jcT80j9KrEzw8Tv0nJBGesuCjPNjGs_KzdkWTUXt23Hn9QJsdc1MZuaW0iqXBepHYfYoqNelzVte117t4BwVp0kUM6we0IqyXClaZgOI8S-WDBw2_Ovdm8e5NmhYAblEVoygcX8Y46oH6bKiaCQfKCFDMcRgChme7AoE1yZZYsPbaG_3IjPrC4LBMHQw8rM9dWjJ8ImjicvZ1pAm0dx-KHCP3y5PVKrxBDf1zSOsBRkOSjB8TPODnJMz6-jd5hTtZxpZPwPoIdCanTZ3ZD6uRBpTmDwtpRGm63UQs1m5FWPwb0T2IF0
+      p:
+        type: string
+        x-go-name: P
+        example: 6NbkXwDWUhi-eR55Cgbf27FkQDDWIamOaDr0rj1q0f1fFEz1W5A_09YvG09Fiv1AO2-D8Rl8gS1Vkz2i0zCSqnyy8A025XOcRviOMK7nIxE4OH_PEsko8dtIrb3TmE2hUXvCkmzw9EsTF1LQBOGC6iusLTXepIC1x9ukCKFZQvdgtEObQ5kzd9Nhq-cdqmSeMVLoxPLd1blviVT9Vm8-y12CtYpeJHOaIDtVPLlBhJiBoPKWg3vxSm4XxIliNOefqegIlsmTIa3MpS6WWlCK3yHhat0Q-rRxDxdyiVdG_wzJvp0Iw_2wms7pe-PgNPYvUWH9JphWP5K38YqEBiJFXQ
+      q:
+        type: string
+        x-go-name: Q
+        example: 0A1FmpOWR91_RAWpqreWSavNaZb9nXeKiBo0DQGBz32DbqKqQ8S4aBJmbRhJcctjCLjain-ivut477tAUMmzJwVJDDq2MZFwC9Q-4VYZmFU4HJityQuSzHYe64RjN-E_NQ02TWhG3QGW6roq6c57c99rrUsETwJJiwS8M5p15Miuz53DaOjv-uqqFAFfywN5WkxHbraBcjHtMiQuyQbQqkCFh-oanHkwYNeytsNhTu2mQmwR5DR2roZ2nPiFjC6nsdk-A7E3S3wMzYYFw7jvbWWoYWo9vB40_MY2Y0FYQSqcDzcBIcq_0tnnasf3VW4Fdx6m80RzOb2Fsnln7vKXAQ
+      qi:
+        type: string
+        x-go-name: Qi
+        example: GyM_p6JrXySiz1toFgKbWV-JdI3jQ4ypu9rbMWx3rQJBfmt0FoYzgUIZEVFEcOqwemRN81zoDAaa-Bk0KWNGDjJHZDdDmFhW3AN7lI-puxk_mHZGJ11rxyR8O55XLSe3SPmRfKwZI6yU24ZxvQKFYItdldUKGzO6Ia6zTKhAVRU
+      use:
+        description: |-
+          Use ("public key use") identifies the intended use of
+          the public key. The "use" parameter is employed to indicate whether
+          a public key is used for encrypting data or verifying the signature
+          on data. Values are commonly "sig" (signature) or "enc" (encryption).
+        type: string
+        x-go-name: Use
+        example: sig
+      x:
+        type: string
+        x-go-name: X
+        example: f83OJ3D2xF1Bg8vub9tLe1gHMzV76e8Tus9uPHvRVEU
+      x5c:
+        description: |-
+          The "x5c" (X.509 certificate chain) parameter contains a chain of one
+          or more PKIX certificates [RFC5280].  The certificate chain is
+          represented as a JSON array of certificate value strings.  Each
+          string in the array is a base64-encoded (Section 4 of [RFC4648] --
+          not base64url-encoded) DER [ITU.X690.1994] PKIX certificate value.
+          The PKIX certificate containing the key value MUST be the first
+          certificate.
+        type: array
+        items:
+          type: string
+        x-go-name: X5c
+      x5t:
+        type: string
+        x-go-name: X5t
+        example: GawgguFyGrWKav7AX4VKUg
+      x5t#S256:
+        type: string
+        x-go-name: X5tS256
+        example: GawgguFyGrWKav7AX4VKUg
+      "y":
+        type: string
+        x-go-name: "Y"
+        example: x_FEzRu9m36HLN_tue659LNpXW6pCyStikYjKIWI5a0
+    x-go-package: github.com/cloudentity/acp/internal/domain
+  ClientJWKs:
+    type: object
+    properties:
+      keys:
+        type: array
+        items:
+          $ref: '#/definitions/ClientJWK'
+        x-go-name: SwaggerKeys
+        example: []
+    x-go-package: github.com/cloudentity/acp/internal/domain
   ClientPrivacy:
     type: object
     properties:
@@ -12238,7 +12550,7 @@ definitions:
         x-go-name: IDTokenSignedResponseAlg
         example: ES256
       jwks:
-        $ref: '#/definitions/JWKs'
+        $ref: '#/definitions/ClientJWKs'
       jwks_uri:
         description: URL of JSON Web Key Set containing the public keys used by the
           client to authenticate
@@ -12450,7 +12762,7 @@ definitions:
         x-go-name: IDTokenSignedResponseAlg
         example: ES256
       jwks:
-        $ref: '#/definitions/JWKs'
+        $ref: '#/definitions/ClientJWKs'
       jwks_uri:
         description: URL of JSON Web Key Set containing the public keys used by the
           client to authenticate
@@ -13437,7 +13749,7 @@ definitions:
         x-go-name: IDTokenSignedResponseAlg
         example: ES256
       jwks:
-        $ref: '#/definitions/JWKs'
+        $ref: '#/definitions/ClientJWKs'
       jwks_uri:
         description: URL of JSON Web Key Set containing the public keys used by the
           client to authenticate
@@ -13659,7 +13971,7 @@ definitions:
         x-go-name: IDTokenSignedResponseAlg
         example: ES256
       jwks:
-        $ref: '#/definitions/JWKs'
+        $ref: '#/definitions/ClientJWKs'
       jwks_uri:
         description: URL of JSON Web Key Set containing the public keys used by the
           client to authenticate
@@ -14193,6 +14505,8 @@ definitions:
         x-go-name: AccountIDs
       authentication_context:
         $ref: '#/definitions/AuthenticationContext'
+      client:
+        $ref: '#/definitions/ClientInfo'
       consent_id:
         description: Unique identification as assigned to identify the account access
           consent resource.
@@ -14304,6 +14618,8 @@ definitions:
         format: date-time
       authentication_context:
         $ref: '#/definitions/AuthenticationContext'
+      client:
+        $ref: '#/definitions/ClientInfo'
       consent_id:
         description: Unique identification as assigned to identify the domestic payment
           resource.
@@ -14363,6 +14679,10 @@ definitions:
         description: Date and time at which the resource status was updated.
         type: string
         format: date-time
+      authentication_context:
+        $ref: '#/definitions/AuthenticationContext'
+      client:
+        $ref: '#/definitions/ClientInfo'
       consent_id:
         description: Unique identification as assigned to identify the domestic payment
           resource.
@@ -15626,159 +15946,11 @@ definitions:
         type: string
         x-go-name: Username
     x-go-package: github.com/cloudentity/acp/internal/domain
-  JWK:
-    type: object
-    required:
-    - kty
-    properties:
-      alg:
-        description: |-
-          The "alg" (algorithm) parameter identifies the algorithm intended for
-          use with the key.  The values used should either be registered in the
-          IANA "JSON Web Signature and Encryption Algorithms" registry
-          established by [JWA] or be a value that contains a Collision-
-          Resistant Name.
-        type: string
-        x-go-name: SwaggerAlg
-        example: RS256
-      created_at:
-        description: Time when key was generated
-        type: string
-        format: date-time
-        x-go-name: CreatedAt
-      crv:
-        type: string
-        x-go-name: SwaggerCrv
-        example: P-256
-      d:
-        type: string
-        x-go-name: SwaggerD
-        example: T_N8I-6He3M8a7X1vWt6TGIx4xB_GP3Mb4SsZSA4v-orvJzzRiQhLlRR81naWYxfQAYt5isDI6_C2L9bdWo4FFPjGQFvNoRX-_sBJyBI_rl-TBgsZYoUlAj3J92WmY2inbA-PwyJfsaIIDceYBC-eX-xiCu6qMqkZi3MwQAFL6bMdPEM0z4JBcwFT3VdiWAIRUuACWQwrXMq672x7fMuaIaHi7XDGgt1ith23CLfaREmJku9PQcchbt_uEY-hqrFY6ntTtS4paWWQj86xLL94S-Tf6v6xkL918PfLSOTq6XCzxvlFwzBJqApnAhbwqLjpPhgUG04EDRrqrSBc5Y1BLevn6Ip5h1AhessBp3wLkQgz_roeckt-ybvzKTjESMuagnpqLvOT7Y9veIug2MwPJZI2VjczRc1vzMs25XrFQ8DpUy-bNdp89TmvAXwctUMiJdgHloJw23Cv03gIUAkDnsTqZmkpbIf-crpgNKFmQP_EDKoe8p_PXZZgfbRri3NoEVGP7Mk6yEu8LjJhClhZaBNjuWw2-KlBfOA3g79mhfBnkInee5KO9mGR50qPk1V-MorUYNTFMZIm0kFE6eYVWFBwJHLKYhHU34DoiK1VP-svZpC2uAMFNA_UJEwM9CQ2b8qe4-5e9aywMvwcuArRkAB5mBIfOaOJao3mfukKAE
-      dp:
-        type: string
-        x-go-name: SwaggerDp
-        example: G4sPXkc6Ya9y8oJW9_ILj4xuppu0lzi_H7VTkS8xj5SdX3coE0oimYwxIi2emTAue0UOa5dpgFGyBJ4c8tQ2VF402XRugKDTP8akYhFo5tAA77Qe_NmtuYZc3C3m3I24G2GvR5sSDxUyAN2zq8Lfn9EUms6rY3Ob8YeiKkTiBj0
-      dq:
-        type: string
-        x-go-name: SwaggerDq
-        example: s9lAH9fggBsoFR8Oac2R_E2gw282rT2kGOAhvIllETE1efrA6huUUvMfBcMpn8lqeW6vzznYY5SSQF7pMdC_agI3nG8Ibp1BUb0JUiraRNqUfLhcQb_d9GF4Dh7e74WbRsobRonujTYN1xCaP6TO61jvWrX-L18txXw494Q_cgk
-      e:
-        type: string
-        x-go-name: SwaggerE
-        example: AQAB
-      k:
-        type: string
-        x-go-name: SwaggerK
-        example: GawgguFyGrWKav7AX4VKUg
-      kid:
-        description: |-
-          The "kid" (key ID) parameter is used to match a specific key.  This
-          is used, for instance, to choose among a set of keys within a JWK Set
-          during key rollover.  The structure of the "kid" value is
-          unspecified.  When "kid" values are used within a JWK Set, different
-          keys within the JWK Set SHOULD use distinct "kid" values.  (One
-          example in which different keys might use the same "kid" value is if
-          they have different "kty" (key type) values but are considered to be
-          equivalent alternatives by the application using them.)  The "kid"
-          value is a case-sensitive string.
-        type: string
-        x-go-name: SwaggerKid
-        example: 1603dfe0af8f4596
-      kty:
-        description: |-
-          The "kty" (key type) parameter identifies the cryptographic algorithm
-          family used with the key, such as "RSA" or "EC". "kty" values should
-          either be registered in the IANA "JSON Web Key Types" registry
-          established by [JWA] or be a value that contains a Collision-
-          Resistant Name.  The "kty" value is a case-sensitive string.
-        type: string
-        x-go-name: SwaggerKty
-        example: RSA
-      "n":
-        type: string
-        x-go-name: SwaggerN
-        example: vTqrxUyQPl_20aqf5kXHwDZrel-KovIp8s7ewJod2EXHl8tWlRB3_Rem34KwBfqlKQGp1nqah-51H4Jzruqe0cFP58hPEIt6WqrvnmJCXxnNuIB53iX_uUUXXHDHBeaPCSRoNJzNysjoJ30TIUsKBiirhBa7f235PXbKiHducLevV6PcKxJ5cY8zO286qJLBWSPm-OIevwqsIsSIH44Qtm9sioFikhkbLwoqwWORGAY0nl6XvVOlhADdLjBSqSAeT1FPuCDCnXwzCDR8N9IFB_IjdStFkC-rVt2K5BYfPd0c3yFp_vHR15eRd0zJ8XQ7woBC8Vnsac6Et1pKS59pX6256DPWu8UDdEOolKAPgcd_g2NpA76cAaF_jcT80j9KrEzw8Tv0nJBGesuCjPNjGs_KzdkWTUXt23Hn9QJsdc1MZuaW0iqXBepHYfYoqNelzVte117t4BwVp0kUM6we0IqyXClaZgOI8S-WDBw2_Ovdm8e5NmhYAblEVoygcX8Y46oH6bKiaCQfKCFDMcRgChme7AoE1yZZYsPbaG_3IjPrC4LBMHQw8rM9dWjJ8ImjicvZ1pAm0dx-KHCP3y5PVKrxBDf1zSOsBRkOSjB8TPODnJMz6-jd5hTtZxpZPwPoIdCanTZ3ZD6uRBpTmDwtpRGm63UQs1m5FWPwb0T2IF0
-      p:
-        type: string
-        x-go-name: SwaggerP
-        example: 6NbkXwDWUhi-eR55Cgbf27FkQDDWIamOaDr0rj1q0f1fFEz1W5A_09YvG09Fiv1AO2-D8Rl8gS1Vkz2i0zCSqnyy8A025XOcRviOMK7nIxE4OH_PEsko8dtIrb3TmE2hUXvCkmzw9EsTF1LQBOGC6iusLTXepIC1x9ukCKFZQvdgtEObQ5kzd9Nhq-cdqmSeMVLoxPLd1blviVT9Vm8-y12CtYpeJHOaIDtVPLlBhJiBoPKWg3vxSm4XxIliNOefqegIlsmTIa3MpS6WWlCK3yHhat0Q-rRxDxdyiVdG_wzJvp0Iw_2wms7pe-PgNPYvUWH9JphWP5K38YqEBiJFXQ
-      promoted_at:
-        description: Time when key was set as current key in use
-        type: string
-        format: date-time
-        x-go-name: PromotedAt
-      q:
-        type: string
-        x-go-name: SwaggerQ
-        example: 0A1FmpOWR91_RAWpqreWSavNaZb9nXeKiBo0DQGBz32DbqKqQ8S4aBJmbRhJcctjCLjain-ivut477tAUMmzJwVJDDq2MZFwC9Q-4VYZmFU4HJityQuSzHYe64RjN-E_NQ02TWhG3QGW6roq6c57c99rrUsETwJJiwS8M5p15Miuz53DaOjv-uqqFAFfywN5WkxHbraBcjHtMiQuyQbQqkCFh-oanHkwYNeytsNhTu2mQmwR5DR2roZ2nPiFjC6nsdk-A7E3S3wMzYYFw7jvbWWoYWo9vB40_MY2Y0FYQSqcDzcBIcq_0tnnasf3VW4Fdx6m80RzOb2Fsnln7vKXAQ
-      qi:
-        type: string
-        x-go-name: SwaggerQi
-        example: GyM_p6JrXySiz1toFgKbWV-JdI3jQ4ypu9rbMWx3rQJBfmt0FoYzgUIZEVFEcOqwemRN81zoDAaa-Bk0KWNGDjJHZDdDmFhW3AN7lI-puxk_mHZGJ11rxyR8O55XLSe3SPmRfKwZI6yU24ZxvQKFYItdldUKGzO6Ia6zTKhAVRU
-      revoked_at:
-        description: Time when key was revoked
-        type: string
-        format: date-time
-        x-go-name: RevokedAt
-      rotated_at:
-        description: Time when key was rotated
-        type: string
-        format: date-time
-        x-go-name: RotatedAt
-      use:
-        description: |-
-          Use ("public key use") identifies the intended use of
-          the public key. The "use" parameter is employed to indicate whether
-          a public key is used for encrypting data or verifying the signature
-          on data. Values are commonly "sig" (signature) or "enc" (encryption).
-        type: string
-        x-go-name: SwaggerUse
-        example: sig
-      x:
-        type: string
-        x-go-name: SwaggerX
-        example: f83OJ3D2xF1Bg8vub9tLe1gHMzV76e8Tus9uPHvRVEU
-      x5c:
-        description: |-
-          The "x5c" (X.509 certificate chain) parameter contains a chain of one
-          or more PKIX certificates [RFC5280].  The certificate chain is
-          represented as a JSON array of certificate value strings.  Each
-          string in the array is a base64-encoded (Section 4 of [RFC4648] --
-          not base64url-encoded) DER [ITU.X690.1994] PKIX certificate value.
-          The PKIX certificate containing the key value MUST be the first
-          certificate.
-        type: array
-        items:
-          type: string
-        x-go-name: SwaggerX5c
-      x5t:
-        type: string
-        x-go-name: SwaggerX5t
-        example: GawgguFyGrWKav7AX4VKUg
-      x5t#S256:
-        type: string
-        x-go-name: SwaggerX5tS256
-        example: GawgguFyGrWKav7AX4VKUg
-      "y":
-        type: string
-        x-go-name: SwaggerY
-        example: x_FEzRu9m36HLN_tue659LNpXW6pCyStikYjKIWI5a0
-    x-go-package: github.com/cloudentity/acp/internal/domain
-  JWKs:
-    type: object
-    properties:
-      keys:
-        type: array
-        items:
-          $ref: '#/definitions/JWK'
-        x-go-name: SwaggerKeys
-        example: []
-    x-go-package: github.com/cloudentity/acp/internal/domain
   JWSPayloadSettings:
     type: object
     properties:
       jwks:
-        $ref: '#/definitions/JWKs'
+        $ref: '#/definitions/ClientJWKs'
       jwks_uri:
         description: URI of the JWKs of the trusted party responsible for signing
           request body
@@ -15788,6 +15960,24 @@ definitions:
   JobID:
     type: string
     x-go-package: github.com/cloudentity/acp/internal/domain
+  KeysResponse:
+    type: object
+    properties:
+      current_key:
+        $ref: '#/definitions/ServerJWK'
+      next_key:
+        $ref: '#/definitions/ServerJWK'
+      revoked_keys:
+        type: array
+        items:
+          $ref: '#/definitions/ServerJWK'
+        x-go-name: RevokedKeys
+      rotated_keys:
+        type: array
+        items:
+          $ref: '#/definitions/ServerJWK'
+        x-go-name: RotatedKeys
+    x-go-package: github.com/cloudentity/acp/internal/handler/admin
   Links:
     type: object
     title: Links contain absolute URIs to related resources,
@@ -16045,6 +16235,8 @@ definitions:
         format: clientID
         x-go-name: ClientID
         example: default
+      client_info:
+        $ref: '#/definitions/ClientInfo'
       error:
         $ref: '#/definitions/RFC6749Error'
       granted_audience:
@@ -17008,7 +17200,7 @@ definitions:
         pattern: ^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$
         x-go-name: Jti
       jwks:
-        $ref: '#/definitions/JWKs'
+        $ref: '#/definitions/ClientJWKs'
       jwks_uri:
         description: URL of JSON Web Key Set containing the public keys used by the
           client to authenticate
@@ -17226,7 +17418,7 @@ definitions:
         x-go-name: IDTokenSignedResponseAlg
         example: ES256
       jwks:
-        $ref: '#/definitions/JWKs'
+        $ref: '#/definitions/ClientJWKs'
       jwks_uri:
         description: URL of JSON Web Key Set containing the public keys used by the
           client to authenticate
@@ -18302,6 +18494,8 @@ definitions:
         format: clientID
         x-go-name: ClientID
         example: default
+      client_info:
+        $ref: '#/definitions/ClientInfo'
       error:
         $ref: '#/definitions/RFC6749Error'
       granted_audience:
@@ -18702,7 +18896,7 @@ definitions:
         x-go-name: IssuerURL
         example: http://example.com/default/default
       jwks:
-        $ref: '#/definitions/JWKs'
+        $ref: '#/definitions/ServerJWKs'
       key_type:
         description: |-
           Key type used to generate key which will be used to sign access and id tokens
@@ -18823,6 +19017,176 @@ definitions:
         type: string
         format: serverConsentType
         x-go-name: Type
+    x-go-package: github.com/cloudentity/acp/internal/domain
+  ServerJWK:
+    type: object
+    required:
+    - kty
+    properties:
+      alg:
+        description: |-
+          The "alg" (algorithm) parameter identifies the algorithm intended for
+          use with the key.  The values used should either be registered in the
+          IANA "JSON Web Signature and Encryption Algorithms" registry
+          established by [JWA] or be a value that contains a Collision-
+          Resistant Name.
+        type: string
+        x-go-name: SwaggerAlg
+        example: RS256
+      created_at:
+        description: Time when key was generated
+        type: string
+        format: date-time
+        x-go-name: CreatedAt
+      crv:
+        type: string
+        x-go-name: SwaggerCrv
+        example: P-256
+      d:
+        type: string
+        x-go-name: SwaggerD
+        example: T_N8I-6He3M8a7X1vWt6TGIx4xB_GP3Mb4SsZSA4v-orvJzzRiQhLlRR81naWYxfQAYt5isDI6_C2L9bdWo4FFPjGQFvNoRX-_sBJyBI_rl-TBgsZYoUlAj3J92WmY2inbA-PwyJfsaIIDceYBC-eX-xiCu6qMqkZi3MwQAFL6bMdPEM0z4JBcwFT3VdiWAIRUuACWQwrXMq672x7fMuaIaHi7XDGgt1ith23CLfaREmJku9PQcchbt_uEY-hqrFY6ntTtS4paWWQj86xLL94S-Tf6v6xkL918PfLSOTq6XCzxvlFwzBJqApnAhbwqLjpPhgUG04EDRrqrSBc5Y1BLevn6Ip5h1AhessBp3wLkQgz_roeckt-ybvzKTjESMuagnpqLvOT7Y9veIug2MwPJZI2VjczRc1vzMs25XrFQ8DpUy-bNdp89TmvAXwctUMiJdgHloJw23Cv03gIUAkDnsTqZmkpbIf-crpgNKFmQP_EDKoe8p_PXZZgfbRri3NoEVGP7Mk6yEu8LjJhClhZaBNjuWw2-KlBfOA3g79mhfBnkInee5KO9mGR50qPk1V-MorUYNTFMZIm0kFE6eYVWFBwJHLKYhHU34DoiK1VP-svZpC2uAMFNA_UJEwM9CQ2b8qe4-5e9aywMvwcuArRkAB5mBIfOaOJao3mfukKAE
+      dp:
+        type: string
+        x-go-name: SwaggerDp
+        example: G4sPXkc6Ya9y8oJW9_ILj4xuppu0lzi_H7VTkS8xj5SdX3coE0oimYwxIi2emTAue0UOa5dpgFGyBJ4c8tQ2VF402XRugKDTP8akYhFo5tAA77Qe_NmtuYZc3C3m3I24G2GvR5sSDxUyAN2zq8Lfn9EUms6rY3Ob8YeiKkTiBj0
+      dq:
+        type: string
+        x-go-name: SwaggerDq
+        example: s9lAH9fggBsoFR8Oac2R_E2gw282rT2kGOAhvIllETE1efrA6huUUvMfBcMpn8lqeW6vzznYY5SSQF7pMdC_agI3nG8Ibp1BUb0JUiraRNqUfLhcQb_d9GF4Dh7e74WbRsobRonujTYN1xCaP6TO61jvWrX-L18txXw494Q_cgk
+      e:
+        type: string
+        x-go-name: SwaggerE
+        example: AQAB
+      k:
+        type: string
+        x-go-name: SwaggerK
+        example: GawgguFyGrWKav7AX4VKUg
+      kid:
+        description: |-
+          The "kid" (key ID) parameter is used to match a specific key.  This
+          is used, for instance, to choose among a set of keys within a JWK Set
+          during key rollover.  The structure of the "kid" value is
+          unspecified.  When "kid" values are used within a JWK Set, different
+          keys within the JWK Set SHOULD use distinct "kid" values.  (One
+          example in which different keys might use the same "kid" value is if
+          they have different "kty" (key type) values but are considered to be
+          equivalent alternatives by the application using them.)  The "kid"
+          value is a case-sensitive string.
+        type: string
+        x-go-name: SwaggerKid
+        example: 1603dfe0af8f4596
+      kty:
+        description: |-
+          The "kty" (key type) parameter identifies the cryptographic algorithm
+          family used with the key, such as "RSA" or "EC". "kty" values should
+          either be registered in the IANA "JSON Web Key Types" registry
+          established by [JWA] or be a value that contains a Collision-
+          Resistant Name.  The "kty" value is a case-sensitive string.
+        type: string
+        x-go-name: SwaggerKty
+        example: RSA
+      "n":
+        type: string
+        x-go-name: SwaggerN
+        example: vTqrxUyQPl_20aqf5kXHwDZrel-KovIp8s7ewJod2EXHl8tWlRB3_Rem34KwBfqlKQGp1nqah-51H4Jzruqe0cFP58hPEIt6WqrvnmJCXxnNuIB53iX_uUUXXHDHBeaPCSRoNJzNysjoJ30TIUsKBiirhBa7f235PXbKiHducLevV6PcKxJ5cY8zO286qJLBWSPm-OIevwqsIsSIH44Qtm9sioFikhkbLwoqwWORGAY0nl6XvVOlhADdLjBSqSAeT1FPuCDCnXwzCDR8N9IFB_IjdStFkC-rVt2K5BYfPd0c3yFp_vHR15eRd0zJ8XQ7woBC8Vnsac6Et1pKS59pX6256DPWu8UDdEOolKAPgcd_g2NpA76cAaF_jcT80j9KrEzw8Tv0nJBGesuCjPNjGs_KzdkWTUXt23Hn9QJsdc1MZuaW0iqXBepHYfYoqNelzVte117t4BwVp0kUM6we0IqyXClaZgOI8S-WDBw2_Ovdm8e5NmhYAblEVoygcX8Y46oH6bKiaCQfKCFDMcRgChme7AoE1yZZYsPbaG_3IjPrC4LBMHQw8rM9dWjJ8ImjicvZ1pAm0dx-KHCP3y5PVKrxBDf1zSOsBRkOSjB8TPODnJMz6-jd5hTtZxpZPwPoIdCanTZ3ZD6uRBpTmDwtpRGm63UQs1m5FWPwb0T2IF0
+      p:
+        type: string
+        x-go-name: SwaggerP
+        example: 6NbkXwDWUhi-eR55Cgbf27FkQDDWIamOaDr0rj1q0f1fFEz1W5A_09YvG09Fiv1AO2-D8Rl8gS1Vkz2i0zCSqnyy8A025XOcRviOMK7nIxE4OH_PEsko8dtIrb3TmE2hUXvCkmzw9EsTF1LQBOGC6iusLTXepIC1x9ukCKFZQvdgtEObQ5kzd9Nhq-cdqmSeMVLoxPLd1blviVT9Vm8-y12CtYpeJHOaIDtVPLlBhJiBoPKWg3vxSm4XxIliNOefqegIlsmTIa3MpS6WWlCK3yHhat0Q-rRxDxdyiVdG_wzJvp0Iw_2wms7pe-PgNPYvUWH9JphWP5K38YqEBiJFXQ
+      promoted_at:
+        description: Time when key was set as current key in use
+        type: string
+        format: date-time
+        x-go-name: PromotedAt
+      q:
+        type: string
+        x-go-name: SwaggerQ
+        example: 0A1FmpOWR91_RAWpqreWSavNaZb9nXeKiBo0DQGBz32DbqKqQ8S4aBJmbRhJcctjCLjain-ivut477tAUMmzJwVJDDq2MZFwC9Q-4VYZmFU4HJityQuSzHYe64RjN-E_NQ02TWhG3QGW6roq6c57c99rrUsETwJJiwS8M5p15Miuz53DaOjv-uqqFAFfywN5WkxHbraBcjHtMiQuyQbQqkCFh-oanHkwYNeytsNhTu2mQmwR5DR2roZ2nPiFjC6nsdk-A7E3S3wMzYYFw7jvbWWoYWo9vB40_MY2Y0FYQSqcDzcBIcq_0tnnasf3VW4Fdx6m80RzOb2Fsnln7vKXAQ
+      qi:
+        type: string
+        x-go-name: SwaggerQi
+        example: GyM_p6JrXySiz1toFgKbWV-JdI3jQ4ypu9rbMWx3rQJBfmt0FoYzgUIZEVFEcOqwemRN81zoDAaa-Bk0KWNGDjJHZDdDmFhW3AN7lI-puxk_mHZGJ11rxyR8O55XLSe3SPmRfKwZI6yU24ZxvQKFYItdldUKGzO6Ia6zTKhAVRU
+      revoked_at:
+        description: Time when key was revoked
+        type: string
+        format: date-time
+        x-go-name: RevokedAt
+      rotated_at:
+        description: Time when key was rotated
+        type: string
+        format: date-time
+        x-go-name: RotatedAt
+      use:
+        description: |-
+          Use ("public key use") identifies the intended use of
+          the public key. The "use" parameter is employed to indicate whether
+          a public key is used for encrypting data or verifying the signature
+          on data. Values are commonly "sig" (signature) or "enc" (encryption).
+        type: string
+        x-go-name: SwaggerUse
+        example: sig
+      x:
+        type: string
+        x-go-name: SwaggerX
+        example: f83OJ3D2xF1Bg8vub9tLe1gHMzV76e8Tus9uPHvRVEU
+      x5c:
+        description: |-
+          The "x5c" (X.509 certificate chain) parameter contains a chain of one
+          or more PKIX certificates [RFC5280].  The certificate chain is
+          represented as a JSON array of certificate value strings.  Each
+          string in the array is a base64-encoded (Section 4 of [RFC4648] --
+          not base64url-encoded) DER [ITU.X690.1994] PKIX certificate value.
+          The PKIX certificate containing the key value MUST be the first
+          certificate.
+        type: array
+        items:
+          type: string
+        x-go-name: SwaggerX5c
+      x5t:
+        type: string
+        x-go-name: SwaggerX5t
+        example: GawgguFyGrWKav7AX4VKUg
+      x5t#S256:
+        type: string
+        x-go-name: SwaggerX5tS256
+        example: GawgguFyGrWKav7AX4VKUg
+      "y":
+        type: string
+        x-go-name: SwaggerY
+        example: x_FEzRu9m36HLN_tue659LNpXW6pCyStikYjKIWI5a0
+    x-go-package: github.com/cloudentity/acp/internal/domain
+  ServerJWKs:
+    type: object
+    properties:
+      keys:
+        type: array
+        items:
+          $ref: '#/definitions/ServerJWK'
+        x-go-name: SwaggerKeys
+        example: []
+      next_encryption_key:
+        $ref: '#/definitions/ServerJWK'
+      next_signing_key:
+        $ref: '#/definitions/ServerJWK'
+      revoked_encryption_keys:
+        type: array
+        items:
+          $ref: '#/definitions/ServerJWK'
+        x-go-name: RevokedEncryptionKeys
+      revoked_keys_limit:
+        type: integer
+        format: int64
+        x-go-name: RevokedKeysLimit
+      revoked_signing_keys:
+        type: array
+        items:
+          $ref: '#/definitions/ServerJWK'
+        x-go-name: RevokedSigningKeys
+      rotated_keys_limit:
+        type: integer
+        format: int64
+        x-go-name: RotatedKeysLimit
     x-go-package: github.com/cloudentity/acp/internal/domain
   ServerToServer:
     type: object
@@ -19173,7 +19537,7 @@ definitions:
     type: object
     properties:
       jwks:
-        $ref: '#/definitions/JWKs'
+        $ref: '#/definitions/ClientJWKs'
       jwks_uri:
         description: URI of the JWKs of the trusted party responsible for signing
           the Software Statement
@@ -19357,7 +19721,7 @@ definitions:
         format: tenantID
         x-go-name: ID
       jwks:
-        $ref: '#/definitions/JWKs'
+        $ref: '#/definitions/ServerJWKs'
       name:
         description: tenant name
         type: string
@@ -19608,7 +19972,7 @@ definitions:
         x-go-name: IDTokenSignedResponseAlg
         example: ES256
       jwks:
-        $ref: '#/definitions/JWKs'
+        $ref: '#/definitions/ClientJWKs'
       jwks_uri:
         description: URL of JSON Web Key Set containing the public keys used by the
           client to authenticate
@@ -19818,7 +20182,7 @@ definitions:
         x-go-name: IDTokenSignedResponseAlg
         example: ES256
       jwks:
-        $ref: '#/definitions/JWKs'
+        $ref: '#/definitions/ClientJWKs'
       jwks_uri:
         description: URL of JSON Web Key Set containing the public keys used by the
           client to authenticate

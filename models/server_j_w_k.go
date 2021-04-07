@@ -14,10 +14,10 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// JWK j w k
+// ServerJWK server j w k
 //
-// swagger:model JWK
-type JWK struct {
+// swagger:model ServerJWK
+type ServerJWK struct {
 
 	// Time when key was generated
 	// Format: date-time
@@ -137,8 +137,8 @@ type JWK struct {
 	SwaggerY string `json:"y,omitempty"`
 }
 
-// Validate validates this j w k
-func (m *JWK) Validate(formats strfmt.Registry) error {
+// Validate validates this server j w k
+func (m *ServerJWK) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCreatedAt(formats); err != nil {
@@ -167,7 +167,7 @@ func (m *JWK) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *JWK) validateCreatedAt(formats strfmt.Registry) error {
+func (m *ServerJWK) validateCreatedAt(formats strfmt.Registry) error {
 	if swag.IsZero(m.CreatedAt) { // not required
 		return nil
 	}
@@ -179,7 +179,7 @@ func (m *JWK) validateCreatedAt(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *JWK) validatePromotedAt(formats strfmt.Registry) error {
+func (m *ServerJWK) validatePromotedAt(formats strfmt.Registry) error {
 	if swag.IsZero(m.PromotedAt) { // not required
 		return nil
 	}
@@ -191,7 +191,7 @@ func (m *JWK) validatePromotedAt(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *JWK) validateRevokedAt(formats strfmt.Registry) error {
+func (m *ServerJWK) validateRevokedAt(formats strfmt.Registry) error {
 	if swag.IsZero(m.RevokedAt) { // not required
 		return nil
 	}
@@ -203,7 +203,7 @@ func (m *JWK) validateRevokedAt(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *JWK) validateRotatedAt(formats strfmt.Registry) error {
+func (m *ServerJWK) validateRotatedAt(formats strfmt.Registry) error {
 	if swag.IsZero(m.RotatedAt) { // not required
 		return nil
 	}
@@ -215,7 +215,7 @@ func (m *JWK) validateRotatedAt(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *JWK) validateSwaggerKty(formats strfmt.Registry) error {
+func (m *ServerJWK) validateSwaggerKty(formats strfmt.Registry) error {
 
 	if err := validate.Required("kty", "body", m.SwaggerKty); err != nil {
 		return err
@@ -224,13 +224,13 @@ func (m *JWK) validateSwaggerKty(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validates this j w k based on context it is used
-func (m *JWK) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validates this server j w k based on context it is used
+func (m *ServerJWK) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 
 // MarshalBinary interface implementation
-func (m *JWK) MarshalBinary() ([]byte, error) {
+func (m *ServerJWK) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -238,8 +238,8 @@ func (m *JWK) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *JWK) UnmarshalBinary(b []byte) error {
-	var res JWK
+func (m *ServerJWK) UnmarshalBinary(b []byte) error {
+	var res ServerJWK
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

@@ -64,6 +64,9 @@ type GetAccountAccessConsentResponse struct {
 
 	// authentication context
 	AuthenticationContext AuthenticationContext `json:"authentication_context,omitempty"`
+
+	// client
+	Client *ClientInfo `json:"client,omitempty"`
 }
 
 // Validate validates this get account access consent response
@@ -95,6 +98,10 @@ func (m *GetAccountAccessConsentResponse) Validate(formats strfmt.Registry) erro
 	}
 
 	if err := m.validateAuthenticationContext(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateClient(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -205,6 +212,23 @@ func (m *GetAccountAccessConsentResponse) validateAuthenticationContext(formats 
 	return nil
 }
 
+func (m *GetAccountAccessConsentResponse) validateClient(formats strfmt.Registry) error {
+	if swag.IsZero(m.Client) { // not required
+		return nil
+	}
+
+	if m.Client != nil {
+		if err := m.Client.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("client")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 // ContextValidate validate this get account access consent response based on the context it is used
 func (m *GetAccountAccessConsentResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
@@ -214,6 +238,10 @@ func (m *GetAccountAccessConsentResponse) ContextValidate(ctx context.Context, f
 	}
 
 	if err := m.contextValidateAuthenticationContext(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateClient(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -248,6 +276,20 @@ func (m *GetAccountAccessConsentResponse) contextValidateAuthenticationContext(c
 			return ve.ValidateName("authentication_context")
 		}
 		return err
+	}
+
+	return nil
+}
+
+func (m *GetAccountAccessConsentResponse) contextValidateClient(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Client != nil {
+		if err := m.Client.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("client")
+			}
+			return err
+		}
 	}
 
 	return nil
