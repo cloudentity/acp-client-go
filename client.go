@@ -1,7 +1,6 @@
 package acpclient
 
 import (
-	"context"
 	"crypto/rand"
 	"crypto/sha256"
 	"crypto/tls"
@@ -25,7 +24,6 @@ import (
 	"github.com/dgrijalva/jwt-go"
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/pkg/errors"
-	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/clientcredentials"
 )
 
@@ -233,7 +231,7 @@ func New(cfg Config) (c Client, err error) {
 		cfg.IssuerURL.Host,
 		"/",
 		[]string{cfg.IssuerURL.Scheme},
-		cc.Client(context.WithValue(context.Background(), oauth2.HTTPClient, c.c)),
+		NewAuthenticator(cc, c.c),
 	), nil)
 
 	c.Config = cfg
