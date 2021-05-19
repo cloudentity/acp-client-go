@@ -19,28 +19,45 @@ import (
 // swagger:model ClientWithAccess
 type ClientWithAccess struct {
 
-	// Scopes granted to client
-	GrantedScopes []*GrantedScope `json:"granted_scopes"`
-
 	// client
 	Client *ClientDetails `json:"client,omitempty"`
+
+	// Scopes granted to client
+	GrantedScopes []*GrantedScope `json:"granted_scopes"`
 }
 
 // Validate validates this client with access
 func (m *ClientWithAccess) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateGrantedScopes(formats); err != nil {
+	if err := m.validateClient(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateClient(formats); err != nil {
+	if err := m.validateGrantedScopes(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ClientWithAccess) validateClient(formats strfmt.Registry) error {
+	if swag.IsZero(m.Client) { // not required
+		return nil
+	}
+
+	if m.Client != nil {
+		if err := m.Client.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("client")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -68,13 +85,28 @@ func (m *ClientWithAccess) validateGrantedScopes(formats strfmt.Registry) error 
 	return nil
 }
 
-func (m *ClientWithAccess) validateClient(formats strfmt.Registry) error {
-	if swag.IsZero(m.Client) { // not required
-		return nil
+// ContextValidate validate this client with access based on the context it is used
+func (m *ClientWithAccess) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateClient(ctx, formats); err != nil {
+		res = append(res, err)
 	}
 
+	if err := m.contextValidateGrantedScopes(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *ClientWithAccess) contextValidateClient(ctx context.Context, formats strfmt.Registry) error {
+
 	if m.Client != nil {
-		if err := m.Client.Validate(formats); err != nil {
+		if err := m.Client.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("client")
 			}
@@ -82,24 +114,6 @@ func (m *ClientWithAccess) validateClient(formats strfmt.Registry) error {
 		}
 	}
 
-	return nil
-}
-
-// ContextValidate validate this client with access based on the context it is used
-func (m *ClientWithAccess) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateGrantedScopes(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateClient(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
 	return nil
 }
 
@@ -116,20 +130,6 @@ func (m *ClientWithAccess) contextValidateGrantedScopes(ctx context.Context, for
 			}
 		}
 
-	}
-
-	return nil
-}
-
-func (m *ClientWithAccess) contextValidateClient(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Client != nil {
-		if err := m.Client.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("client")
-			}
-			return err
-		}
 	}
 
 	return nil

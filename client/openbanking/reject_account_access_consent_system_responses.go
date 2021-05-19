@@ -59,22 +59,22 @@ func NewRejectAccountAccessConsentSystemOK() *RejectAccountAccessConsentSystemOK
 
 /* RejectAccountAccessConsentSystemOK describes a response with status code 200, with default header values.
 
-AccountAccessConsentRejected
+ConsentRejected
 */
 type RejectAccountAccessConsentSystemOK struct {
-	Payload *models.AccountAccessConsentRejected
+	Payload *models.ConsentRejected
 }
 
 func (o *RejectAccountAccessConsentSystemOK) Error() string {
 	return fmt.Sprintf("[POST /api/system/{tid}/open-banking/account-access-consent/{login}/reject][%d] rejectAccountAccessConsentSystemOK  %+v", 200, o.Payload)
 }
-func (o *RejectAccountAccessConsentSystemOK) GetPayload() *models.AccountAccessConsentRejected {
+func (o *RejectAccountAccessConsentSystemOK) GetPayload() *models.ConsentRejected {
 	return o.Payload
 }
 
 func (o *RejectAccountAccessConsentSystemOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.AccountAccessConsentRejected)
+	o.Payload = new(models.ConsentRejected)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

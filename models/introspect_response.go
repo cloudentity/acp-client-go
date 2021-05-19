@@ -35,7 +35,7 @@ type IntrospectResponse struct {
 	Amr []string `json:"amr"`
 
 	// Audience contains a list of the token's intended audiences.
-	Audience []string `json:"aud"`
+	Aud []string `json:"aud"`
 
 	// ClientID is a client identifier for the OAuth 2.0 client that
 	// requested this token.
@@ -43,23 +43,23 @@ type IntrospectResponse struct {
 
 	// Expires at is an integer timestamp, measured in the number of seconds
 	// since January 1 1970 UTC, indicating when this token will expire.
-	ExpiresAt int64 `json:"exp,omitempty"`
+	Exp int64 `json:"exp,omitempty"`
 
 	// Extra is arbitrary data set by the session.
-	Extra map[string]interface{} `json:"ext,omitempty"`
+	Ext map[string]interface{} `json:"ext,omitempty"`
 
 	// Issued at is an integer timestamp, measured in the number of seconds
 	// since January 1 1970 UTC, indicating when this token was
 	// originally issued.
-	IssuedAt int64 `json:"iat,omitempty"`
+	Iat int64 `json:"iat,omitempty"`
 
 	// IssuerURL is a string representing the issuer of this token
-	Issuer string `json:"iss,omitempty"`
+	Iss string `json:"iss,omitempty"`
 
 	// NotBefore is an integer timestamp, measured in the number of seconds
 	// since January 1 1970 UTC, indicating when this token is not to be
 	// used before.
-	NotBefore int64 `json:"nbf,omitempty"`
+	Nbf int64 `json:"nbf,omitempty"`
 
 	// Scope is a JSON string containing a space-separated list of
 	// scopes associated with this token.
@@ -72,7 +72,7 @@ type IntrospectResponse struct {
 	// Subject of the token, as defined in JWT [RFC7519].
 	// Usually a machine-readable identifier of the resource owner who
 	// authorized this token.
-	Subject string `json:"sub,omitempty"`
+	Sub string `json:"sub,omitempty"`
 
 	// TenantID identifies tenant where authorization server that
 	// issued this token belongs to.

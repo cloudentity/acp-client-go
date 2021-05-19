@@ -17,7 +17,7 @@ import (
 // swagger:model PolicyValidationRecovery
 type PolicyValidationRecovery struct {
 
-	// ID
+	// id
 	ID string `json:"id,omitempty"`
 
 	// type

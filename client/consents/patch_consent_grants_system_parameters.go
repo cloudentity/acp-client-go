@@ -76,7 +76,7 @@ type PatchConsentGrantsSystemParams struct {
 
 	   user identifier
 	*/
-	Subject *string
+	XSubject *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -164,15 +164,15 @@ func (o *PatchConsentGrantsSystemParams) SetTid(tid string) {
 	o.Tid = tid
 }
 
-// WithSubject adds the xSubject to the patch consent grants system params
-func (o *PatchConsentGrantsSystemParams) WithSubject(xSubject *string) *PatchConsentGrantsSystemParams {
-	o.SetSubject(xSubject)
+// WithXSubject adds the xSubject to the patch consent grants system params
+func (o *PatchConsentGrantsSystemParams) WithXSubject(xSubject *string) *PatchConsentGrantsSystemParams {
+	o.SetXSubject(xSubject)
 	return o
 }
 
-// SetSubject adds the xSubject to the patch consent grants system params
-func (o *PatchConsentGrantsSystemParams) SetSubject(xSubject *string) {
-	o.Subject = xSubject
+// SetXSubject adds the xSubject to the patch consent grants system params
+func (o *PatchConsentGrantsSystemParams) SetXSubject(xSubject *string) {
+	o.XSubject = xSubject
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -193,10 +193,10 @@ func (o *PatchConsentGrantsSystemParams) WriteToRequest(r runtime.ClientRequest,
 		return err
 	}
 
-	if o.Subject != nil {
+	if o.XSubject != nil {
 
 		// header param x-subject
-		if err := r.SetHeaderParam("x-subject", *o.Subject); err != nil {
+		if err := r.SetHeaderParam("x-subject", *o.XSubject); err != nil {
 			return err
 		}
 	}

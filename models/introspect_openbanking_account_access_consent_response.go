@@ -11,140 +11,88 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // IntrospectOpenbankingAccountAccessConsentResponse introspect openbanking account access consent response
 //
 // swagger:model IntrospectOpenbankingAccountAccessConsentResponse
 type IntrospectOpenbankingAccountAccessConsentResponse struct {
+	IntrospectResponse
 
-	// The unique AccountId(s) that are valid for the account-access-consent
-	AccountIDs []string `json:"account_ids"`
+	AccountAccessConsent
 
-	// Authentication Context Class Reference
-	Acr string `json:"acr,omitempty"`
+	// account i ds
+	AccountIDs []string `json:"AccountIDs"`
+}
 
-	// Active is a boolean indicator of whether or not the presented token
-	// is currently active.  The specifics of a token's "active" state
-	// will vary depending on the implementation of the authorization
-	// server and the information it keeps about its tokens, but a "true"
-	// value return for the "active" property will generally indicate
-	// that a given token has been issued by this authorization server,
-	// has not been revoked by the resource owner, and is within its
-	// given time window of validity (e.g., after its issuance time and
-	// before its expiration time).
-	Active bool `json:"active,omitempty"`
+// UnmarshalJSON unmarshals this object from a JSON structure
+func (m *IntrospectOpenbankingAccountAccessConsentResponse) UnmarshalJSON(raw []byte) error {
+	// AO0
+	var aO0 IntrospectResponse
+	if err := swag.ReadJSON(raw, &aO0); err != nil {
+		return err
+	}
+	m.IntrospectResponse = aO0
 
-	// Authentication Method References
-	Amr []string `json:"amr"`
+	// AO1
+	var aO1 AccountAccessConsent
+	if err := swag.ReadJSON(raw, &aO1); err != nil {
+		return err
+	}
+	m.AccountAccessConsent = aO1
 
-	// Audience contains a list of the token's intended audiences.
-	Audience []string `json:"aud"`
+	// AO2
+	var dataAO2 struct {
+		AccountIDs []string `json:"AccountIDs"`
+	}
+	if err := swag.ReadJSON(raw, &dataAO2); err != nil {
+		return err
+	}
 
-	// ClientID is a client identifier for the OAuth 2.0 client that
-	// requested this token.
-	ClientID string `json:"client_id,omitempty"`
+	m.AccountIDs = dataAO2.AccountIDs
 
-	// Unique identification as assigned to identify the account access consent resource.
-	ConsentID string `json:"consent_id,omitempty"`
+	return nil
+}
 
-	// Date and time at which the resource was created.
-	// Format: date-time
-	CreationDateTime strfmt.DateTime `json:"creation_date_time,omitempty"`
+// MarshalJSON marshals this object to a JSON structure
+func (m IntrospectOpenbankingAccountAccessConsentResponse) MarshalJSON() ([]byte, error) {
+	_parts := make([][]byte, 0, 3)
 
-	// Specified date and time the permissions will expire. If this is not populated,
-	// the permissions will be open ended.
-	// Format: date-time
-	ExpirationDateTime strfmt.DateTime `json:"expiration_date_time,omitempty"`
+	aO0, err := swag.WriteJSON(m.IntrospectResponse)
+	if err != nil {
+		return nil, err
+	}
+	_parts = append(_parts, aO0)
 
-	// Expires at is an integer timestamp, measured in the number of seconds
-	// since January 1 1970 UTC, indicating when this token will expire.
-	ExpiresAt int64 `json:"exp,omitempty"`
+	aO1, err := swag.WriteJSON(m.AccountAccessConsent)
+	if err != nil {
+		return nil, err
+	}
+	_parts = append(_parts, aO1)
+	var dataAO2 struct {
+		AccountIDs []string `json:"AccountIDs"`
+	}
 
-	// Extra is arbitrary data set by the session.
-	Extra map[string]interface{} `json:"ext,omitempty"`
+	dataAO2.AccountIDs = m.AccountIDs
 
-	// Issued at is an integer timestamp, measured in the number of seconds
-	// since January 1 1970 UTC, indicating when this token was
-	// originally issued.
-	IssuedAt int64 `json:"iat,omitempty"`
-
-	// IssuerURL is a string representing the issuer of this token
-	Issuer string `json:"iss,omitempty"`
-
-	// NotBefore is an integer timestamp, measured in the number of seconds
-	// since January 1 1970 UTC, indicating when this token is not to be
-	// used before.
-	NotBefore int64 `json:"nbf,omitempty"`
-
-	// Specifies the Open Banking account access data types. This is a list of the data clusters
-	// being consented by the PSU, and requested for authorisation with the ASPSP.
-	Permissions []string `json:"permissions"`
-
-	// Scope is a JSON string containing a space-separated list of
-	// scopes associated with this token.
-	Scope string `json:"scope,omitempty"`
-
-	// ServerID is OAuth 2.0 authorization server identifier that
-	// issued this token.
-	ServerID string `json:"server_id,omitempty"`
-
-	// Specifies the status of consent resource in code form.
-	Status string `json:"status,omitempty"`
-
-	// Date and time at which the resource status was updated.
-	// Format: date-time
-	StatusUpdateDateTime strfmt.DateTime `json:"status_update_date_time,omitempty"`
-
-	// Subject of the token, as defined in JWT [RFC7519].
-	// Usually a machine-readable identifier of the resource owner who
-	// authorized this token.
-	Subject string `json:"sub,omitempty"`
-
-	// TenantID identifies tenant where authorization server that
-	// issued this token belongs to.
-	TenantID string `json:"tenant_id,omitempty"`
-
-	// TokenType is the introspected token's type, for example `access_token` or `refresh_token`.
-	TokenType string `json:"token_type,omitempty"`
-
-	// Specified start date and time for the transaction query period. If this is not populated,
-	// the start date will be open ended, and data will be returned from the earliest available transaction.
-	// Format: date-time
-	TransactionFromDateTime strfmt.DateTime `json:"transaction_from_date_time,omitempty"`
-
-	// Specified end date and time for the transaction query period. If this is not populated,
-	// the end date will be open ended, and data will be returned to the latest available transaction.
-	// Format: date-time
-	TransactionToDateTime strfmt.DateTime `json:"transaction_to_date_time,omitempty"`
-
-	// Username is a human-readable identifier for the resource owner who
-	// authorized this token.
-	Username string `json:"username,omitempty"`
+	jsonDataAO2, errAO2 := swag.WriteJSON(dataAO2)
+	if errAO2 != nil {
+		return nil, errAO2
+	}
+	_parts = append(_parts, jsonDataAO2)
+	return swag.ConcatJSON(_parts...), nil
 }
 
 // Validate validates this introspect openbanking account access consent response
 func (m *IntrospectOpenbankingAccountAccessConsentResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateCreationDateTime(formats); err != nil {
+	// validation for a type composition with IntrospectResponse
+	if err := m.IntrospectResponse.Validate(formats); err != nil {
 		res = append(res, err)
 	}
-
-	if err := m.validateExpirationDateTime(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateStatusUpdateDateTime(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateTransactionFromDateTime(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateTransactionToDateTime(formats); err != nil {
+	// validation for a type composition with AccountAccessConsent
+	if err := m.AccountAccessConsent.Validate(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -154,68 +102,22 @@ func (m *IntrospectOpenbankingAccountAccessConsentResponse) Validate(formats str
 	return nil
 }
 
-func (m *IntrospectOpenbankingAccountAccessConsentResponse) validateCreationDateTime(formats strfmt.Registry) error {
-	if swag.IsZero(m.CreationDateTime) { // not required
-		return nil
-	}
-
-	if err := validate.FormatOf("creation_date_time", "body", "date-time", m.CreationDateTime.String(), formats); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *IntrospectOpenbankingAccountAccessConsentResponse) validateExpirationDateTime(formats strfmt.Registry) error {
-	if swag.IsZero(m.ExpirationDateTime) { // not required
-		return nil
-	}
-
-	if err := validate.FormatOf("expiration_date_time", "body", "date-time", m.ExpirationDateTime.String(), formats); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *IntrospectOpenbankingAccountAccessConsentResponse) validateStatusUpdateDateTime(formats strfmt.Registry) error {
-	if swag.IsZero(m.StatusUpdateDateTime) { // not required
-		return nil
-	}
-
-	if err := validate.FormatOf("status_update_date_time", "body", "date-time", m.StatusUpdateDateTime.String(), formats); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *IntrospectOpenbankingAccountAccessConsentResponse) validateTransactionFromDateTime(formats strfmt.Registry) error {
-	if swag.IsZero(m.TransactionFromDateTime) { // not required
-		return nil
-	}
-
-	if err := validate.FormatOf("transaction_from_date_time", "body", "date-time", m.TransactionFromDateTime.String(), formats); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *IntrospectOpenbankingAccountAccessConsentResponse) validateTransactionToDateTime(formats strfmt.Registry) error {
-	if swag.IsZero(m.TransactionToDateTime) { // not required
-		return nil
-	}
-
-	if err := validate.FormatOf("transaction_to_date_time", "body", "date-time", m.TransactionToDateTime.String(), formats); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this introspect openbanking account access consent response based on context it is used
+// ContextValidate validate this introspect openbanking account access consent response based on the context it is used
 func (m *IntrospectOpenbankingAccountAccessConsentResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	// validation for a type composition with IntrospectResponse
+	if err := m.IntrospectResponse.ContextValidate(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+	// validation for a type composition with AccountAccessConsent
+	if err := m.AccountAccessConsent.ContextValidate(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 

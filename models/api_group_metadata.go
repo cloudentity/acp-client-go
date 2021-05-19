@@ -18,14 +18,14 @@ import (
 // swagger:model APIGroupMetadata
 type APIGroupMetadata struct {
 
-	// Gateway type
-	Type string `json:"type,omitempty"`
-
 	// aws
 	Aws *AWSMetadata `json:"aws,omitempty"`
 
 	// azure
 	Azure *AzureMetadata `json:"azure,omitempty"`
+
+	// Gateway type
+	Type string `json:"type,omitempty"`
 }
 
 // Validate validates this API group metadata

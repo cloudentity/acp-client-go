@@ -17,16 +17,16 @@ import (
 // swagger:model PolicyDependency
 type PolicyDependency struct {
 
-	// embedded policy ID
+	// embedded policy id
 	EmbeddedPolicyID string `json:"embedded_policy_id,omitempty"`
 
-	// policy ID
+	// policy id
 	PolicyID string `json:"policy_id,omitempty"`
 
-	// server ID
+	// server id
 	ServerID string `json:"server_id,omitempty"`
 
-	// tenant ID
+	// tenant id
 	TenantID string `json:"tenant_id,omitempty"`
 }
 

@@ -17,7 +17,7 @@ import (
 // swagger:model ValidateResponse_Recovery
 type ValidateResponseRecovery struct {
 
-	// Id
+	// id
 	ID string `json:"id,omitempty"`
 
 	// type

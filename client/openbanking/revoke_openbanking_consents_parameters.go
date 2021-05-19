@@ -14,6 +14,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewRevokeOpenbankingConsentsParams creates a new RevokeOpenbankingConsentsParams object,
@@ -73,11 +74,11 @@ type RevokeOpenbankingConsentsParams struct {
 	*/
 	ClientID *string
 
-	/* ConsentType.
+	/* ConsentTypes.
 
-	   Optional consent type
+	   Required consent types
 	*/
-	ConsentType *string
+	ConsentTypes []string
 
 	/* Tid.
 
@@ -176,15 +177,15 @@ func (o *RevokeOpenbankingConsentsParams) SetClientID(clientID *string) {
 	o.ClientID = clientID
 }
 
-// WithConsentType adds the consentType to the revoke openbanking consents params
-func (o *RevokeOpenbankingConsentsParams) WithConsentType(consentType *string) *RevokeOpenbankingConsentsParams {
-	o.SetConsentType(consentType)
+// WithConsentTypes adds the consentTypes to the revoke openbanking consents params
+func (o *RevokeOpenbankingConsentsParams) WithConsentTypes(consentTypes []string) *RevokeOpenbankingConsentsParams {
+	o.SetConsentTypes(consentTypes)
 	return o
 }
 
-// SetConsentType adds the consentType to the revoke openbanking consents params
-func (o *RevokeOpenbankingConsentsParams) SetConsentType(consentType *string) {
-	o.ConsentType = consentType
+// SetConsentTypes adds the consentTypes to the revoke openbanking consents params
+func (o *RevokeOpenbankingConsentsParams) SetConsentTypes(consentTypes []string) {
+	o.ConsentTypes = consentTypes
 }
 
 // WithTid adds the tid to the revoke openbanking consents params
@@ -228,20 +229,14 @@ func (o *RevokeOpenbankingConsentsParams) WriteToRequest(r runtime.ClientRequest
 		}
 	}
 
-	if o.ConsentType != nil {
+	if o.ConsentTypes != nil {
 
-		// query param consent_type
-		var qrConsentType string
+		// binding items for consent_types
+		joinedConsentTypes := o.bindParamConsentTypes(reg)
 
-		if o.ConsentType != nil {
-			qrConsentType = *o.ConsentType
-		}
-		qConsentType := qrConsentType
-		if qConsentType != "" {
-
-			if err := r.SetQueryParam("consent_type", qConsentType); err != nil {
-				return err
-			}
+		// query array param consent_types
+		if err := r.SetQueryParam("consent_types", joinedConsentTypes...); err != nil {
+			return err
 		}
 	}
 
@@ -254,4 +249,21 @@ func (o *RevokeOpenbankingConsentsParams) WriteToRequest(r runtime.ClientRequest
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
+}
+
+// bindParamRevokeOpenbankingConsents binds the parameter consent_types
+func (o *RevokeOpenbankingConsentsParams) bindParamConsentTypes(formats strfmt.Registry) []string {
+	consentTypesIR := o.ConsentTypes
+
+	var consentTypesIC []string
+	for _, consentTypesIIR := range consentTypesIR { // explode []string
+
+		consentTypesIIV := consentTypesIIR // string as string
+		consentTypesIC = append(consentTypesIC, consentTypesIIV)
+	}
+
+	// items.CollectionFormat: ""
+	consentTypesIS := swag.JoinByFormat(consentTypesIC, "")
+
+	return consentTypesIS
 }

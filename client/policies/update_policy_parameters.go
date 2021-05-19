@@ -65,7 +65,7 @@ type UpdatePolicyParams struct {
 	PolicyBody *models.Policy
 
 	// Pid.
-	PolicyID string
+	Pid string
 
 	/* Tid.
 
@@ -150,15 +150,15 @@ func (o *UpdatePolicyParams) SetPolicyBody(policyBody *models.Policy) {
 	o.PolicyBody = policyBody
 }
 
-// WithPolicyID adds the pid to the update policy params
-func (o *UpdatePolicyParams) WithPolicyID(pid string) *UpdatePolicyParams {
-	o.SetPolicyID(pid)
+// WithPid adds the pid to the update policy params
+func (o *UpdatePolicyParams) WithPid(pid string) *UpdatePolicyParams {
+	o.SetPid(pid)
 	return o
 }
 
-// SetPolicyID adds the pid to the update policy params
-func (o *UpdatePolicyParams) SetPolicyID(pid string) {
-	o.PolicyID = pid
+// SetPid adds the pid to the update policy params
+func (o *UpdatePolicyParams) SetPid(pid string) {
+	o.Pid = pid
 }
 
 // WithTid adds the tid to the update policy params
@@ -186,7 +186,7 @@ func (o *UpdatePolicyParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 	}
 
 	// path param pid
-	if err := r.SetPathParam("pid", o.PolicyID); err != nil {
+	if err := r.SetPathParam("pid", o.Pid); err != nil {
 		return err
 	}
 

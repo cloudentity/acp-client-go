@@ -17,6 +17,9 @@ import (
 // swagger:model CreateGatewayRequest
 type CreateGatewayRequest struct {
 
+	// if true a services is created automatically for each new discovered api group
+	CreateAndBindServicesAutomatically bool `json:"create_and_bind_services_automatically,omitempty"`
+
 	// description
 	Description string `json:"description,omitempty"`
 

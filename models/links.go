@@ -8,33 +8,131 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
-// Links Links contain absolute URIs to related resources,
+// Links Links Links relevant to the payload
 //
 // swagger:model Links
 type Links struct {
 
 	// first
-	First string `json:"First,omitempty"`
+	// Format: uri
+	// Format: uri
+	First strfmt.URI `json:"First,omitempty"`
 
 	// last
-	Last string `json:"Last,omitempty"`
+	// Format: uri
+	// Format: uri
+	Last strfmt.URI `json:"Last,omitempty"`
 
 	// next
-	Next string `json:"Next,omitempty"`
+	// Format: uri
+	// Format: uri
+	Next strfmt.URI `json:"Next,omitempty"`
 
 	// prev
-	Prev string `json:"Prev,omitempty"`
+	// Format: uri
+	// Format: uri
+	Prev strfmt.URI `json:"Prev,omitempty"`
 
 	// self
-	Self string `json:"Self,omitempty"`
+	// Required: true
+	// Format: uri
+	Self *strfmt.URI `json:"Self"`
 }
 
 // Validate validates this links
 func (m *Links) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateFirst(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLast(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateNext(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePrev(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSelf(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *Links) validateFirst(formats strfmt.Registry) error {
+	if swag.IsZero(m.First) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("First", "body", "uri", m.First.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Links) validateLast(formats strfmt.Registry) error {
+	if swag.IsZero(m.Last) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("Last", "body", "uri", m.Last.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Links) validateNext(formats strfmt.Registry) error {
+	if swag.IsZero(m.Next) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("Next", "body", "uri", m.Next.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Links) validatePrev(formats strfmt.Registry) error {
+	if swag.IsZero(m.Prev) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("Prev", "body", "uri", m.Prev.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Links) validateSelf(formats strfmt.Registry) error {
+
+	if err := validate.Required("Self", "body", m.Self); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("Self", "body", "uri", m.Self.String(), formats); err != nil {
+		return err
+	}
+
 	return nil
 }
 

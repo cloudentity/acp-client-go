@@ -28,13 +28,9 @@ type SAMLSettings struct {
 	// identifier source, one of: subject | attribute
 	IdentifierSource string `json:"identifier_source,omitempty"`
 
-	// endpoint where IDP will post SamlResponse
-	// Example: https://localhost:8443/default/default/login
-	RedirectURL string `json:"redirect_url,omitempty"`
-
 	// endpoint where SamlRequest will be sent
 	// Example: https://test-dev-ed.my.salesforce.com/idp/endpoint/HttpPost
-	SSOURL string `json:"sso_url,omitempty"`
+	SsoURL string `json:"sso_url,omitempty"`
 
 	// name id format of saml subject
 	// applies only when identifier source is set to subject

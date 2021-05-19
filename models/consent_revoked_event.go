@@ -23,6 +23,9 @@ type ConsentRevokedEvent struct {
 	// Example: 1257894000000000000
 	CollectionTimestamp int64 `json:"collection_timestamp,omitempty"`
 
+	// consent
+	Consent *Consent `json:"consent,omitempty"`
+
 	// consent grant id
 	// Example: 27fa83a8-d0a6-48da-8529-42105bfa0ede
 	ConsentGrantActID string `json:"consent_grant_act_id,omitempty"`
@@ -30,6 +33,9 @@ type ConsentRevokedEvent struct {
 	// consent id
 	// Example: 1
 	ConsentID string `json:"consent_id,omitempty"`
+
+	// context
+	Context *ConsentGrantContext `json:"context,omitempty"`
 
 	// given at timestamp
 	// Format: date-time
@@ -58,21 +64,11 @@ type ConsentRevokedEvent struct {
 	// version
 	// Example: 1
 	Version int64 `json:"version,omitempty"`
-
-	// consent
-	Consent *Consent `json:"consent,omitempty"`
-
-	// context
-	Context *ConsentGrantContext `json:"context,omitempty"`
 }
 
 // Validate validates this consent revoked event
 func (m *ConsentRevokedEvent) Validate(formats strfmt.Registry) error {
 	var res []error
-
-	if err := m.validateGivenAt(formats); err != nil {
-		res = append(res, err)
-	}
 
 	if err := m.validateConsent(formats); err != nil {
 		res = append(res, err)
@@ -82,21 +78,13 @@ func (m *ConsentRevokedEvent) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateGivenAt(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *ConsentRevokedEvent) validateGivenAt(formats strfmt.Registry) error {
-	if swag.IsZero(m.GivenAt) { // not required
-		return nil
-	}
-
-	if err := validate.FormatOf("given_at", "body", "date-time", m.GivenAt.String(), formats); err != nil {
-		return err
-	}
-
 	return nil
 }
 
@@ -129,6 +117,18 @@ func (m *ConsentRevokedEvent) validateContext(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *ConsentRevokedEvent) validateGivenAt(formats strfmt.Registry) error {
+	if swag.IsZero(m.GivenAt) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("given_at", "body", "date-time", m.GivenAt.String(), formats); err != nil {
+		return err
 	}
 
 	return nil

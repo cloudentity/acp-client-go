@@ -61,11 +61,11 @@ func NewAcceptAccountAccessConsentSystemParamsWithHTTPClient(client *http.Client
 */
 type AcceptAccountAccessConsentSystemParams struct {
 
-	// AcceptAccountAccessConsent.
-	AcceptAccountAccessConsent *models.AcceptAccountAccessConsentRequest
+	// AcceptConsent.
+	AcceptConsent *models.AcceptConsentRequest
 
 	// Login.
-	LoginID string
+	Login string
 
 	/* Tid.
 
@@ -139,26 +139,26 @@ func (o *AcceptAccountAccessConsentSystemParams) SetHTTPClient(client *http.Clie
 	o.HTTPClient = client
 }
 
-// WithAcceptAccountAccessConsent adds the acceptAccountAccessConsent to the accept account access consent system params
-func (o *AcceptAccountAccessConsentSystemParams) WithAcceptAccountAccessConsent(acceptAccountAccessConsent *models.AcceptAccountAccessConsentRequest) *AcceptAccountAccessConsentSystemParams {
-	o.SetAcceptAccountAccessConsent(acceptAccountAccessConsent)
+// WithAcceptConsent adds the acceptConsent to the accept account access consent system params
+func (o *AcceptAccountAccessConsentSystemParams) WithAcceptConsent(acceptConsent *models.AcceptConsentRequest) *AcceptAccountAccessConsentSystemParams {
+	o.SetAcceptConsent(acceptConsent)
 	return o
 }
 
-// SetAcceptAccountAccessConsent adds the acceptAccountAccessConsent to the accept account access consent system params
-func (o *AcceptAccountAccessConsentSystemParams) SetAcceptAccountAccessConsent(acceptAccountAccessConsent *models.AcceptAccountAccessConsentRequest) {
-	o.AcceptAccountAccessConsent = acceptAccountAccessConsent
+// SetAcceptConsent adds the acceptConsent to the accept account access consent system params
+func (o *AcceptAccountAccessConsentSystemParams) SetAcceptConsent(acceptConsent *models.AcceptConsentRequest) {
+	o.AcceptConsent = acceptConsent
 }
 
-// WithLoginID adds the login to the accept account access consent system params
-func (o *AcceptAccountAccessConsentSystemParams) WithLoginID(login string) *AcceptAccountAccessConsentSystemParams {
-	o.SetLoginID(login)
+// WithLogin adds the login to the accept account access consent system params
+func (o *AcceptAccountAccessConsentSystemParams) WithLogin(login string) *AcceptAccountAccessConsentSystemParams {
+	o.SetLogin(login)
 	return o
 }
 
-// SetLoginID adds the login to the accept account access consent system params
-func (o *AcceptAccountAccessConsentSystemParams) SetLoginID(login string) {
-	o.LoginID = login
+// SetLogin adds the login to the accept account access consent system params
+func (o *AcceptAccountAccessConsentSystemParams) SetLogin(login string) {
+	o.Login = login
 }
 
 // WithTid adds the tid to the accept account access consent system params
@@ -179,14 +179,14 @@ func (o *AcceptAccountAccessConsentSystemParams) WriteToRequest(r runtime.Client
 		return err
 	}
 	var res []error
-	if o.AcceptAccountAccessConsent != nil {
-		if err := r.SetBodyParam(o.AcceptAccountAccessConsent); err != nil {
+	if o.AcceptConsent != nil {
+		if err := r.SetBodyParam(o.AcceptConsent); err != nil {
 			return err
 		}
 	}
 
 	// path param login
-	if err := r.SetPathParam("login", o.LoginID); err != nil {
+	if err := r.SetPathParam("login", o.Login); err != nil {
 		return err
 	}
 

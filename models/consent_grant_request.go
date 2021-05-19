@@ -25,6 +25,9 @@ type ConsentGrantRequest struct {
 	// consent id
 	ConsentID string `json:"consent_id,omitempty"`
 
+	// context
+	Context *ConsentGrantContext `json:"context,omitempty"`
+
 	// grant type
 	GrantType string `json:"grant_type,omitempty"`
 
@@ -35,9 +38,6 @@ type ConsentGrantRequest struct {
 	// optional string with action_id - can be set if the consent grant/withdraw request was caused when an app asked the user for consent required for a specific action
 	// Example: 1
 	TriggeredByAction string `json:"triggered_by_action,omitempty"`
-
-	// context
-	Context *ConsentGrantContext `json:"context,omitempty"`
 }
 
 // Validate validates this consent grant request

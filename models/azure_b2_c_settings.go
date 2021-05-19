@@ -46,10 +46,6 @@ type AzureB2CSettings struct {
 	// Example: b2c_1_sign_in
 	Policy string `json:"policy,omitempty"`
 
-	// OAuth redirect URL
-	// Example: https://example.com/callback
-	RedirectURL string `json:"redirect_url,omitempty"`
-
 	// OAuth scopes which client will be requesting
 	// Example: ["email","profile","openid"]
 	Scopes []string `json:"scopes"`

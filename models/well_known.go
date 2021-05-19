@@ -21,20 +21,20 @@ import (
 // It includes links to several endpoints (e.g. /oauth2/token) and exposes information on supported signature algorithms
 // among others.
 //
-// swagger:model WellKnown
+// swagger:model wellKnown
 type WellKnown struct {
 
 	// URL of the OP's OAuth 2.0 Authorization Endpoint.
 	// Example: https://example.com/oauth2/auth
 	// Required: true
-	AuthURL *string `json:"authorization_endpoint"`
+	AuthorizationEndpoint *string `json:"authorization_endpoint"`
 
 	// Boolean value specifying whether the OP can pass a sid (session ID) Claim in the Logout Token to identify the RP
 	// session with the OP. If supported, the sid Claim is also included in ID Tokens issued by the OP
-	BackChannelLogoutSessionSupported bool `json:"backchannel_logout_session_supported,omitempty"`
+	BackchannelLogoutSessionSupported bool `json:"backchannel_logout_session_supported,omitempty"`
 
 	// Boolean value specifying whether the OP supports back-channel logout, with true indicating support.
-	BackChannelLogoutSupported bool `json:"backchannel_logout_supported,omitempty"`
+	BackchannelLogoutSupported bool `json:"backchannel_logout_supported,omitempty"`
 
 	// Boolean value specifying whether the OP supports use of the claims parameter, with true indicating support.
 	ClaimsParameterSupported bool `json:"claims_parameter_supported,omitempty"`
@@ -49,10 +49,10 @@ type WellKnown struct {
 	// Boolean value specifying whether the OP can pass iss (issuer) and sid (session ID) query parameters to identify
 	// the RP session with the OP when the frontchannel_logout_uri is used. If supported, the sid Claim is also
 	// included in ID Tokens issued by the OP.
-	FrontChannelLogoutSessionSupported bool `json:"frontchannel_logout_session_supported,omitempty"`
+	FrontchannelLogoutSessionSupported bool `json:"frontchannel_logout_session_supported,omitempty"`
 
 	// Boolean value specifying whether the OP supports HTTP-based logout, with true indicating support.
-	FrontChannelLogoutSupported bool `json:"frontchannel_logout_supported,omitempty"`
+	FrontchannelLogoutSupported bool `json:"frontchannel_logout_supported,omitempty"`
 
 	// JSON array containing a list of the OAuth 2.0 Grant Type values that this OP supports.
 	GrantTypesSupported []string `json:"grant_types_supported"`
@@ -81,7 +81,7 @@ type WellKnown struct {
 	// keys provided. When used, the bare key values MUST still be present and MUST match those in the certificate.
 	// Example: https://example.com/.well-known/jwks.json
 	// Required: true
-	JWKsURI *string `json:"jwks_uri"`
+	JwksURI *string `json:"jwks_uri"`
 
 	// URL of the authorization server's OAuth 2.0 dynamic client registration endpoint.
 	RegistrationEndpoint string `json:"registration_endpoint,omitempty"`
@@ -107,7 +107,7 @@ type WellKnown struct {
 	// JSON array containing a list of the OAuth 2.0 response_type values that this OP supports. Dynamic OpenID
 	// Providers MUST support the code, id_token, and the token id_token Response Type values.
 	// Required: true
-	ResponseTypes []string `json:"response_types_supported"`
+	ResponseTypesSupported []string `json:"response_types_supported"`
 
 	// URL of the authorization server's OAuth 2.0 revocation endpoint.
 	RevocationEndpoint string `json:"revocation_endpoint,omitempty"`
@@ -120,10 +120,15 @@ type WellKnown struct {
 	// pairwise and public.
 	// Example: public, pairwise
 	// Required: true
-	SubjectTypes []string `json:"subject_types_supported"`
+	SubjectTypesSupported []string `json:"subject_types_supported"`
 
 	// Boolean value indicating server support for mutual TLS client certificate bound access tokens
-	TLSClientCertificateBoundAccessToken bool `json:"tls_client_certificate_bound_access_tokens,omitempty"`
+	TLSClientCertificateBoundAccessTokens bool `json:"tls_client_certificate_bound_access_tokens,omitempty"`
+
+	// URL of the OP's OAuth 2.0 Token Endpoint
+	// Example: https://example.com/oauth2/token
+	// Required: true
+	TokenEndpoint *string `json:"token_endpoint"`
 
 	// JSON array containing a list of Client Authentication methods supported by this Token Endpoint. The options are
 	// client_secret_post, client_secret_basic, client_secret_jwt, and private_key_jwt, as described in Section 9 of OpenID Connect Core 1.0
@@ -134,11 +139,6 @@ type WellKnown struct {
 	// This metadata entry MUST be present if either of these authentication methods are specified in the "token_endpoint_auth_methods_supported" entry.
 	// No default algorithms are implied if this entry is omitted.  Servers SHOULD support "RS256".  The value "none" MUST NOT be used.
 	TokenEndpointAuthSigningAlgValuesSupported []string `json:"token_endpoint_auth_signing_alg_values_supported"`
-
-	// URL of the OP's OAuth 2.0 Token Endpoint
-	// Example: https://example.com/oauth2/token
-	// Required: true
-	TokenURL *string `json:"token_endpoint"`
 
 	// URL of the OP's UserInfo Endpoint.
 	UserinfoEndpoint string `json:"userinfo_endpoint,omitempty"`
@@ -151,7 +151,7 @@ type WellKnown struct {
 func (m *WellKnown) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateAuthURL(formats); err != nil {
+	if err := m.validateAuthorizationEndpoint(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -163,19 +163,19 @@ func (m *WellKnown) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateJWKsURI(formats); err != nil {
+	if err := m.validateJwksURI(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateResponseTypes(formats); err != nil {
+	if err := m.validateResponseTypesSupported(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateSubjectTypes(formats); err != nil {
+	if err := m.validateSubjectTypesSupported(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateTokenURL(formats); err != nil {
+	if err := m.validateTokenEndpoint(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -185,9 +185,9 @@ func (m *WellKnown) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *WellKnown) validateAuthURL(formats strfmt.Registry) error {
+func (m *WellKnown) validateAuthorizationEndpoint(formats strfmt.Registry) error {
 
-	if err := validate.Required("authorization_endpoint", "body", m.AuthURL); err != nil {
+	if err := validate.Required("authorization_endpoint", "body", m.AuthorizationEndpoint); err != nil {
 		return err
 	}
 
@@ -212,36 +212,36 @@ func (m *WellKnown) validateIssuer(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *WellKnown) validateJWKsURI(formats strfmt.Registry) error {
+func (m *WellKnown) validateJwksURI(formats strfmt.Registry) error {
 
-	if err := validate.Required("jwks_uri", "body", m.JWKsURI); err != nil {
+	if err := validate.Required("jwks_uri", "body", m.JwksURI); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *WellKnown) validateResponseTypes(formats strfmt.Registry) error {
+func (m *WellKnown) validateResponseTypesSupported(formats strfmt.Registry) error {
 
-	if err := validate.Required("response_types_supported", "body", m.ResponseTypes); err != nil {
+	if err := validate.Required("response_types_supported", "body", m.ResponseTypesSupported); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *WellKnown) validateSubjectTypes(formats strfmt.Registry) error {
+func (m *WellKnown) validateSubjectTypesSupported(formats strfmt.Registry) error {
 
-	if err := validate.Required("subject_types_supported", "body", m.SubjectTypes); err != nil {
+	if err := validate.Required("subject_types_supported", "body", m.SubjectTypesSupported); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *WellKnown) validateTokenURL(formats strfmt.Registry) error {
+func (m *WellKnown) validateTokenEndpoint(formats strfmt.Registry) error {
 
-	if err := validate.Required("token_endpoint", "body", m.TokenURL); err != nil {
+	if err := validate.Required("token_endpoint", "body", m.TokenEndpoint); err != nil {
 		return err
 	}
 

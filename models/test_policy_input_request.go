@@ -23,14 +23,14 @@ type TestPolicyInputRequest struct {
 	// method
 	Method string `json:"method,omitempty"`
 
+	// path
+	Path string `json:"path,omitempty"`
+
 	// path params
 	PathParams map[string]string `json:"path_params,omitempty"`
 
 	// query params
 	QueryParams map[string][]string `json:"query_params,omitempty"`
-
-	// URL
-	URL string `json:"url,omitempty"`
 }
 
 // Validate validates this test policy input request

@@ -65,7 +65,7 @@ type UpdateScopeParams struct {
 	Scope *models.Scope
 
 	// Scp.
-	ScopeID string
+	Scp string
 
 	/* Tid.
 
@@ -150,15 +150,15 @@ func (o *UpdateScopeParams) SetScope(scope *models.Scope) {
 	o.Scope = scope
 }
 
-// WithScopeID adds the scp to the update scope params
-func (o *UpdateScopeParams) WithScopeID(scp string) *UpdateScopeParams {
-	o.SetScopeID(scp)
+// WithScp adds the scp to the update scope params
+func (o *UpdateScopeParams) WithScp(scp string) *UpdateScopeParams {
+	o.SetScp(scp)
 	return o
 }
 
-// SetScopeID adds the scp to the update scope params
-func (o *UpdateScopeParams) SetScopeID(scp string) {
-	o.ScopeID = scp
+// SetScp adds the scp to the update scope params
+func (o *UpdateScopeParams) SetScp(scp string) {
+	o.Scp = scp
 }
 
 // WithTid adds the tid to the update scope params
@@ -186,7 +186,7 @@ func (o *UpdateScopeParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 	}
 
 	// path param scp
-	if err := r.SetPathParam("scp", o.ScopeID); err != nil {
+	if err := r.SetPathParam("scp", o.Scp); err != nil {
 		return err
 	}
 

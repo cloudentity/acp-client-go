@@ -28,9 +28,6 @@ type OktaSettings struct {
 	// flag if additional user data should be fetched from userinfo endpoint
 	GetUserInfo bool `json:"get_user_info,omitempty"`
 
-	// redirect url
-	RedirectURL string `json:"redirect_url,omitempty"`
-
 	// list of scopes that client will request
 	Scopes []string `json:"scopes"`
 

@@ -18,17 +18,17 @@ import (
 // swagger:model Styling
 type Styling struct {
 
-	// font URL
+	// colors
+	Colors *StylingColors `json:"colors,omitempty"`
+
+	// font url
 	FontURL string `json:"font_url,omitempty"`
 
 	// logo size
 	LogoSize string `json:"logo_size,omitempty"`
 
-	// logo URL
+	// logo url
 	LogoURL string `json:"logo_url,omitempty"`
-
-	// colors
-	Colors *Colors `json:"colors,omitempty"`
 }
 
 // Validate validates this styling
@@ -108,10 +108,10 @@ func (m *Styling) UnmarshalBinary(b []byte) error {
 	return nil
 }
 
-// Colors colors
+// StylingColors styling colors
 //
-// swagger:model Colors
-type Colors struct {
+// swagger:model StylingColors
+type StylingColors struct {
 
 	// background
 	Background string `json:"background,omitempty"`
@@ -123,18 +123,18 @@ type Colors struct {
 	Primary string `json:"primary,omitempty"`
 }
 
-// Validate validates this colors
-func (m *Colors) Validate(formats strfmt.Registry) error {
+// Validate validates this styling colors
+func (m *StylingColors) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validates this colors based on context it is used
-func (m *Colors) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validates this styling colors based on context it is used
+func (m *StylingColors) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 
 // MarshalBinary interface implementation
-func (m *Colors) MarshalBinary() ([]byte, error) {
+func (m *StylingColors) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -142,8 +142,8 @@ func (m *Colors) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *Colors) UnmarshalBinary(b []byte) error {
-	var res Colors
+func (m *StylingColors) UnmarshalBinary(b []byte) error {
+	var res StylingColors
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

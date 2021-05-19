@@ -26,9 +26,6 @@ type TestPolicyDefinition struct {
 	// Example: cloudentity
 	Language string `json:"language,omitempty"`
 
-	// query for rego policy
-	Query string `json:"query,omitempty"`
-
 	// list of validators for cloudentity policy
 	Validators []*ValidatorConfig `json:"validators"`
 }

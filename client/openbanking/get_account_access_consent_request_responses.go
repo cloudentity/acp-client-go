@@ -23,8 +23,8 @@ type GetAccountAccessConsentRequestReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetAccountAccessConsentRequestReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-	case 201:
-		result := NewGetAccountAccessConsentRequestCreated()
+	case 200:
+		result := NewGetAccountAccessConsentRequestOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -82,27 +82,27 @@ func (o *GetAccountAccessConsentRequestReader) ReadResponse(response runtime.Cli
 	}
 }
 
-// NewGetAccountAccessConsentRequestCreated creates a GetAccountAccessConsentRequestCreated with default headers values
-func NewGetAccountAccessConsentRequestCreated() *GetAccountAccessConsentRequestCreated {
-	return &GetAccountAccessConsentRequestCreated{}
+// NewGetAccountAccessConsentRequestOK creates a GetAccountAccessConsentRequestOK with default headers values
+func NewGetAccountAccessConsentRequestOK() *GetAccountAccessConsentRequestOK {
+	return &GetAccountAccessConsentRequestOK{}
 }
 
-/* GetAccountAccessConsentRequestCreated describes a response with status code 201, with default header values.
+/* GetAccountAccessConsentRequestOK describes a response with status code 200, with default header values.
 
 AccountAccessConsentResponse
 */
-type GetAccountAccessConsentRequestCreated struct {
+type GetAccountAccessConsentRequestOK struct {
 	Payload *models.AccountAccessConsentResponse
 }
 
-func (o *GetAccountAccessConsentRequestCreated) Error() string {
-	return fmt.Sprintf("[GET /{tid}/{aid}/open-banking/v3.1/aisp/account-access-consents/{consentID}][%d] getAccountAccessConsentRequestCreated  %+v", 201, o.Payload)
+func (o *GetAccountAccessConsentRequestOK) Error() string {
+	return fmt.Sprintf("[GET /{tid}/{aid}/open-banking/v3.1/aisp/account-access-consents/{consentID}][%d] getAccountAccessConsentRequestOK  %+v", 200, o.Payload)
 }
-func (o *GetAccountAccessConsentRequestCreated) GetPayload() *models.AccountAccessConsentResponse {
+func (o *GetAccountAccessConsentRequestOK) GetPayload() *models.AccountAccessConsentResponse {
 	return o.Payload
 }
 
-func (o *GetAccountAccessConsentRequestCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+func (o *GetAccountAccessConsentRequestOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.AccountAccessConsentResponse)
 

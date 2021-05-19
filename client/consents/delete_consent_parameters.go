@@ -60,7 +60,7 @@ func NewDeleteConsentParamsWithHTTPClient(client *http.Client) *DeleteConsentPar
 type DeleteConsentParams struct {
 
 	// Consent.
-	ConsentID string
+	Consent string
 
 	/* Tid.
 
@@ -134,15 +134,15 @@ func (o *DeleteConsentParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithConsentID adds the consent to the delete consent params
-func (o *DeleteConsentParams) WithConsentID(consent string) *DeleteConsentParams {
-	o.SetConsentID(consent)
+// WithConsent adds the consent to the delete consent params
+func (o *DeleteConsentParams) WithConsent(consent string) *DeleteConsentParams {
+	o.SetConsent(consent)
 	return o
 }
 
-// SetConsentID adds the consent to the delete consent params
-func (o *DeleteConsentParams) SetConsentID(consent string) {
-	o.ConsentID = consent
+// SetConsent adds the consent to the delete consent params
+func (o *DeleteConsentParams) SetConsent(consent string) {
+	o.Consent = consent
 }
 
 // WithTid adds the tid to the delete consent params
@@ -165,7 +165,7 @@ func (o *DeleteConsentParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	var res []error
 
 	// path param consent
-	if err := r.SetPathParam("consent", o.ConsentID); err != nil {
+	if err := r.SetPathParam("consent", o.Consent); err != nil {
 		return err
 	}
 

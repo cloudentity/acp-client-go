@@ -76,6 +76,9 @@ type TokenParams struct {
 	// Code.
 	Code *string
 
+	// CodeVerifier.
+	CodeVerifier *string
+
 	// GrantType.
 	GrantType string
 
@@ -213,6 +216,17 @@ func (o *TokenParams) SetCode(code *string) {
 	o.Code = code
 }
 
+// WithCodeVerifier adds the codeVerifier to the token params
+func (o *TokenParams) WithCodeVerifier(codeVerifier *string) *TokenParams {
+	o.SetCodeVerifier(codeVerifier)
+	return o
+}
+
+// SetCodeVerifier adds the codeVerifier to the token params
+func (o *TokenParams) SetCodeVerifier(codeVerifier *string) {
+	o.CodeVerifier = codeVerifier
+}
+
 // WithGrantType adds the grantType to the token params
 func (o *TokenParams) WithGrantType(grantType string) *TokenParams {
 	o.SetGrantType(grantType)
@@ -343,6 +357,21 @@ func (o *TokenParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registr
 		fCode := frCode
 		if fCode != "" {
 			if err := r.SetFormParam("code", fCode); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.CodeVerifier != nil {
+
+		// form param code_verifier
+		var frCodeVerifier string
+		if o.CodeVerifier != nil {
+			frCodeVerifier = *o.CodeVerifier
+		}
+		fCodeVerifier := frCodeVerifier
+		if fCodeVerifier != "" {
+			if err := r.SetFormParam("code_verifier", fCodeVerifier); err != nil {
 				return err
 			}
 		}

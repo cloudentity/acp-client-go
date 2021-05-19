@@ -61,11 +61,11 @@ func NewAcceptDomesticPaymentConsentSystemParamsWithHTTPClient(client *http.Clie
 */
 type AcceptDomesticPaymentConsentSystemParams struct {
 
-	// AcceptDomesticPaymentConsent.
-	AcceptDomesticPaymentConsent *models.AcceptDomesticPaymentConsentRequest
+	// AcceptConsent.
+	AcceptConsent *models.AcceptConsentRequest
 
 	// Login.
-	LoginID string
+	Login string
 
 	/* Tid.
 
@@ -139,26 +139,26 @@ func (o *AcceptDomesticPaymentConsentSystemParams) SetHTTPClient(client *http.Cl
 	o.HTTPClient = client
 }
 
-// WithAcceptDomesticPaymentConsent adds the acceptDomesticPaymentConsent to the accept domestic payment consent system params
-func (o *AcceptDomesticPaymentConsentSystemParams) WithAcceptDomesticPaymentConsent(acceptDomesticPaymentConsent *models.AcceptDomesticPaymentConsentRequest) *AcceptDomesticPaymentConsentSystemParams {
-	o.SetAcceptDomesticPaymentConsent(acceptDomesticPaymentConsent)
+// WithAcceptConsent adds the acceptConsent to the accept domestic payment consent system params
+func (o *AcceptDomesticPaymentConsentSystemParams) WithAcceptConsent(acceptConsent *models.AcceptConsentRequest) *AcceptDomesticPaymentConsentSystemParams {
+	o.SetAcceptConsent(acceptConsent)
 	return o
 }
 
-// SetAcceptDomesticPaymentConsent adds the acceptDomesticPaymentConsent to the accept domestic payment consent system params
-func (o *AcceptDomesticPaymentConsentSystemParams) SetAcceptDomesticPaymentConsent(acceptDomesticPaymentConsent *models.AcceptDomesticPaymentConsentRequest) {
-	o.AcceptDomesticPaymentConsent = acceptDomesticPaymentConsent
+// SetAcceptConsent adds the acceptConsent to the accept domestic payment consent system params
+func (o *AcceptDomesticPaymentConsentSystemParams) SetAcceptConsent(acceptConsent *models.AcceptConsentRequest) {
+	o.AcceptConsent = acceptConsent
 }
 
-// WithLoginID adds the login to the accept domestic payment consent system params
-func (o *AcceptDomesticPaymentConsentSystemParams) WithLoginID(login string) *AcceptDomesticPaymentConsentSystemParams {
-	o.SetLoginID(login)
+// WithLogin adds the login to the accept domestic payment consent system params
+func (o *AcceptDomesticPaymentConsentSystemParams) WithLogin(login string) *AcceptDomesticPaymentConsentSystemParams {
+	o.SetLogin(login)
 	return o
 }
 
-// SetLoginID adds the login to the accept domestic payment consent system params
-func (o *AcceptDomesticPaymentConsentSystemParams) SetLoginID(login string) {
-	o.LoginID = login
+// SetLogin adds the login to the accept domestic payment consent system params
+func (o *AcceptDomesticPaymentConsentSystemParams) SetLogin(login string) {
+	o.Login = login
 }
 
 // WithTid adds the tid to the accept domestic payment consent system params
@@ -179,14 +179,14 @@ func (o *AcceptDomesticPaymentConsentSystemParams) WriteToRequest(r runtime.Clie
 		return err
 	}
 	var res []error
-	if o.AcceptDomesticPaymentConsent != nil {
-		if err := r.SetBodyParam(o.AcceptDomesticPaymentConsent); err != nil {
+	if o.AcceptConsent != nil {
+		if err := r.SetBodyParam(o.AcceptConsent); err != nil {
 			return err
 		}
 	}
 
 	// path param login
-	if err := r.SetPathParam("login", o.LoginID); err != nil {
+	if err := r.SetPathParam("login", o.Login); err != nil {
 		return err
 	}
 

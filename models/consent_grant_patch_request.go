@@ -26,6 +26,9 @@ type ConsentGrantPatchRequest struct {
 	// an array of consent objects, consisting of consentId and granted - boolean flag marking if the user granted or revoked the consent
 	Consents []*ConsentGrantPatch `json:"consents"`
 
+	// context
+	Context *ConsentGrantContext `json:"context,omitempty"`
+
 	// language in which the consent was obtained [ISO 639]
 	// Example: en
 	Language string `json:"language,omitempty"`
@@ -33,9 +36,6 @@ type ConsentGrantPatchRequest struct {
 	// optional string with action_id - can be set if the consent grant/withdraw request was caused when an app asked the user for consent required for a specific action
 	// Example: 1
 	TriggeredByAction string `json:"triggered_by_action,omitempty"`
-
-	// context
-	Context *ConsentGrantContext `json:"context,omitempty"`
 }
 
 // Validate validates this consent grant patch request

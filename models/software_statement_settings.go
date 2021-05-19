@@ -18,14 +18,14 @@ import (
 // swagger:model SoftwareStatementSettings
 type SoftwareStatementSettings struct {
 
+	// jwks
+	Jwks *ClientJWKs `json:"jwks,omitempty"`
+
 	// URI of the JWKs of the trusted party responsible for signing the Software Statement
-	JWKsURI string `json:"jwks_uri,omitempty"`
+	JwksURI string `json:"jwks_uri,omitempty"`
 
 	// required
 	Required bool `json:"required,omitempty"`
-
-	// jwks
-	Jwks *JWKs `json:"jwks,omitempty"`
 }
 
 // Validate validates this software statement settings

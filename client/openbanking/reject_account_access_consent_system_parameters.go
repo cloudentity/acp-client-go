@@ -61,11 +61,11 @@ func NewRejectAccountAccessConsentSystemParamsWithHTTPClient(client *http.Client
 */
 type RejectAccountAccessConsentSystemParams struct {
 
-	// RejectAccountAccessConsent.
-	RejectAccountAccessConsent *models.RejectAccountAccessConsentRequest
+	// RejectConsent.
+	RejectConsent *models.RejectConsentRequest
 
 	// Login.
-	LoginID string
+	Login string
 
 	/* Tid.
 
@@ -139,26 +139,26 @@ func (o *RejectAccountAccessConsentSystemParams) SetHTTPClient(client *http.Clie
 	o.HTTPClient = client
 }
 
-// WithRejectAccountAccessConsent adds the rejectAccountAccessConsent to the reject account access consent system params
-func (o *RejectAccountAccessConsentSystemParams) WithRejectAccountAccessConsent(rejectAccountAccessConsent *models.RejectAccountAccessConsentRequest) *RejectAccountAccessConsentSystemParams {
-	o.SetRejectAccountAccessConsent(rejectAccountAccessConsent)
+// WithRejectConsent adds the rejectConsent to the reject account access consent system params
+func (o *RejectAccountAccessConsentSystemParams) WithRejectConsent(rejectConsent *models.RejectConsentRequest) *RejectAccountAccessConsentSystemParams {
+	o.SetRejectConsent(rejectConsent)
 	return o
 }
 
-// SetRejectAccountAccessConsent adds the rejectAccountAccessConsent to the reject account access consent system params
-func (o *RejectAccountAccessConsentSystemParams) SetRejectAccountAccessConsent(rejectAccountAccessConsent *models.RejectAccountAccessConsentRequest) {
-	o.RejectAccountAccessConsent = rejectAccountAccessConsent
+// SetRejectConsent adds the rejectConsent to the reject account access consent system params
+func (o *RejectAccountAccessConsentSystemParams) SetRejectConsent(rejectConsent *models.RejectConsentRequest) {
+	o.RejectConsent = rejectConsent
 }
 
-// WithLoginID adds the login to the reject account access consent system params
-func (o *RejectAccountAccessConsentSystemParams) WithLoginID(login string) *RejectAccountAccessConsentSystemParams {
-	o.SetLoginID(login)
+// WithLogin adds the login to the reject account access consent system params
+func (o *RejectAccountAccessConsentSystemParams) WithLogin(login string) *RejectAccountAccessConsentSystemParams {
+	o.SetLogin(login)
 	return o
 }
 
-// SetLoginID adds the login to the reject account access consent system params
-func (o *RejectAccountAccessConsentSystemParams) SetLoginID(login string) {
-	o.LoginID = login
+// SetLogin adds the login to the reject account access consent system params
+func (o *RejectAccountAccessConsentSystemParams) SetLogin(login string) {
+	o.Login = login
 }
 
 // WithTid adds the tid to the reject account access consent system params
@@ -179,14 +179,14 @@ func (o *RejectAccountAccessConsentSystemParams) WriteToRequest(r runtime.Client
 		return err
 	}
 	var res []error
-	if o.RejectAccountAccessConsent != nil {
-		if err := r.SetBodyParam(o.RejectAccountAccessConsent); err != nil {
+	if o.RejectConsent != nil {
+		if err := r.SetBodyParam(o.RejectConsent); err != nil {
 			return err
 		}
 	}
 
 	// path param login
-	if err := r.SetPathParam("login", o.LoginID); err != nil {
+	if err := r.SetPathParam("login", o.Login); err != nil {
 		return err
 	}
 

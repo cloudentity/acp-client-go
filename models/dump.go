@@ -19,8 +19,8 @@ import (
 // swagger:model Dump
 type Dump struct {
 
-	// a p is
-	APIs []*API `json:"apis"`
+	// apis
+	Apis []*API `json:"apis"`
 
 	// claims
 	Claims []*Claim `json:"claims"`
@@ -37,11 +37,17 @@ type Dump struct {
 	// consents
 	Consents []*Consent `json:"consents"`
 
-	// gateway API groups
+	// cross tenant api policy bindings
+	CrossTenantAPIPolicyBindings []*CrossTenantAPIPolicyBinding `json:"cross_tenant_api_policy_bindings"`
+
+	// gateway api groups
 	GatewayAPIGroups []*GatewayAPIGroup `json:"gateway_api_groups"`
 
 	// gateways
 	Gateways []*Gateway `json:"gateways"`
+
+	// idps
+	Idps IDPs `json:"idps,omitempty"`
 
 	// openbanking consents
 	OpenbankingConsents []*OBConsent `json:"openbanking_consents"`
@@ -58,6 +64,9 @@ type Dump struct {
 	// privacy ledger events
 	PrivacyLedgerEvents []*PrivacyLedgerEvent `json:"privacy_ledger_events"`
 
+	// recurring jobs
+	RecurringJobs []*RecurringJob `json:"recurring_jobs"`
+
 	// scope grants
 	ScopeGrants []*ScopeGrant `json:"scope_grants"`
 
@@ -68,7 +77,7 @@ type Dump struct {
 	ServerConsents []*ServerConsent `json:"server_consents"`
 
 	// servers
-	Servers []*Server `json:"servers"`
+	Servers []*ServerDump `json:"servers"`
 
 	// servers bindings
 	ServersBindings []*ServerToServer `json:"servers_bindings"`
@@ -78,16 +87,13 @@ type Dump struct {
 
 	// tenants
 	Tenants []*Tenant `json:"tenants"`
-
-	// idps
-	Idps IDPs `json:"idps,omitempty"`
 }
 
 // Validate validates this dump
 func (m *Dump) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateAPIs(formats); err != nil {
+	if err := m.validateApis(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -111,11 +117,19 @@ func (m *Dump) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateCrossTenantAPIPolicyBindings(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateGatewayAPIGroups(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateGateways(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIdps(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -136,6 +150,10 @@ func (m *Dump) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validatePrivacyLedgerEvents(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRecurringJobs(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -167,28 +185,24 @@ func (m *Dump) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateIdps(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
 }
 
-func (m *Dump) validateAPIs(formats strfmt.Registry) error {
-	if swag.IsZero(m.APIs) { // not required
+func (m *Dump) validateApis(formats strfmt.Registry) error {
+	if swag.IsZero(m.Apis) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.APIs); i++ {
-		if swag.IsZero(m.APIs[i]) { // not required
+	for i := 0; i < len(m.Apis); i++ {
+		if swag.IsZero(m.Apis[i]) { // not required
 			continue
 		}
 
-		if m.APIs[i] != nil {
-			if err := m.APIs[i].Validate(formats); err != nil {
+		if m.Apis[i] != nil {
+			if err := m.Apis[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("apis" + "." + strconv.Itoa(i))
 				}
@@ -321,6 +335,30 @@ func (m *Dump) validateConsents(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Dump) validateCrossTenantAPIPolicyBindings(formats strfmt.Registry) error {
+	if swag.IsZero(m.CrossTenantAPIPolicyBindings) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.CrossTenantAPIPolicyBindings); i++ {
+		if swag.IsZero(m.CrossTenantAPIPolicyBindings[i]) { // not required
+			continue
+		}
+
+		if m.CrossTenantAPIPolicyBindings[i] != nil {
+			if err := m.CrossTenantAPIPolicyBindings[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("cross_tenant_api_policy_bindings" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *Dump) validateGatewayAPIGroups(formats strfmt.Registry) error {
 	if swag.IsZero(m.GatewayAPIGroups) { // not required
 		return nil
@@ -364,6 +402,21 @@ func (m *Dump) validateGateways(formats strfmt.Registry) error {
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *Dump) validateIdps(formats strfmt.Registry) error {
+	if swag.IsZero(m.Idps) { // not required
+		return nil
+	}
+
+	if err := m.Idps.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("idps")
+		}
+		return err
 	}
 
 	return nil
@@ -479,6 +532,30 @@ func (m *Dump) validatePrivacyLedgerEvents(formats strfmt.Registry) error {
 			if err := m.PrivacyLedgerEvents[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("privacy_ledger_events" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Dump) validateRecurringJobs(formats strfmt.Registry) error {
+	if swag.IsZero(m.RecurringJobs) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.RecurringJobs); i++ {
+		if swag.IsZero(m.RecurringJobs[i]) { // not required
+			continue
+		}
+
+		if m.RecurringJobs[i] != nil {
+			if err := m.RecurringJobs[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("recurring_jobs" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -657,26 +734,11 @@ func (m *Dump) validateTenants(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Dump) validateIdps(formats strfmt.Registry) error {
-	if swag.IsZero(m.Idps) { // not required
-		return nil
-	}
-
-	if err := m.Idps.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("idps")
-		}
-		return err
-	}
-
-	return nil
-}
-
 // ContextValidate validate this dump based on the context it is used
 func (m *Dump) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateAPIs(ctx, formats); err != nil {
+	if err := m.contextValidateApis(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -700,11 +762,19 @@ func (m *Dump) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateCrossTenantAPIPolicyBindings(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateGatewayAPIGroups(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.contextValidateGateways(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIdps(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -725,6 +795,10 @@ func (m *Dump) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 	}
 
 	if err := m.contextValidatePrivacyLedgerEvents(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateRecurringJobs(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -756,22 +830,18 @@ func (m *Dump) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateIdps(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
 }
 
-func (m *Dump) contextValidateAPIs(ctx context.Context, formats strfmt.Registry) error {
+func (m *Dump) contextValidateApis(ctx context.Context, formats strfmt.Registry) error {
 
-	for i := 0; i < len(m.APIs); i++ {
+	for i := 0; i < len(m.Apis); i++ {
 
-		if m.APIs[i] != nil {
-			if err := m.APIs[i].ContextValidate(ctx, formats); err != nil {
+		if m.Apis[i] != nil {
+			if err := m.Apis[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("apis" + "." + strconv.Itoa(i))
 				}
@@ -874,6 +944,24 @@ func (m *Dump) contextValidateConsents(ctx context.Context, formats strfmt.Regis
 	return nil
 }
 
+func (m *Dump) contextValidateCrossTenantAPIPolicyBindings(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.CrossTenantAPIPolicyBindings); i++ {
+
+		if m.CrossTenantAPIPolicyBindings[i] != nil {
+			if err := m.CrossTenantAPIPolicyBindings[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("cross_tenant_api_policy_bindings" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *Dump) contextValidateGatewayAPIGroups(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.GatewayAPIGroups); i++ {
@@ -905,6 +993,18 @@ func (m *Dump) contextValidateGateways(ctx context.Context, formats strfmt.Regis
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *Dump) contextValidateIdps(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.Idps.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("idps")
+		}
+		return err
 	}
 
 	return nil
@@ -990,6 +1090,24 @@ func (m *Dump) contextValidatePrivacyLedgerEvents(ctx context.Context, formats s
 			if err := m.PrivacyLedgerEvents[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("privacy_ledger_events" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Dump) contextValidateRecurringJobs(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.RecurringJobs); i++ {
+
+		if m.RecurringJobs[i] != nil {
+			if err := m.RecurringJobs[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("recurring_jobs" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1121,18 +1239,6 @@ func (m *Dump) contextValidateTenants(ctx context.Context, formats strfmt.Regist
 			}
 		}
 
-	}
-
-	return nil
-}
-
-func (m *Dump) contextValidateIdps(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := m.Idps.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("idps")
-		}
-		return err
 	}
 
 	return nil

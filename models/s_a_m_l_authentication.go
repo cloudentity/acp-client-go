@@ -37,7 +37,7 @@ type SAMLAuthentication struct {
 
 	// endpoint where SamlRequest will be sent
 	// Example: https://test-dev-ed.my.salesforce.com/idp/endpoint/HttpPost
-	SSOURL string `json:"sso_url,omitempty"`
+	SsoURL string `json:"sso_url,omitempty"`
 
 	// name id format of saml subject
 	// applies only when identifier source is set to subject

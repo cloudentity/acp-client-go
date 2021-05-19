@@ -79,7 +79,7 @@ type ListUserConsentsByActionSystemParams struct {
 
 	   user identifier
 	*/
-	Subject *string
+	XSubject *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -170,15 +170,15 @@ func (o *ListUserConsentsByActionSystemParams) SetTid(tid string) {
 	o.Tid = tid
 }
 
-// WithSubject adds the xSubject to the list user consents by action system params
-func (o *ListUserConsentsByActionSystemParams) WithSubject(xSubject *string) *ListUserConsentsByActionSystemParams {
-	o.SetSubject(xSubject)
+// WithXSubject adds the xSubject to the list user consents by action system params
+func (o *ListUserConsentsByActionSystemParams) WithXSubject(xSubject *string) *ListUserConsentsByActionSystemParams {
+	o.SetXSubject(xSubject)
 	return o
 }
 
-// SetSubject adds the xSubject to the list user consents by action system params
-func (o *ListUserConsentsByActionSystemParams) SetSubject(xSubject *string) {
-	o.Subject = xSubject
+// SetXSubject adds the xSubject to the list user consents by action system params
+func (o *ListUserConsentsByActionSystemParams) SetXSubject(xSubject *string) {
+	o.XSubject = xSubject
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -199,10 +199,10 @@ func (o *ListUserConsentsByActionSystemParams) WriteToRequest(r runtime.ClientRe
 		return err
 	}
 
-	if o.Subject != nil {
+	if o.XSubject != nil {
 
 		// header param x-subject
-		if err := r.SetHeaderParam("x-subject", *o.Subject); err != nil {
+		if err := r.SetHeaderParam("x-subject", *o.XSubject); err != nil {
 			return err
 		}
 	}

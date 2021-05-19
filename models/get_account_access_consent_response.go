@@ -20,58 +20,50 @@ import (
 // swagger:model GetAccountAccessConsentResponse
 type GetAccountAccessConsentResponse struct {
 
-	// The unique AccountId(s) that are valid for the account-access-consent
-	AccountIDs []string `json:"account_ids"`
+	// account access consent
+	AccountAccessConsent *AccountAccessConsent `json:"account_access_consent,omitempty"`
 
-	// Unique identification as assigned to identify the account access consent resource.
+	// account ids
+	AccountIds []string `json:"account_ids"`
+
+	// client id
+	ClientID string `json:"client_id,omitempty"`
+
+	// consent id
 	ConsentID string `json:"consent_id,omitempty"`
 
-	// Date and time at which the resource was created.
+	// created at
 	// Format: date-time
-	CreationDateTime strfmt.DateTime `json:"creation_date_time,omitempty"`
-
-	// Specified date and time the permissions will expire. If this is not populated,
-	// the permissions will be open ended.
-	// Format: date-time
-	ExpirationDateTime strfmt.DateTime `json:"expiration_date_time,omitempty"`
-
-	// Specifies the Open Banking account access data types. This is a list of the data clusters
-	// being consented by the PSU, and requested for authorisation with the ASPSP.
-	Permissions []string `json:"permissions"`
+	CreatedAt strfmt.DateTime `json:"created_at,omitempty"`
 
 	// requested scopes
 	RequestedScopes []*RequestedScope `json:"requested_scopes"`
 
-	// Specifies the status of consent resource in code form.
-	Status string `json:"status,omitempty"`
+	// server id
+	ServerID string `json:"server_id,omitempty"`
 
-	// Date and time at which the resource status was updated.
-	// Format: date-time
-	StatusUpdateDateTime strfmt.DateTime `json:"status_update_date_time,omitempty"`
+	// status
+	Status string `json:"status,omitempty"`
 
 	// subject
 	Subject string `json:"subject,omitempty"`
 
-	// Specified start date and time for the transaction query period. If this is not populated,
-	// the start date will be open ended, and data will be returned from the earliest available transaction.
-	// Format: date-time
-	TransactionFromDateTime strfmt.DateTime `json:"transaction_from_date_time,omitempty"`
+	// tenant id
+	TenantID string `json:"tenant_id,omitempty"`
 
-	// Specified end date and time for the transaction query period. If this is not populated,
-	// the end date will be open ended, and data will be returned to the latest available transaction.
-	// Format: date-time
-	TransactionToDateTime strfmt.DateTime `json:"transaction_to_date_time,omitempty"`
+	// type
+	Type ConsentType `json:"type,omitempty"`
 }
 
 // Validate validates this get account access consent response
 func (m *GetAccountAccessConsentResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateCreationDateTime(formats); err != nil {
+	if err := m.validateAccountAccessConsent(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateExpirationDateTime(formats); err != nil {
+	if err := m.validateCreatedAt(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -79,15 +71,7 @@ func (m *GetAccountAccessConsentResponse) Validate(formats strfmt.Registry) erro
 		res = append(res, err)
 	}
 
-	if err := m.validateStatusUpdateDateTime(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateTransactionFromDateTime(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateTransactionToDateTime(formats); err != nil {
+	if err := m.validateType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -97,24 +81,29 @@ func (m *GetAccountAccessConsentResponse) Validate(formats strfmt.Registry) erro
 	return nil
 }
 
-func (m *GetAccountAccessConsentResponse) validateCreationDateTime(formats strfmt.Registry) error {
-	if swag.IsZero(m.CreationDateTime) { // not required
+func (m *GetAccountAccessConsentResponse) validateAccountAccessConsent(formats strfmt.Registry) error {
+	if swag.IsZero(m.AccountAccessConsent) { // not required
 		return nil
 	}
 
-	if err := validate.FormatOf("creation_date_time", "body", "date-time", m.CreationDateTime.String(), formats); err != nil {
-		return err
+	if m.AccountAccessConsent != nil {
+		if err := m.AccountAccessConsent.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("account_access_consent")
+			}
+			return err
+		}
 	}
 
 	return nil
 }
 
-func (m *GetAccountAccessConsentResponse) validateExpirationDateTime(formats strfmt.Registry) error {
-	if swag.IsZero(m.ExpirationDateTime) { // not required
+func (m *GetAccountAccessConsentResponse) validateCreatedAt(formats strfmt.Registry) error {
+	if swag.IsZero(m.CreatedAt) { // not required
 		return nil
 	}
 
-	if err := validate.FormatOf("expiration_date_time", "body", "date-time", m.ExpirationDateTime.String(), formats); err != nil {
+	if err := validate.FormatOf("created_at", "body", "date-time", m.CreatedAt.String(), formats); err != nil {
 		return err
 	}
 
@@ -145,36 +134,15 @@ func (m *GetAccountAccessConsentResponse) validateRequestedScopes(formats strfmt
 	return nil
 }
 
-func (m *GetAccountAccessConsentResponse) validateStatusUpdateDateTime(formats strfmt.Registry) error {
-	if swag.IsZero(m.StatusUpdateDateTime) { // not required
+func (m *GetAccountAccessConsentResponse) validateType(formats strfmt.Registry) error {
+	if swag.IsZero(m.Type) { // not required
 		return nil
 	}
 
-	if err := validate.FormatOf("status_update_date_time", "body", "date-time", m.StatusUpdateDateTime.String(), formats); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *GetAccountAccessConsentResponse) validateTransactionFromDateTime(formats strfmt.Registry) error {
-	if swag.IsZero(m.TransactionFromDateTime) { // not required
-		return nil
-	}
-
-	if err := validate.FormatOf("transaction_from_date_time", "body", "date-time", m.TransactionFromDateTime.String(), formats); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *GetAccountAccessConsentResponse) validateTransactionToDateTime(formats strfmt.Registry) error {
-	if swag.IsZero(m.TransactionToDateTime) { // not required
-		return nil
-	}
-
-	if err := validate.FormatOf("transaction_to_date_time", "body", "date-time", m.TransactionToDateTime.String(), formats); err != nil {
+	if err := m.Type.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("type")
+		}
 		return err
 	}
 
@@ -185,13 +153,35 @@ func (m *GetAccountAccessConsentResponse) validateTransactionToDateTime(formats 
 func (m *GetAccountAccessConsentResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateAccountAccessConsent(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateRequestedScopes(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateType(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *GetAccountAccessConsentResponse) contextValidateAccountAccessConsent(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.AccountAccessConsent != nil {
+		if err := m.AccountAccessConsent.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("account_access_consent")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -208,6 +198,18 @@ func (m *GetAccountAccessConsentResponse) contextValidateRequestedScopes(ctx con
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *GetAccountAccessConsentResponse) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.Type.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("type")
+		}
+		return err
 	}
 
 	return nil

@@ -60,7 +60,7 @@ func NewDeleteClaimParamsWithHTTPClient(client *http.Client) *DeleteClaimParams 
 type DeleteClaimParams struct {
 
 	// Claim.
-	ClaimID string
+	Claim string
 
 	/* Tid.
 
@@ -134,15 +134,15 @@ func (o *DeleteClaimParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithClaimID adds the claim to the delete claim params
-func (o *DeleteClaimParams) WithClaimID(claim string) *DeleteClaimParams {
-	o.SetClaimID(claim)
+// WithClaim adds the claim to the delete claim params
+func (o *DeleteClaimParams) WithClaim(claim string) *DeleteClaimParams {
+	o.SetClaim(claim)
 	return o
 }
 
-// SetClaimID adds the claim to the delete claim params
-func (o *DeleteClaimParams) SetClaimID(claim string) {
-	o.ClaimID = claim
+// SetClaim adds the claim to the delete claim params
+func (o *DeleteClaimParams) SetClaim(claim string) {
+	o.Claim = claim
 }
 
 // WithTid adds the tid to the delete claim params
@@ -165,7 +165,7 @@ func (o *DeleteClaimParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 	var res []error
 
 	// path param claim
-	if err := r.SetPathParam("claim", o.ClaimID); err != nil {
+	if err := r.SetPathParam("claim", o.Claim); err != nil {
 		return err
 	}
 

@@ -59,22 +59,22 @@ func NewAcceptDomesticPaymentConsentSystemOK() *AcceptDomesticPaymentConsentSyst
 
 /* AcceptDomesticPaymentConsentSystemOK describes a response with status code 200, with default header values.
 
-DomesticPaymentConsentAccepted
+ConsentAccepted
 */
 type AcceptDomesticPaymentConsentSystemOK struct {
-	Payload *models.DomesticPaymentConsentAccepted
+	Payload *models.ConsentAccepted
 }
 
 func (o *AcceptDomesticPaymentConsentSystemOK) Error() string {
 	return fmt.Sprintf("[POST /api/system/{tid}/open-banking/domestic-payment-consent/{login}/accept][%d] acceptDomesticPaymentConsentSystemOK  %+v", 200, o.Payload)
 }
-func (o *AcceptDomesticPaymentConsentSystemOK) GetPayload() *models.DomesticPaymentConsentAccepted {
+func (o *AcceptDomesticPaymentConsentSystemOK) GetPayload() *models.ConsentAccepted {
 	return o.Payload
 }
 
 func (o *AcceptDomesticPaymentConsentSystemOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.DomesticPaymentConsentAccepted)
+	o.Payload = new(models.ConsentAccepted)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

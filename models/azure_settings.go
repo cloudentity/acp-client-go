@@ -17,7 +17,7 @@ import (
 // swagger:model AzureSettings
 type AzureSettings struct {
 
-	// client ID
+	// client id
 	ClientID string `json:"client_id,omitempty"`
 
 	// fetch groups
@@ -34,9 +34,6 @@ type AzureSettings struct {
 
 	// only security groups
 	OnlySecurityGroups bool `json:"only_security_groups,omitempty"`
-
-	// redirect URL
-	RedirectURL string `json:"redirect_url,omitempty"`
 
 	// scopes
 	Scopes []string `json:"scopes"`

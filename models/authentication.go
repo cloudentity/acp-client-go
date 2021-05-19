@@ -26,21 +26,7 @@ type Authentication struct {
 	// static authentication method references
 	//
 	// if set overwrites amr obtained from this authentication method
-	AMR []string `json:"amr"`
-
-	// flag to disable authentication method
-	// Example: false
-	Disabled bool `json:"disabled,omitempty"`
-
-	// authentication method identifier
-	// Example: oidc
-	// Required: true
-	ID *string `json:"id"`
-
-	// human readable name which will be displayed to user in case of multiple authentication methods
-	// Example: OIDC
-	// Required: true
-	Name *string `json:"name"`
+	Amr []string `json:"amr"`
 
 	// attributes
 	Attributes Attributes `json:"attributes,omitempty"`
@@ -57,8 +43,17 @@ type Authentication struct {
 	// custom
 	Custom *CustomAuthentication `json:"custom,omitempty"`
 
+	// flag to disable authentication method
+	// Example: false
+	Disabled bool `json:"disabled,omitempty"`
+
 	// github
 	Github *GithubAuthentication `json:"github,omitempty"`
+
+	// authentication method identifier
+	// Example: oidc
+	// Required: true
+	ID *string `json:"id"`
 
 	// intelli trust
 	IntelliTrust *IntelliTrustAuthentication `json:"intelli_trust,omitempty"`
@@ -69,6 +64,11 @@ type Authentication struct {
 	// method
 	// Required: true
 	Method *AuthenticationMethod `json:"method"`
+
+	// human readable name which will be displayed to user in case of multiple authentication methods
+	// Example: OIDC
+	// Required: true
+	Name *string `json:"name"`
 
 	// oidc
 	Oidc *OIDCAuthentication `json:"oidc,omitempty"`
@@ -86,14 +86,6 @@ type Authentication struct {
 // Validate validates this authentication
 func (m *Authentication) Validate(formats strfmt.Registry) error {
 	var res []error
-
-	if err := m.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
 
 	if err := m.validateAttributes(formats); err != nil {
 		res = append(res, err)
@@ -119,6 +111,10 @@ func (m *Authentication) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateID(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateIntelliTrust(formats); err != nil {
 		res = append(res, err)
 	}
@@ -128,6 +124,10 @@ func (m *Authentication) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateMethod(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateName(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -150,24 +150,6 @@ func (m *Authentication) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *Authentication) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", m.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *Authentication) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
 	return nil
 }
 
@@ -271,6 +253,15 @@ func (m *Authentication) validateGithub(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Authentication) validateID(formats strfmt.Registry) error {
+
+	if err := validate.Required("id", "body", m.ID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *Authentication) validateIntelliTrust(formats strfmt.Registry) error {
 	if swag.IsZero(m.IntelliTrust) { // not required
 		return nil
@@ -320,6 +311,15 @@ func (m *Authentication) validateMethod(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *Authentication) validateName(formats strfmt.Registry) error {
+
+	if err := validate.Required("name", "body", m.Name); err != nil {
+		return err
 	}
 
 	return nil

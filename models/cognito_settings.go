@@ -28,10 +28,6 @@ type CognitoSettings struct {
 	// Example: us-east-1_Q8WSOH11B
 	PoolID string `json:"pool_id,omitempty"`
 
-	// OAuth redirect URL
-	// Example: https://example.com/callback
-	RedirectURL string `json:"redirect_url,omitempty"`
-
 	// AWS Region
 	// Example: us-east-1
 	Region string `json:"region,omitempty"`

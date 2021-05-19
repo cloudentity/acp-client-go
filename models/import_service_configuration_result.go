@@ -27,8 +27,8 @@ type ImportServiceConfigurationResult struct {
 	// Example: default
 	AuthorizationServerID string `json:"authorization_server_id,omitempty"`
 
-	// created a p is
-	CreatedAPIs []*API `json:"created_apis"`
+	// created apis
+	CreatedApis []*API `json:"created_apis"`
 
 	// created policies
 	CreatedPolicies []*Policy `json:"created_policies"`
@@ -54,8 +54,8 @@ type ImportServiceConfigurationResult struct {
 	// not removed policies
 	NotRemovedPolicies []*Policy `json:"not_removed_policies"`
 
-	// removed a p is
-	RemovedAPIs []*API `json:"removed_apis"`
+	// removed apis
+	RemovedApis []*API `json:"removed_apis"`
 
 	// removed policies
 	RemovedPolicies []*Policy `json:"removed_policies"`
@@ -76,7 +76,7 @@ type ImportServiceConfigurationResult struct {
 func (m *ImportServiceConfigurationResult) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateCreatedAPIs(formats); err != nil {
+	if err := m.validateCreatedApis(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -92,7 +92,7 @@ func (m *ImportServiceConfigurationResult) Validate(formats strfmt.Registry) err
 		res = append(res, err)
 	}
 
-	if err := m.validateRemovedAPIs(formats); err != nil {
+	if err := m.validateRemovedApis(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -106,18 +106,18 @@ func (m *ImportServiceConfigurationResult) Validate(formats strfmt.Registry) err
 	return nil
 }
 
-func (m *ImportServiceConfigurationResult) validateCreatedAPIs(formats strfmt.Registry) error {
-	if swag.IsZero(m.CreatedAPIs) { // not required
+func (m *ImportServiceConfigurationResult) validateCreatedApis(formats strfmt.Registry) error {
+	if swag.IsZero(m.CreatedApis) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.CreatedAPIs); i++ {
-		if swag.IsZero(m.CreatedAPIs[i]) { // not required
+	for i := 0; i < len(m.CreatedApis); i++ {
+		if swag.IsZero(m.CreatedApis[i]) { // not required
 			continue
 		}
 
-		if m.CreatedAPIs[i] != nil {
-			if err := m.CreatedAPIs[i].Validate(formats); err != nil {
+		if m.CreatedApis[i] != nil {
+			if err := m.CreatedApis[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("created_apis" + "." + strconv.Itoa(i))
 				}
@@ -202,18 +202,18 @@ func (m *ImportServiceConfigurationResult) validateNotRemovedPolicies(formats st
 	return nil
 }
 
-func (m *ImportServiceConfigurationResult) validateRemovedAPIs(formats strfmt.Registry) error {
-	if swag.IsZero(m.RemovedAPIs) { // not required
+func (m *ImportServiceConfigurationResult) validateRemovedApis(formats strfmt.Registry) error {
+	if swag.IsZero(m.RemovedApis) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.RemovedAPIs); i++ {
-		if swag.IsZero(m.RemovedAPIs[i]) { // not required
+	for i := 0; i < len(m.RemovedApis); i++ {
+		if swag.IsZero(m.RemovedApis[i]) { // not required
 			continue
 		}
 
-		if m.RemovedAPIs[i] != nil {
-			if err := m.RemovedAPIs[i].Validate(formats); err != nil {
+		if m.RemovedApis[i] != nil {
+			if err := m.RemovedApis[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("removed_apis" + "." + strconv.Itoa(i))
 				}
@@ -254,7 +254,7 @@ func (m *ImportServiceConfigurationResult) validateRemovedPolicies(formats strfm
 func (m *ImportServiceConfigurationResult) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateCreatedAPIs(ctx, formats); err != nil {
+	if err := m.contextValidateCreatedApis(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -270,7 +270,7 @@ func (m *ImportServiceConfigurationResult) ContextValidate(ctx context.Context, 
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateRemovedAPIs(ctx, formats); err != nil {
+	if err := m.contextValidateRemovedApis(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -284,12 +284,12 @@ func (m *ImportServiceConfigurationResult) ContextValidate(ctx context.Context, 
 	return nil
 }
 
-func (m *ImportServiceConfigurationResult) contextValidateCreatedAPIs(ctx context.Context, formats strfmt.Registry) error {
+func (m *ImportServiceConfigurationResult) contextValidateCreatedApis(ctx context.Context, formats strfmt.Registry) error {
 
-	for i := 0; i < len(m.CreatedAPIs); i++ {
+	for i := 0; i < len(m.CreatedApis); i++ {
 
-		if m.CreatedAPIs[i] != nil {
-			if err := m.CreatedAPIs[i].ContextValidate(ctx, formats); err != nil {
+		if m.CreatedApis[i] != nil {
+			if err := m.CreatedApis[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("created_apis" + "." + strconv.Itoa(i))
 				}
@@ -356,12 +356,12 @@ func (m *ImportServiceConfigurationResult) contextValidateNotRemovedPolicies(ctx
 	return nil
 }
 
-func (m *ImportServiceConfigurationResult) contextValidateRemovedAPIs(ctx context.Context, formats strfmt.Registry) error {
+func (m *ImportServiceConfigurationResult) contextValidateRemovedApis(ctx context.Context, formats strfmt.Registry) error {
 
-	for i := 0; i < len(m.RemovedAPIs); i++ {
+	for i := 0; i < len(m.RemovedApis); i++ {
 
-		if m.RemovedAPIs[i] != nil {
-			if err := m.RemovedAPIs[i].ContextValidate(ctx, formats); err != nil {
+		if m.RemovedApis[i] != nil {
+			if err := m.RemovedApis[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("removed_apis" + "." + strconv.Itoa(i))
 				}

@@ -26,7 +26,7 @@ type ConsentWithGrant struct {
 
 	// consent grant id
 	// Example: 27fa83a8-d0a6-48da-8529-42105bfa0ede
-	ConsentGrantActID string `json:"consent_grant_id,omitempty"`
+	ConsentGrantID string `json:"consent_grant_id,omitempty"`
 
 	// consent description
 	// Example: End User License Agreement
@@ -60,7 +60,7 @@ type ConsentWithGrant struct {
 	Name string `json:"name,omitempty"`
 
 	// PII Categories
-	PIICategories []*PIICategory `json:"pii_categories"`
+	PiiCategories []*PIICategory `json:"pii_categories"`
 
 	// subject
 	// Example: peter
@@ -99,7 +99,7 @@ func (m *ConsentWithGrant) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validatePIICategories(formats); err != nil {
+	if err := m.validatePiiCategories(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -153,18 +153,18 @@ func (m *ConsentWithGrant) validateInternalServices(formats strfmt.Registry) err
 	return nil
 }
 
-func (m *ConsentWithGrant) validatePIICategories(formats strfmt.Registry) error {
-	if swag.IsZero(m.PIICategories) { // not required
+func (m *ConsentWithGrant) validatePiiCategories(formats strfmt.Registry) error {
+	if swag.IsZero(m.PiiCategories) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.PIICategories); i++ {
-		if swag.IsZero(m.PIICategories[i]) { // not required
+	for i := 0; i < len(m.PiiCategories); i++ {
+		if swag.IsZero(m.PiiCategories[i]) { // not required
 			continue
 		}
 
-		if m.PIICategories[i] != nil {
-			if err := m.PIICategories[i].Validate(formats); err != nil {
+		if m.PiiCategories[i] != nil {
+			if err := m.PiiCategories[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("pii_categories" + "." + strconv.Itoa(i))
 				}
@@ -221,7 +221,7 @@ func (m *ConsentWithGrant) ContextValidate(ctx context.Context, formats strfmt.R
 		res = append(res, err)
 	}
 
-	if err := m.contextValidatePIICategories(ctx, formats); err != nil {
+	if err := m.contextValidatePiiCategories(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -253,12 +253,12 @@ func (m *ConsentWithGrant) contextValidateInternalServices(ctx context.Context, 
 	return nil
 }
 
-func (m *ConsentWithGrant) contextValidatePIICategories(ctx context.Context, formats strfmt.Registry) error {
+func (m *ConsentWithGrant) contextValidatePiiCategories(ctx context.Context, formats strfmt.Registry) error {
 
-	for i := 0; i < len(m.PIICategories); i++ {
+	for i := 0; i < len(m.PiiCategories); i++ {
 
-		if m.PIICategories[i] != nil {
-			if err := m.PIICategories[i].ContextValidate(ctx, formats); err != nil {
+		if m.PiiCategories[i] != nil {
+			if err := m.PiiCategories[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("pii_categories" + "." + strconv.Itoa(i))
 				}
