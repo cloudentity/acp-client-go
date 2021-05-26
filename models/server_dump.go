@@ -69,7 +69,7 @@ type ServerDump struct {
 	// Format: duration
 	IDTokenTTL strfmt.Duration `json:"id_token_ttl,omitempty"`
 
-	// flag to initialize server default configuration
+	// flag to initialize server default configuration (applicable only if server does not exist)
 	Initialize bool `json:"initialize,omitempty"`
 
 	// Optional custom issuer url. If not provided the server url is used instead
@@ -117,6 +117,9 @@ type ServerDump struct {
 	// Secret used for hashing, must have at least 32 characters. If not provided will be generated.
 	// Example: hW5WhKX_7w7BLwUQ6mn7Cp70_OoKI_F1y1hLS5U8lIU
 	Secret string `json:"secret,omitempty"`
+
+	// flag to disable server consent initialization
+	SkipServerConsentInitialization bool `json:"skip_server_consent_initialization,omitempty"`
 
 	// Salt used to hash subject when pairwise subject type is used
 	SubjectIdentifierAlgorithmSalt string `json:"subject_identifier_algorithm_salt,omitempty"`

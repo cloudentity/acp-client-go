@@ -37,6 +37,9 @@ type TenantDump struct {
 	// consents
 	Consents []*Consent `json:"consents"`
 
+	// cross tenant api policy bindings
+	CrossTenantAPIPolicyBindings []*CrossTenantAPIPolicyBinding `json:"cross_tenant_api_policy_bindings"`
+
 	// gateway api groups
 	GatewayAPIGroups []*GatewayAPIGroup `json:"gateway_api_groups"`
 
@@ -48,6 +51,9 @@ type TenantDump struct {
 
 	// openbanking consents
 	OpenbankingConsents []*OBConsent `json:"openbanking_consents"`
+
+	// openbanking file payment consent file resources
+	OpenbankingFilePaymentConsentFileResources []*FilePaymentConsentFileResource `json:"openbanking_file_payment_consent_file_resources"`
 
 	// policies
 	Policies []*Policy `json:"policies"`
@@ -114,6 +120,10 @@ func (m *TenantDump) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateCrossTenantAPIPolicyBindings(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateGatewayAPIGroups(formats); err != nil {
 		res = append(res, err)
 	}
@@ -127,6 +137,10 @@ func (m *TenantDump) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateOpenbankingConsents(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateOpenbankingFilePaymentConsentFileResources(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -328,6 +342,30 @@ func (m *TenantDump) validateConsents(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *TenantDump) validateCrossTenantAPIPolicyBindings(formats strfmt.Registry) error {
+	if swag.IsZero(m.CrossTenantAPIPolicyBindings) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.CrossTenantAPIPolicyBindings); i++ {
+		if swag.IsZero(m.CrossTenantAPIPolicyBindings[i]) { // not required
+			continue
+		}
+
+		if m.CrossTenantAPIPolicyBindings[i] != nil {
+			if err := m.CrossTenantAPIPolicyBindings[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("cross_tenant_api_policy_bindings" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *TenantDump) validateGatewayAPIGroups(formats strfmt.Registry) error {
 	if swag.IsZero(m.GatewayAPIGroups) { // not required
 		return nil
@@ -405,6 +443,30 @@ func (m *TenantDump) validateOpenbankingConsents(formats strfmt.Registry) error 
 			if err := m.OpenbankingConsents[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("openbanking_consents" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *TenantDump) validateOpenbankingFilePaymentConsentFileResources(formats strfmt.Registry) error {
+	if swag.IsZero(m.OpenbankingFilePaymentConsentFileResources) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.OpenbankingFilePaymentConsentFileResources); i++ {
+		if swag.IsZero(m.OpenbankingFilePaymentConsentFileResources[i]) { // not required
+			continue
+		}
+
+		if m.OpenbankingFilePaymentConsentFileResources[i] != nil {
+			if err := m.OpenbankingFilePaymentConsentFileResources[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("openbanking_file_payment_consent_file_resources" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -724,6 +786,10 @@ func (m *TenantDump) ContextValidate(ctx context.Context, formats strfmt.Registr
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateCrossTenantAPIPolicyBindings(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateGatewayAPIGroups(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -737,6 +803,10 @@ func (m *TenantDump) ContextValidate(ctx context.Context, formats strfmt.Registr
 	}
 
 	if err := m.contextValidateOpenbankingConsents(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateOpenbankingFilePaymentConsentFileResources(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -902,6 +972,24 @@ func (m *TenantDump) contextValidateConsents(ctx context.Context, formats strfmt
 	return nil
 }
 
+func (m *TenantDump) contextValidateCrossTenantAPIPolicyBindings(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.CrossTenantAPIPolicyBindings); i++ {
+
+		if m.CrossTenantAPIPolicyBindings[i] != nil {
+			if err := m.CrossTenantAPIPolicyBindings[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("cross_tenant_api_policy_bindings" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *TenantDump) contextValidateGatewayAPIGroups(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.GatewayAPIGroups); i++ {
@@ -958,6 +1046,24 @@ func (m *TenantDump) contextValidateOpenbankingConsents(ctx context.Context, for
 			if err := m.OpenbankingConsents[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("openbanking_consents" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *TenantDump) contextValidateOpenbankingFilePaymentConsentFileResources(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.OpenbankingFilePaymentConsentFileResources); i++ {
+
+		if m.OpenbankingFilePaymentConsentFileResources[i] != nil {
+			if err := m.OpenbankingFilePaymentConsentFileResources[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("openbanking_file_payment_consent_file_resources" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

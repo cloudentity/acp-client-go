@@ -637,13 +637,13 @@ definitions:
     type: object
   BindSystemAPIRequest:
     properties:
-      APIID:
+      api_id:
         format: apiID
         type: string
-      PolicyID:
+      policy_id:
         format: policyID
         type: string
-      PolicyServerID:
+      policy_server_id:
         format: serverID
         type: string
     type: object
@@ -2880,6 +2880,10 @@ definitions:
         items:
           $ref: '#/definitions/OBConsent'
         type: array
+      openbanking_file_payment_consent_file_resources:
+        items:
+          $ref: '#/definitions/FilePaymentConsentFileResource'
+        type: array
       policies:
         items:
           $ref: '#/definitions/Policy'
@@ -3427,7 +3431,30 @@ definitions:
   FilePaymentConsent:
     allOf:
     - $ref: '#/definitions/OBWriteFileConsentResponse4Data'
-    - $ref: '#/definitions/OBRisk1'
+  FilePaymentConsentFileRequest:
+    type: object
+  FilePaymentConsentFileResource:
+    properties:
+      client_id:
+        format: clientID
+        type: string
+      consent_id:
+        format: consentID
+        type: string
+      file:
+        items:
+          format: uint8
+          type: integer
+        type: array
+      server_id:
+        format: serverID
+        type: string
+      tenant_id:
+        format: tenantID
+        type: string
+    type: object
+  FilePaymentConsentFileResponse:
+    type: object
   FilePaymentConsentRequest:
     properties:
       Data:
@@ -3536,6 +3563,14 @@ definitions:
         description: List of APIs that this gateway should protect.
         items:
           $ref: '#/definitions/API'
+        type: array
+      issuer_apis:
+        items:
+          $ref: '#/definitions/API'
+        type: array
+      issuer_policies:
+        items:
+          $ref: '#/definitions/Policy'
         type: array
       issuer_url:
         description: Authorization server issuer url.
@@ -3665,9 +3700,13 @@ definitions:
         items:
           type: string
         type: array
+      authentication_context:
+        $ref: '#/definitions/AuthenticationContext'
       client_id:
         format: clientID
         type: string
+      client_info:
+        $ref: '#/definitions/ClientInfo'
       consent_id:
         format: consentID
         type: string
@@ -3698,9 +3737,13 @@ definitions:
         items:
           type: string
         type: array
+      authentication_context:
+        $ref: '#/definitions/AuthenticationContext'
       client_id:
         format: clientID
         type: string
+      client_info:
+        $ref: '#/definitions/ClientInfo'
       consent_id:
         format: consentID
         type: string
@@ -3733,9 +3776,13 @@ definitions:
         items:
           type: string
         type: array
+      authentication_context:
+        $ref: '#/definitions/AuthenticationContext'
       client_id:
         format: clientID
         type: string
+      client_info:
+        $ref: '#/definitions/ClientInfo'
       consent_id:
         format: consentID
         type: string
@@ -3768,9 +3815,13 @@ definitions:
         items:
           type: string
         type: array
+      authentication_context:
+        $ref: '#/definitions/AuthenticationContext'
       client_id:
         format: clientID
         type: string
+      client_info:
+        $ref: '#/definitions/ClientInfo'
       consent_id:
         format: consentID
         type: string
@@ -3803,9 +3854,13 @@ definitions:
         items:
           type: string
         type: array
+      authentication_context:
+        $ref: '#/definitions/AuthenticationContext'
       client_id:
         format: clientID
         type: string
+      client_info:
+        $ref: '#/definitions/ClientInfo'
       consent_id:
         format: consentID
         type: string
@@ -3838,9 +3893,13 @@ definitions:
         items:
           type: string
         type: array
+      authentication_context:
+        $ref: '#/definitions/AuthenticationContext'
       client_id:
         format: clientID
         type: string
+      client_info:
+        $ref: '#/definitions/ClientInfo'
       consent_id:
         format: consentID
         type: string
@@ -3873,9 +3932,13 @@ definitions:
         items:
           type: string
         type: array
+      authentication_context:
+        $ref: '#/definitions/AuthenticationContext'
       client_id:
         format: clientID
         type: string
+      client_info:
+        $ref: '#/definitions/ClientInfo'
       consent_id:
         format: consentID
         type: string
@@ -3908,9 +3971,13 @@ definitions:
         items:
           type: string
         type: array
+      authentication_context:
+        $ref: '#/definitions/AuthenticationContext'
       client_id:
         format: clientID
         type: string
+      client_info:
+        $ref: '#/definitions/ClientInfo'
       consent_id:
         format: consentID
         type: string
@@ -10804,7 +10871,7 @@ definitions:
         format: duration
         type: string
       initialize:
-        description: flag to initialize server default configuration
+        description: flag to initialize server default configuration (applicable only if server does not exist)
         type: boolean
       issuer_url:
         description: Optional custom issuer url. If not provided the server url is used instead
@@ -10858,6 +10925,9 @@ definitions:
         description: Secret used for hashing, must have at least 32 characters. If not provided will be generated.
         example: hW5WhKX_7w7BLwUQ6mn7Cp70_OoKI_F1y1hLS5U8lIU
         type: string
+      skip_server_consent_initialization:
+        description: flag to disable server consent initialization
+        type: boolean
       subject_identifier_algorithm_salt:
         description: Salt used to hash subject when pairwise subject type is used
         type: string
@@ -11444,14 +11514,14 @@ definitions:
     type: string
   SystemAPIBindings:
     properties:
-      Bindings:
+      bindings:
         items:
           $ref: '#/definitions/CrossTenantAPIPolicyBinding'
         type: array
     type: object
   SystemServicesResponse:
     properties:
-      Services:
+      services:
         items:
           $ref: '#/definitions/Service'
         type: array
@@ -11525,6 +11595,10 @@ definitions:
         items:
           $ref: '#/definitions/Consent'
         type: array
+      cross_tenant_api_policy_bindings:
+        items:
+          $ref: '#/definitions/CrossTenantAPIPolicyBinding'
+        type: array
       gateway_api_groups:
         items:
           $ref: '#/definitions/GatewayAPIGroup'
@@ -11538,6 +11612,10 @@ definitions:
       openbanking_consents:
         items:
           $ref: '#/definitions/OBConsent'
+        type: array
+      openbanking_file_payment_consent_file_resources:
+        items:
+          $ref: '#/definitions/FilePaymentConsentFileResource'
         type: array
       policies:
         items:
@@ -11681,13 +11759,13 @@ definitions:
     type: object
   UnbindSystemAPIRequest:
     properties:
-      APIID:
+      api_id:
         format: apiID
         type: string
-      PolicyID:
+      policy_id:
         format: policyID
         type: string
-      PolicyServerID:
+      policy_server_id:
         format: serverID
         type: string
     type: object
@@ -14276,6 +14354,218 @@ paths:
       - defaultcc:
         - payments
       summary: Get file payment consent
+      tags:
+      - openbanking
+  /{tid}/{aid}/open-banking/v3.1/pisp/file-payment-consents/{consentID}/file:
+    get:
+      description: The API endpoint allows the PISP to download a file (that had been uploaded against a file-payment-consent resource) from an ASPSP.
+      operationId: getFilePaymentConsentFileRequest
+      parameters:
+      - description: |-
+          The time when the PSU last logged in with the TPP.
+
+          The value is supplied as a HTTP-date as in section 7.1.1.1 of [RFC7231]
+        in: header
+        name: x-fapi-auth-date
+        type: string
+      - description: The PSU's IP address if the PSU is currently logged in with the TPP.
+        in: header
+        name: x-fapi-customer-ip-address
+        type: string
+      - description: |-
+          An RFC4122 UID used as a correlation Id.
+
+          If provided, the ASPSP must "play back" this value
+          in the x-fapi-interaction-id response header.
+        in: header
+        name: x-fapi-interaction-id
+        type: string
+      - description: |-
+          The header indicates the user-agent that the PSU is using.
+
+          The TPP may populate this field with the user-agent indicated by the PSU.
+          If the PSU is using a TPP mobile app, the TPP must ensure that the user-agent string
+          is different from browser based user-agent strings.
+        in: header
+        name: x-customer-user-agent
+        type: string
+      - description: |-
+          Header containing a detached JWS signature of the body of the payload.
+
+          Refer to resource specific documentation on when this header must be specified.
+        in: header
+        name: x-jws-signature
+        type: string
+      - default: default
+        description: Tenant ID
+        in: path
+        name: tid
+        required: true
+        type: string
+      - default: default
+        description: Server ID
+        in: path
+        name: aid
+        required: true
+        type: string
+      - description: Consent id
+        format: consentID
+        in: path
+        name: consentID
+        required: true
+        type: string
+      responses:
+        "200":
+          description: FilePaymentConsentFileResponse
+          schema:
+            $ref: '#/definitions/FilePaymentConsentFileResponse'
+        "400":
+          description: ErrorResponse
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "401":
+          description: ErrorResponse
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "403":
+          description: ErrorResponse
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "405":
+          description: ErrorResponse
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "406":
+          description: ErrorResponse
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "415":
+          description: ErrorResponse
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "429":
+          description: ErrorResponse
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "500":
+          description: ErrorResponse
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - defaultcc:
+        - payments
+      summary: Get uploaded file for file payment consent
+      tags:
+      - openbanking
+  /{tid}/{aid}/open-banking/v3.1/pisp/file-payment-consents/file:
+    post:
+      description: |-
+        The endpoint allows the PISP to send a copy of the consent (between PSU and PISP) to the ASPSP for the PSU to authorize. The PISP must upload the file against the ConsentId before redirecting the PSU to authorize the consent.
+        The file structure must match the FileType in the file-payment-consent request.
+        An ASPSP must confirm the hash of the file matches with the FileHash provided in the file-payment-consent Metadata.
+        The metadata for the file-payment-consent must match the contents of the uploaded file:
+        If the content of the metadata does not match the content of the file, the ASPSP must reject the file-payment-consent.
+        The file is sent in the HTTP request body.
+        HTTP headers (e.g. Content-Type) are used to describe the file.
+
+        The default Status is "AwaitingAuthorisation" immediately after the file has been created.
+      operationId: createFilePaymentConsentFile
+      parameters:
+      - description: |-
+          The time when the PSU last logged in with the TPP.
+
+          The value is supplied as a HTTP-date as in section 7.1.1.1 of [RFC7231]
+        in: header
+        name: x-fapi-auth-date
+        type: string
+      - description: The PSU's IP address if the PSU is currently logged in with the TPP.
+        in: header
+        name: x-fapi-customer-ip-address
+        type: string
+      - description: |-
+          An RFC4122 UID used as a correlation Id.
+
+          If provided, the ASPSP must "play back" this value
+          in the x-fapi-interaction-id response header.
+        in: header
+        name: x-fapi-interaction-id
+        type: string
+      - description: |-
+          The header indicates the user-agent that the PSU is using.
+
+          The TPP may populate this field with the user-agent indicated by the PSU.
+          If the PSU is using a TPP mobile app, the TPP must ensure that the user-agent string
+          is different from browser based user-agent strings.
+        in: header
+        name: x-customer-user-agent
+        type: string
+      - description: |-
+          Header containing a detached JWS signature of the body of the payload.
+
+          Refer to resource specific documentation on when this header must be specified.
+        in: header
+        name: x-jws-signature
+        type: string
+      - description: |-
+          Every request will be processed only once per x-idempotency-key.
+          The Idempotency Key will be valid for 24 hours
+        in: header
+        name: x-idempotency-key
+        type: string
+      - default: default
+        description: Tenant ID
+        in: path
+        name: tid
+        required: true
+        type: string
+      - default: default
+        description: Server ID
+        in: path
+        name: aid
+        required: true
+        type: string
+      - description: Request
+        in: body
+        name: Request
+        schema:
+          $ref: '#/definitions/FilePaymentConsentFileRequest'
+      responses:
+        "400":
+          description: ErrorResponse
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "401":
+          description: ErrorResponse
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "403":
+          description: ErrorResponse
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "405":
+          description: ErrorResponse
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "406":
+          description: ErrorResponse
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "415":
+          description: ErrorResponse
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "429":
+          description: ErrorResponse
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        "500":
+          description: ErrorResponse
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - defaultcc:
+        - payments
+      summary: Upload file for file payment consent
       tags:
       - openbanking
   /{tid}/{aid}/open-banking/v3.1/pisp/file-payment-consents/introspect:
@@ -21739,6 +22029,14 @@ paths:
         description: Authorizer version
         in: query
         name: authorizer_version
+        type: string
+      - description: Tenant id
+        in: query
+        name: tenant_id
+        type: string
+      - description: Server id
+        in: query
+        name: server_id
         type: string
       responses:
         "200":

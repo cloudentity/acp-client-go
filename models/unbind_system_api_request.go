@@ -17,14 +17,14 @@ import (
 // swagger:model UnbindSystemAPIRequest
 type UnbindSystemAPIRequest struct {
 
-	// API ID
-	APIID string `json:"APIID,omitempty"`
+	// api id
+	APIID string `json:"api_id,omitempty"`
 
-	// policy ID
-	PolicyID string `json:"PolicyID,omitempty"`
+	// policy id
+	PolicyID string `json:"policy_id,omitempty"`
 
-	// policy server ID
-	PolicyServerID string `json:"PolicyServerID,omitempty"`
+	// policy server id
+	PolicyServerID string `json:"policy_server_id,omitempty"`
 }
 
 // Validate validates this unbind system API request

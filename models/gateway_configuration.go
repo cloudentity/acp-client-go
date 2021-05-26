@@ -22,6 +22,12 @@ type GatewayConfiguration struct {
 	// List of APIs that this gateway should protect.
 	Apis []*API `json:"apis"`
 
+	// issuer apis
+	IssuerApis []*API `json:"issuer_apis"`
+
+	// issuer policies
+	IssuerPolicies []*Policy `json:"issuer_policies"`
+
 	// Authorization server issuer url.
 	IssuerURL string `json:"issuer_url,omitempty"`
 
@@ -49,6 +55,14 @@ func (m *GatewayConfiguration) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateApis(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIssuerApis(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIssuerPolicies(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -84,6 +98,54 @@ func (m *GatewayConfiguration) validateApis(formats strfmt.Registry) error {
 			if err := m.Apis[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("apis" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *GatewayConfiguration) validateIssuerApis(formats strfmt.Registry) error {
+	if swag.IsZero(m.IssuerApis) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.IssuerApis); i++ {
+		if swag.IsZero(m.IssuerApis[i]) { // not required
+			continue
+		}
+
+		if m.IssuerApis[i] != nil {
+			if err := m.IssuerApis[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("issuer_apis" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *GatewayConfiguration) validateIssuerPolicies(formats strfmt.Registry) error {
+	if swag.IsZero(m.IssuerPolicies) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.IssuerPolicies); i++ {
+		if swag.IsZero(m.IssuerPolicies[i]) { // not required
+			continue
+		}
+
+		if m.IssuerPolicies[i] != nil {
+			if err := m.IssuerPolicies[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("issuer_policies" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -174,6 +236,14 @@ func (m *GatewayConfiguration) ContextValidate(ctx context.Context, formats strf
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateIssuerApis(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIssuerPolicies(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidatePolicies(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -200,6 +270,42 @@ func (m *GatewayConfiguration) contextValidateApis(ctx context.Context, formats 
 			if err := m.Apis[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("apis" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *GatewayConfiguration) contextValidateIssuerApis(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.IssuerApis); i++ {
+
+		if m.IssuerApis[i] != nil {
+			if err := m.IssuerApis[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("issuer_apis" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *GatewayConfiguration) contextValidateIssuerPolicies(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.IssuerPolicies); i++ {
+
+		if m.IssuerPolicies[i] != nil {
+			if err := m.IssuerPolicies[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("issuer_policies" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

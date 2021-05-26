@@ -20,7 +20,7 @@ import (
 type SystemServicesResponse struct {
 
 	// services
-	Services []*Service `json:"Services"`
+	Services []*Service `json:"services"`
 }
 
 // Validate validates this system services response
@@ -50,7 +50,7 @@ func (m *SystemServicesResponse) validateServices(formats strfmt.Registry) error
 		if m.Services[i] != nil {
 			if err := m.Services[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("Services" + "." + strconv.Itoa(i))
+					return ve.ValidateName("services" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -82,7 +82,7 @@ func (m *SystemServicesResponse) contextValidateServices(ctx context.Context, fo
 		if m.Services[i] != nil {
 			if err := m.Services[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("Services" + "." + strconv.Itoa(i))
+					return ve.ValidateName("services" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

@@ -18,8 +18,6 @@ import (
 // swagger:model FilePaymentConsent
 type FilePaymentConsent struct {
 	OBWriteFileConsentResponse4Data
-
-	OBRisk1
 }
 
 // UnmarshalJSON unmarshals this object from a JSON structure
@@ -31,31 +29,18 @@ func (m *FilePaymentConsent) UnmarshalJSON(raw []byte) error {
 	}
 	m.OBWriteFileConsentResponse4Data = aO0
 
-	// AO1
-	var aO1 OBRisk1
-	if err := swag.ReadJSON(raw, &aO1); err != nil {
-		return err
-	}
-	m.OBRisk1 = aO1
-
 	return nil
 }
 
 // MarshalJSON marshals this object to a JSON structure
 func (m FilePaymentConsent) MarshalJSON() ([]byte, error) {
-	_parts := make([][]byte, 0, 2)
+	_parts := make([][]byte, 0, 1)
 
 	aO0, err := swag.WriteJSON(m.OBWriteFileConsentResponse4Data)
 	if err != nil {
 		return nil, err
 	}
 	_parts = append(_parts, aO0)
-
-	aO1, err := swag.WriteJSON(m.OBRisk1)
-	if err != nil {
-		return nil, err
-	}
-	_parts = append(_parts, aO1)
 	return swag.ConcatJSON(_parts...), nil
 }
 
@@ -65,10 +50,6 @@ func (m *FilePaymentConsent) Validate(formats strfmt.Registry) error {
 
 	// validation for a type composition with OBWriteFileConsentResponse4Data
 	if err := m.OBWriteFileConsentResponse4Data.Validate(formats); err != nil {
-		res = append(res, err)
-	}
-	// validation for a type composition with OBRisk1
-	if err := m.OBRisk1.Validate(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -84,10 +65,6 @@ func (m *FilePaymentConsent) ContextValidate(ctx context.Context, formats strfmt
 
 	// validation for a type composition with OBWriteFileConsentResponse4Data
 	if err := m.OBWriteFileConsentResponse4Data.ContextValidate(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-	// validation for a type composition with OBRisk1
-	if err := m.OBRisk1.ContextValidate(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 

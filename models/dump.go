@@ -52,6 +52,9 @@ type Dump struct {
 	// openbanking consents
 	OpenbankingConsents []*OBConsent `json:"openbanking_consents"`
 
+	// openbanking file payment consent file resources
+	OpenbankingFilePaymentConsentFileResources []*FilePaymentConsentFileResource `json:"openbanking_file_payment_consent_file_resources"`
+
 	// policies
 	Policies []*Policy `json:"policies"`
 
@@ -134,6 +137,10 @@ func (m *Dump) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateOpenbankingConsents(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateOpenbankingFilePaymentConsentFileResources(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -436,6 +443,30 @@ func (m *Dump) validateOpenbankingConsents(formats strfmt.Registry) error {
 			if err := m.OpenbankingConsents[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("openbanking_consents" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Dump) validateOpenbankingFilePaymentConsentFileResources(formats strfmt.Registry) error {
+	if swag.IsZero(m.OpenbankingFilePaymentConsentFileResources) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.OpenbankingFilePaymentConsentFileResources); i++ {
+		if swag.IsZero(m.OpenbankingFilePaymentConsentFileResources[i]) { // not required
+			continue
+		}
+
+		if m.OpenbankingFilePaymentConsentFileResources[i] != nil {
+			if err := m.OpenbankingFilePaymentConsentFileResources[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("openbanking_file_payment_consent_file_resources" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -782,6 +813,10 @@ func (m *Dump) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateOpenbankingFilePaymentConsentFileResources(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidatePolicies(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -1018,6 +1053,24 @@ func (m *Dump) contextValidateOpenbankingConsents(ctx context.Context, formats s
 			if err := m.OpenbankingConsents[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("openbanking_consents" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Dump) contextValidateOpenbankingFilePaymentConsentFileResources(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.OpenbankingFilePaymentConsentFileResources); i++ {
+
+		if m.OpenbankingFilePaymentConsentFileResources[i] != nil {
+			if err := m.OpenbankingFilePaymentConsentFileResources[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("openbanking_file_payment_consent_file_resources" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

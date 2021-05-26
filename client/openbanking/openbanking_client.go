@@ -58,6 +58,8 @@ type ClientService interface {
 
 	CreateFilePaymentConsent(params *CreateFilePaymentConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateFilePaymentConsentCreated, error)
 
+	CreateFilePaymentConsentFile(params *CreateFilePaymentConsentFileParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) error
+
 	CreateInternationalPaymentConsent(params *CreateInternationalPaymentConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateInternationalPaymentConsentCreated, error)
 
 	CreateInternationalScheduledPaymentConsentRequest(params *CreateInternationalScheduledPaymentConsentRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateInternationalScheduledPaymentConsentRequestCreated, error)
@@ -81,6 +83,8 @@ type ClientService interface {
 	GetDomesticStandingOrderConsentRequest(params *GetDomesticStandingOrderConsentRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDomesticStandingOrderConsentRequestOK, error)
 
 	GetDomesticStandingOrderConsentSystem(params *GetDomesticStandingOrderConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDomesticStandingOrderConsentSystemOK, error)
+
+	GetFilePaymentConsentFileRequest(params *GetFilePaymentConsentFileRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetFilePaymentConsentFileRequestOK, error)
 
 	GetFilePaymentConsentRequest(params *GetFilePaymentConsentRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetFilePaymentConsentRequestOK, error)
 
@@ -745,6 +749,48 @@ func (a *Client) CreateFilePaymentConsent(params *CreateFilePaymentConsentParams
 }
 
 /*
+  CreateFilePaymentConsentFile uploads file for file payment consent
+
+  The endpoint allows the PISP to send a copy of the consent (between PSU and PISP) to the ASPSP for the PSU to authorize. The PISP must upload the file against the ConsentId before redirecting the PSU to authorize the consent.
+The file structure must match the FileType in the file-payment-consent request.
+An ASPSP must confirm the hash of the file matches with the FileHash provided in the file-payment-consent Metadata.
+The metadata for the file-payment-consent must match the contents of the uploaded file:
+If the content of the metadata does not match the content of the file, the ASPSP must reject the file-payment-consent.
+The file is sent in the HTTP request body.
+HTTP headers (e.g. Content-Type) are used to describe the file.
+
+The default Status is "AwaitingAuthorisation" immediately after the file has been created.
+*/
+func (a *Client) CreateFilePaymentConsentFile(params *CreateFilePaymentConsentFileParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) error {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateFilePaymentConsentFileParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "createFilePaymentConsentFile",
+		Method:             "POST",
+		PathPattern:        "/{tid}/{aid}/open-banking/v3.1/pisp/file-payment-consents/file",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateFilePaymentConsentFileReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	_, err := a.transport.Submit(op)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+/*
   CreateInternationalPaymentConsent creates international payment consent
 
   The API endpoint allows the PISP to ask an ASPSP to create a new international-payment-consent resource.
@@ -1260,6 +1306,47 @@ func (a *Client) GetDomesticStandingOrderConsentSystem(params *GetDomesticStandi
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for getDomesticStandingOrderConsentSystem: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetFilePaymentConsentFileRequest gets uploaded file for file payment consent
+
+  The API endpoint allows the PISP to download a file (that had been uploaded against a file-payment-consent resource) from an ASPSP.
+*/
+func (a *Client) GetFilePaymentConsentFileRequest(params *GetFilePaymentConsentFileRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetFilePaymentConsentFileRequestOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetFilePaymentConsentFileRequestParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getFilePaymentConsentFileRequest",
+		Method:             "GET",
+		PathPattern:        "/{tid}/{aid}/open-banking/v3.1/pisp/file-payment-consents/{consentID}/file",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetFilePaymentConsentFileRequestReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetFilePaymentConsentFileRequestOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getFilePaymentConsentFileRequest: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

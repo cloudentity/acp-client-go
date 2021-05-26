@@ -20,7 +20,7 @@ import (
 type SystemAPIBindings struct {
 
 	// bindings
-	Bindings []*CrossTenantAPIPolicyBinding `json:"Bindings"`
+	Bindings []*CrossTenantAPIPolicyBinding `json:"bindings"`
 }
 
 // Validate validates this system API bindings
@@ -50,7 +50,7 @@ func (m *SystemAPIBindings) validateBindings(formats strfmt.Registry) error {
 		if m.Bindings[i] != nil {
 			if err := m.Bindings[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("Bindings" + "." + strconv.Itoa(i))
+					return ve.ValidateName("bindings" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -82,7 +82,7 @@ func (m *SystemAPIBindings) contextValidateBindings(ctx context.Context, formats
 		if m.Bindings[i] != nil {
 			if err := m.Bindings[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("Bindings" + "." + strconv.Itoa(i))
+					return ve.ValidateName("bindings" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
