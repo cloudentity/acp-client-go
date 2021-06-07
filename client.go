@@ -202,8 +202,12 @@ func New(cfg Config) (c Client, err error) {
 	c.TenantID = paths[1]
 	c.ServerID = paths[2]
 
-	if c.c, err = cfg.newHTTPClient(); err != nil {
-		return c, err
+	if cfg.HttpClient == nil {
+		if c.c, err = cfg.newHTTPClient(); err != nil {
+			return c, err
+		}
+	} else {
+		c.c = cfg.HttpClient
 	}
 
 	if cfg.RequestObjectSigningKeyFile != "" {
