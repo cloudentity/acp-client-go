@@ -236,7 +236,7 @@ func New(cfg Config) (c Client, err error) {
 		"/",
 		[]string{cfg.IssuerURL.Scheme},
 		NewAuthenticator(cc, c.c),
-	), nil)
+	).WithOpenTracing(), nil)
 
 	c.Config = cfg
 
