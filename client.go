@@ -391,6 +391,7 @@ func (c *Client) AuthorizeURL(options ...AuthorizeOption) (authorizeURL string, 
 		"response_type": {"code"},
 		"client_id":     {c.Config.ClientID},
 		"nonce":         {csrf.Nonce},
+		"state":         {csrf.State},
 	}
 
 	if c.Config.RedirectURL != nil {
