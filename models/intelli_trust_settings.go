@@ -31,10 +31,6 @@ type IntelliTrustSettings struct {
 	// flag to fetch additional user data from userinfo endpoint
 	GetUserInfo bool `json:"get_user_info,omitempty"`
 
-	// OAuth redirect URL
-	// Example: https://example.com/callback
-	RedirectURL string `json:"redirect_url,omitempty"`
-
 	// OAuth scopes which client will be requesting
 	// Example: ["email","profile","openid"]
 	Scopes []string `json:"scopes"`

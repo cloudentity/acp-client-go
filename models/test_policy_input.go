@@ -18,11 +18,11 @@ import (
 // swagger:model TestPolicyInput
 type TestPolicyInput struct {
 
-	// contexts
-	Contexts map[string]interface{} `json:"contexts,omitempty"`
-
 	// authn ctx
 	AuthnCtx AuthenticationContext `json:"authn_ctx,omitempty"`
+
+	// contexts
+	Contexts map[string]interface{} `json:"contexts,omitempty"`
 
 	// request
 	Request *TestPolicyInputRequest `json:"request,omitempty"`

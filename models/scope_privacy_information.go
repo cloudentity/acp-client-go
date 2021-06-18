@@ -19,8 +19,8 @@ import (
 // swagger:model ScopePrivacyInformation
 type ScopePrivacyInformation struct {
 
-	// p i i categories
-	PIICategories []*PIICategory `json:"pii_categories"`
+	// pii categories
+	PiiCategories []*PIICategory `json:"pii_categories"`
 
 	// purpose
 	Purpose string `json:"purpose,omitempty"`
@@ -30,7 +30,7 @@ type ScopePrivacyInformation struct {
 func (m *ScopePrivacyInformation) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validatePIICategories(formats); err != nil {
+	if err := m.validatePiiCategories(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -40,18 +40,18 @@ func (m *ScopePrivacyInformation) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ScopePrivacyInformation) validatePIICategories(formats strfmt.Registry) error {
-	if swag.IsZero(m.PIICategories) { // not required
+func (m *ScopePrivacyInformation) validatePiiCategories(formats strfmt.Registry) error {
+	if swag.IsZero(m.PiiCategories) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.PIICategories); i++ {
-		if swag.IsZero(m.PIICategories[i]) { // not required
+	for i := 0; i < len(m.PiiCategories); i++ {
+		if swag.IsZero(m.PiiCategories[i]) { // not required
 			continue
 		}
 
-		if m.PIICategories[i] != nil {
-			if err := m.PIICategories[i].Validate(formats); err != nil {
+		if m.PiiCategories[i] != nil {
+			if err := m.PiiCategories[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("pii_categories" + "." + strconv.Itoa(i))
 				}
@@ -68,7 +68,7 @@ func (m *ScopePrivacyInformation) validatePIICategories(formats strfmt.Registry)
 func (m *ScopePrivacyInformation) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidatePIICategories(ctx, formats); err != nil {
+	if err := m.contextValidatePiiCategories(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -78,12 +78,12 @@ func (m *ScopePrivacyInformation) ContextValidate(ctx context.Context, formats s
 	return nil
 }
 
-func (m *ScopePrivacyInformation) contextValidatePIICategories(ctx context.Context, formats strfmt.Registry) error {
+func (m *ScopePrivacyInformation) contextValidatePiiCategories(ctx context.Context, formats strfmt.Registry) error {
 
-	for i := 0; i < len(m.PIICategories); i++ {
+	for i := 0; i < len(m.PiiCategories); i++ {
 
-		if m.PIICategories[i] != nil {
-			if err := m.PIICategories[i].ContextValidate(ctx, formats); err != nil {
+		if m.PiiCategories[i] != nil {
+			if err := m.PiiCategories[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("pii_categories" + "." + strconv.Itoa(i))
 				}

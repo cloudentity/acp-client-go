@@ -62,10 +62,10 @@ func NewAcceptLoginRequestParamsWithHTTPClient(client *http.Client) *AcceptLogin
 type AcceptLoginRequestParams struct {
 
 	// AcceptLogin.
-	AcceptLogin *models.AcceptLogin
+	AcceptLogin *models.AcceptSession
 
 	// Login.
-	LoginID string
+	Login string
 
 	/* Tid.
 
@@ -140,25 +140,25 @@ func (o *AcceptLoginRequestParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithAcceptLogin adds the acceptLogin to the accept login request params
-func (o *AcceptLoginRequestParams) WithAcceptLogin(acceptLogin *models.AcceptLogin) *AcceptLoginRequestParams {
+func (o *AcceptLoginRequestParams) WithAcceptLogin(acceptLogin *models.AcceptSession) *AcceptLoginRequestParams {
 	o.SetAcceptLogin(acceptLogin)
 	return o
 }
 
 // SetAcceptLogin adds the acceptLogin to the accept login request params
-func (o *AcceptLoginRequestParams) SetAcceptLogin(acceptLogin *models.AcceptLogin) {
+func (o *AcceptLoginRequestParams) SetAcceptLogin(acceptLogin *models.AcceptSession) {
 	o.AcceptLogin = acceptLogin
 }
 
-// WithLoginID adds the login to the accept login request params
-func (o *AcceptLoginRequestParams) WithLoginID(login string) *AcceptLoginRequestParams {
-	o.SetLoginID(login)
+// WithLogin adds the login to the accept login request params
+func (o *AcceptLoginRequestParams) WithLogin(login string) *AcceptLoginRequestParams {
+	o.SetLogin(login)
 	return o
 }
 
-// SetLoginID adds the login to the accept login request params
-func (o *AcceptLoginRequestParams) SetLoginID(login string) {
-	o.LoginID = login
+// SetLogin adds the login to the accept login request params
+func (o *AcceptLoginRequestParams) SetLogin(login string) {
+	o.Login = login
 }
 
 // WithTid adds the tid to the accept login request params
@@ -186,7 +186,7 @@ func (o *AcceptLoginRequestParams) WriteToRequest(r runtime.ClientRequest, reg s
 	}
 
 	// path param login
-	if err := r.SetPathParam("login", o.LoginID); err != nil {
+	if err := r.SetPathParam("login", o.Login); err != nil {
 		return err
 	}
 

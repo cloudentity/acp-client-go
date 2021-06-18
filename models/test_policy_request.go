@@ -18,14 +18,14 @@ import (
 // swagger:model TestPolicyRequest
 type TestPolicyRequest struct {
 
-	// server ID
-	ServerID string `json:"server_id,omitempty"`
-
 	// input
 	Input *TestPolicyInput `json:"input,omitempty"`
 
 	// policy
 	Policy *TestPolicyDefinition `json:"policy,omitempty"`
+
+	// server id
+	ServerID string `json:"server_id,omitempty"`
 }
 
 // Validate validates this test policy request

@@ -24,10 +24,6 @@ type GithubSettings struct {
 	// flag to fetch groups
 	FetchGroups bool `json:"fetch_groups,omitempty"`
 
-	// OAuth redirect URL
-	// Example: https://example.com/callback
-	RedirectURL string `json:"redirect_url,omitempty"`
-
 	// OAuth scopes which client will be requesting
 	// Example: ["email","profile","openid"]
 	Scopes []string `json:"scopes"`

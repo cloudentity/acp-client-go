@@ -17,7 +17,7 @@ import (
 // swagger:model BindGroupToServiceRequest
 type BindGroupToServiceRequest struct {
 
-	// service ID
+	// service id
 	ServiceID string `json:"service_id,omitempty"`
 }
 

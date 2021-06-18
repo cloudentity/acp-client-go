@@ -60,7 +60,7 @@ func NewGetAccountAccessConsentSystemParamsWithHTTPClient(client *http.Client) *
 type GetAccountAccessConsentSystemParams struct {
 
 	// Login.
-	LoginID string
+	Login string
 
 	/* Tid.
 
@@ -134,15 +134,15 @@ func (o *GetAccountAccessConsentSystemParams) SetHTTPClient(client *http.Client)
 	o.HTTPClient = client
 }
 
-// WithLoginID adds the login to the get account access consent system params
-func (o *GetAccountAccessConsentSystemParams) WithLoginID(login string) *GetAccountAccessConsentSystemParams {
-	o.SetLoginID(login)
+// WithLogin adds the login to the get account access consent system params
+func (o *GetAccountAccessConsentSystemParams) WithLogin(login string) *GetAccountAccessConsentSystemParams {
+	o.SetLogin(login)
 	return o
 }
 
-// SetLoginID adds the login to the get account access consent system params
-func (o *GetAccountAccessConsentSystemParams) SetLoginID(login string) {
-	o.LoginID = login
+// SetLogin adds the login to the get account access consent system params
+func (o *GetAccountAccessConsentSystemParams) SetLogin(login string) {
+	o.Login = login
 }
 
 // WithTid adds the tid to the get account access consent system params
@@ -165,7 +165,7 @@ func (o *GetAccountAccessConsentSystemParams) WriteToRequest(r runtime.ClientReq
 	var res []error
 
 	// path param login
-	if err := r.SetPathParam("login", o.LoginID); err != nil {
+	if err := r.SetPathParam("login", o.Login); err != nil {
 		return err
 	}
 

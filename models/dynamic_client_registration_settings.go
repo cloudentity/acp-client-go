@@ -26,9 +26,6 @@ type DynamicClientRegistrationSettings struct {
 
 	// payload
 	Payload *PayloadSettings `json:"payload,omitempty"`
-
-	// software statement
-	SoftwareStatement *SoftwareStatementSettings `json:"software_statement,omitempty"`
 }
 
 // Validate validates this dynamic client registration settings
@@ -40,10 +37,6 @@ func (m *DynamicClientRegistrationSettings) Validate(formats strfmt.Registry) er
 	}
 
 	if err := m.validatePayload(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateSoftwareStatement(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -87,23 +80,6 @@ func (m *DynamicClientRegistrationSettings) validatePayload(formats strfmt.Regis
 	return nil
 }
 
-func (m *DynamicClientRegistrationSettings) validateSoftwareStatement(formats strfmt.Registry) error {
-	if swag.IsZero(m.SoftwareStatement) { // not required
-		return nil
-	}
-
-	if m.SoftwareStatement != nil {
-		if err := m.SoftwareStatement.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("software_statement")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 // ContextValidate validate this dynamic client registration settings based on the context it is used
 func (m *DynamicClientRegistrationSettings) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
@@ -113,10 +89,6 @@ func (m *DynamicClientRegistrationSettings) ContextValidate(ctx context.Context,
 	}
 
 	if err := m.contextValidatePayload(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateSoftwareStatement(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -146,20 +118,6 @@ func (m *DynamicClientRegistrationSettings) contextValidatePayload(ctx context.C
 		if err := m.Payload.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("payload")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *DynamicClientRegistrationSettings) contextValidateSoftwareStatement(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.SoftwareStatement != nil {
-		if err := m.SoftwareStatement.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("software_statement")
 			}
 			return err
 		}

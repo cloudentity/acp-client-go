@@ -22,20 +22,17 @@ type Policy struct {
 	// definition for rego policy
 	Definition string `json:"definition,omitempty"`
 
+	// policy id
+	// Example: 1
+	ID string `json:"id,omitempty"`
+
 	// policy language
 	// Example: cloudentity
 	Language string `json:"language,omitempty"`
 
-	// policy id
-	// Example: 1
-	PolicyID string `json:"id,omitempty"`
-
 	// policy name
 	// Example: check_consent
 	PolicyName string `json:"policy_name,omitempty"`
-
-	// query for rego policy
-	Query string `json:"query,omitempty"`
 
 	// server id
 	// Example: default

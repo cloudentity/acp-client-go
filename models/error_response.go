@@ -12,6 +12,7 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // ErrorResponse An array of detail error codes, and messages, and URLs to documentation to help remediation.
@@ -20,23 +21,45 @@ import (
 type ErrorResponse struct {
 
 	// High level textual error code, to help categorize the errors.
-	Code string `json:"Code,omitempty"`
+	// Required: true
+	// Max Length: 40
+	// Min Length: 1
+	Code *string `json:"Code"`
 
 	// errors
-	Errors []*OBError `json:"Errors"`
+	// Required: true
+	// Min Items: 1
+	Errors []*OBError1 `json:"Errors"`
 
 	// A unique reference for the error instance, for audit purposes, in case of unknown/unclassified errors.
+	// Max Length: 40
+	// Min Length: 1
 	ID string `json:"Id,omitempty"`
 
 	// Brief Error message, e.g., 'There is something wrong with the request parameters provided'
-	Message string `json:"Message,omitempty"`
+	// Required: true
+	// Max Length: 500
+	// Min Length: 1
+	Message *string `json:"Message"`
 }
 
 // Validate validates this error response
 func (m *ErrorResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateCode(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateErrors(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMessage(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -46,9 +69,33 @@ func (m *ErrorResponse) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *ErrorResponse) validateCode(formats strfmt.Registry) error {
+
+	if err := validate.Required("Code", "body", m.Code); err != nil {
+		return err
+	}
+
+	if err := validate.MinLength("Code", "body", *m.Code, 1); err != nil {
+		return err
+	}
+
+	if err := validate.MaxLength("Code", "body", *m.Code, 40); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *ErrorResponse) validateErrors(formats strfmt.Registry) error {
-	if swag.IsZero(m.Errors) { // not required
-		return nil
+
+	if err := validate.Required("Errors", "body", m.Errors); err != nil {
+		return err
+	}
+
+	iErrorsSize := int64(len(m.Errors))
+
+	if err := validate.MinItems("Errors", "body", iErrorsSize, 1); err != nil {
+		return err
 	}
 
 	for i := 0; i < len(m.Errors); i++ {
@@ -65,6 +112,39 @@ func (m *ErrorResponse) validateErrors(formats strfmt.Registry) error {
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ErrorResponse) validateID(formats strfmt.Registry) error {
+	if swag.IsZero(m.ID) { // not required
+		return nil
+	}
+
+	if err := validate.MinLength("Id", "body", m.ID, 1); err != nil {
+		return err
+	}
+
+	if err := validate.MaxLength("Id", "body", m.ID, 40); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ErrorResponse) validateMessage(formats strfmt.Registry) error {
+
+	if err := validate.Required("Message", "body", m.Message); err != nil {
+		return err
+	}
+
+	if err := validate.MinLength("Message", "body", *m.Message, 1); err != nil {
+		return err
+	}
+
+	if err := validate.MaxLength("Message", "body", *m.Message, 500); err != nil {
+		return err
 	}
 
 	return nil

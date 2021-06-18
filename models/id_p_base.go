@@ -18,14 +18,26 @@ import (
 // swagger:model IDPBase
 type IDPBase struct {
 
-	// client ID
+	// attributes
+	Attributes Attributes `json:"attributes,omitempty"`
+
+	// authorization server id
+	AuthorizationServerID string `json:"authorization_server_id,omitempty"`
+
+	// client id
 	ClientID string `json:"client_id,omitempty"`
+
+	// config
+	Config *IDPConfiguration `json:"config,omitempty"`
 
 	// disabled
 	Disabled bool `json:"disabled,omitempty"`
 
-	// ID
+	// id
 	ID string `json:"id,omitempty"`
+
+	// mappings
+	Mappings Mappings `json:"mappings,omitempty"`
 
 	// method
 	Method string `json:"method,omitempty"`
@@ -33,23 +45,11 @@ type IDPBase struct {
 	// name
 	Name string `json:"name,omitempty"`
 
-	// server ID
-	ServerID string `json:"authorization_server_id,omitempty"`
+	// static amr
+	StaticAmr []string `json:"static_amr"`
 
-	// static a m r
-	StaticAMR []string `json:"static_amr"`
-
-	// tenant ID
+	// tenant id
 	TenantID string `json:"tenant_id,omitempty"`
-
-	// attributes
-	Attributes Attributes `json:"attributes,omitempty"`
-
-	// config
-	Config *IDPConfiguration `json:"config,omitempty"`
-
-	// mappings
-	Mappings Mappings `json:"mappings,omitempty"`
 
 	// transformer
 	Transformer *ScriptTransformer `json:"transformer,omitempty"`

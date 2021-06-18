@@ -18,6 +18,9 @@ import (
 // swagger:model StaticUser
 type StaticUser struct {
 
+	// authentication context
+	AuthenticationContext AuthenticationContext `json:"authentication_context,omitempty"`
+
 	// user password
 	// Example: secret
 	Password string `json:"password,omitempty"`
@@ -25,9 +28,6 @@ type StaticUser struct {
 	// user login
 	// Example: peter
 	Username string `json:"username,omitempty"`
-
-	// authentication context
-	AuthenticationContext AuthenticationContext `json:"authentication_context,omitempty"`
 }
 
 // Validate validates this static user

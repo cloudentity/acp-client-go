@@ -19,7 +19,7 @@ import (
 // swagger:model ClaimsRequests
 type ClaimsRequests struct {
 
-	// ID token
+	// id token
 	IDToken map[string]ClaimRequest `json:"id_token,omitempty"`
 
 	// userinfo

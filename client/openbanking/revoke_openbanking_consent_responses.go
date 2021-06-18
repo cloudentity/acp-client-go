@@ -29,6 +29,12 @@ func (o *RevokeOpenbankingConsentReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewRevokeOpenbankingConsentBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewRevokeOpenbankingConsentUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -69,6 +75,38 @@ func (o *RevokeOpenbankingConsentNoContent) Error() string {
 }
 
 func (o *RevokeOpenbankingConsentNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	return nil
+}
+
+// NewRevokeOpenbankingConsentBadRequest creates a RevokeOpenbankingConsentBadRequest with default headers values
+func NewRevokeOpenbankingConsentBadRequest() *RevokeOpenbankingConsentBadRequest {
+	return &RevokeOpenbankingConsentBadRequest{}
+}
+
+/* RevokeOpenbankingConsentBadRequest describes a response with status code 400, with default header values.
+
+HttpError
+*/
+type RevokeOpenbankingConsentBadRequest struct {
+	Payload *models.Error
+}
+
+func (o *RevokeOpenbankingConsentBadRequest) Error() string {
+	return fmt.Sprintf("[DELETE /api/system/{tid}/servers/{aid}/open-banking/consents/{consentID}][%d] revokeOpenbankingConsentBadRequest  %+v", 400, o.Payload)
+}
+func (o *RevokeOpenbankingConsentBadRequest) GetPayload() *models.Error {
+	return o.Payload
+}
+
+func (o *RevokeOpenbankingConsentBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

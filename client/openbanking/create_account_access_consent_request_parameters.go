@@ -91,7 +91,7 @@ type CreateAccountAccessConsentRequestParams struct {
 	If the PSU is using a TPP mobile app, the TPP must ensure that the user-agent string
 	is different from browser based user-agent strings.
 	*/
-	CustomerAgent *string
+	XCustomerUserAgent *string
 
 	/* XFapiAuthDate.
 
@@ -99,13 +99,13 @@ type CreateAccountAccessConsentRequestParams struct {
 
 	The value is supplied as a HTTP-date as in section 7.1.1.1 of [RFC7231]
 	*/
-	AuthDate *string
+	XFapiAuthDate *string
 
 	/* XFapiCustomerIPAddress.
 
 	   The PSU's IP address if the PSU is currently logged in with the TPP.
 	*/
-	CustomerIPAddress *string
+	XFapiCustomerIPAddress *string
 
 	/* XFapiInteractionID.
 
@@ -114,7 +114,15 @@ type CreateAccountAccessConsentRequestParams struct {
 	If provided, the ASPSP must "play back" this value
 	in the x-fapi-interaction-id response header.
 	*/
-	InteractionID *string
+	XFapiInteractionID *string
+
+	/* XJwsSignature.
+
+	     Header containing a detached JWS signature of the body of the payload.
+
+	Refer to resource specific documentation on when this header must be specified.
+	*/
+	XJwsSignature *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -216,48 +224,59 @@ func (o *CreateAccountAccessConsentRequestParams) SetTid(tid string) {
 	o.Tid = tid
 }
 
-// WithCustomerAgent adds the xCustomerUserAgent to the create account access consent request params
-func (o *CreateAccountAccessConsentRequestParams) WithCustomerAgent(xCustomerUserAgent *string) *CreateAccountAccessConsentRequestParams {
-	o.SetCustomerAgent(xCustomerUserAgent)
+// WithXCustomerUserAgent adds the xCustomerUserAgent to the create account access consent request params
+func (o *CreateAccountAccessConsentRequestParams) WithXCustomerUserAgent(xCustomerUserAgent *string) *CreateAccountAccessConsentRequestParams {
+	o.SetXCustomerUserAgent(xCustomerUserAgent)
 	return o
 }
 
-// SetCustomerAgent adds the xCustomerUserAgent to the create account access consent request params
-func (o *CreateAccountAccessConsentRequestParams) SetCustomerAgent(xCustomerUserAgent *string) {
-	o.CustomerAgent = xCustomerUserAgent
+// SetXCustomerUserAgent adds the xCustomerUserAgent to the create account access consent request params
+func (o *CreateAccountAccessConsentRequestParams) SetXCustomerUserAgent(xCustomerUserAgent *string) {
+	o.XCustomerUserAgent = xCustomerUserAgent
 }
 
-// WithAuthDate adds the xFapiAuthDate to the create account access consent request params
-func (o *CreateAccountAccessConsentRequestParams) WithAuthDate(xFapiAuthDate *string) *CreateAccountAccessConsentRequestParams {
-	o.SetAuthDate(xFapiAuthDate)
+// WithXFapiAuthDate adds the xFapiAuthDate to the create account access consent request params
+func (o *CreateAccountAccessConsentRequestParams) WithXFapiAuthDate(xFapiAuthDate *string) *CreateAccountAccessConsentRequestParams {
+	o.SetXFapiAuthDate(xFapiAuthDate)
 	return o
 }
 
-// SetAuthDate adds the xFapiAuthDate to the create account access consent request params
-func (o *CreateAccountAccessConsentRequestParams) SetAuthDate(xFapiAuthDate *string) {
-	o.AuthDate = xFapiAuthDate
+// SetXFapiAuthDate adds the xFapiAuthDate to the create account access consent request params
+func (o *CreateAccountAccessConsentRequestParams) SetXFapiAuthDate(xFapiAuthDate *string) {
+	o.XFapiAuthDate = xFapiAuthDate
 }
 
-// WithCustomerIPAddress adds the xFapiCustomerIPAddress to the create account access consent request params
-func (o *CreateAccountAccessConsentRequestParams) WithCustomerIPAddress(xFapiCustomerIPAddress *string) *CreateAccountAccessConsentRequestParams {
-	o.SetCustomerIPAddress(xFapiCustomerIPAddress)
+// WithXFapiCustomerIPAddress adds the xFapiCustomerIPAddress to the create account access consent request params
+func (o *CreateAccountAccessConsentRequestParams) WithXFapiCustomerIPAddress(xFapiCustomerIPAddress *string) *CreateAccountAccessConsentRequestParams {
+	o.SetXFapiCustomerIPAddress(xFapiCustomerIPAddress)
 	return o
 }
 
-// SetCustomerIPAddress adds the xFapiCustomerIpAddress to the create account access consent request params
-func (o *CreateAccountAccessConsentRequestParams) SetCustomerIPAddress(xFapiCustomerIPAddress *string) {
-	o.CustomerIPAddress = xFapiCustomerIPAddress
+// SetXFapiCustomerIPAddress adds the xFapiCustomerIpAddress to the create account access consent request params
+func (o *CreateAccountAccessConsentRequestParams) SetXFapiCustomerIPAddress(xFapiCustomerIPAddress *string) {
+	o.XFapiCustomerIPAddress = xFapiCustomerIPAddress
 }
 
-// WithInteractionID adds the xFapiInteractionID to the create account access consent request params
-func (o *CreateAccountAccessConsentRequestParams) WithInteractionID(xFapiInteractionID *string) *CreateAccountAccessConsentRequestParams {
-	o.SetInteractionID(xFapiInteractionID)
+// WithXFapiInteractionID adds the xFapiInteractionID to the create account access consent request params
+func (o *CreateAccountAccessConsentRequestParams) WithXFapiInteractionID(xFapiInteractionID *string) *CreateAccountAccessConsentRequestParams {
+	o.SetXFapiInteractionID(xFapiInteractionID)
 	return o
 }
 
-// SetInteractionID adds the xFapiInteractionId to the create account access consent request params
-func (o *CreateAccountAccessConsentRequestParams) SetInteractionID(xFapiInteractionID *string) {
-	o.InteractionID = xFapiInteractionID
+// SetXFapiInteractionID adds the xFapiInteractionId to the create account access consent request params
+func (o *CreateAccountAccessConsentRequestParams) SetXFapiInteractionID(xFapiInteractionID *string) {
+	o.XFapiInteractionID = xFapiInteractionID
+}
+
+// WithXJwsSignature adds the xJwsSignature to the create account access consent request params
+func (o *CreateAccountAccessConsentRequestParams) WithXJwsSignature(xJwsSignature *string) *CreateAccountAccessConsentRequestParams {
+	o.SetXJwsSignature(xJwsSignature)
+	return o
+}
+
+// SetXJwsSignature adds the xJwsSignature to the create account access consent request params
+func (o *CreateAccountAccessConsentRequestParams) SetXJwsSignature(xJwsSignature *string) {
+	o.XJwsSignature = xJwsSignature
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -283,34 +302,42 @@ func (o *CreateAccountAccessConsentRequestParams) WriteToRequest(r runtime.Clien
 		return err
 	}
 
-	if o.CustomerAgent != nil {
+	if o.XCustomerUserAgent != nil {
 
 		// header param x-customer-user-agent
-		if err := r.SetHeaderParam("x-customer-user-agent", *o.CustomerAgent); err != nil {
+		if err := r.SetHeaderParam("x-customer-user-agent", *o.XCustomerUserAgent); err != nil {
 			return err
 		}
 	}
 
-	if o.AuthDate != nil {
+	if o.XFapiAuthDate != nil {
 
 		// header param x-fapi-auth-date
-		if err := r.SetHeaderParam("x-fapi-auth-date", *o.AuthDate); err != nil {
+		if err := r.SetHeaderParam("x-fapi-auth-date", *o.XFapiAuthDate); err != nil {
 			return err
 		}
 	}
 
-	if o.CustomerIPAddress != nil {
+	if o.XFapiCustomerIPAddress != nil {
 
 		// header param x-fapi-customer-ip-address
-		if err := r.SetHeaderParam("x-fapi-customer-ip-address", *o.CustomerIPAddress); err != nil {
+		if err := r.SetHeaderParam("x-fapi-customer-ip-address", *o.XFapiCustomerIPAddress); err != nil {
 			return err
 		}
 	}
 
-	if o.InteractionID != nil {
+	if o.XFapiInteractionID != nil {
 
 		// header param x-fapi-interaction-id
-		if err := r.SetHeaderParam("x-fapi-interaction-id", *o.InteractionID); err != nil {
+		if err := r.SetHeaderParam("x-fapi-interaction-id", *o.XFapiInteractionID); err != nil {
+			return err
+		}
+	}
+
+	if o.XJwsSignature != nil {
+
+		// header param x-jws-signature
+		if err := r.SetHeaderParam("x-jws-signature", *o.XJwsSignature); err != nil {
 			return err
 		}
 	}

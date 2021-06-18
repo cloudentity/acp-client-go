@@ -7,381 +7,98 @@ package models
 
 import (
 	"context"
-	"encoding/json"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // IntrospectOpenbankingDomesticPaymentConsentResponse introspect openbanking domestic payment consent response
 //
 // swagger:model IntrospectOpenbankingDomesticPaymentConsentResponse
 type IntrospectOpenbankingDomesticPaymentConsentResponse struct {
+	IntrospectResponse
 
-	// Authentication Context Class Reference
-	Acr string `json:"acr,omitempty"`
+	DomesticPaymentConsent
 
-	// Active is a boolean indicator of whether or not the presented token
-	// is currently active.  The specifics of a token's "active" state
-	// will vary depending on the implementation of the authorization
-	// server and the information it keeps about its tokens, but a "true"
-	// value return for the "active" property will generally indicate
-	// that a given token has been issued by this authorization server,
-	// has not been revoked by the resource owner, and is within its
-	// given time window of validity (e.g., after its issuance time and
-	// before its expiration time).
-	Active bool `json:"active,omitempty"`
+	// account i ds
+	AccountIDs []string `json:"AccountIDs"`
+}
 
-	// Authentication Method References
-	Amr []string `json:"amr"`
+// UnmarshalJSON unmarshals this object from a JSON structure
+func (m *IntrospectOpenbankingDomesticPaymentConsentResponse) UnmarshalJSON(raw []byte) error {
+	// AO0
+	var aO0 IntrospectResponse
+	if err := swag.ReadJSON(raw, &aO0); err != nil {
+		return err
+	}
+	m.IntrospectResponse = aO0
 
-	// Audience contains a list of the token's intended audiences.
-	Audience []string `json:"aud"`
+	// AO1
+	var aO1 DomesticPaymentConsent
+	if err := swag.ReadJSON(raw, &aO1); err != nil {
+		return err
+	}
+	m.DomesticPaymentConsent = aO1
 
-	// authorisation
-	Authorisation *DomesticPaymentConsentAuthorisation `json:"Authorisation,omitempty"`
+	// AO2
+	var dataAO2 struct {
+		AccountIDs []string `json:"AccountIDs"`
+	}
+	if err := swag.ReadJSON(raw, &dataAO2); err != nil {
+		return err
+	}
 
-	// ClientID is a client identifier for the OAuth 2.0 client that
-	// requested this token.
-	ClientID string `json:"client_id,omitempty"`
+	m.AccountIDs = dataAO2.AccountIDs
 
-	// Unique identification as assigned to identify the domestic payment resource.
-	ConsentID string `json:"consent_id,omitempty"`
+	return nil
+}
 
-	// Date and time at which the resource was created.
-	// Format: date-time
-	CreationDateTime strfmt.DateTime `json:"CreationDateTime,omitempty"`
+// MarshalJSON marshals this object to a JSON structure
+func (m IntrospectOpenbankingDomesticPaymentConsentResponse) MarshalJSON() ([]byte, error) {
+	_parts := make([][]byte, 0, 3)
 
-	// delivery address
-	DeliveryAddress *RiskDeliveryAddress `json:"DeliveryAddress,omitempty"`
+	aO0, err := swag.WriteJSON(m.IntrospectResponse)
+	if err != nil {
+		return nil, err
+	}
+	_parts = append(_parts, aO0)
 
-	// Expires at is an integer timestamp, measured in the number of seconds
-	// since January 1 1970 UTC, indicating when this token will expire.
-	ExpiresAt int64 `json:"exp,omitempty"`
+	aO1, err := swag.WriteJSON(m.DomesticPaymentConsent)
+	if err != nil {
+		return nil, err
+	}
+	_parts = append(_parts, aO1)
+	var dataAO2 struct {
+		AccountIDs []string `json:"AccountIDs"`
+	}
 
-	// Extra is arbitrary data set by the session.
-	Extra map[string]interface{} `json:"ext,omitempty"`
+	dataAO2.AccountIDs = m.AccountIDs
 
-	// initiation
-	Initiation *DomesticPaymentConsentDataInitiation `json:"Initiation,omitempty"`
-
-	// Issued at is an integer timestamp, measured in the number of seconds
-	// since January 1 1970 UTC, indicating when this token was
-	// originally issued.
-	IssuedAt int64 `json:"iat,omitempty"`
-
-	// IssuerURL is a string representing the issuer of this token
-	Issuer string `json:"iss,omitempty"`
-
-	// Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.
-	// Max Length: 4
-	// Min Length: 3
-	MerchantCategoryCode string `json:"MerchantCategoryCode,omitempty"`
-
-	// The unique customer identifier of the PSU with the merchant.
-	// Max Length: 70
-	// Min Length: 1
-	MerchantCustomerIdentification string `json:"MerchantCustomerIdentification,omitempty"`
-
-	// NotBefore is an integer timestamp, measured in the number of seconds
-	// since January 1 1970 UTC, indicating when this token is not to be
-	// used before.
-	NotBefore int64 `json:"nbf,omitempty"`
-
-	// Specifies the payment context
-	// Enum: [[BillPayment EcommerceGoods EcommerceServices Other PartyToParty]]
-	PaymentContextCode string `json:"PaymentContextCode,omitempty"`
-
-	// Specifies to share the refund account details with PISP
-	// Enum: [[No Yes]]
-	ReadRefundAccount string `json:"ReadRefundAccount,omitempty"`
-
-	// s c a support data
-	SCASupportData *DomesticPaymentConsentSCASupportData `json:"SCASupportData,omitempty"`
-
-	// Scope is a JSON string containing a space-separated list of
-	// scopes associated with this token.
-	Scope string `json:"scope,omitempty"`
-
-	// ServerID is OAuth 2.0 authorization server identifier that
-	// issued this token.
-	ServerID string `json:"server_id,omitempty"`
-
-	// Specifies the status of consent resource in code form.
-	Status string `json:"Status,omitempty"`
-
-	// Date and time at which the resource status was updated.
-	// Format: date-time
-	StatusUpdateDateTime strfmt.DateTime `json:"StatusUpdateDateTime,omitempty"`
-
-	// Subject of the token, as defined in JWT [RFC7519].
-	// Usually a machine-readable identifier of the resource owner who
-	// authorized this token.
-	Subject string `json:"sub,omitempty"`
-
-	// TenantID identifies tenant where authorization server that
-	// issued this token belongs to.
-	TenantID string `json:"tenant_id,omitempty"`
-
-	// TokenType is the introspected token's type, for example `access_token` or `refresh_token`.
-	TokenType string `json:"token_type,omitempty"`
-
-	// Username is a human-readable identifier for the resource owner who
-	// authorized this token.
-	Username string `json:"username,omitempty"`
+	jsonDataAO2, errAO2 := swag.WriteJSON(dataAO2)
+	if errAO2 != nil {
+		return nil, errAO2
+	}
+	_parts = append(_parts, jsonDataAO2)
+	return swag.ConcatJSON(_parts...), nil
 }
 
 // Validate validates this introspect openbanking domestic payment consent response
 func (m *IntrospectOpenbankingDomesticPaymentConsentResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateAuthorisation(formats); err != nil {
+	// validation for a type composition with IntrospectResponse
+	if err := m.IntrospectResponse.Validate(formats); err != nil {
 		res = append(res, err)
 	}
-
-	if err := m.validateCreationDateTime(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateDeliveryAddress(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateInitiation(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateMerchantCategoryCode(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateMerchantCustomerIdentification(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validatePaymentContextCode(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateReadRefundAccount(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateSCASupportData(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateStatusUpdateDateTime(formats); err != nil {
+	// validation for a type composition with DomesticPaymentConsent
+	if err := m.DomesticPaymentConsent.Validate(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *IntrospectOpenbankingDomesticPaymentConsentResponse) validateAuthorisation(formats strfmt.Registry) error {
-	if swag.IsZero(m.Authorisation) { // not required
-		return nil
-	}
-
-	if m.Authorisation != nil {
-		if err := m.Authorisation.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("Authorisation")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *IntrospectOpenbankingDomesticPaymentConsentResponse) validateCreationDateTime(formats strfmt.Registry) error {
-	if swag.IsZero(m.CreationDateTime) { // not required
-		return nil
-	}
-
-	if err := validate.FormatOf("CreationDateTime", "body", "date-time", m.CreationDateTime.String(), formats); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *IntrospectOpenbankingDomesticPaymentConsentResponse) validateDeliveryAddress(formats strfmt.Registry) error {
-	if swag.IsZero(m.DeliveryAddress) { // not required
-		return nil
-	}
-
-	if m.DeliveryAddress != nil {
-		if err := m.DeliveryAddress.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("DeliveryAddress")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *IntrospectOpenbankingDomesticPaymentConsentResponse) validateInitiation(formats strfmt.Registry) error {
-	if swag.IsZero(m.Initiation) { // not required
-		return nil
-	}
-
-	if m.Initiation != nil {
-		if err := m.Initiation.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("Initiation")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *IntrospectOpenbankingDomesticPaymentConsentResponse) validateMerchantCategoryCode(formats strfmt.Registry) error {
-	if swag.IsZero(m.MerchantCategoryCode) { // not required
-		return nil
-	}
-
-	if err := validate.MinLength("MerchantCategoryCode", "body", m.MerchantCategoryCode, 3); err != nil {
-		return err
-	}
-
-	if err := validate.MaxLength("MerchantCategoryCode", "body", m.MerchantCategoryCode, 4); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *IntrospectOpenbankingDomesticPaymentConsentResponse) validateMerchantCustomerIdentification(formats strfmt.Registry) error {
-	if swag.IsZero(m.MerchantCustomerIdentification) { // not required
-		return nil
-	}
-
-	if err := validate.MinLength("MerchantCustomerIdentification", "body", m.MerchantCustomerIdentification, 1); err != nil {
-		return err
-	}
-
-	if err := validate.MaxLength("MerchantCustomerIdentification", "body", m.MerchantCustomerIdentification, 70); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-var introspectOpenbankingDomesticPaymentConsentResponseTypePaymentContextCodePropEnum []interface{}
-
-func init() {
-	var res []string
-	if err := json.Unmarshal([]byte(`["[BillPayment EcommerceGoods EcommerceServices Other PartyToParty]"]`), &res); err != nil {
-		panic(err)
-	}
-	for _, v := range res {
-		introspectOpenbankingDomesticPaymentConsentResponseTypePaymentContextCodePropEnum = append(introspectOpenbankingDomesticPaymentConsentResponseTypePaymentContextCodePropEnum, v)
-	}
-}
-
-const (
-
-	// IntrospectOpenbankingDomesticPaymentConsentResponsePaymentContextCodeBillPaymentEcommerceGoodsEcommerceServicesOtherPartyToParty captures enum value "[BillPayment EcommerceGoods EcommerceServices Other PartyToParty]"
-	IntrospectOpenbankingDomesticPaymentConsentResponsePaymentContextCodeBillPaymentEcommerceGoodsEcommerceServicesOtherPartyToParty string = "[BillPayment EcommerceGoods EcommerceServices Other PartyToParty]"
-)
-
-// prop value enum
-func (m *IntrospectOpenbankingDomesticPaymentConsentResponse) validatePaymentContextCodeEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, introspectOpenbankingDomesticPaymentConsentResponseTypePaymentContextCodePropEnum, true); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (m *IntrospectOpenbankingDomesticPaymentConsentResponse) validatePaymentContextCode(formats strfmt.Registry) error {
-	if swag.IsZero(m.PaymentContextCode) { // not required
-		return nil
-	}
-
-	// value enum
-	if err := m.validatePaymentContextCodeEnum("PaymentContextCode", "body", m.PaymentContextCode); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-var introspectOpenbankingDomesticPaymentConsentResponseTypeReadRefundAccountPropEnum []interface{}
-
-func init() {
-	var res []string
-	if err := json.Unmarshal([]byte(`["[No Yes]"]`), &res); err != nil {
-		panic(err)
-	}
-	for _, v := range res {
-		introspectOpenbankingDomesticPaymentConsentResponseTypeReadRefundAccountPropEnum = append(introspectOpenbankingDomesticPaymentConsentResponseTypeReadRefundAccountPropEnum, v)
-	}
-}
-
-const (
-
-	// IntrospectOpenbankingDomesticPaymentConsentResponseReadRefundAccountNoYes captures enum value "[No Yes]"
-	IntrospectOpenbankingDomesticPaymentConsentResponseReadRefundAccountNoYes string = "[No Yes]"
-)
-
-// prop value enum
-func (m *IntrospectOpenbankingDomesticPaymentConsentResponse) validateReadRefundAccountEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, introspectOpenbankingDomesticPaymentConsentResponseTypeReadRefundAccountPropEnum, true); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (m *IntrospectOpenbankingDomesticPaymentConsentResponse) validateReadRefundAccount(formats strfmt.Registry) error {
-	if swag.IsZero(m.ReadRefundAccount) { // not required
-		return nil
-	}
-
-	// value enum
-	if err := m.validateReadRefundAccountEnum("ReadRefundAccount", "body", m.ReadRefundAccount); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *IntrospectOpenbankingDomesticPaymentConsentResponse) validateSCASupportData(formats strfmt.Registry) error {
-	if swag.IsZero(m.SCASupportData) { // not required
-		return nil
-	}
-
-	if m.SCASupportData != nil {
-		if err := m.SCASupportData.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("SCASupportData")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *IntrospectOpenbankingDomesticPaymentConsentResponse) validateStatusUpdateDateTime(formats strfmt.Registry) error {
-	if swag.IsZero(m.StatusUpdateDateTime) { // not required
-		return nil
-	}
-
-	if err := validate.FormatOf("StatusUpdateDateTime", "body", "date-time", m.StatusUpdateDateTime.String(), formats); err != nil {
-		return err
-	}
-
 	return nil
 }
 
@@ -389,81 +106,18 @@ func (m *IntrospectOpenbankingDomesticPaymentConsentResponse) validateStatusUpda
 func (m *IntrospectOpenbankingDomesticPaymentConsentResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateAuthorisation(ctx, formats); err != nil {
+	// validation for a type composition with IntrospectResponse
+	if err := m.IntrospectResponse.ContextValidate(ctx, formats); err != nil {
 		res = append(res, err)
 	}
-
-	if err := m.contextValidateDeliveryAddress(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateInitiation(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateSCASupportData(ctx, formats); err != nil {
+	// validation for a type composition with DomesticPaymentConsent
+	if err := m.DomesticPaymentConsent.ContextValidate(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *IntrospectOpenbankingDomesticPaymentConsentResponse) contextValidateAuthorisation(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Authorisation != nil {
-		if err := m.Authorisation.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("Authorisation")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *IntrospectOpenbankingDomesticPaymentConsentResponse) contextValidateDeliveryAddress(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.DeliveryAddress != nil {
-		if err := m.DeliveryAddress.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("DeliveryAddress")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *IntrospectOpenbankingDomesticPaymentConsentResponse) contextValidateInitiation(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Initiation != nil {
-		if err := m.Initiation.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("Initiation")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *IntrospectOpenbankingDomesticPaymentConsentResponse) contextValidateSCASupportData(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.SCASupportData != nil {
-		if err := m.SCASupportData.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("SCASupportData")
-			}
-			return err
-		}
-	}
-
 	return nil
 }
 

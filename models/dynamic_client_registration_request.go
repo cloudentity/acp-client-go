@@ -22,15 +22,20 @@ type DynamicClientRegistrationRequest struct {
 	// Example: web
 	ApplicationType string `json:"application_type,omitempty"`
 
+	// Dynamically calculated application types that can be used for filtering
+	// Example: ["single_page","server_web","mobile_desktop","service","legacy","dcr"]
+	ApplicationTypes []string `json:"application_types"`
+
 	// oauth client allowed audience
 	Audience []string `json:"audience"`
-
-	// Boolean value indicating server support for mutual TLS client certificate-bound access tokens. If omitted, the default value is "false".
-	CertificateBoundAccessToken bool `json:"tls_client_certificate_bound_access_tokens,omitempty"`
 
 	// Time at which the client identifier was issued. The time is represented as the number of seconds from
 	// 1970-01-01T00:00:00Z as measured in UTC until the date/time of issuance
 	ClientIDIssuedAt int64 `json:"client_id_issued_at,omitempty"`
+
+	// human redable name
+	// Example: My app
+	ClientName string `json:"client_name,omitempty"`
 
 	// SecretExpiresAt is an integer holding the time at which the client secret will expire or 0 if it will not expire.
 	ClientSecretExpiresAt int64 `json:"client_secret_expires_at,omitempty"`
@@ -50,45 +55,35 @@ type DynamicClientRegistrationRequest struct {
 	// Example: ES256
 	IDTokenSignedResponseAlg string `json:"id_token_signed_response_alg,omitempty"`
 
+	// jwks
+	Jwks *ClientJWKs `json:"jwks,omitempty"`
+
 	// URL of JSON Web Key Set containing the public keys used by the client to authenticate
-	JSONWebKeysURI string `json:"jwks_uri,omitempty"`
+	JwksURI string `json:"jwks_uri,omitempty"`
 
 	// logo URI
 	LogoURI string `json:"logo_uri,omitempty"`
 
-	// human redable name
-	// Example: My app
-	Name string `json:"client_name,omitempty"`
-
 	// policy url to read about how the profile data will be used
 	PolicyURI string `json:"policy_uri,omitempty"`
 
+	// privacy
+	Privacy *ClientPrivacy `json:"privacy,omitempty"`
+
 	// oauth allowed redirect URIs
 	// Example: ["https://example.com/callback"]
-	RedirectURIs []string `json:"redirect_uris"`
+	RedirectUris []string `json:"redirect_uris"`
 
 	// Signing algorithm for a request object
 	// Example: none
 	RequestObjectSigningAlg string `json:"request_object_signing_alg,omitempty"`
 
 	// Array of absolute URIs that points to the Request Object that holds authorization request parameters
-	RequestURIs []string `json:"request_uris"`
+	RequestUris []string `json:"request_uris"`
 
 	// oauth client response types, allowed values: token, id_token, code
 	// Example: ["token","id_token","code"]
 	ResponseTypes []string `json:"response_types"`
-
-	// A string containing the value of an expected dNSName SAN entry in the certificate
-	SanDNS string `json:"tls_client_auth_san_dns,omitempty"`
-
-	// A string containing the value of an expected rfc822Name SAN entry in the certificate
-	SanEmail string `json:"tls_client_auth_san_email,omitempty"`
-
-	// A string representation of an IP address in either dotted decimal notation (for IPv4) or colon-delimited hexadecimal (for IPv6, as defined in [RFC5952]) that is expected to be present as an iPAddress SAN entry in the certificate
-	SanIP string `json:"tls_client_auth_san_ip,omitempty"`
-
-	// A string containing the value of an expected uniformResourceIdentifier SAN entry in the certificate
-	SanURI string `json:"tls_client_auth_san_uri,omitempty"`
 
 	// Optional comma separated scopes for compatibility with spec
 	// Example: email offline_access openid
@@ -111,7 +106,16 @@ type DynamicClientRegistrationRequest struct {
 	// usually opaque to the client and authorization server.
 	SoftwareID string `json:"software_id,omitempty"`
 
-	// software statement
+	// A digitally signed or MACed JSON Web Token (JWT) [RFC7519] that
+	// asserts metadata values about the client software.  In some cases,
+	// a software statement will be issued directly by the client
+	// developer.  In other cases, a software statement will be issued by
+	// a third-party organization for use by the client developer.  In
+	// both cases, the trust relationship the authorization server has
+	// with the issuer of the software statement is intended to be used
+	// as an input to the evaluation of whether the registration request
+	// is accepted.  A software statement can be presented to an
+	// authorization server as part of a client registration request.
 	SoftwareStatement string `json:"software_statement,omitempty"`
 
 	// A version identifier string for the client software identified by
@@ -120,18 +124,33 @@ type DynamicClientRegistrationRequest struct {
 	// "software_id".
 	SoftwareVersion string `json:"software_version,omitempty"`
 
-	// An [RFC4514] string representation of the expected subject distinguished name of the certificate
-	SubjectDN string `json:"tls_client_auth_subject_dn,omitempty"`
-
 	// Subject identifier type
 	SubjectType string `json:"subject_type,omitempty"`
 
-	// Signing algorithm for a token endpoint
-	TokenEndpointAuthSigningAlg string `json:"token_endpoint_auth_signing_alg,omitempty"`
+	// A string containing the value of an expected dNSName SAN entry in the certificate
+	TLSClientAuthSanDNS string `json:"tls_client_auth_san_dns,omitempty"`
+
+	// A string containing the value of an expected rfc822Name SAN entry in the certificate
+	TLSClientAuthSanEmail string `json:"tls_client_auth_san_email,omitempty"`
+
+	// A string representation of an IP address in either dotted decimal notation (for IPv4) or colon-delimited hexadecimal (for IPv6, as defined in [RFC5952]) that is expected to be present as an iPAddress SAN entry in the certificate
+	TLSClientAuthSanIP string `json:"tls_client_auth_san_ip,omitempty"`
+
+	// A string containing the value of an expected uniformResourceIdentifier SAN entry in the certificate
+	TLSClientAuthSanURI string `json:"tls_client_auth_san_uri,omitempty"`
+
+	// An [RFC4514] string representation of the expected subject distinguished name of the certificate
+	TLSClientAuthSubjectDn string `json:"tls_client_auth_subject_dn,omitempty"`
+
+	// Boolean value indicating server support for mutual TLS client certificate-bound access tokens. If omitted, the default value is "false".
+	TLSClientCertificateBoundAccessTokens bool `json:"tls_client_certificate_bound_access_tokens,omitempty"`
 
 	// Token endpoint authentication method
 	// Example: client_secret_basic
-	TokenEndpointAuthnMethod string `json:"token_endpoint_auth_method,omitempty"`
+	TokenEndpointAuthMethod string `json:"token_endpoint_auth_method,omitempty"`
+
+	// Signing algorithm for a token endpoint
+	TokenEndpointAuthSigningAlg string `json:"token_endpoint_auth_signing_alg,omitempty"`
 
 	// terms of service url
 	TosURI string `json:"tos_uri,omitempty"`
@@ -141,12 +160,6 @@ type DynamicClientRegistrationRequest struct {
 	// as a UTF-8 encoded JSON object using the application/json content-type.
 	// Example: none
 	UserinfoSignedResponseAlg string `json:"userinfo_signed_response_alg,omitempty"`
-
-	// jwks
-	Jwks *JWKs `json:"jwks,omitempty"`
-
-	// privacy
-	Privacy *ClientPrivacy `json:"privacy,omitempty"`
 }
 
 // Validate validates this dynamic client registration request

@@ -60,7 +60,7 @@ func NewGetDomesticPaymentConsentSystemParamsWithHTTPClient(client *http.Client)
 type GetDomesticPaymentConsentSystemParams struct {
 
 	// Login.
-	LoginID string
+	Login string
 
 	/* Tid.
 
@@ -134,15 +134,15 @@ func (o *GetDomesticPaymentConsentSystemParams) SetHTTPClient(client *http.Clien
 	o.HTTPClient = client
 }
 
-// WithLoginID adds the login to the get domestic payment consent system params
-func (o *GetDomesticPaymentConsentSystemParams) WithLoginID(login string) *GetDomesticPaymentConsentSystemParams {
-	o.SetLoginID(login)
+// WithLogin adds the login to the get domestic payment consent system params
+func (o *GetDomesticPaymentConsentSystemParams) WithLogin(login string) *GetDomesticPaymentConsentSystemParams {
+	o.SetLogin(login)
 	return o
 }
 
-// SetLoginID adds the login to the get domestic payment consent system params
-func (o *GetDomesticPaymentConsentSystemParams) SetLoginID(login string) {
-	o.LoginID = login
+// SetLogin adds the login to the get domestic payment consent system params
+func (o *GetDomesticPaymentConsentSystemParams) SetLogin(login string) {
+	o.Login = login
 }
 
 // WithTid adds the tid to the get domestic payment consent system params
@@ -165,7 +165,7 @@ func (o *GetDomesticPaymentConsentSystemParams) WriteToRequest(r runtime.ClientR
 	var res []error
 
 	// path param login
-	if err := r.SetPathParam("login", o.LoginID); err != nil {
+	if err := r.SetPathParam("login", o.Login); err != nil {
 		return err
 	}
 

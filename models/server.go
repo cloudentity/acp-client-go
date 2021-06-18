@@ -45,13 +45,22 @@ type Server struct {
 	// Format: duration
 	CookieMaxAge strfmt.Duration `json:"cookie_max_age,omitempty"`
 
+	// dynamic client registration
+	DynamicClientRegistration *DynamicClientRegistrationSettings `json:"dynamic_client_registration,omitempty"`
+
+	// Used to mark if server should be visible on quick access tab on login page
+	EnableQuickAccess bool `json:"enable_quick_access,omitempty"`
+
+	// used to enable integration with trust anchor ALPHA_FEATURE
+	EnableTrustAnchor bool `json:"enable_trust_anchor,omitempty"`
+
 	// Enforce pkce (default false)
 	// Example: false
-	EnforcePKCE bool `json:"enforce_pkce,omitempty"`
+	EnforcePkce bool `json:"enforce_pkce,omitempty"`
 
 	// Enforce pkce for public clients (default false)
 	// Example: false
-	EnforcePKCEForPublicClients bool `json:"enforce_pkce_for_public_clients,omitempty"`
+	EnforcePkceForPublicClients bool `json:"enforce_pkce_for_public_clients,omitempty"`
 
 	// Supported grant types
 	// Example: ["authorization_code","implicit","refresh_token","client_credentials"]
@@ -66,9 +75,12 @@ type Server struct {
 	// Format: duration
 	IDTokenTTL strfmt.Duration `json:"id_token_ttl,omitempty"`
 
-	// Authorization Server Issuer. If not provided will be set based on deployment configuration
+	// Optional custom issuer url. If not provided the server url is used instead
 	// Example: http://example.com/default/default
 	IssuerURL string `json:"issuer_url,omitempty"`
+
+	// jwks
+	Jwks *ServerJWKs `json:"jwks,omitempty"`
 
 	// Key type used to generate key which will be used to sign access and id tokens
 	// Used only as input parameter in Create Authorization Server API
@@ -99,7 +111,7 @@ type Server struct {
 
 	// PEM encoded root CA certificates used for client mtls token endpoint authentication.
 	// If not set the system root CA certifiates are used instead.
-	RootCAs string `json:"root_cas,omitempty"`
+	RootCas string `json:"root_cas,omitempty"`
 
 	// Rotated secrets used for validating old tokens
 	// Example: ["jFpwIvuKJP46J71WqszPv1SrzoUr-cSILP9EPdlClB4"]
@@ -116,21 +128,18 @@ type Server struct {
 	// Example: ["public","pairwise"]
 	SubjectIdentifierTypes []string `json:"subject_identifier_types"`
 
-	// tenant ID
+	// tenant id
 	TenantID string `json:"tenant_id,omitempty"`
 
 	// Supported token endpoint authentication methods
 	TokenEndpointAuthnMethods []string `json:"token_endpoint_authn_methods"`
 
+	// trust anchor configuration
+	TrustAnchorConfiguration *TrustAnchorConfiguration `json:"trust_anchor_configuration,omitempty"`
+
 	// Server type
 	// Example: regular
 	Type string `json:"type,omitempty"`
-
-	// dynamic client registration
-	DynamicClientRegistration *DynamicClientRegistrationSettings `json:"dynamic_client_registration,omitempty"`
-
-	// jwks
-	Jwks *JWKs `json:"jwks,omitempty"`
 }
 
 // Validate validates this server
@@ -149,7 +158,15 @@ func (m *Server) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateDynamicClientRegistration(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateIDTokenTTL(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateJwks(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -157,11 +174,7 @@ func (m *Server) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateDynamicClientRegistration(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateJwks(formats); err != nil {
+	if err := m.validateTrustAnchorConfiguration(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -207,30 +220,6 @@ func (m *Server) validateCookieMaxAge(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Server) validateIDTokenTTL(formats strfmt.Registry) error {
-	if swag.IsZero(m.IDTokenTTL) { // not required
-		return nil
-	}
-
-	if err := validate.FormatOf("id_token_ttl", "body", "duration", m.IDTokenTTL.String(), formats); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *Server) validateRefreshTokenTTL(formats strfmt.Registry) error {
-	if swag.IsZero(m.RefreshTokenTTL) { // not required
-		return nil
-	}
-
-	if err := validate.FormatOf("refresh_token_ttl", "body", "duration", m.RefreshTokenTTL.String(), formats); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *Server) validateDynamicClientRegistration(formats strfmt.Registry) error {
 	if swag.IsZero(m.DynamicClientRegistration) { // not required
 		return nil
@@ -243,6 +232,18 @@ func (m *Server) validateDynamicClientRegistration(formats strfmt.Registry) erro
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *Server) validateIDTokenTTL(formats strfmt.Registry) error {
+	if swag.IsZero(m.IDTokenTTL) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("id_token_ttl", "body", "duration", m.IDTokenTTL.String(), formats); err != nil {
+		return err
 	}
 
 	return nil
@@ -265,6 +266,35 @@ func (m *Server) validateJwks(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Server) validateRefreshTokenTTL(formats strfmt.Registry) error {
+	if swag.IsZero(m.RefreshTokenTTL) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("refresh_token_ttl", "body", "duration", m.RefreshTokenTTL.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Server) validateTrustAnchorConfiguration(formats strfmt.Registry) error {
+	if swag.IsZero(m.TrustAnchorConfiguration) { // not required
+		return nil
+	}
+
+	if m.TrustAnchorConfiguration != nil {
+		if err := m.TrustAnchorConfiguration.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("trust_anchor_configuration")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 // ContextValidate validate this server based on the context it is used
 func (m *Server) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
@@ -274,6 +304,10 @@ func (m *Server) ContextValidate(ctx context.Context, formats strfmt.Registry) e
 	}
 
 	if err := m.contextValidateJwks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateTrustAnchorConfiguration(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -303,6 +337,20 @@ func (m *Server) contextValidateJwks(ctx context.Context, formats strfmt.Registr
 		if err := m.Jwks.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("jwks")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *Server) contextValidateTrustAnchorConfiguration(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.TrustAnchorConfiguration != nil {
+		if err := m.TrustAnchorConfiguration.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("trust_anchor_configuration")
 			}
 			return err
 		}

@@ -18,32 +18,14 @@ import (
 // swagger:model CognitoIDP
 type CognitoIDP struct {
 
-	// client ID
-	ClientID string `json:"client_id,omitempty"`
-
-	// disabled
-	Disabled bool `json:"disabled,omitempty"`
-
-	// ID
-	ID string `json:"id,omitempty"`
-
-	// method
-	Method string `json:"method,omitempty"`
-
-	// name
-	Name string `json:"name,omitempty"`
-
-	// server ID
-	ServerID string `json:"authorization_server_id,omitempty"`
-
-	// static a m r
-	StaticAMR []string `json:"static_amr"`
-
-	// tenant ID
-	TenantID string `json:"tenant_id,omitempty"`
-
 	// attributes
 	Attributes Attributes `json:"attributes,omitempty"`
+
+	// authorization server id
+	AuthorizationServerID string `json:"authorization_server_id,omitempty"`
+
+	// client id
+	ClientID string `json:"client_id,omitempty"`
 
 	// config
 	Config *IDPConfiguration `json:"config,omitempty"`
@@ -51,11 +33,29 @@ type CognitoIDP struct {
 	// credentials
 	Credentials *CognitoCredentials `json:"credentials,omitempty"`
 
+	// disabled
+	Disabled bool `json:"disabled,omitempty"`
+
+	// id
+	ID string `json:"id,omitempty"`
+
 	// mappings
 	Mappings Mappings `json:"mappings,omitempty"`
 
+	// method
+	Method string `json:"method,omitempty"`
+
+	// name
+	Name string `json:"name,omitempty"`
+
 	// settings
 	Settings *CognitoSettings `json:"settings,omitempty"`
+
+	// static amr
+	StaticAmr []string `json:"static_amr"`
+
+	// tenant id
+	TenantID string `json:"tenant_id,omitempty"`
 
 	// transformer
 	Transformer *ScriptTransformer `json:"transformer,omitempty"`

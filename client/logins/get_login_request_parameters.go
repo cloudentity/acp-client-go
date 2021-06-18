@@ -60,7 +60,7 @@ func NewGetLoginRequestParamsWithHTTPClient(client *http.Client) *GetLoginReques
 type GetLoginRequestParams struct {
 
 	// Login.
-	LoginID string
+	Login string
 
 	/* Tid.
 
@@ -134,15 +134,15 @@ func (o *GetLoginRequestParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithLoginID adds the login to the get login request params
-func (o *GetLoginRequestParams) WithLoginID(login string) *GetLoginRequestParams {
-	o.SetLoginID(login)
+// WithLogin adds the login to the get login request params
+func (o *GetLoginRequestParams) WithLogin(login string) *GetLoginRequestParams {
+	o.SetLogin(login)
 	return o
 }
 
-// SetLoginID adds the login to the get login request params
-func (o *GetLoginRequestParams) SetLoginID(login string) {
-	o.LoginID = login
+// SetLogin adds the login to the get login request params
+func (o *GetLoginRequestParams) SetLogin(login string) {
+	o.Login = login
 }
 
 // WithTid adds the tid to the get login request params
@@ -165,7 +165,7 @@ func (o *GetLoginRequestParams) WriteToRequest(r runtime.ClientRequest, reg strf
 	var res []error
 
 	// path param login
-	if err := r.SetPathParam("login", o.LoginID); err != nil {
+	if err := r.SetPathParam("login", o.Login); err != nil {
 		return err
 	}
 

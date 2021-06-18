@@ -27,7 +27,7 @@ type PolicyExecutionPoint struct {
 
 	// target id
 	// Example: 1
-	TargetID string `json:"target_fk,omitempty"`
+	TargetFk string `json:"target_fk,omitempty"`
 
 	// tenant id
 	// Example: default

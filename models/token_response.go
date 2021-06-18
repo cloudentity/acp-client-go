@@ -14,7 +14,7 @@ import (
 
 // TokenResponse token response
 //
-// swagger:model TokenResponse
+// swagger:model tokenResponse
 type TokenResponse struct {
 
 	// access token
@@ -22,6 +22,9 @@ type TokenResponse struct {
 
 	// expires in
 	ExpiresIn int64 `json:"expires_in,omitempty"`
+
+	// id token
+	IDToken string `json:"id_token,omitempty"`
 
 	// refresh token
 	RefreshToken string `json:"refresh_token,omitempty"`

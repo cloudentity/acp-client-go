@@ -27,10 +27,6 @@ type OIDCSettings struct {
 	// Authorization server issuer URL
 	IssuerURL string `json:"issuer_url,omitempty"`
 
-	// OAuth redirect URL
-	// Example: https://example.com/callback
-	RedirectURL string `json:"redirect_url,omitempty"`
-
 	// OAuth scopes which client will be requesting
 	// Example: ["email","profile","openid"]
 	Scopes []string `json:"scopes"`

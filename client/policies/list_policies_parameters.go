@@ -14,6 +14,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewListPoliciesParams creates a new ListPoliciesParams object,
@@ -59,6 +60,13 @@ func NewListPoliciesParamsWithHTTPClient(client *http.Client) *ListPoliciesParam
 */
 type ListPoliciesParams struct {
 
+	/* AfterPolicyID.
+
+	     optional list policies after given id
+	AfterPolicyID
+	*/
+	AfterPolicyID *string
+
 	/* Aid.
 
 	   Authorization server id
@@ -67,13 +75,51 @@ type ListPoliciesParams struct {
 	*/
 	Aid string
 
-	/* PolicyType.
+	/* BeforePolicyID.
 
-	   Policy type
+	     optional list policies before given id
+	BeforePolicyID
+	*/
+	BeforePolicyID *string
+
+	/* Limit.
+
+	     optional limit results
+	Limit
+
+	     Format: int64
+	     Default: 20
+	*/
+	Limit *int64
+
+	/* Order.
+
+	     optional order policies by given direction
+	Order
+	*/
+	Order *string
+
+	/* PolicyTypes.
+
+	   Optional policy types
 
 	   Default: "api"
 	*/
-	PolicyType *string
+	PolicyTypes *string
+
+	/* SearchPhrase.
+
+	     Optional search phrase: policy id OR policy name substring (case insensitive)
+	SearchPhrase
+	*/
+	SearchPhrase *string
+
+	/* Sort.
+
+	     optional sort policies by given field
+	Sort
+	*/
+	Sort *string
 
 	/* Tid.
 
@@ -103,15 +149,18 @@ func (o *ListPoliciesParams) SetDefaults() {
 	var (
 		aidDefault = string("default")
 
-		policyTypeDefault = string("api")
+		limitDefault = int64(20)
+
+		policyTypesDefault = string("api")
 
 		tidDefault = string("default")
 	)
 
 	val := ListPoliciesParams{
-		Aid:        aidDefault,
-		PolicyType: &policyTypeDefault,
-		Tid:        tidDefault,
+		Aid:         aidDefault,
+		Limit:       &limitDefault,
+		PolicyTypes: &policyTypesDefault,
+		Tid:         tidDefault,
 	}
 
 	val.timeout = o.timeout
@@ -153,6 +202,17 @@ func (o *ListPoliciesParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAfterPolicyID adds the afterPolicyID to the list policies params
+func (o *ListPoliciesParams) WithAfterPolicyID(afterPolicyID *string) *ListPoliciesParams {
+	o.SetAfterPolicyID(afterPolicyID)
+	return o
+}
+
+// SetAfterPolicyID adds the afterPolicyId to the list policies params
+func (o *ListPoliciesParams) SetAfterPolicyID(afterPolicyID *string) {
+	o.AfterPolicyID = afterPolicyID
+}
+
 // WithAid adds the aid to the list policies params
 func (o *ListPoliciesParams) WithAid(aid string) *ListPoliciesParams {
 	o.SetAid(aid)
@@ -164,15 +224,70 @@ func (o *ListPoliciesParams) SetAid(aid string) {
 	o.Aid = aid
 }
 
-// WithPolicyType adds the policyType to the list policies params
-func (o *ListPoliciesParams) WithPolicyType(policyType *string) *ListPoliciesParams {
-	o.SetPolicyType(policyType)
+// WithBeforePolicyID adds the beforePolicyID to the list policies params
+func (o *ListPoliciesParams) WithBeforePolicyID(beforePolicyID *string) *ListPoliciesParams {
+	o.SetBeforePolicyID(beforePolicyID)
 	return o
 }
 
-// SetPolicyType adds the policyType to the list policies params
-func (o *ListPoliciesParams) SetPolicyType(policyType *string) {
-	o.PolicyType = policyType
+// SetBeforePolicyID adds the beforePolicyId to the list policies params
+func (o *ListPoliciesParams) SetBeforePolicyID(beforePolicyID *string) {
+	o.BeforePolicyID = beforePolicyID
+}
+
+// WithLimit adds the limit to the list policies params
+func (o *ListPoliciesParams) WithLimit(limit *int64) *ListPoliciesParams {
+	o.SetLimit(limit)
+	return o
+}
+
+// SetLimit adds the limit to the list policies params
+func (o *ListPoliciesParams) SetLimit(limit *int64) {
+	o.Limit = limit
+}
+
+// WithOrder adds the order to the list policies params
+func (o *ListPoliciesParams) WithOrder(order *string) *ListPoliciesParams {
+	o.SetOrder(order)
+	return o
+}
+
+// SetOrder adds the order to the list policies params
+func (o *ListPoliciesParams) SetOrder(order *string) {
+	o.Order = order
+}
+
+// WithPolicyTypes adds the policyTypes to the list policies params
+func (o *ListPoliciesParams) WithPolicyTypes(policyTypes *string) *ListPoliciesParams {
+	o.SetPolicyTypes(policyTypes)
+	return o
+}
+
+// SetPolicyTypes adds the policyTypes to the list policies params
+func (o *ListPoliciesParams) SetPolicyTypes(policyTypes *string) {
+	o.PolicyTypes = policyTypes
+}
+
+// WithSearchPhrase adds the searchPhrase to the list policies params
+func (o *ListPoliciesParams) WithSearchPhrase(searchPhrase *string) *ListPoliciesParams {
+	o.SetSearchPhrase(searchPhrase)
+	return o
+}
+
+// SetSearchPhrase adds the searchPhrase to the list policies params
+func (o *ListPoliciesParams) SetSearchPhrase(searchPhrase *string) {
+	o.SearchPhrase = searchPhrase
+}
+
+// WithSort adds the sort to the list policies params
+func (o *ListPoliciesParams) WithSort(sort *string) *ListPoliciesParams {
+	o.SetSort(sort)
+	return o
+}
+
+// SetSort adds the sort to the list policies params
+func (o *ListPoliciesParams) SetSort(sort *string) {
+	o.Sort = sort
 }
 
 // WithTid adds the tid to the list policies params
@@ -194,23 +309,125 @@ func (o *ListPoliciesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 	}
 	var res []error
 
+	if o.AfterPolicyID != nil {
+
+		// query param after_policy_id
+		var qrAfterPolicyID string
+
+		if o.AfterPolicyID != nil {
+			qrAfterPolicyID = *o.AfterPolicyID
+		}
+		qAfterPolicyID := qrAfterPolicyID
+		if qAfterPolicyID != "" {
+
+			if err := r.SetQueryParam("after_policy_id", qAfterPolicyID); err != nil {
+				return err
+			}
+		}
+	}
+
 	// path param aid
 	if err := r.SetPathParam("aid", o.Aid); err != nil {
 		return err
 	}
 
-	if o.PolicyType != nil {
+	if o.BeforePolicyID != nil {
 
-		// query param policy_type
-		var qrPolicyType string
+		// query param before_policy_id
+		var qrBeforePolicyID string
 
-		if o.PolicyType != nil {
-			qrPolicyType = *o.PolicyType
+		if o.BeforePolicyID != nil {
+			qrBeforePolicyID = *o.BeforePolicyID
 		}
-		qPolicyType := qrPolicyType
-		if qPolicyType != "" {
+		qBeforePolicyID := qrBeforePolicyID
+		if qBeforePolicyID != "" {
 
-			if err := r.SetQueryParam("policy_type", qPolicyType); err != nil {
+			if err := r.SetQueryParam("before_policy_id", qBeforePolicyID); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Limit != nil {
+
+		// query param limit
+		var qrLimit int64
+
+		if o.Limit != nil {
+			qrLimit = *o.Limit
+		}
+		qLimit := swag.FormatInt64(qrLimit)
+		if qLimit != "" {
+
+			if err := r.SetQueryParam("limit", qLimit); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Order != nil {
+
+		// query param order
+		var qrOrder string
+
+		if o.Order != nil {
+			qrOrder = *o.Order
+		}
+		qOrder := qrOrder
+		if qOrder != "" {
+
+			if err := r.SetQueryParam("order", qOrder); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.PolicyTypes != nil {
+
+		// query param policy_types
+		var qrPolicyTypes string
+
+		if o.PolicyTypes != nil {
+			qrPolicyTypes = *o.PolicyTypes
+		}
+		qPolicyTypes := qrPolicyTypes
+		if qPolicyTypes != "" {
+
+			if err := r.SetQueryParam("policy_types", qPolicyTypes); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SearchPhrase != nil {
+
+		// query param search_phrase
+		var qrSearchPhrase string
+
+		if o.SearchPhrase != nil {
+			qrSearchPhrase = *o.SearchPhrase
+		}
+		qSearchPhrase := qrSearchPhrase
+		if qSearchPhrase != "" {
+
+			if err := r.SetQueryParam("search_phrase", qSearchPhrase); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Sort != nil {
+
+		// query param sort
+		var qrSort string
+
+		if o.Sort != nil {
+			qrSort = *o.Sort
+		}
+		qSort := qrSort
+		if qSort != "" {
+
+			if err := r.SetQueryParam("sort", qSort); err != nil {
 				return err
 			}
 		}

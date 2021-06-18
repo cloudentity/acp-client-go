@@ -36,13 +36,21 @@ type ClientService interface {
 
 	ExportConfiguration(params *ExportConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ExportConfigurationOK, error)
 
+	ExportTenantConfiguration(params *ExportTenantConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ExportTenantConfigurationOK, error)
+
 	GetAdminTenant(params *GetAdminTenantParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAdminTenantOK, error)
 
 	GetTenant(params *GetTenantParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetTenantOK, error)
 
 	ImportConfiguration(params *ImportConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportConfigurationNoContent, error)
 
+	ImportTenantConfiguration(params *ImportTenantConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportTenantConfigurationNoContent, error)
+
+	ListTenants(params *ListTenantsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListTenantsOK, error)
+
 	PatchConfiguration(params *PatchConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchConfigurationNoContent, error)
+
+	PatchTenantConfiguration(params *PatchTenantConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchTenantConfigurationNoContent, error)
 
 	UpdateAdminTenant(params *UpdateAdminTenantParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateAdminTenantOK, error)
 
@@ -183,6 +191,47 @@ func (a *Client) ExportConfiguration(params *ExportConfigurationParams, authInfo
 }
 
 /*
+  ExportTenantConfiguration exports configuration
+
+  Export entire tenant configuration as json.
+*/
+func (a *Client) ExportTenantConfiguration(params *ExportTenantConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ExportTenantConfigurationOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewExportTenantConfigurationParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "exportTenantConfiguration",
+		Method:             "GET",
+		PathPattern:        "/api/system/{tid}/configuration",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ExportTenantConfigurationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ExportTenantConfigurationOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for exportTenantConfiguration: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
   GetAdminTenant gets tenant
 
   Get tenant.
@@ -306,6 +355,88 @@ func (a *Client) ImportConfiguration(params *ImportConfigurationParams, authInfo
 }
 
 /*
+  ImportTenantConfiguration imports tenant configuration
+
+  Allows to quickly import tenant configuration.
+*/
+func (a *Client) ImportTenantConfiguration(params *ImportTenantConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportTenantConfigurationNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImportTenantConfigurationParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "importTenantConfiguration",
+		Method:             "PUT",
+		PathPattern:        "/api/system/{tid}/configuration",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImportTenantConfigurationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ImportTenantConfigurationNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for importTenantConfiguration: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  ListTenants lists tenants
+
+  List tenants.
+*/
+func (a *Client) ListTenants(params *ListTenantsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListTenantsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListTenantsParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "listTenants",
+		Method:             "GET",
+		PathPattern:        "/api/system/tenants",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListTenantsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ListTenantsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for listTenants: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
   PatchConfiguration patches configuration
 
   Patch tenant configuration using RFC 6902 JSON Patch.
@@ -343,6 +474,47 @@ func (a *Client) PatchConfiguration(params *PatchConfigurationParams, authInfo r
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for patchConfiguration: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  PatchTenantConfiguration patches tenant configuration
+
+  Patch tenant configuration using RFC 6902 JSON Patch.
+*/
+func (a *Client) PatchTenantConfiguration(params *PatchTenantConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchTenantConfigurationNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPatchTenantConfigurationParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "patchTenantConfiguration",
+		Method:             "PATCH",
+		PathPattern:        "/api/system/{tid}/configuration",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PatchTenantConfigurationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PatchTenantConfigurationNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for patchTenantConfiguration: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

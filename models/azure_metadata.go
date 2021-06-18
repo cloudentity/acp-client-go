@@ -17,11 +17,11 @@ import (
 // swagger:model AzureMetadata
 type AzureMetadata struct {
 
-	// API m ID
-	APIMID string `json:"apim_id,omitempty"`
+	// apim id
+	ApimID string `json:"apim_id,omitempty"`
 
-	// API m name
-	APIMName string `json:"apim_name,omitempty"`
+	// apim name
+	ApimName string `json:"apim_name,omitempty"`
 }
 
 // Validate validates this azure metadata
