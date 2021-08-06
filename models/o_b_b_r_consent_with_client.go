@@ -22,12 +22,6 @@ type OBBRConsentWithClient struct {
 	// client
 	Client *OpenbankingClient `json:"Client,omitempty"`
 
-	// customer data access consent
-	CustomerDataAccessConsent *OBBRCustomerDataAccessConsent `json:"CustomerDataAccessConsent,omitempty"`
-
-	// customer payment consent
-	CustomerPaymentConsent *OBBRCustomerPaymentConsent `json:"CustomerPaymentConsent,omitempty"`
-
 	// account ids
 	AccountIds []string `json:"account_ids"`
 
@@ -40,6 +34,12 @@ type OBBRConsentWithClient struct {
 	// created at
 	// Format: date-time
 	CreatedAt strfmt.DateTime `json:"created_at,omitempty"`
+
+	// customer data access consent
+	CustomerDataAccessConsent *OBBRCustomerDataAccessConsent `json:"customer_data_access_consent,omitempty"`
+
+	// customer payment consent
+	CustomerPaymentConsent *OBBRCustomerPaymentConsent `json:"customer_payment_consent,omitempty"`
 
 	// idempotency key
 	IdempotencyKey string `json:"idempotency_key,omitempty"`
@@ -74,15 +74,15 @@ func (m *OBBRConsentWithClient) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateCreatedAt(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateCustomerDataAccessConsent(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateCustomerPaymentConsent(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateCreatedAt(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -113,6 +113,18 @@ func (m *OBBRConsentWithClient) validateClient(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *OBBRConsentWithClient) validateCreatedAt(formats strfmt.Registry) error {
+	if swag.IsZero(m.CreatedAt) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("created_at", "body", "date-time", m.CreatedAt.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *OBBRConsentWithClient) validateCustomerDataAccessConsent(formats strfmt.Registry) error {
 	if swag.IsZero(m.CustomerDataAccessConsent) { // not required
 		return nil
@@ -121,7 +133,7 @@ func (m *OBBRConsentWithClient) validateCustomerDataAccessConsent(formats strfmt
 	if m.CustomerDataAccessConsent != nil {
 		if err := m.CustomerDataAccessConsent.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("CustomerDataAccessConsent")
+				return ve.ValidateName("customer_data_access_consent")
 			}
 			return err
 		}
@@ -138,22 +150,10 @@ func (m *OBBRConsentWithClient) validateCustomerPaymentConsent(formats strfmt.Re
 	if m.CustomerPaymentConsent != nil {
 		if err := m.CustomerPaymentConsent.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("CustomerPaymentConsent")
+				return ve.ValidateName("customer_payment_consent")
 			}
 			return err
 		}
-	}
-
-	return nil
-}
-
-func (m *OBBRConsentWithClient) validateCreatedAt(formats strfmt.Registry) error {
-	if swag.IsZero(m.CreatedAt) { // not required
-		return nil
-	}
-
-	if err := validate.FormatOf("created_at", "body", "date-time", m.CreatedAt.String(), formats); err != nil {
-		return err
 	}
 
 	return nil
@@ -219,7 +219,7 @@ func (m *OBBRConsentWithClient) contextValidateCustomerDataAccessConsent(ctx con
 	if m.CustomerDataAccessConsent != nil {
 		if err := m.CustomerDataAccessConsent.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("CustomerDataAccessConsent")
+				return ve.ValidateName("customer_data_access_consent")
 			}
 			return err
 		}
@@ -233,7 +233,7 @@ func (m *OBBRConsentWithClient) contextValidateCustomerPaymentConsent(ctx contex
 	if m.CustomerPaymentConsent != nil {
 		if err := m.CustomerPaymentConsent.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("CustomerPaymentConsent")
+				return ve.ValidateName("customer_payment_consent")
 			}
 			return err
 		}

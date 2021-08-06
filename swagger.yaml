@@ -1033,7 +1033,7 @@ definitions:
           Native applications include single-page applications (SPAs) and mobile or desktop
           applications.
 
-          Depending on the type of your application remember to choose appropiate security measures.
+          Depending on the type of your application remember to choose appropriate security measures.
         example: web
         type: string
         x-nullable: false
@@ -1234,7 +1234,11 @@ definitions:
       privacy:
         $ref: '#/definitions/ClientPrivacy'
       redirect_uris:
-        description: "An array of OAuth allowed redirect URIs\n\nRedirect URIs are used after a user authorizes an application and ACP redirect them back to\nthe application with an authorization code or an access token included in the URL. "
+        description: |-
+          An array of OAuth allowed redirect URIs
+
+          Redirect URIs are used after a user authorizes an application and ACP redirect them back to
+          the application with an authorization code or an access token included in the URL.
         example:
         - https://example.com/callback
         items:
@@ -1346,7 +1350,20 @@ definitions:
         type: string
         x-nullable: false
       software_statement:
-        description: "A digitally signed or MACed JSON Web Token (JWT) [RFC7519] that\nasserts metadata values about the client software.  In some cases,\na software statement is issued directly by the client\ndeveloper.  In other cases, a software statement is issued by\na third-party organization for use by the client developer.\n\nIn both cases, the trust relationship the authorization server has\nwith the issuer of the software statement is intended to be used\nas an input to the evaluation of whether the registration request\nis accepted. \n\nA software statement can be presented to an\nauthorization server as part of the client registration request."
+        description: |-
+          A digitally signed or MACed JSON Web Token (JWT) [RFC7519] that
+          asserts metadata values about the client software.  In some cases,
+          a software statement is issued directly by the client
+          developer.  In other cases, a software statement is issued by
+          a third-party organization for use by the client developer.
+
+          In both cases, the trust relationship the authorization server has
+          with the issuer of the software statement is intended to be used
+          as an input to the evaluation of whether the registration request
+          is accepted.
+
+          A software statement can be presented to an
+          authorization server as part of the client registration request.
         type: string
         x-nullable: false
       software_version:
@@ -1492,7 +1509,7 @@ definitions:
           Native applications include single-page applications (SPAs) and mobile or desktop
           applications.
 
-          Depending on the type of your application remember to choose appropiate security measures.
+          Depending on the type of your application remember to choose appropriate security measures.
         example: web
         type: string
         x-nullable: false
@@ -1693,7 +1710,11 @@ definitions:
       privacy:
         $ref: '#/definitions/ClientPrivacy'
       redirect_uris:
-        description: "An array of OAuth allowed redirect URIs\n\nRedirect URIs are used after a user authorizes an application and ACP redirect them back to\nthe application with an authorization code or an access token included in the URL. "
+        description: |-
+          An array of OAuth allowed redirect URIs
+
+          Redirect URIs are used after a user authorizes an application and ACP redirect them back to
+          the application with an authorization code or an access token included in the URL.
         example:
         - https://example.com/callback
         items:
@@ -1803,7 +1824,20 @@ definitions:
         type: string
         x-nullable: false
       software_statement:
-        description: "A digitally signed or MACed JSON Web Token (JWT) [RFC7519] that\nasserts metadata values about the client software.  In some cases,\na software statement is issued directly by the client\ndeveloper.  In other cases, a software statement is issued by\na third-party organization for use by the client developer.\n\nIn both cases, the trust relationship the authorization server has\nwith the issuer of the software statement is intended to be used\nas an input to the evaluation of whether the registration request\nis accepted. \n\nA software statement can be presented to an\nauthorization server as part of the client registration request."
+        description: |-
+          A digitally signed or MACed JSON Web Token (JWT) [RFC7519] that
+          asserts metadata values about the client software.  In some cases,
+          a software statement is issued directly by the client
+          developer.  In other cases, a software statement is issued by
+          a third-party organization for use by the client developer.
+
+          In both cases, the trust relationship the authorization server has
+          with the issuer of the software statement is intended to be used
+          as an input to the evaluation of whether the registration request
+          is accepted.
+
+          A software statement can be presented to an
+          authorization server as part of the client registration request.
         type: string
         x-nullable: false
       software_version:
@@ -1968,7 +2002,7 @@ definitions:
           Native applications include single-page applications (SPAs) and mobile or desktop
           applications.
 
-          Depending on the type of your application remember to choose appropiate security measures.
+          Depending on the type of your application remember to choose appropriate security measures.
         example: web
         type: string
         x-nullable: false
@@ -2157,7 +2191,11 @@ definitions:
       privacy:
         $ref: '#/definitions/ClientPrivacy'
       redirect_uris:
-        description: "An array of OAuth allowed redirect URIs\n\nRedirect URIs are used after a user authorizes an application and ACP redirect them back to\nthe application with an authorization code or an access token included in the URL. "
+        description: |-
+          An array of OAuth allowed redirect URIs
+
+          Redirect URIs are used after a user authorizes an application and ACP redirect them back to
+          the application with an authorization code or an access token included in the URL.
         example:
         - https://example.com/callback
         items:
@@ -2610,7 +2648,7 @@ definitions:
     description: Cognito IDP specific settings
     properties:
       client_secret:
-        description: "Cognito app client secret from your application settings\t"
+        description: Cognito app client secret from your application settings
         type: string
         x-nullable: false
     type: object
@@ -3473,7 +3511,7 @@ definitions:
           Native applications include single-page applications (SPAs) and mobile or desktop
           applications.
 
-          Depending on the type of your application remember to choose appropiate security measures.
+          Depending on the type of your application remember to choose appropriate security measures.
         example: web
         type: string
         x-nullable: false
@@ -3671,7 +3709,11 @@ definitions:
       privacy:
         $ref: '#/definitions/ClientPrivacy'
       redirect_uris:
-        description: "An array of OAuth allowed redirect URIs\n\nRedirect URIs are used after a user authorizes an application and ACP redirect them back to\nthe application with an authorization code or an access token included in the URL. "
+        description: |-
+          An array of OAuth allowed redirect URIs
+
+          Redirect URIs are used after a user authorizes an application and ACP redirect them back to
+          the application with an authorization code or an access token included in the URL.
         example:
         - https://example.com/callback
         items:
@@ -3771,7 +3813,20 @@ definitions:
         type: string
         x-nullable: false
       software_statement:
-        description: "A digitally signed or MACed JSON Web Token (JWT) [RFC7519] that\nasserts metadata values about the client software.  In some cases,\na software statement is issued directly by the client\ndeveloper.  In other cases, a software statement is issued by\na third-party organization for use by the client developer.\n\nIn both cases, the trust relationship the authorization server has\nwith the issuer of the software statement is intended to be used\nas an input to the evaluation of whether the registration request\nis accepted. \n\nA software statement can be presented to an\nauthorization server as part of the client registration request."
+        description: |-
+          A digitally signed or MACed JSON Web Token (JWT) [RFC7519] that
+          asserts metadata values about the client software.  In some cases,
+          a software statement is issued directly by the client
+          developer.  In other cases, a software statement is issued by
+          a third-party organization for use by the client developer.
+
+          In both cases, the trust relationship the authorization server has
+          with the issuer of the software statement is intended to be used
+          as an input to the evaluation of whether the registration request
+          is accepted.
+
+          A software statement can be presented to an
+          authorization server as part of the client registration request.
         type: string
         x-nullable: false
       subject_type:
@@ -3901,7 +3956,7 @@ definitions:
           Native applications include single-page applications (SPAs) and mobile or desktop
           applications.
 
-          Depending on the type of your application remember to choose appropiate security measures.
+          Depending on the type of your application remember to choose appropriate security measures.
         example: web
         type: string
         x-nullable: false
@@ -4060,7 +4115,11 @@ definitions:
       privacy:
         $ref: '#/definitions/ClientPrivacy'
       redirect_uris:
-        description: "An array of OAuth allowed redirect URIs\n\nRedirect URIs are used after a user authorizes an application and ACP redirect them back to\nthe application with an authorization code or an access token included in the URL. "
+        description: |-
+          An array of OAuth allowed redirect URIs
+
+          Redirect URIs are used after a user authorizes an application and ACP redirect them back to
+          the application with an authorization code or an access token included in the URL.
         example:
         - https://example.com/callback
         items:
@@ -4705,7 +4764,7 @@ definitions:
           Native applications include single-page applications (SPAs) and mobile or desktop
           applications.
 
-          Depending on the type of your application remember to choose appropiate security measures.
+          Depending on the type of your application remember to choose appropriate security measures.
         example: web
         type: string
         x-nullable: false
@@ -4858,7 +4917,11 @@ definitions:
       privacy:
         $ref: '#/definitions/ClientPrivacy'
       redirect_uris:
-        description: "An array of OAuth allowed redirect URIs\n\nRedirect URIs are used after a user authorizes an application and ACP redirect them back to\nthe application with an authorization code or an access token included in the URL. "
+        description: |-
+          An array of OAuth allowed redirect URIs
+
+          Redirect URIs are used after a user authorizes an application and ACP redirect them back to
+          the application with an authorization code or an access token included in the URL.
         example:
         - https://example.com/callback
         items:
@@ -4961,7 +5024,20 @@ definitions:
         type: string
         x-nullable: false
       software_statement:
-        description: "A digitally signed or MACed JSON Web Token (JWT) [RFC7519] that\nasserts metadata values about the client software.  In some cases,\na software statement is issued directly by the client\ndeveloper.  In other cases, a software statement is issued by\na third-party organization for use by the client developer.\n\nIn both cases, the trust relationship the authorization server has\nwith the issuer of the software statement is intended to be used\nas an input to the evaluation of whether the registration request\nis accepted. \n\nA software statement can be presented to an\nauthorization server as part of the client registration request."
+        description: |-
+          A digitally signed or MACed JSON Web Token (JWT) [RFC7519] that
+          asserts metadata values about the client software.  In some cases,
+          a software statement is issued directly by the client
+          developer.  In other cases, a software statement is issued by
+          a third-party organization for use by the client developer.
+
+          In both cases, the trust relationship the authorization server has
+          with the issuer of the software statement is intended to be used
+          as an input to the evaluation of whether the registration request
+          is accepted.
+
+          A software statement can be presented to an
+          authorization server as part of the client registration request.
         type: string
         x-nullable: false
       software_version:
@@ -5086,7 +5162,7 @@ definitions:
           Native applications include single-page applications (SPAs) and mobile or desktop
           applications.
 
-          Depending on the type of your application remember to choose appropiate security measures.
+          Depending on the type of your application remember to choose appropriate security measures.
         example: web
         type: string
         x-nullable: false
@@ -5272,7 +5348,11 @@ definitions:
       privacy:
         $ref: '#/definitions/ClientPrivacy'
       redirect_uris:
-        description: "An array of OAuth allowed redirect URIs\n\nRedirect URIs are used after a user authorizes an application and ACP redirect them back to\nthe application with an authorization code or an access token included in the URL. "
+        description: |-
+          An array of OAuth allowed redirect URIs
+
+          Redirect URIs are used after a user authorizes an application and ACP redirect them back to
+          the application with an authorization code or an access token included in the URL.
         example:
         - https://example.com/callback
         items:
@@ -6415,6 +6495,54 @@ definitions:
         x-nullable: false
       customer_data_access_consent:
         $ref: '#/definitions/OBBRCustomerDataAccessConsent'
+      requested_scopes:
+        items:
+          $ref: '#/definitions/RequestedScope'
+        type: array
+        x-nullable: false
+      server_id:
+        format: serverID
+        type: string
+        x-nullable: false
+      status:
+        type: string
+        x-nullable: false
+      subject:
+        format: subject
+        type: string
+        x-nullable: false
+      tenant_id:
+        format: tenantID
+        type: string
+        x-nullable: false
+      type:
+        $ref: '#/definitions/ConsentType'
+    type: object
+  GetOBBRCustomerPaymentConsentResponse:
+    properties:
+      account_ids:
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      authentication_context:
+        $ref: '#/definitions/AuthenticationContext'
+      client_id:
+        format: clientID
+        type: string
+        x-nullable: false
+      client_info:
+        $ref: '#/definitions/ClientInfo'
+      consent_id:
+        format: consentID
+        type: string
+        x-nullable: false
+      created_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      customer_data_access_consent:
+        $ref: '#/definitions/OBBRCustomerPaymentConsent'
       requested_scopes:
         items:
           $ref: '#/definitions/RequestedScope'
@@ -7908,7 +8036,11 @@ definitions:
         type: string
         x-nullable: false
       type:
-        description: "Type of the target attribute\n\nThe `type` parameter accepts the following values: \n`number`, `string`, `bool`, `number_array`, `string_array`, `bool_array`, `any`."
+        description: |-
+          Type of the target attribute
+
+          The `type` parameter accepts the following values:
+          `number`, `string`, `bool`, `number_array`, `string_array`, `bool_array`, `any`.
         example: string
         format: type
         type: string
@@ -7920,7 +8052,11 @@ definitions:
     title: Attribute mapping.
     type: object
   Mappings:
-    description: "Mapping is used to unify attributes from external IDPs and propagate them to the authentication\ncontext to be used later on. By mapping your authentication context attributes, you unify attributes from\nall IDPs that your users authenticate with. It allows you to use a set of unified attributes\nthroughout ACP for multiple purposes. "
+    description: |-
+      Mapping is used to unify attributes from external IDPs and propagate them to the authentication
+      context to be used later on. By mapping your authentication context attributes, you unify attributes from
+      all IDPs that your users authenticate with. It allows you to use a set of unified attributes
+      throughout ACP for multiple purposes.
     items:
       $ref: '#/definitions/Mapping'
     title: An array of mappings
@@ -7967,10 +8103,6 @@ definitions:
     properties:
       Client:
         $ref: '#/definitions/OpenbankingClient'
-      CustomerDataAccessConsent:
-        $ref: '#/definitions/OBBRCustomerDataAccessConsent'
-      CustomerPaymentConsent:
-        $ref: '#/definitions/OBBRCustomerPaymentConsent'
       account_ids:
         items:
           type: string
@@ -7988,6 +8120,10 @@ definitions:
         format: date-time
         type: string
         x-nullable: false
+      customer_data_access_consent:
+        $ref: '#/definitions/OBBRCustomerDataAccessConsent'
+      customer_payment_consent:
+        $ref: '#/definitions/OBBRCustomerPaymentConsent'
       idempotency_key:
         type: string
         x-nullable: false
@@ -8265,10 +8401,6 @@ definitions:
     type: object
   OBConsentCommon:
     properties:
-      CustomerDataAccessConsent:
-        $ref: '#/definitions/OBBRCustomerDataAccessConsent'
-      CustomerPaymentConsent:
-        $ref: '#/definitions/OBBRCustomerPaymentConsent'
       account_access_consent:
         $ref: '#/definitions/AccountAccessConsent'
       account_ids:
@@ -8288,6 +8420,10 @@ definitions:
         format: date-time
         type: string
         x-nullable: false
+      customer_data_access_consent:
+        $ref: '#/definitions/OBBRCustomerDataAccessConsent'
+      customer_payment_consent:
+        $ref: '#/definitions/OBBRCustomerPaymentConsent'
       domestic_payment_consent:
         $ref: '#/definitions/DomesticPaymentConsent'
       domestic_scheduled_payment_consent:
@@ -13153,6 +13289,34 @@ definitions:
   OpenbankingBrasilLinks:
     description: Referncias para outros recusos da API requisitada.
     properties:
+      first:
+        description: URI da primeira pgina que originou essa lista de resultados. Restrio - Obrigatrio quando no for a primeira pgina da resposta
+        example: https://api.banco.com.br/open-banking/api/v1/resource
+        maxLength: 2000
+        pattern: ^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$
+        type: string
+        x-nullable: false
+      last:
+        description: URI da ltima pgina dessa lista de resultados. Restrio - Obrigatrio quando no for a ltima pgina da resposta
+        example: https://api.banco.com.br/open-banking/api/v1/resource
+        maxLength: 2000
+        pattern: ^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$
+        type: string
+        x-nullable: false
+      next:
+        description: URI da prxima pgina dessa lista de resultados. Restrio - Obrigatrio quando no for a ltima pgina da resposta
+        example: https://api.banco.com.br/open-banking/api/v1/resource
+        maxLength: 2000
+        pattern: ^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$
+        type: string
+        x-nullable: false
+      prev:
+        description: "URI da pgina anterior dessa lista de resultados. Restrio - \tObrigatrio quando no for a primeira pgina da resposta"
+        example: https://api.banco.com.br/open-banking/api/v1/resource
+        maxLength: 2000
+        pattern: ^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$
+        type: string
+        x-nullable: false
       self:
         description: URI completo que gerou a resposta atual.
         example: https://api.banco.com.br/open-banking/api/v1/resource
@@ -13425,7 +13589,7 @@ definitions:
           Native applications include single-page applications (SPAs) and mobile or desktop
           applications.
 
-          Depending on the type of your application remember to choose appropiate security measures.
+          Depending on the type of your application remember to choose appropriate security measures.
         example: web
         type: string
         x-nullable: false
@@ -13617,7 +13781,11 @@ definitions:
       privacy:
         $ref: '#/definitions/ClientPrivacy'
       redirect_uris:
-        description: "An array of OAuth allowed redirect URIs\n\nRedirect URIs are used after a user authorizes an application and ACP redirect them back to\nthe application with an authorization code or an access token included in the URL. "
+        description: |-
+          An array of OAuth allowed redirect URIs
+
+          Redirect URIs are used after a user authorizes an application and ACP redirect them back to
+          the application with an authorization code or an access token included in the URL.
         example:
         - https://example.com/callback
         items:
@@ -13720,7 +13888,20 @@ definitions:
         type: string
         x-nullable: false
       software_statement:
-        description: "A digitally signed or MACed JSON Web Token (JWT) [RFC7519] that\nasserts metadata values about the client software.  In some cases,\na software statement is issued directly by the client\ndeveloper.  In other cases, a software statement is issued by\na third-party organization for use by the client developer.\n\nIn both cases, the trust relationship the authorization server has\nwith the issuer of the software statement is intended to be used\nas an input to the evaluation of whether the registration request\nis accepted. \n\nA software statement can be presented to an\nauthorization server as part of the client registration request."
+        description: |-
+          A digitally signed or MACed JSON Web Token (JWT) [RFC7519] that
+          asserts metadata values about the client software.  In some cases,
+          a software statement is issued directly by the client
+          developer.  In other cases, a software statement is issued by
+          a third-party organization for use by the client developer.
+
+          In both cases, the trust relationship the authorization server has
+          with the issuer of the software statement is intended to be used
+          as an input to the evaluation of whether the registration request
+          is accepted.
+
+          A software statement can be presented to an
+          authorization server as part of the client registration request.
         type: string
         x-nullable: false
       software_version:
@@ -13845,7 +14026,7 @@ definitions:
           Native applications include single-page applications (SPAs) and mobile or desktop
           applications.
 
-          Depending on the type of your application remember to choose appropiate security measures.
+          Depending on the type of your application remember to choose appropriate security measures.
         example: web
         type: string
         x-nullable: false
@@ -14009,7 +14190,11 @@ definitions:
       privacy:
         $ref: '#/definitions/ClientPrivacy'
       redirect_uris:
-        description: "An array of OAuth allowed redirect URIs\n\nRedirect URIs are used after a user authorizes an application and ACP redirect them back to\nthe application with an authorization code or an access token included in the URL. "
+        description: |-
+          An array of OAuth allowed redirect URIs
+
+          Redirect URIs are used after a user authorizes an application and ACP redirect them back to
+          the application with an authorization code or an access token included in the URL.
         example:
         - https://example.com/callback
         items:
@@ -14301,7 +14486,29 @@ definitions:
         type: string
         x-nullable: false
       type:
-        description: "Define a type of your policy\n\nACP is provided with the following policy types: user, developer, machine, dcr, api.\n\nDepending on the policy type the policy can be assigned to different policy\nexecution points.\n\nA policy of the `user` type can be assigned only to the following scopes: `scope_user_grant`, \n`server_user_token`, `client_user_token`.\n\nA `developer` policy can be assigned only to the `scope_client_assignment` and\n`server_client_assignment` scopes.\n\nA policy of the `machine` type can be assigned only to the following scopes:\n`scope_machine_grant`, `server_machine_token`, `client_machine_token`.\n\nA `dcr` policy can be assigned only to the `scope_dynamic_client_registration` and the\n`server_dynamic_client_registration` scopes.\n\nAn `api` policy can be assigned to all of the policy execution points.\n\nEach of the policies type has its defined and provided out of the box policy validators."
+        description: |-
+          Define a type of your policy
+
+          ACP is provided with the following policy types: user, developer, machine, dcr, api.
+
+          Depending on the policy type the policy can be assigned to different policy
+          execution points.
+
+          A policy of the `user` type can be assigned only to the following scopes: `scope_user_grant`,
+          `server_user_token`, `client_user_token`.
+
+          A `developer` policy can be assigned only to the `scope_client_assignment` and
+          `server_client_assignment` scopes.
+
+          A policy of the `machine` type can be assigned only to the following scopes:
+          `scope_machine_grant`, `server_machine_token`, `client_machine_token`.
+
+          A `dcr` policy can be assigned only to the `scope_dynamic_client_registration` and the
+          `server_dynamic_client_registration` scopes.
+
+          An `api` policy can be assigned to all of the policy execution points.
+
+          Each of the policies type has its defined and provided out of the box policy validators.
         example: user
         format: policyType
         type: string
@@ -14944,7 +15151,33 @@ definitions:
         type: string
         x-nullable: false
       subject_name_id_format:
-        description: "Name ID format of a SAML subject\n\nIt applies only when the `identifierSource` parameter is set to `subject`.\n\nAllowed values:\n\n`urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress`\n\n`urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified`\n\n`urn:oasis:names:tc:SAML:1.1:nameid-format:X509SubjectName`\n\n`urn:oasis:names:tc:SAML:1.1:nameid-format:WindowsDomainQualifiedName`\n\n`urn:oasis:names:tc:SAML:2.0:nameid-format:encrypted`\n\n`urn:oasis:names:tc:SAML:2.0:nameid-format:entity`\n\n`urn:oasis:names:tc:SAML:2.0:nameid-format:kerberos`\n\n`urn:oasis:names:tc:SAML:2.0:nameid-format:persistent`\n\n`urn:oasis:names:tc:SAML:2.0:nameid-format:transient`\n\ndefault value: \n`urn:oasis:names:tc:SAML:2.0:nameid-format:persistent`"
+        description: |-
+          Name ID format of a SAML subject
+
+          It applies only when the `identifierSource` parameter is set to `subject`.
+
+          Allowed values:
+
+          `urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress`
+
+          `urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified`
+
+          `urn:oasis:names:tc:SAML:1.1:nameid-format:X509SubjectName`
+
+          `urn:oasis:names:tc:SAML:1.1:nameid-format:WindowsDomainQualifiedName`
+
+          `urn:oasis:names:tc:SAML:2.0:nameid-format:encrypted`
+
+          `urn:oasis:names:tc:SAML:2.0:nameid-format:entity`
+
+          `urn:oasis:names:tc:SAML:2.0:nameid-format:kerberos`
+
+          `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent`
+
+          `urn:oasis:names:tc:SAML:2.0:nameid-format:transient`
+
+          default value:
+          `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent`
         type: string
         x-nullable: false
     type: object
@@ -17195,7 +17428,7 @@ definitions:
           Native applications include single-page applications (SPAs) and mobile or desktop
           applications.
 
-          Depending on the type of your application remember to choose appropiate security measures.
+          Depending on the type of your application remember to choose appropriate security measures.
         example: web
         type: string
         x-nullable: false
@@ -17393,7 +17626,11 @@ definitions:
       privacy:
         $ref: '#/definitions/ClientPrivacy'
       redirect_uris:
-        description: "An array of OAuth allowed redirect URIs\n\nRedirect URIs are used after a user authorizes an application and ACP redirect them back to\nthe application with an authorization code or an access token included in the URL. "
+        description: |-
+          An array of OAuth allowed redirect URIs
+
+          Redirect URIs are used after a user authorizes an application and ACP redirect them back to
+          the application with an authorization code or an access token included in the URL.
         example:
         - https://example.com/callback
         items:
@@ -17493,7 +17730,20 @@ definitions:
         type: string
         x-nullable: false
       software_statement:
-        description: "A digitally signed or MACed JSON Web Token (JWT) [RFC7519] that\nasserts metadata values about the client software.  In some cases,\na software statement is issued directly by the client\ndeveloper.  In other cases, a software statement is issued by\na third-party organization for use by the client developer.\n\nIn both cases, the trust relationship the authorization server has\nwith the issuer of the software statement is intended to be used\nas an input to the evaluation of whether the registration request\nis accepted. \n\nA software statement can be presented to an\nauthorization server as part of the client registration request."
+        description: |-
+          A digitally signed or MACed JSON Web Token (JWT) [RFC7519] that
+          asserts metadata values about the client software.  In some cases,
+          a software statement is issued directly by the client
+          developer.  In other cases, a software statement is issued by
+          a third-party organization for use by the client developer.
+
+          In both cases, the trust relationship the authorization server has
+          with the issuer of the software statement is intended to be used
+          as an input to the evaluation of whether the registration request
+          is accepted.
+
+          A software statement can be presented to an
+          authorization server as part of the client registration request.
         type: string
         x-nullable: false
       subject_type:
@@ -17623,7 +17873,7 @@ definitions:
           Native applications include single-page applications (SPAs) and mobile or desktop
           applications.
 
-          Depending on the type of your application remember to choose appropiate security measures.
+          Depending on the type of your application remember to choose appropriate security measures.
         example: web
         type: string
         x-nullable: false
@@ -17798,7 +18048,11 @@ definitions:
       privacy:
         $ref: '#/definitions/ClientPrivacy'
       redirect_uris:
-        description: "An array of OAuth allowed redirect URIs\n\nRedirect URIs are used after a user authorizes an application and ACP redirect them back to\nthe application with an authorization code or an access token included in the URL. "
+        description: |-
+          An array of OAuth allowed redirect URIs
+
+          Redirect URIs are used after a user authorizes an application and ACP redirect them back to
+          the application with an authorization code or an access token included in the URL.
         example:
         - https://example.com/callback
         items:
@@ -25115,7 +25369,12 @@ paths:
       - idps
   /api/admin/{tid}/servers/{aid}/idps/{iid}:
     delete:
-      description: "Deletes an IDP of your choice \n\nDeleting an IDP is permament. Deleted IDPs cannot be restored.\n\nIt is impossible to delete an IDP with which you are currently logged in."
+      description: |-
+        Deletes an IDP of your choice
+
+        Deleting an IDP is permament. Deleted IDPs cannot be restored.
+
+        It is impossible to delete an IDP with which you are currently logged in.
       operationId: deleteIDP
       parameters:
       - default: default
@@ -27000,7 +27259,10 @@ paths:
         in: query
         name: policy_types
         type: string
-      - description: "An optional and case insensitive search phrase that contains either a policy ID or a policy\nname substring \nSearchPhrase"
+      - description: |-
+          An optional and case insensitive search phrase that contains either a policy ID or a policy
+          name substring
+          SearchPhrase
         in: query
         name: search_phrase
         type: string
@@ -27104,7 +27366,9 @@ paths:
       tags:
       - policies
     put:
-      description: "Available execution points: `scope_client_assignment`, `scope_user_grant`,\n`server_client_assignment`, `server_user_token`, `client_user_token`, `api` "
+      description: |-
+        Available execution points: `scope_client_assignment`, `scope_user_grant`,
+        `server_client_assignment`, `server_user_token`, `client_user_token`, `api`
       operationId: setPolicyExecutionPoints
       parameters:
       - default: default
@@ -29417,6 +29681,133 @@ paths:
     post:
       description: This API can be used by a custom openbanking consent page to notify ACP that user rejected access.
       operationId: rejectOBBRCustomerDataAccessConsentSystem
+      parameters:
+      - default: default
+        description: Tenant id
+        in: path
+        name: tid
+        required: true
+        type: string
+      - in: path
+        name: login
+        required: true
+        type: string
+      - in: body
+        name: RejectConsent
+        schema:
+          $ref: '#/definitions/RejectConsentRequest'
+      responses:
+        "200":
+          description: ConsentRejected
+          schema:
+            $ref: '#/definitions/ConsentRejected'
+        "401":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "403":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+      security:
+      - system:
+        - manage_openbanking_consents
+      summary: Reject consent
+      tags:
+      - openbanking
+  /api/system/{tid}/open-banking-brasil/payment/{login}:
+    get:
+      description: |-
+        This API can be used by a custom openbanking consent page.
+        The consent page must first use client credentials flow to create consent.
+      operationId: getOBBRCustomerPaymentConsentSystem
+      parameters:
+      - default: default
+        description: Tenant id
+        in: path
+        name: tid
+        required: true
+        type: string
+      - in: path
+        name: login
+        required: true
+        type: string
+      - in: query
+        name: login_state
+        type: string
+      responses:
+        "200":
+          description: GetOBBRCustomerPaymentConsentResponse
+          schema:
+            $ref: '#/definitions/GetOBBRCustomerPaymentConsentResponse'
+        "401":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "403":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+      security:
+      - system:
+        - manage_openbanking_consents
+      summary: Get customer payment initiation consent
+      tags:
+      - openbanking
+  /api/system/{tid}/open-banking-brasil/payment/{login}/accept:
+    post:
+      description: This API can be used by a custom openbanking consent page to notify ACP that user granted consent for payment initiation.
+      operationId: acceptOBBRCustomerPaymentConsentSystem
+      parameters:
+      - default: default
+        description: Tenant id
+        in: path
+        name: tid
+        required: true
+        type: string
+      - in: path
+        name: login
+        required: true
+        type: string
+      - in: body
+        name: AcceptConsent
+        schema:
+          $ref: '#/definitions/AcceptConsentRequest'
+      responses:
+        "200":
+          description: ConsentAccepted
+          schema:
+            $ref: '#/definitions/ConsentAccepted'
+        "401":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "403":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+      security:
+      - system:
+        - manage_openbanking_consents
+      summary: Accept customer payment initiation consent
+      tags:
+      - openbanking
+  /api/system/{tid}/open-banking-brasil/payment/{login}/reject:
+    post:
+      description: This API can be used by a custom openbanking consent page to notify ACP that user rejected payment initiation.
+      operationId: rejectOBBRCustomerPaymentConsentSystem
       parameters:
       - default: default
         description: Tenant id

@@ -58,6 +58,8 @@ type ClientService interface {
 
 	AcceptOBBRCustomerDataAccessConsentSystem(params *AcceptOBBRCustomerDataAccessConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptOBBRCustomerDataAccessConsentSystemOK, error)
 
+	AcceptOBBRCustomerPaymentConsentSystem(params *AcceptOBBRCustomerPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptOBBRCustomerPaymentConsentSystemOK, error)
+
 	ConsumeOpenbankingConsent(params *ConsumeOpenbankingConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ConsumeOpenbankingConsentOK, error)
 
 	CreateAccountAccessConsentRequest(params *CreateAccountAccessConsentRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateAccountAccessConsentRequestCreated, error)
@@ -118,6 +120,8 @@ type ClientService interface {
 
 	GetOBBRCustomerDataAccessConsentSystem(params *GetOBBRCustomerDataAccessConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOBBRCustomerDataAccessConsentSystemOK, error)
 
+	GetOBBRCustomerPaymentConsentSystem(params *GetOBBRCustomerPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOBBRCustomerPaymentConsentSystemOK, error)
+
 	GetOBConsents(params *GetOBConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOBConsentsOK, error)
 
 	ListOBBRConsents(params *ListOBBRConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListOBBRConsentsOK, error)
@@ -161,6 +165,8 @@ type ClientService interface {
 	RejectInternationalStandingOrderConsentSystem(params *RejectInternationalStandingOrderConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectInternationalStandingOrderConsentSystemOK, error)
 
 	RejectOBBRCustomerDataAccessConsentSystem(params *RejectOBBRCustomerDataAccessConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectOBBRCustomerDataAccessConsentSystemOK, error)
+
+	RejectOBBRCustomerPaymentConsentSystem(params *RejectOBBRCustomerPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectOBBRCustomerPaymentConsentSystemOK, error)
 
 	RevokeOBBRConsents(params *RevokeOBBRConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeOBBRConsentsOK, error)
 
@@ -742,6 +748,47 @@ func (a *Client) AcceptOBBRCustomerDataAccessConsentSystem(params *AcceptOBBRCus
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for acceptOBBRCustomerDataAccessConsentSystem: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  AcceptOBBRCustomerPaymentConsentSystem accepts customer payment initiation consent
+
+  This API can be used by a custom openbanking consent page to notify ACP that user granted consent for payment initiation.
+*/
+func (a *Client) AcceptOBBRCustomerPaymentConsentSystem(params *AcceptOBBRCustomerPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptOBBRCustomerPaymentConsentSystemOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAcceptOBBRCustomerPaymentConsentSystemParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "acceptOBBRCustomerPaymentConsentSystem",
+		Method:             "POST",
+		PathPattern:        "/api/system/{tid}/open-banking-brasil/payment/{login}/accept",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AcceptOBBRCustomerPaymentConsentSystemReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*AcceptOBBRCustomerPaymentConsentSystemOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for acceptOBBRCustomerPaymentConsentSystem: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -2051,6 +2098,48 @@ func (a *Client) GetOBBRCustomerDataAccessConsentSystem(params *GetOBBRCustomerD
 }
 
 /*
+  GetOBBRCustomerPaymentConsentSystem gets customer payment initiation consent
+
+  This API can be used by a custom openbanking consent page.
+The consent page must first use client credentials flow to create consent.
+*/
+func (a *Client) GetOBBRCustomerPaymentConsentSystem(params *GetOBBRCustomerPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOBBRCustomerPaymentConsentSystemOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetOBBRCustomerPaymentConsentSystemParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getOBBRCustomerPaymentConsentSystem",
+		Method:             "GET",
+		PathPattern:        "/api/system/{tid}/open-banking-brasil/payment/{login}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetOBBRCustomerPaymentConsentSystemReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetOBBRCustomerPaymentConsentSystemOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getOBBRCustomerPaymentConsentSystem: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
   GetOBConsents gets openbanking consents
 
   This API returns the list of openbanking consents.
@@ -2949,6 +3038,47 @@ func (a *Client) RejectOBBRCustomerDataAccessConsentSystem(params *RejectOBBRCus
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for rejectOBBRCustomerDataAccessConsentSystem: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  RejectOBBRCustomerPaymentConsentSystem rejects consent
+
+  This API can be used by a custom openbanking consent page to notify ACP that user rejected payment initiation.
+*/
+func (a *Client) RejectOBBRCustomerPaymentConsentSystem(params *RejectOBBRCustomerPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectOBBRCustomerPaymentConsentSystemOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRejectOBBRCustomerPaymentConsentSystemParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "rejectOBBRCustomerPaymentConsentSystem",
+		Method:             "POST",
+		PathPattern:        "/api/system/{tid}/open-banking-brasil/payment/{login}/reject",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RejectOBBRCustomerPaymentConsentSystemReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*RejectOBBRCustomerPaymentConsentSystemOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for rejectOBBRCustomerPaymentConsentSystem: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
