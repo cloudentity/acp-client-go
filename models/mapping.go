@@ -21,48 +21,53 @@ import (
 // swagger:model Mapping
 type Mapping struct {
 
-	// Weak decoding
+	// If enabled, the decoder makes the following "weak" conversions:
 	//
-	// If AllowWeakDecoding is true, the decoder will make the following
-	// "weak" conversions:
+	// Bools to string (true = "1", false = "0")
 	//
-	// bools to string (true = "1", false = "0")
 	// numbers to string (base 10)
+	//
 	// bools to int/uint (true = 1, false = 0)
+	//
 	// strings to int/uint (base implied by prefix)
+	//
 	// int to bool (true if value != 0)
-	// string to bool (accepts: 1, t, T, TRUE, true, True, 0, f, F,
-	// FALSE, false, False. Anything else is an error)
+	//
+	// string to bool (accepts only the following: 1, t, T, TRUE, true, True, 0, f, F, FALSE, false, False)
+	//
 	// empty array = empty map and vice versa
+	//
 	// negative numbers to overflowed uint values (base 10)
+	//
 	// slice of maps to a merged map
-	// single values are converted to slices if required. Each
-	// element is weakly decoded.
+	//
+	// single values are converted to slices if required. Each element is weakly decoded.
 	// Example: false
 	AllowWeakDecoding bool `json:"allow_weak_decoding,omitempty"`
 
 	// Source attribute.
 	//
-	// Source path to attribute(s) which should be copied to the identity context.
+	// Source path to the attribute(s) which should be copied to the authentication context.
 	// Use '.' to copy everything.
 	// Example: access_token
 	// Required: true
-	Source *string `json:"source"`
+	Source string `json:"source"`
 
 	// Target attribute.
 	//
-	// Target path in the identity context where source attribute(s) should be pasted.
-	// Use '.' to paste to context top level object.
+	// Target path in the authentication context where source attribute(s) should be pasted.
+	// Use '.' to paste to the context top level object.
 	// Example: .
 	// Required: true
-	Target *string `json:"target"`
+	Target string `json:"target"`
 
-	// Target type
+	// Type of the target attribute
 	//
-	// number, string, bool, number_array, string_array, bool_array or any
+	// The `type` parameter accepts the following values:
+	// `number`, `string`, `bool`, `number_array`, `string_array`, `bool_array`, `any`.
 	// Example: string
 	// Required: true
-	Type *string `json:"type"`
+	Type string `json:"type"`
 }
 
 // Validate validates this mapping
@@ -89,7 +94,7 @@ func (m *Mapping) Validate(formats strfmt.Registry) error {
 
 func (m *Mapping) validateSource(formats strfmt.Registry) error {
 
-	if err := validate.Required("source", "body", m.Source); err != nil {
+	if err := validate.RequiredString("source", "body", m.Source); err != nil {
 		return err
 	}
 
@@ -98,7 +103,7 @@ func (m *Mapping) validateSource(formats strfmt.Registry) error {
 
 func (m *Mapping) validateTarget(formats strfmt.Registry) error {
 
-	if err := validate.Required("target", "body", m.Target); err != nil {
+	if err := validate.RequiredString("target", "body", m.Target); err != nil {
 		return err
 	}
 
@@ -107,7 +112,7 @@ func (m *Mapping) validateTarget(formats strfmt.Registry) error {
 
 func (m *Mapping) validateType(formats strfmt.Registry) error {
 
-	if err := validate.Required("type", "body", m.Type); err != nil {
+	if err := validate.RequiredString("type", "body", m.Type); err != nil {
 		return err
 	}
 

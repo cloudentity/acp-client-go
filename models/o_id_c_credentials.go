@@ -12,12 +12,12 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// OIDCCredentials o ID c credentials
+// OIDCCredentials OIDC IDP specific credentials
 //
 // swagger:model OIDCCredentials
 type OIDCCredentials struct {
 
-	// client secret
+	// OAuth client application secret
 	ClientSecret string `json:"client_secret,omitempty"`
 }
 

@@ -17,38 +17,89 @@ import (
 // swagger:model Environment
 type Environment struct {
 
+	// enable ciba
+	Ciba bool `json:"ciba,omitempty"`
+
+	// store client secrets as a one way hash
+	ClientSecretsStoredAsOneWayHash bool `json:"client_secrets_stored_as_one_way_hash,omitempty"`
+
 	// commit
 	Commit string `json:"commit,omitempty"`
 
-	// demo app
+	// enables demo app endpoints
 	DemoApp bool `json:"demo_app,omitempty"`
 
-	// dev mode
+	// realod templates, adds local redirects urls to frontend apps
 	DevMode bool `json:"dev_mode,omitempty"`
 
 	// display workspace wizard
 	DisplayWorkspaceWizard bool `json:"display_workspace_wizard,omitempty"`
 
-	// integration endpoints
+	// default not secure embedded script runtime or fission
+	FaasProvider string `json:"faas_provider,omitempty"`
+
+	// when display_workspace_wizard is true and this option is enabled demo workspace with preconfigured IDPs will be create instead displaying welcome screens
+	InitializeDemoWorkspace bool `json:"initialize_demo_workspace,omitempty"`
+
+	// enables import, export, global accept, deny, introspect endpoints
 	IntegrationEndpoints bool `json:"integration_endpoints,omitempty"`
 
-	// j w t bearer grant type
-	JWTBearerGrantType bool `json:"jwt_bearer_grant_type,omitempty"`
+	// enable jwt bearer grant type
+	JwtBearerGrantType bool `json:"jwt_bearer_grant_type,omitempty"`
 
-	// pyron on prem
+	// enable login with select_account param
+	LoginWithSelectAccount bool `json:"login_with_select_account,omitempty"`
+
+	// enable openbanking brasil consent endpoints
+	OpenbankingBrasilConsents bool `json:"openbanking_brasil_consents,omitempty"`
+
+	// enable openbanking brasil payment endpoints
+	OpenbankingBrasilPayments bool `json:"openbanking_brasil_payments,omitempty"`
+
+	// enable openbanking domestic payment consent apis
+	OpenbankingDomesticPaymentConsents bool `json:"openbanking_domestic_payment_consents,omitempty"`
+
+	// enable openbanking domestic scheduled payment consent apis
+	OpenbankingDomesticScheduledPaymentConsents bool `json:"openbanking_domestic_scheduled_payment_consents,omitempty"`
+
+	// enable openbanking domestic standing order consent apis
+	OpenbankingDomesticStandingOrderConsents bool `json:"openbanking_domestic_standing_order_consents,omitempty"`
+
+	// enable openbanking file payment consent apis
+	OpenbankingFilePaymentConsents bool `json:"openbanking_file_payment_consents,omitempty"`
+
+	// enable openbanking international payment consent apis
+	OpenbankingInternationalPaymentConsents bool `json:"openbanking_international_payment_consents,omitempty"`
+
+	// enable openbanking international scheduled payment consent apis
+	OpenbankingInternationalScheduledPaymentConsents bool `json:"openbanking_international_scheduled_payment_consents,omitempty"`
+
+	// enable openbanking international standing order consent apis
+	OpenbankingInternationalStandingOrderConsents bool `json:"openbanking_international_standing_order_consents,omitempty"`
+
+	// enable verification middleware for POST payment consent endpoints
+	OpenbankingJwsVerification bool `json:"openbanking_jws_verification,omitempty"`
+
+	// enable, when ACP is running on-prem, and Pyron is used as gateway
 	PyronOnPrem bool `json:"pyron_on_prem,omitempty"`
 
-	// script transformer
+	// enable quick access functionality on UI
+	QuickAccess bool `json:"quick_access,omitempty"`
+
+	// enable javascript transformer
 	ScriptTransformer bool `json:"script_transformer,omitempty"`
 
-	// swagger UI
+	// enables swagger ui
 	SwaggerUI bool `json:"swagger_ui,omitempty"`
 
-	// system clients management
+	// enable system client management apis
 	SystemClientsManagement bool `json:"system_clients_management,omitempty"`
 
-	// system openbanking consents management
+	// enable system openbanking consent management apis
 	SystemOpenbankingConsentsManagement bool `json:"system_openbanking_consents_management,omitempty"`
+
+	// enable trust anchor integration
+	TrustAnchorIntegration bool `json:"trust_anchor_integration,omitempty"`
 
 	// version
 	Version string `json:"version,omitempty"`

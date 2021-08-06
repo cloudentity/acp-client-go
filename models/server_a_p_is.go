@@ -20,15 +20,15 @@ import (
 // swagger:model ServerAPIs
 type ServerAPIs struct {
 
-	// a p is by services
-	APIsByServices map[string][]API `json:"apis_by_services,omitempty"`
+	// apis by services
+	ApisByServices map[string][]API `json:"apis_by_services,omitempty"`
 }
 
 // Validate validates this server a p is
 func (m *ServerAPIs) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateAPIsByServices(formats); err != nil {
+	if err := m.validateApisByServices(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -38,20 +38,20 @@ func (m *ServerAPIs) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *ServerAPIs) validateAPIsByServices(formats strfmt.Registry) error {
-	if swag.IsZero(m.APIsByServices) { // not required
+func (m *ServerAPIs) validateApisByServices(formats strfmt.Registry) error {
+	if swag.IsZero(m.ApisByServices) { // not required
 		return nil
 	}
 
-	for k := range m.APIsByServices {
+	for k := range m.ApisByServices {
 
-		if err := validate.Required("apis_by_services"+"."+k, "body", m.APIsByServices[k]); err != nil {
+		if err := validate.Required("apis_by_services"+"."+k, "body", m.ApisByServices[k]); err != nil {
 			return err
 		}
 
-		for i := 0; i < len(m.APIsByServices[k]); i++ {
+		for i := 0; i < len(m.ApisByServices[k]); i++ {
 
-			if err := m.APIsByServices[k][i].Validate(formats); err != nil {
+			if err := m.ApisByServices[k][i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("apis_by_services" + "." + k + "." + strconv.Itoa(i))
 				}
@@ -69,7 +69,7 @@ func (m *ServerAPIs) validateAPIsByServices(formats strfmt.Registry) error {
 func (m *ServerAPIs) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateAPIsByServices(ctx, formats); err != nil {
+	if err := m.contextValidateApisByServices(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -79,13 +79,13 @@ func (m *ServerAPIs) ContextValidate(ctx context.Context, formats strfmt.Registr
 	return nil
 }
 
-func (m *ServerAPIs) contextValidateAPIsByServices(ctx context.Context, formats strfmt.Registry) error {
+func (m *ServerAPIs) contextValidateApisByServices(ctx context.Context, formats strfmt.Registry) error {
 
-	for k := range m.APIsByServices {
+	for k := range m.ApisByServices {
 
-		for i := 0; i < len(m.APIsByServices[k]); i++ {
+		for i := 0; i < len(m.ApisByServices[k]); i++ {
 
-			if err := m.APIsByServices[k][i].ContextValidate(ctx, formats); err != nil {
+			if err := m.ApisByServices[k][i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("apis_by_services" + "." + k + "." + strconv.Itoa(i))
 				}

@@ -18,9 +18,9 @@ import (
 type CustomServerConsent struct {
 
 	// Deprecetad scope_grant_url. Use server_consent_url instead
-	DeprecatedScopeGrantURL string `json:"scope_grant_url,omitempty"`
+	ScopeGrantURL string `json:"scope_grant_url,omitempty"`
 
-	// server consent URL
+	// server consent url
 	ServerConsentURL string `json:"server_consent_url,omitempty"`
 }
 

@@ -13,16 +13,16 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// TestPolicyInput test policy input
+// TestPolicyInput Contains the input for the request that is used to test the policy.
 //
 // swagger:model TestPolicyInput
 type TestPolicyInput struct {
 
-	// contexts
-	Contexts map[string]interface{} `json:"contexts,omitempty"`
-
 	// authn ctx
 	AuthnCtx AuthenticationContext `json:"authn_ctx,omitempty"`
+
+	// Contexts for your policy validation
+	Contexts map[string]interface{} `json:"contexts,omitempty"`
 
 	// request
 	Request *TestPolicyInputRequest `json:"request,omitempty"`

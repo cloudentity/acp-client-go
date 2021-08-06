@@ -12,36 +12,43 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// AzureSettings azure settings
+// AzureSettings Azure IDP specific settings
 //
 // swagger:model AzureSettings
 type AzureSettings struct {
 
-	// client ID
+	// Application ID from your Microsoft Azure application settings
 	ClientID string `json:"client_id,omitempty"`
 
-	// fetch groups
+	// If enabled, the groups a user belongs to are collected
+	//
+	// Groups are collections of users and other principals who share access to resources in
+	// Microsoft services or in your app. Microsoft Graph provides APIs that you can use to create
+	// and manage different types of groups and group functionality according to your scenario.
+	//
+	// You can only get groups data if you are entitled to call the Microsoft Graph API.
 	FetchGroups bool `json:"fetch_groups,omitempty"`
 
-	// get user
+	// If enabled, users' data is collected from the Microsoft Graph API
+	//
+	// You can only get user's data if you are entitled to call the Microsoft Graph API.
 	GetUser bool `json:"get_user,omitempty"`
 
-	// graph user attributes
+	// An array of user attributes fetched from the Microsoft Graph API
 	GraphUserAttributes []string `json:"graph_user_attributes"`
 
-	// group name format
+	// String represented group name format used for fetching groups
+	//
+	// It's value can be either `id` or `name`.
 	GroupNameFormat string `json:"group_name_format,omitempty"`
 
-	// only security groups
+	// If enabled, only security groups a user belongs to are collected.
 	OnlySecurityGroups bool `json:"only_security_groups,omitempty"`
 
-	// redirect URL
-	RedirectURL string `json:"redirect_url,omitempty"`
-
-	// scopes
+	// An array of additional scopes your client requests
 	Scopes []string `json:"scopes"`
 
-	// tenant
+	// Directory ID from your Microsoft Azure application settings
 	Tenant string `json:"tenant,omitempty"`
 }
 

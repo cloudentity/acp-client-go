@@ -12,43 +12,69 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// SAMLSettings s a m l settings
+// SAMLSettings SAML IDP specific settings
 //
 // swagger:model SAMLSettings
 type SAMLSettings struct {
 
-	// unique id of a service provider, if not provided will be generated
+	// Unique id of a service provider
+	//
+	// If not provided, a random string is generated.
 	// Example: https://localhost:8443/default/default/login
 	EntityIssuer string `json:"entity_issuer,omitempty"`
 
-	// attribute name from AttributeStatement saml response which will be used as identifier in ACP
-	// applies only when identifier source is set to attribute
+	// The attribute name from the `AttributeStatement` SAML response which is used as an identifier in ACP
+	//
+	// Applies only when `identifierSource` parameter is set to `attribute`.
 	IdentifierAttribute string `json:"identifier_attribute,omitempty"`
 
-	// identifier source, one of: subject | attribute
+	// The source for an identifier
+	//
+	// The `identifierSource` parameter can have either the `subject` or the `attribute` value.
+	//
+	// It is used to provide an unique user attribute that is used as an identifier in ACP.
+	//
+	// Depending on which identifier source you choose, you must define either the
+	// `identifierAttribute` or the `subjectNameIDFormat` parameter.
 	IdentifierSource string `json:"identifier_source,omitempty"`
 
-	// endpoint where IDP will post SamlResponse
-	// Example: https://localhost:8443/default/default/login
-	RedirectURL string `json:"redirect_url,omitempty"`
+	// If enabled, the verification, if the `InResponseTo` parameter matches the original ID attribute
+	// sent from ACP, is skipped.
+	//
+	// Enable the `skipInResponseToVerification` flag when the `InResponseTo` parameter is not
+	// returned by your IDP.
+	SkipInResponseToVerification bool `json:"skip_in_response_to_verification,omitempty"`
 
-	// endpoint where SamlRequest will be sent
+	// String represented SSO URL (endpoint) where the SAML request is sent
 	// Example: https://test-dev-ed.my.salesforce.com/idp/endpoint/HttpPost
-	SSOURL string `json:"sso_url,omitempty"`
+	SsoURL string `json:"sso_url,omitempty"`
 
-	// name id format of saml subject
-	// applies only when identifier source is set to subject
-	// allowed values:
-	// urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
-	// urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified
-	// urn:oasis:names:tc:SAML:1.1:nameid-format:X509SubjectName
-	// urn:oasis:names:tc:SAML:1.1:nameid-format:WindowsDomainQualifiedName
-	// urn:oasis:names:tc:SAML:2.0:nameid-format:encrypted
-	// urn:oasis:names:tc:SAML:2.0:nameid-format:entity
-	// urn:oasis:names:tc:SAML:2.0:nameid-format:kerberos
-	// urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
-	// urn:oasis:names:tc:SAML:2.0:nameid-format:transient
-	// default value: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
+	// Name ID format of a SAML subject
+	//
+	// It applies only when the `identifierSource` parameter is set to `subject`.
+	//
+	// Allowed values:
+	//
+	// `urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress`
+	//
+	// `urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified`
+	//
+	// `urn:oasis:names:tc:SAML:1.1:nameid-format:X509SubjectName`
+	//
+	// `urn:oasis:names:tc:SAML:1.1:nameid-format:WindowsDomainQualifiedName`
+	//
+	// `urn:oasis:names:tc:SAML:2.0:nameid-format:encrypted`
+	//
+	// `urn:oasis:names:tc:SAML:2.0:nameid-format:entity`
+	//
+	// `urn:oasis:names:tc:SAML:2.0:nameid-format:kerberos`
+	//
+	// `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent`
+	//
+	// `urn:oasis:names:tc:SAML:2.0:nameid-format:transient`
+	//
+	// default value:
+	// `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent`
 	SubjectNameIDFormat string `json:"subject_name_id_format,omitempty"`
 }
 

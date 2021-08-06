@@ -19,9 +19,6 @@ import (
 // swagger:model TestPolicyResponse
 type TestPolicyResponse struct {
 
-	// allowed
-	Allowed bool `json:"status,omitempty"`
-
 	// failures
 	Failures []*ValidateResponseValidatorFailure `json:"failures"`
 
@@ -30,6 +27,9 @@ type TestPolicyResponse struct {
 
 	// result
 	Result string `json:"result,omitempty"`
+
+	// status
+	Status bool `json:"status,omitempty"`
 }
 
 // Validate validates this test policy response

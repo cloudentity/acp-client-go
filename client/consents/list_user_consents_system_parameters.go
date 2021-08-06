@@ -61,7 +61,7 @@ func NewListUserConsentsSystemParamsWithHTTPClient(client *http.Client) *ListUse
 type ListUserConsentsSystemParams struct {
 
 	// ConsentID.
-	ConsentIDs []string
+	ConsentID []string
 
 	/* Tid.
 
@@ -75,7 +75,7 @@ type ListUserConsentsSystemParams struct {
 
 	   user identifier
 	*/
-	Subject *string
+	XSubject *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -141,15 +141,15 @@ func (o *ListUserConsentsSystemParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithConsentIDs adds the consentID to the list user consents system params
-func (o *ListUserConsentsSystemParams) WithConsentIDs(consentID []string) *ListUserConsentsSystemParams {
-	o.SetConsentIDs(consentID)
+// WithConsentID adds the consentID to the list user consents system params
+func (o *ListUserConsentsSystemParams) WithConsentID(consentID []string) *ListUserConsentsSystemParams {
+	o.SetConsentID(consentID)
 	return o
 }
 
-// SetConsentIDs adds the consentId to the list user consents system params
-func (o *ListUserConsentsSystemParams) SetConsentIDs(consentID []string) {
-	o.ConsentIDs = consentID
+// SetConsentID adds the consentId to the list user consents system params
+func (o *ListUserConsentsSystemParams) SetConsentID(consentID []string) {
+	o.ConsentID = consentID
 }
 
 // WithTid adds the tid to the list user consents system params
@@ -163,15 +163,15 @@ func (o *ListUserConsentsSystemParams) SetTid(tid string) {
 	o.Tid = tid
 }
 
-// WithSubject adds the xSubject to the list user consents system params
-func (o *ListUserConsentsSystemParams) WithSubject(xSubject *string) *ListUserConsentsSystemParams {
-	o.SetSubject(xSubject)
+// WithXSubject adds the xSubject to the list user consents system params
+func (o *ListUserConsentsSystemParams) WithXSubject(xSubject *string) *ListUserConsentsSystemParams {
+	o.SetXSubject(xSubject)
 	return o
 }
 
-// SetSubject adds the xSubject to the list user consents system params
-func (o *ListUserConsentsSystemParams) SetSubject(xSubject *string) {
-	o.Subject = xSubject
+// SetXSubject adds the xSubject to the list user consents system params
+func (o *ListUserConsentsSystemParams) SetXSubject(xSubject *string) {
+	o.XSubject = xSubject
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -182,7 +182,7 @@ func (o *ListUserConsentsSystemParams) WriteToRequest(r runtime.ClientRequest, r
 	}
 	var res []error
 
-	if o.ConsentIDs != nil {
+	if o.ConsentID != nil {
 
 		// binding items for consent_id
 		joinedConsentID := o.bindParamConsentID(reg)
@@ -198,10 +198,10 @@ func (o *ListUserConsentsSystemParams) WriteToRequest(r runtime.ClientRequest, r
 		return err
 	}
 
-	if o.Subject != nil {
+	if o.XSubject != nil {
 
 		// header param x-subject
-		if err := r.SetHeaderParam("x-subject", *o.Subject); err != nil {
+		if err := r.SetHeaderParam("x-subject", *o.XSubject); err != nil {
 			return err
 		}
 	}
@@ -214,7 +214,7 @@ func (o *ListUserConsentsSystemParams) WriteToRequest(r runtime.ClientRequest, r
 
 // bindParamListUserConsentsSystem binds the parameter consent_id
 func (o *ListUserConsentsSystemParams) bindParamConsentID(formats strfmt.Registry) []string {
-	consentIDIR := o.ConsentIDs
+	consentIDIR := o.ConsentID
 
 	var consentIDIC []string
 	for _, consentIDIIR := range consentIDIR { // explode []string

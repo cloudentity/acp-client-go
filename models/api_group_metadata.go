@@ -18,19 +18,26 @@ import (
 // swagger:model APIGroupMetadata
 type APIGroupMetadata struct {
 
-	// Gateway type
-	Type string `json:"type,omitempty"`
+	// apigee
+	Apigee *ApigeeMetadata `json:"apigee,omitempty"`
 
 	// aws
 	Aws *AWSMetadata `json:"aws,omitempty"`
 
 	// azure
 	Azure *AzureMetadata `json:"azure,omitempty"`
+
+	// Gateway type
+	Type string `json:"type,omitempty"`
 }
 
 // Validate validates this API group metadata
 func (m *APIGroupMetadata) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.validateApigee(formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.validateAws(formats); err != nil {
 		res = append(res, err)
@@ -43,6 +50,23 @@ func (m *APIGroupMetadata) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *APIGroupMetadata) validateApigee(formats strfmt.Registry) error {
+	if swag.IsZero(m.Apigee) { // not required
+		return nil
+	}
+
+	if m.Apigee != nil {
+		if err := m.Apigee.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("apigee")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -84,6 +108,10 @@ func (m *APIGroupMetadata) validateAzure(formats strfmt.Registry) error {
 func (m *APIGroupMetadata) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateApigee(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateAws(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -95,6 +123,20 @@ func (m *APIGroupMetadata) ContextValidate(ctx context.Context, formats strfmt.R
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *APIGroupMetadata) contextValidateApigee(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Apigee != nil {
+		if err := m.Apigee.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("apigee")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

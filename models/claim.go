@@ -18,11 +18,16 @@ import (
 // swagger:model Claim
 type Claim struct {
 
+	// authorization server id
+	// Example: default
+	AuthorizationServerID string `json:"authorization_server_id,omitempty"`
+
 	// unique claim id
 	// Example: 1
 	ID string `json:"id,omitempty"`
 
-	// claim mapping - path to attribute in identity context from where claim value should be picked
+	// DeprecatedMapping use SourceType and SourcePath instead
+	// claim mapping - path to attribute in authentication context from where claim value should be picked
 	// Example: email
 	Mapping string `json:"mapping,omitempty"`
 
@@ -34,9 +39,11 @@ type Claim struct {
 	// Example: ["email","email_verified"]
 	Scopes []string `json:"scopes"`
 
-	// authorization server id
-	// Example: default
-	ServerID string `json:"authorization_server_id,omitempty"`
+	// path to the attribute in source type context where claim value should be picked from
+	SourcePath string `json:"source_path,omitempty"`
+
+	// source type
+	SourceType ClaimSourceType `json:"source_type,omitempty"`
 
 	// tenant id
 	// Example: default
@@ -50,6 +57,10 @@ type Claim struct {
 func (m *Claim) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateSourceType(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateType(formats); err != nil {
 		res = append(res, err)
 	}
@@ -57,6 +68,21 @@ func (m *Claim) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *Claim) validateSourceType(formats strfmt.Registry) error {
+	if swag.IsZero(m.SourceType) { // not required
+		return nil
+	}
+
+	if err := m.SourceType.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("source_type")
+		}
+		return err
+	}
+
 	return nil
 }
 
@@ -79,6 +105,10 @@ func (m *Claim) validateType(formats strfmt.Registry) error {
 func (m *Claim) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateSourceType(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateType(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -86,6 +116,18 @@ func (m *Claim) ContextValidate(ctx context.Context, formats strfmt.Registry) er
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *Claim) contextValidateSourceType(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.SourceType.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("source_type")
+		}
+		return err
+	}
+
 	return nil
 }
 

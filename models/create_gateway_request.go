@@ -17,6 +17,9 @@ import (
 // swagger:model CreateGatewayRequest
 type CreateGatewayRequest struct {
 
+	// if true a services is created automatically for each new discovered api group
+	CreateAndBindServicesAutomatically bool `json:"create_and_bind_services_automatically,omitempty"`
+
 	// description
 	Description string `json:"description,omitempty"`
 
@@ -27,7 +30,7 @@ type CreateGatewayRequest struct {
 	// ServerID that this gateway should protect
 	ServerID string `json:"server_id,omitempty"`
 
-	// gateway type, one of: pyron, aws, azure
+	// gateway type, one of: pyron, aws, azure, istio, kong, apigee
 	// Example: pyron
 	Type string `json:"type,omitempty"`
 }

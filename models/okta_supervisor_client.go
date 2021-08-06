@@ -12,8 +12,8 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// OktaSupervisorClient to enable Okta deep integration to need to create service oauth client in Okta
-// this client should have scopes allowing to create clients and list groups.
+// OktaSupervisorClient The `supervisor_client` parameter holds credentials for Okta's OAuth client application that are
+// used to authorize to Okta to be able to create new client applications.
 //
 // swagger:model OktaSupervisorClient
 type OktaSupervisorClient struct {

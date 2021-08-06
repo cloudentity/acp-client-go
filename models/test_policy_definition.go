@@ -14,22 +14,26 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// TestPolicyDefinition test policy definition
+// TestPolicyDefinition Definition of a policy that you wish to test
 //
 // swagger:model TestPolicyDefinition
 type TestPolicyDefinition struct {
 
-	// definition for rego policy
+	// The definition of an Open Policy Agent (OPA) policy provided using the REGO language.
 	Definition string `json:"definition,omitempty"`
 
-	// policy language
+	// Language of a policy
+	//
+	// ACP supports creating Cloudentity policies (using a visual editor or defined using JSON or
+	// YAML) and Open Policy Agent (OPA) policies (defined using REGO).
+	//
+	// OPA is a policy engine that unifies policy enforcement and provides a high-level declarative
+	// language (REGO) that lets you specify policies as code. REGO supports referencing nested
+	// documents and ensures that your queries are correct and unambiguous.
 	// Example: cloudentity
 	Language string `json:"language,omitempty"`
 
-	// query for rego policy
-	Query string `json:"query,omitempty"`
-
-	// list of validators for cloudentity policy
+	// An array of validators for a Cloudentity policy
 	Validators []*ValidatorConfig `json:"validators"`
 }
 

@@ -72,7 +72,7 @@ type ListUserConsentsParams struct {
 
 	   optional identifiers of consents to be returned
 	*/
-	ConsentIDs []string
+	ConsentID []string
 
 	/* Tid.
 
@@ -160,15 +160,15 @@ func (o *ListUserConsentsParams) SetAid(aid string) {
 	o.Aid = aid
 }
 
-// WithConsentIDs adds the consentID to the list user consents params
-func (o *ListUserConsentsParams) WithConsentIDs(consentID []string) *ListUserConsentsParams {
-	o.SetConsentIDs(consentID)
+// WithConsentID adds the consentID to the list user consents params
+func (o *ListUserConsentsParams) WithConsentID(consentID []string) *ListUserConsentsParams {
+	o.SetConsentID(consentID)
 	return o
 }
 
-// SetConsentIDs adds the consentId to the list user consents params
-func (o *ListUserConsentsParams) SetConsentIDs(consentID []string) {
-	o.ConsentIDs = consentID
+// SetConsentID adds the consentId to the list user consents params
+func (o *ListUserConsentsParams) SetConsentID(consentID []string) {
+	o.ConsentID = consentID
 }
 
 // WithTid adds the tid to the list user consents params
@@ -195,7 +195,7 @@ func (o *ListUserConsentsParams) WriteToRequest(r runtime.ClientRequest, reg str
 		return err
 	}
 
-	if o.ConsentIDs != nil {
+	if o.ConsentID != nil {
 
 		// binding items for consent_id
 		joinedConsentID := o.bindParamConsentID(reg)
@@ -219,7 +219,7 @@ func (o *ListUserConsentsParams) WriteToRequest(r runtime.ClientRequest, reg str
 
 // bindParamListUserConsents binds the parameter consent_id
 func (o *ListUserConsentsParams) bindParamConsentID(formats strfmt.Registry) []string {
-	consentIDIR := o.ConsentIDs
+	consentIDIR := o.ConsentID
 
 	var consentIDIC []string
 	for _, consentIDIIR := range consentIDIR { // explode []string

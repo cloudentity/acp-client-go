@@ -65,7 +65,7 @@ type UpdateClaimParams struct {
 	UpdateClaimBody *models.Claim
 
 	// Claim.
-	ClaimID string
+	Claim string
 
 	/* Tid.
 
@@ -150,15 +150,15 @@ func (o *UpdateClaimParams) SetUpdateClaimBody(updateClaimBody *models.Claim) {
 	o.UpdateClaimBody = updateClaimBody
 }
 
-// WithClaimID adds the claim to the update claim params
-func (o *UpdateClaimParams) WithClaimID(claim string) *UpdateClaimParams {
-	o.SetClaimID(claim)
+// WithClaim adds the claim to the update claim params
+func (o *UpdateClaimParams) WithClaim(claim string) *UpdateClaimParams {
+	o.SetClaim(claim)
 	return o
 }
 
-// SetClaimID adds the claim to the update claim params
-func (o *UpdateClaimParams) SetClaimID(claim string) {
-	o.ClaimID = claim
+// SetClaim adds the claim to the update claim params
+func (o *UpdateClaimParams) SetClaim(claim string) {
+	o.Claim = claim
 }
 
 // WithTid adds the tid to the update claim params
@@ -186,7 +186,7 @@ func (o *UpdateClaimParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 	}
 
 	// path param claim
-	if err := r.SetPathParam("claim", o.ClaimID); err != nil {
+	if err := r.SetPathParam("claim", o.Claim); err != nil {
 		return err
 	}
 

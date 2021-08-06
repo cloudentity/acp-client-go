@@ -7,5 +7,5 @@ package models
 
 // EmptyResponse empty response
 //
-// swagger:model EmptyResponse
+// swagger:model emptyResponse
 type EmptyResponse interface{}

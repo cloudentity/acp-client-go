@@ -17,20 +17,20 @@ import (
 // swagger:model TestPolicyInputRequest
 type TestPolicyInputRequest struct {
 
-	// headers
+	// Headers that are used in your request that you use to test your policy
 	Headers map[string][]string `json:"headers,omitempty"`
 
-	// method
+	// Method that is used in your request that you use to test your policy
 	Method string `json:"method,omitempty"`
 
-	// path params
+	// Path that is used in your request that you use to test your policy
+	Path string `json:"path,omitempty"`
+
+	// Path parameters that are used in your request that you use to test your policy
 	PathParams map[string]string `json:"path_params,omitempty"`
 
-	// query params
+	// Query parameters that are used in your request that you use to test your policy
 	QueryParams map[string][]string `json:"query_params,omitempty"`
-
-	// URL
-	URL string `json:"url,omitempty"`
 }
 
 // Validate validates this test policy input request

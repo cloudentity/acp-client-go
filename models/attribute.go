@@ -12,18 +12,22 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// Attribute attribute
+// Attribute Authentication context attribute
 //
 // swagger:model Attribute
 type Attribute struct {
 
-	// display name
+	// String represented display name of an attribute
 	Description string `json:"description,omitempty"`
 
-	// technical name
+	// String represented variable name of an attribute
 	Name string `json:"name,omitempty"`
 
-	// attribute type (number, string, bool, number_array, string_array, bool_array or any)
+	// The data type of an attribute
+	//
+	// It stores information what kind of data is used as the value of the attribute.
+	//
+	// Available types: `number`, `string`, `bool`, `number_array`, `string_array`, `bool_array` or `any`.
 	Type string `json:"type,omitempty"`
 }
 

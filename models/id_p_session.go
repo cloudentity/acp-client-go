@@ -19,6 +19,12 @@ import (
 // swagger:model IDPSession
 type IDPSession struct {
 
+	// ID
+	ID IDPSessionID `json:"ID,omitempty"`
+
+	// idp ID
+	IDPID string `json:"IDPID,omitempty"`
+
 	// authentication context class reference
 	Acr string `json:"acr,omitempty"`
 
@@ -29,44 +35,38 @@ type IDPSession struct {
 	// Format: date-time
 	AuthTime strfmt.DateTime `json:"auth_time,omitempty"`
 
-	// ID
-	ID IDPSessionID `json:"ID,omitempty"`
-
-	// idp ID
-	IDPID string `json:"IDPID,omitempty"`
+	// authentication context
+	AuthenticationContext AuthenticationContext `json:"authentication_context,omitempty"`
 
 	// time when the session was issued
 	// Format: date-time
 	IssueTime strfmt.DateTime `json:"issue_time,omitempty"`
 
+	// max age
+	MaxAge Duration `json:"max_age,omitempty"`
+
 	// user identifier
 	// Example: user
 	Subject string `json:"subject,omitempty"`
-
-	// authentication context
-	AuthenticationContext AuthenticationContext `json:"authentication_context,omitempty"`
-
-	// max age
-	MaxAge Duration `json:"max_age,omitempty"`
 }
 
 // Validate validates this ID p session
 func (m *IDPSession) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateAuthTime(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateID(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateIssueTime(formats); err != nil {
+	if err := m.validateAuthTime(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateAuthenticationContext(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIssueTime(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -77,18 +77,6 @@ func (m *IDPSession) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *IDPSession) validateAuthTime(formats strfmt.Registry) error {
-	if swag.IsZero(m.AuthTime) { // not required
-		return nil
-	}
-
-	if err := validate.FormatOf("auth_time", "body", "date-time", m.AuthTime.String(), formats); err != nil {
-		return err
-	}
-
 	return nil
 }
 
@@ -107,12 +95,12 @@ func (m *IDPSession) validateID(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *IDPSession) validateIssueTime(formats strfmt.Registry) error {
-	if swag.IsZero(m.IssueTime) { // not required
+func (m *IDPSession) validateAuthTime(formats strfmt.Registry) error {
+	if swag.IsZero(m.AuthTime) { // not required
 		return nil
 	}
 
-	if err := validate.FormatOf("issue_time", "body", "date-time", m.IssueTime.String(), formats); err != nil {
+	if err := validate.FormatOf("auth_time", "body", "date-time", m.AuthTime.String(), formats); err != nil {
 		return err
 	}
 
@@ -131,6 +119,18 @@ func (m *IDPSession) validateAuthenticationContext(formats strfmt.Registry) erro
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *IDPSession) validateIssueTime(formats strfmt.Registry) error {
+	if swag.IsZero(m.IssueTime) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("issue_time", "body", "date-time", m.IssueTime.String(), formats); err != nil {
+		return err
 	}
 
 	return nil

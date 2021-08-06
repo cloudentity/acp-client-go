@@ -20,35 +20,35 @@ import (
 type GatewayAPIGroup struct {
 
 	// List of APIs
-	APIs []*GatewayAPI `json:"apis"`
+	Apis []*GatewayAPI `json:"apis"`
 
-	// gateway ID
+	// gateway id
 	GatewayID string `json:"gateway_id,omitempty"`
 
 	// API group ID
 	ID string `json:"id,omitempty"`
 
+	// metadata
+	Metadata *APIGroupMetadata `json:"metadata,omitempty"`
+
 	// API group name
 	Name string `json:"name,omitempty"`
 
-	// server ID
+	// server id
 	ServerID string `json:"server_id,omitempty"`
 
-	// service ID
+	// service id
 	ServiceID string `json:"service_id,omitempty"`
 
-	// tenant ID
+	// tenant id
 	TenantID string `json:"tenant_id,omitempty"`
-
-	// metadata
-	Metadata *APIGroupMetadata `json:"metadata,omitempty"`
 }
 
 // Validate validates this gateway API group
 func (m *GatewayAPIGroup) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateAPIs(formats); err != nil {
+	if err := m.validateApis(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -62,18 +62,18 @@ func (m *GatewayAPIGroup) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *GatewayAPIGroup) validateAPIs(formats strfmt.Registry) error {
-	if swag.IsZero(m.APIs) { // not required
+func (m *GatewayAPIGroup) validateApis(formats strfmt.Registry) error {
+	if swag.IsZero(m.Apis) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.APIs); i++ {
-		if swag.IsZero(m.APIs[i]) { // not required
+	for i := 0; i < len(m.Apis); i++ {
+		if swag.IsZero(m.Apis[i]) { // not required
 			continue
 		}
 
-		if m.APIs[i] != nil {
-			if err := m.APIs[i].Validate(formats); err != nil {
+		if m.Apis[i] != nil {
+			if err := m.Apis[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("apis" + "." + strconv.Itoa(i))
 				}
@@ -107,7 +107,7 @@ func (m *GatewayAPIGroup) validateMetadata(formats strfmt.Registry) error {
 func (m *GatewayAPIGroup) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateAPIs(ctx, formats); err != nil {
+	if err := m.contextValidateApis(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -121,12 +121,12 @@ func (m *GatewayAPIGroup) ContextValidate(ctx context.Context, formats strfmt.Re
 	return nil
 }
 
-func (m *GatewayAPIGroup) contextValidateAPIs(ctx context.Context, formats strfmt.Registry) error {
+func (m *GatewayAPIGroup) contextValidateApis(ctx context.Context, formats strfmt.Registry) error {
 
-	for i := 0; i < len(m.APIs); i++ {
+	for i := 0; i < len(m.Apis); i++ {
 
-		if m.APIs[i] != nil {
-			if err := m.APIs[i].ContextValidate(ctx, formats); err != nil {
+		if m.Apis[i] != nil {
+			if err := m.Apis[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("apis" + "." + strconv.Itoa(i))
 				}

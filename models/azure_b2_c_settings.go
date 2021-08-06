@@ -12,32 +12,40 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// AzureB2CSettings Azure AD B2C authentication settings.
-//
-// Provide OAuth client details here.
+// AzureB2CSettings Azure AD B2C authentication settings
 //
 // swagger:model AzureB2CSettings
 type AzureB2CSettings struct {
 
-	// OAuth client identifier
+	// Application ID from your Microsoft Azure B2C application settings
 	// Example: client
 	ClientID string `json:"client_id,omitempty"`
 
-	// a flag to fetch user groups
+	// If enabled, the groups a user belongs to are collected
+	//
+	// Groups are collections of users and other principals who share access to resources in
+	// Microsoft services or in your app. Microsoft Graph provides APIs that you can use to create
+	// and manage different types of groups and group functionality according to your scenario.
+	//
+	// You can only get groups data if you are entitled to call the Microsoft Graph API.
 	// Example: true
 	FetchGroups bool `json:"fetch_groups,omitempty"`
 
-	// flag to fetch additional user data from graph endpoint
+	// If enabled, users' data is collected from the Microsoft Graph API
+	//
+	// You can only get user's data if you are entitled to call the Microsoft Graph API.
 	GetUser bool `json:"get_user,omitempty"`
 
-	// list of user attributes to be fetched from graph
+	// An array of user attributes fetched from the Microsoft Graph API
 	GraphUserAttributes []string `json:"graph_user_attributes"`
 
-	// user groups format: id or name
+	// String represented group name format used for fetching groups
+	//
+	// It's value can be either `id` or `name`.
 	// Example: id
 	GroupNameFormat string `json:"group_name_format,omitempty"`
 
-	// should only security groups be fetched
+	// If enabled, only security groups a user belongs to are collected.
 	// Example: true
 	OnlySecurityGroups bool `json:"only_security_groups,omitempty"`
 
@@ -46,15 +54,11 @@ type AzureB2CSettings struct {
 	// Example: b2c_1_sign_in
 	Policy string `json:"policy,omitempty"`
 
-	// OAuth redirect URL
-	// Example: https://example.com/callback
-	RedirectURL string `json:"redirect_url,omitempty"`
-
-	// OAuth scopes which client will be requesting
+	// An array of additional scopes your client is going to request
 	// Example: ["email","profile","openid"]
 	Scopes []string `json:"scopes"`
 
-	// azure tenant id
+	// Directory ID from your Microsoft Azure B2C application settings
 	// Example: 123-312-123
 	Tenant string `json:"tenant,omitempty"`
 }
