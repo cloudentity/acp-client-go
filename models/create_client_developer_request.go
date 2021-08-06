@@ -30,7 +30,7 @@ type CreateClientDeveloperRequest struct {
 	// Native applications include single-page applications (SPAs) and mobile or desktop
 	// applications.
 	//
-	// Depending on the type of your application remember to choose appropriate security measures.
+	// Depending on the type of your application remember to choose appropiate security measures.
 	// Example: web
 	ApplicationType string `json:"application_type,omitempty"`
 

@@ -89,7 +89,7 @@ func (a *Client) AcceptLoginRequest(params *AcceptLoginRequestParams, authInfo r
 /*
   AcceptScopeGrantRequest accepts login request
 
-  This API is used to notify ACP that user granted consent.
+  This API is used by a consent page to notify ACP that user granted consent.
 */
 func (a *Client) AcceptScopeGrantRequest(params *AcceptScopeGrantRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptScopeGrantRequestOK, error) {
 	// TODO: Validate the params before sending
@@ -253,7 +253,7 @@ func (a *Client) RejectLoginRequest(params *RejectLoginRequestParams, authInfo r
 /*
   RejectScopeGrantRequest rejects login request
 
-  This API is used to notify ACP that scope grant has been rejected.
+  This API is used by a consent page to notify ACP that scope grant has been rejected.
 */
 func (a *Client) RejectScopeGrantRequest(params *RejectScopeGrantRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectScopeGrantRequestOK, error) {
 	// TODO: Validate the params before sending
