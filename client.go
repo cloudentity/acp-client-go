@@ -26,6 +26,7 @@ import (
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/pkg/errors"
 	"golang.org/x/oauth2/clientcredentials"
+	"gopkg.in/square/go-jose.v2"
 )
 
 const (
@@ -37,8 +38,9 @@ const (
 // Client provides a client to the ACP API
 type Client struct {
 	*client.Acp
-	c          *http.Client
-	signingKey interface{}
+	c             *http.Client
+	signingKey    interface{}
+	encryptionKey jose.JSONWebKey
 
 	// Client configuration
 	Config Config
@@ -82,6 +84,9 @@ type Config struct {
 
 	// Path to the file with private key for signing request object.
 	RequestObjectSigningKeyFile string `json:"request_object_signing_key_file"`
+
+	// Path to the file with private key for encrypting request object.
+	RequestObjectEncryptionKeyFile string `json:"request_object_encryption_key_file"`
 
 	// Optional request object expiration time
 	// If not provided, it will be se to 1 minute
@@ -225,6 +230,18 @@ func New(cfg Config) (c Client, err error) {
 		}
 	}
 
+	if cfg.RequestObjectEncryptionKeyFile != "" {
+		var bs []byte
+
+		if bs, err = ioutil.ReadFile(cfg.RequestObjectEncryptionKeyFile); err != nil {
+			return c, errors.Wrapf(err, "failed to read request object encryption key")
+		}
+
+		if err = c.encryptionKey.UnmarshalJSON(bs); err != nil {
+			return c, errors.Wrapf(err, "failed to parse request object encryption key")
+		}
+	}
+
 	cc := clientcredentials.Config{
 		ClientID:     cfg.ClientID,
 		ClientSecret: cfg.ClientSecret,
@@ -312,6 +329,39 @@ func WithPKCE() AuthorizeOption {
 
 		v.Set("code_challenge", base64.RawURLEncoding.WithPadding(base64.NoPadding).EncodeToString(hash.Sum([]byte{})))
 		v.Set("code_challenge_method", "S256")
+
+		return nil
+	})
+}
+
+func WithRequestObjectEncryption(key jose.JSONWebKey) AuthorizeOption {
+	return authorizeHandler(func(c *Client, v url.Values, csrf *CSRF) error {
+		var (
+			encryptedToken string
+			encrypter      jose.Encrypter
+			jwe            *jose.JSONWebEncryption
+			token          = v.Get("request")
+			err            error
+		)
+
+		encrypter, err = jose.NewEncrypter(jose.A256GCM, jose.Recipient{
+			Algorithm: jose.KeyAlgorithm(key.Algorithm),
+			Key:       key.Key,
+		}, &jose.EncrypterOptions{
+			ExtraHeaders: map[jose.HeaderKey]interface{}{
+				jose.HeaderContentType: "jwt",
+			},
+		})
+
+		if jwe, err = encrypter.Encrypt([]byte(token)); err != nil {
+			return errors.Wrapf(err, "failed to encrypt request object")
+		}
+
+		if encryptedToken, err = jwe.CompactSerialize(); err != nil {
+			return errors.Wrapf(err, "failed to serialize encrypted request object")
+		}
+
+		v.Set("request", encryptedToken)
 
 		return nil
 	})
