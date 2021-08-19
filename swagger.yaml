@@ -6541,7 +6541,7 @@ definitions:
         format: date-time
         type: string
         x-nullable: false
-      customer_data_access_consent:
+      customer_payment_consent:
         $ref: '#/definitions/OBBRCustomerPaymentConsent'
       requested_scopes:
         items:
@@ -13289,34 +13289,6 @@ definitions:
   OpenbankingBrasilLinks:
     description: Referncias para outros recusos da API requisitada.
     properties:
-      first:
-        description: URI da primeira pgina que originou essa lista de resultados. Restrio - Obrigatrio quando no for a primeira pgina da resposta
-        example: https://api.banco.com.br/open-banking/api/v1/resource
-        maxLength: 2000
-        pattern: ^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$
-        type: string
-        x-nullable: false
-      last:
-        description: URI da ltima pgina dessa lista de resultados. Restrio - Obrigatrio quando no for a ltima pgina da resposta
-        example: https://api.banco.com.br/open-banking/api/v1/resource
-        maxLength: 2000
-        pattern: ^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$
-        type: string
-        x-nullable: false
-      next:
-        description: URI da prxima pgina dessa lista de resultados. Restrio - Obrigatrio quando no for a ltima pgina da resposta
-        example: https://api.banco.com.br/open-banking/api/v1/resource
-        maxLength: 2000
-        pattern: ^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$
-        type: string
-        x-nullable: false
-      prev:
-        description: "URI da pgina anterior dessa lista de resultados. Restrio - \tObrigatrio quando no for a primeira pgina da resposta"
-        example: https://api.banco.com.br/open-banking/api/v1/resource
-        maxLength: 2000
-        pattern: ^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$
-        type: string
-        x-nullable: false
       self:
         description: URI completo que gerou a resposta atual.
         example: https://api.banco.com.br/open-banking/api/v1/resource
@@ -31843,7 +31815,7 @@ schemes:
 securityDefinitions:
   admin:
     authorizationUrl: /default/admin/oauth2/authorize
-    flow: accessCode
+    flow: application
     tokenUrl: /default/admin/oauth2/token
     type: oauth2
   default:
@@ -31862,24 +31834,24 @@ securityDefinitions:
     type: oauth2
   defaultcc:
     authorizationUrl: /default/default/oauth2/authorize
-    flow: accessCode
+    flow: application
     scopes:
       accounts: accounts
     tokenUrl: /default/default/oauth2/token
     type: oauth2
   developer:
     authorizationUrl: /default/developer/oauth2/authorize
-    flow: accessCode
+    flow: password
     tokenUrl: /default/developer/oauth2/token
     type: oauth2
   setup:
     authorizationUrl: /system/system/oauth2/authorize
-    flow: accessCode
+    flow: application
     tokenUrl: /system/system/oauth2/token
     type: oauth2
   system:
     authorizationUrl: /default/system/oauth2/authorize
-    flow: accessCode
+    flow: application
     scopes:
       introspect_tokens: introspect_tokens
       manage_configuration: manage_configuration
