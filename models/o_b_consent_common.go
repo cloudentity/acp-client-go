@@ -19,12 +19,6 @@ import (
 // swagger:model OBConsentCommon
 type OBConsentCommon struct {
 
-	// customer data access consent
-	CustomerDataAccessConsent *OBBRCustomerDataAccessConsent `json:"CustomerDataAccessConsent,omitempty"`
-
-	// customer payment consent
-	CustomerPaymentConsent *OBBRCustomerPaymentConsent `json:"CustomerPaymentConsent,omitempty"`
-
 	// account access consent
 	AccountAccessConsent *AccountAccessConsent `json:"account_access_consent,omitempty"`
 
@@ -40,6 +34,12 @@ type OBConsentCommon struct {
 	// created at
 	// Format: date-time
 	CreatedAt strfmt.DateTime `json:"created_at,omitempty"`
+
+	// customer data access consent
+	CustomerDataAccessConsent *OBBRCustomerDataAccessConsent `json:"customer_data_access_consent,omitempty"`
+
+	// customer payment consent
+	CustomerPaymentConsent *OBBRCustomerPaymentConsent `json:"customer_payment_consent,omitempty"`
 
 	// domestic payment consent
 	DomesticPaymentConsent *DomesticPaymentConsent `json:"domestic_payment_consent,omitempty"`
@@ -91,19 +91,19 @@ type OBConsentCommon struct {
 func (m *OBConsentCommon) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateCustomerDataAccessConsent(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateCustomerPaymentConsent(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateAccountAccessConsent(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateCreatedAt(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCustomerDataAccessConsent(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCustomerPaymentConsent(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -145,40 +145,6 @@ func (m *OBConsentCommon) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *OBConsentCommon) validateCustomerDataAccessConsent(formats strfmt.Registry) error {
-	if swag.IsZero(m.CustomerDataAccessConsent) { // not required
-		return nil
-	}
-
-	if m.CustomerDataAccessConsent != nil {
-		if err := m.CustomerDataAccessConsent.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("CustomerDataAccessConsent")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *OBConsentCommon) validateCustomerPaymentConsent(formats strfmt.Registry) error {
-	if swag.IsZero(m.CustomerPaymentConsent) { // not required
-		return nil
-	}
-
-	if m.CustomerPaymentConsent != nil {
-		if err := m.CustomerPaymentConsent.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("CustomerPaymentConsent")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 func (m *OBConsentCommon) validateAccountAccessConsent(formats strfmt.Registry) error {
 	if swag.IsZero(m.AccountAccessConsent) { // not required
 		return nil
@@ -203,6 +169,40 @@ func (m *OBConsentCommon) validateCreatedAt(formats strfmt.Registry) error {
 
 	if err := validate.FormatOf("created_at", "body", "date-time", m.CreatedAt.String(), formats); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *OBConsentCommon) validateCustomerDataAccessConsent(formats strfmt.Registry) error {
+	if swag.IsZero(m.CustomerDataAccessConsent) { // not required
+		return nil
+	}
+
+	if m.CustomerDataAccessConsent != nil {
+		if err := m.CustomerDataAccessConsent.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("customer_data_access_consent")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *OBConsentCommon) validateCustomerPaymentConsent(formats strfmt.Registry) error {
+	if swag.IsZero(m.CustomerPaymentConsent) { // not required
+		return nil
+	}
+
+	if m.CustomerPaymentConsent != nil {
+		if err := m.CustomerPaymentConsent.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("customer_payment_consent")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -346,15 +346,15 @@ func (m *OBConsentCommon) validateType(formats strfmt.Registry) error {
 func (m *OBConsentCommon) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateAccountAccessConsent(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateCustomerDataAccessConsent(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.contextValidateCustomerPaymentConsent(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateAccountAccessConsent(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -396,12 +396,26 @@ func (m *OBConsentCommon) ContextValidate(ctx context.Context, formats strfmt.Re
 	return nil
 }
 
+func (m *OBConsentCommon) contextValidateAccountAccessConsent(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.AccountAccessConsent != nil {
+		if err := m.AccountAccessConsent.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("account_access_consent")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *OBConsentCommon) contextValidateCustomerDataAccessConsent(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CustomerDataAccessConsent != nil {
 		if err := m.CustomerDataAccessConsent.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("CustomerDataAccessConsent")
+				return ve.ValidateName("customer_data_access_consent")
 			}
 			return err
 		}
@@ -415,21 +429,7 @@ func (m *OBConsentCommon) contextValidateCustomerPaymentConsent(ctx context.Cont
 	if m.CustomerPaymentConsent != nil {
 		if err := m.CustomerPaymentConsent.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("CustomerPaymentConsent")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *OBConsentCommon) contextValidateAccountAccessConsent(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.AccountAccessConsent != nil {
-		if err := m.AccountAccessConsent.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("account_access_consent")
+				return ve.ValidateName("customer_payment_consent")
 			}
 			return err
 		}

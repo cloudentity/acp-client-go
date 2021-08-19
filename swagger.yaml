@@ -2842,9 +2842,7 @@ definitions:
   ConsentAccepted:
     properties:
       redirect_to:
-        description: |-
-          url where user should be redirected
-          this aplies only for redirect flow
+        description: url where user should be redirected
         type: string
         x-nullable: false
     type: object
@@ -3222,9 +3220,7 @@ definitions:
   ConsentRejected:
     properties:
       redirect_to:
-        description: |-
-          url where user should be redirected
-          this aplies only for redirect flow
+        description: url where user should be redirected
         type: string
         x-nullable: false
     type: object
@@ -6522,6 +6518,54 @@ definitions:
       type:
         $ref: '#/definitions/ConsentType'
     type: object
+  GetOBBRCustomerPaymentConsentResponse:
+    properties:
+      account_ids:
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      authentication_context:
+        $ref: '#/definitions/AuthenticationContext'
+      client_id:
+        format: clientID
+        type: string
+        x-nullable: false
+      client_info:
+        $ref: '#/definitions/ClientInfo'
+      consent_id:
+        format: consentID
+        type: string
+        x-nullable: false
+      created_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      customer_data_access_consent:
+        $ref: '#/definitions/OBBRCustomerPaymentConsent'
+      requested_scopes:
+        items:
+          $ref: '#/definitions/RequestedScope'
+        type: array
+        x-nullable: false
+      server_id:
+        format: serverID
+        type: string
+        x-nullable: false
+      status:
+        type: string
+        x-nullable: false
+      subject:
+        format: subject
+        type: string
+        x-nullable: false
+      tenant_id:
+        format: tenantID
+        type: string
+        x-nullable: false
+      type:
+        $ref: '#/definitions/ConsentType'
+    type: object
   GetServerDeveloperResponse:
     properties:
       color:
@@ -8059,10 +8103,6 @@ definitions:
     properties:
       Client:
         $ref: '#/definitions/OpenbankingClient'
-      CustomerDataAccessConsent:
-        $ref: '#/definitions/OBBRCustomerDataAccessConsent'
-      CustomerPaymentConsent:
-        $ref: '#/definitions/OBBRCustomerPaymentConsent'
       account_ids:
         items:
           type: string
@@ -8080,6 +8120,10 @@ definitions:
         format: date-time
         type: string
         x-nullable: false
+      customer_data_access_consent:
+        $ref: '#/definitions/OBBRCustomerDataAccessConsent'
+      customer_payment_consent:
+        $ref: '#/definitions/OBBRCustomerPaymentConsent'
       idempotency_key:
         type: string
         x-nullable: false
@@ -8357,10 +8401,6 @@ definitions:
     type: object
   OBConsentCommon:
     properties:
-      CustomerDataAccessConsent:
-        $ref: '#/definitions/OBBRCustomerDataAccessConsent'
-      CustomerPaymentConsent:
-        $ref: '#/definitions/OBBRCustomerPaymentConsent'
       account_access_consent:
         $ref: '#/definitions/AccountAccessConsent'
       account_ids:
@@ -8380,6 +8420,10 @@ definitions:
         format: date-time
         type: string
         x-nullable: false
+      customer_data_access_consent:
+        $ref: '#/definitions/OBBRCustomerDataAccessConsent'
+      customer_payment_consent:
+        $ref: '#/definitions/OBBRCustomerPaymentConsent'
       domestic_payment_consent:
         $ref: '#/definitions/DomesticPaymentConsent'
       domestic_scheduled_payment_consent:
@@ -15212,18 +15256,14 @@ definitions:
   ScopeGrantAccepted:
     properties:
       redirect_to:
-        description: |-
-          url where user should be redirected
-          this aplies only for redirect flow
+        description: url where user should be redirected
         type: string
         x-nullable: false
     type: object
   ScopeGrantRejected:
     properties:
       redirect_to:
-        description: |-
-          url where user should be redirected
-          this aplies only for redirect flow
+        description: url where user should be redirected
         type: string
         x-nullable: false
     type: object
@@ -18684,7 +18724,7 @@ host: localhost:8443
 info:
   description: Cloudentity Authorization Control Plane API
   title: Cloudentity Authorization Control Plane API
-  version: 1.12.0
+  version: 1.12.3
 paths:
   /{tid}/{aid}/.well-known/jwks.json:
     get:
@@ -29679,6 +29719,133 @@ paths:
       summary: Reject consent
       tags:
       - openbanking
+  /api/system/{tid}/open-banking-brasil/payment/{login}:
+    get:
+      description: |-
+        This API can be used by a custom openbanking consent page.
+        The consent page must first use client credentials flow to create consent.
+      operationId: getOBBRCustomerPaymentConsentSystem
+      parameters:
+      - default: default
+        description: Tenant id
+        in: path
+        name: tid
+        required: true
+        type: string
+      - in: path
+        name: login
+        required: true
+        type: string
+      - in: query
+        name: login_state
+        type: string
+      responses:
+        "200":
+          description: GetOBBRCustomerPaymentConsentResponse
+          schema:
+            $ref: '#/definitions/GetOBBRCustomerPaymentConsentResponse'
+        "401":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "403":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+      security:
+      - system:
+        - manage_openbanking_consents
+      summary: Get customer payment initiation consent
+      tags:
+      - openbanking
+  /api/system/{tid}/open-banking-brasil/payment/{login}/accept:
+    post:
+      description: This API can be used by a custom openbanking consent page to notify ACP that user granted consent for payment initiation.
+      operationId: acceptOBBRCustomerPaymentConsentSystem
+      parameters:
+      - default: default
+        description: Tenant id
+        in: path
+        name: tid
+        required: true
+        type: string
+      - in: path
+        name: login
+        required: true
+        type: string
+      - in: body
+        name: AcceptConsent
+        schema:
+          $ref: '#/definitions/AcceptConsentRequest'
+      responses:
+        "200":
+          description: ConsentAccepted
+          schema:
+            $ref: '#/definitions/ConsentAccepted'
+        "401":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "403":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+      security:
+      - system:
+        - manage_openbanking_consents
+      summary: Accept customer payment initiation consent
+      tags:
+      - openbanking
+  /api/system/{tid}/open-banking-brasil/payment/{login}/reject:
+    post:
+      description: This API can be used by a custom openbanking consent page to notify ACP that user rejected payment initiation.
+      operationId: rejectOBBRCustomerPaymentConsentSystem
+      parameters:
+      - default: default
+        description: Tenant id
+        in: path
+        name: tid
+        required: true
+        type: string
+      - in: path
+        name: login
+        required: true
+        type: string
+      - in: body
+        name: RejectConsent
+        schema:
+          $ref: '#/definitions/RejectConsentRequest'
+      responses:
+        "200":
+          description: ConsentRejected
+          schema:
+            $ref: '#/definitions/ConsentRejected'
+        "401":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "403":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+      security:
+      - system:
+        - manage_openbanking_consents
+      summary: Reject consent
+      tags:
+      - openbanking
   /api/system/{tid}/open-banking/account-access-consent/{login}:
     get:
       description: |-
@@ -29724,7 +29891,7 @@ paths:
       - openbanking
   /api/system/{tid}/open-banking/account-access-consent/{login}/accept:
     post:
-      description: This API can be used to notify ACP that user granted consent to a account-access.
+      description: This API can be used by a custom openbanking consent page to notify ACP that user granted consent to a account-access.
       operationId: acceptAccountAccessConsentSystem
       parameters:
       - default: default
@@ -29766,7 +29933,7 @@ paths:
       - openbanking
   /api/system/{tid}/open-banking/account-access-consent/{login}/reject:
     post:
-      description: This API can be used to notify ACP that user rejected access.
+      description: This API can be used by a custom openbanking consent page to notify ACP that user rejected access.
       operationId: rejectAccountAccessConsentSystem
       parameters:
       - default: default
@@ -29851,7 +30018,7 @@ paths:
       - openbanking
   /api/system/{tid}/open-banking/domestic-payment-consent/{login}/accept:
     post:
-      description: This API can be used to notify ACP that user granted consent to a domestic-payment.
+      description: This API can be used by a custom openbanking consent page to notify ACP that user granted consent to a domestic-payment.
       operationId: acceptDomesticPaymentConsentSystem
       parameters:
       - default: default
@@ -29893,7 +30060,7 @@ paths:
       - openbanking
   /api/system/{tid}/open-banking/domestic-payment-consent/{login}/reject:
     post:
-      description: This API can be used to notify ACP that user rejected access.
+      description: This API can be used by a custom openbanking consent page to notify ACP that user rejected access.
       operationId: rejectDomesticPaymentConsentSystem
       parameters:
       - default: default
@@ -29978,7 +30145,7 @@ paths:
       - openbanking
   /api/system/{tid}/open-banking/domestic-scheduled-payment-consent/{login}/accept:
     post:
-      description: This API can be used to notify ACP that user granted consent to a domestic-scheduled-payment.
+      description: This API can be used by a custom openbanking consent page to notify ACP that user granted consent to a domestic-scheduled-payment.
       operationId: acceptDomesticScheduledPaymentConsentSystem
       parameters:
       - default: default
@@ -30020,7 +30187,7 @@ paths:
       - openbanking
   /api/system/{tid}/open-banking/domestic-scheduled-payment-consent/{login}/reject:
     post:
-      description: This API can be used to notify ACP that user rejected access.
+      description: This API can be used by a custom openbanking consent page to notify ACP that user rejected access.
       operationId: rejectDomesticScheduledPaymentConsentSystem
       parameters:
       - default: default
@@ -30105,7 +30272,7 @@ paths:
       - openbanking
   /api/system/{tid}/open-banking/domestic-standing-order-consent/{login}/accept:
     post:
-      description: This API can be used to notify ACP that user granted consent to a domestic-standing-order.
+      description: This API can be used by a custom openbanking consent page to notify ACP that user granted consent to a domestic-standing-order.
       operationId: acceptDomesticStandingOrderConsentSystem
       parameters:
       - default: default
@@ -30147,7 +30314,7 @@ paths:
       - openbanking
   /api/system/{tid}/open-banking/domestic-standing-order-consent/{login}/reject:
     post:
-      description: This API can be used to notify ACP that user rejected access.
+      description: This API can be used by a custom openbanking consent page to notify ACP that user rejected access.
       operationId: rejectDomesticStandingOrderConsentSystem
       parameters:
       - default: default
@@ -30232,7 +30399,7 @@ paths:
       - openbanking
   /api/system/{tid}/open-banking/file-payment-consent/{login}/accept:
     post:
-      description: This API can be used to notify ACP that user granted consent to a file-payment.
+      description: This API can be used by a custom openbanking consent page to notify ACP that user granted consent to a file-payment.
       operationId: acceptFilePaymentConsentSystem
       parameters:
       - default: default
@@ -30274,7 +30441,7 @@ paths:
       - openbanking
   /api/system/{tid}/open-banking/file-payment-consent/{login}/reject:
     post:
-      description: This API can be used to notify ACP that user rejected access.
+      description: This API can be used by a custom openbanking consent page to notify ACP that user rejected access.
       operationId: rejectFilePaymentConsentSystem
       parameters:
       - default: default
@@ -30359,7 +30526,7 @@ paths:
       - openbanking
   /api/system/{tid}/open-banking/international-payment-consent/{login}/accept:
     post:
-      description: This API can be used to notify ACP that user granted consent to a international-payment.
+      description: This API can be used by a custom openbanking consent page to notify ACP that user granted consent to a international-payment.
       operationId: acceptInternationalPaymentConsentSystem
       parameters:
       - default: default
@@ -30401,7 +30568,7 @@ paths:
       - openbanking
   /api/system/{tid}/open-banking/international-payment-consent/{login}/reject:
     post:
-      description: This API can be used to notify ACP that user rejected access.
+      description: This API can be used by a custom openbanking consent page to notify ACP that user rejected access.
       operationId: rejectInternationalPaymentConsentSystem
       parameters:
       - default: default
@@ -30486,7 +30653,7 @@ paths:
       - openbanking
   /api/system/{tid}/open-banking/international-scheduled-payment-consent/{login}/accept:
     post:
-      description: This API can be used to notify ACP that user granted consent to a international-scheduled-payment.
+      description: This API can be used by a custom openbanking consent page to notify ACP that user granted consent to a international-scheduled-payment.
       operationId: acceptInternationalScheduledPaymentConsentSystem
       parameters:
       - default: default
@@ -30528,7 +30695,7 @@ paths:
       - openbanking
   /api/system/{tid}/open-banking/international-scheduled-payment-consent/{login}/reject:
     post:
-      description: This API can be used to notify ACP that user rejected access.
+      description: This API can be used by a custom openbanking consent page to notify ACP that user rejected access.
       operationId: rejectInternationalScheduledPaymentConsentSystem
       parameters:
       - default: default
@@ -30613,7 +30780,7 @@ paths:
       - openbanking
   /api/system/{tid}/open-banking/international-standing-order-consent/{login}/accept:
     post:
-      description: This API can be used to notify ACP that user granted consent to a international-standing-order.
+      description: This API can be used by a custom openbanking consent page to notify ACP that user granted consent to a international-standing-order.
       operationId: acceptInternationalStandingOrderConsentSystem
       parameters:
       - default: default
@@ -30655,7 +30822,7 @@ paths:
       - openbanking
   /api/system/{tid}/open-banking/international-standing-order-consent/{login}/reject:
     post:
-      description: This API can be used to notify ACP that user rejected access.
+      description: This API can be used by a custom openbanking consent page to notify ACP that user rejected access.
       operationId: rejectInternationalStandingOrderConsentSystem
       parameters:
       - default: default
@@ -30738,7 +30905,7 @@ paths:
       - logins
   /api/system/{tid}/scope-grants/{login}/accept:
     post:
-      description: This API is used to notify ACP that user granted consent.
+      description: This API is used by a consent page to notify ACP that user granted consent.
       operationId: acceptScopeGrantRequest
       parameters:
       - default: default
@@ -30780,7 +30947,7 @@ paths:
       - logins
   /api/system/{tid}/scope-grants/{login}/reject:
     post:
-      description: This API is used to notify ACP that scope grant has been rejected.
+      description: This API is used by a consent page to notify ACP that scope grant has been rejected.
       operationId: rejectScopeGrantRequest
       parameters:
       - default: default
