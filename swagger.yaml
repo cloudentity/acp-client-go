@@ -18724,7 +18724,7 @@ host: localhost:8443
 info:
   description: Cloudentity Authorization Control Plane API
   title: Cloudentity Authorization Control Plane API
-  version: 1.12.3
+  version: 1.12.4
 paths:
   /{tid}/{aid}/.well-known/jwks.json:
     get:
