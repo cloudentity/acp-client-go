@@ -60,7 +60,10 @@ func NewGetScopeGrantRequestParamsWithHTTPClient(client *http.Client) *GetScopeG
 type GetScopeGrantRequestParams struct {
 
 	// Login.
-	LoginID string
+	Login string
+
+	// LoginState.
+	LoginState *string
 
 	/* Tid.
 
@@ -134,15 +137,26 @@ func (o *GetScopeGrantRequestParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithLoginID adds the login to the get scope grant request params
-func (o *GetScopeGrantRequestParams) WithLoginID(login string) *GetScopeGrantRequestParams {
-	o.SetLoginID(login)
+// WithLogin adds the login to the get scope grant request params
+func (o *GetScopeGrantRequestParams) WithLogin(login string) *GetScopeGrantRequestParams {
+	o.SetLogin(login)
 	return o
 }
 
-// SetLoginID adds the login to the get scope grant request params
-func (o *GetScopeGrantRequestParams) SetLoginID(login string) {
-	o.LoginID = login
+// SetLogin adds the login to the get scope grant request params
+func (o *GetScopeGrantRequestParams) SetLogin(login string) {
+	o.Login = login
+}
+
+// WithLoginState adds the loginState to the get scope grant request params
+func (o *GetScopeGrantRequestParams) WithLoginState(loginState *string) *GetScopeGrantRequestParams {
+	o.SetLoginState(loginState)
+	return o
+}
+
+// SetLoginState adds the loginState to the get scope grant request params
+func (o *GetScopeGrantRequestParams) SetLoginState(loginState *string) {
+	o.LoginState = loginState
 }
 
 // WithTid adds the tid to the get scope grant request params
@@ -165,8 +179,25 @@ func (o *GetScopeGrantRequestParams) WriteToRequest(r runtime.ClientRequest, reg
 	var res []error
 
 	// path param login
-	if err := r.SetPathParam("login", o.LoginID); err != nil {
+	if err := r.SetPathParam("login", o.Login); err != nil {
 		return err
+	}
+
+	if o.LoginState != nil {
+
+		// query param login_state
+		var qrLoginState string
+
+		if o.LoginState != nil {
+			qrLoginState = *o.LoginState
+		}
+		qLoginState := qrLoginState
+		if qLoginState != "" {
+
+			if err := r.SetQueryParam("login_state", qLoginState); err != nil {
+				return err
+			}
+		}
 	}
 
 	// path param tid

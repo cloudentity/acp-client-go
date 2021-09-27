@@ -17,7 +17,7 @@ import (
 // swagger:model RegistrationToken
 type RegistrationToken struct {
 
-	// client URI
+	// client uri
 	ClientURI string `json:"client_uri,omitempty"`
 
 	// expires in

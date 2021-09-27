@@ -14,18 +14,18 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// PolicyValidationResult policy validation result
+// PolicyValidationResult Provides information on the results of a policy validation
 //
 // swagger:model PolicyValidationResult
 type PolicyValidationResult struct {
 
-	// failure
+	// An array of failures that took place during the policy validation process
 	Failure []*PolicyValidationFailure `json:"failure"`
 
-	// recovery
+	// An array of recovery methods that take place when a policy validation fails
 	Recovery []*PolicyValidationRecovery `json:"recovery"`
 
-	// result
+	// String representation of the policy validation result
 	Result string `json:"result,omitempty"`
 }
 

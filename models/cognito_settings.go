@@ -12,31 +12,33 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// CognitoSettings cognito settings
+// CognitoSettings Cognito IDP specific settings
 //
 // swagger:model CognitoSettings
 type CognitoSettings struct {
 
-	// OAuth client identifier
+	// Cognito app client ID from your application settings
 	// Example: client
 	ClientID string `json:"client_id,omitempty"`
 
-	// flag to fetch additional user data from userinfo endpoint
+	// If enabled, additional user data is collected from the `userinfo` Cognito API
 	GetUserInfo bool `json:"get_user_info,omitempty"`
 
 	// Cognito pool ID
-	// Example: us-east-1_Q8WSOH11B
+	//
+	// A user pool is a user directory in Amazon Cognito. It enables your users to sign in to your
+	// application through Amazon Cognito. You can find your pool ID in your User Pools > Federated
+	// Identities settings.
 	PoolID string `json:"pool_id,omitempty"`
 
-	// OAuth redirect URL
-	// Example: https://example.com/callback
-	RedirectURL string `json:"redirect_url,omitempty"`
-
-	// AWS Region
+	// AWS Region where the user pool is hosted
 	// Example: us-east-1
 	Region string `json:"region,omitempty"`
 
-	// OAuth scopes which client will be requesting
+	// An array of allowed OAuth scopes which the client requests
+	//
+	// The following scopes can be allowed for a Cognito application:
+	// `phone`, `email`, `openid`, `aws.cognito.signin.user.admin`, `profile`.
 	// Example: ["email","profile","openid"]
 	Scopes []string `json:"scopes"`
 }

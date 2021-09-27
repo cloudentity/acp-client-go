@@ -20,23 +20,23 @@ import (
 type APIGroup struct {
 
 	// List of APIs
-	APIs []*GatewayAPI `json:"apis"`
+	Apis []*GatewayAPI `json:"apis"`
 
 	// API group ID
 	ID string `json:"id,omitempty"`
 
-	// API group name
-	Name string `json:"name,omitempty"`
-
 	// metadata
 	Metadata *APIGroupMetadata `json:"metadata,omitempty"`
+
+	// API group name
+	Name string `json:"name,omitempty"`
 }
 
 // Validate validates this API group
 func (m *APIGroup) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateAPIs(formats); err != nil {
+	if err := m.validateApis(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -50,18 +50,18 @@ func (m *APIGroup) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *APIGroup) validateAPIs(formats strfmt.Registry) error {
-	if swag.IsZero(m.APIs) { // not required
+func (m *APIGroup) validateApis(formats strfmt.Registry) error {
+	if swag.IsZero(m.Apis) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.APIs); i++ {
-		if swag.IsZero(m.APIs[i]) { // not required
+	for i := 0; i < len(m.Apis); i++ {
+		if swag.IsZero(m.Apis[i]) { // not required
 			continue
 		}
 
-		if m.APIs[i] != nil {
-			if err := m.APIs[i].Validate(formats); err != nil {
+		if m.Apis[i] != nil {
+			if err := m.Apis[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("apis" + "." + strconv.Itoa(i))
 				}
@@ -95,7 +95,7 @@ func (m *APIGroup) validateMetadata(formats strfmt.Registry) error {
 func (m *APIGroup) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateAPIs(ctx, formats); err != nil {
+	if err := m.contextValidateApis(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -109,12 +109,12 @@ func (m *APIGroup) ContextValidate(ctx context.Context, formats strfmt.Registry)
 	return nil
 }
 
-func (m *APIGroup) contextValidateAPIs(ctx context.Context, formats strfmt.Registry) error {
+func (m *APIGroup) contextValidateApis(ctx context.Context, formats strfmt.Registry) error {
 
-	for i := 0; i < len(m.APIs); i++ {
+	for i := 0; i < len(m.Apis); i++ {
 
-		if m.APIs[i] != nil {
-			if err := m.APIs[i].ContextValidate(ctx, formats); err != nil {
+		if m.Apis[i] != nil {
+			if err := m.Apis[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("apis" + "." + strconv.Itoa(i))
 				}

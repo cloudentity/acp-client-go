@@ -60,7 +60,7 @@ func NewGetAPIParamsWithHTTPClient(client *http.Client) *GetAPIParams {
 type GetAPIParams struct {
 
 	// API.
-	APIID string
+	API string
 
 	/* Tid.
 
@@ -134,15 +134,15 @@ func (o *GetAPIParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithAPIID adds the api to the get API params
-func (o *GetAPIParams) WithAPIID(api string) *GetAPIParams {
-	o.SetAPIID(api)
+// WithAPI adds the api to the get API params
+func (o *GetAPIParams) WithAPI(api string) *GetAPIParams {
+	o.SetAPI(api)
 	return o
 }
 
-// SetAPIID adds the api to the get API params
-func (o *GetAPIParams) SetAPIID(api string) {
-	o.APIID = api
+// SetAPI adds the api to the get API params
+func (o *GetAPIParams) SetAPI(api string) {
+	o.API = api
 }
 
 // WithTid adds the tid to the get API params
@@ -165,7 +165,7 @@ func (o *GetAPIParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regist
 	var res []error
 
 	// path param api
-	if err := r.SetPathParam("api", o.APIID); err != nil {
+	if err := r.SetPathParam("api", o.API); err != nil {
 		return err
 	}
 

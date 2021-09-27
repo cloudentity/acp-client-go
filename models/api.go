@@ -7,9 +7,12 @@ package models
 
 import (
 	"context"
+	"encoding/json"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // API API
@@ -17,11 +20,19 @@ import (
 // swagger:model API
 type API struct {
 
+	// api type
+	// Example: rest
+	// Enum: [rest graphql]
+	APIType string `json:"api_type,omitempty"`
+
 	// if false it is not possible to assign a policy
 	CanHavePolicy bool `json:"can_have_policy,omitempty"`
 
 	// Data classifications
 	DataClassifications []string `json:"data_classifications"`
+
+	// graphql schema
+	GraphqlSchema string `json:"graphql_schema,omitempty"`
 
 	// scope id
 	// Example: 1
@@ -58,6 +69,57 @@ type API struct {
 
 // Validate validates this API
 func (m *API) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateAPIType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+var apiTypeAPITypePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["rest","graphql"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		apiTypeAPITypePropEnum = append(apiTypeAPITypePropEnum, v)
+	}
+}
+
+const (
+
+	// APIAPITypeRest captures enum value "rest"
+	APIAPITypeRest string = "rest"
+
+	// APIAPITypeGraphql captures enum value "graphql"
+	APIAPITypeGraphql string = "graphql"
+)
+
+// prop value enum
+func (m *API) validateAPITypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, apiTypeAPITypePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *API) validateAPIType(formats strfmt.Registry) error {
+	if swag.IsZero(m.APIType) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateAPITypeEnum("api_type", "body", m.APIType); err != nil {
+		return err
+	}
+
 	return nil
 }
 

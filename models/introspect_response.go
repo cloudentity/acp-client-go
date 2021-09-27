@@ -8,6 +8,7 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -35,31 +36,34 @@ type IntrospectResponse struct {
 	Amr []string `json:"amr"`
 
 	// Audience contains a list of the token's intended audiences.
-	Audience []string `json:"aud"`
+	Aud []string `json:"aud"`
 
 	// ClientID is a client identifier for the OAuth 2.0 client that
 	// requested this token.
 	ClientID string `json:"client_id,omitempty"`
 
+	// cnf
+	Cnf *Confirmation `json:"cnf,omitempty"`
+
 	// Expires at is an integer timestamp, measured in the number of seconds
 	// since January 1 1970 UTC, indicating when this token will expire.
-	ExpiresAt int64 `json:"exp,omitempty"`
+	Exp int64 `json:"exp,omitempty"`
 
 	// Extra is arbitrary data set by the session.
-	Extra map[string]interface{} `json:"ext,omitempty"`
+	Ext map[string]interface{} `json:"ext,omitempty"`
 
 	// Issued at is an integer timestamp, measured in the number of seconds
 	// since January 1 1970 UTC, indicating when this token was
 	// originally issued.
-	IssuedAt int64 `json:"iat,omitempty"`
+	Iat int64 `json:"iat,omitempty"`
 
 	// IssuerURL is a string representing the issuer of this token
-	Issuer string `json:"iss,omitempty"`
+	Iss string `json:"iss,omitempty"`
 
 	// NotBefore is an integer timestamp, measured in the number of seconds
 	// since January 1 1970 UTC, indicating when this token is not to be
 	// used before.
-	NotBefore int64 `json:"nbf,omitempty"`
+	Nbf int64 `json:"nbf,omitempty"`
 
 	// Scope is a JSON string containing a space-separated list of
 	// scopes associated with this token.
@@ -72,7 +76,7 @@ type IntrospectResponse struct {
 	// Subject of the token, as defined in JWT [RFC7519].
 	// Usually a machine-readable identifier of the resource owner who
 	// authorized this token.
-	Subject string `json:"sub,omitempty"`
+	Sub string `json:"sub,omitempty"`
 
 	// TenantID identifies tenant where authorization server that
 	// issued this token belongs to.
@@ -88,11 +92,60 @@ type IntrospectResponse struct {
 
 // Validate validates this introspect response
 func (m *IntrospectResponse) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateCnf(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 
-// ContextValidate validates this introspect response based on context it is used
+func (m *IntrospectResponse) validateCnf(formats strfmt.Registry) error {
+	if swag.IsZero(m.Cnf) { // not required
+		return nil
+	}
+
+	if m.Cnf != nil {
+		if err := m.Cnf.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cnf")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this introspect response based on the context it is used
 func (m *IntrospectResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateCnf(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *IntrospectResponse) contextValidateCnf(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Cnf != nil {
+		if err := m.Cnf.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cnf")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

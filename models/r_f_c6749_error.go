@@ -20,17 +20,17 @@ type RFC6749Error struct {
 	// cause
 	Cause string `json:"cause,omitempty"`
 
-	// code
-	Code int64 `json:"status_code,omitempty"`
+	// error
+	Error string `json:"error,omitempty"`
 
-	// description
-	Description string `json:"error_description,omitempty"`
+	// error description
+	ErrorDescription string `json:"error_description,omitempty"`
 
-	// hint
-	Hint string `json:"error_hint,omitempty"`
+	// error hint
+	ErrorHint string `json:"error_hint,omitempty"`
 
-	// name
-	Name string `json:"error,omitempty"`
+	// status code
+	StatusCode int64 `json:"status_code,omitempty"`
 }
 
 // Validate validates this r f c6749 error

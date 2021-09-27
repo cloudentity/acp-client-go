@@ -12,12 +12,14 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// SAMLCredentials s a m l credentials
+// SAMLCredentials SAML IDP specific credentials
 //
 // swagger:model SAMLCredentials
 type SAMLCredentials struct {
 
-	// idp certificate, must start with -----BEGIN CERTIFICATE----- and end with -----END CERTIFICATE-----
+	// The certificate of your IDP
+	//
+	// The certificate must start with `-----BEGIN CERTIFICATE-----` and end with `-----END CERTIFICATE-----`.
 	IdpCertificate string `json:"idp_certificate,omitempty"`
 }
 

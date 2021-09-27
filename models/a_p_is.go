@@ -19,15 +19,15 @@ import (
 // swagger:model APIs
 type APIs struct {
 
-	// a p is
-	APIs []*API `json:"apis"`
+	// apis
+	Apis []*API `json:"apis"`
 }
 
 // Validate validates this a p is
 func (m *APIs) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateAPIs(formats); err != nil {
+	if err := m.validateApis(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -37,18 +37,18 @@ func (m *APIs) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *APIs) validateAPIs(formats strfmt.Registry) error {
-	if swag.IsZero(m.APIs) { // not required
+func (m *APIs) validateApis(formats strfmt.Registry) error {
+	if swag.IsZero(m.Apis) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.APIs); i++ {
-		if swag.IsZero(m.APIs[i]) { // not required
+	for i := 0; i < len(m.Apis); i++ {
+		if swag.IsZero(m.Apis[i]) { // not required
 			continue
 		}
 
-		if m.APIs[i] != nil {
-			if err := m.APIs[i].Validate(formats); err != nil {
+		if m.Apis[i] != nil {
+			if err := m.Apis[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("apis" + "." + strconv.Itoa(i))
 				}
@@ -65,7 +65,7 @@ func (m *APIs) validateAPIs(formats strfmt.Registry) error {
 func (m *APIs) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateAPIs(ctx, formats); err != nil {
+	if err := m.contextValidateApis(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -75,12 +75,12 @@ func (m *APIs) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 	return nil
 }
 
-func (m *APIs) contextValidateAPIs(ctx context.Context, formats strfmt.Registry) error {
+func (m *APIs) contextValidateApis(ctx context.Context, formats strfmt.Registry) error {
 
-	for i := 0; i < len(m.APIs); i++ {
+	for i := 0; i < len(m.Apis); i++ {
 
-		if m.APIs[i] != nil {
-			if err := m.APIs[i].ContextValidate(ctx, formats); err != nil {
+		if m.Apis[i] != nil {
+			if err := m.Apis[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("apis" + "." + strconv.Itoa(i))
 				}

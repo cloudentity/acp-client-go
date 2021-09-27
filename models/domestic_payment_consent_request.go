@@ -11,6 +11,7 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // DomesticPaymentConsentRequest domestic payment consent request
@@ -19,10 +20,12 @@ import (
 type DomesticPaymentConsentRequest struct {
 
 	// data
-	Data *DomesticPaymentConsentRequestData `json:"Data,omitempty"`
+	// Required: true
+	Data *OBWriteDomesticConsent4Data `json:"Data"`
 
 	// risk
-	Risk *PaymentRisk `json:"Risk,omitempty"`
+	// Required: true
+	Risk *OBRisk1 `json:"Risk"`
 }
 
 // Validate validates this domestic payment consent request
@@ -44,8 +47,9 @@ func (m *DomesticPaymentConsentRequest) Validate(formats strfmt.Registry) error 
 }
 
 func (m *DomesticPaymentConsentRequest) validateData(formats strfmt.Registry) error {
-	if swag.IsZero(m.Data) { // not required
-		return nil
+
+	if err := validate.Required("Data", "body", m.Data); err != nil {
+		return err
 	}
 
 	if m.Data != nil {
@@ -61,8 +65,9 @@ func (m *DomesticPaymentConsentRequest) validateData(formats strfmt.Registry) er
 }
 
 func (m *DomesticPaymentConsentRequest) validateRisk(formats strfmt.Registry) error {
-	if swag.IsZero(m.Risk) { // not required
-		return nil
+
+	if err := validate.Required("Risk", "body", m.Risk); err != nil {
+		return err
 	}
 
 	if m.Risk != nil {

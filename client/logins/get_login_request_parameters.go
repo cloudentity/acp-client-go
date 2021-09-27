@@ -60,7 +60,10 @@ func NewGetLoginRequestParamsWithHTTPClient(client *http.Client) *GetLoginReques
 type GetLoginRequestParams struct {
 
 	// Login.
-	LoginID string
+	Login string
+
+	// LoginState.
+	LoginState *string
 
 	/* Tid.
 
@@ -134,15 +137,26 @@ func (o *GetLoginRequestParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithLoginID adds the login to the get login request params
-func (o *GetLoginRequestParams) WithLoginID(login string) *GetLoginRequestParams {
-	o.SetLoginID(login)
+// WithLogin adds the login to the get login request params
+func (o *GetLoginRequestParams) WithLogin(login string) *GetLoginRequestParams {
+	o.SetLogin(login)
 	return o
 }
 
-// SetLoginID adds the login to the get login request params
-func (o *GetLoginRequestParams) SetLoginID(login string) {
-	o.LoginID = login
+// SetLogin adds the login to the get login request params
+func (o *GetLoginRequestParams) SetLogin(login string) {
+	o.Login = login
+}
+
+// WithLoginState adds the loginState to the get login request params
+func (o *GetLoginRequestParams) WithLoginState(loginState *string) *GetLoginRequestParams {
+	o.SetLoginState(loginState)
+	return o
+}
+
+// SetLoginState adds the loginState to the get login request params
+func (o *GetLoginRequestParams) SetLoginState(loginState *string) {
+	o.LoginState = loginState
 }
 
 // WithTid adds the tid to the get login request params
@@ -165,8 +179,25 @@ func (o *GetLoginRequestParams) WriteToRequest(r runtime.ClientRequest, reg strf
 	var res []error
 
 	// path param login
-	if err := r.SetPathParam("login", o.LoginID); err != nil {
+	if err := r.SetPathParam("login", o.Login); err != nil {
 		return err
+	}
+
+	if o.LoginState != nil {
+
+		// query param login_state
+		var qrLoginState string
+
+		if o.LoginState != nil {
+			qrLoginState = *o.LoginState
+		}
+		qLoginState := qrLoginState
+		if qLoginState != "" {
+
+			if err := r.SetQueryParam("login_state", qLoginState); err != nil {
+				return err
+			}
+		}
 	}
 
 	// path param tid

@@ -60,7 +60,7 @@ func NewUnbindGroupFromServiceParamsWithHTTPClient(client *http.Client) *UnbindG
 type UnbindGroupFromServiceParams struct {
 
 	// APIGroup.
-	APIGroupID string
+	APIGroup string
 
 	// Gw.
 	Gw string
@@ -137,15 +137,15 @@ func (o *UnbindGroupFromServiceParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithAPIGroupID adds the aPIGroup to the unbind group from service params
-func (o *UnbindGroupFromServiceParams) WithAPIGroupID(aPIGroup string) *UnbindGroupFromServiceParams {
-	o.SetAPIGroupID(aPIGroup)
+// WithAPIGroup adds the aPIGroup to the unbind group from service params
+func (o *UnbindGroupFromServiceParams) WithAPIGroup(aPIGroup string) *UnbindGroupFromServiceParams {
+	o.SetAPIGroup(aPIGroup)
 	return o
 }
 
-// SetAPIGroupID adds the apiGroup to the unbind group from service params
-func (o *UnbindGroupFromServiceParams) SetAPIGroupID(aPIGroup string) {
-	o.APIGroupID = aPIGroup
+// SetAPIGroup adds the apiGroup to the unbind group from service params
+func (o *UnbindGroupFromServiceParams) SetAPIGroup(aPIGroup string) {
+	o.APIGroup = aPIGroup
 }
 
 // WithGw adds the gw to the unbind group from service params
@@ -179,7 +179,7 @@ func (o *UnbindGroupFromServiceParams) WriteToRequest(r runtime.ClientRequest, r
 	var res []error
 
 	// path param apiGroup
-	if err := r.SetPathParam("apiGroup", o.APIGroupID); err != nil {
+	if err := r.SetPathParam("apiGroup", o.APIGroup); err != nil {
 		return err
 	}
 

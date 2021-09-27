@@ -65,7 +65,7 @@ type UpdateConsentParams struct {
 	ConsentBody *models.Consent
 
 	// Consent.
-	ConsentID string
+	Consent string
 
 	/* Tid.
 
@@ -150,15 +150,15 @@ func (o *UpdateConsentParams) SetConsentBody(consentBody *models.Consent) {
 	o.ConsentBody = consentBody
 }
 
-// WithConsentID adds the consent to the update consent params
-func (o *UpdateConsentParams) WithConsentID(consent string) *UpdateConsentParams {
-	o.SetConsentID(consent)
+// WithConsent adds the consent to the update consent params
+func (o *UpdateConsentParams) WithConsent(consent string) *UpdateConsentParams {
+	o.SetConsent(consent)
 	return o
 }
 
-// SetConsentID adds the consent to the update consent params
-func (o *UpdateConsentParams) SetConsentID(consent string) {
-	o.ConsentID = consent
+// SetConsent adds the consent to the update consent params
+func (o *UpdateConsentParams) SetConsent(consent string) {
+	o.Consent = consent
 }
 
 // WithTid adds the tid to the update consent params
@@ -186,7 +186,7 @@ func (o *UpdateConsentParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	}
 
 	// path param consent
-	if err := r.SetPathParam("consent", o.ConsentID); err != nil {
+	if err := r.SetPathParam("consent", o.Consent); err != nil {
 		return err
 	}
 

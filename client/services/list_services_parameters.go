@@ -14,6 +14,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewListServicesParams creates a new ListServicesParams object,
@@ -59,6 +60,13 @@ func NewListServicesParamsWithHTTPClient(client *http.Client) *ListServicesParam
 */
 type ListServicesParams struct {
 
+	/* AfterServiceID.
+
+	     optional list services after given id
+	AfterServiceID
+	*/
+	AfterServiceID *string
+
 	/* Aid.
 
 	   Authorization server id
@@ -66,6 +74,44 @@ type ListServicesParams struct {
 	   Default: "default"
 	*/
 	Aid string
+
+	/* BeforeServiceID.
+
+	     optional list services before given id
+	BeforeServiceID
+	*/
+	BeforeServiceID *string
+
+	/* Limit.
+
+	     optional limit results
+	Limit
+
+	     Format: int64
+	     Default: 20
+	*/
+	Limit *int64
+
+	/* Order.
+
+	     optional order services by given direction
+	Order
+	*/
+	Order *string
+
+	/* SearchPhrase.
+
+	     Optional search phrase: service id OR service name substring (case insensitive)
+	SearchPhrase
+	*/
+	SearchPhrase *string
+
+	/* Sort.
+
+	     optional sort services by given field
+	Sort
+	*/
+	Sort *string
 
 	/* Tid.
 
@@ -95,12 +141,15 @@ func (o *ListServicesParams) SetDefaults() {
 	var (
 		aidDefault = string("default")
 
+		limitDefault = int64(20)
+
 		tidDefault = string("default")
 	)
 
 	val := ListServicesParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
+		Aid:   aidDefault,
+		Limit: &limitDefault,
+		Tid:   tidDefault,
 	}
 
 	val.timeout = o.timeout
@@ -142,6 +191,17 @@ func (o *ListServicesParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAfterServiceID adds the afterServiceID to the list services params
+func (o *ListServicesParams) WithAfterServiceID(afterServiceID *string) *ListServicesParams {
+	o.SetAfterServiceID(afterServiceID)
+	return o
+}
+
+// SetAfterServiceID adds the afterServiceId to the list services params
+func (o *ListServicesParams) SetAfterServiceID(afterServiceID *string) {
+	o.AfterServiceID = afterServiceID
+}
+
 // WithAid adds the aid to the list services params
 func (o *ListServicesParams) WithAid(aid string) *ListServicesParams {
 	o.SetAid(aid)
@@ -151,6 +211,61 @@ func (o *ListServicesParams) WithAid(aid string) *ListServicesParams {
 // SetAid adds the aid to the list services params
 func (o *ListServicesParams) SetAid(aid string) {
 	o.Aid = aid
+}
+
+// WithBeforeServiceID adds the beforeServiceID to the list services params
+func (o *ListServicesParams) WithBeforeServiceID(beforeServiceID *string) *ListServicesParams {
+	o.SetBeforeServiceID(beforeServiceID)
+	return o
+}
+
+// SetBeforeServiceID adds the beforeServiceId to the list services params
+func (o *ListServicesParams) SetBeforeServiceID(beforeServiceID *string) {
+	o.BeforeServiceID = beforeServiceID
+}
+
+// WithLimit adds the limit to the list services params
+func (o *ListServicesParams) WithLimit(limit *int64) *ListServicesParams {
+	o.SetLimit(limit)
+	return o
+}
+
+// SetLimit adds the limit to the list services params
+func (o *ListServicesParams) SetLimit(limit *int64) {
+	o.Limit = limit
+}
+
+// WithOrder adds the order to the list services params
+func (o *ListServicesParams) WithOrder(order *string) *ListServicesParams {
+	o.SetOrder(order)
+	return o
+}
+
+// SetOrder adds the order to the list services params
+func (o *ListServicesParams) SetOrder(order *string) {
+	o.Order = order
+}
+
+// WithSearchPhrase adds the searchPhrase to the list services params
+func (o *ListServicesParams) WithSearchPhrase(searchPhrase *string) *ListServicesParams {
+	o.SetSearchPhrase(searchPhrase)
+	return o
+}
+
+// SetSearchPhrase adds the searchPhrase to the list services params
+func (o *ListServicesParams) SetSearchPhrase(searchPhrase *string) {
+	o.SearchPhrase = searchPhrase
+}
+
+// WithSort adds the sort to the list services params
+func (o *ListServicesParams) WithSort(sort *string) *ListServicesParams {
+	o.SetSort(sort)
+	return o
+}
+
+// SetSort adds the sort to the list services params
+func (o *ListServicesParams) SetSort(sort *string) {
+	o.Sort = sort
 }
 
 // WithTid adds the tid to the list services params
@@ -172,9 +287,111 @@ func (o *ListServicesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 	}
 	var res []error
 
+	if o.AfterServiceID != nil {
+
+		// query param after_service_id
+		var qrAfterServiceID string
+
+		if o.AfterServiceID != nil {
+			qrAfterServiceID = *o.AfterServiceID
+		}
+		qAfterServiceID := qrAfterServiceID
+		if qAfterServiceID != "" {
+
+			if err := r.SetQueryParam("after_service_id", qAfterServiceID); err != nil {
+				return err
+			}
+		}
+	}
+
 	// path param aid
 	if err := r.SetPathParam("aid", o.Aid); err != nil {
 		return err
+	}
+
+	if o.BeforeServiceID != nil {
+
+		// query param before_service_id
+		var qrBeforeServiceID string
+
+		if o.BeforeServiceID != nil {
+			qrBeforeServiceID = *o.BeforeServiceID
+		}
+		qBeforeServiceID := qrBeforeServiceID
+		if qBeforeServiceID != "" {
+
+			if err := r.SetQueryParam("before_service_id", qBeforeServiceID); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Limit != nil {
+
+		// query param limit
+		var qrLimit int64
+
+		if o.Limit != nil {
+			qrLimit = *o.Limit
+		}
+		qLimit := swag.FormatInt64(qrLimit)
+		if qLimit != "" {
+
+			if err := r.SetQueryParam("limit", qLimit); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Order != nil {
+
+		// query param order
+		var qrOrder string
+
+		if o.Order != nil {
+			qrOrder = *o.Order
+		}
+		qOrder := qrOrder
+		if qOrder != "" {
+
+			if err := r.SetQueryParam("order", qOrder); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SearchPhrase != nil {
+
+		// query param search_phrase
+		var qrSearchPhrase string
+
+		if o.SearchPhrase != nil {
+			qrSearchPhrase = *o.SearchPhrase
+		}
+		qSearchPhrase := qrSearchPhrase
+		if qSearchPhrase != "" {
+
+			if err := r.SetQueryParam("search_phrase", qSearchPhrase); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Sort != nil {
+
+		// query param sort
+		var qrSort string
+
+		if o.Sort != nil {
+			qrSort = *o.Sort
+		}
+		qSort := qrSort
+		if qSort != "" {
+
+			if err := r.SetQueryParam("sort", qSort); err != nil {
+				return err
+			}
+		}
 	}
 
 	// path param tid

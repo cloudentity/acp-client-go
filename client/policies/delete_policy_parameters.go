@@ -60,7 +60,7 @@ func NewDeletePolicyParamsWithHTTPClient(client *http.Client) *DeletePolicyParam
 type DeletePolicyParams struct {
 
 	// Pid.
-	PolicyID string
+	Pid string
 
 	/* Tid.
 
@@ -134,15 +134,15 @@ func (o *DeletePolicyParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithPolicyID adds the pid to the delete policy params
-func (o *DeletePolicyParams) WithPolicyID(pid string) *DeletePolicyParams {
-	o.SetPolicyID(pid)
+// WithPid adds the pid to the delete policy params
+func (o *DeletePolicyParams) WithPid(pid string) *DeletePolicyParams {
+	o.SetPid(pid)
 	return o
 }
 
-// SetPolicyID adds the pid to the delete policy params
-func (o *DeletePolicyParams) SetPolicyID(pid string) {
-	o.PolicyID = pid
+// SetPid adds the pid to the delete policy params
+func (o *DeletePolicyParams) SetPid(pid string) {
+	o.Pid = pid
 }
 
 // WithTid adds the tid to the delete policy params
@@ -165,7 +165,7 @@ func (o *DeletePolicyParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 	var res []error
 
 	// path param pid
-	if err := r.SetPathParam("pid", o.PolicyID); err != nil {
+	if err := r.SetPathParam("pid", o.Pid); err != nil {
 		return err
 	}
 

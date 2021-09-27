@@ -19,7 +19,7 @@ type ServerToServer struct {
 
 	// dependent server id
 	// Example: default
-	DependentServerID string `json:"dependent,omitempty"`
+	Dependent string `json:"dependent,omitempty"`
 
 	// authorization server id
 	// Example: developer

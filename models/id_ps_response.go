@@ -19,15 +19,15 @@ import (
 // swagger:model IDPsResponse
 type IDPsResponse struct {
 
-	// ID ps
-	IDPs []*IDPBase `json:"idps"`
+	// idps
+	Idps []*IDPBase `json:"idps"`
 }
 
 // Validate validates this ID ps response
 func (m *IDPsResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateIDPs(formats); err != nil {
+	if err := m.validateIdps(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -37,18 +37,18 @@ func (m *IDPsResponse) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *IDPsResponse) validateIDPs(formats strfmt.Registry) error {
-	if swag.IsZero(m.IDPs) { // not required
+func (m *IDPsResponse) validateIdps(formats strfmt.Registry) error {
+	if swag.IsZero(m.Idps) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.IDPs); i++ {
-		if swag.IsZero(m.IDPs[i]) { // not required
+	for i := 0; i < len(m.Idps); i++ {
+		if swag.IsZero(m.Idps[i]) { // not required
 			continue
 		}
 
-		if m.IDPs[i] != nil {
-			if err := m.IDPs[i].Validate(formats); err != nil {
+		if m.Idps[i] != nil {
+			if err := m.Idps[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("idps" + "." + strconv.Itoa(i))
 				}
@@ -65,7 +65,7 @@ func (m *IDPsResponse) validateIDPs(formats strfmt.Registry) error {
 func (m *IDPsResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateIDPs(ctx, formats); err != nil {
+	if err := m.contextValidateIdps(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -75,12 +75,12 @@ func (m *IDPsResponse) ContextValidate(ctx context.Context, formats strfmt.Regis
 	return nil
 }
 
-func (m *IDPsResponse) contextValidateIDPs(ctx context.Context, formats strfmt.Registry) error {
+func (m *IDPsResponse) contextValidateIdps(ctx context.Context, formats strfmt.Registry) error {
 
-	for i := 0; i < len(m.IDPs); i++ {
+	for i := 0; i < len(m.Idps); i++ {
 
-		if m.IDPs[i] != nil {
-			if err := m.IDPs[i].ContextValidate(ctx, formats); err != nil {
+		if m.Idps[i] != nil {
+			if err := m.Idps[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("idps" + "." + strconv.Itoa(i))
 				}

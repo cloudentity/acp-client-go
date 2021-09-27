@@ -16,28 +16,28 @@ import (
 
 // GenericError Error response
 //
-// swagger:model GenericError
+// swagger:model genericError
 type GenericError struct {
+
+	// error
+	// Example: The requested resource could not be found
+	// Required: true
+	Error string `json:"error"`
 
 	// Code represents the error status code (404, 403, 401, ...).
 	// Example: 404
-	Code int64 `json:"error_code,omitempty"`
+	ErrorCode int64 `json:"error_code,omitempty"`
 
-	// hint
+	// error hint
 	// Example: Object with ID 12345 does not exist
-	Hint string `json:"error_hint,omitempty"`
-
-	// name
-	// Example: The requested resource could not be found
-	// Required: true
-	Name *string `json:"error"`
+	ErrorHint string `json:"error_hint,omitempty"`
 }
 
 // Validate validates this generic error
 func (m *GenericError) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateName(formats); err != nil {
+	if err := m.validateError(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -47,9 +47,9 @@ func (m *GenericError) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *GenericError) validateName(formats strfmt.Registry) error {
+func (m *GenericError) validateError(formats strfmt.Registry) error {
 
-	if err := validate.Required("error", "body", m.Name); err != nil {
+	if err := validate.RequiredString("error", "body", m.Error); err != nil {
 		return err
 	}
 

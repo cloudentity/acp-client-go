@@ -59,8 +59,11 @@ func NewGetPolicyParamsWithHTTPClient(client *http.Client) *GetPolicyParams {
 */
 type GetPolicyParams struct {
 
-	// Pid.
-	PolicyID string
+	/* Pid.
+
+	   ID of your policy
+	*/
+	Pid string
 
 	/* Tid.
 
@@ -134,15 +137,15 @@ func (o *GetPolicyParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithPolicyID adds the pid to the get policy params
-func (o *GetPolicyParams) WithPolicyID(pid string) *GetPolicyParams {
-	o.SetPolicyID(pid)
+// WithPid adds the pid to the get policy params
+func (o *GetPolicyParams) WithPid(pid string) *GetPolicyParams {
+	o.SetPid(pid)
 	return o
 }
 
-// SetPolicyID adds the pid to the get policy params
-func (o *GetPolicyParams) SetPolicyID(pid string) {
-	o.PolicyID = pid
+// SetPid adds the pid to the get policy params
+func (o *GetPolicyParams) SetPid(pid string) {
+	o.Pid = pid
 }
 
 // WithTid adds the tid to the get policy params
@@ -165,7 +168,7 @@ func (o *GetPolicyParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 	var res []error
 
 	// path param pid
-	if err := r.SetPathParam("pid", o.PolicyID); err != nil {
+	if err := r.SetPathParam("pid", o.Pid); err != nil {
 		return err
 	}
 

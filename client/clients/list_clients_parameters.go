@@ -14,6 +14,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewListClientsParams creates a new ListClientsParams object,
@@ -59,6 +60,13 @@ func NewListClientsParamsWithHTTPClient(client *http.Client) *ListClientsParams 
 */
 type ListClientsParams struct {
 
+	/* AfterClientID.
+
+	     optional list clients after given id
+	AfterClientID
+	*/
+	AfterClientID *string
+
 	/* Aid.
 
 	   Authorization server id
@@ -67,6 +75,51 @@ type ListClientsParams struct {
 	*/
 	Aid string
 
+	/* ApplicationTypes.
+
+	     Optional application types
+	ApplicationTypes
+	*/
+	ApplicationTypes *string
+
+	/* BeforeClientID.
+
+	     optional list clients before given id
+	BeforeClientID
+	*/
+	BeforeClientID *string
+
+	/* Limit.
+
+	     optional limit results
+	Limit
+
+	     Format: int64
+	     Default: 20
+	*/
+	Limit *int64
+
+	/* Order.
+
+	     optional order clients by given direction
+	Order
+	*/
+	Order *string
+
+	/* SearchPhrase.
+
+	     Optional search phrase: client id OR client name substring
+	SearchPhrase
+	*/
+	SearchPhrase *string
+
+	/* Sort.
+
+	     optional sort clients by given field
+	Sort
+	*/
+	Sort *string
+
 	/* Tid.
 
 	   Tenant id
@@ -74,6 +127,13 @@ type ListClientsParams struct {
 	   Default: "default"
 	*/
 	Tid string
+
+	/* Type.
+
+	     Optional type, one of: internal, third_party
+	Type
+	*/
+	Type *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -95,12 +155,15 @@ func (o *ListClientsParams) SetDefaults() {
 	var (
 		aidDefault = string("default")
 
+		limitDefault = int64(20)
+
 		tidDefault = string("default")
 	)
 
 	val := ListClientsParams{
-		Aid: aidDefault,
-		Tid: tidDefault,
+		Aid:   aidDefault,
+		Limit: &limitDefault,
+		Tid:   tidDefault,
 	}
 
 	val.timeout = o.timeout
@@ -142,6 +205,17 @@ func (o *ListClientsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAfterClientID adds the afterClientID to the list clients params
+func (o *ListClientsParams) WithAfterClientID(afterClientID *string) *ListClientsParams {
+	o.SetAfterClientID(afterClientID)
+	return o
+}
+
+// SetAfterClientID adds the afterClientId to the list clients params
+func (o *ListClientsParams) SetAfterClientID(afterClientID *string) {
+	o.AfterClientID = afterClientID
+}
+
 // WithAid adds the aid to the list clients params
 func (o *ListClientsParams) WithAid(aid string) *ListClientsParams {
 	o.SetAid(aid)
@@ -151,6 +225,72 @@ func (o *ListClientsParams) WithAid(aid string) *ListClientsParams {
 // SetAid adds the aid to the list clients params
 func (o *ListClientsParams) SetAid(aid string) {
 	o.Aid = aid
+}
+
+// WithApplicationTypes adds the applicationTypes to the list clients params
+func (o *ListClientsParams) WithApplicationTypes(applicationTypes *string) *ListClientsParams {
+	o.SetApplicationTypes(applicationTypes)
+	return o
+}
+
+// SetApplicationTypes adds the applicationTypes to the list clients params
+func (o *ListClientsParams) SetApplicationTypes(applicationTypes *string) {
+	o.ApplicationTypes = applicationTypes
+}
+
+// WithBeforeClientID adds the beforeClientID to the list clients params
+func (o *ListClientsParams) WithBeforeClientID(beforeClientID *string) *ListClientsParams {
+	o.SetBeforeClientID(beforeClientID)
+	return o
+}
+
+// SetBeforeClientID adds the beforeClientId to the list clients params
+func (o *ListClientsParams) SetBeforeClientID(beforeClientID *string) {
+	o.BeforeClientID = beforeClientID
+}
+
+// WithLimit adds the limit to the list clients params
+func (o *ListClientsParams) WithLimit(limit *int64) *ListClientsParams {
+	o.SetLimit(limit)
+	return o
+}
+
+// SetLimit adds the limit to the list clients params
+func (o *ListClientsParams) SetLimit(limit *int64) {
+	o.Limit = limit
+}
+
+// WithOrder adds the order to the list clients params
+func (o *ListClientsParams) WithOrder(order *string) *ListClientsParams {
+	o.SetOrder(order)
+	return o
+}
+
+// SetOrder adds the order to the list clients params
+func (o *ListClientsParams) SetOrder(order *string) {
+	o.Order = order
+}
+
+// WithSearchPhrase adds the searchPhrase to the list clients params
+func (o *ListClientsParams) WithSearchPhrase(searchPhrase *string) *ListClientsParams {
+	o.SetSearchPhrase(searchPhrase)
+	return o
+}
+
+// SetSearchPhrase adds the searchPhrase to the list clients params
+func (o *ListClientsParams) SetSearchPhrase(searchPhrase *string) {
+	o.SearchPhrase = searchPhrase
+}
+
+// WithSort adds the sort to the list clients params
+func (o *ListClientsParams) WithSort(sort *string) *ListClientsParams {
+	o.SetSort(sort)
+	return o
+}
+
+// SetSort adds the sort to the list clients params
+func (o *ListClientsParams) SetSort(sort *string) {
+	o.Sort = sort
 }
 
 // WithTid adds the tid to the list clients params
@@ -164,6 +304,17 @@ func (o *ListClientsParams) SetTid(tid string) {
 	o.Tid = tid
 }
 
+// WithType adds the typeVar to the list clients params
+func (o *ListClientsParams) WithType(typeVar *string) *ListClientsParams {
+	o.SetType(typeVar)
+	return o
+}
+
+// SetType adds the type to the list clients params
+func (o *ListClientsParams) SetType(typeVar *string) {
+	o.Type = typeVar
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *ListClientsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -172,14 +323,150 @@ func (o *ListClientsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 	}
 	var res []error
 
+	if o.AfterClientID != nil {
+
+		// query param after_client_id
+		var qrAfterClientID string
+
+		if o.AfterClientID != nil {
+			qrAfterClientID = *o.AfterClientID
+		}
+		qAfterClientID := qrAfterClientID
+		if qAfterClientID != "" {
+
+			if err := r.SetQueryParam("after_client_id", qAfterClientID); err != nil {
+				return err
+			}
+		}
+	}
+
 	// path param aid
 	if err := r.SetPathParam("aid", o.Aid); err != nil {
 		return err
 	}
 
+	if o.ApplicationTypes != nil {
+
+		// query param application_types
+		var qrApplicationTypes string
+
+		if o.ApplicationTypes != nil {
+			qrApplicationTypes = *o.ApplicationTypes
+		}
+		qApplicationTypes := qrApplicationTypes
+		if qApplicationTypes != "" {
+
+			if err := r.SetQueryParam("application_types", qApplicationTypes); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.BeforeClientID != nil {
+
+		// query param before_client_id
+		var qrBeforeClientID string
+
+		if o.BeforeClientID != nil {
+			qrBeforeClientID = *o.BeforeClientID
+		}
+		qBeforeClientID := qrBeforeClientID
+		if qBeforeClientID != "" {
+
+			if err := r.SetQueryParam("before_client_id", qBeforeClientID); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Limit != nil {
+
+		// query param limit
+		var qrLimit int64
+
+		if o.Limit != nil {
+			qrLimit = *o.Limit
+		}
+		qLimit := swag.FormatInt64(qrLimit)
+		if qLimit != "" {
+
+			if err := r.SetQueryParam("limit", qLimit); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Order != nil {
+
+		// query param order
+		var qrOrder string
+
+		if o.Order != nil {
+			qrOrder = *o.Order
+		}
+		qOrder := qrOrder
+		if qOrder != "" {
+
+			if err := r.SetQueryParam("order", qOrder); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SearchPhrase != nil {
+
+		// query param search_phrase
+		var qrSearchPhrase string
+
+		if o.SearchPhrase != nil {
+			qrSearchPhrase = *o.SearchPhrase
+		}
+		qSearchPhrase := qrSearchPhrase
+		if qSearchPhrase != "" {
+
+			if err := r.SetQueryParam("search_phrase", qSearchPhrase); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Sort != nil {
+
+		// query param sort
+		var qrSort string
+
+		if o.Sort != nil {
+			qrSort = *o.Sort
+		}
+		qSort := qrSort
+		if qSort != "" {
+
+			if err := r.SetQueryParam("sort", qSort); err != nil {
+				return err
+			}
+		}
+	}
+
 	// path param tid
 	if err := r.SetPathParam("tid", o.Tid); err != nil {
 		return err
+	}
+
+	if o.Type != nil {
+
+		// query param type
+		var qrType string
+
+		if o.Type != nil {
+			qrType = *o.Type
+		}
+		qType := qrType
+		if qType != "" {
+
+			if err := r.SetQueryParam("type", qType); err != nil {
+				return err
+			}
+		}
 	}
 
 	if len(res) > 0 {

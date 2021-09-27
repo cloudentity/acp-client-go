@@ -67,6 +67,18 @@ type GetGatewayConfigurationParams struct {
 	*/
 	AuthorizerVersion *string
 
+	/* ServerID.
+
+	   Server id
+	*/
+	ServerID *string
+
+	/* TenantID.
+
+	   Tenant id
+	*/
+	TenantID *string
+
 	/* Tid.
 
 	   Tenant id
@@ -153,6 +165,28 @@ func (o *GetGatewayConfigurationParams) SetAuthorizerVersion(authorizerVersion *
 	o.AuthorizerVersion = authorizerVersion
 }
 
+// WithServerID adds the serverID to the get gateway configuration params
+func (o *GetGatewayConfigurationParams) WithServerID(serverID *string) *GetGatewayConfigurationParams {
+	o.SetServerID(serverID)
+	return o
+}
+
+// SetServerID adds the serverId to the get gateway configuration params
+func (o *GetGatewayConfigurationParams) SetServerID(serverID *string) {
+	o.ServerID = serverID
+}
+
+// WithTenantID adds the tenantID to the get gateway configuration params
+func (o *GetGatewayConfigurationParams) WithTenantID(tenantID *string) *GetGatewayConfigurationParams {
+	o.SetTenantID(tenantID)
+	return o
+}
+
+// SetTenantID adds the tenantId to the get gateway configuration params
+func (o *GetGatewayConfigurationParams) SetTenantID(tenantID *string) {
+	o.TenantID = tenantID
+}
+
 // WithTid adds the tid to the get gateway configuration params
 func (o *GetGatewayConfigurationParams) WithTid(tid string) *GetGatewayConfigurationParams {
 	o.SetTid(tid)
@@ -184,6 +218,40 @@ func (o *GetGatewayConfigurationParams) WriteToRequest(r runtime.ClientRequest, 
 		if qAuthorizerVersion != "" {
 
 			if err := r.SetQueryParam("authorizer_version", qAuthorizerVersion); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.ServerID != nil {
+
+		// query param server_id
+		var qrServerID string
+
+		if o.ServerID != nil {
+			qrServerID = *o.ServerID
+		}
+		qServerID := qrServerID
+		if qServerID != "" {
+
+			if err := r.SetQueryParam("server_id", qServerID); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.TenantID != nil {
+
+		// query param tenant_id
+		var qrTenantID string
+
+		if o.TenantID != nil {
+			qrTenantID = *o.TenantID
+		}
+		qTenantID := qrTenantID
+		if qTenantID != "" {
+
+			if err := r.SetQueryParam("tenant_id", qTenantID); err != nil {
 				return err
 			}
 		}

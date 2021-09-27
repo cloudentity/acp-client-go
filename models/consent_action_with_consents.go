@@ -20,7 +20,7 @@ import (
 type ConsentActionWithConsents struct {
 
 	// consents
-	Consents []*ConsentActionConsent `json:"consents"`
+	Consents []*ConsentActionToConsent `json:"consents"`
 
 	// consent description
 	// Example: Consents required by application X

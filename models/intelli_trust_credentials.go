@@ -12,12 +12,13 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// IntelliTrustCredentials intelli trust credentials
+// IntelliTrustCredentials IntelliTrust™ IDP specific credentials
 //
 // swagger:model IntelliTrustCredentials
 type IntelliTrustCredentials struct {
 
-	// client secret
+	// OAuth client application secret from your Entrust Datacard® IntelliTrust™ Authentication
+	// Service general settings
 	ClientSecret string `json:"client_secret,omitempty"`
 }
 

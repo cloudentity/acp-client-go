@@ -19,37 +19,58 @@ import (
 // swagger:model Policy
 type Policy struct {
 
-	// definition for rego policy
+	// The definition of an Open Policy Agent (OPA) policy provided using the REGO language.
 	Definition string `json:"definition,omitempty"`
 
-	// policy language
+	// Unique ID of your policy
+	// Example: 1
+	ID string `json:"id,omitempty"`
+
+	// Language of a policy
+	//
+	// ACP supports creating Cloudentity policies (using a visual editor or defined using JSON or
+	// YAML) and policies defined using REGO (language used by Open Policy Agent (OPA)).
 	// Example: cloudentity
 	Language string `json:"language,omitempty"`
 
-	// policy id
-	// Example: 1
-	PolicyID string `json:"id,omitempty"`
-
-	// policy name
+	// Display name for your policy
 	// Example: check_consent
 	PolicyName string `json:"policy_name,omitempty"`
 
-	// query for rego policy
-	Query string `json:"query,omitempty"`
-
-	// server id
+	// ID of your authorization server (workspace)
 	// Example: default
 	ServerID string `json:"server_id,omitempty"`
 
-	// tenant id
+	// ID of your tenant
 	// Example: default
 	TenantID string `json:"tenant_id,omitempty"`
 
-	// policy type
+	// Define a type of your policy
+	//
+	// ACP is provided with the following policy types: user, developer, machine, dcr, api.
+	//
+	// Depending on the policy type the policy can be assigned to different policy
+	// execution points.
+	//
+	// A policy of the `user` type can be assigned only to the following scopes: `scope_user_grant`,
+	// `server_user_token`, `client_user_token`.
+	//
+	// A `developer` policy can be assigned only to the `scope_client_assignment` and
+	// `server_client_assignment` scopes.
+	//
+	// A policy of the `machine` type can be assigned only to the following scopes:
+	// `scope_machine_grant`, `server_machine_token`, `client_machine_token`.
+	//
+	// A `dcr` policy can be assigned only to the `scope_dynamic_client_registration` and the
+	// `server_dynamic_client_registration` scopes.
+	//
+	// An `api` policy can be assigned to all of the policy execution points.
+	//
+	// Each of the policies type has its defined and provided out of the box policy validators.
 	// Example: user
 	Type string `json:"type,omitempty"`
 
-	// list of validators for cloudentity policy
+	// An array of validators for a Cloudentity policy
 	Validators []*ValidatorConfig `json:"validators"`
 }
 

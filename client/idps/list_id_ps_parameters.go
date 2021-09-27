@@ -61,7 +61,7 @@ type ListIDPsParams struct {
 
 	/* Aid.
 
-	   Authorization server id
+	   ID of your authorization server (workspace)
 
 	   Default: "default"
 	*/
@@ -69,7 +69,7 @@ type ListIDPsParams struct {
 
 	/* Tid.
 
-	   Tenant id
+	   ID of your tenant
 
 	   Default: "default"
 	*/

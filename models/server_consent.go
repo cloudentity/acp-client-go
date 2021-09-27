@@ -18,23 +18,26 @@ import (
 // swagger:model ServerConsent
 type ServerConsent struct {
 
-	// client ID
+	// client id
 	ClientID string `json:"client_id,omitempty"`
-
-	// server ID
-	ServerID string `json:"server_id,omitempty"`
-
-	// tenant ID
-	TenantID string `json:"tenant_id,omitempty"`
-
-	// type
-	Type string `json:"type,omitempty"`
 
 	// custom
 	Custom *CustomServerConsent `json:"custom,omitempty"`
 
 	// oidc
 	Oidc OIDCServerConsent `json:"oidc,omitempty"`
+
+	// openbanking
+	Openbanking *OpenbankingServerConsent `json:"openbanking,omitempty"`
+
+	// server id
+	ServerID string `json:"server_id,omitempty"`
+
+	// tenant id
+	TenantID string `json:"tenant_id,omitempty"`
+
+	// type
+	Type string `json:"type,omitempty"`
 }
 
 // Validate validates this server consent
@@ -42,6 +45,10 @@ func (m *ServerConsent) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCustom(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateOpenbanking(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -68,11 +75,32 @@ func (m *ServerConsent) validateCustom(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *ServerConsent) validateOpenbanking(formats strfmt.Registry) error {
+	if swag.IsZero(m.Openbanking) { // not required
+		return nil
+	}
+
+	if m.Openbanking != nil {
+		if err := m.Openbanking.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("openbanking")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 // ContextValidate validate this server consent based on the context it is used
 func (m *ServerConsent) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateCustom(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateOpenbanking(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -88,6 +116,20 @@ func (m *ServerConsent) contextValidateCustom(ctx context.Context, formats strfm
 		if err := m.Custom.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("custom")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ServerConsent) contextValidateOpenbanking(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Openbanking != nil {
+		if err := m.Openbanking.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("openbanking")
 			}
 			return err
 		}

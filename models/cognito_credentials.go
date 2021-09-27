@@ -12,12 +12,12 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// CognitoCredentials cognito credentials
+// CognitoCredentials Cognito IDP specific settings
 //
 // swagger:model CognitoCredentials
 type CognitoCredentials struct {
 
-	// client secret
+	// Cognito app client secret from your application settings
 	ClientSecret string `json:"client_secret,omitempty"`
 }
 

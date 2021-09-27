@@ -7,15 +7,25 @@ package models
 
 import (
 	"context"
+	"encoding/json"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // GatewayAPI gateway API
 //
 // swagger:model GatewayAPI
 type GatewayAPI struct {
+
+	// api type
+	// Enum: [rest graphql]
+	APIType string `json:"api_type,omitempty"`
+
+	// graphql schema
+	GraphqlSchema string `json:"graphql_schema,omitempty"`
 
 	// method
 	Method string `json:"method,omitempty"`
@@ -26,6 +36,57 @@ type GatewayAPI struct {
 
 // Validate validates this gateway API
 func (m *GatewayAPI) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateAPIType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+var gatewayApiTypeAPITypePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["rest","graphql"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		gatewayApiTypeAPITypePropEnum = append(gatewayApiTypeAPITypePropEnum, v)
+	}
+}
+
+const (
+
+	// GatewayAPIAPITypeRest captures enum value "rest"
+	GatewayAPIAPITypeRest string = "rest"
+
+	// GatewayAPIAPITypeGraphql captures enum value "graphql"
+	GatewayAPIAPITypeGraphql string = "graphql"
+)
+
+// prop value enum
+func (m *GatewayAPI) validateAPITypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, gatewayApiTypeAPITypePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *GatewayAPI) validateAPIType(formats strfmt.Registry) error {
+	if swag.IsZero(m.APIType) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateAPITypeEnum("api_type", "body", m.APIType); err != nil {
+		return err
+	}
+
 	return nil
 }
 

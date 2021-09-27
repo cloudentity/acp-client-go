@@ -14,6 +14,8 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+
+	"github.com/cloudentity/acp-client-go/models"
 )
 
 // NewPatchConfigurationParams creates a new PatchConfigurationParams object,
@@ -59,13 +61,13 @@ func NewPatchConfigurationParamsWithHTTPClient(client *http.Client) *PatchConfig
 */
 type PatchConfigurationParams struct {
 
-	// Patch.
-	Patch []map[string]interface{}
-
 	// Mode.
 	//
 	// Format: insertMode
 	Mode *string
+
+	// Patch.
+	Patch models.PatchConfiguration
 
 	/* Tid.
 
@@ -139,17 +141,6 @@ func (o *PatchConfigurationParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithPatch adds the patch to the patch configuration params
-func (o *PatchConfigurationParams) WithPatch(patch []map[string]interface{}) *PatchConfigurationParams {
-	o.SetPatch(patch)
-	return o
-}
-
-// SetPatch adds the patch to the patch configuration params
-func (o *PatchConfigurationParams) SetPatch(patch []map[string]interface{}) {
-	o.Patch = patch
-}
-
 // WithMode adds the mode to the patch configuration params
 func (o *PatchConfigurationParams) WithMode(mode *string) *PatchConfigurationParams {
 	o.SetMode(mode)
@@ -159,6 +150,17 @@ func (o *PatchConfigurationParams) WithMode(mode *string) *PatchConfigurationPar
 // SetMode adds the mode to the patch configuration params
 func (o *PatchConfigurationParams) SetMode(mode *string) {
 	o.Mode = mode
+}
+
+// WithPatch adds the patch to the patch configuration params
+func (o *PatchConfigurationParams) WithPatch(patch models.PatchConfiguration) *PatchConfigurationParams {
+	o.SetPatch(patch)
+	return o
+}
+
+// SetPatch adds the patch to the patch configuration params
+func (o *PatchConfigurationParams) SetPatch(patch models.PatchConfiguration) {
+	o.Patch = patch
 }
 
 // WithTid adds the tid to the patch configuration params
@@ -179,11 +181,6 @@ func (o *PatchConfigurationParams) WriteToRequest(r runtime.ClientRequest, reg s
 		return err
 	}
 	var res []error
-	if o.Patch != nil {
-		if err := r.SetBodyParam(o.Patch); err != nil {
-			return err
-		}
-	}
 
 	if o.Mode != nil {
 
@@ -199,6 +196,11 @@ func (o *PatchConfigurationParams) WriteToRequest(r runtime.ClientRequest, reg s
 			if err := r.SetQueryParam("mode", qMode); err != nil {
 				return err
 			}
+		}
+	}
+	if o.Patch != nil {
+		if err := r.SetBodyParam(o.Patch); err != nil {
+			return err
 		}
 	}
 

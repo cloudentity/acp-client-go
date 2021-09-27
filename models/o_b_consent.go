@@ -11,6 +11,7 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // OBConsent o b consent
@@ -18,23 +19,63 @@ import (
 // swagger:model OBConsent
 type OBConsent struct {
 
-	// client ID
-	ClientID string `json:"client_id,omitempty"`
-
-	// consent ID
-	ConsentID string `json:"consent_id,omitempty"`
-
-	// server ID
-	ServerID string `json:"server_id,omitempty"`
-
-	// tenant ID
-	TenantID string `json:"tenant_id,omitempty"`
-
 	// account access consent
 	AccountAccessConsent *AccountAccessConsent `json:"account_access_consent,omitempty"`
 
+	// account ids
+	AccountIds []string `json:"account_ids"`
+
+	// client id
+	ClientID string `json:"client_id,omitempty"`
+
+	// consent id
+	ConsentID string `json:"consent_id,omitempty"`
+
+	// created at
+	// Format: date-time
+	CreatedAt strfmt.DateTime `json:"created_at,omitempty"`
+
 	// domestic payment consent
 	DomesticPaymentConsent *DomesticPaymentConsent `json:"domestic_payment_consent,omitempty"`
+
+	// domestic scheduled payment consent
+	DomesticScheduledPaymentConsent *DomesticScheduledPaymentConsent `json:"domestic_scheduled_payment_consent,omitempty"`
+
+	// domestic standing order consent
+	DomesticStandingOrderConsent *DomesticStandingOrderConsent `json:"domestic_standing_order_consent,omitempty"`
+
+	// file payment consent
+	FilePaymentConsent *FilePaymentConsent `json:"file_payment_consent,omitempty"`
+
+	// idempotency key
+	IdempotencyKey string `json:"idempotency_key,omitempty"`
+
+	// international payment consent
+	InternationalPaymentConsent *InternationalPaymentConsent `json:"international_payment_consent,omitempty"`
+
+	// international scheduled payment consent
+	InternationalScheduledPaymentConsent *InternationalScheduledPaymentConsent `json:"international_scheduled_payment_consent,omitempty"`
+
+	// international standing order consent
+	InternationalStandingOrderConsent *InternationalStandingOrderConsent `json:"international_standing_order_consent,omitempty"`
+
+	// request hash
+	RequestHash string `json:"request_hash,omitempty"`
+
+	// server id
+	ServerID string `json:"server_id,omitempty"`
+
+	// spec
+	Spec string `json:"spec,omitempty"`
+
+	// spec version
+	SpecVersion string `json:"spec_version,omitempty"`
+
+	// status
+	Status string `json:"status,omitempty"`
+
+	// tenant id
+	TenantID string `json:"tenant_id,omitempty"`
 
 	// type
 	Type ConsentType `json:"type,omitempty"`
@@ -48,7 +89,35 @@ func (m *OBConsent) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateCreatedAt(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateDomesticPaymentConsent(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDomesticScheduledPaymentConsent(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDomesticStandingOrderConsent(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateFilePaymentConsent(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateInternationalPaymentConsent(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateInternationalScheduledPaymentConsent(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateInternationalStandingOrderConsent(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -79,6 +148,18 @@ func (m *OBConsent) validateAccountAccessConsent(formats strfmt.Registry) error 
 	return nil
 }
 
+func (m *OBConsent) validateCreatedAt(formats strfmt.Registry) error {
+	if swag.IsZero(m.CreatedAt) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("created_at", "body", "date-time", m.CreatedAt.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *OBConsent) validateDomesticPaymentConsent(formats strfmt.Registry) error {
 	if swag.IsZero(m.DomesticPaymentConsent) { // not required
 		return nil
@@ -88,6 +169,108 @@ func (m *OBConsent) validateDomesticPaymentConsent(formats strfmt.Registry) erro
 		if err := m.DomesticPaymentConsent.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("domestic_payment_consent")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *OBConsent) validateDomesticScheduledPaymentConsent(formats strfmt.Registry) error {
+	if swag.IsZero(m.DomesticScheduledPaymentConsent) { // not required
+		return nil
+	}
+
+	if m.DomesticScheduledPaymentConsent != nil {
+		if err := m.DomesticScheduledPaymentConsent.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("domestic_scheduled_payment_consent")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *OBConsent) validateDomesticStandingOrderConsent(formats strfmt.Registry) error {
+	if swag.IsZero(m.DomesticStandingOrderConsent) { // not required
+		return nil
+	}
+
+	if m.DomesticStandingOrderConsent != nil {
+		if err := m.DomesticStandingOrderConsent.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("domestic_standing_order_consent")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *OBConsent) validateFilePaymentConsent(formats strfmt.Registry) error {
+	if swag.IsZero(m.FilePaymentConsent) { // not required
+		return nil
+	}
+
+	if m.FilePaymentConsent != nil {
+		if err := m.FilePaymentConsent.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("file_payment_consent")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *OBConsent) validateInternationalPaymentConsent(formats strfmt.Registry) error {
+	if swag.IsZero(m.InternationalPaymentConsent) { // not required
+		return nil
+	}
+
+	if m.InternationalPaymentConsent != nil {
+		if err := m.InternationalPaymentConsent.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("international_payment_consent")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *OBConsent) validateInternationalScheduledPaymentConsent(formats strfmt.Registry) error {
+	if swag.IsZero(m.InternationalScheduledPaymentConsent) { // not required
+		return nil
+	}
+
+	if m.InternationalScheduledPaymentConsent != nil {
+		if err := m.InternationalScheduledPaymentConsent.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("international_scheduled_payment_consent")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *OBConsent) validateInternationalStandingOrderConsent(formats strfmt.Registry) error {
+	if swag.IsZero(m.InternationalStandingOrderConsent) { // not required
+		return nil
+	}
+
+	if m.InternationalStandingOrderConsent != nil {
+		if err := m.InternationalStandingOrderConsent.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("international_standing_order_consent")
 			}
 			return err
 		}
@@ -123,6 +306,30 @@ func (m *OBConsent) ContextValidate(ctx context.Context, formats strfmt.Registry
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateDomesticScheduledPaymentConsent(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDomesticStandingOrderConsent(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateFilePaymentConsent(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateInternationalPaymentConsent(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateInternationalScheduledPaymentConsent(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateInternationalStandingOrderConsent(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateType(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -153,6 +360,90 @@ func (m *OBConsent) contextValidateDomesticPaymentConsent(ctx context.Context, f
 		if err := m.DomesticPaymentConsent.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("domestic_payment_consent")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *OBConsent) contextValidateDomesticScheduledPaymentConsent(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.DomesticScheduledPaymentConsent != nil {
+		if err := m.DomesticScheduledPaymentConsent.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("domestic_scheduled_payment_consent")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *OBConsent) contextValidateDomesticStandingOrderConsent(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.DomesticStandingOrderConsent != nil {
+		if err := m.DomesticStandingOrderConsent.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("domestic_standing_order_consent")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *OBConsent) contextValidateFilePaymentConsent(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.FilePaymentConsent != nil {
+		if err := m.FilePaymentConsent.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("file_payment_consent")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *OBConsent) contextValidateInternationalPaymentConsent(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.InternationalPaymentConsent != nil {
+		if err := m.InternationalPaymentConsent.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("international_payment_consent")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *OBConsent) contextValidateInternationalScheduledPaymentConsent(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.InternationalScheduledPaymentConsent != nil {
+		if err := m.InternationalScheduledPaymentConsent.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("international_scheduled_payment_consent")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *OBConsent) contextValidateInternationalStandingOrderConsent(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.InternationalStandingOrderConsent != nil {
+		if err := m.InternationalStandingOrderConsent.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("international_standing_order_consent")
 			}
 			return err
 		}

@@ -33,9 +33,18 @@ type ScopeGrantSessionResponse struct {
 	// Format: date-time
 	AuthTime strfmt.DateTime `json:"auth_time,omitempty"`
 
+	// authentication context
+	AuthenticationContext AuthenticationContext `json:"authentication_context,omitempty"`
+
 	// OAuth client identifier
 	// Example: default
 	ClientID string `json:"client_id,omitempty"`
+
+	// client info
+	ClientInfo *ClientInfo `json:"client_info,omitempty"`
+
+	// error
+	Error *RFC6749Error `json:"error,omitempty"`
 
 	// list of granted audience
 	GrantedAudience []string `json:"granted_audience"`
@@ -48,7 +57,7 @@ type ScopeGrantSessionResponse struct {
 	ID string `json:"id,omitempty"`
 
 	// idp identifier
-	IDPID string `json:"idp_id,omitempty"`
+	IdpID string `json:"idp_id,omitempty"`
 
 	// is login approved
 	// Example: false
@@ -62,6 +71,9 @@ type ScopeGrantSessionResponse struct {
 	// Format: duration
 	MaxAge strfmt.Duration `json:"max_age,omitempty"`
 
+	// request query params
+	RequestQueryParams Values `json:"request_query_params,omitempty"`
+
 	// original url requested by oauth client
 	RequestURL string `json:"request_url,omitempty"`
 
@@ -74,6 +86,9 @@ type ScopeGrantSessionResponse struct {
 
 	// list of requested audiences
 	RequestedAudience []string `json:"requested_audience"`
+
+	// requested claims
+	RequestedClaims *ClaimsRequests `json:"requested_claims,omitempty"`
 
 	// requested grant type
 	RequestedGrantType string `json:"requested_grant_type,omitempty"`
@@ -99,18 +114,6 @@ type ScopeGrantSessionResponse struct {
 	// tenant identifier
 	// Example: default
 	TenantID string `json:"tenant_id,omitempty"`
-
-	// authentication context
-	AuthenticationContext AuthenticationContext `json:"authentication_context,omitempty"`
-
-	// error
-	Error *RFC6749Error `json:"error,omitempty"`
-
-	// request query params
-	RequestQueryParams Values `json:"request_query_params,omitempty"`
-
-	// requested claims
-	RequestedClaims *ClaimsRequests `json:"requested_claims,omitempty"`
 }
 
 // Validate validates this scope grant session response
@@ -121,19 +124,11 @@ func (m *ScopeGrantSessionResponse) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateMaxAge(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateRequestedAt(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateRequestedScopes(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateAuthenticationContext(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateClientInfo(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -141,11 +136,23 @@ func (m *ScopeGrantSessionResponse) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateMaxAge(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateRequestQueryParams(formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.validateRequestedAt(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateRequestedClaims(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRequestedScopes(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -167,6 +174,57 @@ func (m *ScopeGrantSessionResponse) validateAuthTime(formats strfmt.Registry) er
 	return nil
 }
 
+func (m *ScopeGrantSessionResponse) validateAuthenticationContext(formats strfmt.Registry) error {
+	if swag.IsZero(m.AuthenticationContext) { // not required
+		return nil
+	}
+
+	if m.AuthenticationContext != nil {
+		if err := m.AuthenticationContext.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("authentication_context")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ScopeGrantSessionResponse) validateClientInfo(formats strfmt.Registry) error {
+	if swag.IsZero(m.ClientInfo) { // not required
+		return nil
+	}
+
+	if m.ClientInfo != nil {
+		if err := m.ClientInfo.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("client_info")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ScopeGrantSessionResponse) validateError(formats strfmt.Registry) error {
+	if swag.IsZero(m.Error) { // not required
+		return nil
+	}
+
+	if m.Error != nil {
+		if err := m.Error.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("error")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *ScopeGrantSessionResponse) validateMaxAge(formats strfmt.Registry) error {
 	if swag.IsZero(m.MaxAge) { // not required
 		return nil
@@ -179,6 +237,23 @@ func (m *ScopeGrantSessionResponse) validateMaxAge(formats strfmt.Registry) erro
 	return nil
 }
 
+func (m *ScopeGrantSessionResponse) validateRequestQueryParams(formats strfmt.Registry) error {
+	if swag.IsZero(m.RequestQueryParams) { // not required
+		return nil
+	}
+
+	if m.RequestQueryParams != nil {
+		if err := m.RequestQueryParams.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("request_query_params")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *ScopeGrantSessionResponse) validateRequestedAt(formats strfmt.Registry) error {
 	if swag.IsZero(m.RequestedAt) { // not required
 		return nil
@@ -186,6 +261,23 @@ func (m *ScopeGrantSessionResponse) validateRequestedAt(formats strfmt.Registry)
 
 	if err := validate.FormatOf("requested_at", "body", "date-time", m.RequestedAt.String(), formats); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *ScopeGrantSessionResponse) validateRequestedClaims(formats strfmt.Registry) error {
+	if swag.IsZero(m.RequestedClaims) { // not required
+		return nil
+	}
+
+	if m.RequestedClaims != nil {
+		if err := m.RequestedClaims.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("requested_claims")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -215,83 +307,15 @@ func (m *ScopeGrantSessionResponse) validateRequestedScopes(formats strfmt.Regis
 	return nil
 }
 
-func (m *ScopeGrantSessionResponse) validateAuthenticationContext(formats strfmt.Registry) error {
-	if swag.IsZero(m.AuthenticationContext) { // not required
-		return nil
-	}
-
-	if m.AuthenticationContext != nil {
-		if err := m.AuthenticationContext.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("authentication_context")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *ScopeGrantSessionResponse) validateError(formats strfmt.Registry) error {
-	if swag.IsZero(m.Error) { // not required
-		return nil
-	}
-
-	if m.Error != nil {
-		if err := m.Error.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("error")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *ScopeGrantSessionResponse) validateRequestQueryParams(formats strfmt.Registry) error {
-	if swag.IsZero(m.RequestQueryParams) { // not required
-		return nil
-	}
-
-	if m.RequestQueryParams != nil {
-		if err := m.RequestQueryParams.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("request_query_params")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *ScopeGrantSessionResponse) validateRequestedClaims(formats strfmt.Registry) error {
-	if swag.IsZero(m.RequestedClaims) { // not required
-		return nil
-	}
-
-	if m.RequestedClaims != nil {
-		if err := m.RequestedClaims.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("requested_claims")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 // ContextValidate validate this scope grant session response based on the context it is used
 func (m *ScopeGrantSessionResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateRequestedScopes(ctx, formats); err != nil {
+	if err := m.contextValidateAuthenticationContext(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateAuthenticationContext(ctx, formats); err != nil {
+	if err := m.contextValidateClientInfo(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -307,27 +331,13 @@ func (m *ScopeGrantSessionResponse) ContextValidate(ctx context.Context, formats
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateRequestedScopes(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *ScopeGrantSessionResponse) contextValidateRequestedScopes(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.RequestedScopes); i++ {
-
-		if m.RequestedScopes[i] != nil {
-			if err := m.RequestedScopes[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("requested_scopes" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
 	return nil
 }
 
@@ -338,6 +348,20 @@ func (m *ScopeGrantSessionResponse) contextValidateAuthenticationContext(ctx con
 			return ve.ValidateName("authentication_context")
 		}
 		return err
+	}
+
+	return nil
+}
+
+func (m *ScopeGrantSessionResponse) contextValidateClientInfo(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ClientInfo != nil {
+		if err := m.ClientInfo.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("client_info")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -378,6 +402,24 @@ func (m *ScopeGrantSessionResponse) contextValidateRequestedClaims(ctx context.C
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *ScopeGrantSessionResponse) contextValidateRequestedScopes(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.RequestedScopes); i++ {
+
+		if m.RequestedScopes[i] != nil {
+			if err := m.RequestedScopes[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("requested_scopes" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil

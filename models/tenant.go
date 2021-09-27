@@ -18,26 +18,26 @@ import (
 // swagger:model Tenant
 type Tenant struct {
 
+	// authentication context settings
+	AuthenticationContextSettings *AuthenticationContextSettings `json:"authentication_context_settings,omitempty"`
+
 	// tenant unique identifier
 	// exampe: default
 	ID string `json:"id,omitempty"`
+
+	// jwks
+	Jwks *ServerJWKs `json:"jwks,omitempty"`
 
 	// tenant name
 	// Example: Default
 	Name string `json:"name,omitempty"`
 
-	// tenant url
-	// Example: https://example.com/default
-	URL string `json:"url,omitempty"`
-
-	// authentication context settings
-	AuthenticationContextSettings *AuthenticationContextSettings `json:"authentication_context_settings,omitempty"`
-
-	// jwks
-	Jwks *JWKs `json:"jwks,omitempty"`
-
 	// styling
 	Styling *Styling `json:"styling,omitempty"`
+
+	// optional custom tenant url. If not provided the server url is used instead
+	// Example: https://example.com/default
+	URL string `json:"url,omitempty"`
 }
 
 // Validate validates this tenant

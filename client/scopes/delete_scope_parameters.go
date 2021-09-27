@@ -60,7 +60,7 @@ func NewDeleteScopeParamsWithHTTPClient(client *http.Client) *DeleteScopeParams 
 type DeleteScopeParams struct {
 
 	// Scp.
-	ScopeID string
+	Scp string
 
 	/* Tid.
 
@@ -134,15 +134,15 @@ func (o *DeleteScopeParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithScopeID adds the scp to the delete scope params
-func (o *DeleteScopeParams) WithScopeID(scp string) *DeleteScopeParams {
-	o.SetScopeID(scp)
+// WithScp adds the scp to the delete scope params
+func (o *DeleteScopeParams) WithScp(scp string) *DeleteScopeParams {
+	o.SetScp(scp)
 	return o
 }
 
-// SetScopeID adds the scp to the delete scope params
-func (o *DeleteScopeParams) SetScopeID(scp string) {
-	o.ScopeID = scp
+// SetScp adds the scp to the delete scope params
+func (o *DeleteScopeParams) SetScp(scp string) {
+	o.Scp = scp
 }
 
 // WithTid adds the tid to the delete scope params
@@ -165,7 +165,7 @@ func (o *DeleteScopeParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 	var res []error
 
 	// path param scp
-	if err := r.SetPathParam("scp", o.ScopeID); err != nil {
+	if err := r.SetPathParam("scp", o.Scp); err != nil {
 		return err
 	}
 

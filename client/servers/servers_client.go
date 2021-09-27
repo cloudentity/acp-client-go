@@ -38,6 +38,8 @@ type ClientService interface {
 
 	GetAuthorizationServer(params *GetAuthorizationServerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAuthorizationServerOK, error)
 
+	GetCIBAAuthenticationService(params *GetCIBAAuthenticationServiceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCIBAAuthenticationServiceOK, error)
+
 	GetServerConsent(params *GetServerConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetServerConsentOK, error)
 
 	GetServerForDeveloper(params *GetServerForDeveloperParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetServerForDeveloperOK, error)
@@ -49,6 +51,8 @@ type ClientService interface {
 	ListServersBindings(params *ListServersBindingsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListServersBindingsOK, error)
 
 	ListServersForDeveloper(params *ListServersForDeveloperParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListServersForDeveloperOK, error)
+
+	SetCIBAAuthenticationService(params *SetCIBAAuthenticationServiceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetCIBAAuthenticationServiceOK, error)
 
 	SetServerConsent(params *SetServerConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetServerConsentOK, error)
 
@@ -240,6 +244,47 @@ func (a *Client) GetAuthorizationServer(params *GetAuthorizationServerParams, au
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for getAuthorizationServer: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetCIBAAuthenticationService gets c i b a authentication service
+
+  This API returns details of CIBA authentication service.
+*/
+func (a *Client) GetCIBAAuthenticationService(params *GetCIBAAuthenticationServiceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCIBAAuthenticationServiceOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetCIBAAuthenticationServiceParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getCIBAAuthenticationService",
+		Method:             "GET",
+		PathPattern:        "/api/admin/{tid}/servers/{aid}/ciba-authentication-service",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetCIBAAuthenticationServiceReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetCIBAAuthenticationServiceOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getCIBAAuthenticationService: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -486,6 +531,48 @@ func (a *Client) ListServersForDeveloper(params *ListServersForDeveloperParams, 
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for listServersForDeveloper: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  SetCIBAAuthenticationService sets c i b a authentication service
+
+  If you want to enable CIBA for the workspace, you need to provide url to external service that implements
+rest api specified by ACP.
+*/
+func (a *Client) SetCIBAAuthenticationService(params *SetCIBAAuthenticationServiceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetCIBAAuthenticationServiceOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSetCIBAAuthenticationServiceParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "setCIBAAuthenticationService",
+		Method:             "PUT",
+		PathPattern:        "/api/admin/{tid}/servers/{aid}/ciba-authentication-service",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SetCIBAAuthenticationServiceReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SetCIBAAuthenticationServiceOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for setCIBAAuthenticationService: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

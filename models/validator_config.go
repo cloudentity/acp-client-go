@@ -14,19 +14,26 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// ValidatorConfig validator settings.
+// ValidatorConfig Configuration of a policy validator
+//
+// Depending on the type of a policy different validators are available.
 //
 // swagger:model ValidatorConfig
 type ValidatorConfig struct {
 
-	// validator config
+	// Configuration of the validator provided in the JSON format
+	//
+	// Validators configuration is an array of fields where each node consists of a comparator used,
+	// validated field, and a value for comparison. Configuration can be also branched, which means
+	// that it is possible to create conditional validators. It allows to define complex
+	// authorization scenarios based on the results from other policy validators.
 	Conf map[string]interface{} `json:"conf,omitempty"`
 
-	// validator name
+	// The name of your validator
 	// Example: identity-context
 	Name string `json:"name,omitempty"`
 
-	// validator recovery config
+	// recovery
 	Recovery []*RecoveryConfig `json:"recovery"`
 }
 
