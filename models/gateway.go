@@ -19,8 +19,15 @@ import (
 // swagger:model Gateway
 type Gateway struct {
 
+	// authorization server id
+	// Example: default
+	AuthorizationServerID string `json:"authorization_server_id,omitempty"`
+
 	// id of a client created for this gateway for authentication
 	ClientID string `json:"client_id,omitempty"`
+
+	// if true services are created automatically for each new discovered api group
+	CreateAndBindServicesAutomatically bool `json:"create_and_bind_services_automatically,omitempty"`
 
 	// description
 	Description string `json:"description,omitempty"`
@@ -36,10 +43,6 @@ type Gateway struct {
 	// gateway name
 	// Example: Cloudentity Pyron
 	Name string `json:"name,omitempty"`
-
-	// authorization server id
-	// Example: default
-	ServerID string `json:"authorization_server_id,omitempty"`
 
 	// tenant id
 	// Example: default

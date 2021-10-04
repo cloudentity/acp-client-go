@@ -19,7 +19,7 @@ import (
 // swagger:model ScopeGrant
 type ScopeGrant struct {
 
-	// client ID
+	// client id
 	ClientID string `json:"client_id,omitempty"`
 
 	// given at
@@ -35,13 +35,13 @@ type ScopeGrant struct {
 	// scope name
 	ScopeName string `json:"scope_name,omitempty"`
 
-	// server ID
+	// server id
 	ServerID string `json:"server_id,omitempty"`
 
 	// subject
 	Subject string `json:"subject,omitempty"`
 
-	// tenant ID
+	// tenant id
 	TenantID string `json:"tenant_id,omitempty"`
 }
 

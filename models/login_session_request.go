@@ -18,11 +18,11 @@ import (
 // swagger:model LoginSessionRequest
 type LoginSessionRequest struct {
 
-	// original authorize endpoint url
-	URL string `json:"url,omitempty"`
-
 	// query params
 	QueryParams Values `json:"query_params,omitempty"`
+
+	// original authorize endpoint url
+	URL string `json:"url,omitempty"`
 }
 
 // Validate validates this login session request

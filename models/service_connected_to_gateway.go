@@ -21,6 +21,9 @@ type ServiceConnectedToGateway struct {
 	// Optional id of api group id connected to the service
 	APIGroupID string `json:"api_group_id,omitempty"`
 
+	// api group metadata
+	APIGroupMetadata *APIGroupMetadata `json:"api_group_metadata,omitempty"`
+
 	// service audience
 	// Example: https://api.example.com
 	Audience string `json:"audience,omitempty"`
@@ -54,9 +57,6 @@ type ServiceConnectedToGateway struct {
 
 	// true if service has openapi 3 specification
 	WithSpecification bool `json:"with_specification,omitempty"`
-
-	// api group metadata
-	APIGroupMetadata *APIGroupMetadata `json:"api_group_metadata,omitempty"`
 }
 
 // Validate validates this service connected to gateway

@@ -17,7 +17,7 @@ import (
 // swagger:model SetGatewayConfigurationResponse
 type SetGatewayConfigurationResponse struct {
 
-	// number of added API groups
+	// number of added api groups
 	NumberOfAddedAPIGroups int64 `json:"number_of_added_api_groups,omitempty"`
 }
 

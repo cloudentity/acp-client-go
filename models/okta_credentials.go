@@ -13,7 +13,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// OktaCredentials okta credentials
+// OktaCredentials Okta IDP specific credentials
 //
 // swagger:model OktaCredentials
 type OktaCredentials struct {

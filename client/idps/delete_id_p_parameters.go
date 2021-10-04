@@ -61,7 +61,7 @@ type DeleteIDPParams struct {
 
 	/* Aid.
 
-	   Authorization server id
+	   ID of your authorization server (workspace)
 
 	   Default: "default"
 	*/
@@ -69,13 +69,13 @@ type DeleteIDPParams struct {
 
 	/* Iid.
 
-	   IDP id
+	   ID of the IDP you wish to delete
 	*/
 	Iid string
 
 	/* Tid.
 
-	   Tenant id
+	   ID of your tenant
 
 	   Default: "default"
 	*/

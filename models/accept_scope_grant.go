@@ -8,6 +8,7 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -18,7 +19,7 @@ import (
 type AcceptScopeGrant struct {
 
 	// granted scopes
-	GrantedScopes []string `json:"granted_scopes"`
+	GrantedScopes GrantedScopes `json:"granted_scopes,omitempty"`
 
 	// login identifier
 	ID string `json:"id,omitempty"`
@@ -29,11 +30,56 @@ type AcceptScopeGrant struct {
 
 // Validate validates this accept scope grant
 func (m *AcceptScopeGrant) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateGrantedScopes(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 
-// ContextValidate validates this accept scope grant based on context it is used
+func (m *AcceptScopeGrant) validateGrantedScopes(formats strfmt.Registry) error {
+	if swag.IsZero(m.GrantedScopes) { // not required
+		return nil
+	}
+
+	if err := m.GrantedScopes.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("granted_scopes")
+		}
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this accept scope grant based on the context it is used
 func (m *AcceptScopeGrant) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateGrantedScopes(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *AcceptScopeGrant) contextValidateGrantedScopes(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.GrantedScopes.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("granted_scopes")
+		}
+		return err
+	}
+
 	return nil
 }
 

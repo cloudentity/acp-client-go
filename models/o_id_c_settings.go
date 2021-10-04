@@ -12,26 +12,22 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// OIDCSettings o ID c settings
+// OIDCSettings OIDC IDP specific settings
 //
 // swagger:model OIDCSettings
 type OIDCSettings struct {
 
-	// OAuth client identifier
+	// OAuth client application identifier
 	// Example: client
 	ClientID string `json:"client_id,omitempty"`
 
-	// flag to fetch additional user attributes from userinfo endpoint
+	// If enabled, users' data is collected by calling the `userinfo` endpoint.
 	GetUserInfo bool `json:"get_user_info,omitempty"`
 
-	// Authorization server issuer URL
+	// URL used to define the {baseURL} for any OpenID Connect endpoint when authorizing against ACP.
 	IssuerURL string `json:"issuer_url,omitempty"`
 
-	// OAuth redirect URL
-	// Example: https://example.com/callback
-	RedirectURL string `json:"redirect_url,omitempty"`
-
-	// OAuth scopes which client will be requesting
+	// An array of additional scopes your client requests
 	// Example: ["email","profile","openid"]
 	Scopes []string `json:"scopes"`
 }

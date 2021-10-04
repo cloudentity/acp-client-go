@@ -74,7 +74,7 @@ type ListPrivacyLedgerEventsBySubjectParams struct {
 
 	   Format: subject
 	*/
-	Subject *string
+	Sub *string
 
 	/* Tid.
 
@@ -167,15 +167,15 @@ func (o *ListPrivacyLedgerEventsBySubjectParams) SetFrom(from *int64) {
 	o.From = from
 }
 
-// WithSubject adds the sub to the list privacy ledger events by subject params
-func (o *ListPrivacyLedgerEventsBySubjectParams) WithSubject(sub *string) *ListPrivacyLedgerEventsBySubjectParams {
-	o.SetSubject(sub)
+// WithSub adds the sub to the list privacy ledger events by subject params
+func (o *ListPrivacyLedgerEventsBySubjectParams) WithSub(sub *string) *ListPrivacyLedgerEventsBySubjectParams {
+	o.SetSub(sub)
 	return o
 }
 
-// SetSubject adds the sub to the list privacy ledger events by subject params
-func (o *ListPrivacyLedgerEventsBySubjectParams) SetSubject(sub *string) {
-	o.Subject = sub
+// SetSub adds the sub to the list privacy ledger events by subject params
+func (o *ListPrivacyLedgerEventsBySubjectParams) SetSub(sub *string) {
+	o.Sub = sub
 }
 
 // WithTid adds the tid to the list privacy ledger events by subject params
@@ -225,13 +225,13 @@ func (o *ListPrivacyLedgerEventsBySubjectParams) WriteToRequest(r runtime.Client
 		}
 	}
 
-	if o.Subject != nil {
+	if o.Sub != nil {
 
 		// query param sub
 		var qrSub string
 
-		if o.Subject != nil {
-			qrSub = *o.Subject
+		if o.Sub != nil {
+			qrSub = *o.Sub
 		}
 		qSub := qrSub
 		if qSub != "" {

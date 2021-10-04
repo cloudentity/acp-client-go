@@ -36,13 +36,27 @@ type ClientService interface {
 
 	ExportConfiguration(params *ExportConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ExportConfigurationOK, error)
 
+	ExportTenantConfiguration(params *ExportTenantConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ExportTenantConfigurationOK, error)
+
 	GetAdminTenant(params *GetAdminTenantParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAdminTenantOK, error)
 
 	GetTenant(params *GetTenantParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetTenantOK, error)
 
+	GetTenantFeatures(params *GetTenantFeaturesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetTenantFeaturesOK, error)
+
 	ImportConfiguration(params *ImportConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportConfigurationNoContent, error)
 
+	ImportTenantConfiguration(params *ImportTenantConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportTenantConfigurationNoContent, error)
+
+	ListAdminTenants(params *ListAdminTenantsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListAdminTenantsOK, error)
+
+	ListTenants(params *ListTenantsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListTenantsOK, error)
+
 	PatchConfiguration(params *PatchConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchConfigurationNoContent, error)
+
+	PatchTenantConfiguration(params *PatchTenantConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchTenantConfigurationNoContent, error)
+
+	SetTenantFeature(params *SetTenantFeatureParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetTenantFeatureNoContent, error)
 
 	UpdateAdminTenant(params *UpdateAdminTenantParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateAdminTenantOK, error)
 
@@ -142,9 +156,22 @@ func (a *Client) DeleteTenant(params *DeleteTenantParams, authInfo runtime.Clien
 }
 
 /*
-  ExportConfiguration exports configuration
+  ExportConfiguration exports global tenants configuration
 
-  Export entire tenant configuration as json.
+  Returns a JSON with all tenants and their configuration.
+
+Customers that use the on-premise version of the ACP deployment can use the
+global tenants' configuration export ACP REST API. The requirement to
+have the on-premise deployment comes from the fact, that you need to be able to access the system
+tenant of your deployment to be able to authenticate your client and get access token that allows
+you to import the tenants configuration.
+
+By default, a system tenant is created for you automatically and a client application with the
+client credentials grant flow enabled is also provided. The ID of this client is `system` and the
+client secret can be found in your ACP configuration file.
+
+When requesting an access token, you should provide the `manage_configuration` scope as the one you
+would like to request.
 */
 func (a *Client) ExportConfiguration(params *ExportConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ExportConfigurationOK, error) {
 	// TODO: Validate the params before sending
@@ -179,6 +206,60 @@ func (a *Client) ExportConfiguration(params *ExportConfigurationParams, authInfo
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for exportConfiguration: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  ExportTenantConfiguration exports tenant s configuration
+
+  Returns a JSON with the configuration of the specified tenant.
+
+With ACP system API, you can export a specified tenant's
+configuration. You can, for example, move your tenant's configuration between different ACP deployments
+using the export API and, then, import it to a different ACP deployment using the import API.
+For example, a company that delivers its services to financial institutions and uses
+ACP to protect their APIs, may want to export an Open Banking directive compliant
+tenant's configuration from one of their deployments and import it the deployment of their customers.
+
+To export your tenant configuration, your client application must have the `manage_configuration`
+scope assigned. When requesting an access token, you should also provide this scope as the one you
+would like to request.
+
+Use the `tid` path parameter to specify which tenant is to have the configuration exported.
+*/
+func (a *Client) ExportTenantConfiguration(params *ExportTenantConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ExportTenantConfigurationOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewExportTenantConfigurationParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "exportTenantConfiguration",
+		Method:             "GET",
+		PathPattern:        "/api/system/{tid}/configuration",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ExportTenantConfigurationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ExportTenantConfigurationOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for exportTenantConfiguration: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -265,9 +346,64 @@ func (a *Client) GetTenant(params *GetTenantParams, authInfo runtime.ClientAuthI
 }
 
 /*
-  ImportConfiguration imports configuration
+  GetTenantFeatures gets tenant features
 
-  Allows to quickly import tenant basic configuration.
+  Returns a map of all feature flags and their values.
+To be able to set a tenant feature flag, you need to use an access token issued for a system tenant and admin workspace.
+*/
+func (a *Client) GetTenantFeatures(params *GetTenantFeaturesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetTenantFeaturesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetTenantFeaturesParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getTenantFeatures",
+		Method:             "GET",
+		PathPattern:        "/api/admin/tenants/{tid}/features",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetTenantFeaturesReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetTenantFeaturesOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getTenantFeatures: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  ImportConfiguration imports global tenants configuration
+
+  Allows to import a JSON file that contains all the tenants and their configuration.
+
+Customers that use the on-premise version of the ACP deployment can use the
+global tenants' configuration import ACP REST API. The requirement to
+have the on-premise deployment comes from the fact, that you need to be able to access the system
+tenant of your deployment to be able to authenticate your client and get access token that allows
+you to import the tenants configuration.
+
+By default, a system tenant is created for you automatically and a client application with the
+client credentials grant flow enabled is also provided. The ID of this client is `system` and the
+client secret can be found in your ACP configuration file.
+
+When requesting an access token, you should provide the `manage_configuration` scope as the one you
+would like to request.
 */
 func (a *Client) ImportConfiguration(params *ImportConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportConfigurationNoContent, error) {
 	// TODO: Validate the params before sending
@@ -302,6 +438,141 @@ func (a *Client) ImportConfiguration(params *ImportConfigurationParams, authInfo
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for importConfiguration: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  ImportTenantConfiguration imports tenant configuration
+
+  Allows to quickly import the specified tenant configuration.
+
+With ACP system API, you can import a specific tenant's
+configuration. You can, for example, move your tenant's configuration between different ACP deployments.
+For example, a company that delivers its services to financial institutions and uses
+ACP to protect their APIs, may want to import an Open Banking directive compliant
+tenant's configuration from one of their deployments to the deployment of their customers.
+
+To import your tenant configuration, your client application must have the `manage_configuration`
+scope assigned. When requesting an access token, you should also provide this scope as the one you
+would like to request.
+
+Use the `tid` path parameter to specify which tenant is to have the configuration imported.
+*/
+func (a *Client) ImportTenantConfiguration(params *ImportTenantConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportTenantConfigurationNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImportTenantConfigurationParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "importTenantConfiguration",
+		Method:             "PUT",
+		PathPattern:        "/api/system/{tid}/configuration",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImportTenantConfigurationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ImportTenantConfigurationNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for importTenantConfiguration: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  ListAdminTenants lists tenants
+
+  To be able to list tenants, you need to use an access token issued for a system tenant and admin workspace.
+*/
+func (a *Client) ListAdminTenants(params *ListAdminTenantsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListAdminTenantsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListAdminTenantsParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "listAdminTenants",
+		Method:             "GET",
+		PathPattern:        "/api/admin/tenants",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListAdminTenantsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ListAdminTenantsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for listAdminTenants: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  ListTenants lists tenants
+
+  List tenants.
+*/
+func (a *Client) ListTenants(params *ListTenantsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListTenantsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListTenantsParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "listTenants",
+		Method:             "GET",
+		PathPattern:        "/api/system/tenants",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListTenantsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ListTenantsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for listTenants: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -343,6 +614,89 @@ func (a *Client) PatchConfiguration(params *PatchConfigurationParams, authInfo r
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for patchConfiguration: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  PatchTenantConfiguration patches tenant configuration
+
+  Patch tenant configuration using RFC 6902 JSON Patch.
+*/
+func (a *Client) PatchTenantConfiguration(params *PatchTenantConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchTenantConfigurationNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPatchTenantConfigurationParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "patchTenantConfiguration",
+		Method:             "PATCH",
+		PathPattern:        "/api/system/{tid}/configuration",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PatchTenantConfigurationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PatchTenantConfigurationNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for patchTenantConfiguration: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  SetTenantFeature sets tenant feature
+
+  Enable or disable one of the tenant's features.
+To be able to set a tenant feature flag, you need to use an access token issued for a system tenant and admin workspace.
+*/
+func (a *Client) SetTenantFeature(params *SetTenantFeatureParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetTenantFeatureNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSetTenantFeatureParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "setTenantFeature",
+		Method:             "POST",
+		PathPattern:        "/api/admin/tenants/{tid}/feature",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SetTenantFeatureReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SetTenantFeatureNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for setTenantFeature: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

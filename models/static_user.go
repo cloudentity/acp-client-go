@@ -18,21 +18,40 @@ import (
 // swagger:model StaticUser
 type StaticUser struct {
 
-	// user password
-	// Example: secret
-	Password string `json:"password,omitempty"`
-
-	// user login
-	// Example: peter
-	Username string `json:"username,omitempty"`
+	// additional attributes
+	AdditionalAttributes AuthenticationContext `json:"additional_attributes,omitempty"`
 
 	// authentication context
 	AuthenticationContext AuthenticationContext `json:"authentication_context,omitempty"`
+
+	// User's preferred email.
+	Email string `json:"email,omitempty"`
+
+	// If set to true, indicates that the user's email was verfied.
+	EmailVerified bool `json:"email_verified,omitempty"`
+
+	// User password.
+	// Example: secret
+	Password string `json:"password,omitempty"`
+
+	// User's preferred phone number
+	PhoneNumber string `json:"phone_number,omitempty"`
+
+	// If set to true, indicates that the user's phone number was verfied.
+	PhoneNumberVerified bool `json:"phone_number_verified,omitempty"`
+
+	// User login.
+	// Example: peter
+	Username string `json:"username,omitempty"`
 }
 
 // Validate validates this static user
 func (m *StaticUser) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.validateAdditionalAttributes(formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.validateAuthenticationContext(formats); err != nil {
 		res = append(res, err)
@@ -41,6 +60,23 @@ func (m *StaticUser) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *StaticUser) validateAdditionalAttributes(formats strfmt.Registry) error {
+	if swag.IsZero(m.AdditionalAttributes) { // not required
+		return nil
+	}
+
+	if m.AdditionalAttributes != nil {
+		if err := m.AdditionalAttributes.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("additional_attributes")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -65,6 +101,10 @@ func (m *StaticUser) validateAuthenticationContext(formats strfmt.Registry) erro
 func (m *StaticUser) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateAdditionalAttributes(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateAuthenticationContext(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -72,6 +112,18 @@ func (m *StaticUser) ContextValidate(ctx context.Context, formats strfmt.Registr
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *StaticUser) contextValidateAdditionalAttributes(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.AdditionalAttributes.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("additional_attributes")
+		}
+		return err
+	}
+
 	return nil
 }
 

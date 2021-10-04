@@ -60,7 +60,7 @@ func NewDeleteAPIParamsWithHTTPClient(client *http.Client) *DeleteAPIParams {
 type DeleteAPIParams struct {
 
 	// API.
-	APIID string
+	API string
 
 	/* Tid.
 
@@ -134,15 +134,15 @@ func (o *DeleteAPIParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithAPIID adds the api to the delete API params
-func (o *DeleteAPIParams) WithAPIID(api string) *DeleteAPIParams {
-	o.SetAPIID(api)
+// WithAPI adds the api to the delete API params
+func (o *DeleteAPIParams) WithAPI(api string) *DeleteAPIParams {
+	o.SetAPI(api)
 	return o
 }
 
-// SetAPIID adds the api to the delete API params
-func (o *DeleteAPIParams) SetAPIID(api string) {
-	o.APIID = api
+// SetAPI adds the api to the delete API params
+func (o *DeleteAPIParams) SetAPI(api string) {
+	o.API = api
 }
 
 // WithTid adds the tid to the delete API params
@@ -165,7 +165,7 @@ func (o *DeleteAPIParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 	var res []error
 
 	// path param api
-	if err := r.SetPathParam("api", o.APIID); err != nil {
+	if err := r.SetPathParam("api", o.API); err != nil {
 		return err
 	}
 

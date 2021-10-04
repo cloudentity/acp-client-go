@@ -22,8 +22,8 @@ type BindGroupToServiceResponse struct {
 	// not removed policies
 	NotRemovedPolicies []*Policy `json:"not_removed_policies"`
 
-	// removed a p is
-	RemovedAPIs []*API `json:"removed_apis"`
+	// removed apis
+	RemovedApis []*API `json:"removed_apis"`
 
 	// removed policies
 	RemovedPolicies []*Policy `json:"removed_policies"`
@@ -37,7 +37,7 @@ func (m *BindGroupToServiceResponse) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateRemovedAPIs(formats); err != nil {
+	if err := m.validateRemovedApis(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -75,18 +75,18 @@ func (m *BindGroupToServiceResponse) validateNotRemovedPolicies(formats strfmt.R
 	return nil
 }
 
-func (m *BindGroupToServiceResponse) validateRemovedAPIs(formats strfmt.Registry) error {
-	if swag.IsZero(m.RemovedAPIs) { // not required
+func (m *BindGroupToServiceResponse) validateRemovedApis(formats strfmt.Registry) error {
+	if swag.IsZero(m.RemovedApis) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.RemovedAPIs); i++ {
-		if swag.IsZero(m.RemovedAPIs[i]) { // not required
+	for i := 0; i < len(m.RemovedApis); i++ {
+		if swag.IsZero(m.RemovedApis[i]) { // not required
 			continue
 		}
 
-		if m.RemovedAPIs[i] != nil {
-			if err := m.RemovedAPIs[i].Validate(formats); err != nil {
+		if m.RemovedApis[i] != nil {
+			if err := m.RemovedApis[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("removed_apis" + "." + strconv.Itoa(i))
 				}
@@ -131,7 +131,7 @@ func (m *BindGroupToServiceResponse) ContextValidate(ctx context.Context, format
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateRemovedAPIs(ctx, formats); err != nil {
+	if err := m.contextValidateRemovedApis(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -163,12 +163,12 @@ func (m *BindGroupToServiceResponse) contextValidateNotRemovedPolicies(ctx conte
 	return nil
 }
 
-func (m *BindGroupToServiceResponse) contextValidateRemovedAPIs(ctx context.Context, formats strfmt.Registry) error {
+func (m *BindGroupToServiceResponse) contextValidateRemovedApis(ctx context.Context, formats strfmt.Registry) error {
 
-	for i := 0; i < len(m.RemovedAPIs); i++ {
+	for i := 0; i < len(m.RemovedApis); i++ {
 
-		if m.RemovedAPIs[i] != nil {
-			if err := m.RemovedAPIs[i].ContextValidate(ctx, formats); err != nil {
+		if m.RemovedApis[i] != nil {
+			if err := m.RemovedApis[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("removed_apis" + "." + strconv.Itoa(i))
 				}

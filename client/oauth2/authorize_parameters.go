@@ -67,11 +67,29 @@ type AuthorizeParams struct {
 	*/
 	Aid string
 
+	// Claims.
+	Claims *string
+
 	// ClientID.
 	ClientID string
 
+	// CodeChallenge.
+	CodeChallenge *string
+
+	// CodeChallengeMethod.
+	CodeChallengeMethod *string
+
+	// Nonce.
+	Nonce *string
+
 	// RedirectURI.
 	RedirectURI *string
+
+	// Request.
+	Request *string
+
+	// RequestURI.
+	RequestURI *string
 
 	// ResponseType.
 	ResponseType string
@@ -168,6 +186,17 @@ func (o *AuthorizeParams) SetAid(aid string) {
 	o.Aid = aid
 }
 
+// WithClaims adds the claims to the authorize params
+func (o *AuthorizeParams) WithClaims(claims *string) *AuthorizeParams {
+	o.SetClaims(claims)
+	return o
+}
+
+// SetClaims adds the claims to the authorize params
+func (o *AuthorizeParams) SetClaims(claims *string) {
+	o.Claims = claims
+}
+
 // WithClientID adds the clientID to the authorize params
 func (o *AuthorizeParams) WithClientID(clientID string) *AuthorizeParams {
 	o.SetClientID(clientID)
@@ -179,6 +208,39 @@ func (o *AuthorizeParams) SetClientID(clientID string) {
 	o.ClientID = clientID
 }
 
+// WithCodeChallenge adds the codeChallenge to the authorize params
+func (o *AuthorizeParams) WithCodeChallenge(codeChallenge *string) *AuthorizeParams {
+	o.SetCodeChallenge(codeChallenge)
+	return o
+}
+
+// SetCodeChallenge adds the codeChallenge to the authorize params
+func (o *AuthorizeParams) SetCodeChallenge(codeChallenge *string) {
+	o.CodeChallenge = codeChallenge
+}
+
+// WithCodeChallengeMethod adds the codeChallengeMethod to the authorize params
+func (o *AuthorizeParams) WithCodeChallengeMethod(codeChallengeMethod *string) *AuthorizeParams {
+	o.SetCodeChallengeMethod(codeChallengeMethod)
+	return o
+}
+
+// SetCodeChallengeMethod adds the codeChallengeMethod to the authorize params
+func (o *AuthorizeParams) SetCodeChallengeMethod(codeChallengeMethod *string) {
+	o.CodeChallengeMethod = codeChallengeMethod
+}
+
+// WithNonce adds the nonce to the authorize params
+func (o *AuthorizeParams) WithNonce(nonce *string) *AuthorizeParams {
+	o.SetNonce(nonce)
+	return o
+}
+
+// SetNonce adds the nonce to the authorize params
+func (o *AuthorizeParams) SetNonce(nonce *string) {
+	o.Nonce = nonce
+}
+
 // WithRedirectURI adds the redirectURI to the authorize params
 func (o *AuthorizeParams) WithRedirectURI(redirectURI *string) *AuthorizeParams {
 	o.SetRedirectURI(redirectURI)
@@ -188,6 +250,28 @@ func (o *AuthorizeParams) WithRedirectURI(redirectURI *string) *AuthorizeParams 
 // SetRedirectURI adds the redirectUri to the authorize params
 func (o *AuthorizeParams) SetRedirectURI(redirectURI *string) {
 	o.RedirectURI = redirectURI
+}
+
+// WithRequest adds the request to the authorize params
+func (o *AuthorizeParams) WithRequest(request *string) *AuthorizeParams {
+	o.SetRequest(request)
+	return o
+}
+
+// SetRequest adds the request to the authorize params
+func (o *AuthorizeParams) SetRequest(request *string) {
+	o.Request = request
+}
+
+// WithRequestURI adds the requestURI to the authorize params
+func (o *AuthorizeParams) WithRequestURI(requestURI *string) *AuthorizeParams {
+	o.SetRequestURI(requestURI)
+	return o
+}
+
+// SetRequestURI adds the requestUri to the authorize params
+func (o *AuthorizeParams) SetRequestURI(requestURI *string) {
+	o.RequestURI = requestURI
 }
 
 // WithResponseType adds the responseType to the authorize params
@@ -247,6 +331,23 @@ func (o *AuthorizeParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 		return err
 	}
 
+	if o.Claims != nil {
+
+		// query param claims
+		var qrClaims string
+
+		if o.Claims != nil {
+			qrClaims = *o.Claims
+		}
+		qClaims := qrClaims
+		if qClaims != "" {
+
+			if err := r.SetQueryParam("claims", qClaims); err != nil {
+				return err
+			}
+		}
+	}
+
 	// query param client_id
 	qrClientID := o.ClientID
 	qClientID := qrClientID
@@ -254,6 +355,57 @@ func (o *AuthorizeParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 
 		if err := r.SetQueryParam("client_id", qClientID); err != nil {
 			return err
+		}
+	}
+
+	if o.CodeChallenge != nil {
+
+		// query param code_challenge
+		var qrCodeChallenge string
+
+		if o.CodeChallenge != nil {
+			qrCodeChallenge = *o.CodeChallenge
+		}
+		qCodeChallenge := qrCodeChallenge
+		if qCodeChallenge != "" {
+
+			if err := r.SetQueryParam("code_challenge", qCodeChallenge); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.CodeChallengeMethod != nil {
+
+		// query param code_challenge_method
+		var qrCodeChallengeMethod string
+
+		if o.CodeChallengeMethod != nil {
+			qrCodeChallengeMethod = *o.CodeChallengeMethod
+		}
+		qCodeChallengeMethod := qrCodeChallengeMethod
+		if qCodeChallengeMethod != "" {
+
+			if err := r.SetQueryParam("code_challenge_method", qCodeChallengeMethod); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Nonce != nil {
+
+		// query param nonce
+		var qrNonce string
+
+		if o.Nonce != nil {
+			qrNonce = *o.Nonce
+		}
+		qNonce := qrNonce
+		if qNonce != "" {
+
+			if err := r.SetQueryParam("nonce", qNonce); err != nil {
+				return err
+			}
 		}
 	}
 
@@ -269,6 +421,40 @@ func (o *AuthorizeParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 		if qRedirectURI != "" {
 
 			if err := r.SetQueryParam("redirect_uri", qRedirectURI); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Request != nil {
+
+		// query param request
+		var qrRequest string
+
+		if o.Request != nil {
+			qrRequest = *o.Request
+		}
+		qRequest := qrRequest
+		if qRequest != "" {
+
+			if err := r.SetQueryParam("request", qRequest); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.RequestURI != nil {
+
+		// query param request_uri
+		var qrRequestURI string
+
+		if o.RequestURI != nil {
+			qrRequestURI = *o.RequestURI
+		}
+		qRequestURI := qrRequestURI
+		if qRequestURI != "" {
+
+			if err := r.SetQueryParam("request_uri", qRequestURI); err != nil {
 				return err
 			}
 		}

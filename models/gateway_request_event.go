@@ -18,14 +18,11 @@ import (
 // swagger:model GatewayRequestEvent
 type GatewayRequestEvent struct {
 
-	// API ID
+	// api id
 	APIID string `json:"api_id,omitempty"`
 
-	// forwarded for
-	ForwardedFor string `json:"x_forwarded_for,omitempty"`
-
-	// real IP
-	RealIP string `json:"x_real_ip,omitempty"`
+	// result
+	Result *PolicyValidationResult `json:"result,omitempty"`
 
 	// token
 	Token string `json:"token,omitempty"`
@@ -33,8 +30,11 @@ type GatewayRequestEvent struct {
 	// user agent
 	UserAgent string `json:"user_agent,omitempty"`
 
-	// result
-	Result *PolicyValidationResult `json:"result,omitempty"`
+	// x forwarded for
+	XForwardedFor string `json:"x_forwarded_for,omitempty"`
+
+	// x real ip
+	XRealIP string `json:"x_real_ip,omitempty"`
 }
 
 // Validate validates this gateway request event

@@ -19,10 +19,19 @@ import (
 // swagger:model IDPConfiguration
 type IDPConfiguration struct {
 
-	// If true stateful context is enabled for the IDP
+	// If set to `true`, the stateful context is enabled for the IDP
+	//
+	// The stateful authorization feature allows to store the user’s authentication data, including
+	// the login status, locally in ACP. With this feature enabled, ACP can cache the user’s data
+	// and issue multiple tokens during one user’s session without re-authenticating the user.
+	//
+	// With the stateful authorization, the efficiency of issuing tokens in ACP is significantly
+	// improved by minimizing latency and performance degradation related to repetitious calls to
+	// IDPs.
 	EnableStatefulCtx bool `json:"enable_stateful_ctx,omitempty"`
 
-	// How long the stateful context is valid
+	// The time that a user's authentication context is stored in the ACP's internal caching system
+	// before it's being deleted or refreshed.
 	// Format: duration
 	StatefulCtxDuration strfmt.Duration `json:"stateful_ctx_duration,omitempty"`
 }

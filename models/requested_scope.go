@@ -44,15 +44,15 @@ type RequestedScope struct {
 	// requested name
 	RequestedName string `json:"requested_name,omitempty"`
 
+	// service
+	Service *Service `json:"service,omitempty"`
+
 	// tenant id
 	// Example: default
 	TenantID string `json:"tenant_id,omitempty"`
 
 	// with service
 	WithService bool `json:"with_service,omitempty"`
-
-	// service
-	Service *Service `json:"service,omitempty"`
 }
 
 // Validate validates this requested scope

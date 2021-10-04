@@ -60,7 +60,7 @@ func NewGetScopeParamsWithHTTPClient(client *http.Client) *GetScopeParams {
 type GetScopeParams struct {
 
 	// Scp.
-	ScopeID string
+	Scp string
 
 	/* Tid.
 
@@ -134,15 +134,15 @@ func (o *GetScopeParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithScopeID adds the scp to the get scope params
-func (o *GetScopeParams) WithScopeID(scp string) *GetScopeParams {
-	o.SetScopeID(scp)
+// WithScp adds the scp to the get scope params
+func (o *GetScopeParams) WithScp(scp string) *GetScopeParams {
+	o.SetScp(scp)
 	return o
 }
 
-// SetScopeID adds the scp to the get scope params
-func (o *GetScopeParams) SetScopeID(scp string) {
-	o.ScopeID = scp
+// SetScp adds the scp to the get scope params
+func (o *GetScopeParams) SetScp(scp string) {
+	o.Scp = scp
 }
 
 // WithTid adds the tid to the get scope params
@@ -165,7 +165,7 @@ func (o *GetScopeParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regi
 	var res []error
 
 	// path param scp
-	if err := r.SetPathParam("scp", o.ScopeID); err != nil {
+	if err := r.SetPathParam("scp", o.Scp); err != nil {
 		return err
 	}
 

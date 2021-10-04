@@ -11,6 +11,7 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // AccountAccessConsentRequest account access consent request
@@ -19,10 +20,12 @@ import (
 type AccountAccessConsentRequest struct {
 
 	// data
-	Data *AccountAccessConsentRequestData `json:"Data,omitempty"`
+	// Required: true
+	Data *OBReadConsent1Data `json:"Data"`
 
 	// risk
-	Risk AccountAccessConsentRisk `json:"Risk,omitempty"`
+	// Required: true
+	Risk OBRisk2 `json:"Risk"`
 }
 
 // Validate validates this account access consent request
@@ -33,6 +36,10 @@ func (m *AccountAccessConsentRequest) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateRisk(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -40,8 +47,9 @@ func (m *AccountAccessConsentRequest) Validate(formats strfmt.Registry) error {
 }
 
 func (m *AccountAccessConsentRequest) validateData(formats strfmt.Registry) error {
-	if swag.IsZero(m.Data) { // not required
-		return nil
+
+	if err := validate.Required("Data", "body", m.Data); err != nil {
+		return err
 	}
 
 	if m.Data != nil {
@@ -51,6 +59,15 @@ func (m *AccountAccessConsentRequest) validateData(formats strfmt.Registry) erro
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *AccountAccessConsentRequest) validateRisk(formats strfmt.Registry) error {
+
+	if m.Risk == nil {
+		return errors.Required("Risk", "body", nil)
 	}
 
 	return nil

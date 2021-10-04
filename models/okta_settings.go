@@ -12,29 +12,30 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// OktaSettings okta settings
+// OktaSettings Okta IDP specific settings
 //
 // swagger:model OktaSettings
 type OktaSettings struct {
 
-	// if use_org_authorization_server is set to false, use this field to specify id of custom authorization server
-	// if not provided 'default' will be used
+	// ID of a custom authorization server
+	//
+	// If the `use_org_authorization_server` parameter is set to `false`, use this field to specify
+	// the ID of a custom authorization server.
+	//
+	// If not provided, the `default` value is used.
 	AuthorizationServerID string `json:"authorization_server_id,omitempty"`
 
-	// domain
+	// String represented domain of the Okta Authentication Service for your organization
 	// Example: dev-316761.okta.com
 	Domain string `json:"domain,omitempty"`
 
-	// flag if additional user data should be fetched from userinfo endpoint
+	// If enabled, users' data is collected by calling the `userinfo` endpoint.
 	GetUserInfo bool `json:"get_user_info,omitempty"`
 
-	// redirect url
-	RedirectURL string `json:"redirect_url,omitempty"`
-
-	// list of scopes that client will request
+	// An array of additional scopes your client requests
 	Scopes []string `json:"scopes"`
 
-	// if set to true, build-in authorization server will be used
+	// If set to `true`, the built-in authorization server is used
 	UseOrgAuthorizationServer bool `json:"use_org_authorization_server,omitempty"`
 }
 

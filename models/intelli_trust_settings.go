@@ -12,30 +12,30 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// IntelliTrustSettings intelli trust settings
+// IntelliTrustSettings IntelliTrust™ IDP specific settings
 //
 // swagger:model IntelliTrustSettings
 type IntelliTrustSettings struct {
 
-	// OAuth client identifier
+	// OAuth client application identifier from your Entrust Datacard® IntelliTrust™ Authentication
+	// Service general settings
 	// Example: client
 	ClientID string `json:"client_id,omitempty"`
 
-	// domain
+	// String represented domain of the Entrust Datacard® IntelliTrust™ Authentication Service for your organization
 	// Example: cloudentity-dev.us.trustedauth.com
 	Domain string `json:"domain,omitempty"`
 
-	// flag to fetch groups. IDP must release groups claim in userinfo endpoint
+	// If enabled, the groups a user belongs to are collected
+	//
+	// If you want to fetch groups from the IntelliTrust™ IDP, you need to add the `groups` claim
+	// for your application on the IDP side.
 	FetchGroups bool `json:"fetch_groups,omitempty"`
 
-	// flag to fetch additional user data from userinfo endpoint
+	// If enabled, users' data is collected by calling the `userinfo` IntelliTrust™ endpoint.
 	GetUserInfo bool `json:"get_user_info,omitempty"`
 
-	// OAuth redirect URL
-	// Example: https://example.com/callback
-	RedirectURL string `json:"redirect_url,omitempty"`
-
-	// OAuth scopes which client will be requesting
+	// An array of additional scopes your client requests
 	// Example: ["email","profile","openid"]
 	Scopes []string `json:"scopes"`
 }

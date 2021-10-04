@@ -12,18 +12,18 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// PolicyValidationFailure policy validation failure
+// PolicyValidationFailure Defines the failure that took place for a policy validation
 //
 // swagger:model PolicyValidationFailure
 type PolicyValidationFailure struct {
 
-	// details
+	// Details on the failed validation for a policy
 	Details string `json:"details,omitempty"`
 
-	// message
+	// Message displayed for failed validation
 	Message string `json:"message,omitempty"`
 
-	// validator
+	// String representation of the validator for which the policy failed validation
 	Validator string `json:"validator,omitempty"`
 }
 

@@ -65,7 +65,7 @@ type AcceptScopeGrantRequestParams struct {
 	AcceptScopeGrant *models.AcceptScopeGrant
 
 	// Login.
-	LoginID string
+	Login string
 
 	/* Tid.
 
@@ -150,15 +150,15 @@ func (o *AcceptScopeGrantRequestParams) SetAcceptScopeGrant(acceptScopeGrant *mo
 	o.AcceptScopeGrant = acceptScopeGrant
 }
 
-// WithLoginID adds the login to the accept scope grant request params
-func (o *AcceptScopeGrantRequestParams) WithLoginID(login string) *AcceptScopeGrantRequestParams {
-	o.SetLoginID(login)
+// WithLogin adds the login to the accept scope grant request params
+func (o *AcceptScopeGrantRequestParams) WithLogin(login string) *AcceptScopeGrantRequestParams {
+	o.SetLogin(login)
 	return o
 }
 
-// SetLoginID adds the login to the accept scope grant request params
-func (o *AcceptScopeGrantRequestParams) SetLoginID(login string) {
-	o.LoginID = login
+// SetLogin adds the login to the accept scope grant request params
+func (o *AcceptScopeGrantRequestParams) SetLogin(login string) {
+	o.Login = login
 }
 
 // WithTid adds the tid to the accept scope grant request params
@@ -186,7 +186,7 @@ func (o *AcceptScopeGrantRequestParams) WriteToRequest(r runtime.ClientRequest, 
 	}
 
 	// path param login
-	if err := r.SetPathParam("login", o.LoginID); err != nil {
+	if err := r.SetPathParam("login", o.Login); err != nil {
 		return err
 	}
 

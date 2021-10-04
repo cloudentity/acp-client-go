@@ -71,7 +71,7 @@ type UpdateAPIParams struct {
 
 	   API ID
 	*/
-	APIID string
+	API string
 
 	/* Tid.
 
@@ -156,15 +156,15 @@ func (o *UpdateAPIParams) SetAPIBody(aPIBody *models.UpdateAPIRequest) {
 	o.APIBody = aPIBody
 }
 
-// WithAPIID adds the api to the update API params
-func (o *UpdateAPIParams) WithAPIID(api string) *UpdateAPIParams {
-	o.SetAPIID(api)
+// WithAPI adds the api to the update API params
+func (o *UpdateAPIParams) WithAPI(api string) *UpdateAPIParams {
+	o.SetAPI(api)
 	return o
 }
 
-// SetAPIID adds the api to the update API params
-func (o *UpdateAPIParams) SetAPIID(api string) {
-	o.APIID = api
+// SetAPI adds the api to the update API params
+func (o *UpdateAPIParams) SetAPI(api string) {
+	o.API = api
 }
 
 // WithTid adds the tid to the update API params
@@ -192,7 +192,7 @@ func (o *UpdateAPIParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 	}
 
 	// path param api
-	if err := r.SetPathParam("api", o.APIID); err != nil {
+	if err := r.SetPathParam("api", o.API); err != nil {
 		return err
 	}
 

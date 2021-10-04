@@ -12,12 +12,12 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// StaticSettings static settings
+// StaticSettings Static IDP specific settings
 //
 // swagger:model StaticSettings
 type StaticSettings struct {
 
-	// display hint message
+	// If enabled, a hint message is displayed
 	Hint bool `json:"hint,omitempty"`
 }
 

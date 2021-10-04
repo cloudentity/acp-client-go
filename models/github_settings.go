@@ -12,23 +12,27 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// GithubSettings github settings
+// GithubSettings GitHub IDP specific settings
 //
 // swagger:model GithubSettings
 type GithubSettings struct {
 
-	// OAuth client identifier
+	// Client ID of your OAuth application registered in GitHub
+	//
+	// You can find your client ID in GitHub > Settings > Developer Settings > OAuth Apps > Your Application
 	// Example: client
 	ClientID string `json:"client_id,omitempty"`
 
-	// flag to fetch groups
+	// If enabled, the groups a user belongs to are collected
+	//
+	// If enabled, the `groups` attribute from the authentication context gets populated with the
+	// user's groups and takes from of `organization_id.group name`
 	FetchGroups bool `json:"fetch_groups,omitempty"`
 
-	// OAuth redirect URL
-	// Example: https://example.com/callback
-	RedirectURL string `json:"redirect_url,omitempty"`
-
-	// OAuth scopes which client will be requesting
+	// An array of allowed OAuth scopes which the client requests
+	//
+	// The following scopes can be configured for GitHub application:
+	// `phone`, `email`, `openid`, `profile`.
 	// Example: ["email","profile","openid"]
 	Scopes []string `json:"scopes"`
 }

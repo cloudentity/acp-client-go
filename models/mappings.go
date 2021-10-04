@@ -14,13 +14,12 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// Mappings Optional list of mappings.
+// Mappings An array of mappings
 //
-// Mappings allows to unify attributes from external IDPs and propage them to
-// the identity context to be used later on. In case of OIDC authentication method
-// when mapping is not provided, default mapping is used which copies id and access
-// tokens attributes to the identity context. In case of static and custom authentication
-// methods if mapping is not provided all attributes are copied to the identity context.
+// Mapping is used to unify attributes from external IDPs and propagate them to the authentication
+// context to be used later on. By mapping your authentication context attributes, you unify attributes from
+// all IDPs that your users authenticate with. It allows you to use a set of unified attributes
+// throughout ACP for multiple purposes.
 //
 // swagger:model Mappings
 type Mappings []*Mapping

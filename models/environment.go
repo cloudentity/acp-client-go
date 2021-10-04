@@ -7,7 +7,9 @@ package models
 
 import (
 	"context"
+	"strconv"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -17,50 +19,149 @@ import (
 // swagger:model Environment
 type Environment struct {
 
+	// enable admin workspace access
+	AdminWorkspaceAccess bool `json:"admin_workspace_access,omitempty"`
+
+	// enable ciba (system)
+	Ciba bool `json:"ciba,omitempty"`
+
+	// store client secrets as a one way hash (tenant)
+	ClientSecretsStoredAsOneWayHash bool `json:"client_secrets_stored_as_one_way_hash,omitempty"`
+
 	// commit
 	Commit string `json:"commit,omitempty"`
 
-	// demo app
+	// enable demo app endpoints (system)
 	DemoApp bool `json:"demo_app,omitempty"`
 
-	// dev mode
+	// realod templates and adds local redirects urls to frontend apps (system)
 	DevMode bool `json:"dev_mode,omitempty"`
 
 	// display workspace wizard
 	DisplayWorkspaceWizard bool `json:"display_workspace_wizard,omitempty"`
 
-	// integration endpoints
+	// enable external datastore idp (system)
+	ExternalDatastore bool `json:"external_datastore,omitempty"`
+
+	// when enabled and the display_workspace_wizard feature flag is set to true, a demo workspace with a set of preconfigured IDPs is created and no welcome screen is displayed (tenant)
+	InitializeDemoWorkspace bool `json:"initialize_demo_workspace,omitempty"`
+
+	// enable global import and export configuration endpoints (system)
 	IntegrationEndpoints bool `json:"integration_endpoints,omitempty"`
 
-	// j w t bearer grant type
-	JWTBearerGrantType bool `json:"jwt_bearer_grant_type,omitempty"`
+	// enable login with select_account param (tenant)
+	LoginWithSelectAccount bool `json:"login_with_select_account,omitempty"`
 
-	// pyron on prem
+	// enable mfa (tenant)
+	Mfa bool `json:"mfa,omitempty"`
+
+	// enable when ACP is running on-prem and Pyron is used as a gateway (tenant)
 	PyronOnPrem bool `json:"pyron_on_prem,omitempty"`
 
-	// script transformer
+	// enable quick access functionality on UI (system)
+	QuickAccess bool `json:"quick_access,omitempty"`
+
+	// script runtimes
+	ScriptRuntimes []*ScriptRuntime `json:"script_runtimes"`
+
+	// enable the javascript transformer (tenant)
 	ScriptTransformer bool `json:"script_transformer,omitempty"`
 
-	// swagger UI
+	// enable custom scripts (tenant)
+	Scripts bool `json:"scripts,omitempty"`
+
+	// enable swagger ui (system)
 	SwaggerUI bool `json:"swagger_ui,omitempty"`
 
-	// system clients management
+	// enable system client management APIs (system)
 	SystemClientsManagement bool `json:"system_clients_management,omitempty"`
 
-	// system openbanking consents management
-	SystemOpenbankingConsentsManagement bool `json:"system_openbanking_consents_management,omitempty"`
+	// system flags
+	SystemFlags []string `json:"system_flags"`
+
+	// enable admin workspace access
+	SystemWorkspaceAccess bool `json:"system_workspace_access,omitempty"`
+
+	// tenant flags
+	TenantFlags []string `json:"tenant_flags"`
+
+	// enable trust anchor integration (system)
+	TrustAnchorIntegration bool `json:"trust_anchor_integration,omitempty"`
 
 	// version
 	Version string `json:"version,omitempty"`
+
+	// enable visualizer (tenant)
+	Visualizer bool `json:"visualizer,omitempty"`
 }
 
 // Validate validates this environment
 func (m *Environment) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateScriptRuntimes(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 
-// ContextValidate validates this environment based on context it is used
+func (m *Environment) validateScriptRuntimes(formats strfmt.Registry) error {
+	if swag.IsZero(m.ScriptRuntimes) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.ScriptRuntimes); i++ {
+		if swag.IsZero(m.ScriptRuntimes[i]) { // not required
+			continue
+		}
+
+		if m.ScriptRuntimes[i] != nil {
+			if err := m.ScriptRuntimes[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("script_runtimes" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this environment based on the context it is used
 func (m *Environment) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateScriptRuntimes(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *Environment) contextValidateScriptRuntimes(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.ScriptRuntimes); i++ {
+
+		if m.ScriptRuntimes[i] != nil {
+			if err := m.ScriptRuntimes[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("script_runtimes" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 

@@ -23,17 +23,17 @@ type RecentActivity struct {
 	// Format: date-time
 	Date strfmt.DateTime `json:"date,omitempty"`
 
-	// ID
+	// id
 	ID string `json:"id,omitempty"`
-
-	// server ID
-	ServerID string `json:"server_id,omitempty"`
-
-	// tenant ID
-	TenantID string `json:"tenant_id,omitempty"`
 
 	// payload
 	Payload *RecentActivityPayload `json:"payload,omitempty"`
+
+	// server id
+	ServerID string `json:"server_id,omitempty"`
+
+	// tenant id
+	TenantID string `json:"tenant_id,omitempty"`
 }
 
 // Validate validates this recent activity
