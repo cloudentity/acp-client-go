@@ -14,12 +14,15 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// StaticCredentials static credentials
+// StaticCredentials Static IDP specific credentials
 //
 // swagger:model StaticCredentials
 type StaticCredentials struct {
 
-	// users
+	// An array of users, their credentials and authentication context.
+	//
+	// The `users` parameter accepts a JSON of user data. You can add multiple users, define their
+	// usernames and passwords. You can also enrich their authentication context.
 	Users []*StaticUser `json:"users"`
 }
 

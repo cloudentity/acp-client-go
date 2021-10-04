@@ -32,19 +32,13 @@ type ClientOption func(*runtime.ClientOperation)
 type ClientService interface {
 	Authorize(params *AuthorizeParams, opts ...ClientOption) error
 
+	BackchannelAuthentication(params *BackchannelAuthenticationParams, opts ...ClientOption) (*BackchannelAuthenticationOK, error)
+
 	DynamicClientRegistration(params *DynamicClientRegistrationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationCreated, error)
 
 	DynamicClientRegistrationDeleteClient(params *DynamicClientRegistrationDeleteClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationDeleteClientNoContent, error)
 
 	DynamicClientRegistrationGetClient(params *DynamicClientRegistrationGetClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationGetClientOK, error)
-
-	DynamicClientRegistrationOpenbankingUK(params *DynamicClientRegistrationOpenbankingUKParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationOpenbankingUKCreated, error)
-
-	DynamicClientRegistrationOpenbankingUKDeleteClient(params *DynamicClientRegistrationOpenbankingUKDeleteClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationOpenbankingUKDeleteClientNoContent, error)
-
-	DynamicClientRegistrationOpenbankingUKGetClient(params *DynamicClientRegistrationOpenbankingUKGetClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationOpenbankingUKGetClientOK, error)
-
-	DynamicClientRegistrationOpenbankingUKUpdateClient(params *DynamicClientRegistrationOpenbankingUKUpdateClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationOpenbankingUKUpdateClientOK, error)
 
 	DynamicClientRegistrationUpdateClient(params *DynamicClientRegistrationUpdateClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationUpdateClientOK, error)
 
@@ -97,6 +91,46 @@ func (a *Client) Authorize(params *AuthorizeParams, opts ...ClientOption) error 
 		return err
 	}
 	return nil
+}
+
+/*
+  BackchannelAuthentication opens ID connect client initiated backchannel authentication flow endpoint
+
+  Client-Initiated Backchannel Authentication defines an authentication request that is requested directly from the Client to the OpenID Provider without going through the user's browser.
+*/
+func (a *Client) BackchannelAuthentication(params *BackchannelAuthenticationParams, opts ...ClientOption) (*BackchannelAuthenticationOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBackchannelAuthenticationParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "backchannelAuthentication",
+		Method:             "POST",
+		PathPattern:        "/{tid}/{aid}/backchannel/authentication",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BackchannelAuthenticationReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*BackchannelAuthenticationOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for backchannelAuthentication: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
@@ -213,177 +247,6 @@ func (a *Client) DynamicClientRegistrationGetClient(params *DynamicClientRegistr
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for dynamicClientRegistrationGetClient: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-  DynamicClientRegistrationOpenbankingUK openbankings u k compliant dynamic client registration endpoint
-
-  This endpoint can be used to dynamically register new clients.
-Request body must be signed.
-Please take a look at reference to see what fields are required:
-https://openbankinguk.github.io/dcr-docs-pub/v3.2/dynamic-client-registration.html
-Consider adding client credentials grant type to a client to be able to modify it later on.
-*/
-func (a *Client) DynamicClientRegistrationOpenbankingUK(params *DynamicClientRegistrationOpenbankingUKParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationOpenbankingUKCreated, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewDynamicClientRegistrationOpenbankingUKParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "dynamicClientRegistrationOpenbankingUK",
-		Method:             "POST",
-		PathPattern:        "/{tid}/{aid}/openbankinguk/dcr/v3.2/register",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/jose"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &DynamicClientRegistrationOpenbankingUKReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*DynamicClientRegistrationOpenbankingUKCreated)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for dynamicClientRegistrationOpenbankingUK: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-  DynamicClientRegistrationOpenbankingUKDeleteClient openbankings u k compliant dynamic delete client endpoint
-
-  This endpoint can be used to delete registered client details.
-Use client credentials flow to authorize to this api.
-*/
-func (a *Client) DynamicClientRegistrationOpenbankingUKDeleteClient(params *DynamicClientRegistrationOpenbankingUKDeleteClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationOpenbankingUKDeleteClientNoContent, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewDynamicClientRegistrationOpenbankingUKDeleteClientParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "dynamicClientRegistrationOpenbankingUKDeleteClient",
-		Method:             "DELETE",
-		PathPattern:        "/{tid}/{aid}/openbankinguk/dcr/v3.2/register/{cid}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &DynamicClientRegistrationOpenbankingUKDeleteClientReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*DynamicClientRegistrationOpenbankingUKDeleteClientNoContent)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for dynamicClientRegistrationOpenbankingUKDeleteClient: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-  DynamicClientRegistrationOpenbankingUKGetClient openbankings u k compliant dynamic get client endpoint
-
-  This endpoint can be used to get registered client details.
-Use client credentials flow to authorize to this api.
-*/
-func (a *Client) DynamicClientRegistrationOpenbankingUKGetClient(params *DynamicClientRegistrationOpenbankingUKGetClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationOpenbankingUKGetClientOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewDynamicClientRegistrationOpenbankingUKGetClientParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "dynamicClientRegistrationOpenbankingUKGetClient",
-		Method:             "GET",
-		PathPattern:        "/{tid}/{aid}/openbankinguk/dcr/v3.2/register/{cid}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &DynamicClientRegistrationOpenbankingUKGetClientReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*DynamicClientRegistrationOpenbankingUKGetClientOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for dynamicClientRegistrationOpenbankingUKGetClient: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-  DynamicClientRegistrationOpenbankingUKUpdateClient openbankings u k compliant dynamic update client endpoint
-
-  This endpoint can be used to update registered client details.
-Use client credentials flow to authorize to this api.
-*/
-func (a *Client) DynamicClientRegistrationOpenbankingUKUpdateClient(params *DynamicClientRegistrationOpenbankingUKUpdateClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationOpenbankingUKUpdateClientOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewDynamicClientRegistrationOpenbankingUKUpdateClientParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "dynamicClientRegistrationOpenbankingUKUpdateClient",
-		Method:             "PUT",
-		PathPattern:        "/{tid}/{aid}/openbankinguk/dcr/v3.2/register/{cid}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/jose"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &DynamicClientRegistrationOpenbankingUKUpdateClientReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*DynamicClientRegistrationOpenbankingUKUpdateClientOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for dynamicClientRegistrationOpenbankingUKUpdateClient: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

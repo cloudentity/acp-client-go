@@ -52,6 +52,14 @@ type ClientService interface {
 
 	RevokeClientAccess(params *RevokeClientAccessParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeClientAccessNoContent, error)
 
+	RevokeRotatedClientSecrets(params *RevokeRotatedClientSecretsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeRotatedClientSecretsNoContent, error)
+
+	RevokeRotatedClientSecretsAsDeveloper(params *RevokeRotatedClientSecretsAsDeveloperParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeRotatedClientSecretsAsDeveloperNoContent, error)
+
+	RotateClientSecret(params *RotateClientSecretParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RotateClientSecretOK, error)
+
+	RotateClientSecretAsDeveloper(params *RotateClientSecretAsDeveloperParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RotateClientSecretAsDeveloperOK, error)
+
 	UpdateClient(params *UpdateClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateClientOK, error)
 
 	UpdateClientForDeveloper(params *UpdateClientForDeveloperParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateClientForDeveloperOK, error)
@@ -528,6 +536,174 @@ func (a *Client) RevokeClientAccess(params *RevokeClientAccessParams, authInfo r
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for revokeClientAccess: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  RevokeRotatedClientSecrets revokes rotated secrets
+
+  Revoke all rotated client's secrets.
+*/
+func (a *Client) RevokeRotatedClientSecrets(params *RevokeRotatedClientSecretsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeRotatedClientSecretsNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRevokeRotatedClientSecretsParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "revokeRotatedClientSecrets",
+		Method:             "POST",
+		PathPattern:        "/api/admin/{tid}/clients/{cid}/revokeRotatedSecrets",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RevokeRotatedClientSecretsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*RevokeRotatedClientSecretsNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for revokeRotatedClientSecrets: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  RevokeRotatedClientSecretsAsDeveloper revokes rotated secrets
+
+  Revoke all rotated client's secrets.
+*/
+func (a *Client) RevokeRotatedClientSecretsAsDeveloper(params *RevokeRotatedClientSecretsAsDeveloperParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeRotatedClientSecretsAsDeveloperNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRevokeRotatedClientSecretsAsDeveloperParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "revokeRotatedClientSecretsAsDeveloper",
+		Method:             "POST",
+		PathPattern:        "/api/developer/{tid}/{aid}/clients/{cid}/revokeRotatedSecrets",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RevokeRotatedClientSecretsAsDeveloperReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*RevokeRotatedClientSecretsAsDeveloperNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for revokeRotatedClientSecretsAsDeveloper: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  RotateClientSecret rotates client s secret
+
+  Generate a new client secret, move old secret to rotated secrets list and return
+new client secret as a response. The max number of client rotated secrets is 2.
+The rotated secrets over the limit are dropped.
+*/
+func (a *Client) RotateClientSecret(params *RotateClientSecretParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RotateClientSecretOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRotateClientSecretParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "rotateClientSecret",
+		Method:             "POST",
+		PathPattern:        "/api/admin/{tid}/clients/{cid}/rotateSecret",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RotateClientSecretReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*RotateClientSecretOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for rotateClientSecret: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  RotateClientSecretAsDeveloper rotates client s secret
+
+  Generate a new client secret, move old secret to rotated secrets list and return
+new client secret as a response. The max number of client rotated secrets is 2.
+The rotated secrets over the limit are dropped.
+*/
+func (a *Client) RotateClientSecretAsDeveloper(params *RotateClientSecretAsDeveloperParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RotateClientSecretAsDeveloperOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRotateClientSecretAsDeveloperParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "rotateClientSecretAsDeveloper",
+		Method:             "POST",
+		PathPattern:        "/api/developer/{tid}/{aid}/clients/{cid}/rotateSecret",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RotateClientSecretAsDeveloperReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*RotateClientSecretAsDeveloperOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for rotateClientSecretAsDeveloper: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

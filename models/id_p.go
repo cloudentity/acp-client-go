@@ -18,32 +18,17 @@ import (
 // swagger:model IDP
 type IDP struct {
 
-	// client ID
-	ClientID string `json:"client_id,omitempty"`
-
-	// disabled
-	Disabled bool `json:"disabled,omitempty"`
-
-	// ID
-	ID string `json:"id,omitempty"`
-
-	// method
-	Method string `json:"method,omitempty"`
-
-	// name
-	Name string `json:"name,omitempty"`
-
-	// server ID
-	ServerID string `json:"authorization_server_id,omitempty"`
-
-	// static a m r
-	StaticAMR []string `json:"static_amr"`
-
-	// tenant ID
-	TenantID string `json:"tenant_id,omitempty"`
-
 	// attributes
 	Attributes Attributes `json:"attributes,omitempty"`
+
+	// ID of the authorization server (workspace) to which the IDP is connected
+	AuthorizationServerID string `json:"authorization_server_id,omitempty"`
+
+	// Client application ID
+	//
+	// It serves as a reference to a client application that is created in the System authorization
+	// server (workspace), when a custom login page is created.
+	ClientID string `json:"client_id,omitempty"`
 
 	// config
 	Config *IDPConfiguration `json:"config,omitempty"`
@@ -51,11 +36,48 @@ type IDP struct {
 	// credentials
 	Credentials *IDPCredentials `json:"credentials,omitempty"`
 
+	// If set to `true`, the IDP is disabled
+	//
+	// When an IDP is disabled, it is not available for the users to be used. It is also not
+	// displayed on the login page.
+	Disabled bool `json:"disabled,omitempty"`
+
+	// discovery settings
+	DiscoverySettings *IDPDiscoverySettings `json:"discovery_settings,omitempty"`
+
+	// Unique ID of your identity provider
+	//
+	// If not provided, a random ID is generated.
+	ID string `json:"id,omitempty"`
+
 	// mappings
 	Mappings Mappings `json:"mappings,omitempty"`
 
+	// Defines the type of an IDP
+	//
+	// ACP is designed to make it possible for you to bring any of your own IDPs and integrate it
+	// with ACP as it delivers enterprise connectors for major Cloud IDPs and a possibility for
+	// custom integration DKS for home-built solutions. You can also use built-in Sandbox IDP, which
+	// is a static IDP, to create an IDP for testing purposes.
+	Method string `json:"method,omitempty"`
+
+	// Display name of your IDP
+	Name string `json:"name,omitempty"`
+
 	// settings
 	Settings *IDPSettings `json:"settings,omitempty"`
+
+	// Authentication method reference
+	//
+	// An array of case sensitive strings for authentication methods that are used in the user
+	// authentication.
+	//
+	// For example, an IDP may require the user to provide a biometric authentication using facial
+	// recognition. For that, the value of the authentication method reference is `face`.
+	StaticAmr []string `json:"static_amr"`
+
+	// ID of the tenant where an IDP is connected
+	TenantID string `json:"tenant_id,omitempty"`
 
 	// transformer
 	Transformer *ScriptTransformer `json:"transformer,omitempty"`
@@ -74,6 +96,10 @@ func (m *IDP) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateCredentials(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDiscoverySettings(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -136,6 +162,23 @@ func (m *IDP) validateCredentials(formats strfmt.Registry) error {
 		if err := m.Credentials.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("credentials")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IDP) validateDiscoverySettings(formats strfmt.Registry) error {
+	if swag.IsZero(m.DiscoverySettings) { // not required
+		return nil
+	}
+
+	if m.DiscoverySettings != nil {
+		if err := m.DiscoverySettings.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("discovery_settings")
 			}
 			return err
 		}
@@ -209,6 +252,10 @@ func (m *IDP) ContextValidate(ctx context.Context, formats strfmt.Registry) erro
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateDiscoverySettings(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateMappings(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -259,6 +306,20 @@ func (m *IDP) contextValidateCredentials(ctx context.Context, formats strfmt.Reg
 		if err := m.Credentials.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("credentials")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IDP) contextValidateDiscoverySettings(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.DiscoverySettings != nil {
+		if err := m.DiscoverySettings.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("discovery_settings")
 			}
 			return err
 		}

@@ -30,8 +30,14 @@ type IDPCredentials struct {
 	// custom
 	Custom CustomCredentials `json:"custom,omitempty"`
 
+	// external
+	External *ExternalCredentials `json:"external,omitempty"`
+
 	// github
 	Github *GithubCredentials `json:"github,omitempty"`
+
+	// google
+	Google *GoogleCredentials `json:"google,omitempty"`
 
 	// intelli trust
 	IntelliTrust *IntelliTrustCredentials `json:"intelli_trust,omitempty"`
@@ -65,7 +71,15 @@ func (m *IDPCredentials) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateExternal(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateGithub(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateGoogle(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -146,6 +160,23 @@ func (m *IDPCredentials) validateCognito(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *IDPCredentials) validateExternal(formats strfmt.Registry) error {
+	if swag.IsZero(m.External) { // not required
+		return nil
+	}
+
+	if m.External != nil {
+		if err := m.External.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("external")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *IDPCredentials) validateGithub(formats strfmt.Registry) error {
 	if swag.IsZero(m.Github) { // not required
 		return nil
@@ -155,6 +186,23 @@ func (m *IDPCredentials) validateGithub(formats strfmt.Registry) error {
 		if err := m.Github.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("github")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IDPCredentials) validateGoogle(formats strfmt.Registry) error {
+	if swag.IsZero(m.Google) { // not required
+		return nil
+	}
+
+	if m.Google != nil {
+		if err := m.Google.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("google")
 			}
 			return err
 		}
@@ -264,7 +312,15 @@ func (m *IDPCredentials) ContextValidate(ctx context.Context, formats strfmt.Reg
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateExternal(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateGithub(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateGoogle(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -336,12 +392,40 @@ func (m *IDPCredentials) contextValidateCognito(ctx context.Context, formats str
 	return nil
 }
 
+func (m *IDPCredentials) contextValidateExternal(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.External != nil {
+		if err := m.External.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("external")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *IDPCredentials) contextValidateGithub(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Github != nil {
 		if err := m.Github.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("github")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IDPCredentials) contextValidateGoogle(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Google != nil {
+		if err := m.Google.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("google")
 			}
 			return err
 		}

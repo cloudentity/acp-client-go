@@ -62,10 +62,10 @@ func NewRejectLoginRequestParamsWithHTTPClient(client *http.Client) *RejectLogin
 type RejectLoginRequestParams struct {
 
 	// RejectLogin.
-	RejectLogin *models.RejectLogin
+	RejectLogin *models.RejectSession
 
 	// Login.
-	LoginID string
+	Login string
 
 	/* Tid.
 
@@ -140,25 +140,25 @@ func (o *RejectLoginRequestParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRejectLogin adds the rejectLogin to the reject login request params
-func (o *RejectLoginRequestParams) WithRejectLogin(rejectLogin *models.RejectLogin) *RejectLoginRequestParams {
+func (o *RejectLoginRequestParams) WithRejectLogin(rejectLogin *models.RejectSession) *RejectLoginRequestParams {
 	o.SetRejectLogin(rejectLogin)
 	return o
 }
 
 // SetRejectLogin adds the rejectLogin to the reject login request params
-func (o *RejectLoginRequestParams) SetRejectLogin(rejectLogin *models.RejectLogin) {
+func (o *RejectLoginRequestParams) SetRejectLogin(rejectLogin *models.RejectSession) {
 	o.RejectLogin = rejectLogin
 }
 
-// WithLoginID adds the login to the reject login request params
-func (o *RejectLoginRequestParams) WithLoginID(login string) *RejectLoginRequestParams {
-	o.SetLoginID(login)
+// WithLogin adds the login to the reject login request params
+func (o *RejectLoginRequestParams) WithLogin(login string) *RejectLoginRequestParams {
+	o.SetLogin(login)
 	return o
 }
 
-// SetLoginID adds the login to the reject login request params
-func (o *RejectLoginRequestParams) SetLoginID(login string) {
-	o.LoginID = login
+// SetLogin adds the login to the reject login request params
+func (o *RejectLoginRequestParams) SetLogin(login string) {
+	o.Login = login
 }
 
 // WithTid adds the tid to the reject login request params
@@ -186,7 +186,7 @@ func (o *RejectLoginRequestParams) WriteToRequest(r runtime.ClientRequest, reg s
 	}
 
 	// path param login
-	if err := r.SetPathParam("login", o.LoginID); err != nil {
+	if err := r.SetPathParam("login", o.Login); err != nil {
 		return err
 	}
 

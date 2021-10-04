@@ -12,12 +12,12 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// AzureB2CCredentials azure b2 c credentials
+// AzureB2CCredentials Azure IDP B2C specific credentials
 //
 // swagger:model AzureB2CCredentials
 type AzureB2CCredentials struct {
 
-	// client secret
+	// Application secret from your Microsoft Azure application settings
 	ClientSecret string `json:"client_secret,omitempty"`
 }
 

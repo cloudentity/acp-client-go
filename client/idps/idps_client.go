@@ -38,7 +38,11 @@ type ClientService interface {
 
 	CreateCustomIDP(params *CreateCustomIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateCustomIDPCreated, error)
 
+	CreateExternalIDP(params *CreateExternalIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateExternalIDPCreated, error)
+
 	CreateGithubIDP(params *CreateGithubIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateGithubIDPCreated, error)
+
+	CreateGoogleIDP(params *CreateGoogleIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateGoogleIDPCreated, error)
 
 	CreateIntelliTrustIDP(params *CreateIntelliTrustIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateIntelliTrustIDPCreated, error)
 
@@ -60,7 +64,15 @@ type ClientService interface {
 
 	GetCustomIDP(params *GetCustomIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCustomIDPOK, error)
 
+	GetExternalIDP(params *GetExternalIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetExternalIDPOK, error)
+
+	GetGithubEmbeddedIDP(params *GetGithubEmbeddedIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetGithubEmbeddedIDPOK, error)
+
 	GetGithubIDP(params *GetGithubIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetGithubIDPOK, error)
+
+	GetGoogleEmbeddedIDP(params *GetGoogleEmbeddedIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetGoogleEmbeddedIDPOK, error)
+
+	GetGoogleIDP(params *GetGoogleIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetGoogleIDPOK, error)
 
 	GetIntelliTrustIDP(params *GetIntelliTrustIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetIntelliTrustIDPOK, error)
 
@@ -82,7 +94,15 @@ type ClientService interface {
 
 	UpdateCustomIDP(params *UpdateCustomIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateCustomIDPOK, error)
 
+	UpdateExternalIDP(params *UpdateExternalIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateExternalIDPOK, error)
+
+	UpdateGithubEmbeddedIDP(params *UpdateGithubEmbeddedIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateGithubEmbeddedIDPOK, error)
+
 	UpdateGithubIDP(params *UpdateGithubIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateGithubIDPOK, error)
+
+	UpdateGoogleEmbeddedIDP(params *UpdateGoogleEmbeddedIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateGoogleEmbeddedIDPOK, error)
+
+	UpdateGoogleIDP(params *UpdateGoogleIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateGoogleIDPOK, error)
 
 	UpdateIntelliTrustIDP(params *UpdateIntelliTrustIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateIntelliTrustIDPOK, error)
 
@@ -262,6 +282,47 @@ func (a *Client) CreateCustomIDP(params *CreateCustomIDPParams, authInfo runtime
 }
 
 /*
+  CreateExternalIDP creates external ID p
+
+  Create External IDP.
+*/
+func (a *Client) CreateExternalIDP(params *CreateExternalIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateExternalIDPCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateExternalIDPParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "createExternalIDP",
+		Method:             "POST",
+		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/external",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateExternalIDPReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CreateExternalIDPCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for createExternalIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
   CreateGithubIDP creates github ID p
 
   Create Github IDP.
@@ -299,6 +360,47 @@ func (a *Client) CreateGithubIDP(params *CreateGithubIDPParams, authInfo runtime
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for createGithubIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  CreateGoogleIDP creates google ID p
+
+  Create Google IDP.
+*/
+func (a *Client) CreateGoogleIDP(params *CreateGoogleIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateGoogleIDPCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateGoogleIDPParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "createGoogleIDP",
+		Method:             "POST",
+		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/google",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateGoogleIDPReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CreateGoogleIDPCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for createGoogleIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -509,6 +611,12 @@ func (a *Client) CreateStaticIDP(params *CreateStaticIDPParams, authInfo runtime
 
 /*
   DeleteIDP deletes ID p
+
+  Deletes an IDP of your choice
+
+Deleting an IDP is permament. Deleted IDPs cannot be restored.
+
+It is impossible to delete an IDP with which you are currently logged in.
 */
 func (a *Client) DeleteIDP(params *DeleteIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteIDPNoContent, error) {
 	// TODO: Validate the params before sending
@@ -711,6 +819,88 @@ func (a *Client) GetCustomIDP(params *GetCustomIDPParams, authInfo runtime.Clien
 }
 
 /*
+  GetExternalIDP gets external ID p
+
+  Get External IDP.
+*/
+func (a *Client) GetExternalIDP(params *GetExternalIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetExternalIDPOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetExternalIDPParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getExternalIDP",
+		Method:             "GET",
+		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/external/{iid}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetExternalIDPReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetExternalIDPOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getExternalIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetGithubEmbeddedIDP gets github embedded ID p
+
+  Get GithubEmbedded IDP.
+*/
+func (a *Client) GetGithubEmbeddedIDP(params *GetGithubEmbeddedIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetGithubEmbeddedIDPOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetGithubEmbeddedIDPParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getGithubEmbeddedIDP",
+		Method:             "GET",
+		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/github_embedded/{iid}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetGithubEmbeddedIDPReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetGithubEmbeddedIDPOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getGithubEmbeddedIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
   GetGithubIDP gets github ID p
 
   Get Github IDP.
@@ -748,6 +938,88 @@ func (a *Client) GetGithubIDP(params *GetGithubIDPParams, authInfo runtime.Clien
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for getGithubIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetGoogleEmbeddedIDP gets google embedded ID p
+
+  Get GoogleEmbedded IDP.
+*/
+func (a *Client) GetGoogleEmbeddedIDP(params *GetGoogleEmbeddedIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetGoogleEmbeddedIDPOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetGoogleEmbeddedIDPParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getGoogleEmbeddedIDP",
+		Method:             "GET",
+		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/google_embedded/{iid}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetGoogleEmbeddedIDPReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetGoogleEmbeddedIDPOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getGoogleEmbeddedIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetGoogleIDP gets google ID p
+
+  Get Google IDP.
+*/
+func (a *Client) GetGoogleIDP(params *GetGoogleIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetGoogleIDPOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetGoogleIDPParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getGoogleIDP",
+		Method:             "GET",
+		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/google/{iid}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetGoogleIDPReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetGoogleIDPOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getGoogleIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -957,7 +1229,7 @@ func (a *Client) GetStaticIDP(params *GetStaticIDPParams, authInfo runtime.Clien
 }
 
 /*
-  ListIDPs List IDPs
+  ListIDPs Returns a list of IDPs connected to a given authorization server (workspace)
 */
 func (a *Client) ListIDPs(params *ListIDPsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListIDPsOK, error) {
 	// TODO: Validate the params before sending
@@ -1160,6 +1432,88 @@ func (a *Client) UpdateCustomIDP(params *UpdateCustomIDPParams, authInfo runtime
 }
 
 /*
+  UpdateExternalIDP updates external ID p
+
+  Update External IDP.
+*/
+func (a *Client) UpdateExternalIDP(params *UpdateExternalIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateExternalIDPOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateExternalIDPParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "updateExternalIDP",
+		Method:             "PUT",
+		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/external/{iid}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateExternalIDPReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*UpdateExternalIDPOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for updateExternalIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  UpdateGithubEmbeddedIDP updates github embedded ID p
+
+  Update GithubEmbedded IDP.
+*/
+func (a *Client) UpdateGithubEmbeddedIDP(params *UpdateGithubEmbeddedIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateGithubEmbeddedIDPOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateGithubEmbeddedIDPParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "updateGithubEmbeddedIDP",
+		Method:             "PUT",
+		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/github_embedded/{iid}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateGithubEmbeddedIDPReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*UpdateGithubEmbeddedIDPOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for updateGithubEmbeddedIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
   UpdateGithubIDP updates github ID p
 
   Update Github IDP.
@@ -1197,6 +1551,88 @@ func (a *Client) UpdateGithubIDP(params *UpdateGithubIDPParams, authInfo runtime
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for updateGithubIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  UpdateGoogleEmbeddedIDP updates google embedded ID p
+
+  Update GoogleEmbedded IDP.
+*/
+func (a *Client) UpdateGoogleEmbeddedIDP(params *UpdateGoogleEmbeddedIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateGoogleEmbeddedIDPOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateGoogleEmbeddedIDPParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "updateGoogleEmbeddedIDP",
+		Method:             "PUT",
+		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/google_embedded/{iid}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateGoogleEmbeddedIDPReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*UpdateGoogleEmbeddedIDPOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for updateGoogleEmbeddedIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  UpdateGoogleIDP updates google ID p
+
+  Update Google IDP.
+*/
+func (a *Client) UpdateGoogleIDP(params *UpdateGoogleIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateGoogleIDPOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateGoogleIDPParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "updateGoogleIDP",
+		Method:             "PUT",
+		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/google/{iid}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateGoogleIDPReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*UpdateGoogleIDPOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for updateGoogleIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

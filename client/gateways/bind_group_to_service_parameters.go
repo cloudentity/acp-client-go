@@ -65,7 +65,7 @@ type BindGroupToServiceParams struct {
 	BindGroupToServiceRequest *models.BindGroupToServiceRequest
 
 	// APIGroup.
-	APIGroupID string
+	APIGroup string
 
 	// Gw.
 	Gw string
@@ -153,15 +153,15 @@ func (o *BindGroupToServiceParams) SetBindGroupToServiceRequest(bindGroupToServi
 	o.BindGroupToServiceRequest = bindGroupToServiceRequest
 }
 
-// WithAPIGroupID adds the aPIGroup to the bind group to service params
-func (o *BindGroupToServiceParams) WithAPIGroupID(aPIGroup string) *BindGroupToServiceParams {
-	o.SetAPIGroupID(aPIGroup)
+// WithAPIGroup adds the aPIGroup to the bind group to service params
+func (o *BindGroupToServiceParams) WithAPIGroup(aPIGroup string) *BindGroupToServiceParams {
+	o.SetAPIGroup(aPIGroup)
 	return o
 }
 
-// SetAPIGroupID adds the apiGroup to the bind group to service params
-func (o *BindGroupToServiceParams) SetAPIGroupID(aPIGroup string) {
-	o.APIGroupID = aPIGroup
+// SetAPIGroup adds the apiGroup to the bind group to service params
+func (o *BindGroupToServiceParams) SetAPIGroup(aPIGroup string) {
+	o.APIGroup = aPIGroup
 }
 
 // WithGw adds the gw to the bind group to service params
@@ -200,7 +200,7 @@ func (o *BindGroupToServiceParams) WriteToRequest(r runtime.ClientRequest, reg s
 	}
 
 	// path param apiGroup
-	if err := r.SetPathParam("apiGroup", o.APIGroupID); err != nil {
+	if err := r.SetPathParam("apiGroup", o.APIGroup); err != nil {
 		return err
 	}
 

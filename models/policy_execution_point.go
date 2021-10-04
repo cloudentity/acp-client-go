@@ -17,23 +17,29 @@ import (
 // swagger:model PolicyExecutionPoint
 type PolicyExecutionPoint struct {
 
-	// optional policy id
+	// Optional policy ID
 	// Example: 1
 	PolicyID string `json:"policy_id,omitempty"`
 
-	// server id
+	// The ID of your authorization server (workspace)
 	// Example: default
 	ServerID string `json:"server_id,omitempty"`
 
-	// target id
+	// String representation of the target's ID
 	// Example: 1
-	TargetID string `json:"target_fk,omitempty"`
+	TargetFk string `json:"target_fk,omitempty"`
 
-	// tenant id
+	// The ID of your tenant
 	// Example: default
 	TenantID string `json:"tenant_id,omitempty"`
 
-	// policy execution point type
+	// String representation of the policy execution point type
+	//
+	// Policies can be assigned to different policy execution points. For example, you can create a
+	// policy that you want to trigger while calls are made to your APIs. In this
+	// case, the type of the policy execution point is `api`. While
+	// choosing the policies that are applied for API calls, only those with the
+	// `api` type are available.
 	// Example: scope_client_assignment
 	Type string `json:"type,omitempty"`
 }

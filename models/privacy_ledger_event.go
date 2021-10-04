@@ -23,8 +23,11 @@ type PrivacyLedgerEvent struct {
 	// Format: date-time
 	Date strfmt.DateTime `json:"date,omitempty"`
 
-	// ID
+	// id
 	ID string `json:"id,omitempty"`
+
+	// payload
+	Payload *PrivacyLedgerPayload `json:"payload,omitempty"`
 
 	// payload signature
 	PayloadSignature string `json:"payload_signature,omitempty"`
@@ -32,11 +35,8 @@ type PrivacyLedgerEvent struct {
 	// subject
 	Subject string `json:"subject,omitempty"`
 
-	// tenant ID
+	// tenant id
 	TenantID string `json:"tenant_id,omitempty"`
-
-	// payload
-	Payload *PrivacyLedgerPayload `json:"payload,omitempty"`
 }
 
 // Validate validates this privacy ledger event

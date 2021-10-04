@@ -60,7 +60,7 @@ func NewGetConsentParamsWithHTTPClient(client *http.Client) *GetConsentParams {
 type GetConsentParams struct {
 
 	// Consent.
-	ConsentID string
+	Consent string
 
 	/* Tid.
 
@@ -134,15 +134,15 @@ func (o *GetConsentParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithConsentID adds the consent to the get consent params
-func (o *GetConsentParams) WithConsentID(consent string) *GetConsentParams {
-	o.SetConsentID(consent)
+// WithConsent adds the consent to the get consent params
+func (o *GetConsentParams) WithConsent(consent string) *GetConsentParams {
+	o.SetConsent(consent)
 	return o
 }
 
-// SetConsentID adds the consent to the get consent params
-func (o *GetConsentParams) SetConsentID(consent string) {
-	o.ConsentID = consent
+// SetConsent adds the consent to the get consent params
+func (o *GetConsentParams) SetConsent(consent string) {
+	o.Consent = consent
 }
 
 // WithTid adds the tid to the get consent params
@@ -165,7 +165,7 @@ func (o *GetConsentParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 	var res []error
 
 	// path param consent
-	if err := r.SetPathParam("consent", o.ConsentID); err != nil {
+	if err := r.SetPathParam("consent", o.Consent); err != nil {
 		return err
 	}
 

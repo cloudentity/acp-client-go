@@ -17,10 +17,10 @@ import (
 // swagger:model AWSMetadata
 type AWSMetadata struct {
 
-	// API ID
+	// api id
 	APIID string `json:"api_id,omitempty"`
 
-	// API name
+	// api name
 	APIName string `json:"api_name,omitempty"`
 
 	// stage

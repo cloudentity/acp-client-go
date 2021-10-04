@@ -12,16 +12,22 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// CustomSettings custom settings
+// CustomSettings Custom IDP specific settings
 //
 // swagger:model CustomSettings
 type CustomSettings struct {
 
-	// URL to custom login page
+	// URL to your custom login page
 	// Example: https://example.com/login
 	LoginURL string `json:"login_url,omitempty"`
 
-	// type metadata, allowed values: generic, cloudentity. If not provided, it is set to generic
+	// Type metadata
+	//
+	// There are two type metadatas: `generic` and `cloudentity`. If you choose `cloudentity` and do
+	// not provide authentication context attributes, it defaults to using the attributes from
+	// Cloudentity Cloud Identity Plane (CIP).
+	//
+	// If not provided, the `generic` type is set.
 	Type string `json:"type,omitempty"`
 }
 

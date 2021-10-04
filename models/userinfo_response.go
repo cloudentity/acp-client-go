@@ -14,11 +14,11 @@ import (
 
 // UserinfoResponse userinfo response
 //
-// swagger:model UserinfoResponse
+// swagger:model userinfoResponse
 type UserinfoResponse struct {
 
 	// Audience - Audiences that this ID Token is intended for.
-	Audience []string `json:"aud"`
+	Aud []string `json:"aud"`
 
 	// End-User's birthday, represented as an ISO 8601:2004 [ISO8601‑2004] YYYY-MM-DD format. The year MAY be 0000, indicating that it is omitted. To represent only the year, YYYY format is allowed. Note that depending on the underlying platform's date related function, providing just year can result in varying month and day, so the implementers need to take this factor into account to correctly process the dates.
 	Birthdate string `json:"birthdate,omitempty"`
@@ -66,7 +66,7 @@ type UserinfoResponse struct {
 	Profile string `json:"profile,omitempty"`
 
 	// Subject - Identifier for the End-User at the IssuerURL.
-	Subject string `json:"sub,omitempty"`
+	Sub string `json:"sub,omitempty"`
 
 	// Time the End-User's information was last updated. Its value is a JSON number representing the number of seconds from 1970-01-01T0:0:0Z as measured in UTC until the date/time.
 	UpdatedAt int64 `json:"updated_at,omitempty"`

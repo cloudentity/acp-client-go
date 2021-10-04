@@ -32,7 +32,7 @@ type RecentActivityPayload struct {
 	// subject
 	Subject string `json:"subject,omitempty"`
 
-	// subject ID
+	// subject id
 	SubjectID string `json:"subject_id,omitempty"`
 }
 

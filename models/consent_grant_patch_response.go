@@ -19,15 +19,18 @@ import (
 // swagger:model ConsentGrantPatchResponse
 type ConsentGrantPatchResponse struct {
 
+	// id of the consent grant action
+	ConsentGrantActID string `json:"ConsentGrantActID,omitempty"`
+
 	// time when the grant occurred
 	// Example: 1257894000000000000
 	CollectionTimestamp int64 `json:"collection_timestamp,omitempty"`
 
-	// id of the consent grant action
-	ConsentGrantActID string `json:"ConsentGrantActID,omitempty"`
-
 	// an array of consent objects, consisting of consentId and granted - boolean flag marking if the user granted or revoked the consent
 	Consents []*ConsentGrantPatch `json:"consents"`
+
+	// context
+	Context *ConsentGrantContext `json:"context,omitempty"`
 
 	// language in which the consent was obtained [ISO 639]
 	// Example: en
@@ -36,9 +39,6 @@ type ConsentGrantPatchResponse struct {
 	// optional string with action_id - can be set if the consent grant/withdraw request was caused when an app asked the user for consent required for a specific action
 	// Example: 1
 	TriggeredByAction string `json:"triggered_by_action,omitempty"`
-
-	// context
-	Context *ConsentGrantContext `json:"context,omitempty"`
 }
 
 // Validate validates this consent grant patch response

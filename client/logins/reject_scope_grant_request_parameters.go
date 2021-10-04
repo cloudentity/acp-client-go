@@ -65,7 +65,7 @@ type RejectScopeGrantRequestParams struct {
 	RejectScopeGrant *models.RejectScopeGrant
 
 	// Login.
-	LoginID string
+	Login string
 
 	/* Tid.
 
@@ -150,15 +150,15 @@ func (o *RejectScopeGrantRequestParams) SetRejectScopeGrant(rejectScopeGrant *mo
 	o.RejectScopeGrant = rejectScopeGrant
 }
 
-// WithLoginID adds the login to the reject scope grant request params
-func (o *RejectScopeGrantRequestParams) WithLoginID(login string) *RejectScopeGrantRequestParams {
-	o.SetLoginID(login)
+// WithLogin adds the login to the reject scope grant request params
+func (o *RejectScopeGrantRequestParams) WithLogin(login string) *RejectScopeGrantRequestParams {
+	o.SetLogin(login)
 	return o
 }
 
-// SetLoginID adds the login to the reject scope grant request params
-func (o *RejectScopeGrantRequestParams) SetLoginID(login string) {
-	o.LoginID = login
+// SetLogin adds the login to the reject scope grant request params
+func (o *RejectScopeGrantRequestParams) SetLogin(login string) {
+	o.Login = login
 }
 
 // WithTid adds the tid to the reject scope grant request params
@@ -186,7 +186,7 @@ func (o *RejectScopeGrantRequestParams) WriteToRequest(r runtime.ClientRequest, 
 	}
 
 	// path param login
-	if err := r.SetPathParam("login", o.LoginID); err != nil {
+	if err := r.SetPathParam("login", o.Login); err != nil {
 		return err
 	}
 

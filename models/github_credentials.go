@@ -12,12 +12,12 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// GithubCredentials github credentials
+// GithubCredentials GitHub IDP specific credentials
 //
 // swagger:model GithubCredentials
 type GithubCredentials struct {
 
-	// client secret
+	// OAuth client application secret from your GitHub Oauth application settings
 	ClientSecret string `json:"client_secret,omitempty"`
 }
 

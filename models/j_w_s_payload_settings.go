@@ -18,11 +18,11 @@ import (
 // swagger:model JWSPayloadSettings
 type JWSPayloadSettings struct {
 
-	// URI of the JWKs of the trusted party responsible for signing request body
-	JWKsURI string `json:"jwks_uri,omitempty"`
-
 	// jwks
-	Jwks *JWKs `json:"jwks,omitempty"`
+	Jwks *ClientJWKs `json:"jwks,omitempty"`
+
+	// URI of the JWKs of the trusted party responsible for signing request body
+	JwksURI string `json:"jwks_uri,omitempty"`
 }
 
 // Validate validates this j w s payload settings

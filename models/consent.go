@@ -40,7 +40,7 @@ type Consent struct {
 	Name string `json:"name,omitempty"`
 
 	// PII Categories
-	PIICategories []*PIICategory `json:"pii_categories"`
+	PiiCategories []*PIICategory `json:"pii_categories"`
 
 	// tenant id
 	// Example: default
@@ -71,7 +71,7 @@ func (m *Consent) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validatePIICategories(formats); err != nil {
+	if err := m.validatePiiCategories(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -113,18 +113,18 @@ func (m *Consent) validateInternalServices(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Consent) validatePIICategories(formats strfmt.Registry) error {
-	if swag.IsZero(m.PIICategories) { // not required
+func (m *Consent) validatePiiCategories(formats strfmt.Registry) error {
+	if swag.IsZero(m.PiiCategories) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.PIICategories); i++ {
-		if swag.IsZero(m.PIICategories[i]) { // not required
+	for i := 0; i < len(m.PiiCategories); i++ {
+		if swag.IsZero(m.PiiCategories[i]) { // not required
 			continue
 		}
 
-		if m.PIICategories[i] != nil {
-			if err := m.PIICategories[i].Validate(formats); err != nil {
+		if m.PiiCategories[i] != nil {
+			if err := m.PiiCategories[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("pii_categories" + "." + strconv.Itoa(i))
 				}
@@ -181,7 +181,7 @@ func (m *Consent) ContextValidate(ctx context.Context, formats strfmt.Registry) 
 		res = append(res, err)
 	}
 
-	if err := m.contextValidatePIICategories(ctx, formats); err != nil {
+	if err := m.contextValidatePiiCategories(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -213,12 +213,12 @@ func (m *Consent) contextValidateInternalServices(ctx context.Context, formats s
 	return nil
 }
 
-func (m *Consent) contextValidatePIICategories(ctx context.Context, formats strfmt.Registry) error {
+func (m *Consent) contextValidatePiiCategories(ctx context.Context, formats strfmt.Registry) error {
 
-	for i := 0; i < len(m.PIICategories); i++ {
+	for i := 0; i < len(m.PiiCategories); i++ {
 
-		if m.PIICategories[i] != nil {
-			if err := m.PIICategories[i].ContextValidate(ctx, formats); err != nil {
+		if m.PiiCategories[i] != nil {
+			if err := m.PiiCategories[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("pii_categories" + "." + strconv.Itoa(i))
 				}

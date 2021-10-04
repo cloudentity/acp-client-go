@@ -26,8 +26,8 @@ type Stats struct {
 	// applications
 	Applications int64 `json:"applications,omitempty"`
 
-	// machine access token
-	MachineAccessToken int64 `json:"machine_access_tokens,omitempty"`
+	// machine access tokens
+	MachineAccessTokens int64 `json:"machine_access_tokens,omitempty"`
 
 	// scopes
 	Scopes int64 `json:"scopes,omitempty"`
@@ -35,8 +35,8 @@ type Stats struct {
 	// services
 	Services int64 `json:"services,omitempty"`
 
-	// user access token
-	UserAccessToken int64 `json:"user_access_tokens,omitempty"`
+	// user access tokens
+	UserAccessTokens int64 `json:"user_access_tokens,omitempty"`
 }
 
 // Validate validates this stats

@@ -35,11 +35,11 @@ type OktaAuthentication struct {
 	// list of scopes that client will request
 	Scopes []string `json:"scopes"`
 
-	// if set to true, build-in authorization server will be used
-	UseOrgAuthorizationServer bool `json:"use_org_authorization_server,omitempty"`
-
 	// supervisor client
 	SupervisorClient *OktaSupervisorClient `json:"supervisor_client,omitempty"`
+
+	// if set to true, build-in authorization server will be used
+	UseOrgAuthorizationServer bool `json:"use_org_authorization_server,omitempty"`
 }
 
 // Validate validates this okta authentication

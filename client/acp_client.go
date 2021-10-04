@@ -17,15 +17,22 @@ import (
 	"github.com/cloudentity/acp-client-go/client/environment"
 	"github.com/cloudentity/acp-client-go/client/gateways"
 	"github.com/cloudentity/acp-client-go/client/idps"
+	"github.com/cloudentity/acp-client-go/client/keys"
 	"github.com/cloudentity/acp-client-go/client/logins"
+	"github.com/cloudentity/acp-client-go/client/mfa_methods"
 	"github.com/cloudentity/acp-client-go/client/oauth2"
-	"github.com/cloudentity/acp-client-go/client/openbanking"
+	"github.com/cloudentity/acp-client-go/client/openbanking_b_r"
+	"github.com/cloudentity/acp-client-go/client/openbanking_common"
+	"github.com/cloudentity/acp-client-go/client/openbanking_u_k"
 	"github.com/cloudentity/acp-client-go/client/policies"
 	"github.com/cloudentity/acp-client-go/client/recent_activities"
 	"github.com/cloudentity/acp-client-go/client/scopes"
+	"github.com/cloudentity/acp-client-go/client/scripts"
+	"github.com/cloudentity/acp-client-go/client/secrets"
 	"github.com/cloudentity/acp-client-go/client/servers"
 	"github.com/cloudentity/acp-client-go/client/services"
 	"github.com/cloudentity/acp-client-go/client/stats"
+	"github.com/cloudentity/acp-client-go/client/system"
 	"github.com/cloudentity/acp-client-go/client/tenants"
 	"github.com/cloudentity/acp-client-go/client/web"
 )
@@ -79,15 +86,22 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *Acp {
 	cli.Environment = environment.New(transport, formats)
 	cli.Gateways = gateways.New(transport, formats)
 	cli.Idps = idps.New(transport, formats)
+	cli.Keys = keys.New(transport, formats)
 	cli.Logins = logins.New(transport, formats)
+	cli.MfaMethods = mfa_methods.New(transport, formats)
 	cli.Oauth2 = oauth2.New(transport, formats)
-	cli.Openbanking = openbanking.New(transport, formats)
+	cli.Openbankingbr = openbanking_b_r.New(transport, formats)
+	cli.OpenbankingCommon = openbanking_common.New(transport, formats)
+	cli.Openbankinguk = openbanking_u_k.New(transport, formats)
 	cli.Policies = policies.New(transport, formats)
 	cli.RecentActivities = recent_activities.New(transport, formats)
 	cli.Scopes = scopes.New(transport, formats)
+	cli.Scripts = scripts.New(transport, formats)
+	cli.Secrets = secrets.New(transport, formats)
 	cli.Servers = servers.New(transport, formats)
 	cli.Services = services.New(transport, formats)
 	cli.Stats = stats.New(transport, formats)
+	cli.System = system.New(transport, formats)
 	cli.Tenants = tenants.New(transport, formats)
 	cli.Web = web.New(transport, formats)
 	return cli
@@ -148,11 +162,19 @@ type Acp struct {
 
 	Idps idps.ClientService
 
+	Keys keys.ClientService
+
 	Logins logins.ClientService
+
+	MfaMethods mfa_methods.ClientService
 
 	Oauth2 oauth2.ClientService
 
-	Openbanking openbanking.ClientService
+	Openbankingbr openbanking_b_r.ClientService
+
+	OpenbankingCommon openbanking_common.ClientService
+
+	Openbankinguk openbanking_u_k.ClientService
 
 	Policies policies.ClientService
 
@@ -160,11 +182,17 @@ type Acp struct {
 
 	Scopes scopes.ClientService
 
+	Scripts scripts.ClientService
+
+	Secrets secrets.ClientService
+
 	Servers servers.ClientService
 
 	Services services.ClientService
 
 	Stats stats.ClientService
+
+	System system.ClientService
 
 	Tenants tenants.ClientService
 
@@ -183,15 +211,22 @@ func (c *Acp) SetTransport(transport runtime.ClientTransport) {
 	c.Environment.SetTransport(transport)
 	c.Gateways.SetTransport(transport)
 	c.Idps.SetTransport(transport)
+	c.Keys.SetTransport(transport)
 	c.Logins.SetTransport(transport)
+	c.MfaMethods.SetTransport(transport)
 	c.Oauth2.SetTransport(transport)
-	c.Openbanking.SetTransport(transport)
+	c.Openbankingbr.SetTransport(transport)
+	c.OpenbankingCommon.SetTransport(transport)
+	c.Openbankinguk.SetTransport(transport)
 	c.Policies.SetTransport(transport)
 	c.RecentActivities.SetTransport(transport)
 	c.Scopes.SetTransport(transport)
+	c.Scripts.SetTransport(transport)
+	c.Secrets.SetTransport(transport)
 	c.Servers.SetTransport(transport)
 	c.Services.SetTransport(transport)
 	c.Stats.SetTransport(transport)
+	c.System.SetTransport(transport)
 	c.Tenants.SetTransport(transport)
 	c.Web.SetTransport(transport)
 }

@@ -17,9 +17,6 @@ import (
 // swagger:model RecoveryConfig
 type RecoveryConfig struct {
 
-	// ID
-	ID string `json:"id,omitempty"`
-
 	// type
 	Type string `json:"type,omitempty"`
 }

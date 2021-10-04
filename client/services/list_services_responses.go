@@ -29,6 +29,12 @@ func (o *ListServicesReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewListServicesBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewListServicesUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -75,6 +81,38 @@ func (o *ListServicesOK) GetPayload() *models.ServicesResponse {
 func (o *ListServicesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ServicesResponse)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewListServicesBadRequest creates a ListServicesBadRequest with default headers values
+func NewListServicesBadRequest() *ListServicesBadRequest {
+	return &ListServicesBadRequest{}
+}
+
+/* ListServicesBadRequest describes a response with status code 400, with default header values.
+
+HttpError
+*/
+type ListServicesBadRequest struct {
+	Payload *models.Error
+}
+
+func (o *ListServicesBadRequest) Error() string {
+	return fmt.Sprintf("[GET /api/admin/{tid}/servers/{aid}/services][%d] listServicesBadRequest  %+v", 400, o.Payload)
+}
+func (o *ListServicesBadRequest) GetPayload() *models.Error {
+	return o.Payload
+}
+
+func (o *ListServicesBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

@@ -19,8 +19,18 @@ import (
 // swagger:model GatewayWithClient
 type GatewayWithClient struct {
 
+	// authorization server id
+	// Example: default
+	AuthorizationServerID string `json:"authorization_server_id,omitempty"`
+
+	// client
+	Client *Client `json:"client,omitempty"`
+
 	// id of a client created for this gateway for authentication
 	ClientID string `json:"client_id,omitempty"`
+
+	// if true services are created automatically for each new discovered api group
+	CreateAndBindServicesAutomatically bool `json:"create_and_bind_services_automatically,omitempty"`
 
 	// description
 	Description string `json:"description,omitempty"`
@@ -29,7 +39,7 @@ type GatewayWithClient struct {
 	// Example: 1
 	ID string `json:"id,omitempty"`
 
-	// issuer URL
+	// issuer url
 	IssuerURL string `json:"issuer_url,omitempty"`
 
 	// last time a client fetched configuration
@@ -40,11 +50,7 @@ type GatewayWithClient struct {
 	// Example: Cloudentity Pyron
 	Name string `json:"name,omitempty"`
 
-	// authorization server id
-	// Example: default
-	ServerID string `json:"authorization_server_id,omitempty"`
-
-	// server URL
+	// server url
 	ServerURL string `json:"server_url,omitempty"`
 
 	// tenant id
@@ -54,38 +60,23 @@ type GatewayWithClient struct {
 	// gateway type, one of: pyron, aws
 	// Example: pyron
 	Type string `json:"type,omitempty"`
-
-	// client
-	Client *Client `json:"client,omitempty"`
 }
 
 // Validate validates this gateway with client
 func (m *GatewayWithClient) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateLastActive(formats); err != nil {
+	if err := m.validateClient(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateClient(formats); err != nil {
+	if err := m.validateLastActive(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *GatewayWithClient) validateLastActive(formats strfmt.Registry) error {
-	if swag.IsZero(m.LastActive) { // not required
-		return nil
-	}
-
-	if err := validate.FormatOf("last_active", "body", "date-time", m.LastActive.String(), formats); err != nil {
-		return err
-	}
-
 	return nil
 }
 
@@ -101,6 +92,18 @@ func (m *GatewayWithClient) validateClient(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *GatewayWithClient) validateLastActive(formats strfmt.Registry) error {
+	if swag.IsZero(m.LastActive) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("last_active", "body", "date-time", m.LastActive.String(), formats); err != nil {
+		return err
 	}
 
 	return nil
