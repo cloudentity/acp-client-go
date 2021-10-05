@@ -21,7 +21,7 @@ type OBBRCustomerDataAccessConsentRequest struct {
 
 	// data
 	// Required: true
-	Data *OpenbankingBrasilData `json:"data"`
+	Data *OpenbankingBrasilConsentData `json:"data"`
 }
 
 // Validate validates this o b b r customer data access consent request

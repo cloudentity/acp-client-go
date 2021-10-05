@@ -18,6 +18,7 @@ import (
 type ConsentRejected struct {
 
 	// url where user should be redirected
+	// this aplies only for redirect flow
 	RedirectTo string `json:"redirect_to,omitempty"`
 }
 

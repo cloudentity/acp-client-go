@@ -30,6 +30,12 @@ type ClientInfo struct {
 	// Logo URI
 	LogoURI string `json:"logo_uri,omitempty"`
 
+	// External organisation ID
+	//
+	// This field is used as an aud for message signing
+	// Example: 5647fe90-f6bc-11eb-9a03-0242ac130003
+	OrganisationID string `json:"organisation_id,omitempty"`
+
 	// Policy URL to read about how the profile data is used
 	PolicyURI string `json:"policy_uri,omitempty"`
 

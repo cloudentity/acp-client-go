@@ -8,6 +8,7 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -40,6 +41,9 @@ type IntrospectResponse struct {
 	// ClientID is a client identifier for the OAuth 2.0 client that
 	// requested this token.
 	ClientID string `json:"client_id,omitempty"`
+
+	// cnf
+	Cnf *Confirmation `json:"cnf,omitempty"`
 
 	// Expires at is an integer timestamp, measured in the number of seconds
 	// since January 1 1970 UTC, indicating when this token will expire.
@@ -88,11 +92,60 @@ type IntrospectResponse struct {
 
 // Validate validates this introspect response
 func (m *IntrospectResponse) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateCnf(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 
-// ContextValidate validates this introspect response based on context it is used
+func (m *IntrospectResponse) validateCnf(formats strfmt.Registry) error {
+	if swag.IsZero(m.Cnf) { // not required
+		return nil
+	}
+
+	if m.Cnf != nil {
+		if err := m.Cnf.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cnf")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this introspect response based on the context it is used
 func (m *IntrospectResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateCnf(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *IntrospectResponse) contextValidateCnf(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Cnf != nil {
+		if err := m.Cnf.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cnf")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

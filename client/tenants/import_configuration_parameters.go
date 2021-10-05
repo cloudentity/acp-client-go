@@ -64,9 +64,27 @@ type ImportConfigurationParams struct {
 	// Dump.
 	Dump *models.Dump
 
-	// Mode.
-	//
-	// Format: insertMode
+	/* Mode.
+
+	     Insert mode
+
+	Defines what happens in case of configuration import conflicts.
+
+	The `mode` parameter defines
+	what happens if there are any conflicts when importing your configuration. For example, if a
+	client already exists within ACP and you are trying to import a
+	configuration that also has a client with this ID, there are the following ways
+	ACP can handle the request:
+
+	`mode` set to `ignore`, ACP ignores the changes that come from your configuration import.
+
+	`mode` set to `fail`, ACP stops processing the import and returns an error.
+
+	`mode` set to `update`, ACP updates the value from the previous configuration with the value
+	provided in the request.
+
+	     Format: insertMode
+	*/
 	Mode *string
 
 	timeout    time.Duration

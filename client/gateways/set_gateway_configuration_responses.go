@@ -47,6 +47,12 @@ func (o *SetGatewayConfigurationReader) ReadResponse(response runtime.ClientResp
 			return nil, err
 		}
 		return nil, result
+	case 409:
+		result := NewSetGatewayConfigurationConflict()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -169,6 +175,38 @@ func (o *SetGatewayConfigurationNotFound) GetPayload() *models.Error {
 }
 
 func (o *SetGatewayConfigurationNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewSetGatewayConfigurationConflict creates a SetGatewayConfigurationConflict with default headers values
+func NewSetGatewayConfigurationConflict() *SetGatewayConfigurationConflict {
+	return &SetGatewayConfigurationConflict{}
+}
+
+/* SetGatewayConfigurationConflict describes a response with status code 409, with default header values.
+
+HttpError
+*/
+type SetGatewayConfigurationConflict struct {
+	Payload *models.Error
+}
+
+func (o *SetGatewayConfigurationConflict) Error() string {
+	return fmt.Sprintf("[POST /api/system/{tid}/gateways/configuration][%d] setGatewayConfigurationConflict  %+v", 409, o.Payload)
+}
+func (o *SetGatewayConfigurationConflict) GetPayload() *models.Error {
+	return o.Payload
+}
+
+func (o *SetGatewayConfigurationConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.Error)
 

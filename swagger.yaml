@@ -317,6 +317,13 @@ definitions:
         description: String represented display name of an attribute
         type: string
         x-nullable: false
+      labels:
+        description: Array of Strings represents attribute labels
+        items:
+          format: label
+          type: string
+        type: array
+        x-nullable: false
       name:
         description: String represented variable name of an attribute
         type: string
@@ -862,6 +869,28 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  BackchannelAuthenticationError:
+    description: |-
+      CIBA error response
+      https://openid.net/specs/openidclientinitiatedbackchannelauthenticationcore1_0.html#rfc.section.13
+    properties:
+      error:
+        description: REQUIRED. A single ASCII error code from one present in the list below.
+        type: string
+        x-nullable: false
+      error_description:
+        description: |-
+          OPTIONAL. Humanreadable ASCII [USASCII] text providing additional information, used to assist the client developer in understanding
+          the error that occurred. Values for the "error_description" parameter MUST NOT include characters outside the set %x2021 / %x235B / %x5D7E.
+        type: string
+        x-nullable: false
+      error_uri:
+        description: |-
+          OPTIONAL. A URI identifying a humanreadable web page with information about the error to provide the client developer with additional information.
+          Values for the "error_uri" parameter MUST conform to the URIreference syntax and thus MUST NOT include characters outside the set %x21 / %x235B / %x5D7E.
+        type: string
+        x-nullable: false
+    type: object
   BackchannelAuthenticationResponse:
     properties:
       auth_req_id:
@@ -926,6 +955,27 @@ definitions:
   BuildingNumber:
     title: BuildingNumber Number that identifies the position of a building on a street.
     type: string
+  CIBAAuthenticationService:
+    properties:
+      client_id:
+        format: clientID
+        type: string
+        x-nullable: false
+      external:
+        $ref: '#/definitions/ExternalCIBAAuthenticationService'
+      server_id:
+        format: serverID
+        type: string
+        x-nullable: false
+      tenant_id:
+        format: tenantID
+        type: string
+        x-nullable: false
+      type:
+        format: cibaAuthenticationrServiceType
+        type: string
+        x-nullable: false
+    type: object
   Claim:
     properties:
       authorization_server_id:
@@ -1227,6 +1277,14 @@ definitions:
         x-nullable: false
       metadata:
         $ref: '#/definitions/Metadata'
+      organisation_id:
+        description: |-
+          External organisation ID
+
+          This field is used as an aud for message signing
+        example: 5647fe90-f6bc-11eb-9a03-0242ac130003
+        type: string
+        x-nullable: false
       policy_uri:
         description: Policy URL to read about how the profile data is used
         type: string
@@ -1375,6 +1433,7 @@ definitions:
         type: string
         x-nullable: false
       subject_type:
+        default: public
         description: |-
           Subject identifier type
 
@@ -1451,6 +1510,7 @@ definitions:
         type: string
         x-nullable: false
       token_endpoint_auth_signing_alg:
+        default: none
         description: |-
           Signing algorithm for the token endpoint
 
@@ -1461,6 +1521,13 @@ definitions:
 
           If your token endpoint authentication is set to the `client_secret_jwt` method,
           the `token_endpoint_auth_signing_alg` parameter must be HS256.
+        enum:
+        - none
+        - RS256
+        - ES256
+        - PS256
+        - H256
+        example: none
         type: string
         x-nullable: false
       tos_uri:
@@ -1475,6 +1542,7 @@ definitions:
         type: boolean
         x-nullable: false
       userinfo_signed_response_alg:
+        default: none
         description: |-
           JWS alg algorithm REQUIRED for signing UserInfo Responses.
 
@@ -1703,6 +1771,14 @@ definitions:
         x-nullable: false
       metadata:
         $ref: '#/definitions/Metadata'
+      organisation_id:
+        description: |-
+          External organisation ID
+
+          This field is used as an aud for message signing
+        example: 5647fe90-f6bc-11eb-9a03-0242ac130003
+        type: string
+        x-nullable: false
       policy_uri:
         description: Policy URL to read about how the profile data is used
         type: string
@@ -1849,6 +1925,7 @@ definitions:
         type: string
         x-nullable: false
       subject_type:
+        default: public
         description: |-
           Subject identifier type
 
@@ -1923,6 +2000,7 @@ definitions:
         type: string
         x-nullable: false
       token_endpoint_auth_signing_alg:
+        default: none
         description: |-
           Signing algorithm for the token endpoint
 
@@ -1933,6 +2011,13 @@ definitions:
 
           If your token endpoint authentication is set to the `client_secret_jwt` method,
           the `token_endpoint_auth_signing_alg` parameter must be HS256.
+        enum:
+        - none
+        - RS256
+        - ES256
+        - PS256
+        - H256
+        example: none
         type: string
         x-nullable: false
       tos_uri:
@@ -1947,6 +2032,7 @@ definitions:
         type: boolean
         x-nullable: false
       userinfo_signed_response_alg:
+        default: none
         description: |-
           JWS alg algorithm REQUIRED for signing UserInfo Responses.
 
@@ -2184,6 +2270,14 @@ definitions:
         description: Logo URI
         type: string
         x-nullable: false
+      organisation_id:
+        description: |-
+          External organisation ID
+
+          This field is used as an aud for message signing
+        example: 5647fe90-f6bc-11eb-9a03-0242ac130003
+        type: string
+        x-nullable: false
       policy_uri:
         description: Policy URL to read about how the profile data is used
         type: string
@@ -2295,6 +2389,7 @@ definitions:
         type: string
         x-nullable: false
       subject_type:
+        default: public
         description: |-
           Subject identifier type
 
@@ -2365,6 +2460,7 @@ definitions:
         type: string
         x-nullable: false
       token_endpoint_auth_signing_alg:
+        default: none
         description: |-
           Signing algorithm for the token endpoint
 
@@ -2375,6 +2471,13 @@ definitions:
 
           If your token endpoint authentication is set to the `client_secret_jwt` method,
           the `token_endpoint_auth_signing_alg` parameter must be HS256.
+        enum:
+        - none
+        - RS256
+        - ES256
+        - PS256
+        - H256
+        example: none
         type: string
         x-nullable: false
       tos_uri:
@@ -2382,6 +2485,7 @@ definitions:
         type: string
         x-nullable: false
       userinfo_signed_response_alg:
+        default: none
         description: |-
           JWS alg algorithm REQUIRED for signing UserInfo Responses.
 
@@ -2417,6 +2521,14 @@ definitions:
         x-nullable: false
       logo_uri:
         description: Logo URI
+        type: string
+        x-nullable: false
+      organisation_id:
+        description: |-
+          External organisation ID
+
+          This field is used as an aud for message signing
+        example: 5647fe90-f6bc-11eb-9a03-0242ac130003
         type: string
         x-nullable: false
       policy_uri:
@@ -2774,6 +2886,12 @@ definitions:
         type: array
         x-nullable: false
     type: object
+  Confirmation:
+    properties:
+      x5t#S256:
+        type: string
+        x-nullable: false
+    type: object
   Consent:
     properties:
       can_be_withdrawn:
@@ -2842,7 +2960,9 @@ definitions:
   ConsentAccepted:
     properties:
       redirect_to:
-        description: url where user should be redirected
+        description: |-
+          url where user should be redirected
+          this aplies only for redirect flow
         type: string
         x-nullable: false
     type: object
@@ -3220,7 +3340,9 @@ definitions:
   ConsentRejected:
     properties:
       redirect_to:
-        description: url where user should be redirected
+        description: |-
+          url where user should be redirected
+          this aplies only for redirect flow
         type: string
         x-nullable: false
     type: object
@@ -3702,6 +3824,14 @@ definitions:
         x-nullable: false
       metadata:
         $ref: '#/definitions/Metadata'
+      organisation_id:
+        description: |-
+          External organisation ID
+
+          This field is used as an aud for message signing
+        example: 5647fe90-f6bc-11eb-9a03-0242ac130003
+        type: string
+        x-nullable: false
       policy_uri:
         description: Policy URL to read about how the profile data is used
         type: string
@@ -3830,6 +3960,7 @@ definitions:
         type: string
         x-nullable: false
       subject_type:
+        default: public
         description: |-
           Subject identifier type
 
@@ -3900,6 +4031,7 @@ definitions:
         type: string
         x-nullable: false
       token_endpoint_auth_signing_alg:
+        default: none
         description: |-
           Signing algorithm for the token endpoint
 
@@ -3910,6 +4042,13 @@ definitions:
 
           If your token endpoint authentication is set to the `client_secret_jwt` method,
           the `token_endpoint_auth_signing_alg` parameter must be HS256.
+        enum:
+        - none
+        - RS256
+        - ES256
+        - PS256
+        - H256
+        example: none
         type: string
         x-nullable: false
       tos_uri:
@@ -3924,6 +4063,7 @@ definitions:
         type: boolean
         x-nullable: false
       userinfo_signed_response_alg:
+        default: none
         description: |-
           JWS alg algorithm REQUIRED for signing UserInfo Responses.
 
@@ -4108,6 +4248,14 @@ definitions:
         description: Logo URI
         type: string
         x-nullable: false
+      organisation_id:
+        description: |-
+          External organisation ID
+
+          This field is used as an aud for message signing
+        example: 5647fe90-f6bc-11eb-9a03-0242ac130003
+        type: string
+        x-nullable: false
       policy_uri:
         description: Policy URL to read about how the profile data is used
         type: string
@@ -4212,6 +4360,7 @@ definitions:
         type: string
         x-nullable: false
       subject_type:
+        default: public
         description: |-
           Subject identifier type
 
@@ -4278,6 +4427,7 @@ definitions:
         type: string
         x-nullable: false
       token_endpoint_auth_signing_alg:
+        default: none
         description: |-
           Signing algorithm for the token endpoint
 
@@ -4288,6 +4438,13 @@ definitions:
 
           If your token endpoint authentication is set to the `client_secret_jwt` method,
           the `token_endpoint_auth_signing_alg` parameter must be HS256.
+        enum:
+        - none
+        - RS256
+        - ES256
+        - PS256
+        - H256
+        example: none
         type: string
         x-nullable: false
       tos_uri:
@@ -4295,6 +4452,7 @@ definitions:
         type: string
         x-nullable: false
       userinfo_signed_response_alg:
+        default: none
         description: |-
           JWS alg algorithm REQUIRED for signing UserInfo Responses.
 
@@ -4334,7 +4492,7 @@ definitions:
         type: string
         x-nullable: false
       type:
-        description: 'gateway type, one of: pyron, aws, azure, istio, kong, apigee'
+        description: 'gateway type, one of: pyron, aws, azure, istio, kong, apigeex, apigeeedge'
         example: pyron
         format: gatewayType
         type: string
@@ -4635,6 +4793,11 @@ definitions:
           $ref: '#/definitions/API'
         type: array
         x-nullable: false
+      ciba_authentication_services:
+        items:
+          $ref: '#/definitions/CIBAAuthenticationService'
+        type: array
+        x-nullable: false
       claims:
         items:
           $ref: '#/definitions/Claim'
@@ -4715,6 +4878,11 @@ definitions:
       scopes_without_service:
         items:
           $ref: '#/definitions/Scope'
+        type: array
+        x-nullable: false
+      scripts:
+        items:
+          $ref: '#/definitions/Script'
         type: array
         x-nullable: false
       server_consents:
@@ -4910,6 +5078,14 @@ definitions:
         description: Logo URI
         type: string
         x-nullable: false
+      organisation_id:
+        description: |-
+          External organisation ID
+
+          This field is used as an aud for message signing
+        example: 5647fe90-f6bc-11eb-9a03-0242ac130003
+        type: string
+        x-nullable: false
       policy_uri:
         description: Policy URL to read about how the profile data is used
         type: string
@@ -5049,6 +5225,7 @@ definitions:
         type: string
         x-nullable: false
       subject_type:
+        default: public
         description: |-
           Subject identifier type
 
@@ -5115,6 +5292,7 @@ definitions:
         type: string
         x-nullable: false
       token_endpoint_auth_signing_alg:
+        default: none
         description: |-
           Signing algorithm for the token endpoint
 
@@ -5125,6 +5303,13 @@ definitions:
 
           If your token endpoint authentication is set to the `client_secret_jwt` method,
           the `token_endpoint_auth_signing_alg` parameter must be HS256.
+        enum:
+        - none
+        - RS256
+        - ES256
+        - PS256
+        - H256
+        example: none
         type: string
         x-nullable: false
       tos_uri:
@@ -5132,6 +5317,7 @@ definitions:
         type: string
         x-nullable: false
       userinfo_signed_response_alg:
+        default: none
         description: |-
           JWS alg algorithm REQUIRED for signing UserInfo Responses.
 
@@ -5341,6 +5527,14 @@ definitions:
         description: Logo URI
         type: string
         x-nullable: false
+      organisation_id:
+        description: |-
+          External organisation ID
+
+          This field is used as an aud for message signing
+        example: 5647fe90-f6bc-11eb-9a03-0242ac130003
+        type: string
+        x-nullable: false
       policy_uri:
         description: Policy URL to read about how the profile data is used
         type: string
@@ -5483,6 +5677,7 @@ definitions:
         type: string
         x-nullable: false
       subject_type:
+        default: public
         description: |-
           Subject identifier type
 
@@ -5549,6 +5744,7 @@ definitions:
         type: string
         x-nullable: false
       token_endpoint_auth_signing_alg:
+        default: none
         description: |-
           Signing algorithm for the token endpoint
 
@@ -5559,6 +5755,13 @@ definitions:
 
           If your token endpoint authentication is set to the `client_secret_jwt` method,
           the `token_endpoint_auth_signing_alg` parameter must be HS256.
+        enum:
+        - none
+        - RS256
+        - ES256
+        - PS256
+        - H256
+        example: none
         type: string
         x-nullable: false
       tos_uri:
@@ -5566,6 +5769,7 @@ definitions:
         type: string
         x-nullable: false
       userinfo_signed_response_alg:
+        default: none
         description: |-
           JWS alg algorithm REQUIRED for signing UserInfo Responses.
 
@@ -5623,6 +5827,10 @@ definitions:
         type: boolean
         x-nullable: false
       display_workspace_wizard:
+        type: boolean
+        x-nullable: false
+      external_datastore:
+        description: enable external datastore idp
         type: boolean
         x-nullable: false
       faas_provider:
@@ -5697,6 +5905,10 @@ definitions:
         description: enable javascript transformer
         type: boolean
         x-nullable: false
+      scripts:
+        description: enable custom scripts
+        type: boolean
+        x-nullable: false
       swagger_ui:
         description: enables swagger ui
         type: boolean
@@ -5763,6 +5975,152 @@ definitions:
     - Errors
     - Message
     title: An array of detail error codes, and messages, and URLs to documentation to help remediation.
+    type: object
+  ExternalCIBAAuthenticationService:
+    properties:
+      credentials:
+        $ref: '#/definitions/ExternalServiceCredentials'
+      url:
+        description: url to the ciba authenticator service
+        type: string
+        x-nullable: false
+    type: object
+  ExternalCredentials:
+    description: External IDP specific credentials
+    properties:
+      api_key_in:
+        description: query or header
+        type: string
+        x-nullable: false
+      api_key_name:
+        description: api key name
+        type: string
+        x-nullable: false
+      api_key_value:
+        description: api key value
+        type: string
+        x-nullable: false
+      password:
+        description: http basic auth password
+        type: string
+        x-nullable: false
+      username:
+        description: http basic auth username
+        type: string
+        x-nullable: false
+    type: object
+  ExternalIDP:
+    properties:
+      attributes:
+        $ref: '#/definitions/Attributes'
+      authorization_server_id:
+        description: ID of the authorization server (workspace) to which the IDP is connected
+        format: serverID
+        type: string
+        x-nullable: false
+      client_id:
+        description: |-
+          Client application ID
+
+          It serves as a reference to a client application that is created in the System authorization
+          server (workspace), when a custom login page is created.
+        format: clientID
+        type: string
+        x-nullable: false
+      config:
+        $ref: '#/definitions/IDPConfiguration'
+      credentials:
+        $ref: '#/definitions/ExternalCredentials'
+      disabled:
+        description: |-
+          If set to `true`, the IDP is disabled
+
+          When an IDP is disabled, it is not available for the users to be used. It is also not
+          displayed on the login page.
+        type: boolean
+        x-nullable: false
+      discovery_settings:
+        $ref: '#/definitions/IDPDiscoverySettings'
+      id:
+        description: |-
+          Unique ID of your identity provider
+
+          If not provided, a random ID is generated.
+        format: idpID
+        type: string
+        x-nullable: false
+      mappings:
+        $ref: '#/definitions/Mappings'
+      method:
+        description: |-
+          Defines the type of an IDP
+
+          ACP is designed to make it possible for you to bring any of your own IDPs and integrate it
+          with ACP as it delivers enterprise connectors for major Cloud IDPs and a possibility for
+          custom integration DKS for home-built solutions. You can also use built-in Sandbox IDP, which
+          is a static IDP, to create an IDP for testing purposes.
+        format: idpMethod
+        type: string
+        x-nullable: false
+      name:
+        description: Display name of your IDP
+        type: string
+        x-nullable: false
+      settings:
+        $ref: '#/definitions/ExternalSettings'
+      static_amr:
+        description: |-
+          Authentication method reference
+
+          An array of case sensitive strings for authentication methods that are used in the user
+          authentication.
+
+          For example, an IDP may require the user to provide a biometric authentication using facial
+          recognition. For that, the value of the authentication method reference is `face`.
+        items:
+          format: amr
+          type: string
+        type: array
+        x-nullable: false
+      tenant_id:
+        description: ID of the tenant where an IDP is connected
+        format: tenantID
+        type: string
+        x-nullable: false
+      transformer:
+        $ref: '#/definitions/ScriptTransformer'
+    type: object
+  ExternalServiceCredentials:
+    properties:
+      api_key_in:
+        description: query or header
+        type: string
+        x-nullable: false
+      api_key_name:
+        description: api key name
+        type: string
+        x-nullable: false
+      api_key_value:
+        description: api key value
+        type: string
+        x-nullable: false
+      password:
+        description: http basic auth password
+        type: string
+        x-nullable: false
+      username:
+        description: http basic auth username
+        type: string
+        x-nullable: false
+    type: object
+  ExternalSettings:
+    description: External IDP specific settings
+    properties:
+      url:
+        description: URL to your external datastore service
+        example: https://example.com/
+        type: string
+        x-nullable: false
     type: object
   FilePaymentConsent:
     allOf:
@@ -6541,7 +6899,7 @@ definitions:
         format: date-time
         type: string
         x-nullable: false
-      customer_data_access_consent:
+      customer_payment_consent:
         $ref: '#/definitions/OBBRCustomerPaymentConsent'
       requested_scopes:
         items:
@@ -7038,6 +7396,8 @@ definitions:
         $ref: '#/definitions/CognitoCredentials'
       custom:
         $ref: '#/definitions/CustomCredentials'
+      external:
+        $ref: '#/definitions/ExternalCredentials'
       github:
         $ref: '#/definitions/GithubCredentials'
       intelli_trust:
@@ -7128,6 +7488,8 @@ definitions:
         $ref: '#/definitions/CognitoSettings'
       custom:
         $ref: '#/definitions/CustomSettings'
+      external:
+        $ref: '#/definitions/ExternalSettings'
       github:
         $ref: '#/definitions/GithubSettings'
       intelli_trust:
@@ -7645,6 +8007,8 @@ definitions:
           requested this token.
         type: string
         x-nullable: false
+      cnf:
+        $ref: '#/definitions/Confirmation'
       exp:
         description: |-
           Expires at is an integer timestamp, measured in the number of seconds
@@ -8161,11 +8525,19 @@ definitions:
   OBBRCustomerDataAccessConsent:
     properties:
       consentId:
-        description: Identificador nico do consentimento.
+        description: |-
+          O consentId  o identificador nico do consentimento e dever ser um URN - Uniform Resource Name.
+          Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141)  um Uniform Resource
+          Identifier - URI - que  atribudo sob o URI scheme "urn" e um namespace URN especfico, com a inteno de que o URN
+          seja um identificador de recurso persistente e independente da localizao.
+          Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+          o namespace(urn)
+          o identificador associado ao namespace da instituio transnmissora (bancoex)
+          o identificador especfico dentro do namespace (C1DD33123).
+          Informaes mais detalhadas sobre a construo de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
         example: urn:bancoex:C1DD33123
-        maxLength: 100
-        minLength: 1
-        pattern: ^[a-zA-Z0-9][a-zA-Z0-9\-\:]{0,99}$
+        maxLength: 256
+        pattern: ^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$
         type: string
         x-nullable: false
       creationDateTime:
@@ -8175,25 +8547,25 @@ definitions:
         type: string
         x-nullable: false
       expirationDateTime:
-        description: Data e hora de expirao da permisso. Se no for preenchido, a permisso ter a data aberta. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format).
+        description: Data e hora de expirao da permisso. De preenchimento obrigatrio, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format).
         example: "2021-05-21T08:30:00Z"
         format: date-time
         type: string
         x-nullable: false
       permissions:
-        description: permissions
+        description: Especifica os tipos de permisses de acesso s APIs no escopo do Open Banking Brasil - Fase 2, de acordo com os blocos de consentimento fornecidos pelo usurio e necessrios ao acesso a cada endpoint das APIs.
         example:
         - ACCOUNTS_READ
         - ACCOUNTS_OVERDRAFT_LIMITS_READ
         - RESOURCES_READ
         items:
-          $ref: '#/definitions/OpenbankingBrasilPermission'
+          $ref: '#/definitions/OpenbankingBrasilConsentPermission1'
         maxItems: 30
         minItems: 1
         type: array
         x-nullable: false
       status:
-        $ref: '#/definitions/OpenbankingBrasilStatus'
+        $ref: '#/definitions/OpenbankingBrasilConsentStatus'
       statusUpdateDateTime:
         description: Data e hora em que o recurso foi atualizado. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format).
         example: "2021-05-21T08:30:00Z"
@@ -8215,6 +8587,7 @@ definitions:
     required:
     - consentId
     - creationDateTime
+    - expirationDateTime
     - permissions
     - status
     - statusUpdateDateTime
@@ -8222,25 +8595,25 @@ definitions:
   OBBRCustomerDataAccessConsentRequest:
     properties:
       data:
-        $ref: '#/definitions/OpenbankingBrasilData'
+        $ref: '#/definitions/OpenbankingBrasilConsentData'
     required:
     - data
     type: object
   OBBRCustomerDataAccessConsentResponse:
     properties:
       data:
-        $ref: '#/definitions/OpenbankingBrasilData1'
+        $ref: '#/definitions/OpenbankingBrasilConsentData1'
       links:
-        $ref: '#/definitions/OpenbankingBrasilLinks'
+        $ref: '#/definitions/OpenbankingBrasilConsentLinks'
       meta:
-        $ref: '#/definitions/OpenbankingBrasilMeta'
+        $ref: '#/definitions/OpenbankingBrasilConsentMeta'
     required:
     - data
     type: object
   OBBRCustomerPaymentConsent:
     properties:
       businessEntity:
-        $ref: '#/definitions/OpenbankingBrasilBusinessEntity'
+        $ref: '#/definitions/OpenbankingBrasilPaymentBusinessEntity'
       consentId:
         description: |-
           Identificador nico do consentimento criado para a iniciao de pagamento solicitada. Dever ser um URN - Uniform Resource Name.
@@ -8264,26 +8637,25 @@ definitions:
         type: string
         x-nullable: false
       creditor:
-        $ref: '#/definitions/OpenbankingBrasilIdentification'
+        $ref: '#/definitions/OpenbankingBrasilPaymentIdentification'
       debtorAccount:
-        $ref: '#/definitions/OpenbankingBrasilDebtorAccount'
+        $ref: '#/definitions/OpenbankingBrasilPaymentDebtorAccount'
       expirationDateTime:
         description: |-
           Data e hora em que o consentimento da iniciao de pagamento expira, devendo ser sempre o creationDateTime mais 5 minutos. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC (UTC time format).
-          O consentimento  criado com o status AWAITING_AUTHORISATION, e deve assumir o status AUTHORIZED, REJECTED ou CONSUMED antes do tempo de expirao - 5 minutos.
-          Caso no assuma, o status permanece como AWAITING_AUTHORISATION e ser necessria a criao de um novo consentimento.
-          Para o cenrio em que o status assumiu AUTHORISED, o tempo mximo (do token FAPI Hybrid Flow)  de 60 minutos, sem refresh,
-          e este  o tempo para consumir o consentimento autorizado, mudando seu status para CONSUMED. No  possvel prorrogar este tempo e a criao de um novo consentimento ser necessria para os cenrios de insucesso.
+          O consentimento  criado com o status AWAITING_AUTHORISATION, e deve assumir o status AUTHORIZED ou REJECTED antes do tempo de expirao - 5 minutos. Caso o tempo seja expirado, o status deve assumir REJECTED.
+          Para o cenrio em que o status assumiu AUTHORISED, o tempo mximo do expirationDateTime do consentimento deve assumir "now + 60 minutos". Este  o tempo para consumir o consentimento autorizado, mudando seu status para CONSUMED. No  possvel prorrogar este tempo e a criao de um novo consentimento ser necessria para os cenrios de insucesso.
+          O tempo do expirationDateTime  garantido com os 15 minutos do access token, sendo possvel utilizar mais trs refresh tokens at totalizar 60 minutos.
         example: "2021-05-21T08:30:00Z"
         format: date-time
         type: string
         x-nullable: false
       loggedUser:
-        $ref: '#/definitions/OpenbankingBrasilLoggedUser'
+        $ref: '#/definitions/OpenbankingBrasilPaymentLoggedUser'
       payment:
-        $ref: '#/definitions/OpenbankingBrasilPaymentConsent'
+        $ref: '#/definitions/OpenbankingBrasilPaymentPaymentConsent'
       status:
-        $ref: '#/definitions/OpenbankingBrasilStatus'
+        $ref: '#/definitions/OpenbankingBrasilPaymentEnumAuthorisationStatusType'
       statusUpdateDateTime:
         description: Data e hora em que o recurso foi atualizado. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format).
         example: "2021-05-21T08:30:00Z"
@@ -8302,19 +8674,45 @@ definitions:
     type: object
   OBBRCustomerPaymentConsentRequest:
     properties:
+      aud:
+        type: string
+        x-nullable: false
       data:
-        $ref: '#/definitions/OpenbankingBrasilCreatePaymentConsentData'
+        $ref: '#/definitions/OpenbankingBrasilPaymentData'
+      iat:
+        format: int64
+        type: integer
+        x-nullable: false
+      iss:
+        type: string
+        x-nullable: false
+      jti:
+        type: string
+        x-nullable: false
     required:
     - data
     type: object
   OBBRCustomerPaymentConsentResponse:
     properties:
+      aud:
+        type: string
+        x-nullable: false
       data:
-        $ref: '#/definitions/OpenbankingBrasilResponsePaymentConsentData'
+        $ref: '#/definitions/OpenbankingBrasilPaymentData1'
+      iat:
+        format: int64
+        type: integer
+        x-nullable: false
+      iss:
+        type: string
+        x-nullable: false
+      jti:
+        type: string
+        x-nullable: false
       links:
-        $ref: '#/definitions/OpenbankingBrasilLinks'
+        $ref: '#/definitions/OpenbankingBrasilPaymentLinks'
       meta:
-        $ref: '#/definitions/OpenbankingBrasilMeta'
+        $ref: '#/definitions/OpenbankingBrasilPaymentMeta'
     required:
     - data
     - links
@@ -8325,13 +8723,13 @@ definitions:
       errors:
         description: errors
         items:
-          $ref: '#/definitions/OpenbankingBrasilError'
+          $ref: '#/definitions/OpenbankingBrasilConsentError'
         maxItems: 13
         minItems: 1
         type: array
         x-nullable: false
       meta:
-        $ref: '#/definitions/OpenbankingBrasilMeta'
+        $ref: '#/definitions/OpenbankingBrasilConsentMeta'
     required:
     - errors
     type: object
@@ -13001,47 +13399,28 @@ definitions:
         type: string
         x-nullable: false
     type: object
-  OpenbankingBrasilBusinessEntity:
-    description: Usurio (pessoa jurdica) que encontra-se logado na instituio Iniciadora de Pagamento. [Restrio] Preenchimento obrigatrio se usurio logado na instituio Iniciadora de Pagamento for um CNPJ (pessoa jurdica).
+  OpenbankingBrasilConsentBusinessEntity:
+    description: Titular, pessoa jurdica a quem se referem os dados que so objeto de compartilhamento.
     properties:
       document:
-        $ref: '#/definitions/OpenbankingBrasilDocument'
+        $ref: '#/definitions/OpenbankingBrasilConsentDocument1'
     required:
     - document
-    title: OpenbankingBrasilBusinessEntity BusinessEntity
+    title: OpenbankingBrasilConsentBusinessEntity BusinessEntity
     type: object
-  OpenbankingBrasilCreatePaymentConsentData:
-    description: Objeto contendo as informaes de consentimento para a iniciao de pagamento individual.
+  OpenbankingBrasilConsentData:
+    description: OpenbankingBrasilConsentData Data
     properties:
       businessEntity:
-        $ref: '#/definitions/OpenbankingBrasilBusinessEntity'
-      creditor:
-        $ref: '#/definitions/OpenbankingBrasilIdentification'
-      debtorAccount:
-        $ref: '#/definitions/OpenbankingBrasilDebtorAccount'
-      loggedUser:
-        $ref: '#/definitions/OpenbankingBrasilLoggedUser'
-      payment:
-        $ref: '#/definitions/OpenbankingBrasilPaymentConsent'
-    required:
-    - creditor
-    - loggedUser
-    - payment
-    title: OpenbankingBrasilCreatePaymentConsentData CreatePaymentConsentData
-    type: object
-  OpenbankingBrasilData:
-    description: OpenbankingBrasilData Data
-    properties:
-      businessEntity:
-        $ref: '#/definitions/OpenbankingBrasilBusinessEntity'
+        $ref: '#/definitions/OpenbankingBrasilConsentBusinessEntity'
       expirationDateTime:
-        description: Data e hora de expirao da permisso. Se no for preenchido, a permisso ter a data aberta. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format).
+        description: Data e hora de expirao da permisso. De preenchimento obrigatrio, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format).
         example: "2021-05-21T08:30:00Z"
         format: date-time
         type: string
         x-nullable: false
       loggedUser:
-        $ref: '#/definitions/OpenbankingBrasilLoggedUser'
+        $ref: '#/definitions/OpenbankingBrasilConsentLoggedUser'
       permissions:
         description: permissions
         example:
@@ -13049,7 +13428,7 @@ definitions:
         - ACCOUNTS_OVERDRAFT_LIMITS_READ
         - RESOURCES_READ
         items:
-          $ref: '#/definitions/OpenbankingBrasilPermission'
+          $ref: '#/definitions/OpenbankingBrasilConsentPermission'
         maxItems: 30
         minItems: 1
         type: array
@@ -13067,18 +13446,27 @@ definitions:
         type: string
         x-nullable: false
     required:
+    - expirationDateTime
     - loggedUser
     - permissions
     type: object
-  OpenbankingBrasilData1:
-    description: OpenbankingBrasilData1 Data1
+  OpenbankingBrasilConsentData1:
+    description: OpenbankingBrasilConsentData1 Data1
     properties:
       consentId:
-        description: Identificador nico do consentimento.
+        description: |-
+          O consentId  o identificador nico do consentimento e dever ser um URN - Uniform Resource Name.
+          Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141)  um Uniform Resource
+          Identifier - URI - que  atribudo sob o URI scheme "urn" e um namespace URN especfico, com a inteno de que o URN
+          seja um identificador de recurso persistente e independente da localizao.
+          Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+          o namespace(urn)
+          o identificador associado ao namespace da instituio transnmissora (bancoex)
+          o identificador especfico dentro do namespace (C1DD33123).
+          Informaes mais detalhadas sobre a construo de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
         example: urn:bancoex:C1DD33123
-        maxLength: 100
-        minLength: 1
-        pattern: ^[a-zA-Z0-9][a-zA-Z0-9\-\:]{0,99}$
+        maxLength: 256
+        pattern: ^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$
         type: string
         x-nullable: false
       creationDateTime:
@@ -13088,25 +13476,25 @@ definitions:
         type: string
         x-nullable: false
       expirationDateTime:
-        description: Data e hora de expirao da permisso. Se no for preenchido, a permisso ter a data aberta. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format).
+        description: Data e hora de expirao da permisso. De preenchimento obrigatrio, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format).
         example: "2021-05-21T08:30:00Z"
         format: date-time
         type: string
         x-nullable: false
       permissions:
-        description: permissions
+        description: Especifica os tipos de permisses de acesso s APIs no escopo do Open Banking Brasil - Fase 2, de acordo com os blocos de consentimento fornecidos pelo usurio e necessrios ao acesso a cada endpoint das APIs.
         example:
         - ACCOUNTS_READ
         - ACCOUNTS_OVERDRAFT_LIMITS_READ
         - RESOURCES_READ
         items:
-          $ref: '#/definitions/OpenbankingBrasilPermission'
+          $ref: '#/definitions/OpenbankingBrasilConsentPermission1'
         maxItems: 30
         minItems: 1
         type: array
         x-nullable: false
       status:
-        $ref: '#/definitions/OpenbankingBrasilStatus'
+        $ref: '#/definitions/OpenbankingBrasilConsentStatus'
       statusUpdateDateTime:
         description: Data e hora em que o recurso foi atualizado. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format).
         example: "2021-05-21T08:30:00Z"
@@ -13128,75 +13516,13 @@ definitions:
     required:
     - consentId
     - creationDateTime
+    - expirationDateTime
     - permissions
     - status
     - statusUpdateDateTime
     type: object
-  OpenbankingBrasilDebtorAccount:
-    description: |-
-      Objeto que contm a identificao da conta de origem do pagador.
-      As informaes quanto  conta de origem do pagador podero ser trazidas no consentimento para a detentora, caso a iniciadora tenha coletado essas informaes do cliente. Do contrrio, ser coletada na detentora e trazida para a iniciadora como resposta  criao do pagamento.
-    properties:
-      accountType:
-        $ref: '#/definitions/OpenbankingBrasilEnumAccountPaymentsType'
-      ispb:
-        description: Deve ser preenchido com o ISPB (Identificador do Sistema de Pagamentos Brasileiros) do participante do SPI (Sistema de pagamentos instantneos) somente com nmeros.
-        example: "12345678"
-        maxLength: 8
-        minLength: 8
-        pattern: ^[0-9]{8}$
-        type: string
-        x-nullable: false
-      issuer:
-        description: |-
-          Cdigo da Agncia emissora da conta sem dgito.
-          (Agncia  a dependncia destinada ao atendimento aos clientes, ao pblico em geral e aos associados de cooperativas de crdito,
-          no exerccio de atividades da instituio, no podendo ser mvel ou transitria).
-          [Restrio] Preenchimento obrigatrio para os seguintes tipos de conta: CACC (CONTA_DEPOSITO_A_VISTA), SVGS (CONTA_POUPANCA) e SLRY (CONTA_SALARIO).
-        example: "1774"
-        maxLength: 4
-        pattern: ^\d{4}$
-        type: string
-        x-nullable: false
-      number:
-        description: |-
-          Deve ser preenchido com o nmero da conta transacional do usurio pagador, com dgito verificador (se este existir),
-          se houver valor alfanumrico, este deve ser convertido para 0.
-        example: "1234567890"
-        maxLength: 20
-        minLength: 3
-        pattern: ^\d{3,20}$
-        type: string
-        x-nullable: false
-    required:
-    - accountType
-    - ispb
-    - number
-    title: OpenbankingBrasilDebtorAccount DebtorAccount
-    type: object
-  OpenbankingBrasilDocument:
-    description: OpenbankingBrasilDocument Document
-    properties:
-      identification:
-        description: Nmero do documento de identificao oficial do titular pessoa jurdica.
-        example: "11111111111111"
-        maxLength: 14
-        pattern: ^\d{14}$
-        type: string
-        x-nullable: false
-      rel:
-        description: Tipo do documento de identificao oficial do titular pessoa jurdica.
-        example: CNPJ
-        maxLength: 4
-        pattern: ^[A-Z]{4}$
-        type: string
-        x-nullable: false
-    required:
-    - identification
-    - rel
-    type: object
-  OpenbankingBrasilDocument1:
-    description: OpenbankingBrasilDocument1 Document1
+  OpenbankingBrasilConsentDocument:
+    description: OpenbankingBrasilConsentDocument Document
     properties:
       identification:
         description: Nmero do documento de identificao oficial do usurio.
@@ -13216,37 +13542,46 @@ definitions:
     - identification
     - rel
     type: object
-  OpenbankingBrasilEnumAccountPaymentsType:
-    description: |-
-      Tipos de contas usadas para pagamento via Pix.
-      Modalidades tradicionais previstas pela Resoluo 4.753, no contemplando contas vinculadas,
-      conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrnica.
-      Segue descrio de cada valor do ENUM para o escopo do Pix.
-      CACC - Current - Conta Corrente.
-      SLRY - Salary - Conta-Salrio.
-      SVGS - Savings - Conta de Poupana.
-      TRAN - TransactingAccount - Conta de Pagamento pr-paga.
-    title: OpenbankingBrasilEnumAccountPaymentsType EnumAccountPaymentsType
-    type: string
-  OpenbankingBrasilError:
-    description: OpenbankingBrasilError Error
+  OpenbankingBrasilConsentDocument1:
+    description: OpenbankingBrasilConsentDocument1 Document1
+    properties:
+      identification:
+        description: Nmero do documento de identificao oficial do titular pessoa jurdica.
+        example: "11111111111111"
+        maxLength: 14
+        pattern: ^\d{14}$
+        type: string
+        x-nullable: false
+      rel:
+        description: Tipo do documento de identificao oficial do titular pessoa jurdica.
+        example: CNPJ
+        maxLength: 4
+        pattern: ^[A-Z]{4}$
+        type: string
+        x-nullable: false
+    required:
+    - identification
+    - rel
+    type: object
+  OpenbankingBrasilConsentError:
+    description: OpenbankingBrasilConsentError Error
     properties:
       code:
         description: Cdigo de erro especfico do endpoint
         maxLength: 255
-        pattern: \w*\W*
+        pattern: '[\w\W\s]*'
         type: string
         x-nullable: false
       detail:
         description: Descrio legvel por humanos deste erro especfico
         maxLength: 2048
-        pattern: \w*\W*
+        pattern: '[\w\W\s]*'
         type: string
         x-nullable: false
       title:
         description: Ttulo legvel por humanos deste erro especfico
         maxLength: 255
-        pattern: \w*\W*
+        pattern: '[\w\W\s]*'
         type: string
         x-nullable: false
     required:
@@ -13254,39 +13589,7 @@ definitions:
     - detail
     - title
     type: object
-  OpenbankingBrasilIdentification:
-    description: Objeto contendo os dados do recebedor (creditor).
-    properties:
-      cpfCnpj:
-        description: |-
-          Identificao da pessoa envolvida na transao.
-          Preencher com o CPF ou CNPJ, de acordo com o valor escolhido no campo type.
-          O CPF ser utilizado com 11 nmeros e dever ser informado sem pontos ou traos.
-          O CNPJ ser utilizado com 14 nmeros e dever ser informado sem pontos ou traos.
-        example: "58764789000137"
-        maxLength: 14
-        minLength: 11
-        pattern: ^\d{11}$|^\d{14}$
-        type: string
-        x-nullable: false
-      name:
-        description: |-
-          Em caso de pessoa natural deve ser informado o nome completo do titular da conta do recebedor.
-          Em caso de pessoa jurdica deve ser informada a razo social ou o nome fantasia da conta do recebedor.
-        example: Marco Antonio de Brito
-        maxLength: 140
-        pattern: '[\w\W\s]*'
-        type: string
-        x-nullable: false
-      personType:
-        $ref: '#/definitions/OpenbankingBrasilPersonType'
-    required:
-    - cpfCnpj
-    - name
-    - personType
-    title: OpenbankingBrasilIdentification Identification
-    type: object
-  OpenbankingBrasilLinks:
+  OpenbankingBrasilConsentLinks:
     description: Referncias para outros recusos da API requisitada.
     properties:
       first:
@@ -13326,18 +13629,18 @@ definitions:
         x-nullable: false
     required:
     - self
-    title: OpenbankingBrasilLinks Links
+    title: OpenbankingBrasilConsentLinks Links
     type: object
-  OpenbankingBrasilLoggedUser:
-    description: Usurio (pessoa natural) que encontra-se logado na instituio Iniciadora de Pagamento.
+  OpenbankingBrasilConsentLoggedUser:
+    description: Usurio (pessoa natural) que encontra-se logado na instituio receptora e que iniciar o processo de consentimento para compartilhamento de dados.
     properties:
       document:
-        $ref: '#/definitions/OpenbankingBrasilDocument1'
+        $ref: '#/definitions/OpenbankingBrasilConsentDocument'
     required:
     - document
-    title: OpenbankingBrasilLoggedUser LoggedUser
+    title: OpenbankingBrasilConsentLoggedUser LoggedUser
     type: object
-  OpenbankingBrasilMeta:
+  OpenbankingBrasilConsentMeta:
     description: Meta informaes referente a API requisitada.
     properties:
       requestDateTime:
@@ -13362,9 +13665,401 @@ definitions:
     - requestDateTime
     - totalPages
     - totalRecords
-    title: OpenbankingBrasilMeta Meta
+    title: OpenbankingBrasilConsentMeta Meta
     type: object
-  OpenbankingBrasilPaymentConsent:
+  OpenbankingBrasilConsentPermission:
+    description: Especifica os tipos de permisses de acesso s APIs no escopo do Open Banking Brasil - Fase 2, de acordo com os blocos de consentimento fornecidos pelo usurio e necessrios ao acesso a cada endpoint das APIs.
+    title: OpenbankingBrasilConsentPermission Permission
+    type: string
+  OpenbankingBrasilConsentPermission1:
+    description: OpenbankingBrasilConsentPermission1 Permission1
+    type: string
+  OpenbankingBrasilConsentStatus:
+    description: Estado atual do consentimento cadastrado.
+    title: OpenbankingBrasilConsentStatus Status
+    type: string
+  OpenbankingBrasilPaymentBusinessEntity:
+    description: Usurio (pessoa jurdica) que encontra-se logado na instituio Iniciadora de Pagamento. [Restrio] Preenchimento obrigatrio se usurio logado na instituio Iniciadora de Pagamento for um CNPJ (pessoa jurdica).
+    properties:
+      document:
+        $ref: '#/definitions/OpenbankingBrasilPaymentDocument'
+    required:
+    - document
+    title: OpenbankingBrasilPaymentBusinessEntity BusinessEntity
+    type: object
+  OpenbankingBrasilPaymentCreditorAccount:
+    description: Objeto que contm a identificao da conta de destino do beneficirio/recebedor.
+    properties:
+      accountType:
+        $ref: '#/definitions/OpenbankingBrasilPaymentEnumAccountPaymentsType'
+      ispb:
+        description: Deve ser preenchido com o ISPB (Identificador do Sistema de Pagamentos Brasileiros) do participante do SPI (Sistema de pagamentos instantneos) somente com nmeros.
+        example: "12345678"
+        maxLength: 8
+        minLength: 8
+        pattern: ^[0-9]{8}$
+        type: string
+        x-nullable: false
+      issuer:
+        description: |-
+          Cdigo da Agncia emissora da conta sem dgito.
+          (Agncia  a dependncia destinada ao atendimento aos clientes, ao pblico em geral e aos associados de cooperativas de crdito,
+          no exerccio de atividades da instituio, no podendo ser mvel ou transitria).
+          [Restrio] Preenchimento obrigatrio para os seguintes tipos de conta: CACC (CONTA_DEPOSITO_A_VISTA), SVGS (CONTA_POUPANCA) e SLRY (CONTA_SALARIO).
+        example: "1774"
+        maxLength: 4
+        pattern: ^\d{4}$
+        type: string
+        x-nullable: false
+      number:
+        description: |-
+          Deve ser preenchido com o nmero da conta do usurio recebedor, com dgito verificador (se este existir),
+          se houver valor alfanumrico, este deve ser convertido para 0.
+        example: "1234567890"
+        maxLength: 20
+        minLength: 3
+        pattern: ^\d{3,20}$
+        type: string
+        x-nullable: false
+    required:
+    - accountType
+    - ispb
+    - number
+    title: OpenbankingBrasilPaymentCreditorAccount CreditorAccount
+    type: object
+  OpenbankingBrasilPaymentData:
+    description: Objeto contendo as informaes de consentimento para a iniciao de pagamento individual.
+    properties:
+      businessEntity:
+        $ref: '#/definitions/OpenbankingBrasilPaymentBusinessEntity'
+      creditor:
+        $ref: '#/definitions/OpenbankingBrasilPaymentIdentification'
+      debtorAccount:
+        $ref: '#/definitions/OpenbankingBrasilPaymentDebtorAccount'
+      loggedUser:
+        $ref: '#/definitions/OpenbankingBrasilPaymentLoggedUser'
+      payment:
+        $ref: '#/definitions/OpenbankingBrasilPaymentPaymentConsent'
+    required:
+    - creditor
+    - loggedUser
+    - payment
+    title: OpenbankingBrasilPaymentData Data
+    type: object
+  OpenbankingBrasilPaymentData1:
+    description: Objeto contendo as informaes de resposta do consentimento para a iniciao de pagamento individual.
+    properties:
+      businessEntity:
+        $ref: '#/definitions/OpenbankingBrasilPaymentBusinessEntity'
+      consentId:
+        description: |-
+          Identificador nico do consentimento criado para a iniciao de pagamento solicitada. Dever ser um URN - Uniform Resource Name.
+          Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141)  um Uniform Resource
+          Identifier - URI - que  atribudo sob o URI scheme "urn" e um namespace URN especfico, com a inteno de que o URN
+          seja um identificador de recurso persistente e independente da localizao.
+          Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+          o namespace(urn)
+          o identificador associado ao namespace da instituio transnmissora (bancoex)
+          o identificador especfico dentro do namespace (C1DD33123).
+          Informaes mais detalhadas sobre a construo de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+        example: urn:bancoex:C1DD33123
+        maxLength: 256
+        pattern: ^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$
+        type: string
+        x-nullable: false
+      creationDateTime:
+        description: Data e hora em que o consentimento foi criado. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format).
+        example: "2021-05-21T08:30:00Z"
+        format: date-time
+        type: string
+        x-nullable: false
+      creditor:
+        $ref: '#/definitions/OpenbankingBrasilPaymentIdentification'
+      debtorAccount:
+        $ref: '#/definitions/OpenbankingBrasilPaymentDebtorAccount'
+      expirationDateTime:
+        description: |-
+          Data e hora em que o consentimento da iniciao de pagamento expira, devendo ser sempre o creationDateTime mais 5 minutos. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC (UTC time format).
+          O consentimento  criado com o status AWAITING_AUTHORISATION, e deve assumir o status AUTHORIZED ou REJECTED antes do tempo de expirao - 5 minutos. Caso o tempo seja expirado, o status deve assumir REJECTED.
+          Para o cenrio em que o status assumiu AUTHORISED, o tempo mximo do expirationDateTime do consentimento deve assumir "now + 60 minutos". Este  o tempo para consumir o consentimento autorizado, mudando seu status para CONSUMED. No  possvel prorrogar este tempo e a criao de um novo consentimento ser necessria para os cenrios de insucesso.
+          O tempo do expirationDateTime  garantido com os 15 minutos do access token, sendo possvel utilizar mais trs refresh tokens at totalizar 60 minutos.
+        example: "2021-05-21T08:30:00Z"
+        format: date-time
+        type: string
+        x-nullable: false
+      loggedUser:
+        $ref: '#/definitions/OpenbankingBrasilPaymentLoggedUser'
+      payment:
+        $ref: '#/definitions/OpenbankingBrasilPaymentPaymentConsent'
+      status:
+        $ref: '#/definitions/OpenbankingBrasilPaymentEnumAuthorisationStatusType'
+      statusUpdateDateTime:
+        description: Data e hora em que o recurso foi atualizado. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format).
+        example: "2021-05-21T08:30:00Z"
+        format: date-time
+        type: string
+        x-nullable: false
+    required:
+    - consentId
+    - creationDateTime
+    - creditor
+    - expirationDateTime
+    - loggedUser
+    - payment
+    - status
+    - statusUpdateDateTime
+    title: OpenbankingBrasilPaymentData1 Data1
+    type: object
+  OpenbankingBrasilPaymentDebtorAccount:
+    description: |-
+      Objeto que contm a identificao da conta de origem do pagador.
+      As informaes quanto  conta de origem do pagador podero ser trazidas no consentimento para a detentora, caso a iniciadora tenha coletado essas informaes do cliente. Do contrrio, ser coletada na detentora e trazida para a iniciadora como resposta  criao do pagamento.
+    properties:
+      accountType:
+        $ref: '#/definitions/OpenbankingBrasilPaymentEnumAccountPaymentsType'
+      ispb:
+        description: Deve ser preenchido com o ISPB (Identificador do Sistema de Pagamentos Brasileiros) do participante do SPI (Sistema de pagamentos instantneos) somente com nmeros.
+        example: "12345678"
+        maxLength: 8
+        minLength: 8
+        pattern: ^[0-9]{8}$
+        type: string
+        x-nullable: false
+      issuer:
+        description: |-
+          Cdigo da Agncia emissora da conta sem dgito.
+          (Agncia  a dependncia destinada ao atendimento aos clientes, ao pblico em geral e aos associados de cooperativas de crdito,
+          no exerccio de atividades da instituio, no podendo ser mvel ou transitria).
+          [Restrio] Preenchimento obrigatrio para os seguintes tipos de conta: CACC (CONTA_DEPOSITO_A_VISTA), SVGS (CONTA_POUPANCA) e SLRY (CONTA_SALARIO).
+        example: "1774"
+        maxLength: 4
+        pattern: ^\d{4}$
+        type: string
+        x-nullable: false
+      number:
+        description: |-
+          Deve ser preenchido com o nmero da conta transacional do usurio pagador, com dgito verificador (se este existir),
+          se houver valor alfanumrico, este deve ser convertido para 0.
+        example: "1234567890"
+        maxLength: 20
+        minLength: 3
+        pattern: ^\d{3,20}$
+        type: string
+        x-nullable: false
+    required:
+    - accountType
+    - ispb
+    - number
+    title: OpenbankingBrasilPaymentDebtorAccount DebtorAccount
+    type: object
+  OpenbankingBrasilPaymentDetails:
+    description: Objeto contendo os detalhes do pagamento.
+    properties:
+      creditorAccount:
+        $ref: '#/definitions/OpenbankingBrasilPaymentCreditorAccount'
+      localInstrument:
+        $ref: '#/definitions/OpenbankingBrasilPaymentEnumLocalInstrument'
+      proxy:
+        description: |-
+          Chave cadastrada no DICT pertencente ao recebedor. Os tipos de chaves podem ser: telefone, e-mail, cpf/cnpj ou chave aleatria.
+          No caso de telefone celular deve ser informado no padro E.1641.
+          Para e-mail deve ter o formato xxxxxxxx@xxxxxxx.xxx(.xx) e no mximo 77 caracteres.
+          No caso de CPF dever ser informado com 11 nmeros, sem pontos ou traos.
+          Para o caso de CNPJ dever ser informado com 14 nmeros, sem pontos ou traos.
+          No caso de chave aleatria deve ser informado o UUID gerado pelo DICT, conforme formato especificado na RFC41223.
+          Se informado, a detentora da conta deve validar o proxy no DICT quando localInstrument for igual a DICT, QRDN (uso futuro) ou QRES (uso futuro) e validar o campo creditorAccount.
+          Esta validao  opcional caso o localInstrument for igual a INIC.
+          [Restrio]
+          Se localInstrument for igual a MANU, o campo proxy no deve ser preenchido.
+          Se localInstrument for igual INIC, DICT, QRDN (uso futuro) ou QRES (uso futuro), o campo proxy deve ser sempre preenchido com a chave Pix.
+        example: "12345678901"
+        maxLength: 77
+        pattern: '[\w\W\s]*'
+        type: string
+        x-nullable: false
+      qrCode:
+        description: |-
+          Obs: Campo reservado para uso futuro.
+          Sequncia de caracteres que corresponde ao QR Code disponibilizado para o pagador.
+          a sequncia de caracteres que seria lida pelo leitor de QR Code, e deve propiciar o retorno dos dados do pagador aps consulta na DICT.
+          Essa funcionalidade  possvel tanto para QR Code esttico quanto para QR Code dinmico.
+          No arranjo do Pix esta  a mesma sequncia gerada e/ou lida pela funcionalidade Pix Copia e Cola.
+          Este campo dever ser no formato UTF-8.
+          [Restrio] Preenchimento obrigatrio para pagamentos por QR Code, observado o tamanho mximo de 512 bytes.
+        example: 00020104141234567890123426660014BR.GOV.BCB.PIX014466756C616E6F32303139406578616D706C652E636F6D27300012  \nBR.COM.OUTRO011001234567895204000053039865406123.455802BR5915NOMEDORECEBEDOR6008BRASILIA61087007490062  \n530515RP12345678-201950300017BR.GOV.BCB.BRCODE01051.0.080450014BR.GOV.BCB.PIX0123PADRAO.URL.PIX/0123AB  \nCD81390012BR.COM.OUTRO01190123.ABCD.3456.WXYZ6304EB76\n
+        maxLength: 512
+        pattern: '[\w\W\s]*'
+        type: string
+        x-nullable: false
+    required:
+    - creditorAccount
+    - localInstrument
+    title: OpenbankingBrasilPaymentDetails Details
+    type: object
+  OpenbankingBrasilPaymentDocument:
+    description: OpenbankingBrasilPaymentDocument Document
+    properties:
+      identification:
+        description: Nmero do documento de identificao oficial do titular pessoa jurdica.
+        example: "11111111111111"
+        maxLength: 14
+        pattern: ^\d{14}$
+        type: string
+        x-nullable: false
+      rel:
+        description: Tipo do documento de identificao oficial do titular pessoa jurdica.
+        example: CNPJ
+        maxLength: 4
+        pattern: ^[A-Z]{4}$
+        type: string
+        x-nullable: false
+    required:
+    - identification
+    - rel
+    type: object
+  OpenbankingBrasilPaymentDocument1:
+    description: OpenbankingBrasilPaymentDocument1 Document1
+    properties:
+      identification:
+        description: Nmero do documento de identificao oficial do usurio.
+        example: "11111111111"
+        maxLength: 11
+        pattern: ^\d{11}$
+        type: string
+        x-nullable: false
+      rel:
+        description: Tipo do documento de identificao oficial do usurio.
+        example: CPF
+        maxLength: 3
+        pattern: ^[A-Z]{3}$
+        type: string
+        x-nullable: false
+    required:
+    - identification
+    - rel
+    type: object
+  OpenbankingBrasilPaymentEnumAccountPaymentsType:
+    description: |-
+      Tipos de contas usadas para pagamento via Pix.
+      Modalidades tradicionais previstas pela Resoluo 4.753, no contemplando contas vinculadas,
+      conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrnica.
+      Segue descrio de cada valor do ENUM para o escopo do Pix.
+      CACC - Current - Conta Corrente.
+      SLRY - Salary - Conta-Salrio.
+      SVGS - Savings - Conta de Poupana.
+      TRAN - TransactingAccount - Conta de Pagamento pr-paga.
+    title: OpenbankingBrasilPaymentEnumAccountPaymentsType EnumAccountPaymentsType
+    type: string
+  OpenbankingBrasilPaymentEnumAuthorisationStatusType:
+    description: |-
+      Retorna o estado do consentimento, o qual no momento de sua criao ser AWAITING_AUTHORISATION.
+      Este estado ser alterado depois da autorizao do consentimento na detentora da conta do pagador (Debtor) para AUTHORISED ou REJECTED.
+      O consentimento fica no estado CONSUMED aps ocorrer a iniciao do pagamento referente ao consentimento.
+      Em caso de consentimento expirado a detentora dever retornar o status REJECTED.
+      Estados possveis:
+      AWAITING_AUTHORISATION - Aguardando autorizao
+      AUTHORISED - Autorizado
+      REJECTED - Rejeitado
+      CONSUMED - Consumido
+    title: OpenbankingBrasilPaymentEnumAuthorisationStatusType EnumAuthorisationStatusType
+    type: string
+  OpenbankingBrasilPaymentEnumLocalInstrument:
+    description: |-
+      Especifica a forma de iniciao do pagamento:
+      MANU - Insero manual de dados da conta transacional
+      DICT - Insero manual de chave Pix
+      QRDN - QR code dinmico (*Domnio reservado para uso futuro*)
+      QRES - QR code esttico (*Domnio reservado para uso futuro*)
+      INIC - Indica que o recebedor (creditor) contratou o Iniciador de Pagamentos especificamente para realizar iniciaes de pagamento em que o beneficirio  previamente conhecido.
+    title: OpenbankingBrasilPaymentEnumLocalInstrument EnumLocalInstrument
+    type: string
+  OpenbankingBrasilPaymentEnumPaymentPersonType:
+    description: Titular, pessoa natural ou juridica a quem se referem os dados de recebedor (creditor).
+    title: OpenbankingBrasilPaymentEnumPaymentPersonType EnumPaymentPersonType
+    type: string
+  OpenbankingBrasilPaymentIdentification:
+    description: Objeto contendo os dados do recebedor (creditor).
+    properties:
+      cpfCnpj:
+        description: |-
+          Identificao da pessoa envolvida na transao.
+          Preencher com o CPF ou CNPJ, de acordo com o valor escolhido no campo type.
+          O CPF ser utilizado com 11 nmeros e dever ser informado sem pontos ou traos.
+          O CNPJ ser utilizado com 14 nmeros e dever ser informado sem pontos ou traos.
+        example: "58764789000137"
+        maxLength: 14
+        minLength: 11
+        pattern: ^\d{11}$|^\d{14}$
+        type: string
+        x-nullable: false
+      name:
+        description: |-
+          Em caso de pessoa natural deve ser informado o nome completo do titular da conta do recebedor.
+          Em caso de pessoa jurdica deve ser informada a razo social ou o nome fantasia da conta do recebedor.
+        example: Marco Antonio de Brito
+        maxLength: 140
+        pattern: '[\w\W\s]*'
+        type: string
+        x-nullable: false
+      personType:
+        $ref: '#/definitions/OpenbankingBrasilPaymentEnumPaymentPersonType'
+    required:
+    - cpfCnpj
+    - name
+    - personType
+    title: OpenbankingBrasilPaymentIdentification Identification
+    type: object
+  OpenbankingBrasilPaymentLinks:
+    description: Referncias para outros recusos da API requisitada.
+    properties:
+      self:
+        description: URI completo que gerou a resposta atual.
+        example: https://api.banco.com.br/open-banking/api/v1/resource
+        maxLength: 2000
+        pattern: ^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$
+        type: string
+        x-nullable: false
+    required:
+    - self
+    title: OpenbankingBrasilPaymentLinks Links
+    type: object
+  OpenbankingBrasilPaymentLoggedUser:
+    description: Usurio (pessoa natural) que encontra-se logado na instituio Iniciadora de Pagamento.
+    properties:
+      document:
+        $ref: '#/definitions/OpenbankingBrasilPaymentDocument1'
+    required:
+    - document
+    title: OpenbankingBrasilPaymentLoggedUser LoggedUser
+    type: object
+  OpenbankingBrasilPaymentMeta:
+    description: Meta informaes referente a API requisitada.
+    properties:
+      requestDateTime:
+        description: Data e hora da consulta, conforme especificao RFC-3339, formato UTC.
+        example: "2021-05-21T08:30:00Z"
+        format: date-time
+        type: string
+        x-nullable: false
+      totalPages:
+        description: Nmero total de pginas no resultado
+        example: 1
+        format: int32
+        type: integer
+        x-nullable: false
+      totalRecords:
+        description: Nmero total de registros no resultado
+        example: 1
+        format: int32
+        type: integer
+        x-nullable: false
+    required:
+    - requestDateTime
+    - totalPages
+    - totalRecords
+    title: OpenbankingBrasilPaymentMeta Meta
+    type: object
+  OpenbankingBrasilPaymentPaymentConsent:
     description: Objeto contendo dados de pagamento para consentimento.
     properties:
       amount:
@@ -13390,6 +14085,8 @@ definitions:
         format: date
         type: string
         x-nullable: false
+      details:
+        $ref: '#/definitions/OpenbankingBrasilPaymentDetails'
       type:
         description: Este campo define o tipo de pagamento que ser iniciado aps a autorizao do consentimento.
         example: PIX
@@ -13399,86 +14096,10 @@ definitions:
     - amount
     - currency
     - date
+    - details
     - type
-    title: OpenbankingBrasilPaymentConsent PaymentConsent
+    title: OpenbankingBrasilPaymentPaymentConsent PaymentConsent
     type: object
-  OpenbankingBrasilPermission:
-    description: Especifica os tipos de permisses de acesso s APIs no escopo do Open Banking Brasil - Fase 2, de acordo com os blocos de consentimento fornecidos pelo usurio e necessrios ao acesso a cada endpoint das APIs.
-    title: OpenbankingBrasilPermission Permission
-    type: string
-  OpenbankingBrasilPersonType:
-    description: Titular, pessoa natural ou juridica a quem se referem os dados de recebedor (creditor).
-    title: OpenbankingBrasilPersonType PersonType
-    type: string
-  OpenbankingBrasilResponsePaymentConsentData:
-    description: Objeto contendo as informaes de resposta do consentimento para a iniciao de pagamento individual.
-    properties:
-      businessEntity:
-        $ref: '#/definitions/OpenbankingBrasilBusinessEntity'
-      consentId:
-        description: |-
-          Identificador nico do consentimento criado para a iniciao de pagamento solicitada. Dever ser um URN - Uniform Resource Name.
-          Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141)  um Uniform Resource
-          Identifier - URI - que  atribudo sob o URI scheme "urn" e um namespace URN especfico, com a inteno de que o URN
-          seja um identificador de recurso persistente e independente da localizao.
-          Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
-          o namespace(urn)
-          o identificador associado ao namespace da instituio transnmissora (bancoex)
-          o identificador especfico dentro do namespace (C1DD33123).
-          Informaes mais detalhadas sobre a construo de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
-        example: urn:bancoex:C1DD33123
-        maxLength: 256
-        pattern: ^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$
-        type: string
-        x-nullable: false
-      creationDateTime:
-        description: Data e hora em que o consentimento foi criado. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format).
-        example: "2021-05-21T08:30:00Z"
-        format: date-time
-        type: string
-        x-nullable: false
-      creditor:
-        $ref: '#/definitions/OpenbankingBrasilIdentification'
-      debtorAccount:
-        $ref: '#/definitions/OpenbankingBrasilDebtorAccount'
-      expirationDateTime:
-        description: |-
-          Data e hora em que o consentimento da iniciao de pagamento expira, devendo ser sempre o creationDateTime mais 5 minutos. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC (UTC time format).
-          O consentimento  criado com o status AWAITING_AUTHORISATION, e deve assumir o status AUTHORIZED, REJECTED ou CONSUMED antes do tempo de expirao - 5 minutos.
-          Caso no assuma, o status permanece como AWAITING_AUTHORISATION e ser necessria a criao de um novo consentimento.
-          Para o cenrio em que o status assumiu AUTHORISED, o tempo mximo (do token FAPI Hybrid Flow)  de 60 minutos, sem refresh,
-          e este  o tempo para consumir o consentimento autorizado, mudando seu status para CONSUMED. No  possvel prorrogar este tempo e a criao de um novo consentimento ser necessria para os cenrios de insucesso.
-        example: "2021-05-21T08:30:00Z"
-        format: date-time
-        type: string
-        x-nullable: false
-      loggedUser:
-        $ref: '#/definitions/OpenbankingBrasilLoggedUser'
-      payment:
-        $ref: '#/definitions/OpenbankingBrasilPaymentConsent'
-      status:
-        $ref: '#/definitions/OpenbankingBrasilStatus'
-      statusUpdateDateTime:
-        description: Data e hora em que o recurso foi atualizado. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format).
-        example: "2021-05-21T08:30:00Z"
-        format: date-time
-        type: string
-        x-nullable: false
-    required:
-    - consentId
-    - creationDateTime
-    - creditor
-    - expirationDateTime
-    - loggedUser
-    - payment
-    - status
-    - statusUpdateDateTime
-    title: OpenbankingBrasilResponsePaymentConsentData ResponsePaymentConsentData
-    type: object
-  OpenbankingBrasilStatus:
-    description: Estado atual do consentimento cadastrado.
-    title: OpenbankingBrasilStatus Status
-    type: string
   OpenbankingClient:
     properties:
       client_uri:
@@ -13774,6 +14395,14 @@ definitions:
         description: Logo URI
         type: string
         x-nullable: false
+      organisation_id:
+        description: |-
+          External organisation ID
+
+          This field is used as an aud for message signing
+        example: 5647fe90-f6bc-11eb-9a03-0242ac130003
+        type: string
+        x-nullable: false
       policy_uri:
         description: Policy URL to read about how the profile data is used
         type: string
@@ -13913,6 +14542,7 @@ definitions:
         type: string
         x-nullable: false
       subject_type:
+        default: public
         description: |-
           Subject identifier type
 
@@ -13979,6 +14609,7 @@ definitions:
         type: string
         x-nullable: false
       token_endpoint_auth_signing_alg:
+        default: none
         description: |-
           Signing algorithm for the token endpoint
 
@@ -13989,6 +14620,13 @@ definitions:
 
           If your token endpoint authentication is set to the `client_secret_jwt` method,
           the `token_endpoint_auth_signing_alg` parameter must be HS256.
+        enum:
+        - none
+        - RS256
+        - ES256
+        - PS256
+        - H256
+        example: none
         type: string
         x-nullable: false
       tos_uri:
@@ -13996,6 +14634,7 @@ definitions:
         type: string
         x-nullable: false
       userinfo_signed_response_alg:
+        default: none
         description: |-
           JWS alg algorithm REQUIRED for signing UserInfo Responses.
 
@@ -14183,6 +14822,14 @@ definitions:
         description: Logo URI
         type: string
         x-nullable: false
+      organisation_id:
+        description: |-
+          External organisation ID
+
+          This field is used as an aud for message signing
+        example: 5647fe90-f6bc-11eb-9a03-0242ac130003
+        type: string
+        x-nullable: false
       policy_uri:
         description: Policy URL to read about how the profile data is used
         type: string
@@ -14308,6 +14955,7 @@ definitions:
         type: string
         x-nullable: false
       subject_type:
+        default: public
         description: |-
           Subject identifier type
 
@@ -14374,6 +15022,7 @@ definitions:
         type: string
         x-nullable: false
       token_endpoint_auth_signing_alg:
+        default: none
         description: |-
           Signing algorithm for the token endpoint
 
@@ -14384,6 +15033,13 @@ definitions:
 
           If your token endpoint authentication is set to the `client_secret_jwt` method,
           the `token_endpoint_auth_signing_alg` parameter must be HS256.
+        enum:
+        - none
+        - RS256
+        - ES256
+        - PS256
+        - H256
+        example: none
         type: string
         x-nullable: false
       tos_uri:
@@ -14391,6 +15047,7 @@ definitions:
         type: string
         x-nullable: false
       userinfo_signed_response_alg:
+        default: none
         description: |-
           JWS alg algorithm REQUIRED for signing UserInfo Responses.
 
@@ -14430,7 +15087,11 @@ definitions:
   PayloadSettings:
     properties:
       format:
+        default: json
         description: payload format
+        enum:
+        - json
+        - jws
         format: payloadFormat
         type: string
         x-nullable: false
@@ -14747,9 +15408,6 @@ definitions:
     type: object
   RecoveryConfig:
     properties:
-      id:
-        type: string
-        x-nullable: false
       type:
         type: string
         x-nullable: false
@@ -15256,14 +15914,18 @@ definitions:
   ScopeGrantAccepted:
     properties:
       redirect_to:
-        description: url where user should be redirected
+        description: |-
+          url where user should be redirected
+          this aplies only for redirect flow
         type: string
         x-nullable: false
     type: object
   ScopeGrantRejected:
     properties:
       redirect_to:
-        description: url where user should be redirected
+        description: |-
+          url where user should be redirected
+          this aplies only for redirect flow
         type: string
         x-nullable: false
     type: object
@@ -15600,6 +16262,39 @@ definitions:
         type: array
         x-nullable: false
     type: object
+  Script:
+    properties:
+      authorization_server_id:
+        description: ID of the authorization server (workspace) where the script is created
+        format: serverID
+        type: string
+        x-nullable: false
+      body:
+        description: Script body
+        format: scriptBody
+        type: string
+        x-nullable: false
+      id:
+        description: |-
+          Unique ID of your script
+
+          If not provided, a random ID is generated.
+        format: scriptID
+        type: string
+        x-nullable: false
+      name:
+        description: Display name of your script
+        type: string
+        x-nullable: false
+      tenant_id:
+        description: ID of the tenant where the script is created
+        format: tenantID
+        type: string
+        x-nullable: false
+    required:
+    - tenant_id
+    - authorization_server_id
+    type: object
   ScriptTransformer:
     description: script transformer ALPHA_FEATURE
     properties:
@@ -15607,8 +16302,17 @@ definitions:
         type: boolean
         x-nullable: false
       script:
-        format: script
+        format: scriptBody
         type: string
+        x-nullable: false
+    type: object
+  Scripts:
+    properties:
+      scripts:
+        description: list of scripts
+        items:
+          $ref: '#/definitions/Script'
+        type: array
         x-nullable: false
     type: object
   SecondaryIdentification:
@@ -15619,6 +16323,7 @@ definitions:
     description: Multi Tenant authorization server
     properties:
       access_token_strategy:
+        default: jwt
         description: |-
           Access token strategy
 
@@ -15630,10 +16335,14 @@ definitions:
           Opaque tokens are in a proprietary form that contains an identifier to information stored on
           the athorization server. To validate an opaque token, the recipient must call the server that
           issued the token.
+        enum:
+        - jwt
+        - opaque
         example: jwt
         type: string
         x-nullable: false
       access_token_ttl:
+        default: 1h0m0s
         description: |-
           Access token time to live
 
@@ -15654,11 +16363,15 @@ definitions:
         type: string
         x-nullable: false
       backchannel_token_delivery_modes_supported:
+        default:
+        - poll
+        - ping
         items:
           type: string
         type: array
         x-nullable: false
       backchannel_user_code_parameter_supported:
+        default: false
         type: boolean
         x-nullable: false
       client_certificate_header:
@@ -15668,6 +16381,7 @@ definitions:
         type: string
         x-nullable: false
       color:
+        default: '#007FFF'
         description: Your server's label color in a HEX format.
         example: '#007FFF'
         type: string
@@ -15684,6 +16398,7 @@ definitions:
       dynamic_client_registration:
         $ref: '#/definitions/DynamicClientRegistrationSettings'
       dynamic_scope_separator:
+        default: .
         description: |-
           You can use this property to define a separator that is used for dynamic scopes.
 
@@ -15714,6 +16429,7 @@ definitions:
         type: boolean
         x-nullable: false
       enable_trust_anchor:
+        default: false
         description: |-
           If enabled, it makes it obligatory to provide a software statement signed by a trusted certificate authority
           when registering a client application with the use of the Dynamic Client Registration (DCR).
@@ -15724,6 +16440,7 @@ definitions:
         type: boolean
         x-nullable: false
       enforce_pkce:
+        default: false
         description: |-
           Define whether you want to enforce using the Proof Key of Code Exchange (PKCE) for both
           private and public clients.
@@ -15734,6 +16451,7 @@ definitions:
         type: boolean
         x-nullable: false
       enforce_pkce_for_public_clients:
+        default: false
         description: |-
           Define whether you want to enforce using the Proof Key of Code Exchange (PKCE) for
           public clients.
@@ -15750,6 +16468,11 @@ definitions:
         type: boolean
         x-nullable: false
       grant_types:
+        default:
+        - authorization_code
+        - implicit
+        - client_credentials
+        - refresh_token
         description: An array that defines which of the OAuth 2.0 grant types are enabled for the authorization server.
         example:
         - authorization_code
@@ -15773,7 +16496,7 @@ definitions:
           Unique identifier of an authorization server (workspace)
 
           If not provided, a random ID is generated.
-        example: 935ab21c-b20a-11e9-a2a3-2a2ae2dbcce4
+        example: default
         format: serverID
         type: string
         x-nullable: false
@@ -15785,6 +16508,14 @@ definitions:
           user profile information to a client application.
         example: 1h10m30s
         format: duration
+        type: string
+        x-nullable: false
+      issuer_id:
+        description: |-
+          Issuer ID that will be used to set `iss` claim on signed messages
+
+          If issuer_id is not set then default issuer_url will be used
+        example: 5647fe90-f6bc-11eb-9a03-0242ac130003
         type: string
         x-nullable: false
       issuer_url:
@@ -15799,11 +16530,16 @@ definitions:
       jwks:
         $ref: '#/definitions/ServerJWKs'
       key_type:
+        default: ecdsa
         description: |-
           Determines which type of asymmetric algorithms (RSA or ECDSA) is used to generate keys for signing access and
           ID tokens.
 
           It is used only as an input parameter for the Create Authorization Server API.
+        enum:
+        - rsa
+        - ecdsa
+        - ps
         example: rsa
         type: string
         x-nullable: false
@@ -15817,17 +16553,31 @@ definitions:
         type: string
         x-nullable: false
       profile:
+        default: default
         description: |-
           The profile of a server
 
           ACP is delivered with preconfigured workspace templates that enable quick and easy setup for
           specific configuration patterns. For example, you can instantly create an Open Banking
           compliant workspace that has all of the required mechanisms and settings already in place.
+        enum:
+        - default
+        - demo
+        - workforce
+        - consumer
+        - partners
+        - third_party
+        - fapi_advanced
+        - fapi_rw
+        - fapi_ro
+        - openbanking_uk_fapi_advanced
+        - openbanking_uk
+        - openbanking_br
         example: default
-        format: serverProfile
         type: string
         x-nullable: false
       read_client_certificate_from_header:
+        default: false
         description: |-
           A flag that defines whether the client certificates should be read from request header's.
 
@@ -15841,6 +16591,7 @@ definitions:
         type: boolean
         x-nullable: false
       refresh_token_ttl:
+        default: 720h0m0s
         description: |-
           Refresh token time to live
 
@@ -15885,9 +16636,14 @@ definitions:
 
           It is recommended that your salt value is long for security reasons. Preferably, the salt
           value should be at least the same length as the output of the hash.
+
+          If not provided, it is generated.
         type: string
         x-nullable: false
       subject_identifier_types:
+        default:
+        - public
+        - pairwise
         description: |-
           An array that defines supported subject identifier types.
 
@@ -15910,10 +16666,20 @@ definitions:
         type: array
         x-nullable: false
       tenant_id:
+        description: ID of a tenant
+        example: default
         format: tenantID
         type: string
         x-nullable: false
       token_endpoint_auth_methods:
+        default:
+        - client_secret_basic
+        - client_secret_post
+        - client_secret_jwt
+        - private_key_jwt
+        - self_signed_tls_client_auth
+        - tls_client_auth
+        - none
         description: |-
           An array that lists all of the supported token endpoint authentication methods for the
           authorization server.
@@ -15945,15 +16711,22 @@ definitions:
       trust_anchor_configuration:
         $ref: '#/definitions/TrustAnchorConfiguration'
       type:
+        default: regular
         description: |-
           Server type
 
           It is an internal property used to recognize if the server is created for an admin portal,
           a developer portal, or if it is a system or a regular workspace.
+        enum:
+        - admin
+        - developer
+        - system
+        - regular
         example: regular
-        format: serverType
         type: string
         x-nullable: false
+    required:
+    - tenant_id
     type: object
   ServerAPIs:
     properties:
@@ -15993,6 +16766,7 @@ definitions:
   ServerDump:
     properties:
       access_token_strategy:
+        default: jwt
         description: |-
           Access token strategy
 
@@ -16004,10 +16778,14 @@ definitions:
           Opaque tokens are in a proprietary form that contains an identifier to information stored on
           the athorization server. To validate an opaque token, the recipient must call the server that
           issued the token.
+        enum:
+        - jwt
+        - opaque
         example: jwt
         type: string
         x-nullable: false
       access_token_ttl:
+        default: 1h0m0s
         description: |-
           Access token time to live
 
@@ -16028,11 +16806,15 @@ definitions:
         type: string
         x-nullable: false
       backchannel_token_delivery_modes_supported:
+        default:
+        - poll
+        - ping
         items:
           type: string
         type: array
         x-nullable: false
       backchannel_user_code_parameter_supported:
+        default: false
         type: boolean
         x-nullable: false
       client_certificate_header:
@@ -16042,6 +16824,7 @@ definitions:
         type: string
         x-nullable: false
       color:
+        default: '#007FFF'
         description: Your server's label color in a HEX format.
         example: '#007FFF'
         type: string
@@ -16058,6 +16841,7 @@ definitions:
       dynamic_client_registration:
         $ref: '#/definitions/DynamicClientRegistrationSettings'
       dynamic_scope_separator:
+        default: .
         description: |-
           You can use this property to define a separator that is used for dynamic scopes.
 
@@ -16088,6 +16872,7 @@ definitions:
         type: boolean
         x-nullable: false
       enable_trust_anchor:
+        default: false
         description: |-
           If enabled, it makes it obligatory to provide a software statement signed by a trusted certificate authority
           when registering a client application with the use of the Dynamic Client Registration (DCR).
@@ -16098,6 +16883,7 @@ definitions:
         type: boolean
         x-nullable: false
       enforce_pkce:
+        default: false
         description: |-
           Define whether you want to enforce using the Proof Key of Code Exchange (PKCE) for both
           private and public clients.
@@ -16108,6 +16894,7 @@ definitions:
         type: boolean
         x-nullable: false
       enforce_pkce_for_public_clients:
+        default: false
         description: |-
           Define whether you want to enforce using the Proof Key of Code Exchange (PKCE) for
           public clients.
@@ -16124,6 +16911,11 @@ definitions:
         type: boolean
         x-nullable: false
       grant_types:
+        default:
+        - authorization_code
+        - implicit
+        - client_credentials
+        - refresh_token
         description: An array that defines which of the OAuth 2.0 grant types are enabled for the authorization server.
         example:
         - authorization_code
@@ -16147,7 +16939,7 @@ definitions:
           Unique identifier of an authorization server (workspace)
 
           If not provided, a random ID is generated.
-        example: 935ab21c-b20a-11e9-a2a3-2a2ae2dbcce4
+        example: default
         format: serverID
         type: string
         x-nullable: false
@@ -16165,6 +16957,14 @@ definitions:
         description: flag to initialize server default configuration (applicable only if server does not exist)
         type: boolean
         x-nullable: false
+      issuer_id:
+        description: |-
+          Issuer ID that will be used to set `iss` claim on signed messages
+
+          If issuer_id is not set then default issuer_url will be used
+        example: 5647fe90-f6bc-11eb-9a03-0242ac130003
+        type: string
+        x-nullable: false
       issuer_url:
         description: |-
           Defines a custom issuer URL that can be used as the value of the `iss` claim in an access
@@ -16177,11 +16977,16 @@ definitions:
       jwks:
         $ref: '#/definitions/ServerJWKs'
       key_type:
+        default: ecdsa
         description: |-
           Determines which type of asymmetric algorithms (RSA or ECDSA) is used to generate keys for signing access and
           ID tokens.
 
           It is used only as an input parameter for the Create Authorization Server API.
+        enum:
+        - rsa
+        - ecdsa
+        - ps
         example: rsa
         type: string
         x-nullable: false
@@ -16195,17 +17000,31 @@ definitions:
         type: string
         x-nullable: false
       profile:
+        default: default
         description: |-
           The profile of a server
 
           ACP is delivered with preconfigured workspace templates that enable quick and easy setup for
           specific configuration patterns. For example, you can instantly create an Open Banking
           compliant workspace that has all of the required mechanisms and settings already in place.
+        enum:
+        - default
+        - demo
+        - workforce
+        - consumer
+        - partners
+        - third_party
+        - fapi_advanced
+        - fapi_rw
+        - fapi_ro
+        - openbanking_uk_fapi_advanced
+        - openbanking_uk
+        - openbanking_br
         example: default
-        format: serverProfile
         type: string
         x-nullable: false
       read_client_certificate_from_header:
+        default: false
         description: |-
           A flag that defines whether the client certificates should be read from request header's.
 
@@ -16219,6 +17038,7 @@ definitions:
         type: boolean
         x-nullable: false
       refresh_token_ttl:
+        default: 720h0m0s
         description: |-
           Refresh token time to live
 
@@ -16263,9 +17083,14 @@ definitions:
 
           It is recommended that your salt value is long for security reasons. Preferably, the salt
           value should be at least the same length as the output of the hash.
+
+          If not provided, it is generated.
         type: string
         x-nullable: false
       subject_identifier_types:
+        default:
+        - public
+        - pairwise
         description: |-
           An array that defines supported subject identifier types.
 
@@ -16288,10 +17113,20 @@ definitions:
         type: array
         x-nullable: false
       tenant_id:
+        description: ID of a tenant
+        example: default
         format: tenantID
         type: string
         x-nullable: false
       token_endpoint_auth_methods:
+        default:
+        - client_secret_basic
+        - client_secret_post
+        - client_secret_jwt
+        - private_key_jwt
+        - self_signed_tls_client_auth
+        - tls_client_auth
+        - none
         description: |-
           An array that lists all of the supported token endpoint authentication methods for the
           authorization server.
@@ -16323,15 +17158,22 @@ definitions:
       trust_anchor_configuration:
         $ref: '#/definitions/TrustAnchorConfiguration'
       type:
+        default: regular
         description: |-
           Server type
 
           It is an internal property used to recognize if the server is created for an admin portal,
           a developer portal, or if it is a system or a regular workspace.
+        enum:
+        - admin
+        - developer
+        - system
+        - regular
         example: regular
-        format: serverType
         type: string
         x-nullable: false
+    required:
+    - tenant_id
     type: object
   ServerJWK:
     properties:
@@ -16989,15 +17831,33 @@ definitions:
     type: object
   StaticUser:
     properties:
+      additional_attributes:
+        $ref: '#/definitions/AuthenticationContext'
       authentication_context:
         $ref: '#/definitions/AuthenticationContext'
+      email:
+        description: User's preferred email.
+        type: string
+        x-nullable: false
+      email_verified:
+        description: If set to true, indicates that the user's email was verfied.
+        type: boolean
+        x-nullable: false
       password:
-        description: user password
+        description: User password.
         example: secret
         type: string
         x-nullable: false
+      phone_number:
+        description: User's preferred phone number
+        type: string
+        x-nullable: false
+      phone_number_verified:
+        description: If set to true, indicates that the user's phone number was verfied.
+        type: boolean
+        x-nullable: false
       username:
-        description: user login
+        description: User login.
         example: peter
         type: string
         x-nullable: false
@@ -17143,6 +18003,11 @@ definitions:
           $ref: '#/definitions/API'
         type: array
         x-nullable: false
+      ciba_authentication_services:
+        items:
+          $ref: '#/definitions/CIBAAuthenticationService'
+        type: array
+        x-nullable: false
       claims:
         items:
           $ref: '#/definitions/Claim'
@@ -17223,6 +18088,11 @@ definitions:
       scopes_without_service:
         items:
           $ref: '#/definitions/Scope'
+        type: array
+        x-nullable: false
+      scripts:
+        items:
+          $ref: '#/definitions/Script'
         type: array
         x-nullable: false
       server_consents:
@@ -17343,8 +18213,7 @@ definitions:
         type: array
         x-nullable: false
       recovery:
-        items:
-          $ref: '#/definitions/ValidateResponse_Recovery'
+        items: {}
         type: array
         x-nullable: false
       result:
@@ -17619,6 +18488,14 @@ definitions:
         x-nullable: false
       metadata:
         $ref: '#/definitions/Metadata'
+      organisation_id:
+        description: |-
+          External organisation ID
+
+          This field is used as an aud for message signing
+        example: 5647fe90-f6bc-11eb-9a03-0242ac130003
+        type: string
+        x-nullable: false
       policy_uri:
         description: Policy URL to read about how the profile data is used
         type: string
@@ -17747,6 +18624,7 @@ definitions:
         type: string
         x-nullable: false
       subject_type:
+        default: public
         description: |-
           Subject identifier type
 
@@ -17817,6 +18695,7 @@ definitions:
         type: string
         x-nullable: false
       token_endpoint_auth_signing_alg:
+        default: none
         description: |-
           Signing algorithm for the token endpoint
 
@@ -17827,6 +18706,13 @@ definitions:
 
           If your token endpoint authentication is set to the `client_secret_jwt` method,
           the `token_endpoint_auth_signing_alg` parameter must be HS256.
+        enum:
+        - none
+        - RS256
+        - ES256
+        - PS256
+        - H256
+        example: none
         type: string
         x-nullable: false
       tos_uri:
@@ -17841,6 +18727,7 @@ definitions:
         type: boolean
         x-nullable: false
       userinfo_signed_response_alg:
+        default: none
         description: |-
           JWS alg algorithm REQUIRED for signing UserInfo Responses.
 
@@ -18041,6 +18928,14 @@ definitions:
         description: Logo URI
         type: string
         x-nullable: false
+      organisation_id:
+        description: |-
+          External organisation ID
+
+          This field is used as an aud for message signing
+        example: 5647fe90-f6bc-11eb-9a03-0242ac130003
+        type: string
+        x-nullable: false
       policy_uri:
         description: Policy URL to read about how the profile data is used
         type: string
@@ -18152,6 +19047,7 @@ definitions:
         type: string
         x-nullable: false
       subject_type:
+        default: public
         description: |-
           Subject identifier type
 
@@ -18218,6 +19114,7 @@ definitions:
         type: string
         x-nullable: false
       token_endpoint_auth_signing_alg:
+        default: none
         description: |-
           Signing algorithm for the token endpoint
 
@@ -18228,6 +19125,13 @@ definitions:
 
           If your token endpoint authentication is set to the `client_secret_jwt` method,
           the `token_endpoint_auth_signing_alg` parameter must be HS256.
+        enum:
+        - none
+        - RS256
+        - ES256
+        - PS256
+        - H256
+        example: none
         type: string
         x-nullable: false
       tos_uri:
@@ -18235,6 +19139,7 @@ definitions:
         type: string
         x-nullable: false
       userinfo_signed_response_alg:
+        default: none
         description: |-
           JWS alg algorithm REQUIRED for signing UserInfo Responses.
 
@@ -18260,15 +19165,6 @@ definitions:
       name:
         description: gateway name
         example: Cloudentity Pyron
-        type: string
-        x-nullable: false
-    type: object
-  ValidateResponse_Recovery:
-    properties:
-      id:
-        type: string
-        x-nullable: false
-      type:
         type: string
         x-nullable: false
     type: object
@@ -18724,7 +19620,7 @@ host: localhost:8443
 info:
   description: Cloudentity Authorization Control Plane API
   title: Cloudentity Authorization Control Plane API
-  version: 1.12.0
+  version: 1.13.1
 paths:
   /{tid}/{aid}/.well-known/jwks.json:
     get:
@@ -18868,13 +19764,13 @@ paths:
           schema:
             $ref: '#/definitions/BackchannelAuthenticationResponse'
         "400":
-          description: genericError
+          description: BackchannelAuthenticationError
           schema:
-            $ref: '#/definitions/genericError'
+            $ref: '#/definitions/BackchannelAuthenticationError'
         "401":
-          description: genericError
+          description: BackchannelAuthenticationError
           schema:
-            $ref: '#/definitions/genericError'
+            $ref: '#/definitions/BackchannelAuthenticationError'
       summary: OpenID Connect Client-Initiated Backchannel Authentication Flow endpoint
       tags:
       - oauth2
@@ -19735,6 +20631,8 @@ paths:
       - openbanking
   /{tid}/{aid}/open-banking-brasil/open-banking/payments/v1/consents:
     post:
+      consumes:
+      - application/jwt
       description: This API allows AISP to create consent to initiate payments between banks and financial institutions
       operationId: CreatePaymentConsent
       parameters:
@@ -19796,6 +20694,8 @@ paths:
         name: Request
         schema:
           $ref: '#/definitions/OBBRCustomerPaymentConsentRequest'
+      produces:
+      - application/jwt
       responses:
         "201":
           description: OBBRCustomerPaymentConsentResponse
@@ -25115,6 +26015,90 @@ paths:
       summary: Bind server
       tags:
       - servers
+  /api/admin/{tid}/servers/{aid}/ciba-authentication-service:
+    get:
+      description: This API returns details of CIBA authentication service.
+      operationId: getCIBAAuthenticationService
+      parameters:
+      - default: default
+        description: Tenant id
+        in: path
+        name: tid
+        required: true
+        type: string
+      - default: default
+        description: Authorization server id
+        in: path
+        name: aid
+        required: true
+        type: string
+      responses:
+        "200":
+          description: CIBAAuthenticationService
+          schema:
+            $ref: '#/definitions/CIBAAuthenticationService'
+        "401":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "403":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+      security:
+      - admin: []
+      summary: Get CIBA authentication service
+      tags:
+      - servers
+    put:
+      description: |-
+        If you want to enable CIBA for the workspace, you need to provide url to external service that implements
+        rest api specified by ACP.
+      operationId: setCIBAAuthenticationService
+      parameters:
+      - default: default
+        description: Tenant id
+        in: path
+        name: tid
+        required: true
+        type: string
+      - default: default
+        description: Authorization server id
+        in: path
+        name: aid
+        required: true
+        type: string
+      - description: CIBA authentication service
+        in: body
+        name: CIBAAuthenticationService
+        schema:
+          $ref: '#/definitions/CIBAAuthenticationService'
+      responses:
+        "200":
+          description: CIBAAuthenticationService
+          schema:
+            $ref: '#/definitions/CIBAAuthenticationService'
+        "401":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "403":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+      security:
+      - admin: []
+      summary: Set CIBA authentication service.
+      tags:
+      - servers
   /api/admin/{tid}/servers/{aid}/claims:
     get:
       description: List claims.
@@ -25235,10 +26219,6 @@ paths:
           schema:
             $ref: '#/definitions/Error'
         "404":
-          description: HttpError
-          schema:
-            $ref: '#/definitions/Error'
-        "422":
           description: HttpError
           schema:
             $ref: '#/definitions/Error'
@@ -26032,6 +27012,159 @@ paths:
       security:
       - admin: []
       summary: Update Custom IDP
+      tags:
+      - idps
+  /api/admin/{tid}/servers/{aid}/idps/external:
+    post:
+      description: Create External IDP.
+      operationId: createExternalIDP
+      parameters:
+      - default: default
+        description: Tenant id
+        in: path
+        name: tid
+        required: true
+        type: string
+      - default: default
+        description: Authorization server id
+        in: path
+        name: aid
+        required: true
+        type: string
+      - description: ExternalIDP
+        in: body
+        name: ExternalIDP
+        schema:
+          $ref: '#/definitions/ExternalIDP'
+      responses:
+        "201":
+          description: ExternalIDP
+          schema:
+            $ref: '#/definitions/ExternalIDP'
+        "400":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "401":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "403":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "422":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+      security:
+      - admin: []
+      summary: Create External IDP
+      tags:
+      - idps
+  /api/admin/{tid}/servers/{aid}/idps/external/{iid}:
+    get:
+      description: Get External IDP.
+      operationId: getExternalIDP
+      parameters:
+      - default: default
+        description: Tenant id
+        in: path
+        name: tid
+        required: true
+        type: string
+      - default: default
+        description: Authorization server id
+        in: path
+        name: aid
+        required: true
+        type: string
+      - description: IDP id
+        in: path
+        name: iid
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ExternalIDP
+          schema:
+            $ref: '#/definitions/ExternalIDP'
+        "401":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "403":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+      security:
+      - admin: []
+      summary: Get External IDP
+      tags:
+      - idps
+    put:
+      description: Update External IDP.
+      operationId: updateExternalIDP
+      parameters:
+      - default: default
+        description: Tenant id
+        in: path
+        name: tid
+        required: true
+        type: string
+      - default: default
+        description: Authorization server id
+        in: path
+        name: aid
+        required: true
+        type: string
+      - default: default
+        description: IDP id
+        in: path
+        name: iid
+        required: true
+        type: string
+      - description: ExternalIDP
+        in: body
+        name: ExternalIDP
+        schema:
+          $ref: '#/definitions/ExternalIDP'
+      responses:
+        "200":
+          description: ExternalIDP
+          schema:
+            $ref: '#/definitions/ExternalIDP'
+        "400":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "401":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "403":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "422":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+      security:
+      - admin: []
+      summary: Update External IDP
       tags:
       - idps
   /api/admin/{tid}/servers/{aid}/idps/github:
@@ -27456,6 +28589,268 @@ paths:
       summary: List scopes
       tags:
       - scopes
+  /api/admin/{tid}/servers/{aid}/scripts:
+    get:
+      description: Lists tenant's scripts.
+      operationId: listScripts
+      parameters:
+      - default: default
+        description: ID of your tenant
+        in: path
+        name: tid
+        required: true
+        type: string
+      - default: default
+        description: ID of your authorization server (workspace)
+        in: path
+        name: aid
+        required: true
+        type: string
+      - description: |-
+          Optional search phrase: script id OR script name substring (case insensitive)
+          SearchPhrase
+        in: query
+        name: search_phrase
+        type: string
+      - description: |-
+          optional list scripts after given id
+          AfterScriptID
+        in: query
+        name: after_script_id
+        type: string
+      - description: |-
+          optional list scripts before given id
+          BeforeScriptID
+        in: query
+        name: before_script_id
+        type: string
+      - description: |-
+          optional sort scripts by given field
+          Sort
+        in: query
+        name: sort
+        type: string
+      - description: |-
+          optional order scripts by given direction
+          Order
+        in: query
+        name: order
+        type: string
+      - default: 20
+        description: |-
+          optional limit results
+          Limit
+        format: int64
+        in: query
+        name: limit
+        type: integer
+      responses:
+        "200":
+          description: Scripts
+          schema:
+            $ref: '#/definitions/Scripts'
+        "400":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "401":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "403":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+      security:
+      - admin: []
+      summary: List scripts
+      tags:
+      - scripts
+    post:
+      description: |-
+        Creates a script that is used for enriching authentication context.
+        You can, for example, define additional authentication context attributes for mock
+        users defined for a static identity provider. Your script should be written in JavaScript.
+      operationId: createScript
+      parameters:
+      - default: default
+        description: Tenant id
+        in: path
+        name: tid
+        required: true
+        type: string
+      - default: default
+        description: ID of your authorization server (workspace)
+        in: path
+        name: aid
+        required: true
+        type: string
+      - in: body
+        name: Script
+        schema:
+          $ref: '#/definitions/Script'
+      responses:
+        "201":
+          description: Script
+          schema:
+            $ref: '#/definitions/Script'
+        "400":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "401":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "403":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+      security:
+      - admin: []
+      summary: Create script
+      tags:
+      - scripts
+  /api/admin/{tid}/servers/{aid}/scripts/{script}:
+    delete:
+      description: Deleting a script is permanent and it cannot be undone.
+      operationId: deleteScript
+      parameters:
+      - default: default
+        description: ID of your tenant
+        in: path
+        name: tid
+        required: true
+        type: string
+      - default: default
+        description: ID of your authorization server (workspace)
+        in: path
+        name: aid
+        required: true
+        type: string
+      - description: ID of the script to be deleted
+        in: path
+        name: script
+        required: true
+        type: string
+      responses:
+        "204":
+          description: ' Script has been deleted'
+        "400":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "401":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "403":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+      security:
+      - admin: []
+      summary: Deletes given script.
+      tags:
+      - scripts
+    get:
+      description: Returns a script and it's content.
+      operationId: getScript
+      parameters:
+      - default: default
+        description: Tenant id
+        in: path
+        name: tid
+        required: true
+        type: string
+      - default: default
+        description: ID of your authorization server (workspace)
+        in: path
+        name: aid
+        required: true
+        type: string
+      - description: ID of your script
+        in: path
+        name: script
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Script
+          schema:
+            $ref: '#/definitions/Script'
+        "401":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "403":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+      security:
+      - admin: []
+      summary: Get script
+      tags:
+      - scripts
+    put:
+      description: Update existing script.
+      operationId: updateScript
+      parameters:
+      - default: default
+        description: ID of your tenant
+        in: path
+        name: tid
+        required: true
+        type: string
+      - default: default
+        description: ID of your authorization server (workspace)
+        in: path
+        name: aid
+        required: true
+        type: string
+      - description: ID of the script to be updated
+        in: path
+        name: script
+        required: true
+        type: string
+      - in: body
+        name: ScriptBody
+        schema:
+          $ref: '#/definitions/Script'
+      responses:
+        "200":
+          description: Script
+          schema:
+            $ref: '#/definitions/Script'
+        "400":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "401":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "403":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+      security:
+      - admin: []
+      summary: Update script
+      tags:
+      - scripts
   /api/admin/{tid}/servers/{aid}/server-consent:
     get:
       description: Get server consent.
@@ -29013,7 +30408,21 @@ paths:
       - clients
   /api/system/{tid}/configuration:
     get:
-      description: Export entire tenant configuration as json.
+      description: |-
+        Returns a JSON with the configuration of the specified tenant.
+
+        With ACP system API, you can export a specified tenant's
+        configuration. You can, for example, move your tenant's configuration between different ACP deployments
+        using the export API and, then, import it to a different ACP deployment using the import API.
+        For example, a company that delivers its services to financial institutions and uses
+        ACP to protect their APIs, may want to export an Open Banking directive compliant
+        tenant's configuration from one of their deployments and import it the deployment of their customers.
+
+        To export your tenant configuration, your client application must have the `manage_configuration`
+        scope assigned. When requesting an access token, you should also provide this scope as the one you
+        would like to request.
+
+        Use the `tid` path parameter to specify which tenant is to have the configuration exported.
       operationId: exportTenantConfiguration
       parameters:
       - default: default
@@ -29050,7 +30459,7 @@ paths:
       security:
       - system:
         - manage_configuration
-      summary: Export configuration
+      summary: Export tenant's configuration
       tags:
       - tenants
     patch:
@@ -29101,7 +30510,20 @@ paths:
       tags:
       - tenants
     put:
-      description: Allows to quickly import tenant configuration.
+      description: |-
+        Allows to quickly import the specified tenant configuration.
+
+        With ACP system API, you can import a specific tenant's
+        configuration. You can, for example, move your tenant's configuration between different ACP deployments.
+        For example, a company that delivers its services to financial institutions and uses
+        ACP to protect their APIs, may want to import an Open Banking directive compliant
+        tenant's configuration from one of their deployments to the deployment of their customers.
+
+        To import your tenant configuration, your client application must have the `manage_configuration`
+        scope assigned. When requesting an access token, you should also provide this scope as the one you
+        would like to request.
+
+        Use the `tid` path parameter to specify which tenant is to have the configuration imported.
       operationId: importTenantConfiguration
       parameters:
       - in: body
@@ -29114,7 +30536,24 @@ paths:
         name: tid
         required: true
         type: string
-      - format: insertMode
+      - description: |-
+          Insert mode
+
+          Defines what happens in case of configuration import conflicts.
+
+          The `mode` parameter defines
+          what happens if there are any conflicts when importing your configuration. For example, if a
+          client already exists within ACP and you are trying to import a
+          configuration that also has a client with this ID, there are the following ways
+          ACP can handle the request:
+
+          `mode` set to `ignore` - ACP ignores the changes that come from your configuration import.
+
+          `mode` set to `fail` - ACP stops processing the import and returns an error.
+
+          `mode` set to `update` - ACP updates the value from the previous configuration with the value
+          provided in the request.
+        format: insertMode
         in: query
         name: mode
         type: string
@@ -29377,6 +30816,10 @@ paths:
           schema:
             $ref: '#/definitions/Error'
         "404":
+          description: HttpError
+          schema:
+            $ref: '#/definitions/Error'
+        "409":
           description: HttpError
           schema:
             $ref: '#/definitions/Error'
@@ -29891,7 +31334,7 @@ paths:
       - openbanking
   /api/system/{tid}/open-banking/account-access-consent/{login}/accept:
     post:
-      description: This API can be used by a custom openbanking consent page to notify ACP that user granted consent to a account-access.
+      description: This API can be used to notify ACP that user granted consent to a account-access.
       operationId: acceptAccountAccessConsentSystem
       parameters:
       - default: default
@@ -29933,7 +31376,7 @@ paths:
       - openbanking
   /api/system/{tid}/open-banking/account-access-consent/{login}/reject:
     post:
-      description: This API can be used by a custom openbanking consent page to notify ACP that user rejected access.
+      description: This API can be used to notify ACP that user rejected access.
       operationId: rejectAccountAccessConsentSystem
       parameters:
       - default: default
@@ -29970,7 +31413,7 @@ paths:
       security:
       - system:
         - manage_openbanking_consents
-      summary: Reject consent
+      summary: Reject account-access consent
       tags:
       - openbanking
   /api/system/{tid}/open-banking/domestic-payment-consent/{login}:
@@ -30018,7 +31461,7 @@ paths:
       - openbanking
   /api/system/{tid}/open-banking/domestic-payment-consent/{login}/accept:
     post:
-      description: This API can be used by a custom openbanking consent page to notify ACP that user granted consent to a domestic-payment.
+      description: This API can be used to notify ACP that user granted consent to a domestic-payment.
       operationId: acceptDomesticPaymentConsentSystem
       parameters:
       - default: default
@@ -30060,7 +31503,7 @@ paths:
       - openbanking
   /api/system/{tid}/open-banking/domestic-payment-consent/{login}/reject:
     post:
-      description: This API can be used by a custom openbanking consent page to notify ACP that user rejected access.
+      description: This API can be used to notify ACP that user rejected access.
       operationId: rejectDomesticPaymentConsentSystem
       parameters:
       - default: default
@@ -30097,7 +31540,7 @@ paths:
       security:
       - system:
         - manage_openbanking_consents
-      summary: Reject consent
+      summary: Reject domestic-payment consent
       tags:
       - openbanking
   /api/system/{tid}/open-banking/domestic-scheduled-payment-consent/{login}:
@@ -30145,7 +31588,7 @@ paths:
       - openbanking
   /api/system/{tid}/open-banking/domestic-scheduled-payment-consent/{login}/accept:
     post:
-      description: This API can be used by a custom openbanking consent page to notify ACP that user granted consent to a domestic-scheduled-payment.
+      description: This API can be used to notify ACP that user granted consent to a domestic-scheduled-payment.
       operationId: acceptDomesticScheduledPaymentConsentSystem
       parameters:
       - default: default
@@ -30187,7 +31630,7 @@ paths:
       - openbanking
   /api/system/{tid}/open-banking/domestic-scheduled-payment-consent/{login}/reject:
     post:
-      description: This API can be used by a custom openbanking consent page to notify ACP that user rejected access.
+      description: This API can be used to notify ACP that user rejected access.
       operationId: rejectDomesticScheduledPaymentConsentSystem
       parameters:
       - default: default
@@ -30224,7 +31667,7 @@ paths:
       security:
       - system:
         - manage_openbanking_consents
-      summary: Reject consent
+      summary: Reject domestic-scheduled-payment consent
       tags:
       - openbanking
   /api/system/{tid}/open-banking/domestic-standing-order-consent/{login}:
@@ -30272,7 +31715,7 @@ paths:
       - openbanking
   /api/system/{tid}/open-banking/domestic-standing-order-consent/{login}/accept:
     post:
-      description: This API can be used by a custom openbanking consent page to notify ACP that user granted consent to a domestic-standing-order.
+      description: This API can be used to notify ACP that user granted consent to a domestic-standing-order.
       operationId: acceptDomesticStandingOrderConsentSystem
       parameters:
       - default: default
@@ -30314,7 +31757,7 @@ paths:
       - openbanking
   /api/system/{tid}/open-banking/domestic-standing-order-consent/{login}/reject:
     post:
-      description: This API can be used by a custom openbanking consent page to notify ACP that user rejected access.
+      description: This API can be used to notify ACP that user rejected access.
       operationId: rejectDomesticStandingOrderConsentSystem
       parameters:
       - default: default
@@ -30351,7 +31794,7 @@ paths:
       security:
       - system:
         - manage_openbanking_consents
-      summary: Reject consent
+      summary: Reject domestic-standing-order consent
       tags:
       - openbanking
   /api/system/{tid}/open-banking/file-payment-consent/{login}:
@@ -30399,7 +31842,7 @@ paths:
       - openbanking
   /api/system/{tid}/open-banking/file-payment-consent/{login}/accept:
     post:
-      description: This API can be used by a custom openbanking consent page to notify ACP that user granted consent to a file-payment.
+      description: This API can be used to notify ACP that user granted consent to a file-payment.
       operationId: acceptFilePaymentConsentSystem
       parameters:
       - default: default
@@ -30441,7 +31884,7 @@ paths:
       - openbanking
   /api/system/{tid}/open-banking/file-payment-consent/{login}/reject:
     post:
-      description: This API can be used by a custom openbanking consent page to notify ACP that user rejected access.
+      description: This API can be used to notify ACP that user rejected access.
       operationId: rejectFilePaymentConsentSystem
       parameters:
       - default: default
@@ -30478,7 +31921,7 @@ paths:
       security:
       - system:
         - manage_openbanking_consents
-      summary: Reject consent
+      summary: Reject file-payment consent
       tags:
       - openbanking
   /api/system/{tid}/open-banking/international-payment-consent/{login}:
@@ -30526,7 +31969,7 @@ paths:
       - openbanking
   /api/system/{tid}/open-banking/international-payment-consent/{login}/accept:
     post:
-      description: This API can be used by a custom openbanking consent page to notify ACP that user granted consent to a international-payment.
+      description: This API can be used to notify ACP that user granted consent to a international-payment.
       operationId: acceptInternationalPaymentConsentSystem
       parameters:
       - default: default
@@ -30568,7 +32011,7 @@ paths:
       - openbanking
   /api/system/{tid}/open-banking/international-payment-consent/{login}/reject:
     post:
-      description: This API can be used by a custom openbanking consent page to notify ACP that user rejected access.
+      description: This API can be used to notify ACP that user rejected access.
       operationId: rejectInternationalPaymentConsentSystem
       parameters:
       - default: default
@@ -30605,7 +32048,7 @@ paths:
       security:
       - system:
         - manage_openbanking_consents
-      summary: Reject consent
+      summary: Reject international-payment consent
       tags:
       - openbanking
   /api/system/{tid}/open-banking/international-scheduled-payment-consent/{login}:
@@ -30653,7 +32096,7 @@ paths:
       - openbanking
   /api/system/{tid}/open-banking/international-scheduled-payment-consent/{login}/accept:
     post:
-      description: This API can be used by a custom openbanking consent page to notify ACP that user granted consent to a international-scheduled-payment.
+      description: This API can be used to notify ACP that user granted consent to a international-scheduled-payment.
       operationId: acceptInternationalScheduledPaymentConsentSystem
       parameters:
       - default: default
@@ -30695,7 +32138,7 @@ paths:
       - openbanking
   /api/system/{tid}/open-banking/international-scheduled-payment-consent/{login}/reject:
     post:
-      description: This API can be used by a custom openbanking consent page to notify ACP that user rejected access.
+      description: This API can be used to notify ACP that user rejected access.
       operationId: rejectInternationalScheduledPaymentConsentSystem
       parameters:
       - default: default
@@ -30732,7 +32175,7 @@ paths:
       security:
       - system:
         - manage_openbanking_consents
-      summary: Reject consent
+      summary: Reject international-scheduled-payment consent
       tags:
       - openbanking
   /api/system/{tid}/open-banking/international-standing-order-consent/{login}:
@@ -30780,7 +32223,7 @@ paths:
       - openbanking
   /api/system/{tid}/open-banking/international-standing-order-consent/{login}/accept:
     post:
-      description: This API can be used by a custom openbanking consent page to notify ACP that user granted consent to a international-standing-order.
+      description: This API can be used to notify ACP that user granted consent to a international-standing-order.
       operationId: acceptInternationalStandingOrderConsentSystem
       parameters:
       - default: default
@@ -30822,7 +32265,7 @@ paths:
       - openbanking
   /api/system/{tid}/open-banking/international-standing-order-consent/{login}/reject:
     post:
-      description: This API can be used by a custom openbanking consent page to notify ACP that user rejected access.
+      description: This API can be used to notify ACP that user rejected access.
       operationId: rejectInternationalStandingOrderConsentSystem
       parameters:
       - default: default
@@ -30859,7 +32302,7 @@ paths:
       security:
       - system:
         - manage_openbanking_consents
-      summary: Reject consent
+      summary: Reject international-standing-order consent
       tags:
       - openbanking
   /api/system/{tid}/scope-grants/{login}:
@@ -30905,7 +32348,7 @@ paths:
       - logins
   /api/system/{tid}/scope-grants/{login}/accept:
     post:
-      description: This API is used by a consent page to notify ACP that user granted consent.
+      description: This API is used to notify ACP that user granted consent.
       operationId: acceptScopeGrantRequest
       parameters:
       - default: default
@@ -30942,12 +32385,12 @@ paths:
       security:
       - system:
         - manage_scope_grants
-      summary: Accept login request
+      summary: Accept scope grant
       tags:
       - logins
   /api/system/{tid}/scope-grants/{login}/reject:
     post:
-      description: This API is used by a consent page to notify ACP that scope grant has been rejected.
+      description: This API is used to notify ACP that scope grant has been rejected.
       operationId: rejectScopeGrantRequest
       parameters:
       - default: default
@@ -30984,7 +32427,7 @@ paths:
       security:
       - system:
         - manage_scope_grants
-      summary: Reject login request
+      summary: Reject scope grant
       tags:
       - logins
   /api/system/{tid}/servers/{aid}/open-banking-brasil/consents:
@@ -31525,7 +32968,21 @@ paths:
       - openbanking
   /api/system/configuration:
     get:
-      description: Export entire tenant configuration as json.
+      description: |-
+        Returns a JSON with all tenants and their configuration.
+
+        Customers that use the on-premise version of the ACP deployment can use the
+        global tenants' configuration export ACP REST API. The requirement to
+        have the on-premise deployment comes from the fact, that you need to be able to access the system
+        tenant of your deployment to be able to authenticate your client and get access token that allows
+        you to import the tenants configuration.
+
+        By default, a system tenant is created for you automatically and a client application with the
+        client credentials grant flow enabled is also provided. The ID of this client is `system` and the
+        client secret can be found in your ACP configuration file.
+
+        When requesting an access token, you should provide the `manage_configuration` scope as the one you
+        would like to request.
       operationId: exportConfiguration
       parameters:
       - default: default
@@ -31560,7 +33017,7 @@ paths:
             $ref: '#/definitions/Error'
       security:
       - setup: []
-      summary: Export configuration
+      summary: Export global tenants configuration
       tags:
       - tenants
     patch:
@@ -31609,14 +33066,45 @@ paths:
       tags:
       - tenants
     put:
-      description: Allows to quickly import tenant basic configuration.
+      description: |-
+        Allows to import a JSON file that contains all the tenants and their configuration.
+
+        Customers that use the on-premise version of the ACP deployment can use the
+        global tenants' configuration import ACP REST API. The requirement to
+        have the on-premise deployment comes from the fact, that you need to be able to access the system
+        tenant of your deployment to be able to authenticate your client and get access token that allows
+        you to import the tenants configuration.
+
+        By default, a system tenant is created for you automatically and a client application with the
+        client credentials grant flow enabled is also provided. The ID of this client is `system` and the
+        client secret can be found in your ACP configuration file.
+
+        When requesting an access token, you should provide the `manage_configuration` scope as the one you
+        would like to request.
       operationId: importConfiguration
       parameters:
       - in: body
         name: Dump
         schema:
           $ref: '#/definitions/Dump'
-      - format: insertMode
+      - description: |-
+          Insert mode
+
+          Defines what happens in case of configuration import conflicts.
+
+          The `mode` parameter defines
+          what happens if there are any conflicts when importing your configuration. For example, if a
+          client already exists within ACP and you are trying to import a
+          configuration that also has a client with this ID, there are the following ways
+          ACP can handle the request:
+
+          `mode` set to `ignore`, ACP ignores the changes that come from your configuration import.
+
+          `mode` set to `fail`, ACP stops processing the import and returns an error.
+
+          `mode` set to `update`, ACP updates the value from the previous configuration with the value
+          provided in the request.
+        format: insertMode
         in: query
         name: mode
         type: string
@@ -31649,7 +33137,7 @@ paths:
             $ref: '#/definitions/Error'
       security:
       - setup: []
-      summary: Import configuration
+      summary: Import global tenants configuration
       tags:
       - tenants
   /api/system/tenants:

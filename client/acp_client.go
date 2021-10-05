@@ -25,6 +25,7 @@ import (
 	"github.com/cloudentity/acp-client-go/client/policies"
 	"github.com/cloudentity/acp-client-go/client/recent_activities"
 	"github.com/cloudentity/acp-client-go/client/scopes"
+	"github.com/cloudentity/acp-client-go/client/scripts"
 	"github.com/cloudentity/acp-client-go/client/servers"
 	"github.com/cloudentity/acp-client-go/client/services"
 	"github.com/cloudentity/acp-client-go/client/stats"
@@ -90,6 +91,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *Acp {
 	cli.Policies = policies.New(transport, formats)
 	cli.RecentActivities = recent_activities.New(transport, formats)
 	cli.Scopes = scopes.New(transport, formats)
+	cli.Scripts = scripts.New(transport, formats)
 	cli.Servers = servers.New(transport, formats)
 	cli.Services = services.New(transport, formats)
 	cli.Stats = stats.New(transport, formats)
@@ -170,6 +172,8 @@ type Acp struct {
 
 	Scopes scopes.ClientService
 
+	Scripts scripts.ClientService
+
 	Servers servers.ClientService
 
 	Services services.ClientService
@@ -203,6 +207,7 @@ func (c *Acp) SetTransport(transport runtime.ClientTransport) {
 	c.Policies.SetTransport(transport)
 	c.RecentActivities.SetTransport(transport)
 	c.Scopes.SetTransport(transport)
+	c.Scripts.SetTransport(transport)
 	c.Servers.SetTransport(transport)
 	c.Services.SetTransport(transport)
 	c.Stats.SetTransport(transport)

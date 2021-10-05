@@ -144,6 +144,12 @@ type UpdateClientAdminRequest struct {
 	// metadata
 	Metadata Metadata `json:"metadata,omitempty"`
 
+	// External organisation ID
+	//
+	// This field is used as an aud for message signing
+	// Example: 5647fe90-f6bc-11eb-9a03-0242ac130003
+	OrganisationID string `json:"organisation_id,omitempty"`
+
 	// Policy URL to read about how the profile data is used
 	PolicyURI string `json:"policy_uri,omitempty"`
 
@@ -281,6 +287,8 @@ type UpdateClientAdminRequest struct {
 	//
 	// If your token endpoint authentication is set to the `client_secret_jwt` method,
 	// the `token_endpoint_auth_signing_alg` parameter must be HS256.
+	// Example: none
+	// Enum: [none RS256 ES256 PS256 H256]
 	TokenEndpointAuthSigningAlg string `json:"token_endpoint_auth_signing_alg,omitempty"`
 
 	// Terms of Service URL
@@ -356,6 +364,10 @@ func (m *UpdateClientAdminRequest) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateTokenEndpointAuthMethod(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTokenEndpointAuthSigningAlg(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -755,6 +767,57 @@ func (m *UpdateClientAdminRequest) validateTokenEndpointAuthMethod(formats strfm
 
 	// value enum
 	if err := m.validateTokenEndpointAuthMethodEnum("token_endpoint_auth_method", "body", m.TokenEndpointAuthMethod); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var updateClientAdminRequestTypeTokenEndpointAuthSigningAlgPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["none","RS256","ES256","PS256","H256"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		updateClientAdminRequestTypeTokenEndpointAuthSigningAlgPropEnum = append(updateClientAdminRequestTypeTokenEndpointAuthSigningAlgPropEnum, v)
+	}
+}
+
+const (
+
+	// UpdateClientAdminRequestTokenEndpointAuthSigningAlgNone captures enum value "none"
+	UpdateClientAdminRequestTokenEndpointAuthSigningAlgNone string = "none"
+
+	// UpdateClientAdminRequestTokenEndpointAuthSigningAlgRS256 captures enum value "RS256"
+	UpdateClientAdminRequestTokenEndpointAuthSigningAlgRS256 string = "RS256"
+
+	// UpdateClientAdminRequestTokenEndpointAuthSigningAlgES256 captures enum value "ES256"
+	UpdateClientAdminRequestTokenEndpointAuthSigningAlgES256 string = "ES256"
+
+	// UpdateClientAdminRequestTokenEndpointAuthSigningAlgPS256 captures enum value "PS256"
+	UpdateClientAdminRequestTokenEndpointAuthSigningAlgPS256 string = "PS256"
+
+	// UpdateClientAdminRequestTokenEndpointAuthSigningAlgH256 captures enum value "H256"
+	UpdateClientAdminRequestTokenEndpointAuthSigningAlgH256 string = "H256"
+)
+
+// prop value enum
+func (m *UpdateClientAdminRequest) validateTokenEndpointAuthSigningAlgEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, updateClientAdminRequestTypeTokenEndpointAuthSigningAlgPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *UpdateClientAdminRequest) validateTokenEndpointAuthSigningAlg(formats strfmt.Registry) error {
+	if swag.IsZero(m.TokenEndpointAuthSigningAlg) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateTokenEndpointAuthSigningAlgEnum("token_endpoint_auth_signing_alg", "body", m.TokenEndpointAuthSigningAlg); err != nil {
 		return err
 	}
 

@@ -30,6 +30,9 @@ type IDPSettings struct {
 	// custom
 	Custom *CustomSettings `json:"custom,omitempty"`
 
+	// external
+	External *ExternalSettings `json:"external,omitempty"`
+
 	// github
 	Github *GithubSettings `json:"github,omitempty"`
 
@@ -66,6 +69,10 @@ func (m *IDPSettings) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateCustom(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateExternal(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -159,6 +166,23 @@ func (m *IDPSettings) validateCustom(formats strfmt.Registry) error {
 		if err := m.Custom.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("custom")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IDPSettings) validateExternal(formats strfmt.Registry) error {
+	if swag.IsZero(m.External) { // not required
+		return nil
+	}
+
+	if m.External != nil {
+		if err := m.External.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("external")
 			}
 			return err
 		}
@@ -289,6 +313,10 @@ func (m *IDPSettings) ContextValidate(ctx context.Context, formats strfmt.Regist
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateExternal(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateGithub(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -367,6 +395,20 @@ func (m *IDPSettings) contextValidateCustom(ctx context.Context, formats strfmt.
 		if err := m.Custom.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("custom")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IDPSettings) contextValidateExternal(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.External != nil {
+		if err := m.External.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("external")
 			}
 			return err
 		}

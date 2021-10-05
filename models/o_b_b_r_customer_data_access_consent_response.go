@@ -21,13 +21,13 @@ type OBBRCustomerDataAccessConsentResponse struct {
 
 	// data
 	// Required: true
-	Data *OpenbankingBrasilData1 `json:"data"`
+	Data *OpenbankingBrasilConsentData1 `json:"data"`
 
 	// links
-	Links *OpenbankingBrasilLinks `json:"links,omitempty"`
+	Links *OpenbankingBrasilConsentLinks `json:"links,omitempty"`
 
 	// meta
-	Meta *OpenbankingBrasilMeta `json:"meta,omitempty"`
+	Meta *OpenbankingBrasilConsentMeta `json:"meta,omitempty"`
 }
 
 // Validate validates this o b b r customer data access consent response

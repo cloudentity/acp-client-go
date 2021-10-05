@@ -38,6 +38,8 @@ type ClientService interface {
 
 	CreateCustomIDP(params *CreateCustomIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateCustomIDPCreated, error)
 
+	CreateExternalIDP(params *CreateExternalIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateExternalIDPCreated, error)
+
 	CreateGithubIDP(params *CreateGithubIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateGithubIDPCreated, error)
 
 	CreateIntelliTrustIDP(params *CreateIntelliTrustIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateIntelliTrustIDPCreated, error)
@@ -60,6 +62,8 @@ type ClientService interface {
 
 	GetCustomIDP(params *GetCustomIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCustomIDPOK, error)
 
+	GetExternalIDP(params *GetExternalIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetExternalIDPOK, error)
+
 	GetGithubIDP(params *GetGithubIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetGithubIDPOK, error)
 
 	GetIntelliTrustIDP(params *GetIntelliTrustIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetIntelliTrustIDPOK, error)
@@ -81,6 +85,8 @@ type ClientService interface {
 	UpdateCognitoIDP(params *UpdateCognitoIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateCognitoIDPOK, error)
 
 	UpdateCustomIDP(params *UpdateCustomIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateCustomIDPOK, error)
+
+	UpdateExternalIDP(params *UpdateExternalIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateExternalIDPOK, error)
 
 	UpdateGithubIDP(params *UpdateGithubIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateGithubIDPOK, error)
 
@@ -258,6 +264,47 @@ func (a *Client) CreateCustomIDP(params *CreateCustomIDPParams, authInfo runtime
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for createCustomIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  CreateExternalIDP creates external ID p
+
+  Create External IDP.
+*/
+func (a *Client) CreateExternalIDP(params *CreateExternalIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateExternalIDPCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateExternalIDPParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "createExternalIDP",
+		Method:             "POST",
+		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/external",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateExternalIDPReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CreateExternalIDPCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for createExternalIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -717,6 +764,47 @@ func (a *Client) GetCustomIDP(params *GetCustomIDPParams, authInfo runtime.Clien
 }
 
 /*
+  GetExternalIDP gets external ID p
+
+  Get External IDP.
+*/
+func (a *Client) GetExternalIDP(params *GetExternalIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetExternalIDPOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetExternalIDPParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getExternalIDP",
+		Method:             "GET",
+		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/external/{iid}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetExternalIDPReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetExternalIDPOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getExternalIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
   GetGithubIDP gets github ID p
 
   Get Github IDP.
@@ -1162,6 +1250,47 @@ func (a *Client) UpdateCustomIDP(params *UpdateCustomIDPParams, authInfo runtime
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for updateCustomIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  UpdateExternalIDP updates external ID p
+
+  Update External IDP.
+*/
+func (a *Client) UpdateExternalIDP(params *UpdateExternalIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateExternalIDPOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateExternalIDPParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "updateExternalIDP",
+		Method:             "PUT",
+		PathPattern:        "/api/admin/{tid}/servers/{aid}/idps/external/{iid}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateExternalIDPReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*UpdateExternalIDPOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for updateExternalIDP: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

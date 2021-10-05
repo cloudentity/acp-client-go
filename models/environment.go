@@ -35,6 +35,9 @@ type Environment struct {
 	// display workspace wizard
 	DisplayWorkspaceWizard bool `json:"display_workspace_wizard,omitempty"`
 
+	// enable external datastore idp
+	ExternalDatastore bool `json:"external_datastore,omitempty"`
+
 	// default not secure embedded script runtime or fission
 	FaasProvider string `json:"faas_provider,omitempty"`
 
@@ -88,6 +91,9 @@ type Environment struct {
 
 	// enable javascript transformer
 	ScriptTransformer bool `json:"script_transformer,omitempty"`
+
+	// enable custom scripts
+	Scripts bool `json:"scripts,omitempty"`
 
 	// enables swagger ui
 	SwaggerUI bool `json:"swagger_ui,omitempty"`

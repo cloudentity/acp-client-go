@@ -24,10 +24,10 @@ type OBBRErrorResponse struct {
 	// Required: true
 	// Max Items: 13
 	// Min Items: 1
-	Errors []*OpenbankingBrasilError `json:"errors"`
+	Errors []*OpenbankingBrasilConsentError `json:"errors"`
 
 	// meta
-	Meta *OpenbankingBrasilMeta `json:"meta,omitempty"`
+	Meta *OpenbankingBrasilConsentMeta `json:"meta,omitempty"`
 }
 
 // Validate validates this o b b r error response

@@ -30,6 +30,9 @@ type IDPCredentials struct {
 	// custom
 	Custom CustomCredentials `json:"custom,omitempty"`
 
+	// external
+	External *ExternalCredentials `json:"external,omitempty"`
+
 	// github
 	Github *GithubCredentials `json:"github,omitempty"`
 
@@ -62,6 +65,10 @@ func (m *IDPCredentials) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateCognito(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateExternal(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -138,6 +145,23 @@ func (m *IDPCredentials) validateCognito(formats strfmt.Registry) error {
 		if err := m.Cognito.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cognito")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IDPCredentials) validateExternal(formats strfmt.Registry) error {
+	if swag.IsZero(m.External) { // not required
+		return nil
+	}
+
+	if m.External != nil {
+		if err := m.External.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("external")
 			}
 			return err
 		}
@@ -264,6 +288,10 @@ func (m *IDPCredentials) ContextValidate(ctx context.Context, formats strfmt.Reg
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateExternal(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateGithub(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -328,6 +356,20 @@ func (m *IDPCredentials) contextValidateCognito(ctx context.Context, formats str
 		if err := m.Cognito.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cognito")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IDPCredentials) contextValidateExternal(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.External != nil {
+		if err := m.External.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("external")
 			}
 			return err
 		}

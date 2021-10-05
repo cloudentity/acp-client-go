@@ -232,8 +232,8 @@ func (a *Client) CreatePaymentConsent(params *CreatePaymentConsentParams, authIn
 		ID:                 "CreatePaymentConsent",
 		Method:             "POST",
 		PathPattern:        "/{tid}/{aid}/open-banking-brasil/open-banking/payments/v1/consents",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
+		ProducesMediaTypes: []string{"application/jwt"},
+		ConsumesMediaTypes: []string{"application/jwt"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreatePaymentConsentReader{formats: a.formats},
@@ -385,7 +385,7 @@ func (a *Client) GetPaymentConsent(params *GetPaymentConsentParams, authInfo run
 /*
   AcceptAccountAccessConsentSystem accepts account access consent
 
-  This API can be used by a custom openbanking consent page to notify ACP that user granted consent to a account-access.
+  This API can be used to notify ACP that user granted consent to a account-access.
 */
 func (a *Client) AcceptAccountAccessConsentSystem(params *AcceptAccountAccessConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptAccountAccessConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -426,7 +426,7 @@ func (a *Client) AcceptAccountAccessConsentSystem(params *AcceptAccountAccessCon
 /*
   AcceptDomesticPaymentConsentSystem accepts domestic payment consent
 
-  This API can be used by a custom openbanking consent page to notify ACP that user granted consent to a domestic-payment.
+  This API can be used to notify ACP that user granted consent to a domestic-payment.
 */
 func (a *Client) AcceptDomesticPaymentConsentSystem(params *AcceptDomesticPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptDomesticPaymentConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -467,7 +467,7 @@ func (a *Client) AcceptDomesticPaymentConsentSystem(params *AcceptDomesticPaymen
 /*
   AcceptDomesticScheduledPaymentConsentSystem accepts domestic scheduled payment consent
 
-  This API can be used by a custom openbanking consent page to notify ACP that user granted consent to a domestic-scheduled-payment.
+  This API can be used to notify ACP that user granted consent to a domestic-scheduled-payment.
 */
 func (a *Client) AcceptDomesticScheduledPaymentConsentSystem(params *AcceptDomesticScheduledPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptDomesticScheduledPaymentConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -508,7 +508,7 @@ func (a *Client) AcceptDomesticScheduledPaymentConsentSystem(params *AcceptDomes
 /*
   AcceptDomesticStandingOrderConsentSystem accepts domestic standing order consent
 
-  This API can be used by a custom openbanking consent page to notify ACP that user granted consent to a domestic-standing-order.
+  This API can be used to notify ACP that user granted consent to a domestic-standing-order.
 */
 func (a *Client) AcceptDomesticStandingOrderConsentSystem(params *AcceptDomesticStandingOrderConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptDomesticStandingOrderConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -549,7 +549,7 @@ func (a *Client) AcceptDomesticStandingOrderConsentSystem(params *AcceptDomestic
 /*
   AcceptFilePaymentConsentSystem accepts file payment consent
 
-  This API can be used by a custom openbanking consent page to notify ACP that user granted consent to a file-payment.
+  This API can be used to notify ACP that user granted consent to a file-payment.
 */
 func (a *Client) AcceptFilePaymentConsentSystem(params *AcceptFilePaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptFilePaymentConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -590,7 +590,7 @@ func (a *Client) AcceptFilePaymentConsentSystem(params *AcceptFilePaymentConsent
 /*
   AcceptInternationalPaymentConsentSystem accepts international payment consent
 
-  This API can be used by a custom openbanking consent page to notify ACP that user granted consent to a international-payment.
+  This API can be used to notify ACP that user granted consent to a international-payment.
 */
 func (a *Client) AcceptInternationalPaymentConsentSystem(params *AcceptInternationalPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptInternationalPaymentConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -631,7 +631,7 @@ func (a *Client) AcceptInternationalPaymentConsentSystem(params *AcceptInternati
 /*
   AcceptInternationalScheduledPaymentConsentSystem accepts international scheduled payment consent
 
-  This API can be used by a custom openbanking consent page to notify ACP that user granted consent to a international-scheduled-payment.
+  This API can be used to notify ACP that user granted consent to a international-scheduled-payment.
 */
 func (a *Client) AcceptInternationalScheduledPaymentConsentSystem(params *AcceptInternationalScheduledPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptInternationalScheduledPaymentConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -672,7 +672,7 @@ func (a *Client) AcceptInternationalScheduledPaymentConsentSystem(params *Accept
 /*
   AcceptInternationalStandingOrderConsentSystem accepts international standing order consent
 
-  This API can be used by a custom openbanking consent page to notify ACP that user granted consent to a international-standing-order.
+  This API can be used to notify ACP that user granted consent to a international-standing-order.
 */
 func (a *Client) AcceptInternationalStandingOrderConsentSystem(params *AcceptInternationalStandingOrderConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptInternationalStandingOrderConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -2673,9 +2673,9 @@ func (a *Client) OpenbankingInternationalStandingOrderConsentIntrospect(params *
 }
 
 /*
-  RejectAccountAccessConsentSystem rejects consent
+  RejectAccountAccessConsentSystem rejects account access consent
 
-  This API can be used by a custom openbanking consent page to notify ACP that user rejected access.
+  This API can be used to notify ACP that user rejected access.
 */
 func (a *Client) RejectAccountAccessConsentSystem(params *RejectAccountAccessConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectAccountAccessConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -2714,9 +2714,9 @@ func (a *Client) RejectAccountAccessConsentSystem(params *RejectAccountAccessCon
 }
 
 /*
-  RejectDomesticPaymentConsentSystem rejects consent
+  RejectDomesticPaymentConsentSystem rejects domestic payment consent
 
-  This API can be used by a custom openbanking consent page to notify ACP that user rejected access.
+  This API can be used to notify ACP that user rejected access.
 */
 func (a *Client) RejectDomesticPaymentConsentSystem(params *RejectDomesticPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectDomesticPaymentConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -2755,9 +2755,9 @@ func (a *Client) RejectDomesticPaymentConsentSystem(params *RejectDomesticPaymen
 }
 
 /*
-  RejectDomesticScheduledPaymentConsentSystem rejects consent
+  RejectDomesticScheduledPaymentConsentSystem rejects domestic scheduled payment consent
 
-  This API can be used by a custom openbanking consent page to notify ACP that user rejected access.
+  This API can be used to notify ACP that user rejected access.
 */
 func (a *Client) RejectDomesticScheduledPaymentConsentSystem(params *RejectDomesticScheduledPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectDomesticScheduledPaymentConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -2796,9 +2796,9 @@ func (a *Client) RejectDomesticScheduledPaymentConsentSystem(params *RejectDomes
 }
 
 /*
-  RejectDomesticStandingOrderConsentSystem rejects consent
+  RejectDomesticStandingOrderConsentSystem rejects domestic standing order consent
 
-  This API can be used by a custom openbanking consent page to notify ACP that user rejected access.
+  This API can be used to notify ACP that user rejected access.
 */
 func (a *Client) RejectDomesticStandingOrderConsentSystem(params *RejectDomesticStandingOrderConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectDomesticStandingOrderConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -2837,9 +2837,9 @@ func (a *Client) RejectDomesticStandingOrderConsentSystem(params *RejectDomestic
 }
 
 /*
-  RejectFilePaymentConsentSystem rejects consent
+  RejectFilePaymentConsentSystem rejects file payment consent
 
-  This API can be used by a custom openbanking consent page to notify ACP that user rejected access.
+  This API can be used to notify ACP that user rejected access.
 */
 func (a *Client) RejectFilePaymentConsentSystem(params *RejectFilePaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectFilePaymentConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -2878,9 +2878,9 @@ func (a *Client) RejectFilePaymentConsentSystem(params *RejectFilePaymentConsent
 }
 
 /*
-  RejectInternationalPaymentConsentSystem rejects consent
+  RejectInternationalPaymentConsentSystem rejects international payment consent
 
-  This API can be used by a custom openbanking consent page to notify ACP that user rejected access.
+  This API can be used to notify ACP that user rejected access.
 */
 func (a *Client) RejectInternationalPaymentConsentSystem(params *RejectInternationalPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectInternationalPaymentConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -2919,9 +2919,9 @@ func (a *Client) RejectInternationalPaymentConsentSystem(params *RejectInternati
 }
 
 /*
-  RejectInternationalScheduledPaymentConsentSystem rejects consent
+  RejectInternationalScheduledPaymentConsentSystem rejects international scheduled payment consent
 
-  This API can be used by a custom openbanking consent page to notify ACP that user rejected access.
+  This API can be used to notify ACP that user rejected access.
 */
 func (a *Client) RejectInternationalScheduledPaymentConsentSystem(params *RejectInternationalScheduledPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectInternationalScheduledPaymentConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -2960,9 +2960,9 @@ func (a *Client) RejectInternationalScheduledPaymentConsentSystem(params *Reject
 }
 
 /*
-  RejectInternationalStandingOrderConsentSystem rejects consent
+  RejectInternationalStandingOrderConsentSystem rejects international standing order consent
 
-  This API can be used by a custom openbanking consent page to notify ACP that user rejected access.
+  This API can be used to notify ACP that user rejected access.
 */
 func (a *Client) RejectInternationalStandingOrderConsentSystem(params *RejectInternationalStandingOrderConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectInternationalStandingOrderConsentSystemOK, error) {
 	// TODO: Validate the params before sending

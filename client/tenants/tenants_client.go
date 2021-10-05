@@ -150,9 +150,22 @@ func (a *Client) DeleteTenant(params *DeleteTenantParams, authInfo runtime.Clien
 }
 
 /*
-  ExportConfiguration exports configuration
+  ExportConfiguration exports global tenants configuration
 
-  Export entire tenant configuration as json.
+  Returns a JSON with all tenants and their configuration.
+
+Customers that use the on-premise version of the ACP deployment can use the
+global tenants' configuration export ACP REST API. The requirement to
+have the on-premise deployment comes from the fact, that you need to be able to access the system
+tenant of your deployment to be able to authenticate your client and get access token that allows
+you to import the tenants configuration.
+
+By default, a system tenant is created for you automatically and a client application with the
+client credentials grant flow enabled is also provided. The ID of this client is `system` and the
+client secret can be found in your ACP configuration file.
+
+When requesting an access token, you should provide the `manage_configuration` scope as the one you
+would like to request.
 */
 func (a *Client) ExportConfiguration(params *ExportConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ExportConfigurationOK, error) {
 	// TODO: Validate the params before sending
@@ -191,9 +204,22 @@ func (a *Client) ExportConfiguration(params *ExportConfigurationParams, authInfo
 }
 
 /*
-  ExportTenantConfiguration exports configuration
+  ExportTenantConfiguration exports tenant s configuration
 
-  Export entire tenant configuration as json.
+  Returns a JSON with the configuration of the specified tenant.
+
+With ACP system API, you can export a specified tenant's
+configuration. You can, for example, move your tenant's configuration between different ACP deployments
+using the export API and, then, import it to a different ACP deployment using the import API.
+For example, a company that delivers its services to financial institutions and uses
+ACP to protect their APIs, may want to export an Open Banking directive compliant
+tenant's configuration from one of their deployments and import it the deployment of their customers.
+
+To export your tenant configuration, your client application must have the `manage_configuration`
+scope assigned. When requesting an access token, you should also provide this scope as the one you
+would like to request.
+
+Use the `tid` path parameter to specify which tenant is to have the configuration exported.
 */
 func (a *Client) ExportTenantConfiguration(params *ExportTenantConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ExportTenantConfigurationOK, error) {
 	// TODO: Validate the params before sending
@@ -314,9 +340,22 @@ func (a *Client) GetTenant(params *GetTenantParams, authInfo runtime.ClientAuthI
 }
 
 /*
-  ImportConfiguration imports configuration
+  ImportConfiguration imports global tenants configuration
 
-  Allows to quickly import tenant basic configuration.
+  Allows to import a JSON file that contains all the tenants and their configuration.
+
+Customers that use the on-premise version of the ACP deployment can use the
+global tenants' configuration import ACP REST API. The requirement to
+have the on-premise deployment comes from the fact, that you need to be able to access the system
+tenant of your deployment to be able to authenticate your client and get access token that allows
+you to import the tenants configuration.
+
+By default, a system tenant is created for you automatically and a client application with the
+client credentials grant flow enabled is also provided. The ID of this client is `system` and the
+client secret can be found in your ACP configuration file.
+
+When requesting an access token, you should provide the `manage_configuration` scope as the one you
+would like to request.
 */
 func (a *Client) ImportConfiguration(params *ImportConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportConfigurationNoContent, error) {
 	// TODO: Validate the params before sending
@@ -357,7 +396,19 @@ func (a *Client) ImportConfiguration(params *ImportConfigurationParams, authInfo
 /*
   ImportTenantConfiguration imports tenant configuration
 
-  Allows to quickly import tenant configuration.
+  Allows to quickly import the specified tenant configuration.
+
+With ACP system API, you can import a specific tenant's
+configuration. You can, for example, move your tenant's configuration between different ACP deployments.
+For example, a company that delivers its services to financial institutions and uses
+ACP to protect their APIs, may want to import an Open Banking directive compliant
+tenant's configuration from one of their deployments to the deployment of their customers.
+
+To import your tenant configuration, your client application must have the `manage_configuration`
+scope assigned. When requesting an access token, you should also provide this scope as the one you
+would like to request.
+
+Use the `tid` path parameter to specify which tenant is to have the configuration imported.
 */
 func (a *Client) ImportTenantConfiguration(params *ImportTenantConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportTenantConfigurationNoContent, error) {
 	// TODO: Validate the params before sending

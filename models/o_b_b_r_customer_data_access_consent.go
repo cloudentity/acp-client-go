@@ -20,12 +20,19 @@ import (
 // swagger:model OBBRCustomerDataAccessConsent
 type OBBRCustomerDataAccessConsent struct {
 
-	// Identificador nico do consentimento.
+	// O consentId  o identificador nico do consentimento e dever ser um URN - Uniform Resource Name.
+	// Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141)  um Uniform Resource
+	// Identifier - URI - que  atribudo sob o URI scheme "urn" e um namespace URN especfico, com a inteno de que o URN
+	// seja um identificador de recurso persistente e independente da localizao.
+	// Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+	// o namespace(urn)
+	// o identificador associado ao namespace da instituio transnmissora (bancoex)
+	// o identificador especfico dentro do namespace (C1DD33123).
+	// Informaes mais detalhadas sobre a construo de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
 	// Example: urn:bancoex:C1DD33123
 	// Required: true
-	// Max Length: 100
-	// Min Length: 1
-	// Pattern: ^[a-zA-Z0-9][a-zA-Z0-9\-\:]{0,99}$
+	// Max Length: 256
+	// Pattern: ^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$
 	ConsentID string `json:"consentId"`
 
 	// Data e hora em que o recurso foi criado. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format).
@@ -34,21 +41,22 @@ type OBBRCustomerDataAccessConsent struct {
 	// Format: date-time
 	CreationDateTime strfmt.DateTime `json:"creationDateTime"`
 
-	// Data e hora de expirao da permisso. Se no for preenchido, a permisso ter a data aberta. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format).
+	// Data e hora de expirao da permisso. De preenchimento obrigatrio, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format).
 	// Example: 2021-05-21T08:30:00Z
+	// Required: true
 	// Format: date-time
-	ExpirationDateTime strfmt.DateTime `json:"expirationDateTime,omitempty"`
+	ExpirationDateTime strfmt.DateTime `json:"expirationDateTime"`
 
-	// permissions
+	// Especifica os tipos de permisses de acesso s APIs no escopo do Open Banking Brasil - Fase 2, de acordo com os blocos de consentimento fornecidos pelo usurio e necessrios ao acesso a cada endpoint das APIs.
 	// Example: ["ACCOUNTS_READ","ACCOUNTS_OVERDRAFT_LIMITS_READ","RESOURCES_READ"]
 	// Required: true
 	// Max Items: 30
 	// Min Items: 1
-	Permissions []OpenbankingBrasilPermission `json:"permissions"`
+	Permissions []OpenbankingBrasilConsentPermission1 `json:"permissions"`
 
 	// status
 	// Required: true
-	Status *OpenbankingBrasilStatus `json:"status"`
+	Status *OpenbankingBrasilConsentStatus `json:"status"`
 
 	// Data e hora em que o recurso foi atualizado. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format).
 	// Example: 2021-05-21T08:30:00Z
@@ -115,15 +123,11 @@ func (m *OBBRCustomerDataAccessConsent) validateConsentID(formats strfmt.Registr
 		return err
 	}
 
-	if err := validate.MinLength("consentId", "body", m.ConsentID, 1); err != nil {
+	if err := validate.MaxLength("consentId", "body", m.ConsentID, 256); err != nil {
 		return err
 	}
 
-	if err := validate.MaxLength("consentId", "body", m.ConsentID, 100); err != nil {
-		return err
-	}
-
-	if err := validate.Pattern("consentId", "body", m.ConsentID, `^[a-zA-Z0-9][a-zA-Z0-9\-\:]{0,99}$`); err != nil {
+	if err := validate.Pattern("consentId", "body", m.ConsentID, `^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$`); err != nil {
 		return err
 	}
 
@@ -144,8 +148,9 @@ func (m *OBBRCustomerDataAccessConsent) validateCreationDateTime(formats strfmt.
 }
 
 func (m *OBBRCustomerDataAccessConsent) validateExpirationDateTime(formats strfmt.Registry) error {
-	if swag.IsZero(m.ExpirationDateTime) { // not required
-		return nil
+
+	if err := validate.Required("expirationDateTime", "body", strfmt.DateTime(m.ExpirationDateTime)); err != nil {
+		return err
 	}
 
 	if err := validate.FormatOf("expirationDateTime", "body", "date-time", m.ExpirationDateTime.String(), formats); err != nil {

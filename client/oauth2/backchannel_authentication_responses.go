@@ -85,22 +85,22 @@ func NewBackchannelAuthenticationBadRequest() *BackchannelAuthenticationBadReque
 
 /* BackchannelAuthenticationBadRequest describes a response with status code 400, with default header values.
 
-genericError
+BackchannelAuthenticationError
 */
 type BackchannelAuthenticationBadRequest struct {
-	Payload *models.GenericError
+	Payload *models.BackchannelAuthenticationError
 }
 
 func (o *BackchannelAuthenticationBadRequest) Error() string {
 	return fmt.Sprintf("[POST /{tid}/{aid}/backchannel/authentication][%d] backchannelAuthenticationBadRequest  %+v", 400, o.Payload)
 }
-func (o *BackchannelAuthenticationBadRequest) GetPayload() *models.GenericError {
+func (o *BackchannelAuthenticationBadRequest) GetPayload() *models.BackchannelAuthenticationError {
 	return o.Payload
 }
 
 func (o *BackchannelAuthenticationBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GenericError)
+	o.Payload = new(models.BackchannelAuthenticationError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -117,22 +117,22 @@ func NewBackchannelAuthenticationUnauthorized() *BackchannelAuthenticationUnauth
 
 /* BackchannelAuthenticationUnauthorized describes a response with status code 401, with default header values.
 
-genericError
+BackchannelAuthenticationError
 */
 type BackchannelAuthenticationUnauthorized struct {
-	Payload *models.GenericError
+	Payload *models.BackchannelAuthenticationError
 }
 
 func (o *BackchannelAuthenticationUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /{tid}/{aid}/backchannel/authentication][%d] backchannelAuthenticationUnauthorized  %+v", 401, o.Payload)
 }
-func (o *BackchannelAuthenticationUnauthorized) GetPayload() *models.GenericError {
+func (o *BackchannelAuthenticationUnauthorized) GetPayload() *models.BackchannelAuthenticationError {
 	return o.Payload
 }
 
 func (o *BackchannelAuthenticationUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.GenericError)
+	o.Payload = new(models.BackchannelAuthenticationError)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

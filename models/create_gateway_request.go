@@ -30,7 +30,7 @@ type CreateGatewayRequest struct {
 	// ServerID that this gateway should protect
 	ServerID string `json:"server_id,omitempty"`
 
-	// gateway type, one of: pyron, aws, azure, istio, kong, apigee
+	// gateway type, one of: pyron, aws, azure, istio, kong, apigeex, apigeeedge
 	// Example: pyron
 	Type string `json:"type,omitempty"`
 }

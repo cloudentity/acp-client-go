@@ -32,6 +32,7 @@ type Server struct {
 	// the athorization server. To validate an opaque token, the recipient must call the server that
 	// issued the token.
 	// Example: jwt
+	// Enum: [jwt opaque]
 	AccessTokenStrategy string `json:"access_token_strategy,omitempty"`
 
 	// Access token time to live
@@ -134,7 +135,7 @@ type Server struct {
 	// Unique identifier of an authorization server (workspace)
 	//
 	// If not provided, a random ID is generated.
-	// Example: 935ab21c-b20a-11e9-a2a3-2a2ae2dbcce4
+	// Example: default
 	ID string `json:"id,omitempty"`
 
 	// ID token time to live
@@ -144,6 +145,12 @@ type Server struct {
 	// Example: 1h10m30s
 	// Format: duration
 	IDTokenTTL strfmt.Duration `json:"id_token_ttl,omitempty"`
+
+	// Issuer ID that will be used to set `iss` claim on signed messages
+	//
+	// If issuer_id is not set then default issuer_url will be used
+	// Example: 5647fe90-f6bc-11eb-9a03-0242ac130003
+	IssuerID string `json:"issuer_id,omitempty"`
 
 	// Defines a custom issuer URL that can be used as the value of the `iss` claim in an access
 	// token.
@@ -160,6 +167,7 @@ type Server struct {
 	//
 	// It is used only as an input parameter for the Create Authorization Server API.
 	// Example: rsa
+	// Enum: [rsa ecdsa ps]
 	KeyType string `json:"key_type,omitempty"`
 
 	// Logo URI
@@ -175,6 +183,7 @@ type Server struct {
 	// specific configuration patterns. For example, you can instantly create an Open Banking
 	// compliant workspace that has all of the required mechanisms and settings already in place.
 	// Example: default
+	// Enum: [default demo workforce consumer partners third_party fapi_advanced fapi_rw fapi_ro openbanking_uk_fapi_advanced openbanking_uk openbanking_br]
 	Profile string `json:"profile,omitempty"`
 
 	// A flag that defines whether the client certificates should be read from request header's.
@@ -221,6 +230,8 @@ type Server struct {
 	//
 	// It is recommended that your salt value is long for security reasons. Preferably, the salt
 	// value should be at least the same length as the output of the hash.
+	//
+	// If not provided, it is generated.
 	SubjectIdentifierAlgorithmSalt string `json:"subject_identifier_algorithm_salt,omitempty"`
 
 	// An array that defines supported subject identifier types.
@@ -236,8 +247,10 @@ type Server struct {
 	// Example: ["public","pairwise"]
 	SubjectIdentifierTypes []string `json:"subject_identifier_types"`
 
-	// tenant id
-	TenantID string `json:"tenant_id,omitempty"`
+	// ID of a tenant
+	// Example: default
+	// Required: true
+	TenantID string `json:"tenant_id"`
 
 	// An array that lists all of the supported token endpoint authentication methods for the
 	// authorization server.
@@ -254,12 +267,17 @@ type Server struct {
 	// It is an internal property used to recognize if the server is created for an admin portal,
 	// a developer portal, or if it is a system or a regular workspace.
 	// Example: regular
+	// Enum: [admin developer system regular]
 	Type string `json:"type,omitempty"`
 }
 
 // Validate validates this server
 func (m *Server) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.validateAccessTokenStrategy(formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.validateAccessTokenTTL(formats); err != nil {
 		res = append(res, err)
@@ -289,11 +307,23 @@ func (m *Server) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateKeyType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateProfile(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateRefreshTokenTTL(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateSubjectIdentifierTypes(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTenantID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -309,9 +339,55 @@ func (m *Server) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateType(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+var serverTypeAccessTokenStrategyPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["jwt","opaque"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		serverTypeAccessTokenStrategyPropEnum = append(serverTypeAccessTokenStrategyPropEnum, v)
+	}
+}
+
+const (
+
+	// ServerAccessTokenStrategyJwt captures enum value "jwt"
+	ServerAccessTokenStrategyJwt string = "jwt"
+
+	// ServerAccessTokenStrategyOpaque captures enum value "opaque"
+	ServerAccessTokenStrategyOpaque string = "opaque"
+)
+
+// prop value enum
+func (m *Server) validateAccessTokenStrategyEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, serverTypeAccessTokenStrategyPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *Server) validateAccessTokenStrategy(formats strfmt.Registry) error {
+	if swag.IsZero(m.AccessTokenStrategy) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateAccessTokenStrategyEnum("access_token_strategy", "body", m.AccessTokenStrategy); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -433,6 +509,123 @@ func (m *Server) validateJwks(formats strfmt.Registry) error {
 	return nil
 }
 
+var serverTypeKeyTypePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["rsa","ecdsa","ps"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		serverTypeKeyTypePropEnum = append(serverTypeKeyTypePropEnum, v)
+	}
+}
+
+const (
+
+	// ServerKeyTypeRsa captures enum value "rsa"
+	ServerKeyTypeRsa string = "rsa"
+
+	// ServerKeyTypeEcdsa captures enum value "ecdsa"
+	ServerKeyTypeEcdsa string = "ecdsa"
+
+	// ServerKeyTypePs captures enum value "ps"
+	ServerKeyTypePs string = "ps"
+)
+
+// prop value enum
+func (m *Server) validateKeyTypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, serverTypeKeyTypePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *Server) validateKeyType(formats strfmt.Registry) error {
+	if swag.IsZero(m.KeyType) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateKeyTypeEnum("key_type", "body", m.KeyType); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var serverTypeProfilePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["default","demo","workforce","consumer","partners","third_party","fapi_advanced","fapi_rw","fapi_ro","openbanking_uk_fapi_advanced","openbanking_uk","openbanking_br"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		serverTypeProfilePropEnum = append(serverTypeProfilePropEnum, v)
+	}
+}
+
+const (
+
+	// ServerProfileDefault captures enum value "default"
+	ServerProfileDefault string = "default"
+
+	// ServerProfileDemo captures enum value "demo"
+	ServerProfileDemo string = "demo"
+
+	// ServerProfileWorkforce captures enum value "workforce"
+	ServerProfileWorkforce string = "workforce"
+
+	// ServerProfileConsumer captures enum value "consumer"
+	ServerProfileConsumer string = "consumer"
+
+	// ServerProfilePartners captures enum value "partners"
+	ServerProfilePartners string = "partners"
+
+	// ServerProfileThirdParty captures enum value "third_party"
+	ServerProfileThirdParty string = "third_party"
+
+	// ServerProfileFapiAdvanced captures enum value "fapi_advanced"
+	ServerProfileFapiAdvanced string = "fapi_advanced"
+
+	// ServerProfileFapiRw captures enum value "fapi_rw"
+	ServerProfileFapiRw string = "fapi_rw"
+
+	// ServerProfileFapiRo captures enum value "fapi_ro"
+	ServerProfileFapiRo string = "fapi_ro"
+
+	// ServerProfileOpenbankingUkFapiAdvanced captures enum value "openbanking_uk_fapi_advanced"
+	ServerProfileOpenbankingUkFapiAdvanced string = "openbanking_uk_fapi_advanced"
+
+	// ServerProfileOpenbankingUk captures enum value "openbanking_uk"
+	ServerProfileOpenbankingUk string = "openbanking_uk"
+
+	// ServerProfileOpenbankingBr captures enum value "openbanking_br"
+	ServerProfileOpenbankingBr string = "openbanking_br"
+)
+
+// prop value enum
+func (m *Server) validateProfileEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, serverTypeProfilePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *Server) validateProfile(formats strfmt.Registry) error {
+	if swag.IsZero(m.Profile) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateProfileEnum("profile", "body", m.Profile); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *Server) validateRefreshTokenTTL(formats strfmt.Registry) error {
 	if swag.IsZero(m.RefreshTokenTTL) { // not required
 		return nil
@@ -476,6 +669,15 @@ func (m *Server) validateSubjectIdentifierTypes(formats strfmt.Registry) error {
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *Server) validateTenantID(formats strfmt.Registry) error {
+
+	if err := validate.RequiredString("tenant_id", "body", m.TenantID); err != nil {
+		return err
 	}
 
 	return nil
@@ -565,6 +767,54 @@ func (m *Server) validateTrustAnchorConfiguration(formats strfmt.Registry) error
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+var serverTypeTypePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["admin","developer","system","regular"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		serverTypeTypePropEnum = append(serverTypeTypePropEnum, v)
+	}
+}
+
+const (
+
+	// ServerTypeAdmin captures enum value "admin"
+	ServerTypeAdmin string = "admin"
+
+	// ServerTypeDeveloper captures enum value "developer"
+	ServerTypeDeveloper string = "developer"
+
+	// ServerTypeSystem captures enum value "system"
+	ServerTypeSystem string = "system"
+
+	// ServerTypeRegular captures enum value "regular"
+	ServerTypeRegular string = "regular"
+)
+
+// prop value enum
+func (m *Server) validateTypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, serverTypeTypePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *Server) validateType(formats strfmt.Registry) error {
+	if swag.IsZero(m.Type) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateTypeEnum("type", "body", m.Type); err != nil {
+		return err
 	}
 
 	return nil

@@ -39,8 +39,8 @@ type GetOBBRCustomerPaymentConsentResponse struct {
 	// Format: date-time
 	CreatedAt strfmt.DateTime `json:"created_at,omitempty"`
 
-	// customer data access consent
-	CustomerDataAccessConsent *OBBRCustomerPaymentConsent `json:"customer_data_access_consent,omitempty"`
+	// customer payment consent
+	CustomerPaymentConsent *OBBRCustomerPaymentConsent `json:"customer_payment_consent,omitempty"`
 
 	// requested scopes
 	RequestedScopes []*RequestedScope `json:"requested_scopes"`
@@ -77,7 +77,7 @@ func (m *GetOBBRCustomerPaymentConsentResponse) Validate(formats strfmt.Registry
 		res = append(res, err)
 	}
 
-	if err := m.validateCustomerDataAccessConsent(formats); err != nil {
+	if err := m.validateCustomerPaymentConsent(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -141,15 +141,15 @@ func (m *GetOBBRCustomerPaymentConsentResponse) validateCreatedAt(formats strfmt
 	return nil
 }
 
-func (m *GetOBBRCustomerPaymentConsentResponse) validateCustomerDataAccessConsent(formats strfmt.Registry) error {
-	if swag.IsZero(m.CustomerDataAccessConsent) { // not required
+func (m *GetOBBRCustomerPaymentConsentResponse) validateCustomerPaymentConsent(formats strfmt.Registry) error {
+	if swag.IsZero(m.CustomerPaymentConsent) { // not required
 		return nil
 	}
 
-	if m.CustomerDataAccessConsent != nil {
-		if err := m.CustomerDataAccessConsent.Validate(formats); err != nil {
+	if m.CustomerPaymentConsent != nil {
+		if err := m.CustomerPaymentConsent.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("customer_data_access_consent")
+				return ve.ValidateName("customer_payment_consent")
 			}
 			return err
 		}
@@ -209,7 +209,7 @@ func (m *GetOBBRCustomerPaymentConsentResponse) ContextValidate(ctx context.Cont
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateCustomerDataAccessConsent(ctx, formats); err != nil {
+	if err := m.contextValidateCustomerPaymentConsent(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -253,12 +253,12 @@ func (m *GetOBBRCustomerPaymentConsentResponse) contextValidateClientInfo(ctx co
 	return nil
 }
 
-func (m *GetOBBRCustomerPaymentConsentResponse) contextValidateCustomerDataAccessConsent(ctx context.Context, formats strfmt.Registry) error {
+func (m *GetOBBRCustomerPaymentConsentResponse) contextValidateCustomerPaymentConsent(ctx context.Context, formats strfmt.Registry) error {
 
-	if m.CustomerDataAccessConsent != nil {
-		if err := m.CustomerDataAccessConsent.ContextValidate(ctx, formats); err != nil {
+	if m.CustomerPaymentConsent != nil {
+		if err := m.CustomerPaymentConsent.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("customer_data_access_consent")
+				return ve.ValidateName("customer_payment_consent")
 			}
 			return err
 		}

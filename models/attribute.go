@@ -20,6 +20,9 @@ type Attribute struct {
 	// String represented display name of an attribute
 	Description string `json:"description,omitempty"`
 
+	// Array of Strings represents attribute labels
+	Labels []string `json:"labels"`
+
 	// String represented variable name of an attribute
 	Name string `json:"name,omitempty"`
 

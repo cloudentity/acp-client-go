@@ -22,6 +22,9 @@ type TenantDump struct {
 	// apis
 	Apis []*API `json:"apis"`
 
+	// ciba authentication services
+	CibaAuthenticationServices []*CIBAAuthenticationService `json:"ciba_authentication_services"`
+
 	// claims
 	Claims []*Claim `json:"claims"`
 
@@ -73,6 +76,9 @@ type TenantDump struct {
 	// scopes without service
 	ScopesWithoutService []*Scope `json:"scopes_without_service"`
 
+	// scripts
+	Scripts []*Script `json:"scripts"`
+
 	// server consents
 	ServerConsents []*ServerConsent `json:"server_consents"`
 
@@ -94,6 +100,10 @@ func (m *TenantDump) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateApis(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCibaAuthenticationServices(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -165,6 +175,10 @@ func (m *TenantDump) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateScripts(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateServerConsents(formats); err != nil {
 		res = append(res, err)
 	}
@@ -205,6 +219,30 @@ func (m *TenantDump) validateApis(formats strfmt.Registry) error {
 			if err := m.Apis[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("apis" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *TenantDump) validateCibaAuthenticationServices(formats strfmt.Registry) error {
+	if swag.IsZero(m.CibaAuthenticationServices) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.CibaAuthenticationServices); i++ {
+		if swag.IsZero(m.CibaAuthenticationServices[i]) { // not required
+			continue
+		}
+
+		if m.CibaAuthenticationServices[i] != nil {
+			if err := m.CibaAuthenticationServices[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("ciba_authentication_services" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -614,6 +652,30 @@ func (m *TenantDump) validateScopesWithoutService(formats strfmt.Registry) error
 	return nil
 }
 
+func (m *TenantDump) validateScripts(formats strfmt.Registry) error {
+	if swag.IsZero(m.Scripts) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Scripts); i++ {
+		if swag.IsZero(m.Scripts[i]) { // not required
+			continue
+		}
+
+		if m.Scripts[i] != nil {
+			if err := m.Scripts[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("scripts" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *TenantDump) validateServerConsents(formats strfmt.Registry) error {
 	if swag.IsZero(m.ServerConsents) { // not required
 		return nil
@@ -735,6 +797,10 @@ func (m *TenantDump) ContextValidate(ctx context.Context, formats strfmt.Registr
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateCibaAuthenticationServices(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateClaims(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -803,6 +869,10 @@ func (m *TenantDump) ContextValidate(ctx context.Context, formats strfmt.Registr
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateScripts(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateServerConsents(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -837,6 +907,24 @@ func (m *TenantDump) contextValidateApis(ctx context.Context, formats strfmt.Reg
 			if err := m.Apis[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("apis" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *TenantDump) contextValidateCibaAuthenticationServices(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.CibaAuthenticationServices); i++ {
+
+		if m.CibaAuthenticationServices[i] != nil {
+			if err := m.CibaAuthenticationServices[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("ciba_authentication_services" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1137,6 +1225,24 @@ func (m *TenantDump) contextValidateScopesWithoutService(ctx context.Context, fo
 			if err := m.ScopesWithoutService[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("scopes_without_service" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *TenantDump) contextValidateScripts(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Scripts); i++ {
+
+		if m.Scripts[i] != nil {
+			if err := m.Scripts[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("scripts" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

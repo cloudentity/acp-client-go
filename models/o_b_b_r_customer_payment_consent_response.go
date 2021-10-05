@@ -19,17 +19,29 @@ import (
 // swagger:model OBBRCustomerPaymentConsentResponse
 type OBBRCustomerPaymentConsentResponse struct {
 
+	// aud
+	Aud string `json:"aud,omitempty"`
+
 	// data
 	// Required: true
-	Data *OpenbankingBrasilResponsePaymentConsentData `json:"data"`
+	Data *OpenbankingBrasilPaymentData1 `json:"data"`
+
+	// iat
+	Iat int64 `json:"iat,omitempty"`
+
+	// iss
+	Iss string `json:"iss,omitempty"`
+
+	// jti
+	Jti string `json:"jti,omitempty"`
 
 	// links
 	// Required: true
-	Links *OpenbankingBrasilLinks `json:"links"`
+	Links *OpenbankingBrasilPaymentLinks `json:"links"`
 
 	// meta
 	// Required: true
-	Meta *OpenbankingBrasilMeta `json:"meta"`
+	Meta *OpenbankingBrasilPaymentMeta `json:"meta"`
 }
 
 // Validate validates this o b b r customer payment consent response

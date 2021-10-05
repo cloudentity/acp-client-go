@@ -23,7 +23,7 @@ type TestPolicyResponse struct {
 	Failures []*ValidateResponseValidatorFailure `json:"failures"`
 
 	// recovery
-	Recovery []*ValidateResponseRecovery `json:"recovery"`
+	Recovery []interface{} `json:"recovery"`
 
 	// result
 	Result string `json:"result,omitempty"`
@@ -37,10 +37,6 @@ func (m *TestPolicyResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateFailures(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateRecovery(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -74,39 +70,11 @@ func (m *TestPolicyResponse) validateFailures(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *TestPolicyResponse) validateRecovery(formats strfmt.Registry) error {
-	if swag.IsZero(m.Recovery) { // not required
-		return nil
-	}
-
-	for i := 0; i < len(m.Recovery); i++ {
-		if swag.IsZero(m.Recovery[i]) { // not required
-			continue
-		}
-
-		if m.Recovery[i] != nil {
-			if err := m.Recovery[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("recovery" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
 // ContextValidate validate this test policy response based on the context it is used
 func (m *TestPolicyResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateFailures(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateRecovery(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -124,24 +92,6 @@ func (m *TestPolicyResponse) contextValidateFailures(ctx context.Context, format
 			if err := m.Failures[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("failures" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-func (m *TestPolicyResponse) contextValidateRecovery(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.Recovery); i++ {
-
-		if m.Recovery[i] != nil {
-			if err := m.Recovery[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("recovery" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

@@ -20,7 +20,7 @@ import (
 type OBBRCustomerPaymentConsent struct {
 
 	// business entity
-	BusinessEntity *OpenbankingBrasilBusinessEntity `json:"businessEntity,omitempty"`
+	BusinessEntity *OpenbankingBrasilPaymentBusinessEntity `json:"businessEntity,omitempty"`
 
 	// Identificador nico do consentimento criado para a iniciao de pagamento solicitada. Dever ser um URN - Uniform Resource Name.
 	// Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141)  um Uniform Resource
@@ -45,16 +45,15 @@ type OBBRCustomerPaymentConsent struct {
 
 	// creditor
 	// Required: true
-	Creditor *OpenbankingBrasilIdentification `json:"creditor"`
+	Creditor *OpenbankingBrasilPaymentIdentification `json:"creditor"`
 
 	// debtor account
-	DebtorAccount *OpenbankingBrasilDebtorAccount `json:"debtorAccount,omitempty"`
+	DebtorAccount *OpenbankingBrasilPaymentDebtorAccount `json:"debtorAccount,omitempty"`
 
 	// Data e hora em que o consentimento da iniciao de pagamento expira, devendo ser sempre o creationDateTime mais 5 minutos. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC (UTC time format).
-	// O consentimento  criado com o status AWAITING_AUTHORISATION, e deve assumir o status AUTHORIZED, REJECTED ou CONSUMED antes do tempo de expirao - 5 minutos.
-	// Caso no assuma, o status permanece como AWAITING_AUTHORISATION e ser necessria a criao de um novo consentimento.
-	// Para o cenrio em que o status assumiu AUTHORISED, o tempo mximo (do token FAPI Hybrid Flow)  de 60 minutos, sem refresh,
-	// e este  o tempo para consumir o consentimento autorizado, mudando seu status para CONSUMED. No  possvel prorrogar este tempo e a criao de um novo consentimento ser necessria para os cenrios de insucesso.
+	// O consentimento  criado com o status AWAITING_AUTHORISATION, e deve assumir o status AUTHORIZED ou REJECTED antes do tempo de expirao - 5 minutos. Caso o tempo seja expirado, o status deve assumir REJECTED.
+	// Para o cenrio em que o status assumiu AUTHORISED, o tempo mximo do expirationDateTime do consentimento deve assumir "now + 60 minutos". Este  o tempo para consumir o consentimento autorizado, mudando seu status para CONSUMED. No  possvel prorrogar este tempo e a criao de um novo consentimento ser necessria para os cenrios de insucesso.
+	// O tempo do expirationDateTime  garantido com os 15 minutos do access token, sendo possvel utilizar mais trs refresh tokens at totalizar 60 minutos.
 	// Example: 2021-05-21T08:30:00Z
 	// Required: true
 	// Format: date-time
@@ -62,15 +61,15 @@ type OBBRCustomerPaymentConsent struct {
 
 	// logged user
 	// Required: true
-	LoggedUser *OpenbankingBrasilLoggedUser `json:"loggedUser"`
+	LoggedUser *OpenbankingBrasilPaymentLoggedUser `json:"loggedUser"`
 
 	// payment
 	// Required: true
-	Payment *OpenbankingBrasilPaymentConsent `json:"payment"`
+	Payment *OpenbankingBrasilPaymentPaymentConsent `json:"payment"`
 
 	// status
 	// Required: true
-	Status *OpenbankingBrasilStatus `json:"status"`
+	Status *OpenbankingBrasilPaymentEnumAuthorisationStatusType `json:"status"`
 
 	// Data e hora em que o recurso foi atualizado. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format).
 	// Example: 2021-05-21T08:30:00Z

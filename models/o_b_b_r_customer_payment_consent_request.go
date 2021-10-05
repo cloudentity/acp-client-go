@@ -19,9 +19,21 @@ import (
 // swagger:model OBBRCustomerPaymentConsentRequest
 type OBBRCustomerPaymentConsentRequest struct {
 
+	// aud
+	Aud string `json:"aud,omitempty"`
+
 	// data
 	// Required: true
-	Data *OpenbankingBrasilCreatePaymentConsentData `json:"data"`
+	Data *OpenbankingBrasilPaymentData `json:"data"`
+
+	// iat
+	Iat int64 `json:"iat,omitempty"`
+
+	// iss
+	Iss string `json:"iss,omitempty"`
+
+	// jti
+	Jti string `json:"jti,omitempty"`
 }
 
 // Validate validates this o b b r customer payment consent request
