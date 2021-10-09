@@ -252,8 +252,8 @@ type Token struct {
 	ExpiresIn    int    `json:"expires_in"`
 }
 
-// CSRS contains state, nonce and/or PKCEverifier which are used
-// to mitigate replay attacts and cross-site request forgery.
+// CSRF contains state, nonce and/or PKCEverifier which are used
+// to mitigate replay attacks and cross-site request forgery.
 type CSRF struct {
 	// State is an opaque value used by the client to maintain
 	// state between the request and callback.  The authorization
