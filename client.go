@@ -111,7 +111,11 @@ func (c *Config) GetTokenURL() string {
 		return c.TokenURL.String()
 	}
 
-	return fmt.Sprintf("%s/oauth2/token", c.IssuerURL.String())
+	tenantID, _, err := getIssuerPathComponents(c.IssuerURL.Path)
+	if err != nil {
+		return ""
+	}
+	return fmt.Sprintf("https://%s.mtls.authz.cloudentity.io/oauth2/token", tenantID)
 }
 
 func (c *Config) GetAuthorizeURL() string {
@@ -119,7 +123,11 @@ func (c *Config) GetAuthorizeURL() string {
 		return c.AuthorizeURL.String()
 	}
 
-	return fmt.Sprintf("%s/oauth2/authorize", c.IssuerURL.String())
+	tenantID, _, err := getIssuerPathComponents(c.IssuerURL.Path)
+	if err != nil {
+		return ""
+	}
+	return fmt.Sprintf("https://%s.mtls.authz.cloudentity.io/oauth2/authorize", tenantID)
 }
 
 func (c *Config) GetUserinfoURL() string {
@@ -183,6 +191,16 @@ func (c *Config) newHTTPClient() (*http.Client, error) {
 	}, nil
 }
 
+func getIssuerPathComponents(path string) (string, string, error) {
+	paths := strings.Split(path, "/")
+
+	if len(paths) < 2 {
+		return "", "", errors.New("invalid issuer url")
+	}
+
+	return paths[1], paths[2], nil
+}
+
 // Create a new ACP client instance based on config.
 func New(cfg Config) (c Client, err error) {
 	if cfg.ClientID == "" {
@@ -199,8 +217,10 @@ func New(cfg Config) (c Client, err error) {
 		return c, errors.New("invalid issuer url")
 	}
 
-	c.TenantID = paths[1]
-	c.ServerID = paths[2]
+	c.TenantID, c.ServerID, err = getIssuerPathComponents(cfg.IssuerURL.Path)
+	if err != nil {
+		return c, err
+	}
 
 	if cfg.HttpClient == nil {
 		if c.c, err = cfg.newHTTPClient(); err != nil {
