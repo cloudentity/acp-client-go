@@ -176,7 +176,7 @@ func (c *Config) newHTTPClient() (*http.Client, error) {
 		certs = append(certs, cert)
 
 		if wellKnown, err = checkWellKnownEndpoints(c.IssuerURL.String()); err != nil {
-			return nil, err
+			return nil, errors.Wrapf(err, "unable to check well known endpoint")
 		}
 
 		if c.TokenURL, err = url.Parse(wellKnown.TokenEndpoint); err != nil {
