@@ -130,17 +130,34 @@ func (c *Config) GetUserinfoURL() string {
 	return fmt.Sprintf("%s/userinfo", c.IssuerURL.String())
 }
 
-func checkWellKnownEndpoints(issuerURL string) (*models.WellKnown, error) {
-	resp, err := http.Get(fmt.Sprintf("%s/.well-known/openid-configuration", issuerURL))
-	if err != nil {
-		return nil, err
+func (c *Client) discoverEndpoints() error {
+	var (
+		wellKnown *models.WellKnown
+		resp      *http.Response
+		err       error
+	)
+
+	if resp, err = c.c.Get(fmt.Sprintf("%s/.well-known/openid-configuration", c.Config.IssuerURL)); err != nil {
+		return err
 	}
-	var wellKnown *models.WellKnown
-	err = json.NewDecoder(resp.Body).Decode(wellKnown)
-	if err != nil {
-		return nil, err
+
+	if err = json.NewDecoder(resp.Body).Decode(wellKnown); err != nil {
+		return err
 	}
-	return  wellKnown, nil
+
+	if c.Config.TokenURL, err = url.Parse(wellKnown.MtlsEndpointAliases.TokenEndpoint); err != nil {
+		return err
+	}
+
+	if c.Config.AuthorizeURL, err = url.Parse(wellKnown.AuthorizationEndpoint); err != nil {
+		return err
+	}
+
+	if c.Config.UserinfoURL, err = url.Parse(wellKnown.UserinfoEndpoint); err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (c *Config) newHTTPClient() (*http.Client, error) {
@@ -149,7 +166,6 @@ func (c *Config) newHTTPClient() (*http.Client, error) {
 		cert  tls.Certificate
 		certs = []tls.Certificate{}
 		data  []byte
-		wellKnown *models.WellKnown
 		err   error
 	)
 
@@ -159,20 +175,6 @@ func (c *Config) newHTTPClient() (*http.Client, error) {
 		}
 
 		certs = append(certs, cert)
-
-		if wellKnown, err = checkWellKnownEndpoints(c.IssuerURL.String()); err != nil {
-			return nil, errors.Wrapf(err, "unable to check well known endpoint")
-		}
-
-		if c.TokenURL, err = url.Parse(wellKnown.TokenEndpoint); err != nil {
-			return nil, err
-		}
-		if c.AuthorizeURL, err = url.Parse(wellKnown.AuthorizationEndpoint); err != nil {
-			return nil, err
-		}
-		if c.UserinfoURL, err = url.Parse(wellKnown.UserinfoEndpoint); err != nil {
-			return nil, err
-		}
 	}
 
 	if pool, err = x509.SystemCertPool(); err != nil {
@@ -236,6 +238,10 @@ func New(cfg Config) (c Client, err error) {
 		}
 	} else {
 		c.c = cfg.HttpClient
+	}
+
+	if err = c.discoverEndpoints(); err != nil {
+		return c, err
 	}
 
 	if cfg.RequestObjectSigningKeyFile != "" {
