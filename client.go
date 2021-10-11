@@ -134,6 +134,7 @@ func (c *Client) discoverEndpoints() error {
 	var (
 		wellKnown *models.WellKnown
 		resp      *http.Response
+		tokenEndpoint string
 		err       error
 	)
 
@@ -145,7 +146,12 @@ func (c *Client) discoverEndpoints() error {
 		return err
 	}
 
-	if c.Config.TokenURL, err = url.Parse(wellKnown.MtlsEndpointAliases.TokenEndpoint); err != nil {
+	tokenEndpoint = wellKnown.TokenEndpoint
+	if c.Config.CertFile != "" && c.Config.KeyFile != "" {
+		tokenEndpoint = wellKnown.MtlsEndpointAliases.TokenEndpoint
+	}
+
+	if c.Config.TokenURL, err = url.Parse(tokenEndpoint); err != nil {
 		return err
 	}
 
