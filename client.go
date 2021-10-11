@@ -111,22 +111,7 @@ func (c *Config) GetTokenURL() string {
 		return c.TokenURL.String()
 	}
 
-	var tokenEndpoint = fmt.Sprintf("%s/oauth2/token", c.IssuerURL.String())
-
-	if c.CertFile != "" {
-		resp, err := http.Get(fmt.Sprintf("%s/.well-known/openid-configuration", c.IssuerURL.String()))
-		if err != nil {
-			return tokenEndpoint
-		}
-		var wellKnown models.WellKnown
-		err = json.NewDecoder(resp.Body).Decode(&wellKnown)
-		if err != nil {
-			return tokenEndpoint
-		}
-		return  wellKnown.MtlsEndpointAliases.TokenEndpoint
-	}
-
-	return tokenEndpoint
+	return fmt.Sprintf("%s/oauth2/token", c.IssuerURL.String())
 }
 
 func (c *Config) GetAuthorizeURL() string {
