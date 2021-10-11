@@ -132,10 +132,10 @@ func (c *Config) GetUserinfoURL() string {
 
 func (c *Client) discoverEndpoints() error {
 	var (
-		wellKnown *models.WellKnown
-		resp      *http.Response
+		wellKnown     *models.WellKnown
+		resp          *http.Response
 		tokenEndpoint string
-		err       error
+		err           error
 	)
 
 	if resp, err = c.c.Get(fmt.Sprintf("%s/.well-known/openid-configuration", c.Config.IssuerURL)); err != nil {
