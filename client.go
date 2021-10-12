@@ -146,7 +146,7 @@ func (c *Client) discoverEndpoints(issuerURL string) error {
 		err           error
 	)
 
-	log.Println(c.Config.IssuerURL)
+	log.Println(issuerURL)
 
 	if resp, err = c.c.Get(fmt.Sprintf("%s/.well-known/openid-configuration", issuerURL)); err != nil {
 		return err
