@@ -139,7 +139,7 @@ func (c *Config) GetUserinfoURL() string {
 func (c *Client) discoverEndpoints(issuerURL string) error {
 	var (
 		b             []byte
-		wellKnown     *models.WellKnown
+		wellKnown     models.WellKnown
 		resp          *http.Response
 		tokenEndpoint string
 		err           error
@@ -157,7 +157,7 @@ func (c *Client) discoverEndpoints(issuerURL string) error {
 		return errors.WithMessage(errors.New(string(b)), "unable to get well-known endpoints")
 	}
 
-	if err = json.NewDecoder(resp.Body).Decode(wellKnown); err != nil {
+	if err = json.NewDecoder(resp.Body).Decode(&wellKnown); err != nil {
 		return err
 	}
 
