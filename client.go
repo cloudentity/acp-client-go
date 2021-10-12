@@ -151,7 +151,7 @@ func (c *Client) discoverEndpoints() error {
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		if b, err = io.ReadAll(resp.Body); err != nil {
+		if b, err = ioutil.ReadAll(resp.Body); err != nil {
 			return errors.WithMessagef(err, "unable to read response body from well-known endpoint with status %d", resp.StatusCode)
 		}
 		return errors.WithMessage(errors.New(string(b)), "unable to get well-known endpoints")
