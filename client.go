@@ -12,6 +12,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"log"
 	"net"
 	"net/http"
 	"net/url"
@@ -144,6 +145,8 @@ func (c *Client) discoverEndpoints() error {
 		tokenEndpoint string
 		err           error
 	)
+
+	log.Println(c.Config.IssuerURL)
 
 	if resp, err = c.c.Get(fmt.Sprintf("%s/.well-known/openid-configuration", c.Config.IssuerURL)); err != nil {
 		return err
