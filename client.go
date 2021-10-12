@@ -146,8 +146,6 @@ func (c *Client) discoverEndpoints(issuerURL string) error {
 		err           error
 	)
 
-	log.Println(issuerURL)
-
 	if resp, err = c.c.Get(fmt.Sprintf("%s/.well-known/openid-configuration", issuerURL)); err != nil {
 		return err
 	}
@@ -159,7 +157,10 @@ func (c *Client) discoverEndpoints(issuerURL string) error {
 		}
 		return errors.WithMessage(errors.New(string(b)), "unable to get well-known endpoints")
 	}
-
+	log.Println("reading")
+	b, _ = ioutil.ReadAll(resp.Body)
+	log.Println(string(b))
+	log.Println("read")
 	if err = json.NewDecoder(resp.Body).Decode(wellKnown); err != nil {
 		return err
 	}
