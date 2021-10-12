@@ -146,7 +146,7 @@ func (c *Client) discoverEndpoints() error {
 
 	if resp.StatusCode != http.StatusOK {
 		if b, err = io.ReadAll(resp.Body); err != nil {
-			return errors.WithMessagef(err, "unable to read response body from well-known endpoint")
+			return errors.WithMessagef(err, "unable to read response body from well-known endpoint with status %d", resp.StatusCode)
 		}
 		return errors.New(string(b))
 	}
