@@ -263,6 +263,10 @@ func New(cfg Config) (c Client, err error) {
 		c.c = cfg.HttpClient
 	}
 
+	if err = c.discoverEndpoints(); err != nil {
+		return c, err
+	}
+
 	if cfg.RequestObjectSigningKeyFile != "" {
 		var bs []byte
 
