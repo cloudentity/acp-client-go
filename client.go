@@ -141,6 +141,11 @@ func (c *Client) discoverEndpoints() error {
 	if resp, err = c.c.Get(fmt.Sprintf("%s/.well-known/openid-configuration", c.Config.IssuerURL)); err != nil {
 		return err
 	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		return errors.New("unable to get well-known endpoints")
+	}
 
 	if err = json.NewDecoder(resp.Body).Decode(wellKnown); err != nil {
 		return err
