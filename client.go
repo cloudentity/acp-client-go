@@ -157,7 +157,7 @@ func (c *Client) discoverEndpoints(issuerURL string) error {
 
 	tokenEndpoint = wellKnown.TokenEndpoint
 	if c.Config.CertFile != "" && c.Config.KeyFile != "" {
-		if wellKnown.MtlsEndpointAliases.TokenEndpoint != "" {
+		if wellKnown.MtlsEndpointAliases != nil && wellKnown.MtlsEndpointAliases.TokenEndpoint != "" {
 			tokenEndpoint = wellKnown.MtlsEndpointAliases.TokenEndpoint
 		}
 	}
