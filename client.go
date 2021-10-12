@@ -130,7 +130,7 @@ func (c *Config) GetUserinfoURL() string {
 	return fmt.Sprintf("%s/userinfo", c.IssuerURL.String())
 }
 
-func (c *Client) discoverEndpoints() error {
+func (c *Client) discoverEndpoints(issuerURL string) error {
 	var (
 		b             []byte
 		wellKnown     models.WellKnown
@@ -139,7 +139,7 @@ func (c *Client) discoverEndpoints() error {
 		err           error
 	)
 
-	if resp, err = c.c.Get(fmt.Sprintf("%s/.well-known/openid-configuration", c.Config.IssuerURL)); err != nil {
+	if resp, err = c.c.Get(fmt.Sprintf("%s/.well-known/openid-configuration", issuerURL)); err != nil {
 		return err
 	}
 	defer resp.Body.Close()
@@ -257,7 +257,7 @@ func New(cfg Config) (c Client, err error) {
 		c.c = cfg.HttpClient
 	}
 
-	if err = c.discoverEndpoints(); err != nil {
+	if err = c.discoverEndpoints(cfg.IssuerURL.String()); err != nil {
 		return c, err
 	}
 
