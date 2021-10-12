@@ -133,7 +133,7 @@ func (c *Config) GetUserinfoURL() string {
 func (c *Client) discoverEndpoints() error {
 	var (
 		b             []byte
-		wellKnown     *models.WellKnown
+		wellKnown     models.WellKnown
 		resp          *http.Response
 		tokenEndpoint string
 		err           error
@@ -145,13 +145,13 @@ func (c *Client) discoverEndpoints() error {
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		if b, err = io.ReadAll(resp.Body); err != nil {
+		if b, err = ioutil.ReadAll(resp.Body); err != nil {
 			return errors.WithMessagef(err, "unable to read response body from well-known endpoint with status %d", resp.StatusCode)
 		}
 		return errors.WithMessage(errors.New(string(b)), "unable to get well-known endpoints")
 	}
 
-	if err = json.NewDecoder(resp.Body).Decode(wellKnown); err != nil {
+	if err = json.NewDecoder(resp.Body).Decode(&wellKnown); err != nil {
 		return err
 	}
 
