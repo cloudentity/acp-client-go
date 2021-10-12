@@ -148,7 +148,9 @@ func (c *Client) discoverEndpoints() error {
 
 	tokenEndpoint = wellKnown.TokenEndpoint
 	if c.Config.CertFile != "" && c.Config.KeyFile != "" {
-		tokenEndpoint = wellKnown.MtlsEndpointAliases.TokenEndpoint
+		if wellKnown.MtlsEndpointAliases.TokenEndpoint != "" {
+			tokenEndpoint = wellKnown.MtlsEndpointAliases.TokenEndpoint
+		}
 	}
 
 	if c.Config.TokenURL, err = url.Parse(tokenEndpoint); err != nil {
