@@ -12,7 +12,6 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
-	"log"
 	"net"
 	"net/http"
 	"net/url"
@@ -157,17 +156,14 @@ func (c *Client) discoverEndpoints(issuerURL string) error {
 		}
 		return errors.WithMessage(errors.New(string(b)), "unable to get well-known endpoints")
 	}
-	log.Println("reading")
-	b, _ = ioutil.ReadAll(resp.Body)
-	log.Println(string(b))
-	log.Println("read")
+
 	if err = json.NewDecoder(resp.Body).Decode(wellKnown); err != nil {
 		return err
 	}
 
 	tokenEndpoint = wellKnown.TokenEndpoint
 	if c.Config.CertFile != "" && c.Config.KeyFile != "" {
-		if wellKnown.MtlsEndpointAliases.TokenEndpoint != "" {
+		if wellKnown.MtlsEndpointAliases != nil && wellKnown.MtlsEndpointAliases.TokenEndpoint != "" {
 			tokenEndpoint = wellKnown.MtlsEndpointAliases.TokenEndpoint
 		}
 	}
