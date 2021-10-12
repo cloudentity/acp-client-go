@@ -130,6 +130,42 @@ func (c *Config) GetUserinfoURL() string {
 	return fmt.Sprintf("%s/userinfo", c.IssuerURL.String())
 }
 
+func (c *Client) discoverEndpoints() error {
+	var (
+		wellKnown     *models.WellKnown
+		resp          *http.Response
+		tokenEndpoint string
+		err           error
+	)
+
+	if resp, err = c.c.Get(fmt.Sprintf("%s/.well-known/openid-configuration", c.Config.IssuerURL)); err != nil {
+		return err
+	}
+
+	if err = json.NewDecoder(resp.Body).Decode(wellKnown); err != nil {
+		return err
+	}
+
+	tokenEndpoint = wellKnown.TokenEndpoint
+	if c.Config.CertFile != "" && c.Config.KeyFile != "" {
+		tokenEndpoint = wellKnown.MtlsEndpointAliases.TokenEndpoint
+	}
+
+	if c.Config.TokenURL, err = url.Parse(tokenEndpoint); err != nil {
+		return err
+	}
+
+	if c.Config.AuthorizeURL, err = url.Parse(wellKnown.AuthorizationEndpoint); err != nil {
+		return err
+	}
+
+	if c.Config.UserinfoURL, err = url.Parse(wellKnown.UserinfoEndpoint); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (c *Config) newHTTPClient() (*http.Client, error) {
 	var (
 		pool  *x509.CertPool
@@ -210,6 +246,10 @@ func New(cfg Config) (c Client, err error) {
 		c.c = cfg.HttpClient
 	}
 
+	if err = c.discoverEndpoints(); err != nil {
+		return c, err
+	}
+
 	if cfg.RequestObjectSigningKeyFile != "" {
 		var bs []byte
 
@@ -252,8 +292,8 @@ type Token struct {
 	ExpiresIn    int    `json:"expires_in"`
 }
 
-// CSRS contains state, nonce and/or PKCEverifier which are used
-// to mitigate replay attacts and cross-site request forgery.
+// CSRF contains state, nonce and/or PKCEverifier which are used
+// to mitigate replay attacks and cross-site request forgery.
 type CSRF struct {
 	// State is an opaque value used by the client to maintain
 	// state between the request and callback.  The authorization
