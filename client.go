@@ -136,6 +136,53 @@ func (c *Config) GetUserinfoURL() string {
 	return fmt.Sprintf("%s/userinfo", c.IssuerURL.String())
 }
 
+func (c *Client) discoverEndpoints() error {
+	var (
+		b             []byte
+		wellKnown     *models.WellKnown
+		resp          *http.Response
+		tokenEndpoint string
+		err           error
+	)
+
+	if resp, err = c.c.Get(fmt.Sprintf("%s/.well-known/openid-configuration", c.Config.IssuerURL)); err != nil {
+		return err
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		if b, err = io.ReadAll(resp.Body); err != nil {
+			return errors.WithMessagef(err, "unable to read response body from well-known endpoint with status %d", resp.StatusCode)
+		}
+		return errors.WithMessage(errors.New(string(b)), "unable to get well-known endpoints")
+	}
+
+	if err = json.NewDecoder(resp.Body).Decode(wellKnown); err != nil {
+		return err
+	}
+
+	tokenEndpoint = wellKnown.TokenEndpoint
+	if c.Config.CertFile != "" && c.Config.KeyFile != "" {
+		if wellKnown.MtlsEndpointAliases.TokenEndpoint != "" {
+			tokenEndpoint = wellKnown.MtlsEndpointAliases.TokenEndpoint
+		}
+	}
+
+	if c.Config.TokenURL, err = url.Parse(tokenEndpoint); err != nil {
+		return err
+	}
+
+	if c.Config.AuthorizeURL, err = url.Parse(wellKnown.AuthorizationEndpoint); err != nil {
+		return err
+	}
+
+	if c.Config.UserinfoURL, err = url.Parse(wellKnown.UserinfoEndpoint); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (c *Config) newHTTPClient() (*http.Client, error) {
 	var (
 		pool  *x509.CertPool
@@ -214,6 +261,10 @@ func New(cfg Config) (c Client, err error) {
 		}
 	} else {
 		c.c = cfg.HttpClient
+	}
+
+	if err = c.discoverEndpoints(); err != nil {
+		return c, err
 	}
 
 	if cfg.RequestObjectSigningKeyFile != "" {
