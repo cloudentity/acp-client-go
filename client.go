@@ -148,7 +148,7 @@ func (c *Client) discoverEndpoints() error {
 		if b, err = io.ReadAll(resp.Body); err != nil {
 			return errors.WithMessagef(err, "unable to read response body from well-known endpoint with status %d", resp.StatusCode)
 		}
-		return errors.New(string(b))
+		return errors.WithMessage(errors.New(string(b)), "unable to get well-known endpoints")
 	}
 
 	if err = json.NewDecoder(resp.Body).Decode(wellKnown); err != nil {
