@@ -10,8 +10,8 @@ generate: generate-acp generate-openbanking-uk generate-openbanking-brasil
 generate-acp:
 	rm -rf acp
 	mkdir acp
-	gsed -i 's/flow: application/flow: accessCode/g' swagger-acp-client.yaml
-	gsed -i 's/flow: password/flow: accessCode/g' swagger-acp-client.yaml
+	sed -i 's/flow: application/flow: accessCode/g' swagger-acp-client.yaml
+	sed -i 's/flow: password/flow: accessCode/g' swagger-acp-client.yaml
 	${swagger} generate client -f /go/src/swagger-acp-client.yaml -A acp -t /go/src/acp
 
 .PHONY: generate-openbanking-uk
