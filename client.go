@@ -136,16 +136,16 @@ func (c *Config) GetUserinfoURL() string {
 	return fmt.Sprintf("%s/userinfo", c.IssuerURL.String())
 }
 
-func (c *Client) discoverEndpoints() error {
+func (c *Client) discoverEndpoints(issuerURL string) error {
 	var (
 		b             []byte
-		wellKnown     *models.WellKnown
+		wellKnown     models.WellKnown
 		resp          *http.Response
 		tokenEndpoint string
 		err           error
 	)
 
-	if resp, err = c.c.Get(fmt.Sprintf("%s/.well-known/openid-configuration", c.Config.IssuerURL)); err != nil {
+	if resp, err = c.c.Get(fmt.Sprintf("%s/.well-known/openid-configuration", issuerURL)); err != nil {
 		return err
 	}
 	defer resp.Body.Close()
@@ -157,13 +157,13 @@ func (c *Client) discoverEndpoints() error {
 		return errors.WithMessage(errors.New(string(b)), "unable to get well-known endpoints")
 	}
 
-	if err = json.NewDecoder(resp.Body).Decode(wellKnown); err != nil {
+	if err = json.NewDecoder(resp.Body).Decode(&wellKnown); err != nil {
 		return err
 	}
 
 	tokenEndpoint = wellKnown.TokenEndpoint
 	if c.Config.CertFile != "" && c.Config.KeyFile != "" {
-		if wellKnown.MtlsEndpointAliases.TokenEndpoint != "" {
+		if wellKnown.MtlsEndpointAliases != nil && wellKnown.MtlsEndpointAliases.TokenEndpoint != "" {
 			tokenEndpoint = wellKnown.MtlsEndpointAliases.TokenEndpoint
 		}
 	}
@@ -263,7 +263,7 @@ func New(cfg Config) (c Client, err error) {
 		c.c = cfg.HttpClient
 	}
 
-	if err = c.discoverEndpoints(); err != nil {
+	if err = c.discoverEndpoints(cfg.IssuerURL.String()); err != nil {
 		return c, err
 	}
 
