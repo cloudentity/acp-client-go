@@ -18,9 +18,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/cloudentity/acp-client-go/client"
-	o2 "github.com/cloudentity/acp-client-go/client/oauth2"
-	"github.com/cloudentity/acp-client-go/models"
+	"github.com/cloudentity/acp-client-go/acp/client"
+	o2 "github.com/cloudentity/acp-client-go/acp/client/oauth2"
+	"github.com/cloudentity/acp-client-go/acp/models"
 	"github.com/dgrijalva/jwt-go"
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/pkg/errors"
