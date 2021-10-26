@@ -308,7 +308,7 @@ func New(cfg Config) (c Client, err error) {
 		NewAuthenticator(cc, c.c),
 	).WithOpenTracing(), nil)
 
-	apiPrefix := "/{tid}/{aid}"
+	apiPrefix := fmt.Sprintf("/%s/%s", c.TenantID, c.ServerID)
 
 	c.OpenbankingUK = &OpenbankingUK{
 		Accounts: obukAccounts.New(httptransport.NewWithClient(
