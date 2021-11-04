@@ -17,9 +17,9 @@ type MTLSAliasRuntime struct {
 func (m *MTLSAliasRuntime) Submit(operation *openapiRuntime.ClientOperation) (interface{}, error) {
 	switch operation.ID {
 	case "token":
-		m.Runtime.Host = m.mtlsHosts.TokenEndpointHost
+		m.Host = m.mtlsHosts.TokenEndpointHost
 	default:
-		m.Runtime.Host = m.originalHost
+		m.Host = m.originalHost
 	}
 
 	return m.Runtime.Submit(operation)
