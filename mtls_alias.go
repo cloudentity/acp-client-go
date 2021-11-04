@@ -15,8 +15,8 @@ type MTLSAliasRuntime struct {
 }
 
 func (m *MTLSAliasRuntime) Submit(operation *openapiRuntime.ClientOperation) (interface{}, error) {
-	switch operation.PathPattern {
-	case "/{tid}/{aid}/oauth2/token":
+	switch operation.ID {
+	case "token":
 		m.Runtime.Host = m.mtlsHosts.TokenEndpointHost
 	default:
 		m.Runtime.Host = m.originalHost
