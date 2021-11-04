@@ -11,18 +11,18 @@ import (
 type MTLSAliasRuntime struct {
 	originalHost string
 	mtlsHosts    MTLSEndpointAliaseHosts
-	r            *httptransport.Runtime
+	*httptransport.Runtime
 }
 
 func (m *MTLSAliasRuntime) Submit(operation *openapiRuntime.ClientOperation) (interface{}, error) {
 	switch operation.PathPattern {
 	case "/{tid}/{aid}/oauth2/token":
-		m.r.Host = m.mtlsHosts.TokenEndpointHost
+		m.Runtime.Host = m.mtlsHosts.TokenEndpointHost
 	default:
-		m.r.Host = m.originalHost
+		m.Runtime.Host = m.originalHost
 	}
 
-	return m.r.Submit(operation)
+	return m.Runtime.Submit(operation)
 }
 
 type MTLSEndpointAliaseHosts struct {

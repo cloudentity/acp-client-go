@@ -315,13 +315,13 @@ func New(cfg Config) (c Client, err error) {
 	rt := MTLSAliasRuntime{
 		originalHost: cfg.IssuerURL.Host,
 		mtlsHosts:    mtlsAliasEndpointHosts,
-		r: httptransport.NewWithClient(
+		Runtime: httptransport.NewWithClient(
 			cfg.IssuerURL.Host,
 			"/",
 			[]string{cfg.IssuerURL.Scheme},
 			NewAuthenticator(cc, c.c),
 		),
-	}.r.WithOpenTracing()
+	}.WithOpenTracing()
 
 	c.Acp = client.New(rt, nil)
 
