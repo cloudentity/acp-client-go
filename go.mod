@@ -13,10 +13,13 @@ require (
 	github.com/go-openapi/validate v0.20.2
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
+	github.com/nbio/st v0.0.0-20140626010706-e9e8d9816f32 // indirect
 	github.com/pkg/errors v0.9.1
+	github.com/stretchr/testify v1.7.0
 	go.mongodb.org/mongo-driver v1.5.2 // indirect
 	golang.org/x/net v0.0.0-20210525063256-abc453219eb5 // indirect
 	golang.org/x/oauth2 v0.0.0-20210514164344-f6687ab2804c
 	google.golang.org/appengine v1.6.7 // indirect
+	gopkg.in/h2non/gock.v1 v1.1.2
 	gopkg.in/square/go-jose.v2 v2.6.0
 )

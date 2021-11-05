@@ -1,28 +1,51 @@
 package acpclient
 
 import (
+	"net/http"
 	"net/url"
 
 	"github.com/cloudentity/acp-client-go/models"
 	openapiRuntime "github.com/go-openapi/runtime"
 	httptransport "github.com/go-openapi/runtime/client"
+	"golang.org/x/oauth2/clientcredentials"
 )
 
-type MTLSAliasRuntime struct {
-	originalHost string
-	mtlsHosts    MTLSEndpointAliaseHosts
-	*httptransport.Runtime
+type HTTPRuntime struct {
+	cfg        Config
+	issuerHost string
+	mtlsHosts  MTLSEndpointAliaseHosts
+	rt         *httptransport.Runtime
 }
 
-func (m *MTLSAliasRuntime) Submit(operation *openapiRuntime.ClientOperation) (interface{}, error) {
-	switch operation.ID {
-	case "token":
-		m.Host = m.mtlsHosts.TokenEndpointHost
-	default:
-		m.Host = m.originalHost
+func NewHTTPRuntime(cfg Config, cc clientcredentials.Config, httpClient *http.Client, mtlsHosts MTLSEndpointAliaseHosts) *HTTPRuntime {
+	return &HTTPRuntime{
+		cfg:        cfg,
+		issuerHost: cfg.IssuerURL.Host,
+		mtlsHosts:  mtlsHosts,
+		rt: httptransport.NewWithClient(
+			cfg.IssuerURL.Host,
+			"/",
+			[]string{cfg.IssuerURL.Scheme},
+			NewAuthenticator(cc, httpClient),
+		),
+	}
+}
+
+func (m *HTTPRuntime) Submit(operation *openapiRuntime.ClientOperation) (interface{}, error) {
+	if m.cfg.IsTLS() {
+		switch operation.ID {
+		case "token":
+			m.rt.Host = m.mtlsHosts.TokenEndpointHost
+		case "introspect":
+			m.rt.Host = m.mtlsHosts.IntrospectionEndpointHost
+		case "revoke":
+			m.rt.Host = m.mtlsHosts.RevocationEndpointHost
+		default:
+			m.rt.Host = m.issuerHost
+		}
 	}
 
-	return m.Runtime.Submit(operation)
+	return m.rt.Submit(operation)
 }
 
 type MTLSEndpointAliaseHosts struct {

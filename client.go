@@ -23,7 +23,6 @@ import (
 	o2 "github.com/cloudentity/acp-client-go/client/oauth2"
 	"github.com/cloudentity/acp-client-go/models"
 	"github.com/dgrijalva/jwt-go"
-	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/pkg/errors"
 	"golang.org/x/oauth2/clientcredentials"
 	"gopkg.in/square/go-jose.v2"
@@ -123,6 +122,10 @@ func (c *Config) GetTokenURL() string {
 	}
 
 	return fmt.Sprintf("%s/oauth2/token", c.IssuerURL.String())
+}
+
+func (c *Config) IsTLS() bool {
+	return c.CertFile != "" && c.KeyFile != ""
 }
 
 func (c *Config) GetAuthorizeURL() string {
@@ -251,11 +254,11 @@ func New(cfg Config) (c Client, err error) {
 	var wellKnown models.WellKnown
 
 	if wellKnown, err = c.getWellKnown(cfg.IssuerURL.String()); err != nil {
-		return c, err
+		return c, errors.Wrapf(err, "failed to get well known endpoint")
 	}
 
 	tokenEndpoint := wellKnown.TokenEndpoint
-	if cfg.CertFile != "" && cfg.KeyFile != "" {
+	if cfg.IsTLS() {
 		if wellKnown.MtlsEndpointAliases != nil && wellKnown.MtlsEndpointAliases.TokenEndpoint != "" {
 			tokenEndpoint = wellKnown.MtlsEndpointAliases.TokenEndpoint
 		}
@@ -299,6 +302,12 @@ func New(cfg Config) (c Client, err error) {
 		}
 	}
 
+	var mtlsAliasEndpointHosts MTLSEndpointAliaseHosts
+
+	if mtlsAliasEndpointHosts, err = getMTLSAliasHosts(wellKnown); err != nil {
+		return c, errors.Wrapf(err, "failed to parse mtls alias hosts from well known endpoint")
+	}
+
 	cc := clientcredentials.Config{
 		ClientID:     cfg.ClientID,
 		ClientSecret: cfg.ClientSecret,
@@ -306,25 +315,8 @@ func New(cfg Config) (c Client, err error) {
 		TokenURL:     cfg.GetTokenURL(),
 	}
 
-	var mtlsAliasEndpointHosts MTLSEndpointAliaseHosts
-
-	if mtlsAliasEndpointHosts, err = getMTLSAliasHosts(wellKnown); err != nil {
-		return c, errors.Wrapf(err, "failed to parse mtls alias hosts from well known endpoint")
-	}
-
-	rt := MTLSAliasRuntime{
-		originalHost: cfg.IssuerURL.Host,
-		mtlsHosts:    mtlsAliasEndpointHosts,
-		Runtime: httptransport.NewWithClient(
-			cfg.IssuerURL.Host,
-			"/",
-			[]string{cfg.IssuerURL.Scheme},
-			NewAuthenticator(cc, c.c),
-		),
-	}.WithOpenTracing()
-
+	rt := NewHTTPRuntime(cfg, cc, c.c, mtlsAliasEndpointHosts)
 	c.Acp = client.New(rt, nil)
-
 	c.Config = cfg
 
 	return c, nil
