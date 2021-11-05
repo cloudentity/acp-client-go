@@ -8,3 +8,6 @@ generate:
 	sed -i 's/flow: application/flow: accessCode/g' swagger.yaml
 	sed -i 's/flow: password/flow: accessCode/g' swagger.yaml
 	${swagger} generate client -f /go/src/swagger.yaml -A acp -t /go/src -q
+
+test: 
+	go test .
