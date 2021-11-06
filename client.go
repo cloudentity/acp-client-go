@@ -23,7 +23,6 @@ import (
 	o2 "github.com/cloudentity/acp-client-go/client/oauth2"
 	"github.com/cloudentity/acp-client-go/models"
 	"github.com/dgrijalva/jwt-go"
-	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/pkg/errors"
 	"golang.org/x/oauth2/clientcredentials"
 	"gopkg.in/square/go-jose.v2"
@@ -38,6 +37,7 @@ const (
 // Client provides a client to the ACP API
 type Client struct {
 	*client.Acp
+
 	c             *http.Client
 	signingKey    interface{}
 	encryptionKey jose.JSONWebKey
@@ -50,6 +50,10 @@ type Client struct {
 
 	// Authorization server id read from the IssuerURL
 	ServerID string
+}
+
+type MtlsClient struct {
+	// restricted to certain endpoints
 }
 
 // ACP client configuration
@@ -120,6 +124,10 @@ func (c *Config) GetTokenURL() string {
 	return fmt.Sprintf("%s/oauth2/token", c.IssuerURL.String())
 }
 
+func (c *Config) IsTLS() bool {
+	return c.CertFile != "" && c.KeyFile != ""
+}
+
 func (c *Config) GetAuthorizeURL() string {
 	if c.AuthorizeURL != nil {
 		return c.AuthorizeURL.String()
@@ -136,51 +144,31 @@ func (c *Config) GetUserinfoURL() string {
 	return fmt.Sprintf("%s/userinfo", c.IssuerURL.String())
 }
 
-func (c *Client) discoverEndpoints(cfg *Config) error {
+func (c *Client) getWellKnown(issuer string) (models.WellKnown, error) {
 	var (
-		b             []byte
-		wellKnown     models.WellKnown
-		resp          *http.Response
-		tokenEndpoint string
-		err           error
+		b         []byte
+		wellKnown models.WellKnown
+		resp      *http.Response
+		err       error
 	)
 
-	if resp, err = c.c.Get(fmt.Sprintf("%s/.well-known/openid-configuration", cfg.IssuerURL.String())); err != nil {
-		return err
+	if resp, err = c.c.Get(fmt.Sprintf("%s/.well-known/openid-configuration", issuer)); err != nil {
+		return wellKnown, err
 	}
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
 		if b, err = ioutil.ReadAll(resp.Body); err != nil {
-			return errors.WithMessagef(err, "unable to read response body from well-known endpoint with status %d", resp.StatusCode)
+			return wellKnown, errors.WithMessagef(err, "unable to read response body from well-known endpoint with status %d", resp.StatusCode)
 		}
-		return errors.WithMessage(errors.New(string(b)), "unable to get well-known endpoints")
+		return wellKnown, errors.WithMessage(errors.New(string(b)), "unable to get well-known endpoints")
 	}
 
 	if err = json.NewDecoder(resp.Body).Decode(&wellKnown); err != nil {
-		return err
+		return wellKnown, err
 	}
 
-	tokenEndpoint = wellKnown.TokenEndpoint
-	if cfg.CertFile != "" && cfg.KeyFile != "" {
-		if wellKnown.MtlsEndpointAliases != nil && wellKnown.MtlsEndpointAliases.TokenEndpoint != "" {
-			tokenEndpoint = wellKnown.MtlsEndpointAliases.TokenEndpoint
-		}
-	}
-
-	if cfg.TokenURL, err = url.Parse(tokenEndpoint); err != nil {
-		return err
-	}
-
-	if cfg.AuthorizeURL, err = url.Parse(wellKnown.AuthorizationEndpoint); err != nil {
-		return err
-	}
-
-	if cfg.UserinfoURL, err = url.Parse(wellKnown.UserinfoEndpoint); err != nil {
-		return err
-	}
-
-	return nil
+	return wellKnown, nil
 }
 
 func (c *Config) newHTTPClient() (*http.Client, error) {
@@ -263,8 +251,29 @@ func New(cfg Config) (c Client, err error) {
 		c.c = cfg.HttpClient
 	}
 
-	if err = c.discoverEndpoints(&cfg); err != nil {
-		return c, err
+	var wellKnown models.WellKnown
+
+	if wellKnown, err = c.getWellKnown(cfg.IssuerURL.String()); err != nil {
+		return c, errors.Wrapf(err, "failed to get well known endpoint")
+	}
+
+	tokenEndpoint := wellKnown.TokenEndpoint
+	if cfg.IsTLS() {
+		if wellKnown.MtlsEndpointAliases != nil && wellKnown.MtlsEndpointAliases.TokenEndpoint != "" {
+			tokenEndpoint = wellKnown.MtlsEndpointAliases.TokenEndpoint
+		}
+	}
+
+	if cfg.TokenURL, err = url.Parse(tokenEndpoint); err != nil {
+		return c, errors.Wrapf(err, "failed to parse token endpoint from well known")
+	}
+
+	if cfg.AuthorizeURL, err = url.Parse(wellKnown.AuthorizationEndpoint); err != nil {
+		return c, errors.Wrapf(err, "failed to parse authorize endpoint from well known")
+	}
+
+	if cfg.UserinfoURL, err = url.Parse(wellKnown.UserinfoEndpoint); err != nil {
+		return c, errors.Wrapf(err, "failed to parse user info endpoint from well known")
 	}
 
 	if cfg.RequestObjectSigningKeyFile != "" {
@@ -293,6 +302,12 @@ func New(cfg Config) (c Client, err error) {
 		}
 	}
 
+	var mtlsAliasEndpointHosts MTLSEndpointAliaseHosts
+
+	if mtlsAliasEndpointHosts, err = getMTLSAliasHosts(wellKnown); err != nil {
+		return c, errors.Wrapf(err, "failed to parse mtls alias hosts from well known endpoint")
+	}
+
 	cc := clientcredentials.Config{
 		ClientID:     cfg.ClientID,
 		ClientSecret: cfg.ClientSecret,
@@ -300,13 +315,8 @@ func New(cfg Config) (c Client, err error) {
 		TokenURL:     cfg.GetTokenURL(),
 	}
 
-	c.Acp = client.New(httptransport.NewWithClient(
-		cfg.IssuerURL.Host,
-		"/",
-		[]string{cfg.IssuerURL.Scheme},
-		NewAuthenticator(cc, c.c),
-	).WithOpenTracing(), nil)
-
+	rt := NewHTTPRuntime(cfg, cc, c.c, mtlsAliasEndpointHosts)
+	c.Acp = client.New(rt, nil)
 	c.Config = cfg
 
 	return c, nil
