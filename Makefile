@@ -8,24 +8,26 @@ generate: generate-acp generate-openbanking-uk generate-openbanking-brasil
 
 .PHONY: generate-acp
 generate-acp:
-	rm -rf acp
-	mkdir acp
-	sed -i 's/flow: application/flow: accessCode/g' swagger-acp-client.yaml
-	sed -i 's/flow: password/flow: accessCode/g' swagger-acp-client.yaml
-	${swagger} generate client -f /go/src/swagger-acp-client.yaml -A acp -t /go/src/acp
+	rm -rf clients/acp
+	mkdir clients/acp
+	sed -i 's/flow: application/flow: accessCode/g' spec/swagger-acp-client.yaml
+	sed -i 's/flow: password/flow: accessCode/g' spec/swagger-acp-client.yaml
+	${swagger} generate client -f /go/src/spec/swagger-acp-client.yaml -A acp -t /go/src/clients/acp
 
 .PHONY: generate-openbanking-uk
 generate-openbanking-uk:
-	rm -rf openbankingUK
-	mkdir openbankingUK
-	mkdir openbankingUK/{accounts,payments}
-	${swagger} generate client -f /go/src/swagger-openbanking-uk-accounts-supported.yaml -A openbankingUKClient -t /go/src/openbankingUK/accounts
-	${swagger} generate client -f /go/src/swagger-openbanking-uk-payments-supported.yaml -A openbankingUKClient -t /go/src/openbankingUK/payments
+	rm -rf clients/openbankingUK
+	mkdir -p clients/openbankingUK/accounts
+	mkdir -p clients/openbankingUK/payments
+
+	${swagger} generate client -f /go/src/spec/swagger-openbanking-uk-accounts-supported.yaml -A openbankingUKClient -t /go/src/clients/openbankingUK/accounts
+	${swagger} generate client -f /go/src/spec/swagger-openbanking-uk-payments-supported.yaml -A openbankingUKClient -t /go/src/clients/openbankingUK/payments
 
 .PHONY: generate-openbanking-brasil
 generate-openbanking-brasil:
-	rm -rf openbankingBR
-	mkdir openbankingBR
-	mkdir openbankingBR/{consents,payments}
-	${swagger} generate client -f /go/src/swagger-openbanking-brasil-consents-supported.yaml -A openbankingBRClient -t /go/src/openbankingBR/consents
-	${swagger} generate client -f /go/src/swagger-openbanking-brasil-payments-supported.yaml -A openbankingBRClient -t /go/src/openbankingBR/payments	
+	rm -rf clients/openbankingBR
+	mkdir -p clients/openbankingBR/consents
+	mkdir -p clients/openbankingBR/payments
+
+	${swagger} generate client -f /go/src/spec/swagger-openbanking-brasil-consents-supported.yaml -A openbankingBRClient -t /go/src/clients/openbankingBR/consents
+	${swagger} generate client -f /go/src/spec/swagger-openbanking-brasil-payments-supported.yaml -A openbankingBRClient -t /go/src/clients/openbankingBR/payments	

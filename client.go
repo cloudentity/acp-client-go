@@ -18,15 +18,15 @@ import (
 	"strings"
 	"time"
 
-	"github.com/cloudentity/acp-client-go/acp/client"
-	obbrConsents "github.com/cloudentity/acp-client-go/openbankingBR/consents/client"
-	obbrPayments "github.com/cloudentity/acp-client-go/openbankingBR/payments/client"
+	"github.com/cloudentity/acp-client-go/clients/acp/client"
+	obbrConsents "github.com/cloudentity/acp-client-go/clients/openbankingBR/consents/client"
+	obbrPayments "github.com/cloudentity/acp-client-go/clients/openbankingBR/payments/client"
 
-	obukAccounts "github.com/cloudentity/acp-client-go/openbankingUK/accounts/client"
-	obukPayments "github.com/cloudentity/acp-client-go/openbankingUK/payments/client"
+	obukAccounts "github.com/cloudentity/acp-client-go/clients/openbankingUK/accounts/client"
+	obukPayments "github.com/cloudentity/acp-client-go/clients/openbankingUK/payments/client"
 
-	o2 "github.com/cloudentity/acp-client-go/acp/client/oauth2"
-	"github.com/cloudentity/acp-client-go/acp/models"
+	o2 "github.com/cloudentity/acp-client-go/clients/acp/client/oauth2"
+	"github.com/cloudentity/acp-client-go/clients/acp/models"
 	"github.com/dgrijalva/jwt-go"
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/pkg/errors"
