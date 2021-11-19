@@ -1,0 +1,979 @@
+basePath: /default/default
+consumes:
+- application/json
+definitions:
+  ClientDetails:
+    properties:
+      client_uri:
+        description: url to a client website
+        example: https://example.com
+        type: string
+        x-nullable: false
+      id:
+        description: client id
+        example: default
+        type: string
+        x-nullable: false
+      logo_uri:
+        description: url to a page where client logo is served
+        example: https://example.com/logo.png
+        type: string
+        x-nullable: false
+      name:
+        description: client name
+        example: My app
+        type: string
+        x-nullable: false
+    type: object
+  ClientWithAccess:
+    properties:
+      client:
+        $ref: '#/definitions/ClientDetails'
+      granted_scopes:
+        description: Scopes granted to client
+        items:
+          $ref: '#/definitions/GrantedScope'
+        type: array
+        x-nullable: false
+    type: object
+  Consent:
+    properties:
+      can_be_withdrawn:
+        description: flag determining if can user withdrawn consent
+        example: false
+        type: boolean
+        x-nullable: false
+      description:
+        description: consent description
+        example: End User License Agreement
+        type: string
+        x-nullable: false
+      id:
+        description: consent unique identifier
+        example: "1"
+        format: consentID
+        type: string
+        x-nullable: false
+      internal_services:
+        description: internal services
+        items:
+          $ref: '#/definitions/ConsentService'
+        type: array
+        x-nullable: false
+      name:
+        description: consent name
+        example: EULA
+        type: string
+        x-nullable: false
+      pii_categories:
+        description: PII Categories
+        items:
+          $ref: '#/definitions/PIICategory'
+        type: array
+        x-nullable: false
+      tenant_id:
+        description: tenant id
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      third_party_services:
+        description: third party services
+        items:
+          $ref: '#/definitions/ConsentService'
+        type: array
+        x-nullable: false
+      update_existing_grants:
+        description: 'strategy for upading existing grants, one of: explicitAll, implicitAll,
+          keepCurrent'
+        example: explicitAll
+        type: string
+        x-nullable: false
+      valid_from:
+        description: marks the time from which the consent is in use. Can't be set
+          to a future time
+        example: "2019-12-11T13:44:28.772101Z"
+        format: date-time
+        type: string
+        x-nullable: false
+      version:
+        description: consent version. When a consent is updated, version is incremented.
+        example: 1
+        format: int64
+        type: integer
+        x-nullable: false
+    type: object
+  ConsentGrant:
+    properties:
+      consent_grant_act_id:
+        description: consent grant id
+        example: 27fa83a8-d0a6-48da-8529-42105bfa0ede
+        format: consentGrantActID
+        type: string
+        x-nullable: false
+      consent_id:
+        description: consent id
+        example: "1"
+        format: consentID
+        type: string
+        x-nullable: false
+      given_at:
+        description: given at timestamp
+        format: date-time
+        type: string
+        x-nullable: false
+      grant_type:
+        description: 'grant type, one of: implicit, explicit'
+        example: implicit
+        type: string
+        x-nullable: false
+      subject:
+        description: subject
+        example: peter
+        format: subject
+        type: string
+        x-nullable: false
+      tenant_id:
+        description: tenant id
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      version:
+        description: version
+        example: 1
+        format: int64
+        type: integer
+        x-nullable: false
+    type: object
+  ConsentGrantContext:
+    properties:
+      device:
+        additionalProperties:
+          type: object
+        description: json object - device print of the End User's device
+        type: object
+        x-nullable: false
+      ip:
+        description: string in the form of a valid IP v 4 address, represents the
+          current IP of the End User
+        example: 52.14.142.76
+        type: string
+        x-nullable: false
+      location:
+        description: 2 element array of floats - current geolocation of the end-user,
+          the format is [lat, long]
+        example:
+        - 25.2084
+        - 55.2719
+        items:
+          format: double
+          type: number
+        type: array
+        x-nullable: false
+    type: object
+  ConsentGrantPatch:
+    properties:
+      consent_id:
+        description: consent id
+        example: "1"
+        format: consentID
+        type: string
+        x-nullable: false
+      grant_type:
+        description: 'one of: implicit, explicit (explicit is the default value)'
+        example: implicit
+        type: string
+        x-nullable: false
+      granted:
+        description: boolean flag marking if the user granted or revoked the consent
+        example: false
+        type: boolean
+        x-nullable: false
+    type: object
+  ConsentGrantPatchRequest:
+    properties:
+      collection_timestamp:
+        description: time when the grant occurred
+        example: 1257894000000000000
+        format: int64
+        type: integer
+        x-nullable: false
+      consents:
+        description: an array of consent objects, consisting of consentId and granted
+          - boolean flag marking if the user granted or revoked the consent
+        items:
+          $ref: '#/definitions/ConsentGrantPatch'
+        type: array
+        x-nullable: false
+      context:
+        $ref: '#/definitions/ConsentGrantContext'
+      language:
+        description: language in which the consent was obtained [ISO 639]
+        example: en
+        type: string
+        x-nullable: false
+      triggered_by_action:
+        description: optional string with action_id - can be set if the consent grant/withdraw
+          request was caused when an app asked the user for consent required for a
+          specific action
+        example: "1"
+        type: string
+        x-nullable: false
+    type: object
+  ConsentGrantPatchResponse:
+    properties:
+      ConsentGrantActID:
+        description: id of the consent grant action
+        format: consentGrantActID
+        type: string
+        x-nullable: false
+      collection_timestamp:
+        description: time when the grant occurred
+        example: 1257894000000000000
+        format: int64
+        type: integer
+        x-nullable: false
+      consents:
+        description: an array of consent objects, consisting of consentId and granted
+          - boolean flag marking if the user granted or revoked the consent
+        items:
+          $ref: '#/definitions/ConsentGrantPatch'
+        type: array
+        x-nullable: false
+      context:
+        $ref: '#/definitions/ConsentGrantContext'
+      language:
+        description: language in which the consent was obtained [ISO 639]
+        example: en
+        type: string
+        x-nullable: false
+      triggered_by_action:
+        description: optional string with action_id - can be set if the consent grant/withdraw
+          request was caused when an app asked the user for consent required for a
+          specific action
+        example: "1"
+        type: string
+        x-nullable: false
+    type: object
+  ConsentGrantRequest:
+    properties:
+      collection_timestamp:
+        description: time when the grant occurred
+        example: 1257894000000000000
+        format: int64
+        type: integer
+        x-nullable: false
+      consent_id:
+        description: consent id
+        format: consentID
+        type: string
+        x-nullable: false
+      context:
+        $ref: '#/definitions/ConsentGrantContext'
+      grant_type:
+        description: grant type
+        type: string
+        x-nullable: false
+      language:
+        description: language in which the consent was obtained [ISO 639]
+        example: en
+        type: string
+        x-nullable: false
+      triggered_by_action:
+        description: optional string with action_id - can be set if the consent grant/withdraw
+          request was caused when an app asked the user for consent required for a
+          specific action
+        example: "1"
+        type: string
+        x-nullable: false
+    type: object
+  ConsentGrantedEvent:
+    properties:
+      collection_timestamp:
+        description: time when the grant occurred
+        example: 1257894000000000000
+        format: int64
+        type: integer
+        x-nullable: false
+      consent:
+        $ref: '#/definitions/Consent'
+      consent_grant_act_id:
+        description: consent grant id
+        example: 27fa83a8-d0a6-48da-8529-42105bfa0ede
+        format: consentGrantActID
+        type: string
+        x-nullable: false
+      consent_id:
+        description: consent id
+        example: "1"
+        format: consentID
+        type: string
+        x-nullable: false
+      context:
+        $ref: '#/definitions/ConsentGrantContext'
+      given_at:
+        description: given at timestamp
+        format: date-time
+        type: string
+        x-nullable: false
+      grant_type:
+        description: 'grant type, one of: implicit, explicit'
+        example: implicit
+        type: string
+        x-nullable: false
+      language:
+        description: language in which the consent was obtained [ISO 639]
+        example: en
+        type: string
+        x-nullable: false
+      subject:
+        description: subject
+        example: peter
+        format: subject
+        type: string
+        x-nullable: false
+      tenant_id:
+        description: tenant id
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      triggered_by_action:
+        description: optional string with action_id - can be set if the consent grant/withdraw
+          request was caused when an app asked the user for consent required for a
+          specific action
+        example: "1"
+        type: string
+        x-nullable: false
+      version:
+        description: version
+        example: 1
+        format: int64
+        type: integer
+        x-nullable: false
+    type: object
+  ConsentRevokedEvent:
+    properties:
+      collection_timestamp:
+        description: time when the grant occurred
+        example: 1257894000000000000
+        format: int64
+        type: integer
+        x-nullable: false
+      consent:
+        $ref: '#/definitions/Consent'
+      consent_grant_act_id:
+        description: consent grant id
+        example: 27fa83a8-d0a6-48da-8529-42105bfa0ede
+        format: consentGrantActID
+        type: string
+        x-nullable: false
+      consent_id:
+        description: consent id
+        example: "1"
+        format: consentID
+        type: string
+        x-nullable: false
+      context:
+        $ref: '#/definitions/ConsentGrantContext'
+      given_at:
+        description: given at timestamp
+        format: date-time
+        type: string
+        x-nullable: false
+      grant_type:
+        description: 'grant type, one of: implicit, explicit'
+        example: implicit
+        type: string
+        x-nullable: false
+      language:
+        description: language in which the consent was obtained [ISO 639]
+        example: en
+        type: string
+        x-nullable: false
+      subject:
+        description: subject
+        example: peter
+        format: subject
+        type: string
+        x-nullable: false
+      tenant_id:
+        description: tenant id
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      triggered_by_action:
+        description: optional string with action_id - can be set if the consent grant/withdraw
+          request was caused when an app asked the user for consent required for a
+          specific action
+        example: "1"
+        type: string
+        x-nullable: false
+      version:
+        description: version
+        example: 1
+        format: int64
+        type: integer
+        x-nullable: false
+    type: object
+  ConsentService:
+    properties:
+      name:
+        description: name
+        type: string
+        x-nullable: false
+      purposes:
+        description: purpose
+        items:
+          $ref: '#/definitions/Purpose'
+        type: array
+        x-nullable: false
+    type: object
+  ConsentWithGrant:
+    properties:
+      can_be_withdrawn:
+        description: flag determining if can user withdrawn consent
+        example: false
+        type: boolean
+        x-nullable: false
+      consent_grant_id:
+        description: consent grant id
+        example: 27fa83a8-d0a6-48da-8529-42105bfa0ede
+        format: consentGrantActID
+        type: string
+        x-nullable: false
+      description:
+        description: consent description
+        example: End User License Agreement
+        type: string
+        x-nullable: false
+      given_at:
+        description: given at timestamp
+        format: date-time
+        type: string
+        x-nullable: false
+      grant_type:
+        description: grant type
+        example: implicit
+        type: string
+        x-nullable: false
+      grant_version:
+        description: grant version
+        example: 1
+        format: int64
+        type: integer
+        x-nullable: false
+      granted:
+        description: is consent granted
+        example: false
+        type: boolean
+        x-nullable: false
+      id:
+        description: consent unique identifier
+        example: "1"
+        format: consentID
+        type: string
+        x-nullable: false
+      internal_services:
+        description: internal services
+        items:
+          $ref: '#/definitions/ConsentService'
+        type: array
+        x-nullable: false
+      name:
+        description: consent name
+        example: EULA
+        type: string
+        x-nullable: false
+      pii_categories:
+        description: PII Categories
+        items:
+          $ref: '#/definitions/PIICategory'
+        type: array
+        x-nullable: false
+      subject:
+        description: subject
+        example: peter
+        format: subject
+        type: string
+        x-nullable: false
+      tenant_id:
+        description: tenant id
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      third_party_services:
+        description: third party services
+        items:
+          $ref: '#/definitions/ConsentService'
+        type: array
+        x-nullable: false
+      update_existing_grants:
+        description: 'strategy for upading existing grants, one of: explicitAll, implicitAll,
+          keepCurrent'
+        example: explicitAll
+        type: string
+        x-nullable: false
+      valid_from:
+        description: marks the time from which the consent is in use. Can't be set
+          to a future time
+        example: "2019-12-11T13:44:28.772101Z"
+        format: date-time
+        type: string
+        x-nullable: false
+      version:
+        description: consent version. When a consent is updated, version is incremented.
+        example: 1
+        format: int64
+        type: integer
+        x-nullable: false
+    type: object
+  ConsentsWithGrants:
+    properties:
+      consents:
+        description: list of consents
+        items:
+          $ref: '#/definitions/ConsentWithGrant'
+        type: array
+        x-nullable: false
+    type: object
+  Error:
+    description: HTTP error response
+    properties:
+      details:
+        type: object
+        x-nullable: false
+      error:
+        type: string
+        x-nullable: false
+      status_code:
+        format: int64
+        type: integer
+        x-nullable: false
+    type: object
+  GrantedScope:
+    properties:
+      granted_scope_name:
+        type: string
+        x-nullable: false
+      is_dynamic:
+        type: boolean
+        x-nullable: false
+      scope_name:
+        type: string
+        x-nullable: false
+    type: object
+  ListClientsWithAccess:
+    properties:
+      clients:
+        items:
+          $ref: '#/definitions/ClientWithAccess'
+        type: array
+        x-nullable: false
+      scopes:
+        items:
+          $ref: '#/definitions/ScopeWithServicePublicResponse'
+        type: array
+        x-nullable: false
+    type: object
+  PIICategory:
+    properties:
+      name:
+        description: name
+        example: HIPAA
+        type: string
+        x-nullable: false
+    type: object
+  PrivacyLedgerEvent:
+    properties:
+      date:
+        format: date-time
+        type: string
+        x-nullable: false
+      id:
+        format: privacyLedgerEventID
+        type: string
+        x-nullable: false
+      payload:
+        $ref: '#/definitions/PrivacyLedgerPayload'
+      payload_signature:
+        type: string
+        x-nullable: false
+      subject:
+        format: subject
+        type: string
+        x-nullable: false
+      tenant_id:
+        format: tenantID
+        type: string
+        x-nullable: false
+    type: object
+  PrivacyLedgerEventType:
+    type: string
+  PrivacyLedgerEvents:
+    properties:
+      events:
+        items:
+          $ref: '#/definitions/PrivacyLedgerEvent'
+        type: array
+        x-nullable: false
+    type: object
+  PrivacyLedgerPayload:
+    properties:
+      consent_granted:
+        $ref: '#/definitions/ConsentGrantedEvent'
+      consent_revoked:
+        $ref: '#/definitions/ConsentRevokedEvent'
+      event_type:
+        $ref: '#/definitions/PrivacyLedgerEventType'
+    type: object
+  Purpose:
+    properties:
+      name:
+        description: name
+        example: Core Function
+        format: purposeName
+        type: string
+        x-nullable: false
+      primary:
+        description: is the purpose primary. If there are multiple purposes defined,
+          one of them must be marked as primary.
+        example: true
+        type: boolean
+        x-nullable: false
+    type: object
+  ScopeWithServicePublicResponse:
+    properties:
+      scope_description:
+        description: scope description
+        example: This scope value requests offline access using refresh token
+        type: string
+        x-nullable: false
+      scope_display_name:
+        description: scope display name
+        example: Offline access
+        type: string
+        x-nullable: false
+      scope_id:
+        description: scope id
+        example: "1"
+        type: string
+        x-nullable: false
+      scope_name:
+        description: scope name
+        example: offline_access
+        type: string
+        x-nullable: false
+      service_description:
+        description: service description
+        example: service description
+        type: string
+        x-nullable: false
+      service_id:
+        description: service id
+        example: "1"
+        type: string
+        x-nullable: false
+      service_name:
+        description: service name
+        example: service
+        type: string
+        x-nullable: false
+      with_service:
+        description: is scope assigned to a service
+        example: false
+        type: boolean
+        x-nullable: false
+    type: object
+host: localhost:8443
+info:
+  description: Cloudentity Authorization Control Plane Public API
+  title: Cloudentity Authorization Control Plane API
+  version: 1.13.1
+paths:
+  /clients:
+    get:
+      description: Each client contains list of scopes that user agreed to.
+      operationId: listClientsWithAccess
+      responses:
+        "200":
+          $ref: '#/responses/ListClientsWithAccess'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - default:
+        - list_clients_with_access
+      summary: List clients that user shared data with
+      tags:
+      - clients
+  /clients/{cid}:
+    delete:
+      description: Upon removal client won't be able to use user data anymore.
+      operationId: revokeClientAccess
+      parameters:
+      - default: default
+        description: Client id
+        in: path
+        name: cid
+        required: true
+        type: string
+      responses:
+        "204":
+          description: ' Client access has been revoked'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - default:
+        - revoke_client_access
+      summary: Revoke client access
+      tags:
+      - clients
+  /privacy/consents:
+    get:
+      description: If you want to list only specific consents, provide consent identifiers
+        in query params.
+      operationId: listUserConsents
+      parameters:
+      - description: optional identifiers of consents to be returned
+        in: query
+        items:
+          type: string
+        name: consent_id
+        type: array
+      responses:
+        "200":
+          $ref: '#/responses/ConsentsWithGrants'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - default:
+        - view_consents
+      summary: List consents
+      tags:
+      - consents
+    patch:
+      description: |-
+        This is a non-standardized PATCH request.
+
+        Allows to update multiple consents approval in one API call.
+
+        See ConsentGrantPatchRequest object for more information.
+      operationId: patchConsentGrants
+      parameters:
+      - in: body
+        name: ConsentGrantPatchRequest
+        schema:
+          $ref: '#/definitions/ConsentGrantPatchRequest'
+      responses:
+        "201":
+          $ref: '#/responses/ConsentGrantPatchResponse'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "409":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - default:
+        - manage_consents
+      summary: Patch consent grants
+      tags:
+      - consents
+  /privacy/consents/{action}:
+    get:
+      description: |-
+        Returns any possible required consents that the app should ask the User about.
+
+        The response includes a list of consents (including the ones user already agreed to).
+        Inclusion of the consents which the user already agreed to can be used to inform the user what he already agreed to.
+      operationId: listUserConsentsByAction
+      parameters:
+      - default: default
+        description: Consent action id
+        in: path
+        name: action
+        required: true
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/ConsentsWithGrants'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - default:
+        - view_consents
+      summary: List consents by action
+      tags:
+      - consents
+  /privacy/consents/grant:
+    post:
+      description: |-
+        Consent id must be provided in the request body.
+
+        When a user grants consent which was already granted, it does not result in an error but it silently skipped instead.
+      operationId: grantConsent
+      parameters:
+      - in: body
+        name: ConsentGrant
+        schema:
+          $ref: '#/definitions/ConsentGrantRequest'
+      responses:
+        "201":
+          $ref: '#/responses/ConsentGrant'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "409":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - default:
+        - manage_consents
+      summary: Grant privacy consent
+      tags:
+      - consents
+  /privacy/consents/revoke:
+    post:
+      description: |-
+        This API can be used to withdraw a consent which user previously gave.
+
+        Consent id must be provided in the request body.
+
+        When consent has the can_be_withdrawn flag set to false the API fails with an error saying that the consent cannot be revoked.
+        This flag is useful for scenarios in which the application cannot function without the consent from a User.
+      operationId: revokeConsent
+      parameters:
+      - in: body
+        name: ConsentGrant
+        schema:
+          $ref: '#/definitions/ConsentGrantRequest'
+      responses:
+        "200":
+          $ref: '#/responses/ConsentGrant'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - default:
+        - manage_consents
+      summary: Revoke privacy consent
+      tags:
+      - consents
+  /privacy/events:
+    get:
+      description: It is possible to provide time constraints using from and to query
+        params.
+      operationId: listPrivacyLedgerEvents
+      parameters:
+      - description: Query events from timestamp (default 0)
+        format: int64
+        in: query
+        name: from
+        type: integer
+      - description: Query events to timestamp (default current time)
+        format: int64
+        in: query
+        name: to
+        type: integer
+      responses:
+        "200":
+          $ref: '#/responses/PrivacyLedgerEvents'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - default:
+        - view_consents
+      summary: List privacy ledger events
+      tags:
+      - consents
+produces:
+- application/json
+responses:
+  ConsentGrant:
+    description: Consent grant
+    schema:
+      $ref: '#/definitions/ConsentGrant'
+  ConsentGrantPatchResponse:
+    description: Consent grant patch
+    schema:
+      $ref: '#/definitions/ConsentGrantPatchResponse'
+  ConsentsWithGrants:
+    description: Consents with grants
+    schema:
+      $ref: '#/definitions/ConsentsWithGrants'
+  ListClientsWithAccess:
+    description: Clients with access
+    schema:
+      $ref: '#/definitions/ListClientsWithAccess'
+  PrivacyLedgerEvents:
+    description: Privacy ledger events
+    schema:
+      $ref: '#/definitions/PrivacyLedgerEvents'
+  httpError:
+    description: HttpError
+    schema:
+      $ref: '#/definitions/Error'
+schemes:
+- https
+securityDefinitions:
+  default:
+    authorizationUrl: /default/default/oauth2/authorize
+    flow: accessCode
+    scopes:
+      list_clients_with_access: list_clients_with_access
+      manage_consents: manage_consents
+      revoke_client_access: revoke_client_access
+      view_consents: view_consents
+    tokenUrl: /default/default/oauth2/token
+    type: oauth2
+swagger: "2.0"

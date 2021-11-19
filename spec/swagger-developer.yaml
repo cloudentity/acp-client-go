@@ -1,0 +1,2010 @@
+basePath: /api/developer/default/developer
+consumes:
+- application/json
+definitions:
+  ClientDeveloperResponse:
+    properties:
+      application_type:
+        default: web
+        description: |-
+          String represented type of a client application
+
+          Client applications can be either of a `web` or `native` types.
+
+          Web applications include clients like server web applications or service apps.
+
+          Native applications include single-page applications (SPAs) and mobile or desktop
+          applications.
+
+          Depending on the type of your application remember to choose appropriate security measures.
+        example: web
+        type: string
+        x-nullable: false
+      application_types:
+        default:
+        - server_web
+        description: An array of dynamically calculated application types that can
+          be used for filtering
+        example:
+        - single_page
+        - server_web
+        - mobile_desktop
+        - service
+        - legacy
+        - dcr
+        items:
+          enum:
+          - single_page
+          - server_web
+          - mobile_desktop
+          - service
+          - legacy
+          - dcr
+          type: string
+        readOnly: true
+        type: array
+        x-nullable: false
+      audience:
+        default:
+        - client_id
+        description: |-
+          Identity of the intended recipients (the audience)
+
+          Typically, the audience may be a single resources server or a list of resource servers.
+          It is considered a good practice to limit the audience of the token for security purposes.
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      authorization_server_id:
+        description: ID of the authorization server (workspace) to which a client
+          application is tied
+        example: default
+        format: serverID
+        type: string
+        x-nullable: false
+      backchannel_authentication_request_signing_alg:
+        description: |-
+          OPTIONAL. The JWS algorithm alg value that the Client will use for signing authentication requests.
+          When omitted, the Client will not send signed authentication requests.
+        type: string
+        x-nullable: false
+      backchannel_client_notification_endpoint:
+        description: |-
+          REQUIRED if the token delivery mode is set to ping or push.
+          This is the endpoint to which the OP will post a notification after a successful or failed end-user authentication.
+          It MUST be an HTTPS URL.
+        type: string
+        x-nullable: false
+      backchannel_token_delivery_mode:
+        description: 'REQUIRED. One of the following values: poll, ping, or push.'
+        type: string
+        x-nullable: false
+      backchannel_user_code_parameter:
+        description: |-
+          OPTIONAL. Boolean value specifying whether the Client supports the user_code parameter.
+          If omitted, the default value is false.
+          This parameter only applies when OP parameter backchannel_user_code_parameter_supported is true.
+        type: boolean
+        x-nullable: false
+      client_id:
+        description: |-
+          OAuth client application identifier
+
+          If not provided, a random client ID is generated.
+        format: clientID
+        type: string
+        x-nullable: false
+      client_id_issued_at:
+        description: |-
+          Time at which the client identifier was issued.
+
+          The time is represented as the number of seconds from
+          1970-01-01T00:00:00Z as measured in UTC until the date/time of issuance.
+        format: int64
+        type: integer
+        x-nullable: false
+      client_name:
+        description: Human readable name of a client application
+        example: My app
+        type: string
+        x-nullable: false
+      client_secret:
+        description: |-
+          OAuth client secret
+
+          If not provided, a random client secret is generated.
+        minLength: 32
+        type: string
+        x-nullable: false
+      client_secret_expires_at:
+        description: |-
+          The `client_secret_expires_at` holds an integer that defines the time at which the client
+          secret expires
+
+          If the client secret does not expire, the value should be set to `0`.
+        format: int64
+        type: integer
+        x-nullable: false
+      client_uri:
+        description: URI of a client application
+        type: string
+        x-nullable: false
+      description:
+        description: Description of a client application
+        type: string
+        x-nullable: false
+      grant_types:
+        default:
+        - authorization_code
+        description: |-
+          An array of allowed OAuth client grant types
+
+          The `grantTypes` array stores OAuth flows that are allowed for a given client application.
+
+          To know more about OAuth grant flows, see the
+          [ACP grant flows documentation](https://docs.authorization.cloudentity.com/features/oauth/grant_flows/).
+        example:
+        - password
+        - refresh_token
+        - client_credentials
+        - implicit
+        - authorization_code
+        items:
+          enum:
+          - authorization_code
+          - implicit
+          - client_credentials
+          - refresh_token
+          - password
+          - urn:ietf:params:oauth:grant-type:jwt-bearer
+          - urn:openid:params:grant-type:ciba
+          type: string
+        type: array
+        x-nullable: false
+      hashed_rotated_secrets:
+        description: An array of hashed rotated client secrets
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      hashed_secret:
+        description: |-
+          Hashed client secret
+
+          Hashing client secrets provides additional security for your secrets storage as it hides
+          plaintext secrets from being viewed both in the UI and the database.
+        type: string
+        x-nullable: false
+      id_token_encrypted_response_alg:
+        description: JWE alg algorithm for encrypting the ID Token issued to this
+          Client
+        enum:
+        - RSA-OAEP
+        - RSA-OAEP-256
+        type: string
+        x-nullable: false
+      id_token_encrypted_response_enc:
+        description: JWE enc algorithm for encrypting the ID Token issued to this
+          Client
+        enum:
+        - A256GCM
+        - A128CBC-HS256
+        type: string
+        x-nullable: false
+      id_token_signed_response_alg:
+        description: |-
+          Algorithm for signing ID tokens issued for a client application
+
+          The default value depends on authorization server configuration.
+        enum:
+        - RS256
+        - ES256
+        - PS256
+        example: ES256
+        type: string
+        x-nullable: false
+      jwks:
+        $ref: '#/definitions/ClientJWKs'
+      jwks_uri:
+        description: |-
+          URL of JSON Web Key Set containing the public keys used by a client application to authenticate itself
+          with ACP
+        type: string
+        x-nullable: false
+      logo_uri:
+        description: Logo URI
+        type: string
+        x-nullable: false
+      organisation_id:
+        description: |-
+          External organisation ID
+
+          This field is used as an aud for message signing
+        example: 5647fe90-f6bc-11eb-9a03-0242ac130003
+        type: string
+        x-nullable: false
+      policy_uri:
+        description: Policy URL to read about how the profile data is used
+        type: string
+        x-nullable: false
+      privacy:
+        $ref: '#/definitions/ClientPrivacy'
+      redirect_uris:
+        description: |-
+          An array of OAuth allowed redirect URIs
+
+          Redirect URIs are used after a user authorizes an application and ACP redirect them back to
+          the application with an authorization code or an access token included in the URL.
+        example:
+        - https://example.com/callback
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      request_object_signing_alg:
+        default: any
+        description: |-
+          Request object signing algorithm for the token endpoint
+
+          ACP supports signing tokens using the RS256, ES256, and PS256 algorithms. If you do not want
+          to use a signing algorithm, the value of the parameter should be set to `none`.
+        enum:
+        - any
+        - none
+        - RS256
+        - ES256
+        - PS256
+        example: none
+        type: string
+        x-nullable: false
+      request_uris:
+        description: Array of absolute URIs that points to the Request Object that
+          holds authorization request parameters.
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      require_pushed_authorization_requests:
+        description: Boolean parameter indicating whether the only means of initiating
+          an authorization request the client is allowed to use is PAR.
+        type: boolean
+        x-nullable: false
+      response_types:
+        default:
+        - code
+        description: |-
+          An array of OAuth client response types configured for a client application
+
+          The array may consist of the following arguments:
+
+          `code` - when supplied as the value for the `response_type` parameter, a successful
+          response includes an authorization code
+
+          `code token` - when supplied as the value for the `response_type` parameter, a successful
+          response includes an access token, an access token type, and an authorization code
+
+          `id_token token` - when supplied as the value for the `response_type` parameter, a successful
+          response includes an access token, an access token type, and an ID token
+
+          `code id_token token` - when supplied as the value for the `response_type` parameter, a successful
+          response includes an authorization code, an ID token, an access token, and an access token
+          type.
+
+          `token` - when supplied as the value for the `response_type` parameter, a successful
+          response includes an access token and its type. This argument is used for the implicit grant
+          flow, but is not recommended. Instead, you should use either the authorization code grant
+          flow with PKCE or client authentication set to `none` and with the use of PKCE.
+        example:
+        - token
+        - id_token
+        - code
+        items:
+          enum:
+          - token
+          - id_token
+          - code
+          - code id_token
+          - token id_token
+          - token code
+          - token id_token code
+          type: string
+        type: array
+        x-nullable: false
+      rotated_secrets:
+        description: An array of rotated OAuth client secrets
+        items:
+          type: string
+        minLength: 32
+        type: array
+        x-nullable: false
+      scope:
+        description: Space separated scopes for compatibility with OAuth specification
+        example: email offline_access openid
+        type: string
+        x-nullable: false
+      scopes:
+        description: An array of string represented scopes assigned to a client application
+        example:
+        - email
+        - offline_access
+        - openid
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      sector_identifier_uri:
+        description: |-
+          URL using the HTTPS scheme to be used in calculating Pseudonymous Identifiers by the OpenID Provider. The URL references a
+          file with a single JSON array of redirect_uri values.
+        example: https://api.jsonbin.io/b/5db6ef08688fed59d2841f1e
+        type: string
+        x-nullable: false
+      subject_type:
+        default: public
+        description: |-
+          Subject identifier type
+
+          Stores information if the subject identifier is of the `public` or the `pairwise` type.
+
+          Subject identifiers are locally unique and never reassigned identifiers within the Issuer
+          for the end-user and are inteded to be consumed by client applications. There are two types
+          of subject identifiers: `public` and `pairwise`.
+
+          For the `public` type, the value of the `sub` (subject) token claim is the same for all clients.
+
+          For the `pairwise` type, a different `sub` (subject) token claim is provided for each client.
+          Using the `pairwise` subject identifier makes it impossible for client applications to correlate the end-user's
+          activity without their permission.
+        enum:
+        - public
+        - pairwise
+        example: public
+        type: string
+        x-nullable: false
+      tenant_id:
+        format: tenantID
+        type: string
+        x-nullable: false
+      tls_client_auth_san_dns:
+        description: A string containing the value of an expected dNSName SAN entry
+          in the certificate.
+        type: string
+        x-nullable: false
+      tls_client_auth_san_email:
+        description: A string containing the value of an expected rfc822Name SAN entry
+          in the certificate.
+        type: string
+        x-nullable: false
+      tls_client_auth_san_ip:
+        description: A string representation of an IP address in either dotted decimal
+          notation (for IPv4) or colon-delimited hexadecimal (for IPv6, as defined
+          in [RFC5952]) that is expected to be present as an iPAddress SAN entry in
+          the certificate.
+        type: string
+        x-nullable: false
+      tls_client_auth_san_uri:
+        description: A string containing the value of an expected uniformResourceIdentifier
+          SAN entry in the certificate.
+        type: string
+        x-nullable: false
+      tls_client_auth_subject_dn:
+        description: An [RFC4514] string representation of the expected subject distinguished
+          name of the certificate.
+        type: string
+        x-nullable: false
+      tls_client_certificate_bound_access_tokens:
+        description: Boolean value indicating server support for mutual TLS client
+          certificate-bound access tokens. If omitted, the default value is "false".
+        type: boolean
+        x-nullable: false
+      token_endpoint_auth_method:
+        default: client_secret_basic
+        description: |-
+          Token endpoint authentication method configured for a client application
+
+          ACP supports the following client authentication methods:
+          client_secret_basic, client_secret_post, client_secret_jwt, private_key_jwt,
+          self_signed_tls_client_auth, tls_client_auth, none.
+
+          To learn more, see the [ACP client authentication documentation](https://docs.authorization.cloudentity.com/features/oauth/client_auth/)
+        enum:
+        - client_secret_basic
+        - client_secret_post
+        - client_secret_jwt
+        - private_key_jwt
+        - self_signed_tls_client_auth
+        - tls_client_auth
+        - none
+        example: client_secret_basic
+        type: string
+        x-nullable: false
+      token_endpoint_auth_signing_alg:
+        default: none
+        description: |-
+          Signing algorithm for the token endpoint
+
+          ACP supports signing tokens using the RS256, ES256, PS256, and HS256 algorithms.
+
+          If your token endpoint authentication is set to the `private_key_jwt` method, the
+          `token_endpoint_auth_signing_alg` parameter must be either RS256, ES256, or PS256.
+
+          If your token endpoint authentication is set to the `client_secret_jwt` method,
+          the `token_endpoint_auth_signing_alg` parameter must be HS256.
+        enum:
+        - none
+        - RS256
+        - ES256
+        - PS256
+        - H256
+        example: none
+        type: string
+        x-nullable: false
+      tos_uri:
+        description: Terms of Service URL
+        type: string
+        x-nullable: false
+      userinfo_signed_response_alg:
+        default: none
+        description: |-
+          JWS alg algorithm REQUIRED for signing UserInfo Responses.
+
+          If specified, the response is JWT
+          [JWT] serialized, and signed using JWS.
+
+          If omitted, the default behavior is for the UserInfo Response to return the Claims
+          as an UTF-8 encoded JSON object using the application/json content-type.
+        enum:
+        - none
+        - RS256
+        - ES256
+        example: none
+        type: string
+        x-nullable: false
+    required:
+    - authorization_server_id
+    type: object
+  ClientJWK:
+    properties:
+      alg:
+        description: |-
+          The "alg" (algorithm) parameter identifies the algorithm intended for
+          use with the key.  The values used should either be registered in the
+          IANA "JSON Web Signature and Encryption Algorithms" registry
+          established by [JWA] or be a value that contains a Collision-
+          Resistant Name.
+        example: RS256
+        type: string
+        x-nullable: false
+      crv:
+        example: P-256
+        type: string
+        x-nullable: false
+      d:
+        example: T_N8I-6He3M8a7X1vWt6TGIx4xB_GP3Mb4SsZSA4v-orvJzzRiQhLlRR81naWYxfQAYt5isDI6_C2L9bdWo4FFPjGQFvNoRX-_sBJyBI_rl-TBgsZYoUlAj3J92WmY2inbA-PwyJfsaIIDceYBC-eX-xiCu6qMqkZi3MwQAFL6bMdPEM0z4JBcwFT3VdiWAIRUuACWQwrXMq672x7fMuaIaHi7XDGgt1ith23CLfaREmJku9PQcchbt_uEY-hqrFY6ntTtS4paWWQj86xLL94S-Tf6v6xkL918PfLSOTq6XCzxvlFwzBJqApnAhbwqLjpPhgUG04EDRrqrSBc5Y1BLevn6Ip5h1AhessBp3wLkQgz_roeckt-ybvzKTjESMuagnpqLvOT7Y9veIug2MwPJZI2VjczRc1vzMs25XrFQ8DpUy-bNdp89TmvAXwctUMiJdgHloJw23Cv03gIUAkDnsTqZmkpbIf-crpgNKFmQP_EDKoe8p_PXZZgfbRri3NoEVGP7Mk6yEu8LjJhClhZaBNjuWw2-KlBfOA3g79mhfBnkInee5KO9mGR50qPk1V-MorUYNTFMZIm0kFE6eYVWFBwJHLKYhHU34DoiK1VP-svZpC2uAMFNA_UJEwM9CQ2b8qe4-5e9aywMvwcuArRkAB5mBIfOaOJao3mfukKAE
+        type: string
+        x-nullable: false
+      dp:
+        example: G4sPXkc6Ya9y8oJW9_ILj4xuppu0lzi_H7VTkS8xj5SdX3coE0oimYwxIi2emTAue0UOa5dpgFGyBJ4c8tQ2VF402XRugKDTP8akYhFo5tAA77Qe_NmtuYZc3C3m3I24G2GvR5sSDxUyAN2zq8Lfn9EUms6rY3Ob8YeiKkTiBj0
+        type: string
+        x-nullable: false
+      dq:
+        example: s9lAH9fggBsoFR8Oac2R_E2gw282rT2kGOAhvIllETE1efrA6huUUvMfBcMpn8lqeW6vzznYY5SSQF7pMdC_agI3nG8Ibp1BUb0JUiraRNqUfLhcQb_d9GF4Dh7e74WbRsobRonujTYN1xCaP6TO61jvWrX-L18txXw494Q_cgk
+        type: string
+        x-nullable: false
+      e:
+        example: AQAB
+        type: string
+        x-nullable: false
+      k:
+        example: GawgguFyGrWKav7AX4VKUg
+        type: string
+        x-nullable: false
+      kid:
+        description: |-
+          The "kid" (key ID) parameter is used to match a specific key.  This
+          is used, for instance, to choose among a set of keys within a JWK Set
+          during key rollover.  The structure of the "kid" value is
+          unspecified.  When "kid" values are used within a JWK Set, different
+          keys within the JWK Set SHOULD use distinct "kid" values.  (One
+          example in which different keys might use the same "kid" value is if
+          they have different "kty" (key type) values but are considered to be
+          equivalent alternatives by the application using them.)  The "kid"
+          value is a case-sensitive string.
+        example: 1603dfe0af8f4596
+        type: string
+        x-nullable: false
+      kty:
+        description: |-
+          The "kty" (key type) parameter identifies the cryptographic algorithm
+          family used with the key, such as "RSA" or "EC". "kty" values should
+          either be registered in the IANA "JSON Web Key Types" registry
+          established by [JWA] or be a value that contains a Collision-
+          Resistant Name.  The "kty" value is a case-sensitive string.
+        example: RSA
+        type: string
+        x-nullable: false
+      "n":
+        example: vTqrxUyQPl_20aqf5kXHwDZrel-KovIp8s7ewJod2EXHl8tWlRB3_Rem34KwBfqlKQGp1nqah-51H4Jzruqe0cFP58hPEIt6WqrvnmJCXxnNuIB53iX_uUUXXHDHBeaPCSRoNJzNysjoJ30TIUsKBiirhBa7f235PXbKiHducLevV6PcKxJ5cY8zO286qJLBWSPm-OIevwqsIsSIH44Qtm9sioFikhkbLwoqwWORGAY0nl6XvVOlhADdLjBSqSAeT1FPuCDCnXwzCDR8N9IFB_IjdStFkC-rVt2K5BYfPd0c3yFp_vHR15eRd0zJ8XQ7woBC8Vnsac6Et1pKS59pX6256DPWu8UDdEOolKAPgcd_g2NpA76cAaF_jcT80j9KrEzw8Tv0nJBGesuCjPNjGs_KzdkWTUXt23Hn9QJsdc1MZuaW0iqXBepHYfYoqNelzVte117t4BwVp0kUM6we0IqyXClaZgOI8S-WDBw2_Ovdm8e5NmhYAblEVoygcX8Y46oH6bKiaCQfKCFDMcRgChme7AoE1yZZYsPbaG_3IjPrC4LBMHQw8rM9dWjJ8ImjicvZ1pAm0dx-KHCP3y5PVKrxBDf1zSOsBRkOSjB8TPODnJMz6-jd5hTtZxpZPwPoIdCanTZ3ZD6uRBpTmDwtpRGm63UQs1m5FWPwb0T2IF0
+        type: string
+        x-nullable: false
+      p:
+        example: 6NbkXwDWUhi-eR55Cgbf27FkQDDWIamOaDr0rj1q0f1fFEz1W5A_09YvG09Fiv1AO2-D8Rl8gS1Vkz2i0zCSqnyy8A025XOcRviOMK7nIxE4OH_PEsko8dtIrb3TmE2hUXvCkmzw9EsTF1LQBOGC6iusLTXepIC1x9ukCKFZQvdgtEObQ5kzd9Nhq-cdqmSeMVLoxPLd1blviVT9Vm8-y12CtYpeJHOaIDtVPLlBhJiBoPKWg3vxSm4XxIliNOefqegIlsmTIa3MpS6WWlCK3yHhat0Q-rRxDxdyiVdG_wzJvp0Iw_2wms7pe-PgNPYvUWH9JphWP5K38YqEBiJFXQ
+        type: string
+        x-nullable: false
+      q:
+        example: 0A1FmpOWR91_RAWpqreWSavNaZb9nXeKiBo0DQGBz32DbqKqQ8S4aBJmbRhJcctjCLjain-ivut477tAUMmzJwVJDDq2MZFwC9Q-4VYZmFU4HJityQuSzHYe64RjN-E_NQ02TWhG3QGW6roq6c57c99rrUsETwJJiwS8M5p15Miuz53DaOjv-uqqFAFfywN5WkxHbraBcjHtMiQuyQbQqkCFh-oanHkwYNeytsNhTu2mQmwR5DR2roZ2nPiFjC6nsdk-A7E3S3wMzYYFw7jvbWWoYWo9vB40_MY2Y0FYQSqcDzcBIcq_0tnnasf3VW4Fdx6m80RzOb2Fsnln7vKXAQ
+        type: string
+        x-nullable: false
+      qi:
+        example: GyM_p6JrXySiz1toFgKbWV-JdI3jQ4ypu9rbMWx3rQJBfmt0FoYzgUIZEVFEcOqwemRN81zoDAaa-Bk0KWNGDjJHZDdDmFhW3AN7lI-puxk_mHZGJ11rxyR8O55XLSe3SPmRfKwZI6yU24ZxvQKFYItdldUKGzO6Ia6zTKhAVRU
+        type: string
+        x-nullable: false
+      use:
+        description: |-
+          Use ("public key use") identifies the intended use of
+          the public key. The "use" parameter is employed to indicate whether
+          a public key is used for encrypting data or verifying the signature
+          on data. Values are commonly "sig" (signature) or "enc" (encryption).
+        example: sig
+        type: string
+        x-nullable: false
+      x:
+        example: f83OJ3D2xF1Bg8vub9tLe1gHMzV76e8Tus9uPHvRVEU
+        type: string
+        x-nullable: false
+      x5c:
+        description: |-
+          The "x5c" (X.509 certificate chain) parameter contains a chain of one
+          or more PKIX certificates [RFC5280].  The certificate chain is
+          represented as a JSON array of certificate value strings.  Each
+          string in the array is a base64-encoded (Section 4 of [RFC4648] --
+          not base64url-encoded) DER [ITU.X690.1994] PKIX certificate value.
+          The PKIX certificate containing the key value MUST be the first
+          certificate.
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      x5t:
+        example: GawgguFyGrWKav7AX4VKUg
+        type: string
+        x-nullable: false
+      x5t#S256:
+        example: GawgguFyGrWKav7AX4VKUg
+        type: string
+        x-nullable: false
+      "y":
+        example: x_FEzRu9m36HLN_tue659LNpXW6pCyStikYjKIWI5a0
+        type: string
+        x-nullable: false
+    required:
+    - kty
+    type: object
+  ClientJWKs:
+    properties:
+      keys:
+        example: []
+        items:
+          $ref: '#/definitions/ClientJWK'
+        type: array
+        x-nullable: false
+    type: object
+  ClientPrivacy:
+    properties:
+      scopes:
+        additionalProperties:
+          $ref: '#/definitions/ScopePrivacyInformation'
+        description: optional privacy information mapping for scopes
+        type: object
+        x-nullable: false
+    type: object
+  ClientsForDeveloper:
+    description: OAuth clients owned by developer
+    properties:
+      clients:
+        items:
+          $ref: '#/definitions/ClientDeveloperResponse'
+        type: array
+        x-nullable: false
+    type: object
+  CreateClientDeveloperRequest:
+    properties:
+      application_type:
+        default: web
+        description: |-
+          String represented type of a client application
+
+          Client applications can be either of a `web` or `native` types.
+
+          Web applications include clients like server web applications or service apps.
+
+          Native applications include single-page applications (SPAs) and mobile or desktop
+          applications.
+
+          Depending on the type of your application remember to choose appropriate security measures.
+        example: web
+        type: string
+        x-nullable: false
+      application_types:
+        default:
+        - server_web
+        description: An array of dynamically calculated application types that can
+          be used for filtering
+        example:
+        - single_page
+        - server_web
+        - mobile_desktop
+        - service
+        - legacy
+        - dcr
+        items:
+          enum:
+          - single_page
+          - server_web
+          - mobile_desktop
+          - service
+          - legacy
+          - dcr
+          type: string
+        readOnly: true
+        type: array
+        x-nullable: false
+      audience:
+        default:
+        - client_id
+        description: |-
+          Identity of the intended recipients (the audience)
+
+          Typically, the audience may be a single resources server or a list of resource servers.
+          It is considered a good practice to limit the audience of the token for security purposes.
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      authorization_server_id:
+        description: ID of the authorization server (workspace) to which a client
+          application is tied
+        example: default
+        format: serverID
+        type: string
+        x-nullable: false
+      backchannel_authentication_request_signing_alg:
+        description: |-
+          OPTIONAL. The JWS algorithm alg value that the Client will use for signing authentication requests.
+          When omitted, the Client will not send signed authentication requests.
+        type: string
+        x-nullable: false
+      backchannel_client_notification_endpoint:
+        description: |-
+          REQUIRED if the token delivery mode is set to ping or push.
+          This is the endpoint to which the OP will post a notification after a successful or failed end-user authentication.
+          It MUST be an HTTPS URL.
+        type: string
+        x-nullable: false
+      backchannel_token_delivery_mode:
+        description: 'REQUIRED. One of the following values: poll, ping, or push.'
+        type: string
+        x-nullable: false
+      backchannel_user_code_parameter:
+        description: |-
+          OPTIONAL. Boolean value specifying whether the Client supports the user_code parameter.
+          If omitted, the default value is false.
+          This parameter only applies when OP parameter backchannel_user_code_parameter_supported is true.
+        type: boolean
+        x-nullable: false
+      client_id_issued_at:
+        description: |-
+          Time at which the client identifier was issued.
+
+          The time is represented as the number of seconds from
+          1970-01-01T00:00:00Z as measured in UTC until the date/time of issuance.
+        format: int64
+        type: integer
+        x-nullable: false
+      client_name:
+        description: Human readable name of a client application
+        example: My app
+        type: string
+        x-nullable: false
+      client_secret_expires_at:
+        description: |-
+          The `client_secret_expires_at` holds an integer that defines the time at which the client
+          secret expires
+
+          If the client secret does not expire, the value should be set to `0`.
+        format: int64
+        type: integer
+        x-nullable: false
+      client_uri:
+        description: URI of a client application
+        type: string
+        x-nullable: false
+      description:
+        description: Description of a client application
+        type: string
+        x-nullable: false
+      grant_types:
+        default:
+        - authorization_code
+        description: |-
+          An array of allowed OAuth client grant types
+
+          The `grantTypes` array stores OAuth flows that are allowed for a given client application.
+
+          To know more about OAuth grant flows, see the
+          [ACP grant flows documentation](https://docs.authorization.cloudentity.com/features/oauth/grant_flows/).
+        example:
+        - password
+        - refresh_token
+        - client_credentials
+        - implicit
+        - authorization_code
+        items:
+          enum:
+          - authorization_code
+          - implicit
+          - client_credentials
+          - refresh_token
+          - password
+          - urn:ietf:params:oauth:grant-type:jwt-bearer
+          - urn:openid:params:grant-type:ciba
+          type: string
+        type: array
+        x-nullable: false
+      id_token_encrypted_response_alg:
+        description: JWE alg algorithm for encrypting the ID Token issued to this
+          Client
+        enum:
+        - RSA-OAEP
+        - RSA-OAEP-256
+        type: string
+        x-nullable: false
+      id_token_encrypted_response_enc:
+        description: JWE enc algorithm for encrypting the ID Token issued to this
+          Client
+        enum:
+        - A256GCM
+        - A128CBC-HS256
+        type: string
+        x-nullable: false
+      id_token_signed_response_alg:
+        description: |-
+          Algorithm for signing ID tokens issued for a client application
+
+          The default value depends on authorization server configuration.
+        enum:
+        - RS256
+        - ES256
+        - PS256
+        example: ES256
+        type: string
+        x-nullable: false
+      jwks:
+        $ref: '#/definitions/ClientJWKs'
+      jwks_uri:
+        description: |-
+          URL of JSON Web Key Set containing the public keys used by a client application to authenticate itself
+          with ACP
+        type: string
+        x-nullable: false
+      logo_uri:
+        description: Logo URI
+        type: string
+        x-nullable: false
+      organisation_id:
+        description: |-
+          External organisation ID
+
+          This field is used as an aud for message signing
+        example: 5647fe90-f6bc-11eb-9a03-0242ac130003
+        type: string
+        x-nullable: false
+      policy_uri:
+        description: Policy URL to read about how the profile data is used
+        type: string
+        x-nullable: false
+      privacy:
+        $ref: '#/definitions/ClientPrivacy'
+      redirect_uris:
+        description: |-
+          An array of OAuth allowed redirect URIs
+
+          Redirect URIs are used after a user authorizes an application and ACP redirect them back to
+          the application with an authorization code or an access token included in the URL.
+        example:
+        - https://example.com/callback
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      request_object_signing_alg:
+        default: any
+        description: |-
+          Request object signing algorithm for the token endpoint
+
+          ACP supports signing tokens using the RS256, ES256, and PS256 algorithms. If you do not want
+          to use a signing algorithm, the value of the parameter should be set to `none`.
+        enum:
+        - any
+        - none
+        - RS256
+        - ES256
+        - PS256
+        example: none
+        type: string
+        x-nullable: false
+      request_uris:
+        description: Array of absolute URIs that points to the Request Object that
+          holds authorization request parameters.
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      require_pushed_authorization_requests:
+        description: Boolean parameter indicating whether the only means of initiating
+          an authorization request the client is allowed to use is PAR.
+        type: boolean
+        x-nullable: false
+      response_types:
+        default:
+        - code
+        description: |-
+          An array of OAuth client response types configured for a client application
+
+          The array may consist of the following arguments:
+
+          `code` - when supplied as the value for the `response_type` parameter, a successful
+          response includes an authorization code
+
+          `code token` - when supplied as the value for the `response_type` parameter, a successful
+          response includes an access token, an access token type, and an authorization code
+
+          `id_token token` - when supplied as the value for the `response_type` parameter, a successful
+          response includes an access token, an access token type, and an ID token
+
+          `code id_token token` - when supplied as the value for the `response_type` parameter, a successful
+          response includes an authorization code, an ID token, an access token, and an access token
+          type.
+
+          `token` - when supplied as the value for the `response_type` parameter, a successful
+          response includes an access token and its type. This argument is used for the implicit grant
+          flow, but is not recommended. Instead, you should use either the authorization code grant
+          flow with PKCE or client authentication set to `none` and with the use of PKCE.
+        example:
+        - token
+        - id_token
+        - code
+        items:
+          enum:
+          - token
+          - id_token
+          - code
+          - code id_token
+          - token id_token
+          - token code
+          - token id_token code
+          type: string
+        type: array
+        x-nullable: false
+      scope:
+        description: Space separated scopes for compatibility with OAuth specification
+        example: email offline_access openid
+        type: string
+        x-nullable: false
+      scopes:
+        description: An array of string represented scopes assigned to a client application
+        example:
+        - email
+        - offline_access
+        - openid
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      sector_identifier_uri:
+        description: |-
+          URL using the HTTPS scheme to be used in calculating Pseudonymous Identifiers by the OpenID Provider. The URL references a
+          file with a single JSON array of redirect_uri values.
+        example: https://api.jsonbin.io/b/5db6ef08688fed59d2841f1e
+        type: string
+        x-nullable: false
+      subject_type:
+        default: public
+        description: |-
+          Subject identifier type
+
+          Stores information if the subject identifier is of the `public` or the `pairwise` type.
+
+          Subject identifiers are locally unique and never reassigned identifiers within the Issuer
+          for the end-user and are inteded to be consumed by client applications. There are two types
+          of subject identifiers: `public` and `pairwise`.
+
+          For the `public` type, the value of the `sub` (subject) token claim is the same for all clients.
+
+          For the `pairwise` type, a different `sub` (subject) token claim is provided for each client.
+          Using the `pairwise` subject identifier makes it impossible for client applications to correlate the end-user's
+          activity without their permission.
+        enum:
+        - public
+        - pairwise
+        example: public
+        type: string
+        x-nullable: false
+      tls_client_auth_san_dns:
+        description: A string containing the value of an expected dNSName SAN entry
+          in the certificate.
+        type: string
+        x-nullable: false
+      tls_client_auth_san_email:
+        description: A string containing the value of an expected rfc822Name SAN entry
+          in the certificate.
+        type: string
+        x-nullable: false
+      tls_client_auth_san_ip:
+        description: A string representation of an IP address in either dotted decimal
+          notation (for IPv4) or colon-delimited hexadecimal (for IPv6, as defined
+          in [RFC5952]) that is expected to be present as an iPAddress SAN entry in
+          the certificate.
+        type: string
+        x-nullable: false
+      tls_client_auth_san_uri:
+        description: A string containing the value of an expected uniformResourceIdentifier
+          SAN entry in the certificate.
+        type: string
+        x-nullable: false
+      tls_client_auth_subject_dn:
+        description: An [RFC4514] string representation of the expected subject distinguished
+          name of the certificate.
+        type: string
+        x-nullable: false
+      tls_client_certificate_bound_access_tokens:
+        description: Boolean value indicating server support for mutual TLS client
+          certificate-bound access tokens. If omitted, the default value is "false".
+        type: boolean
+        x-nullable: false
+      token_endpoint_auth_method:
+        default: client_secret_basic
+        description: |-
+          Token endpoint authentication method configured for a client application
+
+          ACP supports the following client authentication methods:
+          client_secret_basic, client_secret_post, client_secret_jwt, private_key_jwt,
+          self_signed_tls_client_auth, tls_client_auth, none.
+
+          To learn more, see the [ACP client authentication documentation](https://docs.authorization.cloudentity.com/features/oauth/client_auth/)
+        enum:
+        - client_secret_basic
+        - client_secret_post
+        - client_secret_jwt
+        - private_key_jwt
+        - self_signed_tls_client_auth
+        - tls_client_auth
+        - none
+        example: client_secret_basic
+        type: string
+        x-nullable: false
+      token_endpoint_auth_signing_alg:
+        default: none
+        description: |-
+          Signing algorithm for the token endpoint
+
+          ACP supports signing tokens using the RS256, ES256, PS256, and HS256 algorithms.
+
+          If your token endpoint authentication is set to the `private_key_jwt` method, the
+          `token_endpoint_auth_signing_alg` parameter must be either RS256, ES256, or PS256.
+
+          If your token endpoint authentication is set to the `client_secret_jwt` method,
+          the `token_endpoint_auth_signing_alg` parameter must be HS256.
+        enum:
+        - none
+        - RS256
+        - ES256
+        - PS256
+        - H256
+        example: none
+        type: string
+        x-nullable: false
+      tos_uri:
+        description: Terms of Service URL
+        type: string
+        x-nullable: false
+      userinfo_signed_response_alg:
+        default: none
+        description: |-
+          JWS alg algorithm REQUIRED for signing UserInfo Responses.
+
+          If specified, the response is JWT
+          [JWT] serialized, and signed using JWS.
+
+          If omitted, the default behavior is for the UserInfo Response to return the Claims
+          as an UTF-8 encoded JSON object using the application/json content-type.
+        enum:
+        - none
+        - RS256
+        - ES256
+        example: none
+        type: string
+        x-nullable: false
+    required:
+    - authorization_server_id
+    type: object
+  DeveloperEnvironment:
+    properties:
+      client_secrets_stored_as_one_way_hash:
+        description: store client secrets as a one way hash
+        type: boolean
+        x-nullable: false
+    type: object
+  Error:
+    description: HTTP error response
+    properties:
+      details:
+        type: object
+        x-nullable: false
+      error:
+        type: string
+        x-nullable: false
+      status_code:
+        format: int64
+        type: integer
+        x-nullable: false
+    type: object
+  GetServerDeveloperResponse:
+    properties:
+      color:
+        description: Color
+        example: '#007FFF'
+        type: string
+        x-nullable: false
+      grant_types:
+        description: supported grant types
+        example:
+        - implicit
+        - authorization_code
+        - refresh_token
+        items:
+          enum:
+          - authorization_code
+          - implicit
+          - client_credentials
+          - refresh_token
+          - password
+          - urn:ietf:params:oauth:grant-type:jwt-bearer
+          - urn:openid:params:grant-type:ciba
+          type: string
+        type: array
+        x-nullable: false
+      id:
+        description: authorization server id
+        example: default
+        type: string
+        x-nullable: false
+      issuer_url:
+        description: issuer URL
+        example: https://example.com/default/default
+        type: string
+        x-nullable: false
+      name:
+        description: authorizations server name
+        example: ACP
+        type: string
+        x-nullable: false
+      subject_identifier_types:
+        description: supported subject identifier types
+        example:
+        - public
+        - pairwise
+        items:
+          enum:
+          - public
+          - pairwise
+          type: string
+        type: array
+        x-nullable: false
+    type: object
+  GetServerWithScopesDeveloperResponse:
+    properties:
+      color:
+        description: Color
+        example: '#007FFF'
+        type: string
+        x-nullable: false
+      grant_types:
+        description: supported grant types
+        example:
+        - implicit
+        - authorization_code
+        - refresh_token
+        items:
+          enum:
+          - authorization_code
+          - implicit
+          - client_credentials
+          - refresh_token
+          - password
+          - urn:ietf:params:oauth:grant-type:jwt-bearer
+          - urn:openid:params:grant-type:ciba
+          type: string
+        type: array
+        x-nullable: false
+      id:
+        description: authorization server id
+        example: default
+        type: string
+        x-nullable: false
+      issuer_url:
+        description: issuer URL
+        example: https://example.com/default/default
+        type: string
+        x-nullable: false
+      name:
+        description: authorizations server name
+        example: ACP
+        type: string
+        x-nullable: false
+      scopes:
+        description: list of scopes
+        items:
+          $ref: '#/definitions/ScopeWithServiceDeveloperResponse'
+        type: array
+        x-nullable: false
+      subject_identifier_types:
+        description: supported subject identifier types
+        example:
+        - public
+        - pairwise
+        items:
+          enum:
+          - public
+          - pairwise
+          type: string
+        type: array
+        x-nullable: false
+    type: object
+  ListServersDeveloperResponse:
+    properties:
+      servers:
+        description: list of authorization servers
+        items:
+          $ref: '#/definitions/GetServerDeveloperResponse'
+        type: array
+        x-nullable: false
+    type: object
+  PIICategory:
+    properties:
+      name:
+        description: name
+        example: HIPAA
+        type: string
+        x-nullable: false
+    type: object
+  RotateClientSecretDeveloperResponse:
+    properties:
+      secret:
+        type: string
+        x-nullable: false
+    type: object
+  ScopePrivacyInformation:
+    properties:
+      pii_categories:
+        items:
+          $ref: '#/definitions/PIICategory'
+        type: array
+        x-nullable: false
+      purpose:
+        format: purposeName
+        type: string
+        x-nullable: false
+    type: object
+  ScopeWithServiceDeveloperResponse:
+    properties:
+      scope_description:
+        description: scope description
+        example: This scope value requests offline access using refresh token
+        type: string
+        x-nullable: false
+      scope_display_name:
+        description: scope display name
+        example: Offline access
+        type: string
+        x-nullable: false
+      scope_id:
+        description: scope id
+        example: "1"
+        type: string
+        x-nullable: false
+      scope_name:
+        description: scope name
+        example: offline_access
+        type: string
+        x-nullable: false
+      service_description:
+        description: service description
+        example: service description
+        type: string
+        x-nullable: false
+      service_id:
+        description: service id
+        example: "1"
+        type: string
+        x-nullable: false
+      service_name:
+        description: service name
+        example: service
+        type: string
+        x-nullable: false
+      with_service:
+        description: is scope assigned to a service
+        example: false
+        type: boolean
+        x-nullable: false
+    type: object
+  UpdateClientDeveloperRequest:
+    properties:
+      application_type:
+        default: web
+        description: |-
+          String represented type of a client application
+
+          Client applications can be either of a `web` or `native` types.
+
+          Web applications include clients like server web applications or service apps.
+
+          Native applications include single-page applications (SPAs) and mobile or desktop
+          applications.
+
+          Depending on the type of your application remember to choose appropriate security measures.
+        example: web
+        type: string
+        x-nullable: false
+      application_types:
+        default:
+        - server_web
+        description: An array of dynamically calculated application types that can
+          be used for filtering
+        example:
+        - single_page
+        - server_web
+        - mobile_desktop
+        - service
+        - legacy
+        - dcr
+        items:
+          enum:
+          - single_page
+          - server_web
+          - mobile_desktop
+          - service
+          - legacy
+          - dcr
+          type: string
+        readOnly: true
+        type: array
+        x-nullable: false
+      audience:
+        default:
+        - client_id
+        description: |-
+          Identity of the intended recipients (the audience)
+
+          Typically, the audience may be a single resources server or a list of resource servers.
+          It is considered a good practice to limit the audience of the token for security purposes.
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      backchannel_authentication_request_signing_alg:
+        description: |-
+          OPTIONAL. The JWS algorithm alg value that the Client will use for signing authentication requests.
+          When omitted, the Client will not send signed authentication requests.
+        type: string
+        x-nullable: false
+      backchannel_client_notification_endpoint:
+        description: |-
+          REQUIRED if the token delivery mode is set to ping or push.
+          This is the endpoint to which the OP will post a notification after a successful or failed end-user authentication.
+          It MUST be an HTTPS URL.
+        type: string
+        x-nullable: false
+      backchannel_token_delivery_mode:
+        description: 'REQUIRED. One of the following values: poll, ping, or push.'
+        type: string
+        x-nullable: false
+      backchannel_user_code_parameter:
+        description: |-
+          OPTIONAL. Boolean value specifying whether the Client supports the user_code parameter.
+          If omitted, the default value is false.
+          This parameter only applies when OP parameter backchannel_user_code_parameter_supported is true.
+        type: boolean
+        x-nullable: false
+      client_id_issued_at:
+        description: |-
+          Time at which the client identifier was issued.
+
+          The time is represented as the number of seconds from
+          1970-01-01T00:00:00Z as measured in UTC until the date/time of issuance.
+        format: int64
+        type: integer
+        x-nullable: false
+      client_name:
+        description: Human readable name of a client application
+        example: My app
+        type: string
+        x-nullable: false
+      client_secret:
+        description: |-
+          OAuth client secret
+
+          If not provided, a random client secret is generated.
+        minLength: 32
+        type: string
+        x-nullable: false
+      client_secret_expires_at:
+        description: |-
+          The `client_secret_expires_at` holds an integer that defines the time at which the client
+          secret expires
+
+          If the client secret does not expire, the value should be set to `0`.
+        format: int64
+        type: integer
+        x-nullable: false
+      client_uri:
+        description: URI of a client application
+        type: string
+        x-nullable: false
+      description:
+        description: Description of a client application
+        type: string
+        x-nullable: false
+      grant_types:
+        default:
+        - authorization_code
+        description: |-
+          An array of allowed OAuth client grant types
+
+          The `grantTypes` array stores OAuth flows that are allowed for a given client application.
+
+          To know more about OAuth grant flows, see the
+          [ACP grant flows documentation](https://docs.authorization.cloudentity.com/features/oauth/grant_flows/).
+        example:
+        - password
+        - refresh_token
+        - client_credentials
+        - implicit
+        - authorization_code
+        items:
+          enum:
+          - authorization_code
+          - implicit
+          - client_credentials
+          - refresh_token
+          - password
+          - urn:ietf:params:oauth:grant-type:jwt-bearer
+          - urn:openid:params:grant-type:ciba
+          type: string
+        type: array
+        x-nullable: false
+      hashed_rotated_secrets:
+        description: An array of hashed rotated client secrets
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      hashed_secret:
+        description: |-
+          Hashed client secret
+
+          Hashing client secrets provides additional security for your secrets storage as it hides
+          plaintext secrets from being viewed both in the UI and the database.
+        type: string
+        x-nullable: false
+      id_token_encrypted_response_alg:
+        description: JWE alg algorithm for encrypting the ID Token issued to this
+          Client
+        enum:
+        - RSA-OAEP
+        - RSA-OAEP-256
+        type: string
+        x-nullable: false
+      id_token_encrypted_response_enc:
+        description: JWE enc algorithm for encrypting the ID Token issued to this
+          Client
+        enum:
+        - A256GCM
+        - A128CBC-HS256
+        type: string
+        x-nullable: false
+      id_token_signed_response_alg:
+        description: |-
+          Algorithm for signing ID tokens issued for a client application
+
+          The default value depends on authorization server configuration.
+        enum:
+        - RS256
+        - ES256
+        - PS256
+        example: ES256
+        type: string
+        x-nullable: false
+      jwks:
+        $ref: '#/definitions/ClientJWKs'
+      jwks_uri:
+        description: |-
+          URL of JSON Web Key Set containing the public keys used by a client application to authenticate itself
+          with ACP
+        type: string
+        x-nullable: false
+      logo_uri:
+        description: Logo URI
+        type: string
+        x-nullable: false
+      organisation_id:
+        description: |-
+          External organisation ID
+
+          This field is used as an aud for message signing
+        example: 5647fe90-f6bc-11eb-9a03-0242ac130003
+        type: string
+        x-nullable: false
+      policy_uri:
+        description: Policy URL to read about how the profile data is used
+        type: string
+        x-nullable: false
+      privacy:
+        $ref: '#/definitions/ClientPrivacy'
+      redirect_uris:
+        description: |-
+          An array of OAuth allowed redirect URIs
+
+          Redirect URIs are used after a user authorizes an application and ACP redirect them back to
+          the application with an authorization code or an access token included in the URL.
+        example:
+        - https://example.com/callback
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      request_object_signing_alg:
+        default: any
+        description: |-
+          Request object signing algorithm for the token endpoint
+
+          ACP supports signing tokens using the RS256, ES256, and PS256 algorithms. If you do not want
+          to use a signing algorithm, the value of the parameter should be set to `none`.
+        enum:
+        - any
+        - none
+        - RS256
+        - ES256
+        - PS256
+        example: none
+        type: string
+        x-nullable: false
+      request_uris:
+        description: Array of absolute URIs that points to the Request Object that
+          holds authorization request parameters.
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      require_pushed_authorization_requests:
+        description: Boolean parameter indicating whether the only means of initiating
+          an authorization request the client is allowed to use is PAR.
+        type: boolean
+        x-nullable: false
+      response_types:
+        default:
+        - code
+        description: |-
+          An array of OAuth client response types configured for a client application
+
+          The array may consist of the following arguments:
+
+          `code` - when supplied as the value for the `response_type` parameter, a successful
+          response includes an authorization code
+
+          `code token` - when supplied as the value for the `response_type` parameter, a successful
+          response includes an access token, an access token type, and an authorization code
+
+          `id_token token` - when supplied as the value for the `response_type` parameter, a successful
+          response includes an access token, an access token type, and an ID token
+
+          `code id_token token` - when supplied as the value for the `response_type` parameter, a successful
+          response includes an authorization code, an ID token, an access token, and an access token
+          type.
+
+          `token` - when supplied as the value for the `response_type` parameter, a successful
+          response includes an access token and its type. This argument is used for the implicit grant
+          flow, but is not recommended. Instead, you should use either the authorization code grant
+          flow with PKCE or client authentication set to `none` and with the use of PKCE.
+        example:
+        - token
+        - id_token
+        - code
+        items:
+          enum:
+          - token
+          - id_token
+          - code
+          - code id_token
+          - token id_token
+          - token code
+          - token id_token code
+          type: string
+        type: array
+        x-nullable: false
+      rotated_secrets:
+        description: An array of rotated OAuth client secrets
+        items:
+          type: string
+        minLength: 32
+        type: array
+        x-nullable: false
+      scope:
+        description: Space separated scopes for compatibility with OAuth specification
+        example: email offline_access openid
+        type: string
+        x-nullable: false
+      scopes:
+        description: An array of string represented scopes assigned to a client application
+        example:
+        - email
+        - offline_access
+        - openid
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      sector_identifier_uri:
+        description: |-
+          URL using the HTTPS scheme to be used in calculating Pseudonymous Identifiers by the OpenID Provider. The URL references a
+          file with a single JSON array of redirect_uri values.
+        example: https://api.jsonbin.io/b/5db6ef08688fed59d2841f1e
+        type: string
+        x-nullable: false
+      subject_type:
+        default: public
+        description: |-
+          Subject identifier type
+
+          Stores information if the subject identifier is of the `public` or the `pairwise` type.
+
+          Subject identifiers are locally unique and never reassigned identifiers within the Issuer
+          for the end-user and are inteded to be consumed by client applications. There are two types
+          of subject identifiers: `public` and `pairwise`.
+
+          For the `public` type, the value of the `sub` (subject) token claim is the same for all clients.
+
+          For the `pairwise` type, a different `sub` (subject) token claim is provided for each client.
+          Using the `pairwise` subject identifier makes it impossible for client applications to correlate the end-user's
+          activity without their permission.
+        enum:
+        - public
+        - pairwise
+        example: public
+        type: string
+        x-nullable: false
+      tls_client_auth_san_dns:
+        description: A string containing the value of an expected dNSName SAN entry
+          in the certificate.
+        type: string
+        x-nullable: false
+      tls_client_auth_san_email:
+        description: A string containing the value of an expected rfc822Name SAN entry
+          in the certificate.
+        type: string
+        x-nullable: false
+      tls_client_auth_san_ip:
+        description: A string representation of an IP address in either dotted decimal
+          notation (for IPv4) or colon-delimited hexadecimal (for IPv6, as defined
+          in [RFC5952]) that is expected to be present as an iPAddress SAN entry in
+          the certificate.
+        type: string
+        x-nullable: false
+      tls_client_auth_san_uri:
+        description: A string containing the value of an expected uniformResourceIdentifier
+          SAN entry in the certificate.
+        type: string
+        x-nullable: false
+      tls_client_auth_subject_dn:
+        description: An [RFC4514] string representation of the expected subject distinguished
+          name of the certificate.
+        type: string
+        x-nullable: false
+      tls_client_certificate_bound_access_tokens:
+        description: Boolean value indicating server support for mutual TLS client
+          certificate-bound access tokens. If omitted, the default value is "false".
+        type: boolean
+        x-nullable: false
+      token_endpoint_auth_method:
+        default: client_secret_basic
+        description: |-
+          Token endpoint authentication method configured for a client application
+
+          ACP supports the following client authentication methods:
+          client_secret_basic, client_secret_post, client_secret_jwt, private_key_jwt,
+          self_signed_tls_client_auth, tls_client_auth, none.
+
+          To learn more, see the [ACP client authentication documentation](https://docs.authorization.cloudentity.com/features/oauth/client_auth/)
+        enum:
+        - client_secret_basic
+        - client_secret_post
+        - client_secret_jwt
+        - private_key_jwt
+        - self_signed_tls_client_auth
+        - tls_client_auth
+        - none
+        example: client_secret_basic
+        type: string
+        x-nullable: false
+      token_endpoint_auth_signing_alg:
+        default: none
+        description: |-
+          Signing algorithm for the token endpoint
+
+          ACP supports signing tokens using the RS256, ES256, PS256, and HS256 algorithms.
+
+          If your token endpoint authentication is set to the `private_key_jwt` method, the
+          `token_endpoint_auth_signing_alg` parameter must be either RS256, ES256, or PS256.
+
+          If your token endpoint authentication is set to the `client_secret_jwt` method,
+          the `token_endpoint_auth_signing_alg` parameter must be HS256.
+        enum:
+        - none
+        - RS256
+        - ES256
+        - PS256
+        - H256
+        example: none
+        type: string
+        x-nullable: false
+      tos_uri:
+        description: Terms of Service URL
+        type: string
+        x-nullable: false
+      userinfo_signed_response_alg:
+        default: none
+        description: |-
+          JWS alg algorithm REQUIRED for signing UserInfo Responses.
+
+          If specified, the response is JWT
+          [JWT] serialized, and signed using JWS.
+
+          If omitted, the default behavior is for the UserInfo Response to return the Claims
+          as an UTF-8 encoded JSON object using the application/json content-type.
+        enum:
+        - none
+        - RS256
+        - ES256
+        example: none
+        type: string
+        x-nullable: false
+    type: object
+host: localhost:8443
+info:
+  description: Cloudentity Authorization Control Plane Public API
+  title: Cloudentity Authorization Control Plane API
+  version: 1.13.1
+paths:
+  /clients:
+    get:
+      description: List clients owner by developer.
+      operationId: listClientsForDeveloper
+      responses:
+        "200":
+          $ref: '#/responses/ListClientDeveloperAPIResponse'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - developer: []
+      summary: List clients
+      tags:
+      - clients
+    post:
+      description: |-
+        Client must be created under existing tenant and authorization server.
+
+        Authorization server id where client should be assigned must be provided in the request body.
+
+        Client can't be created in a system authorization server.
+
+        Client id and secret are generated upon creation.
+
+        If grant type is not set, client will get authorization code grant type assigned with code as response type.
+
+        Default token authentication method is client_secret_basic.
+
+        It might happen that it won't be possible to create a client with specified scopes.
+        Scopes assignment can be protected by policies defined by administrator.
+      operationId: createClientForDeveloper
+      parameters:
+      - in: body
+        name: Client
+        schema:
+          $ref: '#/definitions/CreateClientDeveloperRequest'
+      responses:
+        "201":
+          $ref: '#/responses/CreateClientDeveloperAPIResponse'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "409":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - developer: []
+      summary: Create new OAuth client
+      tags:
+      - clients
+  /clients/{cid}:
+    delete:
+      description: Delete client owned by developer.
+      operationId: deleteClientForDeveloper
+      parameters:
+      - default: default
+        description: Client id
+        in: path
+        name: cid
+        required: true
+        type: string
+      responses:
+        "204":
+          description: ' Client has been deleted'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - developer: []
+      summary: Delete client
+      tags:
+      - clients
+    get:
+      description: Get client owned by developer.
+      operationId: getClientForDeveloper
+      parameters:
+      - default: default
+        description: Client id
+        in: path
+        name: cid
+        required: true
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/GetClientDeveloperAPIResponse'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - developer: []
+      summary: Get client
+      tags:
+      - clients
+    put:
+      description: The entire client object must be send for update.
+      operationId: updateClientForDeveloper
+      parameters:
+      - default: default
+        description: Client id
+        in: path
+        name: cid
+        required: true
+        type: string
+      - in: body
+        name: Client
+        schema:
+          $ref: '#/definitions/UpdateClientDeveloperRequest'
+      responses:
+        "200":
+          $ref: '#/responses/UpdateClientDeveloperAPIResponse'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - developer: []
+      summary: Update client
+      tags:
+      - clients
+  /clients/{cid}/revokeRotatedSecrets:
+    post:
+      description: Revoke all rotated client's secrets.
+      operationId: revokeRotatedClientSecretsAsDeveloper
+      parameters:
+      - default: default
+        description: Client id
+        in: path
+        name: cid
+        required: true
+        type: string
+      responses:
+        "204":
+          description: ' all client''s rotated secrets has been revoked'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - developer: []
+      summary: Revoke rotated secrets.
+      tags:
+      - clients
+  /clients/{cid}/rotateSecret:
+    post:
+      description: |-
+        Generate a new client secret, move old secret to rotated secrets list and return
+        new client secret as a response. The max number of client rotated secrets is 2.
+        The rotated secrets over the limit are dropped.
+      operationId: rotateClientSecretAsDeveloper
+      parameters:
+      - default: default
+        description: Client id
+        in: path
+        name: cid
+        required: true
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/RotateClientSecretAPIResponse'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - developer: []
+      summary: Rotate client's secret.
+      tags:
+      - clients
+  /environment:
+    get:
+      description: Get environment settings.
+      operationId: getDeveloperEnvironment
+      responses:
+        "200":
+          $ref: '#/responses/GetDeveloperEnvironmentAPIResponse'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - developer: []
+      summary: Get environment
+      tags:
+      - environment
+  /servers:
+    get:
+      description: Returns list of authorization severs.
+      operationId: listServersForDeveloper
+      responses:
+        "200":
+          $ref: '#/responses/ListAPIServersDeveloperAPIResponse'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - developer: []
+      summary: List authorization servers
+      tags:
+      - servers
+  /servers/{rid}:
+    get:
+      description: Returns authorization server details with list of scopes.
+      operationId: getServerForDeveloper
+      parameters:
+      - default: default
+        description: Regular server id
+        in: path
+        name: rid
+        required: true
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/GetServerWithScopesDeveloperAPIResponse'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - developer: []
+      summary: Get authorization server
+      tags:
+      - servers
+produces:
+- application/json
+responses:
+  CreateClientDeveloperAPIResponse:
+    description: Create client
+    schema:
+      $ref: '#/definitions/ClientDeveloperResponse'
+  GetClientDeveloperAPIResponse:
+    description: Get client
+    schema:
+      $ref: '#/definitions/ClientDeveloperResponse'
+  GetDeveloperEnvironmentAPIResponse:
+    description: Developer environment
+    schema:
+      $ref: '#/definitions/DeveloperEnvironment'
+  GetServerWithScopesDeveloperAPIResponse:
+    description: Get developer server with scopes
+    schema:
+      $ref: '#/definitions/GetServerWithScopesDeveloperResponse'
+  ListAPIServersDeveloperAPIResponse:
+    description: List developer servers
+    schema:
+      $ref: '#/definitions/ListServersDeveloperResponse'
+  ListClientDeveloperAPIResponse:
+    description: List clients
+    schema:
+      $ref: '#/definitions/ClientsForDeveloper'
+  RotateClientSecretAPIResponse:
+    description: Rotate client secret
+    schema:
+      $ref: '#/definitions/RotateClientSecretDeveloperResponse'
+  UpdateClientDeveloperAPIResponse:
+    description: Update client
+    schema:
+      $ref: '#/definitions/ClientDeveloperResponse'
+  httpError:
+    description: HttpError
+    schema:
+      $ref: '#/definitions/Error'
+schemes:
+- https
+securityDefinitions:
+  developer:
+    authorizationUrl: /default/developer/oauth2/authorize
+    flow: accessCode
+    tokenUrl: /default/developer/oauth2/token
+    type: oauth2
+swagger: "2.0"
