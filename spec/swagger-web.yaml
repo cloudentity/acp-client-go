@@ -1,0 +1,65 @@
+definitions:
+  Error:
+    description: HTTP error response
+    properties:
+      details:
+        type: object
+        x-nullable: false
+      error:
+        type: string
+        x-nullable: false
+      status_code:
+        format: int64
+        type: integer
+        x-nullable: false
+    type: object
+  Styling:
+    properties:
+      colors:
+        properties:
+          background:
+            type: string
+            x-nullable: false
+          header:
+            type: string
+            x-nullable: false
+          primary:
+            type: string
+            x-nullable: false
+        type: object
+        x-nullable: false
+      font_url:
+        type: string
+        x-nullable: false
+      logo_size:
+        type: string
+        x-nullable: false
+      logo_url:
+        type: string
+        x-nullable: false
+    type: object
+info:
+  title: ""
+  version: ""
+paths:
+  /styling:
+    get:
+      operationId: getStyling
+      responses:
+        "200":
+          $ref: '#/responses/Styling'
+        "404":
+          $ref: '#/responses/httpError'
+      summary: Get styling for a tenant.
+      tags:
+      - web
+responses:
+  Styling:
+    description: Styling
+    schema:
+      $ref: '#/definitions/Styling'
+  httpError:
+    description: HttpError
+    schema:
+      $ref: '#/definitions/Error'
+swagger: "2.0"
