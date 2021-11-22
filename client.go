@@ -18,15 +18,23 @@ import (
 	"strings"
 	"time"
 
-	"github.com/cloudentity/acp-client-go/clients/acp/client"
 	obbrConsents "github.com/cloudentity/acp-client-go/clients/openbankingBR/consents/client"
 	obbrPayments "github.com/cloudentity/acp-client-go/clients/openbankingBR/payments/client"
 
 	obukAccounts "github.com/cloudentity/acp-client-go/clients/openbankingUK/accounts/client"
 	obukPayments "github.com/cloudentity/acp-client-go/clients/openbankingUK/payments/client"
 
-	o2 "github.com/cloudentity/acp-client-go/clients/acp/client/oauth2"
-	"github.com/cloudentity/acp-client-go/clients/acp/models"
+	o2Client "github.com/cloudentity/acp-client-go/clients/oauth2/client"
+	o2Params "github.com/cloudentity/acp-client-go/clients/oauth2/client/oauth2"
+	o2models "github.com/cloudentity/acp-client-go/clients/oauth2/models"
+
+	adminClient "github.com/cloudentity/acp-client-go/clients/admin/client"
+	developerClient "github.com/cloudentity/acp-client-go/clients/developer/client"
+	publicClient "github.com/cloudentity/acp-client-go/clients/public/client"
+	rootClient "github.com/cloudentity/acp-client-go/clients/root/client"
+	systemClient "github.com/cloudentity/acp-client-go/clients/system/client"
+	webClient "github.com/cloudentity/acp-client-go/clients/web/client"
+
 	"github.com/dgrijalva/jwt-go"
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/pkg/errors"
@@ -49,9 +57,44 @@ type OpenbankingBrasil struct {
 	Payments *obbrPayments.OpenbankingBRClient
 }
 
+type Oauth2 struct {
+	*o2Client.Acp
+}
+
+type Admin struct {
+	*adminClient.Acp
+}
+
+type Developer struct {
+	*developerClient.Acp
+}
+
+type Public struct {
+	*publicClient.Acp
+}
+
+type System struct {
+	*systemClient.Acp
+}
+
+type Web struct {
+	*webClient.Acp
+}
+
+type Root struct {
+	*rootClient.Acp
+}
+
 // Client provides a client to the ACP API
 type Client struct {
-	*client.Acp
+	Oauth2    *Oauth2
+	Admin     *Admin
+	Developer *Developer
+	Public    *Public
+	System    *System
+	Web       *Web
+	Root      *Root
+
 	*OpenbankingUK
 	*OpenbankingBrasil
 
@@ -66,6 +109,9 @@ type Client struct {
 
 	// Authorization server id read from the IssuerURL
 	ServerID string
+
+	// Base path read from the IssuerURL
+	BasePath string
 }
 
 // ACP client configuration
@@ -123,6 +169,9 @@ type Config struct {
 
 	// HttpClient is the client to use. Default will be used if not provided.
 	HttpClient *http.Client `json:"-"`
+
+	// Routing mode
+	RoutingMode string `json:"routing_mode"`
 }
 
 func (c *Config) GetTokenURL() string {
@@ -152,7 +201,7 @@ func (c *Config) GetUserinfoURL() string {
 func (c *Client) discoverEndpoints(issuerURL string) error {
 	var (
 		b             []byte
-		wellKnown     models.WellKnown
+		wellKnown     o2models.WellKnown
 		resp          *http.Response
 		tokenEndpoint string
 		err           error
@@ -259,14 +308,25 @@ func New(cfg Config) (c Client, err error) {
 		return c, errors.New("issuer_url is missing")
 	}
 
-	paths := strings.Split(cfg.IssuerURL.Path, "/")
+	// default routing mode
+	if cfg.RoutingMode == "" {
+		paths := strings.Split(cfg.IssuerURL.Path, "/")
 
-	if len(paths) < 2 {
-		return c, errors.New("invalid issuer url")
+		if len(paths) < 2 {
+			return c, errors.New("invalid issuer url")
+		}
+
+		lastIdx := len(paths) - 1
+
+		c.TenantID = paths[lastIdx-1]
+		c.ServerID = paths[lastIdx]
+
+		c.BasePath = strings.Join(paths[:lastIdx-2], "/")
+
+		if c.BasePath == "/" {
+			c.BasePath = ""
+		}
 	}
-
-	c.TenantID = paths[1]
-	c.ServerID = paths[2]
 
 	if cfg.HttpClient == nil {
 		if c.c, err = cfg.newHTTPClient(); err != nil {
@@ -301,14 +361,70 @@ func New(cfg Config) (c Client, err error) {
 		TokenURL:     cfg.GetTokenURL(),
 	}
 
-	c.Acp = client.New(httptransport.NewWithClient(
-		cfg.IssuerURL.Host,
-		"/",
-		[]string{cfg.IssuerURL.Scheme},
-		NewAuthenticator(cc, c.c),
-	).WithOpenTracing(), nil)
+	c.Oauth2 = &Oauth2{
+		Acp: o2Client.New(httptransport.NewWithClient(
+			cfg.IssuerURL.Host,
+			fmt.Sprintf(c.BasePath+"/%s/%s", c.TenantID, c.ServerID),
+			[]string{cfg.IssuerURL.Scheme},
+			NewAuthenticator(cc, c.c),
+		).WithOpenTracing(), nil),
+	}
 
-	apiPrefix := fmt.Sprintf("/%s/%s", c.TenantID, c.ServerID)
+	c.Admin = &Admin{
+		Acp: adminClient.New(httptransport.NewWithClient(
+			cfg.IssuerURL.Host,
+			fmt.Sprintf(c.BasePath+"/api/admin/%s", c.TenantID),
+			[]string{cfg.IssuerURL.Scheme},
+			NewAuthenticator(cc, c.c),
+		).WithOpenTracing(), nil),
+	}
+
+	c.Developer = &Developer{
+		Acp: developerClient.New(httptransport.NewWithClient(
+			cfg.IssuerURL.Host,
+			fmt.Sprintf(c.BasePath+"/api/developer/%s/%s", c.TenantID),
+			[]string{cfg.IssuerURL.Scheme},
+			NewAuthenticator(cc, c.c),
+		).WithOpenTracing(), nil),
+	}
+
+	c.Public = &Public{
+		Acp: publicClient.New(httptransport.NewWithClient(
+			cfg.IssuerURL.Host,
+			fmt.Sprintf(c.BasePath+"/%s/%s", c.TenantID, c.ServerID),
+			[]string{cfg.IssuerURL.Scheme},
+			NewAuthenticator(cc, c.c),
+		).WithOpenTracing(), nil),
+	}
+
+	c.Root = &Root{
+		Acp: rootClient.New(httptransport.NewWithClient(
+			cfg.IssuerURL.Host,
+			fmt.Sprintf(c.BasePath),
+			[]string{cfg.IssuerURL.Scheme},
+			NewAuthenticator(cc, c.c),
+		).WithOpenTracing(), nil),
+	}
+
+	c.System = &System{
+		Acp: systemClient.New(httptransport.NewWithClient(
+			cfg.IssuerURL.Host,
+			fmt.Sprintf(c.BasePath+"/api/system/%s", c.TenantID),
+			[]string{cfg.IssuerURL.Scheme},
+			NewAuthenticator(cc, c.c),
+		).WithOpenTracing(), nil),
+	}
+
+	c.Web = &Web{
+		Acp: webClient.New(httptransport.NewWithClient(
+			cfg.IssuerURL.Host,
+			fmt.Sprintf(c.BasePath+"/%s", c.TenantID),
+			[]string{cfg.IssuerURL.Scheme},
+			NewAuthenticator(cc, c.c),
+		).WithOpenTracing(), nil),
+	}
+
+	apiPrefix := fmt.Sprintf(c.BasePath+"/%s/%s", c.TenantID, c.ServerID)
 
 	c.OpenbankingUK = &OpenbankingUK{
 		Accounts: obukAccounts.New(httptransport.NewWithClient(
@@ -600,15 +716,13 @@ func (c *Client) Userinfo(token string) (body map[string]interface{}, err error)
 	return body, nil
 }
 
-func (c *Client) IntrospectToken(token string) (*models.IntrospectResponse, error) {
+func (c *Client) IntrospectToken(token string) (*o2models.IntrospectResponse, error) {
 	var (
-		resp *o2.IntrospectOK
+		resp *o2Params.IntrospectOK
 		err  error
 	)
 
-	if resp, err = c.Oauth2.Introspect(o2.NewIntrospectParams().
-		WithTid(c.TenantID).
-		WithAid(c.ServerID).
+	if resp, err = c.Oauth2.Oauth2.Introspect(o2Params.NewIntrospectParams().
 		WithToken(&token), nil); err != nil {
 		return nil, err
 	}
