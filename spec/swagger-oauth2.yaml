@@ -324,6 +324,7 @@ definitions:
           - password
           - urn:ietf:params:oauth:grant-type:jwt-bearer
           - urn:openid:params:grant-type:ciba
+          - urn:ietf:params:oauth:grant-type:token-exchange
           type: string
         type: array
         x-nullable: false
@@ -790,6 +791,7 @@ definitions:
           - password
           - urn:ietf:params:oauth:grant-type:jwt-bearer
           - urn:openid:params:grant-type:ciba
+          - urn:ietf:params:oauth:grant-type:token-exchange
           type: string
         type: array
         x-nullable: false
@@ -1206,6 +1208,14 @@ definitions:
         format: int64
         type: integer
         x-nullable: false
+      refresh_token_expires_at:
+        description: |-
+          Refresh Token Expires at is an integer timestamp, measured in the number
+          of seconds since January 1 1970 UTC, indicating when the issued refresh
+          token witll expire.
+        format: int64
+        type: integer
+        x-nullable: false
       scope:
         description: |-
           Scope is a JSON string containing a space-separated list of
@@ -1320,11 +1330,17 @@ definitions:
       access_token:
         type: string
         x-nullable: false
+      cdr_arrangement_id:
+        type: string
+        x-nullable: false
       expires_in:
         format: int64
         type: integer
         x-nullable: false
       id_token:
+        type: string
+        x-nullable: false
+      issued_token_type:
         type: string
         x-nullable: false
       refresh_token:
@@ -1550,6 +1566,12 @@ definitions:
           If omitted, the default value is false.
         type: boolean
         x-nullable: false
+      cdr_arrangement_revocation_endpoint:
+        description: |-
+          The URL of the CDR Arrangement Revocation End Point for consent revocation.
+          Available only for "cdr_australia" workspace profile.
+        type: string
+        x-nullable: false
       claims_parameter_supported:
         description: Boolean value specifying whether the OP supports use of the claims
           parameter, with true indicating support.
@@ -1594,6 +1616,7 @@ definitions:
           - password
           - urn:ietf:params:oauth:grant-type:jwt-bearer
           - urn:openid:params:grant-type:ciba
+          - urn:ietf:params:oauth:grant-type:token-exchange
           type: string
         type: array
         x-nullable: false
@@ -1819,7 +1842,7 @@ host: localhost:8443
 info:
   description: Cloudentity Authorization Control Plane OAuth2 API
   title: Cloudentity Authorization Control Plane API
-  version: 1.13.1
+  version: latest
 paths:
   /.well-known/jwks.json:
     get:
@@ -2186,6 +2209,15 @@ paths:
       - in: formData
         name: code_verifier
         type: string
+      - in: formData
+        name: requested_token_type
+        type: string
+      - in: formData
+        name: subject_token
+        type: string
+      - in: formData
+        name: subject_token_type
+        type: string
       responses:
         "200":
           $ref: '#/responses/tokenResponse'
@@ -2228,10 +2260,12 @@ paths:
       - description: Response type
         in: formData
         name: response_type
+        required: true
         type: string
       - description: Redirect uri
         in: formData
         name: redirect_uri
+        required: true
         type: string
       - description: Scope
         in: formData

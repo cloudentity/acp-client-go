@@ -68,6 +68,9 @@ type Features struct {
 	// enable quick access functionality on UI (system)
 	QuickAccess bool `json:"quick_access,omitempty"`
 
+	// enable scope transient_otp (tenant)
+	ScopeTransientOtp bool `json:"scope_transient_otp,omitempty"`
+
 	// enable the javascript transformer (tenant)
 	ScriptTransformer bool `json:"script_transformer,omitempty"`
 
@@ -82,6 +85,9 @@ type Features struct {
 
 	// enable admin workspace access (tenant)
 	SystemWorkspaceAccess bool `json:"system_workspace_access,omitempty"`
+
+	// enable Token Exchange (system)
+	TokenExchange bool `json:"token_exchange,omitempty"`
 
 	// enable trust anchor integration (system)
 	TrustAnchorIntegration bool `json:"trust_anchor_integration,omitempty"`

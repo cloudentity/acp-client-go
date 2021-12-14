@@ -315,7 +315,7 @@ func (a *Client) ListGateways(params *ListGatewaysParams, authInfo runtime.Clien
 	op := &runtime.ClientOperation{
 		ID:                 "listGateways",
 		Method:             "GET",
-		PathPattern:        "/servers/{aid}/gateways",
+		PathPattern:        "/servers/{wid}/gateways",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

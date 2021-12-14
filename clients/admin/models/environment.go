@@ -76,6 +76,9 @@ type Environment struct {
 	// enable quick access functionality on UI (system)
 	QuickAccess bool `json:"quick_access,omitempty"`
 
+	// enable scope transient_otp (tenant)
+	ScopeTransientOtp bool `json:"scope_transient_otp,omitempty"`
+
 	// script runtimes
 	ScriptRuntimes []*ScriptRuntime `json:"script_runtimes"`
 
@@ -99,6 +102,9 @@ type Environment struct {
 
 	// tenant flags
 	TenantFlags []string `json:"tenant_flags"`
+
+	// enable Token Exchange (system)
+	TokenExchange bool `json:"token_exchange,omitempty"`
 
 	// enable trust anchor integration (system)
 	TrustAnchorIntegration bool `json:"trust_anchor_integration,omitempty"`

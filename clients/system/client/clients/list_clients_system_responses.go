@@ -72,7 +72,7 @@ type ListClientsSystemOK struct {
 }
 
 func (o *ListClientsSystemOK) Error() string {
-	return fmt.Sprintf("[GET /clients/{aid}][%d] listClientsSystemOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /clients/{wid}][%d] listClientsSystemOK  %+v", 200, o.Payload)
 }
 func (o *ListClientsSystemOK) GetPayload() *models.Clients {
 	return o.Payload
@@ -104,7 +104,7 @@ type ListClientsSystemUnauthorized struct {
 }
 
 func (o *ListClientsSystemUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /clients/{aid}][%d] listClientsSystemUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /clients/{wid}][%d] listClientsSystemUnauthorized  %+v", 401, o.Payload)
 }
 func (o *ListClientsSystemUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -136,7 +136,7 @@ type ListClientsSystemForbidden struct {
 }
 
 func (o *ListClientsSystemForbidden) Error() string {
-	return fmt.Sprintf("[GET /clients/{aid}][%d] listClientsSystemForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /clients/{wid}][%d] listClientsSystemForbidden  %+v", 403, o.Payload)
 }
 func (o *ListClientsSystemForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -168,7 +168,7 @@ type ListClientsSystemNotFound struct {
 }
 
 func (o *ListClientsSystemNotFound) Error() string {
-	return fmt.Sprintf("[GET /clients/{aid}][%d] listClientsSystemNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /clients/{wid}][%d] listClientsSystemNotFound  %+v", 404, o.Payload)
 }
 func (o *ListClientsSystemNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -200,7 +200,7 @@ type ListClientsSystemTooManyRequests struct {
 }
 
 func (o *ListClientsSystemTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /clients/{aid}][%d] listClientsSystemTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[GET /clients/{wid}][%d] listClientsSystemTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *ListClientsSystemTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

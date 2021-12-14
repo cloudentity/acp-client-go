@@ -66,7 +66,7 @@ type ListGatewaysOK struct {
 }
 
 func (o *ListGatewaysOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/gateways][%d] listGatewaysOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/gateways][%d] listGatewaysOK  %+v", 200, o.Payload)
 }
 func (o *ListGatewaysOK) GetPayload() *models.Gateways {
 	return o.Payload
@@ -98,7 +98,7 @@ type ListGatewaysUnauthorized struct {
 }
 
 func (o *ListGatewaysUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/gateways][%d] listGatewaysUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/gateways][%d] listGatewaysUnauthorized  %+v", 401, o.Payload)
 }
 func (o *ListGatewaysUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -130,7 +130,7 @@ type ListGatewaysForbidden struct {
 }
 
 func (o *ListGatewaysForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/gateways][%d] listGatewaysForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/gateways][%d] listGatewaysForbidden  %+v", 403, o.Payload)
 }
 func (o *ListGatewaysForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -162,7 +162,7 @@ type ListGatewaysTooManyRequests struct {
 }
 
 func (o *ListGatewaysTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/gateways][%d] listGatewaysTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/gateways][%d] listGatewaysTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *ListGatewaysTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

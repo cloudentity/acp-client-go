@@ -67,14 +67,6 @@ type UpdateOktaIDPParams struct {
 	*/
 	OktaIDP *models.OktaIDP
 
-	/* Aid.
-
-	   Authorization server id
-
-	   Default: "default"
-	*/
-	Aid string
-
 	/* Iid.
 
 	   IDP id
@@ -82,6 +74,14 @@ type UpdateOktaIDPParams struct {
 	   Default: "default"
 	*/
 	Iid string
+
+	/* Wid.
+
+	   Authorization server id
+
+	   Default: "default"
+	*/
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -101,14 +101,14 @@ func (o *UpdateOktaIDPParams) WithDefaults() *UpdateOktaIDPParams {
 // All values with no default are reset to their zero value.
 func (o *UpdateOktaIDPParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
-
 		iidDefault = string("default")
+
+		widDefault = string("default")
 	)
 
 	val := UpdateOktaIDPParams{
-		Aid: aidDefault,
 		Iid: iidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -161,17 +161,6 @@ func (o *UpdateOktaIDPParams) SetOktaIDP(oktaIDP *models.OktaIDP) {
 	o.OktaIDP = oktaIDP
 }
 
-// WithAid adds the aid to the update okta ID p params
-func (o *UpdateOktaIDPParams) WithAid(aid string) *UpdateOktaIDPParams {
-	o.SetAid(aid)
-	return o
-}
-
-// SetAid adds the aid to the update okta ID p params
-func (o *UpdateOktaIDPParams) SetAid(aid string) {
-	o.Aid = aid
-}
-
 // WithIid adds the iid to the update okta ID p params
 func (o *UpdateOktaIDPParams) WithIid(iid string) *UpdateOktaIDPParams {
 	o.SetIid(iid)
@@ -181,6 +170,17 @@ func (o *UpdateOktaIDPParams) WithIid(iid string) *UpdateOktaIDPParams {
 // SetIid adds the iid to the update okta ID p params
 func (o *UpdateOktaIDPParams) SetIid(iid string) {
 	o.Iid = iid
+}
+
+// WithWid adds the wid to the update okta ID p params
+func (o *UpdateOktaIDPParams) WithWid(wid string) *UpdateOktaIDPParams {
+	o.SetWid(wid)
+	return o
+}
+
+// SetWid adds the wid to the update okta ID p params
+func (o *UpdateOktaIDPParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -196,13 +196,13 @@ func (o *UpdateOktaIDPParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		}
 	}
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param iid
+	if err := r.SetPathParam("iid", o.Iid); err != nil {
 		return err
 	}
 
-	// path param iid
-	if err := r.SetPathParam("iid", o.Iid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

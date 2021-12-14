@@ -72,7 +72,7 @@ type SetCIBAAuthenticationServiceOK struct {
 }
 
 func (o *SetCIBAAuthenticationServiceOK) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/ciba-authentication-service][%d] setCIBAAuthenticationServiceOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/ciba-authentication-service][%d] setCIBAAuthenticationServiceOK  %+v", 200, o.Payload)
 }
 func (o *SetCIBAAuthenticationServiceOK) GetPayload() *models.CIBAAuthenticationService {
 	return o.Payload
@@ -104,7 +104,7 @@ type SetCIBAAuthenticationServiceUnauthorized struct {
 }
 
 func (o *SetCIBAAuthenticationServiceUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/ciba-authentication-service][%d] setCIBAAuthenticationServiceUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/ciba-authentication-service][%d] setCIBAAuthenticationServiceUnauthorized  %+v", 401, o.Payload)
 }
 func (o *SetCIBAAuthenticationServiceUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -136,7 +136,7 @@ type SetCIBAAuthenticationServiceForbidden struct {
 }
 
 func (o *SetCIBAAuthenticationServiceForbidden) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/ciba-authentication-service][%d] setCIBAAuthenticationServiceForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/ciba-authentication-service][%d] setCIBAAuthenticationServiceForbidden  %+v", 403, o.Payload)
 }
 func (o *SetCIBAAuthenticationServiceForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -168,7 +168,7 @@ type SetCIBAAuthenticationServiceNotFound struct {
 }
 
 func (o *SetCIBAAuthenticationServiceNotFound) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/ciba-authentication-service][%d] setCIBAAuthenticationServiceNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/ciba-authentication-service][%d] setCIBAAuthenticationServiceNotFound  %+v", 404, o.Payload)
 }
 func (o *SetCIBAAuthenticationServiceNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -200,7 +200,7 @@ type SetCIBAAuthenticationServiceTooManyRequests struct {
 }
 
 func (o *SetCIBAAuthenticationServiceTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/ciba-authentication-service][%d] setCIBAAuthenticationServiceTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/ciba-authentication-service][%d] setCIBAAuthenticationServiceTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *SetCIBAAuthenticationServiceTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

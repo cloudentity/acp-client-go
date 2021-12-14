@@ -72,7 +72,7 @@ type GetCognitoIDPOK struct {
 }
 
 func (o *GetCognitoIDPOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/cognito/{iid}][%d] getCognitoIdPOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/cognito/{iid}][%d] getCognitoIdPOK  %+v", 200, o.Payload)
 }
 func (o *GetCognitoIDPOK) GetPayload() *models.CognitoIDP {
 	return o.Payload
@@ -104,7 +104,7 @@ type GetCognitoIDPUnauthorized struct {
 }
 
 func (o *GetCognitoIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/cognito/{iid}][%d] getCognitoIdPUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/cognito/{iid}][%d] getCognitoIdPUnauthorized  %+v", 401, o.Payload)
 }
 func (o *GetCognitoIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -136,7 +136,7 @@ type GetCognitoIDPForbidden struct {
 }
 
 func (o *GetCognitoIDPForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/cognito/{iid}][%d] getCognitoIdPForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/cognito/{iid}][%d] getCognitoIdPForbidden  %+v", 403, o.Payload)
 }
 func (o *GetCognitoIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -168,7 +168,7 @@ type GetCognitoIDPNotFound struct {
 }
 
 func (o *GetCognitoIDPNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/cognito/{iid}][%d] getCognitoIdPNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/cognito/{iid}][%d] getCognitoIdPNotFound  %+v", 404, o.Payload)
 }
 func (o *GetCognitoIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -200,7 +200,7 @@ type GetCognitoIDPTooManyRequests struct {
 }
 
 func (o *GetCognitoIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/cognito/{iid}][%d] getCognitoIdPTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/cognito/{iid}][%d] getCognitoIdPTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *GetCognitoIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

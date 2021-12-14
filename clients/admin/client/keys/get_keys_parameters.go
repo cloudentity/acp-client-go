@@ -59,14 +59,6 @@ func NewGetKeysParamsWithHTTPClient(client *http.Client) *GetKeysParams {
 */
 type GetKeysParams struct {
 
-	/* Aid.
-
-	   Authorization server id
-
-	   Default: "default"
-	*/
-	Aid string
-
 	/* Use.
 
 	   Key use (sig or enc)
@@ -74,6 +66,14 @@ type GetKeysParams struct {
 	   Default: "sig"
 	*/
 	Use *string
+
+	/* Wid.
+
+	   Authorization server id
+
+	   Default: "default"
+	*/
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -93,14 +93,14 @@ func (o *GetKeysParams) WithDefaults() *GetKeysParams {
 // All values with no default are reset to their zero value.
 func (o *GetKeysParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
-
 		useDefault = string("sig")
+
+		widDefault = string("default")
 	)
 
 	val := GetKeysParams{
-		Aid: aidDefault,
 		Use: &useDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -142,17 +142,6 @@ func (o *GetKeysParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithAid adds the aid to the get keys params
-func (o *GetKeysParams) WithAid(aid string) *GetKeysParams {
-	o.SetAid(aid)
-	return o
-}
-
-// SetAid adds the aid to the get keys params
-func (o *GetKeysParams) SetAid(aid string) {
-	o.Aid = aid
-}
-
 // WithUse adds the use to the get keys params
 func (o *GetKeysParams) WithUse(use *string) *GetKeysParams {
 	o.SetUse(use)
@@ -164,6 +153,17 @@ func (o *GetKeysParams) SetUse(use *string) {
 	o.Use = use
 }
 
+// WithWid adds the wid to the get keys params
+func (o *GetKeysParams) WithWid(wid string) *GetKeysParams {
+	o.SetWid(wid)
+	return o
+}
+
+// SetWid adds the wid to the get keys params
+func (o *GetKeysParams) SetWid(wid string) {
+	o.Wid = wid
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetKeysParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -171,11 +171,6 @@ func (o *GetKeysParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regis
 		return err
 	}
 	var res []error
-
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
-		return err
-	}
 
 	if o.Use != nil {
 
@@ -192,6 +187,11 @@ func (o *GetKeysParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regis
 				return err
 			}
 		}
+	}
+
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
+		return err
 	}
 
 	if len(res) > 0 {

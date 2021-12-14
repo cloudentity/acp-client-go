@@ -72,7 +72,7 @@ func (a *Client) BindServer(params *BindServerParams, authInfo runtime.ClientAut
 	op := &runtime.ClientOperation{
 		ID:                 "bindServer",
 		Method:             "POST",
-		PathPattern:        "/servers/{aid}/bind/{rid}",
+		PathPattern:        "/servers/{wid}/bind/{rid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -174,7 +174,7 @@ func (a *Client) DeleteAuthorizationServer(params *DeleteAuthorizationServerPara
 	op := &runtime.ClientOperation{
 		ID:                 "deleteAuthorizationServer",
 		Method:             "DELETE",
-		PathPattern:        "/servers/{aid}",
+		PathPattern:        "/servers/{wid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -215,7 +215,7 @@ func (a *Client) GetAuthorizationServer(params *GetAuthorizationServerParams, au
 	op := &runtime.ClientOperation{
 		ID:                 "getAuthorizationServer",
 		Method:             "GET",
-		PathPattern:        "/servers/{aid}",
+		PathPattern:        "/servers/{wid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -256,7 +256,7 @@ func (a *Client) GetCIBAAuthenticationService(params *GetCIBAAuthenticationServi
 	op := &runtime.ClientOperation{
 		ID:                 "getCIBAAuthenticationService",
 		Method:             "GET",
-		PathPattern:        "/servers/{aid}/ciba-authentication-service",
+		PathPattern:        "/servers/{wid}/ciba-authentication-service",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -297,7 +297,7 @@ func (a *Client) GetServerConsent(params *GetServerConsentParams, authInfo runti
 	op := &runtime.ClientOperation{
 		ID:                 "getServerConsent",
 		Method:             "GET",
-		PathPattern:        "/servers/{aid}/server-consent",
+		PathPattern:        "/servers/{wid}/server-consent",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -379,7 +379,7 @@ func (a *Client) ListDashboards(params *ListDashboardsParams, authInfo runtime.C
 	op := &runtime.ClientOperation{
 		ID:                 "listDashboards",
 		Method:             "GET",
-		PathPattern:        "/servers/{aid}/dashboards",
+		PathPattern:        "/servers/{wid}/dashboards",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -462,7 +462,7 @@ func (a *Client) SetCIBAAuthenticationService(params *SetCIBAAuthenticationServi
 	op := &runtime.ClientOperation{
 		ID:                 "setCIBAAuthenticationService",
 		Method:             "PUT",
-		PathPattern:        "/servers/{aid}/ciba-authentication-service",
+		PathPattern:        "/servers/{wid}/ciba-authentication-service",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -503,7 +503,7 @@ func (a *Client) SetServerConsent(params *SetServerConsentParams, authInfo runti
 	op := &runtime.ClientOperation{
 		ID:                 "setServerConsent",
 		Method:             "PUT",
-		PathPattern:        "/servers/{aid}/server-consent",
+		PathPattern:        "/servers/{wid}/server-consent",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -544,7 +544,7 @@ func (a *Client) UnbindServer(params *UnbindServerParams, authInfo runtime.Clien
 	op := &runtime.ClientOperation{
 		ID:                 "unbindServer",
 		Method:             "DELETE",
-		PathPattern:        "/servers/{aid}/unbind/{rid}",
+		PathPattern:        "/servers/{wid}/unbind/{rid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -585,7 +585,7 @@ func (a *Client) UpdateAuthorizationServer(params *UpdateAuthorizationServerPara
 	op := &runtime.ClientOperation{
 		ID:                 "updateAuthorizationServer",
 		Method:             "PUT",
-		PathPattern:        "/servers/{aid}",
+		PathPattern:        "/servers/{wid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

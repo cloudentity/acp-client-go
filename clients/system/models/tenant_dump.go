@@ -59,7 +59,7 @@ type TenantDump struct {
 	MfaMethods []*MFAMethod `json:"mfa_methods"`
 
 	// openbanking consents
-	OpenbankingConsents []*OBConsentCommon `json:"openbanking_consents"`
+	OpenbankingConsents []*OBConsent `json:"openbanking_consents"`
 
 	// openbanking file payment consent file resources
 	OpenbankingFilePaymentConsentFileResources []*FilePaymentConsentFileResource `json:"openbanking_file_payment_consent_file_resources"`
@@ -72,6 +72,9 @@ type TenantDump struct {
 
 	// privacy ledger events
 	PrivacyLedgerEvents []*PrivacyLedgerEvent `json:"privacy_ledger_events"`
+
+	// quota usage
+	QuotaUsage []*QuotaUsage `json:"quota_usage"`
 
 	// recurring jobs
 	RecurringJobs []*RecurringJob `json:"recurring_jobs"`
@@ -183,6 +186,10 @@ func (m *TenantDump) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validatePrivacyLedgerEvents(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateQuotaUsage(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -699,6 +706,32 @@ func (m *TenantDump) validatePrivacyLedgerEvents(formats strfmt.Registry) error 
 	return nil
 }
 
+func (m *TenantDump) validateQuotaUsage(formats strfmt.Registry) error {
+	if swag.IsZero(m.QuotaUsage) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.QuotaUsage); i++ {
+		if swag.IsZero(m.QuotaUsage[i]) { // not required
+			continue
+		}
+
+		if m.QuotaUsage[i] != nil {
+			if err := m.QuotaUsage[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("quota_usage" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("quota_usage" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *TenantDump) validateRecurringJobs(formats strfmt.Registry) error {
 	if swag.IsZero(m.RecurringJobs) { // not required
 		return nil
@@ -1077,6 +1110,10 @@ func (m *TenantDump) ContextValidate(ctx context.Context, formats strfmt.Registr
 	}
 
 	if err := m.contextValidatePrivacyLedgerEvents(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateQuotaUsage(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1478,6 +1515,26 @@ func (m *TenantDump) contextValidatePrivacyLedgerEvents(ctx context.Context, for
 					return ve.ValidateName("privacy_ledger_events" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
 					return ce.ValidateName("privacy_ledger_events" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *TenantDump) contextValidateQuotaUsage(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.QuotaUsage); i++ {
+
+		if m.QuotaUsage[i] != nil {
+			if err := m.QuotaUsage[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("quota_usage" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("quota_usage" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

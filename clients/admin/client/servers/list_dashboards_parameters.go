@@ -59,13 +59,13 @@ func NewListDashboardsParamsWithHTTPClient(client *http.Client) *ListDashboardsP
 */
 type ListDashboardsParams struct {
 
-	/* Aid.
+	/* Wid.
 
 	   Server id
 
 	   Default: "default"
 	*/
-	Aid string
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -85,11 +85,11 @@ func (o *ListDashboardsParams) WithDefaults() *ListDashboardsParams {
 // All values with no default are reset to their zero value.
 func (o *ListDashboardsParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := ListDashboardsParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -131,15 +131,15 @@ func (o *ListDashboardsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithAid adds the aid to the list dashboards params
-func (o *ListDashboardsParams) WithAid(aid string) *ListDashboardsParams {
-	o.SetAid(aid)
+// WithWid adds the wid to the list dashboards params
+func (o *ListDashboardsParams) WithWid(wid string) *ListDashboardsParams {
+	o.SetWid(wid)
 	return o
 }
 
-// SetAid adds the aid to the list dashboards params
-func (o *ListDashboardsParams) SetAid(aid string) {
-	o.Aid = aid
+// SetWid adds the wid to the list dashboards params
+func (o *ListDashboardsParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -150,8 +150,8 @@ func (o *ListDashboardsParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 	}
 	var res []error
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

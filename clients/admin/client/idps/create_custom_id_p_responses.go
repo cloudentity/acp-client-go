@@ -84,7 +84,7 @@ type CreateCustomIDPCreated struct {
 }
 
 func (o *CreateCustomIDPCreated) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/custom][%d] createCustomIdPCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/custom][%d] createCustomIdPCreated  %+v", 201, o.Payload)
 }
 func (o *CreateCustomIDPCreated) GetPayload() *models.CustomIDP {
 	return o.Payload
@@ -116,7 +116,7 @@ type CreateCustomIDPBadRequest struct {
 }
 
 func (o *CreateCustomIDPBadRequest) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/custom][%d] createCustomIdPBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/custom][%d] createCustomIdPBadRequest  %+v", 400, o.Payload)
 }
 func (o *CreateCustomIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -148,7 +148,7 @@ type CreateCustomIDPUnauthorized struct {
 }
 
 func (o *CreateCustomIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/custom][%d] createCustomIdPUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/custom][%d] createCustomIdPUnauthorized  %+v", 401, o.Payload)
 }
 func (o *CreateCustomIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -180,7 +180,7 @@ type CreateCustomIDPForbidden struct {
 }
 
 func (o *CreateCustomIDPForbidden) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/custom][%d] createCustomIdPForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/custom][%d] createCustomIdPForbidden  %+v", 403, o.Payload)
 }
 func (o *CreateCustomIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -212,7 +212,7 @@ type CreateCustomIDPNotFound struct {
 }
 
 func (o *CreateCustomIDPNotFound) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/custom][%d] createCustomIdPNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/custom][%d] createCustomIdPNotFound  %+v", 404, o.Payload)
 }
 func (o *CreateCustomIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -244,7 +244,7 @@ type CreateCustomIDPUnprocessableEntity struct {
 }
 
 func (o *CreateCustomIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/custom][%d] createCustomIdPUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/custom][%d] createCustomIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 func (o *CreateCustomIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
@@ -276,7 +276,7 @@ type CreateCustomIDPTooManyRequests struct {
 }
 
 func (o *CreateCustomIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/custom][%d] createCustomIdPTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/custom][%d] createCustomIdPTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *CreateCustomIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

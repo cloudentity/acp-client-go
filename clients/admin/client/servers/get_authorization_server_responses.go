@@ -68,19 +68,19 @@ func NewGetAuthorizationServerOK() *GetAuthorizationServerOK {
 Server
 */
 type GetAuthorizationServerOK struct {
-	Payload *models.Server
+	Payload *models.ServerResponse
 }
 
 func (o *GetAuthorizationServerOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}][%d] getAuthorizationServerOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}][%d] getAuthorizationServerOK  %+v", 200, o.Payload)
 }
-func (o *GetAuthorizationServerOK) GetPayload() *models.Server {
+func (o *GetAuthorizationServerOK) GetPayload() *models.ServerResponse {
 	return o.Payload
 }
 
 func (o *GetAuthorizationServerOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Server)
+	o.Payload = new(models.ServerResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -104,7 +104,7 @@ type GetAuthorizationServerUnauthorized struct {
 }
 
 func (o *GetAuthorizationServerUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}][%d] getAuthorizationServerUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}][%d] getAuthorizationServerUnauthorized  %+v", 401, o.Payload)
 }
 func (o *GetAuthorizationServerUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -136,7 +136,7 @@ type GetAuthorizationServerForbidden struct {
 }
 
 func (o *GetAuthorizationServerForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}][%d] getAuthorizationServerForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}][%d] getAuthorizationServerForbidden  %+v", 403, o.Payload)
 }
 func (o *GetAuthorizationServerForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -168,7 +168,7 @@ type GetAuthorizationServerNotFound struct {
 }
 
 func (o *GetAuthorizationServerNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}][%d] getAuthorizationServerNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}][%d] getAuthorizationServerNotFound  %+v", 404, o.Payload)
 }
 func (o *GetAuthorizationServerNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -200,7 +200,7 @@ type GetAuthorizationServerTooManyRequests struct {
 }
 
 func (o *GetAuthorizationServerTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}][%d] getAuthorizationServerTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}][%d] getAuthorizationServerTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *GetAuthorizationServerTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

@@ -72,7 +72,7 @@ type GetGoogleIDPOK struct {
 }
 
 func (o *GetGoogleIDPOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/google/{iid}][%d] getGoogleIdPOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/google/{iid}][%d] getGoogleIdPOK  %+v", 200, o.Payload)
 }
 func (o *GetGoogleIDPOK) GetPayload() *models.GoogleIDP {
 	return o.Payload
@@ -104,7 +104,7 @@ type GetGoogleIDPUnauthorized struct {
 }
 
 func (o *GetGoogleIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/google/{iid}][%d] getGoogleIdPUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/google/{iid}][%d] getGoogleIdPUnauthorized  %+v", 401, o.Payload)
 }
 func (o *GetGoogleIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -136,7 +136,7 @@ type GetGoogleIDPForbidden struct {
 }
 
 func (o *GetGoogleIDPForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/google/{iid}][%d] getGoogleIdPForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/google/{iid}][%d] getGoogleIdPForbidden  %+v", 403, o.Payload)
 }
 func (o *GetGoogleIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -168,7 +168,7 @@ type GetGoogleIDPNotFound struct {
 }
 
 func (o *GetGoogleIDPNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/google/{iid}][%d] getGoogleIdPNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/google/{iid}][%d] getGoogleIdPNotFound  %+v", 404, o.Payload)
 }
 func (o *GetGoogleIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -200,7 +200,7 @@ type GetGoogleIDPTooManyRequests struct {
 }
 
 func (o *GetGoogleIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/google/{iid}][%d] getGoogleIdPTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/google/{iid}][%d] getGoogleIdPTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *GetGoogleIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

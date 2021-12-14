@@ -72,7 +72,7 @@ type GetExternalIDPOK struct {
 }
 
 func (o *GetExternalIDPOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/external/{iid}][%d] getExternalIdPOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/external/{iid}][%d] getExternalIdPOK  %+v", 200, o.Payload)
 }
 func (o *GetExternalIDPOK) GetPayload() *models.ExternalIDP {
 	return o.Payload
@@ -104,7 +104,7 @@ type GetExternalIDPUnauthorized struct {
 }
 
 func (o *GetExternalIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/external/{iid}][%d] getExternalIdPUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/external/{iid}][%d] getExternalIdPUnauthorized  %+v", 401, o.Payload)
 }
 func (o *GetExternalIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -136,7 +136,7 @@ type GetExternalIDPForbidden struct {
 }
 
 func (o *GetExternalIDPForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/external/{iid}][%d] getExternalIdPForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/external/{iid}][%d] getExternalIdPForbidden  %+v", 403, o.Payload)
 }
 func (o *GetExternalIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -168,7 +168,7 @@ type GetExternalIDPNotFound struct {
 }
 
 func (o *GetExternalIDPNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/external/{iid}][%d] getExternalIdPNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/external/{iid}][%d] getExternalIdPNotFound  %+v", 404, o.Payload)
 }
 func (o *GetExternalIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -200,7 +200,7 @@ type GetExternalIDPTooManyRequests struct {
 }
 
 func (o *GetExternalIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/external/{iid}][%d] getExternalIdPTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/external/{iid}][%d] getExternalIdPTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *GetExternalIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

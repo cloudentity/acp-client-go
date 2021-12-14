@@ -14,10 +14,10 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// OBConsentCommon o b consent common
+// OBConsent OBConsent this type is only meant to be used for importing and exporting consents for testing
 //
-// swagger:model OBConsentCommon
-type OBConsentCommon struct {
+// swagger:model OBConsent
+type OBConsent struct {
 
 	// account ids
 	AccountIds []string `json:"account_ids"`
@@ -57,8 +57,8 @@ type OBConsentCommon struct {
 	Type ConsentType `json:"type,omitempty"`
 }
 
-// Validate validates this o b consent common
-func (m *OBConsentCommon) Validate(formats strfmt.Registry) error {
+// Validate validates this o b consent
+func (m *OBConsent) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCreatedAt(formats); err != nil {
@@ -75,7 +75,7 @@ func (m *OBConsentCommon) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *OBConsentCommon) validateCreatedAt(formats strfmt.Registry) error {
+func (m *OBConsent) validateCreatedAt(formats strfmt.Registry) error {
 	if swag.IsZero(m.CreatedAt) { // not required
 		return nil
 	}
@@ -87,7 +87,7 @@ func (m *OBConsentCommon) validateCreatedAt(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *OBConsentCommon) validateType(formats strfmt.Registry) error {
+func (m *OBConsent) validateType(formats strfmt.Registry) error {
 	if swag.IsZero(m.Type) { // not required
 		return nil
 	}
@@ -104,8 +104,8 @@ func (m *OBConsentCommon) validateType(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validate this o b consent common based on the context it is used
-func (m *OBConsentCommon) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validate this o b consent based on the context it is used
+func (m *OBConsent) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateType(ctx, formats); err != nil {
@@ -118,7 +118,7 @@ func (m *OBConsentCommon) ContextValidate(ctx context.Context, formats strfmt.Re
 	return nil
 }
 
-func (m *OBConsentCommon) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
+func (m *OBConsent) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := m.Type.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -133,7 +133,7 @@ func (m *OBConsentCommon) contextValidateType(ctx context.Context, formats strfm
 }
 
 // MarshalBinary interface implementation
-func (m *OBConsentCommon) MarshalBinary() ([]byte, error) {
+func (m *OBConsent) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -141,8 +141,8 @@ func (m *OBConsentCommon) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *OBConsentCommon) UnmarshalBinary(b []byte) error {
-	var res OBConsentCommon
+func (m *OBConsent) UnmarshalBinary(b []byte) error {
+	var res OBConsent
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

@@ -48,7 +48,7 @@ func (a *Client) GetStats(params *GetStatsParams, authInfo runtime.ClientAuthInf
 	op := &runtime.ClientOperation{
 		ID:                 "getStats",
 		Method:             "GET",
-		PathPattern:        "/stats/{aid}/overview",
+		PathPattern:        "/stats/{wid}/overview",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

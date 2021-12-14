@@ -67,14 +67,6 @@ type UpdateGithubIDPParams struct {
 	*/
 	GithubIDP *models.GithubIDP
 
-	/* Aid.
-
-	   Authorization server id
-
-	   Default: "default"
-	*/
-	Aid string
-
 	/* Iid.
 
 	   IDP id
@@ -82,6 +74,14 @@ type UpdateGithubIDPParams struct {
 	   Default: "default"
 	*/
 	Iid string
+
+	/* Wid.
+
+	   Authorization server id
+
+	   Default: "default"
+	*/
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -101,14 +101,14 @@ func (o *UpdateGithubIDPParams) WithDefaults() *UpdateGithubIDPParams {
 // All values with no default are reset to their zero value.
 func (o *UpdateGithubIDPParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
-
 		iidDefault = string("default")
+
+		widDefault = string("default")
 	)
 
 	val := UpdateGithubIDPParams{
-		Aid: aidDefault,
 		Iid: iidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -161,17 +161,6 @@ func (o *UpdateGithubIDPParams) SetGithubIDP(githubIDP *models.GithubIDP) {
 	o.GithubIDP = githubIDP
 }
 
-// WithAid adds the aid to the update github ID p params
-func (o *UpdateGithubIDPParams) WithAid(aid string) *UpdateGithubIDPParams {
-	o.SetAid(aid)
-	return o
-}
-
-// SetAid adds the aid to the update github ID p params
-func (o *UpdateGithubIDPParams) SetAid(aid string) {
-	o.Aid = aid
-}
-
 // WithIid adds the iid to the update github ID p params
 func (o *UpdateGithubIDPParams) WithIid(iid string) *UpdateGithubIDPParams {
 	o.SetIid(iid)
@@ -181,6 +170,17 @@ func (o *UpdateGithubIDPParams) WithIid(iid string) *UpdateGithubIDPParams {
 // SetIid adds the iid to the update github ID p params
 func (o *UpdateGithubIDPParams) SetIid(iid string) {
 	o.Iid = iid
+}
+
+// WithWid adds the wid to the update github ID p params
+func (o *UpdateGithubIDPParams) WithWid(wid string) *UpdateGithubIDPParams {
+	o.SetWid(wid)
+	return o
+}
+
+// SetWid adds the wid to the update github ID p params
+func (o *UpdateGithubIDPParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -196,13 +196,13 @@ func (o *UpdateGithubIDPParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		}
 	}
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param iid
+	if err := r.SetPathParam("iid", o.Iid); err != nil {
 		return err
 	}
 
-	// path param iid
-	if err := r.SetPathParam("iid", o.Iid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

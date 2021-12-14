@@ -59,13 +59,13 @@ func NewListScriptExecutionPointsParamsWithHTTPClient(client *http.Client) *List
 */
 type ListScriptExecutionPointsParams struct {
 
-	/* Aid.
+	/* Wid.
 
 	   Authorization server id
 
 	   Default: "default"
 	*/
-	Aid string
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -85,11 +85,11 @@ func (o *ListScriptExecutionPointsParams) WithDefaults() *ListScriptExecutionPoi
 // All values with no default are reset to their zero value.
 func (o *ListScriptExecutionPointsParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := ListScriptExecutionPointsParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -131,15 +131,15 @@ func (o *ListScriptExecutionPointsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithAid adds the aid to the list script execution points params
-func (o *ListScriptExecutionPointsParams) WithAid(aid string) *ListScriptExecutionPointsParams {
-	o.SetAid(aid)
+// WithWid adds the wid to the list script execution points params
+func (o *ListScriptExecutionPointsParams) WithWid(wid string) *ListScriptExecutionPointsParams {
+	o.SetWid(wid)
 	return o
 }
 
-// SetAid adds the aid to the list script execution points params
-func (o *ListScriptExecutionPointsParams) SetAid(aid string) {
-	o.Aid = aid
+// SetWid adds the wid to the list script execution points params
+func (o *ListScriptExecutionPointsParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -150,8 +150,8 @@ func (o *ListScriptExecutionPointsParams) WriteToRequest(r runtime.ClientRequest
 	}
 	var res []error
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

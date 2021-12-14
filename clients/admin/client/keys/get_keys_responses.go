@@ -72,7 +72,7 @@ type GetKeysOK struct {
 }
 
 func (o *GetKeysOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/keys][%d] getKeysOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/keys][%d] getKeysOK  %+v", 200, o.Payload)
 }
 func (o *GetKeysOK) GetPayload() *models.KeysResponse {
 	return o.Payload
@@ -104,7 +104,7 @@ type GetKeysUnauthorized struct {
 }
 
 func (o *GetKeysUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/keys][%d] getKeysUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/keys][%d] getKeysUnauthorized  %+v", 401, o.Payload)
 }
 func (o *GetKeysUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -136,7 +136,7 @@ type GetKeysForbidden struct {
 }
 
 func (o *GetKeysForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/keys][%d] getKeysForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/keys][%d] getKeysForbidden  %+v", 403, o.Payload)
 }
 func (o *GetKeysForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -168,7 +168,7 @@ type GetKeysNotFound struct {
 }
 
 func (o *GetKeysNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/keys][%d] getKeysNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/keys][%d] getKeysNotFound  %+v", 404, o.Payload)
 }
 func (o *GetKeysNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -200,7 +200,7 @@ type GetKeysTooManyRequests struct {
 }
 
 func (o *GetKeysTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/keys][%d] getKeysTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/keys][%d] getKeysTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *GetKeysTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

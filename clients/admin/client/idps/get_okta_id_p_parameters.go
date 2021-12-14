@@ -59,19 +59,19 @@ func NewGetOktaIDPParamsWithHTTPClient(client *http.Client) *GetOktaIDPParams {
 */
 type GetOktaIDPParams struct {
 
-	/* Aid.
-
-	   Authorization server id
-
-	   Default: "default"
-	*/
-	Aid string
-
 	/* Iid.
 
 	   IDP id
 	*/
 	Iid string
+
+	/* Wid.
+
+	   Authorization server id
+
+	   Default: "default"
+	*/
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -91,11 +91,11 @@ func (o *GetOktaIDPParams) WithDefaults() *GetOktaIDPParams {
 // All values with no default are reset to their zero value.
 func (o *GetOktaIDPParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := GetOktaIDPParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -137,17 +137,6 @@ func (o *GetOktaIDPParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithAid adds the aid to the get okta ID p params
-func (o *GetOktaIDPParams) WithAid(aid string) *GetOktaIDPParams {
-	o.SetAid(aid)
-	return o
-}
-
-// SetAid adds the aid to the get okta ID p params
-func (o *GetOktaIDPParams) SetAid(aid string) {
-	o.Aid = aid
-}
-
 // WithIid adds the iid to the get okta ID p params
 func (o *GetOktaIDPParams) WithIid(iid string) *GetOktaIDPParams {
 	o.SetIid(iid)
@@ -159,6 +148,17 @@ func (o *GetOktaIDPParams) SetIid(iid string) {
 	o.Iid = iid
 }
 
+// WithWid adds the wid to the get okta ID p params
+func (o *GetOktaIDPParams) WithWid(wid string) *GetOktaIDPParams {
+	o.SetWid(wid)
+	return o
+}
+
+// SetWid adds the wid to the get okta ID p params
+func (o *GetOktaIDPParams) SetWid(wid string) {
+	o.Wid = wid
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetOktaIDPParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -167,13 +167,13 @@ func (o *GetOktaIDPParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 	}
 	var res []error
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param iid
+	if err := r.SetPathParam("iid", o.Iid); err != nil {
 		return err
 	}
 
-	// path param iid
-	if err := r.SetPathParam("iid", o.Iid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

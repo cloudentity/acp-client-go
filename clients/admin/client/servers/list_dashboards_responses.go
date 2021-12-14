@@ -78,7 +78,7 @@ type ListDashboardsOK struct {
 }
 
 func (o *ListDashboardsOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/dashboards][%d] listDashboardsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/dashboards][%d] listDashboardsOK  %+v", 200, o.Payload)
 }
 func (o *ListDashboardsOK) GetPayload() *models.Dashboards {
 	return o.Payload
@@ -110,7 +110,7 @@ type ListDashboardsBadRequest struct {
 }
 
 func (o *ListDashboardsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/dashboards][%d] listDashboardsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/dashboards][%d] listDashboardsBadRequest  %+v", 400, o.Payload)
 }
 func (o *ListDashboardsBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -142,7 +142,7 @@ type ListDashboardsUnauthorized struct {
 }
 
 func (o *ListDashboardsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/dashboards][%d] listDashboardsUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/dashboards][%d] listDashboardsUnauthorized  %+v", 401, o.Payload)
 }
 func (o *ListDashboardsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -174,7 +174,7 @@ type ListDashboardsForbidden struct {
 }
 
 func (o *ListDashboardsForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/dashboards][%d] listDashboardsForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/dashboards][%d] listDashboardsForbidden  %+v", 403, o.Payload)
 }
 func (o *ListDashboardsForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -206,7 +206,7 @@ type ListDashboardsNotFound struct {
 }
 
 func (o *ListDashboardsNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/dashboards][%d] listDashboardsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/dashboards][%d] listDashboardsNotFound  %+v", 404, o.Payload)
 }
 func (o *ListDashboardsNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -238,7 +238,7 @@ type ListDashboardsTooManyRequests struct {
 }
 
 func (o *ListDashboardsTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/dashboards][%d] listDashboardsTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/dashboards][%d] listDashboardsTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *ListDashboardsTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

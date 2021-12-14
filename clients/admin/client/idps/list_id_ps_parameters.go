@@ -59,13 +59,13 @@ func NewListIDPsParamsWithHTTPClient(client *http.Client) *ListIDPsParams {
 */
 type ListIDPsParams struct {
 
-	/* Aid.
+	/* Wid.
 
 	   ID of your authorization server (workspace)
 
 	   Default: "default"
 	*/
-	Aid string
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -85,11 +85,11 @@ func (o *ListIDPsParams) WithDefaults() *ListIDPsParams {
 // All values with no default are reset to their zero value.
 func (o *ListIDPsParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := ListIDPsParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -131,15 +131,15 @@ func (o *ListIDPsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithAid adds the aid to the list ID ps params
-func (o *ListIDPsParams) WithAid(aid string) *ListIDPsParams {
-	o.SetAid(aid)
+// WithWid adds the wid to the list ID ps params
+func (o *ListIDPsParams) WithWid(wid string) *ListIDPsParams {
+	o.SetWid(wid)
 	return o
 }
 
-// SetAid adds the aid to the list ID ps params
-func (o *ListIDPsParams) SetAid(aid string) {
-	o.Aid = aid
+// SetWid adds the wid to the list ID ps params
+func (o *ListIDPsParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -150,8 +150,8 @@ func (o *ListIDPsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regi
 	}
 	var res []error
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

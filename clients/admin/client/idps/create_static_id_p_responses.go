@@ -84,7 +84,7 @@ type CreateStaticIDPCreated struct {
 }
 
 func (o *CreateStaticIDPCreated) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/static][%d] createStaticIdPCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPCreated  %+v", 201, o.Payload)
 }
 func (o *CreateStaticIDPCreated) GetPayload() *models.StaticIDP {
 	return o.Payload
@@ -116,7 +116,7 @@ type CreateStaticIDPBadRequest struct {
 }
 
 func (o *CreateStaticIDPBadRequest) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/static][%d] createStaticIdPBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPBadRequest  %+v", 400, o.Payload)
 }
 func (o *CreateStaticIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -148,7 +148,7 @@ type CreateStaticIDPUnauthorized struct {
 }
 
 func (o *CreateStaticIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/static][%d] createStaticIdPUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPUnauthorized  %+v", 401, o.Payload)
 }
 func (o *CreateStaticIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -180,7 +180,7 @@ type CreateStaticIDPForbidden struct {
 }
 
 func (o *CreateStaticIDPForbidden) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/static][%d] createStaticIdPForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPForbidden  %+v", 403, o.Payload)
 }
 func (o *CreateStaticIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -212,7 +212,7 @@ type CreateStaticIDPNotFound struct {
 }
 
 func (o *CreateStaticIDPNotFound) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/static][%d] createStaticIdPNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPNotFound  %+v", 404, o.Payload)
 }
 func (o *CreateStaticIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -244,7 +244,7 @@ type CreateStaticIDPUnprocessableEntity struct {
 }
 
 func (o *CreateStaticIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/static][%d] createStaticIdPUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 func (o *CreateStaticIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
@@ -276,7 +276,7 @@ type CreateStaticIDPTooManyRequests struct {
 }
 
 func (o *CreateStaticIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/static][%d] createStaticIdPTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *CreateStaticIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

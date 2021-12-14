@@ -78,7 +78,7 @@ type ListClientsOK struct {
 }
 
 func (o *ListClientsOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/clients][%d] listClientsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/clients][%d] listClientsOK  %+v", 200, o.Payload)
 }
 func (o *ListClientsOK) GetPayload() *models.ClientsForAdmin {
 	return o.Payload
@@ -110,7 +110,7 @@ type ListClientsBadRequest struct {
 }
 
 func (o *ListClientsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/clients][%d] listClientsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/clients][%d] listClientsBadRequest  %+v", 400, o.Payload)
 }
 func (o *ListClientsBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -142,7 +142,7 @@ type ListClientsUnauthorized struct {
 }
 
 func (o *ListClientsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/clients][%d] listClientsUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/clients][%d] listClientsUnauthorized  %+v", 401, o.Payload)
 }
 func (o *ListClientsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -174,7 +174,7 @@ type ListClientsForbidden struct {
 }
 
 func (o *ListClientsForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/clients][%d] listClientsForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/clients][%d] listClientsForbidden  %+v", 403, o.Payload)
 }
 func (o *ListClientsForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -206,7 +206,7 @@ type ListClientsNotFound struct {
 }
 
 func (o *ListClientsNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/clients][%d] listClientsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/clients][%d] listClientsNotFound  %+v", 404, o.Payload)
 }
 func (o *ListClientsNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -238,7 +238,7 @@ type ListClientsTooManyRequests struct {
 }
 
 func (o *ListClientsTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/clients][%d] listClientsTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/clients][%d] listClientsTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *ListClientsTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

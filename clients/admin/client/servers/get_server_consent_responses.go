@@ -72,7 +72,7 @@ type GetServerConsentOK struct {
 }
 
 func (o *GetServerConsentOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/server-consent][%d] getServerConsentOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/server-consent][%d] getServerConsentOK  %+v", 200, o.Payload)
 }
 func (o *GetServerConsentOK) GetPayload() *models.ServerConsent {
 	return o.Payload
@@ -104,7 +104,7 @@ type GetServerConsentUnauthorized struct {
 }
 
 func (o *GetServerConsentUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/server-consent][%d] getServerConsentUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/server-consent][%d] getServerConsentUnauthorized  %+v", 401, o.Payload)
 }
 func (o *GetServerConsentUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -136,7 +136,7 @@ type GetServerConsentForbidden struct {
 }
 
 func (o *GetServerConsentForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/server-consent][%d] getServerConsentForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/server-consent][%d] getServerConsentForbidden  %+v", 403, o.Payload)
 }
 func (o *GetServerConsentForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -168,7 +168,7 @@ type GetServerConsentNotFound struct {
 }
 
 func (o *GetServerConsentNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/server-consent][%d] getServerConsentNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/server-consent][%d] getServerConsentNotFound  %+v", 404, o.Payload)
 }
 func (o *GetServerConsentNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -200,7 +200,7 @@ type GetServerConsentTooManyRequests struct {
 }
 
 func (o *GetServerConsentTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/server-consent][%d] getServerConsentTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/server-consent][%d] getServerConsentTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *GetServerConsentTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

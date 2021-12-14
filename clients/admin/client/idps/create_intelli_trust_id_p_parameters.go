@@ -67,13 +67,13 @@ type CreateIntelliTrustIDPParams struct {
 	*/
 	IntelliTrustIDP *models.IntelliTrustIDP
 
-	/* Aid.
+	/* Wid.
 
 	   Authorization server id
 
 	   Default: "default"
 	*/
-	Aid string
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -93,11 +93,11 @@ func (o *CreateIntelliTrustIDPParams) WithDefaults() *CreateIntelliTrustIDPParam
 // All values with no default are reset to their zero value.
 func (o *CreateIntelliTrustIDPParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := CreateIntelliTrustIDPParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -150,15 +150,15 @@ func (o *CreateIntelliTrustIDPParams) SetIntelliTrustIDP(intelliTrustIDP *models
 	o.IntelliTrustIDP = intelliTrustIDP
 }
 
-// WithAid adds the aid to the create intelli trust ID p params
-func (o *CreateIntelliTrustIDPParams) WithAid(aid string) *CreateIntelliTrustIDPParams {
-	o.SetAid(aid)
+// WithWid adds the wid to the create intelli trust ID p params
+func (o *CreateIntelliTrustIDPParams) WithWid(wid string) *CreateIntelliTrustIDPParams {
+	o.SetWid(wid)
 	return o
 }
 
-// SetAid adds the aid to the create intelli trust ID p params
-func (o *CreateIntelliTrustIDPParams) SetAid(aid string) {
-	o.Aid = aid
+// SetWid adds the wid to the create intelli trust ID p params
+func (o *CreateIntelliTrustIDPParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -174,8 +174,8 @@ func (o *CreateIntelliTrustIDPParams) WriteToRequest(r runtime.ClientRequest, re
 		}
 	}
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

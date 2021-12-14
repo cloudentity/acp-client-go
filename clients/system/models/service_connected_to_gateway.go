@@ -24,13 +24,13 @@ type ServiceConnectedToGateway struct {
 	// api group metadata
 	APIGroupMetadata *APIGroupMetadata `json:"api_group_metadata,omitempty"`
 
-	// service audience
-	// Example: https://api.example.com
-	Audience string `json:"audience,omitempty"`
-
 	// server id
 	// Example: default
 	AuthorizationServerID string `json:"authorization_server_id,omitempty"`
+
+	// custom service audience
+	// Example: https://api.example.com
+	CustomAudience string `json:"custom_audience,omitempty"`
 
 	// service description
 	// Example: Service description

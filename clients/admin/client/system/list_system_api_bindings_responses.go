@@ -66,7 +66,7 @@ type ListSystemAPIBindingsOK struct {
 }
 
 func (o *ListSystemAPIBindingsOK) Error() string {
-	return fmt.Sprintf("[GET /system/apis/{aid}/bindings][%d] listSystemApiBindingsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /system/apis/{wid}/bindings][%d] listSystemApiBindingsOK  %+v", 200, o.Payload)
 }
 func (o *ListSystemAPIBindingsOK) GetPayload() *models.SystemAPIBindings {
 	return o.Payload
@@ -98,7 +98,7 @@ type ListSystemAPIBindingsUnauthorized struct {
 }
 
 func (o *ListSystemAPIBindingsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /system/apis/{aid}/bindings][%d] listSystemApiBindingsUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /system/apis/{wid}/bindings][%d] listSystemApiBindingsUnauthorized  %+v", 401, o.Payload)
 }
 func (o *ListSystemAPIBindingsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -130,7 +130,7 @@ type ListSystemAPIBindingsForbidden struct {
 }
 
 func (o *ListSystemAPIBindingsForbidden) Error() string {
-	return fmt.Sprintf("[GET /system/apis/{aid}/bindings][%d] listSystemApiBindingsForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /system/apis/{wid}/bindings][%d] listSystemApiBindingsForbidden  %+v", 403, o.Payload)
 }
 func (o *ListSystemAPIBindingsForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -162,7 +162,7 @@ type ListSystemAPIBindingsTooManyRequests struct {
 }
 
 func (o *ListSystemAPIBindingsTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /system/apis/{aid}/bindings][%d] listSystemApiBindingsTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[GET /system/apis/{wid}/bindings][%d] listSystemApiBindingsTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *ListSystemAPIBindingsTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

@@ -64,19 +64,19 @@ type UpdateScriptParams struct {
 	// ScriptBody.
 	ScriptBody *models.Script
 
-	/* Aid.
-
-	   ID of your authorization server (workspace)
-
-	   Default: "default"
-	*/
-	Aid string
-
 	/* Script.
 
 	   ID of the script to be updated
 	*/
 	Script string
+
+	/* Wid.
+
+	   ID of your authorization server (workspace)
+
+	   Default: "default"
+	*/
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -96,11 +96,11 @@ func (o *UpdateScriptParams) WithDefaults() *UpdateScriptParams {
 // All values with no default are reset to their zero value.
 func (o *UpdateScriptParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := UpdateScriptParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -153,17 +153,6 @@ func (o *UpdateScriptParams) SetScriptBody(scriptBody *models.Script) {
 	o.ScriptBody = scriptBody
 }
 
-// WithAid adds the aid to the update script params
-func (o *UpdateScriptParams) WithAid(aid string) *UpdateScriptParams {
-	o.SetAid(aid)
-	return o
-}
-
-// SetAid adds the aid to the update script params
-func (o *UpdateScriptParams) SetAid(aid string) {
-	o.Aid = aid
-}
-
 // WithScript adds the script to the update script params
 func (o *UpdateScriptParams) WithScript(script string) *UpdateScriptParams {
 	o.SetScript(script)
@@ -173,6 +162,17 @@ func (o *UpdateScriptParams) WithScript(script string) *UpdateScriptParams {
 // SetScript adds the script to the update script params
 func (o *UpdateScriptParams) SetScript(script string) {
 	o.Script = script
+}
+
+// WithWid adds the wid to the update script params
+func (o *UpdateScriptParams) WithWid(wid string) *UpdateScriptParams {
+	o.SetWid(wid)
+	return o
+}
+
+// SetWid adds the wid to the update script params
+func (o *UpdateScriptParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -188,13 +188,13 @@ func (o *UpdateScriptParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		}
 	}
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param script
+	if err := r.SetPathParam("script", o.Script); err != nil {
 		return err
 	}
 
-	// path param script
-	if err := r.SetPathParam("script", o.Script); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

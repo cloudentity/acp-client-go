@@ -90,7 +90,7 @@ type SetScriptExecutionPointsOK struct {
 }
 
 func (o *SetScriptExecutionPointsOK) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/script-execution-points][%d] setScriptExecutionPointsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsOK  %+v", 200, o.Payload)
 }
 func (o *SetScriptExecutionPointsOK) GetPayload() *models.ScriptExecutionPoints {
 	return o.Payload
@@ -122,7 +122,7 @@ type SetScriptExecutionPointsBadRequest struct {
 }
 
 func (o *SetScriptExecutionPointsBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/script-execution-points][%d] setScriptExecutionPointsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsBadRequest  %+v", 400, o.Payload)
 }
 func (o *SetScriptExecutionPointsBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -154,7 +154,7 @@ type SetScriptExecutionPointsUnauthorized struct {
 }
 
 func (o *SetScriptExecutionPointsUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/script-execution-points][%d] setScriptExecutionPointsUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsUnauthorized  %+v", 401, o.Payload)
 }
 func (o *SetScriptExecutionPointsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -186,7 +186,7 @@ type SetScriptExecutionPointsForbidden struct {
 }
 
 func (o *SetScriptExecutionPointsForbidden) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/script-execution-points][%d] setScriptExecutionPointsForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsForbidden  %+v", 403, o.Payload)
 }
 func (o *SetScriptExecutionPointsForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -218,7 +218,7 @@ type SetScriptExecutionPointsNotFound struct {
 }
 
 func (o *SetScriptExecutionPointsNotFound) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/script-execution-points][%d] setScriptExecutionPointsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsNotFound  %+v", 404, o.Payload)
 }
 func (o *SetScriptExecutionPointsNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -250,7 +250,7 @@ type SetScriptExecutionPointsConflict struct {
 }
 
 func (o *SetScriptExecutionPointsConflict) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/script-execution-points][%d] setScriptExecutionPointsConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsConflict  %+v", 409, o.Payload)
 }
 func (o *SetScriptExecutionPointsConflict) GetPayload() *models.Error {
 	return o.Payload
@@ -282,7 +282,7 @@ type SetScriptExecutionPointsUnprocessableEntity struct {
 }
 
 func (o *SetScriptExecutionPointsUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/script-execution-points][%d] setScriptExecutionPointsUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsUnprocessableEntity  %+v", 422, o.Payload)
 }
 func (o *SetScriptExecutionPointsUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
@@ -314,7 +314,7 @@ type SetScriptExecutionPointsTooManyRequests struct {
 }
 
 func (o *SetScriptExecutionPointsTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/script-execution-points][%d] setScriptExecutionPointsTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *SetScriptExecutionPointsTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

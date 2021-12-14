@@ -67,13 +67,13 @@ type SetCIBAAuthenticationServiceParams struct {
 	*/
 	CIBAAuthenticationService *models.CIBAAuthenticationService
 
-	/* Aid.
+	/* Wid.
 
 	   Authorization server id
 
 	   Default: "default"
 	*/
-	Aid string
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -93,11 +93,11 @@ func (o *SetCIBAAuthenticationServiceParams) WithDefaults() *SetCIBAAuthenticati
 // All values with no default are reset to their zero value.
 func (o *SetCIBAAuthenticationServiceParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := SetCIBAAuthenticationServiceParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -150,15 +150,15 @@ func (o *SetCIBAAuthenticationServiceParams) SetCIBAAuthenticationService(cIBAAu
 	o.CIBAAuthenticationService = cIBAAuthenticationService
 }
 
-// WithAid adds the aid to the set c i b a authentication service params
-func (o *SetCIBAAuthenticationServiceParams) WithAid(aid string) *SetCIBAAuthenticationServiceParams {
-	o.SetAid(aid)
+// WithWid adds the wid to the set c i b a authentication service params
+func (o *SetCIBAAuthenticationServiceParams) WithWid(wid string) *SetCIBAAuthenticationServiceParams {
+	o.SetWid(wid)
 	return o
 }
 
-// SetAid adds the aid to the set c i b a authentication service params
-func (o *SetCIBAAuthenticationServiceParams) SetAid(aid string) {
-	o.Aid = aid
+// SetWid adds the wid to the set c i b a authentication service params
+func (o *SetCIBAAuthenticationServiceParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -174,8 +174,8 @@ func (o *SetCIBAAuthenticationServiceParams) WriteToRequest(r runtime.ClientRequ
 		}
 	}
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

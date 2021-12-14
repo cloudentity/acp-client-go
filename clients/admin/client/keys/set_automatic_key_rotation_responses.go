@@ -78,7 +78,7 @@ type SetAutomaticKeyRotationOK struct {
 }
 
 func (o *SetAutomaticKeyRotationOK) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/keys/automatic-key-rotation][%d] setAutomaticKeyRotationOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/keys/automatic-key-rotation][%d] setAutomaticKeyRotationOK  %+v", 200, o.Payload)
 }
 func (o *SetAutomaticKeyRotationOK) GetPayload() *models.AutomaticKeyRotation {
 	return o.Payload
@@ -110,7 +110,7 @@ type SetAutomaticKeyRotationBadRequest struct {
 }
 
 func (o *SetAutomaticKeyRotationBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/keys/automatic-key-rotation][%d] setAutomaticKeyRotationBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/keys/automatic-key-rotation][%d] setAutomaticKeyRotationBadRequest  %+v", 400, o.Payload)
 }
 func (o *SetAutomaticKeyRotationBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -142,7 +142,7 @@ type SetAutomaticKeyRotationUnauthorized struct {
 }
 
 func (o *SetAutomaticKeyRotationUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/keys/automatic-key-rotation][%d] setAutomaticKeyRotationUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/keys/automatic-key-rotation][%d] setAutomaticKeyRotationUnauthorized  %+v", 401, o.Payload)
 }
 func (o *SetAutomaticKeyRotationUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -174,7 +174,7 @@ type SetAutomaticKeyRotationForbidden struct {
 }
 
 func (o *SetAutomaticKeyRotationForbidden) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/keys/automatic-key-rotation][%d] setAutomaticKeyRotationForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/keys/automatic-key-rotation][%d] setAutomaticKeyRotationForbidden  %+v", 403, o.Payload)
 }
 func (o *SetAutomaticKeyRotationForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -206,7 +206,7 @@ type SetAutomaticKeyRotationNotFound struct {
 }
 
 func (o *SetAutomaticKeyRotationNotFound) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/keys/automatic-key-rotation][%d] setAutomaticKeyRotationNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/keys/automatic-key-rotation][%d] setAutomaticKeyRotationNotFound  %+v", 404, o.Payload)
 }
 func (o *SetAutomaticKeyRotationNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -238,7 +238,7 @@ type SetAutomaticKeyRotationTooManyRequests struct {
 }
 
 func (o *SetAutomaticKeyRotationTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/keys/automatic-key-rotation][%d] setAutomaticKeyRotationTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/keys/automatic-key-rotation][%d] setAutomaticKeyRotationTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *SetAutomaticKeyRotationTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

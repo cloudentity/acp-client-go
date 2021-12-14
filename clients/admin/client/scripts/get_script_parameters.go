@@ -59,19 +59,19 @@ func NewGetScriptParamsWithHTTPClient(client *http.Client) *GetScriptParams {
 */
 type GetScriptParams struct {
 
-	/* Aid.
-
-	   ID of your authorization server (workspace)
-
-	   Default: "default"
-	*/
-	Aid string
-
 	/* Script.
 
 	   ID of your script
 	*/
 	Script string
+
+	/* Wid.
+
+	   ID of your authorization server (workspace)
+
+	   Default: "default"
+	*/
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -91,11 +91,11 @@ func (o *GetScriptParams) WithDefaults() *GetScriptParams {
 // All values with no default are reset to their zero value.
 func (o *GetScriptParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := GetScriptParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -137,17 +137,6 @@ func (o *GetScriptParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithAid adds the aid to the get script params
-func (o *GetScriptParams) WithAid(aid string) *GetScriptParams {
-	o.SetAid(aid)
-	return o
-}
-
-// SetAid adds the aid to the get script params
-func (o *GetScriptParams) SetAid(aid string) {
-	o.Aid = aid
-}
-
 // WithScript adds the script to the get script params
 func (o *GetScriptParams) WithScript(script string) *GetScriptParams {
 	o.SetScript(script)
@@ -159,6 +148,17 @@ func (o *GetScriptParams) SetScript(script string) {
 	o.Script = script
 }
 
+// WithWid adds the wid to the get script params
+func (o *GetScriptParams) WithWid(wid string) *GetScriptParams {
+	o.SetWid(wid)
+	return o
+}
+
+// SetWid adds the wid to the get script params
+func (o *GetScriptParams) SetWid(wid string) {
+	o.Wid = wid
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetScriptParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -167,13 +167,13 @@ func (o *GetScriptParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 	}
 	var res []error
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param script
+	if err := r.SetPathParam("script", o.Script); err != nil {
 		return err
 	}
 
-	// path param script
-	if err := r.SetPathParam("script", o.Script); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

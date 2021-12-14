@@ -78,7 +78,7 @@ type UpdateScriptOK struct {
 }
 
 func (o *UpdateScriptOK) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/scripts/{script}][%d] updateScriptOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}][%d] updateScriptOK  %+v", 200, o.Payload)
 }
 func (o *UpdateScriptOK) GetPayload() *models.Script {
 	return o.Payload
@@ -110,7 +110,7 @@ type UpdateScriptBadRequest struct {
 }
 
 func (o *UpdateScriptBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/scripts/{script}][%d] updateScriptBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}][%d] updateScriptBadRequest  %+v", 400, o.Payload)
 }
 func (o *UpdateScriptBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -142,7 +142,7 @@ type UpdateScriptUnauthorized struct {
 }
 
 func (o *UpdateScriptUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/scripts/{script}][%d] updateScriptUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}][%d] updateScriptUnauthorized  %+v", 401, o.Payload)
 }
 func (o *UpdateScriptUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -174,7 +174,7 @@ type UpdateScriptForbidden struct {
 }
 
 func (o *UpdateScriptForbidden) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/scripts/{script}][%d] updateScriptForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}][%d] updateScriptForbidden  %+v", 403, o.Payload)
 }
 func (o *UpdateScriptForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -206,7 +206,7 @@ type UpdateScriptNotFound struct {
 }
 
 func (o *UpdateScriptNotFound) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/scripts/{script}][%d] updateScriptNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}][%d] updateScriptNotFound  %+v", 404, o.Payload)
 }
 func (o *UpdateScriptNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -238,7 +238,7 @@ type UpdateScriptTooManyRequests struct {
 }
 
 func (o *UpdateScriptTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/scripts/{script}][%d] updateScriptTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}][%d] updateScriptTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *UpdateScriptTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

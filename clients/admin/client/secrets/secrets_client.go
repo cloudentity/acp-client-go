@@ -55,7 +55,7 @@ func (a *Client) CreateSecret(params *CreateSecretParams, authInfo runtime.Clien
 	op := &runtime.ClientOperation{
 		ID:                 "createSecret",
 		Method:             "POST",
-		PathPattern:        "/servers/{aid}/secrets",
+		PathPattern:        "/servers/{wid}/secrets",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -96,7 +96,7 @@ func (a *Client) DeleteSecret(params *DeleteSecretParams, authInfo runtime.Clien
 	op := &runtime.ClientOperation{
 		ID:                 "deleteSecret",
 		Method:             "DELETE",
-		PathPattern:        "/servers/{aid}/secrets/{sid}",
+		PathPattern:        "/servers/{wid}/secrets/{sid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -138,7 +138,7 @@ func (a *Client) ListSecrets(params *ListSecretsParams, authInfo runtime.ClientA
 	op := &runtime.ClientOperation{
 		ID:                 "listSecrets",
 		Method:             "GET",
-		PathPattern:        "/servers/{aid}/secrets",
+		PathPattern:        "/servers/{wid}/secrets",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -179,7 +179,7 @@ func (a *Client) UpdateSecret(params *UpdateSecretParams, authInfo runtime.Clien
 	op := &runtime.ClientOperation{
 		ID:                 "updateSecret",
 		Method:             "PUT",
-		PathPattern:        "/servers/{aid}/secrets/{sid}",
+		PathPattern:        "/servers/{wid}/secrets/{sid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

@@ -90,7 +90,7 @@ type SetPolicyExecutionPointsOK struct {
 }
 
 func (o *SetPolicyExecutionPointsOK) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/policy-execution-points][%d] setPolicyExecutionPointsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/policy-execution-points][%d] setPolicyExecutionPointsOK  %+v", 200, o.Payload)
 }
 func (o *SetPolicyExecutionPointsOK) GetPayload() *models.PolicyExecutionPoints {
 	return o.Payload
@@ -122,7 +122,7 @@ type SetPolicyExecutionPointsBadRequest struct {
 }
 
 func (o *SetPolicyExecutionPointsBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/policy-execution-points][%d] setPolicyExecutionPointsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/policy-execution-points][%d] setPolicyExecutionPointsBadRequest  %+v", 400, o.Payload)
 }
 func (o *SetPolicyExecutionPointsBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -154,7 +154,7 @@ type SetPolicyExecutionPointsUnauthorized struct {
 }
 
 func (o *SetPolicyExecutionPointsUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/policy-execution-points][%d] setPolicyExecutionPointsUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/policy-execution-points][%d] setPolicyExecutionPointsUnauthorized  %+v", 401, o.Payload)
 }
 func (o *SetPolicyExecutionPointsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -186,7 +186,7 @@ type SetPolicyExecutionPointsForbidden struct {
 }
 
 func (o *SetPolicyExecutionPointsForbidden) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/policy-execution-points][%d] setPolicyExecutionPointsForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/policy-execution-points][%d] setPolicyExecutionPointsForbidden  %+v", 403, o.Payload)
 }
 func (o *SetPolicyExecutionPointsForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -218,7 +218,7 @@ type SetPolicyExecutionPointsNotFound struct {
 }
 
 func (o *SetPolicyExecutionPointsNotFound) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/policy-execution-points][%d] setPolicyExecutionPointsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/policy-execution-points][%d] setPolicyExecutionPointsNotFound  %+v", 404, o.Payload)
 }
 func (o *SetPolicyExecutionPointsNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -250,7 +250,7 @@ type SetPolicyExecutionPointsConflict struct {
 }
 
 func (o *SetPolicyExecutionPointsConflict) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/policy-execution-points][%d] setPolicyExecutionPointsConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/policy-execution-points][%d] setPolicyExecutionPointsConflict  %+v", 409, o.Payload)
 }
 func (o *SetPolicyExecutionPointsConflict) GetPayload() *models.Error {
 	return o.Payload
@@ -282,7 +282,7 @@ type SetPolicyExecutionPointsUnprocessableEntity struct {
 }
 
 func (o *SetPolicyExecutionPointsUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/policy-execution-points][%d] setPolicyExecutionPointsUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/policy-execution-points][%d] setPolicyExecutionPointsUnprocessableEntity  %+v", 422, o.Payload)
 }
 func (o *SetPolicyExecutionPointsUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
@@ -314,7 +314,7 @@ type SetPolicyExecutionPointsTooManyRequests struct {
 }
 
 func (o *SetPolicyExecutionPointsTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/policy-execution-points][%d] setPolicyExecutionPointsTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/policy-execution-points][%d] setPolicyExecutionPointsTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *SetPolicyExecutionPointsTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

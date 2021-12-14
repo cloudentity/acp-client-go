@@ -194,7 +194,7 @@ func (a *Client) ListPolicies(params *ListPoliciesParams, authInfo runtime.Clien
 	op := &runtime.ClientOperation{
 		ID:                 "listPolicies",
 		Method:             "GET",
-		PathPattern:        "/servers/{aid}/policies",
+		PathPattern:        "/servers/{wid}/policies",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -235,7 +235,7 @@ func (a *Client) ListPolicyExecutionPoints(params *ListPolicyExecutionPointsPara
 	op := &runtime.ClientOperation{
 		ID:                 "listPolicyExecutionPoints",
 		Method:             "GET",
-		PathPattern:        "/servers/{aid}/policy-execution-points",
+		PathPattern:        "/servers/{wid}/policy-execution-points",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -277,7 +277,7 @@ func (a *Client) SetPolicyExecutionPoints(params *SetPolicyExecutionPointsParams
 	op := &runtime.ClientOperation{
 		ID:                 "setPolicyExecutionPoints",
 		Method:             "PUT",
-		PathPattern:        "/servers/{aid}/policy-execution-points",
+		PathPattern:        "/servers/{wid}/policy-execution-points",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

@@ -59,19 +59,19 @@ func NewGetKeyParamsWithHTTPClient(client *http.Client) *GetKeyParams {
 */
 type GetKeyParams struct {
 
-	/* Aid.
-
-	   Authorization server id
-
-	   Default: "default"
-	*/
-	Aid string
-
 	/* Kid.
 
 	   Key identifier
 	*/
 	Kid string
+
+	/* Wid.
+
+	   Authorization server id
+
+	   Default: "default"
+	*/
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -91,11 +91,11 @@ func (o *GetKeyParams) WithDefaults() *GetKeyParams {
 // All values with no default are reset to their zero value.
 func (o *GetKeyParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := GetKeyParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -137,17 +137,6 @@ func (o *GetKeyParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithAid adds the aid to the get key params
-func (o *GetKeyParams) WithAid(aid string) *GetKeyParams {
-	o.SetAid(aid)
-	return o
-}
-
-// SetAid adds the aid to the get key params
-func (o *GetKeyParams) SetAid(aid string) {
-	o.Aid = aid
-}
-
 // WithKid adds the kid to the get key params
 func (o *GetKeyParams) WithKid(kid string) *GetKeyParams {
 	o.SetKid(kid)
@@ -159,6 +148,17 @@ func (o *GetKeyParams) SetKid(kid string) {
 	o.Kid = kid
 }
 
+// WithWid adds the wid to the get key params
+func (o *GetKeyParams) WithWid(wid string) *GetKeyParams {
+	o.SetWid(wid)
+	return o
+}
+
+// SetWid adds the wid to the get key params
+func (o *GetKeyParams) SetWid(wid string) {
+	o.Wid = wid
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetKeyParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -167,13 +167,13 @@ func (o *GetKeyParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regist
 	}
 	var res []error
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param kid
+	if err := r.SetPathParam("kid", o.Kid); err != nil {
 		return err
 	}
 
-	// path param kid
-	if err := r.SetPathParam("kid", o.Kid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

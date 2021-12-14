@@ -84,7 +84,7 @@ type CreateOIDCIDPCreated struct {
 }
 
 func (o *CreateOIDCIDPCreated) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/oidc][%d] createOIdCIdPCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/oidc][%d] createOIdCIdPCreated  %+v", 201, o.Payload)
 }
 func (o *CreateOIDCIDPCreated) GetPayload() *models.OIDCIDP {
 	return o.Payload
@@ -116,7 +116,7 @@ type CreateOIDCIDPBadRequest struct {
 }
 
 func (o *CreateOIDCIDPBadRequest) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/oidc][%d] createOIdCIdPBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/oidc][%d] createOIdCIdPBadRequest  %+v", 400, o.Payload)
 }
 func (o *CreateOIDCIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -148,7 +148,7 @@ type CreateOIDCIDPUnauthorized struct {
 }
 
 func (o *CreateOIDCIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/oidc][%d] createOIdCIdPUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/oidc][%d] createOIdCIdPUnauthorized  %+v", 401, o.Payload)
 }
 func (o *CreateOIDCIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -180,7 +180,7 @@ type CreateOIDCIDPForbidden struct {
 }
 
 func (o *CreateOIDCIDPForbidden) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/oidc][%d] createOIdCIdPForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/oidc][%d] createOIdCIdPForbidden  %+v", 403, o.Payload)
 }
 func (o *CreateOIDCIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -212,7 +212,7 @@ type CreateOIDCIDPNotFound struct {
 }
 
 func (o *CreateOIDCIDPNotFound) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/oidc][%d] createOIdCIdPNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/oidc][%d] createOIdCIdPNotFound  %+v", 404, o.Payload)
 }
 func (o *CreateOIDCIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -244,7 +244,7 @@ type CreateOIDCIDPUnprocessableEntity struct {
 }
 
 func (o *CreateOIDCIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/oidc][%d] createOIdCIdPUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/oidc][%d] createOIdCIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 func (o *CreateOIDCIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
@@ -276,7 +276,7 @@ type CreateOIDCIDPTooManyRequests struct {
 }
 
 func (o *CreateOIDCIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/oidc][%d] createOIdCIdPTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/oidc][%d] createOIdCIdPTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *CreateOIDCIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

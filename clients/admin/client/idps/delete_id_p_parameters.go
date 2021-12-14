@@ -59,19 +59,19 @@ func NewDeleteIDPParamsWithHTTPClient(client *http.Client) *DeleteIDPParams {
 */
 type DeleteIDPParams struct {
 
-	/* Aid.
-
-	   ID of your authorization server (workspace)
-
-	   Default: "default"
-	*/
-	Aid string
-
 	/* Iid.
 
 	   ID of the IDP you wish to delete
 	*/
 	Iid string
+
+	/* Wid.
+
+	   ID of your authorization server (workspace)
+
+	   Default: "default"
+	*/
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -91,11 +91,11 @@ func (o *DeleteIDPParams) WithDefaults() *DeleteIDPParams {
 // All values with no default are reset to their zero value.
 func (o *DeleteIDPParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := DeleteIDPParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -137,17 +137,6 @@ func (o *DeleteIDPParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithAid adds the aid to the delete ID p params
-func (o *DeleteIDPParams) WithAid(aid string) *DeleteIDPParams {
-	o.SetAid(aid)
-	return o
-}
-
-// SetAid adds the aid to the delete ID p params
-func (o *DeleteIDPParams) SetAid(aid string) {
-	o.Aid = aid
-}
-
 // WithIid adds the iid to the delete ID p params
 func (o *DeleteIDPParams) WithIid(iid string) *DeleteIDPParams {
 	o.SetIid(iid)
@@ -159,6 +148,17 @@ func (o *DeleteIDPParams) SetIid(iid string) {
 	o.Iid = iid
 }
 
+// WithWid adds the wid to the delete ID p params
+func (o *DeleteIDPParams) WithWid(wid string) *DeleteIDPParams {
+	o.SetWid(wid)
+	return o
+}
+
+// SetWid adds the wid to the delete ID p params
+func (o *DeleteIDPParams) SetWid(wid string) {
+	o.Wid = wid
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *DeleteIDPParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -167,13 +167,13 @@ func (o *DeleteIDPParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 	}
 	var res []error
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param iid
+	if err := r.SetPathParam("iid", o.Iid); err != nil {
 		return err
 	}
 
-	// path param iid
-	if err := r.SetPathParam("iid", o.Iid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

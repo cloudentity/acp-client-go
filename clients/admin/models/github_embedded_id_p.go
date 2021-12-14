@@ -73,6 +73,9 @@ type GithubEmbeddedIDP struct {
 	// ID of the tenant where an IDP is connected
 	TenantID string `json:"tenant_id,omitempty"`
 
+	// token exchange settings
+	TokenExchangeSettings *IDPTokenExchangeSettings `json:"token_exchange_settings,omitempty"`
+
 	// transformer
 	Transformer *ScriptTransformer `json:"transformer,omitempty"`
 }
@@ -94,6 +97,10 @@ func (m *GithubEmbeddedIDP) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateMappings(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTokenExchangeSettings(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -179,6 +186,25 @@ func (m *GithubEmbeddedIDP) validateMappings(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *GithubEmbeddedIDP) validateTokenExchangeSettings(formats strfmt.Registry) error {
+	if swag.IsZero(m.TokenExchangeSettings) { // not required
+		return nil
+	}
+
+	if m.TokenExchangeSettings != nil {
+		if err := m.TokenExchangeSettings.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("token_exchange_settings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("token_exchange_settings")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *GithubEmbeddedIDP) validateTransformer(formats strfmt.Registry) error {
 	if swag.IsZero(m.Transformer) { // not required
 		return nil
@@ -215,6 +241,10 @@ func (m *GithubEmbeddedIDP) ContextValidate(ctx context.Context, formats strfmt.
 	}
 
 	if err := m.contextValidateMappings(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateTokenExchangeSettings(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -283,6 +313,22 @@ func (m *GithubEmbeddedIDP) contextValidateMappings(ctx context.Context, formats
 			return ce.ValidateName("mappings")
 		}
 		return err
+	}
+
+	return nil
+}
+
+func (m *GithubEmbeddedIDP) contextValidateTokenExchangeSettings(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.TokenExchangeSettings != nil {
+		if err := m.TokenExchangeSettings.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("token_exchange_settings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("token_exchange_settings")
+			}
+			return err
+		}
 	}
 
 	return nil

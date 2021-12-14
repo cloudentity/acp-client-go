@@ -74,19 +74,19 @@ func NewTestAPIOK() *TestAPIOK {
 API test result
 */
 type TestAPIOK struct {
-	Payload *models.TestAPIResponse
+	Payload *models.TestAPIResult
 }
 
 func (o *TestAPIOK) Error() string {
 	return fmt.Sprintf("[POST /apis/test][%d] testApiOK  %+v", 200, o.Payload)
 }
-func (o *TestAPIOK) GetPayload() *models.TestAPIResponse {
+func (o *TestAPIOK) GetPayload() *models.TestAPIResult {
 	return o.Payload
 }
 
 func (o *TestAPIOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.TestAPIResponse)
+	o.Payload = new(models.TestAPIResult)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

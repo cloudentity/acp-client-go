@@ -140,7 +140,7 @@ func (a *Client) ListClaims(params *ListClaimsParams, authInfo runtime.ClientAut
 	op := &runtime.ClientOperation{
 		ID:                 "listClaims",
 		Method:             "GET",
-		PathPattern:        "/servers/{aid}/claims",
+		PathPattern:        "/servers/{wid}/claims",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

@@ -59,14 +59,6 @@ func NewRotateKeyParamsWithHTTPClient(client *http.Client) *RotateKeyParams {
 */
 type RotateKeyParams struct {
 
-	/* Aid.
-
-	   Authorization server id
-
-	   Default: "default"
-	*/
-	Aid string
-
 	/* KeyType.
 
 	   Key type
@@ -82,6 +74,14 @@ type RotateKeyParams struct {
 	   Default: "sig"
 	*/
 	Use *string
+
+	/* Wid.
+
+	   Authorization server id
+
+	   Default: "default"
+	*/
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -101,17 +101,17 @@ func (o *RotateKeyParams) WithDefaults() *RotateKeyParams {
 // All values with no default are reset to their zero value.
 func (o *RotateKeyParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
-
 		keyTypeDefault = string("rsa")
 
 		useDefault = string("sig")
+
+		widDefault = string("default")
 	)
 
 	val := RotateKeyParams{
-		Aid:     aidDefault,
 		KeyType: &keyTypeDefault,
 		Use:     &useDefault,
+		Wid:     widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -153,17 +153,6 @@ func (o *RotateKeyParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithAid adds the aid to the rotate key params
-func (o *RotateKeyParams) WithAid(aid string) *RotateKeyParams {
-	o.SetAid(aid)
-	return o
-}
-
-// SetAid adds the aid to the rotate key params
-func (o *RotateKeyParams) SetAid(aid string) {
-	o.Aid = aid
-}
-
 // WithKeyType adds the keyType to the rotate key params
 func (o *RotateKeyParams) WithKeyType(keyType *string) *RotateKeyParams {
 	o.SetKeyType(keyType)
@@ -186,6 +175,17 @@ func (o *RotateKeyParams) SetUse(use *string) {
 	o.Use = use
 }
 
+// WithWid adds the wid to the rotate key params
+func (o *RotateKeyParams) WithWid(wid string) *RotateKeyParams {
+	o.SetWid(wid)
+	return o
+}
+
+// SetWid adds the wid to the rotate key params
+func (o *RotateKeyParams) SetWid(wid string) {
+	o.Wid = wid
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *RotateKeyParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -193,11 +193,6 @@ func (o *RotateKeyParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 		return err
 	}
 	var res []error
-
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
-		return err
-	}
 
 	if o.KeyType != nil {
 
@@ -231,6 +226,11 @@ func (o *RotateKeyParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 				return err
 			}
 		}
+	}
+
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
+		return err
 	}
 
 	if len(res) > 0 {

@@ -59,14 +59,6 @@ func NewUnbindServerParamsWithHTTPClient(client *http.Client) *UnbindServerParam
 */
 type UnbindServerParams struct {
 
-	/* Aid.
-
-	   Authorization server id
-
-	   Default: "default"
-	*/
-	Aid string
-
 	/* Rid.
 
 	   Dependent server id
@@ -74,6 +66,14 @@ type UnbindServerParams struct {
 	   Default: "default"
 	*/
 	Rid string
+
+	/* Wid.
+
+	   Workspace id
+
+	   Default: "default"
+	*/
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -93,14 +93,14 @@ func (o *UnbindServerParams) WithDefaults() *UnbindServerParams {
 // All values with no default are reset to their zero value.
 func (o *UnbindServerParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
-
 		ridDefault = string("default")
+
+		widDefault = string("default")
 	)
 
 	val := UnbindServerParams{
-		Aid: aidDefault,
 		Rid: ridDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -142,17 +142,6 @@ func (o *UnbindServerParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithAid adds the aid to the unbind server params
-func (o *UnbindServerParams) WithAid(aid string) *UnbindServerParams {
-	o.SetAid(aid)
-	return o
-}
-
-// SetAid adds the aid to the unbind server params
-func (o *UnbindServerParams) SetAid(aid string) {
-	o.Aid = aid
-}
-
 // WithRid adds the rid to the unbind server params
 func (o *UnbindServerParams) WithRid(rid string) *UnbindServerParams {
 	o.SetRid(rid)
@@ -164,6 +153,17 @@ func (o *UnbindServerParams) SetRid(rid string) {
 	o.Rid = rid
 }
 
+// WithWid adds the wid to the unbind server params
+func (o *UnbindServerParams) WithWid(wid string) *UnbindServerParams {
+	o.SetWid(wid)
+	return o
+}
+
+// SetWid adds the wid to the unbind server params
+func (o *UnbindServerParams) SetWid(wid string) {
+	o.Wid = wid
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *UnbindServerParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -172,13 +172,13 @@ func (o *UnbindServerParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 	}
 	var res []error
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param rid
+	if err := r.SetPathParam("rid", o.Rid); err != nil {
 		return err
 	}
 
-	// path param rid
-	if err := r.SetPathParam("rid", o.Rid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

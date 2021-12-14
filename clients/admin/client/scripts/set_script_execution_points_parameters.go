@@ -64,13 +64,13 @@ type SetScriptExecutionPointsParams struct {
 	// Executions.
 	Executions *models.ScriptExecutionPoints
 
-	/* Aid.
+	/* Wid.
 
 	   Authorization server id
 
 	   Default: "default"
 	*/
-	Aid string
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -90,11 +90,11 @@ func (o *SetScriptExecutionPointsParams) WithDefaults() *SetScriptExecutionPoint
 // All values with no default are reset to their zero value.
 func (o *SetScriptExecutionPointsParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := SetScriptExecutionPointsParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -147,15 +147,15 @@ func (o *SetScriptExecutionPointsParams) SetExecutions(executions *models.Script
 	o.Executions = executions
 }
 
-// WithAid adds the aid to the set script execution points params
-func (o *SetScriptExecutionPointsParams) WithAid(aid string) *SetScriptExecutionPointsParams {
-	o.SetAid(aid)
+// WithWid adds the wid to the set script execution points params
+func (o *SetScriptExecutionPointsParams) WithWid(wid string) *SetScriptExecutionPointsParams {
+	o.SetWid(wid)
 	return o
 }
 
-// SetAid adds the aid to the set script execution points params
-func (o *SetScriptExecutionPointsParams) SetAid(aid string) {
-	o.Aid = aid
+// SetWid adds the wid to the set script execution points params
+func (o *SetScriptExecutionPointsParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -171,8 +171,8 @@ func (o *SetScriptExecutionPointsParams) WriteToRequest(r runtime.ClientRequest,
 		}
 	}
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

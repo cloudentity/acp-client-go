@@ -180,7 +180,7 @@ func (a *Client) ListScopes(params *ListScopesParams, authInfo runtime.ClientAut
 	op := &runtime.ClientOperation{
 		ID:                 "listScopes",
 		Method:             "GET",
-		PathPattern:        "/servers/{aid}/scopes",
+		PathPattern:        "/servers/{wid}/scopes",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

@@ -84,7 +84,7 @@ type UpdateGithubEmbeddedIDPOK struct {
 }
 
 func (o *UpdateGithubEmbeddedIDPOK) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/github_embedded/{iid}][%d] updateGithubEmbeddedIdPOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/github_embedded/{iid}][%d] updateGithubEmbeddedIdPOK  %+v", 200, o.Payload)
 }
 func (o *UpdateGithubEmbeddedIDPOK) GetPayload() *models.GithubEmbeddedIDP {
 	return o.Payload
@@ -116,7 +116,7 @@ type UpdateGithubEmbeddedIDPBadRequest struct {
 }
 
 func (o *UpdateGithubEmbeddedIDPBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/github_embedded/{iid}][%d] updateGithubEmbeddedIdPBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/github_embedded/{iid}][%d] updateGithubEmbeddedIdPBadRequest  %+v", 400, o.Payload)
 }
 func (o *UpdateGithubEmbeddedIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -148,7 +148,7 @@ type UpdateGithubEmbeddedIDPUnauthorized struct {
 }
 
 func (o *UpdateGithubEmbeddedIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/github_embedded/{iid}][%d] updateGithubEmbeddedIdPUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/github_embedded/{iid}][%d] updateGithubEmbeddedIdPUnauthorized  %+v", 401, o.Payload)
 }
 func (o *UpdateGithubEmbeddedIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -180,7 +180,7 @@ type UpdateGithubEmbeddedIDPForbidden struct {
 }
 
 func (o *UpdateGithubEmbeddedIDPForbidden) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/github_embedded/{iid}][%d] updateGithubEmbeddedIdPForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/github_embedded/{iid}][%d] updateGithubEmbeddedIdPForbidden  %+v", 403, o.Payload)
 }
 func (o *UpdateGithubEmbeddedIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -212,7 +212,7 @@ type UpdateGithubEmbeddedIDPNotFound struct {
 }
 
 func (o *UpdateGithubEmbeddedIDPNotFound) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/github_embedded/{iid}][%d] updateGithubEmbeddedIdPNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/github_embedded/{iid}][%d] updateGithubEmbeddedIdPNotFound  %+v", 404, o.Payload)
 }
 func (o *UpdateGithubEmbeddedIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -244,7 +244,7 @@ type UpdateGithubEmbeddedIDPUnprocessableEntity struct {
 }
 
 func (o *UpdateGithubEmbeddedIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/github_embedded/{iid}][%d] updateGithubEmbeddedIdPUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/github_embedded/{iid}][%d] updateGithubEmbeddedIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 func (o *UpdateGithubEmbeddedIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
@@ -276,7 +276,7 @@ type UpdateGithubEmbeddedIDPTooManyRequests struct {
 }
 
 func (o *UpdateGithubEmbeddedIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/github_embedded/{iid}][%d] updateGithubEmbeddedIdPTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/github_embedded/{iid}][%d] updateGithubEmbeddedIdPTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *UpdateGithubEmbeddedIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

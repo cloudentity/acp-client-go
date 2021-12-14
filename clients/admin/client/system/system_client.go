@@ -97,7 +97,7 @@ func (a *Client) ListSystemAPIBindings(params *ListSystemAPIBindingsParams, auth
 	op := &runtime.ClientOperation{
 		ID:                 "listSystemAPIBindings",
 		Method:             "GET",
-		PathPattern:        "/system/apis/{aid}/bindings",
+		PathPattern:        "/system/apis/{wid}/bindings",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

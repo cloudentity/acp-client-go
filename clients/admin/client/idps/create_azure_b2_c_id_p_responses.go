@@ -84,7 +84,7 @@ type CreateAzureB2CIDPCreated struct {
 }
 
 func (o *CreateAzureB2CIDPCreated) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/azureb2c][%d] createAzureB2CIdPCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azureb2c][%d] createAzureB2CIdPCreated  %+v", 201, o.Payload)
 }
 func (o *CreateAzureB2CIDPCreated) GetPayload() *models.AzureB2CIDP {
 	return o.Payload
@@ -116,7 +116,7 @@ type CreateAzureB2CIDPBadRequest struct {
 }
 
 func (o *CreateAzureB2CIDPBadRequest) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/azureb2c][%d] createAzureB2CIdPBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azureb2c][%d] createAzureB2CIdPBadRequest  %+v", 400, o.Payload)
 }
 func (o *CreateAzureB2CIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -148,7 +148,7 @@ type CreateAzureB2CIDPUnauthorized struct {
 }
 
 func (o *CreateAzureB2CIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/azureb2c][%d] createAzureB2CIdPUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azureb2c][%d] createAzureB2CIdPUnauthorized  %+v", 401, o.Payload)
 }
 func (o *CreateAzureB2CIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -180,7 +180,7 @@ type CreateAzureB2CIDPForbidden struct {
 }
 
 func (o *CreateAzureB2CIDPForbidden) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/azureb2c][%d] createAzureB2CIdPForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azureb2c][%d] createAzureB2CIdPForbidden  %+v", 403, o.Payload)
 }
 func (o *CreateAzureB2CIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -212,7 +212,7 @@ type CreateAzureB2CIDPNotFound struct {
 }
 
 func (o *CreateAzureB2CIDPNotFound) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/azureb2c][%d] createAzureB2CIdPNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azureb2c][%d] createAzureB2CIdPNotFound  %+v", 404, o.Payload)
 }
 func (o *CreateAzureB2CIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -244,7 +244,7 @@ type CreateAzureB2CIDPUnprocessableEntity struct {
 }
 
 func (o *CreateAzureB2CIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/azureb2c][%d] createAzureB2CIdPUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azureb2c][%d] createAzureB2CIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 func (o *CreateAzureB2CIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
@@ -276,7 +276,7 @@ type CreateAzureB2CIDPTooManyRequests struct {
 }
 
 func (o *CreateAzureB2CIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/azureb2c][%d] createAzureB2CIdPTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azureb2c][%d] createAzureB2CIdPTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *CreateAzureB2CIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

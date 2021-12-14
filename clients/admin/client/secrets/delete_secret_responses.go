@@ -77,7 +77,7 @@ type DeleteSecretNoContent struct {
 }
 
 func (o *DeleteSecretNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{aid}/secrets/{sid}][%d] deleteSecretNoContent ", 204)
+	return fmt.Sprintf("[DELETE /servers/{wid}/secrets/{sid}][%d] deleteSecretNoContent ", 204)
 }
 
 func (o *DeleteSecretNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -99,7 +99,7 @@ type DeleteSecretBadRequest struct {
 }
 
 func (o *DeleteSecretBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{aid}/secrets/{sid}][%d] deleteSecretBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/secrets/{sid}][%d] deleteSecretBadRequest  %+v", 400, o.Payload)
 }
 func (o *DeleteSecretBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -131,7 +131,7 @@ type DeleteSecretUnauthorized struct {
 }
 
 func (o *DeleteSecretUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{aid}/secrets/{sid}][%d] deleteSecretUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/secrets/{sid}][%d] deleteSecretUnauthorized  %+v", 401, o.Payload)
 }
 func (o *DeleteSecretUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -163,7 +163,7 @@ type DeleteSecretForbidden struct {
 }
 
 func (o *DeleteSecretForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{aid}/secrets/{sid}][%d] deleteSecretForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/secrets/{sid}][%d] deleteSecretForbidden  %+v", 403, o.Payload)
 }
 func (o *DeleteSecretForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -195,7 +195,7 @@ type DeleteSecretNotFound struct {
 }
 
 func (o *DeleteSecretNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{aid}/secrets/{sid}][%d] deleteSecretNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/secrets/{sid}][%d] deleteSecretNotFound  %+v", 404, o.Payload)
 }
 func (o *DeleteSecretNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -227,7 +227,7 @@ type DeleteSecretTooManyRequests struct {
 }
 
 func (o *DeleteSecretTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{aid}/secrets/{sid}][%d] deleteSecretTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/secrets/{sid}][%d] deleteSecretTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *DeleteSecretTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

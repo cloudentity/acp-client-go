@@ -59,14 +59,6 @@ func NewBindServerParamsWithHTTPClient(client *http.Client) *BindServerParams {
 */
 type BindServerParams struct {
 
-	/* Aid.
-
-	   Authorization server id
-
-	   Default: "default"
-	*/
-	Aid string
-
 	/* Rid.
 
 	   Dependent server id
@@ -74,6 +66,14 @@ type BindServerParams struct {
 	   Default: "default"
 	*/
 	Rid string
+
+	/* Wid.
+
+	   Workspace id
+
+	   Default: "default"
+	*/
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -93,14 +93,14 @@ func (o *BindServerParams) WithDefaults() *BindServerParams {
 // All values with no default are reset to their zero value.
 func (o *BindServerParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
-
 		ridDefault = string("default")
+
+		widDefault = string("default")
 	)
 
 	val := BindServerParams{
-		Aid: aidDefault,
 		Rid: ridDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -142,17 +142,6 @@ func (o *BindServerParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithAid adds the aid to the bind server params
-func (o *BindServerParams) WithAid(aid string) *BindServerParams {
-	o.SetAid(aid)
-	return o
-}
-
-// SetAid adds the aid to the bind server params
-func (o *BindServerParams) SetAid(aid string) {
-	o.Aid = aid
-}
-
 // WithRid adds the rid to the bind server params
 func (o *BindServerParams) WithRid(rid string) *BindServerParams {
 	o.SetRid(rid)
@@ -164,6 +153,17 @@ func (o *BindServerParams) SetRid(rid string) {
 	o.Rid = rid
 }
 
+// WithWid adds the wid to the bind server params
+func (o *BindServerParams) WithWid(wid string) *BindServerParams {
+	o.SetWid(wid)
+	return o
+}
+
+// SetWid adds the wid to the bind server params
+func (o *BindServerParams) SetWid(wid string) {
+	o.Wid = wid
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *BindServerParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -172,13 +172,13 @@ func (o *BindServerParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 	}
 	var res []error
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param rid
+	if err := r.SetPathParam("rid", o.Rid); err != nil {
 		return err
 	}
 
-	// path param rid
-	if err := r.SetPathParam("rid", o.Rid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

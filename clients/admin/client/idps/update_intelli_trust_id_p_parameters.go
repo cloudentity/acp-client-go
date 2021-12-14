@@ -67,14 +67,6 @@ type UpdateIntelliTrustIDPParams struct {
 	*/
 	IntelliTrustIDP *models.IntelliTrustIDP
 
-	/* Aid.
-
-	   Authorization server id
-
-	   Default: "default"
-	*/
-	Aid string
-
 	/* Iid.
 
 	   IDP id
@@ -82,6 +74,14 @@ type UpdateIntelliTrustIDPParams struct {
 	   Default: "default"
 	*/
 	Iid string
+
+	/* Wid.
+
+	   Authorization server id
+
+	   Default: "default"
+	*/
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -101,14 +101,14 @@ func (o *UpdateIntelliTrustIDPParams) WithDefaults() *UpdateIntelliTrustIDPParam
 // All values with no default are reset to their zero value.
 func (o *UpdateIntelliTrustIDPParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
-
 		iidDefault = string("default")
+
+		widDefault = string("default")
 	)
 
 	val := UpdateIntelliTrustIDPParams{
-		Aid: aidDefault,
 		Iid: iidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -161,17 +161,6 @@ func (o *UpdateIntelliTrustIDPParams) SetIntelliTrustIDP(intelliTrustIDP *models
 	o.IntelliTrustIDP = intelliTrustIDP
 }
 
-// WithAid adds the aid to the update intelli trust ID p params
-func (o *UpdateIntelliTrustIDPParams) WithAid(aid string) *UpdateIntelliTrustIDPParams {
-	o.SetAid(aid)
-	return o
-}
-
-// SetAid adds the aid to the update intelli trust ID p params
-func (o *UpdateIntelliTrustIDPParams) SetAid(aid string) {
-	o.Aid = aid
-}
-
 // WithIid adds the iid to the update intelli trust ID p params
 func (o *UpdateIntelliTrustIDPParams) WithIid(iid string) *UpdateIntelliTrustIDPParams {
 	o.SetIid(iid)
@@ -181,6 +170,17 @@ func (o *UpdateIntelliTrustIDPParams) WithIid(iid string) *UpdateIntelliTrustIDP
 // SetIid adds the iid to the update intelli trust ID p params
 func (o *UpdateIntelliTrustIDPParams) SetIid(iid string) {
 	o.Iid = iid
+}
+
+// WithWid adds the wid to the update intelli trust ID p params
+func (o *UpdateIntelliTrustIDPParams) WithWid(wid string) *UpdateIntelliTrustIDPParams {
+	o.SetWid(wid)
+	return o
+}
+
+// SetWid adds the wid to the update intelli trust ID p params
+func (o *UpdateIntelliTrustIDPParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -196,13 +196,13 @@ func (o *UpdateIntelliTrustIDPParams) WriteToRequest(r runtime.ClientRequest, re
 		}
 	}
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param iid
+	if err := r.SetPathParam("iid", o.Iid); err != nil {
 		return err
 	}
 
-	// path param iid
-	if err := r.SetPathParam("iid", o.Iid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

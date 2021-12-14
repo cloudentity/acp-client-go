@@ -48,7 +48,7 @@ func (a *Client) ListClientsSystem(params *ListClientsSystemParams, authInfo run
 	op := &runtime.ClientOperation{
 		ID:                 "listClientsSystem",
 		Method:             "GET",
-		PathPattern:        "/clients/{aid}",
+		PathPattern:        "/clients/{wid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

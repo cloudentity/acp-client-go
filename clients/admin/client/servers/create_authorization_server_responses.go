@@ -86,19 +86,19 @@ func NewCreateAuthorizationServerCreated() *CreateAuthorizationServerCreated {
 Server
 */
 type CreateAuthorizationServerCreated struct {
-	Payload *models.Server
+	Payload *models.ServerResponse
 }
 
 func (o *CreateAuthorizationServerCreated) Error() string {
 	return fmt.Sprintf("[POST /servers][%d] createAuthorizationServerCreated  %+v", 201, o.Payload)
 }
-func (o *CreateAuthorizationServerCreated) GetPayload() *models.Server {
+func (o *CreateAuthorizationServerCreated) GetPayload() *models.ServerResponse {
 	return o.Payload
 }
 
 func (o *CreateAuthorizationServerCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Server)
+	o.Payload = new(models.ServerResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

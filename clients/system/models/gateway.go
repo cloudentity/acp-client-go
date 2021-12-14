@@ -48,6 +48,9 @@ type Gateway struct {
 	// Example: default
 	TenantID string `json:"tenant_id,omitempty"`
 
+	// token exchange
+	TokenExchange *GatewayTokenExchangeSettings `json:"token_exchange,omitempty"`
+
 	// gateway type, one of: pyron, aws
 	// Example: pyron
 	Type string `json:"type,omitempty"`
@@ -58,6 +61,10 @@ func (m *Gateway) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateLastActive(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTokenExchange(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -79,8 +86,52 @@ func (m *Gateway) validateLastActive(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validates this gateway based on context it is used
+func (m *Gateway) validateTokenExchange(formats strfmt.Registry) error {
+	if swag.IsZero(m.TokenExchange) { // not required
+		return nil
+	}
+
+	if m.TokenExchange != nil {
+		if err := m.TokenExchange.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("token_exchange")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("token_exchange")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this gateway based on the context it is used
 func (m *Gateway) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateTokenExchange(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *Gateway) contextValidateTokenExchange(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.TokenExchange != nil {
+		if err := m.TokenExchange.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("token_exchange")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("token_exchange")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

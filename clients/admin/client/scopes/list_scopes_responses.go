@@ -66,7 +66,7 @@ type ListScopesOK struct {
 }
 
 func (o *ListScopesOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/scopes][%d] listScopesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/scopes][%d] listScopesOK  %+v", 200, o.Payload)
 }
 func (o *ListScopesOK) GetPayload() *models.ScopesWithServices {
 	return o.Payload
@@ -98,7 +98,7 @@ type ListScopesUnauthorized struct {
 }
 
 func (o *ListScopesUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/scopes][%d] listScopesUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/scopes][%d] listScopesUnauthorized  %+v", 401, o.Payload)
 }
 func (o *ListScopesUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -130,7 +130,7 @@ type ListScopesForbidden struct {
 }
 
 func (o *ListScopesForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/scopes][%d] listScopesForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/scopes][%d] listScopesForbidden  %+v", 403, o.Payload)
 }
 func (o *ListScopesForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -162,7 +162,7 @@ type ListScopesTooManyRequests struct {
 }
 
 func (o *ListScopesTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/scopes][%d] listScopesTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/scopes][%d] listScopesTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *ListScopesTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

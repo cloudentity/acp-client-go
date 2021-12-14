@@ -59,13 +59,13 @@ func NewGetAuthorizationServerParamsWithHTTPClient(client *http.Client) *GetAuth
 */
 type GetAuthorizationServerParams struct {
 
-	/* Aid.
+	/* Wid.
 
-	   Authorization server id
+	   Workspace id
 
 	   Default: "default"
 	*/
-	Aid string
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -85,11 +85,11 @@ func (o *GetAuthorizationServerParams) WithDefaults() *GetAuthorizationServerPar
 // All values with no default are reset to their zero value.
 func (o *GetAuthorizationServerParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := GetAuthorizationServerParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -131,15 +131,15 @@ func (o *GetAuthorizationServerParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithAid adds the aid to the get authorization server params
-func (o *GetAuthorizationServerParams) WithAid(aid string) *GetAuthorizationServerParams {
-	o.SetAid(aid)
+// WithWid adds the wid to the get authorization server params
+func (o *GetAuthorizationServerParams) WithWid(wid string) *GetAuthorizationServerParams {
+	o.SetWid(wid)
 	return o
 }
 
-// SetAid adds the aid to the get authorization server params
-func (o *GetAuthorizationServerParams) SetAid(aid string) {
-	o.Aid = aid
+// SetWid adds the wid to the get authorization server params
+func (o *GetAuthorizationServerParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -150,8 +150,8 @@ func (o *GetAuthorizationServerParams) WriteToRequest(r runtime.ClientRequest, r
 	}
 	var res []error
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

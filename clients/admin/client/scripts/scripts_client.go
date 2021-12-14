@@ -64,7 +64,7 @@ func (a *Client) CreateScript(params *CreateScriptParams, authInfo runtime.Clien
 	op := &runtime.ClientOperation{
 		ID:                 "createScript",
 		Method:             "POST",
-		PathPattern:        "/servers/{aid}/scripts",
+		PathPattern:        "/servers/{wid}/scripts",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -105,7 +105,7 @@ func (a *Client) DeleteScript(params *DeleteScriptParams, authInfo runtime.Clien
 	op := &runtime.ClientOperation{
 		ID:                 "deleteScript",
 		Method:             "DELETE",
-		PathPattern:        "/servers/{aid}/scripts/{script}",
+		PathPattern:        "/servers/{wid}/scripts/{script}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -146,7 +146,7 @@ func (a *Client) GetScript(params *GetScriptParams, authInfo runtime.ClientAuthI
 	op := &runtime.ClientOperation{
 		ID:                 "getScript",
 		Method:             "GET",
-		PathPattern:        "/servers/{aid}/scripts/{script}",
+		PathPattern:        "/servers/{wid}/scripts/{script}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -187,7 +187,7 @@ func (a *Client) ListScriptExecutionPoints(params *ListScriptExecutionPointsPara
 	op := &runtime.ClientOperation{
 		ID:                 "listScriptExecutionPoints",
 		Method:             "GET",
-		PathPattern:        "/servers/{aid}/script-execution-points",
+		PathPattern:        "/servers/{wid}/script-execution-points",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -228,7 +228,7 @@ func (a *Client) ListScripts(params *ListScriptsParams, authInfo runtime.ClientA
 	op := &runtime.ClientOperation{
 		ID:                 "listScripts",
 		Method:             "GET",
-		PathPattern:        "/servers/{aid}/scripts",
+		PathPattern:        "/servers/{wid}/scripts",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -269,7 +269,7 @@ func (a *Client) SetScriptExecutionPoints(params *SetScriptExecutionPointsParams
 	op := &runtime.ClientOperation{
 		ID:                 "setScriptExecutionPoints",
 		Method:             "PUT",
-		PathPattern:        "/servers/{aid}/script-execution-points",
+		PathPattern:        "/servers/{wid}/script-execution-points",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -312,7 +312,7 @@ func (a *Client) TestScript(params *TestScriptParams, authInfo runtime.ClientAut
 	op := &runtime.ClientOperation{
 		ID:                 "testScript",
 		Method:             "POST",
-		PathPattern:        "/servers/{aid}/scripts/test",
+		PathPattern:        "/servers/{wid}/scripts/test",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -353,7 +353,7 @@ func (a *Client) UpdateScript(params *UpdateScriptParams, authInfo runtime.Clien
 	op := &runtime.ClientOperation{
 		ID:                 "updateScript",
 		Method:             "PUT",
-		PathPattern:        "/servers/{aid}/scripts/{script}",
+		PathPattern:        "/servers/{wid}/scripts/{script}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

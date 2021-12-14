@@ -84,7 +84,7 @@ type UpdateAzureIDPOK struct {
 }
 
 func (o *UpdateAzureIDPOK) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/azure/{iid}][%d] updateAzureIdPOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPOK  %+v", 200, o.Payload)
 }
 func (o *UpdateAzureIDPOK) GetPayload() *models.AzureIDP {
 	return o.Payload
@@ -116,7 +116,7 @@ type UpdateAzureIDPBadRequest struct {
 }
 
 func (o *UpdateAzureIDPBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/azure/{iid}][%d] updateAzureIdPBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPBadRequest  %+v", 400, o.Payload)
 }
 func (o *UpdateAzureIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -148,7 +148,7 @@ type UpdateAzureIDPUnauthorized struct {
 }
 
 func (o *UpdateAzureIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/azure/{iid}][%d] updateAzureIdPUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPUnauthorized  %+v", 401, o.Payload)
 }
 func (o *UpdateAzureIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -180,7 +180,7 @@ type UpdateAzureIDPForbidden struct {
 }
 
 func (o *UpdateAzureIDPForbidden) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/azure/{iid}][%d] updateAzureIdPForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPForbidden  %+v", 403, o.Payload)
 }
 func (o *UpdateAzureIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -212,7 +212,7 @@ type UpdateAzureIDPNotFound struct {
 }
 
 func (o *UpdateAzureIDPNotFound) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/azure/{iid}][%d] updateAzureIdPNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPNotFound  %+v", 404, o.Payload)
 }
 func (o *UpdateAzureIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -244,7 +244,7 @@ type UpdateAzureIDPUnprocessableEntity struct {
 }
 
 func (o *UpdateAzureIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/azure/{iid}][%d] updateAzureIdPUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 func (o *UpdateAzureIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
@@ -276,7 +276,7 @@ type UpdateAzureIDPTooManyRequests struct {
 }
 
 func (o *UpdateAzureIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/azure/{iid}][%d] updateAzureIdPTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *UpdateAzureIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

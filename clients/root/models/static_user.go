@@ -27,7 +27,7 @@ type StaticUser struct {
 	// User's preferred email.
 	Email string `json:"email,omitempty"`
 
-	// If set to true, indicates that the user's email was verfied.
+	// If set to true, indicates that the user's email was verified.
 	EmailVerified bool `json:"email_verified,omitempty"`
 
 	// User password.
@@ -37,7 +37,7 @@ type StaticUser struct {
 	// User's preferred phone number
 	PhoneNumber string `json:"phone_number,omitempty"`
 
-	// If set to true, indicates that the user's phone number was verfied.
+	// If set to true, indicates that the user's phone number was verified.
 	PhoneNumberVerified bool `json:"phone_number_verified,omitempty"`
 
 	// User login.

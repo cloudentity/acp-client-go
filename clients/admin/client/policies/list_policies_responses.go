@@ -72,7 +72,7 @@ type ListPoliciesOK struct {
 }
 
 func (o *ListPoliciesOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/policies][%d] listPoliciesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/policies][%d] listPoliciesOK  %+v", 200, o.Payload)
 }
 func (o *ListPoliciesOK) GetPayload() *models.Policies {
 	return o.Payload
@@ -104,7 +104,7 @@ type ListPoliciesBadRequest struct {
 }
 
 func (o *ListPoliciesBadRequest) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/policies][%d] listPoliciesBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/policies][%d] listPoliciesBadRequest  %+v", 400, o.Payload)
 }
 func (o *ListPoliciesBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -136,7 +136,7 @@ type ListPoliciesUnauthorized struct {
 }
 
 func (o *ListPoliciesUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/policies][%d] listPoliciesUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/policies][%d] listPoliciesUnauthorized  %+v", 401, o.Payload)
 }
 func (o *ListPoliciesUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -168,7 +168,7 @@ type ListPoliciesForbidden struct {
 }
 
 func (o *ListPoliciesForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/policies][%d] listPoliciesForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/policies][%d] listPoliciesForbidden  %+v", 403, o.Payload)
 }
 func (o *ListPoliciesForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -200,7 +200,7 @@ type ListPoliciesTooManyRequests struct {
 }
 
 func (o *ListPoliciesTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/policies][%d] listPoliciesTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/policies][%d] listPoliciesTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *ListPoliciesTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

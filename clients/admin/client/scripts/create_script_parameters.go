@@ -64,13 +64,13 @@ type CreateScriptParams struct {
 	// Script.
 	Script *models.Script
 
-	/* Aid.
+	/* Wid.
 
 	   ID of your authorization server (workspace)
 
 	   Default: "default"
 	*/
-	Aid string
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -90,11 +90,11 @@ func (o *CreateScriptParams) WithDefaults() *CreateScriptParams {
 // All values with no default are reset to their zero value.
 func (o *CreateScriptParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := CreateScriptParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -147,15 +147,15 @@ func (o *CreateScriptParams) SetScript(script *models.Script) {
 	o.Script = script
 }
 
-// WithAid adds the aid to the create script params
-func (o *CreateScriptParams) WithAid(aid string) *CreateScriptParams {
-	o.SetAid(aid)
+// WithWid adds the wid to the create script params
+func (o *CreateScriptParams) WithWid(wid string) *CreateScriptParams {
+	o.SetWid(wid)
 	return o
 }
 
-// SetAid adds the aid to the create script params
-func (o *CreateScriptParams) SetAid(aid string) {
-	o.Aid = aid
+// SetWid adds the wid to the create script params
+func (o *CreateScriptParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -171,8 +171,8 @@ func (o *CreateScriptParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		}
 	}
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

@@ -67,13 +67,13 @@ type CreateStaticIDPParams struct {
 	*/
 	StaticIDP *models.StaticIDP
 
-	/* Aid.
+	/* Wid.
 
 	   Authorization server id
 
 	   Default: "default"
 	*/
-	Aid string
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -93,11 +93,11 @@ func (o *CreateStaticIDPParams) WithDefaults() *CreateStaticIDPParams {
 // All values with no default are reset to their zero value.
 func (o *CreateStaticIDPParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := CreateStaticIDPParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -150,15 +150,15 @@ func (o *CreateStaticIDPParams) SetStaticIDP(staticIDP *models.StaticIDP) {
 	o.StaticIDP = staticIDP
 }
 
-// WithAid adds the aid to the create static ID p params
-func (o *CreateStaticIDPParams) WithAid(aid string) *CreateStaticIDPParams {
-	o.SetAid(aid)
+// WithWid adds the wid to the create static ID p params
+func (o *CreateStaticIDPParams) WithWid(wid string) *CreateStaticIDPParams {
+	o.SetWid(wid)
 	return o
 }
 
-// SetAid adds the aid to the create static ID p params
-func (o *CreateStaticIDPParams) SetAid(aid string) {
-	o.Aid = aid
+// SetWid adds the wid to the create static ID p params
+func (o *CreateStaticIDPParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -174,8 +174,8 @@ func (o *CreateStaticIDPParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		}
 	}
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

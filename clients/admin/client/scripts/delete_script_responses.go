@@ -77,7 +77,7 @@ type DeleteScriptNoContent struct {
 }
 
 func (o *DeleteScriptNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{aid}/scripts/{script}][%d] deleteScriptNoContent ", 204)
+	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}][%d] deleteScriptNoContent ", 204)
 }
 
 func (o *DeleteScriptNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -99,7 +99,7 @@ type DeleteScriptBadRequest struct {
 }
 
 func (o *DeleteScriptBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{aid}/scripts/{script}][%d] deleteScriptBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}][%d] deleteScriptBadRequest  %+v", 400, o.Payload)
 }
 func (o *DeleteScriptBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -131,7 +131,7 @@ type DeleteScriptUnauthorized struct {
 }
 
 func (o *DeleteScriptUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{aid}/scripts/{script}][%d] deleteScriptUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}][%d] deleteScriptUnauthorized  %+v", 401, o.Payload)
 }
 func (o *DeleteScriptUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -163,7 +163,7 @@ type DeleteScriptForbidden struct {
 }
 
 func (o *DeleteScriptForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{aid}/scripts/{script}][%d] deleteScriptForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}][%d] deleteScriptForbidden  %+v", 403, o.Payload)
 }
 func (o *DeleteScriptForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -195,7 +195,7 @@ type DeleteScriptNotFound struct {
 }
 
 func (o *DeleteScriptNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{aid}/scripts/{script}][%d] deleteScriptNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}][%d] deleteScriptNotFound  %+v", 404, o.Payload)
 }
 func (o *DeleteScriptNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -227,7 +227,7 @@ type DeleteScriptTooManyRequests struct {
 }
 
 func (o *DeleteScriptTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{aid}/scripts/{script}][%d] deleteScriptTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}][%d] deleteScriptTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *DeleteScriptTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

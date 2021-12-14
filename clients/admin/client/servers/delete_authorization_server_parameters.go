@@ -59,13 +59,13 @@ func NewDeleteAuthorizationServerParamsWithHTTPClient(client *http.Client) *Dele
 */
 type DeleteAuthorizationServerParams struct {
 
-	/* Aid.
+	/* Wid.
 
-	   Authorization server id
+	   Workspace id
 
 	   Default: "default"
 	*/
-	Aid string
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -85,11 +85,11 @@ func (o *DeleteAuthorizationServerParams) WithDefaults() *DeleteAuthorizationSer
 // All values with no default are reset to their zero value.
 func (o *DeleteAuthorizationServerParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := DeleteAuthorizationServerParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -131,15 +131,15 @@ func (o *DeleteAuthorizationServerParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithAid adds the aid to the delete authorization server params
-func (o *DeleteAuthorizationServerParams) WithAid(aid string) *DeleteAuthorizationServerParams {
-	o.SetAid(aid)
+// WithWid adds the wid to the delete authorization server params
+func (o *DeleteAuthorizationServerParams) WithWid(wid string) *DeleteAuthorizationServerParams {
+	o.SetWid(wid)
 	return o
 }
 
-// SetAid adds the aid to the delete authorization server params
-func (o *DeleteAuthorizationServerParams) SetAid(aid string) {
-	o.Aid = aid
+// SetWid adds the wid to the delete authorization server params
+func (o *DeleteAuthorizationServerParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -150,8 +150,8 @@ func (o *DeleteAuthorizationServerParams) WriteToRequest(r runtime.ClientRequest
 	}
 	var res []error
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

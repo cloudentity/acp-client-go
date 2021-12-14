@@ -66,7 +66,7 @@ type ListScriptExecutionPointsOK struct {
 }
 
 func (o *ListScriptExecutionPointsOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/script-execution-points][%d] listScriptExecutionPointsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/script-execution-points][%d] listScriptExecutionPointsOK  %+v", 200, o.Payload)
 }
 func (o *ListScriptExecutionPointsOK) GetPayload() *models.ScriptExecutionPoints {
 	return o.Payload
@@ -98,7 +98,7 @@ type ListScriptExecutionPointsUnauthorized struct {
 }
 
 func (o *ListScriptExecutionPointsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/script-execution-points][%d] listScriptExecutionPointsUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/script-execution-points][%d] listScriptExecutionPointsUnauthorized  %+v", 401, o.Payload)
 }
 func (o *ListScriptExecutionPointsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -130,7 +130,7 @@ type ListScriptExecutionPointsForbidden struct {
 }
 
 func (o *ListScriptExecutionPointsForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/script-execution-points][%d] listScriptExecutionPointsForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/script-execution-points][%d] listScriptExecutionPointsForbidden  %+v", 403, o.Payload)
 }
 func (o *ListScriptExecutionPointsForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -162,7 +162,7 @@ type ListScriptExecutionPointsTooManyRequests struct {
 }
 
 func (o *ListScriptExecutionPointsTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/script-execution-points][%d] listScriptExecutionPointsTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/script-execution-points][%d] listScriptExecutionPointsTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *ListScriptExecutionPointsTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

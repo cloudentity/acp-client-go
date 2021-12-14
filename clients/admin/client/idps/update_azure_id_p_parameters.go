@@ -67,14 +67,6 @@ type UpdateAzureIDPParams struct {
 	*/
 	AzureIDP *models.AzureIDP
 
-	/* Aid.
-
-	   Authorization server id
-
-	   Default: "default"
-	*/
-	Aid string
-
 	/* Iid.
 
 	   IDP id
@@ -82,6 +74,14 @@ type UpdateAzureIDPParams struct {
 	   Default: "default"
 	*/
 	Iid string
+
+	/* Wid.
+
+	   Authorization server id
+
+	   Default: "default"
+	*/
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -101,14 +101,14 @@ func (o *UpdateAzureIDPParams) WithDefaults() *UpdateAzureIDPParams {
 // All values with no default are reset to their zero value.
 func (o *UpdateAzureIDPParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
-
 		iidDefault = string("default")
+
+		widDefault = string("default")
 	)
 
 	val := UpdateAzureIDPParams{
-		Aid: aidDefault,
 		Iid: iidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -161,17 +161,6 @@ func (o *UpdateAzureIDPParams) SetAzureIDP(azureIDP *models.AzureIDP) {
 	o.AzureIDP = azureIDP
 }
 
-// WithAid adds the aid to the update azure ID p params
-func (o *UpdateAzureIDPParams) WithAid(aid string) *UpdateAzureIDPParams {
-	o.SetAid(aid)
-	return o
-}
-
-// SetAid adds the aid to the update azure ID p params
-func (o *UpdateAzureIDPParams) SetAid(aid string) {
-	o.Aid = aid
-}
-
 // WithIid adds the iid to the update azure ID p params
 func (o *UpdateAzureIDPParams) WithIid(iid string) *UpdateAzureIDPParams {
 	o.SetIid(iid)
@@ -181,6 +170,17 @@ func (o *UpdateAzureIDPParams) WithIid(iid string) *UpdateAzureIDPParams {
 // SetIid adds the iid to the update azure ID p params
 func (o *UpdateAzureIDPParams) SetIid(iid string) {
 	o.Iid = iid
+}
+
+// WithWid adds the wid to the update azure ID p params
+func (o *UpdateAzureIDPParams) WithWid(wid string) *UpdateAzureIDPParams {
+	o.SetWid(wid)
+	return o
+}
+
+// SetWid adds the wid to the update azure ID p params
+func (o *UpdateAzureIDPParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -196,13 +196,13 @@ func (o *UpdateAzureIDPParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 		}
 	}
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param iid
+	if err := r.SetPathParam("iid", o.Iid); err != nil {
 		return err
 	}
 
-	// path param iid
-	if err := r.SetPathParam("iid", o.Iid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

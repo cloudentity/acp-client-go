@@ -55,6 +55,10 @@ type WellKnown struct {
 	// If omitted, the default value is false.
 	BackchannelUserCodeParameterSupported bool `json:"backchannel_user_code_parameter_supported,omitempty"`
 
+	// The URL of the CDR Arrangement Revocation End Point for consent revocation.
+	// Available only for "cdr_australia" workspace profile.
+	CdrArrangementRevocationEndpoint string `json:"cdr_arrangement_revocation_endpoint,omitempty"`
+
 	// Boolean value specifying whether the OP supports use of the claims parameter, with true indicating support.
 	ClaimsParameterSupported bool `json:"claims_parameter_supported,omitempty"`
 
@@ -259,7 +263,7 @@ var wellKnownGrantTypesSupportedItemsEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["authorization_code","implicit","client_credentials","refresh_token","password","urn:ietf:params:oauth:grant-type:jwt-bearer","urn:openid:params:grant-type:ciba"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["authorization_code","implicit","client_credentials","refresh_token","password","urn:ietf:params:oauth:grant-type:jwt-bearer","urn:openid:params:grant-type:ciba","urn:ietf:params:oauth:grant-type:token-exchange"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {

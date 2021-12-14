@@ -159,6 +159,7 @@ definitions:
           - password
           - urn:ietf:params:oauth:grant-type:jwt-bearer
           - urn:openid:params:grant-type:ciba
+          - urn:ietf:params:oauth:grant-type:token-exchange
           type: string
         type: array
         x-nullable: false
@@ -749,6 +750,7 @@ definitions:
           - password
           - urn:ietf:params:oauth:grant-type:jwt-bearer
           - urn:openid:params:grant-type:ciba
+          - urn:ietf:params:oauth:grant-type:token-exchange
           type: string
         type: array
         x-nullable: false
@@ -1072,6 +1074,7 @@ definitions:
           - password
           - urn:ietf:params:oauth:grant-type:jwt-bearer
           - urn:openid:params:grant-type:ciba
+          - urn:ietf:params:oauth:grant-type:token-exchange
           type: string
         type: array
         x-nullable: false
@@ -1125,6 +1128,7 @@ definitions:
           - password
           - urn:ietf:params:oauth:grant-type:jwt-bearer
           - urn:openid:params:grant-type:ciba
+          - urn:ietf:params:oauth:grant-type:token-exchange
           type: string
         type: array
         x-nullable: false
@@ -1382,6 +1386,7 @@ definitions:
           - password
           - urn:ietf:params:oauth:grant-type:jwt-bearer
           - urn:openid:params:grant-type:ciba
+          - urn:ietf:params:oauth:grant-type:token-exchange
           type: string
         type: array
         x-nullable: false
@@ -1685,7 +1690,7 @@ host: localhost:8443
 info:
   description: Cloudentity Authorization Control Plane Public API
   title: Cloudentity Authorization Control Plane API
-  version: 1.13.1
+  version: latest
 paths:
   /clients:
     get:

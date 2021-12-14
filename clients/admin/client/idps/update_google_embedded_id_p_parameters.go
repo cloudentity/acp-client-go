@@ -67,14 +67,6 @@ type UpdateGoogleEmbeddedIDPParams struct {
 	*/
 	GoogleEmbeddedIDP *models.GoogleEmbeddedIDP
 
-	/* Aid.
-
-	   Authorization server id
-
-	   Default: "default"
-	*/
-	Aid string
-
 	/* Iid.
 
 	   IDP id
@@ -82,6 +74,14 @@ type UpdateGoogleEmbeddedIDPParams struct {
 	   Default: "default"
 	*/
 	Iid string
+
+	/* Wid.
+
+	   Authorization server id
+
+	   Default: "default"
+	*/
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -101,14 +101,14 @@ func (o *UpdateGoogleEmbeddedIDPParams) WithDefaults() *UpdateGoogleEmbeddedIDPP
 // All values with no default are reset to their zero value.
 func (o *UpdateGoogleEmbeddedIDPParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
-
 		iidDefault = string("default")
+
+		widDefault = string("default")
 	)
 
 	val := UpdateGoogleEmbeddedIDPParams{
-		Aid: aidDefault,
 		Iid: iidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -161,17 +161,6 @@ func (o *UpdateGoogleEmbeddedIDPParams) SetGoogleEmbeddedIDP(googleEmbeddedIDP *
 	o.GoogleEmbeddedIDP = googleEmbeddedIDP
 }
 
-// WithAid adds the aid to the update google embedded ID p params
-func (o *UpdateGoogleEmbeddedIDPParams) WithAid(aid string) *UpdateGoogleEmbeddedIDPParams {
-	o.SetAid(aid)
-	return o
-}
-
-// SetAid adds the aid to the update google embedded ID p params
-func (o *UpdateGoogleEmbeddedIDPParams) SetAid(aid string) {
-	o.Aid = aid
-}
-
 // WithIid adds the iid to the update google embedded ID p params
 func (o *UpdateGoogleEmbeddedIDPParams) WithIid(iid string) *UpdateGoogleEmbeddedIDPParams {
 	o.SetIid(iid)
@@ -181,6 +170,17 @@ func (o *UpdateGoogleEmbeddedIDPParams) WithIid(iid string) *UpdateGoogleEmbedde
 // SetIid adds the iid to the update google embedded ID p params
 func (o *UpdateGoogleEmbeddedIDPParams) SetIid(iid string) {
 	o.Iid = iid
+}
+
+// WithWid adds the wid to the update google embedded ID p params
+func (o *UpdateGoogleEmbeddedIDPParams) WithWid(wid string) *UpdateGoogleEmbeddedIDPParams {
+	o.SetWid(wid)
+	return o
+}
+
+// SetWid adds the wid to the update google embedded ID p params
+func (o *UpdateGoogleEmbeddedIDPParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -196,13 +196,13 @@ func (o *UpdateGoogleEmbeddedIDPParams) WriteToRequest(r runtime.ClientRequest, 
 		}
 	}
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param iid
+	if err := r.SetPathParam("iid", o.Iid); err != nil {
 		return err
 	}
 
-	// path param iid
-	if err := r.SetPathParam("iid", o.Iid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

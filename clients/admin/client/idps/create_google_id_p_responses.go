@@ -84,7 +84,7 @@ type CreateGoogleIDPCreated struct {
 }
 
 func (o *CreateGoogleIDPCreated) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/google][%d] createGoogleIdPCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/google][%d] createGoogleIdPCreated  %+v", 201, o.Payload)
 }
 func (o *CreateGoogleIDPCreated) GetPayload() *models.GoogleIDP {
 	return o.Payload
@@ -116,7 +116,7 @@ type CreateGoogleIDPBadRequest struct {
 }
 
 func (o *CreateGoogleIDPBadRequest) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/google][%d] createGoogleIdPBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/google][%d] createGoogleIdPBadRequest  %+v", 400, o.Payload)
 }
 func (o *CreateGoogleIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -148,7 +148,7 @@ type CreateGoogleIDPUnauthorized struct {
 }
 
 func (o *CreateGoogleIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/google][%d] createGoogleIdPUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/google][%d] createGoogleIdPUnauthorized  %+v", 401, o.Payload)
 }
 func (o *CreateGoogleIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -180,7 +180,7 @@ type CreateGoogleIDPForbidden struct {
 }
 
 func (o *CreateGoogleIDPForbidden) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/google][%d] createGoogleIdPForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/google][%d] createGoogleIdPForbidden  %+v", 403, o.Payload)
 }
 func (o *CreateGoogleIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -212,7 +212,7 @@ type CreateGoogleIDPNotFound struct {
 }
 
 func (o *CreateGoogleIDPNotFound) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/google][%d] createGoogleIdPNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/google][%d] createGoogleIdPNotFound  %+v", 404, o.Payload)
 }
 func (o *CreateGoogleIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -244,7 +244,7 @@ type CreateGoogleIDPUnprocessableEntity struct {
 }
 
 func (o *CreateGoogleIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/google][%d] createGoogleIdPUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/google][%d] createGoogleIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 func (o *CreateGoogleIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
@@ -276,7 +276,7 @@ type CreateGoogleIDPTooManyRequests struct {
 }
 
 func (o *CreateGoogleIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/google][%d] createGoogleIdPTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/google][%d] createGoogleIdPTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *CreateGoogleIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

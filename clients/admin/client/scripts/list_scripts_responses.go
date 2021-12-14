@@ -72,7 +72,7 @@ type ListScriptsOK struct {
 }
 
 func (o *ListScriptsOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/scripts][%d] listScriptsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/scripts][%d] listScriptsOK  %+v", 200, o.Payload)
 }
 func (o *ListScriptsOK) GetPayload() *models.Scripts {
 	return o.Payload
@@ -104,7 +104,7 @@ type ListScriptsBadRequest struct {
 }
 
 func (o *ListScriptsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/scripts][%d] listScriptsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/scripts][%d] listScriptsBadRequest  %+v", 400, o.Payload)
 }
 func (o *ListScriptsBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -136,7 +136,7 @@ type ListScriptsUnauthorized struct {
 }
 
 func (o *ListScriptsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/scripts][%d] listScriptsUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/scripts][%d] listScriptsUnauthorized  %+v", 401, o.Payload)
 }
 func (o *ListScriptsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -168,7 +168,7 @@ type ListScriptsForbidden struct {
 }
 
 func (o *ListScriptsForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/scripts][%d] listScriptsForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/scripts][%d] listScriptsForbidden  %+v", 403, o.Payload)
 }
 func (o *ListScriptsForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -200,7 +200,7 @@ type ListScriptsTooManyRequests struct {
 }
 
 func (o *ListScriptsTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/scripts][%d] listScriptsTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/scripts][%d] listScriptsTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *ListScriptsTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

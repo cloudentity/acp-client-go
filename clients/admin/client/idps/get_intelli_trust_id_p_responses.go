@@ -72,7 +72,7 @@ type GetIntelliTrustIDPOK struct {
 }
 
 func (o *GetIntelliTrustIDPOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/intelli_trust/{iid}][%d] getIntelliTrustIdPOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/intelli_trust/{iid}][%d] getIntelliTrustIdPOK  %+v", 200, o.Payload)
 }
 func (o *GetIntelliTrustIDPOK) GetPayload() *models.IntelliTrustIDP {
 	return o.Payload
@@ -104,7 +104,7 @@ type GetIntelliTrustIDPUnauthorized struct {
 }
 
 func (o *GetIntelliTrustIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/intelli_trust/{iid}][%d] getIntelliTrustIdPUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/intelli_trust/{iid}][%d] getIntelliTrustIdPUnauthorized  %+v", 401, o.Payload)
 }
 func (o *GetIntelliTrustIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -136,7 +136,7 @@ type GetIntelliTrustIDPForbidden struct {
 }
 
 func (o *GetIntelliTrustIDPForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/intelli_trust/{iid}][%d] getIntelliTrustIdPForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/intelli_trust/{iid}][%d] getIntelliTrustIdPForbidden  %+v", 403, o.Payload)
 }
 func (o *GetIntelliTrustIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -168,7 +168,7 @@ type GetIntelliTrustIDPNotFound struct {
 }
 
 func (o *GetIntelliTrustIDPNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/intelli_trust/{iid}][%d] getIntelliTrustIdPNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/intelli_trust/{iid}][%d] getIntelliTrustIdPNotFound  %+v", 404, o.Payload)
 }
 func (o *GetIntelliTrustIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -200,7 +200,7 @@ type GetIntelliTrustIDPTooManyRequests struct {
 }
 
 func (o *GetIntelliTrustIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/intelli_trust/{iid}][%d] getIntelliTrustIdPTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/intelli_trust/{iid}][%d] getIntelliTrustIdPTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *GetIntelliTrustIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

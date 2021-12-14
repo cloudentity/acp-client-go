@@ -78,7 +78,7 @@ type RevokeKeyOK struct {
 }
 
 func (o *RevokeKeyOK) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/keys/revoke/{kid}][%d] revokeKeyOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/keys/revoke/{kid}][%d] revokeKeyOK  %+v", 200, o.Payload)
 }
 func (o *RevokeKeyOK) GetPayload() *models.ServerJWK {
 	return o.Payload
@@ -110,7 +110,7 @@ type RevokeKeyBadRequest struct {
 }
 
 func (o *RevokeKeyBadRequest) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/keys/revoke/{kid}][%d] revokeKeyBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/keys/revoke/{kid}][%d] revokeKeyBadRequest  %+v", 400, o.Payload)
 }
 func (o *RevokeKeyBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -142,7 +142,7 @@ type RevokeKeyUnauthorized struct {
 }
 
 func (o *RevokeKeyUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/keys/revoke/{kid}][%d] revokeKeyUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/keys/revoke/{kid}][%d] revokeKeyUnauthorized  %+v", 401, o.Payload)
 }
 func (o *RevokeKeyUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -174,7 +174,7 @@ type RevokeKeyForbidden struct {
 }
 
 func (o *RevokeKeyForbidden) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/keys/revoke/{kid}][%d] revokeKeyForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/keys/revoke/{kid}][%d] revokeKeyForbidden  %+v", 403, o.Payload)
 }
 func (o *RevokeKeyForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -206,7 +206,7 @@ type RevokeKeyNotFound struct {
 }
 
 func (o *RevokeKeyNotFound) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/keys/revoke/{kid}][%d] revokeKeyNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/keys/revoke/{kid}][%d] revokeKeyNotFound  %+v", 404, o.Payload)
 }
 func (o *RevokeKeyNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -238,7 +238,7 @@ type RevokeKeyTooManyRequests struct {
 }
 
 func (o *RevokeKeyTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/keys/revoke/{kid}][%d] revokeKeyTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/keys/revoke/{kid}][%d] revokeKeyTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *RevokeKeyTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

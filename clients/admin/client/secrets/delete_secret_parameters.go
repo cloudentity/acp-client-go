@@ -59,18 +59,18 @@ func NewDeleteSecretParamsWithHTTPClient(client *http.Client) *DeleteSecretParam
 */
 type DeleteSecretParams struct {
 
-	/* Aid.
+	// Sid.
+	//
+	// Default: "default"
+	Sid string
+
+	/* Wid.
 
 	   Authorization server id
 
 	   Default: "default"
 	*/
-	Aid string
-
-	// Sid.
-	//
-	// Default: "default"
-	Sid string
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -90,14 +90,14 @@ func (o *DeleteSecretParams) WithDefaults() *DeleteSecretParams {
 // All values with no default are reset to their zero value.
 func (o *DeleteSecretParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
-
 		sidDefault = string("default")
+
+		widDefault = string("default")
 	)
 
 	val := DeleteSecretParams{
-		Aid: aidDefault,
 		Sid: sidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -139,17 +139,6 @@ func (o *DeleteSecretParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithAid adds the aid to the delete secret params
-func (o *DeleteSecretParams) WithAid(aid string) *DeleteSecretParams {
-	o.SetAid(aid)
-	return o
-}
-
-// SetAid adds the aid to the delete secret params
-func (o *DeleteSecretParams) SetAid(aid string) {
-	o.Aid = aid
-}
-
 // WithSid adds the sid to the delete secret params
 func (o *DeleteSecretParams) WithSid(sid string) *DeleteSecretParams {
 	o.SetSid(sid)
@@ -161,6 +150,17 @@ func (o *DeleteSecretParams) SetSid(sid string) {
 	o.Sid = sid
 }
 
+// WithWid adds the wid to the delete secret params
+func (o *DeleteSecretParams) WithWid(wid string) *DeleteSecretParams {
+	o.SetWid(wid)
+	return o
+}
+
+// SetWid adds the wid to the delete secret params
+func (o *DeleteSecretParams) SetWid(wid string) {
+	o.Wid = wid
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *DeleteSecretParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -169,13 +169,13 @@ func (o *DeleteSecretParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 	}
 	var res []error
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param sid
+	if err := r.SetPathParam("sid", o.Sid); err != nil {
 		return err
 	}
 
-	// path param sid
-	if err := r.SetPathParam("sid", o.Sid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

@@ -84,7 +84,7 @@ type UpdateCustomIDPOK struct {
 }
 
 func (o *UpdateCustomIDPOK) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/custom/{iid}][%d] updateCustomIdPOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/custom/{iid}][%d] updateCustomIdPOK  %+v", 200, o.Payload)
 }
 func (o *UpdateCustomIDPOK) GetPayload() *models.CustomIDP {
 	return o.Payload
@@ -116,7 +116,7 @@ type UpdateCustomIDPBadRequest struct {
 }
 
 func (o *UpdateCustomIDPBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/custom/{iid}][%d] updateCustomIdPBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/custom/{iid}][%d] updateCustomIdPBadRequest  %+v", 400, o.Payload)
 }
 func (o *UpdateCustomIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -148,7 +148,7 @@ type UpdateCustomIDPUnauthorized struct {
 }
 
 func (o *UpdateCustomIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/custom/{iid}][%d] updateCustomIdPUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/custom/{iid}][%d] updateCustomIdPUnauthorized  %+v", 401, o.Payload)
 }
 func (o *UpdateCustomIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -180,7 +180,7 @@ type UpdateCustomIDPForbidden struct {
 }
 
 func (o *UpdateCustomIDPForbidden) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/custom/{iid}][%d] updateCustomIdPForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/custom/{iid}][%d] updateCustomIdPForbidden  %+v", 403, o.Payload)
 }
 func (o *UpdateCustomIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -212,7 +212,7 @@ type UpdateCustomIDPNotFound struct {
 }
 
 func (o *UpdateCustomIDPNotFound) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/custom/{iid}][%d] updateCustomIdPNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/custom/{iid}][%d] updateCustomIdPNotFound  %+v", 404, o.Payload)
 }
 func (o *UpdateCustomIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -244,7 +244,7 @@ type UpdateCustomIDPUnprocessableEntity struct {
 }
 
 func (o *UpdateCustomIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/custom/{iid}][%d] updateCustomIdPUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/custom/{iid}][%d] updateCustomIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 func (o *UpdateCustomIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
@@ -276,7 +276,7 @@ type UpdateCustomIDPTooManyRequests struct {
 }
 
 func (o *UpdateCustomIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/custom/{iid}][%d] updateCustomIdPTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/custom/{iid}][%d] updateCustomIdPTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *UpdateCustomIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

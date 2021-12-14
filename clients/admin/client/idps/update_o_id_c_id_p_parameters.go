@@ -67,14 +67,6 @@ type UpdateOIDCIDPParams struct {
 	*/
 	OIDCIDP *models.OIDCIDP
 
-	/* Aid.
-
-	   Authorization server id
-
-	   Default: "default"
-	*/
-	Aid string
-
 	/* Iid.
 
 	   IDP id
@@ -82,6 +74,14 @@ type UpdateOIDCIDPParams struct {
 	   Default: "default"
 	*/
 	Iid string
+
+	/* Wid.
+
+	   Authorization server id
+
+	   Default: "default"
+	*/
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -101,14 +101,14 @@ func (o *UpdateOIDCIDPParams) WithDefaults() *UpdateOIDCIDPParams {
 // All values with no default are reset to their zero value.
 func (o *UpdateOIDCIDPParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
-
 		iidDefault = string("default")
+
+		widDefault = string("default")
 	)
 
 	val := UpdateOIDCIDPParams{
-		Aid: aidDefault,
 		Iid: iidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -161,17 +161,6 @@ func (o *UpdateOIDCIDPParams) SetOIDCIDP(oIDCIDP *models.OIDCIDP) {
 	o.OIDCIDP = oIDCIDP
 }
 
-// WithAid adds the aid to the update o ID c ID p params
-func (o *UpdateOIDCIDPParams) WithAid(aid string) *UpdateOIDCIDPParams {
-	o.SetAid(aid)
-	return o
-}
-
-// SetAid adds the aid to the update o ID c ID p params
-func (o *UpdateOIDCIDPParams) SetAid(aid string) {
-	o.Aid = aid
-}
-
 // WithIid adds the iid to the update o ID c ID p params
 func (o *UpdateOIDCIDPParams) WithIid(iid string) *UpdateOIDCIDPParams {
 	o.SetIid(iid)
@@ -181,6 +170,17 @@ func (o *UpdateOIDCIDPParams) WithIid(iid string) *UpdateOIDCIDPParams {
 // SetIid adds the iid to the update o ID c ID p params
 func (o *UpdateOIDCIDPParams) SetIid(iid string) {
 	o.Iid = iid
+}
+
+// WithWid adds the wid to the update o ID c ID p params
+func (o *UpdateOIDCIDPParams) WithWid(wid string) *UpdateOIDCIDPParams {
+	o.SetWid(wid)
+	return o
+}
+
+// SetWid adds the wid to the update o ID c ID p params
+func (o *UpdateOIDCIDPParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -196,13 +196,13 @@ func (o *UpdateOIDCIDPParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		}
 	}
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param iid
+	if err := r.SetPathParam("iid", o.Iid); err != nil {
 		return err
 	}
 
-	// path param iid
-	if err := r.SetPathParam("iid", o.Iid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

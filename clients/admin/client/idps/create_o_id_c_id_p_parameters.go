@@ -67,13 +67,13 @@ type CreateOIDCIDPParams struct {
 	*/
 	OIDCIDP *models.OIDCIDP
 
-	/* Aid.
+	/* Wid.
 
 	   Authorization server id
 
 	   Default: "default"
 	*/
-	Aid string
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -93,11 +93,11 @@ func (o *CreateOIDCIDPParams) WithDefaults() *CreateOIDCIDPParams {
 // All values with no default are reset to their zero value.
 func (o *CreateOIDCIDPParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := CreateOIDCIDPParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -150,15 +150,15 @@ func (o *CreateOIDCIDPParams) SetOIDCIDP(oIDCIDP *models.OIDCIDP) {
 	o.OIDCIDP = oIDCIDP
 }
 
-// WithAid adds the aid to the create o ID c ID p params
-func (o *CreateOIDCIDPParams) WithAid(aid string) *CreateOIDCIDPParams {
-	o.SetAid(aid)
+// WithWid adds the wid to the create o ID c ID p params
+func (o *CreateOIDCIDPParams) WithWid(wid string) *CreateOIDCIDPParams {
+	o.SetWid(wid)
 	return o
 }
 
-// SetAid adds the aid to the create o ID c ID p params
-func (o *CreateOIDCIDPParams) SetAid(aid string) {
-	o.Aid = aid
+// SetWid adds the wid to the create o ID c ID p params
+func (o *CreateOIDCIDPParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -174,8 +174,8 @@ func (o *CreateOIDCIDPParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		}
 	}
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

@@ -84,7 +84,7 @@ type UpdateStaticIDPOK struct {
 }
 
 func (o *UpdateStaticIDPOK) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/static/{iid}][%d] updateStaticIdPOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/static/{iid}][%d] updateStaticIdPOK  %+v", 200, o.Payload)
 }
 func (o *UpdateStaticIDPOK) GetPayload() *models.StaticIDP {
 	return o.Payload
@@ -116,7 +116,7 @@ type UpdateStaticIDPBadRequest struct {
 }
 
 func (o *UpdateStaticIDPBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/static/{iid}][%d] updateStaticIdPBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/static/{iid}][%d] updateStaticIdPBadRequest  %+v", 400, o.Payload)
 }
 func (o *UpdateStaticIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -148,7 +148,7 @@ type UpdateStaticIDPUnauthorized struct {
 }
 
 func (o *UpdateStaticIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/static/{iid}][%d] updateStaticIdPUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/static/{iid}][%d] updateStaticIdPUnauthorized  %+v", 401, o.Payload)
 }
 func (o *UpdateStaticIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -180,7 +180,7 @@ type UpdateStaticIDPForbidden struct {
 }
 
 func (o *UpdateStaticIDPForbidden) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/static/{iid}][%d] updateStaticIdPForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/static/{iid}][%d] updateStaticIdPForbidden  %+v", 403, o.Payload)
 }
 func (o *UpdateStaticIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -212,7 +212,7 @@ type UpdateStaticIDPNotFound struct {
 }
 
 func (o *UpdateStaticIDPNotFound) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/static/{iid}][%d] updateStaticIdPNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/static/{iid}][%d] updateStaticIdPNotFound  %+v", 404, o.Payload)
 }
 func (o *UpdateStaticIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -244,7 +244,7 @@ type UpdateStaticIDPUnprocessableEntity struct {
 }
 
 func (o *UpdateStaticIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/static/{iid}][%d] updateStaticIdPUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/static/{iid}][%d] updateStaticIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 func (o *UpdateStaticIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
@@ -276,7 +276,7 @@ type UpdateStaticIDPTooManyRequests struct {
 }
 
 func (o *UpdateStaticIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/static/{iid}][%d] updateStaticIdPTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/static/{iid}][%d] updateStaticIdPTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *UpdateStaticIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

@@ -288,6 +288,8 @@ definitions:
         format: tenantID
         type: string
         x-nullable: false
+      token_exchange_settings:
+        $ref: '#/definitions/IDPTokenExchangeSettings'
       transformer:
         $ref: '#/definitions/ScriptTransformer'
     type: object
@@ -448,6 +450,8 @@ definitions:
         format: tenantID
         type: string
         x-nullable: false
+      token_exchange_settings:
+        $ref: '#/definitions/IDPTokenExchangeSettings'
       transformer:
         $ref: '#/definitions/ScriptTransformer'
     type: object
@@ -795,6 +799,7 @@ definitions:
           - password
           - urn:ietf:params:oauth:grant-type:jwt-bearer
           - urn:openid:params:grant-type:ciba
+          - urn:ietf:params:oauth:grant-type:token-exchange
           type: string
         type: array
         x-nullable: false
@@ -1322,6 +1327,7 @@ definitions:
           - password
           - urn:ietf:params:oauth:grant-type:jwt-bearer
           - urn:openid:params:grant-type:ciba
+          - urn:ietf:params:oauth:grant-type:token-exchange
           type: string
         type: array
         x-nullable: false
@@ -1906,6 +1912,8 @@ definitions:
         format: tenantID
         type: string
         x-nullable: false
+      token_exchange_settings:
+        $ref: '#/definitions/IDPTokenExchangeSettings'
       transformer:
         $ref: '#/definitions/ScriptTransformer'
     type: object
@@ -2501,6 +2509,7 @@ definitions:
           - password
           - urn:ietf:params:oauth:grant-type:jwt-bearer
           - urn:openid:params:grant-type:ciba
+          - urn:ietf:params:oauth:grant-type:token-exchange
           type: string
         type: array
         x-nullable: false
@@ -2975,6 +2984,8 @@ definitions:
         format: tenantID
         type: string
         x-nullable: false
+      token_exchange_settings:
+        $ref: '#/definitions/IDPTokenExchangeSettings'
       transformer:
         $ref: '#/definitions/ScriptTransformer'
     type: object
@@ -3238,6 +3249,10 @@ definitions:
         description: enable quick access functionality on UI (system)
         type: boolean
         x-nullable: false
+      scope_transient_otp:
+        description: enable scope transient_otp (tenant)
+        type: boolean
+        x-nullable: false
       script_runtimes:
         items:
           $ref: '#/definitions/ScriptRuntime'
@@ -3272,6 +3287,10 @@ definitions:
         items:
           type: string
         type: array
+        x-nullable: false
+      token_exchange:
+        description: enable Token Exchange (system)
+        type: boolean
         x-nullable: false
       trust_anchor_integration:
         description: enable trust anchor integration (system)
@@ -3407,6 +3426,8 @@ definitions:
         format: tenantID
         type: string
         x-nullable: false
+      token_exchange_settings:
+        $ref: '#/definitions/IDPTokenExchangeSettings'
       transformer:
         $ref: '#/definitions/ScriptTransformer'
     type: object
@@ -3486,6 +3507,8 @@ definitions:
         format: tenantID
         type: string
         x-nullable: false
+      token_exchange:
+        $ref: '#/definitions/GatewayTokenExchangeSettings'
       type:
         description: 'gateway type, one of: pyron, aws'
         example: pyron
@@ -3555,6 +3578,18 @@ definitions:
         type: array
         x-nullable: false
     type: object
+  GatewayTokenExchangeSettings:
+    properties:
+      enabled:
+        type: boolean
+        x-nullable: false
+      trusted_idp_ids:
+        items:
+          format: idpID
+          type: string
+        type: array
+        x-nullable: false
+    type: object
   GatewayWithClient:
     properties:
       authorization_server_id:
@@ -3607,6 +3642,8 @@ definitions:
         format: tenantID
         type: string
         x-nullable: false
+      token_exchange:
+        $ref: '#/definitions/GatewayTokenExchangeSettings'
       type:
         description: 'gateway type, one of: pyron, aws'
         example: pyron
@@ -3706,6 +3743,8 @@ definitions:
         format: tenantID
         type: string
         x-nullable: false
+      token_exchange_settings:
+        $ref: '#/definitions/IDPTokenExchangeSettings'
       transformer:
         $ref: '#/definitions/ScriptTransformer'
     type: object
@@ -3788,6 +3827,8 @@ definitions:
         format: tenantID
         type: string
         x-nullable: false
+      token_exchange_settings:
+        $ref: '#/definitions/IDPTokenExchangeSettings'
       transformer:
         $ref: '#/definitions/ScriptTransformer'
     type: object
@@ -3908,6 +3949,8 @@ definitions:
         format: tenantID
         type: string
         x-nullable: false
+      token_exchange_settings:
+        $ref: '#/definitions/IDPTokenExchangeSettings'
       transformer:
         $ref: '#/definitions/ScriptTransformer'
     type: object
@@ -3990,6 +4033,8 @@ definitions:
         format: tenantID
         type: string
         x-nullable: false
+      token_exchange_settings:
+        $ref: '#/definitions/IDPTokenExchangeSettings'
       transformer:
         $ref: '#/definitions/ScriptTransformer'
     type: object
@@ -4086,9 +4131,28 @@ definitions:
         description: url path
         type: string
         x-nullable: false
+      query:
+        description: url query params
+        items:
+          $ref: '#/definitions/HTTPRequestParam'
+        type: array
+        x-nullable: false
     required:
     - method
     - path
+    type: object
+  HTTPRequestParam:
+    properties:
+      name:
+        description: name
+        type: string
+        x-nullable: false
+      value:
+        description: value
+        type: string
+        x-nullable: false
+    required:
+    - name
     type: object
   IDPBase:
     properties:
@@ -4165,6 +4229,8 @@ definitions:
         format: tenantID
         type: string
         x-nullable: false
+      token_exchange_settings:
+        $ref: '#/definitions/IDPTokenExchangeSettings'
       transformer:
         $ref: '#/definitions/ScriptTransformer'
     type: object
@@ -4214,6 +4280,13 @@ definitions:
     type: object
   IDPDomain:
     type: string
+  IDPTokenExchangeSettings:
+    properties:
+      enabled:
+        description: If enabled token issued by this IDP can be used for token exchange
+        type: boolean
+        x-nullable: false
+    type: object
   IDPsResponse:
     properties:
       idps:
@@ -4224,11 +4297,6 @@ definitions:
     type: object
   ImportServiceConfigurationResult:
     properties:
-      audience:
-        description: service audience
-        example: https://api.example.com
-        type: string
-        x-nullable: false
       authorization_server_id:
         description: server id
         example: default
@@ -4249,6 +4317,11 @@ definitions:
         items:
           $ref: '#/definitions/Scope'
         type: array
+        x-nullable: false
+      custom_audience:
+        description: custom service audience
+        example: https://api.example.com
+        type: string
         x-nullable: false
       description:
         description: service description
@@ -4397,6 +4470,8 @@ definitions:
         format: tenantID
         type: string
         x-nullable: false
+      token_exchange_settings:
+        $ref: '#/definitions/IDPTokenExchangeSettings'
       transformer:
         $ref: '#/definitions/ScriptTransformer'
     type: object
@@ -4717,6 +4792,8 @@ definitions:
         format: tenantID
         type: string
         x-nullable: false
+      token_exchange_settings:
+        $ref: '#/definitions/IDPTokenExchangeSettings'
       transformer:
         $ref: '#/definitions/ScriptTransformer'
     type: object
@@ -4858,6 +4935,8 @@ definitions:
         format: tenantID
         type: string
         x-nullable: false
+      token_exchange_settings:
+        $ref: '#/definitions/IDPTokenExchangeSettings'
       transformer:
         $ref: '#/definitions/ScriptTransformer'
     type: object
@@ -5313,6 +5392,8 @@ definitions:
         format: tenantID
         type: string
         x-nullable: false
+      token_exchange_settings:
+        $ref: '#/definitions/IDPTokenExchangeSettings'
       transformer:
         $ref: '#/definitions/ScriptTransformer'
     type: object
@@ -5846,6 +5927,15 @@ definitions:
         format: duration
         type: string
         x-nullable: false
+      custom_issuer_url:
+        description: |-
+          Defines a custom issuer URL that can be used as the value of the `iss` claim in an access
+          token.
+
+          If not provided, it is built dynamically based on the server's URL.
+        example: http://example.com/default/default
+        type: string
+        x-nullable: false
       dynamic_client_registration:
         $ref: '#/definitions/DynamicClientRegistrationSettings'
       dynamic_scope_separator:
@@ -5946,6 +6036,7 @@ definitions:
           - password
           - urn:ietf:params:oauth:grant-type:jwt-bearer
           - urn:openid:params:grant-type:ciba
+          - urn:ietf:params:oauth:grant-type:token-exchange
           type: string
         type: array
         x-nullable: false
@@ -5974,15 +6065,6 @@ definitions:
 
           If issuer_id is not set then default issuer_url will be used
         example: 5647fe90-f6bc-11eb-9a03-0242ac130003
-        type: string
-        x-nullable: false
-      issuer_url:
-        description: |-
-          Defines a custom issuer URL that can be used as the value of the `iss` claim in an access
-          token.
-
-          If not provided, it is built dynamically based on the server's URL.
-        example: http://example.com/default/default
         type: string
         x-nullable: false
       jwks:
@@ -6032,6 +6114,7 @@ definitions:
         - openbanking_uk
         - openbanking_br
         - cdr_australia
+        - cdr_australia_fapi_rw
         example: default
         type: string
         x-nullable: false
@@ -6401,6 +6484,428 @@ definitions:
         type: integer
         x-nullable: false
     type: object
+  ServerResponse:
+    properties:
+      access_token_strategy:
+        default: jwt
+        description: |-
+          Access token strategy
+
+          You can choose to go either with `JWT` or `opaque` tokens.
+
+          The content of JSON Web Tokens is readable and it is possible to be decoded by anyone that
+          has a secret or a public key in their possession.
+
+          Opaque tokens are in a proprietary form that contains an identifier to information stored on
+          the athorization server. To validate an opaque token, the recipient must call the server that
+          issued the token.
+        enum:
+        - jwt
+        - opaque
+        example: jwt
+        type: string
+        x-nullable: false
+      access_token_ttl:
+        default: 1h0m0s
+        description: |-
+          Access token time to live
+
+          After an access token reaches its time to live, it expires and it cannot be used to
+          authenticate the client application.
+        example: 1h10m30s
+        format: duration
+        type: string
+        x-nullable: false
+      authorization_code_ttl:
+        description: |-
+          Authorization code time to live
+
+          After an authorization code reaches its time to live, it expires and it cannot be used to
+          authorize the request to the `/token` endpoint.
+        example: 10m0s
+        format: duration
+        type: string
+        x-nullable: false
+      backchannel_token_delivery_modes_supported:
+        default:
+        - poll
+        - ping
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      backchannel_user_code_parameter_supported:
+        default: false
+        type: boolean
+        x-nullable: false
+      color:
+        default: '#007FFF'
+        description: Your server's label color in a HEX format.
+        example: '#007FFF'
+        type: string
+        x-nullable: false
+      consent_id_namespace:
+        description: |-
+          Namespace used when creating Open Banking Brasil consent IDs
+
+          Consent IDs will have the form of urn:<consent_id_namespace>:<uid> when this is set.
+          If this is empty, the tenant id is used by default
+        type: string
+        x-nullable: false
+      cookie_max_age:
+        description: |-
+          Cookie max age
+
+          Defines how long a cookie can live until it expires.
+        example: 1h10m30s
+        format: duration
+        type: string
+        x-nullable: false
+      custom_issuer_url:
+        description: |-
+          Defines a custom issuer URL that can be used as the value of the `iss` claim in an access
+          token.
+
+          If not provided, it is built dynamically based on the server's URL.
+        example: http://example.com/default/default
+        type: string
+        x-nullable: false
+      dynamic_client_registration:
+        $ref: '#/definitions/DynamicClientRegistrationSettings'
+      dynamic_scope_separator:
+        default: .
+        description: |-
+          You can use this property to define a separator that is used for dynamic scopes.
+
+          For example, the default separator is `.`, so the scope could look like the following:
+          `users.*`.
+
+          For Open Banking Brazil compliant servers, the `:` separator should be used.
+        type: string
+        x-nullable: false
+      enable_id_token_encryption:
+        description: When enabled, the authorization server will encrypt any id tokens
+          it issues
+        type: boolean
+        x-nullable: false
+      enable_idp_discovery:
+        description: |-
+          If enabled, IDP discovery automatically redirects the user to their own IDP and does not
+          display IDPs of other users while the users accesses the server/application.
+        example: false
+        type: boolean
+        x-nullable: false
+      enable_legacy_clients_with_no_software_statement:
+        description: |-
+          If enabled, it is possible to manually register clients withouth the use of software
+          statements.
+
+          This flag is enabled, when the `enable_trust_anchor` flag is set to `false`. You can disable
+          it using API, but it cannot be manually enabled.
+        type: boolean
+        x-nullable: false
+      enable_quick_access:
+        description: If enabled, the server is visible on the Quick Access tab on
+          the login page.
+        type: boolean
+        x-nullable: false
+      enable_trust_anchor:
+        default: false
+        description: |-
+          If enabled, it makes it obligatory to provide a software statement signed by a trusted certificate authority
+          when registering a client application with the use of the Dynamic Client Registration (DCR).
+
+          In public key infrastructure (PKI), trust anchors are certification authorities. They are
+          represented by a certificate that is used to verify the signature of a certificate issued by
+          a particular trust anchor.
+        type: boolean
+        x-nullable: false
+      enforce_pkce:
+        default: false
+        description: |-
+          Define whether you want to enforce using the Proof Key of Code Exchange (PKCE) for both
+          private and public clients.
+
+          PKCE is an OAuth security extension that prevents malicious applications or codes that
+          intercepted authorization code from exchanging it for an access token.
+        example: false
+        type: boolean
+        x-nullable: false
+      enforce_pkce_for_public_clients:
+        default: false
+        description: |-
+          Define whether you want to enforce using the Proof Key of Code Exchange (PKCE) for
+          public clients.
+
+          Public clients, like mobile applications or JavaScript-based applications, by their design,
+          cannot store client secrets securely. For such clients, even encrypting the client secret
+          inside the application’s code is not a reliable way of protecting secrets as the application
+          can be decompiled and the client secret can be extracted while it is decrypted in the memory
+          of the application.
+
+          For those reasons, ACP supports the use of PKCE as an addition to the authorization code
+          grant flow to provide a secure alternative to the implicit grant flow.
+        example: false
+        type: boolean
+        x-nullable: false
+      grant_types:
+        default:
+        - authorization_code
+        - implicit
+        - client_credentials
+        - refresh_token
+        description: An array that defines which of the OAuth 2.0 grant types are
+          enabled for the authorization server.
+        example:
+        - authorization_code
+        - implicit
+        - refresh_token
+        - client_credentials
+        items:
+          enum:
+          - authorization_code
+          - implicit
+          - client_credentials
+          - refresh_token
+          - password
+          - urn:ietf:params:oauth:grant-type:jwt-bearer
+          - urn:openid:params:grant-type:ciba
+          - urn:ietf:params:oauth:grant-type:token-exchange
+          type: string
+        type: array
+        x-nullable: false
+      id:
+        description: |-
+          Unique identifier of an authorization server (workspace)
+
+          If not provided, a random ID is generated.
+        example: default
+        format: serverID
+        type: string
+        x-nullable: false
+      id_token_ttl:
+        description: |-
+          ID token time to live
+
+          After an ID token reaches its time to live, it expires and it cannot be used to provide
+          user profile information to a client application.
+        example: 1h10m30s
+        format: duration
+        type: string
+        x-nullable: false
+      issuer_id:
+        description: |-
+          Issuer ID that will be used to set `iss` claim on signed messages
+
+          If issuer_id is not set then default issuer_url will be used
+        example: 5647fe90-f6bc-11eb-9a03-0242ac130003
+        type: string
+        x-nullable: false
+      issuer_url:
+        type: string
+        x-nullable: false
+      jwks:
+        $ref: '#/definitions/ServerJWKs'
+      key_type:
+        default: ecdsa
+        description: |-
+          Determines which type of asymmetric algorithms (RSA or ECDSA) is used to generate keys for signing access and
+          ID tokens.
+
+          It is used only as an input parameter for the Create Authorization Server API.
+        enum:
+        - rsa
+        - ecdsa
+        - ps
+        example: rsa
+        type: string
+        x-nullable: false
+      logo_uri:
+        description: Logo URI
+        type: string
+        x-nullable: false
+      name:
+        description: Display name of your authorization server
+        example: Sample authorization server
+        type: string
+        x-nullable: false
+      profile:
+        default: default
+        description: |-
+          The profile of a server
+
+          ACP is delivered with preconfigured workspace templates that enable quick and easy setup for
+          specific configuration patterns. For example, you can instantly create an Open Banking
+          compliant workspace that has all of the required mechanisms and settings already in place.
+        enum:
+        - default
+        - demo
+        - workforce
+        - consumer
+        - partners
+        - third_party
+        - fapi_advanced
+        - fapi_rw
+        - fapi_ro
+        - openbanking_uk_fapi_advanced
+        - openbanking_uk
+        - openbanking_br
+        - cdr_australia
+        - cdr_australia_fapi_rw
+        example: default
+        type: string
+        x-nullable: false
+      pushed_authentication_request_ttl:
+        description: |-
+          Custom pushed authentication request TTL in seconds
+          If not provided, TTL is set to 60 seconds.
+        format: int64
+        type: integer
+        x-nullable: false
+      refresh_token_ttl:
+        default: 720h0m0s
+        description: |-
+          Refresh token time to live
+
+          After a refresh token reaches its time to live, it expires and it cannot be used to obtain
+          new access tokens for a client application.
+        example: 720h0m0s
+        format: duration
+        type: string
+        x-nullable: false
+      require_pushed_authorization_requests:
+        description: Boolean parameter indicating whether the authorization server
+          accepts authorization request data only via PAR.
+        type: boolean
+        x-nullable: false
+      root_cas:
+        description: |-
+          You can provide root Certificate Authority (CA) certificates encoded to the Privacy-Enhanced
+          Mail (PEM) file format which are used for the `tls_client_auth` and the
+          `self_signed_tls_client_auth` client authentication methods that use the Mutual
+          Transport Layer Security (mTLS).
+
+          If not set, the system root CA certifiates are used instead.
+        type: string
+        x-nullable: false
+      rotated_secrets:
+        description: An array of rotated secrets that are still used to validate tokens
+        example:
+        - jFpwIvuKJP46J71WqszPv1SrzoUr-cSILP9EPdlClB4
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      secret:
+        description: |-
+          Secret used for hashing
+
+          It must have at least 32 characters. If not provided, it is generated.
+        example: hW5WhKX_7w7BLwUQ6mn7Cp70_OoKI_F1y1hLS5U8lIU
+        type: string
+        x-nullable: false
+      subject_identifier_algorithm_salt:
+        description: |-
+          Salt used to hash `subject` when the `pairwise` subject type is used.
+
+          Salt is a random data which is used as an additional input to one-way functions that hashes
+          data, passwords, and, in this case, subjects.
+
+          It is recommended that your salt value is long for security reasons. Preferably, the salt
+          value should be at least the same length as the output of the hash.
+
+          If not provided, it is generated.
+        type: string
+        x-nullable: false
+      subject_identifier_types:
+        default:
+        - public
+        - pairwise
+        description: |-
+          An array that defines supported subject identifier types.
+
+          Subject identifiers are locally unique and never reassigned identifiers within the Issuer
+          for the end-user and are inteded to be consumed by client applications. There are two types
+          of subject identifiers: `public` and `pairwise`.
+
+          `public` identifiers provide the same `sub` claim value to all client applications.
+          `pairwise` identifiers provide different `sub` claim values to each client application. With
+          this approach, it makes it impossible for client applications to correlate the end-user's
+          activity without their permission.
+        example:
+        - public
+        - pairwise
+        items:
+          enum:
+          - public
+          - pairwise
+          type: string
+        type: array
+        x-nullable: false
+      tenant_id:
+        description: ID of a tenant
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      token_endpoint_auth_methods:
+        default:
+        - client_secret_basic
+        - client_secret_post
+        - client_secret_jwt
+        - private_key_jwt
+        - self_signed_tls_client_auth
+        - tls_client_auth
+        - none
+        description: |-
+          An array that lists all of the supported token endpoint authentication methods for the
+          authorization server.
+        items:
+          enum:
+          - client_secret_basic
+          - client_secret_post
+          - client_secret_jwt
+          - private_key_jwt
+          - self_signed_tls_client_auth
+          - tls_client_auth
+          - none
+          type: string
+        type: array
+        x-nullable: false
+      token_endpoint_authn_methods:
+        description: 'Deprecated: Use TokenEndpointAuthMethods instead'
+        items:
+          enum:
+          - client_secret_basic
+          - client_secret_post
+          - client_secret_jwt
+          - private_key_jwt
+          - self_signed_tls_client_auth
+          - tls_client_auth
+          - none
+          type: string
+        type: array
+        x-nullable: false
+      trust_anchor_configuration:
+        $ref: '#/definitions/TrustAnchorConfiguration'
+      type:
+        default: regular
+        description: |-
+          Server type
+
+          It is an internal property used to recognize if the server is created for an admin portal,
+          a developer portal, or if it is a system or a regular workspace.
+        enum:
+        - admin
+        - developer
+        - system
+        - regular
+        example: regular
+        type: string
+        x-nullable: false
+    required:
+    - tenant_id
+    type: object
   ServerToServer:
     properties:
       dependent:
@@ -6422,14 +6927,6 @@ definitions:
         type: string
         x-nullable: false
     type: object
-  Servers:
-    properties:
-      servers:
-        items:
-          $ref: '#/definitions/Server'
-        type: array
-        x-nullable: false
-    type: object
   ServersBindings:
     properties:
       bindings:
@@ -6438,17 +6935,25 @@ definitions:
         type: array
         x-nullable: false
     type: object
+  ServersResponse:
+    properties:
+      servers:
+        items:
+          $ref: '#/definitions/ServerResponse'
+        type: array
+        x-nullable: false
+    type: object
   Service:
     properties:
-      audience:
-        description: service audience
-        example: https://api.example.com
-        type: string
-        x-nullable: false
       authorization_server_id:
         description: server id
         example: default
         format: serverID
+        type: string
+        x-nullable: false
+      custom_audience:
+        description: custom service audience
+        example: https://api.example.com
         type: string
         x-nullable: false
       description:
@@ -6490,15 +6995,15 @@ definitions:
     type: object
   ServiceResponse:
     properties:
-      audience:
-        description: service audience
-        example: https://api.example.com
-        type: string
-        x-nullable: false
       authorization_server_id:
         description: server id
         example: default
         format: serverID
+        type: string
+        x-nullable: false
+      custom_audience:
+        description: custom service audience
+        example: https://api.example.com
         type: string
         x-nullable: false
       description:
@@ -6542,17 +7047,73 @@ definitions:
         type: boolean
         x-nullable: false
     type: object
-  ServiceWithScopesResponse:
+  ServiceWithAudience:
     properties:
       audience:
-        description: service audience
-        example: https://api.example.com
         type: string
         x-nullable: false
       authorization_server_id:
         description: server id
         example: default
         format: serverID
+        type: string
+        x-nullable: false
+      custom_audience:
+        description: custom service audience
+        example: https://api.example.com
+        type: string
+        x-nullable: false
+      description:
+        description: service description
+        example: Service description
+        type: string
+        x-nullable: false
+      gateway_id:
+        description: gateway id
+        format: gatewayID
+        type: string
+        x-nullable: false
+      id:
+        description: unique service id
+        example: "1"
+        format: serviceID
+        type: string
+        x-nullable: false
+      name:
+        description: service name
+        example: Sample service
+        type: string
+        x-nullable: false
+      system:
+        description: Is service a system service
+        example: false
+        type: boolean
+        x-nullable: false
+      tenant_id:
+        description: tenant id
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      with_specification:
+        description: true if service has openapi 3 specification
+        type: boolean
+        x-nullable: false
+    type: object
+  ServiceWithScopesResponse:
+    properties:
+      audience:
+        type: string
+        x-nullable: false
+      authorization_server_id:
+        description: server id
+        example: default
+        format: serverID
+        type: string
+        x-nullable: false
+      custom_audience:
+        description: custom service audience
+        example: https://api.example.com
         type: string
         x-nullable: false
       description:
@@ -6699,6 +7260,8 @@ definitions:
         format: tenantID
         type: string
         x-nullable: false
+      token_exchange_settings:
+        $ref: '#/definitions/IDPTokenExchangeSettings'
       transformer:
         $ref: '#/definitions/ScriptTransformer'
     type: object
@@ -6721,7 +7284,7 @@ definitions:
         type: string
         x-nullable: false
       email_verified:
-        description: If set to true, indicates that the user's email was verfied.
+        description: If set to true, indicates that the user's email was verified.
         type: boolean
         x-nullable: false
       password:
@@ -6734,7 +7297,7 @@ definitions:
         type: string
         x-nullable: false
       phone_number_verified:
-        description: If set to true, indicates that the user's phone number was verfied.
+        description: If set to true, indicates that the user's phone number was verified.
         type: boolean
         x-nullable: false
       username:
@@ -6842,16 +7405,16 @@ definitions:
         type: string
         x-nullable: false
     type: object
-  TestAPIResponse:
+  TestAPIResult:
     properties:
+      graphql_types:
+        $ref: '#/definitions/GraphQLTypes'
       match:
         type: boolean
         x-nullable: false
-      policy_ids:
-        items:
-          format: policyID
-          type: string
-        type: array
+      policy_id:
+        format: policyID
+        type: string
         x-nullable: false
     type: object
   TestMFAMethodRequest:
@@ -7206,6 +7769,7 @@ definitions:
           - password
           - urn:ietf:params:oauth:grant-type:jwt-bearer
           - urn:openid:params:grant-type:ciba
+          - urn:ietf:params:oauth:grant-type:token-exchange
           type: string
         type: array
         x-nullable: false
@@ -7628,7 +8192,7 @@ host: localhost:8443
 info:
   description: Cloudentity Authorization Control Plane Admin API
   title: Cloudentity Authorization Control Plane API
-  version: 1.13.1
+  version: latest
 paths:
   /actions:
     get:
@@ -9187,15 +9751,15 @@ paths:
       summary: List servers bindings
       tags:
       - servers
-  /servers/{aid}:
+  /servers/{wid}:
     delete:
       description: Delete authorization server.
       operationId: deleteAuthorizationServer
       parameters:
       - default: default
-        description: Authorization server id
+        description: Workspace id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       responses:
@@ -9221,9 +9785,9 @@ paths:
       operationId: getAuthorizationServer
       parameters:
       - default: default
-        description: Authorization server id
+        description: Workspace id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       responses:
@@ -9247,9 +9811,9 @@ paths:
       operationId: updateAuthorizationServer
       parameters:
       - default: default
-        description: Authorization server id
+        description: Workspace id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - in: body
@@ -9276,7 +9840,7 @@ paths:
       summary: Update authorization server
       tags:
       - servers
-  /servers/{aid}/apis:
+  /servers/{wid}/apis:
     get:
       description: List APIs.
       operationId: listAPIsByServer
@@ -9284,7 +9848,7 @@ paths:
       - default: default
         description: Server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: List apis that have no data classifications
@@ -9311,15 +9875,15 @@ paths:
       summary: List APIs
       tags:
       - apis
-  /servers/{aid}/bind/{rid}:
+  /servers/{wid}/bind/{rid}:
     post:
       description: Bind server.
       operationId: bindServer
       parameters:
       - default: default
-        description: Authorization server id
+        description: Workspace id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - default: default
@@ -9344,7 +9908,7 @@ paths:
       summary: Bind server
       tags:
       - servers
-  /servers/{aid}/ciba-authentication-service:
+  /servers/{wid}/ciba-authentication-service:
     get:
       description: This API returns details of CIBA authentication service.
       operationId: getCIBAAuthenticationService
@@ -9352,7 +9916,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       responses:
@@ -9380,7 +9944,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: CIBA authentication service
@@ -9404,7 +9968,7 @@ paths:
       summary: Set CIBA authentication service.
       tags:
       - servers
-  /servers/{aid}/claims:
+  /servers/{wid}/claims:
     get:
       description: List claims.
       operationId: listClaims
@@ -9412,7 +9976,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       responses:
@@ -9429,7 +9993,7 @@ paths:
       summary: List claims
       tags:
       - claims
-  /servers/{aid}/clients:
+  /servers/{wid}/clients:
     get:
       description: Returns clients created by admins and developers. If client has
         been created by a developer, client secret will be empty.
@@ -9438,7 +10002,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: |-
@@ -9509,7 +10073,7 @@ paths:
       summary: List clients
       tags:
       - clients
-  /servers/{aid}/dashboards:
+  /servers/{wid}/dashboards:
     get:
       description: List links to dashboards.
       operationId: listDashboards
@@ -9517,7 +10081,7 @@ paths:
       - default: default
         description: Server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       responses:
@@ -9538,7 +10102,7 @@ paths:
       summary: List links to dashboards
       tags:
       - servers
-  /servers/{aid}/gateways:
+  /servers/{wid}/gateways:
     get:
       description: List gateways.
       operationId: listGateways
@@ -9546,7 +10110,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       responses:
@@ -9563,7 +10127,7 @@ paths:
       summary: List gateways
       tags:
       - gateways
-  /servers/{aid}/idps:
+  /servers/{wid}/idps:
     get:
       description: Returns a list of IDPs connected to a given authorization server
         (workspace)
@@ -9572,7 +10136,7 @@ paths:
       - default: default
         description: ID of your authorization server (workspace)
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       responses:
@@ -9592,7 +10156,7 @@ paths:
       - admin: []
       tags:
       - idps
-  /servers/{aid}/idps/{iid}:
+  /servers/{wid}/idps/{iid}:
     delete:
       description: |-
         Deletes an IDP of your choice
@@ -9605,7 +10169,7 @@ paths:
       - default: default
         description: ID of your authorization server (workspace)
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: ID of the IDP you wish to delete
@@ -9633,7 +10197,7 @@ paths:
       summary: Delete IDP
       tags:
       - idps
-  /servers/{aid}/idps/azure:
+  /servers/{wid}/idps/azure:
     post:
       description: Create Azure IDP.
       operationId: createAzureIDP
@@ -9641,7 +10205,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: AzureIDP
@@ -9671,7 +10235,7 @@ paths:
       summary: Create Azure IDP
       tags:
       - idps
-  /servers/{aid}/idps/azure/{iid}:
+  /servers/{wid}/idps/azure/{iid}:
     get:
       description: Get Azure IDP.
       operationId: getAzureIDP
@@ -9679,7 +10243,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: IDP id
@@ -9712,7 +10276,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - default: default
@@ -9748,7 +10312,7 @@ paths:
       summary: Update Azure IDP
       tags:
       - idps
-  /servers/{aid}/idps/azureb2c:
+  /servers/{wid}/idps/azureb2c:
     post:
       description: Create AzureB2C IDP.
       operationId: createAzureB2CIDP
@@ -9756,7 +10320,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: AzureB2CIDP
@@ -9786,7 +10350,7 @@ paths:
       summary: Create AzureB2C IDP
       tags:
       - idps
-  /servers/{aid}/idps/azureb2c/{iid}:
+  /servers/{wid}/idps/azureb2c/{iid}:
     get:
       description: Get AzureB2C IDP.
       operationId: getAzureB2CIDP
@@ -9794,7 +10358,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: IDP id
@@ -9827,7 +10391,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - default: default
@@ -9863,7 +10427,7 @@ paths:
       summary: Update AzureB2C IDP
       tags:
       - idps
-  /servers/{aid}/idps/cognito:
+  /servers/{wid}/idps/cognito:
     post:
       description: Create Cognito IDP.
       operationId: createCognitoIDP
@@ -9871,7 +10435,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: CognitoIDP
@@ -9901,7 +10465,7 @@ paths:
       summary: Create Cognito IDP
       tags:
       - idps
-  /servers/{aid}/idps/cognito/{iid}:
+  /servers/{wid}/idps/cognito/{iid}:
     get:
       description: Get Cognito IDP.
       operationId: getCognitoIDP
@@ -9909,7 +10473,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: IDP id
@@ -9942,7 +10506,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - default: default
@@ -9978,7 +10542,7 @@ paths:
       summary: Update Cognito IDP
       tags:
       - idps
-  /servers/{aid}/idps/custom:
+  /servers/{wid}/idps/custom:
     post:
       description: Create Custom IDP.
       operationId: createCustomIDP
@@ -9986,7 +10550,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: CustomIDP
@@ -10016,7 +10580,7 @@ paths:
       summary: Create Custom IDP
       tags:
       - idps
-  /servers/{aid}/idps/custom/{iid}:
+  /servers/{wid}/idps/custom/{iid}:
     get:
       description: Get Custom IDP.
       operationId: getCustomIDP
@@ -10024,7 +10588,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: IDP id
@@ -10057,7 +10621,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - default: default
@@ -10093,7 +10657,7 @@ paths:
       summary: Update Custom IDP
       tags:
       - idps
-  /servers/{aid}/idps/external:
+  /servers/{wid}/idps/external:
     post:
       description: Create External IDP.
       operationId: createExternalIDP
@@ -10101,7 +10665,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: ExternalIDP
@@ -10131,7 +10695,7 @@ paths:
       summary: Create External IDP
       tags:
       - idps
-  /servers/{aid}/idps/external/{iid}:
+  /servers/{wid}/idps/external/{iid}:
     get:
       description: Get External IDP.
       operationId: getExternalIDP
@@ -10139,7 +10703,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: IDP id
@@ -10172,7 +10736,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - default: default
@@ -10208,7 +10772,7 @@ paths:
       summary: Update External IDP
       tags:
       - idps
-  /servers/{aid}/idps/github:
+  /servers/{wid}/idps/github:
     post:
       description: Create Github IDP.
       operationId: createGithubIDP
@@ -10216,7 +10780,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: GithubIDP
@@ -10246,7 +10810,7 @@ paths:
       summary: Create Github IDP
       tags:
       - idps
-  /servers/{aid}/idps/github/{iid}:
+  /servers/{wid}/idps/github/{iid}:
     get:
       description: Get Github IDP.
       operationId: getGithubIDP
@@ -10254,7 +10818,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: IDP id
@@ -10287,7 +10851,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - default: default
@@ -10323,7 +10887,7 @@ paths:
       summary: Update Github IDP
       tags:
       - idps
-  /servers/{aid}/idps/github_embedded/{iid}:
+  /servers/{wid}/idps/github_embedded/{iid}:
     get:
       description: Get GithubEmbedded IDP.
       operationId: getGithubEmbeddedIDP
@@ -10331,7 +10895,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: IDP id
@@ -10364,7 +10928,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - default: default
@@ -10400,7 +10964,7 @@ paths:
       summary: Update GithubEmbedded IDP
       tags:
       - idps
-  /servers/{aid}/idps/google:
+  /servers/{wid}/idps/google:
     post:
       description: Create Google IDP.
       operationId: createGoogleIDP
@@ -10408,7 +10972,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: GoogleIDP
@@ -10438,7 +11002,7 @@ paths:
       summary: Create Google IDP
       tags:
       - idps
-  /servers/{aid}/idps/google/{iid}:
+  /servers/{wid}/idps/google/{iid}:
     get:
       description: Get Google IDP.
       operationId: getGoogleIDP
@@ -10446,7 +11010,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: IDP id
@@ -10479,7 +11043,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - default: default
@@ -10515,7 +11079,7 @@ paths:
       summary: Update Google IDP
       tags:
       - idps
-  /servers/{aid}/idps/google_embedded/{iid}:
+  /servers/{wid}/idps/google_embedded/{iid}:
     get:
       description: Get GoogleEmbedded IDP.
       operationId: getGoogleEmbeddedIDP
@@ -10523,7 +11087,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: IDP id
@@ -10556,7 +11120,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - default: default
@@ -10592,7 +11156,7 @@ paths:
       summary: Update GoogleEmbedded IDP
       tags:
       - idps
-  /servers/{aid}/idps/intelli_trust:
+  /servers/{wid}/idps/intelli_trust:
     post:
       description: Create IntelliTrust IDP.
       operationId: createIntelliTrustIDP
@@ -10600,7 +11164,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: IntelliTrustIDP
@@ -10630,7 +11194,7 @@ paths:
       summary: Create IntelliTrust IDP
       tags:
       - idps
-  /servers/{aid}/idps/intelli_trust/{iid}:
+  /servers/{wid}/idps/intelli_trust/{iid}:
     get:
       description: Get IntelliTrust IDP.
       operationId: getIntelliTrustIDP
@@ -10638,7 +11202,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: IDP id
@@ -10671,7 +11235,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - default: default
@@ -10707,7 +11271,7 @@ paths:
       summary: Update IntelliTrust IDP
       tags:
       - idps
-  /servers/{aid}/idps/oidc:
+  /servers/{wid}/idps/oidc:
     post:
       description: Create OIDC IDP.
       operationId: createOIDCIDP
@@ -10715,7 +11279,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: OIDCIDP
@@ -10745,7 +11309,7 @@ paths:
       summary: Create OIDC IDP
       tags:
       - idps
-  /servers/{aid}/idps/oidc/{iid}:
+  /servers/{wid}/idps/oidc/{iid}:
     get:
       description: Get OIDC IDP.
       operationId: getOIDCIDP
@@ -10753,7 +11317,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: IDP id
@@ -10786,7 +11350,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - default: default
@@ -10822,7 +11386,7 @@ paths:
       summary: Update OIDC IDP
       tags:
       - idps
-  /servers/{aid}/idps/okta:
+  /servers/{wid}/idps/okta:
     post:
       description: Create Okta IDP.
       operationId: createOktaIDP
@@ -10830,7 +11394,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: OktaIDP
@@ -10860,7 +11424,7 @@ paths:
       summary: Create Okta IDP
       tags:
       - idps
-  /servers/{aid}/idps/okta/{iid}:
+  /servers/{wid}/idps/okta/{iid}:
     get:
       description: Get Okta IDP.
       operationId: getOktaIDP
@@ -10868,7 +11432,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: IDP id
@@ -10901,7 +11465,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - default: default
@@ -10937,7 +11501,7 @@ paths:
       summary: Update Okta IDP
       tags:
       - idps
-  /servers/{aid}/idps/saml:
+  /servers/{wid}/idps/saml:
     post:
       description: Create SAML IDP.
       operationId: createSAMLIDP
@@ -10945,7 +11509,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: SAMLIDP
@@ -10975,7 +11539,7 @@ paths:
       summary: Create SAML IDP
       tags:
       - idps
-  /servers/{aid}/idps/saml/{iid}:
+  /servers/{wid}/idps/saml/{iid}:
     get:
       description: Get SAML IDP.
       operationId: getSAMLIDP
@@ -10983,7 +11547,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: IDP id
@@ -11016,7 +11580,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - default: default
@@ -11052,7 +11616,7 @@ paths:
       summary: Update SAML IDP
       tags:
       - idps
-  /servers/{aid}/idps/static:
+  /servers/{wid}/idps/static:
     post:
       description: Create Static IDP.
       operationId: createStaticIDP
@@ -11060,7 +11624,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: StaticIDP
@@ -11090,7 +11654,7 @@ paths:
       summary: Create Static IDP
       tags:
       - idps
-  /servers/{aid}/idps/static/{iid}:
+  /servers/{wid}/idps/static/{iid}:
     get:
       description: Get Static IDP.
       operationId: getStaticIDP
@@ -11098,7 +11662,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: IDP id
@@ -11131,7 +11695,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - default: default
@@ -11167,7 +11731,7 @@ paths:
       summary: Update Static IDP
       tags:
       - idps
-  /servers/{aid}/keys:
+  /servers/{wid}/keys:
     get:
       description: Get server encryption or signing keys.
       operationId: getKeys
@@ -11175,7 +11739,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - default: sig
@@ -11199,7 +11763,7 @@ paths:
       summary: Get server keys
       tags:
       - keys
-  /servers/{aid}/keys/{kid}/raw:
+  /servers/{wid}/keys/{kid}/raw:
     get:
       description: Get next, current or rotated server key by kid and return as raw
         jwk without metadata.
@@ -11208,7 +11772,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: Key identifier
@@ -11232,7 +11796,7 @@ paths:
       summary: Get server key by kid
       tags:
       - keys
-  /servers/{aid}/keys/automatic-key-rotation:
+  /servers/{wid}/keys/automatic-key-rotation:
     get:
       description: Get automatic key rotation configuration.
       operationId: getAutomaticKeyRotation
@@ -11240,7 +11804,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - default: sig
@@ -11271,7 +11835,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - default: sig
@@ -11302,7 +11866,7 @@ paths:
       summary: Set automatic key rotation
       tags:
       - keys
-  /servers/{aid}/keys/revoke/{kid}:
+  /servers/{wid}/keys/revoke/{kid}:
     post:
       description: Revoke rotated key
       operationId: revokeKey
@@ -11310,7 +11874,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: Key id
@@ -11341,7 +11905,7 @@ paths:
       summary: Revoke key
       tags:
       - keys
-  /servers/{aid}/keys/rotate:
+  /servers/{wid}/keys/rotate:
     post:
       description: Rotate encryption or signing key.
       operationId: rotateKey
@@ -11349,7 +11913,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - default: sig
@@ -11384,7 +11948,7 @@ paths:
       summary: Rotate key
       tags:
       - keys
-  /servers/{aid}/policies:
+  /servers/{wid}/policies:
     get:
       description: Lists authorization servers' (workspace) policies by type.
       operationId: listPolicies
@@ -11392,7 +11956,7 @@ paths:
       - default: default
         description: Id of your authorization server (workspace)
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - default: api
@@ -11465,7 +12029,7 @@ paths:
       summary: List policies
       tags:
       - policies
-  /servers/{aid}/policy-execution-points:
+  /servers/{wid}/policy-execution-points:
     get:
       description: Returns a list of policy execution points for a given workspace.
       operationId: listPolicyExecutionPoints
@@ -11473,7 +12037,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       responses:
@@ -11499,7 +12063,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - in: body
@@ -11528,7 +12092,7 @@ paths:
       summary: Set policy execution points
       tags:
       - policies
-  /servers/{aid}/scopes:
+  /servers/{wid}/scopes:
     get:
       description: List scopes.
       operationId: listScopes
@@ -11536,7 +12100,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       responses:
@@ -11553,7 +12117,7 @@ paths:
       summary: List scopes
       tags:
       - scopes
-  /servers/{aid}/script-execution-points:
+  /servers/{wid}/script-execution-points:
     get:
       description: Returns a list of script execution points for a given workspace.
       operationId: listScriptExecutionPoints
@@ -11561,7 +12125,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       responses:
@@ -11585,7 +12149,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - in: body
@@ -11614,7 +12178,7 @@ paths:
       summary: Set script execution points
       tags:
       - scripts
-  /servers/{aid}/scripts:
+  /servers/{wid}/scripts:
     get:
       description: Lists tenant's scripts.
       operationId: listScripts
@@ -11622,7 +12186,7 @@ paths:
       - default: default
         description: ID of your authorization server (workspace)
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: |-
@@ -11689,7 +12253,7 @@ paths:
       - default: default
         description: ID of your authorization server (workspace)
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - in: body
@@ -11712,7 +12276,7 @@ paths:
       summary: Create script
       tags:
       - scripts
-  /servers/{aid}/scripts/{script}:
+  /servers/{wid}/scripts/{script}:
     delete:
       description: Deleting a script is permanent and it cannot be undone.
       operationId: deleteScript
@@ -11720,7 +12284,7 @@ paths:
       - default: default
         description: ID of your authorization server (workspace)
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: ID of the script to be deleted
@@ -11753,7 +12317,7 @@ paths:
       - default: default
         description: ID of your authorization server (workspace)
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: ID of your script
@@ -11784,7 +12348,7 @@ paths:
       - default: default
         description: ID of your authorization server (workspace)
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: ID of the script to be updated
@@ -11814,7 +12378,7 @@ paths:
       summary: Update script
       tags:
       - scripts
-  /servers/{aid}/scripts/test:
+  /servers/{wid}/scripts/test:
     post:
       description: |-
         You can test a script and check if it works correctly using this endpoint. Provide your mock input and
@@ -11825,7 +12389,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - in: body
@@ -11854,7 +12418,7 @@ paths:
       summary: Test script
       tags:
       - scripts
-  /servers/{aid}/secrets:
+  /servers/{wid}/secrets:
     get:
       description: |-
         List previously created secrets for a given tenant id and autorization server (workspace).
@@ -11864,7 +12428,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       responses:
@@ -11892,7 +12456,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - in: body
@@ -11921,7 +12485,7 @@ paths:
       summary: Create secret
       tags:
       - secrets
-  /servers/{aid}/secrets/{sid}:
+  /servers/{wid}/secrets/{sid}:
     delete:
       description: Delete previously created secrets for a given tenant id and autorization
         server (workspace).
@@ -11930,7 +12494,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - default: default
@@ -11964,7 +12528,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - default: default
@@ -11996,7 +12560,7 @@ paths:
       summary: Update secret
       tags:
       - secrets
-  /servers/{aid}/server-consent:
+  /servers/{wid}/server-consent:
     get:
       description: Get server consent.
       operationId: getServerConsent
@@ -12004,7 +12568,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       responses:
@@ -12033,7 +12597,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: Server consent
@@ -12059,7 +12623,7 @@ paths:
       summary: Set server consent
       tags:
       - servers
-  /servers/{aid}/services:
+  /servers/{wid}/services:
     get:
       description: List services.
       operationId: listServices
@@ -12067,7 +12631,7 @@ paths:
       - default: default
         description: Authorization server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: |-
@@ -12126,15 +12690,15 @@ paths:
       summary: List services
       tags:
       - services
-  /servers/{aid}/unbind/{rid}:
+  /servers/{wid}/unbind/{rid}:
     delete:
       description: Unbind server.
       operationId: unbindServer
       parameters:
       - default: default
-        description: Authorization server id
+        description: Workspace id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - default: default
@@ -12461,15 +13025,15 @@ paths:
       summary: Import OpenAPI specification from url
       tags:
       - services
-  /stats/{aid}/overview:
+  /stats/{wid}/overview:
     get:
       description: Get stats
       operationId: getStats
       parameters:
       - default: default
-        description: Authorization server id
+        description: Workspace id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       responses:
@@ -12486,15 +13050,15 @@ paths:
       summary: Get stats
       tags:
       - stats
-  /stats/{aid}/recent-activities:
+  /stats/{wid}/recent-activities:
     get:
       description: Get recent activities
       operationId: getRecentActivities
       parameters:
       - default: default
-        description: Authorization server id
+        description: Workspace id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - default: 10
@@ -12546,7 +13110,7 @@ paths:
       summary: List system APIs
       tags:
       - system
-  /system/apis/{aid}/bindings:
+  /system/apis/{wid}/bindings:
     get:
       description: List policy to system api bindings.
       operationId: listSystemAPIBindings
@@ -12554,7 +13118,7 @@ paths:
       - default: default
         description: Server id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       responses:
@@ -12858,7 +13422,7 @@ responses:
   CreateServiceResponse:
     description: Service
     schema:
-      $ref: '#/definitions/Service'
+      $ref: '#/definitions/ServiceWithAudience'
   DashboardsResponse:
     description: Dashboards
     schema:
@@ -12970,7 +13534,7 @@ responses:
   Server:
     description: Server
     schema:
-      $ref: '#/definitions/Server'
+      $ref: '#/definitions/ServerResponse'
   ServerAPIsResponse:
     description: APIs grouped by service ids
     schema:
@@ -12986,7 +13550,7 @@ responses:
   Servers:
     description: Servers
     schema:
-      $ref: '#/definitions/Servers'
+      $ref: '#/definitions/ServersResponse'
   ServersBindings:
     description: Server bindings
     schema:
@@ -13018,7 +13582,7 @@ responses:
   TestAPIResponseModel:
     description: API test result
     schema:
-      $ref: '#/definitions/TestAPIResponse'
+      $ref: '#/definitions/TestAPIResult'
   TestPolicyResponse:
     description: Test policy result
     schema:
@@ -13030,7 +13594,7 @@ responses:
   UpdateServiceResponse:
     description: Service
     schema:
-      $ref: '#/definitions/Service'
+      $ref: '#/definitions/ServiceWithAudience'
   VanityDomain:
     description: Vanity domain
     schema:
