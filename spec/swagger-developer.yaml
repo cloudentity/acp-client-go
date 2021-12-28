@@ -1088,6 +1088,10 @@ definitions:
         example: https://example.com/default/default
         type: string
         x-nullable: false
+      mtls_issuer_url:
+        description: mtls issuer url
+        type: string
+        x-nullable: false
       name:
         description: authorizations server name
         example: ACP
@@ -1140,6 +1144,10 @@ definitions:
       issuer_url:
         description: issuer URL
         example: https://example.com/default/default
+        type: string
+        x-nullable: false
+      mtls_issuer_url:
+        description: mtls issuer url
         type: string
         x-nullable: false
       name:

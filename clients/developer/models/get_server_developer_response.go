@@ -37,6 +37,9 @@ type GetServerDeveloperResponse struct {
 	// Example: https://example.com/default/default
 	IssuerURL string `json:"issuer_url,omitempty"`
 
+	// mtls issuer url
+	MtlsIssuerURL string `json:"mtls_issuer_url,omitempty"`
+
 	// authorizations server name
 	// Example: ACP
 	Name string `json:"name,omitempty"`

@@ -17,6 +17,9 @@ import (
 // swagger:model TestPolicyInputRequest
 type TestPolicyInputRequest struct {
 
+	// Body that is used in your request that you use to test your policy
+	Body string `json:"body,omitempty"`
+
 	// Headers that are used in your request that you use to test your policy
 	Headers map[string][]string `json:"headers,omitempty"`
 

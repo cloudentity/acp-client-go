@@ -22,6 +22,9 @@ type Dump struct {
 	// apis
 	Apis []*API `json:"apis"`
 
+	// audit events
+	AuditEvents []*AuditEvent `json:"audit_events"`
+
 	// cdr arrangements
 	CdrArrangements []*CDRArrangement `json:"cdr_arrangements"`
 
@@ -54,6 +57,9 @@ type Dump struct {
 
 	// gateways
 	Gateways []*Gateway `json:"gateways"`
+
+	// identity pools
+	IdentityPools []*Pool `json:"identity_pools"`
 
 	// idps
 	Idps IDPs `json:"idps,omitempty"`
@@ -127,6 +133,10 @@ func (m *Dump) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateAuditEvents(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateCdrArrangements(formats); err != nil {
 		res = append(res, err)
 	}
@@ -168,6 +178,10 @@ func (m *Dump) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateGateways(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIdentityPools(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -277,6 +291,32 @@ func (m *Dump) validateApis(formats strfmt.Registry) error {
 					return ve.ValidateName("apis" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
 					return ce.ValidateName("apis" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Dump) validateAuditEvents(formats strfmt.Registry) error {
+	if swag.IsZero(m.AuditEvents) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.AuditEvents); i++ {
+		if swag.IsZero(m.AuditEvents[i]) { // not required
+			continue
+		}
+
+		if m.AuditEvents[i] != nil {
+			if err := m.AuditEvents[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("audit_events" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("audit_events" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -563,6 +603,32 @@ func (m *Dump) validateGateways(formats strfmt.Registry) error {
 					return ve.ValidateName("gateways" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
 					return ce.ValidateName("gateways" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Dump) validateIdentityPools(formats strfmt.Registry) error {
+	if swag.IsZero(m.IdentityPools) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.IdentityPools); i++ {
+		if swag.IsZero(m.IdentityPools[i]) { // not required
+			continue
+		}
+
+		if m.IdentityPools[i] != nil {
+			if err := m.IdentityPools[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("identity_pools" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("identity_pools" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1118,6 +1184,10 @@ func (m *Dump) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateAuditEvents(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateCdrArrangements(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -1159,6 +1229,10 @@ func (m *Dump) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 	}
 
 	if err := m.contextValidateGateways(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIdentityPools(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1262,6 +1336,26 @@ func (m *Dump) contextValidateApis(ctx context.Context, formats strfmt.Registry)
 					return ve.ValidateName("apis" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
 					return ce.ValidateName("apis" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Dump) contextValidateAuditEvents(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.AuditEvents); i++ {
+
+		if m.AuditEvents[i] != nil {
+			if err := m.AuditEvents[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("audit_events" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("audit_events" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1482,6 +1576,26 @@ func (m *Dump) contextValidateGateways(ctx context.Context, formats strfmt.Regis
 					return ve.ValidateName("gateways" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
 					return ce.ValidateName("gateways" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Dump) contextValidateIdentityPools(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.IdentityPools); i++ {
+
+		if m.IdentityPools[i] != nil {
+			if err := m.IdentityPools[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("identity_pools" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("identity_pools" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

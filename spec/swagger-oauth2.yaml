@@ -1676,6 +1676,9 @@ definitions:
         x-nullable: false
       mtls_endpoint_aliases:
         $ref: '#/definitions/MTLSEndpointAliases'
+      mtls_issuer:
+        type: string
+        x-nullable: false
       pushed_authorization_request_endpoint:
         description: |-
           The URL of the pushed authorization request endpoint at which a client can post an authorization request to exchange

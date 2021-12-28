@@ -181,6 +181,9 @@ type ServerResponse struct {
 	// Logo URI
 	LogoURI string `json:"logo_uri,omitempty"`
 
+	// mtls issuer url
+	MtlsIssuerURL string `json:"mtls_issuer_url,omitempty"`
+
 	// Display name of your authorization server
 	// Example: Sample authorization server
 	Name string `json:"name,omitempty"`

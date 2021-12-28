@@ -11,6 +11,7 @@ import (
 	"github.com/go-openapi/strfmt"
 
 	"github.com/cloudentity/acp-client-go/clients/admin/client/apis"
+	"github.com/cloudentity/acp-client-go/clients/admin/client/audit_events"
 	"github.com/cloudentity/acp-client-go/clients/admin/client/claims"
 	"github.com/cloudentity/acp-client-go/clients/admin/client/clients"
 	"github.com/cloudentity/acp-client-go/clients/admin/client/consents"
@@ -75,6 +76,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *Acp {
 	cli := new(Acp)
 	cli.Transport = transport
 	cli.Apis = apis.New(transport, formats)
+	cli.AuditEvents = audit_events.New(transport, formats)
 	cli.Claims = claims.New(transport, formats)
 	cli.Clients = clients.New(transport, formats)
 	cli.Consents = consents.New(transport, formats)
@@ -140,6 +142,8 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 type Acp struct {
 	Apis apis.ClientService
 
+	AuditEvents audit_events.ClientService
+
 	Claims claims.ClientService
 
 	Clients clients.ClientService
@@ -185,6 +189,7 @@ type Acp struct {
 func (c *Acp) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 	c.Apis.SetTransport(transport)
+	c.AuditEvents.SetTransport(transport)
 	c.Claims.SetTransport(transport)
 	c.Clients.SetTransport(transport)
 	c.Consents.SetTransport(transport)

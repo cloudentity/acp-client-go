@@ -173,6 +173,8 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  Action:
+    type: string
   ApigeeMetadata:
     properties:
       environment_name:
@@ -231,6 +233,68 @@ definitions:
     items:
       $ref: '#/definitions/Attribute'
     type: array
+  AuditEvent:
+    properties:
+      action:
+        $ref: '#/definitions/Action'
+      context:
+        additionalProperties:
+          type: string
+        description: context
+        type: object
+        x-nullable: false
+      event_id:
+        description: event id
+        format: eventID
+        type: string
+        x-nullable: false
+      event_payload:
+        description: event payload
+        type: object
+        x-nullable: false
+      event_subject:
+        $ref: '#/definitions/AuditEventSubject'
+      event_type:
+        $ref: '#/definitions/AuditEventType'
+      metadata:
+        $ref: '#/definitions/AuditEventMetadata'
+      server_id:
+        description: server id
+        format: serverID
+        type: string
+        x-nullable: false
+      tenant_id:
+        description: tenant id
+        format: tenantID
+        type: string
+        x-nullable: false
+      timestamp:
+        description: event date
+        format: date-time
+        type: string
+        x-nullable: false
+    type: object
+  AuditEventMetadata:
+    properties:
+      client_id:
+        description: client id
+        format: clientID
+        type: string
+        x-nullable: false
+      ip:
+        description: ip address
+        type: string
+        x-nullable: false
+      subject:
+        description: subject
+        format: subject
+        type: string
+        x-nullable: false
+    type: object
+  AuditEventSubject:
+    type: string
+  AuditEventType:
+    type: string
   AuthenticationContext:
     additionalProperties:
       type: object
@@ -2220,6 +2284,11 @@ definitions:
         x-nullable: false
       token_exchange:
         $ref: '#/definitions/GatewayTokenExchangeSettings'
+      token_exchange_client_id:
+        description: Token exchange client id
+        format: clientID
+        type: string
+        x-nullable: false
       type:
         description: 'gateway type, one of: pyron, aws'
         example: pyron
@@ -3540,6 +3609,40 @@ definitions:
         description: String representation of the policy validation result
         type: string
         x-nullable: false
+    type: object
+  Pool:
+    properties:
+      authentication_mechanisms:
+        example:
+        - password
+        items:
+          enum:
+          - password
+          - email_link
+          type: string
+        type: array
+        x-nullable: false
+      description:
+        type: string
+        x-nullable: false
+      id:
+        format: poolID
+        type: string
+        x-nullable: false
+      name:
+        type: string
+        x-nullable: false
+      public_registration_allowed:
+        type: boolean
+        x-nullable: false
+      tenant_id:
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+    required:
+    - tenant_id
+    - name
     type: object
   PrivacyLedgerEvent:
     properties:
@@ -5280,6 +5383,11 @@ definitions:
           $ref: '#/definitions/API'
         type: array
         x-nullable: false
+      audit_events:
+        items:
+          $ref: '#/definitions/AuditEvent'
+        type: array
+        x-nullable: false
       cdr_arrangements:
         items:
           $ref: '#/definitions/CDRArrangement'
@@ -5328,6 +5436,11 @@ definitions:
       gateways:
         items:
           $ref: '#/definitions/Gateway'
+        type: array
+        x-nullable: false
+      identity_pools:
+        items:
+          $ref: '#/definitions/Pool'
         type: array
         x-nullable: false
       idps:
@@ -5475,6 +5588,10 @@ definitions:
     type: object
   VanityDomain:
     properties:
+      api_key:
+        description: api key
+        type: string
+        x-nullable: false
       base_path:
         description: base path to use with a configured vanity domain
         example: /prefix
@@ -5487,6 +5604,11 @@ definitions:
       domain:
         description: vanity domain
         example: example.com
+        type: string
+        x-nullable: false
+      id:
+        description: ID
+        format: vanityDomainID
         type: string
         x-nullable: false
       key:
@@ -5505,9 +5627,13 @@ definitions:
         format: tenantID
         type: string
         x-nullable: false
+      type:
+        $ref: '#/definitions/VanityDomainType'
     required:
     - domain
     type: object
+  VanityDomainType:
+    type: string
 host: localhost:8443
 info:
   description: Cloudentity Authorization Control Plane System API

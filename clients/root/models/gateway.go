@@ -51,6 +51,9 @@ type Gateway struct {
 	// token exchange
 	TokenExchange *GatewayTokenExchangeSettings `json:"token_exchange,omitempty"`
 
+	// Token exchange client id
+	TokenExchangeClientID string `json:"token_exchange_client_id,omitempty"`
+
 	// gateway type, one of: pyron, aws
 	// Example: pyron
 	Type string `json:"type,omitempty"`

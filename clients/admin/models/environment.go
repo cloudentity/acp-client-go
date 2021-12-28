@@ -52,12 +52,6 @@ type Environment struct {
 	// enable external datastore idp (system)
 	ExternalDatastore bool `json:"external_datastore,omitempty"`
 
-	// enable gateway type kong (tenant)
-	GatewayTypeKong bool `json:"gateway_type_kong,omitempty"`
-
-	// enable gateway type standalone (tenant)
-	GatewayTypeStandalone bool `json:"gateway_type_standalone,omitempty"`
-
 	// when enabled and the display_workspace_wizard feature flag is set to true, a demo workspace with a set of preconfigured IDPs is created and no welcome screen is displayed (tenant)
 	InitializeDemoWorkspace bool `json:"initialize_demo_workspace,omitempty"`
 

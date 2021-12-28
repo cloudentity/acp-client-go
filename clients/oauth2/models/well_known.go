@@ -115,6 +115,9 @@ type WellKnown struct {
 	// mtls endpoint aliases
 	MtlsEndpointAliases *MTLSEndpointAliases `json:"mtls_endpoint_aliases,omitempty"`
 
+	// mtls issuer
+	MtlsIssuer string `json:"mtls_issuer,omitempty"`
+
 	// The URL of the pushed authorization request endpoint at which a client can post an authorization request to exchange
 	// for a "request_uri" value usable at the authorization server.
 	PushedAuthorizationRequestEndpoint string `json:"pushed_authorization_request_endpoint,omitempty"`

@@ -110,6 +110,8 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  Action:
+    type: string
   ApigeeMetadata:
     properties:
       environment_name:
@@ -168,6 +170,64 @@ definitions:
     items:
       $ref: '#/definitions/Attribute'
     type: array
+  AuditEvent:
+    properties:
+      action:
+        $ref: '#/definitions/Action'
+      context:
+        additionalProperties:
+          type: string
+        description: context
+        type: object
+        x-nullable: false
+      event_id:
+        description: event id
+        format: eventID
+        type: string
+        x-nullable: false
+      event_payload:
+        description: event payload
+        type: object
+        x-nullable: false
+      event_subject:
+        $ref: '#/definitions/AuditEventSubject'
+      metadata:
+        $ref: '#/definitions/AuditEventMetadata'
+      server_id:
+        description: server id
+        format: serverID
+        type: string
+        x-nullable: false
+      tenant_id:
+        description: tenant id
+        format: tenantID
+        type: string
+        x-nullable: false
+      timestamp:
+        description: event date
+        format: date-time
+        type: string
+        x-nullable: false
+    type: object
+  AuditEventMetadata:
+    properties:
+      client_id:
+        description: client id
+        format: clientID
+        type: string
+        x-nullable: false
+      ip:
+        description: ip address
+        type: string
+        x-nullable: false
+      subject:
+        description: subject
+        format: subject
+        type: string
+        x-nullable: false
+    type: object
+  AuditEventSubject:
+    type: string
   AuthenticationContext:
     additionalProperties:
       type: object
@@ -3214,14 +3274,6 @@ definitions:
         description: enable external datastore idp (system)
         type: boolean
         x-nullable: false
-      gateway_type_kong:
-        description: enable gateway type kong (tenant)
-        type: boolean
-        x-nullable: false
-      gateway_type_standalone:
-        description: enable gateway type standalone (tenant)
-        type: boolean
-        x-nullable: false
       initialize_demo_workspace:
         description: when enabled and the display_workspace_wizard feature flag is
           set to true, a demo workspace with a set of preconfigured IDPs is created
@@ -3509,6 +3561,11 @@ definitions:
         x-nullable: false
       token_exchange:
         $ref: '#/definitions/GatewayTokenExchangeSettings'
+      token_exchange_client_id:
+        description: Token exchange client id
+        format: clientID
+        type: string
+        x-nullable: false
       type:
         description: 'gateway type, one of: pyron, aws'
         example: pyron
@@ -3644,6 +3701,11 @@ definitions:
         x-nullable: false
       token_exchange:
         $ref: '#/definitions/GatewayTokenExchangeSettings'
+      token_exchange_client_id:
+        description: Token exchange client id
+        format: clientID
+        type: string
+        x-nullable: false
       type:
         description: 'gateway type, one of: pyron, aws'
         example: pyron
@@ -6724,6 +6786,9 @@ definitions:
         description: Logo URI
         type: string
         x-nullable: false
+      mtls_issuer_url:
+        type: string
+        x-nullable: false
       name:
         description: Display name of your authorization server
         example: Sample authorization server
@@ -7470,6 +7535,10 @@ definitions:
     type: object
   TestPolicyInputRequest:
     properties:
+      body:
+        description: Body that is used in your request that you use to test your policy
+        type: string
+        x-nullable: false
       headers:
         additionalProperties:
           items:
@@ -8113,6 +8182,8 @@ definitions:
         example: Cloudentity Pyron
         type: string
         x-nullable: false
+      token_exchange:
+        $ref: '#/definitions/GatewayTokenExchangeSettings'
     type: object
   ValidateResponse_ValidatorFailure:
     properties:
@@ -8155,6 +8226,10 @@ definitions:
     type: object
   VanityDomain:
     properties:
+      api_key:
+        description: api key
+        type: string
+        x-nullable: false
       base_path:
         description: base path to use with a configured vanity domain
         example: /prefix
@@ -8167,6 +8242,11 @@ definitions:
       domain:
         description: vanity domain
         example: example.com
+        type: string
+        x-nullable: false
+      id:
+        description: ID
+        format: vanityDomainID
         type: string
         x-nullable: false
       key:
@@ -8185,9 +8265,13 @@ definitions:
         format: tenantID
         type: string
         x-nullable: false
+      type:
+        $ref: '#/definitions/VanityDomainType'
     required:
     - domain
     type: object
+  VanityDomainType:
+    type: string
 host: localhost:8443
 info:
   description: Cloudentity Authorization Control Plane Admin API
@@ -9875,6 +9959,111 @@ paths:
       summary: List APIs
       tags:
       - apis
+  /servers/{wid}/audit-events:
+    get:
+      description: Returns list of autit events.
+      operationId: listAuditEvents
+      parameters:
+      - default: admin
+        description: Authorization server id
+        in: path
+        name: wid
+        required: true
+        type: string
+      - description: |-
+          optional list audit events after a given client id
+          ClientID
+        in: query
+        name: client_id
+        type: string
+      - description: |-
+          optional list audit events after a given subject
+          Subject
+        in: query
+        name: subject
+        type: string
+      - description: |-
+          optional list audit events after a given ip address
+          XForwardedFor
+        in: query
+        name: ip
+        type: string
+      - description: |-
+          Optional event subject, one of: request gateway_request client
+          EventType
+        in: query
+        name: event_subject
+        type: string
+      - description: |-
+          Optional event type, one of: authorized unauthorized created deleted updated
+          EventType
+        in: query
+        name: event_action
+        type: string
+      - description: |-
+          list all events after a given time
+          TimestampFrom
+        format: date-time
+        in: query
+        name: timestamp_from
+        type: string
+      - description: |-
+          list all events before a given time
+          TimestampTo
+        format: date-time
+        in: query
+        name: timestamp_to
+        type: string
+      - description: |-
+          optional list events before a given event id
+          BeforeEventID
+        in: query
+        name: before_event_id
+        type: string
+      - description: |-
+          optional list audit events after a given event id
+          AfterEventID
+        in: query
+        name: after_event_id
+        type: string
+      - description: |-
+          optional sort audit events by a given field
+          Sort
+        in: query
+        name: sort
+        type: string
+      - description: |-
+          optional order audit events by given direction
+          Order
+        in: query
+        name: order
+        type: string
+      - default: 20
+        description: |-
+          optional limit results
+          Limit
+        format: int64
+        in: query
+        name: limit
+        type: integer
+      responses:
+        "200":
+          $ref: '#/responses/AuditEventsResponse'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: List audit events
+      tags:
+      - auditEvents
   /servers/{wid}/bind/{rid}:
     post:
       description: Bind server.
@@ -13371,6 +13560,12 @@ responses:
     description: APIs
     schema:
       $ref: '#/definitions/APIs'
+  AuditEventsResponse:
+    description: AuditEvents
+    schema:
+      items:
+        $ref: '#/definitions/AuditEvent'
+      type: array
   AutomaticKeyRotation:
     description: Automation key rotation
     schema:
