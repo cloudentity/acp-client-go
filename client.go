@@ -174,10 +174,10 @@ type Config struct {
 	RoutingMode string `json:"routing_mode"`
 
 	// Tenant id required when RoutingMode is "tenant" or "server"
-	TenantID string
+	TenantID string `json:"tenant_id"`
 
 	// Authorization server id required when RoutingMode is "server".
-	ServerID string
+	ServerID string `json:"server_id"`
 }
 
 func (c *Config) GetTokenURL() string {
@@ -202,6 +202,60 @@ func (c *Config) GetUserinfoURL() string {
 	}
 
 	return fmt.Sprintf("%s/userinfo", c.IssuerURL.String())
+}
+
+// Determine Basepath, TenantID, and ServerID from the config.
+func (c *Client) configureBasePath(cfg Config) error {
+	var (
+		paths   []string
+		lastIdx int
+	)
+	switch cfg.RoutingMode {
+	case "":
+		paths = strings.Split(cfg.IssuerURL.Path, "/")
+		if len(paths) < 3 {
+			return errors.New("invalid issuer url")
+		}
+		lastIdx = len(paths) - 1
+
+		c.TenantID = paths[lastIdx-1]
+		c.ServerID = paths[lastIdx]
+		c.BasePath = strings.Join(paths[:lastIdx-1], "/")
+
+	case "tenant":
+		if cfg.TenantID == "" {
+			return errors.New("Config.TenantID is required when RouterType is \"tenant\"")
+		}
+		paths = strings.Split(cfg.IssuerURL.Path, "/")
+		if len(paths) < 2 {
+			return errors.New("invalid issuer url")
+		}
+		lastIdx = len(paths) - 1
+
+		c.TenantID = cfg.TenantID
+		c.ServerID = paths[lastIdx]
+		c.BasePath = strings.Join(paths[:lastIdx], "/")
+
+	case "server":
+		if cfg.TenantID == "" {
+			return errors.New("Config.TenantID is required when RouterType is \"server\"")
+		}
+		if cfg.ServerID == "" {
+			return errors.New("Config.ServerID is required when RouterType is \"server\"")
+		}
+
+		c.TenantID = cfg.TenantID
+		c.ServerID = cfg.ServerID
+		c.BasePath = cfg.IssuerURL.Path
+
+	default:
+		return errors.New("Config.RouterType must be one of \"\", \"tenant\", or \"server\"")
+	}
+
+	if c.BasePath == "/" {
+		c.BasePath = ""
+	}
+	return nil
 }
 
 func (c *Client) discoverEndpoints(issuerURL string) error {
@@ -315,7 +369,7 @@ func New(cfg Config) (c Client, err error) {
 	}
 
 	// Configure BasePath, TenantID and ServerID from the Config.
-	if err = c.ConfigureBasePath(cfg); err != nil {
+	if err = c.configureBasePath(cfg); err != nil {
 		return c, err
 	}
 
@@ -355,7 +409,7 @@ func New(cfg Config) (c Client, err error) {
 	c.Oauth2 = &Oauth2{
 		Acp: o2Client.New(httptransport.NewWithClient(
 			cfg.IssuerURL.Host,
-			c.APIPrefix(cfg.RoutingMode, "/%s/%s"),
+			c.apiPathPrefix(cfg.RoutingMode, "/%s/%s"),
 			[]string{cfg.IssuerURL.Scheme},
 			NewAuthenticator(cc, c.c),
 		).WithOpenTracing(), nil),
@@ -364,7 +418,7 @@ func New(cfg Config) (c Client, err error) {
 	c.Admin = &Admin{
 		Acp: adminClient.New(httptransport.NewWithClient(
 			cfg.IssuerURL.Host,
-			c.APIPrefix(cfg.RoutingMode, "/api/admin/%s"),
+			c.apiPathPrefix(cfg.RoutingMode, "/api/admin/%s"),
 			[]string{cfg.IssuerURL.Scheme},
 			NewAuthenticator(cc, c.c),
 		).WithOpenTracing(), nil),
@@ -373,7 +427,7 @@ func New(cfg Config) (c Client, err error) {
 	c.Developer = &Developer{
 		Acp: developerClient.New(httptransport.NewWithClient(
 			cfg.IssuerURL.Host,
-			c.APIPrefix(cfg.RoutingMode, "/api/developer/%s/%s"),
+			c.apiPathPrefix(cfg.RoutingMode, "/api/developer/%s/%s"),
 			[]string{cfg.IssuerURL.Scheme},
 			NewAuthenticator(cc, c.c),
 		).WithOpenTracing(), nil),
@@ -382,7 +436,7 @@ func New(cfg Config) (c Client, err error) {
 	c.Public = &Public{
 		Acp: publicClient.New(httptransport.NewWithClient(
 			cfg.IssuerURL.Host,
-			c.APIPrefix(cfg.RoutingMode, "/%s/%s"),
+			c.apiPathPrefix(cfg.RoutingMode, "/%s/%s"),
 			[]string{cfg.IssuerURL.Scheme},
 			NewAuthenticator(cc, c.c),
 		).WithOpenTracing(), nil),
@@ -400,7 +454,7 @@ func New(cfg Config) (c Client, err error) {
 	c.System = &System{
 		Acp: systemClient.New(httptransport.NewWithClient(
 			cfg.IssuerURL.Host,
-			c.APIPrefix(cfg.RoutingMode, "/api/system/%s"),
+			c.apiPathPrefix(cfg.RoutingMode, "/api/system/%s"),
 			[]string{cfg.IssuerURL.Scheme},
 			NewAuthenticator(cc, c.c),
 		).WithOpenTracing(), nil),
@@ -409,13 +463,13 @@ func New(cfg Config) (c Client, err error) {
 	c.Web = &Web{
 		Acp: webClient.New(httptransport.NewWithClient(
 			cfg.IssuerURL.Host,
-			c.APIPrefix(cfg.RoutingMode, "/%s/%s"),
+			c.apiPathPrefix(cfg.RoutingMode, "/%s/%s"),
 			[]string{cfg.IssuerURL.Scheme},
 			NewAuthenticator(cc, c.c),
 		).WithOpenTracing(), nil),
 	}
 
-	apiPrefix := c.APIPrefix(cfg.RoutingMode, "/%s/%s")
+	apiPrefix := c.apiPathPrefix(cfg.RoutingMode, "/%s/%s")
 
 	c.OpenbankingUK = &OpenbankingUK{
 		Accounts: obukAccounts.New(httptransport.NewWithClient(
@@ -454,62 +508,8 @@ func New(cfg Config) (c Client, err error) {
 	return c, nil
 }
 
-// Determine Basepath, TenantID, and ServerID from the config.
-func (c *Client) ConfigureBasePath(cfg Config) error {
-	var (
-		paths   []string
-		lastIdx int
-	)
-	switch cfg.RoutingMode {
-	case "":
-		paths = strings.Split(cfg.IssuerURL.Path, "/")
-		if len(paths) < 3 {
-			return errors.New("invalid issuer url")
-		}
-		lastIdx = len(paths) - 1
-
-		c.TenantID = paths[lastIdx-1]
-		c.ServerID = paths[lastIdx]
-		c.BasePath = strings.Join(paths[:lastIdx-1], "/")
-
-	case "tenant":
-		if cfg.TenantID == "" {
-			return errors.New("Config.TenantID is required when RouterType is \"tenant\"")
-		}
-		paths = strings.Split(cfg.IssuerURL.Path, "/")
-		if len(paths) < 2 {
-			return errors.New("invalid issuer url")
-		}
-		lastIdx = len(paths) - 1
-
-		c.TenantID = cfg.TenantID
-		c.ServerID = paths[lastIdx]
-		c.BasePath = strings.Join(paths[:lastIdx], "/")
-
-	case "server":
-		if cfg.TenantID == "" {
-			return errors.New("Config.TenantID is required when RouterType is \"server\"")
-		}
-		if cfg.ServerID == "" {
-			return errors.New("Config.ServerID is required when RouterType is \"server\"")
-		}
-
-		c.TenantID = cfg.TenantID
-		c.ServerID = cfg.ServerID
-		c.BasePath = cfg.IssuerURL.Path
-
-	default:
-		return errors.New("Config.RouterType must be one of \"\", \"tenant\", or \"server\"")
-	}
-
-	if c.BasePath == "/" {
-		c.BasePath = ""
-	}
-	return nil
-}
-
-// APIPrefix adjusts the default API path prefixes to work with vanity domains.
-func (c *Client) APIPrefix(routingMode string, format string) string {
+// apiPathPrefix adjusts the default API path prefixes to work with vanity domains.
+func (c *Client) apiPathPrefix(routingMode string, format string) string {
 	switch format {
 	case "/api/admin/%s":
 		switch routingMode {

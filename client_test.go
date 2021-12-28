@@ -100,7 +100,7 @@ func TestBasePath(t *testing.T) {
 			ServerID:    tc.sid,
 		}
 		client := Client{}
-		err = client.ConfigureBasePath(config)
+		err = client.configureBasePath(config)
 		if tc.isErr {
 			assert.NotNil(t, err, tc.title)
 		} else {
@@ -220,6 +220,6 @@ func TestAPIPrefix(t *testing.T) {
 			TenantID: tc.tenantID,
 			ServerID: tc.serverID,
 		}
-		assert.Equal(t, tc.prefix, client.APIPrefix(tc.rtgMode, tc.format))
+		assert.Equal(t, tc.prefix, client.apiPathPrefix(tc.rtgMode, tc.format), tc.title)
 	}
 }
