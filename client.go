@@ -10,10 +10,10 @@ import (
 	"encoding/pem"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net"
 	"net/http"
 	"net/url"
+	"os"
 	"runtime"
 	"strings"
 	"time"
@@ -170,8 +170,14 @@ type Config struct {
 	// HttpClient is the client to use. Default will be used if not provided.
 	HttpClient *http.Client `json:"-"`
 
-	// Routing mode
+	// Routing mode, one of "", "tenant" or "server".
 	RoutingMode string `json:"routing_mode"`
+
+	// Tenant id required when RoutingMode is "tenant" or "server"
+	TenantID string
+
+	// Authorization server id required when RoutingMode is "server".
+	ServerID string
 }
 
 func (c *Config) GetTokenURL() string {
@@ -213,7 +219,7 @@ func (c *Client) discoverEndpoints(issuerURL string) error {
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		if b, err = ioutil.ReadAll(resp.Body); err != nil {
+		if b, err = io.ReadAll(resp.Body); err != nil {
 			return errors.WithMessagef(err, "unable to read response body from well-known endpoint with status %d", resp.StatusCode)
 		}
 		return errors.WithMessage(errors.New(string(b)), "unable to get well-known endpoints")
@@ -267,7 +273,7 @@ func (c *Config) newHTTPClient() (*http.Client, error) {
 	}
 
 	if c.RootCA != "" {
-		if data, err = ioutil.ReadFile(c.RootCA); err != nil {
+		if data, err = os.ReadFile(c.RootCA); err != nil {
 			return nil, fmt.Errorf("failed to read http client root ca: %w", err)
 		}
 
@@ -308,24 +314,9 @@ func New(cfg Config) (c Client, err error) {
 		return c, errors.New("issuer_url is missing")
 	}
 
-	// default routing mode
-	if cfg.RoutingMode == "" {
-		paths := strings.Split(cfg.IssuerURL.Path, "/")
-
-		if len(paths) < 2 {
-			return c, errors.New("invalid issuer url")
-		}
-
-		lastIdx := len(paths) - 1
-
-		c.TenantID = paths[lastIdx-1]
-		c.ServerID = paths[lastIdx]
-
-		c.BasePath = strings.Join(paths[:lastIdx-2], "/")
-
-		if c.BasePath == "/" {
-			c.BasePath = ""
-		}
+	// Configure BasePath, TenantID and ServerID from the Config.
+	if err = c.ConfigureBasePath(cfg); err != nil {
+		return c, err
 	}
 
 	if cfg.HttpClient == nil {
@@ -343,7 +334,7 @@ func New(cfg Config) (c Client, err error) {
 	if cfg.RequestObjectSigningKeyFile != "" {
 		var bs []byte
 
-		if bs, err = ioutil.ReadFile(cfg.RequestObjectSigningKeyFile); err != nil {
+		if bs, err = os.ReadFile(cfg.RequestObjectSigningKeyFile); err != nil {
 			return c, errors.Wrapf(err, "failed to read request object signing key")
 		}
 
@@ -364,7 +355,7 @@ func New(cfg Config) (c Client, err error) {
 	c.Oauth2 = &Oauth2{
 		Acp: o2Client.New(httptransport.NewWithClient(
 			cfg.IssuerURL.Host,
-			fmt.Sprintf(c.BasePath+"/%s/%s", c.TenantID, c.ServerID),
+			c.APIPrefix(cfg.RoutingMode, "/%s/%s"),
 			[]string{cfg.IssuerURL.Scheme},
 			NewAuthenticator(cc, c.c),
 		).WithOpenTracing(), nil),
@@ -373,7 +364,7 @@ func New(cfg Config) (c Client, err error) {
 	c.Admin = &Admin{
 		Acp: adminClient.New(httptransport.NewWithClient(
 			cfg.IssuerURL.Host,
-			fmt.Sprintf(c.BasePath+"/api/admin/%s", c.TenantID),
+			c.APIPrefix(cfg.RoutingMode, "/api/admin/%s"),
 			[]string{cfg.IssuerURL.Scheme},
 			NewAuthenticator(cc, c.c),
 		).WithOpenTracing(), nil),
@@ -382,7 +373,7 @@ func New(cfg Config) (c Client, err error) {
 	c.Developer = &Developer{
 		Acp: developerClient.New(httptransport.NewWithClient(
 			cfg.IssuerURL.Host,
-			fmt.Sprintf(c.BasePath+"/api/developer/%s/%s", c.TenantID),
+			c.APIPrefix(cfg.RoutingMode, "/api/developer/%s/%s"),
 			[]string{cfg.IssuerURL.Scheme},
 			NewAuthenticator(cc, c.c),
 		).WithOpenTracing(), nil),
@@ -391,7 +382,7 @@ func New(cfg Config) (c Client, err error) {
 	c.Public = &Public{
 		Acp: publicClient.New(httptransport.NewWithClient(
 			cfg.IssuerURL.Host,
-			fmt.Sprintf(c.BasePath+"/%s/%s", c.TenantID, c.ServerID),
+			c.APIPrefix(cfg.RoutingMode, "/%s/%s"),
 			[]string{cfg.IssuerURL.Scheme},
 			NewAuthenticator(cc, c.c),
 		).WithOpenTracing(), nil),
@@ -400,7 +391,7 @@ func New(cfg Config) (c Client, err error) {
 	c.Root = &Root{
 		Acp: rootClient.New(httptransport.NewWithClient(
 			cfg.IssuerURL.Host,
-			fmt.Sprintf(c.BasePath),
+			c.BasePath,
 			[]string{cfg.IssuerURL.Scheme},
 			NewAuthenticator(cc, c.c),
 		).WithOpenTracing(), nil),
@@ -409,7 +400,7 @@ func New(cfg Config) (c Client, err error) {
 	c.System = &System{
 		Acp: systemClient.New(httptransport.NewWithClient(
 			cfg.IssuerURL.Host,
-			fmt.Sprintf(c.BasePath+"/api/system/%s", c.TenantID),
+			c.APIPrefix(cfg.RoutingMode, "/api/system/%s"),
 			[]string{cfg.IssuerURL.Scheme},
 			NewAuthenticator(cc, c.c),
 		).WithOpenTracing(), nil),
@@ -418,13 +409,13 @@ func New(cfg Config) (c Client, err error) {
 	c.Web = &Web{
 		Acp: webClient.New(httptransport.NewWithClient(
 			cfg.IssuerURL.Host,
-			fmt.Sprintf(c.BasePath+"/%s", c.TenantID),
+			c.APIPrefix(cfg.RoutingMode, "/%s/%s"),
 			[]string{cfg.IssuerURL.Scheme},
 			NewAuthenticator(cc, c.c),
 		).WithOpenTracing(), nil),
 	}
 
-	apiPrefix := fmt.Sprintf(c.BasePath+"/%s/%s", c.TenantID, c.ServerID)
+	apiPrefix := c.APIPrefix(cfg.RoutingMode, "/%s/%s")
 
 	c.OpenbankingUK = &OpenbankingUK{
 		Accounts: obukAccounts.New(httptransport.NewWithClient(
@@ -461,6 +452,104 @@ func New(cfg Config) (c Client, err error) {
 	c.Config = cfg
 
 	return c, nil
+}
+
+// Determine Basepath, TenantID, and ServerID from the config.
+func (c *Client) ConfigureBasePath(cfg Config) error {
+	var (
+		paths   []string
+		lastIdx int
+	)
+	switch cfg.RoutingMode {
+	case "":
+		paths = strings.Split(cfg.IssuerURL.Path, "/")
+		if len(paths) < 3 {
+			return errors.New("invalid issuer url")
+		}
+		lastIdx = len(paths) - 1
+
+		c.TenantID = paths[lastIdx-1]
+		c.ServerID = paths[lastIdx]
+		c.BasePath = strings.Join(paths[:lastIdx-1], "/")
+
+	case "tenant":
+		if cfg.TenantID == "" {
+			return errors.New("Config.TenantID is required when RouterType is \"tenant\"")
+		}
+		paths = strings.Split(cfg.IssuerURL.Path, "/")
+		if len(paths) < 2 {
+			return errors.New("invalid issuer url")
+		}
+		lastIdx = len(paths) - 1
+
+		c.TenantID = cfg.TenantID
+		c.ServerID = paths[lastIdx]
+		c.BasePath = strings.Join(paths[:lastIdx], "/")
+
+	case "server":
+		if cfg.TenantID == "" {
+			return errors.New("Config.TenantID is required when RouterType is \"server\"")
+		}
+		if cfg.ServerID == "" {
+			return errors.New("Config.ServerID is required when RouterType is \"server\"")
+		}
+
+		c.TenantID = cfg.TenantID
+		c.ServerID = cfg.ServerID
+		c.BasePath = cfg.IssuerURL.Path
+
+	default:
+		return errors.New("Config.RouterType must be one of \"\", \"tenant\", or \"server\"")
+	}
+
+	if c.BasePath == "/" {
+		c.BasePath = ""
+	}
+	return nil
+}
+
+// APIPrefix adjusts the default API path prefixes to work with vanity domains.
+func (c *Client) APIPrefix(routingMode string, format string) string {
+	switch format {
+	case "/api/admin/%s":
+		switch routingMode {
+		case "tenant", "server":
+			return c.BasePath + "/api/admin"
+		default:
+			return c.BasePath + fmt.Sprintf(format, c.TenantID)
+		}
+
+	case "/api/developer/%s/%s":
+		switch routingMode {
+		case "server":
+			return c.BasePath + "/api/developer"
+		case "tenant":
+			return c.BasePath + "/api/developer/" + c.ServerID
+		default:
+			return c.BasePath + fmt.Sprintf(format, c.TenantID, c.ServerID)
+		}
+
+	case "/api/system/%s":
+		switch routingMode {
+		case "tenant", "server":
+			return c.BasePath + "/api/system"
+		default:
+			return c.BasePath + fmt.Sprintf(format, c.TenantID)
+		}
+
+	case "/%s/%s":
+		switch routingMode {
+		case "server":
+			return c.BasePath
+		case "tenant":
+			return c.BasePath + "/" + c.ServerID
+		default:
+			return c.BasePath + fmt.Sprintf(format, c.TenantID, c.ServerID)
+		}
+
+	default:
+		return c.BasePath + fmt.Sprintf(format, c.TenantID, c.ServerID)
+	}
 }
 
 type Token struct {
@@ -654,14 +743,14 @@ func (c *Client) Exchange(code string, state string, csrf CSRF) (token Token, er
 	defer response.Body.Close()
 
 	if response.StatusCode != http.StatusOK {
-		if body, err = ioutil.ReadAll(response.Body); err != nil {
+		if body, err = io.ReadAll(response.Body); err != nil {
 			return token, fmt.Errorf("failed to read exchange response body: %w", err)
 		}
 
 		return token, fmt.Errorf("failed to exchange token %d: %s", response.StatusCode, string(body))
 	}
 
-	if body, err = ioutil.ReadAll(response.Body); err != nil {
+	if body, err = io.ReadAll(response.Body); err != nil {
 		return token, fmt.Errorf("failed to read exchange response body: %w", err)
 	}
 
@@ -698,14 +787,14 @@ func (c *Client) Userinfo(token string) (body map[string]interface{}, err error)
 	if response.StatusCode != http.StatusOK {
 		var errorBody []byte
 
-		if errorBody, err = ioutil.ReadAll(response.Body); err != nil {
+		if errorBody, err = io.ReadAll(response.Body); err != nil {
 			return body, fmt.Errorf("failed to read userinfo response body: %w", err)
 		}
 
 		return body, fmt.Errorf("failed to get userinfo %d: %s", response.StatusCode, string(errorBody))
 	}
 
-	if bs, err = ioutil.ReadAll(response.Body); err != nil {
+	if bs, err = io.ReadAll(response.Body); err != nil {
 		return body, fmt.Errorf("failed to parse userinfo response: %w", err)
 	}
 
