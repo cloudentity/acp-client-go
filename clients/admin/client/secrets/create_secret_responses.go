@@ -90,7 +90,7 @@ type CreateSecretCreated struct {
 }
 
 func (o *CreateSecretCreated) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/secrets][%d] createSecretCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretCreated  %+v", 201, o.Payload)
 }
 func (o *CreateSecretCreated) GetPayload() *models.Secret {
 	return o.Payload
@@ -122,7 +122,7 @@ type CreateSecretBadRequest struct {
 }
 
 func (o *CreateSecretBadRequest) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/secrets][%d] createSecretBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretBadRequest  %+v", 400, o.Payload)
 }
 func (o *CreateSecretBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -154,7 +154,7 @@ type CreateSecretUnauthorized struct {
 }
 
 func (o *CreateSecretUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/secrets][%d] createSecretUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretUnauthorized  %+v", 401, o.Payload)
 }
 func (o *CreateSecretUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -186,7 +186,7 @@ type CreateSecretForbidden struct {
 }
 
 func (o *CreateSecretForbidden) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/secrets][%d] createSecretForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretForbidden  %+v", 403, o.Payload)
 }
 func (o *CreateSecretForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -218,7 +218,7 @@ type CreateSecretNotFound struct {
 }
 
 func (o *CreateSecretNotFound) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/secrets][%d] createSecretNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretNotFound  %+v", 404, o.Payload)
 }
 func (o *CreateSecretNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -250,7 +250,7 @@ type CreateSecretConflict struct {
 }
 
 func (o *CreateSecretConflict) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/secrets][%d] createSecretConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretConflict  %+v", 409, o.Payload)
 }
 func (o *CreateSecretConflict) GetPayload() *models.Error {
 	return o.Payload
@@ -282,7 +282,7 @@ type CreateSecretUnprocessableEntity struct {
 }
 
 func (o *CreateSecretUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/secrets][%d] createSecretUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretUnprocessableEntity  %+v", 422, o.Payload)
 }
 func (o *CreateSecretUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
@@ -314,7 +314,7 @@ type CreateSecretTooManyRequests struct {
 }
 
 func (o *CreateSecretTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/secrets][%d] createSecretTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *CreateSecretTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

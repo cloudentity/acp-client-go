@@ -72,7 +72,7 @@ type GetAzureIDPOK struct {
 }
 
 func (o *GetAzureIDPOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/azure/{iid}][%d] getAzureIdPOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/azure/{iid}][%d] getAzureIdPOK  %+v", 200, o.Payload)
 }
 func (o *GetAzureIDPOK) GetPayload() *models.AzureIDP {
 	return o.Payload
@@ -104,7 +104,7 @@ type GetAzureIDPUnauthorized struct {
 }
 
 func (o *GetAzureIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/azure/{iid}][%d] getAzureIdPUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/azure/{iid}][%d] getAzureIdPUnauthorized  %+v", 401, o.Payload)
 }
 func (o *GetAzureIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -136,7 +136,7 @@ type GetAzureIDPForbidden struct {
 }
 
 func (o *GetAzureIDPForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/azure/{iid}][%d] getAzureIdPForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/azure/{iid}][%d] getAzureIdPForbidden  %+v", 403, o.Payload)
 }
 func (o *GetAzureIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -168,7 +168,7 @@ type GetAzureIDPNotFound struct {
 }
 
 func (o *GetAzureIDPNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/azure/{iid}][%d] getAzureIdPNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/azure/{iid}][%d] getAzureIdPNotFound  %+v", 404, o.Payload)
 }
 func (o *GetAzureIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -200,7 +200,7 @@ type GetAzureIDPTooManyRequests struct {
 }
 
 func (o *GetAzureIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/azure/{iid}][%d] getAzureIdPTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/azure/{iid}][%d] getAzureIdPTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *GetAzureIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

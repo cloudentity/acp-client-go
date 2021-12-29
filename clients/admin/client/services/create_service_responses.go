@@ -86,19 +86,19 @@ func NewCreateServiceCreated() *CreateServiceCreated {
 Service
 */
 type CreateServiceCreated struct {
-	Payload *models.Service
+	Payload *models.ServiceWithAudience
 }
 
 func (o *CreateServiceCreated) Error() string {
 	return fmt.Sprintf("[POST /services][%d] createServiceCreated  %+v", 201, o.Payload)
 }
-func (o *CreateServiceCreated) GetPayload() *models.Service {
+func (o *CreateServiceCreated) GetPayload() *models.ServiceWithAudience {
 	return o.Payload
 }
 
 func (o *CreateServiceCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Service)
+	o.Payload = new(models.ServiceWithAudience)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

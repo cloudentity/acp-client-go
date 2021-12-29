@@ -90,7 +90,7 @@ type TestScriptOK struct {
 }
 
 func (o *TestScriptOK) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/scripts/test][%d] testScriptOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptOK  %+v", 200, o.Payload)
 }
 func (o *TestScriptOK) GetPayload() *models.ScriptExecutionResult {
 	return o.Payload
@@ -122,7 +122,7 @@ type TestScriptBadRequest struct {
 }
 
 func (o *TestScriptBadRequest) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/scripts/test][%d] testScriptBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptBadRequest  %+v", 400, o.Payload)
 }
 func (o *TestScriptBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -154,7 +154,7 @@ type TestScriptUnauthorized struct {
 }
 
 func (o *TestScriptUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/scripts/test][%d] testScriptUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptUnauthorized  %+v", 401, o.Payload)
 }
 func (o *TestScriptUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -186,7 +186,7 @@ type TestScriptForbidden struct {
 }
 
 func (o *TestScriptForbidden) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/scripts/test][%d] testScriptForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptForbidden  %+v", 403, o.Payload)
 }
 func (o *TestScriptForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -218,7 +218,7 @@ type TestScriptNotFound struct {
 }
 
 func (o *TestScriptNotFound) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/scripts/test][%d] testScriptNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptNotFound  %+v", 404, o.Payload)
 }
 func (o *TestScriptNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -250,7 +250,7 @@ type TestScriptConflict struct {
 }
 
 func (o *TestScriptConflict) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/scripts/test][%d] testScriptConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptConflict  %+v", 409, o.Payload)
 }
 func (o *TestScriptConflict) GetPayload() *models.Error {
 	return o.Payload
@@ -282,7 +282,7 @@ type TestScriptUnprocessableEntity struct {
 }
 
 func (o *TestScriptUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/scripts/test][%d] testScriptUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptUnprocessableEntity  %+v", 422, o.Payload)
 }
 func (o *TestScriptUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
@@ -314,7 +314,7 @@ type TestScriptTooManyRequests struct {
 }
 
 func (o *TestScriptTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/scripts/test][%d] testScriptTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *TestScriptTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

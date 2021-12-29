@@ -67,13 +67,13 @@ type CreateGithubIDPParams struct {
 	*/
 	GithubIDP *models.GithubIDP
 
-	/* Aid.
+	/* Wid.
 
 	   Authorization server id
 
 	   Default: "default"
 	*/
-	Aid string
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -93,11 +93,11 @@ func (o *CreateGithubIDPParams) WithDefaults() *CreateGithubIDPParams {
 // All values with no default are reset to their zero value.
 func (o *CreateGithubIDPParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := CreateGithubIDPParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -150,15 +150,15 @@ func (o *CreateGithubIDPParams) SetGithubIDP(githubIDP *models.GithubIDP) {
 	o.GithubIDP = githubIDP
 }
 
-// WithAid adds the aid to the create github ID p params
-func (o *CreateGithubIDPParams) WithAid(aid string) *CreateGithubIDPParams {
-	o.SetAid(aid)
+// WithWid adds the wid to the create github ID p params
+func (o *CreateGithubIDPParams) WithWid(wid string) *CreateGithubIDPParams {
+	o.SetWid(wid)
 	return o
 }
 
-// SetAid adds the aid to the create github ID p params
-func (o *CreateGithubIDPParams) SetAid(aid string) {
-	o.Aid = aid
+// SetWid adds the wid to the create github ID p params
+func (o *CreateGithubIDPParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -174,8 +174,8 @@ func (o *CreateGithubIDPParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		}
 	}
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

@@ -83,7 +83,7 @@ type DeleteIDPNoContent struct {
 }
 
 func (o *DeleteIDPNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{aid}/idps/{iid}][%d] deleteIdPNoContent ", 204)
+	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPNoContent ", 204)
 }
 
 func (o *DeleteIDPNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -105,7 +105,7 @@ type DeleteIDPBadRequest struct {
 }
 
 func (o *DeleteIDPBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{aid}/idps/{iid}][%d] deleteIdPBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPBadRequest  %+v", 400, o.Payload)
 }
 func (o *DeleteIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -137,7 +137,7 @@ type DeleteIDPUnauthorized struct {
 }
 
 func (o *DeleteIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{aid}/idps/{iid}][%d] deleteIdPUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPUnauthorized  %+v", 401, o.Payload)
 }
 func (o *DeleteIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -169,7 +169,7 @@ type DeleteIDPForbidden struct {
 }
 
 func (o *DeleteIDPForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{aid}/idps/{iid}][%d] deleteIdPForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPForbidden  %+v", 403, o.Payload)
 }
 func (o *DeleteIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -201,7 +201,7 @@ type DeleteIDPNotFound struct {
 }
 
 func (o *DeleteIDPNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{aid}/idps/{iid}][%d] deleteIdPNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPNotFound  %+v", 404, o.Payload)
 }
 func (o *DeleteIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -233,7 +233,7 @@ type DeleteIDPUnprocessableEntity struct {
 }
 
 func (o *DeleteIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{aid}/idps/{iid}][%d] deleteIdPUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 func (o *DeleteIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
@@ -265,7 +265,7 @@ type DeleteIDPTooManyRequests struct {
 }
 
 func (o *DeleteIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{aid}/idps/{iid}][%d] deleteIdPTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *DeleteIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

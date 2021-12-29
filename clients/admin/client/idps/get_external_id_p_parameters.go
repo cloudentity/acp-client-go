@@ -59,19 +59,19 @@ func NewGetExternalIDPParamsWithHTTPClient(client *http.Client) *GetExternalIDPP
 */
 type GetExternalIDPParams struct {
 
-	/* Aid.
-
-	   Authorization server id
-
-	   Default: "default"
-	*/
-	Aid string
-
 	/* Iid.
 
 	   IDP id
 	*/
 	Iid string
+
+	/* Wid.
+
+	   Authorization server id
+
+	   Default: "default"
+	*/
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -91,11 +91,11 @@ func (o *GetExternalIDPParams) WithDefaults() *GetExternalIDPParams {
 // All values with no default are reset to their zero value.
 func (o *GetExternalIDPParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := GetExternalIDPParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -137,17 +137,6 @@ func (o *GetExternalIDPParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithAid adds the aid to the get external ID p params
-func (o *GetExternalIDPParams) WithAid(aid string) *GetExternalIDPParams {
-	o.SetAid(aid)
-	return o
-}
-
-// SetAid adds the aid to the get external ID p params
-func (o *GetExternalIDPParams) SetAid(aid string) {
-	o.Aid = aid
-}
-
 // WithIid adds the iid to the get external ID p params
 func (o *GetExternalIDPParams) WithIid(iid string) *GetExternalIDPParams {
 	o.SetIid(iid)
@@ -159,6 +148,17 @@ func (o *GetExternalIDPParams) SetIid(iid string) {
 	o.Iid = iid
 }
 
+// WithWid adds the wid to the get external ID p params
+func (o *GetExternalIDPParams) WithWid(wid string) *GetExternalIDPParams {
+	o.SetWid(wid)
+	return o
+}
+
+// SetWid adds the wid to the get external ID p params
+func (o *GetExternalIDPParams) SetWid(wid string) {
+	o.Wid = wid
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetExternalIDPParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -167,13 +167,13 @@ func (o *GetExternalIDPParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 	}
 	var res []error
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param iid
+	if err := r.SetPathParam("iid", o.Iid); err != nil {
 		return err
 	}
 
-	// path param iid
-	if err := r.SetPathParam("iid", o.Iid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

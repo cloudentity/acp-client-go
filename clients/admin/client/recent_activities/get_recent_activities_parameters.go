@@ -60,14 +60,6 @@ func NewGetRecentActivitiesParamsWithHTTPClient(client *http.Client) *GetRecentA
 */
 type GetRecentActivitiesParams struct {
 
-	/* Aid.
-
-	   Authorization server id
-
-	   Default: "default"
-	*/
-	Aid string
-
 	/* Limit.
 
 	   Limit
@@ -76,6 +68,14 @@ type GetRecentActivitiesParams struct {
 	   Default: 10
 	*/
 	Limit *int64
+
+	/* Wid.
+
+	   Workspace id
+
+	   Default: "default"
+	*/
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -95,14 +95,14 @@ func (o *GetRecentActivitiesParams) WithDefaults() *GetRecentActivitiesParams {
 // All values with no default are reset to their zero value.
 func (o *GetRecentActivitiesParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
-
 		limitDefault = int64(10)
+
+		widDefault = string("default")
 	)
 
 	val := GetRecentActivitiesParams{
-		Aid:   aidDefault,
 		Limit: &limitDefault,
+		Wid:   widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -144,17 +144,6 @@ func (o *GetRecentActivitiesParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithAid adds the aid to the get recent activities params
-func (o *GetRecentActivitiesParams) WithAid(aid string) *GetRecentActivitiesParams {
-	o.SetAid(aid)
-	return o
-}
-
-// SetAid adds the aid to the get recent activities params
-func (o *GetRecentActivitiesParams) SetAid(aid string) {
-	o.Aid = aid
-}
-
 // WithLimit adds the limit to the get recent activities params
 func (o *GetRecentActivitiesParams) WithLimit(limit *int64) *GetRecentActivitiesParams {
 	o.SetLimit(limit)
@@ -166,6 +155,17 @@ func (o *GetRecentActivitiesParams) SetLimit(limit *int64) {
 	o.Limit = limit
 }
 
+// WithWid adds the wid to the get recent activities params
+func (o *GetRecentActivitiesParams) WithWid(wid string) *GetRecentActivitiesParams {
+	o.SetWid(wid)
+	return o
+}
+
+// SetWid adds the wid to the get recent activities params
+func (o *GetRecentActivitiesParams) SetWid(wid string) {
+	o.Wid = wid
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetRecentActivitiesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -173,11 +173,6 @@ func (o *GetRecentActivitiesParams) WriteToRequest(r runtime.ClientRequest, reg 
 		return err
 	}
 	var res []error
-
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
-		return err
-	}
 
 	if o.Limit != nil {
 
@@ -194,6 +189,11 @@ func (o *GetRecentActivitiesParams) WriteToRequest(r runtime.ClientRequest, reg 
 				return err
 			}
 		}
+	}
+
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
+		return err
 	}
 
 	if len(res) > 0 {

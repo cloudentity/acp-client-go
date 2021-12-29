@@ -59,13 +59,13 @@ func NewListGatewaysParamsWithHTTPClient(client *http.Client) *ListGatewaysParam
 */
 type ListGatewaysParams struct {
 
-	/* Aid.
+	/* Wid.
 
 	   Authorization server id
 
 	   Default: "default"
 	*/
-	Aid string
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -85,11 +85,11 @@ func (o *ListGatewaysParams) WithDefaults() *ListGatewaysParams {
 // All values with no default are reset to their zero value.
 func (o *ListGatewaysParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := ListGatewaysParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -131,15 +131,15 @@ func (o *ListGatewaysParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithAid adds the aid to the list gateways params
-func (o *ListGatewaysParams) WithAid(aid string) *ListGatewaysParams {
-	o.SetAid(aid)
+// WithWid adds the wid to the list gateways params
+func (o *ListGatewaysParams) WithWid(wid string) *ListGatewaysParams {
+	o.SetWid(wid)
 	return o
 }
 
-// SetAid adds the aid to the list gateways params
-func (o *ListGatewaysParams) SetAid(aid string) {
-	o.Aid = aid
+// SetWid adds the wid to the list gateways params
+func (o *ListGatewaysParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -150,8 +150,8 @@ func (o *ListGatewaysParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 	}
 	var res []error
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

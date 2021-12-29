@@ -59,13 +59,13 @@ func NewGetStatsParamsWithHTTPClient(client *http.Client) *GetStatsParams {
 */
 type GetStatsParams struct {
 
-	/* Aid.
+	/* Wid.
 
-	   Authorization server id
+	   Workspace id
 
 	   Default: "default"
 	*/
-	Aid string
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -85,11 +85,11 @@ func (o *GetStatsParams) WithDefaults() *GetStatsParams {
 // All values with no default are reset to their zero value.
 func (o *GetStatsParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := GetStatsParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -131,15 +131,15 @@ func (o *GetStatsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithAid adds the aid to the get stats params
-func (o *GetStatsParams) WithAid(aid string) *GetStatsParams {
-	o.SetAid(aid)
+// WithWid adds the wid to the get stats params
+func (o *GetStatsParams) WithWid(wid string) *GetStatsParams {
+	o.SetWid(wid)
 	return o
 }
 
-// SetAid adds the aid to the get stats params
-func (o *GetStatsParams) SetAid(aid string) {
-	o.Aid = aid
+// SetWid adds the wid to the get stats params
+func (o *GetStatsParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -150,8 +150,8 @@ func (o *GetStatsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regi
 	}
 	var res []error
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

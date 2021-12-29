@@ -66,7 +66,7 @@ type ListClaimsOK struct {
 }
 
 func (o *ListClaimsOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/claims][%d] listClaimsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/claims][%d] listClaimsOK  %+v", 200, o.Payload)
 }
 func (o *ListClaimsOK) GetPayload() *models.Claims {
 	return o.Payload
@@ -98,7 +98,7 @@ type ListClaimsUnauthorized struct {
 }
 
 func (o *ListClaimsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/claims][%d] listClaimsUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/claims][%d] listClaimsUnauthorized  %+v", 401, o.Payload)
 }
 func (o *ListClaimsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -130,7 +130,7 @@ type ListClaimsForbidden struct {
 }
 
 func (o *ListClaimsForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/claims][%d] listClaimsForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/claims][%d] listClaimsForbidden  %+v", 403, o.Payload)
 }
 func (o *ListClaimsForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -162,7 +162,7 @@ type ListClaimsTooManyRequests struct {
 }
 
 func (o *ListClaimsTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/claims][%d] listClaimsTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/claims][%d] listClaimsTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *ListClaimsTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

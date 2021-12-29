@@ -59,13 +59,13 @@ func NewGetCIBAAuthenticationServiceParamsWithHTTPClient(client *http.Client) *G
 */
 type GetCIBAAuthenticationServiceParams struct {
 
-	/* Aid.
+	/* Wid.
 
 	   Authorization server id
 
 	   Default: "default"
 	*/
-	Aid string
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -85,11 +85,11 @@ func (o *GetCIBAAuthenticationServiceParams) WithDefaults() *GetCIBAAuthenticati
 // All values with no default are reset to their zero value.
 func (o *GetCIBAAuthenticationServiceParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := GetCIBAAuthenticationServiceParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -131,15 +131,15 @@ func (o *GetCIBAAuthenticationServiceParams) SetHTTPClient(client *http.Client) 
 	o.HTTPClient = client
 }
 
-// WithAid adds the aid to the get c i b a authentication service params
-func (o *GetCIBAAuthenticationServiceParams) WithAid(aid string) *GetCIBAAuthenticationServiceParams {
-	o.SetAid(aid)
+// WithWid adds the wid to the get c i b a authentication service params
+func (o *GetCIBAAuthenticationServiceParams) WithWid(wid string) *GetCIBAAuthenticationServiceParams {
+	o.SetWid(wid)
 	return o
 }
 
-// SetAid adds the aid to the get c i b a authentication service params
-func (o *GetCIBAAuthenticationServiceParams) SetAid(aid string) {
-	o.Aid = aid
+// SetWid adds the wid to the get c i b a authentication service params
+func (o *GetCIBAAuthenticationServiceParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -150,8 +150,8 @@ func (o *GetCIBAAuthenticationServiceParams) WriteToRequest(r runtime.ClientRequ
 	}
 	var res []error
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

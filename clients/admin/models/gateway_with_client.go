@@ -57,6 +57,12 @@ type GatewayWithClient struct {
 	// Example: default
 	TenantID string `json:"tenant_id,omitempty"`
 
+	// token exchange
+	TokenExchange *GatewayTokenExchangeSettings `json:"token_exchange,omitempty"`
+
+	// Token exchange client id
+	TokenExchangeClientID string `json:"token_exchange_client_id,omitempty"`
+
 	// gateway type, one of: pyron, aws
 	// Example: pyron
 	Type string `json:"type,omitempty"`
@@ -71,6 +77,10 @@ func (m *GatewayWithClient) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateLastActive(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTokenExchange(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -111,11 +121,34 @@ func (m *GatewayWithClient) validateLastActive(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *GatewayWithClient) validateTokenExchange(formats strfmt.Registry) error {
+	if swag.IsZero(m.TokenExchange) { // not required
+		return nil
+	}
+
+	if m.TokenExchange != nil {
+		if err := m.TokenExchange.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("token_exchange")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("token_exchange")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 // ContextValidate validate this gateway with client based on the context it is used
 func (m *GatewayWithClient) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateClient(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateTokenExchange(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -133,6 +166,22 @@ func (m *GatewayWithClient) contextValidateClient(ctx context.Context, formats s
 				return ve.ValidateName("client")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("client")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GatewayWithClient) contextValidateTokenExchange(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.TokenExchange != nil {
+		if err := m.TokenExchange.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("token_exchange")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("token_exchange")
 			}
 			return err
 		}

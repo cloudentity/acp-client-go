@@ -72,7 +72,7 @@ type GetOktaIDPOK struct {
 }
 
 func (o *GetOktaIDPOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/okta/{iid}][%d] getOktaIdPOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/okta/{iid}][%d] getOktaIdPOK  %+v", 200, o.Payload)
 }
 func (o *GetOktaIDPOK) GetPayload() *models.OktaIDP {
 	return o.Payload
@@ -104,7 +104,7 @@ type GetOktaIDPUnauthorized struct {
 }
 
 func (o *GetOktaIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/okta/{iid}][%d] getOktaIdPUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/okta/{iid}][%d] getOktaIdPUnauthorized  %+v", 401, o.Payload)
 }
 func (o *GetOktaIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -136,7 +136,7 @@ type GetOktaIDPForbidden struct {
 }
 
 func (o *GetOktaIDPForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/okta/{iid}][%d] getOktaIdPForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/okta/{iid}][%d] getOktaIdPForbidden  %+v", 403, o.Payload)
 }
 func (o *GetOktaIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -168,7 +168,7 @@ type GetOktaIDPNotFound struct {
 }
 
 func (o *GetOktaIDPNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/okta/{iid}][%d] getOktaIdPNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/okta/{iid}][%d] getOktaIdPNotFound  %+v", 404, o.Payload)
 }
 func (o *GetOktaIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -200,7 +200,7 @@ type GetOktaIDPTooManyRequests struct {
 }
 
 func (o *GetOktaIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/okta/{iid}][%d] getOktaIdPTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/okta/{iid}][%d] getOktaIdPTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *GetOktaIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

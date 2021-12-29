@@ -67,14 +67,6 @@ type ListServicesParams struct {
 	*/
 	AfterServiceID *string
 
-	/* Aid.
-
-	   Authorization server id
-
-	   Default: "default"
-	*/
-	Aid string
-
 	/* BeforeServiceID.
 
 	     optional list services before given id
@@ -113,6 +105,14 @@ type ListServicesParams struct {
 	*/
 	Sort *string
 
+	/* Wid.
+
+	   Authorization server id
+
+	   Default: "default"
+	*/
+	Wid string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -131,14 +131,14 @@ func (o *ListServicesParams) WithDefaults() *ListServicesParams {
 // All values with no default are reset to their zero value.
 func (o *ListServicesParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
-
 		limitDefault = int64(20)
+
+		widDefault = string("default")
 	)
 
 	val := ListServicesParams{
-		Aid:   aidDefault,
 		Limit: &limitDefault,
+		Wid:   widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -189,17 +189,6 @@ func (o *ListServicesParams) WithAfterServiceID(afterServiceID *string) *ListSer
 // SetAfterServiceID adds the afterServiceId to the list services params
 func (o *ListServicesParams) SetAfterServiceID(afterServiceID *string) {
 	o.AfterServiceID = afterServiceID
-}
-
-// WithAid adds the aid to the list services params
-func (o *ListServicesParams) WithAid(aid string) *ListServicesParams {
-	o.SetAid(aid)
-	return o
-}
-
-// SetAid adds the aid to the list services params
-func (o *ListServicesParams) SetAid(aid string) {
-	o.Aid = aid
 }
 
 // WithBeforeServiceID adds the beforeServiceID to the list services params
@@ -257,6 +246,17 @@ func (o *ListServicesParams) SetSort(sort *string) {
 	o.Sort = sort
 }
 
+// WithWid adds the wid to the list services params
+func (o *ListServicesParams) WithWid(wid string) *ListServicesParams {
+	o.SetWid(wid)
+	return o
+}
+
+// SetWid adds the wid to the list services params
+func (o *ListServicesParams) SetWid(wid string) {
+	o.Wid = wid
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *ListServicesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -280,11 +280,6 @@ func (o *ListServicesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 				return err
 			}
 		}
-	}
-
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
-		return err
 	}
 
 	if o.BeforeServiceID != nil {
@@ -370,6 +365,11 @@ func (o *ListServicesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 				return err
 			}
 		}
+	}
+
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
+		return err
 	}
 
 	if len(res) > 0 {

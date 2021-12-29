@@ -66,7 +66,7 @@ type GetStatsOK struct {
 }
 
 func (o *GetStatsOK) Error() string {
-	return fmt.Sprintf("[GET /stats/{aid}/overview][%d] getStatsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /stats/{wid}/overview][%d] getStatsOK  %+v", 200, o.Payload)
 }
 func (o *GetStatsOK) GetPayload() *models.Stats {
 	return o.Payload
@@ -98,7 +98,7 @@ type GetStatsUnauthorized struct {
 }
 
 func (o *GetStatsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /stats/{aid}/overview][%d] getStatsUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /stats/{wid}/overview][%d] getStatsUnauthorized  %+v", 401, o.Payload)
 }
 func (o *GetStatsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -130,7 +130,7 @@ type GetStatsForbidden struct {
 }
 
 func (o *GetStatsForbidden) Error() string {
-	return fmt.Sprintf("[GET /stats/{aid}/overview][%d] getStatsForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /stats/{wid}/overview][%d] getStatsForbidden  %+v", 403, o.Payload)
 }
 func (o *GetStatsForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -162,7 +162,7 @@ type GetStatsTooManyRequests struct {
 }
 
 func (o *GetStatsTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /stats/{aid}/overview][%d] getStatsTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[GET /stats/{wid}/overview][%d] getStatsTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *GetStatsTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

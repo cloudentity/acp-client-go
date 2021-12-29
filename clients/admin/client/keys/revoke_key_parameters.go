@@ -59,14 +59,6 @@ func NewRevokeKeyParamsWithHTTPClient(client *http.Client) *RevokeKeyParams {
 */
 type RevokeKeyParams struct {
 
-	/* Aid.
-
-	   Authorization server id
-
-	   Default: "default"
-	*/
-	Aid string
-
 	/* Kid.
 
 	   Key id
@@ -80,6 +72,14 @@ type RevokeKeyParams struct {
 	   Default: "sig"
 	*/
 	Use *string
+
+	/* Wid.
+
+	   Authorization server id
+
+	   Default: "default"
+	*/
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -99,14 +99,14 @@ func (o *RevokeKeyParams) WithDefaults() *RevokeKeyParams {
 // All values with no default are reset to their zero value.
 func (o *RevokeKeyParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
-
 		useDefault = string("sig")
+
+		widDefault = string("default")
 	)
 
 	val := RevokeKeyParams{
-		Aid: aidDefault,
 		Use: &useDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -148,17 +148,6 @@ func (o *RevokeKeyParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithAid adds the aid to the revoke key params
-func (o *RevokeKeyParams) WithAid(aid string) *RevokeKeyParams {
-	o.SetAid(aid)
-	return o
-}
-
-// SetAid adds the aid to the revoke key params
-func (o *RevokeKeyParams) SetAid(aid string) {
-	o.Aid = aid
-}
-
 // WithKid adds the kid to the revoke key params
 func (o *RevokeKeyParams) WithKid(kid string) *RevokeKeyParams {
 	o.SetKid(kid)
@@ -181,6 +170,17 @@ func (o *RevokeKeyParams) SetUse(use *string) {
 	o.Use = use
 }
 
+// WithWid adds the wid to the revoke key params
+func (o *RevokeKeyParams) WithWid(wid string) *RevokeKeyParams {
+	o.SetWid(wid)
+	return o
+}
+
+// SetWid adds the wid to the revoke key params
+func (o *RevokeKeyParams) SetWid(wid string) {
+	o.Wid = wid
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *RevokeKeyParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -188,11 +188,6 @@ func (o *RevokeKeyParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 		return err
 	}
 	var res []error
-
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
-		return err
-	}
 
 	// path param kid
 	if err := r.SetPathParam("kid", o.Kid); err != nil {
@@ -214,6 +209,11 @@ func (o *RevokeKeyParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 				return err
 			}
 		}
+	}
+
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
+		return err
 	}
 
 	if len(res) > 0 {

@@ -72,7 +72,7 @@ type BindServerOK struct {
 }
 
 func (o *BindServerOK) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/bind/{rid}][%d] bindServerOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/bind/{rid}][%d] bindServerOK  %+v", 200, o.Payload)
 }
 func (o *BindServerOK) GetPayload() *models.ServerToServer {
 	return o.Payload
@@ -104,7 +104,7 @@ type BindServerUnauthorized struct {
 }
 
 func (o *BindServerUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/bind/{rid}][%d] bindServerUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/bind/{rid}][%d] bindServerUnauthorized  %+v", 401, o.Payload)
 }
 func (o *BindServerUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -136,7 +136,7 @@ type BindServerForbidden struct {
 }
 
 func (o *BindServerForbidden) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/bind/{rid}][%d] bindServerForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/bind/{rid}][%d] bindServerForbidden  %+v", 403, o.Payload)
 }
 func (o *BindServerForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -168,7 +168,7 @@ type BindServerNotFound struct {
 }
 
 func (o *BindServerNotFound) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/bind/{rid}][%d] bindServerNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/bind/{rid}][%d] bindServerNotFound  %+v", 404, o.Payload)
 }
 func (o *BindServerNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -200,7 +200,7 @@ type BindServerTooManyRequests struct {
 }
 
 func (o *BindServerTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/bind/{rid}][%d] bindServerTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/bind/{rid}][%d] bindServerTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *BindServerTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

@@ -67,14 +67,6 @@ type UpdateSAMLIDPParams struct {
 	*/
 	SAMLIDP *models.SAMLIDP
 
-	/* Aid.
-
-	   Authorization server id
-
-	   Default: "default"
-	*/
-	Aid string
-
 	/* Iid.
 
 	   IDP id
@@ -82,6 +74,14 @@ type UpdateSAMLIDPParams struct {
 	   Default: "default"
 	*/
 	Iid string
+
+	/* Wid.
+
+	   Authorization server id
+
+	   Default: "default"
+	*/
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -101,14 +101,14 @@ func (o *UpdateSAMLIDPParams) WithDefaults() *UpdateSAMLIDPParams {
 // All values with no default are reset to their zero value.
 func (o *UpdateSAMLIDPParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
-
 		iidDefault = string("default")
+
+		widDefault = string("default")
 	)
 
 	val := UpdateSAMLIDPParams{
-		Aid: aidDefault,
 		Iid: iidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -161,17 +161,6 @@ func (o *UpdateSAMLIDPParams) SetSAMLIDP(sAMLIDP *models.SAMLIDP) {
 	o.SAMLIDP = sAMLIDP
 }
 
-// WithAid adds the aid to the update s a m l ID p params
-func (o *UpdateSAMLIDPParams) WithAid(aid string) *UpdateSAMLIDPParams {
-	o.SetAid(aid)
-	return o
-}
-
-// SetAid adds the aid to the update s a m l ID p params
-func (o *UpdateSAMLIDPParams) SetAid(aid string) {
-	o.Aid = aid
-}
-
 // WithIid adds the iid to the update s a m l ID p params
 func (o *UpdateSAMLIDPParams) WithIid(iid string) *UpdateSAMLIDPParams {
 	o.SetIid(iid)
@@ -181,6 +170,17 @@ func (o *UpdateSAMLIDPParams) WithIid(iid string) *UpdateSAMLIDPParams {
 // SetIid adds the iid to the update s a m l ID p params
 func (o *UpdateSAMLIDPParams) SetIid(iid string) {
 	o.Iid = iid
+}
+
+// WithWid adds the wid to the update s a m l ID p params
+func (o *UpdateSAMLIDPParams) WithWid(wid string) *UpdateSAMLIDPParams {
+	o.SetWid(wid)
+	return o
+}
+
+// SetWid adds the wid to the update s a m l ID p params
+func (o *UpdateSAMLIDPParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -196,13 +196,13 @@ func (o *UpdateSAMLIDPParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		}
 	}
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param iid
+	if err := r.SetPathParam("iid", o.Iid); err != nil {
 		return err
 	}
 
-	// path param iid
-	if err := r.SetPathParam("iid", o.Iid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

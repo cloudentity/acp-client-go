@@ -105,7 +105,7 @@ type PushedAuthorizationRequestParams struct {
 
 	   Redirect uri
 	*/
-	RedirectURI *string
+	RedirectURI string
 
 	/* Request.
 
@@ -117,7 +117,7 @@ type PushedAuthorizationRequestParams struct {
 
 	   Response type
 	*/
-	ResponseType *string
+	ResponseType string
 
 	/* Scope.
 
@@ -262,13 +262,13 @@ func (o *PushedAuthorizationRequestParams) SetCodeChallengeMethod(codeChallengeM
 }
 
 // WithRedirectURI adds the redirectURI to the pushed authorization request params
-func (o *PushedAuthorizationRequestParams) WithRedirectURI(redirectURI *string) *PushedAuthorizationRequestParams {
+func (o *PushedAuthorizationRequestParams) WithRedirectURI(redirectURI string) *PushedAuthorizationRequestParams {
 	o.SetRedirectURI(redirectURI)
 	return o
 }
 
 // SetRedirectURI adds the redirectUri to the pushed authorization request params
-func (o *PushedAuthorizationRequestParams) SetRedirectURI(redirectURI *string) {
+func (o *PushedAuthorizationRequestParams) SetRedirectURI(redirectURI string) {
 	o.RedirectURI = redirectURI
 }
 
@@ -284,13 +284,13 @@ func (o *PushedAuthorizationRequestParams) SetRequest(request *string) {
 }
 
 // WithResponseType adds the responseType to the pushed authorization request params
-func (o *PushedAuthorizationRequestParams) WithResponseType(responseType *string) *PushedAuthorizationRequestParams {
+func (o *PushedAuthorizationRequestParams) WithResponseType(responseType string) *PushedAuthorizationRequestParams {
 	o.SetResponseType(responseType)
 	return o
 }
 
 // SetResponseType adds the responseType to the pushed authorization request params
-func (o *PushedAuthorizationRequestParams) SetResponseType(responseType *string) {
+func (o *PushedAuthorizationRequestParams) SetResponseType(responseType string) {
 	o.ResponseType = responseType
 }
 
@@ -423,18 +423,12 @@ func (o *PushedAuthorizationRequestParams) WriteToRequest(r runtime.ClientReques
 		}
 	}
 
-	if o.RedirectURI != nil {
-
-		// form param redirect_uri
-		var frRedirectURI string
-		if o.RedirectURI != nil {
-			frRedirectURI = *o.RedirectURI
-		}
-		fRedirectURI := frRedirectURI
-		if fRedirectURI != "" {
-			if err := r.SetFormParam("redirect_uri", fRedirectURI); err != nil {
-				return err
-			}
+	// form param redirect_uri
+	frRedirectURI := o.RedirectURI
+	fRedirectURI := frRedirectURI
+	if fRedirectURI != "" {
+		if err := r.SetFormParam("redirect_uri", fRedirectURI); err != nil {
+			return err
 		}
 	}
 
@@ -455,18 +449,12 @@ func (o *PushedAuthorizationRequestParams) WriteToRequest(r runtime.ClientReques
 		}
 	}
 
-	if o.ResponseType != nil {
-
-		// form param response_type
-		var frResponseType string
-		if o.ResponseType != nil {
-			frResponseType = *o.ResponseType
-		}
-		fResponseType := frResponseType
-		if fResponseType != "" {
-			if err := r.SetFormParam("response_type", fResponseType); err != nil {
-				return err
-			}
+	// form param response_type
+	frResponseType := o.ResponseType
+	fResponseType := frResponseType
+	if fResponseType != "" {
+		if err := r.SetFormParam("response_type", fResponseType); err != nil {
+			return err
 		}
 	}
 

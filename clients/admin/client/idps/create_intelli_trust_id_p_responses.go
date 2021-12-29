@@ -84,7 +84,7 @@ type CreateIntelliTrustIDPCreated struct {
 }
 
 func (o *CreateIntelliTrustIDPCreated) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/intelli_trust][%d] createIntelliTrustIdPCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPCreated  %+v", 201, o.Payload)
 }
 func (o *CreateIntelliTrustIDPCreated) GetPayload() *models.IntelliTrustIDP {
 	return o.Payload
@@ -116,7 +116,7 @@ type CreateIntelliTrustIDPBadRequest struct {
 }
 
 func (o *CreateIntelliTrustIDPBadRequest) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/intelli_trust][%d] createIntelliTrustIdPBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPBadRequest  %+v", 400, o.Payload)
 }
 func (o *CreateIntelliTrustIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -148,7 +148,7 @@ type CreateIntelliTrustIDPUnauthorized struct {
 }
 
 func (o *CreateIntelliTrustIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/intelli_trust][%d] createIntelliTrustIdPUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPUnauthorized  %+v", 401, o.Payload)
 }
 func (o *CreateIntelliTrustIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -180,7 +180,7 @@ type CreateIntelliTrustIDPForbidden struct {
 }
 
 func (o *CreateIntelliTrustIDPForbidden) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/intelli_trust][%d] createIntelliTrustIdPForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPForbidden  %+v", 403, o.Payload)
 }
 func (o *CreateIntelliTrustIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -212,7 +212,7 @@ type CreateIntelliTrustIDPNotFound struct {
 }
 
 func (o *CreateIntelliTrustIDPNotFound) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/intelli_trust][%d] createIntelliTrustIdPNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPNotFound  %+v", 404, o.Payload)
 }
 func (o *CreateIntelliTrustIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -244,7 +244,7 @@ type CreateIntelliTrustIDPUnprocessableEntity struct {
 }
 
 func (o *CreateIntelliTrustIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/intelli_trust][%d] createIntelliTrustIdPUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 func (o *CreateIntelliTrustIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
@@ -276,7 +276,7 @@ type CreateIntelliTrustIDPTooManyRequests struct {
 }
 
 func (o *CreateIntelliTrustIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/intelli_trust][%d] createIntelliTrustIdPTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *CreateIntelliTrustIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

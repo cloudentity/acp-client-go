@@ -66,7 +66,7 @@ type ListPolicyExecutionPointsOK struct {
 }
 
 func (o *ListPolicyExecutionPointsOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/policy-execution-points][%d] listPolicyExecutionPointsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/policy-execution-points][%d] listPolicyExecutionPointsOK  %+v", 200, o.Payload)
 }
 func (o *ListPolicyExecutionPointsOK) GetPayload() *models.PolicyExecutionPoints {
 	return o.Payload
@@ -98,7 +98,7 @@ type ListPolicyExecutionPointsUnauthorized struct {
 }
 
 func (o *ListPolicyExecutionPointsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/policy-execution-points][%d] listPolicyExecutionPointsUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/policy-execution-points][%d] listPolicyExecutionPointsUnauthorized  %+v", 401, o.Payload)
 }
 func (o *ListPolicyExecutionPointsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -130,7 +130,7 @@ type ListPolicyExecutionPointsForbidden struct {
 }
 
 func (o *ListPolicyExecutionPointsForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/policy-execution-points][%d] listPolicyExecutionPointsForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/policy-execution-points][%d] listPolicyExecutionPointsForbidden  %+v", 403, o.Payload)
 }
 func (o *ListPolicyExecutionPointsForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -162,7 +162,7 @@ type ListPolicyExecutionPointsTooManyRequests struct {
 }
 
 func (o *ListPolicyExecutionPointsTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/policy-execution-points][%d] listPolicyExecutionPointsTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/policy-execution-points][%d] listPolicyExecutionPointsTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *ListPolicyExecutionPointsTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

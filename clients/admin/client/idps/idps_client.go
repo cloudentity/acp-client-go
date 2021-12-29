@@ -130,7 +130,7 @@ func (a *Client) CreateAzureB2CIDP(params *CreateAzureB2CIDPParams, authInfo run
 	op := &runtime.ClientOperation{
 		ID:                 "createAzureB2CIDP",
 		Method:             "POST",
-		PathPattern:        "/servers/{aid}/idps/azureb2c",
+		PathPattern:        "/servers/{wid}/idps/azureb2c",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -171,7 +171,7 @@ func (a *Client) CreateAzureIDP(params *CreateAzureIDPParams, authInfo runtime.C
 	op := &runtime.ClientOperation{
 		ID:                 "createAzureIDP",
 		Method:             "POST",
-		PathPattern:        "/servers/{aid}/idps/azure",
+		PathPattern:        "/servers/{wid}/idps/azure",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -212,7 +212,7 @@ func (a *Client) CreateCognitoIDP(params *CreateCognitoIDPParams, authInfo runti
 	op := &runtime.ClientOperation{
 		ID:                 "createCognitoIDP",
 		Method:             "POST",
-		PathPattern:        "/servers/{aid}/idps/cognito",
+		PathPattern:        "/servers/{wid}/idps/cognito",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -253,7 +253,7 @@ func (a *Client) CreateCustomIDP(params *CreateCustomIDPParams, authInfo runtime
 	op := &runtime.ClientOperation{
 		ID:                 "createCustomIDP",
 		Method:             "POST",
-		PathPattern:        "/servers/{aid}/idps/custom",
+		PathPattern:        "/servers/{wid}/idps/custom",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -294,7 +294,7 @@ func (a *Client) CreateExternalIDP(params *CreateExternalIDPParams, authInfo run
 	op := &runtime.ClientOperation{
 		ID:                 "createExternalIDP",
 		Method:             "POST",
-		PathPattern:        "/servers/{aid}/idps/external",
+		PathPattern:        "/servers/{wid}/idps/external",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -335,7 +335,7 @@ func (a *Client) CreateGithubIDP(params *CreateGithubIDPParams, authInfo runtime
 	op := &runtime.ClientOperation{
 		ID:                 "createGithubIDP",
 		Method:             "POST",
-		PathPattern:        "/servers/{aid}/idps/github",
+		PathPattern:        "/servers/{wid}/idps/github",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -376,7 +376,7 @@ func (a *Client) CreateGoogleIDP(params *CreateGoogleIDPParams, authInfo runtime
 	op := &runtime.ClientOperation{
 		ID:                 "createGoogleIDP",
 		Method:             "POST",
-		PathPattern:        "/servers/{aid}/idps/google",
+		PathPattern:        "/servers/{wid}/idps/google",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -417,7 +417,7 @@ func (a *Client) CreateIntelliTrustIDP(params *CreateIntelliTrustIDPParams, auth
 	op := &runtime.ClientOperation{
 		ID:                 "createIntelliTrustIDP",
 		Method:             "POST",
-		PathPattern:        "/servers/{aid}/idps/intelli_trust",
+		PathPattern:        "/servers/{wid}/idps/intelli_trust",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -458,7 +458,7 @@ func (a *Client) CreateOIDCIDP(params *CreateOIDCIDPParams, authInfo runtime.Cli
 	op := &runtime.ClientOperation{
 		ID:                 "createOIDCIDP",
 		Method:             "POST",
-		PathPattern:        "/servers/{aid}/idps/oidc",
+		PathPattern:        "/servers/{wid}/idps/oidc",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -499,7 +499,7 @@ func (a *Client) CreateOktaIDP(params *CreateOktaIDPParams, authInfo runtime.Cli
 	op := &runtime.ClientOperation{
 		ID:                 "createOktaIDP",
 		Method:             "POST",
-		PathPattern:        "/servers/{aid}/idps/okta",
+		PathPattern:        "/servers/{wid}/idps/okta",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -540,7 +540,7 @@ func (a *Client) CreateSAMLIDP(params *CreateSAMLIDPParams, authInfo runtime.Cli
 	op := &runtime.ClientOperation{
 		ID:                 "createSAMLIDP",
 		Method:             "POST",
-		PathPattern:        "/servers/{aid}/idps/saml",
+		PathPattern:        "/servers/{wid}/idps/saml",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -581,7 +581,7 @@ func (a *Client) CreateStaticIDP(params *CreateStaticIDPParams, authInfo runtime
 	op := &runtime.ClientOperation{
 		ID:                 "createStaticIDP",
 		Method:             "POST",
-		PathPattern:        "/servers/{aid}/idps/static",
+		PathPattern:        "/servers/{wid}/idps/static",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -626,7 +626,7 @@ func (a *Client) DeleteIDP(params *DeleteIDPParams, authInfo runtime.ClientAuthI
 	op := &runtime.ClientOperation{
 		ID:                 "deleteIDP",
 		Method:             "DELETE",
-		PathPattern:        "/servers/{aid}/idps/{iid}",
+		PathPattern:        "/servers/{wid}/idps/{iid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -667,7 +667,7 @@ func (a *Client) GetAzureB2CIDP(params *GetAzureB2CIDPParams, authInfo runtime.C
 	op := &runtime.ClientOperation{
 		ID:                 "getAzureB2CIDP",
 		Method:             "GET",
-		PathPattern:        "/servers/{aid}/idps/azureb2c/{iid}",
+		PathPattern:        "/servers/{wid}/idps/azureb2c/{iid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -708,7 +708,7 @@ func (a *Client) GetAzureIDP(params *GetAzureIDPParams, authInfo runtime.ClientA
 	op := &runtime.ClientOperation{
 		ID:                 "getAzureIDP",
 		Method:             "GET",
-		PathPattern:        "/servers/{aid}/idps/azure/{iid}",
+		PathPattern:        "/servers/{wid}/idps/azure/{iid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -749,7 +749,7 @@ func (a *Client) GetCognitoIDP(params *GetCognitoIDPParams, authInfo runtime.Cli
 	op := &runtime.ClientOperation{
 		ID:                 "getCognitoIDP",
 		Method:             "GET",
-		PathPattern:        "/servers/{aid}/idps/cognito/{iid}",
+		PathPattern:        "/servers/{wid}/idps/cognito/{iid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -790,7 +790,7 @@ func (a *Client) GetCustomIDP(params *GetCustomIDPParams, authInfo runtime.Clien
 	op := &runtime.ClientOperation{
 		ID:                 "getCustomIDP",
 		Method:             "GET",
-		PathPattern:        "/servers/{aid}/idps/custom/{iid}",
+		PathPattern:        "/servers/{wid}/idps/custom/{iid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -831,7 +831,7 @@ func (a *Client) GetExternalIDP(params *GetExternalIDPParams, authInfo runtime.C
 	op := &runtime.ClientOperation{
 		ID:                 "getExternalIDP",
 		Method:             "GET",
-		PathPattern:        "/servers/{aid}/idps/external/{iid}",
+		PathPattern:        "/servers/{wid}/idps/external/{iid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -872,7 +872,7 @@ func (a *Client) GetGithubEmbeddedIDP(params *GetGithubEmbeddedIDPParams, authIn
 	op := &runtime.ClientOperation{
 		ID:                 "getGithubEmbeddedIDP",
 		Method:             "GET",
-		PathPattern:        "/servers/{aid}/idps/github_embedded/{iid}",
+		PathPattern:        "/servers/{wid}/idps/github_embedded/{iid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -913,7 +913,7 @@ func (a *Client) GetGithubIDP(params *GetGithubIDPParams, authInfo runtime.Clien
 	op := &runtime.ClientOperation{
 		ID:                 "getGithubIDP",
 		Method:             "GET",
-		PathPattern:        "/servers/{aid}/idps/github/{iid}",
+		PathPattern:        "/servers/{wid}/idps/github/{iid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -954,7 +954,7 @@ func (a *Client) GetGoogleEmbeddedIDP(params *GetGoogleEmbeddedIDPParams, authIn
 	op := &runtime.ClientOperation{
 		ID:                 "getGoogleEmbeddedIDP",
 		Method:             "GET",
-		PathPattern:        "/servers/{aid}/idps/google_embedded/{iid}",
+		PathPattern:        "/servers/{wid}/idps/google_embedded/{iid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -995,7 +995,7 @@ func (a *Client) GetGoogleIDP(params *GetGoogleIDPParams, authInfo runtime.Clien
 	op := &runtime.ClientOperation{
 		ID:                 "getGoogleIDP",
 		Method:             "GET",
-		PathPattern:        "/servers/{aid}/idps/google/{iid}",
+		PathPattern:        "/servers/{wid}/idps/google/{iid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1036,7 +1036,7 @@ func (a *Client) GetIntelliTrustIDP(params *GetIntelliTrustIDPParams, authInfo r
 	op := &runtime.ClientOperation{
 		ID:                 "getIntelliTrustIDP",
 		Method:             "GET",
-		PathPattern:        "/servers/{aid}/idps/intelli_trust/{iid}",
+		PathPattern:        "/servers/{wid}/idps/intelli_trust/{iid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1077,7 +1077,7 @@ func (a *Client) GetOIDCIDP(params *GetOIDCIDPParams, authInfo runtime.ClientAut
 	op := &runtime.ClientOperation{
 		ID:                 "getOIDCIDP",
 		Method:             "GET",
-		PathPattern:        "/servers/{aid}/idps/oidc/{iid}",
+		PathPattern:        "/servers/{wid}/idps/oidc/{iid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1118,7 +1118,7 @@ func (a *Client) GetOktaIDP(params *GetOktaIDPParams, authInfo runtime.ClientAut
 	op := &runtime.ClientOperation{
 		ID:                 "getOktaIDP",
 		Method:             "GET",
-		PathPattern:        "/servers/{aid}/idps/okta/{iid}",
+		PathPattern:        "/servers/{wid}/idps/okta/{iid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1159,7 +1159,7 @@ func (a *Client) GetSAMLIDP(params *GetSAMLIDPParams, authInfo runtime.ClientAut
 	op := &runtime.ClientOperation{
 		ID:                 "getSAMLIDP",
 		Method:             "GET",
-		PathPattern:        "/servers/{aid}/idps/saml/{iid}",
+		PathPattern:        "/servers/{wid}/idps/saml/{iid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1200,7 +1200,7 @@ func (a *Client) GetStaticIDP(params *GetStaticIDPParams, authInfo runtime.Clien
 	op := &runtime.ClientOperation{
 		ID:                 "getStaticIDP",
 		Method:             "GET",
-		PathPattern:        "/servers/{aid}/idps/static/{iid}",
+		PathPattern:        "/servers/{wid}/idps/static/{iid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1239,7 +1239,7 @@ func (a *Client) ListIDPs(params *ListIDPsParams, authInfo runtime.ClientAuthInf
 	op := &runtime.ClientOperation{
 		ID:                 "listIDPs",
 		Method:             "GET",
-		PathPattern:        "/servers/{aid}/idps",
+		PathPattern:        "/servers/{wid}/idps",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1280,7 +1280,7 @@ func (a *Client) UpdateAzureB2CIDP(params *UpdateAzureB2CIDPParams, authInfo run
 	op := &runtime.ClientOperation{
 		ID:                 "updateAzureB2CIDP",
 		Method:             "PUT",
-		PathPattern:        "/servers/{aid}/idps/azureb2c/{iid}",
+		PathPattern:        "/servers/{wid}/idps/azureb2c/{iid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1321,7 +1321,7 @@ func (a *Client) UpdateAzureIDP(params *UpdateAzureIDPParams, authInfo runtime.C
 	op := &runtime.ClientOperation{
 		ID:                 "updateAzureIDP",
 		Method:             "PUT",
-		PathPattern:        "/servers/{aid}/idps/azure/{iid}",
+		PathPattern:        "/servers/{wid}/idps/azure/{iid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1362,7 +1362,7 @@ func (a *Client) UpdateCognitoIDP(params *UpdateCognitoIDPParams, authInfo runti
 	op := &runtime.ClientOperation{
 		ID:                 "updateCognitoIDP",
 		Method:             "PUT",
-		PathPattern:        "/servers/{aid}/idps/cognito/{iid}",
+		PathPattern:        "/servers/{wid}/idps/cognito/{iid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1403,7 +1403,7 @@ func (a *Client) UpdateCustomIDP(params *UpdateCustomIDPParams, authInfo runtime
 	op := &runtime.ClientOperation{
 		ID:                 "updateCustomIDP",
 		Method:             "PUT",
-		PathPattern:        "/servers/{aid}/idps/custom/{iid}",
+		PathPattern:        "/servers/{wid}/idps/custom/{iid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1444,7 +1444,7 @@ func (a *Client) UpdateExternalIDP(params *UpdateExternalIDPParams, authInfo run
 	op := &runtime.ClientOperation{
 		ID:                 "updateExternalIDP",
 		Method:             "PUT",
-		PathPattern:        "/servers/{aid}/idps/external/{iid}",
+		PathPattern:        "/servers/{wid}/idps/external/{iid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1485,7 +1485,7 @@ func (a *Client) UpdateGithubEmbeddedIDP(params *UpdateGithubEmbeddedIDPParams, 
 	op := &runtime.ClientOperation{
 		ID:                 "updateGithubEmbeddedIDP",
 		Method:             "PUT",
-		PathPattern:        "/servers/{aid}/idps/github_embedded/{iid}",
+		PathPattern:        "/servers/{wid}/idps/github_embedded/{iid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1526,7 +1526,7 @@ func (a *Client) UpdateGithubIDP(params *UpdateGithubIDPParams, authInfo runtime
 	op := &runtime.ClientOperation{
 		ID:                 "updateGithubIDP",
 		Method:             "PUT",
-		PathPattern:        "/servers/{aid}/idps/github/{iid}",
+		PathPattern:        "/servers/{wid}/idps/github/{iid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1567,7 +1567,7 @@ func (a *Client) UpdateGoogleEmbeddedIDP(params *UpdateGoogleEmbeddedIDPParams, 
 	op := &runtime.ClientOperation{
 		ID:                 "updateGoogleEmbeddedIDP",
 		Method:             "PUT",
-		PathPattern:        "/servers/{aid}/idps/google_embedded/{iid}",
+		PathPattern:        "/servers/{wid}/idps/google_embedded/{iid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1608,7 +1608,7 @@ func (a *Client) UpdateGoogleIDP(params *UpdateGoogleIDPParams, authInfo runtime
 	op := &runtime.ClientOperation{
 		ID:                 "updateGoogleIDP",
 		Method:             "PUT",
-		PathPattern:        "/servers/{aid}/idps/google/{iid}",
+		PathPattern:        "/servers/{wid}/idps/google/{iid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1649,7 +1649,7 @@ func (a *Client) UpdateIntelliTrustIDP(params *UpdateIntelliTrustIDPParams, auth
 	op := &runtime.ClientOperation{
 		ID:                 "updateIntelliTrustIDP",
 		Method:             "PUT",
-		PathPattern:        "/servers/{aid}/idps/intelli_trust/{iid}",
+		PathPattern:        "/servers/{wid}/idps/intelli_trust/{iid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1690,7 +1690,7 @@ func (a *Client) UpdateOIDCIDP(params *UpdateOIDCIDPParams, authInfo runtime.Cli
 	op := &runtime.ClientOperation{
 		ID:                 "updateOIDCIDP",
 		Method:             "PUT",
-		PathPattern:        "/servers/{aid}/idps/oidc/{iid}",
+		PathPattern:        "/servers/{wid}/idps/oidc/{iid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1731,7 +1731,7 @@ func (a *Client) UpdateOktaIDP(params *UpdateOktaIDPParams, authInfo runtime.Cli
 	op := &runtime.ClientOperation{
 		ID:                 "updateOktaIDP",
 		Method:             "PUT",
-		PathPattern:        "/servers/{aid}/idps/okta/{iid}",
+		PathPattern:        "/servers/{wid}/idps/okta/{iid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1772,7 +1772,7 @@ func (a *Client) UpdateSAMLIDP(params *UpdateSAMLIDPParams, authInfo runtime.Cli
 	op := &runtime.ClientOperation{
 		ID:                 "updateSAMLIDP",
 		Method:             "PUT",
-		PathPattern:        "/servers/{aid}/idps/saml/{iid}",
+		PathPattern:        "/servers/{wid}/idps/saml/{iid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -1813,7 +1813,7 @@ func (a *Client) UpdateStaticIDP(params *UpdateStaticIDPParams, authInfo runtime
 	op := &runtime.ClientOperation{
 		ID:                 "updateStaticIDP",
 		Method:             "PUT",
-		PathPattern:        "/servers/{aid}/idps/static/{iid}",
+		PathPattern:        "/servers/{wid}/idps/static/{iid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

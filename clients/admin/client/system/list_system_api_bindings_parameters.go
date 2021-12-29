@@ -59,13 +59,13 @@ func NewListSystemAPIBindingsParamsWithHTTPClient(client *http.Client) *ListSyst
 */
 type ListSystemAPIBindingsParams struct {
 
-	/* Aid.
+	/* Wid.
 
 	   Server id
 
 	   Default: "default"
 	*/
-	Aid string
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -85,11 +85,11 @@ func (o *ListSystemAPIBindingsParams) WithDefaults() *ListSystemAPIBindingsParam
 // All values with no default are reset to their zero value.
 func (o *ListSystemAPIBindingsParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := ListSystemAPIBindingsParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -131,15 +131,15 @@ func (o *ListSystemAPIBindingsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithAid adds the aid to the list system API bindings params
-func (o *ListSystemAPIBindingsParams) WithAid(aid string) *ListSystemAPIBindingsParams {
-	o.SetAid(aid)
+// WithWid adds the wid to the list system API bindings params
+func (o *ListSystemAPIBindingsParams) WithWid(wid string) *ListSystemAPIBindingsParams {
+	o.SetWid(wid)
 	return o
 }
 
-// SetAid adds the aid to the list system API bindings params
-func (o *ListSystemAPIBindingsParams) SetAid(aid string) {
-	o.Aid = aid
+// SetWid adds the wid to the list system API bindings params
+func (o *ListSystemAPIBindingsParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -150,8 +150,8 @@ func (o *ListSystemAPIBindingsParams) WriteToRequest(r runtime.ClientRequest, re
 	}
 	var res []error
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

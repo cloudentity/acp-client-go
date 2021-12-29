@@ -59,13 +59,13 @@ func NewListClaimsParamsWithHTTPClient(client *http.Client) *ListClaimsParams {
 */
 type ListClaimsParams struct {
 
-	/* Aid.
+	/* Wid.
 
 	   Authorization server id
 
 	   Default: "default"
 	*/
-	Aid string
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -85,11 +85,11 @@ func (o *ListClaimsParams) WithDefaults() *ListClaimsParams {
 // All values with no default are reset to their zero value.
 func (o *ListClaimsParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := ListClaimsParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -131,15 +131,15 @@ func (o *ListClaimsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithAid adds the aid to the list claims params
-func (o *ListClaimsParams) WithAid(aid string) *ListClaimsParams {
-	o.SetAid(aid)
+// WithWid adds the wid to the list claims params
+func (o *ListClaimsParams) WithWid(wid string) *ListClaimsParams {
+	o.SetWid(wid)
 	return o
 }
 
-// SetAid adds the aid to the list claims params
-func (o *ListClaimsParams) SetAid(aid string) {
-	o.Aid = aid
+// SetWid adds the wid to the list claims params
+func (o *ListClaimsParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -150,8 +150,8 @@ func (o *ListClaimsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 	}
 	var res []error
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

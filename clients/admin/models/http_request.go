@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -30,6 +31,9 @@ type HTTPRequest struct {
 	// url path
 	// Required: true
 	Path string `json:"path"`
+
+	// url query params
+	Query []*HTTPRequestParam `json:"query"`
 }
 
 // Validate validates this HTTP request
@@ -41,6 +45,10 @@ func (m *HTTPRequest) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validatePath(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateQuery(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -68,8 +76,63 @@ func (m *HTTPRequest) validatePath(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validates this HTTP request based on context it is used
+func (m *HTTPRequest) validateQuery(formats strfmt.Registry) error {
+	if swag.IsZero(m.Query) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Query); i++ {
+		if swag.IsZero(m.Query[i]) { // not required
+			continue
+		}
+
+		if m.Query[i] != nil {
+			if err := m.Query[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("query" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("query" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this HTTP request based on the context it is used
 func (m *HTTPRequest) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateQuery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *HTTPRequest) contextValidateQuery(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Query); i++ {
+
+		if m.Query[i] != nil {
+			if err := m.Query[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("query" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("query" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 

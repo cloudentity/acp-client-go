@@ -84,7 +84,7 @@ type UpdateSAMLIDPOK struct {
 }
 
 func (o *UpdateSAMLIDPOK) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/saml/{iid}][%d] updateSAMLIdPOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml/{iid}][%d] updateSAMLIdPOK  %+v", 200, o.Payload)
 }
 func (o *UpdateSAMLIDPOK) GetPayload() *models.SAMLIDP {
 	return o.Payload
@@ -116,7 +116,7 @@ type UpdateSAMLIDPBadRequest struct {
 }
 
 func (o *UpdateSAMLIDPBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/saml/{iid}][%d] updateSAMLIdPBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml/{iid}][%d] updateSAMLIdPBadRequest  %+v", 400, o.Payload)
 }
 func (o *UpdateSAMLIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -148,7 +148,7 @@ type UpdateSAMLIDPUnauthorized struct {
 }
 
 func (o *UpdateSAMLIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/saml/{iid}][%d] updateSAMLIdPUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml/{iid}][%d] updateSAMLIdPUnauthorized  %+v", 401, o.Payload)
 }
 func (o *UpdateSAMLIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -180,7 +180,7 @@ type UpdateSAMLIDPForbidden struct {
 }
 
 func (o *UpdateSAMLIDPForbidden) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/saml/{iid}][%d] updateSAMLIdPForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml/{iid}][%d] updateSAMLIdPForbidden  %+v", 403, o.Payload)
 }
 func (o *UpdateSAMLIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -212,7 +212,7 @@ type UpdateSAMLIDPNotFound struct {
 }
 
 func (o *UpdateSAMLIDPNotFound) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/saml/{iid}][%d] updateSAMLIdPNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml/{iid}][%d] updateSAMLIdPNotFound  %+v", 404, o.Payload)
 }
 func (o *UpdateSAMLIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -244,7 +244,7 @@ type UpdateSAMLIDPUnprocessableEntity struct {
 }
 
 func (o *UpdateSAMLIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/saml/{iid}][%d] updateSAMLIdPUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml/{iid}][%d] updateSAMLIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 func (o *UpdateSAMLIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
@@ -276,7 +276,7 @@ type UpdateSAMLIDPTooManyRequests struct {
 }
 
 func (o *UpdateSAMLIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/saml/{iid}][%d] updateSAMLIdPTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml/{iid}][%d] updateSAMLIdPTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *UpdateSAMLIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

@@ -67,14 +67,6 @@ type UpdateGithubEmbeddedIDPParams struct {
 	*/
 	GithubEmbeddedIDP *models.GithubEmbeddedIDP
 
-	/* Aid.
-
-	   Authorization server id
-
-	   Default: "default"
-	*/
-	Aid string
-
 	/* Iid.
 
 	   IDP id
@@ -82,6 +74,14 @@ type UpdateGithubEmbeddedIDPParams struct {
 	   Default: "default"
 	*/
 	Iid string
+
+	/* Wid.
+
+	   Authorization server id
+
+	   Default: "default"
+	*/
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -101,14 +101,14 @@ func (o *UpdateGithubEmbeddedIDPParams) WithDefaults() *UpdateGithubEmbeddedIDPP
 // All values with no default are reset to their zero value.
 func (o *UpdateGithubEmbeddedIDPParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
-
 		iidDefault = string("default")
+
+		widDefault = string("default")
 	)
 
 	val := UpdateGithubEmbeddedIDPParams{
-		Aid: aidDefault,
 		Iid: iidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -161,17 +161,6 @@ func (o *UpdateGithubEmbeddedIDPParams) SetGithubEmbeddedIDP(githubEmbeddedIDP *
 	o.GithubEmbeddedIDP = githubEmbeddedIDP
 }
 
-// WithAid adds the aid to the update github embedded ID p params
-func (o *UpdateGithubEmbeddedIDPParams) WithAid(aid string) *UpdateGithubEmbeddedIDPParams {
-	o.SetAid(aid)
-	return o
-}
-
-// SetAid adds the aid to the update github embedded ID p params
-func (o *UpdateGithubEmbeddedIDPParams) SetAid(aid string) {
-	o.Aid = aid
-}
-
 // WithIid adds the iid to the update github embedded ID p params
 func (o *UpdateGithubEmbeddedIDPParams) WithIid(iid string) *UpdateGithubEmbeddedIDPParams {
 	o.SetIid(iid)
@@ -181,6 +170,17 @@ func (o *UpdateGithubEmbeddedIDPParams) WithIid(iid string) *UpdateGithubEmbedde
 // SetIid adds the iid to the update github embedded ID p params
 func (o *UpdateGithubEmbeddedIDPParams) SetIid(iid string) {
 	o.Iid = iid
+}
+
+// WithWid adds the wid to the update github embedded ID p params
+func (o *UpdateGithubEmbeddedIDPParams) WithWid(wid string) *UpdateGithubEmbeddedIDPParams {
+	o.SetWid(wid)
+	return o
+}
+
+// SetWid adds the wid to the update github embedded ID p params
+func (o *UpdateGithubEmbeddedIDPParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -196,13 +196,13 @@ func (o *UpdateGithubEmbeddedIDPParams) WriteToRequest(r runtime.ClientRequest, 
 		}
 	}
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param iid
+	if err := r.SetPathParam("iid", o.Iid); err != nil {
 		return err
 	}
 
-	// path param iid
-	if err := r.SetPathParam("iid", o.Iid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

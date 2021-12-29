@@ -67,13 +67,13 @@ type SetServerConsentParams struct {
 	*/
 	ServerConsent *models.ServerConsent
 
-	/* Aid.
+	/* Wid.
 
 	   Authorization server id
 
 	   Default: "default"
 	*/
-	Aid string
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -93,11 +93,11 @@ func (o *SetServerConsentParams) WithDefaults() *SetServerConsentParams {
 // All values with no default are reset to their zero value.
 func (o *SetServerConsentParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := SetServerConsentParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -150,15 +150,15 @@ func (o *SetServerConsentParams) SetServerConsent(serverConsent *models.ServerCo
 	o.ServerConsent = serverConsent
 }
 
-// WithAid adds the aid to the set server consent params
-func (o *SetServerConsentParams) WithAid(aid string) *SetServerConsentParams {
-	o.SetAid(aid)
+// WithWid adds the wid to the set server consent params
+func (o *SetServerConsentParams) WithWid(wid string) *SetServerConsentParams {
+	o.SetWid(wid)
 	return o
 }
 
-// SetAid adds the aid to the set server consent params
-func (o *SetServerConsentParams) SetAid(aid string) {
-	o.Aid = aid
+// SetWid adds the wid to the set server consent params
+func (o *SetServerConsentParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -174,8 +174,8 @@ func (o *SetServerConsentParams) WriteToRequest(r runtime.ClientRequest, reg str
 		}
 	}
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

@@ -78,7 +78,7 @@ type RotateKeyOK struct {
 }
 
 func (o *RotateKeyOK) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/keys/rotate][%d] rotateKeyOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyOK  %+v", 200, o.Payload)
 }
 func (o *RotateKeyOK) GetPayload() *models.ServerJWK {
 	return o.Payload
@@ -110,7 +110,7 @@ type RotateKeyBadRequest struct {
 }
 
 func (o *RotateKeyBadRequest) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/keys/rotate][%d] rotateKeyBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyBadRequest  %+v", 400, o.Payload)
 }
 func (o *RotateKeyBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -142,7 +142,7 @@ type RotateKeyUnauthorized struct {
 }
 
 func (o *RotateKeyUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/keys/rotate][%d] rotateKeyUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyUnauthorized  %+v", 401, o.Payload)
 }
 func (o *RotateKeyUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -174,7 +174,7 @@ type RotateKeyForbidden struct {
 }
 
 func (o *RotateKeyForbidden) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/keys/rotate][%d] rotateKeyForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyForbidden  %+v", 403, o.Payload)
 }
 func (o *RotateKeyForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -206,7 +206,7 @@ type RotateKeyNotFound struct {
 }
 
 func (o *RotateKeyNotFound) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/keys/rotate][%d] rotateKeyNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyNotFound  %+v", 404, o.Payload)
 }
 func (o *RotateKeyNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -238,7 +238,7 @@ type RotateKeyTooManyRequests struct {
 }
 
 func (o *RotateKeyTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/keys/rotate][%d] rotateKeyTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *RotateKeyTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

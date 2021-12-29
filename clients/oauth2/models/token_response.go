@@ -20,11 +20,17 @@ type TokenResponse struct {
 	// access token
 	AccessToken string `json:"access_token,omitempty"`
 
+	// cdr arrangement id
+	CdrArrangementID string `json:"cdr_arrangement_id,omitempty"`
+
 	// expires in
 	ExpiresIn int64 `json:"expires_in,omitempty"`
 
 	// id token
 	IDToken string `json:"id_token,omitempty"`
+
+	// issued token type
+	IssuedTokenType string `json:"issued_token_type,omitempty"`
 
 	// refresh token
 	RefreshToken string `json:"refresh_token,omitempty"`

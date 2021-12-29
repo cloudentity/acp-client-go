@@ -84,7 +84,7 @@ type UpdateIntelliTrustIDPOK struct {
 }
 
 func (o *UpdateIntelliTrustIDPOK) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPOK  %+v", 200, o.Payload)
 }
 func (o *UpdateIntelliTrustIDPOK) GetPayload() *models.IntelliTrustIDP {
 	return o.Payload
@@ -116,7 +116,7 @@ type UpdateIntelliTrustIDPBadRequest struct {
 }
 
 func (o *UpdateIntelliTrustIDPBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPBadRequest  %+v", 400, o.Payload)
 }
 func (o *UpdateIntelliTrustIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -148,7 +148,7 @@ type UpdateIntelliTrustIDPUnauthorized struct {
 }
 
 func (o *UpdateIntelliTrustIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPUnauthorized  %+v", 401, o.Payload)
 }
 func (o *UpdateIntelliTrustIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -180,7 +180,7 @@ type UpdateIntelliTrustIDPForbidden struct {
 }
 
 func (o *UpdateIntelliTrustIDPForbidden) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPForbidden  %+v", 403, o.Payload)
 }
 func (o *UpdateIntelliTrustIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -212,7 +212,7 @@ type UpdateIntelliTrustIDPNotFound struct {
 }
 
 func (o *UpdateIntelliTrustIDPNotFound) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPNotFound  %+v", 404, o.Payload)
 }
 func (o *UpdateIntelliTrustIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -244,7 +244,7 @@ type UpdateIntelliTrustIDPUnprocessableEntity struct {
 }
 
 func (o *UpdateIntelliTrustIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 func (o *UpdateIntelliTrustIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
@@ -276,7 +276,7 @@ type UpdateIntelliTrustIDPTooManyRequests struct {
 }
 
 func (o *UpdateIntelliTrustIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *UpdateIntelliTrustIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

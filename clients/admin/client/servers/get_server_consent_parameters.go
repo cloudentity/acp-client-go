@@ -59,13 +59,13 @@ func NewGetServerConsentParamsWithHTTPClient(client *http.Client) *GetServerCons
 */
 type GetServerConsentParams struct {
 
-	/* Aid.
+	/* Wid.
 
 	   Authorization server id
 
 	   Default: "default"
 	*/
-	Aid string
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -85,11 +85,11 @@ func (o *GetServerConsentParams) WithDefaults() *GetServerConsentParams {
 // All values with no default are reset to their zero value.
 func (o *GetServerConsentParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := GetServerConsentParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -131,15 +131,15 @@ func (o *GetServerConsentParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithAid adds the aid to the get server consent params
-func (o *GetServerConsentParams) WithAid(aid string) *GetServerConsentParams {
-	o.SetAid(aid)
+// WithWid adds the wid to the get server consent params
+func (o *GetServerConsentParams) WithWid(wid string) *GetServerConsentParams {
+	o.SetWid(wid)
 	return o
 }
 
-// SetAid adds the aid to the get server consent params
-func (o *GetServerConsentParams) SetAid(aid string) {
-	o.Aid = aid
+// SetWid adds the wid to the get server consent params
+func (o *GetServerConsentParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -150,8 +150,8 @@ func (o *GetServerConsentParams) WriteToRequest(r runtime.ClientRequest, reg str
 	}
 	var res []error
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

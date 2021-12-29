@@ -84,7 +84,7 @@ type CreateCognitoIDPCreated struct {
 }
 
 func (o *CreateCognitoIDPCreated) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/cognito][%d] createCognitoIdPCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/cognito][%d] createCognitoIdPCreated  %+v", 201, o.Payload)
 }
 func (o *CreateCognitoIDPCreated) GetPayload() *models.CognitoIDP {
 	return o.Payload
@@ -116,7 +116,7 @@ type CreateCognitoIDPBadRequest struct {
 }
 
 func (o *CreateCognitoIDPBadRequest) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/cognito][%d] createCognitoIdPBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/cognito][%d] createCognitoIdPBadRequest  %+v", 400, o.Payload)
 }
 func (o *CreateCognitoIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -148,7 +148,7 @@ type CreateCognitoIDPUnauthorized struct {
 }
 
 func (o *CreateCognitoIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/cognito][%d] createCognitoIdPUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/cognito][%d] createCognitoIdPUnauthorized  %+v", 401, o.Payload)
 }
 func (o *CreateCognitoIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -180,7 +180,7 @@ type CreateCognitoIDPForbidden struct {
 }
 
 func (o *CreateCognitoIDPForbidden) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/cognito][%d] createCognitoIdPForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/cognito][%d] createCognitoIdPForbidden  %+v", 403, o.Payload)
 }
 func (o *CreateCognitoIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -212,7 +212,7 @@ type CreateCognitoIDPNotFound struct {
 }
 
 func (o *CreateCognitoIDPNotFound) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/cognito][%d] createCognitoIdPNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/cognito][%d] createCognitoIdPNotFound  %+v", 404, o.Payload)
 }
 func (o *CreateCognitoIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -244,7 +244,7 @@ type CreateCognitoIDPUnprocessableEntity struct {
 }
 
 func (o *CreateCognitoIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/cognito][%d] createCognitoIdPUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/cognito][%d] createCognitoIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 func (o *CreateCognitoIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
@@ -276,7 +276,7 @@ type CreateCognitoIDPTooManyRequests struct {
 }
 
 func (o *CreateCognitoIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/cognito][%d] createCognitoIdPTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/cognito][%d] createCognitoIdPTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *CreateCognitoIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

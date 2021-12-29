@@ -84,7 +84,7 @@ type UpdateOktaIDPOK struct {
 }
 
 func (o *UpdateOktaIDPOK) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/okta/{iid}][%d] updateOktaIdPOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/okta/{iid}][%d] updateOktaIdPOK  %+v", 200, o.Payload)
 }
 func (o *UpdateOktaIDPOK) GetPayload() *models.OktaIDP {
 	return o.Payload
@@ -116,7 +116,7 @@ type UpdateOktaIDPBadRequest struct {
 }
 
 func (o *UpdateOktaIDPBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/okta/{iid}][%d] updateOktaIdPBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/okta/{iid}][%d] updateOktaIdPBadRequest  %+v", 400, o.Payload)
 }
 func (o *UpdateOktaIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -148,7 +148,7 @@ type UpdateOktaIDPUnauthorized struct {
 }
 
 func (o *UpdateOktaIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/okta/{iid}][%d] updateOktaIdPUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/okta/{iid}][%d] updateOktaIdPUnauthorized  %+v", 401, o.Payload)
 }
 func (o *UpdateOktaIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -180,7 +180,7 @@ type UpdateOktaIDPForbidden struct {
 }
 
 func (o *UpdateOktaIDPForbidden) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/okta/{iid}][%d] updateOktaIdPForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/okta/{iid}][%d] updateOktaIdPForbidden  %+v", 403, o.Payload)
 }
 func (o *UpdateOktaIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -212,7 +212,7 @@ type UpdateOktaIDPNotFound struct {
 }
 
 func (o *UpdateOktaIDPNotFound) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/okta/{iid}][%d] updateOktaIdPNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/okta/{iid}][%d] updateOktaIdPNotFound  %+v", 404, o.Payload)
 }
 func (o *UpdateOktaIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -244,7 +244,7 @@ type UpdateOktaIDPUnprocessableEntity struct {
 }
 
 func (o *UpdateOktaIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/okta/{iid}][%d] updateOktaIdPUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/okta/{iid}][%d] updateOktaIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 func (o *UpdateOktaIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
@@ -276,7 +276,7 @@ type UpdateOktaIDPTooManyRequests struct {
 }
 
 func (o *UpdateOktaIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/okta/{iid}][%d] updateOktaIdPTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/okta/{iid}][%d] updateOktaIdPTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *UpdateOktaIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

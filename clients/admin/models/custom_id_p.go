@@ -79,6 +79,9 @@ type CustomIDP struct {
 	// ID of the tenant where an IDP is connected
 	TenantID string `json:"tenant_id,omitempty"`
 
+	// token exchange settings
+	TokenExchangeSettings *IDPTokenExchangeSettings `json:"token_exchange_settings,omitempty"`
+
 	// transformer
 	Transformer *ScriptTransformer `json:"transformer,omitempty"`
 }
@@ -104,6 +107,10 @@ func (m *CustomIDP) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateSettings(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTokenExchangeSettings(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -208,6 +215,25 @@ func (m *CustomIDP) validateSettings(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *CustomIDP) validateTokenExchangeSettings(formats strfmt.Registry) error {
+	if swag.IsZero(m.TokenExchangeSettings) { // not required
+		return nil
+	}
+
+	if m.TokenExchangeSettings != nil {
+		if err := m.TokenExchangeSettings.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("token_exchange_settings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("token_exchange_settings")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *CustomIDP) validateTransformer(formats strfmt.Registry) error {
 	if swag.IsZero(m.Transformer) { // not required
 		return nil
@@ -248,6 +274,10 @@ func (m *CustomIDP) ContextValidate(ctx context.Context, formats strfmt.Registry
 	}
 
 	if err := m.contextValidateSettings(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateTokenExchangeSettings(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -329,6 +359,22 @@ func (m *CustomIDP) contextValidateSettings(ctx context.Context, formats strfmt.
 				return ve.ValidateName("settings")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("settings")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *CustomIDP) contextValidateTokenExchangeSettings(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.TokenExchangeSettings != nil {
+		if err := m.TokenExchangeSettings.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("token_exchange_settings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("token_exchange_settings")
 			}
 			return err
 		}

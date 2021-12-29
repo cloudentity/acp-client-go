@@ -67,13 +67,13 @@ type CreateOktaIDPParams struct {
 	*/
 	OktaIDP *models.OktaIDP
 
-	/* Aid.
+	/* Wid.
 
 	   Authorization server id
 
 	   Default: "default"
 	*/
-	Aid string
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -93,11 +93,11 @@ func (o *CreateOktaIDPParams) WithDefaults() *CreateOktaIDPParams {
 // All values with no default are reset to their zero value.
 func (o *CreateOktaIDPParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := CreateOktaIDPParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -150,15 +150,15 @@ func (o *CreateOktaIDPParams) SetOktaIDP(oktaIDP *models.OktaIDP) {
 	o.OktaIDP = oktaIDP
 }
 
-// WithAid adds the aid to the create okta ID p params
-func (o *CreateOktaIDPParams) WithAid(aid string) *CreateOktaIDPParams {
-	o.SetAid(aid)
+// WithWid adds the wid to the create okta ID p params
+func (o *CreateOktaIDPParams) WithWid(wid string) *CreateOktaIDPParams {
+	o.SetWid(wid)
 	return o
 }
 
-// SetAid adds the aid to the create okta ID p params
-func (o *CreateOktaIDPParams) SetAid(aid string) {
-	o.Aid = aid
+// SetWid adds the wid to the create okta ID p params
+func (o *CreateOktaIDPParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -174,8 +174,8 @@ func (o *CreateOktaIDPParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		}
 	}
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

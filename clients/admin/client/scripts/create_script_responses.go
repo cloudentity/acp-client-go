@@ -72,7 +72,7 @@ type CreateScriptCreated struct {
 }
 
 func (o *CreateScriptCreated) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/scripts][%d] createScriptCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/scripts][%d] createScriptCreated  %+v", 201, o.Payload)
 }
 func (o *CreateScriptCreated) GetPayload() *models.Script {
 	return o.Payload
@@ -104,7 +104,7 @@ type CreateScriptBadRequest struct {
 }
 
 func (o *CreateScriptBadRequest) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/scripts][%d] createScriptBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/scripts][%d] createScriptBadRequest  %+v", 400, o.Payload)
 }
 func (o *CreateScriptBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -136,7 +136,7 @@ type CreateScriptUnauthorized struct {
 }
 
 func (o *CreateScriptUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/scripts][%d] createScriptUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/scripts][%d] createScriptUnauthorized  %+v", 401, o.Payload)
 }
 func (o *CreateScriptUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -168,7 +168,7 @@ type CreateScriptForbidden struct {
 }
 
 func (o *CreateScriptForbidden) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/scripts][%d] createScriptForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/scripts][%d] createScriptForbidden  %+v", 403, o.Payload)
 }
 func (o *CreateScriptForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -200,7 +200,7 @@ type CreateScriptTooManyRequests struct {
 }
 
 func (o *CreateScriptTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/scripts][%d] createScriptTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/scripts][%d] createScriptTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *CreateScriptTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

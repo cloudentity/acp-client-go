@@ -17,13 +17,13 @@ import (
 // swagger:model Service
 type Service struct {
 
-	// service audience
-	// Example: https://api.example.com
-	Audience string `json:"audience,omitempty"`
-
 	// server id
 	// Example: default
 	AuthorizationServerID string `json:"authorization_server_id,omitempty"`
+
+	// custom service audience
+	// Example: https://api.example.com
+	CustomAudience string `json:"custom_audience,omitempty"`
 
 	// service description
 	// Example: Service description

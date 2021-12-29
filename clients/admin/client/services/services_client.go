@@ -310,7 +310,7 @@ func (a *Client) ListServices(params *ListServicesParams, authInfo runtime.Clien
 	op := &runtime.ClientOperation{
 		ID:                 "listServices",
 		Method:             "GET",
-		PathPattern:        "/servers/{aid}/services",
+		PathPattern:        "/servers/{wid}/services",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

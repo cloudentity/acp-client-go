@@ -67,13 +67,13 @@ type CreateSAMLIDPParams struct {
 	*/
 	SAMLIDP *models.SAMLIDP
 
-	/* Aid.
+	/* Wid.
 
 	   Authorization server id
 
 	   Default: "default"
 	*/
-	Aid string
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -93,11 +93,11 @@ func (o *CreateSAMLIDPParams) WithDefaults() *CreateSAMLIDPParams {
 // All values with no default are reset to their zero value.
 func (o *CreateSAMLIDPParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := CreateSAMLIDPParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -150,15 +150,15 @@ func (o *CreateSAMLIDPParams) SetSAMLIDP(sAMLIDP *models.SAMLIDP) {
 	o.SAMLIDP = sAMLIDP
 }
 
-// WithAid adds the aid to the create s a m l ID p params
-func (o *CreateSAMLIDPParams) WithAid(aid string) *CreateSAMLIDPParams {
-	o.SetAid(aid)
+// WithWid adds the wid to the create s a m l ID p params
+func (o *CreateSAMLIDPParams) WithWid(wid string) *CreateSAMLIDPParams {
+	o.SetWid(wid)
 	return o
 }
 
-// SetAid adds the aid to the create s a m l ID p params
-func (o *CreateSAMLIDPParams) SetAid(aid string) {
-	o.Aid = aid
+// SetWid adds the wid to the create s a m l ID p params
+func (o *CreateSAMLIDPParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -174,8 +174,8 @@ func (o *CreateSAMLIDPParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		}
 	}
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

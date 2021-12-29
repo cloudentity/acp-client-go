@@ -44,12 +44,6 @@ type Features struct {
 	// enable external datastore idp (system)
 	ExternalDatastore bool `json:"external_datastore,omitempty"`
 
-	// enable gateway type kong (tenant)
-	GatewayTypeKong bool `json:"gateway_type_kong,omitempty"`
-
-	// enable gateway type standalone (tenant)
-	GatewayTypeStandalone bool `json:"gateway_type_standalone,omitempty"`
-
 	// when enabled and the display_workspace_wizard feature flag is set to true, a demo workspace with a set of preconfigured IDPs is created and no welcome screen is displayed (tenant)
 	InitializeDemoWorkspace bool `json:"initialize_demo_workspace,omitempty"`
 
@@ -68,6 +62,9 @@ type Features struct {
 	// enable quick access functionality on UI (system)
 	QuickAccess bool `json:"quick_access,omitempty"`
 
+	// enable scope transient_otp (tenant)
+	ScopeTransientOtp bool `json:"scope_transient_otp,omitempty"`
+
 	// enable the javascript transformer (tenant)
 	ScriptTransformer bool `json:"script_transformer,omitempty"`
 
@@ -82,6 +79,9 @@ type Features struct {
 
 	// enable admin workspace access (tenant)
 	SystemWorkspaceAccess bool `json:"system_workspace_access,omitempty"`
+
+	// enable Token Exchange (system)
+	TokenExchange bool `json:"token_exchange,omitempty"`
 
 	// enable trust anchor integration (system)
 	TrustAnchorIntegration bool `json:"trust_anchor_integration,omitempty"`

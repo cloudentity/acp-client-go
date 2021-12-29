@@ -68,19 +68,19 @@ func NewListAuthorizationServersOK() *ListAuthorizationServersOK {
 Servers
 */
 type ListAuthorizationServersOK struct {
-	Payload *models.Servers
+	Payload *models.ServersResponse
 }
 
 func (o *ListAuthorizationServersOK) Error() string {
 	return fmt.Sprintf("[GET /servers][%d] listAuthorizationServersOK  %+v", 200, o.Payload)
 }
-func (o *ListAuthorizationServersOK) GetPayload() *models.Servers {
+func (o *ListAuthorizationServersOK) GetPayload() *models.ServersResponse {
 	return o.Payload
 }
 
 func (o *ListAuthorizationServersOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Servers)
+	o.Payload = new(models.ServersResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

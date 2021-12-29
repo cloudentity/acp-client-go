@@ -22,6 +22,9 @@ type TenantDump struct {
 	// apis
 	Apis []*API `json:"apis"`
 
+	// audit events
+	AuditEvents []*AuditEvent `json:"audit_events"`
+
 	// cdr arrangements
 	CdrArrangements []*CDRArrangement `json:"cdr_arrangements"`
 
@@ -52,6 +55,9 @@ type TenantDump struct {
 	// gateways
 	Gateways []*Gateway `json:"gateways"`
 
+	// identity pools
+	IdentityPools []*Pool `json:"identity_pools"`
+
 	// idps
 	Idps IDPs `json:"idps,omitempty"`
 
@@ -59,7 +65,7 @@ type TenantDump struct {
 	MfaMethods []*MFAMethod `json:"mfa_methods"`
 
 	// openbanking consents
-	OpenbankingConsents []*OBConsentCommon `json:"openbanking_consents"`
+	OpenbankingConsents []*OBConsent `json:"openbanking_consents"`
 
 	// openbanking file payment consent file resources
 	OpenbankingFilePaymentConsentFileResources []*FilePaymentConsentFileResource `json:"openbanking_file_payment_consent_file_resources"`
@@ -72,6 +78,9 @@ type TenantDump struct {
 
 	// privacy ledger events
 	PrivacyLedgerEvents []*PrivacyLedgerEvent `json:"privacy_ledger_events"`
+
+	// quota usage
+	QuotaUsage []*QuotaUsage `json:"quota_usage"`
 
 	// recurring jobs
 	RecurringJobs []*RecurringJob `json:"recurring_jobs"`
@@ -118,6 +127,10 @@ func (m *TenantDump) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateAuditEvents(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateCdrArrangements(formats); err != nil {
 		res = append(res, err)
 	}
@@ -158,6 +171,10 @@ func (m *TenantDump) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateIdentityPools(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateIdps(formats); err != nil {
 		res = append(res, err)
 	}
@@ -183,6 +200,10 @@ func (m *TenantDump) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validatePrivacyLedgerEvents(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateQuotaUsage(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -256,6 +277,32 @@ func (m *TenantDump) validateApis(formats strfmt.Registry) error {
 					return ve.ValidateName("apis" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
 					return ce.ValidateName("apis" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *TenantDump) validateAuditEvents(formats strfmt.Registry) error {
+	if swag.IsZero(m.AuditEvents) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.AuditEvents); i++ {
+		if swag.IsZero(m.AuditEvents[i]) { // not required
+			continue
+		}
+
+		if m.AuditEvents[i] != nil {
+			if err := m.AuditEvents[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("audit_events" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("audit_events" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -526,6 +573,32 @@ func (m *TenantDump) validateGateways(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *TenantDump) validateIdentityPools(formats strfmt.Registry) error {
+	if swag.IsZero(m.IdentityPools) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.IdentityPools); i++ {
+		if swag.IsZero(m.IdentityPools[i]) { // not required
+			continue
+		}
+
+		if m.IdentityPools[i] != nil {
+			if err := m.IdentityPools[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("identity_pools" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("identity_pools" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *TenantDump) validateIdps(formats strfmt.Registry) error {
 	if swag.IsZero(m.Idps) { // not required
 		return nil
@@ -689,6 +762,32 @@ func (m *TenantDump) validatePrivacyLedgerEvents(formats strfmt.Registry) error 
 					return ve.ValidateName("privacy_ledger_events" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
 					return ce.ValidateName("privacy_ledger_events" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *TenantDump) validateQuotaUsage(formats strfmt.Registry) error {
+	if swag.IsZero(m.QuotaUsage) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.QuotaUsage); i++ {
+		if swag.IsZero(m.QuotaUsage[i]) { // not required
+			continue
+		}
+
+		if m.QuotaUsage[i] != nil {
+			if err := m.QuotaUsage[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("quota_usage" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("quota_usage" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1012,6 +1111,10 @@ func (m *TenantDump) ContextValidate(ctx context.Context, formats strfmt.Registr
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateAuditEvents(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateCdrArrangements(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -1052,6 +1155,10 @@ func (m *TenantDump) ContextValidate(ctx context.Context, formats strfmt.Registr
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateIdentityPools(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateIdps(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -1077,6 +1184,10 @@ func (m *TenantDump) ContextValidate(ctx context.Context, formats strfmt.Registr
 	}
 
 	if err := m.contextValidatePrivacyLedgerEvents(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateQuotaUsage(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1144,6 +1255,26 @@ func (m *TenantDump) contextValidateApis(ctx context.Context, formats strfmt.Reg
 					return ve.ValidateName("apis" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
 					return ce.ValidateName("apis" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *TenantDump) contextValidateAuditEvents(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.AuditEvents); i++ {
+
+		if m.AuditEvents[i] != nil {
+			if err := m.AuditEvents[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("audit_events" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("audit_events" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1354,6 +1485,26 @@ func (m *TenantDump) contextValidateGateways(ctx context.Context, formats strfmt
 	return nil
 }
 
+func (m *TenantDump) contextValidateIdentityPools(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.IdentityPools); i++ {
+
+		if m.IdentityPools[i] != nil {
+			if err := m.IdentityPools[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("identity_pools" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("identity_pools" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *TenantDump) contextValidateIdps(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := m.Idps.ContextValidate(ctx, formats); err != nil {
@@ -1478,6 +1629,26 @@ func (m *TenantDump) contextValidatePrivacyLedgerEvents(ctx context.Context, for
 					return ve.ValidateName("privacy_ledger_events" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
 					return ce.ValidateName("privacy_ledger_events" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *TenantDump) contextValidateQuotaUsage(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.QuotaUsage); i++ {
+
+		if m.QuotaUsage[i] != nil {
+			if err := m.QuotaUsage[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("quota_usage" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("quota_usage" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

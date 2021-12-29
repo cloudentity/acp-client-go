@@ -64,13 +64,13 @@ type UpdateAuthorizationServerParams struct {
 	// Server.
 	Server *models.Server
 
-	/* Aid.
+	/* Wid.
 
-	   Authorization server id
+	   Workspace id
 
 	   Default: "default"
 	*/
-	Aid string
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -90,11 +90,11 @@ func (o *UpdateAuthorizationServerParams) WithDefaults() *UpdateAuthorizationSer
 // All values with no default are reset to their zero value.
 func (o *UpdateAuthorizationServerParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := UpdateAuthorizationServerParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -147,15 +147,15 @@ func (o *UpdateAuthorizationServerParams) SetServer(server *models.Server) {
 	o.Server = server
 }
 
-// WithAid adds the aid to the update authorization server params
-func (o *UpdateAuthorizationServerParams) WithAid(aid string) *UpdateAuthorizationServerParams {
-	o.SetAid(aid)
+// WithWid adds the wid to the update authorization server params
+func (o *UpdateAuthorizationServerParams) WithWid(wid string) *UpdateAuthorizationServerParams {
+	o.SetWid(wid)
 	return o
 }
 
-// SetAid adds the aid to the update authorization server params
-func (o *UpdateAuthorizationServerParams) SetAid(aid string) {
-	o.Aid = aid
+// SetWid adds the wid to the update authorization server params
+func (o *UpdateAuthorizationServerParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -171,8 +171,8 @@ func (o *UpdateAuthorizationServerParams) WriteToRequest(r runtime.ClientRequest
 		}
 	}
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

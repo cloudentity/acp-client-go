@@ -59,19 +59,19 @@ func NewDeleteScriptParamsWithHTTPClient(client *http.Client) *DeleteScriptParam
 */
 type DeleteScriptParams struct {
 
-	/* Aid.
-
-	   ID of your authorization server (workspace)
-
-	   Default: "default"
-	*/
-	Aid string
-
 	/* Script.
 
 	   ID of the script to be deleted
 	*/
 	Script string
+
+	/* Wid.
+
+	   ID of your authorization server (workspace)
+
+	   Default: "default"
+	*/
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -91,11 +91,11 @@ func (o *DeleteScriptParams) WithDefaults() *DeleteScriptParams {
 // All values with no default are reset to their zero value.
 func (o *DeleteScriptParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := DeleteScriptParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -137,17 +137,6 @@ func (o *DeleteScriptParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithAid adds the aid to the delete script params
-func (o *DeleteScriptParams) WithAid(aid string) *DeleteScriptParams {
-	o.SetAid(aid)
-	return o
-}
-
-// SetAid adds the aid to the delete script params
-func (o *DeleteScriptParams) SetAid(aid string) {
-	o.Aid = aid
-}
-
 // WithScript adds the script to the delete script params
 func (o *DeleteScriptParams) WithScript(script string) *DeleteScriptParams {
 	o.SetScript(script)
@@ -159,6 +148,17 @@ func (o *DeleteScriptParams) SetScript(script string) {
 	o.Script = script
 }
 
+// WithWid adds the wid to the delete script params
+func (o *DeleteScriptParams) WithWid(wid string) *DeleteScriptParams {
+	o.SetWid(wid)
+	return o
+}
+
+// SetWid adds the wid to the delete script params
+func (o *DeleteScriptParams) SetWid(wid string) {
+	o.Wid = wid
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *DeleteScriptParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -167,13 +167,13 @@ func (o *DeleteScriptParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 	}
 	var res []error
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param script
+	if err := r.SetPathParam("script", o.Script); err != nil {
 		return err
 	}
 
-	// path param script
-	if err := r.SetPathParam("script", o.Script); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

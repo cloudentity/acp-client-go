@@ -66,7 +66,7 @@ type GetRecentActivitiesOK struct {
 }
 
 func (o *GetRecentActivitiesOK) Error() string {
-	return fmt.Sprintf("[GET /stats/{aid}/recent-activities][%d] getRecentActivitiesOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /stats/{wid}/recent-activities][%d] getRecentActivitiesOK  %+v", 200, o.Payload)
 }
 func (o *GetRecentActivitiesOK) GetPayload() *models.RecentActivities {
 	return o.Payload
@@ -98,7 +98,7 @@ type GetRecentActivitiesUnauthorized struct {
 }
 
 func (o *GetRecentActivitiesUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /stats/{aid}/recent-activities][%d] getRecentActivitiesUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /stats/{wid}/recent-activities][%d] getRecentActivitiesUnauthorized  %+v", 401, o.Payload)
 }
 func (o *GetRecentActivitiesUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -130,7 +130,7 @@ type GetRecentActivitiesForbidden struct {
 }
 
 func (o *GetRecentActivitiesForbidden) Error() string {
-	return fmt.Sprintf("[GET /stats/{aid}/recent-activities][%d] getRecentActivitiesForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /stats/{wid}/recent-activities][%d] getRecentActivitiesForbidden  %+v", 403, o.Payload)
 }
 func (o *GetRecentActivitiesForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -162,7 +162,7 @@ type GetRecentActivitiesTooManyRequests struct {
 }
 
 func (o *GetRecentActivitiesTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /stats/{aid}/recent-activities][%d] getRecentActivitiesTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[GET /stats/{wid}/recent-activities][%d] getRecentActivitiesTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *GetRecentActivitiesTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

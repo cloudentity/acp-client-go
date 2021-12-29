@@ -19,6 +19,9 @@ import (
 // swagger:model VanityDomain
 type VanityDomain struct {
 
+	// api key
+	APIKey string `json:"api_key,omitempty"`
+
 	// base path to use with a configured vanity domain
 	// Example: /prefix
 	BasePath string `json:"base_path,omitempty"`
@@ -31,6 +34,9 @@ type VanityDomain struct {
 	// Required: true
 	Domain string `json:"domain"`
 
+	// ID
+	ID string `json:"id,omitempty"`
+
 	// domain private key
 	Key string `json:"key,omitempty"`
 
@@ -41,6 +47,9 @@ type VanityDomain struct {
 	// ID of a tenant
 	// Example: default
 	TenantID string `json:"tenant_id,omitempty"`
+
+	// type
+	Type VanityDomainType `json:"type,omitempty"`
 }
 
 // Validate validates this vanity domain
@@ -48,6 +57,10 @@ func (m *VanityDomain) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateDomain(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -66,8 +79,48 @@ func (m *VanityDomain) validateDomain(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validates this vanity domain based on context it is used
+func (m *VanityDomain) validateType(formats strfmt.Registry) error {
+	if swag.IsZero(m.Type) { // not required
+		return nil
+	}
+
+	if err := m.Type.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("type")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("type")
+		}
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this vanity domain based on the context it is used
 func (m *VanityDomain) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateType(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *VanityDomain) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.Type.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("type")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("type")
+		}
+		return err
+	}
+
 	return nil
 }
 

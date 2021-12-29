@@ -67,13 +67,13 @@ type CreateCustomIDPParams struct {
 	*/
 	CustomIDP *models.CustomIDP
 
-	/* Aid.
+	/* Wid.
 
 	   Authorization server id
 
 	   Default: "default"
 	*/
-	Aid string
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -93,11 +93,11 @@ func (o *CreateCustomIDPParams) WithDefaults() *CreateCustomIDPParams {
 // All values with no default are reset to their zero value.
 func (o *CreateCustomIDPParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := CreateCustomIDPParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -150,15 +150,15 @@ func (o *CreateCustomIDPParams) SetCustomIDP(customIDP *models.CustomIDP) {
 	o.CustomIDP = customIDP
 }
 
-// WithAid adds the aid to the create custom ID p params
-func (o *CreateCustomIDPParams) WithAid(aid string) *CreateCustomIDPParams {
-	o.SetAid(aid)
+// WithWid adds the wid to the create custom ID p params
+func (o *CreateCustomIDPParams) WithWid(wid string) *CreateCustomIDPParams {
+	o.SetWid(wid)
 	return o
 }
 
-// SetAid adds the aid to the create custom ID p params
-func (o *CreateCustomIDPParams) SetAid(aid string) {
-	o.Aid = aid
+// SetWid adds the wid to the create custom ID p params
+func (o *CreateCustomIDPParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -174,8 +174,8 @@ func (o *CreateCustomIDPParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		}
 	}
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

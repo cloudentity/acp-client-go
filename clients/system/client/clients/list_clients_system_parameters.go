@@ -59,13 +59,13 @@ func NewListClientsSystemParamsWithHTTPClient(client *http.Client) *ListClientsS
 */
 type ListClientsSystemParams struct {
 
-	/* Aid.
+	/* Wid.
 
-	   Authorization server id
+	   Workspace id
 
 	   Default: "default"
 	*/
-	Aid string
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -85,11 +85,11 @@ func (o *ListClientsSystemParams) WithDefaults() *ListClientsSystemParams {
 // All values with no default are reset to their zero value.
 func (o *ListClientsSystemParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := ListClientsSystemParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -131,15 +131,15 @@ func (o *ListClientsSystemParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithAid adds the aid to the list clients system params
-func (o *ListClientsSystemParams) WithAid(aid string) *ListClientsSystemParams {
-	o.SetAid(aid)
+// WithWid adds the wid to the list clients system params
+func (o *ListClientsSystemParams) WithWid(wid string) *ListClientsSystemParams {
+	o.SetWid(wid)
 	return o
 }
 
-// SetAid adds the aid to the list clients system params
-func (o *ListClientsSystemParams) SetAid(aid string) {
-	o.Aid = aid
+// SetWid adds the wid to the list clients system params
+func (o *ListClientsSystemParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -150,8 +150,8 @@ func (o *ListClientsSystemParams) WriteToRequest(r runtime.ClientRequest, reg st
 	}
 	var res []error
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

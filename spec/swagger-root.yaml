@@ -102,6 +102,8 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  Action:
+    type: string
   ApigeeMetadata:
     properties:
       environment_name:
@@ -160,6 +162,68 @@ definitions:
     items:
       $ref: '#/definitions/Attribute'
     type: array
+  AuditEvent:
+    properties:
+      action:
+        $ref: '#/definitions/Action'
+      context:
+        additionalProperties:
+          type: string
+        description: context
+        type: object
+        x-nullable: false
+      event_id:
+        description: event id
+        format: eventID
+        type: string
+        x-nullable: false
+      event_payload:
+        description: event payload
+        type: object
+        x-nullable: false
+      event_subject:
+        $ref: '#/definitions/AuditEventSubject'
+      event_type:
+        $ref: '#/definitions/AuditEventType'
+      metadata:
+        $ref: '#/definitions/AuditEventMetadata'
+      server_id:
+        description: server id
+        format: serverID
+        type: string
+        x-nullable: false
+      tenant_id:
+        description: tenant id
+        format: tenantID
+        type: string
+        x-nullable: false
+      timestamp:
+        description: event date
+        format: date-time
+        type: string
+        x-nullable: false
+    type: object
+  AuditEventMetadata:
+    properties:
+      client_id:
+        description: client id
+        format: clientID
+        type: string
+        x-nullable: false
+      ip:
+        description: ip address
+        type: string
+        x-nullable: false
+      subject:
+        description: subject
+        format: subject
+        type: string
+        x-nullable: false
+    type: object
+  AuditEventSubject:
+    type: string
+  AuditEventType:
+    type: string
   AuthenticationContext:
     additionalProperties:
       type: object
@@ -630,6 +694,7 @@ definitions:
           - password
           - urn:ietf:params:oauth:grant-type:jwt-bearer
           - urn:openid:params:grant-type:ciba
+          - urn:ietf:params:oauth:grant-type:token-exchange
           type: string
         type: array
         x-nullable: false
@@ -1663,6 +1728,11 @@ definitions:
           $ref: '#/definitions/API'
         type: array
         x-nullable: false
+      audit_events:
+        items:
+          $ref: '#/definitions/AuditEvent'
+        type: array
+        x-nullable: false
       cdr_arrangements:
         items:
           $ref: '#/definitions/CDRArrangement'
@@ -1718,6 +1788,11 @@ definitions:
           $ref: '#/definitions/Gateway'
         type: array
         x-nullable: false
+      identity_pools:
+        items:
+          $ref: '#/definitions/Pool'
+        type: array
+        x-nullable: false
       idps:
         $ref: '#/definitions/IDPs'
       mfa_methods:
@@ -1727,7 +1802,7 @@ definitions:
         x-nullable: false
       openbanking_consents:
         items:
-          $ref: '#/definitions/OBConsentCommon'
+          $ref: '#/definitions/OBConsent'
         type: array
         x-nullable: false
       openbanking_file_payment_consent_file_resources:
@@ -1748,6 +1823,11 @@ definitions:
       privacy_ledger_events:
         items:
           $ref: '#/definitions/PrivacyLedgerEvent'
+        type: array
+        x-nullable: false
+      quota_usage:
+        items:
+          $ref: '#/definitions/QuotaUsage'
         type: array
         x-nullable: false
       rate_limits:
@@ -2054,14 +2134,6 @@ definitions:
         description: enable external datastore idp (system)
         type: boolean
         x-nullable: false
-      gateway_type_kong:
-        description: enable gateway type kong (tenant)
-        type: boolean
-        x-nullable: false
-      gateway_type_standalone:
-        description: enable gateway type standalone (tenant)
-        type: boolean
-        x-nullable: false
       initialize_demo_workspace:
         description: when enabled and the display_workspace_wizard feature flag is
           set to true, a demo workspace with a set of preconfigured IDPs is created
@@ -2089,6 +2161,10 @@ definitions:
         description: enable quick access functionality on UI (system)
         type: boolean
         x-nullable: false
+      scope_transient_otp:
+        description: enable scope transient_otp (tenant)
+        type: boolean
+        x-nullable: false
       script_transformer:
         description: enable the javascript transformer (tenant)
         type: boolean
@@ -2107,6 +2183,10 @@ definitions:
         x-nullable: false
       system_workspace_access:
         description: enable admin workspace access (tenant)
+        type: boolean
+        x-nullable: false
+      token_exchange:
+        description: enable Token Exchange (system)
         type: boolean
         x-nullable: false
       trust_anchor_integration:
@@ -2183,6 +2263,13 @@ definitions:
         format: tenantID
         type: string
         x-nullable: false
+      token_exchange:
+        $ref: '#/definitions/GatewayTokenExchangeSettings'
+      token_exchange_client_id:
+        description: Token exchange client id
+        format: clientID
+        type: string
+        x-nullable: false
       type:
         description: 'gateway type, one of: pyron, aws'
         example: pyron
@@ -2242,6 +2329,18 @@ definitions:
       tenant_id:
         format: tenantID
         type: string
+        x-nullable: false
+    type: object
+  GatewayTokenExchangeSettings:
+    properties:
+      enabled:
+        type: boolean
+        x-nullable: false
+      trusted_idp_ids:
+        items:
+          format: idpID
+          type: string
+        type: array
         x-nullable: false
     type: object
   GithubCredentials:
@@ -2452,6 +2551,8 @@ definitions:
         format: tenantID
         type: string
         x-nullable: false
+      token_exchange_settings:
+        $ref: '#/definitions/IDPTokenExchangeSettings'
       transformer:
         $ref: '#/definitions/ScriptTransformer'
     type: object
@@ -2554,6 +2655,13 @@ definitions:
         $ref: '#/definitions/SAMLSettings'
       static:
         $ref: '#/definitions/StaticSettings'
+    type: object
+  IDPTokenExchangeSettings:
+    properties:
+      enabled:
+        description: If enabled token issued by this IDP can be used for token exchange
+        type: boolean
+        x-nullable: false
     type: object
   IDPs:
     items:
@@ -2761,7 +2869,9 @@ definitions:
     additionalProperties:
       type: object
     type: object
-  OBConsentCommon:
+  OBConsent:
+    description: OBConsent this type is only meant to be used for importing and exporting
+      consents for testing
     properties:
       account_ids:
         items:
@@ -3073,6 +3183,40 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  Pool:
+    properties:
+      authentication_mechanisms:
+        example:
+        - password
+        items:
+          enum:
+          - password
+          - email_link
+          type: string
+        type: array
+        x-nullable: false
+      description:
+        type: string
+        x-nullable: false
+      id:
+        format: poolID
+        type: string
+        x-nullable: false
+      name:
+        type: string
+        x-nullable: false
+      public_registration_allowed:
+        type: boolean
+        x-nullable: false
+      tenant_id:
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+    required:
+    - tenant_id
+    - name
+    type: object
   PrivacyLedgerEvent:
     properties:
       date:
@@ -3125,6 +3269,29 @@ definitions:
     type: object
   QueueName:
     type: string
+  QuotaType:
+    type: string
+  QuotaUsage:
+    properties:
+      month:
+        format: int64
+        type: integer
+        x-nullable: false
+      quota_type:
+        $ref: '#/definitions/QuotaType'
+      tenant_id:
+        format: tenantID
+        type: string
+        x-nullable: false
+      usage:
+        format: int64
+        type: integer
+        x-nullable: false
+      year:
+        format: int64
+        type: integer
+        x-nullable: false
+    type: object
   RateLimitModel:
     properties:
       burst:
@@ -3607,6 +3774,15 @@ definitions:
         format: duration
         type: string
         x-nullable: false
+      custom_issuer_url:
+        description: |-
+          Defines a custom issuer URL that can be used as the value of the `iss` claim in an access
+          token.
+
+          If not provided, it is built dynamically based on the server's URL.
+        example: http://example.com/default/default
+        type: string
+        x-nullable: false
       dynamic_client_registration:
         $ref: '#/definitions/DynamicClientRegistrationSettings'
       dynamic_scope_separator:
@@ -3707,6 +3883,7 @@ definitions:
           - password
           - urn:ietf:params:oauth:grant-type:jwt-bearer
           - urn:openid:params:grant-type:ciba
+          - urn:ietf:params:oauth:grant-type:token-exchange
           type: string
         type: array
         x-nullable: false
@@ -3735,15 +3912,6 @@ definitions:
 
           If issuer_id is not set then default issuer_url will be used
         example: 5647fe90-f6bc-11eb-9a03-0242ac130003
-        type: string
-        x-nullable: false
-      issuer_url:
-        description: |-
-          Defines a custom issuer URL that can be used as the value of the `iss` claim in an access
-          token.
-
-          If not provided, it is built dynamically based on the server's URL.
-        example: http://example.com/default/default
         type: string
         x-nullable: false
       jwks:
@@ -3793,6 +3961,7 @@ definitions:
         - openbanking_uk
         - openbanking_br
         - cdr_australia
+        - cdr_australia_fapi_rw
         example: default
         type: string
         x-nullable: false
@@ -4049,6 +4218,15 @@ definitions:
         format: duration
         type: string
         x-nullable: false
+      custom_issuer_url:
+        description: |-
+          Defines a custom issuer URL that can be used as the value of the `iss` claim in an access
+          token.
+
+          If not provided, it is built dynamically based on the server's URL.
+        example: http://example.com/default/default
+        type: string
+        x-nullable: false
       do_not_create_default_claims:
         description: flag to skip default claims creation (applicable only if server
           does not exist)
@@ -4154,6 +4332,7 @@ definitions:
           - password
           - urn:ietf:params:oauth:grant-type:jwt-bearer
           - urn:openid:params:grant-type:ciba
+          - urn:ietf:params:oauth:grant-type:token-exchange
           type: string
         type: array
         x-nullable: false
@@ -4187,15 +4366,6 @@ definitions:
 
           If issuer_id is not set then default issuer_url will be used
         example: 5647fe90-f6bc-11eb-9a03-0242ac130003
-        type: string
-        x-nullable: false
-      issuer_url:
-        description: |-
-          Defines a custom issuer URL that can be used as the value of the `iss` claim in an access
-          token.
-
-          If not provided, it is built dynamically based on the server's URL.
-        example: http://example.com/default/default
         type: string
         x-nullable: false
       jwks:
@@ -4245,6 +4415,7 @@ definitions:
         - openbanking_uk
         - openbanking_br
         - cdr_australia
+        - cdr_australia_fapi_rw
         example: default
         type: string
         x-nullable: false
@@ -4608,15 +4779,15 @@ definitions:
           $ref: '#/definitions/API'
         type: array
         x-nullable: false
-      audience:
-        description: service audience
-        example: https://api.example.com
-        type: string
-        x-nullable: false
       authorization_server_id:
         description: server id
         example: default
         format: serverID
+        type: string
+        x-nullable: false
+      custom_audience:
+        description: custom service audience
+        example: https://api.example.com
         type: string
         x-nullable: false
       description:
@@ -4722,7 +4893,7 @@ definitions:
         type: string
         x-nullable: false
       email_verified:
-        description: If set to true, indicates that the user's email was verfied.
+        description: If set to true, indicates that the user's email was verified.
         type: boolean
         x-nullable: false
       password:
@@ -4735,7 +4906,7 @@ definitions:
         type: string
         x-nullable: false
       phone_number_verified:
-        description: If set to true, indicates that the user's phone number was verfied.
+        description: If set to true, indicates that the user's phone number was verified.
         type: boolean
         x-nullable: false
       username:
@@ -4866,6 +5037,10 @@ definitions:
     type: object
   VanityDomain:
     properties:
+      api_key:
+        description: api key
+        type: string
+        x-nullable: false
       base_path:
         description: base path to use with a configured vanity domain
         example: /prefix
@@ -4878,6 +5053,11 @@ definitions:
       domain:
         description: vanity domain
         example: example.com
+        type: string
+        x-nullable: false
+      id:
+        description: ID
+        format: vanityDomainID
         type: string
         x-nullable: false
       key:
@@ -4896,14 +5076,18 @@ definitions:
         format: tenantID
         type: string
         x-nullable: false
+      type:
+        $ref: '#/definitions/VanityDomainType'
     required:
     - domain
     type: object
+  VanityDomainType:
+    type: string
 host: localhost:8443
 info:
   description: Cloudentity Authorization Control Plane Root API
   title: Cloudentity Authorization Control Plane API
-  version: 1.13.1
+  version: latest
 paths:
   /api/admin/tenants:
     get:
@@ -5007,6 +5191,22 @@ paths:
         name: tid
         required: true
         type: string
+      - description: Year
+        format: int64
+        in: query
+        name: year
+        required: true
+        type: integer
+      - description: Month
+        format: int64
+        in: query
+        name: month
+        required: true
+        type: integer
+      - description: Current
+        in: query
+        name: current
+        type: boolean
       responses:
         "200":
           $ref: '#/responses/QuotaUsageResponse'

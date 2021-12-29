@@ -67,14 +67,6 @@ type ListClientsParams struct {
 	*/
 	AfterClientID *string
 
-	/* Aid.
-
-	   Authorization server id
-
-	   Default: "default"
-	*/
-	Aid string
-
 	/* ApplicationTypes.
 
 	     Optional application types
@@ -127,6 +119,14 @@ type ListClientsParams struct {
 	*/
 	Type *string
 
+	/* Wid.
+
+	   Authorization server id
+
+	   Default: "default"
+	*/
+	Wid string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -145,14 +145,14 @@ func (o *ListClientsParams) WithDefaults() *ListClientsParams {
 // All values with no default are reset to their zero value.
 func (o *ListClientsParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
-
 		limitDefault = int64(20)
+
+		widDefault = string("default")
 	)
 
 	val := ListClientsParams{
-		Aid:   aidDefault,
 		Limit: &limitDefault,
+		Wid:   widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -203,17 +203,6 @@ func (o *ListClientsParams) WithAfterClientID(afterClientID *string) *ListClient
 // SetAfterClientID adds the afterClientId to the list clients params
 func (o *ListClientsParams) SetAfterClientID(afterClientID *string) {
 	o.AfterClientID = afterClientID
-}
-
-// WithAid adds the aid to the list clients params
-func (o *ListClientsParams) WithAid(aid string) *ListClientsParams {
-	o.SetAid(aid)
-	return o
-}
-
-// SetAid adds the aid to the list clients params
-func (o *ListClientsParams) SetAid(aid string) {
-	o.Aid = aid
 }
 
 // WithApplicationTypes adds the applicationTypes to the list clients params
@@ -293,6 +282,17 @@ func (o *ListClientsParams) SetType(typeVar *string) {
 	o.Type = typeVar
 }
 
+// WithWid adds the wid to the list clients params
+func (o *ListClientsParams) WithWid(wid string) *ListClientsParams {
+	o.SetWid(wid)
+	return o
+}
+
+// SetWid adds the wid to the list clients params
+func (o *ListClientsParams) SetWid(wid string) {
+	o.Wid = wid
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *ListClientsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -316,11 +316,6 @@ func (o *ListClientsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 				return err
 			}
 		}
-	}
-
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
-		return err
 	}
 
 	if o.ApplicationTypes != nil {
@@ -440,6 +435,11 @@ func (o *ListClientsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 				return err
 			}
 		}
+	}
+
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
+		return err
 	}
 
 	if len(res) > 0 {

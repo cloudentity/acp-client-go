@@ -67,14 +67,6 @@ type UpdateStaticIDPParams struct {
 	*/
 	StaticIDP *models.StaticIDP
 
-	/* Aid.
-
-	   Authorization server id
-
-	   Default: "default"
-	*/
-	Aid string
-
 	/* Iid.
 
 	   IDP id
@@ -82,6 +74,14 @@ type UpdateStaticIDPParams struct {
 	   Default: "default"
 	*/
 	Iid string
+
+	/* Wid.
+
+	   Authorization server id
+
+	   Default: "default"
+	*/
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -101,14 +101,14 @@ func (o *UpdateStaticIDPParams) WithDefaults() *UpdateStaticIDPParams {
 // All values with no default are reset to their zero value.
 func (o *UpdateStaticIDPParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
-
 		iidDefault = string("default")
+
+		widDefault = string("default")
 	)
 
 	val := UpdateStaticIDPParams{
-		Aid: aidDefault,
 		Iid: iidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -161,17 +161,6 @@ func (o *UpdateStaticIDPParams) SetStaticIDP(staticIDP *models.StaticIDP) {
 	o.StaticIDP = staticIDP
 }
 
-// WithAid adds the aid to the update static ID p params
-func (o *UpdateStaticIDPParams) WithAid(aid string) *UpdateStaticIDPParams {
-	o.SetAid(aid)
-	return o
-}
-
-// SetAid adds the aid to the update static ID p params
-func (o *UpdateStaticIDPParams) SetAid(aid string) {
-	o.Aid = aid
-}
-
 // WithIid adds the iid to the update static ID p params
 func (o *UpdateStaticIDPParams) WithIid(iid string) *UpdateStaticIDPParams {
 	o.SetIid(iid)
@@ -181,6 +170,17 @@ func (o *UpdateStaticIDPParams) WithIid(iid string) *UpdateStaticIDPParams {
 // SetIid adds the iid to the update static ID p params
 func (o *UpdateStaticIDPParams) SetIid(iid string) {
 	o.Iid = iid
+}
+
+// WithWid adds the wid to the update static ID p params
+func (o *UpdateStaticIDPParams) WithWid(wid string) *UpdateStaticIDPParams {
+	o.SetWid(wid)
+	return o
+}
+
+// SetWid adds the wid to the update static ID p params
+func (o *UpdateStaticIDPParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -196,13 +196,13 @@ func (o *UpdateStaticIDPParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		}
 	}
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param iid
+	if err := r.SetPathParam("iid", o.Iid); err != nil {
 		return err
 	}
 
-	// path param iid
-	if err := r.SetPathParam("iid", o.Iid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

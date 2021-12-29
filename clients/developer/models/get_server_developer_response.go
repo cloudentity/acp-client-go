@@ -37,6 +37,9 @@ type GetServerDeveloperResponse struct {
 	// Example: https://example.com/default/default
 	IssuerURL string `json:"issuer_url,omitempty"`
 
+	// mtls issuer url
+	MtlsIssuerURL string `json:"mtls_issuer_url,omitempty"`
+
 	// authorizations server name
 	// Example: ACP
 	Name string `json:"name,omitempty"`
@@ -68,7 +71,7 @@ var getServerDeveloperResponseGrantTypesItemsEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["authorization_code","implicit","client_credentials","refresh_token","password","urn:ietf:params:oauth:grant-type:jwt-bearer","urn:openid:params:grant-type:ciba"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["authorization_code","implicit","client_credentials","refresh_token","password","urn:ietf:params:oauth:grant-type:jwt-bearer","urn:openid:params:grant-type:ciba","urn:ietf:params:oauth:grant-type:token-exchange"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {

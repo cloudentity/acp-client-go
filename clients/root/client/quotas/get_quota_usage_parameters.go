@@ -14,6 +14,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewGetQuotaUsageParams creates a new GetQuotaUsageParams object,
@@ -59,6 +60,20 @@ func NewGetQuotaUsageParamsWithHTTPClient(client *http.Client) *GetQuotaUsagePar
 */
 type GetQuotaUsageParams struct {
 
+	/* Current.
+
+	   Current
+	*/
+	Current *bool
+
+	/* Month.
+
+	   Month
+
+	   Format: int64
+	*/
+	Month int64
+
 	/* Tid.
 
 	   Tenant id
@@ -66,6 +81,14 @@ type GetQuotaUsageParams struct {
 	   Default: "default"
 	*/
 	Tid string
+
+	/* Year.
+
+	   Year
+
+	   Format: int64
+	*/
+	Year int64
 
 	timeout    time.Duration
 	Context    context.Context
@@ -131,6 +154,28 @@ func (o *GetQuotaUsageParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithCurrent adds the current to the get quota usage params
+func (o *GetQuotaUsageParams) WithCurrent(current *bool) *GetQuotaUsageParams {
+	o.SetCurrent(current)
+	return o
+}
+
+// SetCurrent adds the current to the get quota usage params
+func (o *GetQuotaUsageParams) SetCurrent(current *bool) {
+	o.Current = current
+}
+
+// WithMonth adds the month to the get quota usage params
+func (o *GetQuotaUsageParams) WithMonth(month int64) *GetQuotaUsageParams {
+	o.SetMonth(month)
+	return o
+}
+
+// SetMonth adds the month to the get quota usage params
+func (o *GetQuotaUsageParams) SetMonth(month int64) {
+	o.Month = month
+}
+
 // WithTid adds the tid to the get quota usage params
 func (o *GetQuotaUsageParams) WithTid(tid string) *GetQuotaUsageParams {
 	o.SetTid(tid)
@@ -142,6 +187,17 @@ func (o *GetQuotaUsageParams) SetTid(tid string) {
 	o.Tid = tid
 }
 
+// WithYear adds the year to the get quota usage params
+func (o *GetQuotaUsageParams) WithYear(year int64) *GetQuotaUsageParams {
+	o.SetYear(year)
+	return o
+}
+
+// SetYear adds the year to the get quota usage params
+func (o *GetQuotaUsageParams) SetYear(year int64) {
+	o.Year = year
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetQuotaUsageParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -150,9 +206,46 @@ func (o *GetQuotaUsageParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	}
 	var res []error
 
+	if o.Current != nil {
+
+		// query param current
+		var qrCurrent bool
+
+		if o.Current != nil {
+			qrCurrent = *o.Current
+		}
+		qCurrent := swag.FormatBool(qrCurrent)
+		if qCurrent != "" {
+
+			if err := r.SetQueryParam("current", qCurrent); err != nil {
+				return err
+			}
+		}
+	}
+
+	// query param month
+	qrMonth := o.Month
+	qMonth := swag.FormatInt64(qrMonth)
+	if qMonth != "" {
+
+		if err := r.SetQueryParam("month", qMonth); err != nil {
+			return err
+		}
+	}
+
 	// path param tid
 	if err := r.SetPathParam("tid", o.Tid); err != nil {
 		return err
+	}
+
+	// query param year
+	qrYear := o.Year
+	qYear := swag.FormatInt64(qrYear)
+	if qYear != "" {
+
+		if err := r.SetQueryParam("year", qYear); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

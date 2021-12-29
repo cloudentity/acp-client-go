@@ -59,13 +59,13 @@ func NewListScopesParamsWithHTTPClient(client *http.Client) *ListScopesParams {
 */
 type ListScopesParams struct {
 
-	/* Aid.
+	/* Wid.
 
 	   Authorization server id
 
 	   Default: "default"
 	*/
-	Aid string
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -85,11 +85,11 @@ func (o *ListScopesParams) WithDefaults() *ListScopesParams {
 // All values with no default are reset to their zero value.
 func (o *ListScopesParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := ListScopesParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -131,15 +131,15 @@ func (o *ListScopesParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithAid adds the aid to the list scopes params
-func (o *ListScopesParams) WithAid(aid string) *ListScopesParams {
-	o.SetAid(aid)
+// WithWid adds the wid to the list scopes params
+func (o *ListScopesParams) WithWid(wid string) *ListScopesParams {
+	o.SetWid(wid)
 	return o
 }
 
-// SetAid adds the aid to the list scopes params
-func (o *ListScopesParams) SetAid(aid string) {
-	o.Aid = aid
+// SetWid adds the wid to the list scopes params
+func (o *ListScopesParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -150,8 +150,8 @@ func (o *ListScopesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 	}
 	var res []error
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

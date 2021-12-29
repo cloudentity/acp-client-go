@@ -64,13 +64,13 @@ type CreateSecretParams struct {
 	// Secret.
 	Secret *models.Secret
 
-	/* Aid.
+	/* Wid.
 
 	   Authorization server id
 
 	   Default: "default"
 	*/
-	Aid string
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -90,11 +90,11 @@ func (o *CreateSecretParams) WithDefaults() *CreateSecretParams {
 // All values with no default are reset to their zero value.
 func (o *CreateSecretParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := CreateSecretParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -147,15 +147,15 @@ func (o *CreateSecretParams) SetSecret(secret *models.Secret) {
 	o.Secret = secret
 }
 
-// WithAid adds the aid to the create secret params
-func (o *CreateSecretParams) WithAid(aid string) *CreateSecretParams {
-	o.SetAid(aid)
+// WithWid adds the wid to the create secret params
+func (o *CreateSecretParams) WithWid(wid string) *CreateSecretParams {
+	o.SetWid(wid)
 	return o
 }
 
-// SetAid adds the aid to the create secret params
-func (o *CreateSecretParams) SetAid(aid string) {
-	o.Aid = aid
+// SetWid adds the wid to the create secret params
+func (o *CreateSecretParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -171,8 +171,8 @@ func (o *CreateSecretParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		}
 	}
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

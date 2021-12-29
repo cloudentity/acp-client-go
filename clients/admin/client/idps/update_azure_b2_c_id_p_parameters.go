@@ -67,14 +67,6 @@ type UpdateAzureB2CIDPParams struct {
 	*/
 	AzureB2CIDP *models.AzureB2CIDP
 
-	/* Aid.
-
-	   Authorization server id
-
-	   Default: "default"
-	*/
-	Aid string
-
 	/* Iid.
 
 	   IDP id
@@ -82,6 +74,14 @@ type UpdateAzureB2CIDPParams struct {
 	   Default: "default"
 	*/
 	Iid string
+
+	/* Wid.
+
+	   Authorization server id
+
+	   Default: "default"
+	*/
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -101,14 +101,14 @@ func (o *UpdateAzureB2CIDPParams) WithDefaults() *UpdateAzureB2CIDPParams {
 // All values with no default are reset to their zero value.
 func (o *UpdateAzureB2CIDPParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
-
 		iidDefault = string("default")
+
+		widDefault = string("default")
 	)
 
 	val := UpdateAzureB2CIDPParams{
-		Aid: aidDefault,
 		Iid: iidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -161,17 +161,6 @@ func (o *UpdateAzureB2CIDPParams) SetAzureB2CIDP(azureB2CIDP *models.AzureB2CIDP
 	o.AzureB2CIDP = azureB2CIDP
 }
 
-// WithAid adds the aid to the update azure b2 c ID p params
-func (o *UpdateAzureB2CIDPParams) WithAid(aid string) *UpdateAzureB2CIDPParams {
-	o.SetAid(aid)
-	return o
-}
-
-// SetAid adds the aid to the update azure b2 c ID p params
-func (o *UpdateAzureB2CIDPParams) SetAid(aid string) {
-	o.Aid = aid
-}
-
 // WithIid adds the iid to the update azure b2 c ID p params
 func (o *UpdateAzureB2CIDPParams) WithIid(iid string) *UpdateAzureB2CIDPParams {
 	o.SetIid(iid)
@@ -181,6 +170,17 @@ func (o *UpdateAzureB2CIDPParams) WithIid(iid string) *UpdateAzureB2CIDPParams {
 // SetIid adds the iid to the update azure b2 c ID p params
 func (o *UpdateAzureB2CIDPParams) SetIid(iid string) {
 	o.Iid = iid
+}
+
+// WithWid adds the wid to the update azure b2 c ID p params
+func (o *UpdateAzureB2CIDPParams) WithWid(wid string) *UpdateAzureB2CIDPParams {
+	o.SetWid(wid)
+	return o
+}
+
+// SetWid adds the wid to the update azure b2 c ID p params
+func (o *UpdateAzureB2CIDPParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -196,13 +196,13 @@ func (o *UpdateAzureB2CIDPParams) WriteToRequest(r runtime.ClientRequest, reg st
 		}
 	}
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param iid
+	if err := r.SetPathParam("iid", o.Iid); err != nil {
 		return err
 	}
 
-	// path param iid
-	if err := r.SetPathParam("iid", o.Iid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

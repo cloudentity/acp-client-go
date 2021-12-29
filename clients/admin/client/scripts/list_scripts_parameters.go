@@ -67,14 +67,6 @@ type ListScriptsParams struct {
 	*/
 	AfterScriptID *string
 
-	/* Aid.
-
-	   ID of your authorization server (workspace)
-
-	   Default: "default"
-	*/
-	Aid string
-
 	/* BeforeScriptID.
 
 	     optional list scripts before given id
@@ -113,6 +105,14 @@ type ListScriptsParams struct {
 	*/
 	Sort *string
 
+	/* Wid.
+
+	   ID of your authorization server (workspace)
+
+	   Default: "default"
+	*/
+	Wid string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -131,14 +131,14 @@ func (o *ListScriptsParams) WithDefaults() *ListScriptsParams {
 // All values with no default are reset to their zero value.
 func (o *ListScriptsParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
-
 		limitDefault = int64(20)
+
+		widDefault = string("default")
 	)
 
 	val := ListScriptsParams{
-		Aid:   aidDefault,
 		Limit: &limitDefault,
+		Wid:   widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -189,17 +189,6 @@ func (o *ListScriptsParams) WithAfterScriptID(afterScriptID *string) *ListScript
 // SetAfterScriptID adds the afterScriptId to the list scripts params
 func (o *ListScriptsParams) SetAfterScriptID(afterScriptID *string) {
 	o.AfterScriptID = afterScriptID
-}
-
-// WithAid adds the aid to the list scripts params
-func (o *ListScriptsParams) WithAid(aid string) *ListScriptsParams {
-	o.SetAid(aid)
-	return o
-}
-
-// SetAid adds the aid to the list scripts params
-func (o *ListScriptsParams) SetAid(aid string) {
-	o.Aid = aid
 }
 
 // WithBeforeScriptID adds the beforeScriptID to the list scripts params
@@ -257,6 +246,17 @@ func (o *ListScriptsParams) SetSort(sort *string) {
 	o.Sort = sort
 }
 
+// WithWid adds the wid to the list scripts params
+func (o *ListScriptsParams) WithWid(wid string) *ListScriptsParams {
+	o.SetWid(wid)
+	return o
+}
+
+// SetWid adds the wid to the list scripts params
+func (o *ListScriptsParams) SetWid(wid string) {
+	o.Wid = wid
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *ListScriptsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -280,11 +280,6 @@ func (o *ListScriptsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 				return err
 			}
 		}
-	}
-
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
-		return err
 	}
 
 	if o.BeforeScriptID != nil {
@@ -370,6 +365,11 @@ func (o *ListScriptsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 				return err
 			}
 		}
+	}
+
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
+		return err
 	}
 
 	if len(res) > 0 {

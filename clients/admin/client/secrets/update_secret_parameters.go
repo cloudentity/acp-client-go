@@ -64,18 +64,18 @@ type UpdateSecretParams struct {
 	// Secret.
 	Secret *models.Secret
 
-	/* Aid.
+	// Sid.
+	//
+	// Default: "default"
+	Sid string
+
+	/* Wid.
 
 	   Authorization server id
 
 	   Default: "default"
 	*/
-	Aid string
-
-	// Sid.
-	//
-	// Default: "default"
-	Sid string
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -95,14 +95,14 @@ func (o *UpdateSecretParams) WithDefaults() *UpdateSecretParams {
 // All values with no default are reset to their zero value.
 func (o *UpdateSecretParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
-
 		sidDefault = string("default")
+
+		widDefault = string("default")
 	)
 
 	val := UpdateSecretParams{
-		Aid: aidDefault,
 		Sid: sidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -155,17 +155,6 @@ func (o *UpdateSecretParams) SetSecret(secret *models.Secret) {
 	o.Secret = secret
 }
 
-// WithAid adds the aid to the update secret params
-func (o *UpdateSecretParams) WithAid(aid string) *UpdateSecretParams {
-	o.SetAid(aid)
-	return o
-}
-
-// SetAid adds the aid to the update secret params
-func (o *UpdateSecretParams) SetAid(aid string) {
-	o.Aid = aid
-}
-
 // WithSid adds the sid to the update secret params
 func (o *UpdateSecretParams) WithSid(sid string) *UpdateSecretParams {
 	o.SetSid(sid)
@@ -175,6 +164,17 @@ func (o *UpdateSecretParams) WithSid(sid string) *UpdateSecretParams {
 // SetSid adds the sid to the update secret params
 func (o *UpdateSecretParams) SetSid(sid string) {
 	o.Sid = sid
+}
+
+// WithWid adds the wid to the update secret params
+func (o *UpdateSecretParams) WithWid(wid string) *UpdateSecretParams {
+	o.SetWid(wid)
+	return o
+}
+
+// SetWid adds the wid to the update secret params
+func (o *UpdateSecretParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -190,13 +190,13 @@ func (o *UpdateSecretParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		}
 	}
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param sid
+	if err := r.SetPathParam("sid", o.Sid); err != nil {
 		return err
 	}
 
-	// path param sid
-	if err := r.SetPathParam("sid", o.Sid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

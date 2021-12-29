@@ -84,7 +84,7 @@ type UpdateGoogleEmbeddedIDPOK struct {
 }
 
 func (o *UpdateGoogleEmbeddedIDPOK) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/google_embedded/{iid}][%d] updateGoogleEmbeddedIdPOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/google_embedded/{iid}][%d] updateGoogleEmbeddedIdPOK  %+v", 200, o.Payload)
 }
 func (o *UpdateGoogleEmbeddedIDPOK) GetPayload() *models.GoogleEmbeddedIDP {
 	return o.Payload
@@ -116,7 +116,7 @@ type UpdateGoogleEmbeddedIDPBadRequest struct {
 }
 
 func (o *UpdateGoogleEmbeddedIDPBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/google_embedded/{iid}][%d] updateGoogleEmbeddedIdPBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/google_embedded/{iid}][%d] updateGoogleEmbeddedIdPBadRequest  %+v", 400, o.Payload)
 }
 func (o *UpdateGoogleEmbeddedIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -148,7 +148,7 @@ type UpdateGoogleEmbeddedIDPUnauthorized struct {
 }
 
 func (o *UpdateGoogleEmbeddedIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/google_embedded/{iid}][%d] updateGoogleEmbeddedIdPUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/google_embedded/{iid}][%d] updateGoogleEmbeddedIdPUnauthorized  %+v", 401, o.Payload)
 }
 func (o *UpdateGoogleEmbeddedIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -180,7 +180,7 @@ type UpdateGoogleEmbeddedIDPForbidden struct {
 }
 
 func (o *UpdateGoogleEmbeddedIDPForbidden) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/google_embedded/{iid}][%d] updateGoogleEmbeddedIdPForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/google_embedded/{iid}][%d] updateGoogleEmbeddedIdPForbidden  %+v", 403, o.Payload)
 }
 func (o *UpdateGoogleEmbeddedIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -212,7 +212,7 @@ type UpdateGoogleEmbeddedIDPNotFound struct {
 }
 
 func (o *UpdateGoogleEmbeddedIDPNotFound) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/google_embedded/{iid}][%d] updateGoogleEmbeddedIdPNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/google_embedded/{iid}][%d] updateGoogleEmbeddedIdPNotFound  %+v", 404, o.Payload)
 }
 func (o *UpdateGoogleEmbeddedIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -244,7 +244,7 @@ type UpdateGoogleEmbeddedIDPUnprocessableEntity struct {
 }
 
 func (o *UpdateGoogleEmbeddedIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/google_embedded/{iid}][%d] updateGoogleEmbeddedIdPUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/google_embedded/{iid}][%d] updateGoogleEmbeddedIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 func (o *UpdateGoogleEmbeddedIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
@@ -276,7 +276,7 @@ type UpdateGoogleEmbeddedIDPTooManyRequests struct {
 }
 
 func (o *UpdateGoogleEmbeddedIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/google_embedded/{iid}][%d] updateGoogleEmbeddedIdPTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/google_embedded/{iid}][%d] updateGoogleEmbeddedIdPTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *UpdateGoogleEmbeddedIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

@@ -80,19 +80,19 @@ func NewUpdateAuthorizationServerOK() *UpdateAuthorizationServerOK {
 Server
 */
 type UpdateAuthorizationServerOK struct {
-	Payload *models.Server
+	Payload *models.ServerResponse
 }
 
 func (o *UpdateAuthorizationServerOK) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}][%d] updateAuthorizationServerOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}][%d] updateAuthorizationServerOK  %+v", 200, o.Payload)
 }
-func (o *UpdateAuthorizationServerOK) GetPayload() *models.Server {
+func (o *UpdateAuthorizationServerOK) GetPayload() *models.ServerResponse {
 	return o.Payload
 }
 
 func (o *UpdateAuthorizationServerOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Server)
+	o.Payload = new(models.ServerResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -116,7 +116,7 @@ type UpdateAuthorizationServerBadRequest struct {
 }
 
 func (o *UpdateAuthorizationServerBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}][%d] updateAuthorizationServerBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}][%d] updateAuthorizationServerBadRequest  %+v", 400, o.Payload)
 }
 func (o *UpdateAuthorizationServerBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -148,7 +148,7 @@ type UpdateAuthorizationServerUnauthorized struct {
 }
 
 func (o *UpdateAuthorizationServerUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}][%d] updateAuthorizationServerUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}][%d] updateAuthorizationServerUnauthorized  %+v", 401, o.Payload)
 }
 func (o *UpdateAuthorizationServerUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -180,7 +180,7 @@ type UpdateAuthorizationServerForbidden struct {
 }
 
 func (o *UpdateAuthorizationServerForbidden) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}][%d] updateAuthorizationServerForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}][%d] updateAuthorizationServerForbidden  %+v", 403, o.Payload)
 }
 func (o *UpdateAuthorizationServerForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -212,7 +212,7 @@ type UpdateAuthorizationServerNotFound struct {
 }
 
 func (o *UpdateAuthorizationServerNotFound) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}][%d] updateAuthorizationServerNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}][%d] updateAuthorizationServerNotFound  %+v", 404, o.Payload)
 }
 func (o *UpdateAuthorizationServerNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -244,7 +244,7 @@ type UpdateAuthorizationServerUnprocessableEntity struct {
 }
 
 func (o *UpdateAuthorizationServerUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}][%d] updateAuthorizationServerUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}][%d] updateAuthorizationServerUnprocessableEntity  %+v", 422, o.Payload)
 }
 func (o *UpdateAuthorizationServerUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
@@ -276,7 +276,7 @@ type UpdateAuthorizationServerTooManyRequests struct {
 }
 
 func (o *UpdateAuthorizationServerTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}][%d] updateAuthorizationServerTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}][%d] updateAuthorizationServerTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *UpdateAuthorizationServerTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

@@ -77,7 +77,7 @@ type DeleteAuthorizationServerNoContent struct {
 }
 
 func (o *DeleteAuthorizationServerNoContent) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{aid}][%d] deleteAuthorizationServerNoContent ", 204)
+	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerNoContent ", 204)
 }
 
 func (o *DeleteAuthorizationServerNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -99,7 +99,7 @@ type DeleteAuthorizationServerBadRequest struct {
 }
 
 func (o *DeleteAuthorizationServerBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{aid}][%d] deleteAuthorizationServerBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerBadRequest  %+v", 400, o.Payload)
 }
 func (o *DeleteAuthorizationServerBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -131,7 +131,7 @@ type DeleteAuthorizationServerUnauthorized struct {
 }
 
 func (o *DeleteAuthorizationServerUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{aid}][%d] deleteAuthorizationServerUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerUnauthorized  %+v", 401, o.Payload)
 }
 func (o *DeleteAuthorizationServerUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -163,7 +163,7 @@ type DeleteAuthorizationServerForbidden struct {
 }
 
 func (o *DeleteAuthorizationServerForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{aid}][%d] deleteAuthorizationServerForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerForbidden  %+v", 403, o.Payload)
 }
 func (o *DeleteAuthorizationServerForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -195,7 +195,7 @@ type DeleteAuthorizationServerNotFound struct {
 }
 
 func (o *DeleteAuthorizationServerNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{aid}][%d] deleteAuthorizationServerNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerNotFound  %+v", 404, o.Payload)
 }
 func (o *DeleteAuthorizationServerNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -227,7 +227,7 @@ type DeleteAuthorizationServerTooManyRequests struct {
 }
 
 func (o *DeleteAuthorizationServerTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{aid}][%d] deleteAuthorizationServerTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *DeleteAuthorizationServerTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

@@ -78,7 +78,7 @@ type ListIDPsOK struct {
 }
 
 func (o *ListIDPsOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps][%d] listIdPsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps][%d] listIdPsOK  %+v", 200, o.Payload)
 }
 func (o *ListIDPsOK) GetPayload() *models.IDPsResponse {
 	return o.Payload
@@ -110,7 +110,7 @@ type ListIDPsBadRequest struct {
 }
 
 func (o *ListIDPsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps][%d] listIdPsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps][%d] listIdPsBadRequest  %+v", 400, o.Payload)
 }
 func (o *ListIDPsBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -142,7 +142,7 @@ type ListIDPsUnauthorized struct {
 }
 
 func (o *ListIDPsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps][%d] listIdPsUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps][%d] listIdPsUnauthorized  %+v", 401, o.Payload)
 }
 func (o *ListIDPsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -174,7 +174,7 @@ type ListIDPsForbidden struct {
 }
 
 func (o *ListIDPsForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps][%d] listIdPsForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps][%d] listIdPsForbidden  %+v", 403, o.Payload)
 }
 func (o *ListIDPsForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -206,7 +206,7 @@ type ListIDPsNotFound struct {
 }
 
 func (o *ListIDPsNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps][%d] listIdPsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps][%d] listIdPsNotFound  %+v", 404, o.Payload)
 }
 func (o *ListIDPsNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -238,7 +238,7 @@ type ListIDPsTooManyRequests struct {
 }
 
 func (o *ListIDPsTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps][%d] listIdPsTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps][%d] listIdPsTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *ListIDPsTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

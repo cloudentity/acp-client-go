@@ -58,7 +58,7 @@ func (a *Client) GetAutomaticKeyRotation(params *GetAutomaticKeyRotationParams, 
 	op := &runtime.ClientOperation{
 		ID:                 "getAutomaticKeyRotation",
 		Method:             "GET",
-		PathPattern:        "/servers/{aid}/keys/automatic-key-rotation",
+		PathPattern:        "/servers/{wid}/keys/automatic-key-rotation",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -99,7 +99,7 @@ func (a *Client) GetKey(params *GetKeyParams, authInfo runtime.ClientAuthInfoWri
 	op := &runtime.ClientOperation{
 		ID:                 "getKey",
 		Method:             "GET",
-		PathPattern:        "/servers/{aid}/keys/{kid}/raw",
+		PathPattern:        "/servers/{wid}/keys/{kid}/raw",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -140,7 +140,7 @@ func (a *Client) GetKeys(params *GetKeysParams, authInfo runtime.ClientAuthInfoW
 	op := &runtime.ClientOperation{
 		ID:                 "getKeys",
 		Method:             "GET",
-		PathPattern:        "/servers/{aid}/keys",
+		PathPattern:        "/servers/{wid}/keys",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -181,7 +181,7 @@ func (a *Client) RevokeKey(params *RevokeKeyParams, authInfo runtime.ClientAuthI
 	op := &runtime.ClientOperation{
 		ID:                 "revokeKey",
 		Method:             "POST",
-		PathPattern:        "/servers/{aid}/keys/revoke/{kid}",
+		PathPattern:        "/servers/{wid}/keys/revoke/{kid}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -222,7 +222,7 @@ func (a *Client) RotateKey(params *RotateKeyParams, authInfo runtime.ClientAuthI
 	op := &runtime.ClientOperation{
 		ID:                 "rotateKey",
 		Method:             "POST",
-		PathPattern:        "/servers/{aid}/keys/rotate",
+		PathPattern:        "/servers/{wid}/keys/rotate",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -263,7 +263,7 @@ func (a *Client) SetAutomaticKeyRotation(params *SetAutomaticKeyRotationParams, 
 	op := &runtime.ClientOperation{
 		ID:                 "setAutomaticKeyRotation",
 		Method:             "PUT",
-		PathPattern:        "/servers/{aid}/keys/automatic-key-rotation",
+		PathPattern:        "/servers/{wid}/keys/automatic-key-rotation",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

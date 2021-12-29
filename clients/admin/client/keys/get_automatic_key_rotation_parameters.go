@@ -59,14 +59,6 @@ func NewGetAutomaticKeyRotationParamsWithHTTPClient(client *http.Client) *GetAut
 */
 type GetAutomaticKeyRotationParams struct {
 
-	/* Aid.
-
-	   Authorization server id
-
-	   Default: "default"
-	*/
-	Aid string
-
 	/* Use.
 
 	   Key use (sig or enc)
@@ -74,6 +66,14 @@ type GetAutomaticKeyRotationParams struct {
 	   Default: "sig"
 	*/
 	Use *string
+
+	/* Wid.
+
+	   Authorization server id
+
+	   Default: "default"
+	*/
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -93,14 +93,14 @@ func (o *GetAutomaticKeyRotationParams) WithDefaults() *GetAutomaticKeyRotationP
 // All values with no default are reset to their zero value.
 func (o *GetAutomaticKeyRotationParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
-
 		useDefault = string("sig")
+
+		widDefault = string("default")
 	)
 
 	val := GetAutomaticKeyRotationParams{
-		Aid: aidDefault,
 		Use: &useDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -142,17 +142,6 @@ func (o *GetAutomaticKeyRotationParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithAid adds the aid to the get automatic key rotation params
-func (o *GetAutomaticKeyRotationParams) WithAid(aid string) *GetAutomaticKeyRotationParams {
-	o.SetAid(aid)
-	return o
-}
-
-// SetAid adds the aid to the get automatic key rotation params
-func (o *GetAutomaticKeyRotationParams) SetAid(aid string) {
-	o.Aid = aid
-}
-
 // WithUse adds the use to the get automatic key rotation params
 func (o *GetAutomaticKeyRotationParams) WithUse(use *string) *GetAutomaticKeyRotationParams {
 	o.SetUse(use)
@@ -164,6 +153,17 @@ func (o *GetAutomaticKeyRotationParams) SetUse(use *string) {
 	o.Use = use
 }
 
+// WithWid adds the wid to the get automatic key rotation params
+func (o *GetAutomaticKeyRotationParams) WithWid(wid string) *GetAutomaticKeyRotationParams {
+	o.SetWid(wid)
+	return o
+}
+
+// SetWid adds the wid to the get automatic key rotation params
+func (o *GetAutomaticKeyRotationParams) SetWid(wid string) {
+	o.Wid = wid
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetAutomaticKeyRotationParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -171,11 +171,6 @@ func (o *GetAutomaticKeyRotationParams) WriteToRequest(r runtime.ClientRequest, 
 		return err
 	}
 	var res []error
-
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
-		return err
-	}
 
 	if o.Use != nil {
 
@@ -192,6 +187,11 @@ func (o *GetAutomaticKeyRotationParams) WriteToRequest(r runtime.ClientRequest, 
 				return err
 			}
 		}
+	}
+
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
+		return err
 	}
 
 	if len(res) > 0 {

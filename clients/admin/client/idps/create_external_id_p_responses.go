@@ -84,7 +84,7 @@ type CreateExternalIDPCreated struct {
 }
 
 func (o *CreateExternalIDPCreated) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/external][%d] createExternalIdPCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPCreated  %+v", 201, o.Payload)
 }
 func (o *CreateExternalIDPCreated) GetPayload() *models.ExternalIDP {
 	return o.Payload
@@ -116,7 +116,7 @@ type CreateExternalIDPBadRequest struct {
 }
 
 func (o *CreateExternalIDPBadRequest) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/external][%d] createExternalIdPBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPBadRequest  %+v", 400, o.Payload)
 }
 func (o *CreateExternalIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -148,7 +148,7 @@ type CreateExternalIDPUnauthorized struct {
 }
 
 func (o *CreateExternalIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/external][%d] createExternalIdPUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPUnauthorized  %+v", 401, o.Payload)
 }
 func (o *CreateExternalIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -180,7 +180,7 @@ type CreateExternalIDPForbidden struct {
 }
 
 func (o *CreateExternalIDPForbidden) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/external][%d] createExternalIdPForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPForbidden  %+v", 403, o.Payload)
 }
 func (o *CreateExternalIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -212,7 +212,7 @@ type CreateExternalIDPNotFound struct {
 }
 
 func (o *CreateExternalIDPNotFound) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/external][%d] createExternalIdPNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPNotFound  %+v", 404, o.Payload)
 }
 func (o *CreateExternalIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -244,7 +244,7 @@ type CreateExternalIDPUnprocessableEntity struct {
 }
 
 func (o *CreateExternalIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/external][%d] createExternalIdPUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 func (o *CreateExternalIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
@@ -276,7 +276,7 @@ type CreateExternalIDPTooManyRequests struct {
 }
 
 func (o *CreateExternalIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/external][%d] createExternalIdPTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *CreateExternalIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

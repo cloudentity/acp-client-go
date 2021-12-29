@@ -66,7 +66,7 @@ type ListAPIsByServerOK struct {
 }
 
 func (o *ListAPIsByServerOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/apis][%d] listAPIsByServerOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/apis][%d] listAPIsByServerOK  %+v", 200, o.Payload)
 }
 func (o *ListAPIsByServerOK) GetPayload() *models.ServerAPIs {
 	return o.Payload
@@ -98,7 +98,7 @@ type ListAPIsByServerUnauthorized struct {
 }
 
 func (o *ListAPIsByServerUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/apis][%d] listAPIsByServerUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/apis][%d] listAPIsByServerUnauthorized  %+v", 401, o.Payload)
 }
 func (o *ListAPIsByServerUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -130,7 +130,7 @@ type ListAPIsByServerForbidden struct {
 }
 
 func (o *ListAPIsByServerForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/apis][%d] listAPIsByServerForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/apis][%d] listAPIsByServerForbidden  %+v", 403, o.Payload)
 }
 func (o *ListAPIsByServerForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -162,7 +162,7 @@ type ListAPIsByServerTooManyRequests struct {
 }
 
 func (o *ListAPIsByServerTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/apis][%d] listAPIsByServerTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/apis][%d] listAPIsByServerTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *ListAPIsByServerTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

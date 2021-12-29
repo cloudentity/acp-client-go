@@ -72,7 +72,7 @@ type GetAutomaticKeyRotationOK struct {
 }
 
 func (o *GetAutomaticKeyRotationOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/keys/automatic-key-rotation][%d] getAutomaticKeyRotationOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/keys/automatic-key-rotation][%d] getAutomaticKeyRotationOK  %+v", 200, o.Payload)
 }
 func (o *GetAutomaticKeyRotationOK) GetPayload() *models.AutomaticKeyRotation {
 	return o.Payload
@@ -104,7 +104,7 @@ type GetAutomaticKeyRotationUnauthorized struct {
 }
 
 func (o *GetAutomaticKeyRotationUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/keys/automatic-key-rotation][%d] getAutomaticKeyRotationUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/keys/automatic-key-rotation][%d] getAutomaticKeyRotationUnauthorized  %+v", 401, o.Payload)
 }
 func (o *GetAutomaticKeyRotationUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -136,7 +136,7 @@ type GetAutomaticKeyRotationForbidden struct {
 }
 
 func (o *GetAutomaticKeyRotationForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/keys/automatic-key-rotation][%d] getAutomaticKeyRotationForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/keys/automatic-key-rotation][%d] getAutomaticKeyRotationForbidden  %+v", 403, o.Payload)
 }
 func (o *GetAutomaticKeyRotationForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -168,7 +168,7 @@ type GetAutomaticKeyRotationNotFound struct {
 }
 
 func (o *GetAutomaticKeyRotationNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/keys/automatic-key-rotation][%d] getAutomaticKeyRotationNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/keys/automatic-key-rotation][%d] getAutomaticKeyRotationNotFound  %+v", 404, o.Payload)
 }
 func (o *GetAutomaticKeyRotationNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -200,7 +200,7 @@ type GetAutomaticKeyRotationTooManyRequests struct {
 }
 
 func (o *GetAutomaticKeyRotationTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/keys/automatic-key-rotation][%d] getAutomaticKeyRotationTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/keys/automatic-key-rotation][%d] getAutomaticKeyRotationTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *GetAutomaticKeyRotationTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

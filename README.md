@@ -19,6 +19,37 @@ var client = acpclient.New(acpclient.Config{
 })
 ```
 
+### Client secret basic or client secret post authentication with per-tenant vanity domain
+
+```go
+import "github.com/cloudentity/acp-client-go"
+
+var client = acpclient.New(acpclient.Config{
+    ClientID:          "your-clients-id",
+    ClientSecret:      "your-clients-secret",
+    IssuerURL:         "https://acp.local:8443/default",
+    VanityDomainType:  "tenant",
+    TenantID:          "default",
+    Scopes:            []string{"introspect_tokens"},
+})
+```
+
+### Client secret basic or client secret post authentication with per-server vanity domain
+
+```go
+import "github.com/cloudentity/acp-client-go"
+
+var client = acpclient.New(acpclient.Config{
+    ClientID:          "your-clients-id",
+    ClientSecret:      "your-clients-secret",
+    IssuerURL:         "https://default.acp.local:8443",
+    VanityDomainType:  "server",
+    TenantID:          "default",
+    ServerID:          "default",
+    Scopes:            []string{"introspect_tokens"},
+})
+```
+
 ### TLS client authentication
 
 ``` go

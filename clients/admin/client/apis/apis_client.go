@@ -184,7 +184,7 @@ func (a *Client) ListAPIsByServer(params *ListAPIsByServerParams, authInfo runti
 	op := &runtime.ClientOperation{
 		ID:                 "listAPIsByServer",
 		Method:             "GET",
-		PathPattern:        "/servers/{aid}/apis",
+		PathPattern:        "/servers/{wid}/apis",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

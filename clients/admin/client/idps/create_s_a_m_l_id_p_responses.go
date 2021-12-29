@@ -84,7 +84,7 @@ type CreateSAMLIDPCreated struct {
 }
 
 func (o *CreateSAMLIDPCreated) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/saml][%d] createSAMLIdPCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPCreated  %+v", 201, o.Payload)
 }
 func (o *CreateSAMLIDPCreated) GetPayload() *models.SAMLIDP {
 	return o.Payload
@@ -116,7 +116,7 @@ type CreateSAMLIDPBadRequest struct {
 }
 
 func (o *CreateSAMLIDPBadRequest) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/saml][%d] createSAMLIdPBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPBadRequest  %+v", 400, o.Payload)
 }
 func (o *CreateSAMLIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -148,7 +148,7 @@ type CreateSAMLIDPUnauthorized struct {
 }
 
 func (o *CreateSAMLIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/saml][%d] createSAMLIdPUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPUnauthorized  %+v", 401, o.Payload)
 }
 func (o *CreateSAMLIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -180,7 +180,7 @@ type CreateSAMLIDPForbidden struct {
 }
 
 func (o *CreateSAMLIDPForbidden) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/saml][%d] createSAMLIdPForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPForbidden  %+v", 403, o.Payload)
 }
 func (o *CreateSAMLIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -212,7 +212,7 @@ type CreateSAMLIDPNotFound struct {
 }
 
 func (o *CreateSAMLIDPNotFound) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/saml][%d] createSAMLIdPNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPNotFound  %+v", 404, o.Payload)
 }
 func (o *CreateSAMLIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -244,7 +244,7 @@ type CreateSAMLIDPUnprocessableEntity struct {
 }
 
 func (o *CreateSAMLIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/saml][%d] createSAMLIdPUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 func (o *CreateSAMLIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
@@ -276,7 +276,7 @@ type CreateSAMLIDPTooManyRequests struct {
 }
 
 func (o *CreateSAMLIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/saml][%d] createSAMLIdPTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *CreateSAMLIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

@@ -12,6 +12,7 @@ import (
 
 	"github.com/cloudentity/acp-client-go/clients/public/client/clients"
 	"github.com/cloudentity/acp-client-go/clients/public/client/consents"
+	"github.com/cloudentity/acp-client-go/clients/public/client/transient_otp"
 )
 
 // Default acp HTTP client.
@@ -58,6 +59,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *Acp {
 	cli.Transport = transport
 	cli.Clients = clients.New(transport, formats)
 	cli.Consents = consents.New(transport, formats)
+	cli.TransientOtp = transient_otp.New(transport, formats)
 	return cli
 }
 
@@ -106,6 +108,8 @@ type Acp struct {
 
 	Consents consents.ClientService
 
+	TransientOtp transient_otp.ClientService
+
 	Transport runtime.ClientTransport
 }
 
@@ -114,4 +118,5 @@ func (c *Acp) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 	c.Clients.SetTransport(transport)
 	c.Consents.SetTransport(transport)
+	c.TransientOtp.SetTransport(transport)
 }

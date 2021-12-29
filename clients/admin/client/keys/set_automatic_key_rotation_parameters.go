@@ -67,14 +67,6 @@ type SetAutomaticKeyRotationParams struct {
 	*/
 	AutomaticKeyRotation *models.AutomaticKeyRotation
 
-	/* Aid.
-
-	   Authorization server id
-
-	   Default: "default"
-	*/
-	Aid string
-
 	/* Use.
 
 	   Key use (sig or enc)
@@ -82,6 +74,14 @@ type SetAutomaticKeyRotationParams struct {
 	   Default: "sig"
 	*/
 	Use *string
+
+	/* Wid.
+
+	   Authorization server id
+
+	   Default: "default"
+	*/
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -101,14 +101,14 @@ func (o *SetAutomaticKeyRotationParams) WithDefaults() *SetAutomaticKeyRotationP
 // All values with no default are reset to their zero value.
 func (o *SetAutomaticKeyRotationParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
-
 		useDefault = string("sig")
+
+		widDefault = string("default")
 	)
 
 	val := SetAutomaticKeyRotationParams{
-		Aid: aidDefault,
 		Use: &useDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -161,17 +161,6 @@ func (o *SetAutomaticKeyRotationParams) SetAutomaticKeyRotation(automaticKeyRota
 	o.AutomaticKeyRotation = automaticKeyRotation
 }
 
-// WithAid adds the aid to the set automatic key rotation params
-func (o *SetAutomaticKeyRotationParams) WithAid(aid string) *SetAutomaticKeyRotationParams {
-	o.SetAid(aid)
-	return o
-}
-
-// SetAid adds the aid to the set automatic key rotation params
-func (o *SetAutomaticKeyRotationParams) SetAid(aid string) {
-	o.Aid = aid
-}
-
 // WithUse adds the use to the set automatic key rotation params
 func (o *SetAutomaticKeyRotationParams) WithUse(use *string) *SetAutomaticKeyRotationParams {
 	o.SetUse(use)
@@ -181,6 +170,17 @@ func (o *SetAutomaticKeyRotationParams) WithUse(use *string) *SetAutomaticKeyRot
 // SetUse adds the use to the set automatic key rotation params
 func (o *SetAutomaticKeyRotationParams) SetUse(use *string) {
 	o.Use = use
+}
+
+// WithWid adds the wid to the set automatic key rotation params
+func (o *SetAutomaticKeyRotationParams) WithWid(wid string) *SetAutomaticKeyRotationParams {
+	o.SetWid(wid)
+	return o
+}
+
+// SetWid adds the wid to the set automatic key rotation params
+func (o *SetAutomaticKeyRotationParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -194,11 +194,6 @@ func (o *SetAutomaticKeyRotationParams) WriteToRequest(r runtime.ClientRequest, 
 		if err := r.SetBodyParam(o.AutomaticKeyRotation); err != nil {
 			return err
 		}
-	}
-
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
-		return err
 	}
 
 	if o.Use != nil {
@@ -216,6 +211,11 @@ func (o *SetAutomaticKeyRotationParams) WriteToRequest(r runtime.ClientRequest, 
 				return err
 			}
 		}
+	}
+
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
+		return err
 	}
 
 	if len(res) > 0 {

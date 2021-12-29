@@ -688,12 +688,160 @@ definitions:
         type: boolean
         x-nullable: false
     type: object
+  TransientOTPRequest:
+    properties:
+      address:
+        example: "1235555609"
+        type: string
+        x-nullable: false
+      mechanism:
+        enum:
+        - sms
+        - email
+        example: email
+        type: string
+        x-nullable: false
+      otp:
+        description: one-time password
+        example: "111111"
+        format: OTP
+        type: string
+        x-nullable: false
+    required:
+    - mechanism
+    - address
+    type: object
+  TransientOTPResponse:
+    properties:
+      address:
+        example: "8675409"
+        type: string
+        x-nullable: false
+      created_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      expires_in:
+        format: duration
+        type: string
+        x-nullable: false
+      id:
+        format: otpSessionID
+        type: string
+        x-nullable: false
+      mechanism:
+        enum:
+        - sms
+        - email
+        example: email
+        type: string
+        x-nullable: false
+      tenant_id:
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      verified:
+        type: boolean
+        x-nullable: false
+    required:
+    - tenant_id
+    - mechanism
+    - address
+    type: object
 host: localhost:8443
 info:
   description: Cloudentity Authorization Control Plane Public API
   title: Cloudentity Authorization Control Plane API
-  version: 1.13.1
+  version: latest
 paths:
+  /authn/otp/transient:
+    post:
+      description: Initiate a new transient OTP verification.
+      operationId: initiateTransientOTP
+      parameters:
+      - in: body
+        name: TransientOTP
+        schema:
+          $ref: '#/definitions/TransientOTPRequest'
+      responses:
+        "200":
+          $ref: '#/responses/TransientOTPResponse'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - default:
+        - transient_otp
+      summary: Send a transient One-Time Password (OTP)
+      tags:
+      - transientOtp
+  /authn/otp/transient/{otpID}:
+    get:
+      description: Determine whether this OTP has been verified already.
+      operationId: getTransientOTP
+      parameters:
+      - in: path
+        name: otpID
+        required: true
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/TransientOTPResponse'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+      security:
+      - default:
+        - transient_otp
+      summary: Get the One-Time Password (OTP) object
+      tags:
+      - transientOtp
+    post:
+      description: Compare the OTP submitted by the user to the OTP that was sent.
+      operationId: verifyTransientOTP
+      parameters:
+      - in: path
+        name: otpID
+        required: true
+        type: string
+      - in: body
+        name: TransientOTP
+        schema:
+          $ref: '#/definitions/TransientOTPRequest'
+      responses:
+        "204":
+          description: ' one-time password verified'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+      security:
+      - default:
+        - transient_otp
+      summary: Verify the One-Time Password (OTP)
+      tags:
+      - transientOtp
   /clients:
     get:
       description: Each client contains list of scopes that user agreed to.
@@ -959,6 +1107,10 @@ responses:
     description: Privacy ledger events
     schema:
       $ref: '#/definitions/PrivacyLedgerEvents'
+  TransientOTPResponse:
+    description: Transient OTP
+    schema:
+      $ref: '#/definitions/TransientOTPResponse'
   httpError:
     description: HttpError
     schema:
@@ -973,6 +1125,7 @@ securityDefinitions:
       list_clients_with_access: list_clients_with_access
       manage_consents: manage_consents
       revoke_client_access: revoke_client_access
+      transient_otp: transient_otp
       view_consents: view_consents
     tokenUrl: /default/default/oauth2/token
     type: oauth2

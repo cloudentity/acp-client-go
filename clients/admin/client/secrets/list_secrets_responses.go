@@ -72,7 +72,7 @@ type ListSecretsOK struct {
 }
 
 func (o *ListSecretsOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/secrets][%d] listSecretsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/secrets][%d] listSecretsOK  %+v", 200, o.Payload)
 }
 func (o *ListSecretsOK) GetPayload() *models.SecretsResponse {
 	return o.Payload
@@ -104,7 +104,7 @@ type ListSecretsBadRequest struct {
 }
 
 func (o *ListSecretsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/secrets][%d] listSecretsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/secrets][%d] listSecretsBadRequest  %+v", 400, o.Payload)
 }
 func (o *ListSecretsBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -136,7 +136,7 @@ type ListSecretsUnauthorized struct {
 }
 
 func (o *ListSecretsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/secrets][%d] listSecretsUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/secrets][%d] listSecretsUnauthorized  %+v", 401, o.Payload)
 }
 func (o *ListSecretsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -168,7 +168,7 @@ type ListSecretsForbidden struct {
 }
 
 func (o *ListSecretsForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/secrets][%d] listSecretsForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/secrets][%d] listSecretsForbidden  %+v", 403, o.Payload)
 }
 func (o *ListSecretsForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -200,7 +200,7 @@ type ListSecretsTooManyRequests struct {
 }
 
 func (o *ListSecretsTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/secrets][%d] listSecretsTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/secrets][%d] listSecretsTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *ListSecretsTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

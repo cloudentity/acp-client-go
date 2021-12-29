@@ -72,7 +72,7 @@ type GetOIDCIDPOK struct {
 }
 
 func (o *GetOIDCIDPOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/oidc/{iid}][%d] getOIdCIdPOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/oidc/{iid}][%d] getOIdCIdPOK  %+v", 200, o.Payload)
 }
 func (o *GetOIDCIDPOK) GetPayload() *models.OIDCIDP {
 	return o.Payload
@@ -104,7 +104,7 @@ type GetOIDCIDPUnauthorized struct {
 }
 
 func (o *GetOIDCIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/oidc/{iid}][%d] getOIdCIdPUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/oidc/{iid}][%d] getOIdCIdPUnauthorized  %+v", 401, o.Payload)
 }
 func (o *GetOIDCIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -136,7 +136,7 @@ type GetOIDCIDPForbidden struct {
 }
 
 func (o *GetOIDCIDPForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/oidc/{iid}][%d] getOIdCIdPForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/oidc/{iid}][%d] getOIdCIdPForbidden  %+v", 403, o.Payload)
 }
 func (o *GetOIDCIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -168,7 +168,7 @@ type GetOIDCIDPNotFound struct {
 }
 
 func (o *GetOIDCIDPNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/oidc/{iid}][%d] getOIdCIdPNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/oidc/{iid}][%d] getOIdCIdPNotFound  %+v", 404, o.Payload)
 }
 func (o *GetOIDCIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -200,7 +200,7 @@ type GetOIDCIDPTooManyRequests struct {
 }
 
 func (o *GetOIDCIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/oidc/{iid}][%d] getOIdCIdPTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/oidc/{iid}][%d] getOIdCIdPTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *GetOIDCIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

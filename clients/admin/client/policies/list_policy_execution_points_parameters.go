@@ -59,13 +59,13 @@ func NewListPolicyExecutionPointsParamsWithHTTPClient(client *http.Client) *List
 */
 type ListPolicyExecutionPointsParams struct {
 
-	/* Aid.
+	/* Wid.
 
 	   Authorization server id
 
 	   Default: "default"
 	*/
-	Aid string
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -85,11 +85,11 @@ func (o *ListPolicyExecutionPointsParams) WithDefaults() *ListPolicyExecutionPoi
 // All values with no default are reset to their zero value.
 func (o *ListPolicyExecutionPointsParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := ListPolicyExecutionPointsParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -131,15 +131,15 @@ func (o *ListPolicyExecutionPointsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithAid adds the aid to the list policy execution points params
-func (o *ListPolicyExecutionPointsParams) WithAid(aid string) *ListPolicyExecutionPointsParams {
-	o.SetAid(aid)
+// WithWid adds the wid to the list policy execution points params
+func (o *ListPolicyExecutionPointsParams) WithWid(wid string) *ListPolicyExecutionPointsParams {
+	o.SetWid(wid)
 	return o
 }
 
-// SetAid adds the aid to the list policy execution points params
-func (o *ListPolicyExecutionPointsParams) SetAid(aid string) {
-	o.Aid = aid
+// SetWid adds the wid to the list policy execution points params
+func (o *ListPolicyExecutionPointsParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -150,8 +150,8 @@ func (o *ListPolicyExecutionPointsParams) WriteToRequest(r runtime.ClientRequest
 	}
 	var res []error
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

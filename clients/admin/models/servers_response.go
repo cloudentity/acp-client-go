@@ -14,17 +14,17 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// Servers servers
+// ServersResponse servers response
 //
-// swagger:model Servers
-type Servers struct {
+// swagger:model ServersResponse
+type ServersResponse struct {
 
 	// servers
-	Servers []*Server `json:"servers"`
+	Servers []*ServerResponse `json:"servers"`
 }
 
-// Validate validates this servers
-func (m *Servers) Validate(formats strfmt.Registry) error {
+// Validate validates this servers response
+func (m *ServersResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateServers(formats); err != nil {
@@ -37,7 +37,7 @@ func (m *Servers) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Servers) validateServers(formats strfmt.Registry) error {
+func (m *ServersResponse) validateServers(formats strfmt.Registry) error {
 	if swag.IsZero(m.Servers) { // not required
 		return nil
 	}
@@ -63,8 +63,8 @@ func (m *Servers) validateServers(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validate this servers based on the context it is used
-func (m *Servers) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validate this servers response based on the context it is used
+func (m *ServersResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateServers(ctx, formats); err != nil {
@@ -77,7 +77,7 @@ func (m *Servers) ContextValidate(ctx context.Context, formats strfmt.Registry) 
 	return nil
 }
 
-func (m *Servers) contextValidateServers(ctx context.Context, formats strfmt.Registry) error {
+func (m *ServersResponse) contextValidateServers(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.Servers); i++ {
 
@@ -98,7 +98,7 @@ func (m *Servers) contextValidateServers(ctx context.Context, formats strfmt.Reg
 }
 
 // MarshalBinary interface implementation
-func (m *Servers) MarshalBinary() ([]byte, error) {
+func (m *ServersResponse) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -106,8 +106,8 @@ func (m *Servers) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *Servers) UnmarshalBinary(b []byte) error {
-	var res Servers
+func (m *ServersResponse) UnmarshalBinary(b []byte) error {
+	var res ServersResponse
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

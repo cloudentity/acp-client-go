@@ -83,8 +83,17 @@ type TokenParams struct {
 	// RefreshToken.
 	RefreshToken *string
 
+	// RequestedTokenType.
+	RequestedTokenType *string
+
 	// Scope.
 	Scope *string
+
+	// SubjectToken.
+	SubjectToken *string
+
+	// SubjectTokenType.
+	SubjectTokenType *string
 
 	// Username.
 	Username *string
@@ -230,6 +239,17 @@ func (o *TokenParams) SetRefreshToken(refreshToken *string) {
 	o.RefreshToken = refreshToken
 }
 
+// WithRequestedTokenType adds the requestedTokenType to the token params
+func (o *TokenParams) WithRequestedTokenType(requestedTokenType *string) *TokenParams {
+	o.SetRequestedTokenType(requestedTokenType)
+	return o
+}
+
+// SetRequestedTokenType adds the requestedTokenType to the token params
+func (o *TokenParams) SetRequestedTokenType(requestedTokenType *string) {
+	o.RequestedTokenType = requestedTokenType
+}
+
 // WithScope adds the scope to the token params
 func (o *TokenParams) WithScope(scope *string) *TokenParams {
 	o.SetScope(scope)
@@ -239,6 +259,28 @@ func (o *TokenParams) WithScope(scope *string) *TokenParams {
 // SetScope adds the scope to the token params
 func (o *TokenParams) SetScope(scope *string) {
 	o.Scope = scope
+}
+
+// WithSubjectToken adds the subjectToken to the token params
+func (o *TokenParams) WithSubjectToken(subjectToken *string) *TokenParams {
+	o.SetSubjectToken(subjectToken)
+	return o
+}
+
+// SetSubjectToken adds the subjectToken to the token params
+func (o *TokenParams) SetSubjectToken(subjectToken *string) {
+	o.SubjectToken = subjectToken
+}
+
+// WithSubjectTokenType adds the subjectTokenType to the token params
+func (o *TokenParams) WithSubjectTokenType(subjectTokenType *string) *TokenParams {
+	o.SetSubjectTokenType(subjectTokenType)
+	return o
+}
+
+// SetSubjectTokenType adds the subjectTokenType to the token params
+func (o *TokenParams) SetSubjectTokenType(subjectTokenType *string) {
+	o.SubjectTokenType = subjectTokenType
 }
 
 // WithUsername adds the username to the token params
@@ -374,6 +416,21 @@ func (o *TokenParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registr
 		}
 	}
 
+	if o.RequestedTokenType != nil {
+
+		// form param requested_token_type
+		var frRequestedTokenType string
+		if o.RequestedTokenType != nil {
+			frRequestedTokenType = *o.RequestedTokenType
+		}
+		fRequestedTokenType := frRequestedTokenType
+		if fRequestedTokenType != "" {
+			if err := r.SetFormParam("requested_token_type", fRequestedTokenType); err != nil {
+				return err
+			}
+		}
+	}
+
 	if o.Scope != nil {
 
 		// form param scope
@@ -384,6 +441,36 @@ func (o *TokenParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registr
 		fScope := frScope
 		if fScope != "" {
 			if err := r.SetFormParam("scope", fScope); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SubjectToken != nil {
+
+		// form param subject_token
+		var frSubjectToken string
+		if o.SubjectToken != nil {
+			frSubjectToken = *o.SubjectToken
+		}
+		fSubjectToken := frSubjectToken
+		if fSubjectToken != "" {
+			if err := r.SetFormParam("subject_token", fSubjectToken); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SubjectTokenType != nil {
+
+		// form param subject_token_type
+		var frSubjectTokenType string
+		if o.SubjectTokenType != nil {
+			frSubjectTokenType = *o.SubjectTokenType
+		}
+		fSubjectTokenType := frSubjectTokenType
+		if fSubjectTokenType != "" {
+			if err := r.SetFormParam("subject_token_type", fSubjectTokenType); err != nil {
 				return err
 			}
 		}

@@ -72,14 +72,6 @@ type ListPoliciesParams struct {
 	*/
 	AfterPolicyID *string
 
-	/* Aid.
-
-	   Id of your authorization server (workspace)
-
-	   Default: "default"
-	*/
-	Aid string
-
 	/* BeforePolicyID.
 
 	     String represented policy ID
@@ -132,6 +124,14 @@ type ListPoliciesParams struct {
 	*/
 	Sort *string
 
+	/* Wid.
+
+	   Id of your authorization server (workspace)
+
+	   Default: "default"
+	*/
+	Wid string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -150,17 +150,17 @@ func (o *ListPoliciesParams) WithDefaults() *ListPoliciesParams {
 // All values with no default are reset to their zero value.
 func (o *ListPoliciesParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
-
 		limitDefault = int64(20)
 
 		policyTypesDefault = string("api")
+
+		widDefault = string("default")
 	)
 
 	val := ListPoliciesParams{
-		Aid:         aidDefault,
 		Limit:       &limitDefault,
 		PolicyTypes: &policyTypesDefault,
+		Wid:         widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -211,17 +211,6 @@ func (o *ListPoliciesParams) WithAfterPolicyID(afterPolicyID *string) *ListPolic
 // SetAfterPolicyID adds the afterPolicyId to the list policies params
 func (o *ListPoliciesParams) SetAfterPolicyID(afterPolicyID *string) {
 	o.AfterPolicyID = afterPolicyID
-}
-
-// WithAid adds the aid to the list policies params
-func (o *ListPoliciesParams) WithAid(aid string) *ListPoliciesParams {
-	o.SetAid(aid)
-	return o
-}
-
-// SetAid adds the aid to the list policies params
-func (o *ListPoliciesParams) SetAid(aid string) {
-	o.Aid = aid
 }
 
 // WithBeforePolicyID adds the beforePolicyID to the list policies params
@@ -290,6 +279,17 @@ func (o *ListPoliciesParams) SetSort(sort *string) {
 	o.Sort = sort
 }
 
+// WithWid adds the wid to the list policies params
+func (o *ListPoliciesParams) WithWid(wid string) *ListPoliciesParams {
+	o.SetWid(wid)
+	return o
+}
+
+// SetWid adds the wid to the list policies params
+func (o *ListPoliciesParams) SetWid(wid string) {
+	o.Wid = wid
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *ListPoliciesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -313,11 +313,6 @@ func (o *ListPoliciesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 				return err
 			}
 		}
-	}
-
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
-		return err
 	}
 
 	if o.BeforePolicyID != nil {
@@ -420,6 +415,11 @@ func (o *ListPoliciesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 				return err
 			}
 		}
+	}
+
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
+		return err
 	}
 
 	if len(res) > 0 {

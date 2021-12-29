@@ -60,19 +60,19 @@ func NewListAPIsByServerParamsWithHTTPClient(client *http.Client) *ListAPIsBySer
 */
 type ListAPIsByServerParams struct {
 
-	/* Aid.
-
-	   Server id
-
-	   Default: "default"
-	*/
-	Aid string
-
 	/* DataClassification.
 
 	   List apis that have given data classifications
 	*/
 	DataClassification []string
+
+	/* Wid.
+
+	   Server id
+
+	   Default: "default"
+	*/
+	Wid string
 
 	/* WithoutDataClassifications.
 
@@ -98,11 +98,11 @@ func (o *ListAPIsByServerParams) WithDefaults() *ListAPIsByServerParams {
 // All values with no default are reset to their zero value.
 func (o *ListAPIsByServerParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := ListAPIsByServerParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -144,17 +144,6 @@ func (o *ListAPIsByServerParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithAid adds the aid to the list a p is by server params
-func (o *ListAPIsByServerParams) WithAid(aid string) *ListAPIsByServerParams {
-	o.SetAid(aid)
-	return o
-}
-
-// SetAid adds the aid to the list a p is by server params
-func (o *ListAPIsByServerParams) SetAid(aid string) {
-	o.Aid = aid
-}
-
 // WithDataClassification adds the dataClassification to the list a p is by server params
 func (o *ListAPIsByServerParams) WithDataClassification(dataClassification []string) *ListAPIsByServerParams {
 	o.SetDataClassification(dataClassification)
@@ -164,6 +153,17 @@ func (o *ListAPIsByServerParams) WithDataClassification(dataClassification []str
 // SetDataClassification adds the dataClassification to the list a p is by server params
 func (o *ListAPIsByServerParams) SetDataClassification(dataClassification []string) {
 	o.DataClassification = dataClassification
+}
+
+// WithWid adds the wid to the list a p is by server params
+func (o *ListAPIsByServerParams) WithWid(wid string) *ListAPIsByServerParams {
+	o.SetWid(wid)
+	return o
+}
+
+// SetWid adds the wid to the list a p is by server params
+func (o *ListAPIsByServerParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WithWithoutDataClassifications adds the withoutDataClassifications to the list a p is by server params
@@ -185,11 +185,6 @@ func (o *ListAPIsByServerParams) WriteToRequest(r runtime.ClientRequest, reg str
 	}
 	var res []error
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
-		return err
-	}
-
 	if o.DataClassification != nil {
 
 		// binding items for data_classification
@@ -199,6 +194,11 @@ func (o *ListAPIsByServerParams) WriteToRequest(r runtime.ClientRequest, reg str
 		if err := r.SetQueryParam("data_classification", joinedDataClassification...); err != nil {
 			return err
 		}
+	}
+
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
+		return err
 	}
 
 	if o.WithoutDataClassifications != nil {

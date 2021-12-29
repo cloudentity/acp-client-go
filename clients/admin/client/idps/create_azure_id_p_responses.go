@@ -84,7 +84,7 @@ type CreateAzureIDPCreated struct {
 }
 
 func (o *CreateAzureIDPCreated) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/azure][%d] createAzureIdPCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azure][%d] createAzureIdPCreated  %+v", 201, o.Payload)
 }
 func (o *CreateAzureIDPCreated) GetPayload() *models.AzureIDP {
 	return o.Payload
@@ -116,7 +116,7 @@ type CreateAzureIDPBadRequest struct {
 }
 
 func (o *CreateAzureIDPBadRequest) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/azure][%d] createAzureIdPBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azure][%d] createAzureIdPBadRequest  %+v", 400, o.Payload)
 }
 func (o *CreateAzureIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -148,7 +148,7 @@ type CreateAzureIDPUnauthorized struct {
 }
 
 func (o *CreateAzureIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/azure][%d] createAzureIdPUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azure][%d] createAzureIdPUnauthorized  %+v", 401, o.Payload)
 }
 func (o *CreateAzureIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -180,7 +180,7 @@ type CreateAzureIDPForbidden struct {
 }
 
 func (o *CreateAzureIDPForbidden) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/azure][%d] createAzureIdPForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azure][%d] createAzureIdPForbidden  %+v", 403, o.Payload)
 }
 func (o *CreateAzureIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -212,7 +212,7 @@ type CreateAzureIDPNotFound struct {
 }
 
 func (o *CreateAzureIDPNotFound) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/azure][%d] createAzureIdPNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azure][%d] createAzureIdPNotFound  %+v", 404, o.Payload)
 }
 func (o *CreateAzureIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -244,7 +244,7 @@ type CreateAzureIDPUnprocessableEntity struct {
 }
 
 func (o *CreateAzureIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/azure][%d] createAzureIdPUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azure][%d] createAzureIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 func (o *CreateAzureIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
@@ -276,7 +276,7 @@ type CreateAzureIDPTooManyRequests struct {
 }
 
 func (o *CreateAzureIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/azure][%d] createAzureIdPTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/azure][%d] createAzureIdPTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *CreateAzureIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

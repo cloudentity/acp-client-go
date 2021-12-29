@@ -84,7 +84,7 @@ type CreateOktaIDPCreated struct {
 }
 
 func (o *CreateOktaIDPCreated) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/okta][%d] createOktaIdPCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPCreated  %+v", 201, o.Payload)
 }
 func (o *CreateOktaIDPCreated) GetPayload() *models.OktaIDP {
 	return o.Payload
@@ -116,7 +116,7 @@ type CreateOktaIDPBadRequest struct {
 }
 
 func (o *CreateOktaIDPBadRequest) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/okta][%d] createOktaIdPBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPBadRequest  %+v", 400, o.Payload)
 }
 func (o *CreateOktaIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -148,7 +148,7 @@ type CreateOktaIDPUnauthorized struct {
 }
 
 func (o *CreateOktaIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/okta][%d] createOktaIdPUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPUnauthorized  %+v", 401, o.Payload)
 }
 func (o *CreateOktaIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -180,7 +180,7 @@ type CreateOktaIDPForbidden struct {
 }
 
 func (o *CreateOktaIDPForbidden) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/okta][%d] createOktaIdPForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPForbidden  %+v", 403, o.Payload)
 }
 func (o *CreateOktaIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -212,7 +212,7 @@ type CreateOktaIDPNotFound struct {
 }
 
 func (o *CreateOktaIDPNotFound) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/okta][%d] createOktaIdPNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPNotFound  %+v", 404, o.Payload)
 }
 func (o *CreateOktaIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -244,7 +244,7 @@ type CreateOktaIDPUnprocessableEntity struct {
 }
 
 func (o *CreateOktaIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/okta][%d] createOktaIdPUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 func (o *CreateOktaIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
@@ -276,7 +276,7 @@ type CreateOktaIDPTooManyRequests struct {
 }
 
 func (o *CreateOktaIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/okta][%d] createOktaIdPTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *CreateOktaIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

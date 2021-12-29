@@ -67,13 +67,13 @@ type CreateGoogleIDPParams struct {
 	*/
 	GoogleIDP *models.GoogleIDP
 
-	/* Aid.
+	/* Wid.
 
 	   Authorization server id
 
 	   Default: "default"
 	*/
-	Aid string
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -93,11 +93,11 @@ func (o *CreateGoogleIDPParams) WithDefaults() *CreateGoogleIDPParams {
 // All values with no default are reset to their zero value.
 func (o *CreateGoogleIDPParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := CreateGoogleIDPParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -150,15 +150,15 @@ func (o *CreateGoogleIDPParams) SetGoogleIDP(googleIDP *models.GoogleIDP) {
 	o.GoogleIDP = googleIDP
 }
 
-// WithAid adds the aid to the create google ID p params
-func (o *CreateGoogleIDPParams) WithAid(aid string) *CreateGoogleIDPParams {
-	o.SetAid(aid)
+// WithWid adds the wid to the create google ID p params
+func (o *CreateGoogleIDPParams) WithWid(wid string) *CreateGoogleIDPParams {
+	o.SetWid(wid)
 	return o
 }
 
-// SetAid adds the aid to the create google ID p params
-func (o *CreateGoogleIDPParams) SetAid(aid string) {
-	o.Aid = aid
+// SetWid adds the wid to the create google ID p params
+func (o *CreateGoogleIDPParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -174,8 +174,8 @@ func (o *CreateGoogleIDPParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		}
 	}
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

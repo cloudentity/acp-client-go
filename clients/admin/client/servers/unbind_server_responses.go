@@ -72,7 +72,7 @@ type UnbindServerOK struct {
 }
 
 func (o *UnbindServerOK) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{aid}/unbind/{rid}][%d] unbindServerOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/unbind/{rid}][%d] unbindServerOK  %+v", 200, o.Payload)
 }
 func (o *UnbindServerOK) GetPayload() *models.ServerToServer {
 	return o.Payload
@@ -104,7 +104,7 @@ type UnbindServerUnauthorized struct {
 }
 
 func (o *UnbindServerUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{aid}/unbind/{rid}][%d] unbindServerUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/unbind/{rid}][%d] unbindServerUnauthorized  %+v", 401, o.Payload)
 }
 func (o *UnbindServerUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -136,7 +136,7 @@ type UnbindServerForbidden struct {
 }
 
 func (o *UnbindServerForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{aid}/unbind/{rid}][%d] unbindServerForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/unbind/{rid}][%d] unbindServerForbidden  %+v", 403, o.Payload)
 }
 func (o *UnbindServerForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -168,7 +168,7 @@ type UnbindServerNotFound struct {
 }
 
 func (o *UnbindServerNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{aid}/unbind/{rid}][%d] unbindServerNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/unbind/{rid}][%d] unbindServerNotFound  %+v", 404, o.Payload)
 }
 func (o *UnbindServerNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -200,7 +200,7 @@ type UnbindServerTooManyRequests struct {
 }
 
 func (o *UnbindServerTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{aid}/unbind/{rid}][%d] unbindServerTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/unbind/{rid}][%d] unbindServerTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *UnbindServerTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

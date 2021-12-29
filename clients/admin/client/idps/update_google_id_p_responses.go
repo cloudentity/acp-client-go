@@ -84,7 +84,7 @@ type UpdateGoogleIDPOK struct {
 }
 
 func (o *UpdateGoogleIDPOK) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/google/{iid}][%d] updateGoogleIdPOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPOK  %+v", 200, o.Payload)
 }
 func (o *UpdateGoogleIDPOK) GetPayload() *models.GoogleIDP {
 	return o.Payload
@@ -116,7 +116,7 @@ type UpdateGoogleIDPBadRequest struct {
 }
 
 func (o *UpdateGoogleIDPBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/google/{iid}][%d] updateGoogleIdPBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPBadRequest  %+v", 400, o.Payload)
 }
 func (o *UpdateGoogleIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -148,7 +148,7 @@ type UpdateGoogleIDPUnauthorized struct {
 }
 
 func (o *UpdateGoogleIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/google/{iid}][%d] updateGoogleIdPUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPUnauthorized  %+v", 401, o.Payload)
 }
 func (o *UpdateGoogleIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -180,7 +180,7 @@ type UpdateGoogleIDPForbidden struct {
 }
 
 func (o *UpdateGoogleIDPForbidden) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/google/{iid}][%d] updateGoogleIdPForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPForbidden  %+v", 403, o.Payload)
 }
 func (o *UpdateGoogleIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -212,7 +212,7 @@ type UpdateGoogleIDPNotFound struct {
 }
 
 func (o *UpdateGoogleIDPNotFound) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/google/{iid}][%d] updateGoogleIdPNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPNotFound  %+v", 404, o.Payload)
 }
 func (o *UpdateGoogleIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -244,7 +244,7 @@ type UpdateGoogleIDPUnprocessableEntity struct {
 }
 
 func (o *UpdateGoogleIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/google/{iid}][%d] updateGoogleIdPUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 func (o *UpdateGoogleIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
@@ -276,7 +276,7 @@ type UpdateGoogleIDPTooManyRequests struct {
 }
 
 func (o *UpdateGoogleIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/google/{iid}][%d] updateGoogleIdPTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *UpdateGoogleIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

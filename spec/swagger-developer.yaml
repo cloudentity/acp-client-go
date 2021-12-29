@@ -159,6 +159,7 @@ definitions:
           - password
           - urn:ietf:params:oauth:grant-type:jwt-bearer
           - urn:openid:params:grant-type:ciba
+          - urn:ietf:params:oauth:grant-type:token-exchange
           type: string
         type: array
         x-nullable: false
@@ -749,6 +750,7 @@ definitions:
           - password
           - urn:ietf:params:oauth:grant-type:jwt-bearer
           - urn:openid:params:grant-type:ciba
+          - urn:ietf:params:oauth:grant-type:token-exchange
           type: string
         type: array
         x-nullable: false
@@ -1072,6 +1074,7 @@ definitions:
           - password
           - urn:ietf:params:oauth:grant-type:jwt-bearer
           - urn:openid:params:grant-type:ciba
+          - urn:ietf:params:oauth:grant-type:token-exchange
           type: string
         type: array
         x-nullable: false
@@ -1083,6 +1086,10 @@ definitions:
       issuer_url:
         description: issuer URL
         example: https://example.com/default/default
+        type: string
+        x-nullable: false
+      mtls_issuer_url:
+        description: mtls issuer url
         type: string
         x-nullable: false
       name:
@@ -1125,6 +1132,7 @@ definitions:
           - password
           - urn:ietf:params:oauth:grant-type:jwt-bearer
           - urn:openid:params:grant-type:ciba
+          - urn:ietf:params:oauth:grant-type:token-exchange
           type: string
         type: array
         x-nullable: false
@@ -1136,6 +1144,10 @@ definitions:
       issuer_url:
         description: issuer URL
         example: https://example.com/default/default
+        type: string
+        x-nullable: false
+      mtls_issuer_url:
+        description: mtls issuer url
         type: string
         x-nullable: false
       name:
@@ -1382,6 +1394,7 @@ definitions:
           - password
           - urn:ietf:params:oauth:grant-type:jwt-bearer
           - urn:openid:params:grant-type:ciba
+          - urn:ietf:params:oauth:grant-type:token-exchange
           type: string
         type: array
         x-nullable: false
@@ -1685,7 +1698,7 @@ host: localhost:8443
 info:
   description: Cloudentity Authorization Control Plane Public API
   title: Cloudentity Authorization Control Plane API
-  version: 1.13.1
+  version: latest
 paths:
   /clients:
     get:

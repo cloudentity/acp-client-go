@@ -67,14 +67,6 @@ type UpdateExternalIDPParams struct {
 	*/
 	ExternalIDP *models.ExternalIDP
 
-	/* Aid.
-
-	   Authorization server id
-
-	   Default: "default"
-	*/
-	Aid string
-
 	/* Iid.
 
 	   IDP id
@@ -82,6 +74,14 @@ type UpdateExternalIDPParams struct {
 	   Default: "default"
 	*/
 	Iid string
+
+	/* Wid.
+
+	   Authorization server id
+
+	   Default: "default"
+	*/
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -101,14 +101,14 @@ func (o *UpdateExternalIDPParams) WithDefaults() *UpdateExternalIDPParams {
 // All values with no default are reset to their zero value.
 func (o *UpdateExternalIDPParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
-
 		iidDefault = string("default")
+
+		widDefault = string("default")
 	)
 
 	val := UpdateExternalIDPParams{
-		Aid: aidDefault,
 		Iid: iidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -161,17 +161,6 @@ func (o *UpdateExternalIDPParams) SetExternalIDP(externalIDP *models.ExternalIDP
 	o.ExternalIDP = externalIDP
 }
 
-// WithAid adds the aid to the update external ID p params
-func (o *UpdateExternalIDPParams) WithAid(aid string) *UpdateExternalIDPParams {
-	o.SetAid(aid)
-	return o
-}
-
-// SetAid adds the aid to the update external ID p params
-func (o *UpdateExternalIDPParams) SetAid(aid string) {
-	o.Aid = aid
-}
-
 // WithIid adds the iid to the update external ID p params
 func (o *UpdateExternalIDPParams) WithIid(iid string) *UpdateExternalIDPParams {
 	o.SetIid(iid)
@@ -181,6 +170,17 @@ func (o *UpdateExternalIDPParams) WithIid(iid string) *UpdateExternalIDPParams {
 // SetIid adds the iid to the update external ID p params
 func (o *UpdateExternalIDPParams) SetIid(iid string) {
 	o.Iid = iid
+}
+
+// WithWid adds the wid to the update external ID p params
+func (o *UpdateExternalIDPParams) WithWid(wid string) *UpdateExternalIDPParams {
+	o.SetWid(wid)
+	return o
+}
+
+// SetWid adds the wid to the update external ID p params
+func (o *UpdateExternalIDPParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -196,13 +196,13 @@ func (o *UpdateExternalIDPParams) WriteToRequest(r runtime.ClientRequest, reg st
 		}
 	}
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param iid
+	if err := r.SetPathParam("iid", o.Iid); err != nil {
 		return err
 	}
 
-	// path param iid
-	if err := r.SetPathParam("iid", o.Iid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

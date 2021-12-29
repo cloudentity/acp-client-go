@@ -84,7 +84,7 @@ type CreateGithubIDPCreated struct {
 }
 
 func (o *CreateGithubIDPCreated) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/github][%d] createGithubIdPCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/github][%d] createGithubIdPCreated  %+v", 201, o.Payload)
 }
 func (o *CreateGithubIDPCreated) GetPayload() *models.GithubIDP {
 	return o.Payload
@@ -116,7 +116,7 @@ type CreateGithubIDPBadRequest struct {
 }
 
 func (o *CreateGithubIDPBadRequest) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/github][%d] createGithubIdPBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/github][%d] createGithubIdPBadRequest  %+v", 400, o.Payload)
 }
 func (o *CreateGithubIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -148,7 +148,7 @@ type CreateGithubIDPUnauthorized struct {
 }
 
 func (o *CreateGithubIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/github][%d] createGithubIdPUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/github][%d] createGithubIdPUnauthorized  %+v", 401, o.Payload)
 }
 func (o *CreateGithubIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -180,7 +180,7 @@ type CreateGithubIDPForbidden struct {
 }
 
 func (o *CreateGithubIDPForbidden) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/github][%d] createGithubIdPForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/github][%d] createGithubIdPForbidden  %+v", 403, o.Payload)
 }
 func (o *CreateGithubIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -212,7 +212,7 @@ type CreateGithubIDPNotFound struct {
 }
 
 func (o *CreateGithubIDPNotFound) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/github][%d] createGithubIdPNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/github][%d] createGithubIdPNotFound  %+v", 404, o.Payload)
 }
 func (o *CreateGithubIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -244,7 +244,7 @@ type CreateGithubIDPUnprocessableEntity struct {
 }
 
 func (o *CreateGithubIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/github][%d] createGithubIdPUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/github][%d] createGithubIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 func (o *CreateGithubIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
@@ -276,7 +276,7 @@ type CreateGithubIDPTooManyRequests struct {
 }
 
 func (o *CreateGithubIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/idps/github][%d] createGithubIdPTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/idps/github][%d] createGithubIdPTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *CreateGithubIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

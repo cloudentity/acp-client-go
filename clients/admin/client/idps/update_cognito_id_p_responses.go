@@ -84,7 +84,7 @@ type UpdateCognitoIDPOK struct {
 }
 
 func (o *UpdateCognitoIDPOK) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/cognito/{iid}][%d] updateCognitoIdPOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPOK  %+v", 200, o.Payload)
 }
 func (o *UpdateCognitoIDPOK) GetPayload() *models.CognitoIDP {
 	return o.Payload
@@ -116,7 +116,7 @@ type UpdateCognitoIDPBadRequest struct {
 }
 
 func (o *UpdateCognitoIDPBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/cognito/{iid}][%d] updateCognitoIdPBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPBadRequest  %+v", 400, o.Payload)
 }
 func (o *UpdateCognitoIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -148,7 +148,7 @@ type UpdateCognitoIDPUnauthorized struct {
 }
 
 func (o *UpdateCognitoIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/cognito/{iid}][%d] updateCognitoIdPUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPUnauthorized  %+v", 401, o.Payload)
 }
 func (o *UpdateCognitoIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -180,7 +180,7 @@ type UpdateCognitoIDPForbidden struct {
 }
 
 func (o *UpdateCognitoIDPForbidden) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/cognito/{iid}][%d] updateCognitoIdPForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPForbidden  %+v", 403, o.Payload)
 }
 func (o *UpdateCognitoIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -212,7 +212,7 @@ type UpdateCognitoIDPNotFound struct {
 }
 
 func (o *UpdateCognitoIDPNotFound) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/cognito/{iid}][%d] updateCognitoIdPNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPNotFound  %+v", 404, o.Payload)
 }
 func (o *UpdateCognitoIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -244,7 +244,7 @@ type UpdateCognitoIDPUnprocessableEntity struct {
 }
 
 func (o *UpdateCognitoIDPUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/cognito/{iid}][%d] updateCognitoIdPUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
 func (o *UpdateCognitoIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
@@ -276,7 +276,7 @@ type UpdateCognitoIDPTooManyRequests struct {
 }
 
 func (o *UpdateCognitoIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/idps/cognito/{iid}][%d] updateCognitoIdPTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *UpdateCognitoIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

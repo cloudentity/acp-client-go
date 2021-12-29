@@ -64,13 +64,13 @@ type SetPolicyExecutionPointsParams struct {
 	// Executions.
 	Executions *models.PolicyExecutionPoints
 
-	/* Aid.
+	/* Wid.
 
 	   Authorization server id
 
 	   Default: "default"
 	*/
-	Aid string
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -90,11 +90,11 @@ func (o *SetPolicyExecutionPointsParams) WithDefaults() *SetPolicyExecutionPoint
 // All values with no default are reset to their zero value.
 func (o *SetPolicyExecutionPointsParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := SetPolicyExecutionPointsParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -147,15 +147,15 @@ func (o *SetPolicyExecutionPointsParams) SetExecutions(executions *models.Policy
 	o.Executions = executions
 }
 
-// WithAid adds the aid to the set policy execution points params
-func (o *SetPolicyExecutionPointsParams) WithAid(aid string) *SetPolicyExecutionPointsParams {
-	o.SetAid(aid)
+// WithWid adds the wid to the set policy execution points params
+func (o *SetPolicyExecutionPointsParams) WithWid(wid string) *SetPolicyExecutionPointsParams {
+	o.SetWid(wid)
 	return o
 }
 
-// SetAid adds the aid to the set policy execution points params
-func (o *SetPolicyExecutionPointsParams) SetAid(aid string) {
-	o.Aid = aid
+// SetWid adds the wid to the set policy execution points params
+func (o *SetPolicyExecutionPointsParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -171,8 +171,8 @@ func (o *SetPolicyExecutionPointsParams) WriteToRequest(r runtime.ClientRequest,
 		}
 	}
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

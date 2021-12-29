@@ -48,7 +48,7 @@ func (a *Client) GetRecentActivities(params *GetRecentActivitiesParams, authInfo
 	op := &runtime.ClientOperation{
 		ID:                 "getRecentActivities",
 		Method:             "GET",
-		PathPattern:        "/stats/{aid}/recent-activities",
+		PathPattern:        "/stats/{wid}/recent-activities",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

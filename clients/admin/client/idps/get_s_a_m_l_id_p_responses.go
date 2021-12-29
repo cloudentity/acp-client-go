@@ -72,7 +72,7 @@ type GetSAMLIDPOK struct {
 }
 
 func (o *GetSAMLIDPOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/saml/{iid}][%d] getSAMLIdPOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/saml/{iid}][%d] getSAMLIdPOK  %+v", 200, o.Payload)
 }
 func (o *GetSAMLIDPOK) GetPayload() *models.SAMLIDP {
 	return o.Payload
@@ -104,7 +104,7 @@ type GetSAMLIDPUnauthorized struct {
 }
 
 func (o *GetSAMLIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/saml/{iid}][%d] getSAMLIdPUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/saml/{iid}][%d] getSAMLIdPUnauthorized  %+v", 401, o.Payload)
 }
 func (o *GetSAMLIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -136,7 +136,7 @@ type GetSAMLIDPForbidden struct {
 }
 
 func (o *GetSAMLIDPForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/saml/{iid}][%d] getSAMLIdPForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/saml/{iid}][%d] getSAMLIdPForbidden  %+v", 403, o.Payload)
 }
 func (o *GetSAMLIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -168,7 +168,7 @@ type GetSAMLIDPNotFound struct {
 }
 
 func (o *GetSAMLIDPNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/saml/{iid}][%d] getSAMLIdPNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/saml/{iid}][%d] getSAMLIdPNotFound  %+v", 404, o.Payload)
 }
 func (o *GetSAMLIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -200,7 +200,7 @@ type GetSAMLIDPTooManyRequests struct {
 }
 
 func (o *GetSAMLIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/saml/{iid}][%d] getSAMLIdPTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/saml/{iid}][%d] getSAMLIdPTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *GetSAMLIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

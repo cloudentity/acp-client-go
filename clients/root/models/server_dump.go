@@ -74,6 +74,13 @@ type ServerDump struct {
 	// Format: duration
 	CookieMaxAge strfmt.Duration `json:"cookie_max_age,omitempty"`
 
+	// Defines a custom issuer URL that can be used as the value of the `iss` claim in an access
+	// token.
+	//
+	// If not provided, it is built dynamically based on the server's URL.
+	// Example: http://example.com/default/default
+	CustomIssuerURL string `json:"custom_issuer_url,omitempty"`
+
 	// flag to skip default claims creation (applicable only if server does not exist)
 	DoNotCreateDefaultClaims bool `json:"do_not_create_default_claims,omitempty"`
 
@@ -163,13 +170,6 @@ type ServerDump struct {
 	// Example: 5647fe90-f6bc-11eb-9a03-0242ac130003
 	IssuerID string `json:"issuer_id,omitempty"`
 
-	// Defines a custom issuer URL that can be used as the value of the `iss` claim in an access
-	// token.
-	//
-	// If not provided, it is built dynamically based on the server's URL.
-	// Example: http://example.com/default/default
-	IssuerURL string `json:"issuer_url,omitempty"`
-
 	// jwks
 	Jwks *ServerJWKs `json:"jwks,omitempty"`
 
@@ -194,7 +194,7 @@ type ServerDump struct {
 	// specific configuration patterns. For example, you can instantly create an Open Banking
 	// compliant workspace that has all of the required mechanisms and settings already in place.
 	// Example: default
-	// Enum: [default demo workforce consumer partners third_party fapi_advanced fapi_rw fapi_ro openbanking_uk_fapi_advanced openbanking_uk openbanking_br cdr_australia]
+	// Enum: [default demo workforce consumer partners third_party fapi_advanced fapi_rw fapi_ro openbanking_uk_fapi_advanced openbanking_uk openbanking_br cdr_australia cdr_australia_fapi_rw]
 	Profile string `json:"profile,omitempty"`
 
 	// Custom pushed authentication request TTL in seconds
@@ -457,7 +457,7 @@ var serverDumpGrantTypesItemsEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["authorization_code","implicit","client_credentials","refresh_token","password","urn:ietf:params:oauth:grant-type:jwt-bearer","urn:openid:params:grant-type:ciba"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["authorization_code","implicit","client_credentials","refresh_token","password","urn:ietf:params:oauth:grant-type:jwt-bearer","urn:openid:params:grant-type:ciba","urn:ietf:params:oauth:grant-type:token-exchange"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -569,7 +569,7 @@ var serverDumpTypeProfilePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["default","demo","workforce","consumer","partners","third_party","fapi_advanced","fapi_rw","fapi_ro","openbanking_uk_fapi_advanced","openbanking_uk","openbanking_br","cdr_australia"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["default","demo","workforce","consumer","partners","third_party","fapi_advanced","fapi_rw","fapi_ro","openbanking_uk_fapi_advanced","openbanking_uk","openbanking_br","cdr_australia","cdr_australia_fapi_rw"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -617,6 +617,9 @@ const (
 
 	// ServerDumpProfileCdrAustralia captures enum value "cdr_australia"
 	ServerDumpProfileCdrAustralia string = "cdr_australia"
+
+	// ServerDumpProfileCdrAustraliaFapiRw captures enum value "cdr_australia_fapi_rw"
+	ServerDumpProfileCdrAustraliaFapiRw string = "cdr_australia_fapi_rw"
 )
 
 // prop value enum

@@ -59,19 +59,19 @@ func NewGetAzureB2CIDPParamsWithHTTPClient(client *http.Client) *GetAzureB2CIDPP
 */
 type GetAzureB2CIDPParams struct {
 
-	/* Aid.
-
-	   Authorization server id
-
-	   Default: "default"
-	*/
-	Aid string
-
 	/* Iid.
 
 	   IDP id
 	*/
 	Iid string
+
+	/* Wid.
+
+	   Authorization server id
+
+	   Default: "default"
+	*/
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -91,11 +91,11 @@ func (o *GetAzureB2CIDPParams) WithDefaults() *GetAzureB2CIDPParams {
 // All values with no default are reset to their zero value.
 func (o *GetAzureB2CIDPParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := GetAzureB2CIDPParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -137,17 +137,6 @@ func (o *GetAzureB2CIDPParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithAid adds the aid to the get azure b2 c ID p params
-func (o *GetAzureB2CIDPParams) WithAid(aid string) *GetAzureB2CIDPParams {
-	o.SetAid(aid)
-	return o
-}
-
-// SetAid adds the aid to the get azure b2 c ID p params
-func (o *GetAzureB2CIDPParams) SetAid(aid string) {
-	o.Aid = aid
-}
-
 // WithIid adds the iid to the get azure b2 c ID p params
 func (o *GetAzureB2CIDPParams) WithIid(iid string) *GetAzureB2CIDPParams {
 	o.SetIid(iid)
@@ -159,6 +148,17 @@ func (o *GetAzureB2CIDPParams) SetIid(iid string) {
 	o.Iid = iid
 }
 
+// WithWid adds the wid to the get azure b2 c ID p params
+func (o *GetAzureB2CIDPParams) WithWid(wid string) *GetAzureB2CIDPParams {
+	o.SetWid(wid)
+	return o
+}
+
+// SetWid adds the wid to the get azure b2 c ID p params
+func (o *GetAzureB2CIDPParams) SetWid(wid string) {
+	o.Wid = wid
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetAzureB2CIDPParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -167,13 +167,13 @@ func (o *GetAzureB2CIDPParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 	}
 	var res []error
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param iid
+	if err := r.SetPathParam("iid", o.Iid); err != nil {
 		return err
 	}
 
-	// path param iid
-	if err := r.SetPathParam("iid", o.Iid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

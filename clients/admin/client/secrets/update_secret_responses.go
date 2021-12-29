@@ -84,7 +84,7 @@ type UpdateSecretCreated struct {
 }
 
 func (o *UpdateSecretCreated) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/secrets/{sid}][%d] updateSecretCreated  %+v", 201, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/secrets/{sid}][%d] updateSecretCreated  %+v", 201, o.Payload)
 }
 func (o *UpdateSecretCreated) GetPayload() *models.Secret {
 	return o.Payload
@@ -116,7 +116,7 @@ type UpdateSecretBadRequest struct {
 }
 
 func (o *UpdateSecretBadRequest) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/secrets/{sid}][%d] updateSecretBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/secrets/{sid}][%d] updateSecretBadRequest  %+v", 400, o.Payload)
 }
 func (o *UpdateSecretBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -148,7 +148,7 @@ type UpdateSecretUnauthorized struct {
 }
 
 func (o *UpdateSecretUnauthorized) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/secrets/{sid}][%d] updateSecretUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/secrets/{sid}][%d] updateSecretUnauthorized  %+v", 401, o.Payload)
 }
 func (o *UpdateSecretUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -180,7 +180,7 @@ type UpdateSecretForbidden struct {
 }
 
 func (o *UpdateSecretForbidden) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/secrets/{sid}][%d] updateSecretForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/secrets/{sid}][%d] updateSecretForbidden  %+v", 403, o.Payload)
 }
 func (o *UpdateSecretForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -212,7 +212,7 @@ type UpdateSecretNotFound struct {
 }
 
 func (o *UpdateSecretNotFound) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/secrets/{sid}][%d] updateSecretNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/secrets/{sid}][%d] updateSecretNotFound  %+v", 404, o.Payload)
 }
 func (o *UpdateSecretNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -244,7 +244,7 @@ type UpdateSecretUnprocessableEntity struct {
 }
 
 func (o *UpdateSecretUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/secrets/{sid}][%d] updateSecretUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/secrets/{sid}][%d] updateSecretUnprocessableEntity  %+v", 422, o.Payload)
 }
 func (o *UpdateSecretUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
@@ -276,7 +276,7 @@ type UpdateSecretTooManyRequests struct {
 }
 
 func (o *UpdateSecretTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /servers/{aid}/secrets/{sid}][%d] updateSecretTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[PUT /servers/{wid}/secrets/{sid}][%d] updateSecretTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *UpdateSecretTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

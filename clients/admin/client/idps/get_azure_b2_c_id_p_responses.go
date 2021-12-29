@@ -72,7 +72,7 @@ type GetAzureB2CIDPOK struct {
 }
 
 func (o *GetAzureB2CIDPOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPOK  %+v", 200, o.Payload)
 }
 func (o *GetAzureB2CIDPOK) GetPayload() *models.AzureB2CIDP {
 	return o.Payload
@@ -104,7 +104,7 @@ type GetAzureB2CIDPUnauthorized struct {
 }
 
 func (o *GetAzureB2CIDPUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPUnauthorized  %+v", 401, o.Payload)
 }
 func (o *GetAzureB2CIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -136,7 +136,7 @@ type GetAzureB2CIDPForbidden struct {
 }
 
 func (o *GetAzureB2CIDPForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPForbidden  %+v", 403, o.Payload)
 }
 func (o *GetAzureB2CIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -168,7 +168,7 @@ type GetAzureB2CIDPNotFound struct {
 }
 
 func (o *GetAzureB2CIDPNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPNotFound  %+v", 404, o.Payload)
 }
 func (o *GetAzureB2CIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -200,7 +200,7 @@ type GetAzureB2CIDPTooManyRequests struct {
 }
 
 func (o *GetAzureB2CIDPTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *GetAzureB2CIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
