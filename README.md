@@ -25,12 +25,12 @@ var client = acpclient.New(acpclient.Config{
 import "github.com/cloudentity/acp-client-go"
 
 var client = acpclient.New(acpclient.Config{
-    ClientID:     "your-clients-id",
-    ClientSecret: "your-clients-secret",
-    IssuerURL:    "https://acp.local:8443/default",
-    RoutingMode:  "tenant",
-    TenantID:     "default",
-    Scopes:       []string{"introspect_tokens"},
+    ClientID:          "your-clients-id",
+    ClientSecret:      "your-clients-secret",
+    IssuerURL:         "https://acp.local:8443/default",
+    VanityDomainType:  "tenant",
+    TenantID:          "default",
+    Scopes:            []string{"introspect_tokens"},
 })
 ```
 
@@ -40,13 +40,13 @@ var client = acpclient.New(acpclient.Config{
 import "github.com/cloudentity/acp-client-go"
 
 var client = acpclient.New(acpclient.Config{
-    ClientID:     "your-clients-id",
-    ClientSecret: "your-clients-secret",
-    IssuerURL:    "https://default.acp.local:8443",
-    RoutingMode:  "server",
-    TenantID:     "default",
-    ServerID:     "default",
-    Scopes:       []string{"introspect_tokens"},
+    ClientID:          "your-clients-id",
+    ClientSecret:      "your-clients-secret",
+    IssuerURL:         "https://default.acp.local:8443",
+    VanityDomainType:  "server",
+    TenantID:          "default",
+    ServerID:          "default",
+    Scopes:            []string{"introspect_tokens"},
 })
 ```
 

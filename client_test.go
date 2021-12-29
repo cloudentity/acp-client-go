@@ -14,7 +14,7 @@ func TestBasePath(t *testing.T) {
 		url      string
 		tid      string
 		sid      string
-		rtgMode  string
+		vanityTp string
 		isErr    bool
 		basePath string
 		tenantID string
@@ -37,7 +37,7 @@ func TestBasePath(t *testing.T) {
 			title:    "Tenant vanity domain",
 			url:      "https://acp.local/system",
 			tid:      "default",
-			rtgMode:  "tenant",
+			vanityTp: "tenant",
 			tenantID: "default",
 			serverID: "system",
 		},
@@ -45,7 +45,7 @@ func TestBasePath(t *testing.T) {
 			title:    "Tenant vanity domain with base path",
 			url:      "https://acp.local/base/system",
 			tid:      "default",
-			rtgMode:  "tenant",
+			vanityTp: "tenant",
 			basePath: "/base",
 			tenantID: "default",
 			serverID: "system",
@@ -55,7 +55,7 @@ func TestBasePath(t *testing.T) {
 			url:      "https://system.acp.local",
 			tid:      "default",
 			sid:      "system",
-			rtgMode:  "server",
+			vanityTp: "server",
 			tenantID: "default",
 			serverID: "system",
 		},
@@ -64,29 +64,29 @@ func TestBasePath(t *testing.T) {
 			url:      "https://system.acp.local/base",
 			tid:      "default",
 			sid:      "system",
-			rtgMode:  "server",
+			vanityTp: "server",
 			basePath: "/base",
 			tenantID: "default",
 			serverID: "system",
 		},
 		// errors
 		{
-			title: "Tenant vanity domain without RoutingMode",
+			title: "Tenant vanity domain without VanityDomainType",
 			url:   "https://acp.local/system",
 			isErr: true,
 		},
 		{
-			title:   "Tenant vanity domain without configured TenantID",
-			url:     "https://acp.local/system",
-			rtgMode: "tenant",
-			isErr:   true,
+			title:    "Tenant vanity domain without configured TenantID",
+			url:      "https://acp.local/system",
+			vanityTp: "tenant",
+			isErr:    true,
 		},
 		{
-			title:   "Tenant vanity domain without configured ServerID",
-			url:     "https://system.acp.local",
-			tid:     "default",
-			rtgMode: "server",
-			isErr:   true,
+			title:    "Tenant vanity domain without configured ServerID",
+			url:      "https://system.acp.local",
+			tid:      "default",
+			vanityTp: "server",
+			isErr:    true,
 		},
 	} {
 		url, err := url.Parse(tc.url)
@@ -94,10 +94,10 @@ func TestBasePath(t *testing.T) {
 			t.Error(err)
 		}
 		config := Config{
-			IssuerURL:   url,
-			RoutingMode: tc.rtgMode,
-			TenantID:    tc.tid,
-			ServerID:    tc.sid,
+			IssuerURL:        url,
+			ServerID:         tc.sid,
+			TenantID:         tc.tid,
+			VanityDomainType: tc.vanityTp,
 		}
 		client := Client{}
 		err = client.configureBasePath(config)
@@ -119,7 +119,7 @@ func TestAPIPrefix(t *testing.T) {
 		basePath string
 		tenantID string
 		serverID string
-		rtgMode  string
+		vanityTp string
 		format   string
 		prefix   string
 	}{
@@ -132,7 +132,7 @@ func TestAPIPrefix(t *testing.T) {
 		},
 		{
 			title:    "Tenant domain /api/admin",
-			rtgMode:  "tenant",
+			vanityTp: "tenant",
 			tenantID: "default",
 			serverID: "system",
 			format:   "/api/admin/%s",
@@ -140,7 +140,7 @@ func TestAPIPrefix(t *testing.T) {
 		},
 		{
 			title:    "Server domain /api/admin",
-			rtgMode:  "server",
+			vanityTp: "server",
 			tenantID: "default",
 			serverID: "system",
 			format:   "/api/admin/%s",
@@ -155,7 +155,7 @@ func TestAPIPrefix(t *testing.T) {
 		},
 		{
 			title:    "Tenant domain /api/developer",
-			rtgMode:  "tenant",
+			vanityTp: "tenant",
 			tenantID: "default",
 			serverID: "system",
 			format:   "/api/developer/%s/%s",
@@ -163,7 +163,7 @@ func TestAPIPrefix(t *testing.T) {
 		},
 		{
 			title:    "Server domain /api/developer",
-			rtgMode:  "server",
+			vanityTp: "server",
 			tenantID: "default",
 			serverID: "system",
 			format:   "/api/developer/%s/%s",
@@ -178,7 +178,7 @@ func TestAPIPrefix(t *testing.T) {
 		},
 		{
 			title:    "Tenant domain /api/system",
-			rtgMode:  "tenant",
+			vanityTp: "tenant",
 			tenantID: "default",
 			serverID: "system",
 			format:   "/api/system/%s",
@@ -186,7 +186,7 @@ func TestAPIPrefix(t *testing.T) {
 		},
 		{
 			title:    "Server domain /api/system",
-			rtgMode:  "server",
+			vanityTp: "server",
 			tenantID: "default",
 			serverID: "system",
 			format:   "/api/system/%s",
@@ -201,7 +201,7 @@ func TestAPIPrefix(t *testing.T) {
 		},
 		{
 			title:    "Tenant domain common apis",
-			rtgMode:  "tenant",
+			vanityTp: "tenant",
 			tenantID: "default",
 			serverID: "system",
 			format:   "/%s/%s",
@@ -209,7 +209,7 @@ func TestAPIPrefix(t *testing.T) {
 		},
 		{
 			title:    "Server domain common apis",
-			rtgMode:  "server",
+			vanityTp: "server",
 			tenantID: "default",
 			serverID: "system",
 			format:   "/%s/%s",
@@ -220,6 +220,6 @@ func TestAPIPrefix(t *testing.T) {
 			TenantID: tc.tenantID,
 			ServerID: tc.serverID,
 		}
-		assert.Equal(t, tc.prefix, client.apiPathPrefix(tc.rtgMode, tc.format), tc.title)
+		assert.Equal(t, tc.prefix, client.apiPathPrefix(tc.vanityTp, tc.format), tc.title)
 	}
 }

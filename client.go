@@ -170,13 +170,13 @@ type Config struct {
 	// HttpClient is the client to use. Default will be used if not provided.
 	HttpClient *http.Client `json:"-"`
 
-	// Routing mode, one of "", "tenant" or "server".
-	RoutingMode string `json:"routing_mode"`
+	// Optional vanity domain type, one of "", "tenant" or "server".
+	VanityDomainType string `json:"vanity_domain_type"`
 
-	// Tenant id required when RoutingMode is "tenant" or "server"
+	// Tenant id required when VanityDomainType is "tenant" or "server"
 	TenantID string `json:"tenant_id"`
 
-	// Authorization server id required when RoutingMode is "server".
+	// Authorization server id required when VanityDomainType is "server".
 	ServerID string `json:"server_id"`
 }
 
@@ -210,7 +210,7 @@ func (c *Client) configureBasePath(cfg Config) error {
 		paths   []string
 		lastIdx int
 	)
-	switch cfg.RoutingMode {
+	switch cfg.VanityDomainType {
 	case "":
 		paths = strings.Split(cfg.IssuerURL.Path, "/")
 		if len(paths) < 3 {
@@ -409,7 +409,7 @@ func New(cfg Config) (c Client, err error) {
 	c.Oauth2 = &Oauth2{
 		Acp: o2Client.New(httptransport.NewWithClient(
 			cfg.IssuerURL.Host,
-			c.apiPathPrefix(cfg.RoutingMode, "/%s/%s"),
+			c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
 			[]string{cfg.IssuerURL.Scheme},
 			NewAuthenticator(cc, c.c),
 		).WithOpenTracing(), nil),
@@ -418,7 +418,7 @@ func New(cfg Config) (c Client, err error) {
 	c.Admin = &Admin{
 		Acp: adminClient.New(httptransport.NewWithClient(
 			cfg.IssuerURL.Host,
-			c.apiPathPrefix(cfg.RoutingMode, "/api/admin/%s"),
+			c.apiPathPrefix(cfg.VanityDomainType, "/api/admin/%s"),
 			[]string{cfg.IssuerURL.Scheme},
 			NewAuthenticator(cc, c.c),
 		).WithOpenTracing(), nil),
@@ -427,7 +427,7 @@ func New(cfg Config) (c Client, err error) {
 	c.Developer = &Developer{
 		Acp: developerClient.New(httptransport.NewWithClient(
 			cfg.IssuerURL.Host,
-			c.apiPathPrefix(cfg.RoutingMode, "/api/developer/%s/%s"),
+			c.apiPathPrefix(cfg.VanityDomainType, "/api/developer/%s/%s"),
 			[]string{cfg.IssuerURL.Scheme},
 			NewAuthenticator(cc, c.c),
 		).WithOpenTracing(), nil),
@@ -436,7 +436,7 @@ func New(cfg Config) (c Client, err error) {
 	c.Public = &Public{
 		Acp: publicClient.New(httptransport.NewWithClient(
 			cfg.IssuerURL.Host,
-			c.apiPathPrefix(cfg.RoutingMode, "/%s/%s"),
+			c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
 			[]string{cfg.IssuerURL.Scheme},
 			NewAuthenticator(cc, c.c),
 		).WithOpenTracing(), nil),
@@ -454,7 +454,7 @@ func New(cfg Config) (c Client, err error) {
 	c.System = &System{
 		Acp: systemClient.New(httptransport.NewWithClient(
 			cfg.IssuerURL.Host,
-			c.apiPathPrefix(cfg.RoutingMode, "/api/system/%s"),
+			c.apiPathPrefix(cfg.VanityDomainType, "/api/system/%s"),
 			[]string{cfg.IssuerURL.Scheme},
 			NewAuthenticator(cc, c.c),
 		).WithOpenTracing(), nil),
@@ -463,13 +463,13 @@ func New(cfg Config) (c Client, err error) {
 	c.Web = &Web{
 		Acp: webClient.New(httptransport.NewWithClient(
 			cfg.IssuerURL.Host,
-			c.apiPathPrefix(cfg.RoutingMode, "/%s/%s"),
+			c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
 			[]string{cfg.IssuerURL.Scheme},
 			NewAuthenticator(cc, c.c),
 		).WithOpenTracing(), nil),
 	}
 
-	apiPrefix := c.apiPathPrefix(cfg.RoutingMode, "/%s/%s")
+	apiPrefix := c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s")
 
 	c.OpenbankingUK = &OpenbankingUK{
 		Accounts: obukAccounts.New(httptransport.NewWithClient(
@@ -509,10 +509,10 @@ func New(cfg Config) (c Client, err error) {
 }
 
 // apiPathPrefix adjusts the default API path prefixes to work with vanity domains.
-func (c *Client) apiPathPrefix(routingMode string, format string) string {
+func (c *Client) apiPathPrefix(vanityDomainType string, format string) string {
 	switch format {
 	case "/api/admin/%s":
-		switch routingMode {
+		switch vanityDomainType {
 		case "tenant", "server":
 			return c.BasePath + "/api/admin"
 		default:
@@ -520,7 +520,7 @@ func (c *Client) apiPathPrefix(routingMode string, format string) string {
 		}
 
 	case "/api/developer/%s/%s":
-		switch routingMode {
+		switch vanityDomainType {
 		case "server":
 			return c.BasePath + "/api/developer"
 		case "tenant":
@@ -530,7 +530,7 @@ func (c *Client) apiPathPrefix(routingMode string, format string) string {
 		}
 
 	case "/api/system/%s":
-		switch routingMode {
+		switch vanityDomainType {
 		case "tenant", "server":
 			return c.BasePath + "/api/system"
 		default:
@@ -538,7 +538,7 @@ func (c *Client) apiPathPrefix(routingMode string, format string) string {
 		}
 
 	case "/%s/%s":
-		switch routingMode {
+		switch vanityDomainType {
 		case "server":
 			return c.BasePath
 		case "tenant":
