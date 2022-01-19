@@ -30,6 +30,7 @@ import (
 
 	adminClient "github.com/cloudentity/acp-client-go/clients/admin/client"
 	developerClient "github.com/cloudentity/acp-client-go/clients/developer/client"
+	openbankingClient "github.com/cloudentity/acp-client-go/clients/openbanking/client"
 	publicClient "github.com/cloudentity/acp-client-go/clients/public/client"
 	rootClient "github.com/cloudentity/acp-client-go/clients/root/client"
 	systemClient "github.com/cloudentity/acp-client-go/clients/system/client"
@@ -85,15 +86,20 @@ type Root struct {
 	*rootClient.Acp
 }
 
+type Openbanking struct {
+	*openbankingClient.Acp
+}
+
 // Client provides a client to the ACP API
 type Client struct {
-	Oauth2    *Oauth2
-	Admin     *Admin
-	Developer *Developer
-	Public    *Public
-	System    *System
-	Web       *Web
-	Root      *Root
+	Oauth2      *Oauth2
+	Admin       *Admin
+	Developer   *Developer
+	Public      *Public
+	System      *System
+	Web         *Web
+	Root        *Root
+	Openbanking *Openbanking
 
 	*OpenbankingUK
 	*OpenbankingBrasil
@@ -462,6 +468,15 @@ func New(cfg Config) (c Client, err error) {
 
 	c.Web = &Web{
 		Acp: webClient.New(httptransport.NewWithClient(
+			cfg.IssuerURL.Host,
+			c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
+			[]string{cfg.IssuerURL.Scheme},
+			NewAuthenticator(cc, c.c),
+		).WithOpenTracing(), nil),
+	}
+
+	c.Openbanking = &Openbanking{
+		Acp: openbankingClient.New(httptransport.NewWithClient(
 			cfg.IssuerURL.Host,
 			c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
 			[]string{cfg.IssuerURL.Scheme},
