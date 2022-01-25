@@ -115,6 +115,291 @@ definitions:
     additionalProperties:
       type: object
     type: object
+  BrazilConsent:
+    properties:
+      account_ids:
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      client_id:
+        format: clientID
+        type: string
+        x-nullable: false
+      cnpj:
+        type: string
+        x-nullable: false
+      consent_id:
+        format: consentID
+        type: string
+        x-nullable: false
+      cpf:
+        type: string
+        x-nullable: false
+      created_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      customer_data_access_consent:
+        $ref: '#/definitions/BrazilCustomerDataAccessConsent'
+      customer_payment_consent:
+        $ref: '#/definitions/BrazilCustomerPaymentConsent'
+      idempotency_key:
+        type: string
+        x-nullable: false
+      request_hash:
+        type: string
+        x-nullable: false
+      server_id:
+        format: serverID
+        type: string
+        x-nullable: false
+      spec:
+        type: string
+        x-nullable: false
+      spec_version:
+        type: string
+        x-nullable: false
+      status:
+        type: string
+        x-nullable: false
+      tenant_id:
+        format: tenantID
+        type: string
+        x-nullable: false
+      type:
+        $ref: '#/definitions/ConsentType'
+    type: object
+  BrazilCustomerDataAccessConsent:
+    properties:
+      consentId:
+        description: |-
+          O consentId  o identificador nico do consentimento e dever ser um URN - Uniform Resource Name.
+          Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141)  um Uniform Resource
+          Identifier - URI - que  atribudo sob o URI scheme "urn" e um namespace URN especfico, com a inteno de que o URN
+          seja um identificador de recurso persistente e independente da localizao.
+          Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+          o namespace(urn)
+          o identificador associado ao namespace da instituio transnmissora (bancoex)
+          o identificador especfico dentro do namespace (C1DD33123).
+          Informaes mais detalhadas sobre a construo de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+        example: urn:bancoex:C1DD33123
+        maxLength: 256
+        pattern: ^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$
+        type: string
+        x-nullable: false
+      creationDateTime:
+        description: Data e hora em que o recurso foi criado. Uma string com data
+          e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
+          UTC(UTC time format).
+        example: "2021-05-21T08:30:00Z"
+        format: date-time
+        type: string
+        x-nullable: false
+      document:
+        $ref: '#/definitions/OpenbankingBrasilConsentDocument1'
+      expirationDateTime:
+        description: Data e hora de expirao da permisso. De preenchimento obrigatrio,
+          reflete a data limite de validade do consentimento. Uma string com data
+          e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
+          UTC(UTC time format).
+        example: "2021-05-21T08:30:00Z"
+        format: date-time
+        type: string
+        x-nullable: false
+      permissions:
+        description: Especifica os tipos de permisses de acesso s APIs no escopo do
+          Open Banking Brasil - Fase 2, de acordo com os blocos de consentimento fornecidos
+          pelo usurio e necessrios ao acesso a cada endpoint das APIs.
+        example:
+        - ACCOUNTS_READ
+        - ACCOUNTS_OVERDRAFT_LIMITS_READ
+        - RESOURCES_READ
+        items:
+          $ref: '#/definitions/OpenbankingBrasilConsentPermission1'
+        maxItems: 30
+        minItems: 1
+        type: array
+        x-nullable: false
+      status:
+        $ref: '#/definitions/OpenbankingBrasilConsentStatus'
+      statusUpdateDateTime:
+        description: Data e hora em que o recurso foi atualizado. Uma string com data
+          e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
+          UTC(UTC time format).
+        example: "2021-05-21T08:30:00Z"
+        format: date-time
+        type: string
+        x-nullable: false
+      transactionFromDateTime:
+        description: Data e hora da transao inicial. Se no for preenchido, a transao
+          ter a data aberta e a data ser retornada com a primeira transao disponvel.
+          Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao
+          de timezone UTC(UTC time format).
+        example: "2021-01-01T00:00:00Z"
+        format: date-time
+        type: string
+        x-nullable: false
+      transactionToDateTime:
+        description: Data e hora final da transao. Se no for preenchido, a transao
+          ter a data aberta e a data ser retornada com a ultima transao disponvel.
+          Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao
+          de timezone UTC(UTC time format).
+        example: "2021-02-01T23:59:59Z"
+        format: date-time
+        type: string
+        x-nullable: false
+    required:
+    - consentId
+    - creationDateTime
+    - expirationDateTime
+    - permissions
+    - status
+    - statusUpdateDateTime
+    - document
+    type: object
+  BrazilCustomerDataAccessConsentRequest:
+    properties:
+      data:
+        $ref: '#/definitions/OpenbankingBrasilConsentData'
+    required:
+    - data
+    type: object
+  BrazilCustomerDataAccessConsentResponse:
+    properties:
+      data:
+        $ref: '#/definitions/OpenbankingBrasilConsentData1'
+      links:
+        $ref: '#/definitions/OpenbankingBrasilConsentLinks'
+      meta:
+        $ref: '#/definitions/OpenbankingBrasilConsentMeta'
+    required:
+    - data
+    type: object
+  BrazilCustomerPaymentConsent:
+    properties:
+      businessEntity:
+        $ref: '#/definitions/OpenbankingBrasilPaymentBusinessEntity'
+      consentId:
+        description: |-
+          Identificador nico do consentimento criado para a iniciao de pagamento solicitada. Dever ser um URN - Uniform Resource Name.
+          Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141)  um Uniform Resource
+          Identifier - URI - que  atribudo sob o URI scheme "urn" e um namespace URN especfico, com a inteno de que o URN
+          seja um identificador de recurso persistente e independente da localizao.
+          Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+          o namespace(urn)
+          o identificador associado ao namespace da instituio transnmissora (bancoex)
+          o identificador especfico dentro do namespace (C1DD33123).
+          Informaes mais detalhadas sobre a construo de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+        example: urn:bancoex:C1DD33123
+        maxLength: 256
+        pattern: ^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$
+        type: string
+        x-nullable: false
+      creationDateTime:
+        description: Data e hora em que o consentimento foi criado. Uma string com
+          data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
+          UTC(UTC time format).
+        example: "2021-05-21T08:30:00Z"
+        format: date-time
+        type: string
+        x-nullable: false
+      creditor:
+        $ref: '#/definitions/OpenbankingBrasilPaymentIdentification'
+      debtorAccount:
+        $ref: '#/definitions/OpenbankingBrasilPaymentDebtorAccount'
+      expirationDateTime:
+        description: |-
+          Data e hora em que o consentimento da iniciao de pagamento expira, devendo ser sempre o creationDateTime mais 5 minutos. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC (UTC time format).
+          O consentimento  criado com o status AWAITING_AUTHORISATION, e deve assumir o status AUTHORIZED ou REJECTED antes do tempo de expirao - 5 minutos. Caso o tempo seja expirado, o status deve assumir REJECTED.
+          Para o cenrio em que o status assumiu AUTHORISED, o tempo mximo do expirationDateTime do consentimento deve assumir "now + 60 minutos". Este  o tempo para consumir o consentimento autorizado, mudando seu status para CONSUMED. No  possvel prorrogar este tempo e a criao de um novo consentimento ser necessria para os cenrios de insucesso.
+          O tempo do expirationDateTime  garantido com os 15 minutos do access token, sendo possvel utilizar mais trs refresh tokens at totalizar 60 minutos.
+        example: "2021-05-21T08:30:00Z"
+        format: date-time
+        type: string
+        x-nullable: false
+      ibgeTownCode:
+        description: |-
+          Traz o cdigo da cidade segundo o IBGE (Instituto Brasileiro de Geografia e Estatstica).
+          Para o preenchimento deste campo, o Iniciador de Pagamentos deve seguir a orientao do arranjo da forma de pagamento.
+          O preenchimento do campo tanto em pix/payments quanto /consents deve ser igual. Caso haja divergncia dos valores, a instituio deve retornar HTTP 422 com o cdigo de erro PAGAMENTO_DIVERGENTE_DO_CONSENTIMENTO.
+          Este campo faz referncia ao campo CodMun do arranjo Pix.
+        example: "5300108"
+        maxLength: 7
+        minLength: 7
+        pattern: ^\d{7}$
+        type: string
+        x-nullable: false
+      loggedUser:
+        $ref: '#/definitions/OpenbankingBrasilPaymentLoggedUser'
+      payment:
+        $ref: '#/definitions/OpenbankingBrasilPaymentPaymentConsent'
+      status:
+        $ref: '#/definitions/OpenbankingBrasilPaymentEnumAuthorisationStatusType'
+      statusUpdateDateTime:
+        description: Data e hora em que o recurso foi atualizado. Uma string com data
+          e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
+          UTC(UTC time format).
+        example: "2021-05-21T08:30:00Z"
+        format: date-time
+        type: string
+        x-nullable: false
+    required:
+    - consentId
+    - creationDateTime
+    - creditor
+    - expirationDateTime
+    - loggedUser
+    - payment
+    - status
+    - statusUpdateDateTime
+    type: object
+  BrazilCustomerPaymentConsentRequest:
+    properties:
+      aud:
+        type: string
+        x-nullable: false
+      data:
+        $ref: '#/definitions/OpenbankingBrasilPaymentData'
+      iat:
+        format: int64
+        type: integer
+        x-nullable: false
+      iss:
+        type: string
+        x-nullable: false
+      jti:
+        type: string
+        x-nullable: false
+    required:
+    - data
+    type: object
+  BrazilCustomerPaymentConsentResponse:
+    properties:
+      aud:
+        type: string
+        x-nullable: false
+      data:
+        $ref: '#/definitions/OpenbankingBrasilPaymentData1'
+      iat:
+        format: int64
+        type: integer
+        x-nullable: false
+      iss:
+        type: string
+        x-nullable: false
+      jti:
+        type: string
+        x-nullable: false
+      links:
+        $ref: '#/definitions/OpenbankingBrasilPaymentLinks'
+      meta:
+        $ref: '#/definitions/OpenbankingBrasilPaymentMeta'
+    required:
+    - data
+    - links
+    - meta
+    type: object
   BuildingNumber:
     title: BuildingNumber Number that identifies the position of a building on a street.
     type: string
@@ -177,6 +462,34 @@ definitions:
     type: object
   CDRArrangementID:
     type: string
+  CDRArrangements:
+    properties:
+      arrangements:
+        items:
+          $ref: '#/definitions/CDRArrangement'
+        type: array
+        x-nullable: false
+    type: object
+  CDRError:
+    properties:
+      code:
+        type: string
+        x-nullable: false
+      detail:
+        type: string
+        x-nullable: false
+      title:
+        type: string
+        x-nullable: false
+    type: object
+  CDRErrorResponse:
+    properties:
+      errors:
+        items:
+          $ref: '#/definitions/CDRError'
+        type: array
+        x-nullable: false
+    type: object
   ClientInfo:
     properties:
       client_name:
@@ -376,69 +689,6 @@ definitions:
     type: string
   ConsentType:
     type: string
-  ConsentWithClient:
-    properties:
-      Client:
-        $ref: '#/definitions/OpenbankingClient'
-      account_access_consent:
-        $ref: '#/definitions/AccountAccessConsent'
-      account_ids:
-        items:
-          type: string
-        type: array
-        x-nullable: false
-      client_id:
-        format: clientID
-        type: string
-        x-nullable: false
-      consent_id:
-        format: consentID
-        type: string
-        x-nullable: false
-      created_at:
-        format: date-time
-        type: string
-        x-nullable: false
-      domestic_payment_consent:
-        $ref: '#/definitions/DomesticPaymentConsent'
-      domestic_scheduled_payment_consent:
-        $ref: '#/definitions/DomesticScheduledPaymentConsent'
-      domestic_standing_order_consent:
-        $ref: '#/definitions/DomesticStandingOrderConsent'
-      file_payment_consent:
-        $ref: '#/definitions/FilePaymentConsent'
-      idempotency_key:
-        type: string
-        x-nullable: false
-      international_payment_consent:
-        $ref: '#/definitions/InternationalPaymentConsent'
-      international_scheduled_payment_consent:
-        $ref: '#/definitions/InternationalScheduledPaymentConsent'
-      international_standing_order_consent:
-        $ref: '#/definitions/InternationalStandingOrderConsent'
-      request_hash:
-        type: string
-        x-nullable: false
-      server_id:
-        format: serverID
-        type: string
-        x-nullable: false
-      spec:
-        type: string
-        x-nullable: false
-      spec_version:
-        type: string
-        x-nullable: false
-      status:
-        type: string
-        x-nullable: false
-      tenant_id:
-        format: tenantID
-        type: string
-        x-nullable: false
-      type:
-        $ref: '#/definitions/ConsentType'
-    type: object
   ConsentsRemovedResponse:
     properties:
       number_of_consents_removed:
@@ -480,6 +730,8 @@ definitions:
           optional limit results
           Limit
         format: int64
+        maximum: 100
+        minimum: 1
         type: integer
         x-nullable: false
       order:
@@ -688,14 +940,6 @@ definitions:
         $ref: '#/definitions/Meta'
     required:
     - Data
-    type: object
-  GenericConsents:
-    properties:
-      Consents:
-        items:
-          $ref: '#/definitions/ConsentWithClient'
-        type: array
-        x-nullable: false
     type: object
   GetAccountAccessConsentResponse:
     properties:
@@ -1153,7 +1397,7 @@ definitions:
         type: string
         x-nullable: false
       customer_data_access_consent:
-        $ref: '#/definitions/OBBRCustomerDataAccessConsent'
+        $ref: '#/definitions/BrazilCustomerDataAccessConsent'
       requested_scopes:
         items:
           $ref: '#/definitions/RequestedScope'
@@ -1201,7 +1445,7 @@ definitions:
         type: string
         x-nullable: false
       customer_payment_consent:
-        $ref: '#/definitions/OBBRCustomerPaymentConsent'
+        $ref: '#/definitions/BrazilCustomerPaymentConsent'
       requested_scopes:
         items:
           $ref: '#/definitions/RequestedScope'
@@ -1333,22 +1577,168 @@ definitions:
   IntrospectOBBRDataAccessConsentResponse:
     allOf:
     - $ref: '#/definitions/IntrospectResponse'
-    - $ref: '#/definitions/OBBRCustomerDataAccessConsent'
     - properties:
         AccountIDs:
           items:
             type: string
           type: array
+        consentId:
+          description: |-
+            O consentId  o identificador nico do consentimento e dever ser um URN - Uniform Resource Name.
+            Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141)  um Uniform Resource
+            Identifier - URI - que  atribudo sob o URI scheme "urn" e um namespace URN especfico, com a inteno de que o URN
+            seja um identificador de recurso persistente e independente da localizao.
+            Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+            o namespace(urn)
+            o identificador associado ao namespace da instituio transnmissora (bancoex)
+            o identificador especfico dentro do namespace (C1DD33123).
+            Informaes mais detalhadas sobre a construo de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+          example: urn:bancoex:C1DD33123
+          maxLength: 256
+          pattern: ^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$
+          type: string
+        creationDateTime:
+          description: Data e hora em que o recurso foi criado. Uma string com data
+            e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
+            UTC(UTC time format).
+          example: "2021-05-21T08:30:00Z"
+          format: date-time
+          type: string
+        document:
+          $ref: '#/definitions/OpenbankingBrasilConsentDocument1'
+        expirationDateTime:
+          description: Data e hora de expirao da permisso. De preenchimento obrigatrio,
+            reflete a data limite de validade do consentimento. Uma string com data
+            e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
+            UTC(UTC time format).
+          example: "2021-05-21T08:30:00Z"
+          format: date-time
+          type: string
+        permissions:
+          description: Especifica os tipos de permisses de acesso s APIs no escopo
+            do Open Banking Brasil - Fase 2, de acordo com os blocos de consentimento
+            fornecidos pelo usurio e necessrios ao acesso a cada endpoint das APIs.
+          example:
+          - ACCOUNTS_READ
+          - ACCOUNTS_OVERDRAFT_LIMITS_READ
+          - RESOURCES_READ
+          items:
+            $ref: '#/definitions/OpenbankingBrasilConsentPermission1'
+          maxItems: 30
+          minItems: 1
+          type: array
+        status:
+          $ref: '#/definitions/OpenbankingBrasilConsentStatus'
+        statusUpdateDateTime:
+          description: Data e hora em que o recurso foi atualizado. Uma string com
+            data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
+            UTC(UTC time format).
+          example: "2021-05-21T08:30:00Z"
+          format: date-time
+          type: string
+        transactionFromDateTime:
+          description: Data e hora da transao inicial. Se no for preenchido, a transao
+            ter a data aberta e a data ser retornada com a primeira transao disponvel.
+            Uma string com data e hora conforme especificao RFC-3339, sempre com a
+            utilizao de timezone UTC(UTC time format).
+          example: "2021-01-01T00:00:00Z"
+          format: date-time
+          type: string
+        transactionToDateTime:
+          description: Data e hora final da transao. Se no for preenchido, a transao
+            ter a data aberta e a data ser retornada com a ultima transao disponvel.
+            Uma string com data e hora conforme especificao RFC-3339, sempre com a
+            utilizao de timezone UTC(UTC time format).
+          example: "2021-02-01T23:59:59Z"
+          format: date-time
+          type: string
+      required:
+      - consentId
+      - creationDateTime
+      - expirationDateTime
+      - permissions
+      - status
+      - statusUpdateDateTime
+      - document
       type: object
   IntrospectOBBRPaymentConsentResponse:
     allOf:
     - $ref: '#/definitions/IntrospectResponse'
-    - $ref: '#/definitions/OBBRCustomerPaymentConsent'
     - properties:
         AccountIDs:
           items:
             type: string
           type: array
+        businessEntity:
+          $ref: '#/definitions/OpenbankingBrasilPaymentBusinessEntity'
+        consentId:
+          description: |-
+            Identificador nico do consentimento criado para a iniciao de pagamento solicitada. Dever ser um URN - Uniform Resource Name.
+            Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141)  um Uniform Resource
+            Identifier - URI - que  atribudo sob o URI scheme "urn" e um namespace URN especfico, com a inteno de que o URN
+            seja um identificador de recurso persistente e independente da localizao.
+            Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+            o namespace(urn)
+            o identificador associado ao namespace da instituio transnmissora (bancoex)
+            o identificador especfico dentro do namespace (C1DD33123).
+            Informaes mais detalhadas sobre a construo de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+          example: urn:bancoex:C1DD33123
+          maxLength: 256
+          pattern: ^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$
+          type: string
+        creationDateTime:
+          description: Data e hora em que o consentimento foi criado. Uma string com
+            data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
+            UTC(UTC time format).
+          example: "2021-05-21T08:30:00Z"
+          format: date-time
+          type: string
+        creditor:
+          $ref: '#/definitions/OpenbankingBrasilPaymentIdentification'
+        debtorAccount:
+          $ref: '#/definitions/OpenbankingBrasilPaymentDebtorAccount'
+        expirationDateTime:
+          description: |-
+            Data e hora em que o consentimento da iniciao de pagamento expira, devendo ser sempre o creationDateTime mais 5 minutos. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC (UTC time format).
+            O consentimento  criado com o status AWAITING_AUTHORISATION, e deve assumir o status AUTHORIZED ou REJECTED antes do tempo de expirao - 5 minutos. Caso o tempo seja expirado, o status deve assumir REJECTED.
+            Para o cenrio em que o status assumiu AUTHORISED, o tempo mximo do expirationDateTime do consentimento deve assumir "now + 60 minutos". Este  o tempo para consumir o consentimento autorizado, mudando seu status para CONSUMED. No  possvel prorrogar este tempo e a criao de um novo consentimento ser necessria para os cenrios de insucesso.
+            O tempo do expirationDateTime  garantido com os 15 minutos do access token, sendo possvel utilizar mais trs refresh tokens at totalizar 60 minutos.
+          example: "2021-05-21T08:30:00Z"
+          format: date-time
+          type: string
+        ibgeTownCode:
+          description: |-
+            Traz o cdigo da cidade segundo o IBGE (Instituto Brasileiro de Geografia e Estatstica).
+            Para o preenchimento deste campo, o Iniciador de Pagamentos deve seguir a orientao do arranjo da forma de pagamento.
+            O preenchimento do campo tanto em pix/payments quanto /consents deve ser igual. Caso haja divergncia dos valores, a instituio deve retornar HTTP 422 com o cdigo de erro PAGAMENTO_DIVERGENTE_DO_CONSENTIMENTO.
+            Este campo faz referncia ao campo CodMun do arranjo Pix.
+          example: "5300108"
+          maxLength: 7
+          minLength: 7
+          pattern: ^\d{7}$
+          type: string
+        loggedUser:
+          $ref: '#/definitions/OpenbankingBrasilPaymentLoggedUser'
+        payment:
+          $ref: '#/definitions/OpenbankingBrasilPaymentPaymentConsent'
+        status:
+          $ref: '#/definitions/OpenbankingBrasilPaymentEnumAuthorisationStatusType'
+        statusUpdateDateTime:
+          description: Data e hora em que o recurso foi atualizado. Uma string com
+            data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
+            UTC(UTC time format).
+          example: "2021-05-21T08:30:00Z"
+          format: date-time
+          type: string
+      required:
+      - consentId
+      - creationDateTime
+      - creditor
+      - expirationDateTime
+      - loggedUser
+      - payment
+      - status
+      - statusUpdateDateTime
       type: object
   IntrospectResponse:
     properties:
@@ -1419,6 +1809,14 @@ definitions:
           NotBefore is an integer timestamp, measured in the number of seconds
           since January 1 1970 UTC, indicating when this token is not to be
           used before.
+        format: int64
+        type: integer
+        x-nullable: false
+      refresh_token_expires_at:
+        description: |-
+          Refresh Token Expires at is an integer timestamp, measured in the number
+          of seconds since January 1 1970 UTC, indicating when the issued refresh
+          token witll expire.
         format: int64
         type: integer
         x-nullable: false
@@ -1549,8 +1947,14 @@ definitions:
         format: clientID
         type: string
         x-nullable: false
+      cnpj:
+        type: string
+        x-nullable: false
       consent_id:
         format: consentID
+        type: string
+        x-nullable: false
+      cpf:
         type: string
         x-nullable: false
       created_at:
@@ -1558,9 +1962,9 @@ definitions:
         type: string
         x-nullable: false
       customer_data_access_consent:
-        $ref: '#/definitions/OBBRCustomerDataAccessConsent'
+        $ref: '#/definitions/BrazilCustomerDataAccessConsent'
       customer_payment_consent:
-        $ref: '#/definitions/OBBRCustomerPaymentConsent'
+        $ref: '#/definitions/BrazilCustomerPaymentConsent'
       idempotency_key:
         type: string
         x-nullable: false
@@ -1595,235 +1999,85 @@ definitions:
         type: array
         x-nullable: false
     type: object
-  OBBRCustomerDataAccessConsent:
+  OBBRConsentsRequest:
     properties:
-      consentId:
+      accounts:
         description: |-
-          O consentId  o identificador nico do consentimento e dever ser um URN - Uniform Resource Name.
-          Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141)  um Uniform Resource
-          Identifier - URI - que  atribudo sob o URI scheme "urn" e um namespace URN especfico, com a inteno de que o URN
-          seja um identificador de recurso persistente e independente da localizao.
-          Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
-          o namespace(urn)
-          o identificador associado ao namespace da instituio transnmissora (bancoex)
-          o identificador especfico dentro do namespace (C1DD33123).
-          Informaes mais detalhadas sobre a construo de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
-        example: urn:bancoex:C1DD33123
-        maxLength: 256
-        pattern: ^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$
-        type: string
-        x-nullable: false
-      creationDateTime:
-        description: Data e hora em que o recurso foi criado. Uma string com data
-          e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
-          UTC(UTC time format).
-        example: "2021-05-21T08:30:00Z"
-        format: date-time
-        type: string
-        x-nullable: false
-      document:
-        $ref: '#/definitions/OpenbankingBrasilConsentDocument1'
-      expirationDateTime:
-        description: Data e hora de expirao da permisso. De preenchimento obrigatrio,
-          reflete a data limite de validade do consentimento. Uma string com data
-          e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
-          UTC(UTC time format).
-        example: "2021-05-21T08:30:00Z"
-        format: date-time
-        type: string
-        x-nullable: false
-      permissions:
-        description: Especifica os tipos de permisses de acesso s APIs no escopo do
-          Open Banking Brasil - Fase 2, de acordo com os blocos de consentimento fornecidos
-          pelo usurio e necessrios ao acesso a cada endpoint das APIs.
-        example:
-        - ACCOUNTS_READ
-        - ACCOUNTS_OVERDRAFT_LIMITS_READ
-        - RESOURCES_READ
+          Optional list of accounts
+          Accounts
         items:
-          $ref: '#/definitions/OpenbankingBrasilConsentPermission1'
-        maxItems: 30
-        minItems: 1
+          type: string
         type: array
         x-nullable: false
-      status:
-        $ref: '#/definitions/OpenbankingBrasilConsentStatus'
-      statusUpdateDateTime:
-        description: Data e hora em que o recurso foi atualizado. Uma string com data
-          e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
-          UTC(UTC time format).
-        example: "2021-05-21T08:30:00Z"
-        format: date-time
-        type: string
-        x-nullable: false
-      transactionFromDateTime:
-        description: Data e hora da transao inicial. Se no for preenchido, a transao
-          ter a data aberta e a data ser retornada com a primeira transao disponvel.
-          Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao
-          de timezone UTC(UTC time format).
-        example: "2021-01-01T00:00:00Z"
-        format: date-time
-        type: string
-        x-nullable: false
-      transactionToDateTime:
-        description: Data e hora final da transao. Se no for preenchido, a transao
-          ter a data aberta e a data ser retornada com a ultima transao disponvel.
-          Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao
-          de timezone UTC(UTC time format).
-        example: "2021-02-01T23:59:59Z"
-        format: date-time
-        type: string
-        x-nullable: false
-    required:
-    - consentId
-    - creationDateTime
-    - expirationDateTime
-    - permissions
-    - status
-    - statusUpdateDateTime
-    - document
-    type: object
-  OBBRCustomerDataAccessConsentRequest:
-    properties:
-      data:
-        $ref: '#/definitions/OpenbankingBrasilConsentData'
-    required:
-    - data
-    type: object
-  OBBRCustomerDataAccessConsentResponse:
-    properties:
-      data:
-        $ref: '#/definitions/OpenbankingBrasilConsentData1'
-      links:
-        $ref: '#/definitions/OpenbankingBrasilConsentLinks'
-      meta:
-        $ref: '#/definitions/OpenbankingBrasilConsentMeta'
-    required:
-    - data
-    type: object
-  OBBRCustomerPaymentConsent:
-    properties:
-      businessEntity:
-        $ref: '#/definitions/OpenbankingBrasilPaymentBusinessEntity'
-      consentId:
+      after_consent_id:
         description: |-
-          Identificador nico do consentimento criado para a iniciao de pagamento solicitada. Dever ser um URN - Uniform Resource Name.
-          Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141)  um Uniform Resource
-          Identifier - URI - que  atribudo sob o URI scheme "urn" e um namespace URN especfico, com a inteno de que o URN
-          seja um identificador de recurso persistente e independente da localizao.
-          Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
-          o namespace(urn)
-          o identificador associado ao namespace da instituio transnmissora (bancoex)
-          o identificador especfico dentro do namespace (C1DD33123).
-          Informaes mais detalhadas sobre a construo de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
-        example: urn:bancoex:C1DD33123
-        maxLength: 256
-        pattern: ^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$
+          optional list consents after given id
+          AfterConsentID
         type: string
         x-nullable: false
-      creationDateTime:
-        description: Data e hora em que o consentimento foi criado. Uma string com
-          data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
-          UTC(UTC time format).
-        example: "2021-05-21T08:30:00Z"
-        format: date-time
-        type: string
-        x-nullable: false
-      creditor:
-        $ref: '#/definitions/OpenbankingBrasilPaymentIdentification'
-      debtorAccount:
-        $ref: '#/definitions/OpenbankingBrasilPaymentDebtorAccount'
-      expirationDateTime:
+      before_consent_id:
         description: |-
-          Data e hora em que o consentimento da iniciao de pagamento expira, devendo ser sempre o creationDateTime mais 5 minutos. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC (UTC time format).
-          O consentimento  criado com o status AWAITING_AUTHORISATION, e deve assumir o status AUTHORIZED ou REJECTED antes do tempo de expirao - 5 minutos. Caso o tempo seja expirado, o status deve assumir REJECTED.
-          Para o cenrio em que o status assumiu AUTHORISED, o tempo mximo do expirationDateTime do consentimento deve assumir "now + 60 minutos". Este  o tempo para consumir o consentimento autorizado, mudando seu status para CONSUMED. No  possvel prorrogar este tempo e a criao de um novo consentimento ser necessria para os cenrios de insucesso.
-          O tempo do expirationDateTime  garantido com os 15 minutos do access token, sendo possvel utilizar mais trs refresh tokens at totalizar 60 minutos.
-        example: "2021-05-21T08:30:00Z"
-        format: date-time
+          optional list consents before given id
+          BeforeConsentID
         type: string
         x-nullable: false
-      ibgeTownCode:
+      client_id:
         description: |-
-          Traz o cdigo da cidade segundo o IBGE (Instituto Brasileiro de Geografia e Estatstica).
-          Para o preenchimento deste campo, o Iniciador de Pagamentos deve seguir a orientao do arranjo da forma de pagamento.
-          O preenchimento do campo tanto em pix/payments quanto /consents deve ser igual. Caso haja divergncia dos valores, a instituio deve retornar HTTP 422 com o cdigo de erro PAGAMENTO_DIVERGENTE_DO_CONSENTIMENTO.
-          Este campo faz referncia ao campo CodMun do arranjo Pix.
-        example: "5300108"
-        maxLength: 7
-        minLength: 7
-        pattern: ^\d{7}$
+          Optional client id
+          ClientID
         type: string
         x-nullable: false
-      loggedUser:
-        $ref: '#/definitions/OpenbankingBrasilPaymentLoggedUser'
-      payment:
-        $ref: '#/definitions/OpenbankingBrasilPaymentPaymentConsent'
-      status:
-        $ref: '#/definitions/OpenbankingBrasilPaymentEnumAuthorisationStatusType'
-      statusUpdateDateTime:
-        description: Data e hora em que o recurso foi atualizado. Uma string com data
-          e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
-          UTC(UTC time format).
-        example: "2021-05-21T08:30:00Z"
-        format: date-time
+      cnpj:
+        description: |-
+          Optional cnpj
+          cnpj
         type: string
         x-nullable: false
-    required:
-    - consentId
-    - creationDateTime
-    - creditor
-    - expirationDateTime
-    - loggedUser
-    - payment
-    - status
-    - statusUpdateDateTime
-    type: object
-  OBBRCustomerPaymentConsentRequest:
-    properties:
-      aud:
+      cpf:
+        description: |-
+          Optional cpf
+          cpf
         type: string
         x-nullable: false
-      data:
-        $ref: '#/definitions/OpenbankingBrasilPaymentData'
-      iat:
+      limit:
+        default: 20
+        description: |-
+          optional limit results
+          Limit
         format: int64
+        maximum: 100
+        minimum: 1
         type: integer
         x-nullable: false
-      iss:
+      order:
+        description: |-
+          optional sort consents by given fields
+          Order
         type: string
         x-nullable: false
-      jti:
+      sort:
+        description: |-
+          optional sort consents by given fields
+          Sort
         type: string
         x-nullable: false
-    required:
-    - data
-    type: object
-  OBBRCustomerPaymentConsentResponse:
-    properties:
-      aud:
-        type: string
+      status:
+        description: |-
+          Optional status
+          Status
+        items:
+          type: string
+        type: array
         x-nullable: false
-      data:
-        $ref: '#/definitions/OpenbankingBrasilPaymentData1'
-      iat:
-        format: int64
-        type: integer
+      types:
+        description: |-
+          Optional type
+          Types
+          in:query
+        items:
+          type: string
+        type: array
         x-nullable: false
-      iss:
-        type: string
-        x-nullable: false
-      jti:
-        type: string
-        x-nullable: false
-      links:
-        $ref: '#/definitions/OpenbankingBrasilPaymentLinks'
-      meta:
-        $ref: '#/definitions/OpenbankingBrasilPaymentMeta'
-    required:
-    - data
-    - links
-    - meta
     type: object
   OBBRErrorResponse:
     properties:
@@ -1844,51 +2098,6 @@ definitions:
     title: OBChargeBearerType1Code Specifies which party/parties will bear the charges
       associated with the processing of the payment transaction.
     type: string
-  OBConsentCommon:
-    properties:
-      account_ids:
-        items:
-          type: string
-        type: array
-        x-nullable: false
-      client_id:
-        format: clientID
-        type: string
-        x-nullable: false
-      consent_id:
-        format: consentID
-        type: string
-        x-nullable: false
-      created_at:
-        format: date-time
-        type: string
-        x-nullable: false
-      idempotency_key:
-        type: string
-        x-nullable: false
-      request_hash:
-        type: string
-        x-nullable: false
-      server_id:
-        format: serverID
-        type: string
-        x-nullable: false
-      spec:
-        type: string
-        x-nullable: false
-      spec_version:
-        type: string
-        x-nullable: false
-      status:
-        type: string
-        x-nullable: false
-      tenant_id:
-        format: tenantID
-        type: string
-        x-nullable: false
-      type:
-        $ref: '#/definitions/ConsentType'
-    type: object
   OBDebtorIdentification1:
     properties:
       Name:
@@ -2156,6 +2365,77 @@ definitions:
   OBSupplementaryData1:
     title: OBSupplementaryData1 Additional information that can not be captured in
       the structured fields and/or any other specific block.
+    type: object
+  OBUKConsentWithClient:
+    properties:
+      Client:
+        $ref: '#/definitions/OpenbankingClient'
+      account_access_consent:
+        $ref: '#/definitions/AccountAccessConsent'
+      account_ids:
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      client_id:
+        format: clientID
+        type: string
+        x-nullable: false
+      consent_id:
+        format: consentID
+        type: string
+        x-nullable: false
+      created_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      domestic_payment_consent:
+        $ref: '#/definitions/DomesticPaymentConsent'
+      domestic_scheduled_payment_consent:
+        $ref: '#/definitions/DomesticScheduledPaymentConsent'
+      domestic_standing_order_consent:
+        $ref: '#/definitions/DomesticStandingOrderConsent'
+      file_payment_consent:
+        $ref: '#/definitions/FilePaymentConsent'
+      idempotency_key:
+        type: string
+        x-nullable: false
+      international_payment_consent:
+        $ref: '#/definitions/InternationalPaymentConsent'
+      international_scheduled_payment_consent:
+        $ref: '#/definitions/InternationalScheduledPaymentConsent'
+      international_standing_order_consent:
+        $ref: '#/definitions/InternationalStandingOrderConsent'
+      request_hash:
+        type: string
+        x-nullable: false
+      server_id:
+        format: serverID
+        type: string
+        x-nullable: false
+      spec:
+        type: string
+        x-nullable: false
+      spec_version:
+        type: string
+        x-nullable: false
+      status:
+        type: string
+        x-nullable: false
+      tenant_id:
+        format: tenantID
+        type: string
+        x-nullable: false
+      type:
+        $ref: '#/definitions/ConsentType'
+    type: object
+  OBUKConsents:
+    properties:
+      Consents:
+        items:
+          $ref: '#/definitions/OBUKConsentWithClient'
+        type: array
+        x-nullable: false
     type: object
   OBWriteDomesticConsent4Data:
     description: OBWriteDomesticConsent4Data o b write domestic consent4 data
@@ -7760,7 +8040,7 @@ definitions:
         - RS256
         - ES256
         - PS256
-        - H256
+        - HS256
         example: none
         type: string
         x-nullable: false
@@ -8205,7 +8485,7 @@ definitions:
         - RS256
         - ES256
         - PS256
-        - H256
+        - HS256
         example: none
         type: string
         x-nullable: false
@@ -8346,34 +8626,42 @@ definitions:
   ScopeGrant:
     properties:
       client_id:
+        description: Client ID that the scope belongs to
         format: clientID
         type: string
         x-nullable: false
       given_at:
+        description: Time when the scope was granted
         format: date-time
         type: string
         x-nullable: false
       granted_scope_name:
+        description: Granted scope name
         format: scopeName
         type: string
         x-nullable: false
       language:
+        description: Language
         format: language
         type: string
         x-nullable: false
       scope_name:
+        description: Scope name
         format: scopeName
         type: string
         x-nullable: false
       server_id:
+        description: Server ID
         format: serverID
         type: string
         x-nullable: false
       subject:
+        description: Subject ID that has granted the scope.
         format: subject
         type: string
         x-nullable: false
       tenant_id:
+        description: Tenant ID
         format: tenantID
         type: string
         x-nullable: false
@@ -8398,15 +8686,15 @@ definitions:
     type: string
   Service:
     properties:
-      audience:
-        description: service audience
-        example: https://api.example.com
-        type: string
-        x-nullable: false
       authorization_server_id:
         description: server id
         example: default
         format: serverID
+        type: string
+        x-nullable: false
+      custom_audience:
+        description: custom service audience
+        example: https://api.example.com
         type: string
         x-nullable: false
       description:
@@ -8465,6 +8753,67 @@ definitions:
     title: TownName Name of a built-up area, with defined boundaries, and a local
       government.
     type: string
+  UKConsent:
+    properties:
+      account_access_consent:
+        $ref: '#/definitions/AccountAccessConsent'
+      account_ids:
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      client_id:
+        format: clientID
+        type: string
+        x-nullable: false
+      consent_id:
+        format: consentID
+        type: string
+        x-nullable: false
+      created_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      domestic_payment_consent:
+        $ref: '#/definitions/DomesticPaymentConsent'
+      domestic_scheduled_payment_consent:
+        $ref: '#/definitions/DomesticScheduledPaymentConsent'
+      domestic_standing_order_consent:
+        $ref: '#/definitions/DomesticStandingOrderConsent'
+      file_payment_consent:
+        $ref: '#/definitions/FilePaymentConsent'
+      idempotency_key:
+        type: string
+        x-nullable: false
+      international_payment_consent:
+        $ref: '#/definitions/InternationalPaymentConsent'
+      international_scheduled_payment_consent:
+        $ref: '#/definitions/InternationalScheduledPaymentConsent'
+      international_standing_order_consent:
+        $ref: '#/definitions/InternationalStandingOrderConsent'
+      request_hash:
+        type: string
+        x-nullable: false
+      server_id:
+        format: serverID
+        type: string
+        x-nullable: false
+      spec:
+        type: string
+        x-nullable: false
+      spec_version:
+        type: string
+        x-nullable: false
+      status:
+        type: string
+        x-nullable: false
+      tenant_id:
+        format: tenantID
+        type: string
+        x-nullable: false
+      type:
+        $ref: '#/definitions/ConsentType'
+    type: object
   genericError:
     description: Error response
     properties:
@@ -8489,8 +8838,34 @@ host: localhost:8443
 info:
   description: Cloudentity Authorization Control Plane Openbanking API
   title: Cloudentity Authorization Control Plane API
-  version: 1.17.0
+  version: latest
 paths:
+  /arrangements/revoke:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: Supports revocation of CDR arrangement.
+      operationId: revokeCDRArrangement
+      parameters:
+      - in: formData
+        name: cdr_arrangement_id
+        type: string
+      responses:
+        "204":
+          description: ' CDR Arrangement has been revoked'
+        "400":
+          $ref: '#/responses/CDRErrorResponse'
+        "401":
+          $ref: '#/responses/CDRErrorResponse'
+        "404":
+          $ref: '#/responses/CDRErrorResponse'
+        "422":
+          $ref: '#/responses/CDRErrorResponse'
+        "429":
+          $ref: '#/responses/CDRErrorResponse'
+      summary: The CDR Arrangement Revocation endpoint
+      tags:
+      - CDR
   /cdr/cdr-arrangement/{login}:
     get:
       description: |-
@@ -8519,9 +8894,9 @@ paths:
       security:
       - system:
         - manage_openbanking_consents
-      summary: Get cdr arrangement
+      summary: Get CDR arrangement
       tags:
-      - cdr
+      - CDR
   /cdr/cdr-arrangement/{login}/accept:
     post:
       description: This API can be used by a custom openbanking consent page to notify
@@ -8550,9 +8925,9 @@ paths:
       security:
       - system:
         - manage_openbanking_consents
-      summary: Reject consent
+      summary: Accept CDR arrangement
       tags:
-      - cdr
+      - CDR
   /cdr/cdr-arrangement/{login}/reject:
     post:
       description: This API can be used by a custom openbanking consent page to notify
@@ -8581,9 +8956,37 @@ paths:
       security:
       - system:
         - manage_openbanking_consents
-      summary: Reject consent
+      summary: Reject CDR arrangement
       tags:
-      - cdr
+      - CDR
+  /cdr/consents/introspect:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: |-
+        This endpoint takes an OAuth 2.0 token and, in addition to returning
+        meta information surrounding the token, returns the cdr arrangement consent and
+        associated account ids.
+      operationId: cdrConsentIntrospect
+      parameters:
+      - in: formData
+        name: token
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/IntrospectCDRConsentResponse'
+        "401":
+          $ref: '#/responses/genericError'
+        "404":
+          $ref: '#/responses/genericError'
+        "429":
+          $ref: '#/responses/genericError'
+      security:
+      - default:
+        - introspect_openbanking_tokens
+      summary: Introspect cdr consent
+      tags:
+      - CDR
   /open-banking-brasil/consent/{login}:
     get:
       description: |-
@@ -8731,10 +9134,10 @@ paths:
         in: body
         name: Request
         schema:
-          $ref: '#/definitions/OBBRCustomerDataAccessConsentRequest'
+          $ref: '#/definitions/BrazilCustomerDataAccessConsentRequest'
       responses:
         "201":
-          $ref: '#/responses/OBBRCustomerDataAccessConsentResponse'
+          $ref: '#/responses/BrazilCustomerDataAccessConsentResponse'
         "400":
           $ref: '#/responses/OBBRErrorResponse'
         "401":
@@ -8809,7 +9212,7 @@ paths:
         type: string
       responses:
         "204":
-          $ref: '#/responses/OBBRCustomerDataAccessConsentResponse'
+          $ref: '#/responses/BrazilCustomerDataAccessConsentResponse'
         "400":
           $ref: '#/responses/OBBRErrorResponse'
         "401":
@@ -8883,7 +9286,7 @@ paths:
         type: string
       responses:
         "200":
-          $ref: '#/responses/OBBRCustomerDataAccessConsentResponse'
+          $ref: '#/responses/BrazilCustomerDataAccessConsentResponse'
         "400":
           $ref: '#/responses/OBBRErrorResponse'
         "401":
@@ -8988,12 +9391,12 @@ paths:
         in: body
         name: Request
         schema:
-          $ref: '#/definitions/OBBRCustomerPaymentConsentRequest'
+          $ref: '#/definitions/BrazilCustomerPaymentConsentRequest'
       produces:
       - application/jwt
       responses:
         "201":
-          $ref: '#/responses/OBBRCustomerPaymentConsentResponse'
+          $ref: '#/responses/BrazilCustomerPaymentConsentResponse'
         "400":
           $ref: '#/responses/OBBRErrorResponse'
         "401":
@@ -9068,7 +9471,7 @@ paths:
         type: string
       responses:
         "200":
-          $ref: '#/responses/OBBRCustomerPaymentConsentResponse'
+          $ref: '#/responses/BrazilCustomerPaymentConsentResponse'
         "400":
           $ref: '#/responses/OBBRErrorResponse'
         "401":
@@ -9359,10 +9762,10 @@ paths:
         in: body
         name: Request
         schema:
-          $ref: '#/definitions/OBBRCustomerDataAccessConsentRequest'
+          $ref: '#/definitions/BrazilCustomerDataAccessConsentRequest'
       responses:
         "201":
-          $ref: '#/responses/OBBRCustomerDataAccessConsentResponse'
+          $ref: '#/responses/BrazilCustomerDataAccessConsentResponse'
         "400":
           $ref: '#/responses/OBBRErrorResponse'
         "401":
@@ -9436,7 +9839,7 @@ paths:
         type: string
       responses:
         "204":
-          $ref: '#/responses/OBBRCustomerDataAccessConsentResponse'
+          $ref: '#/responses/BrazilCustomerDataAccessConsentResponse'
         "400":
           $ref: '#/responses/OBBRErrorResponse'
         "401":
@@ -9509,7 +9912,7 @@ paths:
         type: string
       responses:
         "200":
-          $ref: '#/responses/OBBRCustomerDataAccessConsentResponse'
+          $ref: '#/responses/BrazilCustomerDataAccessConsentResponse'
         "400":
           $ref: '#/responses/OBBRErrorResponse'
         "401":
@@ -10232,12 +10635,12 @@ paths:
         in: body
         name: Request
         schema:
-          $ref: '#/definitions/OBBRCustomerPaymentConsentRequest'
+          $ref: '#/definitions/BrazilCustomerPaymentConsentRequest'
       produces:
       - application/jwt
       responses:
         "201":
-          $ref: '#/responses/OBBRCustomerPaymentConsentResponse'
+          $ref: '#/responses/BrazilCustomerPaymentConsentResponse'
         "400":
           $ref: '#/responses/OBBRErrorResponse'
         "401":
@@ -10311,7 +10714,7 @@ paths:
         type: string
       responses:
         "200":
-          $ref: '#/responses/OBBRCustomerPaymentConsentResponse'
+          $ref: '#/responses/BrazilCustomerPaymentConsentResponse'
         "400":
           $ref: '#/responses/OBBRErrorResponse'
         "401":
@@ -12146,7 +12549,181 @@ paths:
       summary: Openbanking UK compliant dynamic update client endpoint.
       tags:
       - openbankingUK
-  /servers/{aid}/open-banking-brasil/consents:
+  /servers/{wid}/cdr/arrangements:
+    delete:
+      description: |-
+        This API revokes CDR arrangements matching provided parameters.
+
+        Currently supporting removal by client id.
+        Use ?client_id={clientID} to remove all arrangements by a given client.
+      operationId: revokeCDRArrangements
+      parameters:
+      - default: default
+        description: Workspace id
+        in: path
+        name: wid
+        required: true
+        type: string
+      - description: Client ID
+        in: query
+        name: client_id
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/ConsentsRemovedResponse'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - system:
+        - manage_openbanking_consents
+      summary: Revoke CDR arrangements.
+      tags:
+      - CDR
+    get:
+      description: |-
+        This API returns the list of CDR arrangements.
+        You can narrow the list of returned arrangements using filters defined in request parameters.
+        See getCDRArrangements for details.
+      operationId: getCDRArrangements
+      parameters:
+      - description: |-
+          Optional client id
+          ClientID
+        in: query
+        name: client_id
+        type: string
+      - description: |-
+          Optional list of accounts
+          Accounts
+        in: query
+        items:
+          type: string
+        name: accounts
+        type: array
+      - description: |-
+          Optional status
+          Status
+        in: query
+        items:
+          type: string
+        name: status
+        type: array
+      - description: |-
+          Optional type
+          Types
+        in: query
+        items:
+          type: string
+        name: types
+        type: array
+      - description: |-
+          optional list consents after given id
+          AfterConsentID
+        in: query
+        name: after_consent_id
+        type: string
+      - description: |-
+          optional list consents before given id
+          BeforeConsentID
+        in: query
+        name: before_consent_id
+        type: string
+      - description: |-
+          optional sort consents by given fields
+          Sort
+        in: query
+        name: sort
+        type: string
+      - description: |-
+          optional sort consents by given fields
+          Order
+        in: query
+        name: order
+        type: string
+      - default: 20
+        description: |-
+          optional limit results
+          Limit
+        format: int64
+        in: query
+        maximum: 100
+        minimum: 1
+        name: limit
+        type: integer
+      - default: default
+        description: Workspace id
+        in: path
+        name: wid
+        required: true
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/CDRArrangements'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - system:
+        - manage_openbanking_consents
+      summary: List CDR arrangements
+      tags:
+      - CDR
+    post:
+      description: |-
+        This API returns the list of CDR arrangements.
+        You can narrow the list of returned arrangements using filters defined in request body.
+        See listCDRArrangements for details.
+      operationId: listCDRArrangements
+      parameters:
+      - default: default
+        description: Workspace id
+        in: path
+        name: wid
+        required: true
+        type: string
+      - in: body
+        name: ConsentsRequest
+        schema:
+          $ref: '#/definitions/ConsentsRequest'
+      responses:
+        "200":
+          $ref: '#/responses/CDRArrangements'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - system:
+        - manage_openbanking_consents
+      summary: List CDR arrangements
+      tags:
+      - CDR
+  /servers/{wid}/open-banking-brasil/consents:
     delete:
       description: |-
         This API revokes openbanking consents matching provided parameters.
@@ -12159,9 +12736,9 @@ paths:
       operationId: revokeOBBRConsents
       parameters:
       - default: default
-        description: Authorization server id
+        description: Workspace id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: Client ID
@@ -12260,12 +12837,26 @@ paths:
           Limit
         format: int64
         in: query
+        maximum: 100
+        minimum: 1
         name: limit
         type: integer
+      - description: |-
+          Optional cnpj
+          cnpj
+        in: query
+        name: cnpj
+        type: string
+      - description: |-
+          Optional cpf
+          cpf
+        in: query
+        name: cpf
+        type: string
       - default: default
-        description: Authorization server id
+        description: Workspace id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       responses:
@@ -12295,15 +12886,15 @@ paths:
       operationId: listOBBRConsents
       parameters:
       - default: default
-        description: Authorization server id
+        description: Workspace id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - in: body
         name: ConsentsRequest
         schema:
-          $ref: '#/definitions/ConsentsRequest'
+          $ref: '#/definitions/OBBRConsentsRequest'
       responses:
         "200":
           $ref: '#/responses/OBBRConsents'
@@ -12325,7 +12916,75 @@ paths:
       summary: List openbanking brasil consents.
       tags:
       - openbankingBR
-  /servers/{aid}/open-banking/consents:
+  /servers/{wid}/open-banking-brasil/consents/{consentID}:
+    delete:
+      description: This API revokes openbanking consent by consent id.
+      operationId: revokeOBBRConsent
+      parameters:
+      - default: default
+        description: Workspace id
+        in: path
+        name: wid
+        required: true
+        type: string
+      - in: path
+        name: consentID
+        required: true
+        type: string
+      responses:
+        "204":
+          description: ' Consent has been revoked'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - system:
+        - manage_openbanking_consents
+      summary: Revoke openbanking consent by ID.
+      tags:
+      - openbankingBR
+  /servers/{wid}/open-banking-brasil/consents/{consentID}/consume:
+    post:
+      description: This API consumes openbanking consent by consent id.
+      operationId: consumeOBBRConsent
+      parameters:
+      - default: default
+        description: Workspace id
+        in: path
+        name: wid
+        required: true
+        type: string
+      - in: path
+        name: consentID
+        required: true
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/BrazilConsent'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - system:
+        - manage_openbanking_consents
+      summary: Consume openbanking consent by ID.
+      tags:
+      - openbankingBR
+  /servers/{wid}/open-banking/consents:
     delete:
       description: |-
         This API revokes openbanking consents matching provided parameters.
@@ -12338,9 +12997,9 @@ paths:
       operationId: revokeOpenbankingConsents
       parameters:
       - default: default
-        description: Authorization server id
+        description: Workspace id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - description: Client ID
@@ -12371,7 +13030,7 @@ paths:
         - manage_openbanking_consents
       summary: Revoke openbanking consents.
       tags:
-      - openbankingCommon
+      - openbankingUK
     get:
       description: |-
         This API returns the list of openbanking consents.
@@ -12439,17 +13098,19 @@ paths:
           Limit
         format: int64
         in: query
+        maximum: 100
+        minimum: 1
         name: limit
         type: integer
       - default: default
-        description: Authorization server id
+        description: Workspace id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       responses:
         "200":
-          $ref: '#/responses/GenericConsents'
+          $ref: '#/responses/OBUKConsents'
         "400":
           $ref: '#/responses/httpError'
         "401":
@@ -12465,7 +13126,7 @@ paths:
         - manage_openbanking_consents
       summary: Get openbanking consents.
       tags:
-      - openbankingCommon
+      - openbankingUK
     post:
       description: |-
         This API returns the list of openbanking consents.
@@ -12474,9 +13135,9 @@ paths:
       operationId: listOBConsents
       parameters:
       - default: default
-        description: Authorization server id
+        description: Workspace id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - in: body
@@ -12485,7 +13146,7 @@ paths:
           $ref: '#/definitions/ConsentsRequest'
       responses:
         "200":
-          $ref: '#/responses/GenericConsents'
+          $ref: '#/responses/OBUKConsents'
         "400":
           $ref: '#/responses/httpError'
         "401":
@@ -12503,16 +13164,19 @@ paths:
         - manage_openbanking_consents
       summary: List openbanking consents.
       tags:
-      - openbankingCommon
-  /servers/{aid}/open-banking/consents/{consentID}:
+      - openbankingUK
+  /servers/{wid}/open-banking/consents/{consentID}:
     delete:
-      description: This API revokes openbanking consent by consent id.
+      description: |-
+        This API revokes openbanking consent by consent id.
+
+        For backwards compatibility it can also be used to revoke OBBR consents (deprecated)
       operationId: revokeOpenbankingConsent
       parameters:
       - default: default
-        description: Authorization server id
+        description: Workspace id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - in: path
@@ -12537,16 +13201,19 @@ paths:
         - manage_openbanking_consents
       summary: Revoke openbanking consent by ID.
       tags:
-      - openbankingCommon
-  /servers/{aid}/open-banking/consents/{consentID}/consume:
+      - openbankingUK
+  /servers/{wid}/open-banking/consents/{consentID}/consume:
     post:
-      description: This API consumes openbanking consent by consent id.
+      description: |-
+        This API consumes openbanking consent by consent id.
+
+        For backwards compatibility it can also be used to consume OBBR consents and in that case returns BrazilConsent (deprecated)
       operationId: consumeOpenbankingConsent
       parameters:
       - default: default
-        description: Authorization server id
+        description: Workspace id
         in: path
-        name: aid
+        name: wid
         required: true
         type: string
       - in: path
@@ -12555,7 +13222,7 @@ paths:
         type: string
       responses:
         "200":
-          $ref: '#/responses/OBConsent'
+          $ref: '#/responses/UKConsent'
         "400":
           $ref: '#/responses/httpError'
         "401":
@@ -12571,7 +13238,7 @@ paths:
         - manage_openbanking_consents
       summary: Consume openbanking consent by ID.
       tags:
-      - openbankingCommon
+      - openbankingUK
 produces:
 - application/json
 responses:
@@ -12579,6 +13246,26 @@ responses:
     description: Account access consent
     schema:
       $ref: '#/definitions/AccountAccessConsentResponse'
+  BrazilConsent:
+    description: BrazilConsent
+    schema:
+      $ref: '#/definitions/BrazilConsent'
+  BrazilCustomerDataAccessConsentResponse:
+    description: Customer data access consent
+    schema:
+      $ref: '#/definitions/BrazilCustomerDataAccessConsentResponse'
+  BrazilCustomerPaymentConsentResponse:
+    description: Customer payment consent
+    schema:
+      $ref: '#/definitions/BrazilCustomerPaymentConsentResponse'
+  CDRArrangements:
+    description: CDRArrangements
+    schema:
+      $ref: '#/definitions/CDRArrangements'
+  CDRErrorResponse:
+    description: CDR Error
+    schema:
+      $ref: '#/definitions/CDRErrorResponse'
   ConsentAccepted:
     description: Consent accepted
     schema:
@@ -12615,10 +13302,6 @@ responses:
     description: File payment consent
     schema:
       $ref: '#/definitions/FilePaymentConsentResponse'
-  GenericConsents:
-    description: Consents
-    schema:
-      $ref: '#/definitions/GenericConsents'
   GetAccountAccessConsentResponse:
     description: GetAccountAccessConsentResponse
     schema:
@@ -12675,6 +13358,24 @@ responses:
     description: International standing order consent
     schema:
       $ref: '#/definitions/InternationalStandingOrderConsentResponse'
+  IntrospectCDRConsentResponse:
+    description: Introspect CDR Consent Response
+    schema:
+      allOf:
+      - $ref: '#/definitions/IntrospectResponse'
+      - properties:
+          AccountIDs:
+            items:
+              type: string
+            type: array
+          cdr_arrangement:
+            $ref: '#/definitions/CDRArrangement'
+          cdr_arrangement_id:
+            type: string
+          sharing_expires_at:
+            format: int64
+            type: integer
+        type: object
   IntrospectOBBRDataAccessConsentResponse:
     description: Introspect Openbanking Brazil Data Access Consent Response
     schema:
@@ -12783,22 +13484,14 @@ responses:
     description: OBBRConsents
     schema:
       $ref: '#/definitions/OBBRConsents'
-  OBBRCustomerDataAccessConsentResponse:
-    description: Customer data access consent
-    schema:
-      $ref: '#/definitions/OBBRCustomerDataAccessConsentResponse'
-  OBBRCustomerPaymentConsentResponse:
-    description: Customer payment consent
-    schema:
-      $ref: '#/definitions/OBBRCustomerPaymentConsentResponse'
   OBBRErrorResponse:
     description: Error
     schema:
       $ref: '#/definitions/OBBRErrorResponse'
-  OBConsent:
-    description: OBConsent
+  OBUKConsents:
+    description: Consents
     schema:
-      $ref: '#/definitions/OBConsentCommon'
+      $ref: '#/definitions/OBUKConsents'
   OpenbankingUKDynamicClientRegistrationResponse:
     description: OpenbankingUK Dynamic Client Registration Update Client Response
     schema:
@@ -12807,6 +13500,10 @@ responses:
     description: RFC6749 error
     schema:
       $ref: '#/definitions/RFC6749Error'
+  UKConsent:
+    description: UKConsent
+    schema:
+      $ref: '#/definitions/UKConsent'
   genericError:
     description: ErrorResponse
     schema:

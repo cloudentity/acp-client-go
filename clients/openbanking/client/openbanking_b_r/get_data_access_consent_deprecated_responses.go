@@ -98,19 +98,19 @@ func NewGetDataAccessConsentDeprecatedOK() *GetDataAccessConsentDeprecatedOK {
 Customer data access consent
 */
 type GetDataAccessConsentDeprecatedOK struct {
-	Payload *models.OBBRCustomerDataAccessConsentResponse
+	Payload *models.BrazilCustomerDataAccessConsentResponse
 }
 
 func (o *GetDataAccessConsentDeprecatedOK) Error() string {
 	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/consents/v1/consents/{consentID}][%d] getDataAccessConsentDeprecatedOK  %+v", 200, o.Payload)
 }
-func (o *GetDataAccessConsentDeprecatedOK) GetPayload() *models.OBBRCustomerDataAccessConsentResponse {
+func (o *GetDataAccessConsentDeprecatedOK) GetPayload() *models.BrazilCustomerDataAccessConsentResponse {
 	return o.Payload
 }
 
 func (o *GetDataAccessConsentDeprecatedOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.OBBRCustomerDataAccessConsentResponse)
+	o.Payload = new(models.BrazilCustomerDataAccessConsentResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

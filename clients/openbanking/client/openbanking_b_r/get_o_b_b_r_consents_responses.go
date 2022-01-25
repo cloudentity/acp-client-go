@@ -78,7 +78,7 @@ type GetOBBRConsentsOK struct {
 }
 
 func (o *GetOBBRConsentsOK) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/open-banking-brasil/consents][%d] getOBBRConsentsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/open-banking-brasil/consents][%d] getOBBRConsentsOK  %+v", 200, o.Payload)
 }
 func (o *GetOBBRConsentsOK) GetPayload() *models.OBBRConsents {
 	return o.Payload
@@ -110,7 +110,7 @@ type GetOBBRConsentsBadRequest struct {
 }
 
 func (o *GetOBBRConsentsBadRequest) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/open-banking-brasil/consents][%d] getOBBRConsentsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/open-banking-brasil/consents][%d] getOBBRConsentsBadRequest  %+v", 400, o.Payload)
 }
 func (o *GetOBBRConsentsBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -142,7 +142,7 @@ type GetOBBRConsentsUnauthorized struct {
 }
 
 func (o *GetOBBRConsentsUnauthorized) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/open-banking-brasil/consents][%d] getOBBRConsentsUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/open-banking-brasil/consents][%d] getOBBRConsentsUnauthorized  %+v", 401, o.Payload)
 }
 func (o *GetOBBRConsentsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -174,7 +174,7 @@ type GetOBBRConsentsForbidden struct {
 }
 
 func (o *GetOBBRConsentsForbidden) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/open-banking-brasil/consents][%d] getOBBRConsentsForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/open-banking-brasil/consents][%d] getOBBRConsentsForbidden  %+v", 403, o.Payload)
 }
 func (o *GetOBBRConsentsForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -206,7 +206,7 @@ type GetOBBRConsentsNotFound struct {
 }
 
 func (o *GetOBBRConsentsNotFound) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/open-banking-brasil/consents][%d] getOBBRConsentsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/open-banking-brasil/consents][%d] getOBBRConsentsNotFound  %+v", 404, o.Payload)
 }
 func (o *GetOBBRConsentsNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -238,7 +238,7 @@ type GetOBBRConsentsTooManyRequests struct {
 }
 
 func (o *GetOBBRConsentsTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /servers/{aid}/open-banking-brasil/consents][%d] getOBBRConsentsTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[GET /servers/{wid}/open-banking-brasil/consents][%d] getOBBRConsentsTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *GetOBBRConsentsTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

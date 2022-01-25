@@ -8,8 +8,10 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // ConsentsRequest consents request
@@ -35,6 +37,8 @@ type ConsentsRequest struct {
 
 	// optional limit results
 	// Limit
+	// Maximum: 100
+	// Minimum: 1
 	Limit int64 `json:"limit,omitempty"`
 
 	// optional sort consents by given fields
@@ -57,6 +61,31 @@ type ConsentsRequest struct {
 
 // Validate validates this consents request
 func (m *ConsentsRequest) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateLimit(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *ConsentsRequest) validateLimit(formats strfmt.Registry) error {
+	if swag.IsZero(m.Limit) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("limit", "body", m.Limit, 1, false); err != nil {
+		return err
+	}
+
+	if err := validate.MaximumInt("limit", "body", m.Limit, 100, false); err != nil {
+		return err
+	}
+
 	return nil
 }
 

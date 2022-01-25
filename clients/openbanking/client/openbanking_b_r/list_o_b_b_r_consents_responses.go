@@ -84,7 +84,7 @@ type ListOBBRConsentsOK struct {
 }
 
 func (o *ListOBBRConsentsOK) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/open-banking-brasil/consents][%d] listOBBRConsentsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents][%d] listOBBRConsentsOK  %+v", 200, o.Payload)
 }
 func (o *ListOBBRConsentsOK) GetPayload() *models.OBBRConsents {
 	return o.Payload
@@ -116,7 +116,7 @@ type ListOBBRConsentsBadRequest struct {
 }
 
 func (o *ListOBBRConsentsBadRequest) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/open-banking-brasil/consents][%d] listOBBRConsentsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents][%d] listOBBRConsentsBadRequest  %+v", 400, o.Payload)
 }
 func (o *ListOBBRConsentsBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -148,7 +148,7 @@ type ListOBBRConsentsUnauthorized struct {
 }
 
 func (o *ListOBBRConsentsUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/open-banking-brasil/consents][%d] listOBBRConsentsUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents][%d] listOBBRConsentsUnauthorized  %+v", 401, o.Payload)
 }
 func (o *ListOBBRConsentsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -180,7 +180,7 @@ type ListOBBRConsentsForbidden struct {
 }
 
 func (o *ListOBBRConsentsForbidden) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/open-banking-brasil/consents][%d] listOBBRConsentsForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents][%d] listOBBRConsentsForbidden  %+v", 403, o.Payload)
 }
 func (o *ListOBBRConsentsForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -212,7 +212,7 @@ type ListOBBRConsentsNotFound struct {
 }
 
 func (o *ListOBBRConsentsNotFound) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/open-banking-brasil/consents][%d] listOBBRConsentsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents][%d] listOBBRConsentsNotFound  %+v", 404, o.Payload)
 }
 func (o *ListOBBRConsentsNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -244,7 +244,7 @@ type ListOBBRConsentsUnprocessableEntity struct {
 }
 
 func (o *ListOBBRConsentsUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/open-banking-brasil/consents][%d] listOBBRConsentsUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents][%d] listOBBRConsentsUnprocessableEntity  %+v", 422, o.Payload)
 }
 func (o *ListOBBRConsentsUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
@@ -276,7 +276,7 @@ type ListOBBRConsentsTooManyRequests struct {
 }
 
 func (o *ListOBBRConsentsTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /servers/{aid}/open-banking-brasil/consents][%d] listOBBRConsentsTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents][%d] listOBBRConsentsTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *ListOBBRConsentsTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

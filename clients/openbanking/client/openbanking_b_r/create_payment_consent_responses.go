@@ -98,19 +98,19 @@ func NewCreatePaymentConsentCreated() *CreatePaymentConsentCreated {
 Customer payment consent
 */
 type CreatePaymentConsentCreated struct {
-	Payload *models.OBBRCustomerPaymentConsentResponse
+	Payload *models.BrazilCustomerPaymentConsentResponse
 }
 
 func (o *CreatePaymentConsentCreated) Error() string {
 	return fmt.Sprintf("[POST /open-banking/payments/v1/consents][%d] createPaymentConsentCreated  %+v", 201, o.Payload)
 }
-func (o *CreatePaymentConsentCreated) GetPayload() *models.OBBRCustomerPaymentConsentResponse {
+func (o *CreatePaymentConsentCreated) GetPayload() *models.BrazilCustomerPaymentConsentResponse {
 	return o.Payload
 }
 
 func (o *CreatePaymentConsentCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.OBBRCustomerPaymentConsentResponse)
+	o.Payload = new(models.BrazilCustomerPaymentConsentResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

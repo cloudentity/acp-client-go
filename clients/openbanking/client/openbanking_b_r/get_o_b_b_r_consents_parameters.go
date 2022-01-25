@@ -74,14 +74,6 @@ type GetOBBRConsentsParams struct {
 	*/
 	AfterConsentID *string
 
-	/* Aid.
-
-	   Authorization server id
-
-	   Default: "default"
-	*/
-	Aid string
-
 	/* BeforeConsentID.
 
 	     optional list consents before given id
@@ -95,6 +87,20 @@ type GetOBBRConsentsParams struct {
 	ClientID
 	*/
 	ClientID *string
+
+	/* Cnpj.
+
+	     Optional cnpj
+	cnpj
+	*/
+	Cnpj *string
+
+	/* Cpf.
+
+	     Optional cpf
+	cpf
+	*/
+	Cpf *string
 
 	/* Limit.
 
@@ -134,6 +140,14 @@ type GetOBBRConsentsParams struct {
 	*/
 	Types []string
 
+	/* Wid.
+
+	   Workspace id
+
+	   Default: "default"
+	*/
+	Wid string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -152,14 +166,14 @@ func (o *GetOBBRConsentsParams) WithDefaults() *GetOBBRConsentsParams {
 // All values with no default are reset to their zero value.
 func (o *GetOBBRConsentsParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
-
 		limitDefault = int64(20)
+
+		widDefault = string("default")
 	)
 
 	val := GetOBBRConsentsParams{
-		Aid:   aidDefault,
 		Limit: &limitDefault,
+		Wid:   widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -223,17 +237,6 @@ func (o *GetOBBRConsentsParams) SetAfterConsentID(afterConsentID *string) {
 	o.AfterConsentID = afterConsentID
 }
 
-// WithAid adds the aid to the get o b b r consents params
-func (o *GetOBBRConsentsParams) WithAid(aid string) *GetOBBRConsentsParams {
-	o.SetAid(aid)
-	return o
-}
-
-// SetAid adds the aid to the get o b b r consents params
-func (o *GetOBBRConsentsParams) SetAid(aid string) {
-	o.Aid = aid
-}
-
 // WithBeforeConsentID adds the beforeConsentID to the get o b b r consents params
 func (o *GetOBBRConsentsParams) WithBeforeConsentID(beforeConsentID *string) *GetOBBRConsentsParams {
 	o.SetBeforeConsentID(beforeConsentID)
@@ -254,6 +257,28 @@ func (o *GetOBBRConsentsParams) WithClientID(clientID *string) *GetOBBRConsentsP
 // SetClientID adds the clientId to the get o b b r consents params
 func (o *GetOBBRConsentsParams) SetClientID(clientID *string) {
 	o.ClientID = clientID
+}
+
+// WithCnpj adds the cnpj to the get o b b r consents params
+func (o *GetOBBRConsentsParams) WithCnpj(cnpj *string) *GetOBBRConsentsParams {
+	o.SetCnpj(cnpj)
+	return o
+}
+
+// SetCnpj adds the cnpj to the get o b b r consents params
+func (o *GetOBBRConsentsParams) SetCnpj(cnpj *string) {
+	o.Cnpj = cnpj
+}
+
+// WithCpf adds the cpf to the get o b b r consents params
+func (o *GetOBBRConsentsParams) WithCpf(cpf *string) *GetOBBRConsentsParams {
+	o.SetCpf(cpf)
+	return o
+}
+
+// SetCpf adds the cpf to the get o b b r consents params
+func (o *GetOBBRConsentsParams) SetCpf(cpf *string) {
+	o.Cpf = cpf
 }
 
 // WithLimit adds the limit to the get o b b r consents params
@@ -311,6 +336,17 @@ func (o *GetOBBRConsentsParams) SetTypes(types []string) {
 	o.Types = types
 }
 
+// WithWid adds the wid to the get o b b r consents params
+func (o *GetOBBRConsentsParams) WithWid(wid string) *GetOBBRConsentsParams {
+	o.SetWid(wid)
+	return o
+}
+
+// SetWid adds the wid to the get o b b r consents params
+func (o *GetOBBRConsentsParams) SetWid(wid string) {
+	o.Wid = wid
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetOBBRConsentsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -347,11 +383,6 @@ func (o *GetOBBRConsentsParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		}
 	}
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
-		return err
-	}
-
 	if o.BeforeConsentID != nil {
 
 		// query param before_consent_id
@@ -381,6 +412,40 @@ func (o *GetOBBRConsentsParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		if qClientID != "" {
 
 			if err := r.SetQueryParam("client_id", qClientID); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Cnpj != nil {
+
+		// query param cnpj
+		var qrCnpj string
+
+		if o.Cnpj != nil {
+			qrCnpj = *o.Cnpj
+		}
+		qCnpj := qrCnpj
+		if qCnpj != "" {
+
+			if err := r.SetQueryParam("cnpj", qCnpj); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Cpf != nil {
+
+		// query param cpf
+		var qrCpf string
+
+		if o.Cpf != nil {
+			qrCpf = *o.Cpf
+		}
+		qCpf := qrCpf
+		if qCpf != "" {
+
+			if err := r.SetQueryParam("cpf", qCpf); err != nil {
 				return err
 			}
 		}
@@ -457,6 +522,11 @@ func (o *GetOBBRConsentsParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		if err := r.SetQueryParam("types", joinedTypes...); err != nil {
 			return err
 		}
+	}
+
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
+		return err
 	}
 
 	if len(res) > 0 {

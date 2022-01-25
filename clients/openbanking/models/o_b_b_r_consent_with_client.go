@@ -28,18 +28,24 @@ type OBBRConsentWithClient struct {
 	// client id
 	ClientID string `json:"client_id,omitempty"`
 
+	// cnpj
+	Cnpj string `json:"cnpj,omitempty"`
+
 	// consent id
 	ConsentID string `json:"consent_id,omitempty"`
+
+	// cpf
+	Cpf string `json:"cpf,omitempty"`
 
 	// created at
 	// Format: date-time
 	CreatedAt strfmt.DateTime `json:"created_at,omitempty"`
 
 	// customer data access consent
-	CustomerDataAccessConsent *OBBRCustomerDataAccessConsent `json:"customer_data_access_consent,omitempty"`
+	CustomerDataAccessConsent *BrazilCustomerDataAccessConsent `json:"customer_data_access_consent,omitempty"`
 
 	// customer payment consent
-	CustomerPaymentConsent *OBBRCustomerPaymentConsent `json:"customer_payment_consent,omitempty"`
+	CustomerPaymentConsent *BrazilCustomerPaymentConsent `json:"customer_payment_consent,omitempty"`
 
 	// idempotency key
 	IdempotencyKey string `json:"idempotency_key,omitempty"`

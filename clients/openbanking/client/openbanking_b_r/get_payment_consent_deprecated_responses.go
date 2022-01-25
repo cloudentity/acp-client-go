@@ -98,19 +98,19 @@ func NewGetPaymentConsentDeprecatedOK() *GetPaymentConsentDeprecatedOK {
 Customer payment consent
 */
 type GetPaymentConsentDeprecatedOK struct {
-	Payload *models.OBBRCustomerPaymentConsentResponse
+	Payload *models.BrazilCustomerPaymentConsentResponse
 }
 
 func (o *GetPaymentConsentDeprecatedOK) Error() string {
 	return fmt.Sprintf("[GET /open-banking-brasil/open-banking/payments/v1/consents/{consentID}][%d] getPaymentConsentDeprecatedOK  %+v", 200, o.Payload)
 }
-func (o *GetPaymentConsentDeprecatedOK) GetPayload() *models.OBBRCustomerPaymentConsentResponse {
+func (o *GetPaymentConsentDeprecatedOK) GetPayload() *models.BrazilCustomerPaymentConsentResponse {
 	return o.Payload
 }
 
 func (o *GetPaymentConsentDeprecatedOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.OBBRCustomerPaymentConsentResponse)
+	o.Payload = new(models.BrazilCustomerPaymentConsentResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

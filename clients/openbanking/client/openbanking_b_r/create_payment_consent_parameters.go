@@ -65,7 +65,7 @@ type CreatePaymentConsentParams struct {
 
 	   Request
 	*/
-	Request *models.OBBRCustomerPaymentConsentRequest
+	Request *models.BrazilCustomerPaymentConsentRequest
 
 	/* XCustomerUserAgent.
 
@@ -169,13 +169,13 @@ func (o *CreatePaymentConsentParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequest adds the request to the create payment consent params
-func (o *CreatePaymentConsentParams) WithRequest(request *models.OBBRCustomerPaymentConsentRequest) *CreatePaymentConsentParams {
+func (o *CreatePaymentConsentParams) WithRequest(request *models.BrazilCustomerPaymentConsentRequest) *CreatePaymentConsentParams {
 	o.SetRequest(request)
 	return o
 }
 
 // SetRequest adds the request to the create payment consent params
-func (o *CreatePaymentConsentParams) SetRequest(request *models.OBBRCustomerPaymentConsentRequest) {
+func (o *CreatePaymentConsentParams) SetRequest(request *models.BrazilCustomerPaymentConsentRequest) {
 	o.Request = request
 }
 

@@ -65,7 +65,7 @@ type CreateDataAccessConsentDeprecatedParams struct {
 
 	   Request
 	*/
-	Request *models.OBBRCustomerDataAccessConsentRequest
+	Request *models.BrazilCustomerDataAccessConsentRequest
 
 	/* XCustomerUserAgent.
 
@@ -169,13 +169,13 @@ func (o *CreateDataAccessConsentDeprecatedParams) SetHTTPClient(client *http.Cli
 }
 
 // WithRequest adds the request to the create data access consent deprecated params
-func (o *CreateDataAccessConsentDeprecatedParams) WithRequest(request *models.OBBRCustomerDataAccessConsentRequest) *CreateDataAccessConsentDeprecatedParams {
+func (o *CreateDataAccessConsentDeprecatedParams) WithRequest(request *models.BrazilCustomerDataAccessConsentRequest) *CreateDataAccessConsentDeprecatedParams {
 	o.SetRequest(request)
 	return o
 }
 
 // SetRequest adds the request to the create data access consent deprecated params
-func (o *CreateDataAccessConsentDeprecatedParams) SetRequest(request *models.OBBRCustomerDataAccessConsentRequest) {
+func (o *CreateDataAccessConsentDeprecatedParams) SetRequest(request *models.BrazilCustomerDataAccessConsentRequest) {
 	o.Request = request
 }
 

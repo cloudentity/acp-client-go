@@ -98,19 +98,19 @@ func NewDeleteDataAccessConsentNoContent() *DeleteDataAccessConsentNoContent {
 Customer data access consent
 */
 type DeleteDataAccessConsentNoContent struct {
-	Payload *models.OBBRCustomerDataAccessConsentResponse
+	Payload *models.BrazilCustomerDataAccessConsentResponse
 }
 
 func (o *DeleteDataAccessConsentNoContent) Error() string {
 	return fmt.Sprintf("[DELETE /open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentNoContent  %+v", 204, o.Payload)
 }
-func (o *DeleteDataAccessConsentNoContent) GetPayload() *models.OBBRCustomerDataAccessConsentResponse {
+func (o *DeleteDataAccessConsentNoContent) GetPayload() *models.BrazilCustomerDataAccessConsentResponse {
 	return o.Payload
 }
 
 func (o *DeleteDataAccessConsentNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.OBBRCustomerDataAccessConsentResponse)
+	o.Payload = new(models.BrazilCustomerDataAccessConsentResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

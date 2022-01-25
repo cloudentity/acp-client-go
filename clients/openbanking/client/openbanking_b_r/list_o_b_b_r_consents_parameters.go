@@ -62,15 +62,15 @@ func NewListOBBRConsentsParamsWithHTTPClient(client *http.Client) *ListOBBRConse
 type ListOBBRConsentsParams struct {
 
 	// ConsentsRequest.
-	ConsentsRequest *models.ConsentsRequest
+	ConsentsRequest *models.OBBRConsentsRequest
 
-	/* Aid.
+	/* Wid.
 
-	   Authorization server id
+	   Workspace id
 
 	   Default: "default"
 	*/
-	Aid string
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -90,11 +90,11 @@ func (o *ListOBBRConsentsParams) WithDefaults() *ListOBBRConsentsParams {
 // All values with no default are reset to their zero value.
 func (o *ListOBBRConsentsParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := ListOBBRConsentsParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -137,25 +137,25 @@ func (o *ListOBBRConsentsParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithConsentsRequest adds the consentsRequest to the list o b b r consents params
-func (o *ListOBBRConsentsParams) WithConsentsRequest(consentsRequest *models.ConsentsRequest) *ListOBBRConsentsParams {
+func (o *ListOBBRConsentsParams) WithConsentsRequest(consentsRequest *models.OBBRConsentsRequest) *ListOBBRConsentsParams {
 	o.SetConsentsRequest(consentsRequest)
 	return o
 }
 
 // SetConsentsRequest adds the consentsRequest to the list o b b r consents params
-func (o *ListOBBRConsentsParams) SetConsentsRequest(consentsRequest *models.ConsentsRequest) {
+func (o *ListOBBRConsentsParams) SetConsentsRequest(consentsRequest *models.OBBRConsentsRequest) {
 	o.ConsentsRequest = consentsRequest
 }
 
-// WithAid adds the aid to the list o b b r consents params
-func (o *ListOBBRConsentsParams) WithAid(aid string) *ListOBBRConsentsParams {
-	o.SetAid(aid)
+// WithWid adds the wid to the list o b b r consents params
+func (o *ListOBBRConsentsParams) WithWid(wid string) *ListOBBRConsentsParams {
+	o.SetWid(wid)
 	return o
 }
 
-// SetAid adds the aid to the list o b b r consents params
-func (o *ListOBBRConsentsParams) SetAid(aid string) {
-	o.Aid = aid
+// SetWid adds the wid to the list o b b r consents params
+func (o *ListOBBRConsentsParams) SetWid(wid string) {
+	o.Wid = wid
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -171,8 +171,8 @@ func (o *ListOBBRConsentsParams) WriteToRequest(r runtime.ClientRequest, reg str
 		}
 	}
 
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
 		return err
 	}
 

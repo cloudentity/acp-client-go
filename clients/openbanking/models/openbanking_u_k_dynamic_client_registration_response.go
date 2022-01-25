@@ -269,7 +269,7 @@ type OpenbankingUKDynamicClientRegistrationResponse struct {
 	// If your token endpoint authentication is set to the `client_secret_jwt` method,
 	// the `token_endpoint_auth_signing_alg` parameter must be HS256.
 	// Example: none
-	// Enum: [none RS256 ES256 PS256 H256]
+	// Enum: [none RS256 ES256 PS256 HS256]
 	TokenEndpointAuthSigningAlg string `json:"token_endpoint_auth_signing_alg,omitempty"`
 
 	// Terms of Service URL
@@ -778,7 +778,7 @@ var openbankingUKDynamicClientRegistrationResponseTypeTokenEndpointAuthSigningAl
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["none","RS256","ES256","PS256","H256"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["none","RS256","ES256","PS256","HS256"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -800,8 +800,8 @@ const (
 	// OpenbankingUKDynamicClientRegistrationResponseTokenEndpointAuthSigningAlgPS256 captures enum value "PS256"
 	OpenbankingUKDynamicClientRegistrationResponseTokenEndpointAuthSigningAlgPS256 string = "PS256"
 
-	// OpenbankingUKDynamicClientRegistrationResponseTokenEndpointAuthSigningAlgH256 captures enum value "H256"
-	OpenbankingUKDynamicClientRegistrationResponseTokenEndpointAuthSigningAlgH256 string = "H256"
+	// OpenbankingUKDynamicClientRegistrationResponseTokenEndpointAuthSigningAlgHS256 captures enum value "HS256"
+	OpenbankingUKDynamicClientRegistrationResponseTokenEndpointAuthSigningAlgHS256 string = "HS256"
 )
 
 // prop value enum

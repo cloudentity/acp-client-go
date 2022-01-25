@@ -54,6 +54,8 @@ type ClientService interface {
 
 	AcceptOBBRCustomerPaymentConsentSystem(params *AcceptOBBRCustomerPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptOBBRCustomerPaymentConsentSystemOK, error)
 
+	ConsumeOBBRConsent(params *ConsumeOBBRConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ConsumeOBBRConsentOK, error)
+
 	GetOBBRConsents(params *GetOBBRConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOBBRConsentsOK, error)
 
 	GetOBBRCustomerDataAccessConsentSystem(params *GetOBBRCustomerDataAccessConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOBBRCustomerDataAccessConsentSystemOK, error)
@@ -69,6 +71,8 @@ type ClientService interface {
 	RejectOBBRCustomerDataAccessConsentSystem(params *RejectOBBRCustomerDataAccessConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectOBBRCustomerDataAccessConsentSystemOK, error)
 
 	RejectOBBRCustomerPaymentConsentSystem(params *RejectOBBRCustomerPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectOBBRCustomerPaymentConsentSystemOK, error)
+
+	RevokeOBBRConsent(params *RevokeOBBRConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeOBBRConsentNoContent, error)
 
 	RevokeOBBRConsents(params *RevokeOBBRConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeOBBRConsentsOK, error)
 
@@ -568,6 +572,47 @@ func (a *Client) AcceptOBBRCustomerPaymentConsentSystem(params *AcceptOBBRCustom
 }
 
 /*
+  ConsumeOBBRConsent consumes openbanking consent by ID
+
+  This API consumes openbanking consent by consent id.
+*/
+func (a *Client) ConsumeOBBRConsent(params *ConsumeOBBRConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ConsumeOBBRConsentOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewConsumeOBBRConsentParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "consumeOBBRConsent",
+		Method:             "POST",
+		PathPattern:        "/servers/{wid}/open-banking-brasil/consents/{consentID}/consume",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ConsumeOBBRConsentReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ConsumeOBBRConsentOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for consumeOBBRConsent: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
   GetOBBRConsents gets openbanking brasil consents
 
   This API returns the list of openbanking brasil consents.
@@ -582,7 +627,7 @@ func (a *Client) GetOBBRConsents(params *GetOBBRConsentsParams, authInfo runtime
 	op := &runtime.ClientOperation{
 		ID:                 "getOBBRConsents",
 		Method:             "GET",
-		PathPattern:        "/servers/{aid}/open-banking-brasil/consents",
+		PathPattern:        "/servers/{wid}/open-banking-brasil/consents",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -709,7 +754,7 @@ func (a *Client) ListOBBRConsents(params *ListOBBRConsentsParams, authInfo runti
 	op := &runtime.ClientOperation{
 		ID:                 "listOBBRConsents",
 		Method:             "POST",
-		PathPattern:        "/servers/{aid}/open-banking-brasil/consents",
+		PathPattern:        "/servers/{wid}/open-banking-brasil/consents",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -904,6 +949,47 @@ func (a *Client) RejectOBBRCustomerPaymentConsentSystem(params *RejectOBBRCustom
 }
 
 /*
+  RevokeOBBRConsent revokes openbanking consent by ID
+
+  This API revokes openbanking consent by consent id.
+*/
+func (a *Client) RevokeOBBRConsent(params *RevokeOBBRConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeOBBRConsentNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRevokeOBBRConsentParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "revokeOBBRConsent",
+		Method:             "DELETE",
+		PathPattern:        "/servers/{wid}/open-banking-brasil/consents/{consentID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RevokeOBBRConsentReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*RevokeOBBRConsentNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for revokeOBBRConsent: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
   RevokeOBBRConsents revokes openbanking brasil consents
 
   This API revokes openbanking consents matching provided parameters.
@@ -922,7 +1008,7 @@ func (a *Client) RevokeOBBRConsents(params *RevokeOBBRConsentsParams, authInfo r
 	op := &runtime.ClientOperation{
 		ID:                 "revokeOBBRConsents",
 		Method:             "DELETE",
-		PathPattern:        "/servers/{aid}/open-banking-brasil/consents",
+		PathPattern:        "/servers/{wid}/open-banking-brasil/consents",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},

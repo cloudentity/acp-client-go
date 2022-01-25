@@ -65,7 +65,7 @@ type CreateDataAccessConsentParams struct {
 
 	   Request
 	*/
-	Request *models.OBBRCustomerDataAccessConsentRequest
+	Request *models.BrazilCustomerDataAccessConsentRequest
 
 	/* XCustomerUserAgent.
 
@@ -169,13 +169,13 @@ func (o *CreateDataAccessConsentParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequest adds the request to the create data access consent params
-func (o *CreateDataAccessConsentParams) WithRequest(request *models.OBBRCustomerDataAccessConsentRequest) *CreateDataAccessConsentParams {
+func (o *CreateDataAccessConsentParams) WithRequest(request *models.BrazilCustomerDataAccessConsentRequest) *CreateDataAccessConsentParams {
 	o.SetRequest(request)
 	return o
 }
 
 // SetRequest adds the request to the create data access consent params
-func (o *CreateDataAccessConsentParams) SetRequest(request *models.OBBRCustomerDataAccessConsentRequest) {
+func (o *CreateDataAccessConsentParams) SetRequest(request *models.BrazilCustomerDataAccessConsentRequest) {
 	o.Request = request
 }
 

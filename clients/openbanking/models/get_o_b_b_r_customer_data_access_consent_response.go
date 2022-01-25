@@ -40,7 +40,7 @@ type GetOBBRCustomerDataAccessConsentResponse struct {
 	CreatedAt strfmt.DateTime `json:"created_at,omitempty"`
 
 	// customer data access consent
-	CustomerDataAccessConsent *OBBRCustomerDataAccessConsent `json:"customer_data_access_consent,omitempty"`
+	CustomerDataAccessConsent *BrazilCustomerDataAccessConsent `json:"customer_data_access_consent,omitempty"`
 
 	// requested scopes
 	RequestedScopes []*RequestedScope `json:"requested_scopes"`

@@ -78,7 +78,7 @@ type RevokeOBBRConsentsOK struct {
 }
 
 func (o *RevokeOBBRConsentsOK) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{aid}/open-banking-brasil/consents][%d] revokeOBBRConsentsOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking-brasil/consents][%d] revokeOBBRConsentsOK  %+v", 200, o.Payload)
 }
 func (o *RevokeOBBRConsentsOK) GetPayload() *models.ConsentsRemovedResponse {
 	return o.Payload
@@ -110,7 +110,7 @@ type RevokeOBBRConsentsBadRequest struct {
 }
 
 func (o *RevokeOBBRConsentsBadRequest) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{aid}/open-banking-brasil/consents][%d] revokeOBBRConsentsBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking-brasil/consents][%d] revokeOBBRConsentsBadRequest  %+v", 400, o.Payload)
 }
 func (o *RevokeOBBRConsentsBadRequest) GetPayload() *models.Error {
 	return o.Payload
@@ -142,7 +142,7 @@ type RevokeOBBRConsentsUnauthorized struct {
 }
 
 func (o *RevokeOBBRConsentsUnauthorized) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{aid}/open-banking-brasil/consents][%d] revokeOBBRConsentsUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking-brasil/consents][%d] revokeOBBRConsentsUnauthorized  %+v", 401, o.Payload)
 }
 func (o *RevokeOBBRConsentsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
@@ -174,7 +174,7 @@ type RevokeOBBRConsentsForbidden struct {
 }
 
 func (o *RevokeOBBRConsentsForbidden) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{aid}/open-banking-brasil/consents][%d] revokeOBBRConsentsForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking-brasil/consents][%d] revokeOBBRConsentsForbidden  %+v", 403, o.Payload)
 }
 func (o *RevokeOBBRConsentsForbidden) GetPayload() *models.Error {
 	return o.Payload
@@ -206,7 +206,7 @@ type RevokeOBBRConsentsNotFound struct {
 }
 
 func (o *RevokeOBBRConsentsNotFound) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{aid}/open-banking-brasil/consents][%d] revokeOBBRConsentsNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking-brasil/consents][%d] revokeOBBRConsentsNotFound  %+v", 404, o.Payload)
 }
 func (o *RevokeOBBRConsentsNotFound) GetPayload() *models.Error {
 	return o.Payload
@@ -238,7 +238,7 @@ type RevokeOBBRConsentsTooManyRequests struct {
 }
 
 func (o *RevokeOBBRConsentsTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /servers/{aid}/open-banking-brasil/consents][%d] revokeOBBRConsentsTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking-brasil/consents][%d] revokeOBBRConsentsTooManyRequests  %+v", 429, o.Payload)
 }
 func (o *RevokeOBBRConsentsTooManyRequests) GetPayload() *models.Error {
 	return o.Payload

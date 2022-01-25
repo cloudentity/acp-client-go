@@ -40,7 +40,7 @@ type GetOBBRCustomerPaymentConsentResponse struct {
 	CreatedAt strfmt.DateTime `json:"created_at,omitempty"`
 
 	// customer payment consent
-	CustomerPaymentConsent *OBBRCustomerPaymentConsent `json:"customer_payment_consent,omitempty"`
+	CustomerPaymentConsent *BrazilCustomerPaymentConsent `json:"customer_payment_consent,omitempty"`
 
 	// requested scopes
 	RequestedScopes []*RequestedScope `json:"requested_scopes"`
