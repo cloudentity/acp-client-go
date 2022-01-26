@@ -748,6 +748,10 @@ func (c *Client) Exchange(code string, state string, csrf CSRF) (token Token, er
 		"redirect_uri": {c.Config.RedirectURL.String()},
 	}
 
+	if c.Config.ClientSecret != "" {
+		values.Add("client_secret", c.Config.ClientSecret)
+	}
+
 	if csrf.Verifier != "" {
 		values.Set("code_verifier", csrf.Verifier)
 	}
