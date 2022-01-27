@@ -749,11 +749,13 @@ func (c *Client) Exchange(code string, state string, csrf CSRF) (token Token, er
 	values := url.Values{
 		"grant_type":   {"authorization_code"},
 		"code":         {code},
-		"client_id":    {c.Config.ClientID},
 		"redirect_uri": {c.Config.RedirectURL.String()},
 	}
 
 	if c.Config.AuthStyle == oauth2.AuthStyleInParams {
+		if c.Config.ClientID != "" {
+			values.Add("client_id", c.Config.ClientID)
+		}
 		if c.Config.ClientSecret != "" {
 			values.Add("client_secret", c.Config.ClientSecret)
 		}
@@ -769,6 +771,7 @@ func (c *Client) Exchange(code string, state string, csrf CSRF) (token Token, er
 			return token, fmt.Errorf("failed to build request to exchange token: %w", err)
 		}
 
+		request.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 		request.SetBasicAuth(url.QueryEscape(c.Config.ClientID), url.QueryEscape(c.Config.ClientSecret))
 		if response, err = c.c.Do(request); err != nil {
 			return token, fmt.Errorf("failed to exchange token: %w", err)
