@@ -39,6 +39,7 @@ import (
 	"github.com/dgrijalva/jwt-go"
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/pkg/errors"
+	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/clientcredentials"
 )
 
@@ -124,6 +125,9 @@ type Client struct {
 type Config struct {
 	// ClientID is the application's ID.
 	ClientID string `json:"client_id"`
+
+	// AuthStyle represents how requests for tokens are authenticated to the server.
+	AuthStyle oauth2.AuthStyle
 
 	// ClientSecret is the application's secret.
 	ClientSecret string `json:"client_secret"`
@@ -410,6 +414,7 @@ func New(cfg Config) (c Client, err error) {
 		ClientSecret: cfg.ClientSecret,
 		Scopes:       cfg.Scopes,
 		TokenURL:     cfg.GetTokenURL(),
+		AuthStyle:    cfg.AuthStyle,
 	}
 
 	c.Oauth2 = &Oauth2{
@@ -748,16 +753,30 @@ func (c *Client) Exchange(code string, state string, csrf CSRF) (token Token, er
 		"redirect_uri": {c.Config.RedirectURL.String()},
 	}
 
-	if c.Config.ClientSecret != "" {
-		values.Add("client_secret", c.Config.ClientSecret)
+	if c.Config.AuthStyle == oauth2.AuthStyleInParams {
+		if c.Config.ClientSecret != "" {
+			values.Add("client_secret", c.Config.ClientSecret)
+		}
 	}
 
 	if csrf.Verifier != "" {
 		values.Set("code_verifier", csrf.Verifier)
 	}
 
-	if response, err = c.c.PostForm(c.Config.GetTokenURL(), values); err != nil {
-		return token, fmt.Errorf("failed to exchange token: %w", err)
+	if c.Config.AuthStyle == oauth2.AuthStyleInHeader {
+		var request *http.Request
+		if request, err = http.NewRequest(http.MethodPost, c.Config.GetTokenURL(), strings.NewReader(values.Encode())); err != nil {
+			return token, fmt.Errorf("failed to build request to exchange token: %w", err)
+		}
+
+		request.SetBasicAuth(url.QueryEscape(c.Config.ClientID), url.QueryEscape(c.Config.ClientSecret))
+		if response, err = c.c.Do(request); err != nil {
+			return token, fmt.Errorf("failed to exchange token: %w", err)
+		}
+	} else {
+		if response, err = c.c.PostForm(c.Config.GetTokenURL(), values); err != nil {
+			return token, fmt.Errorf("failed to exchange token: %w", err)
+		}
 	}
 	defer response.Body.Close()
 
