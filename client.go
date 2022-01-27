@@ -779,15 +779,16 @@ func (c *Client) Exchange(code string, state string, csrf CSRF) (token Token, er
 		values.Set("code_verifier", csrf.Verifier)
 	}
 
-	if c.Config.AuthStyle == AuthStyleInHeader {
-		if request, err = http.NewRequest(http.MethodPost, c.Config.GetTokenURL(), strings.NewReader(values.Encode())); err != nil {
-			return token, fmt.Errorf("failed to build request for token exchange: %w", err)
-		}
+	if request, err = http.NewRequest(http.MethodPost, c.Config.GetTokenURL(), strings.NewReader(values.Encode())); err != nil {
+		return token, fmt.Errorf("failed to build request for token exchange: %w", err)
+	}
 
+	if c.Config.AuthStyle == AuthStyleInHeader {
 		request.SetBasicAuth(url.QueryEscape(c.Config.ClientID), url.QueryEscape(c.Config.ClientSecret))
 	}
 
 	request.Header.Add("Content-Type", "application/x-www-form-urlencoded")
+
 	if response, err = c.c.Do(request); err != nil {
 		return token, fmt.Errorf("failed to exchange token: %w", err)
 	}
