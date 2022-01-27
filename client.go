@@ -430,7 +430,6 @@ func New(cfg Config) (c Client, err error) {
 		ClientSecret: cfg.ClientSecret,
 		Scopes:       cfg.Scopes,
 		TokenURL:     cfg.GetTokenURL(),
-		AuthStyle:    cfg.AuthStyle,
 	}
 
 	c.Oauth2 = &Oauth2{
