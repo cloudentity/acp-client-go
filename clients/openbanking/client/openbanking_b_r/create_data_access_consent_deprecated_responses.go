@@ -98,19 +98,19 @@ func NewCreateDataAccessConsentDeprecatedCreated() *CreateDataAccessConsentDepre
 Customer data access consent
 */
 type CreateDataAccessConsentDeprecatedCreated struct {
-	Payload *models.OBBRCustomerDataAccessConsentResponse
+	Payload *models.BrazilCustomerDataAccessConsentResponse
 }
 
 func (o *CreateDataAccessConsentDeprecatedCreated) Error() string {
 	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedCreated  %+v", 201, o.Payload)
 }
-func (o *CreateDataAccessConsentDeprecatedCreated) GetPayload() *models.OBBRCustomerDataAccessConsentResponse {
+func (o *CreateDataAccessConsentDeprecatedCreated) GetPayload() *models.BrazilCustomerDataAccessConsentResponse {
 	return o.Payload
 }
 
 func (o *CreateDataAccessConsentDeprecatedCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.OBBRCustomerDataAccessConsentResponse)
+	o.Payload = new(models.BrazilCustomerDataAccessConsentResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

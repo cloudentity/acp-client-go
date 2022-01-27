@@ -10,9 +10,8 @@ import (
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/cloudentity/acp-client-go/clients/openbanking/client/cdr"
+	"github.com/cloudentity/acp-client-go/clients/openbanking/client/c_d_r"
 	"github.com/cloudentity/acp-client-go/clients/openbanking/client/openbanking_b_r"
-	"github.com/cloudentity/acp-client-go/clients/openbanking/client/openbanking_common"
 	"github.com/cloudentity/acp-client-go/clients/openbanking/client/openbanking_u_k"
 )
 
@@ -58,9 +57,8 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *Acp {
 
 	cli := new(Acp)
 	cli.Transport = transport
-	cli.Cdr = cdr.New(transport, formats)
+	cli.Cdr = c_d_r.New(transport, formats)
 	cli.Openbankingbr = openbanking_b_r.New(transport, formats)
-	cli.OpenbankingCommon = openbanking_common.New(transport, formats)
 	cli.Openbankinguk = openbanking_u_k.New(transport, formats)
 	return cli
 }
@@ -106,11 +104,9 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 
 // Acp is a client for acp
 type Acp struct {
-	Cdr cdr.ClientService
+	Cdr c_d_r.ClientService
 
 	Openbankingbr openbanking_b_r.ClientService
-
-	OpenbankingCommon openbanking_common.ClientService
 
 	Openbankinguk openbanking_u_k.ClientService
 
@@ -122,6 +118,5 @@ func (c *Acp) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 	c.Cdr.SetTransport(transport)
 	c.Openbankingbr.SetTransport(transport)
-	c.OpenbankingCommon.SetTransport(transport)
 	c.Openbankinguk.SetTransport(transport)
 }

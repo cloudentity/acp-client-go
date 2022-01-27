@@ -11,6 +11,7 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // IntrospectOBBRPaymentConsentResponse introspect o b b r payment consent response
@@ -19,10 +20,76 @@ import (
 type IntrospectOBBRPaymentConsentResponse struct {
 	IntrospectResponse
 
-	OBBRCustomerPaymentConsent
-
 	// account i ds
 	AccountIDs []string `json:"AccountIDs"`
+
+	// business entity
+	BusinessEntity *OpenbankingBrasilPaymentBusinessEntity `json:"businessEntity,omitempty"`
+
+	// Identificador nico do consentimento criado para a iniciao de pagamento solicitada. Dever ser um URN - Uniform Resource Name.
+	// Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141)  um Uniform Resource
+	// Identifier - URI - que  atribudo sob o URI scheme "urn" e um namespace URN especfico, com a inteno de que o URN
+	// seja um identificador de recurso persistente e independente da localizao.
+	// Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+	// o namespace(urn)
+	// o identificador associado ao namespace da instituio transnmissora (bancoex)
+	// o identificador especfico dentro do namespace (C1DD33123).
+	// Informaes mais detalhadas sobre a construo de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+	// Example: urn:bancoex:C1DD33123
+	// Required: true
+	// Max Length: 256
+	// Pattern: ^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$
+	ConsentID *string `json:"consentId"`
+
+	// Data e hora em que o consentimento foi criado. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format).
+	// Example: 2021-05-21T08:30:00Z
+	// Required: true
+	// Format: date-time
+	CreationDateTime *strfmt.DateTime `json:"creationDateTime"`
+
+	// creditor
+	// Required: true
+	Creditor *OpenbankingBrasilPaymentIdentification `json:"creditor"`
+
+	// debtor account
+	DebtorAccount *OpenbankingBrasilPaymentDebtorAccount `json:"debtorAccount,omitempty"`
+
+	// Data e hora em que o consentimento da iniciao de pagamento expira, devendo ser sempre o creationDateTime mais 5 minutos. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC (UTC time format).
+	// O consentimento  criado com o status AWAITING_AUTHORISATION, e deve assumir o status AUTHORIZED ou REJECTED antes do tempo de expirao - 5 minutos. Caso o tempo seja expirado, o status deve assumir REJECTED.
+	// Para o cenrio em que o status assumiu AUTHORISED, o tempo mximo do expirationDateTime do consentimento deve assumir "now + 60 minutos". Este  o tempo para consumir o consentimento autorizado, mudando seu status para CONSUMED. No  possvel prorrogar este tempo e a criao de um novo consentimento ser necessria para os cenrios de insucesso.
+	// O tempo do expirationDateTime  garantido com os 15 minutos do access token, sendo possvel utilizar mais trs refresh tokens at totalizar 60 minutos.
+	// Example: 2021-05-21T08:30:00Z
+	// Required: true
+	// Format: date-time
+	ExpirationDateTime *strfmt.DateTime `json:"expirationDateTime"`
+
+	// Traz o cdigo da cidade segundo o IBGE (Instituto Brasileiro de Geografia e Estatstica).
+	// Para o preenchimento deste campo, o Iniciador de Pagamentos deve seguir a orientao do arranjo da forma de pagamento.
+	// O preenchimento do campo tanto em pix/payments quanto /consents deve ser igual. Caso haja divergncia dos valores, a instituio deve retornar HTTP 422 com o cdigo de erro PAGAMENTO_DIVERGENTE_DO_CONSENTIMENTO.
+	// Este campo faz referncia ao campo CodMun do arranjo Pix.
+	// Example: 5300108
+	// Max Length: 7
+	// Min Length: 7
+	// Pattern: ^\d{7}$
+	IbgeTownCode string `json:"ibgeTownCode,omitempty"`
+
+	// logged user
+	// Required: true
+	LoggedUser *OpenbankingBrasilPaymentLoggedUser `json:"loggedUser"`
+
+	// payment
+	// Required: true
+	Payment *OpenbankingBrasilPaymentPaymentConsent `json:"payment"`
+
+	// status
+	// Required: true
+	Status *OpenbankingBrasilPaymentEnumAuthorisationStatusType `json:"status"`
+
+	// Data e hora em que o recurso foi atualizado. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format).
+	// Example: 2021-05-21T08:30:00Z
+	// Required: true
+	// Format: date-time
+	StatusUpdateDateTime *strfmt.DateTime `json:"statusUpdateDateTime"`
 }
 
 // UnmarshalJSON unmarshals this object from a JSON structure
@@ -35,51 +102,126 @@ func (m *IntrospectOBBRPaymentConsentResponse) UnmarshalJSON(raw []byte) error {
 	m.IntrospectResponse = aO0
 
 	// AO1
-	var aO1 OBBRCustomerPaymentConsent
-	if err := swag.ReadJSON(raw, &aO1); err != nil {
-		return err
-	}
-	m.OBBRCustomerPaymentConsent = aO1
-
-	// AO2
-	var dataAO2 struct {
+	var dataAO1 struct {
 		AccountIDs []string `json:"AccountIDs"`
+
+		BusinessEntity *OpenbankingBrasilPaymentBusinessEntity `json:"businessEntity,omitempty"`
+
+		ConsentID *string `json:"consentId"`
+
+		CreationDateTime *strfmt.DateTime `json:"creationDateTime"`
+
+		Creditor *OpenbankingBrasilPaymentIdentification `json:"creditor"`
+
+		DebtorAccount *OpenbankingBrasilPaymentDebtorAccount `json:"debtorAccount,omitempty"`
+
+		ExpirationDateTime *strfmt.DateTime `json:"expirationDateTime"`
+
+		IbgeTownCode string `json:"ibgeTownCode,omitempty"`
+
+		LoggedUser *OpenbankingBrasilPaymentLoggedUser `json:"loggedUser"`
+
+		Payment *OpenbankingBrasilPaymentPaymentConsent `json:"payment"`
+
+		Status *OpenbankingBrasilPaymentEnumAuthorisationStatusType `json:"status"`
+
+		StatusUpdateDateTime *strfmt.DateTime `json:"statusUpdateDateTime"`
 	}
-	if err := swag.ReadJSON(raw, &dataAO2); err != nil {
+	if err := swag.ReadJSON(raw, &dataAO1); err != nil {
 		return err
 	}
 
-	m.AccountIDs = dataAO2.AccountIDs
+	m.AccountIDs = dataAO1.AccountIDs
+
+	m.BusinessEntity = dataAO1.BusinessEntity
+
+	m.ConsentID = dataAO1.ConsentID
+
+	m.CreationDateTime = dataAO1.CreationDateTime
+
+	m.Creditor = dataAO1.Creditor
+
+	m.DebtorAccount = dataAO1.DebtorAccount
+
+	m.ExpirationDateTime = dataAO1.ExpirationDateTime
+
+	m.IbgeTownCode = dataAO1.IbgeTownCode
+
+	m.LoggedUser = dataAO1.LoggedUser
+
+	m.Payment = dataAO1.Payment
+
+	m.Status = dataAO1.Status
+
+	m.StatusUpdateDateTime = dataAO1.StatusUpdateDateTime
 
 	return nil
 }
 
 // MarshalJSON marshals this object to a JSON structure
 func (m IntrospectOBBRPaymentConsentResponse) MarshalJSON() ([]byte, error) {
-	_parts := make([][]byte, 0, 3)
+	_parts := make([][]byte, 0, 2)
 
 	aO0, err := swag.WriteJSON(m.IntrospectResponse)
 	if err != nil {
 		return nil, err
 	}
 	_parts = append(_parts, aO0)
-
-	aO1, err := swag.WriteJSON(m.OBBRCustomerPaymentConsent)
-	if err != nil {
-		return nil, err
-	}
-	_parts = append(_parts, aO1)
-	var dataAO2 struct {
+	var dataAO1 struct {
 		AccountIDs []string `json:"AccountIDs"`
+
+		BusinessEntity *OpenbankingBrasilPaymentBusinessEntity `json:"businessEntity,omitempty"`
+
+		ConsentID *string `json:"consentId"`
+
+		CreationDateTime *strfmt.DateTime `json:"creationDateTime"`
+
+		Creditor *OpenbankingBrasilPaymentIdentification `json:"creditor"`
+
+		DebtorAccount *OpenbankingBrasilPaymentDebtorAccount `json:"debtorAccount,omitempty"`
+
+		ExpirationDateTime *strfmt.DateTime `json:"expirationDateTime"`
+
+		IbgeTownCode string `json:"ibgeTownCode,omitempty"`
+
+		LoggedUser *OpenbankingBrasilPaymentLoggedUser `json:"loggedUser"`
+
+		Payment *OpenbankingBrasilPaymentPaymentConsent `json:"payment"`
+
+		Status *OpenbankingBrasilPaymentEnumAuthorisationStatusType `json:"status"`
+
+		StatusUpdateDateTime *strfmt.DateTime `json:"statusUpdateDateTime"`
 	}
 
-	dataAO2.AccountIDs = m.AccountIDs
+	dataAO1.AccountIDs = m.AccountIDs
 
-	jsonDataAO2, errAO2 := swag.WriteJSON(dataAO2)
-	if errAO2 != nil {
-		return nil, errAO2
+	dataAO1.BusinessEntity = m.BusinessEntity
+
+	dataAO1.ConsentID = m.ConsentID
+
+	dataAO1.CreationDateTime = m.CreationDateTime
+
+	dataAO1.Creditor = m.Creditor
+
+	dataAO1.DebtorAccount = m.DebtorAccount
+
+	dataAO1.ExpirationDateTime = m.ExpirationDateTime
+
+	dataAO1.IbgeTownCode = m.IbgeTownCode
+
+	dataAO1.LoggedUser = m.LoggedUser
+
+	dataAO1.Payment = m.Payment
+
+	dataAO1.Status = m.Status
+
+	dataAO1.StatusUpdateDateTime = m.StatusUpdateDateTime
+
+	jsonDataAO1, errAO1 := swag.WriteJSON(dataAO1)
+	if errAO1 != nil {
+		return nil, errAO1
 	}
-	_parts = append(_parts, jsonDataAO2)
+	_parts = append(_parts, jsonDataAO1)
 	return swag.ConcatJSON(_parts...), nil
 }
 
@@ -91,14 +233,255 @@ func (m *IntrospectOBBRPaymentConsentResponse) Validate(formats strfmt.Registry)
 	if err := m.IntrospectResponse.Validate(formats); err != nil {
 		res = append(res, err)
 	}
-	// validation for a type composition with OBBRCustomerPaymentConsent
-	if err := m.OBBRCustomerPaymentConsent.Validate(formats); err != nil {
+
+	if err := m.validateBusinessEntity(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateConsentID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCreationDateTime(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCreditor(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDebtorAccount(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateExpirationDateTime(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIbgeTownCode(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLoggedUser(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePayment(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStatusUpdateDateTime(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *IntrospectOBBRPaymentConsentResponse) validateBusinessEntity(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.BusinessEntity) { // not required
+		return nil
+	}
+
+	if m.BusinessEntity != nil {
+		if err := m.BusinessEntity.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("businessEntity")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("businessEntity")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IntrospectOBBRPaymentConsentResponse) validateConsentID(formats strfmt.Registry) error {
+
+	if err := validate.Required("consentId", "body", m.ConsentID); err != nil {
+		return err
+	}
+
+	if err := validate.MaxLength("consentId", "body", *m.ConsentID, 256); err != nil {
+		return err
+	}
+
+	if err := validate.Pattern("consentId", "body", *m.ConsentID, `^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$`); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *IntrospectOBBRPaymentConsentResponse) validateCreationDateTime(formats strfmt.Registry) error {
+
+	if err := validate.Required("creationDateTime", "body", m.CreationDateTime); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("creationDateTime", "body", "date-time", m.CreationDateTime.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *IntrospectOBBRPaymentConsentResponse) validateCreditor(formats strfmt.Registry) error {
+
+	if err := validate.Required("creditor", "body", m.Creditor); err != nil {
+		return err
+	}
+
+	if m.Creditor != nil {
+		if err := m.Creditor.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("creditor")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("creditor")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IntrospectOBBRPaymentConsentResponse) validateDebtorAccount(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.DebtorAccount) { // not required
+		return nil
+	}
+
+	if m.DebtorAccount != nil {
+		if err := m.DebtorAccount.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("debtorAccount")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("debtorAccount")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IntrospectOBBRPaymentConsentResponse) validateExpirationDateTime(formats strfmt.Registry) error {
+
+	if err := validate.Required("expirationDateTime", "body", m.ExpirationDateTime); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("expirationDateTime", "body", "date-time", m.ExpirationDateTime.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *IntrospectOBBRPaymentConsentResponse) validateIbgeTownCode(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.IbgeTownCode) { // not required
+		return nil
+	}
+
+	if err := validate.MinLength("ibgeTownCode", "body", m.IbgeTownCode, 7); err != nil {
+		return err
+	}
+
+	if err := validate.MaxLength("ibgeTownCode", "body", m.IbgeTownCode, 7); err != nil {
+		return err
+	}
+
+	if err := validate.Pattern("ibgeTownCode", "body", m.IbgeTownCode, `^\d{7}$`); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *IntrospectOBBRPaymentConsentResponse) validateLoggedUser(formats strfmt.Registry) error {
+
+	if err := validate.Required("loggedUser", "body", m.LoggedUser); err != nil {
+		return err
+	}
+
+	if m.LoggedUser != nil {
+		if err := m.LoggedUser.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("loggedUser")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("loggedUser")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IntrospectOBBRPaymentConsentResponse) validatePayment(formats strfmt.Registry) error {
+
+	if err := validate.Required("payment", "body", m.Payment); err != nil {
+		return err
+	}
+
+	if m.Payment != nil {
+		if err := m.Payment.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("payment")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("payment")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IntrospectOBBRPaymentConsentResponse) validateStatus(formats strfmt.Registry) error {
+
+	if err := validate.Required("status", "body", m.Status); err != nil {
+		return err
+	}
+
+	if err := validate.Required("status", "body", m.Status); err != nil {
+		return err
+	}
+
+	if m.Status != nil {
+		if err := m.Status.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IntrospectOBBRPaymentConsentResponse) validateStatusUpdateDateTime(formats strfmt.Registry) error {
+
+	if err := validate.Required("statusUpdateDateTime", "body", m.StatusUpdateDateTime); err != nil {
+		return err
+	}
+
+	if err := validate.FormatOf("statusUpdateDateTime", "body", "date-time", m.StatusUpdateDateTime.String(), formats); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -110,14 +493,130 @@ func (m *IntrospectOBBRPaymentConsentResponse) ContextValidate(ctx context.Conte
 	if err := m.IntrospectResponse.ContextValidate(ctx, formats); err != nil {
 		res = append(res, err)
 	}
-	// validation for a type composition with OBBRCustomerPaymentConsent
-	if err := m.OBBRCustomerPaymentConsent.ContextValidate(ctx, formats); err != nil {
+
+	if err := m.contextValidateBusinessEntity(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCreditor(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDebtorAccount(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLoggedUser(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePayment(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStatus(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *IntrospectOBBRPaymentConsentResponse) contextValidateBusinessEntity(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.BusinessEntity != nil {
+		if err := m.BusinessEntity.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("businessEntity")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("businessEntity")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IntrospectOBBRPaymentConsentResponse) contextValidateCreditor(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Creditor != nil {
+		if err := m.Creditor.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("creditor")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("creditor")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IntrospectOBBRPaymentConsentResponse) contextValidateDebtorAccount(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.DebtorAccount != nil {
+		if err := m.DebtorAccount.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("debtorAccount")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("debtorAccount")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IntrospectOBBRPaymentConsentResponse) contextValidateLoggedUser(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.LoggedUser != nil {
+		if err := m.LoggedUser.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("loggedUser")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("loggedUser")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IntrospectOBBRPaymentConsentResponse) contextValidatePayment(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Payment != nil {
+		if err := m.Payment.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("payment")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("payment")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IntrospectOBBRPaymentConsentResponse) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Status != nil {
+		if err := m.Status.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("status")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

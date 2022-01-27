@@ -60,14 +60,6 @@ func NewRevokeOBBRConsentsParamsWithHTTPClient(client *http.Client) *RevokeOBBRC
 */
 type RevokeOBBRConsentsParams struct {
 
-	/* Aid.
-
-	   Authorization server id
-
-	   Default: "default"
-	*/
-	Aid string
-
 	/* ClientID.
 
 	   Client ID
@@ -79,6 +71,14 @@ type RevokeOBBRConsentsParams struct {
 	   Required consent types
 	*/
 	ConsentTypes []string
+
+	/* Wid.
+
+	   Workspace id
+
+	   Default: "default"
+	*/
+	Wid string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -98,11 +98,11 @@ func (o *RevokeOBBRConsentsParams) WithDefaults() *RevokeOBBRConsentsParams {
 // All values with no default are reset to their zero value.
 func (o *RevokeOBBRConsentsParams) SetDefaults() {
 	var (
-		aidDefault = string("default")
+		widDefault = string("default")
 	)
 
 	val := RevokeOBBRConsentsParams{
-		Aid: aidDefault,
+		Wid: widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -144,17 +144,6 @@ func (o *RevokeOBBRConsentsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithAid adds the aid to the revoke o b b r consents params
-func (o *RevokeOBBRConsentsParams) WithAid(aid string) *RevokeOBBRConsentsParams {
-	o.SetAid(aid)
-	return o
-}
-
-// SetAid adds the aid to the revoke o b b r consents params
-func (o *RevokeOBBRConsentsParams) SetAid(aid string) {
-	o.Aid = aid
-}
-
 // WithClientID adds the clientID to the revoke o b b r consents params
 func (o *RevokeOBBRConsentsParams) WithClientID(clientID *string) *RevokeOBBRConsentsParams {
 	o.SetClientID(clientID)
@@ -177,6 +166,17 @@ func (o *RevokeOBBRConsentsParams) SetConsentTypes(consentTypes []string) {
 	o.ConsentTypes = consentTypes
 }
 
+// WithWid adds the wid to the revoke o b b r consents params
+func (o *RevokeOBBRConsentsParams) WithWid(wid string) *RevokeOBBRConsentsParams {
+	o.SetWid(wid)
+	return o
+}
+
+// SetWid adds the wid to the revoke o b b r consents params
+func (o *RevokeOBBRConsentsParams) SetWid(wid string) {
+	o.Wid = wid
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *RevokeOBBRConsentsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -184,11 +184,6 @@ func (o *RevokeOBBRConsentsParams) WriteToRequest(r runtime.ClientRequest, reg s
 		return err
 	}
 	var res []error
-
-	// path param aid
-	if err := r.SetPathParam("aid", o.Aid); err != nil {
-		return err
-	}
 
 	if o.ClientID != nil {
 
@@ -216,6 +211,11 @@ func (o *RevokeOBBRConsentsParams) WriteToRequest(r runtime.ClientRequest, reg s
 		if err := r.SetQueryParam("consent_types", joinedConsentTypes...); err != nil {
 			return err
 		}
+	}
+
+	// path param wid
+	if err := r.SetPathParam("wid", o.Wid); err != nil {
+		return err
 	}
 
 	if len(res) > 0 {

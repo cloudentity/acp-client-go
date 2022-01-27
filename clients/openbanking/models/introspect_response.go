@@ -65,6 +65,11 @@ type IntrospectResponse struct {
 	// used before.
 	Nbf int64 `json:"nbf,omitempty"`
 
+	// Refresh Token Expires at is an integer timestamp, measured in the number
+	// of seconds since January 1 1970 UTC, indicating when the issued refresh
+	// token witll expire.
+	RefreshTokenExpiresAt int64 `json:"refresh_token_expires_at,omitempty"`
+
 	// Scope is a JSON string containing a space-separated list of
 	// scopes associated with this token.
 	Scope string `json:"scope,omitempty"`
