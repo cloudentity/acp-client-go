@@ -770,9 +770,10 @@ func (c *Client) Exchange(code string, state string, csrf CSRF) (token Token, er
 	}
 
 	if c.Config.AuthStyle == AuthStyleInParams {
-		if c.Config.ClientSecret != "" {
-			values.Add("client_secret", c.Config.ClientSecret)
+		if c.Config.ClientSecret == "" {
+			return token, fmt.Errorf("auth style requires a client secret and one was not provided")
 		}
+		values.Add("client_secret", c.Config.ClientSecret)
 	}
 
 	if csrf.Verifier != "" {
@@ -784,6 +785,9 @@ func (c *Client) Exchange(code string, state string, csrf CSRF) (token Token, er
 	}
 
 	if c.Config.AuthStyle == AuthStyleInHeader {
+		if c.Config.ClientSecret == "" {
+			return token, fmt.Errorf("auth style requires a client secret and one was not provided")
+		}
 		request.SetBasicAuth(url.QueryEscape(c.Config.ClientID), url.QueryEscape(c.Config.ClientSecret))
 	}
 
