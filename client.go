@@ -39,7 +39,6 @@ import (
 	"github.com/dgrijalva/jwt-go"
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/pkg/errors"
-	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/clientcredentials"
 )
 
@@ -121,13 +120,30 @@ type Client struct {
 	BasePath string
 }
 
+// AuthStyle represents how requests for tokens are authenticated
+// to the server.
+type AuthStyle int
+
+const (
+	// AuthStyleMTLS uses mTLS public/private key pair.
+	AuthStyleMTLS AuthStyle = 0
+
+	// AuthStyleInParams sends the "client_id" and "client_secret"
+	// in the POST body as application/x-www-form-urlencoded parameters.
+	AuthStyleInParams AuthStyle = 1
+
+	// AuthStyleInHeader sends the client_id and client_password
+	// using HTTP Basic Authorization.
+	AuthStyleInHeader AuthStyle = 2
+)
+
 // ACP client configuration
 type Config struct {
 	// ClientID is the application's ID.
 	ClientID string `json:"client_id"`
 
 	// AuthStyle represents how requests for tokens are authenticated to the server.
-	AuthStyle oauth2.AuthStyle
+	AuthStyle AuthStyle
 
 	// ClientSecret is the application's secret.
 	ClientSecret string `json:"client_secret"`
@@ -742,6 +758,7 @@ func (c *Client) AuthorizeURL(options ...AuthorizeOption) (authorizeURL string, 
 
 func (c *Client) Exchange(code string, state string, csrf CSRF) (token Token, err error) {
 	var (
+		request  *http.Request
 		response *http.Response
 		body     []byte
 	)
@@ -749,13 +766,11 @@ func (c *Client) Exchange(code string, state string, csrf CSRF) (token Token, er
 	values := url.Values{
 		"grant_type":   {"authorization_code"},
 		"code":         {code},
+		"client_id":    {c.Config.ClientID},
 		"redirect_uri": {c.Config.RedirectURL.String()},
 	}
 
-	if c.Config.AuthStyle == oauth2.AuthStyleInParams {
-		if c.Config.ClientID != "" {
-			values.Add("client_id", c.Config.ClientID)
-		}
+	if c.Config.AuthStyle == AuthStyleInParams {
 		if c.Config.ClientSecret != "" {
 			values.Add("client_secret", c.Config.ClientSecret)
 		}
@@ -765,21 +780,17 @@ func (c *Client) Exchange(code string, state string, csrf CSRF) (token Token, er
 		values.Set("code_verifier", csrf.Verifier)
 	}
 
-	if c.Config.AuthStyle == oauth2.AuthStyleInHeader {
-		var request *http.Request
+	if c.Config.AuthStyle == AuthStyleInHeader {
 		if request, err = http.NewRequest(http.MethodPost, c.Config.GetTokenURL(), strings.NewReader(values.Encode())); err != nil {
-			return token, fmt.Errorf("failed to build request to exchange token: %w", err)
+			return token, fmt.Errorf("failed to build request for token exchange: %w", err)
 		}
 
-		request.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 		request.SetBasicAuth(url.QueryEscape(c.Config.ClientID), url.QueryEscape(c.Config.ClientSecret))
-		if response, err = c.c.Do(request); err != nil {
-			return token, fmt.Errorf("failed to exchange token: %w", err)
-		}
-	} else {
-		if response, err = c.c.PostForm(c.Config.GetTokenURL(), values); err != nil {
-			return token, fmt.Errorf("failed to exchange token: %w", err)
-		}
+	}
+
+	request.Header.Add("Content-Type", "application/x-www-form-urlencoded")
+	if response, err = c.c.Do(request); err != nil {
+		return token, fmt.Errorf("failed to exchange token: %w", err)
 	}
 	defer response.Body.Close()
 
