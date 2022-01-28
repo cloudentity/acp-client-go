@@ -120,10 +120,25 @@ type Client struct {
 	BasePath string
 }
 
+type AuthMethod string
+
+const (
+	ClientSecretBasicAuthnMethod AuthMethod = "client_secret_basic"
+	ClientSecretPostAuthnMethod  AuthMethod = "client_secret_post"
+	ClientSecretJwtAuthnMethod   AuthMethod = "client_secret_jwt"
+	PrivateKeyJwtAuthnMethod     AuthMethod = "private_key_jwt"
+	SelfSignedTLSAuthnMethod     AuthMethod = "self_signed_tls_client_auth"
+	TLSClientAuthnMethod         AuthMethod = "tls_client_auth"
+	NoneAuthnMethod              AuthMethod = "none"
+)
+
 // ACP client configuration
 type Config struct {
 	// ClientID is the application's ID.
 	ClientID string `json:"client_id"`
+
+	// AuthMethod represents how requests for tokens are authenticated to the server.
+	AuthMethod AuthMethod
 
 	// ClientSecret is the application's secret.
 	ClientSecret string `json:"client_secret"`
@@ -372,6 +387,10 @@ func New(cfg Config) (c Client, err error) {
 
 	if cfg.IssuerURL == nil {
 		return c, errors.New("issuer_url is missing")
+	}
+
+	if (cfg.AuthMethod == ClientSecretPostAuthnMethod || cfg.AuthMethod == ClientSecretBasicAuthnMethod) && cfg.ClientSecret == "" {
+		return c, errors.New("client_secret is missing")
 	}
 
 	// Configure BasePath, TenantID and ServerID from the Config.
@@ -737,6 +756,7 @@ func (c *Client) AuthorizeURL(options ...AuthorizeOption) (authorizeURL string, 
 
 func (c *Client) Exchange(code string, state string, csrf CSRF) (token Token, err error) {
 	var (
+		request  *http.Request
 		response *http.Response
 		body     []byte
 	)
@@ -748,11 +768,25 @@ func (c *Client) Exchange(code string, state string, csrf CSRF) (token Token, er
 		"redirect_uri": {c.Config.RedirectURL.String()},
 	}
 
+	if c.Config.AuthMethod == ClientSecretPostAuthnMethod {
+		values.Add("client_secret", c.Config.ClientSecret)
+	}
+
 	if csrf.Verifier != "" {
 		values.Set("code_verifier", csrf.Verifier)
 	}
 
-	if response, err = c.c.PostForm(c.Config.GetTokenURL(), values); err != nil {
+	if request, err = http.NewRequest(http.MethodPost, c.Config.GetTokenURL(), strings.NewReader(values.Encode())); err != nil {
+		return token, fmt.Errorf("failed to build request for token exchange: %w", err)
+	}
+
+	if c.Config.AuthMethod == ClientSecretBasicAuthnMethod {
+		request.SetBasicAuth(url.QueryEscape(c.Config.ClientID), url.QueryEscape(c.Config.ClientSecret))
+	}
+
+	request.Header.Add("Content-Type", "application/x-www-form-urlencoded")
+
+	if response, err = c.c.Do(request); err != nil {
 		return token, fmt.Errorf("failed to exchange token: %w", err)
 	}
 	defer response.Body.Close()
