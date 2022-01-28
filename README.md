@@ -14,6 +14,7 @@ import "github.com/cloudentity/acp-client-go"
 var client = acpclient.New(acpclient.Config{
     ClientID:     "your-clients-id",
     ClientSecret: "your-clients-secret",
+    AuthMethod:   acpclient.ClientSecretBasicAuthnMethod,
     IssuerURL:    "https://localhost:8443/default/default",
     Scopes:       []string{"introspect_tokens"},
 })
@@ -27,6 +28,7 @@ import "github.com/cloudentity/acp-client-go"
 var client = acpclient.New(acpclient.Config{
     ClientID:          "your-clients-id",
     ClientSecret:      "your-clients-secret",
+    AuthMethod:        acpclient.ClientSecretBasicAuthnMethod,
     IssuerURL:         "https://acp.local:8443/default",
     VanityDomainType:  "tenant",
     TenantID:          "default",
@@ -42,6 +44,7 @@ import "github.com/cloudentity/acp-client-go"
 var client = acpclient.New(acpclient.Config{
     ClientID:          "your-clients-id",
     ClientSecret:      "your-clients-secret",
+    AuthMethod:        acpclient.ClientSecretBasicAuthnMethod,
     IssuerURL:         "https://default.acp.local:8443",
     VanityDomainType:  "server",
     TenantID:          "default",
@@ -57,6 +60,7 @@ import "github.com/cloudentity/acp-client-go"
 
 var client = acpclient.New(acpclient.Config{
     ClientID:  "your-clients-id",
+    AuthMethod: acpclient.TLSClientAuthnMethod,
     IssuerURL: "https://localhost:8443/default/default",
     CertFile:  "./cert.pem",
     KeyFile:   "./key.pem",
