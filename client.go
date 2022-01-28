@@ -120,21 +120,16 @@ type Client struct {
 	BasePath string
 }
 
-// AuthStyle represents how requests for tokens are authenticated
-// to the server.
-type AuthStyle int
+type AuthMethod string
 
 const (
-	// AuthStyleMTLS uses mTLS public/private key pair.
-	AuthStyleMTLS AuthStyle = 0
-
-	// AuthStyleInParams sends the "client_id" and "client_secret"
-	// in the POST body as application/x-www-form-urlencoded parameters.
-	AuthStyleInParams AuthStyle = 1
-
-	// AuthStyleInHeader sends the client_id and client_password
-	// using HTTP Basic Authorization.
-	AuthStyleInHeader AuthStyle = 2
+	ClientSecretBasicAuthnMethod AuthMethod = "client_secret_basic"
+	ClientSecretPostAuthnMethod  AuthMethod = "client_secret_post"
+	ClientSecretJwtAuthnMethod   AuthMethod = "client_secret_jwt"
+	PrivateKeyJwtAuthnMethod     AuthMethod = "private_key_jwt"
+	SelfSignedTLSAuthnMethod     AuthMethod = "self_signed_tls_client_auth"
+	TLSClientAuthnMethod         AuthMethod = "tls_client_auth"
+	NoneAuthnMethod              AuthMethod = "none"
 )
 
 // ACP client configuration
@@ -142,8 +137,8 @@ type Config struct {
 	// ClientID is the application's ID.
 	ClientID string `json:"client_id"`
 
-	// AuthStyle represents how requests for tokens are authenticated to the server.
-	AuthStyle AuthStyle
+	// AuthMethod represents how requests for tokens are authenticated to the server.
+	AuthMethod AuthMethod
 
 	// ClientSecret is the application's secret.
 	ClientSecret string `json:"client_secret"`
@@ -392,6 +387,10 @@ func New(cfg Config) (c Client, err error) {
 
 	if cfg.IssuerURL == nil {
 		return c, errors.New("issuer_url is missing")
+	}
+
+	if (cfg.AuthMethod == ClientSecretPostAuthnMethod || cfg.AuthMethod == ClientSecretBasicAuthnMethod) && cfg.ClientSecret == "" {
+		return c, errors.New("client_secret is missing")
 	}
 
 	// Configure BasePath, TenantID and ServerID from the Config.
@@ -769,10 +768,7 @@ func (c *Client) Exchange(code string, state string, csrf CSRF) (token Token, er
 		"redirect_uri": {c.Config.RedirectURL.String()},
 	}
 
-	if c.Config.AuthStyle == AuthStyleInParams {
-		if c.Config.ClientSecret == "" {
-			return token, fmt.Errorf("auth style requires a client secret and one was not provided")
-		}
+	if c.Config.AuthMethod == ClientSecretPostAuthnMethod {
 		values.Add("client_secret", c.Config.ClientSecret)
 	}
 
@@ -784,10 +780,7 @@ func (c *Client) Exchange(code string, state string, csrf CSRF) (token Token, er
 		return token, fmt.Errorf("failed to build request for token exchange: %w", err)
 	}
 
-	if c.Config.AuthStyle == AuthStyleInHeader {
-		if c.Config.ClientSecret == "" {
-			return token, fmt.Errorf("auth style requires a client secret and one was not provided")
-		}
+	if c.Config.AuthMethod == ClientSecretBasicAuthnMethod {
 		request.SetBasicAuth(url.QueryEscape(c.Config.ClientID), url.QueryEscape(c.Config.ClientSecret))
 	}
 
