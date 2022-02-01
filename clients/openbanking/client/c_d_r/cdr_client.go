@@ -34,6 +34,8 @@ type ClientService interface {
 
 	CdrConsentIntrospect(params *CdrConsentIntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CdrConsentIntrospectOK, error)
 
+	GetCDRArrangement(params *GetCDRArrangementParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCDRArrangementOK, error)
+
 	GetCDRArrangementSystem(params *GetCDRArrangementSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCDRArrangementSystemOK, error)
 
 	GetCDRArrangements(params *GetCDRArrangementsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCDRArrangementsOK, error)
@@ -43,6 +45,8 @@ type ClientService interface {
 	RejectCDRArrangementSystem(params *RejectCDRArrangementSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectCDRArrangementSystemOK, error)
 
 	RevokeCDRArrangement(params *RevokeCDRArrangementParams, opts ...ClientOption) (*RevokeCDRArrangementNoContent, error)
+
+	RevokeCDRArrangementByID(params *RevokeCDRArrangementByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeCDRArrangementByIDNoContent, error)
 
 	RevokeCDRArrangements(params *RevokeCDRArrangementsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeCDRArrangementsOK, error)
 
@@ -130,6 +134,47 @@ func (a *Client) CdrConsentIntrospect(params *CdrConsentIntrospectParams, authIn
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for cdrConsentIntrospect: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  GetCDRArrangement gets c d r arrangement by ID
+
+  This API retrieves CDR arrangement by ID.
+*/
+func (a *Client) GetCDRArrangement(params *GetCDRArrangementParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCDRArrangementOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetCDRArrangementParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getCDRArrangement",
+		Method:             "GET",
+		PathPattern:        "/servers/{wid}/cdr/arrangements/{arrangementID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetCDRArrangementReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetCDRArrangementOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getCDRArrangement: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -339,6 +384,47 @@ func (a *Client) RevokeCDRArrangement(params *RevokeCDRArrangementParams, opts .
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for revokeCDRArrangement: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  RevokeCDRArrangementByID revokes c d r arrangement
+
+  This API revokes a single CDR Arrangement with the matching arrangement id
+*/
+func (a *Client) RevokeCDRArrangementByID(params *RevokeCDRArrangementByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeCDRArrangementByIDNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRevokeCDRArrangementByIDParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "revokeCDRArrangementByID",
+		Method:             "DELETE",
+		PathPattern:        "/servers/{wid}/cdr/arrangements/{arrangementID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RevokeCDRArrangementByIDReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*RevokeCDRArrangementByIDNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for revokeCDRArrangementByID: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

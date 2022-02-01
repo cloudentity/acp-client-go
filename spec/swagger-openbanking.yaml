@@ -12723,6 +12723,76 @@ paths:
       summary: List CDR arrangements
       tags:
       - CDR
+  /servers/{wid}/cdr/arrangements/{arrangementID}:
+    delete:
+      description: This API revokes a single CDR Arrangement with the matching arrangement
+        id
+      operationId: revokeCDRArrangementByID
+      parameters:
+      - default: default
+        description: Workspace id
+        in: path
+        name: wid
+        required: true
+        type: string
+      - description: Arrangement id
+        in: path
+        name: arrangementID
+        required: true
+        type: string
+      responses:
+        "204":
+          description: ' Arrangement has been revoked'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - system:
+        - manage_openbanking_consents
+      summary: Revoke CDR arrangement
+      tags:
+      - CDR
+    get:
+      description: This API retrieves CDR arrangement by ID.
+      operationId: getCDRArrangement
+      parameters:
+      - default: default
+        description: Workspace id
+        in: path
+        name: wid
+        required: true
+        type: string
+      - description: Arrangement id
+        in: path
+        name: arrangementID
+        required: true
+        type: string
+      responses:
+        "200":
+          description: CDRArrangement
+          schema:
+            $ref: '#/definitions/CDRArrangement'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - system:
+        - manage_openbanking_consents
+      summary: Get CDR arrangement by ID.
+      tags:
+      - CDR
   /servers/{wid}/open-banking-brasil/consents:
     delete:
       description: |-
