@@ -10,7 +10,6 @@ import (
 	"encoding/pem"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net"
 	"net/http"
 	"net/url"
@@ -433,7 +432,7 @@ func New(cfg Config) (c Client, err error) {
 	if cfg.RequestObjectEncryptionKeyFile != "" {
 		var bs []byte
 
-		if bs, err = ioutil.ReadFile(cfg.RequestObjectEncryptionKeyFile); err != nil {
+		if bs, err = os.ReadFile(cfg.RequestObjectEncryptionKeyFile); err != nil {
 			return c, errors.Wrapf(err, "failed to read request object encryption key")
 		}
 
