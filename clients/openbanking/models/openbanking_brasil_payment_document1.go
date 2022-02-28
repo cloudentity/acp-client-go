@@ -16,6 +16,8 @@ import (
 
 // OpenbankingBrasilPaymentDocument1 OpenbankingBrasilPaymentDocument1 Document1
 //
+// Objeto que contm os dados de identificao do usurio.
+//
 // swagger:model OpenbankingBrasilPaymentDocument1
 type OpenbankingBrasilPaymentDocument1 struct {
 

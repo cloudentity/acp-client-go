@@ -50,6 +50,8 @@ type ClientService interface {
 
 	GetPaymentConsentDeprecated(params *GetPaymentConsentDeprecatedParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPaymentConsentDeprecatedOK, error)
 
+	PatchPaymentConsent(params *PatchPaymentConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchPaymentConsentOK, error)
+
 	AcceptOBBRCustomerDataAccessConsentSystem(params *AcceptOBBRCustomerDataAccessConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptOBBRCustomerDataAccessConsentSystemOK, error)
 
 	AcceptOBBRCustomerPaymentConsentSystem(params *AcceptOBBRCustomerPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptOBBRCustomerPaymentConsentSystemOK, error)
@@ -486,6 +488,47 @@ func (a *Client) GetPaymentConsentDeprecated(params *GetPaymentConsentDeprecated
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for GetPaymentConsentDeprecated: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  PatchPaymentConsent revokes payment consent
+
+  This API allows PISP to revoke a payment consent
+*/
+func (a *Client) PatchPaymentConsent(params *PatchPaymentConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchPaymentConsentOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPatchPaymentConsentParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "PatchPaymentConsent",
+		Method:             "PATCH",
+		PathPattern:        "/open-banking/payments/v1/consents/{consentID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PatchPaymentConsentReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PatchPaymentConsentOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for PatchPaymentConsent: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

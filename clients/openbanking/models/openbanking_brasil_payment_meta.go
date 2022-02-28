@@ -16,7 +16,7 @@ import (
 
 // OpenbankingBrasilPaymentMeta OpenbankingBrasilPaymentMeta Meta
 //
-// Meta informaes referente a API requisitada.
+// Meta informaes referente  API requisitada.
 //
 // swagger:model OpenbankingBrasilPaymentMeta
 type OpenbankingBrasilPaymentMeta struct {

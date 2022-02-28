@@ -19,6 +19,7 @@ import (
 // QRDN - QR code dinmico
 // QRES - QR code esttico
 // INIC - Indica que o recebedor (creditor) contratou o Iniciador de Pagamentos especificamente para realizar iniciaes de pagamento em que o beneficirio  previamente conhecido.
+// Example: DICT
 //
 // swagger:model OpenbankingBrasilPaymentEnumLocalInstrument
 type OpenbankingBrasilPaymentEnumLocalInstrument string

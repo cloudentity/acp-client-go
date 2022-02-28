@@ -37,11 +37,10 @@ type OpenbankingBrasilPaymentPaymentConsent struct {
 	// Pattern: ^([A-Z]{3})$
 	Currency string `json:"currency"`
 
-	// Data do pagamento, conforme especificao RFC-3339.
+	// Mutuamente exclusivo com o objeto schedule. Este campo  obrigatrio no caso de pagamento nico. Neste caso, o objeto schedule no deve ser informado.
 	// Example: 2021-01-01
-	// Required: true
 	// Format: date
-	Date strfmt.Date `json:"date"`
+	Date strfmt.Date `json:"date,omitempty"`
 
 	// details
 	// Required: true
@@ -56,6 +55,9 @@ type OpenbankingBrasilPaymentPaymentConsent struct {
 	// Min Length: 7
 	// Pattern: ^\d{7}$
 	IbgeTownCode string `json:"ibgeTownCode,omitempty"`
+
+	// schedule
+	Schedule *OpenbankingBrasilPaymentSchedule `json:"schedule,omitempty"`
 
 	// Este campo define o tipo de pagamento que ser iniciado aps a autorizao do consentimento.
 	// Example: PIX
@@ -84,6 +86,10 @@ func (m *OpenbankingBrasilPaymentPaymentConsent) Validate(formats strfmt.Registr
 	}
 
 	if err := m.validateIbgeTownCode(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSchedule(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -136,9 +142,8 @@ func (m *OpenbankingBrasilPaymentPaymentConsent) validateCurrency(formats strfmt
 }
 
 func (m *OpenbankingBrasilPaymentPaymentConsent) validateDate(formats strfmt.Registry) error {
-
-	if err := validate.Required("date", "body", strfmt.Date(m.Date)); err != nil {
-		return err
+	if swag.IsZero(m.Date) { // not required
+		return nil
 	}
 
 	if err := validate.FormatOf("date", "body", "date", m.Date.String(), formats); err != nil {
@@ -188,6 +193,25 @@ func (m *OpenbankingBrasilPaymentPaymentConsent) validateIbgeTownCode(formats st
 	return nil
 }
 
+func (m *OpenbankingBrasilPaymentPaymentConsent) validateSchedule(formats strfmt.Registry) error {
+	if swag.IsZero(m.Schedule) { // not required
+		return nil
+	}
+
+	if m.Schedule != nil {
+		if err := m.Schedule.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("schedule")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("schedule")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *OpenbankingBrasilPaymentPaymentConsent) validateType(formats strfmt.Registry) error {
 
 	if err := validate.RequiredString("type", "body", m.Type); err != nil {
@@ -205,6 +229,10 @@ func (m *OpenbankingBrasilPaymentPaymentConsent) ContextValidate(ctx context.Con
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateSchedule(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -219,6 +247,22 @@ func (m *OpenbankingBrasilPaymentPaymentConsent) contextValidateDetails(ctx cont
 				return ve.ValidateName("details")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("details")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *OpenbankingBrasilPaymentPaymentConsent) contextValidateSchedule(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Schedule != nil {
+		if err := m.Schedule.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("schedule")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("schedule")
 			}
 			return err
 		}

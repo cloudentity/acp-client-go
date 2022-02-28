@@ -12,6 +12,7 @@ definitions:
       granted_scopes:
         $ref: '#/definitions/GrantedScopes'
       login_state:
+        format: loginState
         type: string
         x-nullable: false
     type: object
@@ -276,6 +277,26 @@ definitions:
     required:
     - data
     type: object
+  BrazilCustomerPatchPaymentConsentRequest:
+    properties:
+      aud:
+        type: string
+        x-nullable: false
+      data:
+        $ref: '#/definitions/OpenbankingBrasilPaymentPatchPaymentsConsentData'
+      iat:
+        format: int64
+        type: integer
+        x-nullable: false
+      iss:
+        type: string
+        x-nullable: false
+      jti:
+        type: string
+        x-nullable: false
+    required:
+    - data
+    type: object
   BrazilCustomerPaymentConsent:
     properties:
       businessEntity:
@@ -318,22 +339,12 @@ definitions:
         format: date-time
         type: string
         x-nullable: false
-      ibgeTownCode:
-        description: |-
-          Traz o cdigo da cidade segundo o IBGE (Instituto Brasileiro de Geografia e Estatstica).
-          Para o preenchimento deste campo, o Iniciador de Pagamentos deve seguir a orientao do arranjo da forma de pagamento.
-          O preenchimento do campo tanto em pix/payments quanto /consents deve ser igual. Caso haja divergncia dos valores, a instituio deve retornar HTTP 422 com o cdigo de erro PAGAMENTO_DIVERGENTE_DO_CONSENTIMENTO.
-          Este campo faz referncia ao campo CodMun do arranjo Pix.
-        example: "5300108"
-        maxLength: 7
-        minLength: 7
-        pattern: ^\d{7}$
-        type: string
-        x-nullable: false
       loggedUser:
         $ref: '#/definitions/OpenbankingBrasilPaymentLoggedUser'
       payment:
         $ref: '#/definitions/OpenbankingBrasilPaymentPaymentConsent'
+      revocation:
+        $ref: '#/definitions/OpenbankingBrasilPaymentRevocation'
       status:
         $ref: '#/definitions/OpenbankingBrasilPaymentEnumAuthorisationStatusType'
       statusUpdateDateTime:
@@ -410,6 +421,8 @@ definitions:
           type: string
         type: array
         x-nullable: false
+      amending_arrangement_id:
+        $ref: '#/definitions/CDRArrangementID'
       authorization_server_id:
         format: serverID
         type: string
@@ -1014,6 +1027,8 @@ definitions:
         format: date-time
         type: string
         x-nullable: false
+      previous_cdr_arrangement:
+        $ref: '#/definitions/CDRArrangement'
       requested_scopes:
         items:
           $ref: '#/definitions/RequestedScope'
@@ -1706,21 +1721,12 @@ definitions:
           example: "2021-05-21T08:30:00Z"
           format: date-time
           type: string
-        ibgeTownCode:
-          description: |-
-            Traz o cdigo da cidade segundo o IBGE (Instituto Brasileiro de Geografia e Estatstica).
-            Para o preenchimento deste campo, o Iniciador de Pagamentos deve seguir a orientao do arranjo da forma de pagamento.
-            O preenchimento do campo tanto em pix/payments quanto /consents deve ser igual. Caso haja divergncia dos valores, a instituio deve retornar HTTP 422 com o cdigo de erro PAGAMENTO_DIVERGENTE_DO_CONSENTIMENTO.
-            Este campo faz referncia ao campo CodMun do arranjo Pix.
-          example: "5300108"
-          maxLength: 7
-          minLength: 7
-          pattern: ^\d{7}$
-          type: string
         loggedUser:
           $ref: '#/definitions/OpenbankingBrasilPaymentLoggedUser'
         payment:
           $ref: '#/definitions/OpenbankingBrasilPaymentPaymentConsent'
+        revocation:
+          $ref: '#/definitions/OpenbankingBrasilPaymentRevocation'
         status:
           $ref: '#/definitions/OpenbankingBrasilPaymentEnumAuthorisationStatusType'
         statusUpdateDateTime:
@@ -7149,22 +7155,12 @@ definitions:
         format: date-time
         type: string
         x-nullable: false
-      ibgeTownCode:
-        description: |-
-          Traz o cdigo da cidade segundo o IBGE (Instituto Brasileiro de Geografia e Estatstica).
-          Para o preenchimento deste campo, o Iniciador de Pagamentos deve seguir a orientao do arranjo da forma de pagamento.
-          O preenchimento do campo tanto em pix/payments quanto /consents deve ser igual. Caso haja divergncia dos valores, a instituio deve retornar HTTP 422 com o cdigo de erro PAGAMENTO_DIVERGENTE_DO_CONSENTIMENTO.
-          Este campo faz referncia ao campo CodMun do arranjo Pix.
-        example: "5300108"
-        maxLength: 7
-        minLength: 7
-        pattern: ^\d{7}$
-        type: string
-        x-nullable: false
       loggedUser:
         $ref: '#/definitions/OpenbankingBrasilPaymentLoggedUser'
       payment:
         $ref: '#/definitions/OpenbankingBrasilPaymentPaymentConsent'
+      revocation:
+        $ref: '#/definitions/OpenbankingBrasilPaymentRevocation'
       status:
         $ref: '#/definitions/OpenbankingBrasilPaymentEnumAuthorisationStatusType'
       statusUpdateDateTime:
@@ -7297,7 +7293,7 @@ definitions:
     - rel
     type: object
   OpenbankingBrasilPaymentDocument1:
-    description: OpenbankingBrasilPaymentDocument1 Document1
+    description: Objeto que contm os dados de identificao do usurio.
     properties:
       identification:
         description: Nmero do documento de identificao oficial do usurio.
@@ -7316,6 +7312,7 @@ definitions:
     required:
     - identification
     - rel
+    title: OpenbankingBrasilPaymentDocument1 Document1
     type: object
   OpenbankingBrasilPaymentEnumAccountPaymentsType:
     description: |-
@@ -7327,19 +7324,23 @@ definitions:
       SLRY - Salary - Conta-Salrio.
       SVGS - Savings - Conta de Poupana.
       TRAN - TransactingAccount - Conta de Pagamento pr-paga.
+      Example: CACC
     title: OpenbankingBrasilPaymentEnumAccountPaymentsType EnumAccountPaymentsType
     type: string
   OpenbankingBrasilPaymentEnumAuthorisationStatusType:
     description: |-
       Retorna o estado do consentimento, o qual no momento de sua criao ser AWAITING_AUTHORISATION.
-      Este estado ser alterado depois da autorizao do consentimento na detentora da conta do pagador (Debtor) para AUTHORISED ou REJECTED.
+      Este estado ser alterado depois da autorizao do consentimento na detentora da conta do pagador (Debtor) para AUTHORISED, REJECTED ou REVOKED.
       O consentimento fica no estado CONSUMED aps ocorrer a iniciao do pagamento referente ao consentimento.
       Em caso de consentimento expirado a detentora dever retornar o status REJECTED.
+      Em caso de revogao do consentimento a detentora dever retornar o status REVOKED.
       Estados possveis:
       AWAITING_AUTHORISATION - Aguardando autorizao
       AUTHORISED - Autorizado
       REJECTED - Rejeitado
       CONSUMED - Consumido
+      REVOKED - Revogado
+      Example: REVOKED
     title: OpenbankingBrasilPaymentEnumAuthorisationStatusType EnumAuthorisationStatusType
     type: string
   OpenbankingBrasilPaymentEnumLocalInstrument:
@@ -7350,12 +7351,33 @@ definitions:
       QRDN - QR code dinmico
       QRES - QR code esttico
       INIC - Indica que o recebedor (creditor) contratou o Iniciador de Pagamentos especificamente para realizar iniciaes de pagamento em que o beneficirio  previamente conhecido.
+      Example: DICT
     title: OpenbankingBrasilPaymentEnumLocalInstrument EnumLocalInstrument
     type: string
   OpenbankingBrasilPaymentEnumPaymentPersonType:
-    description: Titular, pessoa natural ou juridica a quem se referem os dados de
-      recebedor (creditor).
+    description: |-
+      Titular, pessoa natural ou juridica a quem se referem os dados de recebedor (creditor).
+      Example: PESSOA_NATURAL
     title: OpenbankingBrasilPaymentEnumPaymentPersonType EnumPaymentPersonType
+    type: string
+  OpenbankingBrasilPaymentEnumRevocationReason:
+    description: |-
+      Define o cdigo da razo pela qual o consentimento foi revogado.
+      Valores possveis:
+      FRAUD- Indica suspeita de fraude
+      ACCOUNT_CLOSURE - Indica que a conta do usurio foi encerrada
+      OTHER- Indica que motivo do cancelamento est fora dos motivos pr-estabelecidos.
+      Example: OTHER
+    title: OpenbankingBrasilPaymentEnumRevocationReason EnumRevocationReason
+    type: string
+  OpenbankingBrasilPaymentEnumRevokedBy:
+    description: |-
+      Define qual das partes envolvidas na transao est realizando a revogao. Valores possveis:
+      USER (Revogado pelo usurio)
+      ASPSP (Provedor de servios de pagamento para servios de conta - Detentora de conta)
+      TPP (Instituies Provedoras - iniciadora de pagamentos)
+      Example: USER
+    title: OpenbankingBrasilPaymentEnumRevokedBy EnumRevokedBy
     type: string
   OpenbankingBrasilPaymentError2:
     description: OpenbankingBrasilPaymentError2 Error2
@@ -7418,38 +7440,6 @@ definitions:
   OpenbankingBrasilPaymentLinks:
     description: Referncias para outros recusos da API requisitada.
     properties:
-      first:
-        description: URI da primeira pgina que originou essa lista de resultados.
-          Restrio - Obrigatrio quando no for a primeira pgina da resposta
-        example: https://api.banco.com.br/open-banking/api/v1/resource
-        maxLength: 2000
-        pattern: ^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$
-        type: string
-        x-nullable: false
-      last:
-        description: URI da ltima pgina dessa lista de resultados. Restrio - Obrigatrio
-          quando no for a ltima pgina da resposta
-        example: https://api.banco.com.br/open-banking/api/v1/resource
-        maxLength: 2000
-        pattern: ^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$
-        type: string
-        x-nullable: false
-      next:
-        description: URI da prxima pgina dessa lista de resultados. Restrio - Obrigatrio
-          quando no for a ltima pgina da resposta
-        example: https://api.banco.com.br/open-banking/api/v1/resource
-        maxLength: 2000
-        pattern: ^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$
-        type: string
-        x-nullable: false
-      prev:
-        description: "URI da pgina anterior dessa lista de resultados. Restrio - \tObrigatrio
-          quando no for a primeira pgina da resposta"
-        example: https://api.banco.com.br/open-banking/api/v1/resource
-        maxLength: 2000
-        pattern: ^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$
-        type: string
-        x-nullable: false
       self:
         description: URI completo que gerou a resposta atual.
         example: https://api.banco.com.br/open-banking/api/v1/resource
@@ -7462,8 +7452,9 @@ definitions:
     title: OpenbankingBrasilPaymentLinks Links
     type: object
   OpenbankingBrasilPaymentLoggedUser:
-    description: Usurio (pessoa natural) que encontra-se logado na instituio Iniciadora
-      de Pagamento.
+    description: |-
+      Usurio (pessoa natural) que encontra-se logado na instituio Iniciadora de Pagamento.
+      [Restrio] Deve obrigatoriamente ser enviado quando a revogao for feita pelo usurio final, ou seja, se o campo revokedBy estiver com o valor 'USER'.
     properties:
       document:
         $ref: '#/definitions/OpenbankingBrasilPaymentDocument1'
@@ -7472,7 +7463,7 @@ definitions:
     title: OpenbankingBrasilPaymentLoggedUser LoggedUser
     type: object
   OpenbankingBrasilPaymentMeta:
-    description: Meta informaes referente a API requisitada.
+    description: Meta informaes referente  API requisitada.
     properties:
       requestDateTime:
         description: Data e hora da consulta, conforme especificao RFC-3339, formato
@@ -7499,6 +7490,24 @@ definitions:
     - totalRecords
     title: OpenbankingBrasilPaymentMeta Meta
     type: object
+  OpenbankingBrasilPaymentPatchPaymentsConsentData:
+    description: Objeto contendo dados do pagamento e do recebedor (creditor).
+    properties:
+      revocation:
+        $ref: '#/definitions/OpenbankingBrasilPaymentRevocation'
+      status:
+        description: |-
+          Estado para o qual deve ir.
+
+          [Restrio] O nico valor vlido  REVOKED. (caso contrrio a detentora deve retornar erro HTTP 400)
+        example: REVOKED
+        type: string
+        x-nullable: false
+    required:
+    - revocation
+    - status
+    title: OpenbankingBrasilPaymentPatchPaymentsConsentData PatchPaymentsConsentData
+    type: object
   OpenbankingBrasilPaymentPaymentConsent:
     description: Objeto contendo dados de pagamento para consentimento.
     properties:
@@ -7520,7 +7529,8 @@ definitions:
         type: string
         x-nullable: false
       date:
-        description: Data do pagamento, conforme especificao RFC-3339.
+        description: Mutuamente exclusivo com o objeto schedule. Este campo  obrigatrio
+          no caso de pagamento nico. Neste caso, o objeto schedule no deve ser informado.
         example: "2021-01-01"
         format: date
         type: string
@@ -7539,6 +7549,8 @@ definitions:
         pattern: ^\d{7}$
         type: string
         x-nullable: false
+      schedule:
+        $ref: '#/definitions/OpenbankingBrasilPaymentSchedule'
       type:
         description: Este campo define o tipo de pagamento que ser iniciado aps a
           autorizao do consentimento.
@@ -7548,10 +7560,70 @@ definitions:
     required:
     - amount
     - currency
-    - date
     - details
     - type
     title: OpenbankingBrasilPaymentPaymentConsent PaymentConsent
+    type: object
+  OpenbankingBrasilPaymentReason:
+    description: Define a razo pela qual o consentimento foi revogado.
+    properties:
+      additionalInformation:
+        description: |-
+          Contm informaes adicionais definidas pelo requisitante da revogao.
+
+          [Restrio] Dever ser obrigatoriamente preenchido quando a revogao for feita pela iniciadora ou pela detentora unilateralmente, ou seja, quando o campo revokedBy for igual a TPP ou ASPSP e o motivo de revogao for OTHER.
+        example: No quero mais o servio
+        maxLength: 140
+        pattern: '[\w\W\s]*'
+        type: string
+        x-nullable: false
+      code:
+        $ref: '#/definitions/OpenbankingBrasilPaymentEnumRevocationReason'
+    required:
+    - code
+    title: OpenbankingBrasilPaymentReason Reason
+    type: object
+  OpenbankingBrasilPaymentRevocation:
+    description: |-
+      Objeto que contm as informaes das circunstncia da revogao.
+
+      [Restrio] O campo loggedUser deve ser preenchido quando a revogao for feita pelo usurio final, ou seja, se o campo data.revocation.revokedBy estiver com o valor 'USER'.
+    properties:
+      loggedUser:
+        $ref: '#/definitions/OpenbankingBrasilPaymentLoggedUser'
+      reason:
+        $ref: '#/definitions/OpenbankingBrasilPaymentReason'
+      revokedBy:
+        $ref: '#/definitions/OpenbankingBrasilPaymentEnumRevokedBy'
+    required:
+    - reason
+    - revokedBy
+    title: OpenbankingBrasilPaymentRevocation Revocation
+    type: object
+  OpenbankingBrasilPaymentSchedule:
+    description: Mutuamente exclusivo com o campo date. Este campo  obrigatrio no
+      caso de agendamento. Neste caso, o campo date no deve ser informado.
+    properties:
+      single:
+        $ref: '#/definitions/OpenbankingBrasilPaymentSingle'
+    required:
+    - single
+    title: OpenbankingBrasilPaymentSchedule Schedule
+    type: object
+  OpenbankingBrasilPaymentSingle:
+    description: Define a poltica de agendamento nico.
+    properties:
+      date:
+        description: |-
+          Define a data alvo da liquidao do pagamento. O fuso horrio de Brasilia deve ser utilizado para criao e racionalizao sobre os dados deste campo.
+          OBS:Esse campo dever sempre ser no mnimo D+1 corrido, ou seja, a data imediatamente posterior em relao a data do consentimento considerando o fuso horrio de Braslia e dever ser no mximo um ano corrido a partir da data do consentimento considerando o fuso horrio de Braslia.
+        example: "2021-01-01"
+        format: date
+        type: string
+        x-nullable: false
+    required:
+    - date
+    title: OpenbankingBrasilPaymentSingle Single
     type: object
   OpenbankingClient:
     properties:
@@ -8563,6 +8635,7 @@ definitions:
         x-nullable: false
       login_state:
         description: login state
+        format: loginState
         type: string
         x-nullable: false
       status_code:
@@ -10737,6 +10810,84 @@ paths:
       - defaultcc:
         - payments
       summary: Get payment consent
+      tags:
+      - openbankingBR
+    patch:
+      description: This API allows PISP to revoke a payment consent
+      operationId: PatchPaymentConsent
+      parameters:
+      - description: |-
+          The time when the PSU last logged in with the TPP.
+
+          The value is supplied as a HTTP-date as in section 7.1.1.1 of [RFC7231]
+        in: header
+        name: x-fapi-auth-date
+        type: string
+      - description: The PSU's IP address if the PSU is currently logged in with the
+          TPP.
+        in: header
+        name: x-fapi-customer-ip-address
+        type: string
+      - description: |-
+          An RFC4122 UID used as a correlation Id.
+
+          If provided, the ASPSP must "play back" this value
+          in the x-fapi-interaction-id response header.
+        in: header
+        name: x-fapi-interaction-id
+        type: string
+      - description: |-
+          The header indicates the user-agent that the PSU is using.
+
+          The TPP may populate this field with the user-agent indicated by the PSU.
+          If the PSU is using a TPP mobile app, the TPP must ensure that the user-agent string
+          is different from browser based user-agent strings.
+        in: header
+        name: x-customer-user-agent
+        type: string
+      - description: |-
+          Header containing a detached JWS signature of the body of the payload.
+
+          Refer to resource specific documentation on when this header must be specified.
+        in: header
+        name: x-jws-signature
+        type: string
+      - description: Request
+        in: body
+        name: Request
+        schema:
+          $ref: '#/definitions/BrazilCustomerPatchPaymentConsentRequest'
+      - description: Consent id
+        format: consentID
+        in: path
+        name: consentID
+        required: true
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/BrazilCustomerPaymentConsentResponse'
+        "400":
+          $ref: '#/responses/OBBRErrorResponse'
+        "401":
+          $ref: '#/responses/OBBRErrorResponse'
+        "403":
+          $ref: '#/responses/OBBRErrorResponse'
+        "405":
+          $ref: '#/responses/OBBRErrorResponse'
+        "406":
+          $ref: '#/responses/OBBRErrorResponse'
+        "415":
+          $ref: '#/responses/OBBRErrorResponse'
+        "422":
+          $ref: '#/responses/OBBRErrorResponse'
+        "429":
+          $ref: '#/responses/OBBRErrorResponse'
+        "500":
+          $ref: '#/responses/OBBRErrorResponse'
+      security:
+      - defaultcc:
+        - payments
+      summary: Revoke payment consent
       tags:
       - openbankingBR
   /open-banking/v3.1/aisp/account-access-consents:

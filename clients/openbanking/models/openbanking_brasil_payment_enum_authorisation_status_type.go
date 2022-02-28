@@ -14,14 +14,17 @@ import (
 // OpenbankingBrasilPaymentEnumAuthorisationStatusType OpenbankingBrasilPaymentEnumAuthorisationStatusType EnumAuthorisationStatusType
 //
 // Retorna o estado do consentimento, o qual no momento de sua criao ser AWAITING_AUTHORISATION.
-// Este estado ser alterado depois da autorizao do consentimento na detentora da conta do pagador (Debtor) para AUTHORISED ou REJECTED.
+// Este estado ser alterado depois da autorizao do consentimento na detentora da conta do pagador (Debtor) para AUTHORISED, REJECTED ou REVOKED.
 // O consentimento fica no estado CONSUMED aps ocorrer a iniciao do pagamento referente ao consentimento.
 // Em caso de consentimento expirado a detentora dever retornar o status REJECTED.
+// Em caso de revogao do consentimento a detentora dever retornar o status REVOKED.
 // Estados possveis:
 // AWAITING_AUTHORISATION - Aguardando autorizao
 // AUTHORISED - Autorizado
 // REJECTED - Rejeitado
 // CONSUMED - Consumido
+// REVOKED - Revogado
+// Example: REVOKED
 //
 // swagger:model OpenbankingBrasilPaymentEnumAuthorisationStatusType
 type OpenbankingBrasilPaymentEnumAuthorisationStatusType string

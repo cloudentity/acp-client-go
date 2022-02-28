@@ -42,6 +42,9 @@ type GetCDRConsentResponse struct {
 	// Format: date-time
 	CreatedAt strfmt.DateTime `json:"created_at,omitempty"`
 
+	// previous cdr arrangement
+	PreviousCdrArrangement *CDRArrangement `json:"previous_cdr_arrangement,omitempty"`
+
 	// requested scopes
 	RequestedScopes []*RequestedScope `json:"requested_scopes"`
 
@@ -78,6 +81,10 @@ func (m *GetCDRConsentResponse) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateCreatedAt(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePreviousCdrArrangement(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -164,6 +171,25 @@ func (m *GetCDRConsentResponse) validateCreatedAt(formats strfmt.Registry) error
 	return nil
 }
 
+func (m *GetCDRConsentResponse) validatePreviousCdrArrangement(formats strfmt.Registry) error {
+	if swag.IsZero(m.PreviousCdrArrangement) { // not required
+		return nil
+	}
+
+	if m.PreviousCdrArrangement != nil {
+		if err := m.PreviousCdrArrangement.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("previous_cdr_arrangement")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("previous_cdr_arrangement")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *GetCDRConsentResponse) validateRequestedScopes(formats strfmt.Registry) error {
 	if swag.IsZero(m.RequestedScopes) { // not required
 		return nil
@@ -223,6 +249,10 @@ func (m *GetCDRConsentResponse) ContextValidate(ctx context.Context, formats str
 		res = append(res, err)
 	}
 
+	if err := m.contextValidatePreviousCdrArrangement(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateRequestedScopes(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -275,6 +305,22 @@ func (m *GetCDRConsentResponse) contextValidateClientInfo(ctx context.Context, f
 				return ve.ValidateName("client_info")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("client_info")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GetCDRConsentResponse) contextValidatePreviousCdrArrangement(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.PreviousCdrArrangement != nil {
+		if err := m.PreviousCdrArrangement.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("previous_cdr_arrangement")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("previous_cdr_arrangement")
 			}
 			return err
 		}

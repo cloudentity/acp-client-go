@@ -21,6 +21,7 @@ import (
 // SLRY - Salary - Conta-Salrio.
 // SVGS - Savings - Conta de Poupana.
 // TRAN - TransactingAccount - Conta de Pagamento pr-paga.
+// Example: CACC
 //
 // swagger:model OpenbankingBrasilPaymentEnumAccountPaymentsType
 type OpenbankingBrasilPaymentEnumAccountPaymentsType string

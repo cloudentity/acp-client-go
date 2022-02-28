@@ -14,6 +14,7 @@ import (
 // OpenbankingBrasilPaymentEnumPaymentPersonType OpenbankingBrasilPaymentEnumPaymentPersonType EnumPaymentPersonType
 //
 // Titular, pessoa natural ou juridica a quem se referem os dados de recebedor (creditor).
+// Example: PESSOA_NATURAL
 //
 // swagger:model OpenbankingBrasilPaymentEnumPaymentPersonType
 type OpenbankingBrasilPaymentEnumPaymentPersonType string
