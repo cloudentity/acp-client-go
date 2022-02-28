@@ -22,14 +22,11 @@ type AuditEvent struct {
 	// action
 	Action Action `json:"action,omitempty"`
 
-	// context
+	// Additional audit event context.
 	Context map[string]string `json:"context,omitempty"`
 
-	// event id
+	// Event ID - unique audit event identifier.
 	EventID string `json:"event_id,omitempty"`
-
-	// event payload
-	EventPayload interface{} `json:"event_payload,omitempty"`
 
 	// event subject
 	EventSubject AuditEventSubject `json:"event_subject,omitempty"`
@@ -37,13 +34,16 @@ type AuditEvent struct {
 	// metadata
 	Metadata *AuditEventMetadata `json:"metadata,omitempty"`
 
-	// server id
+	// payload
+	Payload *AuditEventPayloads `json:"payload,omitempty"`
+
+	// Server ID.
 	ServerID string `json:"server_id,omitempty"`
 
-	// tenant id
+	// Tenant ID.
 	TenantID string `json:"tenant_id,omitempty"`
 
-	// event date
+	// Time when the event took place.
 	// Format: date-time
 	Timestamp strfmt.DateTime `json:"timestamp,omitempty"`
 }
@@ -61,6 +61,10 @@ func (m *AuditEvent) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateMetadata(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePayload(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -127,6 +131,25 @@ func (m *AuditEvent) validateMetadata(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *AuditEvent) validatePayload(formats strfmt.Registry) error {
+	if swag.IsZero(m.Payload) { // not required
+		return nil
+	}
+
+	if m.Payload != nil {
+		if err := m.Payload.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("payload")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("payload")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *AuditEvent) validateTimestamp(formats strfmt.Registry) error {
 	if swag.IsZero(m.Timestamp) { // not required
 		return nil
@@ -152,6 +175,10 @@ func (m *AuditEvent) ContextValidate(ctx context.Context, formats strfmt.Registr
 	}
 
 	if err := m.contextValidateMetadata(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePayload(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -197,6 +224,22 @@ func (m *AuditEvent) contextValidateMetadata(ctx context.Context, formats strfmt
 				return ve.ValidateName("metadata")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("metadata")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEvent) contextValidatePayload(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Payload != nil {
+		if err := m.Payload.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("payload")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("payload")
 			}
 			return err
 		}

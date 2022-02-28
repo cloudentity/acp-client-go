@@ -76,35 +76,35 @@ type ListAuditEventsParams struct {
 
 	/* ClientID.
 
-	     optional list audit events after a given client id
+	     optional list audit events with a given client id
 	ClientID
 	*/
 	ClientID *string
 
 	/* EventAction.
 
-	     Optional event type, one of: authorized unauthorized created deleted updated
+	     Optional event type, one of: authorized unauthorized created updated deleted requested accepted rejected issued denied granted attempted failed sent not_sent revoked
 	EventType
 	*/
 	EventAction *string
 
 	/* EventSubject.
 
-	     Optional event subject, one of: request gateway_request client
+	     Optional event subject, one of: request client gateway_request policy consent authorization_code recovery login access_token scopes otp
 	EventType
 	*/
 	EventSubject *string
 
 	/* IP.
 
-	     optional list audit events after a given ip address
-	XForwardedFor
+	     optional list audit events with a given ip address
+	IP
 	*/
 	IP *string
 
 	/* Limit.
 
-	     optional limit results
+	     optional limit results, min 1, max 100
 	Limit
 
 	     Format: int64
@@ -119,6 +119,15 @@ type ListAuditEventsParams struct {
 	*/
 	Order *string
 
+	/* SessionID.
+
+	     optional list audit events with a given session id
+
+	it can be used as a correlation id for listing all login related audit events
+	SessionID
+	*/
+	SessionID *string
+
 	/* Sort.
 
 	     optional sort audit events by a given field
@@ -128,7 +137,7 @@ type ListAuditEventsParams struct {
 
 	/* Subject.
 
-	     optional list audit events after a given subject
+	     optional list audit events with a given subject
 	Subject
 	*/
 	Subject *string
@@ -312,6 +321,17 @@ func (o *ListAuditEventsParams) WithOrder(order *string) *ListAuditEventsParams 
 // SetOrder adds the order to the list audit events params
 func (o *ListAuditEventsParams) SetOrder(order *string) {
 	o.Order = order
+}
+
+// WithSessionID adds the sessionID to the list audit events params
+func (o *ListAuditEventsParams) WithSessionID(sessionID *string) *ListAuditEventsParams {
+	o.SetSessionID(sessionID)
+	return o
+}
+
+// SetSessionID adds the sessionId to the list audit events params
+func (o *ListAuditEventsParams) SetSessionID(sessionID *string) {
+	o.SessionID = sessionID
 }
 
 // WithSort adds the sort to the list audit events params
@@ -508,6 +528,23 @@ func (o *ListAuditEventsParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		if qOrder != "" {
 
 			if err := r.SetQueryParam("order", qOrder); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SessionID != nil {
+
+		// query param session_id
+		var qrSessionID string
+
+		if o.SessionID != nil {
+			qrSessionID = *o.SessionID
+		}
+		qSessionID := qrSessionID
+		if qSessionID != "" {
+
+			if err := r.SetQueryParam("session_id", qSessionID); err != nil {
 				return err
 			}
 		}

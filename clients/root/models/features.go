@@ -23,8 +23,11 @@ type Features struct {
 	// enable analytics (tenant)
 	Analytics bool `json:"analytics,omitempty"`
 
-	// enable cdr australia workspace profile (tenant)
-	CdrAustralia bool `json:"cdr_australia,omitempty"`
+	// enable analytics v2 (tenant)
+	AnalyticsV2 bool `json:"analytics_v2,omitempty"`
+
+	// enable Audit Events UI (tenant)
+	AuditEventsUI bool `json:"audit_events_ui,omitempty"`
 
 	// enable ciba (system)
 	Ciba bool `json:"ciba,omitempty"`
@@ -41,8 +44,14 @@ type Features struct {
 	// enable pushing events to elasticsearch (system)
 	Elasticsearch bool `json:"elasticsearch,omitempty"`
 
+	// extended audit events retention
+	ExtendedAuditEventsRetention bool `json:"extended_audit_events_retention,omitempty"`
+
 	// enable external datastore idp (system)
 	ExternalDatastore bool `json:"external_datastore,omitempty"`
+
+	// enable Identity Pools (tenant)
+	IdentityPools bool `json:"identity_pools,omitempty"`
 
 	// when enabled and the display_workspace_wizard feature flag is set to true, a demo workspace with a set of preconfigured IDPs is created and no welcome screen is displayed (tenant)
 	InitializeDemoWorkspace bool `json:"initialize_demo_workspace,omitempty"`
@@ -52,9 +61,6 @@ type Features struct {
 
 	// enable login with select_account param (tenant)
 	LoginWithSelectAccount bool `json:"login_with_select_account,omitempty"`
-
-	// enable pushed authorization request (system)
-	Par bool `json:"par,omitempty"`
 
 	// enable when ACP is running on-prem and Pyron is used as a gateway (tenant)
 	PyronOnPrem bool `json:"pyron_on_prem,omitempty"`
@@ -82,6 +88,9 @@ type Features struct {
 
 	// enable Token Exchange (system)
 	TokenExchange bool `json:"token_exchange,omitempty"`
+
+	// enable Token Exchange for authorizers (tenant)
+	TokenExchangeForAuthorizers bool `json:"token_exchange_for_authorizers,omitempty"`
 
 	// enable trust anchor integration (system)
 	TrustAnchorIntegration bool `json:"trust_anchor_integration,omitempty"`

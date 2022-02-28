@@ -7,12 +7,11 @@ swagger = docker run --rm -it -e GOPATH=/go \
 generate: generate-acp generate-openbanking-uk generate-openbanking-brasil
 
 SWAGGERS = public root developer oauth2 system admin web openbanking
-SWAGGER_TARGETS = $(addprefix swagger-,$(SWAGGERS))
 
-generate-acp: $(SWAGGER_TARGETS)
+generate-acp: $(SWAGGERS)
 
 # swagger-MODULE
-$(SWAGGER_TARGETS):
+$(SWAGGERS):
 	rm -rf clients/$@
 	mkdir clients/$@
 

@@ -109,7 +109,7 @@ type PushedAuthorizationRequestParams struct {
 
 	/* Request.
 
-	   Signed authentication request
+	   Request Object that holds authorization request parameters
 	*/
 	Request *string
 

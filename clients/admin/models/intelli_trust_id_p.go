@@ -50,6 +50,9 @@ type IntelliTrustIDP struct {
 	// If not provided, a random ID is generated.
 	ID string `json:"id,omitempty"`
 
+	// ID of the Identity Pool to which the IDP is connected
+	IdentityPoolID string `json:"identity_pool_id,omitempty"`
+
 	// mappings
 	Mappings Mappings `json:"mappings,omitempty"`
 

@@ -12,6 +12,7 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // Environment environment
@@ -25,8 +26,15 @@ type Environment struct {
 	// enable analytics (tenant)
 	Analytics bool `json:"analytics,omitempty"`
 
-	// enable cdr australia workspace profile (tenant)
-	CdrAustralia bool `json:"cdr_australia,omitempty"`
+	// enable analytics v2 (tenant)
+	AnalyticsV2 bool `json:"analytics_v2,omitempty"`
+
+	// audit events duration
+	// Format: duration
+	AuditEventsDuration strfmt.Duration `json:"audit_events_duration,omitempty"`
+
+	// enable Audit Events UI (tenant)
+	AuditEventsUI bool `json:"audit_events_ui,omitempty"`
 
 	// enable ciba (system)
 	Ciba bool `json:"ciba,omitempty"`
@@ -49,8 +57,14 @@ type Environment struct {
 	// enable pushing events to elasticsearch (system)
 	Elasticsearch bool `json:"elasticsearch,omitempty"`
 
+	// extended audit events retention
+	ExtendedAuditEventsRetention bool `json:"extended_audit_events_retention,omitempty"`
+
 	// enable external datastore idp (system)
 	ExternalDatastore bool `json:"external_datastore,omitempty"`
+
+	// enable Identity Pools (tenant)
+	IdentityPools bool `json:"identity_pools,omitempty"`
 
 	// when enabled and the display_workspace_wizard feature flag is set to true, a demo workspace with a set of preconfigured IDPs is created and no welcome screen is displayed (tenant)
 	InitializeDemoWorkspace bool `json:"initialize_demo_workspace,omitempty"`
@@ -60,9 +74,6 @@ type Environment struct {
 
 	// enable login with select_account param (tenant)
 	LoginWithSelectAccount bool `json:"login_with_select_account,omitempty"`
-
-	// enable pushed authorization request (system)
-	Par bool `json:"par,omitempty"`
 
 	// enable when ACP is running on-prem and Pyron is used as a gateway (tenant)
 	PyronOnPrem bool `json:"pyron_on_prem,omitempty"`
@@ -100,6 +111,9 @@ type Environment struct {
 	// enable Token Exchange (system)
 	TokenExchange bool `json:"token_exchange,omitempty"`
 
+	// enable Token Exchange for authorizers (tenant)
+	TokenExchangeForAuthorizers bool `json:"token_exchange_for_authorizers,omitempty"`
+
 	// enable trust anchor integration (system)
 	TrustAnchorIntegration bool `json:"trust_anchor_integration,omitempty"`
 
@@ -111,6 +125,10 @@ type Environment struct {
 func (m *Environment) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAuditEventsDuration(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateScriptRuntimes(formats); err != nil {
 		res = append(res, err)
 	}
@@ -118,6 +136,18 @@ func (m *Environment) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *Environment) validateAuditEventsDuration(formats strfmt.Registry) error {
+	if swag.IsZero(m.AuditEventsDuration) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("audit_events_duration", "body", "duration", m.AuditEventsDuration.String(), formats); err != nil {
+		return err
+	}
+
 	return nil
 }
 

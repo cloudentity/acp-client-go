@@ -19,29 +19,29 @@ import (
 // swagger:model ScopeGrant
 type ScopeGrant struct {
 
-	// client id
+	// Client ID that the scope belongs to
 	ClientID string `json:"client_id,omitempty"`
 
-	// given at
+	// Time when the scope was granted
 	// Format: date-time
 	GivenAt strfmt.DateTime `json:"given_at,omitempty"`
 
-	// granted scope name
+	// Granted scope name
 	GrantedScopeName string `json:"granted_scope_name,omitempty"`
 
-	// language
+	// Language
 	Language string `json:"language,omitempty"`
 
-	// scope name
+	// Scope name
 	ScopeName string `json:"scope_name,omitempty"`
 
-	// server id
+	// Server ID
 	ServerID string `json:"server_id,omitempty"`
 
-	// subject
+	// Subject ID that has granted the scope.
 	Subject string `json:"subject,omitempty"`
 
-	// tenant id
+	// Tenant ID
 	TenantID string `json:"tenant_id,omitempty"`
 }
 

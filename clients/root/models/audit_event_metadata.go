@@ -17,14 +17,37 @@ import (
 // swagger:model AuditEventMetadata
 type AuditEventMetadata struct {
 
-	// client id
+	// Access request client ID related to an audit event.
+	//
+	// May be empty when the access is incorrect or missing.
 	ClientID string `json:"client_id,omitempty"`
 
-	// ip address
+	// Audit event IP address.
+	//
+	// It's first not empty value from: X-Forwaded-For, X-Real-IP or network socket IP address
 	IP string `json:"ip,omitempty"`
 
-	// subject
+	// Session id
+	//
+	// Correlation ID in a login process. Returns events related to a particular login process.
+	// It's empty for audit events that have been created outside login process.
+	SessionID string `json:"session_id,omitempty"`
+
+	// Access request subject ID related to a given audit event.
+	//
+	// May be empty when the access is incorrect or missing.
 	Subject string `json:"subject,omitempty"`
+
+	// Token signature
+	//
+	// Signature of a token that was used to perform an action that has published an audit event.
+	TokenSignature string `json:"token_signature,omitempty"`
+
+	// Trace ID
+	TraceID string `json:"trace_id,omitempty"`
+
+	// User-agent that describes a device name that generated the audit event.
+	UserAgent string `json:"user_agent,omitempty"`
 }
 
 // Validate validates this audit event metadata

@@ -51,6 +51,9 @@ type GatewayConfiguration struct {
 
 	// TenantID that this gateway belongs to.
 	TenantID string `json:"tenant_id,omitempty"`
+
+	// Is token exchange enabled
+	TokenExchangeEnabled bool `json:"token_exchange_enabled,omitempty"`
 }
 
 // Validate validates this gateway configuration

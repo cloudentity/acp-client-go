@@ -18,6 +18,9 @@ import (
 // swagger:model IDPSettings
 type IDPSettings struct {
 
+	// auth0
+	Auth0 *Auth0Settings `json:"auth0,omitempty"`
+
 	// azure
 	Azure *AzureSettings `json:"azure,omitempty"`
 
@@ -58,6 +61,10 @@ type IDPSettings struct {
 // Validate validates this ID p settings
 func (m *IDPSettings) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.validateAuth0(formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.validateAzure(formats); err != nil {
 		res = append(res, err)
@@ -110,6 +117,25 @@ func (m *IDPSettings) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *IDPSettings) validateAuth0(formats strfmt.Registry) error {
+	if swag.IsZero(m.Auth0) { // not required
+		return nil
+	}
+
+	if m.Auth0 != nil {
+		if err := m.Auth0.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("auth0")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("auth0")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -345,6 +371,10 @@ func (m *IDPSettings) validateStatic(formats strfmt.Registry) error {
 func (m *IDPSettings) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateAuth0(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateAzure(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -396,6 +426,22 @@ func (m *IDPSettings) ContextValidate(ctx context.Context, formats strfmt.Regist
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *IDPSettings) contextValidateAuth0(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Auth0 != nil {
+		if err := m.Auth0.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("auth0")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("auth0")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

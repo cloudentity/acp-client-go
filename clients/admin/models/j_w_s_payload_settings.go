@@ -23,6 +23,10 @@ type JWSPayloadSettings struct {
 
 	// URI of the JWKs of the trusted party responsible for signing request body
 	JwksURI string `json:"jwks_uri,omitempty"`
+
+	// JWK source - defines where are the keys for validating dcr request signature
+	// Keys can be defined at server level or can be taken from jwks_uri claim from the software statement sent by the client
+	Source string `json:"source,omitempty"`
 }
 
 // Validate validates this j w s payload settings

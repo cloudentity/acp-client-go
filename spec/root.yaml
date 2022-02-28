@@ -166,19 +166,11 @@ definitions:
     properties:
       action:
         $ref: '#/definitions/Action'
-      context:
-        additionalProperties:
-          type: string
-        description: context
-        type: object
-        x-nullable: false
       event_id:
-        description: event id
         format: eventID
         type: string
         x-nullable: false
       event_payload:
-        description: event payload
         type: object
         x-nullable: false
       event_subject:
@@ -188,17 +180,14 @@ definitions:
       metadata:
         $ref: '#/definitions/AuditEventMetadata'
       server_id:
-        description: server id
         format: serverID
         type: string
         x-nullable: false
       tenant_id:
-        description: tenant id
         format: tenantID
         type: string
         x-nullable: false
       timestamp:
-        description: event date
         format: date-time
         type: string
         x-nullable: false
@@ -206,17 +195,51 @@ definitions:
   AuditEventMetadata:
     properties:
       client_id:
-        description: client id
+        description: |-
+          Access request client ID related to an audit event.
+
+          May be empty when the access is incorrect or missing.
         format: clientID
         type: string
         x-nullable: false
       ip:
-        description: ip address
+        description: |-
+          Audit event IP address.
+
+          It's first not empty value from: X-Forwaded-For, X-Real-IP or network socket IP address
+        type: string
+        x-nullable: false
+      session_id:
+        description: |-
+          Session id
+
+          Correlation ID in a login process. Returns events related to a particular login process.
+          It's empty for audit events that have been created outside login process.
+        format: loginID
         type: string
         x-nullable: false
       subject:
-        description: subject
+        description: |-
+          Access request subject ID related to a given audit event.
+
+          May be empty when the access is incorrect or missing.
         format: subject
+        type: string
+        x-nullable: false
+      token_signature:
+        description: |-
+          Token signature
+
+          Signature of a token that was used to perform an action that has published an audit event.
+        type: string
+        x-nullable: false
+      trace_id:
+        description: Trace ID
+        type: string
+        x-nullable: false
+      user_agent:
+        description: User-agent that describes a device name that generated the audit
+          event.
         type: string
         x-nullable: false
     type: object
@@ -224,6 +247,43 @@ definitions:
     type: string
   AuditEventType:
     type: string
+  Auth0Credentials:
+    description: Auth0 IDP specific credentials
+    properties:
+      client_secret:
+        description: OAuth client application secret
+        type: string
+        x-nullable: false
+    type: object
+  Auth0Settings:
+    description: Auth0 IDP specific settings
+    properties:
+      client_id:
+        description: OAuth client application identifier
+        example: client
+        type: string
+        x-nullable: false
+      domain:
+        description: String represented domain of the Auth0 for your organization
+        example: dev-318ay013.us.auth0.com
+        type: string
+        x-nullable: false
+      get_user_info:
+        description: If enabled, users' data is collected by calling the `userinfo`
+          endpoint.
+        type: boolean
+        x-nullable: false
+      scopes:
+        description: An array of additional scopes your client requests
+        example:
+        - email
+        - profile
+        - openid
+        items:
+          type: string
+        type: array
+        x-nullable: false
+    type: object
   AuthenticationContext:
     additionalProperties:
       type: object
@@ -392,6 +452,8 @@ definitions:
           type: string
         type: array
         x-nullable: false
+      amending_arrangement_id:
+        $ref: '#/definitions/CDRArrangementID'
       authorization_server_id:
         format: serverID
         type: string
@@ -1018,7 +1080,7 @@ definitions:
         - RS256
         - ES256
         - PS256
-        - H256
+        - HS256
         example: none
         type: string
         x-nullable: false
@@ -1788,11 +1850,6 @@ definitions:
           $ref: '#/definitions/Gateway'
         type: array
         x-nullable: false
-      identity_pools:
-        items:
-          $ref: '#/definitions/Pool'
-        type: array
-        x-nullable: false
       idps:
         $ref: '#/definitions/IDPs'
       mfa_methods:
@@ -1800,7 +1857,7 @@ definitions:
           $ref: '#/definitions/MFAMethod'
         type: array
         x-nullable: false
-      openbanking_consents:
+      openbanking_br_consents:
         items:
           $ref: '#/definitions/OBConsent'
         type: array
@@ -1808,6 +1865,11 @@ definitions:
       openbanking_file_payment_consent_file_resources:
         items:
           $ref: '#/definitions/FilePaymentConsentFileResource'
+        type: array
+        x-nullable: false
+      openbanking_uk_consents:
+        items:
+          $ref: '#/definitions/OBConsent'
         type: array
         x-nullable: false
       policies:
@@ -2105,8 +2167,12 @@ definitions:
         description: enable analytics (tenant)
         type: boolean
         x-nullable: false
-      cdr_australia:
-        description: enable cdr australia workspace profile (tenant)
+      analytics_v2:
+        description: enable analytics v2 (tenant)
+        type: boolean
+        x-nullable: false
+      audit_events_ui:
+        description: enable Audit Events UI (tenant)
         type: boolean
         x-nullable: false
       ciba:
@@ -2130,8 +2196,16 @@ definitions:
         description: enable pushing events to elasticsearch (system)
         type: boolean
         x-nullable: false
+      extended_audit_events_retention:
+        description: extended audit events retention
+        type: boolean
+        x-nullable: false
       external_datastore:
         description: enable external datastore idp (system)
+        type: boolean
+        x-nullable: false
+      identity_pools:
+        description: enable Identity Pools (tenant)
         type: boolean
         x-nullable: false
       initialize_demo_workspace:
@@ -2146,10 +2220,6 @@ definitions:
         x-nullable: false
       login_with_select_account:
         description: enable login with select_account param (tenant)
-        type: boolean
-        x-nullable: false
-      par:
-        description: enable pushed authorization request (system)
         type: boolean
         x-nullable: false
       pyron_on_prem:
@@ -2187,6 +2257,10 @@ definitions:
         x-nullable: false
       token_exchange:
         description: enable Token Exchange (system)
+        type: boolean
+        x-nullable: false
+      token_exchange_for_authorizers:
+        description: enable Token Exchange for authorizers (tenant)
         type: boolean
         x-nullable: false
       trust_anchor_integration:
@@ -2513,6 +2587,11 @@ definitions:
         format: idpID
         type: string
         x-nullable: false
+      identity_pool_id:
+        description: ID of the Identity Pool to which the IDP is connected
+        format: poolID
+        type: string
+        x-nullable: false
       mappings:
         $ref: '#/definitions/Mappings'
       method:
@@ -2581,6 +2660,8 @@ definitions:
     type: object
   IDPCredentials:
     properties:
+      auth0:
+        $ref: '#/definitions/Auth0Credentials'
       azure:
         $ref: '#/definitions/AzureCredentials'
       azureb2c:
@@ -2631,6 +2712,8 @@ definitions:
     type: string
   IDPSettings:
     properties:
+      auth0:
+        $ref: '#/definitions/Auth0Settings'
       azure:
         $ref: '#/definitions/AzureSettings'
       azureb2c:
@@ -2730,6 +2813,13 @@ definitions:
       jwks_uri:
         description: URI of the JWKs of the trusted party responsible for signing
           request body
+        type: string
+        x-nullable: false
+      source:
+        description: |-
+          JWK source - defines where are the keys for validating dcr request signature
+          Keys can be defined at server level or can be taken from jwks_uri claim from the software statement sent by the client
+        format: jwkSource
         type: string
         x-nullable: false
     type: object
@@ -3183,40 +3273,6 @@ definitions:
         type: string
         x-nullable: false
     type: object
-  Pool:
-    properties:
-      authentication_mechanisms:
-        example:
-        - password
-        items:
-          enum:
-          - password
-          - email_link
-          type: string
-        type: array
-        x-nullable: false
-      description:
-        type: string
-        x-nullable: false
-      id:
-        format: poolID
-        type: string
-        x-nullable: false
-      name:
-        type: string
-        x-nullable: false
-      public_registration_allowed:
-        type: boolean
-        x-nullable: false
-      tenant_id:
-        example: default
-        format: tenantID
-        type: string
-        x-nullable: false
-    required:
-    - tenant_id
-    - name
-    type: object
   PrivacyLedgerEvent:
     properties:
       date:
@@ -3536,34 +3592,42 @@ definitions:
   ScopeGrant:
     properties:
       client_id:
+        description: Client ID that the scope belongs to
         format: clientID
         type: string
         x-nullable: false
       given_at:
+        description: Time when the scope was granted
         format: date-time
         type: string
         x-nullable: false
       granted_scope_name:
+        description: Granted scope name
         format: scopeName
         type: string
         x-nullable: false
       language:
+        description: Language
         format: language
         type: string
         x-nullable: false
       scope_name:
+        description: Scope name
         format: scopeName
         type: string
         x-nullable: false
       server_id:
+        description: Server ID
         format: serverID
         type: string
         x-nullable: false
       subject:
+        description: Subject ID that has granted the scope.
         format: subject
         type: string
         x-nullable: false
       tenant_id:
+        description: Tenant ID
         format: tenantID
         type: string
         x-nullable: false
@@ -3690,6 +3754,9 @@ definitions:
         format: tenantID
         type: string
         x-nullable: false
+      value:
+        type: string
+        x-nullable: false
     required:
     - tenant_id
     - server_id
@@ -3794,6 +3861,7 @@ definitions:
           `users.*`.
 
           For Open Banking Brazil compliant servers, the `:` separator should be used.
+        format: dynamicScopeSeparator
         type: string
         x-nullable: false
       enable_id_token_encryption:
@@ -3965,12 +4033,12 @@ definitions:
         example: default
         type: string
         x-nullable: false
-      pushed_authentication_request_ttl:
+      pushed_authorization_request_ttl:
         description: |-
-          Custom pushed authentication request TTL in seconds
+          Custom pushed authentication request TTL
           If not provided, TTL is set to 60 seconds.
-        format: int64
-        type: integer
+        format: duration
+        type: string
         x-nullable: false
       refresh_token_ttl:
         default: 720h0m0s
@@ -4243,6 +4311,7 @@ definitions:
           `users.*`.
 
           For Open Banking Brazil compliant servers, the `:` separator should be used.
+        format: dynamicScopeSeparator
         type: string
         x-nullable: false
       enable_id_token_encryption:
@@ -4419,12 +4488,12 @@ definitions:
         example: default
         type: string
         x-nullable: false
-      pushed_authentication_request_ttl:
+      pushed_authorization_request_ttl:
         description: |-
-          Custom pushed authentication request TTL in seconds
+          Custom pushed authentication request TTL
           If not provided, TTL is set to 60 seconds.
-        format: int64
-        type: integer
+        format: duration
+        type: string
         x-nullable: false
       refresh_token_ttl:
         default: 720h0m0s

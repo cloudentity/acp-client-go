@@ -197,9 +197,10 @@ type ServerResponse struct {
 	// Enum: [default demo workforce consumer partners third_party fapi_advanced fapi_rw fapi_ro openbanking_uk_fapi_advanced openbanking_uk openbanking_br cdr_australia cdr_australia_fapi_rw]
 	Profile string `json:"profile,omitempty"`
 
-	// Custom pushed authentication request TTL in seconds
+	// Custom pushed authentication request TTL
 	// If not provided, TTL is set to 60 seconds.
-	PushedAuthenticationRequestTTL int64 `json:"pushed_authentication_request_ttl,omitempty"`
+	// Format: duration
+	PushedAuthorizationRequestTTL strfmt.Duration `json:"pushed_authorization_request_ttl,omitempty"`
 
 	// Refresh token time to live
 	//
@@ -253,6 +254,10 @@ type ServerResponse struct {
 	// activity without their permission.
 	// Example: ["public","pairwise"]
 	SubjectIdentifierTypes []string `json:"subject_identifier_types"`
+
+	// supported application purposes
+	// Example: ["single_page","server_web","mobile_desktop","service","legacy"]
+	SupportedApplicationPurposes []string `json:"supported_application_purposes"`
 
 	// ID of a tenant
 	// Example: default
@@ -322,11 +327,19 @@ func (m *ServerResponse) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validatePushedAuthorizationRequestTTL(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateRefreshTokenTTL(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateSubjectIdentifierTypes(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSupportedApplicationPurposes(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -643,6 +656,18 @@ func (m *ServerResponse) validateProfile(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *ServerResponse) validatePushedAuthorizationRequestTTL(formats strfmt.Registry) error {
+	if swag.IsZero(m.PushedAuthorizationRequestTTL) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("pushed_authorization_request_ttl", "body", "duration", m.PushedAuthorizationRequestTTL.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *ServerResponse) validateRefreshTokenTTL(formats strfmt.Registry) error {
 	if swag.IsZero(m.RefreshTokenTTL) { // not required
 		return nil
@@ -683,6 +708,42 @@ func (m *ServerResponse) validateSubjectIdentifierTypes(formats strfmt.Registry)
 
 		// value enum
 		if err := m.validateSubjectIdentifierTypesItemsEnum("subject_identifier_types"+"."+strconv.Itoa(i), "body", m.SubjectIdentifierTypes[i]); err != nil {
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+var serverResponseSupportedApplicationPurposesItemsEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["single_page","server_web","mobile_desktop","service","legacy"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		serverResponseSupportedApplicationPurposesItemsEnum = append(serverResponseSupportedApplicationPurposesItemsEnum, v)
+	}
+}
+
+func (m *ServerResponse) validateSupportedApplicationPurposesItemsEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, serverResponseSupportedApplicationPurposesItemsEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *ServerResponse) validateSupportedApplicationPurposes(formats strfmt.Registry) error {
+	if swag.IsZero(m.SupportedApplicationPurposes) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.SupportedApplicationPurposes); i++ {
+
+		// value enum
+		if err := m.validateSupportedApplicationPurposesItemsEnum("supported_application_purposes"+"."+strconv.Itoa(i), "body", m.SupportedApplicationPurposes[i]); err != nil {
 			return err
 		}
 

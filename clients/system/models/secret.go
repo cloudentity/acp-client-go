@@ -42,6 +42,9 @@ type Secret struct {
 	// Example: default
 	// Required: true
 	TenantID string `json:"tenant_id"`
+
+	// value
+	Value string `json:"value,omitempty"`
 }
 
 // Validate validates this secret

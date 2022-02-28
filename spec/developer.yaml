@@ -437,7 +437,7 @@ definitions:
         - RS256
         - ES256
         - PS256
-        - H256
+        - HS256
         example: none
         type: string
         x-nullable: false
@@ -1003,7 +1003,7 @@ definitions:
         - RS256
         - ES256
         - PS256
-        - H256
+        - HS256
         example: none
         type: string
         x-nullable: false
@@ -1109,6 +1109,24 @@ definitions:
           type: string
         type: array
         x-nullable: false
+      supported_application_purposes:
+        description: supported application purposes
+        example:
+        - single_page
+        - server_web
+        - mobile_desktop
+        - service
+        - legacy
+        items:
+          enum:
+          - single_page
+          - server_web
+          - mobile_desktop
+          - service
+          - legacy
+          type: string
+        type: array
+        x-nullable: false
     type: object
   GetServerWithScopesDeveloperResponse:
     properties:
@@ -1170,6 +1188,24 @@ definitions:
           enum:
           - public
           - pairwise
+          type: string
+        type: array
+        x-nullable: false
+      supported_application_purposes:
+        description: supported application purposes
+        example:
+        - single_page
+        - server_web
+        - mobile_desktop
+        - service
+        - legacy
+        items:
+          enum:
+          - single_page
+          - server_web
+          - mobile_desktop
+          - service
+          - legacy
           type: string
         type: array
         x-nullable: false
@@ -1668,7 +1704,7 @@ definitions:
         - RS256
         - ES256
         - PS256
-        - H256
+        - HS256
         example: none
         type: string
         x-nullable: false
@@ -1742,6 +1778,9 @@ paths:
         name: Client
         schema:
           $ref: '#/definitions/CreateClientDeveloperRequest'
+      - in: query
+        name: application_purpose
+        type: string
       responses:
         "201":
           $ref: '#/responses/CreateClientDeveloperAPIResponse'

@@ -191,9 +191,10 @@ type Server struct {
 	// Enum: [default demo workforce consumer partners third_party fapi_advanced fapi_rw fapi_ro openbanking_uk_fapi_advanced openbanking_uk openbanking_br cdr_australia cdr_australia_fapi_rw]
 	Profile string `json:"profile,omitempty"`
 
-	// Custom pushed authentication request TTL in seconds
+	// Custom pushed authentication request TTL
 	// If not provided, TTL is set to 60 seconds.
-	PushedAuthenticationRequestTTL int64 `json:"pushed_authentication_request_ttl,omitempty"`
+	// Format: duration
+	PushedAuthorizationRequestTTL strfmt.Duration `json:"pushed_authorization_request_ttl,omitempty"`
 
 	// Refresh token time to live
 	//
@@ -313,6 +314,10 @@ func (m *Server) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateProfile(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePushedAuthorizationRequestTTL(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -631,6 +636,18 @@ func (m *Server) validateProfile(formats strfmt.Registry) error {
 
 	// value enum
 	if err := m.validateProfileEnum("profile", "body", m.Profile); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Server) validatePushedAuthorizationRequestTTL(formats strfmt.Registry) error {
+	if swag.IsZero(m.PushedAuthorizationRequestTTL) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("pushed_authorization_request_ttl", "body", "duration", m.PushedAuthorizationRequestTTL.String(), formats); err != nil {
 		return err
 	}
 

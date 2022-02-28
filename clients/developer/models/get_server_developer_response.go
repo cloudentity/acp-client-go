@@ -47,6 +47,10 @@ type GetServerDeveloperResponse struct {
 	// supported subject identifier types
 	// Example: ["public","pairwise"]
 	SubjectIdentifierTypes []string `json:"subject_identifier_types"`
+
+	// supported application purposes
+	// Example: ["single_page","server_web","mobile_desktop","service","legacy"]
+	SupportedApplicationPurposes []string `json:"supported_application_purposes"`
 }
 
 // Validate validates this get server developer response
@@ -58,6 +62,10 @@ func (m *GetServerDeveloperResponse) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateSubjectIdentifierTypes(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSupportedApplicationPurposes(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -131,6 +139,42 @@ func (m *GetServerDeveloperResponse) validateSubjectIdentifierTypes(formats strf
 
 		// value enum
 		if err := m.validateSubjectIdentifierTypesItemsEnum("subject_identifier_types"+"."+strconv.Itoa(i), "body", m.SubjectIdentifierTypes[i]); err != nil {
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+var getServerDeveloperResponseSupportedApplicationPurposesItemsEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["single_page","server_web","mobile_desktop","service","legacy"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		getServerDeveloperResponseSupportedApplicationPurposesItemsEnum = append(getServerDeveloperResponseSupportedApplicationPurposesItemsEnum, v)
+	}
+}
+
+func (m *GetServerDeveloperResponse) validateSupportedApplicationPurposesItemsEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, getServerDeveloperResponseSupportedApplicationPurposesItemsEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *GetServerDeveloperResponse) validateSupportedApplicationPurposes(formats strfmt.Registry) error {
+	if swag.IsZero(m.SupportedApplicationPurposes) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.SupportedApplicationPurposes); i++ {
+
+		// value enum
+		if err := m.validateSupportedApplicationPurposesItemsEnum("supported_application_purposes"+"."+strconv.Itoa(i), "body", m.SupportedApplicationPurposes[i]); err != nil {
 			return err
 		}
 

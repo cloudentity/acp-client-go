@@ -22,6 +22,9 @@ type TestPolicyResponse struct {
 	// failures
 	Failures []*ValidateResponseValidatorFailure `json:"failures"`
 
+	// output
+	Output map[string]interface{} `json:"output,omitempty"`
+
 	// recovery
 	Recovery []interface{} `json:"recovery"`
 
