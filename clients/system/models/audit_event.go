@@ -22,9 +22,6 @@ type AuditEvent struct {
 	// action
 	Action Action `json:"action,omitempty"`
 
-	// context
-	Context map[string]string `json:"context,omitempty"`
-
 	// event id
 	EventID string `json:"event_id,omitempty"`
 
@@ -46,7 +43,7 @@ type AuditEvent struct {
 	// tenant id
 	TenantID string `json:"tenant_id,omitempty"`
 
-	// event date
+	// timestamp
 	// Format: date-time
 	Timestamp strfmt.DateTime `json:"timestamp,omitempty"`
 }

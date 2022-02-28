@@ -71,7 +71,7 @@ func NewPushedAuthorizationRequestCreated() *PushedAuthorizationRequestCreated {
 
 /* PushedAuthorizationRequestCreated describes a response with status code 201, with default header values.
 
-Pushed Authentication Response
+Pushed Authorization Response
 */
 type PushedAuthorizationRequestCreated struct {
 	Payload *models.PARResponse

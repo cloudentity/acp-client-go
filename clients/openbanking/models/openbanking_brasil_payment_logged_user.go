@@ -17,6 +17,7 @@ import (
 // OpenbankingBrasilPaymentLoggedUser OpenbankingBrasilPaymentLoggedUser LoggedUser
 //
 // Usurio (pessoa natural) que encontra-se logado na instituio Iniciadora de Pagamento.
+// [Restrio] Deve obrigatoriamente ser enviado quando a revogao for feita pelo usurio final, ou seja, se o campo revokedBy estiver com o valor 'USER'.
 //
 // swagger:model OpenbankingBrasilPaymentLoggedUser
 type OpenbankingBrasilPaymentLoggedUser struct {

@@ -24,6 +24,9 @@ type CDRArrangement struct {
 	// account ids
 	AccountIds []string `json:"account_ids"`
 
+	// amending arrangement id
+	AmendingArrangementID CDRArrangementID `json:"amending_arrangement_id,omitempty"`
+
 	// authorization server id
 	AuthorizationServerID string `json:"authorization_server_id,omitempty"`
 
@@ -70,6 +73,10 @@ type CDRArrangement struct {
 func (m *CDRArrangement) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAmendingArrangementID(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateCdrArrangementID(formats); err != nil {
 		res = append(res, err)
 	}
@@ -105,6 +112,23 @@ func (m *CDRArrangement) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *CDRArrangement) validateAmendingArrangementID(formats strfmt.Registry) error {
+	if swag.IsZero(m.AmendingArrangementID) { // not required
+		return nil
+	}
+
+	if err := m.AmendingArrangementID.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("amending_arrangement_id")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("amending_arrangement_id")
+		}
+		return err
+	}
+
 	return nil
 }
 
@@ -292,6 +316,10 @@ func (m *CDRArrangement) validateUpdatedAt(formats strfmt.Registry) error {
 func (m *CDRArrangement) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateAmendingArrangementID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateCdrArrangementID(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -307,6 +335,20 @@ func (m *CDRArrangement) ContextValidate(ctx context.Context, formats strfmt.Reg
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *CDRArrangement) contextValidateAmendingArrangementID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.AmendingArrangementID.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("amending_arrangement_id")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("amending_arrangement_id")
+		}
+		return err
+	}
+
 	return nil
 }
 

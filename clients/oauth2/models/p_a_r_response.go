@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// PARResponse Pushed Authentication Response
+// PARResponse Pushed Authorization Response
 //
 // swagger:model PARResponse
 type PARResponse struct {

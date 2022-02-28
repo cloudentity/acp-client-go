@@ -63,16 +63,6 @@ type IntrospectOBBRPaymentConsentResponse struct {
 	// Format: date-time
 	ExpirationDateTime *strfmt.DateTime `json:"expirationDateTime"`
 
-	// Traz o cdigo da cidade segundo o IBGE (Instituto Brasileiro de Geografia e Estatstica).
-	// Para o preenchimento deste campo, o Iniciador de Pagamentos deve seguir a orientao do arranjo da forma de pagamento.
-	// O preenchimento do campo tanto em pix/payments quanto /consents deve ser igual. Caso haja divergncia dos valores, a instituio deve retornar HTTP 422 com o cdigo de erro PAGAMENTO_DIVERGENTE_DO_CONSENTIMENTO.
-	// Este campo faz referncia ao campo CodMun do arranjo Pix.
-	// Example: 5300108
-	// Max Length: 7
-	// Min Length: 7
-	// Pattern: ^\d{7}$
-	IbgeTownCode string `json:"ibgeTownCode,omitempty"`
-
 	// logged user
 	// Required: true
 	LoggedUser *OpenbankingBrasilPaymentLoggedUser `json:"loggedUser"`
@@ -80,6 +70,9 @@ type IntrospectOBBRPaymentConsentResponse struct {
 	// payment
 	// Required: true
 	Payment *OpenbankingBrasilPaymentPaymentConsent `json:"payment"`
+
+	// revocation
+	Revocation *OpenbankingBrasilPaymentRevocation `json:"revocation,omitempty"`
 
 	// status
 	// Required: true
@@ -117,11 +110,11 @@ func (m *IntrospectOBBRPaymentConsentResponse) UnmarshalJSON(raw []byte) error {
 
 		ExpirationDateTime *strfmt.DateTime `json:"expirationDateTime"`
 
-		IbgeTownCode string `json:"ibgeTownCode,omitempty"`
-
 		LoggedUser *OpenbankingBrasilPaymentLoggedUser `json:"loggedUser"`
 
 		Payment *OpenbankingBrasilPaymentPaymentConsent `json:"payment"`
+
+		Revocation *OpenbankingBrasilPaymentRevocation `json:"revocation,omitempty"`
 
 		Status *OpenbankingBrasilPaymentEnumAuthorisationStatusType `json:"status"`
 
@@ -145,11 +138,11 @@ func (m *IntrospectOBBRPaymentConsentResponse) UnmarshalJSON(raw []byte) error {
 
 	m.ExpirationDateTime = dataAO1.ExpirationDateTime
 
-	m.IbgeTownCode = dataAO1.IbgeTownCode
-
 	m.LoggedUser = dataAO1.LoggedUser
 
 	m.Payment = dataAO1.Payment
+
+	m.Revocation = dataAO1.Revocation
 
 	m.Status = dataAO1.Status
 
@@ -182,11 +175,11 @@ func (m IntrospectOBBRPaymentConsentResponse) MarshalJSON() ([]byte, error) {
 
 		ExpirationDateTime *strfmt.DateTime `json:"expirationDateTime"`
 
-		IbgeTownCode string `json:"ibgeTownCode,omitempty"`
-
 		LoggedUser *OpenbankingBrasilPaymentLoggedUser `json:"loggedUser"`
 
 		Payment *OpenbankingBrasilPaymentPaymentConsent `json:"payment"`
+
+		Revocation *OpenbankingBrasilPaymentRevocation `json:"revocation,omitempty"`
 
 		Status *OpenbankingBrasilPaymentEnumAuthorisationStatusType `json:"status"`
 
@@ -207,11 +200,11 @@ func (m IntrospectOBBRPaymentConsentResponse) MarshalJSON() ([]byte, error) {
 
 	dataAO1.ExpirationDateTime = m.ExpirationDateTime
 
-	dataAO1.IbgeTownCode = m.IbgeTownCode
-
 	dataAO1.LoggedUser = m.LoggedUser
 
 	dataAO1.Payment = m.Payment
+
+	dataAO1.Revocation = m.Revocation
 
 	dataAO1.Status = m.Status
 
@@ -258,15 +251,15 @@ func (m *IntrospectOBBRPaymentConsentResponse) Validate(formats strfmt.Registry)
 		res = append(res, err)
 	}
 
-	if err := m.validateIbgeTownCode(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateLoggedUser(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validatePayment(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRevocation(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -387,27 +380,6 @@ func (m *IntrospectOBBRPaymentConsentResponse) validateExpirationDateTime(format
 	return nil
 }
 
-func (m *IntrospectOBBRPaymentConsentResponse) validateIbgeTownCode(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.IbgeTownCode) { // not required
-		return nil
-	}
-
-	if err := validate.MinLength("ibgeTownCode", "body", m.IbgeTownCode, 7); err != nil {
-		return err
-	}
-
-	if err := validate.MaxLength("ibgeTownCode", "body", m.IbgeTownCode, 7); err != nil {
-		return err
-	}
-
-	if err := validate.Pattern("ibgeTownCode", "body", m.IbgeTownCode, `^\d{7}$`); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *IntrospectOBBRPaymentConsentResponse) validateLoggedUser(formats strfmt.Registry) error {
 
 	if err := validate.Required("loggedUser", "body", m.LoggedUser); err != nil {
@@ -440,6 +412,26 @@ func (m *IntrospectOBBRPaymentConsentResponse) validatePayment(formats strfmt.Re
 				return ve.ValidateName("payment")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("payment")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IntrospectOBBRPaymentConsentResponse) validateRevocation(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Revocation) { // not required
+		return nil
+	}
+
+	if m.Revocation != nil {
+		if err := m.Revocation.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("revocation")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("revocation")
 			}
 			return err
 		}
@@ -511,6 +503,10 @@ func (m *IntrospectOBBRPaymentConsentResponse) ContextValidate(ctx context.Conte
 	}
 
 	if err := m.contextValidatePayment(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateRevocation(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -596,6 +592,22 @@ func (m *IntrospectOBBRPaymentConsentResponse) contextValidatePayment(ctx contex
 				return ve.ValidateName("payment")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("payment")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IntrospectOBBRPaymentConsentResponse) contextValidateRevocation(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Revocation != nil {
+		if err := m.Revocation.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("revocation")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("revocation")
 			}
 			return err
 		}

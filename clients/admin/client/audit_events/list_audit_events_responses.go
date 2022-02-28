@@ -74,20 +74,22 @@ func NewListAuditEventsOK() *ListAuditEventsOK {
 AuditEvents
 */
 type ListAuditEventsOK struct {
-	Payload []*models.AuditEvent
+	Payload *models.AuditEvents
 }
 
 func (o *ListAuditEventsOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/audit-events][%d] listAuditEventsOK  %+v", 200, o.Payload)
 }
-func (o *ListAuditEventsOK) GetPayload() []*models.AuditEvent {
+func (o *ListAuditEventsOK) GetPayload() *models.AuditEvents {
 	return o.Payload
 }
 
 func (o *ListAuditEventsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
+	o.Payload = new(models.AuditEvents)
+
 	// response payload
-	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

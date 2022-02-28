@@ -20,11 +20,17 @@ type MTLSEndpointAliases struct {
 	// introspection endpoint
 	IntrospectionEndpoint string `json:"introspection_endpoint,omitempty"`
 
+	// registration endpoint
+	RegistrationEndpoint string `json:"registration_endpoint,omitempty"`
+
 	// revocation endpoint
 	RevocationEndpoint string `json:"revocation_endpoint,omitempty"`
 
 	// token endpoint
 	TokenEndpoint string `json:"token_endpoint,omitempty"`
+
+	// userinfo endpoint
+	UserinfoEndpoint string `json:"userinfo_endpoint,omitempty"`
 }
 
 // Validate validates this m TLS endpoint aliases

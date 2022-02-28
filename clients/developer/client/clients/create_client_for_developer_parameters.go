@@ -64,6 +64,9 @@ type CreateClientForDeveloperParams struct {
 	// Client.
 	Client *models.CreateClientDeveloperRequest
 
+	// ApplicationPurpose.
+	ApplicationPurpose *string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -128,6 +131,17 @@ func (o *CreateClientForDeveloperParams) SetClient(client *models.CreateClientDe
 	o.Client = client
 }
 
+// WithApplicationPurpose adds the applicationPurpose to the create client for developer params
+func (o *CreateClientForDeveloperParams) WithApplicationPurpose(applicationPurpose *string) *CreateClientForDeveloperParams {
+	o.SetApplicationPurpose(applicationPurpose)
+	return o
+}
+
+// SetApplicationPurpose adds the applicationPurpose to the create client for developer params
+func (o *CreateClientForDeveloperParams) SetApplicationPurpose(applicationPurpose *string) {
+	o.ApplicationPurpose = applicationPurpose
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *CreateClientForDeveloperParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -138,6 +152,23 @@ func (o *CreateClientForDeveloperParams) WriteToRequest(r runtime.ClientRequest,
 	if o.Client != nil {
 		if err := r.SetBodyParam(o.Client); err != nil {
 			return err
+		}
+	}
+
+	if o.ApplicationPurpose != nil {
+
+		// query param application_purpose
+		var qrApplicationPurpose string
+
+		if o.ApplicationPurpose != nil {
+			qrApplicationPurpose = *o.ApplicationPurpose
+		}
+		qApplicationPurpose := qrApplicationPurpose
+		if qApplicationPurpose != "" {
+
+			if err := r.SetQueryParam("application_purpose", qApplicationPurpose); err != nil {
+				return err
+			}
 		}
 	}
 

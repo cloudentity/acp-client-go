@@ -612,7 +612,7 @@ definitions:
         - RS256
         - ES256
         - PS256
-        - H256
+        - HS256
         example: none
         type: string
         x-nullable: false
@@ -1096,7 +1096,7 @@ definitions:
         - RS256
         - ES256
         - PS256
-        - H256
+        - HS256
         example: none
         type: string
         x-nullable: false
@@ -1258,15 +1258,21 @@ definitions:
       introspection_endpoint:
         type: string
         x-nullable: false
+      registration_endpoint:
+        type: string
+        x-nullable: false
       revocation_endpoint:
         type: string
         x-nullable: false
       token_endpoint:
         type: string
         x-nullable: false
+      userinfo_endpoint:
+        type: string
+        x-nullable: false
     type: object
   PARResponse:
-    description: Pushed Authentication Response
+    description: Pushed Authorization Response
     properties:
       expires_in:
         description: |-
@@ -2290,7 +2296,7 @@ paths:
         in: formData
         name: code_challenge_method
         type: string
-      - description: Signed authentication request
+      - description: Request Object that holds authorization request parameters
         in: query
         name: request
         type: string
@@ -2307,7 +2313,7 @@ paths:
           $ref: '#/responses/httpError'
         "429":
           $ref: '#/responses/httpError'
-      summary: Pushed Authentication Request (PAR) endpoint
+      summary: Pushed Authorization Request (PAR) endpoint
       tags:
       - oauth2
   /userinfo:
@@ -2354,7 +2360,7 @@ responses:
     schema:
       $ref: '#/definitions/IntrospectResponse'
   PARResponse:
-    description: Pushed Authentication Response
+    description: Pushed Authorization Response
     schema:
       $ref: '#/definitions/PARResponse'
   RFC6749Error:

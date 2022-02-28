@@ -375,7 +375,7 @@ func (a *Client) Jwks(params *JwksParams, opts ...ClientOption) (*JwksOK, error)
 }
 
 /*
-  PushedAuthorizationRequest pusheds authentication request p a r endpoint
+  PushedAuthorizationRequest pusheds authorization request p a r endpoint
 
   This endpoint allows clients to push the payload of an OAuth 2.0 authorization request to the authorization server
 via a direct request and provides them with a request URI that is used as reference to the data in a subsequent call

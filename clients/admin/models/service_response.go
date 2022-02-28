@@ -17,6 +17,9 @@ import (
 // swagger:model ServiceResponse
 type ServiceResponse struct {
 
+	// audience
+	Audience string `json:"audience,omitempty"`
+
 	// server id
 	// Example: default
 	AuthorizationServerID string `json:"authorization_server_id,omitempty"`
