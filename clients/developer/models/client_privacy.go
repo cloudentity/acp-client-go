@@ -49,6 +49,11 @@ func (m *ClientPrivacy) validateScopes(formats strfmt.Registry) error {
 		}
 		if val, ok := m.Scopes[k]; ok {
 			if err := val.Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("scopes" + "." + k)
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("scopes" + "." + k)
+				}
 				return err
 			}
 		}
