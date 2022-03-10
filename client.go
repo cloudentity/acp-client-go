@@ -538,6 +538,14 @@ func New(cfg Config) (c Client, err error) {
 		).WithOpenTracing(), nil),
 	}
 
+	obbrPaymentsTransport := httptransport.NewWithClient(
+		cfg.IssuerURL.Host,
+		apiPrefix+obbrPayments.DefaultBasePath,
+		[]string{cfg.IssuerURL.Scheme},
+		NewAuthenticator(cc, c.c),
+	)
+	obbrPaymentsTransport.Consumers["application/jwt"] = &JWTConsumer{}
+
 	c.OpenbankingBrasil = &OpenbankingBrasil{
 		Consents: obbrConsents.New(httptransport.NewWithClient(
 			cfg.IssuerURL.Host,
@@ -546,12 +554,7 @@ func New(cfg Config) (c Client, err error) {
 			NewAuthenticator(cc, c.c),
 		).WithOpenTracing(), nil),
 
-		Payments: obbrPayments.New(httptransport.NewWithClient(
-			cfg.IssuerURL.Host,
-			apiPrefix+obbrPayments.DefaultBasePath,
-			[]string{cfg.IssuerURL.Scheme},
-			NewAuthenticator(cc, c.c),
-		).WithOpenTracing(), nil),
+		Payments: obbrPayments.New(obbrPaymentsTransport.WithOpenTracing(), nil),
 	}
 
 	c.Config = cfg
