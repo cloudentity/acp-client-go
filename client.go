@@ -686,14 +686,16 @@ func WithRequestObjectEncryption(key jose.JSONWebKey) AuthorizeOption {
 			err            error
 		)
 
-		encrypter, err = jose.NewEncrypter(jose.A256GCM, jose.Recipient{
+		if encrypter, err = jose.NewEncrypter(jose.A256GCM, jose.Recipient{
 			Algorithm: jose.KeyAlgorithm(key.Algorithm),
 			Key:       key.Key,
 		}, &jose.EncrypterOptions{
 			ExtraHeaders: map[jose.HeaderKey]interface{}{
 				jose.HeaderContentType: "jwt",
 			},
-		})
+		}); err != nil {
+			return errors.Wrapf(err, "failed to create request object encrypter")
+		}
 
 		if jwe, err = encrypter.Encrypt([]byte(token)); err != nil {
 			return errors.Wrapf(err, "failed to encrypt request object")
