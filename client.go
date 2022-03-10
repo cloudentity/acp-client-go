@@ -541,14 +541,14 @@ func New(cfg Config) (c Client, err error) {
 	c.OpenbankingBrasil = &OpenbankingBrasil{
 		Consents: obbrConsents.New(httptransport.NewWithClient(
 			cfg.IssuerURL.Host,
-			apiPrefix+obukAccounts.DefaultBasePath,
+			apiPrefix+obbrConsents.DefaultBasePath,
 			[]string{cfg.IssuerURL.Scheme},
 			NewAuthenticator(cc, c.c),
 		).WithOpenTracing(), nil),
 
 		Payments: obbrPayments.New(httptransport.NewWithClient(
 			cfg.IssuerURL.Host,
-			apiPrefix+obukPayments.DefaultBasePath,
+			apiPrefix+obbrPayments.DefaultBasePath,
 			[]string{cfg.IssuerURL.Scheme},
 			NewAuthenticator(cc, c.c),
 		).WithOpenTracing(), nil),
