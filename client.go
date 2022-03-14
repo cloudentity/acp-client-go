@@ -511,13 +511,16 @@ func New(cfg Config) (c Client, err error) {
 		).WithOpenTracing(), nil),
 	}
 
+	openbankingTransport := httptransport.NewWithClient(
+		cfg.IssuerURL.Host,
+		c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
+		[]string{cfg.IssuerURL.Scheme},
+		NewAuthenticator(cc, c.c),
+	)
+	openbankingTransport.Consumers["application/jwt"] = &JWTConsumer{}
+
 	c.Openbanking = &Openbanking{
-		Acp: openbankingClient.New(httptransport.NewWithClient(
-			cfg.IssuerURL.Host,
-			c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
-			[]string{cfg.IssuerURL.Scheme},
-			NewAuthenticator(cc, c.c),
-		).WithOpenTracing(), nil),
+		Acp: openbankingClient.New(openbankingTransport.WithOpenTracing(), nil),
 	}
 
 	apiPrefix := c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s")
