@@ -511,13 +511,16 @@ func New(cfg Config) (c Client, err error) {
 		).WithOpenTracing(), nil),
 	}
 
+	openbankingTransport := httptransport.NewWithClient(
+		cfg.IssuerURL.Host,
+		c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
+		[]string{cfg.IssuerURL.Scheme},
+		NewAuthenticator(cc, c.c),
+	)
+	openbankingTransport.Consumers["application/jwt"] = &JWTConsumer{}
+
 	c.Openbanking = &Openbanking{
-		Acp: openbankingClient.New(httptransport.NewWithClient(
-			cfg.IssuerURL.Host,
-			c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
-			[]string{cfg.IssuerURL.Scheme},
-			NewAuthenticator(cc, c.c),
-		).WithOpenTracing(), nil),
+		Acp: openbankingClient.New(openbankingTransport.WithOpenTracing(), nil),
 	}
 
 	apiPrefix := c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s")
@@ -538,20 +541,23 @@ func New(cfg Config) (c Client, err error) {
 		).WithOpenTracing(), nil),
 	}
 
+	obbrPaymentsTransport := httptransport.NewWithClient(
+		cfg.IssuerURL.Host,
+		apiPrefix+obbrPayments.DefaultBasePath,
+		[]string{cfg.IssuerURL.Scheme},
+		NewAuthenticator(cc, c.c),
+	)
+	obbrPaymentsTransport.Consumers["application/jwt"] = &JWTConsumer{}
+
 	c.OpenbankingBrasil = &OpenbankingBrasil{
 		Consents: obbrConsents.New(httptransport.NewWithClient(
 			cfg.IssuerURL.Host,
-			apiPrefix+obukAccounts.DefaultBasePath,
+			apiPrefix+obbrConsents.DefaultBasePath,
 			[]string{cfg.IssuerURL.Scheme},
 			NewAuthenticator(cc, c.c),
 		).WithOpenTracing(), nil),
 
-		Payments: obbrPayments.New(httptransport.NewWithClient(
-			cfg.IssuerURL.Host,
-			apiPrefix+obukPayments.DefaultBasePath,
-			[]string{cfg.IssuerURL.Scheme},
-			NewAuthenticator(cc, c.c),
-		).WithOpenTracing(), nil),
+		Payments: obbrPayments.New(obbrPaymentsTransport.WithOpenTracing(), nil),
 	}
 
 	c.Config = cfg
@@ -686,14 +692,16 @@ func WithRequestObjectEncryption(key jose.JSONWebKey) AuthorizeOption {
 			err            error
 		)
 
-		encrypter, err = jose.NewEncrypter(jose.A256GCM, jose.Recipient{
+		if encrypter, err = jose.NewEncrypter(jose.A256GCM, jose.Recipient{
 			Algorithm: jose.KeyAlgorithm(key.Algorithm),
 			Key:       key.Key,
 		}, &jose.EncrypterOptions{
 			ExtraHeaders: map[jose.HeaderKey]interface{}{
 				jose.HeaderContentType: "jwt",
 			},
-		})
+		}); err != nil {
+			return errors.Wrapf(err, "failed to create request object encrypter")
+		}
 
 		if jwe, err = encrypter.Encrypt([]byte(token)); err != nil {
 			return errors.Wrapf(err, "failed to encrypt request object")
