@@ -34,6 +34,10 @@ type TransientOTPRequest struct {
 	// one-time password
 	// Example: 111111
 	Otp string `json:"otp,omitempty"`
+
+	// Optional XSRF state
+	// Example: c44sqtco4g2legl15m2g
+	State string `json:"state,omitempty"`
 }
 
 // Validate validates this transient o t p request

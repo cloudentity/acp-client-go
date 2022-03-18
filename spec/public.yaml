@@ -707,6 +707,11 @@ definitions:
         format: OTP
         type: string
         x-nullable: false
+      state:
+        description: Optional XSRF state
+        example: c44sqtco4g2legl15m2g
+        type: string
+        x-nullable: false
     required:
     - mechanism
     - address
