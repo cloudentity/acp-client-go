@@ -2300,6 +2300,10 @@ paths:
         in: query
         name: request
         type: string
+      - description: Authorization details
+        in: formData
+        name: authorization_details
+        type: string
       responses:
         "201":
           $ref: '#/responses/PARResponse'
