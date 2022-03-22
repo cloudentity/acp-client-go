@@ -780,6 +780,13 @@ func WithOpenbankingIntentID(intentID string, acr []string) AuthorizeOption {
 	})
 }
 
+func WithPAR(requestURI string) AuthorizeOption {
+	return authorizeHandler(func(c *Client, v url.Values, csrf *CSRF) error {
+		v.Set("request_uri", requestURI)
+		return nil
+	})
+}
+
 func (c *Client) AuthorizeURL(options ...AuthorizeOption) (authorizeURL string, csrf CSRF, err error) {
 	if csrf.State, err = randomString(StateLength); err != nil {
 		return authorizeURL, csrf, err
