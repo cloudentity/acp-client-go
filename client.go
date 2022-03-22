@@ -781,7 +781,10 @@ func WithOpenbankingIntentID(intentID string, acr []string) AuthorizeOption {
 }
 
 func (c *Client) AuthorizeURLWithPAR(requestURI string) (authorizeURL string, err error) {
-	values := url.Values{"request_uri": {requestURI}}
+	values := url.Values{
+		"client_id":   {c.Config.ClientID},
+		"request_uri": {requestURI},
+	}
 	return fmt.Sprintf("%s?%s", c.Config.GetAuthorizeURL(), values.Encode()), nil
 }
 
