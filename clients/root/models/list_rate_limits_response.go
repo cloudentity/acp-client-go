@@ -56,11 +56,6 @@ func (m *ListRateLimitsResponse) validateGlobal(formats strfmt.Registry) error {
 		}
 		if val, ok := m.Global[k]; ok {
 			if err := val.Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("global" + "." + k)
-				} else if ce, ok := err.(*errors.CompositeError); ok {
-					return ce.ValidateName("global" + "." + k)
-				}
 				return err
 			}
 		}
@@ -82,11 +77,6 @@ func (m *ListRateLimitsResponse) validateTenant(formats strfmt.Registry) error {
 		}
 		if val, ok := m.Tenant[k]; ok {
 			if err := val.Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("tenant" + "." + k)
-				} else if ce, ok := err.(*errors.CompositeError); ok {
-					return ce.ValidateName("tenant" + "." + k)
-				}
 				return err
 			}
 		}

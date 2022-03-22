@@ -57,6 +57,12 @@ type IntrospectResponse struct {
 	// originally issued.
 	Iat int64 `json:"iat,omitempty"`
 
+	// IDP ID that user authenticated with
+	Idp string `json:"idp,omitempty"`
+
+	// Idp subject
+	IdpSub string `json:"idp_sub,omitempty"`
+
 	// IssuerURL is a string representing the issuer of this token
 	Iss string `json:"iss,omitempty"`
 

@@ -46,7 +46,7 @@ type ClientService interface {
 
 	Jwks(params *JwksParams, opts ...ClientOption) (*JwksOK, error)
 
-	PushedAuthorizationRequest(params *PushedAuthorizationRequestParams, opts ...ClientOption) (*PushedAuthorizationRequestCreated, error)
+	PushedAuthorizationRequest(params *PushedAuthorizationRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PushedAuthorizationRequestCreated, error)
 
 	Revoke(params *RevokeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeOK, error)
 
@@ -381,7 +381,7 @@ func (a *Client) Jwks(params *JwksParams, opts ...ClientOption) (*JwksOK, error)
 via a direct request and provides them with a request URI that is used as reference to the data in a subsequent call
 to the authorization endpoint.
 */
-func (a *Client) PushedAuthorizationRequest(params *PushedAuthorizationRequestParams, opts ...ClientOption) (*PushedAuthorizationRequestCreated, error) {
+func (a *Client) PushedAuthorizationRequest(params *PushedAuthorizationRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PushedAuthorizationRequestCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPushedAuthorizationRequestParams()
@@ -395,6 +395,7 @@ func (a *Client) PushedAuthorizationRequest(params *PushedAuthorizationRequestPa
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PushedAuthorizationRequestReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}

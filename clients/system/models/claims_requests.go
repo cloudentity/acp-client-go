@@ -59,11 +59,6 @@ func (m *ClaimsRequests) validateIDToken(formats strfmt.Registry) error {
 		}
 		if val, ok := m.IDToken[k]; ok {
 			if err := val.Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("id_token" + "." + k)
-				} else if ce, ok := err.(*errors.CompositeError); ok {
-					return ce.ValidateName("id_token" + "." + k)
-				}
 				return err
 			}
 		}
@@ -85,11 +80,6 @@ func (m *ClaimsRequests) validateUserinfo(formats strfmt.Registry) error {
 		}
 		if val, ok := m.Userinfo[k]; ok {
 			if err := val.Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("userinfo" + "." + k)
-				} else if ce, ok := err.(*errors.CompositeError); ok {
-					return ce.ValidateName("userinfo" + "." + k)
-				}
 				return err
 			}
 		}
