@@ -90,7 +90,7 @@ type ListAuditEventsParams struct {
 
 	/* EventSubject.
 
-	     Optional event subject, one of: request client gateway_request policy consent authorization_code recovery login access_token scopes otp
+	     Optional event subject, one of: request client gateway_request policy consent authorization_code recovery login access_token scopes otp gateway_policy
 	EventType
 	*/
 	EventSubject *string

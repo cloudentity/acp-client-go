@@ -21,6 +21,9 @@ type GatewayRequestEvent struct {
 	// api id
 	APIID string `json:"api_id,omitempty"`
 
+	// output
+	Output map[string]string `json:"output,omitempty"`
+
 	// result
 	Result *PolicyValidationResult `json:"result,omitempty"`
 

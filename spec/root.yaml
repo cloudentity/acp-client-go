@@ -102,8 +102,6 @@ definitions:
         type: string
         x-nullable: false
     type: object
-  Action:
-    type: string
   ApigeeMetadata:
     properties:
       environment_name:
@@ -165,7 +163,25 @@ definitions:
   AuditEvent:
     properties:
       action:
-        $ref: '#/definitions/Action'
+        enum:
+        - authorized
+        - unauthorized
+        - created
+        - updated
+        - deleted
+        - requested
+        - accepted
+        - rejected
+        - revoked
+        - issued
+        - denied
+        - granted
+        - attempted
+        - failed
+        - sent
+        - not_sent
+        type: string
+        x-nullable: false
       event_id:
         format: eventID
         type: string
@@ -174,7 +190,21 @@ definitions:
         type: object
         x-nullable: false
       event_subject:
-        $ref: '#/definitions/AuditEventSubject'
+        enum:
+        - request
+        - gateway_request
+        - gateway_policy
+        - policy
+        - recovery
+        - client
+        - login
+        - consent
+        - authorization_code
+        - access_token
+        - scopes
+        - otp
+        type: string
+        x-nullable: false
       event_type:
         $ref: '#/definitions/AuditEventType'
       metadata:
@@ -243,8 +273,6 @@ definitions:
         type: string
         x-nullable: false
     type: object
-  AuditEventSubject:
-    type: string
   AuditEventType:
     type: string
   Auth0Credentials:
@@ -2171,8 +2199,8 @@ definitions:
         description: enable analytics v2 (tenant)
         type: boolean
         x-nullable: false
-      audit_events_ui:
-        description: enable Audit Events UI (tenant)
+      application_builder_ui:
+        description: enable Application Builder UI (tenant)
         type: boolean
         x-nullable: false
       ciba:
@@ -2202,6 +2230,10 @@ definitions:
         x-nullable: false
       external_datastore:
         description: enable external datastore idp (system)
+        type: boolean
+        x-nullable: false
+      fdx:
+        description: FDX (tenant)
         type: boolean
         x-nullable: false
       identity_pools:
@@ -4030,6 +4062,7 @@ definitions:
         - openbanking_br
         - cdr_australia
         - cdr_australia_fapi_rw
+        - fdx
         example: default
         type: string
         x-nullable: false
@@ -4080,6 +4113,15 @@ definitions:
 
           It must have at least 32 characters. If not provided, it is generated.
         example: hW5WhKX_7w7BLwUQ6mn7Cp70_OoKI_F1y1hLS5U8lIU
+        type: string
+        x-nullable: false
+      subject_format:
+        description: |-
+          Define the format of a subject
+          When set to hash sub value is a one way hash of idp id and idp sub
+        enum:
+        - hash
+        - legacy
         type: string
         x-nullable: false
       subject_identifier_algorithm_salt:
@@ -4485,6 +4527,7 @@ definitions:
         - openbanking_br
         - cdr_australia
         - cdr_australia_fapi_rw
+        - fdx
         example: default
         type: string
         x-nullable: false
@@ -4535,6 +4578,15 @@ definitions:
 
           It must have at least 32 characters. If not provided, it is generated.
         example: hW5WhKX_7w7BLwUQ6mn7Cp70_OoKI_F1y1hLS5U8lIU
+        type: string
+        x-nullable: false
+      subject_format:
+        description: |-
+          Define the format of a subject
+          When set to hash sub value is a one way hash of idp id and idp sub
+        enum:
+        - hash
+        - legacy
         type: string
         x-nullable: false
       subject_identifier_algorithm_salt:

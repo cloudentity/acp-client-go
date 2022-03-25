@@ -194,7 +194,7 @@ type ServerDump struct {
 	// specific configuration patterns. For example, you can instantly create an Open Banking
 	// compliant workspace that has all of the required mechanisms and settings already in place.
 	// Example: default
-	// Enum: [default demo workforce consumer partners third_party fapi_advanced fapi_rw fapi_ro openbanking_uk_fapi_advanced openbanking_uk openbanking_br cdr_australia cdr_australia_fapi_rw]
+	// Enum: [default demo workforce consumer partners third_party fapi_advanced fapi_rw fapi_ro openbanking_uk_fapi_advanced openbanking_uk openbanking_br cdr_australia cdr_australia_fapi_rw fdx]
 	Profile string `json:"profile,omitempty"`
 
 	// Custom pushed authentication request TTL
@@ -230,6 +230,11 @@ type ServerDump struct {
 	// It must have at least 32 characters. If not provided, it is generated.
 	// Example: hW5WhKX_7w7BLwUQ6mn7Cp70_OoKI_F1y1hLS5U8lIU
 	Secret string `json:"secret,omitempty"`
+
+	// Define the format of a subject
+	// When set to hash sub value is a one way hash of idp id and idp sub
+	// Enum: [hash legacy]
+	SubjectFormat string `json:"subject_format,omitempty"`
 
 	// Salt used to hash `subject` when the `pairwise` subject type is used.
 	//
@@ -328,6 +333,10 @@ func (m *ServerDump) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateRefreshTokenTTL(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSubjectFormat(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -574,7 +583,7 @@ var serverDumpTypeProfilePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["default","demo","workforce","consumer","partners","third_party","fapi_advanced","fapi_rw","fapi_ro","openbanking_uk_fapi_advanced","openbanking_uk","openbanking_br","cdr_australia","cdr_australia_fapi_rw"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["default","demo","workforce","consumer","partners","third_party","fapi_advanced","fapi_rw","fapi_ro","openbanking_uk_fapi_advanced","openbanking_uk","openbanking_br","cdr_australia","cdr_australia_fapi_rw","fdx"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -625,6 +634,9 @@ const (
 
 	// ServerDumpProfileCdrAustraliaFapiRw captures enum value "cdr_australia_fapi_rw"
 	ServerDumpProfileCdrAustraliaFapiRw string = "cdr_australia_fapi_rw"
+
+	// ServerDumpProfileFdx captures enum value "fdx"
+	ServerDumpProfileFdx string = "fdx"
 )
 
 // prop value enum
@@ -666,6 +678,48 @@ func (m *ServerDump) validateRefreshTokenTTL(formats strfmt.Registry) error {
 	}
 
 	if err := validate.FormatOf("refresh_token_ttl", "body", "duration", m.RefreshTokenTTL.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var serverDumpTypeSubjectFormatPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["hash","legacy"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		serverDumpTypeSubjectFormatPropEnum = append(serverDumpTypeSubjectFormatPropEnum, v)
+	}
+}
+
+const (
+
+	// ServerDumpSubjectFormatHash captures enum value "hash"
+	ServerDumpSubjectFormatHash string = "hash"
+
+	// ServerDumpSubjectFormatLegacy captures enum value "legacy"
+	ServerDumpSubjectFormatLegacy string = "legacy"
+)
+
+// prop value enum
+func (m *ServerDump) validateSubjectFormatEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, serverDumpTypeSubjectFormatPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *ServerDump) validateSubjectFormat(formats strfmt.Registry) error {
+	if swag.IsZero(m.SubjectFormat) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateSubjectFormatEnum("subject_format", "body", m.SubjectFormat); err != nil {
 		return err
 	}
 

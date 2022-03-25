@@ -204,8 +204,6 @@ definitions:
         type: string
         x-nullable: false
     type: object
-  Action:
-    type: string
   ApigeeMetadata:
     properties:
       environment_name:
@@ -269,7 +267,27 @@ definitions:
   AuditEvent:
     properties:
       action:
-        $ref: '#/definitions/Action'
+        description: Name of an action that was performed for a given event subject.
+        enum:
+        - authorized
+        - unauthorized
+        - created
+        - updated
+        - deleted
+        - requested
+        - accepted
+        - rejected
+        - revoked
+        - issued
+        - denied
+        - granted
+        - attempted
+        - failed
+        - sent
+        - not_sent
+        example: created
+        type: string
+        x-nullable: false
       context:
         additionalProperties:
           type: string
@@ -282,7 +300,23 @@ definitions:
         type: string
         x-nullable: false
       event_subject:
-        $ref: '#/definitions/AuditEventSubject'
+        description: Resource or entity that is a subject of a given audit event.
+        enum:
+        - request
+        - gateway_request
+        - gateway_policy
+        - policy
+        - recovery
+        - client
+        - login
+        - consent
+        - authorization_code
+        - access_token
+        - scopes
+        - otp
+        example: client
+        type: string
+        x-nullable: false
       metadata:
         $ref: '#/definitions/AuditEventMetadata'
       payload:
@@ -378,6 +412,10 @@ definitions:
         $ref: '#/definitions/ConsentAuditEventPayload'
       consent_revoked:
         $ref: '#/definitions/ConsentAuditEventPayload'
+      gateway_policy_authorized:
+        $ref: '#/definitions/RequestValidatedPayload'
+      gateway_policy_unauthorized:
+        $ref: '#/definitions/RequestValidatedPayload'
       gateway_request_authorized:
         $ref: '#/definitions/RequestValidatedPayload'
       gateway_request_unauthorized:
@@ -409,8 +447,6 @@ definitions:
       scopes_granted_payload:
         $ref: '#/definitions/ScopesGrantedPayload'
     type: object
-  AuditEventSubject:
-    type: string
   AuditEvents:
     properties:
       audit_events:
@@ -4069,13 +4105,13 @@ definitions:
         description: enable analytics v2 (tenant)
         type: boolean
         x-nullable: false
+      application_builder_ui:
+        description: enable Application Builder UI (tenant)
+        type: boolean
+        x-nullable: false
       audit_events_duration:
         format: duration
         type: string
-        x-nullable: false
-      audit_events_ui:
-        description: enable Audit Events UI (tenant)
-        type: boolean
         x-nullable: false
       ciba:
         description: enable ciba (system)
@@ -4110,6 +4146,10 @@ definitions:
         x-nullable: false
       external_datastore:
         description: enable external datastore idp (system)
+        type: boolean
+        x-nullable: false
+      fdx:
+        description: FDX (tenant)
         type: boolean
         x-nullable: false
       identity_pools:
@@ -6192,6 +6232,12 @@ definitions:
     type: object
   PolicyEvaluatedPayload:
     properties:
+      output:
+        additionalProperties:
+          type: string
+        description: Policy output
+        type: object
+        x-nullable: false
       policy:
         $ref: '#/definitions/PolicyPayload'
       recovery:
@@ -6726,6 +6772,11 @@ definitions:
         x-nullable: false
       invalid_token:
         type: boolean
+        x-nullable: false
+      output:
+        additionalProperties:
+          type: string
+        type: object
         x-nullable: false
       public:
         description: Stores information if the client application is a public one.
@@ -7689,6 +7740,7 @@ definitions:
         - openbanking_br
         - cdr_australia
         - cdr_australia_fapi_rw
+        - fdx
         example: default
         type: string
         x-nullable: false
@@ -7739,6 +7791,15 @@ definitions:
 
           It must have at least 32 characters. If not provided, it is generated.
         example: hW5WhKX_7w7BLwUQ6mn7Cp70_OoKI_F1y1hLS5U8lIU
+        type: string
+        x-nullable: false
+      subject_format:
+        description: |-
+          Define the format of a subject
+          When set to hash sub value is a one way hash of idp id and idp sub
+        enum:
+        - hash
+        - legacy
         type: string
         x-nullable: false
       subject_identifier_algorithm_salt:
@@ -8330,6 +8391,7 @@ definitions:
         - openbanking_br
         - cdr_australia
         - cdr_australia_fapi_rw
+        - fdx
         example: default
         type: string
         x-nullable: false
@@ -8380,6 +8442,15 @@ definitions:
 
           It must have at least 32 characters. If not provided, it is generated.
         example: hW5WhKX_7w7BLwUQ6mn7Cp70_OoKI_F1y1hLS5U8lIU
+        type: string
+        x-nullable: false
+      subject_format:
+        description: |-
+          Define the format of a subject
+          When set to hash sub value is a one way hash of idp id and idp sub
+        enum:
+        - hash
+        - legacy
         type: string
         x-nullable: false
       subject_identifier_algorithm_salt:
@@ -11544,7 +11615,7 @@ paths:
         name: session_id
         type: string
       - description: |-
-          Optional event subject, one of: request client gateway_request policy consent authorization_code recovery login access_token scopes otp
+          Optional event subject, one of: request client gateway_request policy consent authorization_code recovery login access_token scopes otp gateway_policy
           EventType
         in: query
         name: event_subject

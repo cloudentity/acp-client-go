@@ -59,6 +59,9 @@ type ScopeGrantSessionResponse struct {
 	// idp identifier
 	IdpID string `json:"idp_id,omitempty"`
 
+	// idp subject
+	IdpSubject string `json:"idp_subject,omitempty"`
+
 	// is login approved
 	// Example: false
 	LoginApproved bool `json:"login_approved,omitempty"`

@@ -25,6 +25,9 @@ type GatewayConfiguration struct {
 	// Used to define how to split dynamic scopes
 	DynamicScopeSeparator string `json:"dynamic_scope_separator,omitempty"`
 
+	// events per second limit
+	EventsPerSecond int64 `json:"events_per_second,omitempty"`
+
 	// issuer apis
 	IssuerApis []*API `json:"issuer_apis"`
 

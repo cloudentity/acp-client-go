@@ -26,8 +26,8 @@ type Features struct {
 	// enable analytics v2 (tenant)
 	AnalyticsV2 bool `json:"analytics_v2,omitempty"`
 
-	// enable Audit Events UI (tenant)
-	AuditEventsUI bool `json:"audit_events_ui,omitempty"`
+	// enable Application Builder UI (tenant)
+	ApplicationBuilderUI bool `json:"application_builder_ui,omitempty"`
 
 	// enable ciba (system)
 	Ciba bool `json:"ciba,omitempty"`
@@ -49,6 +49,9 @@ type Features struct {
 
 	// enable external datastore idp (system)
 	ExternalDatastore bool `json:"external_datastore,omitempty"`
+
+	// FDX (tenant)
+	Fdx bool `json:"fdx,omitempty"`
 
 	// enable Identity Pools (tenant)
 	IdentityPools bool `json:"identity_pools,omitempty"`

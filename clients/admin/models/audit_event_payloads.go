@@ -51,6 +51,12 @@ type AuditEventPayloads struct {
 	// consent revoked
 	ConsentRevoked *ConsentAuditEventPayload `json:"consent_revoked,omitempty"`
 
+	// gateway policy authorized
+	GatewayPolicyAuthorized *RequestValidatedPayload `json:"gateway_policy_authorized,omitempty"`
+
+	// gateway policy unauthorized
+	GatewayPolicyUnauthorized *RequestValidatedPayload `json:"gateway_policy_unauthorized,omitempty"`
+
 	// gateway request authorized
 	GatewayRequestAuthorized *RequestValidatedPayload `json:"gateway_request_authorized,omitempty"`
 
@@ -142,6 +148,14 @@ func (m *AuditEventPayloads) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateConsentRevoked(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateGatewayPolicyAuthorized(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateGatewayPolicyUnauthorized(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -412,6 +426,44 @@ func (m *AuditEventPayloads) validateConsentRevoked(formats strfmt.Registry) err
 				return ve.ValidateName("consent_revoked")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("consent_revoked")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) validateGatewayPolicyAuthorized(formats strfmt.Registry) error {
+	if swag.IsZero(m.GatewayPolicyAuthorized) { // not required
+		return nil
+	}
+
+	if m.GatewayPolicyAuthorized != nil {
+		if err := m.GatewayPolicyAuthorized.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("gateway_policy_authorized")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("gateway_policy_authorized")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) validateGatewayPolicyUnauthorized(formats strfmt.Registry) error {
+	if swag.IsZero(m.GatewayPolicyUnauthorized) { // not required
+		return nil
+	}
+
+	if m.GatewayPolicyUnauthorized != nil {
+		if err := m.GatewayPolicyUnauthorized.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("gateway_policy_unauthorized")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("gateway_policy_unauthorized")
 			}
 			return err
 		}
@@ -753,6 +805,14 @@ func (m *AuditEventPayloads) ContextValidate(ctx context.Context, formats strfmt
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateGatewayPolicyAuthorized(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateGatewayPolicyUnauthorized(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateGatewayRequestAuthorized(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -987,6 +1047,38 @@ func (m *AuditEventPayloads) contextValidateConsentRevoked(ctx context.Context, 
 				return ve.ValidateName("consent_revoked")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("consent_revoked")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) contextValidateGatewayPolicyAuthorized(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.GatewayPolicyAuthorized != nil {
+		if err := m.GatewayPolicyAuthorized.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("gateway_policy_authorized")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("gateway_policy_authorized")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) contextValidateGatewayPolicyUnauthorized(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.GatewayPolicyUnauthorized != nil {
+		if err := m.GatewayPolicyUnauthorized.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("gateway_policy_unauthorized")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("gateway_policy_unauthorized")
 			}
 			return err
 		}

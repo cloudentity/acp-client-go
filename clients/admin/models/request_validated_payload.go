@@ -48,6 +48,9 @@ type RequestValidatedPayload struct {
 	// invalid token
 	InvalidToken bool `json:"invalid_token,omitempty"`
 
+	// output
+	Output map[string]string `json:"output,omitempty"`
+
 	// Stores information if the client application is a public one.
 	Public bool `json:"public,omitempty"`
 
