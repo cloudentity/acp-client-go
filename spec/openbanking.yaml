@@ -16,6 +16,20 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  AcceptFDXConsentRequest:
+    properties:
+      granted_scopes:
+        $ref: '#/definitions/GrantedScopes'
+      login_state:
+        format: loginState
+        type: string
+        x-nullable: false
+      resources:
+        items:
+          $ref: '#/definitions/FDXResource'
+        type: array
+        x-nullable: false
+    type: object
   AccountAccessConsent:
     properties:
       ConsentId:
@@ -879,6 +893,8 @@ definitions:
     - Data
     - Risk
     type: object
+  DurationType:
+    type: string
   Error:
     description: HTTP error response
     properties:
@@ -928,6 +944,163 @@ definitions:
     - Message
     title: An array of detail error codes, and messages, and URLs to documentation
       to help remediation.
+    type: object
+  FDXConsent:
+    properties:
+      authorization_server_id:
+        format: serverID
+        type: string
+        x-nullable: false
+      client_id:
+        format: clientID
+        type: string
+        x-nullable: false
+      createdTime:
+        format: date-time
+        type: string
+        x-nullable: false
+      durationPeriod:
+        description: Consent duration, in days, from day of original grant.
+        format: int64
+        type: integer
+        x-nullable: false
+      durationType:
+        $ref: '#/definitions/DurationType'
+      expirationTime:
+        format: date-time
+        type: string
+        x-nullable: false
+      id:
+        $ref: '#/definitions/FDXConsentID'
+      lookbackPeriod:
+        description: Period, in days, for which historical data may be requested;
+          period is measuredfrom request time, not grant time
+        format: int64
+        type: integer
+        x-nullable: false
+      parties:
+        description: |-
+          a collection of parameters identifying the Parties (including the legal entity operatingbranded products or services)
+          in the data sharing chain. Descriptive information is collectedduring Data Recipient registration at Data Provider,
+          and populated during issuance by DataProvider from its registry;
+        items:
+          $ref: '#/definitions/FDXConsentGrantParty'
+        type: array
+        x-nullable: false
+      resources:
+        items:
+          $ref: '#/definitions/FDXGrantedResource'
+        type: array
+        x-nullable: false
+      status:
+        $ref: '#/definitions/ConsentStatus'
+      tenant_id:
+        format: tenantID
+        type: string
+        x-nullable: false
+    type: object
+  FDXConsentGrantParty:
+    description: |-
+      Consent Party entity
+      Details on the non-end user parties in the Consent Grant. Includes the legal entity operating branded products or services
+      in the data sharing chain. Descriptive information is collected during Data Recipient registration at Data Provider,
+      and populated during issuance by Data Provider from its registry
+    properties:
+      homeUri:
+        description: URL for party, where an end user could learn more about the company
+          or application involved in the data sharing chain
+        type: string
+        x-nullable: false
+      logoUri:
+        description: URL for a logo asset to be displayed to the end user
+        type: string
+        x-nullable: false
+      name:
+        description: Common name for party, as it should be displayed to the end user
+        type: string
+        x-nullable: false
+      registeredEntityIdentifier:
+        description: Registered id of party
+        type: string
+        x-nullable: false
+      registeredEntityName:
+        description: Registered name of party
+        type: string
+        x-nullable: false
+      registryName:
+        description: The registry with the party's registered name and id
+        type: string
+        x-nullable: false
+    type: object
+  FDXConsentID:
+    type: string
+  FDXConsents:
+    properties:
+      arrangements:
+        items:
+          $ref: '#/definitions/FDXConsent'
+        type: array
+        x-nullable: false
+    type: object
+  FDXError:
+    properties:
+      code:
+        type: string
+        x-nullable: false
+      detail:
+        type: string
+        x-nullable: false
+      title:
+        type: string
+        x-nullable: false
+    type: object
+  FDXErrorResponse:
+    properties:
+      errors:
+        items:
+          $ref: '#/definitions/FDXError'
+        type: array
+        x-nullable: false
+    type: object
+  FDXGrantedResource:
+    properties:
+      dataClusters:
+        description: Name of cluster of data elements permissioned
+        example: ACCOUNT_DETAILED TRANSACTIONS STATEMENTS
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      id:
+        description: resource ID
+        example: b14e1e714693bc00
+        type: string
+        x-nullable: false
+      resourceType:
+        description: Resource for which data may be permissioned; can be extended
+          to supportadditional types of resources
+        example: ACCOUNT
+        type: string
+        x-nullable: false
+    type: object
+  FDXResource:
+    description: FDX specific resource
+    properties:
+      dataClusters:
+        description: Name of cluster of data elements permissioned
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      id:
+        description: resource ID
+        type: string
+        x-nullable: false
+      resouceType:
+        description: Resource for which data may be permissioned; can be extended
+          to supportadditional types of resources
+        type: string
+        x-nullable: false
     type: object
   FilePaymentConsent:
     allOf:
@@ -1173,6 +1346,90 @@ definitions:
         x-nullable: false
       domestic_standing_order_consent:
         $ref: '#/definitions/DomesticStandingOrderConsent'
+      requested_scopes:
+        items:
+          $ref: '#/definitions/RequestedScope'
+        type: array
+        x-nullable: false
+      server_id:
+        format: serverID
+        type: string
+        x-nullable: false
+      status:
+        type: string
+        x-nullable: false
+      subject:
+        format: subject
+        type: string
+        x-nullable: false
+      tenant_id:
+        format: tenantID
+        type: string
+        x-nullable: false
+      type:
+        $ref: '#/definitions/ConsentType'
+    type: object
+  GetFDXConsent:
+    properties:
+      createdTime:
+        format: date-time
+        type: string
+        x-nullable: false
+      durationPeriod:
+        format: int64
+        type: integer
+        x-nullable: false
+      durationType:
+        $ref: '#/definitions/DurationType'
+      expirationTime:
+        format: date-time
+        type: string
+        x-nullable: false
+      id:
+        $ref: '#/definitions/FDXConsentID'
+      lookbackPeriod:
+        format: int64
+        type: integer
+        x-nullable: false
+      parties:
+        items:
+          $ref: '#/definitions/FDXConsentGrantParty'
+        type: array
+        x-nullable: false
+      resources:
+        items:
+          $ref: '#/definitions/FDXGrantedResource'
+        type: array
+        x-nullable: false
+      status:
+        type: string
+        x-nullable: false
+    type: object
+  GetFDXConsentResponse:
+    properties:
+      account_ids:
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      authentication_context:
+        $ref: '#/definitions/AuthenticationContext'
+      client_id:
+        format: clientID
+        type: string
+        x-nullable: false
+      client_info:
+        $ref: '#/definitions/ClientInfo'
+      consent_id:
+        format: consentID
+        type: string
+        x-nullable: false
+      created_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      fdx_consent:
+        $ref: '#/definitions/FDXConsent'
       requested_scopes:
         items:
           $ref: '#/definitions/RequestedScope'
@@ -1805,6 +2062,14 @@ definitions:
           originally issued.
         format: int64
         type: integer
+        x-nullable: false
+      idp:
+        description: IDP ID that user authenticated with
+        type: string
+        x-nullable: false
+      idp_sub:
+        description: Idp subject
+        type: string
         x-nullable: false
       iss:
         description: IssuerURL is a string representing the issuer of this token
@@ -9060,6 +9325,151 @@ paths:
       summary: Introspect cdr consent
       tags:
       - CDR
+  /consents/{consentID}:
+    get:
+      description: Get a Consent Grant
+      operationId: getFDXConsent
+      parameters:
+      - default: default
+        description: Consent id
+        in: path
+        name: consentID
+        required: true
+        type: string
+      responses:
+        "200":
+          description: GetFDXConsent
+          schema:
+            $ref: '#/definitions/GetFDXConsent'
+        "400":
+          $ref: '#/responses/FDXErrorResponse'
+        "401":
+          $ref: '#/responses/FDXErrorResponse'
+        "404":
+          $ref: '#/responses/FDXErrorResponse'
+      summary: Get a Consent Grant
+      tags:
+      - FDX
+  /fdx/consents/introspect:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: |-
+        This endpoint takes an OAuth 2.0 token and, in addition to returning
+        meta information surrounding the token, returns the fdx consent.
+      operationId: fdxConsentIntrospect
+      parameters:
+      - in: formData
+        name: token
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/IntrospectFDXConsentResponse'
+        "401":
+          $ref: '#/responses/genericError'
+        "404":
+          $ref: '#/responses/genericError'
+        "429":
+          $ref: '#/responses/genericError'
+      security:
+      - default:
+        - introspect_openbanking_tokens
+      summary: Introspect fdx consent
+      tags:
+      - FDX
+  /fdx/fdx/{login}:
+    get:
+      description: |-
+        This API can be used by a custom openbanking consent page.
+        The consent page must first use client credentials flow to create consent.
+      operationId: getFDXConsentSystem
+      parameters:
+      - in: path
+        name: login
+        required: true
+        type: string
+      - in: query
+        name: login_state
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/GetFDXConsentResponse'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - system:
+        - manage_openbanking_consents
+      summary: Get FDX consent
+      tags:
+      - FDX
+  /fdx/fdx/{login}/accept:
+    post:
+      description: This API can be used by a custom openbanking consent page to notify
+        ACP that user accepted access.
+      operationId: acceptFDXConsentSystem
+      parameters:
+      - in: path
+        name: login
+        required: true
+        type: string
+      - in: body
+        name: AcceptConsent
+        schema:
+          $ref: '#/definitions/AcceptFDXConsentRequest'
+      responses:
+        "200":
+          $ref: '#/responses/ConsentAccepted'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - system:
+        - manage_openbanking_consents
+      summary: Accept FDX consent
+      tags:
+      - FDX
+  /fdx/fdx/{login}/reject:
+    post:
+      description: This API can be used by a custom openbanking consent page to notify
+        ACP that user rejected access.
+      operationId: rejectFDXConsentSystem
+      parameters:
+      - in: path
+        name: login
+        required: true
+        type: string
+      - in: body
+        name: RejectConsent
+        schema:
+          $ref: '#/definitions/RejectConsentRequest'
+      responses:
+        "200":
+          $ref: '#/responses/ConsentRejected'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - system:
+        - manage_openbanking_consents
+      summary: Reject FDX consent
+      tags:
+      - FDX
   /open-banking-brasil/consent/{login}:
     get:
       description: |-
@@ -13515,6 +13925,18 @@ responses:
     description: Error
     schema:
       $ref: '#/definitions/ErrorResponse'
+  FDXConsentResponse:
+    description: FDX Get Consent
+    schema:
+      $ref: '#/definitions/GetFDXConsent'
+  FDXConsents:
+    description: FDXConsents
+    schema:
+      $ref: '#/definitions/FDXConsents'
+  FDXErrorResponse:
+    description: FDX Error
+    schema:
+      $ref: '#/definitions/FDXErrorResponse'
   FilePaymentConsentFileResponse:
     description: File payment consent file
     schema:
@@ -13543,6 +13965,10 @@ responses:
     description: GetDomesticStandingOrderConsentResponse
     schema:
       $ref: '#/definitions/GetDomesticStandingOrderConsentResponse'
+  GetFDXConsentResponse:
+    description: GetFDXConsentResponse
+    schema:
+      $ref: '#/definitions/GetFDXConsentResponse'
   GetFilePaymentConsentResponse:
     description: GetFilePaymentConsentResponse
     schema:
@@ -13596,6 +14022,15 @@ responses:
           sharing_expires_at:
             format: int64
             type: integer
+        type: object
+  IntrospectFDXConsentResponse:
+    description: Introspect FDX Consent Response
+    schema:
+      allOf:
+      - $ref: '#/definitions/IntrospectResponse'
+      - properties:
+          fdx_consent:
+            $ref: '#/definitions/FDXConsent'
         type: object
   IntrospectOBBRDataAccessConsentResponse:
     description: Introspect Openbanking Brazil Data Access Consent Response
