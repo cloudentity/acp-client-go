@@ -616,6 +616,7 @@ type Token struct {
 	TokenType    string `json:"token_type"`
 	Scope        string `json:"scope"`
 	ExpiresIn    int    `json:"expires_in"`
+	GrantID      string `json:"grant_id,omitempty"`
 }
 
 // CSRF contains state, nonce and/or PKCEverifier which are used
