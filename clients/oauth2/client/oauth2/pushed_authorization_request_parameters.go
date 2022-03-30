@@ -65,6 +65,12 @@ type PushedAuthorizationRequestParams struct {
 	*/
 	AcrValues *string
 
+	/* AuthorizationDetails.
+
+	   Authorization details
+	*/
+	AuthorizationDetails *string
+
 	/* ClientAssertion.
 
 	   client assertion
@@ -193,6 +199,17 @@ func (o *PushedAuthorizationRequestParams) WithAcrValues(acrValues *string) *Pus
 // SetAcrValues adds the acrValues to the pushed authorization request params
 func (o *PushedAuthorizationRequestParams) SetAcrValues(acrValues *string) {
 	o.AcrValues = acrValues
+}
+
+// WithAuthorizationDetails adds the authorizationDetails to the pushed authorization request params
+func (o *PushedAuthorizationRequestParams) WithAuthorizationDetails(authorizationDetails *string) *PushedAuthorizationRequestParams {
+	o.SetAuthorizationDetails(authorizationDetails)
+	return o
+}
+
+// SetAuthorizationDetails adds the authorizationDetails to the pushed authorization request params
+func (o *PushedAuthorizationRequestParams) SetAuthorizationDetails(authorizationDetails *string) {
+	o.AuthorizationDetails = authorizationDetails
 }
 
 // WithClientAssertion adds the clientAssertion to the pushed authorization request params
@@ -334,6 +351,21 @@ func (o *PushedAuthorizationRequestParams) WriteToRequest(r runtime.ClientReques
 		fAcrValues := frAcrValues
 		if fAcrValues != "" {
 			if err := r.SetFormParam("acr_values", fAcrValues); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.AuthorizationDetails != nil {
+
+		// form param authorization_details
+		var frAuthorizationDetails string
+		if o.AuthorizationDetails != nil {
+			frAuthorizationDetails = *o.AuthorizationDetails
+		}
+		fAuthorizationDetails := frAuthorizationDetails
+		if fAuthorizationDetails != "" {
+			if err := r.SetFormParam("authorization_details", fAuthorizationDetails); err != nil {
 				return err
 			}
 		}

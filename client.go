@@ -616,6 +616,7 @@ type Token struct {
 	TokenType    string `json:"token_type"`
 	Scope        string `json:"scope"`
 	ExpiresIn    int    `json:"expires_in"`
+	GrantID      string `json:"grant_id,omitempty"`
 }
 
 // CSRF contains state, nonce and/or PKCEverifier which are used
@@ -778,6 +779,14 @@ func WithOpenbankingIntentID(intentID string, acr []string) AuthorizeOption {
 
 		return nil
 	})
+}
+
+func (c *Client) AuthorizeURLWithPAR(requestURI string) (authorizeURL string, err error) {
+	values := url.Values{
+		"client_id":   {c.Config.ClientID},
+		"request_uri": {requestURI},
+	}
+	return fmt.Sprintf("%s?%s", c.Config.GetAuthorizeURL(), values.Encode()), nil
 }
 
 func (c *Client) AuthorizeURL(options ...AuthorizeOption) (authorizeURL string, csrf CSRF, err error) {
