@@ -204,6 +204,9 @@ type Config struct {
 
 	// Authorization server id required when VanityDomainType is "server".
 	ServerID string `json:"server_id"`
+
+	// If enabled client won't make a client credentials flow before calling the API
+	SkipClientCredentialsAuth bool `json:"skip_client_credentials_auth"`
 }
 
 func (c *Config) GetTokenURL() string {
@@ -441,11 +444,18 @@ func New(cfg Config) (c Client, err error) {
 		}
 	}
 
-	cc := clientcredentials.Config{
-		ClientID:     cfg.ClientID,
-		ClientSecret: cfg.ClientSecret,
-		Scopes:       cfg.Scopes,
-		TokenURL:     cfg.GetTokenURL(),
+	var client *http.Client
+
+	if cfg.SkipClientCredentialsAuth {
+		client = c.c
+	} else {
+		cc := clientcredentials.Config{
+			ClientID:     cfg.ClientID,
+			ClientSecret: cfg.ClientSecret,
+			Scopes:       cfg.Scopes,
+			TokenURL:     cfg.GetTokenURL(),
+		}
+		client = NewAuthenticator(cc, c.c)
 	}
 
 	c.Oauth2 = &Oauth2{
@@ -453,7 +463,7 @@ func New(cfg Config) (c Client, err error) {
 			cfg.IssuerURL.Host,
 			c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
 			[]string{cfg.IssuerURL.Scheme},
-			NewAuthenticator(cc, c.c),
+			client,
 		).WithOpenTracing(), nil),
 	}
 
@@ -462,7 +472,7 @@ func New(cfg Config) (c Client, err error) {
 			cfg.IssuerURL.Host,
 			c.apiPathPrefix(cfg.VanityDomainType, "/api/admin/%s"),
 			[]string{cfg.IssuerURL.Scheme},
-			NewAuthenticator(cc, c.c),
+			client,
 		).WithOpenTracing(), nil),
 	}
 
@@ -471,7 +481,7 @@ func New(cfg Config) (c Client, err error) {
 			cfg.IssuerURL.Host,
 			c.apiPathPrefix(cfg.VanityDomainType, "/api/developer/%s/%s"),
 			[]string{cfg.IssuerURL.Scheme},
-			NewAuthenticator(cc, c.c),
+			client,
 		).WithOpenTracing(), nil),
 	}
 
@@ -480,7 +490,7 @@ func New(cfg Config) (c Client, err error) {
 			cfg.IssuerURL.Host,
 			c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
 			[]string{cfg.IssuerURL.Scheme},
-			NewAuthenticator(cc, c.c),
+			client,
 		).WithOpenTracing(), nil),
 	}
 
@@ -489,7 +499,7 @@ func New(cfg Config) (c Client, err error) {
 			cfg.IssuerURL.Host,
 			c.BasePath,
 			[]string{cfg.IssuerURL.Scheme},
-			NewAuthenticator(cc, c.c),
+			client,
 		).WithOpenTracing(), nil),
 	}
 
@@ -498,7 +508,7 @@ func New(cfg Config) (c Client, err error) {
 			cfg.IssuerURL.Host,
 			c.apiPathPrefix(cfg.VanityDomainType, "/api/system/%s"),
 			[]string{cfg.IssuerURL.Scheme},
-			NewAuthenticator(cc, c.c),
+			client,
 		).WithOpenTracing(), nil),
 	}
 
@@ -507,7 +517,7 @@ func New(cfg Config) (c Client, err error) {
 			cfg.IssuerURL.Host,
 			c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
 			[]string{cfg.IssuerURL.Scheme},
-			NewAuthenticator(cc, c.c),
+			client,
 		).WithOpenTracing(), nil),
 	}
 
@@ -515,7 +525,7 @@ func New(cfg Config) (c Client, err error) {
 		cfg.IssuerURL.Host,
 		c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
 		[]string{cfg.IssuerURL.Scheme},
-		NewAuthenticator(cc, c.c),
+		client,
 	)
 	openbankingTransport.Consumers["application/jwt"] = &JWTConsumer{}
 
@@ -530,14 +540,14 @@ func New(cfg Config) (c Client, err error) {
 			cfg.IssuerURL.Host,
 			apiPrefix+obukAccounts.DefaultBasePath,
 			[]string{cfg.IssuerURL.Scheme},
-			NewAuthenticator(cc, c.c),
+			client,
 		).WithOpenTracing(), nil),
 
 		Payments: obukPayments.New(httptransport.NewWithClient(
 			cfg.IssuerURL.Host,
 			apiPrefix+obukPayments.DefaultBasePath,
 			[]string{cfg.IssuerURL.Scheme},
-			NewAuthenticator(cc, c.c),
+			client,
 		).WithOpenTracing(), nil),
 	}
 
@@ -545,7 +555,7 @@ func New(cfg Config) (c Client, err error) {
 		cfg.IssuerURL.Host,
 		apiPrefix+obbrPayments.DefaultBasePath,
 		[]string{cfg.IssuerURL.Scheme},
-		NewAuthenticator(cc, c.c),
+		client,
 	)
 	obbrPaymentsTransport.Consumers["application/jwt"] = &JWTConsumer{}
 
@@ -554,7 +564,7 @@ func New(cfg Config) (c Client, err error) {
 			cfg.IssuerURL.Host,
 			apiPrefix+obbrConsents.DefaultBasePath,
 			[]string{cfg.IssuerURL.Scheme},
-			NewAuthenticator(cc, c.c),
+			client,
 		).WithOpenTracing(), nil),
 
 		Payments: obbrPayments.New(obbrPaymentsTransport.WithOpenTracing(), nil),
