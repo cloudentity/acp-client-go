@@ -206,9 +206,6 @@ type Config struct {
 
 	// Authorization server id required when VanityDomainType is "server".
 	ServerID string `json:"server_id"`
-
-	// If enabled client won't make a client credentials flow before calling the API
-	SkipClientCredentialsAuth bool `json:"skip_client_credentials_auth"`
 }
 
 func (c *Config) GetTokenURL() string {
@@ -446,18 +443,15 @@ func New(cfg Config) (c Client, err error) {
 		}
 	}
 
-	var client *http.Client
+	client := c.c
 
-	if cfg.SkipClientCredentialsAuth {
-		client = c.c
-	} else {
-		cc := clientcredentials.Config{
+	if cfg.ClientSecret != "" {
+		client = NewAuthenticator(clientcredentials.Config{
 			ClientID:     cfg.ClientID,
 			ClientSecret: cfg.ClientSecret,
 			Scopes:       cfg.Scopes,
 			TokenURL:     cfg.GetTokenURL(),
-		}
-		client = NewAuthenticator(cc, c.c)
+		}, c.c)
 	}
 
 	c.Oauth2 = &Oauth2{
@@ -467,15 +461,6 @@ func New(cfg Config) (c Client, err error) {
 			[]string{cfg.IssuerURL.Scheme},
 			client,
 		).WithOpenTracing(), strfmt.NewFormats()),
-	}
-
-	c.Oauth22 = &Oauth2{
-		Acp: o2Client.New(httptransport.NewWithClient(
-			cfg.IssuerURL.Host,
-			c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
-			[]string{cfg.IssuerURL.Scheme},
-			client,
-		), nil),
 	}
 
 	c.Admin = &Admin{
