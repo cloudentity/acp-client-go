@@ -31,6 +31,8 @@ import (
 	adminClient "github.com/cloudentity/acp-client-go/clients/admin/client"
 	developerClient "github.com/cloudentity/acp-client-go/clients/developer/client"
 	openbankingClient "github.com/cloudentity/acp-client-go/clients/openbanking/client"
+
+	fdxClient "github.com/cloudentity/acp-client-go/clients/openbanking/client/f_d_x"
 	publicClient "github.com/cloudentity/acp-client-go/clients/public/client"
 	rootClient "github.com/cloudentity/acp-client-go/clients/root/client"
 	systemClient "github.com/cloudentity/acp-client-go/clients/system/client"
@@ -48,16 +50,6 @@ const (
 	StateLength    = 8
 	VerifierLength = 43
 )
-
-type OpenbankingUK struct {
-	Accounts *obukAccounts.OpenbankingUKClient
-	Payments *obukPayments.OpenbankingUKClient
-}
-
-type OpenbankingBrasil struct {
-	Consents *obbrConsents.OpenbankingBRClient
-	Payments *obbrPayments.OpenbankingBRClient
-}
 
 type Oauth2 struct {
 	*o2Client.Acp
@@ -91,6 +83,20 @@ type Openbanking struct {
 	*openbankingClient.Acp
 }
 
+type OpenbankingUK struct {
+	Accounts *obukAccounts.OpenbankingUKClient
+	Payments *obukPayments.OpenbankingUKClient
+}
+
+type OpenbankingBrasil struct {
+	Consents *obbrConsents.OpenbankingBRClient
+	Payments *obbrPayments.OpenbankingBRClient
+}
+
+type OpenbankingFDX struct {
+	fdxClient.ClientService
+}
+
 // Client provides a client to the ACP API
 type Client struct {
 	Oauth2      *Oauth2
@@ -104,6 +110,7 @@ type Client struct {
 
 	*OpenbankingUK
 	*OpenbankingBrasil
+	OpenbankingFDX
 
 	c             *http.Client
 	signingKey    interface{}
@@ -562,6 +569,15 @@ func New(cfg Config) (c Client, err error) {
 		).WithOpenTracing(), nil),
 
 		Payments: obbrPayments.New(obbrPaymentsTransport.WithOpenTracing(), nil),
+	}
+
+	c.OpenbankingFDX = OpenbankingFDX{
+		ClientService: fdxClient.New(httptransport.NewWithClient(
+			cfg.IssuerURL.Host,
+			c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
+			[]string{cfg.IssuerURL.Scheme},
+			client,
+		).WithOpenTracing(), nil),
 	}
 
 	c.Config = cfg
