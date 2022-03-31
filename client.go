@@ -94,6 +94,7 @@ type Openbanking struct {
 // Client provides a client to the ACP API
 type Client struct {
 	Oauth2      *Oauth2
+	Oauth22     *Oauth2
 	Admin       *Admin
 	Developer   *Developer
 	Public      *Public
@@ -465,6 +466,15 @@ func New(cfg Config) (c Client, err error) {
 			[]string{cfg.IssuerURL.Scheme},
 			client,
 		).WithOpenTracing(), nil),
+	}
+
+	c.Oauth22 = &Oauth2{
+		Acp: o2Client.New(httptransport.NewWithClient(
+			cfg.IssuerURL.Host,
+			c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
+			[]string{cfg.IssuerURL.Scheme},
+			client,
+		), nil),
 	}
 
 	c.Admin = &Admin{
