@@ -38,7 +38,6 @@ import (
 
 	"github.com/dgrijalva/jwt-go"
 	httptransport "github.com/go-openapi/runtime/client"
-	"github.com/go-openapi/strfmt"
 	"github.com/pkg/errors"
 	"golang.org/x/oauth2/clientcredentials"
 	"gopkg.in/square/go-jose.v2"
@@ -95,7 +94,6 @@ type Openbanking struct {
 // Client provides a client to the ACP API
 type Client struct {
 	Oauth2      *Oauth2
-	Oauth22     *Oauth2
 	Admin       *Admin
 	Developer   *Developer
 	Public      *Public
@@ -460,7 +458,7 @@ func New(cfg Config) (c Client, err error) {
 			c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
 			[]string{cfg.IssuerURL.Scheme},
 			client,
-		).WithOpenTracing(), strfmt.NewFormats()),
+		).WithOpenTracing(), nil),
 	}
 
 	c.Admin = &Admin{
