@@ -38,6 +38,7 @@ import (
 
 	"github.com/dgrijalva/jwt-go"
 	httptransport "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/pkg/errors"
 	"golang.org/x/oauth2/clientcredentials"
 	"gopkg.in/square/go-jose.v2"
@@ -465,7 +466,7 @@ func New(cfg Config) (c Client, err error) {
 			c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
 			[]string{cfg.IssuerURL.Scheme},
 			client,
-		).WithOpenTracing(), nil),
+		).WithOpenTracing(), strfmt.NewFormats()),
 	}
 
 	c.Oauth22 = &Oauth2{
