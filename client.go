@@ -211,6 +211,9 @@ type Config struct {
 
 	// Authorization server id required when VanityDomainType is "server".
 	ServerID string `json:"server_id"`
+
+	// If enabled, client credentials flow won't be applied
+	SkipClientCredentialsAuthn bool `json:"skip_client_credentials_authn"`
 }
 
 func (c *Config) GetTokenURL() string {
@@ -450,7 +453,7 @@ func New(cfg Config) (c Client, err error) {
 
 	client := c.c
 
-	if cfg.ClientSecret != "" {
+	if !cfg.SkipClientCredentialsAuthn {
 		client = NewAuthenticator(clientcredentials.Config{
 			ClientID:     cfg.ClientID,
 			ClientSecret: cfg.ClientSecret,
