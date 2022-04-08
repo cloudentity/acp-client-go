@@ -803,6 +803,9 @@ paths:
         name: otpID
         required: true
         type: string
+      - in: query
+        name: state
+        type: string
       responses:
         "200":
           $ref: '#/responses/TransientOTPResponse'

@@ -62,6 +62,9 @@ type GetTransientOTPParams struct {
 	// OtpID.
 	OtpID string
 
+	// State.
+	State *string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -126,6 +129,17 @@ func (o *GetTransientOTPParams) SetOtpID(otpID string) {
 	o.OtpID = otpID
 }
 
+// WithState adds the state to the get transient o t p params
+func (o *GetTransientOTPParams) WithState(state *string) *GetTransientOTPParams {
+	o.SetState(state)
+	return o
+}
+
+// SetState adds the state to the get transient o t p params
+func (o *GetTransientOTPParams) SetState(state *string) {
+	o.State = state
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetTransientOTPParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -137,6 +151,23 @@ func (o *GetTransientOTPParams) WriteToRequest(r runtime.ClientRequest, reg strf
 	// path param otpID
 	if err := r.SetPathParam("otpID", o.OtpID); err != nil {
 		return err
+	}
+
+	if o.State != nil {
+
+		// query param state
+		var qrState string
+
+		if o.State != nil {
+			qrState = *o.State
+		}
+		qState := qrState
+		if qState != "" {
+
+			if err := r.SetQueryParam("state", qState); err != nil {
+				return err
+			}
+		}
 	}
 
 	if len(res) > 0 {
