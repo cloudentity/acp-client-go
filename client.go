@@ -31,6 +31,8 @@ import (
 	adminClient "github.com/cloudentity/acp-client-go/clients/admin/client"
 	developerClient "github.com/cloudentity/acp-client-go/clients/developer/client"
 	openbankingClient "github.com/cloudentity/acp-client-go/clients/openbanking/client"
+
+	fdxClient "github.com/cloudentity/acp-client-go/clients/openbanking/client/f_d_x"
 	publicClient "github.com/cloudentity/acp-client-go/clients/public/client"
 	rootClient "github.com/cloudentity/acp-client-go/clients/root/client"
 	systemClient "github.com/cloudentity/acp-client-go/clients/system/client"
@@ -48,16 +50,6 @@ const (
 	StateLength    = 8
 	VerifierLength = 43
 )
-
-type OpenbankingUK struct {
-	Accounts *obukAccounts.OpenbankingUKClient
-	Payments *obukPayments.OpenbankingUKClient
-}
-
-type OpenbankingBrasil struct {
-	Consents *obbrConsents.OpenbankingBRClient
-	Payments *obbrPayments.OpenbankingBRClient
-}
 
 type Oauth2 struct {
 	*o2Client.Acp
@@ -91,6 +83,20 @@ type Openbanking struct {
 	*openbankingClient.Acp
 }
 
+type OpenbankingUK struct {
+	Accounts *obukAccounts.OpenbankingUKClient
+	Payments *obukPayments.OpenbankingUKClient
+}
+
+type OpenbankingBrasil struct {
+	Consents *obbrConsents.OpenbankingBRClient
+	Payments *obbrPayments.OpenbankingBRClient
+}
+
+type OpenbankingFDX struct {
+	fdxClient.ClientService
+}
+
 // Client provides a client to the ACP API
 type Client struct {
 	Oauth2      *Oauth2
@@ -104,6 +110,7 @@ type Client struct {
 
 	*OpenbankingUK
 	*OpenbankingBrasil
+	OpenbankingFDX
 
 	c             *http.Client
 	signingKey    interface{}
@@ -204,6 +211,9 @@ type Config struct {
 
 	// Authorization server id required when VanityDomainType is "server".
 	ServerID string `json:"server_id"`
+
+	// If enabled, client credentials flow won't be applied
+	SkipClientCredentialsAuthn bool `json:"skip_client_credentials_authn"`
 }
 
 func (c *Config) GetTokenURL() string {
@@ -441,11 +451,15 @@ func New(cfg Config) (c Client, err error) {
 		}
 	}
 
-	cc := clientcredentials.Config{
-		ClientID:     cfg.ClientID,
-		ClientSecret: cfg.ClientSecret,
-		Scopes:       cfg.Scopes,
-		TokenURL:     cfg.GetTokenURL(),
+	client := c.c
+
+	if !cfg.SkipClientCredentialsAuthn {
+		client = NewAuthenticator(clientcredentials.Config{
+			ClientID:     cfg.ClientID,
+			ClientSecret: cfg.ClientSecret,
+			Scopes:       cfg.Scopes,
+			TokenURL:     cfg.GetTokenURL(),
+		}, c.c)
 	}
 
 	c.Oauth2 = &Oauth2{
@@ -453,7 +467,7 @@ func New(cfg Config) (c Client, err error) {
 			cfg.IssuerURL.Host,
 			c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
 			[]string{cfg.IssuerURL.Scheme},
-			NewAuthenticator(cc, c.c),
+			client,
 		).WithOpenTracing(), nil),
 	}
 
@@ -462,7 +476,7 @@ func New(cfg Config) (c Client, err error) {
 			cfg.IssuerURL.Host,
 			c.apiPathPrefix(cfg.VanityDomainType, "/api/admin/%s"),
 			[]string{cfg.IssuerURL.Scheme},
-			NewAuthenticator(cc, c.c),
+			client,
 		).WithOpenTracing(), nil),
 	}
 
@@ -471,7 +485,7 @@ func New(cfg Config) (c Client, err error) {
 			cfg.IssuerURL.Host,
 			c.apiPathPrefix(cfg.VanityDomainType, "/api/developer/%s/%s"),
 			[]string{cfg.IssuerURL.Scheme},
-			NewAuthenticator(cc, c.c),
+			client,
 		).WithOpenTracing(), nil),
 	}
 
@@ -480,7 +494,7 @@ func New(cfg Config) (c Client, err error) {
 			cfg.IssuerURL.Host,
 			c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
 			[]string{cfg.IssuerURL.Scheme},
-			NewAuthenticator(cc, c.c),
+			client,
 		).WithOpenTracing(), nil),
 	}
 
@@ -489,7 +503,7 @@ func New(cfg Config) (c Client, err error) {
 			cfg.IssuerURL.Host,
 			c.BasePath,
 			[]string{cfg.IssuerURL.Scheme},
-			NewAuthenticator(cc, c.c),
+			client,
 		).WithOpenTracing(), nil),
 	}
 
@@ -498,7 +512,7 @@ func New(cfg Config) (c Client, err error) {
 			cfg.IssuerURL.Host,
 			c.apiPathPrefix(cfg.VanityDomainType, "/api/system/%s"),
 			[]string{cfg.IssuerURL.Scheme},
-			NewAuthenticator(cc, c.c),
+			client,
 		).WithOpenTracing(), nil),
 	}
 
@@ -507,7 +521,7 @@ func New(cfg Config) (c Client, err error) {
 			cfg.IssuerURL.Host,
 			c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
 			[]string{cfg.IssuerURL.Scheme},
-			NewAuthenticator(cc, c.c),
+			client,
 		).WithOpenTracing(), nil),
 	}
 
@@ -515,7 +529,7 @@ func New(cfg Config) (c Client, err error) {
 		cfg.IssuerURL.Host,
 		c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
 		[]string{cfg.IssuerURL.Scheme},
-		NewAuthenticator(cc, c.c),
+		client,
 	)
 	openbankingTransport.Consumers["application/jwt"] = &JWTConsumer{}
 
@@ -530,14 +544,14 @@ func New(cfg Config) (c Client, err error) {
 			cfg.IssuerURL.Host,
 			apiPrefix+obukAccounts.DefaultBasePath,
 			[]string{cfg.IssuerURL.Scheme},
-			NewAuthenticator(cc, c.c),
+			client,
 		).WithOpenTracing(), nil),
 
 		Payments: obukPayments.New(httptransport.NewWithClient(
 			cfg.IssuerURL.Host,
 			apiPrefix+obukPayments.DefaultBasePath,
 			[]string{cfg.IssuerURL.Scheme},
-			NewAuthenticator(cc, c.c),
+			client,
 		).WithOpenTracing(), nil),
 	}
 
@@ -545,7 +559,7 @@ func New(cfg Config) (c Client, err error) {
 		cfg.IssuerURL.Host,
 		apiPrefix+obbrPayments.DefaultBasePath,
 		[]string{cfg.IssuerURL.Scheme},
-		NewAuthenticator(cc, c.c),
+		client,
 	)
 	obbrPaymentsTransport.Consumers["application/jwt"] = &JWTConsumer{}
 
@@ -554,10 +568,19 @@ func New(cfg Config) (c Client, err error) {
 			cfg.IssuerURL.Host,
 			apiPrefix+obbrConsents.DefaultBasePath,
 			[]string{cfg.IssuerURL.Scheme},
-			NewAuthenticator(cc, c.c),
+			client,
 		).WithOpenTracing(), nil),
 
 		Payments: obbrPayments.New(obbrPaymentsTransport.WithOpenTracing(), nil),
+	}
+
+	c.OpenbankingFDX = OpenbankingFDX{
+		ClientService: fdxClient.New(httptransport.NewWithClient(
+			cfg.IssuerURL.Host,
+			c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
+			[]string{cfg.IssuerURL.Scheme},
+			client,
+		).WithOpenTracing(), nil),
 	}
 
 	c.Config = cfg
