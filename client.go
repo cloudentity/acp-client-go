@@ -747,9 +747,6 @@ func WithOpenbankingIntentID(intentID string, acr []string) AuthorizeOption {
 			acrClaimRequest = ClaimRequest{
 				Essential: true,
 			}
-			signedToken             string
-			requestObjectExpiration = time.Minute
-			err                     error
 		)
 
 		if len(acr) == 1 {
@@ -758,48 +755,94 @@ func WithOpenbankingIntentID(intentID string, acr []string) AuthorizeOption {
 			acrClaimRequest.Values = acr
 		}
 
-		if c.Config.RequestObjectExpiration != nil {
-			requestObjectExpiration = *c.Config.RequestObjectExpiration
-		}
+		claims := getOpenbankingClaims(c.Config, csrf)
 
-		claims := jwt.MapClaims{
-			"exp":   time.Now().Add(requestObjectExpiration).Unix(),
-			"nonce": csrf.Nonce,
-			"state": csrf.State,
-			"nbf":   time.Now().Unix(),
-			"claims": ClaimRequests{
-				Userinfo: map[string]*ClaimRequest{
-					"openbanking_intent_id": {
-						Essential: true,
-						Value:     intentID,
-					},
+		claims["claims"] = ClaimRequests{
+			Userinfo: map[string]*ClaimRequest{
+				"openbanking_intent_id": {
+					Essential: true,
+					Value:     intentID,
 				},
-				IDToken: map[string]*ClaimRequest{
-					"openbanking_intent_id": {
-						Essential: true,
-						Value:     intentID,
-					},
-					"acr": &acrClaimRequest,
+			},
+			IDToken: map[string]*ClaimRequest{
+				"openbanking_intent_id": {
+					Essential: true,
+					Value:     intentID,
 				},
+				"acr": &acrClaimRequest,
 			},
 		}
 
-		if c.Config.RedirectURL != nil {
-			claims["redirect_uri"] = c.Config.RedirectURL.String()
+		return WithSignedRequestObject(claims).apply(c, v, csrf)
+	})
+}
+
+func WithOpenbankingACR(acr []string) AuthorizeOption {
+	return authorizeHandler(func(c *Client, v url.Values, csrf *CSRF) error {
+		var (
+			acrClaimRequest = ClaimRequest{
+				Essential: true,
+			}
+		)
+
+		if len(acr) == 1 {
+			acrClaimRequest.Value = acr[0]
+		} else {
+			acrClaimRequest.Values = acr
 		}
 
-		if len(c.Config.Scopes) > 0 {
-			claims["scope"] = strings.Join(c.Config.Scopes, " ")
+		claims := getOpenbankingClaims(c.Config, csrf)
+		claims["claims"] = ClaimRequests{
+			IDToken: map[string]*ClaimRequest{
+				"acr": &acrClaimRequest,
+			},
 		}
+
+		return WithSignedRequestObject(claims).apply(c, v, csrf)
+	})
+}
+
+func getOpenbankingClaims(config Config, csrf *CSRF) jwt.MapClaims {
+	var (
+		requestObjectExpiration = time.Minute
+	)
+
+	if config.RequestObjectExpiration != nil {
+		requestObjectExpiration = *config.RequestObjectExpiration
+	}
+
+	claims := jwt.MapClaims{
+		"exp":   time.Now().Add(requestObjectExpiration).Unix(),
+		"nonce": csrf.Nonce,
+		"state": csrf.State,
+		"nbf":   time.Now().Unix(),
+	}
+
+	if config.RedirectURL != nil {
+		claims["redirect_uri"] = config.RedirectURL.String()
+	}
+
+	if len(config.Scopes) > 0 {
+		claims["scope"] = strings.Join(config.Scopes, " ")
+	}
+
+	return claims
+}
+
+func WithSignedRequestObject(claims jwt.MapClaims) AuthorizeOption {
+	return authorizeHandler(func(c *Client, v url.Values, csrf *CSRF) error {
+		var (
+			signedToken string
+			err         error
+		)
 
 		token := jwt.NewWithClaims(jwt.SigningMethodRS256, claims)
 
 		if signedToken, err = token.SignedString(c.signingKey); err != nil {
-			return errors.Wrapf(err, "failed to sign openbanking request object")
+			return errors.Wrapf(err, "failed to sign request object")
 		}
 
 		v.Set("request", signedToken)
-
 		return nil
 	})
 }
