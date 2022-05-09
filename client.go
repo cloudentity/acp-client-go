@@ -1,6 +1,7 @@
 package acpclient
 
 import (
+	"context"
 	"crypto/rand"
 	"crypto/sha256"
 	"crypto/tls"
@@ -988,13 +989,14 @@ func (c *Client) Userinfo(token string) (body map[string]interface{}, err error)
 	return body, nil
 }
 
-func (c *Client) IntrospectToken(token string) (*o2models.IntrospectResponse, error) {
+func (c *Client) IntrospectToken(ctx context.Context, token string) (*o2models.IntrospectResponse, error) {
 	var (
 		resp *o2Params.IntrospectOK
 		err  error
 	)
 
 	if resp, err = c.Oauth2.Oauth2.Introspect(o2Params.NewIntrospectParams().
+		WithContext(ctx).
 		WithToken(&token), nil); err != nil {
 		return nil, err
 	}
