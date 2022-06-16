@@ -1032,6 +1032,10 @@ func (c *Client) IntrospectToken(ctx context.Context, token string) (*o2models.I
 	return resp.Payload, nil
 }
 
+func (c *Client) DoRequest(request *http.Request) (*http.Response, error) {
+	return c.c.Do(request)
+}
+
 func randomString(length int) (string, error) {
 	var (
 		data = make([]byte, length)
