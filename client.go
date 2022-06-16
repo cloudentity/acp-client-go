@@ -40,6 +40,8 @@ import (
 	webClient "github.com/cloudentity/acp-client-go/clients/web/client"
 
 	"github.com/dgrijalva/jwt-go"
+	"github.com/google/uuid"
+
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/pkg/errors"
 	"golang.org/x/oauth2/clientcredentials"
@@ -113,9 +115,11 @@ type Client struct {
 	*OpenbankingBrasil
 	OpenbankingFDX
 
-	c             *http.Client
-	signingKey    interface{}
-	encryptionKey jose.JSONWebKey
+	c                          *http.Client
+	requestObjectSigningKey    interface{}
+	requestObjectEncryptionKey jose.JSONWebKey
+
+	clientAssertionSigningKey interface{}
 
 	// Client configuration
 	Config Config
@@ -177,6 +181,9 @@ type Config struct {
 
 	// Path to the file with private key for signing request object.
 	RequestObjectSigningKeyFile string `json:"request_object_signing_key_file"`
+
+	// Path to the file with private key for private_key_jwt token authentication
+	ClientAssertionSigningKeyFile string `json:"client_assertion_signing_key_file"`
 
 	// Path to the file with private key for encrypting request object.
 	RequestObjectEncryptionKeyFile string `json:"request_object_encryption_key_file"`
@@ -427,16 +434,14 @@ func New(cfg Config) (c Client, err error) {
 	}
 
 	if cfg.RequestObjectSigningKeyFile != "" {
-		var bs []byte
-
-		if bs, err = os.ReadFile(cfg.RequestObjectSigningKeyFile); err != nil {
-			return c, errors.Wrapf(err, "failed to read request object signing key")
+		if c.requestObjectSigningKey, err = loadSigningKeyFromFile(cfg.RequestObjectSigningKeyFile); err != nil {
+			return c, errors.Wrapf(err, "failed to load request object signing key file")
 		}
+	}
 
-		block, _ := pem.Decode(bs)
-
-		if c.signingKey, err = x509.ParsePKCS1PrivateKey(block.Bytes); err != nil {
-			return c, errors.Wrapf(err, "failed to parse request object signing key")
+	if cfg.ClientAssertionSigningKeyFile != "" {
+		if c.clientAssertionSigningKey, err = loadSigningKeyFromFile(cfg.ClientAssertionSigningKeyFile); err != nil {
+			return c, errors.Wrapf(err, "failed to load client assertion signing key file")
 		}
 	}
 
@@ -447,7 +452,7 @@ func New(cfg Config) (c Client, err error) {
 			return c, errors.Wrapf(err, "failed to read request object encryption key")
 		}
 
-		if err = c.encryptionKey.UnmarshalJSON(bs); err != nil {
+		if err = c.requestObjectEncryptionKey.UnmarshalJSON(bs); err != nil {
 			return c, errors.Wrapf(err, "failed to parse request object encryption key")
 		}
 	}
@@ -839,8 +844,8 @@ func WithSignedRequestObject(claims jwt.MapClaims) AuthorizeOption {
 
 		token := jwt.NewWithClaims(jwt.SigningMethodRS256, claims)
 
-		if signedToken, err = token.SignedString(c.signingKey); err != nil {
-			return errors.Wrapf(err, "failed to sign request object")
+		if signedToken, err = token.SignedString(c.requestObjectSigningKey); err != nil {
+			return errors.Wrapf(err, "failed to sign openbanking request object")
 		}
 
 		v.Set("request", signedToken)
@@ -889,6 +894,18 @@ func (c *Client) AuthorizeURL(options ...AuthorizeOption) (authorizeURL string, 
 	return fmt.Sprintf("%s?%s", c.Config.GetAuthorizeURL(), values.Encode()), csrf, nil
 }
 
+func (c *Client) GenerateClientAssertion() (assertion string, err error) {
+	claims := jwt.MapClaims{
+		"iss": c.Config.ClientID,
+		"sub": c.Config.ClientID,
+		"aud": c.Config.GetTokenURL(),
+		"jti": uuid.New().String(),
+		"exp": time.Now().Add(time.Minute * 5).Unix(),
+	}
+	t := jwt.NewWithClaims(jwt.SigningMethodRS256, claims)
+	return t.SignedString(c.clientAssertionSigningKey)
+}
+
 func (c *Client) Exchange(code string, state string, csrf CSRF) (token Token, err error) {
 	var (
 		request  *http.Request
@@ -905,6 +922,17 @@ func (c *Client) Exchange(code string, state string, csrf CSRF) (token Token, er
 
 	if c.Config.AuthMethod == ClientSecretPostAuthnMethod {
 		values.Add("client_secret", c.Config.ClientSecret)
+	}
+
+	if c.Config.AuthMethod == PrivateKeyJwtAuthnMethod {
+		var (
+			assertion string
+		)
+		values.Add("client_assertion_type", "urn:ietf:params:oauth:client-assertion-type:jwt-bearer")
+		if assertion, err = c.GenerateClientAssertion(); err != nil {
+			return token, errors.Wrapf(err, "failed to generate client assertion")
+		}
+		values.Add("client_assertion", assertion)
 	}
 
 	if csrf.Verifier != "" {
@@ -1004,6 +1032,10 @@ func (c *Client) IntrospectToken(ctx context.Context, token string) (*o2models.I
 	return resp.Payload, nil
 }
 
+func (c *Client) DoRequest(request *http.Request) (*http.Response, error) {
+	return c.c.Do(request)
+}
+
 func randomString(length int) (string, error) {
 	var (
 		data = make([]byte, length)
@@ -1015,4 +1047,20 @@ func randomString(length int) (string, error) {
 	}
 
 	return base64.RawURLEncoding.WithPadding(base64.NoPadding).EncodeToString(data), nil
+}
+
+func loadSigningKeyFromFile(path string) (key interface{}, err error) {
+	var bs []byte
+
+	if bs, err = os.ReadFile(path); err != nil {
+		return key, errors.Wrapf(err, "failed to read signing key")
+	}
+
+	block, _ := pem.Decode(bs)
+
+	if key, err = x509.ParsePKCS1PrivateKey(block.Bytes); err != nil {
+		return key, errors.Wrapf(err, "failed to parse signing key")
+	}
+
+	return key, nil
 }
