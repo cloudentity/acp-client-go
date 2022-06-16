@@ -920,7 +920,7 @@ func (c *Client) Exchange(code string, state string, csrf CSRF) (token Token, er
 		claims := jwt.MapClaims{
 			"iss": c.Config.ClientID,
 			"sub": c.Config.ClientID,
-			"aud": c.Config.TokenURL.String(),
+			"aud": c.Config.GetTokenURL(),
 			"jti": uuid.New().String(),
 			"exp": time.Now().Add(time.Minute * 5).Unix(),
 		}
