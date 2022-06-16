@@ -894,6 +894,18 @@ func (c *Client) AuthorizeURL(options ...AuthorizeOption) (authorizeURL string, 
 	return fmt.Sprintf("%s?%s", c.Config.GetAuthorizeURL(), values.Encode()), csrf, nil
 }
 
+func (c *Client) GenerateClientAssertion() (assertion string, err error) {
+	claims := jwt.MapClaims{
+		"iss": c.Config.ClientID,
+		"sub": c.Config.ClientID,
+		"aud": c.Config.GetTokenURL(),
+		"jti": uuid.New().String(),
+		"exp": time.Now().Add(time.Minute * 5).Unix(),
+	}
+	t := jwt.NewWithClaims(jwt.SigningMethodRS256, claims)
+	return t.SignedString(c.clientAssertionSigningKey)
+}
+
 func (c *Client) Exchange(code string, state string, csrf CSRF) (token Token, err error) {
 	var (
 		request  *http.Request
@@ -917,16 +929,8 @@ func (c *Client) Exchange(code string, state string, csrf CSRF) (token Token, er
 			assertion string
 		)
 		values.Add("client_assertion_type", "urn:ietf:params:oauth:client-assertion-type:jwt-bearer")
-		claims := jwt.MapClaims{
-			"iss": c.Config.ClientID,
-			"sub": c.Config.ClientID,
-			"aud": c.Config.GetTokenURL(),
-			"jti": uuid.New().String(),
-			"exp": time.Now().Add(time.Minute * 5).Unix(),
-		}
-		t := jwt.NewWithClaims(jwt.SigningMethodRS256, claims)
-		if assertion, err = t.SignedString(c.clientAssertionSigningKey); err != nil {
-			return token, errors.Wrapf(err, "failed to sign client assertion")
+		if assertion, err = c.GenerateClientAssertion(); err != nil {
+			return token, errors.Wrapf(err, "failed to generate client assertion")
 		}
 		values.Add("client_assertion", assertion)
 	}
