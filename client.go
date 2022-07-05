@@ -700,6 +700,13 @@ func WithResponseType(responseType string) AuthorizeOption {
 	})
 }
 
+func WithResponseMode(responseMode string) AuthorizeOption {
+	return authorizeHandler(func(c *Client, v url.Values, csrf *CSRF) (err error) {
+		v.Set("response_mode", responseMode)
+		return nil
+	})
+}
+
 func WithPKCE() AuthorizeOption {
 	return authorizeHandler(func(c *Client, v url.Values, csrf *CSRF) (err error) {
 		if csrf.Verifier, err = randomString(VerifierLength); err != nil {
