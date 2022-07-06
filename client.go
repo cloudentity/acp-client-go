@@ -693,6 +693,20 @@ func authorizeHandler(fn func(*Client, url.Values, *CSRF) error) AuthorizeOption
 	return &authorizeOptionFn{fn: fn}
 }
 
+func WithResponseType(responseTypes ...string) AuthorizeOption {
+	return authorizeHandler(func(c *Client, v url.Values, csrf *CSRF) (err error) {
+		v.Set("response_type", strings.Join(responseTypes, " "))
+		return nil
+	})
+}
+
+func WithResponseMode(responseMode string) AuthorizeOption {
+	return authorizeHandler(func(c *Client, v url.Values, csrf *CSRF) (err error) {
+		v.Set("response_mode", responseMode)
+		return nil
+	})
+}
+
 func WithPKCE() AuthorizeOption {
 	return authorizeHandler(func(c *Client, v url.Values, csrf *CSRF) (err error) {
 		if csrf.Verifier, err = randomString(VerifierLength); err != nil {
