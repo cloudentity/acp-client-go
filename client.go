@@ -693,9 +693,11 @@ func authorizeHandler(fn func(*Client, url.Values, *CSRF) error) AuthorizeOption
 	return &authorizeOptionFn{fn: fn}
 }
 
-func WithResponseType(responseType string) AuthorizeOption {
+func WithResponseType(responseTypes ...string) AuthorizeOption {
 	return authorizeHandler(func(c *Client, v url.Values, csrf *CSRF) (err error) {
-		v.Set("response_type", responseType)
+		for _, responseType := range responseTypes {
+			v.Add("response_type", responseType)
+		}
 		return nil
 	})
 }
