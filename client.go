@@ -33,6 +33,11 @@ import (
 	developerClient "github.com/cloudentity/acp-client-go/clients/developer/client"
 	openbankingClient "github.com/cloudentity/acp-client-go/clients/openbanking/client"
 
+	identity "github.com/cloudentity/acp-client-go/clients/identity/client"
+	identityroot "github.com/cloudentity/acp-client-go/clients/identityroot/client"
+	identityself "github.com/cloudentity/acp-client-go/clients/identityself/client"
+	identitysystem "github.com/cloudentity/acp-client-go/clients/identitysystem/client"
+
 	fdxClient "github.com/cloudentity/acp-client-go/clients/openbanking/client/f_d_x"
 	publicClient "github.com/cloudentity/acp-client-go/clients/public/client"
 	rootClient "github.com/cloudentity/acp-client-go/clients/root/client"
@@ -100,6 +105,22 @@ type OpenbankingFDX struct {
 	fdxClient.ClientService
 }
 
+type Identity struct {
+	*identity.Acp
+}
+
+type IdentitySelf struct {
+	*identityself.Acp
+}
+
+type IdentityRoot struct {
+	*identityroot.Acp
+}
+
+type IdentitySystem struct {
+	*identitysystem.Acp
+}
+
 // Client provides a client to the ACP API
 type Client struct {
 	Oauth2      *Oauth2
@@ -114,6 +135,11 @@ type Client struct {
 	*OpenbankingUK
 	*OpenbankingBrasil
 	OpenbankingFDX
+
+	Identity       *Identity
+	IdentitySelf   *IdentitySelf
+	IdentityRoot   *IdentityRoot
+	IdentitySystem *IdentitySystem
 
 	c                          *http.Client
 	requestObjectSigningKey    interface{}
@@ -589,6 +615,42 @@ func New(cfg Config) (c Client, err error) {
 		).WithOpenTracing(), nil),
 	}
 
+	c.Identity = &Identity{
+		Acp: identity.New(httptransport.NewWithClient(
+			cfg.IssuerURL.Host,
+			c.apiPathPrefix(cfg.VanityDomainType, "/api/identity/%s"),
+			[]string{cfg.IssuerURL.Scheme},
+			client,
+		).WithOpenTracing(), nil),
+	}
+
+	c.IdentitySelf = &IdentitySelf{
+		Acp: identityself.New(httptransport.NewWithClient(
+			cfg.IssuerURL.Host,
+			c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
+			[]string{cfg.IssuerURL.Scheme},
+			client,
+		).WithOpenTracing(), nil),
+	}
+
+	c.IdentityRoot = &IdentityRoot{
+		Acp: identityroot.New(httptransport.NewWithClient(
+			cfg.IssuerURL.Host,
+			c.apiPathPrefix(cfg.VanityDomainType, "/api/identity/system"),
+			[]string{cfg.IssuerURL.Scheme},
+			client,
+		).WithOpenTracing(), nil),
+	}
+
+	c.IdentitySystem = &IdentitySystem{
+		Acp: identitysystem.New(httptransport.NewWithClient(
+			cfg.IssuerURL.Host,
+			c.apiPathPrefix(cfg.VanityDomainType, "/api/identity/system/%s"),
+			[]string{cfg.IssuerURL.Scheme},
+			client,
+		).WithOpenTracing(), nil),
+	}
+
 	c.Config = cfg
 
 	return c, nil
@@ -621,6 +683,23 @@ func (c *Client) apiPathPrefix(vanityDomainType string, format string) string {
 			return c.BasePath + "/api/system"
 		default:
 			return c.BasePath + fmt.Sprintf(format, c.TenantID)
+		}
+
+	case "/api/identity/%s":
+		switch vanityDomainType {
+		case "tenant", "server":
+			return c.BasePath + "/api/identity"
+		default:
+			return c.BasePath + fmt.Sprintf(format, c.TenantID)
+		}
+
+	case "/api/identity/system/%s":
+		switch vanityDomainType {
+		case "tenant", "server":
+			return c.BasePath + "/api/identity/system"
+		default:
+			return c.BasePath + "/api/identity/system/default"
+			//return c.BasePath + fmt.Sprintf(format, c.TenantID)
 		}
 
 	case "/%s/%s":

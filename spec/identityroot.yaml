@@ -1,0 +1,849 @@
+basePath: /api/identity/system
+consumes:
+- application/json
+definitions:
+  Argon2Config:
+    properties:
+      iterations:
+        format: int64
+        type: integer
+        x-nullable: false
+      key_length:
+        format: int64
+        type: integer
+        x-nullable: false
+      memory_in_kb:
+        format: int64
+        type: integer
+        x-nullable: false
+      parallelism:
+        format: int64
+        type: integer
+        x-nullable: false
+      salt:
+        type: string
+        x-nullable: false
+      salt_length:
+        format: int64
+        type: integer
+        x-nullable: false
+    type: object
+  AuthenticationMechanisms:
+    items:
+      enum:
+      - password
+      - otp
+      type: string
+    type: array
+  BcryptConfig:
+    properties:
+      cost:
+        format: int64
+        type: integer
+        x-nullable: false
+    type: object
+  Code:
+    properties:
+      code:
+        $ref: '#/definitions/CodeValue'
+      created_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      expires_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      id:
+        format: codeID
+        type: string
+        x-nullable: false
+      issued_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      tenant_id:
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      type:
+        enum:
+        - activation
+        - reset_password
+        - challenge
+        - verify_address
+        example: active
+        type: string
+        x-nullable: false
+      user_id:
+        format: userID
+        type: string
+        x-nullable: false
+      user_pool_id:
+        example: default
+        format: poolID
+        type: string
+        x-nullable: false
+      verifiable_address_id:
+        format: verifiableAddressID
+        type: string
+        x-nullable: false
+    required:
+    - tenant_id
+    - user_pool_id
+    - user_id
+    - type
+    - code
+    type: object
+  CodeValue:
+    properties:
+      hashed_code:
+        $ref: '#/definitions/Hash'
+    type: object
+  Dump:
+    properties:
+      codes:
+        items:
+          $ref: '#/definitions/Code'
+        type: array
+        x-nullable: false
+      pools:
+        items:
+          $ref: '#/definitions/Pool'
+        type: array
+        x-nullable: false
+      schemas:
+        items:
+          $ref: '#/definitions/Schema'
+        type: array
+        x-nullable: false
+      user_credentials:
+        items:
+          $ref: '#/definitions/UserCredential'
+        type: array
+        x-nullable: false
+      user_identifiers:
+        items:
+          $ref: '#/definitions/UserIdentifier'
+        type: array
+        x-nullable: false
+      user_verifiable_addresses:
+        items:
+          $ref: '#/definitions/UserVerifiableAddress'
+        type: array
+        x-nullable: false
+      users:
+        items:
+          $ref: '#/definitions/User'
+        type: array
+        x-nullable: false
+    type: object
+  Error:
+    description: HTTP error response
+    properties:
+      details:
+        type: object
+        x-nullable: false
+      error:
+        type: string
+        x-nullable: false
+      status_code:
+        format: int64
+        type: integer
+        x-nullable: false
+    type: object
+  Hash:
+    properties:
+      config:
+        $ref: '#/definitions/HashConfig'
+      value:
+        type: string
+        x-nullable: false
+    type: object
+  HashConfig:
+    properties:
+      argon2:
+        $ref: '#/definitions/Argon2Config'
+      bcrypt:
+        $ref: '#/definitions/BcryptConfig'
+      method:
+        enum:
+        - bcrypt
+        - pbkdf2
+        - argon2
+        - sha
+        type: string
+        x-nullable: false
+      pbkdf2:
+        $ref: '#/definitions/PBKDF2Config'
+      sha:
+        $ref: '#/definitions/SHAConfig'
+    type: object
+  OtpConfig:
+    properties:
+      length:
+        format: int64
+        type: integer
+        x-nullable: false
+      ttl:
+        format: duration
+        type: string
+        x-nullable: false
+    type: object
+  OtpSettings:
+    properties:
+      activation:
+        $ref: '#/definitions/OtpConfig'
+      challenge:
+        $ref: '#/definitions/OtpConfig'
+      reset_password:
+        $ref: '#/definitions/OtpConfig'
+      verify_address:
+        $ref: '#/definitions/OtpConfig'
+    type: object
+  PBKDF2Config:
+    properties:
+      function:
+        type: string
+        x-nullable: false
+      key_length:
+        format: int64
+        type: integer
+        x-nullable: false
+      number_of_iterations:
+        format: int64
+        type: integer
+        x-nullable: false
+      salt:
+        type: string
+        x-nullable: false
+      salt_length:
+        format: int64
+        type: integer
+        x-nullable: false
+    type: object
+  PasswordSettings:
+    properties:
+      hashing_method:
+        enum:
+        - bcrypt
+        - pbkdf2
+        - argon2
+        - sha
+        type: string
+        x-nullable: false
+    type: object
+  PatchConfiguration:
+    items:
+      $ref: '#/definitions/PatchOperation'
+    type: array
+  PatchOperation:
+    additionalProperties:
+      type: object
+    type: object
+  Pool:
+    properties:
+      authentication_mechanisms:
+        $ref: '#/definitions/AuthenticationMechanisms'
+      description:
+        type: string
+        x-nullable: false
+      id:
+        format: poolID
+        type: string
+        x-nullable: false
+      metadata:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+      metadata_schema_id:
+        format: schemaID
+        type: string
+        x-nullable: false
+      name:
+        type: string
+        x-nullable: false
+      otp_settings:
+        $ref: '#/definitions/OtpSettings'
+      password_settings:
+        $ref: '#/definitions/PasswordSettings'
+      payload_schema_id:
+        format: schemaID
+        type: string
+        x-nullable: false
+      public_registration_allowed:
+        type: boolean
+        x-nullable: false
+      tenant_id:
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+    required:
+    - tenant_id
+    - name
+    type: object
+  SHAConfig:
+    properties:
+      function:
+        type: string
+        x-nullable: false
+      salt:
+        type: string
+        x-nullable: false
+      salt_length:
+        format: int64
+        type: integer
+        x-nullable: false
+    type: object
+  Schema:
+    properties:
+      created_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      description:
+        type: string
+        x-nullable: false
+      id:
+        format: schemaID
+        type: string
+        x-nullable: false
+      name:
+        type: string
+        x-nullable: false
+      schema:
+        $ref: '#/definitions/SupportedJSONSchema'
+      system:
+        type: boolean
+        x-nullable: false
+      tenant_id:
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+    required:
+    - tenant_id
+    - name
+    - schema
+    type: object
+  SupportedJSONSchema:
+    properties:
+      additionalProperties:
+        type: boolean
+        x-nullable: false
+      allOf:
+        items:
+          $ref: '#/definitions/SupportedJSONSchema'
+        type: array
+        x-nullable: false
+      anyOf:
+        items:
+          $ref: '#/definitions/SupportedJSONSchema'
+        type: array
+        x-nullable: false
+      const:
+        type: string
+        x-nullable: false
+      contains:
+        $ref: '#/definitions/SupportedJSONSchema'
+      dependentRequired:
+        additionalProperties:
+          items:
+            type: string
+          type: array
+        type: object
+        x-nullable: false
+      dependentSchemas:
+        additionalProperties:
+          $ref: '#/definitions/SupportedJSONSchema'
+        type: object
+        x-nullable: false
+      description:
+        type: string
+        x-nullable: false
+      else:
+        $ref: '#/definitions/SupportedJSONSchema'
+      enum:
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      exclusiveMaximum:
+        format: int64
+        type: integer
+        x-nullable: false
+      exclusiveMinimum:
+        format: int64
+        type: integer
+        x-nullable: false
+      hidden:
+        type: boolean
+        x-nullable: false
+      if:
+        $ref: '#/definitions/SupportedJSONSchema'
+      items:
+        $ref: '#/definitions/SupportedJSONSchema'
+      maxContains:
+        format: int64
+        type: integer
+        x-nullable: false
+      maxItems:
+        description: arrays
+        format: int64
+        type: integer
+        x-nullable: false
+      maxLength:
+        description: strings
+        format: int64
+        type: integer
+        x-nullable: false
+      maxProperties:
+        description: objects
+        format: int64
+        type: integer
+        x-nullable: false
+      maximum:
+        format: int64
+        type: integer
+        x-nullable: false
+      minContains:
+        format: int64
+        type: integer
+        x-nullable: false
+      minItems:
+        format: int64
+        type: integer
+        x-nullable: false
+      minLength:
+        format: int64
+        type: integer
+        x-nullable: false
+      minProperties:
+        format: int64
+        type: integer
+        x-nullable: false
+      minimum:
+        format: int64
+        type: integer
+        x-nullable: false
+      multipleOf:
+        description: numeric
+        format: int64
+        type: integer
+        x-nullable: false
+      not:
+        $ref: '#/definitions/SupportedJSONSchema'
+      oneOf:
+        items:
+          $ref: '#/definitions/SupportedJSONSchema'
+        type: array
+        x-nullable: false
+      pattern:
+        type: string
+        x-nullable: false
+      patternProperties:
+        additionalProperties:
+          $ref: '#/definitions/SupportedJSONSchema'
+        type: object
+        x-nullable: false
+      properties:
+        additionalProperties:
+          $ref: '#/definitions/SupportedJSONSchema'
+        type: object
+        x-nullable: false
+      propertyNames:
+        $ref: '#/definitions/SupportedJSONSchema'
+      required:
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      then:
+        $ref: '#/definitions/SupportedJSONSchema'
+      type:
+        description: any
+        type: string
+        x-nullable: false
+      uniqueItems:
+        type: boolean
+        x-nullable: false
+    type: object
+  User:
+    properties:
+      created_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      id:
+        format: userID
+        type: string
+        x-nullable: false
+      metadata:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+      metadata_schema_id:
+        format: schemaID
+        type: string
+        x-nullable: false
+      payload:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+      payload_schema_id:
+        format: schemaID
+        type: string
+        x-nullable: false
+      status:
+        enum:
+        - active
+        - inactive
+        - deleted
+        - new
+        example: active
+        type: string
+        x-nullable: false
+      status_updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      tenant_id:
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      user_pool_id:
+        example: default
+        format: poolID
+        type: string
+        x-nullable: false
+    required:
+    - tenant_id
+    - user_pool_id
+    - status
+    type: object
+  UserCredential:
+    properties:
+      created_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      id:
+        format: userCredentialID
+        type: string
+        x-nullable: false
+      payload:
+        example:
+          hashed_password: '###'
+        type: object
+        x-nullable: false
+      tenant_id:
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      type:
+        enum:
+        - password
+        example: password
+        type: string
+        x-nullable: false
+      updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      user_id:
+        format: userID
+        type: string
+        x-nullable: false
+      user_pool_id:
+        example: default
+        format: poolID
+        type: string
+        x-nullable: false
+    required:
+    - tenant_id
+    - user_pool_id
+    - user_id
+    - type
+    - payload
+    - created_at
+    - updated_at
+    type: object
+  UserIdentifier:
+    properties:
+      created_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      id:
+        format: userIdentifierID
+        type: string
+        x-nullable: false
+      identifier:
+        format: userIdentifierValue
+        type: string
+        x-nullable: false
+      tenant_id:
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      type:
+        enum:
+        - email
+        - mobile
+        - uid
+        - external
+        example: email
+        type: string
+        x-nullable: false
+      updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      user_id:
+        format: userID
+        type: string
+        x-nullable: false
+      user_pool_id:
+        example: default
+        format: poolID
+        type: string
+        x-nullable: false
+    required:
+    - tenant_id
+    - user_pool_id
+    - identifier
+    - user_id
+    - type
+    - created_at
+    - updated_at
+    type: object
+  UserVerifiableAddress:
+    properties:
+      address:
+        format: verifiableAddress
+        type: string
+        x-nullable: false
+      created_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      id:
+        format: verifiableAddressID
+        type: string
+        x-nullable: false
+      preferred_contact_method:
+        enum:
+        - sms
+        - voice
+        example: sms
+        type: string
+        x-nullable: false
+      status:
+        enum:
+        - active
+        - inactive
+        example: active
+        type: string
+        x-nullable: false
+      tenant_id:
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      type:
+        enum:
+        - email
+        - mobile
+        example: mobile
+        type: string
+        x-nullable: false
+      updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      user_id:
+        format: userID
+        type: string
+        x-nullable: false
+      user_pool_id:
+        example: default
+        format: poolID
+        type: string
+        x-nullable: false
+      verified:
+        type: boolean
+        x-nullable: false
+      verified_at:
+        format: date-time
+        type: string
+        x-nullable: false
+    required:
+    - tenant_id
+    - user_pool_id
+    - user_id
+    - address
+    - type
+    - status
+    - verified
+    - created_at
+    - updated_at
+    type: object
+host: localhost:8443
+info:
+  description: Cloudentity Authorization Control Plane Root API
+  title: Cloudentity Authorization Control Plane API
+  version: latest
+paths:
+  /configuration:
+    get:
+      operationId: exportConfiguration
+      parameters:
+      - default: default
+        description: Tenant id
+        in: query
+        name: tid
+        type: string
+      responses:
+        "200":
+          description: Dump
+          schema:
+            $ref: '#/definitions/Dump'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - setup: []
+      tags:
+      - configuration
+    patch:
+      description: Patch tenant configuration using RFC 6902 JSON Patch.
+      operationId: patchConfiguration
+      parameters:
+      - default: default
+        description: Tenant id
+        in: query
+        name: tid
+        type: string
+      - in: body
+        name: patch
+        schema:
+          $ref: '#/definitions/PatchConfiguration'
+      - format: insertMode
+        in: query
+        name: mode
+        type: string
+      responses:
+        "204":
+          description: ' patch applied'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - setup: []
+      summary: Patch configuration
+      tags:
+      - configuration
+    put:
+      operationId: importConfiguration
+      parameters:
+      - in: body
+        name: Dump
+        schema:
+          $ref: '#/definitions/Dump'
+      - description: |-
+          Insert mode
+
+          Defines what happens in case of configuration import conflicts.
+
+          The `mode` parameter defines
+          what happens if there are any conflicts when importing your configuration. For example, if a
+          client already exists within ACP and you are trying to import a
+          configuration that also has a client with this ID, there are the following ways
+          ACP can handle the request:
+
+          `mode` set to `ignore`, ACP ignores the changes that come from your configuration import.
+
+          `mode` set to `fail`, ACP stops processing the import and returns an error.
+
+          `mode` set to `update`, ACP updates the value from the previous configuration with the value
+          provided in the request.
+        format: insertMode
+        in: query
+        name: mode
+        type: string
+      responses:
+        "204":
+          description: ' configuration has been imported'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "409":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - setup: []
+      tags:
+      - configuration
+produces:
+- application/json
+responses:
+  httpError:
+    description: HttpError
+    schema:
+      $ref: '#/definitions/Error'
+schemes:
+- https
+securityDefinitions:
+  adminSystem:
+    authorizationUrl: /system/admin/oauth2/authorize
+    flow: accessCode
+    tokenUrl: /system/admin/oauth2/token
+    type: oauth2
+  setup:
+    authorizationUrl: /system/system/oauth2/authorize
+    flow: accessCode
+    tokenUrl: /system/system/oauth2/token
+    type: oauth2
+swagger: "2.0"
