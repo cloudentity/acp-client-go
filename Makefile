@@ -6,7 +6,7 @@ swagger = docker run --rm -it -e GOPATH=/go \
 .PHONY: generate
 generate: generate-acp generate-openbanking-uk generate-openbanking-brasil
 
-SWAGGERS = public root developer oauth2 system admin web openbanking
+SWAGGERS = public root developer oauth2 system admin web openbanking identity identityroot identitysystem identityself
 
 generate-acp: $(SWAGGERS)
 
