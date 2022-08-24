@@ -636,7 +636,7 @@ func New(cfg Config) (c Client, err error) {
 	c.IdentityRoot = &IdentityRoot{
 		Acp: identityroot.New(httptransport.NewWithClient(
 			cfg.IssuerURL.Host,
-			c.apiPathPrefix(cfg.VanityDomainType, "/api/identity/system"),
+			c.apiPathPrefix(cfg.VanityDomainType, "/api/identity/%s"),
 			[]string{cfg.IssuerURL.Scheme},
 			client,
 		).WithOpenTracing(), nil),
@@ -698,8 +698,7 @@ func (c *Client) apiPathPrefix(vanityDomainType string, format string) string {
 		case "tenant", "server":
 			return c.BasePath + "/api/identity/system"
 		default:
-			return c.BasePath + "/api/identity/system/default"
-			//return c.BasePath + fmt.Sprintf(format, c.TenantID)
+			return c.BasePath + fmt.Sprintf(format, c.TenantID)
 		}
 
 	case "/%s/%s":
