@@ -95,9 +95,7 @@ func (a *Client) CreateTenant(params *CreateTenantParams, authInfo runtime.Clien
 }
 
 /*
-  DeleteTenant deletes tenant
-
-  Deletes index in elasticsearch if exists as well.
+  DeleteTenant Delete tenant
 */
 func (a *Client) DeleteTenant(params *DeleteTenantParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteTenantNoContent, error) {
 	// TODO: Validate the params before sending

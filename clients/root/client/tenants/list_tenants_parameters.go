@@ -58,6 +58,17 @@ func NewListTenantsParamsWithHTTPClient(client *http.Client) *ListTenantsParams 
    Typically these are written to a http.Request.
 */
 type ListTenantsParams struct {
+
+	/* Query.
+
+	     optional query filter
+	query is in json format like {"metadata": {"registration_identifier":"john.doe@cloudentity.com"}} - parameter must be url-encoded
+	supported parameters
+	`metadata` - limits tenants set to tenants with metadata matches provided metadata - for simple values it does exact match, for arrays it does `contain`
+	if multiple parameters provided it does logical AND between the results so tenants must match ALL parameters
+	*/
+	Query *string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -111,6 +122,17 @@ func (o *ListTenantsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithQuery adds the query to the list tenants params
+func (o *ListTenantsParams) WithQuery(query *string) *ListTenantsParams {
+	o.SetQuery(query)
+	return o
+}
+
+// SetQuery adds the query to the list tenants params
+func (o *ListTenantsParams) SetQuery(query *string) {
+	o.Query = query
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *ListTenantsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -118,6 +140,23 @@ func (o *ListTenantsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 		return err
 	}
 	var res []error
+
+	if o.Query != nil {
+
+		// query param query
+		var qrQuery string
+
+		if o.Query != nil {
+			qrQuery = *o.Query
+		}
+		qQuery := qrQuery
+		if qQuery != "" {
+
+			if err := r.SetQueryParam("query", qQuery); err != nil {
+				return err
+			}
+		}
+	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)

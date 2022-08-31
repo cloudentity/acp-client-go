@@ -18,7 +18,7 @@ import (
 // swagger:model DynamicClientRegistrationSettings
 type DynamicClientRegistrationSettings struct {
 
-	// This property binds registration token to the certificate used to register client
+	// Binds registration token to the certificate used to register client
 	CertBoundRegistrationToken bool `json:"cert_bound_registration_token,omitempty"`
 
 	// An optional list of scopes to be granted to a client when no scopes are provided in the DCR registration request
@@ -26,10 +26,15 @@ type DynamicClientRegistrationSettings struct {
 	// If not provided, the following default scopes are granted for the client application: openid, address, email, phone, profile.
 	DefaultScopes []string `json:"default_scopes"`
 
-	// This property disables registration_token rotation on each DCR management request
+	// Disables client management using registration token
+	//
+	// If disabled, client can manage itself using access token issued by client credentials flow.
+	DisableRegistrationTokenManagement bool `json:"disable_registration_token_management,omitempty"`
+
+	// Disables registration token rotation
 	DisableRegistrationTokenRotation bool `json:"disable_registration_token_rotation,omitempty"`
 
-	// enabled
+	// Enables dynamic client registration
 	Enabled bool `json:"enabled,omitempty"`
 
 	// initial access token
