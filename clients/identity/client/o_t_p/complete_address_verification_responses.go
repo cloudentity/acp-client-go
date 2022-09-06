@@ -41,6 +41,18 @@ func (o *CompleteAddressVerificationReader) ReadResponse(response runtime.Client
 			return nil, err
 		}
 		return nil, result
+	case 404:
+		result := NewCompleteAddressVerificationNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
+	case 409:
+		result := NewCompleteAddressVerificationConflict()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 422:
 		result := NewCompleteAddressVerificationUnprocessableEntity()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -126,6 +138,70 @@ func (o *CompleteAddressVerificationUnauthorized) GetPayload() *models.Error {
 }
 
 func (o *CompleteAddressVerificationUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewCompleteAddressVerificationNotFound creates a CompleteAddressVerificationNotFound with default headers values
+func NewCompleteAddressVerificationNotFound() *CompleteAddressVerificationNotFound {
+	return &CompleteAddressVerificationNotFound{}
+}
+
+/* CompleteAddressVerificationNotFound describes a response with status code 404, with default header values.
+
+HttpError
+*/
+type CompleteAddressVerificationNotFound struct {
+	Payload *models.Error
+}
+
+func (o *CompleteAddressVerificationNotFound) Error() string {
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/complete][%d] completeAddressVerificationNotFound  %+v", 404, o.Payload)
+}
+func (o *CompleteAddressVerificationNotFound) GetPayload() *models.Error {
+	return o.Payload
+}
+
+func (o *CompleteAddressVerificationNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewCompleteAddressVerificationConflict creates a CompleteAddressVerificationConflict with default headers values
+func NewCompleteAddressVerificationConflict() *CompleteAddressVerificationConflict {
+	return &CompleteAddressVerificationConflict{}
+}
+
+/* CompleteAddressVerificationConflict describes a response with status code 409, with default header values.
+
+HttpError
+*/
+type CompleteAddressVerificationConflict struct {
+	Payload *models.Error
+}
+
+func (o *CompleteAddressVerificationConflict) Error() string {
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/complete][%d] completeAddressVerificationConflict  %+v", 409, o.Payload)
+}
+func (o *CompleteAddressVerificationConflict) GetPayload() *models.Error {
+	return o.Payload
+}
+
+func (o *CompleteAddressVerificationConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.Error)
 

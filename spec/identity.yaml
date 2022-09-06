@@ -2235,6 +2235,10 @@ paths:
           $ref: '#/responses/httpError'
         "401":
           $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "409":
+          $ref: '#/responses/httpError'
         "422":
           $ref: '#/responses/httpError'
       security:
@@ -2270,6 +2274,10 @@ paths:
         "400":
           $ref: '#/responses/httpError'
         "401":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "409":
           $ref: '#/responses/httpError'
         "422":
           $ref: '#/responses/httpError'

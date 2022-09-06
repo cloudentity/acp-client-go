@@ -14,6 +14,28 @@ definitions:
     - old_password
     - new_password
     type: object
+  CodeID:
+    properties:
+      code_id:
+        format: codeID
+        type: string
+        x-nullable: false
+    required:
+    - code_id
+    type: object
+  Codes:
+    properties:
+      code:
+        type: string
+        x-nullable: false
+      extended_code:
+        format: codeID
+        type: string
+        x-nullable: false
+    required:
+    - extended_code
+    - code
+    type: object
   CompleteAddressVerification:
     properties:
       address:
@@ -40,6 +62,76 @@ definitions:
         format: int64
         type: integer
         x-nullable: false
+    type: object
+  ExtendedUser:
+    properties:
+      created_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      id:
+        format: userID
+        type: string
+        x-nullable: false
+      identifiers:
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      metadata:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+      metadata_schema_id:
+        format: schemaID
+        type: string
+        x-nullable: false
+      payload:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+      payload_schema_id:
+        format: schemaID
+        type: string
+        x-nullable: false
+      status:
+        enum:
+        - active
+        - inactive
+        - deleted
+        - new
+        example: active
+        type: string
+        x-nullable: false
+      status_updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      tenant_id:
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      user_pool_id:
+        example: default
+        format: poolID
+        type: string
+        x-nullable: false
+      verified addresses:
+        items:
+          type: string
+        type: array
+        x-nullable: false
+    required:
+    - tenant_id
+    - user_pool_id
+    - status
     type: object
   ResetPasswordConfirm:
     properties:
@@ -165,6 +257,266 @@ definitions:
         type: array
         x-nullable: false
     type: object
+  UserCredential:
+    properties:
+      created_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      id:
+        format: userCredentialID
+        type: string
+        x-nullable: false
+      payload:
+        example:
+          hashed_password: '###'
+        type: object
+        x-nullable: false
+      tenant_id:
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      type:
+        enum:
+        - password
+        example: password
+        type: string
+        x-nullable: false
+      updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      user_id:
+        format: userID
+        type: string
+        x-nullable: false
+      user_pool_id:
+        example: default
+        format: poolID
+        type: string
+        x-nullable: false
+    required:
+    - tenant_id
+    - user_pool_id
+    - user_id
+    - type
+    - payload
+    - created_at
+    - updated_at
+    type: object
+  UserID:
+    properties:
+      id:
+        format: userID
+        type: string
+        x-nullable: false
+    required:
+    - id
+    type: object
+  UserIdentifier:
+    properties:
+      created_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      id:
+        format: userIdentifierID
+        type: string
+        x-nullable: false
+      identifier:
+        format: userIdentifierValue
+        type: string
+        x-nullable: false
+      tenant_id:
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      type:
+        enum:
+        - email
+        - mobile
+        - uid
+        - external
+        example: email
+        type: string
+        x-nullable: false
+      updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      user_id:
+        format: userID
+        type: string
+        x-nullable: false
+      user_pool_id:
+        example: default
+        format: poolID
+        type: string
+        x-nullable: false
+    required:
+    - tenant_id
+    - user_pool_id
+    - identifier
+    - user_id
+    - type
+    - created_at
+    - updated_at
+    type: object
+  UserVerifiableAddress:
+    properties:
+      address:
+        format: verifiableAddress
+        type: string
+        x-nullable: false
+      created_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      id:
+        format: verifiableAddressID
+        type: string
+        x-nullable: false
+      preferred_contact_method:
+        enum:
+        - sms
+        - voice
+        example: sms
+        type: string
+        x-nullable: false
+      status:
+        enum:
+        - active
+        - inactive
+        example: active
+        type: string
+        x-nullable: false
+      tenant_id:
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      type:
+        enum:
+        - email
+        - mobile
+        example: mobile
+        type: string
+        x-nullable: false
+      updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      user_id:
+        format: userID
+        type: string
+        x-nullable: false
+      user_pool_id:
+        example: default
+        format: poolID
+        type: string
+        x-nullable: false
+      verified:
+        type: boolean
+        x-nullable: false
+      verified_at:
+        format: date-time
+        type: string
+        x-nullable: false
+    required:
+    - tenant_id
+    - user_pool_id
+    - user_id
+    - address
+    - type
+    - status
+    - verified
+    - created_at
+    - updated_at
+    type: object
+  UserWithData:
+    properties:
+      created_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      credentials:
+        items:
+          $ref: '#/definitions/UserCredential'
+        type: array
+        x-nullable: false
+      id:
+        format: userID
+        type: string
+        x-nullable: false
+      identifiers:
+        items:
+          $ref: '#/definitions/UserIdentifier'
+        type: array
+        x-nullable: false
+      metadata:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+      metadata_schema_id:
+        format: schemaID
+        type: string
+        x-nullable: false
+      payload:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+      payload_schema_id:
+        format: schemaID
+        type: string
+        x-nullable: false
+      status:
+        enum:
+        - active
+        - inactive
+        - deleted
+        - new
+        type: string
+        x-nullable: false
+      status_updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      tenant_id:
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      user_pool_id:
+        example: default
+        format: poolID
+        type: string
+        x-nullable: false
+      verifiable_addresses:
+        items:
+          $ref: '#/definitions/UserVerifiableAddress'
+        type: array
+        x-nullable: false
+    required:
+    - tenant_id
+    - user_pool_id
+    - status
+    type: object
+  Users:
+    properties:
+      users:
+        items:
+          $ref: '#/definitions/ExtendedUser'
+        type: array
+        x-nullable: false
+    type: object
 host: localhost:8443
 info:
   description: Cloudentity Authorization Control Plane Identity API
@@ -218,6 +570,10 @@ paths:
         "400":
           $ref: '#/responses/httpError'
         "401":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "409":
           $ref: '#/responses/httpError'
         "422":
           $ref: '#/responses/httpError'
@@ -313,10 +669,30 @@ paths:
 produces:
 - application/json
 responses:
+  CodeIDResponse:
+    description: User
+    schema:
+      $ref: '#/definitions/CodeID'
+  GenerateCodeResponse:
+    description: User
+    schema:
+      $ref: '#/definitions/Codes'
   GetProfileResponse:
     description: Self
     schema:
       $ref: '#/definitions/SelfUserWithData'
+  UserIDResponse:
+    description: User
+    schema:
+      $ref: '#/definitions/UserID'
+  UserResponse:
+    description: User
+    schema:
+      $ref: '#/definitions/UserWithData'
+  UsersResponse:
+    description: Identity Users
+    schema:
+      $ref: '#/definitions/Users'
   httpError:
     description: HttpError
     schema:

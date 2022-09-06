@@ -11,6 +11,7 @@ import (
 	"github.com/go-openapi/strfmt"
 
 	"github.com/cloudentity/acp-client-go/clients/identityroot/client/configuration"
+	"github.com/cloudentity/acp-client-go/clients/identityroot/client/system"
 )
 
 // Default acp HTTP client.
@@ -56,6 +57,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *Acp {
 	cli := new(Acp)
 	cli.Transport = transport
 	cli.Configuration = configuration.New(transport, formats)
+	cli.System = system.New(transport, formats)
 	return cli
 }
 
@@ -102,6 +104,8 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 type Acp struct {
 	Configuration configuration.ClientService
 
+	System system.ClientService
+
 	Transport runtime.ClientTransport
 }
 
@@ -109,4 +113,5 @@ type Acp struct {
 func (c *Acp) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 	c.Configuration.SetTransport(transport)
+	c.System.SetTransport(transport)
 }

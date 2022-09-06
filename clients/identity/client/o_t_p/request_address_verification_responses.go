@@ -41,6 +41,18 @@ func (o *RequestAddressVerificationReader) ReadResponse(response runtime.ClientR
 			return nil, err
 		}
 		return nil, result
+	case 404:
+		result := NewRequestAddressVerificationNotFound()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
+	case 409:
+		result := NewRequestAddressVerificationConflict()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 422:
 		result := NewRequestAddressVerificationUnprocessableEntity()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -132,6 +144,70 @@ func (o *RequestAddressVerificationUnauthorized) GetPayload() *models.Error {
 }
 
 func (o *RequestAddressVerificationUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewRequestAddressVerificationNotFound creates a RequestAddressVerificationNotFound with default headers values
+func NewRequestAddressVerificationNotFound() *RequestAddressVerificationNotFound {
+	return &RequestAddressVerificationNotFound{}
+}
+
+/* RequestAddressVerificationNotFound describes a response with status code 404, with default header values.
+
+HttpError
+*/
+type RequestAddressVerificationNotFound struct {
+	Payload *models.Error
+}
+
+func (o *RequestAddressVerificationNotFound) Error() string {
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/request][%d] requestAddressVerificationNotFound  %+v", 404, o.Payload)
+}
+func (o *RequestAddressVerificationNotFound) GetPayload() *models.Error {
+	return o.Payload
+}
+
+func (o *RequestAddressVerificationNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewRequestAddressVerificationConflict creates a RequestAddressVerificationConflict with default headers values
+func NewRequestAddressVerificationConflict() *RequestAddressVerificationConflict {
+	return &RequestAddressVerificationConflict{}
+}
+
+/* RequestAddressVerificationConflict describes a response with status code 409, with default header values.
+
+HttpError
+*/
+type RequestAddressVerificationConflict struct {
+	Payload *models.Error
+}
+
+func (o *RequestAddressVerificationConflict) Error() string {
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/request][%d] requestAddressVerificationConflict  %+v", 409, o.Payload)
+}
+func (o *RequestAddressVerificationConflict) GetPayload() *models.Error {
+	return o.Payload
+}
+
+func (o *RequestAddressVerificationConflict) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.Error)
 
