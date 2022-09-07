@@ -627,7 +627,7 @@ func New(cfg Config) (c Client, err error) {
 	c.IdentitySelf = &IdentitySelf{
 		Acp: identityself.New(httptransport.NewWithClient(
 			cfg.IssuerURL.Host,
-			c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
+			c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s/identity"),
 			[]string{cfg.IssuerURL.Scheme},
 			client,
 		).WithOpenTracing(), nil),
