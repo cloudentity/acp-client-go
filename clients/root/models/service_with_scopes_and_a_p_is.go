@@ -7,11 +7,13 @@ package models
 
 import (
 	"context"
+	"encoding/json"
 	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // ServiceWithScopesAndAPIs service with scopes and a p is
@@ -56,6 +58,14 @@ type ServiceWithScopesAndAPIs struct {
 	// Example: default
 	TenantID string `json:"tenant_id,omitempty"`
 
+	// service type
+	// Enum: [oauth2 oidc system user openbanking]
+	Type string `json:"type,omitempty"`
+
+	// Updated at date
+	// Format: date-time
+	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty"`
+
 	// true if service has openapi 3 specification
 	WithSpecification bool `json:"with_specification,omitempty"`
 }
@@ -69,6 +79,14 @@ func (m *ServiceWithScopesAndAPIs) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateScopes(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUpdatedAt(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -125,6 +143,69 @@ func (m *ServiceWithScopesAndAPIs) validateScopes(formats strfmt.Registry) error
 			}
 		}
 
+	}
+
+	return nil
+}
+
+var serviceWithScopesAndAPIsTypeTypePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["oauth2","oidc","system","user","openbanking"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		serviceWithScopesAndAPIsTypeTypePropEnum = append(serviceWithScopesAndAPIsTypeTypePropEnum, v)
+	}
+}
+
+const (
+
+	// ServiceWithScopesAndAPIsTypeOauth2 captures enum value "oauth2"
+	ServiceWithScopesAndAPIsTypeOauth2 string = "oauth2"
+
+	// ServiceWithScopesAndAPIsTypeOidc captures enum value "oidc"
+	ServiceWithScopesAndAPIsTypeOidc string = "oidc"
+
+	// ServiceWithScopesAndAPIsTypeSystem captures enum value "system"
+	ServiceWithScopesAndAPIsTypeSystem string = "system"
+
+	// ServiceWithScopesAndAPIsTypeUser captures enum value "user"
+	ServiceWithScopesAndAPIsTypeUser string = "user"
+
+	// ServiceWithScopesAndAPIsTypeOpenbanking captures enum value "openbanking"
+	ServiceWithScopesAndAPIsTypeOpenbanking string = "openbanking"
+)
+
+// prop value enum
+func (m *ServiceWithScopesAndAPIs) validateTypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, serviceWithScopesAndAPIsTypeTypePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *ServiceWithScopesAndAPIs) validateType(formats strfmt.Registry) error {
+	if swag.IsZero(m.Type) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateTypeEnum("type", "body", m.Type); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ServiceWithScopesAndAPIs) validateUpdatedAt(formats strfmt.Registry) error {
+	if swag.IsZero(m.UpdatedAt) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("updated_at", "body", "date-time", m.UpdatedAt.String(), formats); err != nil {
+		return err
 	}
 
 	return nil

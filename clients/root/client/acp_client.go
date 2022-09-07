@@ -13,7 +13,6 @@ import (
 	"github.com/cloudentity/acp-client-go/clients/root/client/configuration"
 	"github.com/cloudentity/acp-client-go/clients/root/client/features"
 	"github.com/cloudentity/acp-client-go/clients/root/client/limits"
-	"github.com/cloudentity/acp-client-go/clients/root/client/quotas"
 	"github.com/cloudentity/acp-client-go/clients/root/client/tenants"
 )
 
@@ -62,7 +61,6 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *Acp {
 	cli.Configuration = configuration.New(transport, formats)
 	cli.Features = features.New(transport, formats)
 	cli.Limits = limits.New(transport, formats)
-	cli.Quotas = quotas.New(transport, formats)
 	cli.Tenants = tenants.New(transport, formats)
 	return cli
 }
@@ -114,8 +112,6 @@ type Acp struct {
 
 	Limits limits.ClientService
 
-	Quotas quotas.ClientService
-
 	Tenants tenants.ClientService
 
 	Transport runtime.ClientTransport
@@ -127,6 +123,5 @@ func (c *Acp) SetTransport(transport runtime.ClientTransport) {
 	c.Configuration.SetTransport(transport)
 	c.Features.SetTransport(transport)
 	c.Limits.SetTransport(transport)
-	c.Quotas.SetTransport(transport)
 	c.Tenants.SetTransport(transport)
 }

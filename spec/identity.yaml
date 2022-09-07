@@ -1,0 +1,2469 @@
+basePath: /api/identity/default
+consumes:
+- application/json
+definitions:
+  ActivateSelfRegisteredUser:
+    properties:
+      code:
+        type: string
+        x-nullable: false
+      password:
+        type: string
+        x-nullable: false
+    required:
+    - code
+    type: object
+  AuthenticationMechanisms:
+    items:
+      enum:
+      - password
+      - otp
+      type: string
+    type: array
+  ChangePassword:
+    properties:
+      new_password:
+        type: string
+        x-nullable: false
+      old_password:
+        type: string
+        x-nullable: false
+    required:
+    - old_password
+    - new_password
+    type: object
+  CodeID:
+    properties:
+      code_id:
+        format: codeID
+        type: string
+        x-nullable: false
+    required:
+    - code_id
+    type: object
+  Codes:
+    properties:
+      code:
+        type: string
+        x-nullable: false
+      extended_code:
+        format: codeID
+        type: string
+        x-nullable: false
+    required:
+    - extended_code
+    - code
+    type: object
+  CompleteAddressVerification:
+    properties:
+      address:
+        example: sample@email.com/+48123456789
+        type: string
+        x-nullable: false
+      code:
+        type: string
+        x-nullable: false
+    required:
+    - address
+    - code
+    type: object
+  ConfirmResetPassword:
+    properties:
+      code:
+        type: string
+        x-nullable: false
+      identifier:
+        type: string
+        x-nullable: false
+      new_password:
+        type: string
+        x-nullable: false
+      userID:
+        type: string
+        x-nullable: false
+    required:
+    - code
+    - new_password
+    type: object
+  Error:
+    description: HTTP error response
+    properties:
+      details:
+        type: object
+        x-nullable: false
+      error:
+        type: string
+        x-nullable: false
+      status_code:
+        format: int64
+        type: integer
+        x-nullable: false
+    type: object
+  ExtendedUser:
+    properties:
+      created_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      id:
+        format: userID
+        type: string
+        x-nullable: false
+      identifiers:
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      metadata:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+      metadata_schema_id:
+        format: schemaID
+        type: string
+        x-nullable: false
+      payload:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+      payload_schema_id:
+        format: schemaID
+        type: string
+        x-nullable: false
+      status:
+        enum:
+        - active
+        - inactive
+        - deleted
+        - new
+        example: active
+        type: string
+        x-nullable: false
+      status_updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      tenant_id:
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      user_pool_id:
+        example: default
+        format: poolID
+        type: string
+        x-nullable: false
+      verified addresses:
+        items:
+          type: string
+        type: array
+        x-nullable: false
+    required:
+    - tenant_id
+    - user_pool_id
+    - status
+    type: object
+  InspectOTP:
+    properties:
+      code:
+        type: string
+        x-nullable: false
+    required:
+    - code
+    type: object
+  InspectOTPUserOperationalData:
+    properties:
+      password_set:
+        type: boolean
+        x-nullable: false
+    required:
+    - password_set
+    type: object
+  NewUser:
+    properties:
+      credentials:
+        items:
+          $ref: '#/definitions/NewUserCredential'
+        type: array
+        x-nullable: false
+      id:
+        format: userID
+        type: string
+        x-nullable: false
+      identifiers:
+        items:
+          $ref: '#/definitions/NewUserIdentifier'
+        type: array
+        x-nullable: false
+      metadata:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+      metadata_schema_id:
+        format: schemaID
+        type: string
+        x-nullable: false
+      payload:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+      payload_schema_id:
+        format: schemaID
+        type: string
+        x-nullable: false
+      status:
+        enum:
+        - active
+        - inactive
+        - deleted
+        - new
+        type: string
+        x-nullable: false
+      verifiable_addresses:
+        items:
+          $ref: '#/definitions/NewUserVerifiableAddress'
+        type: array
+        x-nullable: false
+    required:
+    - status
+    type: object
+  NewUserCredential:
+    properties:
+      password:
+        example: secret
+        type: string
+        x-nullable: false
+      type:
+        enum:
+        - password
+        example: password
+        type: string
+        x-nullable: false
+    required:
+    - type
+    type: object
+  NewUserIdentifier:
+    properties:
+      identifier:
+        format: userIdentifierValue
+        type: string
+        x-nullable: false
+      type:
+        enum:
+        - email
+        - mobile
+        - uid
+        - external
+        example: email
+        type: string
+        x-nullable: false
+    required:
+    - identifier
+    - type
+    type: object
+  NewUserVerifiableAddress:
+    properties:
+      address:
+        format: verifiableAddress
+        type: string
+        x-nullable: false
+      preferred_contact_method:
+        enum:
+        - sms
+        - voice
+        example: sms
+        type: string
+        x-nullable: false
+      status:
+        enum:
+        - active
+        - inactive
+        example: active
+        type: string
+        x-nullable: false
+      type:
+        enum:
+        - email
+        - mobile
+        example: mobile
+        type: string
+        x-nullable: false
+      verified:
+        type: boolean
+        x-nullable: false
+    required:
+    - address
+    - type
+    - status
+    - verified
+    type: object
+  OtpConfig:
+    properties:
+      length:
+        format: int64
+        type: integer
+        x-nullable: false
+      ttl:
+        format: duration
+        type: string
+        x-nullable: false
+    type: object
+  OtpSettings:
+    properties:
+      activation:
+        $ref: '#/definitions/OtpConfig'
+      challenge:
+        $ref: '#/definitions/OtpConfig'
+      reset_password:
+        $ref: '#/definitions/OtpConfig'
+      verify_address:
+        $ref: '#/definitions/OtpConfig'
+    type: object
+  PasswordSettings:
+    properties:
+      hashing_method:
+        enum:
+        - bcrypt
+        - pbkdf2
+        - argon2
+        - sha
+        type: string
+        x-nullable: false
+    type: object
+  Pool:
+    properties:
+      authentication_mechanisms:
+        $ref: '#/definitions/AuthenticationMechanisms'
+      description:
+        type: string
+        x-nullable: false
+      id:
+        format: poolID
+        type: string
+        x-nullable: false
+      metadata:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+      metadata_schema_id:
+        format: schemaID
+        type: string
+        x-nullable: false
+      name:
+        type: string
+        x-nullable: false
+      otp_settings:
+        $ref: '#/definitions/OtpSettings'
+      password_settings:
+        $ref: '#/definitions/PasswordSettings'
+      payload_schema_id:
+        format: schemaID
+        type: string
+        x-nullable: false
+      public_registration_allowed:
+        type: boolean
+        x-nullable: false
+      tenant_id:
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+    required:
+    - tenant_id
+    - name
+    type: object
+  Pools:
+    properties:
+      pools:
+        items:
+          $ref: '#/definitions/Pool'
+        type: array
+        x-nullable: false
+    type: object
+  RequestActivation:
+    properties:
+      identifier:
+        type: string
+        x-nullable: false
+    type: object
+  RequestCode:
+    properties:
+      identifier:
+        type: string
+        x-nullable: false
+      type:
+        enum:
+        - activation
+        - reset_password
+        - challenge
+        - verify_address
+        type: string
+        x-nullable: false
+    required:
+    - type
+    type: object
+  RequestOTPChallenge:
+    properties:
+      identifier:
+        type: string
+        x-nullable: false
+      userID:
+        type: string
+        x-nullable: false
+    required:
+    - identifier
+    type: object
+  RequestOTPForAddress:
+    properties:
+      address:
+        type: string
+        x-nullable: false
+    required:
+    - address
+    type: object
+  RequestResetPassword:
+    properties:
+      identifier:
+        type: string
+        x-nullable: false
+      userID:
+        type: string
+        x-nullable: false
+    required:
+    - identifier
+    type: object
+  Schema:
+    properties:
+      created_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      description:
+        type: string
+        x-nullable: false
+      id:
+        format: schemaID
+        type: string
+        x-nullable: false
+      name:
+        type: string
+        x-nullable: false
+      schema:
+        $ref: '#/definitions/SupportedJSONSchema'
+      system:
+        type: boolean
+        x-nullable: false
+      tenant_id:
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+    required:
+    - tenant_id
+    - name
+    - schema
+    type: object
+  Schemas:
+    properties:
+      schemas:
+        items:
+          $ref: '#/definitions/Schema'
+        type: array
+        x-nullable: false
+    type: object
+  SelfRegisterUser:
+    properties:
+      identifier:
+        type: string
+        x-nullable: false
+      password:
+        type: string
+        x-nullable: false
+      payload:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+    required:
+    - identifier
+    type: object
+  SupportedJSONSchema:
+    properties:
+      additionalProperties:
+        type: boolean
+        x-nullable: false
+      allOf:
+        items:
+          $ref: '#/definitions/SupportedJSONSchema'
+        type: array
+        x-nullable: false
+      anyOf:
+        items:
+          $ref: '#/definitions/SupportedJSONSchema'
+        type: array
+        x-nullable: false
+      const:
+        type: string
+        x-nullable: false
+      contains:
+        $ref: '#/definitions/SupportedJSONSchema'
+      dependentRequired:
+        additionalProperties:
+          items:
+            type: string
+          type: array
+        type: object
+        x-nullable: false
+      dependentSchemas:
+        additionalProperties:
+          $ref: '#/definitions/SupportedJSONSchema'
+        type: object
+        x-nullable: false
+      description:
+        type: string
+        x-nullable: false
+      else:
+        $ref: '#/definitions/SupportedJSONSchema'
+      enum:
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      exclusiveMaximum:
+        format: int64
+        type: integer
+        x-nullable: false
+      exclusiveMinimum:
+        format: int64
+        type: integer
+        x-nullable: false
+      hidden:
+        type: boolean
+        x-nullable: false
+      if:
+        $ref: '#/definitions/SupportedJSONSchema'
+      items:
+        $ref: '#/definitions/SupportedJSONSchema'
+      maxContains:
+        format: int64
+        type: integer
+        x-nullable: false
+      maxItems:
+        description: arrays
+        format: int64
+        type: integer
+        x-nullable: false
+      maxLength:
+        description: strings
+        format: int64
+        type: integer
+        x-nullable: false
+      maxProperties:
+        description: objects
+        format: int64
+        type: integer
+        x-nullable: false
+      maximum:
+        format: int64
+        type: integer
+        x-nullable: false
+      minContains:
+        format: int64
+        type: integer
+        x-nullable: false
+      minItems:
+        format: int64
+        type: integer
+        x-nullable: false
+      minLength:
+        format: int64
+        type: integer
+        x-nullable: false
+      minProperties:
+        format: int64
+        type: integer
+        x-nullable: false
+      minimum:
+        format: int64
+        type: integer
+        x-nullable: false
+      multipleOf:
+        description: numeric
+        format: int64
+        type: integer
+        x-nullable: false
+      not:
+        $ref: '#/definitions/SupportedJSONSchema'
+      oneOf:
+        items:
+          $ref: '#/definitions/SupportedJSONSchema'
+        type: array
+        x-nullable: false
+      pattern:
+        type: string
+        x-nullable: false
+      patternProperties:
+        additionalProperties:
+          $ref: '#/definitions/SupportedJSONSchema'
+        type: object
+        x-nullable: false
+      properties:
+        additionalProperties:
+          $ref: '#/definitions/SupportedJSONSchema'
+        type: object
+        x-nullable: false
+      propertyNames:
+        $ref: '#/definitions/SupportedJSONSchema'
+      required:
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      then:
+        $ref: '#/definitions/SupportedJSONSchema'
+      type:
+        description: any
+        type: string
+        x-nullable: false
+      uniqueItems:
+        type: boolean
+        x-nullable: false
+    type: object
+  UpdateUser:
+    properties:
+      metadata:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+      metadata_schema_id:
+        format: schemaID
+        type: string
+        x-nullable: false
+      payload:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+      payload_schema_id:
+        format: schemaID
+        type: string
+        x-nullable: false
+      status:
+        enum:
+        - active
+        - inactive
+        - deleted
+        - new
+        type: string
+        x-nullable: false
+    type: object
+  UserCredential:
+    properties:
+      created_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      id:
+        format: userCredentialID
+        type: string
+        x-nullable: false
+      payload:
+        example:
+          hashed_password: '###'
+        type: object
+        x-nullable: false
+      tenant_id:
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      type:
+        enum:
+        - password
+        example: password
+        type: string
+        x-nullable: false
+      updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      user_id:
+        format: userID
+        type: string
+        x-nullable: false
+      user_pool_id:
+        example: default
+        format: poolID
+        type: string
+        x-nullable: false
+    required:
+    - tenant_id
+    - user_pool_id
+    - user_id
+    - type
+    - payload
+    - created_at
+    - updated_at
+    type: object
+  UserID:
+    properties:
+      id:
+        format: userID
+        type: string
+        x-nullable: false
+    required:
+    - id
+    type: object
+  UserIdentifier:
+    properties:
+      created_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      id:
+        format: userIdentifierID
+        type: string
+        x-nullable: false
+      identifier:
+        format: userIdentifierValue
+        type: string
+        x-nullable: false
+      tenant_id:
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      type:
+        enum:
+        - email
+        - mobile
+        - uid
+        - external
+        example: email
+        type: string
+        x-nullable: false
+      updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      user_id:
+        format: userID
+        type: string
+        x-nullable: false
+      user_pool_id:
+        example: default
+        format: poolID
+        type: string
+        x-nullable: false
+    required:
+    - tenant_id
+    - user_pool_id
+    - identifier
+    - user_id
+    - type
+    - created_at
+    - updated_at
+    type: object
+  UserVerifiableAddress:
+    properties:
+      address:
+        format: verifiableAddress
+        type: string
+        x-nullable: false
+      created_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      id:
+        format: verifiableAddressID
+        type: string
+        x-nullable: false
+      preferred_contact_method:
+        enum:
+        - sms
+        - voice
+        example: sms
+        type: string
+        x-nullable: false
+      status:
+        enum:
+        - active
+        - inactive
+        example: active
+        type: string
+        x-nullable: false
+      tenant_id:
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      type:
+        enum:
+        - email
+        - mobile
+        example: mobile
+        type: string
+        x-nullable: false
+      updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      user_id:
+        format: userID
+        type: string
+        x-nullable: false
+      user_pool_id:
+        example: default
+        format: poolID
+        type: string
+        x-nullable: false
+      verified:
+        type: boolean
+        x-nullable: false
+      verified_at:
+        format: date-time
+        type: string
+        x-nullable: false
+    required:
+    - tenant_id
+    - user_pool_id
+    - user_id
+    - address
+    - type
+    - status
+    - verified
+    - created_at
+    - updated_at
+    type: object
+  UserWithData:
+    properties:
+      created_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      credentials:
+        items:
+          $ref: '#/definitions/UserCredential'
+        type: array
+        x-nullable: false
+      id:
+        format: userID
+        type: string
+        x-nullable: false
+      identifiers:
+        items:
+          $ref: '#/definitions/UserIdentifier'
+        type: array
+        x-nullable: false
+      metadata:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+      metadata_schema_id:
+        format: schemaID
+        type: string
+        x-nullable: false
+      payload:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+      payload_schema_id:
+        format: schemaID
+        type: string
+        x-nullable: false
+      status:
+        enum:
+        - active
+        - inactive
+        - deleted
+        - new
+        type: string
+        x-nullable: false
+      status_updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      tenant_id:
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      user_pool_id:
+        example: default
+        format: poolID
+        type: string
+        x-nullable: false
+      verifiable_addresses:
+        items:
+          $ref: '#/definitions/UserVerifiableAddress'
+        type: array
+        x-nullable: false
+    required:
+    - tenant_id
+    - user_pool_id
+    - status
+    type: object
+  Users:
+    properties:
+      users:
+        items:
+          $ref: '#/definitions/ExtendedUser'
+        type: array
+        x-nullable: false
+    type: object
+  VerifyOTP:
+    properties:
+      code:
+        type: string
+        x-nullable: false
+      id:
+        type: string
+        x-nullable: false
+      identifier:
+        example: sample@email.com/+48123456789
+        type: string
+        x-nullable: false
+    required:
+    - code
+    type: object
+  VerifyPassword:
+    properties:
+      id:
+        type: string
+        x-nullable: false
+      identifier:
+        example: sample@email.com/+48123456789
+        type: string
+        x-nullable: false
+      password:
+        type: string
+        x-nullable: false
+    required:
+    - password
+    type: object
+host: localhost:8443
+info:
+  description: Cloudentity Authorization Control Plane Identity API
+  title: Cloudentity Authorization Control Plane API
+  version: latest
+paths:
+  /admin/pools:
+    get:
+      description: Lists pools.
+      operationId: listPools
+      responses:
+        "200":
+          description: Pools
+          schema:
+            $ref: '#/definitions/Pools'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: List Pools
+      tags:
+      - Pools
+    post:
+      description: |-
+        Creates a pool.
+        If metadata or payload IDs are not provided,
+        they default to `default_payload` and `default_metadata` system schemas.
+      operationId: createPool
+      parameters:
+      - in: body
+        name: Pool
+        schema:
+          $ref: '#/definitions/Pool'
+      responses:
+        "201":
+          description: Pool
+          schema:
+            $ref: '#/definitions/Pool'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "409":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Create Pool
+      tags:
+      - Pools
+  /admin/pools/{ipID}:
+    delete:
+      description: Deletes pool.
+      operationId: deletePool
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      responses:
+        "204":
+          description: ' Pool has been deleted'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Delete Pool
+      tags:
+      - Pools
+    get:
+      description: Gets pool.
+      operationId: getPool
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/PoolResponse'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Get Pool
+      tags:
+      - Pools
+    put:
+      description: Updates pool.
+      operationId: updatePool
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: body
+        name: Pool
+        schema:
+          $ref: '#/definitions/Pool'
+      responses:
+        "200":
+          description: Pool
+          schema:
+            $ref: '#/definitions/Pool'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "409":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Update Pool
+      tags:
+      - Pools
+  /admin/pools/{ipID}/users:
+    get:
+      description: Lists users.
+      operationId: listUsers
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - description: |-
+          optional list users after given id
+          AfterUserID
+        in: query
+        name: after_user_id
+        type: string
+      - description: |-
+          optional list users before given id
+          BeforeUserID
+        in: query
+        name: before_user_id
+        type: string
+      - description: |-
+          optional sort clients by given field
+          Sort
+        in: query
+        name: sort
+        type: string
+      - description: |-
+          optional order clients by given direction
+          Order
+        in: query
+        name: order
+        type: string
+      - default: 20
+        description: |-
+          optional limit results
+          Limit
+        format: int64
+        in: query
+        maximum: 100
+        minimum: 1
+        name: limit
+        type: integer
+      - description: |-
+          optional query filter
+          query is in json format like {"user_key":"john"} - parameter must be url-encoded
+          supported parameters
+          `user_key` - limits user set to users that has identifier starting or ending with provided user_key or has verified address starting or ending with provided user_key or their ID is equal to provided user_key
+          `payload` - limits user set to users with payload matches provided metadata - for simple values it does exact match, for arrays it does `contain`
+          `metadata` - limits user set to users with metadata matches provided metadata - for simple values it does exact match, for arrays it does `contain`
+          if multiple parameters provided it does logical AND between the results so users must match ALL parameters
+        in: query
+        name: query
+        type: string
+      responses:
+        "200":
+          description: Users
+          schema:
+            $ref: '#/definitions/Users'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: List Users
+      tags:
+      - Users
+    post:
+      description: |-
+        Creates a user with extended data. User can be created with any status and set of identifiers, addresses and credentials.
+        If payload schema ID or metadata schema ID is not provided, they default to the value from Identity Pool.
+        Payload and metadata must be valid against a proper schema.
+        Returns an extended view on user entry (see Get User endpoint).
+      operationId: createUser
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: body
+        name: NewUser
+        schema:
+          $ref: '#/definitions/NewUser'
+      responses:
+        "201":
+          $ref: '#/responses/UserResponse'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "409":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Create User
+      tags:
+      - Users
+  /admin/pools/{ipID}/users/{userID}:
+    delete:
+      description: Deletes user.
+      operationId: deleteUser
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: userID
+        required: true
+        type: string
+      responses:
+        "204":
+          description: ' User has been deleted'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Delete User
+      tags:
+      - Users
+    get:
+      description: |-
+        Returns an extended view on user entry.
+        Besides the basic user entry, it returns all user identifiers, addresses, and credentials (blurred).
+        User payload and metadata are also returned.
+      operationId: getUser
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: userID
+        required: true
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/UserResponse'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Get User
+      tags:
+      - Users
+    put:
+      description: |-
+        Updates base set of user data like payload, metadata, schemas and status.
+        Updates only provided fields - overrides them. Not provided fields are not removed/cleared.
+        If payload or metadata is provided it must be valid against proper schema.
+        If any schema is provided then the corresponding entry (payload or metadata) must be valid against it.
+        Returns an extended view on user entry (see Get User endpoint).
+      operationId: updateUser
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: userID
+        required: true
+        type: string
+      - in: body
+        name: UpdateUser
+        schema:
+          $ref: '#/definitions/UpdateUser'
+      responses:
+        "200":
+          $ref: '#/responses/UserResponse'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "409":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Update User
+      tags:
+      - Users
+  /admin/pools/{ipID}/users/{userID}/activation/send:
+    post:
+      description: |-
+        Sends an activation message to user to provided identifier.
+        If an identifier is not provided then it takes user address as destination (if only one address exists)
+        Fails if:
+        identifier is not provided
+        user has no addresses
+        more than one destination is someone's else verified address
+        identifier user status is not New.
+        Invalidates previously generated OTPs for user activation.
+        If `code_type_in_message` query parameter was set to link or not provided then a link will be generated for activation.
+        Activation message is valid for specific period of time configured in Identity Pool.
+      operationId: sendActivationMessage
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: userID
+        required: true
+        type: string
+      - in: body
+        name: SendActivationMessage
+        schema:
+          $ref: '#/definitions/RequestActivation'
+      - default: link
+        description: Code type in message
+        enum:
+        - link
+        - code
+        in: query
+        name: code_type_in_message
+        type: string
+      responses:
+        "204":
+          description: ' Activation message sent'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Send Activation Message
+      tags:
+      - Users
+  /admin/schemas:
+    get:
+      description: Lists schemas.
+      operationId: listSchemas
+      responses:
+        "200":
+          description: Schemas
+          schema:
+            $ref: '#/definitions/Schemas'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: List Schemas
+      tags:
+      - Schemas
+    post:
+      description: Creates schema. If the `system` flag is set then that schema cannot
+        be later deleted or modified.
+      operationId: createSchema
+      parameters:
+      - in: body
+        name: Schema
+        schema:
+          $ref: '#/definitions/Schema'
+      responses:
+        "201":
+          description: Schema
+          schema:
+            $ref: '#/definitions/Schema'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "409":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Create Schema
+      tags:
+      - Schemas
+  /admin/schemas/{schID}:
+    delete:
+      description: Deletes schema. It is not possible to delete schema marked as `system`.
+      operationId: deleteSchema
+      parameters:
+      - in: path
+        name: schID
+        required: true
+        type: string
+      responses:
+        "204":
+          description: ' Schema has been deleted'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "409":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Delete Schema
+      tags:
+      - Schemas
+    get:
+      description: Gets schema.
+      operationId: getSchema
+      parameters:
+      - in: path
+        name: schID
+        required: true
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/SchemaResponse'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Get Schema
+      tags:
+      - Schemas
+    put:
+      description: Updates schema. It is not possible to update schema marked as `system`.
+      operationId: updateSchema
+      parameters:
+      - in: path
+        name: schID
+        required: true
+        type: string
+      - in: body
+        name: Schema
+        schema:
+          $ref: '#/definitions/Schema'
+      responses:
+        "200":
+          description: Schema
+          schema:
+            $ref: '#/definitions/Schema'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "409":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Update Schema
+      tags:
+      - Schemas
+  /system/pools/{ipID}:
+    get:
+      description: Gets pool.
+      operationId: systemGetPool
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/PoolResponse'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - system:
+        - identity
+      summary: Get Pool
+      tags:
+      - Pools
+  /system/pools/{ipID}/user/activate:
+    post:
+      description: |-
+        Activates (changes status to Active) user using extended OTP if the provided code is valid.
+        Password is optional.
+        Marks address as verified if it's not yet a verified address of this user.
+        Adds address as identifier if it's not yet an identifier of this user.
+        Invalidates used OTP for account activation.
+        Fails if address where OTP was sent still belongs to this user.
+        Fails if user status is not New.
+        Fails if user has password set already and password was provided.
+        Returns an extended view on user entry (see Get User endpoint).
+        Endpoint is protected by Brute Force mechanism.
+      operationId: activateSelfRegisteredUserUsingExtendedCode
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: body
+        name: Activation
+        schema:
+          $ref: '#/definitions/ActivateSelfRegisteredUser'
+      responses:
+        "201":
+          $ref: '#/responses/UserResponse'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - system:
+        - identity
+      summary: Activate User Using Extended Code
+      tags:
+      - Users
+  /system/pools/{ipID}/user/otp/inspect:
+    post:
+      description: |-
+        Verifies if the provided extended OTP is valid and returns basic user operational data.
+        Endpoint is protected by Brute Force mechanism.
+        This endpoint is meant for UI integration during user activation.
+      operationId: inspectOTP
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: body
+        name: InspectOTP
+        schema:
+          $ref: '#/definitions/InspectOTP'
+      responses:
+        "200":
+          $ref: '#/responses/InspectOTPResponse'
+        "401":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+      security:
+      - system:
+        - identity
+      summary: Inspect Extended OTP
+      tags:
+      - OTP
+  /system/pools/{ipID}/user/otp/request:
+    post:
+      description: |-
+        Generates and sends OTP to the provided identifier.
+        Identifier must be a valid email or mobile which is marked as a verified address for the user.
+        For validating unverified address userID must be provided.
+        When both userID and identifier are provided then address matching identifier is taken from user pointed by userID.
+        Regardless if the identifier points to some user or not, the request ends successfully to prevent email/mobile enumeration.
+        Requested OTP is valid for specific period of time configured in Identity Pool.
+        Generating new challenge invalidates previous challenge.
+      operationId: requestOTPChallenge
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: body
+        name: RequestOTPChallenge
+        schema:
+          $ref: '#/definitions/RequestOTPChallenge'
+      responses:
+        "204":
+          description: ' Request accepted'
+        "401":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - system:
+        - identity
+      summary: Request OTP Challenge
+      tags:
+      - OTP
+  /system/pools/{ipID}/user/otp/verify:
+    post:
+      description: |-
+        Verifies if the provided OTP is valid or not.
+        This API is meant for challenge OTPs, not for activation or password change.
+        Either identifier (must be user's identifier), user id or extended code must be provided.
+        If the OTP is valid it is removed and a successful response is returned.
+        Endpoint is protected by Brute Force mechanism.
+        This endpoint is meant for integration when external system requests and verifies OTP.
+      operationId: verifyOTP
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: body
+        name: VerifyOTP
+        schema:
+          $ref: '#/definitions/VerifyOTP'
+      responses:
+        "200":
+          $ref: '#/responses/UserIDResponse'
+        "401":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+      security:
+      - system:
+        - identity
+      summary: Verify OTP Challenge
+      tags:
+      - OTP
+  /system/pools/{ipID}/user/password/reset/confirm:
+    post:
+      description: |-
+        Resets password for user if the provided OTP is valid. It's the second and final step of the
+        flow to reset the password.
+        Either identifier (must be a valid email or mobile which is marked as verified address for the user), user id or extended code must be provided.
+        Endpoint returns generic `401` regardless of the reason of failure to prevent email/mobile enumeration.
+        After a successful password reset, OTP gets invalidated, so it cannot be reused.
+        Endpoint is protected by Brute Force mechanism.
+      operationId: confirmResetPassword
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: body
+        name: ConfirmResetPassword
+        schema:
+          $ref: '#/definitions/ConfirmResetPassword'
+      responses:
+        "204":
+          description: ' Password reset'
+        "401":
+          $ref: '#/responses/httpError'
+      security:
+      - system:
+        - identity
+      summary: Confirm Reset Password
+      tags:
+      - Users
+  /system/pools/{ipID}/user/password/reset/request:
+    post:
+      description: |-
+        Sends OTP for password reset. It's first out of two steps of the reset password flow.
+        Identifier must be a valid email or mobile which is marked as verified address for the user.
+        For validating unverified address userID must be provided.
+        When both userID and identifier are provided then address matching identifier is taken from user pointed by userID.
+        Regardless if the identifier points to some user or not, the request ends successfully to
+        prevent email/mobile enumeration.
+        Invalidates previously generated OTPs for password reset.
+        Reset password OTP is valid for a specific period of time configured in Identity Pool.
+      operationId: requestResetPassword
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: body
+        name: RequestResetPassword
+        schema:
+          $ref: '#/definitions/RequestResetPassword'
+      - default: link
+        description: Code type in message
+        enum:
+        - link
+        - code
+        in: query
+        name: code_type_in_message
+        type: string
+      responses:
+        "204":
+          description: ' Request accepted'
+        "401":
+          $ref: '#/responses/httpError'
+      security:
+      - system:
+        - identity
+      summary: Request Reset Password
+      tags:
+      - Users
+  /system/pools/{ipID}/user/password/verify:
+    post:
+      description: |-
+        Verifies user's password.
+        Either identifier (must be user's identifier) or user ID must be provided.
+        Endpoint is protected by Brute Force mechanism.
+        This endpoint is meant for integration when external system verifies user's password.
+      operationId: verifyPassword
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: body
+        name: VerifyPassword
+        schema:
+          $ref: '#/definitions/VerifyPassword'
+      responses:
+        "200":
+          $ref: '#/responses/UserIDResponse'
+        "401":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+      security:
+      - system:
+        - identity
+      summary: Verify User's Password
+      tags:
+      - Users
+  /system/pools/{ipID}/user/register:
+    post:
+      description: |-
+        Creates user using a very basic set of data provided by the user.
+        Payload and password are optional.
+        Sets payload and metadata schemas to ones from Identity Pool.
+        Sets user status to New
+        If payload is provided it must be valid against payload schema.
+        Request fails if self registration for Identity Pool is not allowed.
+        If identifier is someone's verified address or identifier endpoint returns that user ID and end successfully
+        to prevent email/mobile enumeration. In the same time user whose email/mobile was provided will get notification that
+        identifier is already used.
+        If `send_activation_message` query parameter was set to `true`, activation message is sent to provided identifier.
+        If `code_type_in_message` query parameter was set to link or not provided, link is generated for activation.
+        Activation message is valid for specific period of time configured in Identity Pool.
+        If the request succeeds, a new user ID is returned.
+        Endpoint is protected by Brute Force mechanism.
+      operationId: selfRegisterUser
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: body
+        name: NewUser
+        schema:
+          $ref: '#/definitions/SelfRegisterUser'
+      - default: true
+        description: Send activation message
+        in: query
+        name: send_activation_message
+        type: boolean
+      - default: link
+        description: Code type in message
+        enum:
+        - link
+        - code
+        in: query
+        name: code_type_in_message
+        type: string
+      responses:
+        "201":
+          $ref: '#/responses/UserIDResponse'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - system:
+        - identity
+      summary: Self Register User
+      tags:
+      - Users
+  /system/pools/{ipID}/users:
+    get:
+      description: Lists users.
+      operationId: systemListUsers
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - description: |-
+          optional list users after given id
+          AfterUserID
+        in: query
+        name: after_user_id
+        type: string
+      - description: |-
+          optional list users before given id
+          BeforeUserID
+        in: query
+        name: before_user_id
+        type: string
+      - description: |-
+          optional sort clients by given field
+          Sort
+        in: query
+        name: sort
+        type: string
+      - description: |-
+          optional order clients by given direction
+          Order
+        in: query
+        name: order
+        type: string
+      - default: 20
+        description: |-
+          optional limit results
+          Limit
+        format: int64
+        in: query
+        maximum: 100
+        minimum: 1
+        name: limit
+        type: integer
+      - description: |-
+          optional query filter
+          query is in json format like {"user_key":"john"} - parameter must be url-encoded
+          supported parameters
+          `user_key` - limits user set to users that has identifier starting or ending with provided user_key or has verified address starting or ending with provided user_key or their ID is equal to provided user_key
+          `payload` - limits user set to users with payload matches provided metadata - for simple values it does exact match, for arrays it does `contain`
+          `metadata` - limits user set to users with metadata matches provided metadata - for simple values it does exact match, for arrays it does `contain`
+          if multiple parameters provided it does logical AND between the results so users must match ALL parameters
+        in: query
+        name: query
+        type: string
+      responses:
+        "200":
+          description: Users
+          schema:
+            $ref: '#/definitions/Users'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - system:
+        - identity
+      summary: List Users
+      tags:
+      - Users
+    post:
+      description: |-
+        Creates a user with extended data. User can be created with any status and set of identifiers, addresses and credentials.
+        If payload schema ID or metadata schema ID is not provided, they default to the value from Identity Pool.
+        Payload and metadata must be valid against a proper schema.
+        Returns an extended view on user entry (see Get User endpoint).
+      operationId: systemCreateUser
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: body
+        name: NewUser
+        schema:
+          $ref: '#/definitions/NewUser'
+      responses:
+        "201":
+          $ref: '#/responses/UserResponse'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "409":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - system:
+        - identity
+      summary: Create User
+      tags:
+      - Users
+  /system/pools/{ipID}/users/{userID}:
+    delete:
+      description: Deletes user.
+      operationId: systemDeleteUser
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: userID
+        required: true
+        type: string
+      responses:
+        "204":
+          description: ' User has been deleted'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - system:
+        - identity
+      summary: Delete User
+      tags:
+      - Users
+    get:
+      description: |-
+        Returns an extended view on user entry.
+        Besides the basic user entry, it returns all user identifiers, addresses, and credentials (blurred).
+        User payload and metadata are also returned.
+      operationId: systemGetUser
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: userID
+        required: true
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/UserResponse'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - system:
+        - identity
+      summary: Get User
+      tags:
+      - Users
+    put:
+      description: |-
+        Updates base set of user data like payload, metadata, schemas and status.
+        Updates only provided fields - overrides them. Not provided fields are not removed/cleared.
+        If payload or metadata is provided it must be valid against proper schema.
+        If any schema is provided then the corresponding entry (payload or metadata) must be valid against it.
+        Returns an extended view on user entry (see Get User endpoint).
+      operationId: systemUpdateUser
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: userID
+        required: true
+        type: string
+      - in: body
+        name: UpdateUser
+        schema:
+          $ref: '#/definitions/UpdateUser'
+      responses:
+        "200":
+          $ref: '#/responses/UserResponse'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "409":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - system:
+        - identity
+      summary: Update User
+      tags:
+      - Users
+  /system/pools/{ipID}/users/{userID}/activate:
+    post:
+      description: |-
+        Activates (changes status to Active) user if provided code is valid.
+        Password is optional.
+        Marks address as verified if not already this user's verified address.
+        Adds address as identifier if not already this user's identifier.
+        Invalidates used OTP for account activation.
+        Fails if address where OTP was sent still belongs to this user.
+        Fails if user status is not New.
+        Fails if user has password set and password was provided.
+        Returns an extended view on user entry (see Get User endpoint).
+        Endpoint is protected by Brute Force mechanism.
+      operationId: activateSelfRegisteredUser
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: userID
+        required: true
+        type: string
+      - in: body
+        name: Activation
+        schema:
+          $ref: '#/definitions/ActivateSelfRegisteredUser'
+      responses:
+        "201":
+          $ref: '#/responses/UserResponse'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - system:
+        - identity
+      summary: Activate User With Code
+      tags:
+      - Users
+  /system/pools/{ipID}/users/{userID}/activation/generate:
+    post:
+      deprecated: true
+      description: |-
+        Generate an activation code for provided identifier
+        Invalidates previously generated OTPs for user activation.
+        Activation code is valid for specific period of time configured in Identity Pool.
+
+        NOTE: this API is deprecated, please use the one for generating code of a specific type with type `activation`
+      operationId: generateActivationCode
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: userID
+        required: true
+        type: string
+      - in: body
+        name: ActivationCodeRequest
+        schema:
+          $ref: '#/definitions/RequestActivation'
+      responses:
+        "201":
+          $ref: '#/responses/CodeIDResponse'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - system:
+        - identity_self_registration
+      summary: Generate Activation Code
+      tags:
+      - Users
+  /system/pools/{ipID}/users/{userID}/activation/send:
+    post:
+      description: |-
+        Sends activation message to user to provided identifier.
+        If identifier is not provided then it takes user address as destination if there is only one
+        Endpoint does not fail to prevent email/mobile enumeration.
+        It does not send message if:
+        identifier is not provided and user has no addresses or more than one
+        destination is someone's else verified address or identifier
+        user status is not New.
+        If destination is someone's else verified address or identifier user whose email/mobile was provided
+        will get notification that identifier is already used.
+        Invalidates previously generated OTPs for user activation.
+        If `code_type_in_message` query parameter was set to link or not provided then link will be generated for activation.
+        Activation message is valid for specific period of time configured in Identity Pool.
+      operationId: selfSendActivationMessage
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: userID
+        required: true
+        type: string
+      - in: body
+        name: SendActivationMessage
+        schema:
+          $ref: '#/definitions/RequestActivation'
+      - default: link
+        description: Code type in message
+        enum:
+        - link
+        - code
+        in: query
+        name: code_type_in_message
+        type: string
+      responses:
+        "204":
+          description: ' Activation message sent'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - system:
+        - identity
+      summary: Send Activation Message
+      tags:
+      - Users
+  /system/pools/{ipID}/users/{userID}/address/verification/complete:
+    post:
+      description: |-
+        Completes unverified address verification by checking if code is valid or not.
+        Both address and code must be provided.
+        Fails if address is not user's address or is user's verified or is someone's verified address.
+        If the OTP is valid it is removed and a successful response is returned.
+        Endpoint is protected by Brute Force mechanism.
+      operationId: completeAddressVerification
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: userID
+        required: true
+        type: string
+      - in: body
+        name: CompleteAddressVerification
+        schema:
+          $ref: '#/definitions/CompleteAddressVerification'
+      responses:
+        "204":
+          description: ' Request accepted'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "409":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+      security:
+      - system:
+        - identity
+      summary: Complete Address Verification
+      tags:
+      - OTP
+  /system/pools/{ipID}/users/{userID}/address/verification/request:
+    post:
+      description: |-
+        Generates and sends verification code to the provided address.
+        Identifier must be a valid email or mobile which is marked as an unverified address for the user and is not someone's verified address.
+        If address is someone's verified address, the request ends successfully to prevent email/mobile enumeration.
+        Requested code is valid for specific period of time configured in Identity Pool.
+      operationId: requestAddressVerification
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: userID
+        required: true
+        type: string
+      - in: body
+        name: RequestAddressVerification
+        schema:
+          $ref: '#/definitions/RequestOTPForAddress'
+      responses:
+        "204":
+          description: ' Request accepted'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "409":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - system:
+        - identity
+      summary: Request Address Verification
+      tags:
+      - OTP
+  /system/pools/{ipID}/users/{userID}/change_password:
+    post:
+      description: |-
+        Changes user password if the provided password matches the current user password.
+        Fails if the current password is not set. For setting a password for user use the reset password flow.
+        Endpoint is protected by Brute Force mechanism.
+      operationId: changePassword
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: userID
+        required: true
+        type: string
+      - in: body
+        name: ChangePassword
+        schema:
+          $ref: '#/definitions/ChangePassword'
+      responses:
+        "204":
+          description: ' Password has been changed'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - system:
+        - identity
+      summary: Change Password
+      tags:
+      - Users
+  /system/pools/{ipID}/users/{userID}/code/generate:
+    post:
+      description: |-
+        Generate code of a specific type for provided identifier
+        Invalidates previously generated OTPs for action associated with the type.
+        Code is valid for specific period of time configured in Identity Pool.
+
+        Keep in mind that `identifier` attribute for different code types does not mean the same:
+        for `reset_password` and `challenge` it must be user's address (verified or unverified)
+        for `activation` it is not mandatory (system will pick up address itself if there is only one in user entry) but if provided it must be one of the user's addresses (can be not verified)
+        for `verify_address` it must be user's unverified address and that address cannot be someone's else verified address
+
+        For `activation`, `reset_password` and `challenge` there is only one active code for a user (generating new one invalidates previous)
+        For `verify_address` there might be many codes for a user. During verification latest for an address is being compared.
+      operationId: generateCode
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: userID
+        required: true
+        type: string
+      - in: body
+        name: CodeRequest
+        schema:
+          $ref: '#/definitions/RequestCode'
+      responses:
+        "201":
+          $ref: '#/responses/GenerateCodeResponse'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - system:
+        - identity_self_registration
+      summary: Generate code of a specific type
+      tags:
+      - Users
+  /system/schemas/{schID}:
+    get:
+      description: Gets schema.
+      operationId: systemGetSchema
+      parameters:
+      - in: path
+        name: schID
+        required: true
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/SchemaResponse'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - system:
+        - identity
+      summary: Get Schema
+      tags:
+      - Schemas
+produces:
+- application/json
+responses:
+  CodeIDResponse:
+    description: User
+    schema:
+      $ref: '#/definitions/CodeID'
+  GenerateCodeResponse:
+    description: User
+    schema:
+      $ref: '#/definitions/Codes'
+  InspectOTPResponse:
+    description: OTP
+    schema:
+      $ref: '#/definitions/InspectOTPUserOperationalData'
+  PoolResponse:
+    description: Identity Pool
+    schema:
+      $ref: '#/definitions/Pool'
+  PoolsResponse:
+    description: Identity Pools
+    schema:
+      $ref: '#/definitions/Pools'
+  SchemaResponse:
+    description: Identity Schema
+    schema:
+      $ref: '#/definitions/Schema'
+  SchemasResponse:
+    description: Identity Schemas
+    schema:
+      $ref: '#/definitions/Schemas'
+  UserIDResponse:
+    description: User
+    schema:
+      $ref: '#/definitions/UserID'
+  UserResponse:
+    description: User
+    schema:
+      $ref: '#/definitions/UserWithData'
+  UsersResponse:
+    description: Identity Users
+    schema:
+      $ref: '#/definitions/Users'
+  httpError:
+    description: HttpError
+    schema:
+      $ref: '#/definitions/Error'
+schemes:
+- https
+securityDefinitions:
+  admin:
+    authorizationUrl: /default/admin/oauth2/authorize
+    flow: accessCode
+    tokenUrl: /default/admin/oauth2/token
+    type: oauth2
+  system:
+    authorizationUrl: /default/system/oauth2/authorize
+    flow: accessCode
+    scopes:
+      identity: identity
+      identity_self_registration: identity_self_registration
+    tokenUrl: /default/system/oauth2/token
+    type: oauth2
+swagger: "2.0"

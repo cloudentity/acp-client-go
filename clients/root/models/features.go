@@ -20,14 +20,8 @@ type Features struct {
 	// enable admin workspace access (tenant)
 	AdminWorkspaceAccess bool `json:"admin_workspace_access,omitempty"`
 
-	// enable analytics (tenant)
-	Analytics bool `json:"analytics,omitempty"`
-
-	// enable analytics v2 (tenant)
-	AnalyticsV2 bool `json:"analytics_v2,omitempty"`
-
-	// enable Audit Events UI (tenant)
-	AuditEventsUI bool `json:"audit_events_ui,omitempty"`
+	// block access to tenant for traffic not originated from the vanity domain
+	BlockNonVanityDomainAccess bool `json:"block_non_vanity_domain_access,omitempty"`
 
 	// enable ciba (system)
 	Ciba bool `json:"ciba,omitempty"`
@@ -35,32 +29,47 @@ type Features struct {
 	// store client secrets as a one way hash (tenant)
 	ClientSecretsStoredAsOneWayHash bool `json:"client_secrets_stored_as_one_way_hash,omitempty"`
 
+	// enable Cloudentity IDP (tenant)
+	CloudentityIdp bool `json:"cloudentity_idp,omitempty"`
+
 	// enable demo app endpoints (system)
 	DemoApp bool `json:"demo_app,omitempty"`
 
 	// realod templates and adds local redirects urls to frontend apps (system)
 	DevMode bool `json:"dev_mode,omitempty"`
 
-	// enable pushing events to elasticsearch (system)
-	Elasticsearch bool `json:"elasticsearch,omitempty"`
-
 	// extended audit events retention
 	ExtendedAuditEventsRetention bool `json:"extended_audit_events_retention,omitempty"`
 
-	// enable external datastore idp (system)
-	ExternalDatastore bool `json:"external_datastore,omitempty"`
-
-	// enable Identity Pools (tenant)
-	IdentityPools bool `json:"identity_pools,omitempty"`
+	// FDX (tenant)
+	Fdx bool `json:"fdx,omitempty"`
 
 	// when enabled and the display_workspace_wizard feature flag is set to true, a demo workspace with a set of preconfigured IDPs is created and no welcome screen is displayed (tenant)
 	InitializeDemoWorkspace bool `json:"initialize_demo_workspace,omitempty"`
 
+	// INSECURE disable csrf (tenant)
+	InsecureDisableCsrf bool `json:"insecure_disable_csrf,omitempty"`
+
+	// enable insecure token exchange public clients (tenant)
+	InsecureTokenExchangePublicClients bool `json:"insecure_token_exchange_public_clients,omitempty"`
+
 	// enable global import and export configuration endpoints (system)
 	IntegrationEndpoints bool `json:"integration_endpoints,omitempty"`
 
+	// enable Kusk API Gateway (tenant)
+	Kusk bool `json:"kusk,omitempty"`
+
 	// enable login with select_account param (tenant)
 	LoginWithSelectAccount bool `json:"login_with_select_account,omitempty"`
+
+	// enable consents v2 apis for open banking brasil
+	OpenbankingBrasilConsentsV2 bool `json:"openbanking_brasil_consents_v2,omitempty"`
+
+	// enable planet scale authorization
+	PlanetScaleAuthorization bool `json:"planet_scale_authorization,omitempty"`
+
+	// enable planet scale identity
+	PlanetScaleIdentity bool `json:"planet_scale_identity,omitempty"`
 
 	// enable when ACP is running on-prem and Pyron is used as a gateway (tenant)
 	PyronOnPrem bool `json:"pyron_on_prem,omitempty"`
@@ -68,32 +77,29 @@ type Features struct {
 	// enable quick access functionality on UI (system)
 	QuickAccess bool `json:"quick_access,omitempty"`
 
+	// enable SAML (tenant)
+	Saml bool `json:"saml,omitempty"`
+
 	// enable scope transient_otp (tenant)
 	ScopeTransientOtp bool `json:"scope_transient_otp,omitempty"`
 
 	// enable the javascript transformer (tenant)
 	ScriptTransformer bool `json:"script_transformer,omitempty"`
 
-	// enable custom scripts (tenant)
-	Scripts bool `json:"scripts,omitempty"`
-
 	// enable swagger ui (system)
 	SwaggerUI bool `json:"swagger_ui,omitempty"`
-
-	// enable system client management APIs (system)
-	SystemClientsManagement bool `json:"system_clients_management,omitempty"`
 
 	// enable admin workspace access (tenant)
 	SystemWorkspaceAccess bool `json:"system_workspace_access,omitempty"`
 
+	// enable Custom Branding Themes (tenant)
+	Themes bool `json:"themes,omitempty"`
+
 	// enable Token Exchange (system)
 	TokenExchange bool `json:"token_exchange,omitempty"`
 
-	// enable Token Exchange for authorizers (tenant)
-	TokenExchangeForAuthorizers bool `json:"token_exchange_for_authorizers,omitempty"`
-
-	// enable trust anchor integration (system)
-	TrustAnchorIntegration bool `json:"trust_anchor_integration,omitempty"`
+	// enable Token Exchange Delegation (tenant)
+	TokenExchangeDelegation bool `json:"token_exchange_delegation,omitempty"`
 }
 
 // Validate validates this features

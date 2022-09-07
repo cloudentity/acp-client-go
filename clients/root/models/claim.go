@@ -35,7 +35,11 @@ type Claim struct {
 	// Example: email
 	Name string `json:"name,omitempty"`
 
-	// list of scopes - when at least one of listed scopes has been granted to a client, then claim will be added to id / access token. In case of empty array claim is always added.
+	// included in userinfo/introspect endpoints only
+	Opaque bool `json:"opaque,omitempty"`
+
+	// list of scopes - when at least one of listed scopes has been granted to a client, then claim will be added to id / access token.
+	// In case of empty array claim is always added.
 	// Example: ["email","email_verified"]
 	Scopes []string `json:"scopes"`
 

@@ -1,0 +1,708 @@
+basePath: /default/default/identity
+consumes:
+- application/json
+definitions:
+  ChangePassword:
+    properties:
+      new_password:
+        type: string
+        x-nullable: false
+      old_password:
+        type: string
+        x-nullable: false
+    required:
+    - old_password
+    - new_password
+    type: object
+  CodeID:
+    properties:
+      code_id:
+        format: codeID
+        type: string
+        x-nullable: false
+    required:
+    - code_id
+    type: object
+  Codes:
+    properties:
+      code:
+        type: string
+        x-nullable: false
+      extended_code:
+        format: codeID
+        type: string
+        x-nullable: false
+    required:
+    - extended_code
+    - code
+    type: object
+  CompleteAddressVerification:
+    properties:
+      address:
+        example: sample@email.com/+48123456789
+        type: string
+        x-nullable: false
+      code:
+        type: string
+        x-nullable: false
+    required:
+    - address
+    - code
+    type: object
+  Error:
+    description: HTTP error response
+    properties:
+      details:
+        type: object
+        x-nullable: false
+      error:
+        type: string
+        x-nullable: false
+      status_code:
+        format: int64
+        type: integer
+        x-nullable: false
+    type: object
+  ExtendedUser:
+    properties:
+      created_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      id:
+        format: userID
+        type: string
+        x-nullable: false
+      identifiers:
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      metadata:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+      metadata_schema_id:
+        format: schemaID
+        type: string
+        x-nullable: false
+      payload:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+      payload_schema_id:
+        format: schemaID
+        type: string
+        x-nullable: false
+      status:
+        enum:
+        - active
+        - inactive
+        - deleted
+        - new
+        example: active
+        type: string
+        x-nullable: false
+      status_updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      tenant_id:
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      user_pool_id:
+        example: default
+        format: poolID
+        type: string
+        x-nullable: false
+      verified addresses:
+        items:
+          type: string
+        type: array
+        x-nullable: false
+    required:
+    - tenant_id
+    - user_pool_id
+    - status
+    type: object
+  ResetPasswordConfirm:
+    properties:
+      code:
+        type: string
+        x-nullable: false
+      identifier:
+        type: string
+        x-nullable: false
+      new_password:
+        type: string
+        x-nullable: false
+    required:
+    - code
+    - new_password
+    type: object
+  SelfUserIdentifier:
+    properties:
+      created_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      identifier:
+        format: userIdentifierValue
+        type: string
+        x-nullable: false
+      type:
+        enum:
+        - email
+        - mobile
+        - uid
+        - external
+        example: email
+        type: string
+        x-nullable: false
+    required:
+    - identifier
+    - type
+    - created_at
+    type: object
+  SelfUserUpdate:
+    properties:
+      payload:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+    type: object
+  SelfUserVerifiableAddress:
+    properties:
+      address:
+        format: verifiableAddress
+        type: string
+        x-nullable: false
+      created_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      preferred_contact_method:
+        enum:
+        - sms
+        - voice
+        example: sms
+        type: string
+        x-nullable: false
+      status:
+        enum:
+        - active
+        - inactive
+        example: active
+        type: string
+        x-nullable: false
+      type:
+        enum:
+        - email
+        - mobile
+        example: mobile
+        type: string
+        x-nullable: false
+      updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      verified:
+        type: boolean
+        x-nullable: false
+      verified_at:
+        format: date-time
+        type: string
+        x-nullable: false
+    required:
+    - address
+    - type
+    - status
+    - verified
+    - created_at
+    - updated_at
+    type: object
+  SelfUserWithData:
+    properties:
+      id:
+        format: userID
+        type: string
+        x-nullable: false
+      identifiers:
+        items:
+          $ref: '#/definitions/SelfUserIdentifier'
+        type: array
+        x-nullable: false
+      metadata:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+      payload:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+      verifiable_addresses:
+        items:
+          $ref: '#/definitions/SelfUserVerifiableAddress'
+        type: array
+        x-nullable: false
+    type: object
+  UserCredential:
+    properties:
+      created_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      id:
+        format: userCredentialID
+        type: string
+        x-nullable: false
+      payload:
+        example:
+          hashed_password: '###'
+        type: object
+        x-nullable: false
+      tenant_id:
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      type:
+        enum:
+        - password
+        example: password
+        type: string
+        x-nullable: false
+      updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      user_id:
+        format: userID
+        type: string
+        x-nullable: false
+      user_pool_id:
+        example: default
+        format: poolID
+        type: string
+        x-nullable: false
+    required:
+    - tenant_id
+    - user_pool_id
+    - user_id
+    - type
+    - payload
+    - created_at
+    - updated_at
+    type: object
+  UserID:
+    properties:
+      id:
+        format: userID
+        type: string
+        x-nullable: false
+    required:
+    - id
+    type: object
+  UserIdentifier:
+    properties:
+      created_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      id:
+        format: userIdentifierID
+        type: string
+        x-nullable: false
+      identifier:
+        format: userIdentifierValue
+        type: string
+        x-nullable: false
+      tenant_id:
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      type:
+        enum:
+        - email
+        - mobile
+        - uid
+        - external
+        example: email
+        type: string
+        x-nullable: false
+      updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      user_id:
+        format: userID
+        type: string
+        x-nullable: false
+      user_pool_id:
+        example: default
+        format: poolID
+        type: string
+        x-nullable: false
+    required:
+    - tenant_id
+    - user_pool_id
+    - identifier
+    - user_id
+    - type
+    - created_at
+    - updated_at
+    type: object
+  UserVerifiableAddress:
+    properties:
+      address:
+        format: verifiableAddress
+        type: string
+        x-nullable: false
+      created_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      id:
+        format: verifiableAddressID
+        type: string
+        x-nullable: false
+      preferred_contact_method:
+        enum:
+        - sms
+        - voice
+        example: sms
+        type: string
+        x-nullable: false
+      status:
+        enum:
+        - active
+        - inactive
+        example: active
+        type: string
+        x-nullable: false
+      tenant_id:
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      type:
+        enum:
+        - email
+        - mobile
+        example: mobile
+        type: string
+        x-nullable: false
+      updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      user_id:
+        format: userID
+        type: string
+        x-nullable: false
+      user_pool_id:
+        example: default
+        format: poolID
+        type: string
+        x-nullable: false
+      verified:
+        type: boolean
+        x-nullable: false
+      verified_at:
+        format: date-time
+        type: string
+        x-nullable: false
+    required:
+    - tenant_id
+    - user_pool_id
+    - user_id
+    - address
+    - type
+    - status
+    - verified
+    - created_at
+    - updated_at
+    type: object
+  UserWithData:
+    properties:
+      created_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      credentials:
+        items:
+          $ref: '#/definitions/UserCredential'
+        type: array
+        x-nullable: false
+      id:
+        format: userID
+        type: string
+        x-nullable: false
+      identifiers:
+        items:
+          $ref: '#/definitions/UserIdentifier'
+        type: array
+        x-nullable: false
+      metadata:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+      metadata_schema_id:
+        format: schemaID
+        type: string
+        x-nullable: false
+      payload:
+        additionalProperties:
+          type: object
+        type: object
+        x-nullable: false
+      payload_schema_id:
+        format: schemaID
+        type: string
+        x-nullable: false
+      status:
+        enum:
+        - active
+        - inactive
+        - deleted
+        - new
+        type: string
+        x-nullable: false
+      status_updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      tenant_id:
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      user_pool_id:
+        example: default
+        format: poolID
+        type: string
+        x-nullable: false
+      verifiable_addresses:
+        items:
+          $ref: '#/definitions/UserVerifiableAddress'
+        type: array
+        x-nullable: false
+    required:
+    - tenant_id
+    - user_pool_id
+    - status
+    type: object
+  Users:
+    properties:
+      users:
+        items:
+          $ref: '#/definitions/ExtendedUser'
+        type: array
+        x-nullable: false
+    type: object
+host: localhost:8443
+info:
+  description: Cloudentity Authorization Control Plane Identity API
+  title: Cloudentity Authorization Control Plane API
+  version: latest
+paths:
+  /public/pools/{ipID}/reset-password/confirm:
+    post:
+      description: |-
+        Resets password for user if the provided OTP is valid. It's the second and final step of the
+        flow to reset the password.
+        Either user identifier or extended code must be provided.
+        Endpoint returns generic `401` regardless of the reason of failure to prevent email/mobile enumeration.
+        After a successful password reset, OTP gets invalidated, so it cannot be reused.
+        Endpoint is protected by Brute Force mechanism.
+      operationId: resetPasswordConfirm
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: body
+        name: ResetPasswordConfirm
+        schema:
+          $ref: '#/definitions/ResetPasswordConfirm'
+      responses:
+        "204":
+          description: ' Password reset'
+        "401":
+          $ref: '#/responses/httpError'
+      summary: Confirm Reset Password
+      tags:
+      - Users
+  /self/address-verification/complete:
+    post:
+      description: |-
+        Completes unverified address verification by checking if code is valid or not.
+        Both address and code must be provided.
+        Fails if address is not user's address or is user's verified or is someone's verified address.
+        If the OTP is valid it is removed and a successful response is returned.
+        Endpoint is protected by Brute Force mechanism.
+      operationId: completeAddressVerification
+      parameters:
+      - in: body
+        name: CompleteAddressVerification
+        schema:
+          $ref: '#/definitions/CompleteAddressVerification'
+      responses:
+        "204":
+          description: ' Request accepted'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "409":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+      summary: Complete Address Verification
+      tags:
+      - OTP
+  /self/change-password:
+    post:
+      description: Changes user password if provided password matches current user
+        password.
+      operationId: changePassword
+      parameters:
+      - in: body
+        name: ChangePassword
+        schema:
+          $ref: '#/definitions/ChangePassword'
+      responses:
+        "204":
+          description: ' Password has been changed'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Change Password
+      tags:
+      - Users
+  /self/me:
+    get:
+      description: |-
+        Returns base view on user entry. Besides basic user entry it returns all user identifiers and addresses.
+        Also returns user metadata (only fields not marked as hidden) and payload.
+      operationId: getUserProfile
+      responses:
+        "200":
+          $ref: '#/responses/GetProfileResponse'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Self Get User Profile
+      tags:
+      - Users
+    put:
+      description: |-
+        Updates user payload.
+        Payload must be valid against schema defined in user entry.
+
+        Returns base view on user entry (see Self Get User Profile endpoint).
+      operationId: updateUserProfile
+      parameters:
+      - in: body
+        name: UpdateUser
+        schema:
+          $ref: '#/definitions/SelfUserUpdate'
+      responses:
+        "200":
+          $ref: '#/responses/GetProfileResponse'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "409":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Self Update User Profile
+      tags:
+      - Users
+produces:
+- application/json
+responses:
+  CodeIDResponse:
+    description: User
+    schema:
+      $ref: '#/definitions/CodeID'
+  GenerateCodeResponse:
+    description: User
+    schema:
+      $ref: '#/definitions/Codes'
+  GetProfileResponse:
+    description: Self
+    schema:
+      $ref: '#/definitions/SelfUserWithData'
+  UserIDResponse:
+    description: User
+    schema:
+      $ref: '#/definitions/UserID'
+  UserResponse:
+    description: User
+    schema:
+      $ref: '#/definitions/UserWithData'
+  UsersResponse:
+    description: Identity Users
+    schema:
+      $ref: '#/definitions/Users'
+  httpError:
+    description: HttpError
+    schema:
+      $ref: '#/definitions/Error'
+schemes:
+- https
+securityDefinitions:
+  admin:
+    authorizationUrl: /default/default/oauth2/authorize
+    flow: accessCode
+    tokenUrl: /default/default/oauth2/token
+    type: oauth2
+swagger: "2.0"
