@@ -172,6 +172,11 @@ type Config struct {
 	// Optional if issuerURL provided
 	AuthorizeURL *url.URL
 
+	// PushedAuthorizationRequestEndpoint is URL of the pushed authorization request endpoint
+	// at which a client can post an authorization request to exchange
+	// for a "request_uri" value usable at the authorization server.
+	PushedAuthorizationRequestEndpoint *url.URL
+
 	// UserinfoURL is the authorization server's userinfo url.
 	// Optional if issuerURL provided
 	UserinfoURL *url.URL
@@ -238,6 +243,14 @@ func (c *Config) GetAuthorizeURL() string {
 	}
 
 	return fmt.Sprintf("%s/oauth2/authorize", c.IssuerURL.String())
+}
+
+func (c *Config) GetPARURL() string {
+	if c.PushedAuthorizationRequestEndpoint != nil {
+		return c.PushedAuthorizationRequestEndpoint.String()
+	}
+
+	return fmt.Sprintf("%s/par", c.IssuerURL.String())
 }
 
 func (c *Config) GetUserinfoURL() string {
@@ -339,6 +352,10 @@ func (c *Client) discoverEndpoints(issuerURL string) error {
 	}
 
 	if c.Config.AuthorizeURL, err = url.Parse(wellKnown.AuthorizationEndpoint); err != nil {
+		return err
+	}
+
+	if c.Config.PushedAuthorizationRequestEndpoint, err = url.Parse(wellKnown.PushedAuthorizationRequestEndpoint); err != nil {
 		return err
 	}
 
@@ -918,6 +935,92 @@ func (c *Client) GenerateClientAssertion() (assertion string, err error) {
 	}
 	t := jwt.NewWithClaims(jwt.SigningMethodRS256, claims)
 	return t.SignedString(c.clientAssertionSigningKey)
+}
+
+type PARResponse struct {
+	ExpiresIn  int64  `json:"expires_in,omitempty"`
+	RequestURI string `json:"request_uri,omitempty"`
+}
+
+func (c *Client) DoPAR(options ...AuthorizeOption) (pr PARResponse, err error) {
+	var (
+		body     []byte
+		csrf     CSRF
+		request  *http.Request
+		response *http.Response
+	)
+
+	if csrf.State, err = randomString(StateLength); err != nil {
+		return pr, err
+	}
+
+	if csrf.Nonce, err = randomString(NonceLength); err != nil {
+		return pr, err
+	}
+
+	values := url.Values{
+		"grant_type":    {"client_credentials"},
+		"response_type": {"code id_token"},
+		"client_id":     {c.Config.ClientID},
+	}
+
+	if c.Config.RedirectURL != nil {
+		values.Set("redirect_uri", c.Config.RedirectURL.String())
+	}
+
+	if len(c.Config.Scopes) > 0 {
+		values.Set("scope", strings.Join(c.Config.Scopes, " "))
+	}
+
+	if c.Config.AuthMethod == ClientSecretPostAuthnMethod {
+		values.Add("client_secret", c.Config.ClientSecret)
+	}
+
+	if c.Config.AuthMethod == PrivateKeyJwtAuthnMethod {
+		var (
+			assertion string
+		)
+		values.Add("client_assertion_type", "urn:ietf:params:oauth:client-assertion-type:jwt-bearer")
+		if assertion, err = c.GenerateClientAssertion(); err != nil {
+			return pr, errors.Wrapf(err, "failed to generate client assertion")
+		}
+		values.Add("client_assertion", assertion)
+	}
+
+	for _, o := range options {
+		if err = o.apply(c, values, &csrf); err != nil {
+			return pr, err
+		}
+	}
+
+	if request, err = http.NewRequest(http.MethodPost, c.Config.GetPARURL(), strings.NewReader(values.Encode())); err != nil {
+		return pr, fmt.Errorf("failed to build request for token exchange: %w", err)
+	}
+
+	if c.Config.AuthMethod == ClientSecretBasicAuthnMethod {
+		request.SetBasicAuth(url.QueryEscape(c.Config.ClientID), url.QueryEscape(c.Config.ClientSecret))
+	}
+
+	request.Header.Add("Content-Type", "application/x-www-form-urlencoded")
+
+	if response, err = c.c.Do(request); err != nil {
+		return pr, fmt.Errorf("failed to do PAR request: %w", err)
+	}
+	defer response.Body.Close()
+
+	if response.StatusCode == http.StatusCreated {
+		if body, err = io.ReadAll(response.Body); err != nil {
+			return pr, fmt.Errorf("failed to read exchange response body: %w", err)
+		}
+	} else {
+		return pr, fmt.Errorf("failed to register PAR request, unexpected status code %d", response.StatusCode)
+	}
+
+	if err = json.Unmarshal(body, &pr); err != nil {
+		return pr, fmt.Errorf("failed to parse exchange response: %w", err)
+	}
+
+	return pr, nil
 }
 
 func (c *Client) Exchange(code string, state string, csrf CSRF) (token Token, err error) {
