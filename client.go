@@ -942,20 +942,19 @@ type PARResponse struct {
 	RequestURI string `json:"request_uri,omitempty"`
 }
 
-func (c *Client) DoPAR(options ...AuthorizeOption) (pr PARResponse, err error) {
+func (c *Client) DoPAR(options ...AuthorizeOption) (pr PARResponse, csrf CSRF, err error) {
 	var (
 		body     []byte
-		csrf     CSRF
 		request  *http.Request
 		response *http.Response
 	)
 
 	if csrf.State, err = randomString(StateLength); err != nil {
-		return pr, err
+		return pr, csrf, err
 	}
 
 	if csrf.Nonce, err = randomString(NonceLength); err != nil {
-		return pr, err
+		return pr, csrf, err
 	}
 
 	values := url.Values{
@@ -982,19 +981,19 @@ func (c *Client) DoPAR(options ...AuthorizeOption) (pr PARResponse, err error) {
 		)
 		values.Add("client_assertion_type", "urn:ietf:params:oauth:client-assertion-type:jwt-bearer")
 		if assertion, err = c.GenerateClientAssertion(); err != nil {
-			return pr, errors.Wrapf(err, "failed to generate client assertion")
+			return pr, csrf, errors.Wrapf(err, "failed to generate client assertion")
 		}
 		values.Add("client_assertion", assertion)
 	}
 
 	for _, o := range options {
 		if err = o.apply(c, values, &csrf); err != nil {
-			return pr, err
+			return pr, csrf, err
 		}
 	}
 
 	if request, err = http.NewRequest(http.MethodPost, c.Config.GetPARURL(), strings.NewReader(values.Encode())); err != nil {
-		return pr, fmt.Errorf("failed to build request for token exchange: %w", err)
+		return pr, csrf, fmt.Errorf("failed to build request for token exchange: %w", err)
 	}
 
 	if c.Config.AuthMethod == ClientSecretBasicAuthnMethod {
@@ -1004,23 +1003,23 @@ func (c *Client) DoPAR(options ...AuthorizeOption) (pr PARResponse, err error) {
 	request.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 
 	if response, err = c.c.Do(request); err != nil {
-		return pr, fmt.Errorf("failed to do PAR request: %w", err)
+		return pr, csrf, fmt.Errorf("failed to do PAR request: %w", err)
 	}
 	defer response.Body.Close()
 
 	if response.StatusCode == http.StatusCreated {
 		if body, err = io.ReadAll(response.Body); err != nil {
-			return pr, fmt.Errorf("failed to read exchange response body: %w", err)
+			return pr, csrf, fmt.Errorf("failed to read exchange response body: %w", err)
 		}
 	} else {
-		return pr, fmt.Errorf("failed to register PAR request, unexpected status code %d", response.StatusCode)
+		return pr, csrf, fmt.Errorf("failed to register PAR request, unexpected status code %d", response.StatusCode)
 	}
 
 	if err = json.Unmarshal(body, &pr); err != nil {
-		return pr, fmt.Errorf("failed to parse exchange response: %w", err)
+		return pr, csrf, fmt.Errorf("failed to parse exchange response: %w", err)
 	}
 
-	return pr, nil
+	return pr, csrf, nil
 }
 
 func (c *Client) Exchange(code string, state string, csrf CSRF) (token Token, err error) {
