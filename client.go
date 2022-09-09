@@ -724,6 +724,14 @@ func WithResponseMode(responseMode string) AuthorizeOption {
 	})
 }
 
+func WithPAR(clientID string, requestURI string) AuthorizeOption {
+	return authorizeHandler(func(c *Client, v url.Values, csrf *CSRF) (err error) {
+		v.Set("client_id", clientID)
+		v.Set("request_uri", requestURI)
+		return nil
+	})
+}
+
 func WithPKCE() AuthorizeOption {
 	return authorizeHandler(func(c *Client, v url.Values, csrf *CSRF) (err error) {
 		if csrf.Verifier, err = randomString(VerifierLength); err != nil {
