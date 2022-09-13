@@ -974,6 +974,8 @@ func (c *Client) DoPAR(options ...AuthorizeOption) (pr PARResponse, csrf CSRF, e
 
 	values := url.Values{
 		"client_id": {c.Config.ClientID},
+		"nonce":     {csrf.Nonce},
+		"state":     {csrf.State},
 	}
 
 	if c.Config.RedirectURL != nil {
