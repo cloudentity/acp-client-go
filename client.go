@@ -929,7 +929,7 @@ func (c *Client) AuthorizeURL(options ...AuthorizeOption) (authorizeURL string, 
 
 	for _, o := range options {
 		if err = o.apply(c, values, &csrf); err != nil {
-			return authorizeURL, csrf, fmt.Errorf("failed to apply request options for Authorize URL: %w", err)
+			return authorizeURL, csrf, err
 		}
 	}
 
