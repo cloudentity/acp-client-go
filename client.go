@@ -994,7 +994,7 @@ func (c *Client) Exchange(code string, state string, csrf CSRF) (token Token, er
 }
 
 func (c *Client) preapreValues() (values url.Values, csrf CSRF, err error) {
-	if csrf, err := NewCSRF(); err != nil {
+	if csrf, err = NewCSRF(); err != nil {
 		return values, csrf, fmt.Errorf("failed to generate CSRF for PAR: %w", err)
 	}
 
