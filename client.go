@@ -962,7 +962,7 @@ func (c *Client) DoPAR(options ...AuthorizeOption) (pr PARResponse, csrf CSRF, e
 		return pr, csrf, fmt.Errorf("failed to prepare values for PAR request: %w", err)
 	}
 
-	if err = c.prepareAuthAndDoRequest(c.Config.GetPARURL(), values, csrf, http.StatusAccepted, &pr); err != nil {
+	if err = c.prepareAuthAndDoRequest(c.Config.GetPARURL(), values, csrf, http.StatusAccepted, &pr, options...); err != nil {
 		return pr, csrf, fmt.Errorf("failed to do PAR request: %w", err)
 	}
 
