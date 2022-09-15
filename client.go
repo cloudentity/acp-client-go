@@ -198,6 +198,11 @@ type Config struct {
 	// Optional if issuerURL provided
 	AuthorizeURL *url.URL
 
+	// PushedAuthorizationRequestEndpoint is URL of the pushed authorization request endpoint
+	// at which a client can post an authorization request to exchange
+	// for a "request_uri" value usable at the authorization server.
+	PushedAuthorizationRequestEndpoint *url.URL
+
 	// UserinfoURL is the authorization server's userinfo url.
 	// Optional if issuerURL provided
 	UserinfoURL *url.URL
@@ -264,6 +269,14 @@ func (c *Config) GetAuthorizeURL() string {
 	}
 
 	return fmt.Sprintf("%s/oauth2/authorize", c.IssuerURL.String())
+}
+
+func (c *Config) GetPARURL() string {
+	if c.PushedAuthorizationRequestEndpoint != nil {
+		return c.PushedAuthorizationRequestEndpoint.String()
+	}
+
+	return fmt.Sprintf("%s/par", c.IssuerURL.String())
 }
 
 func (c *Config) GetUserinfoURL() string {
@@ -365,6 +378,10 @@ func (c *Client) discoverEndpoints(issuerURL string) error {
 	}
 
 	if c.Config.AuthorizeURL, err = url.Parse(wellKnown.AuthorizationEndpoint); err != nil {
+		return err
+	}
+
+	if c.Config.PushedAuthorizationRequestEndpoint, err = url.Parse(wellKnown.PushedAuthorizationRequestEndpoint); err != nil {
 		return err
 	}
 
@@ -744,6 +761,17 @@ type CSRF struct {
 	Verifier string
 }
 
+func NewCSRF() (csrf CSRF, err error) {
+	if csrf.State, err = randomString(StateLength); err != nil {
+		return csrf, err
+	}
+
+	if csrf.Nonce, err = randomString(NonceLength); err != nil {
+		return csrf, err
+	}
+	return csrf, err
+}
+
 type ClaimRequests struct {
 	Userinfo map[string]*ClaimRequest `json:"userinfo"`
 	IDToken  map[string]*ClaimRequest `json:"id_token"`
@@ -771,6 +799,13 @@ func authorizeHandler(fn func(*Client, url.Values, *CSRF) error) AuthorizeOption
 	return &authorizeOptionFn{fn: fn}
 }
 
+func WithAuthorizationDetails(authorizationDetails string) AuthorizeOption {
+	return authorizeHandler(func(c *Client, v url.Values, csrf *CSRF) (err error) {
+		v.Set("authorization_details", authorizationDetails)
+		return nil
+	})
+}
+
 func WithResponseType(responseTypes ...string) AuthorizeOption {
 	return authorizeHandler(func(c *Client, v url.Values, csrf *CSRF) (err error) {
 		v.Set("response_type", strings.Join(responseTypes, " "))
@@ -781,6 +816,14 @@ func WithResponseType(responseTypes ...string) AuthorizeOption {
 func WithResponseMode(responseMode string) AuthorizeOption {
 	return authorizeHandler(func(c *Client, v url.Values, csrf *CSRF) (err error) {
 		v.Set("response_mode", responseMode)
+		return nil
+	})
+}
+
+func WithPAR(clientID string, requestURI string) AuthorizeOption {
+	return authorizeHandler(func(c *Client, v url.Values, csrf *CSRF) (err error) {
+		v.Set("client_id", clientID)
+		v.Set("request_uri", requestURI)
 		return nil
 	})
 }
@@ -954,27 +997,12 @@ func (c *Client) AuthorizeURLWithPAR(requestURI string) (authorizeURL string, er
 }
 
 func (c *Client) AuthorizeURL(options ...AuthorizeOption) (authorizeURL string, csrf CSRF, err error) {
-	if csrf.State, err = randomString(StateLength); err != nil {
-		return authorizeURL, csrf, err
-	}
+	var (
+		values url.Values
+	)
 
-	if csrf.Nonce, err = randomString(NonceLength); err != nil {
-		return authorizeURL, csrf, err
-	}
-
-	values := url.Values{
-		"response_type": {"code"},
-		"client_id":     {c.Config.ClientID},
-		"nonce":         {csrf.Nonce},
-		"state":         {csrf.State},
-	}
-
-	if c.Config.RedirectURL != nil {
-		values.Set("redirect_uri", c.Config.RedirectURL.String())
-	}
-
-	if len(c.Config.Scopes) > 0 {
-		values.Set("scope", strings.Join(c.Config.Scopes, " "))
+	if values, csrf, err = c.preapreValues(); err != nil {
+		return authorizeURL, csrf, fmt.Errorf("failed to prepare values for Authorize URL: %w", err)
 	}
 
 	for _, o := range options {
@@ -998,13 +1026,36 @@ func (c *Client) GenerateClientAssertion() (assertion string, err error) {
 	return t.SignedString(c.clientAssertionSigningKey)
 }
 
-func (c *Client) Exchange(code string, state string, csrf CSRF) (token Token, err error) {
+type PARResponse struct {
+	ExpiresIn  int64  `json:"expires_in,omitempty"`
+	RequestURI string `json:"request_uri,omitempty"`
+}
+
+func (c *Client) DoPAR(options ...AuthorizeOption) (pr PARResponse, csrf CSRF, err error) {
 	var (
-		request  *http.Request
-		response *http.Response
-		body     []byte
+		values  url.Values
+		request *http.Request
 	)
 
+	if values, csrf, err = c.preapreValues(); err != nil {
+		return pr, csrf, fmt.Errorf("failed to prepare values for PAR request: %w", err)
+	}
+
+	if request, err = c.prepareRequest(c.Config.GetPARURL(), values, csrf, options...); err != nil {
+		return pr, csrf, fmt.Errorf("failed to prepare PAR request: %w", err)
+	}
+
+	if err = c.getResponse(request, http.StatusCreated, &pr); err != nil {
+		return pr, csrf, fmt.Errorf("failed to do PAR request: %w", err)
+	}
+
+	return pr, csrf, nil
+}
+
+func (c *Client) Exchange(code string, state string, csrf CSRF) (token Token, err error) {
+	var (
+		request *http.Request
+	)
 	values := url.Values{
 		"grant_type":   {"authorization_code"},
 		"code":         {code},
@@ -1012,6 +1063,66 @@ func (c *Client) Exchange(code string, state string, csrf CSRF) (token Token, er
 		"redirect_uri": {c.Config.RedirectURL.String()},
 	}
 
+	if csrf.Verifier != "" {
+		values.Set("code_verifier", csrf.Verifier)
+	}
+
+	if request, err = c.prepareRequest(c.Config.GetTokenURL(), values, csrf); err != nil {
+		return token, fmt.Errorf("failed to prepare exchange token request: %w", err)
+	}
+
+	if err = c.getResponse(request, http.StatusOK, &token); err != nil {
+		return token, fmt.Errorf("failed to do exchange token request: %w", err)
+	}
+
+	if state != csrf.State {
+		return token, errors.New("invalid state")
+	}
+	// TODO check nonce
+
+	return token, nil
+}
+
+func (c *Client) Userinfo(token string) (body map[string]interface{}, err error) {
+	var (
+		request *http.Request
+	)
+
+	if request, err = http.NewRequest("GET", c.Config.GetUserinfoURL(), nil); err != nil {
+		return body, fmt.Errorf("failed to build userinfo request: %w", err)
+	}
+	request.Header.Add("Authorization", fmt.Sprintf("Bearer %s", token))
+
+	if err = c.getResponse(request, http.StatusOK, &body); err != nil {
+		return body, fmt.Errorf("failed to get userinfo: %w", err)
+	}
+
+	return body, nil
+}
+
+func (c *Client) preapreValues() (values url.Values, csrf CSRF, err error) {
+	if csrf, err = NewCSRF(); err != nil {
+		return values, csrf, fmt.Errorf("failed to generate CSRF for PAR: %w", err)
+	}
+
+	values = url.Values{
+		"client_id": {c.Config.ClientID},
+		"nonce":     {csrf.Nonce},
+		"state":     {csrf.State},
+	}
+
+	if c.Config.RedirectURL != nil {
+		values.Set("redirect_uri", c.Config.RedirectURL.String())
+	}
+
+	if len(c.Config.Scopes) > 0 {
+		values.Set("scope", strings.Join(c.Config.Scopes, " "))
+	}
+
+	return values, csrf, err
+}
+
+func (c *Client) prepareRequest(requestURL string, values url.Values, csrf CSRF, options ...AuthorizeOption) (request *http.Request, err error) {
 	if c.Config.AuthMethod == ClientSecretPostAuthnMethod {
 		values.Add("client_secret", c.Config.ClientSecret)
 	}
@@ -1022,17 +1133,19 @@ func (c *Client) Exchange(code string, state string, csrf CSRF) (token Token, er
 		)
 		values.Add("client_assertion_type", "urn:ietf:params:oauth:client-assertion-type:jwt-bearer")
 		if assertion, err = c.GenerateClientAssertion(); err != nil {
-			return token, errors.Wrapf(err, "failed to generate client assertion")
+			return request, errors.Wrapf(err, "failed to generate client assertion")
 		}
 		values.Add("client_assertion", assertion)
 	}
 
-	if csrf.Verifier != "" {
-		values.Set("code_verifier", csrf.Verifier)
+	for _, o := range options {
+		if err = o.apply(c, values, &csrf); err != nil {
+			return request, err
+		}
 	}
 
-	if request, err = http.NewRequest(http.MethodPost, c.Config.GetTokenURL(), strings.NewReader(values.Encode())); err != nil {
-		return token, fmt.Errorf("failed to build request for token exchange: %w", err)
+	if request, err = http.NewRequest(http.MethodPost, requestURL, strings.NewReader(values.Encode())); err != nil {
+		return request, fmt.Errorf("failed to build request for token exchange: %w", err)
 	}
 
 	if c.Config.AuthMethod == ClientSecretBasicAuthnMethod {
@@ -1041,72 +1154,37 @@ func (c *Client) Exchange(code string, state string, csrf CSRF) (token Token, er
 
 	request.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 
+	return request, err
+}
+
+func (c *Client) getResponse(request *http.Request, expectedStatusCode int, resp interface{}) (err error) {
+	var (
+		response *http.Response
+		body     []byte
+	)
+
 	if response, err = c.c.Do(request); err != nil {
-		return token, fmt.Errorf("failed to exchange token: %w", err)
+		return fmt.Errorf("failed to exchange token: %w", err)
 	}
 	defer response.Body.Close()
 
-	if response.StatusCode != http.StatusOK {
+	if response.StatusCode != expectedStatusCode {
 		if body, err = io.ReadAll(response.Body); err != nil {
-			return token, fmt.Errorf("failed to read exchange response body: %w", err)
+			return fmt.Errorf("failed to read response body: %w", err)
 		}
 
-		return token, fmt.Errorf("failed to exchange token %d: %s", response.StatusCode, string(body))
+		return fmt.Errorf("failed to do request %d: %s", response.StatusCode, string(body))
 	}
 
 	if body, err = io.ReadAll(response.Body); err != nil {
-		return token, fmt.Errorf("failed to read exchange response body: %w", err)
+		return fmt.Errorf("failed to read response body: %w", err)
 	}
 
-	if err = json.Unmarshal(body, &token); err != nil {
-		return token, fmt.Errorf("failed to parse exchange response: %w", err)
+	if err = json.Unmarshal(body, resp); err != nil {
+		return fmt.Errorf("failed to parse exchange response: %w", err)
 	}
 
-	if state != csrf.State {
-		return token, errors.New("invalid state")
-	}
-
-	// TODO check nonce
-
-	return token, nil
-}
-
-func (c *Client) Userinfo(token string) (body map[string]interface{}, err error) {
-	var (
-		request  *http.Request
-		response *http.Response
-		bs       []byte
-	)
-
-	if request, err = http.NewRequest("GET", c.Config.GetUserinfoURL(), nil); err != nil {
-		return body, fmt.Errorf("failed to build userinfo request: %w", err)
-	}
-	request.Header.Add("Authorization", fmt.Sprintf("Bearer %s", token))
-
-	if response, err = c.c.Do(request); err != nil {
-		return body, fmt.Errorf("failed to call userinfo endpoint: %w", err)
-	}
-	defer response.Body.Close()
-
-	if response.StatusCode != http.StatusOK {
-		var errorBody []byte
-
-		if errorBody, err = io.ReadAll(response.Body); err != nil {
-			return body, fmt.Errorf("failed to read userinfo response body: %w", err)
-		}
-
-		return body, fmt.Errorf("failed to get userinfo %d: %s", response.StatusCode, string(errorBody))
-	}
-
-	if bs, err = io.ReadAll(response.Body); err != nil {
-		return body, fmt.Errorf("failed to parse userinfo response: %w", err)
-	}
-
-	if err = json.Unmarshal(bs, &body); err != nil {
-		return body, err
-	}
-
-	return body, nil
+	return err
 }
 
 func (c *Client) IntrospectToken(ctx context.Context, token string) (*o2models.IntrospectResponse, error) {
