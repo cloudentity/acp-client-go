@@ -967,7 +967,7 @@ func (c *Client) DoPAR(options ...AuthorizeOption) (pr PARResponse, csrf CSRF, e
 		return pr, csrf, fmt.Errorf("failed to prepare PAR request: %w", err)
 	}
 
-	if err = c.getResponse(request, http.StatusCreated, pr); err != nil {
+	if err = c.getResponse(request, http.StatusCreated, &pr); err != nil {
 		return pr, csrf, fmt.Errorf("failed to do PAR request: %w", err)
 	}
 
@@ -993,7 +993,7 @@ func (c *Client) Exchange(code string, state string, csrf CSRF) (token Token, er
 		return token, fmt.Errorf("failed to prepare exchange token request: %w", err)
 	}
 
-	if err = c.getResponse(request, http.StatusOK, token); err != nil {
+	if err = c.getResponse(request, http.StatusOK, &token); err != nil {
 		return token, fmt.Errorf("failed to do exchange token request: %w", err)
 	}
 
@@ -1015,7 +1015,7 @@ func (c *Client) Userinfo(token string) (body map[string]interface{}, err error)
 	}
 	request.Header.Add("Authorization", fmt.Sprintf("Bearer %s", token))
 
-	if err = c.getResponse(request, http.StatusOK, body); err != nil {
+	if err = c.getResponse(request, http.StatusOK, &body); err != nil {
 		return body, fmt.Errorf("failed to get userinfo: %w", err)
 	}
 
