@@ -981,7 +981,7 @@ func (c *Client) Exchange(code string, state string, csrf CSRF) (token Token, er
 		values.Set("code_verifier", csrf.Verifier)
 	}
 
-	if err = c.prepareAuthAndDoRequest(c.Config.GetAuthorizeURL(), values, csrf, http.StatusOK, &token); err != nil {
+	if err = c.prepareAuthAndDoRequest(c.Config.GetTokenURL(), values, csrf, http.StatusOK, &token); err != nil {
 		return token, fmt.Errorf("failed to exchange token: %w", err)
 	}
 
