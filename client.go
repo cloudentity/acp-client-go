@@ -993,7 +993,7 @@ func (c *Client) Exchange(code string, state string, csrf CSRF) (token Token, er
 		return token, fmt.Errorf("failed to prepare exchange token request: %w", err)
 	}
 
-	if err = c.getResponse(request, http.StatusCreated, token); err != nil {
+	if err = c.getResponse(request, http.StatusOK, token); err != nil {
 		return token, fmt.Errorf("failed to do exchange token request: %w", err)
 	}
 
