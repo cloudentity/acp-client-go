@@ -21,6 +21,7 @@ import (
 
 	obbrConsents "github.com/cloudentity/acp-client-go/clients/openbankingBR/consents/client"
 	obbrPayments "github.com/cloudentity/acp-client-go/clients/openbankingBR/payments/client"
+	"github.com/sirupsen/logrus"
 
 	obukAccounts "github.com/cloudentity/acp-client-go/clients/openbankingUK/accounts/client"
 	obukPayments "github.com/cloudentity/acp-client-go/clients/openbankingUK/payments/client"
@@ -342,6 +343,8 @@ func (c *Client) configureBasePath(cfg Config) error {
 }
 
 func (c *Client) discoverEndpoints(issuerURL string) error {
+	logrus.Infof("XXX discoverEndpoints: %+v", issuerURL)
+
 	var (
 		b             []byte
 		wellKnown     o2models.WellKnown
@@ -381,9 +384,15 @@ func (c *Client) discoverEndpoints(issuerURL string) error {
 		return err
 	}
 
+	logrus.Infof("XXX well known par url: %+v", wellKnown.PushedAuthorizationRequestEndpoint)
+
 	if c.Config.PushedAuthorizationRequestEndpoint, err = url.Parse(wellKnown.PushedAuthorizationRequestEndpoint); err != nil {
+		logrus.Infof("XXX %+v", "err != nil")
+
 		return err
 	}
+
+	logrus.Infof("XXX config par url: %+v", c.Config.PushedAuthorizationRequestEndpoint)
 
 	if c.Config.UserinfoURL, err = url.Parse(wellKnown.UserinfoEndpoint); err != nil {
 		return err
@@ -447,6 +456,8 @@ func (c *Config) newHTTPClient() (*http.Client, error) {
 
 // Create a new ACP client instance based on config.
 func New(cfg Config) (c Client, err error) {
+	logrus.Infof("XXX new client %+v", cfg)
+
 	if cfg.ClientID == "" {
 		return c, errors.New("client_id is missing")
 	}
@@ -1040,6 +1051,8 @@ func (c *Client) DoPAR(options ...AuthorizeOption) (pr PARResponse, csrf CSRF, e
 	if values, csrf, err = c.preapreValues(); err != nil {
 		return pr, csrf, fmt.Errorf("failed to prepare values for PAR request: %w", err)
 	}
+
+	logrus.Infof("XXX DoPAR par url %+v", c.Config.GetPARURL())
 
 	if request, err = c.prepareRequest(c.Config.GetPARURL(), values, csrf, options...); err != nil {
 		return pr, csrf, fmt.Errorf("failed to prepare PAR request: %w", err)
