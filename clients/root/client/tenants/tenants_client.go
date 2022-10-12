@@ -46,9 +46,9 @@ type ClientService interface {
 }
 
 /*
-  CreateTenant creates tenant
+	CreateTenant creates tenant
 
-  Tenant must have unique id, if it's not provided will be generated.
+	Tenant must have unique id, if it's not provided will be generated.
 
 Tenant name must be provided.
 
@@ -95,7 +95,7 @@ func (a *Client) CreateTenant(params *CreateTenantParams, authInfo runtime.Clien
 }
 
 /*
-  DeleteTenant Delete tenant
+DeleteTenant Delete tenant
 */
 func (a *Client) DeleteTenant(params *DeleteTenantParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteTenantNoContent, error) {
 	// TODO: Validate the params before sending
@@ -134,9 +134,9 @@ func (a *Client) DeleteTenant(params *DeleteTenantParams, authInfo runtime.Clien
 }
 
 /*
-  GetTenant gets tenant
+GetTenant gets tenant
 
-  Get tenant system api.
+Get tenant system api.
 */
 func (a *Client) GetTenant(params *GetTenantParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetTenantOK, error) {
 	// TODO: Validate the params before sending
@@ -175,9 +175,9 @@ func (a *Client) GetTenant(params *GetTenantParams, authInfo runtime.ClientAuthI
 }
 
 /*
-  ListAdminTenants lists tenants
+ListAdminTenants lists tenants
 
-  To be able to list tenants, you need to use an access token issued for a system tenant and admin workspace.
+To be able to list tenants, you need to use an access token issued for a system tenant and admin workspace.
 */
 func (a *Client) ListAdminTenants(params *ListAdminTenantsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListAdminTenantsOK, error) {
 	// TODO: Validate the params before sending
@@ -216,9 +216,9 @@ func (a *Client) ListAdminTenants(params *ListAdminTenantsParams, authInfo runti
 }
 
 /*
-  ListTenants lists tenants
+ListTenants lists tenants
 
-  List tenants.
+List tenants.
 */
 func (a *Client) ListTenants(params *ListTenantsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListTenantsOK, error) {
 	// TODO: Validate the params before sending
@@ -257,9 +257,9 @@ func (a *Client) ListTenants(params *ListTenantsParams, authInfo runtime.ClientA
 }
 
 /*
-  UpdateTenant updates tenant
+UpdateTenant updates tenant
 
-  Update tenant system api.
+Update tenant system api.
 */
 func (a *Client) UpdateTenant(params *UpdateTenantParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateTenantOK, error) {
 	// TODO: Validate the params before sending

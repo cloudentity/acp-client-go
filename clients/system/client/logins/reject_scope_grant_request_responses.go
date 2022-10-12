@@ -63,7 +63,8 @@ func NewRejectScopeGrantRequestOK() *RejectScopeGrantRequestOK {
 	return &RejectScopeGrantRequestOK{}
 }
 
-/* RejectScopeGrantRequestOK describes a response with status code 200, with default header values.
+/*
+RejectScopeGrantRequestOK describes a response with status code 200, with default header values.
 
 Scope grant rejected
 */
@@ -71,9 +72,39 @@ type RejectScopeGrantRequestOK struct {
 	Payload *models.ScopeGrantRejected
 }
 
+// IsSuccess returns true when this reject scope grant request o k response has a 2xx status code
+func (o *RejectScopeGrantRequestOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this reject scope grant request o k response has a 3xx status code
+func (o *RejectScopeGrantRequestOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this reject scope grant request o k response has a 4xx status code
+func (o *RejectScopeGrantRequestOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this reject scope grant request o k response has a 5xx status code
+func (o *RejectScopeGrantRequestOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this reject scope grant request o k response a status code equal to that given
+func (o *RejectScopeGrantRequestOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *RejectScopeGrantRequestOK) Error() string {
 	return fmt.Sprintf("[POST /scope-grants/{login}/reject][%d] rejectScopeGrantRequestOK  %+v", 200, o.Payload)
 }
+
+func (o *RejectScopeGrantRequestOK) String() string {
+	return fmt.Sprintf("[POST /scope-grants/{login}/reject][%d] rejectScopeGrantRequestOK  %+v", 200, o.Payload)
+}
+
 func (o *RejectScopeGrantRequestOK) GetPayload() *models.ScopeGrantRejected {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewRejectScopeGrantRequestUnauthorized() *RejectScopeGrantRequestUnauthoriz
 	return &RejectScopeGrantRequestUnauthorized{}
 }
 
-/* RejectScopeGrantRequestUnauthorized describes a response with status code 401, with default header values.
+/*
+RejectScopeGrantRequestUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type RejectScopeGrantRequestUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this reject scope grant request unauthorized response has a 2xx status code
+func (o *RejectScopeGrantRequestUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this reject scope grant request unauthorized response has a 3xx status code
+func (o *RejectScopeGrantRequestUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this reject scope grant request unauthorized response has a 4xx status code
+func (o *RejectScopeGrantRequestUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this reject scope grant request unauthorized response has a 5xx status code
+func (o *RejectScopeGrantRequestUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this reject scope grant request unauthorized response a status code equal to that given
+func (o *RejectScopeGrantRequestUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *RejectScopeGrantRequestUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /scope-grants/{login}/reject][%d] rejectScopeGrantRequestUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *RejectScopeGrantRequestUnauthorized) String() string {
+	return fmt.Sprintf("[POST /scope-grants/{login}/reject][%d] rejectScopeGrantRequestUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *RejectScopeGrantRequestUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewRejectScopeGrantRequestForbidden() *RejectScopeGrantRequestForbidden {
 	return &RejectScopeGrantRequestForbidden{}
 }
 
-/* RejectScopeGrantRequestForbidden describes a response with status code 403, with default header values.
+/*
+RejectScopeGrantRequestForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type RejectScopeGrantRequestForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this reject scope grant request forbidden response has a 2xx status code
+func (o *RejectScopeGrantRequestForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this reject scope grant request forbidden response has a 3xx status code
+func (o *RejectScopeGrantRequestForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this reject scope grant request forbidden response has a 4xx status code
+func (o *RejectScopeGrantRequestForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this reject scope grant request forbidden response has a 5xx status code
+func (o *RejectScopeGrantRequestForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this reject scope grant request forbidden response a status code equal to that given
+func (o *RejectScopeGrantRequestForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *RejectScopeGrantRequestForbidden) Error() string {
 	return fmt.Sprintf("[POST /scope-grants/{login}/reject][%d] rejectScopeGrantRequestForbidden  %+v", 403, o.Payload)
 }
+
+func (o *RejectScopeGrantRequestForbidden) String() string {
+	return fmt.Sprintf("[POST /scope-grants/{login}/reject][%d] rejectScopeGrantRequestForbidden  %+v", 403, o.Payload)
+}
+
 func (o *RejectScopeGrantRequestForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewRejectScopeGrantRequestNotFound() *RejectScopeGrantRequestNotFound {
 	return &RejectScopeGrantRequestNotFound{}
 }
 
-/* RejectScopeGrantRequestNotFound describes a response with status code 404, with default header values.
+/*
+RejectScopeGrantRequestNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type RejectScopeGrantRequestNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this reject scope grant request not found response has a 2xx status code
+func (o *RejectScopeGrantRequestNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this reject scope grant request not found response has a 3xx status code
+func (o *RejectScopeGrantRequestNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this reject scope grant request not found response has a 4xx status code
+func (o *RejectScopeGrantRequestNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this reject scope grant request not found response has a 5xx status code
+func (o *RejectScopeGrantRequestNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this reject scope grant request not found response a status code equal to that given
+func (o *RejectScopeGrantRequestNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *RejectScopeGrantRequestNotFound) Error() string {
 	return fmt.Sprintf("[POST /scope-grants/{login}/reject][%d] rejectScopeGrantRequestNotFound  %+v", 404, o.Payload)
 }
+
+func (o *RejectScopeGrantRequestNotFound) String() string {
+	return fmt.Sprintf("[POST /scope-grants/{login}/reject][%d] rejectScopeGrantRequestNotFound  %+v", 404, o.Payload)
+}
+
 func (o *RejectScopeGrantRequestNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewRejectScopeGrantRequestTooManyRequests() *RejectScopeGrantRequestTooMany
 	return &RejectScopeGrantRequestTooManyRequests{}
 }
 
-/* RejectScopeGrantRequestTooManyRequests describes a response with status code 429, with default header values.
+/*
+RejectScopeGrantRequestTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type RejectScopeGrantRequestTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this reject scope grant request too many requests response has a 2xx status code
+func (o *RejectScopeGrantRequestTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this reject scope grant request too many requests response has a 3xx status code
+func (o *RejectScopeGrantRequestTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this reject scope grant request too many requests response has a 4xx status code
+func (o *RejectScopeGrantRequestTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this reject scope grant request too many requests response has a 5xx status code
+func (o *RejectScopeGrantRequestTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this reject scope grant request too many requests response a status code equal to that given
+func (o *RejectScopeGrantRequestTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *RejectScopeGrantRequestTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /scope-grants/{login}/reject][%d] rejectScopeGrantRequestTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *RejectScopeGrantRequestTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /scope-grants/{login}/reject][%d] rejectScopeGrantRequestTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *RejectScopeGrantRequestTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

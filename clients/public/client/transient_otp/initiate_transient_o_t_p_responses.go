@@ -75,7 +75,8 @@ func NewInitiateTransientOTPOK() *InitiateTransientOTPOK {
 	return &InitiateTransientOTPOK{}
 }
 
-/* InitiateTransientOTPOK describes a response with status code 200, with default header values.
+/*
+InitiateTransientOTPOK describes a response with status code 200, with default header values.
 
 Transient OTP
 */
@@ -83,9 +84,39 @@ type InitiateTransientOTPOK struct {
 	Payload *models.TransientOTPResponse
 }
 
+// IsSuccess returns true when this initiate transient o t p o k response has a 2xx status code
+func (o *InitiateTransientOTPOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this initiate transient o t p o k response has a 3xx status code
+func (o *InitiateTransientOTPOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this initiate transient o t p o k response has a 4xx status code
+func (o *InitiateTransientOTPOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this initiate transient o t p o k response has a 5xx status code
+func (o *InitiateTransientOTPOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this initiate transient o t p o k response a status code equal to that given
+func (o *InitiateTransientOTPOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *InitiateTransientOTPOK) Error() string {
 	return fmt.Sprintf("[POST /authn/otp/transient][%d] initiateTransientOTPOK  %+v", 200, o.Payload)
 }
+
+func (o *InitiateTransientOTPOK) String() string {
+	return fmt.Sprintf("[POST /authn/otp/transient][%d] initiateTransientOTPOK  %+v", 200, o.Payload)
+}
+
 func (o *InitiateTransientOTPOK) GetPayload() *models.TransientOTPResponse {
 	return o.Payload
 }
@@ -107,7 +138,8 @@ func NewInitiateTransientOTPBadRequest() *InitiateTransientOTPBadRequest {
 	return &InitiateTransientOTPBadRequest{}
 }
 
-/* InitiateTransientOTPBadRequest describes a response with status code 400, with default header values.
+/*
+InitiateTransientOTPBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -115,9 +147,39 @@ type InitiateTransientOTPBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this initiate transient o t p bad request response has a 2xx status code
+func (o *InitiateTransientOTPBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this initiate transient o t p bad request response has a 3xx status code
+func (o *InitiateTransientOTPBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this initiate transient o t p bad request response has a 4xx status code
+func (o *InitiateTransientOTPBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this initiate transient o t p bad request response has a 5xx status code
+func (o *InitiateTransientOTPBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this initiate transient o t p bad request response a status code equal to that given
+func (o *InitiateTransientOTPBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *InitiateTransientOTPBadRequest) Error() string {
 	return fmt.Sprintf("[POST /authn/otp/transient][%d] initiateTransientOTPBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *InitiateTransientOTPBadRequest) String() string {
+	return fmt.Sprintf("[POST /authn/otp/transient][%d] initiateTransientOTPBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *InitiateTransientOTPBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -139,7 +201,8 @@ func NewInitiateTransientOTPUnauthorized() *InitiateTransientOTPUnauthorized {
 	return &InitiateTransientOTPUnauthorized{}
 }
 
-/* InitiateTransientOTPUnauthorized describes a response with status code 401, with default header values.
+/*
+InitiateTransientOTPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,9 +210,39 @@ type InitiateTransientOTPUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this initiate transient o t p unauthorized response has a 2xx status code
+func (o *InitiateTransientOTPUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this initiate transient o t p unauthorized response has a 3xx status code
+func (o *InitiateTransientOTPUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this initiate transient o t p unauthorized response has a 4xx status code
+func (o *InitiateTransientOTPUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this initiate transient o t p unauthorized response has a 5xx status code
+func (o *InitiateTransientOTPUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this initiate transient o t p unauthorized response a status code equal to that given
+func (o *InitiateTransientOTPUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *InitiateTransientOTPUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /authn/otp/transient][%d] initiateTransientOTPUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *InitiateTransientOTPUnauthorized) String() string {
+	return fmt.Sprintf("[POST /authn/otp/transient][%d] initiateTransientOTPUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *InitiateTransientOTPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -171,7 +264,8 @@ func NewInitiateTransientOTPForbidden() *InitiateTransientOTPForbidden {
 	return &InitiateTransientOTPForbidden{}
 }
 
-/* InitiateTransientOTPForbidden describes a response with status code 403, with default header values.
+/*
+InitiateTransientOTPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -179,9 +273,39 @@ type InitiateTransientOTPForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this initiate transient o t p forbidden response has a 2xx status code
+func (o *InitiateTransientOTPForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this initiate transient o t p forbidden response has a 3xx status code
+func (o *InitiateTransientOTPForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this initiate transient o t p forbidden response has a 4xx status code
+func (o *InitiateTransientOTPForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this initiate transient o t p forbidden response has a 5xx status code
+func (o *InitiateTransientOTPForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this initiate transient o t p forbidden response a status code equal to that given
+func (o *InitiateTransientOTPForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *InitiateTransientOTPForbidden) Error() string {
 	return fmt.Sprintf("[POST /authn/otp/transient][%d] initiateTransientOTPForbidden  %+v", 403, o.Payload)
 }
+
+func (o *InitiateTransientOTPForbidden) String() string {
+	return fmt.Sprintf("[POST /authn/otp/transient][%d] initiateTransientOTPForbidden  %+v", 403, o.Payload)
+}
+
 func (o *InitiateTransientOTPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -203,7 +327,8 @@ func NewInitiateTransientOTPNotFound() *InitiateTransientOTPNotFound {
 	return &InitiateTransientOTPNotFound{}
 }
 
-/* InitiateTransientOTPNotFound describes a response with status code 404, with default header values.
+/*
+InitiateTransientOTPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -211,9 +336,39 @@ type InitiateTransientOTPNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this initiate transient o t p not found response has a 2xx status code
+func (o *InitiateTransientOTPNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this initiate transient o t p not found response has a 3xx status code
+func (o *InitiateTransientOTPNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this initiate transient o t p not found response has a 4xx status code
+func (o *InitiateTransientOTPNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this initiate transient o t p not found response has a 5xx status code
+func (o *InitiateTransientOTPNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this initiate transient o t p not found response a status code equal to that given
+func (o *InitiateTransientOTPNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *InitiateTransientOTPNotFound) Error() string {
 	return fmt.Sprintf("[POST /authn/otp/transient][%d] initiateTransientOTPNotFound  %+v", 404, o.Payload)
 }
+
+func (o *InitiateTransientOTPNotFound) String() string {
+	return fmt.Sprintf("[POST /authn/otp/transient][%d] initiateTransientOTPNotFound  %+v", 404, o.Payload)
+}
+
 func (o *InitiateTransientOTPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +390,8 @@ func NewInitiateTransientOTPUnprocessableEntity() *InitiateTransientOTPUnprocess
 	return &InitiateTransientOTPUnprocessableEntity{}
 }
 
-/* InitiateTransientOTPUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+InitiateTransientOTPUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -243,9 +399,39 @@ type InitiateTransientOTPUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this initiate transient o t p unprocessable entity response has a 2xx status code
+func (o *InitiateTransientOTPUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this initiate transient o t p unprocessable entity response has a 3xx status code
+func (o *InitiateTransientOTPUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this initiate transient o t p unprocessable entity response has a 4xx status code
+func (o *InitiateTransientOTPUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this initiate transient o t p unprocessable entity response has a 5xx status code
+func (o *InitiateTransientOTPUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this initiate transient o t p unprocessable entity response a status code equal to that given
+func (o *InitiateTransientOTPUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *InitiateTransientOTPUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /authn/otp/transient][%d] initiateTransientOTPUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *InitiateTransientOTPUnprocessableEntity) String() string {
+	return fmt.Sprintf("[POST /authn/otp/transient][%d] initiateTransientOTPUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *InitiateTransientOTPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -267,7 +453,8 @@ func NewInitiateTransientOTPTooManyRequests() *InitiateTransientOTPTooManyReques
 	return &InitiateTransientOTPTooManyRequests{}
 }
 
-/* InitiateTransientOTPTooManyRequests describes a response with status code 429, with default header values.
+/*
+InitiateTransientOTPTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -275,9 +462,39 @@ type InitiateTransientOTPTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this initiate transient o t p too many requests response has a 2xx status code
+func (o *InitiateTransientOTPTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this initiate transient o t p too many requests response has a 3xx status code
+func (o *InitiateTransientOTPTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this initiate transient o t p too many requests response has a 4xx status code
+func (o *InitiateTransientOTPTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this initiate transient o t p too many requests response has a 5xx status code
+func (o *InitiateTransientOTPTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this initiate transient o t p too many requests response a status code equal to that given
+func (o *InitiateTransientOTPTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *InitiateTransientOTPTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /authn/otp/transient][%d] initiateTransientOTPTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *InitiateTransientOTPTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /authn/otp/transient][%d] initiateTransientOTPTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *InitiateTransientOTPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

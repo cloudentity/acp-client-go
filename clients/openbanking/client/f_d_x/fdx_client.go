@@ -36,17 +36,25 @@ type ClientService interface {
 
 	GetFDXConsent(params *GetFDXConsentParams, opts ...ClientOption) (*GetFDXConsentOK, error)
 
+	GetFDXConsentRevocation(params *GetFDXConsentRevocationParams, opts ...ClientOption) (*GetFDXConsentRevocationOK, error)
+
 	GetFDXConsentSystem(params *GetFDXConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetFDXConsentSystemOK, error)
 
+	ListFDXConsents(params *ListFDXConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListFDXConsentsOK, error)
+
 	RejectFDXConsentSystem(params *RejectFDXConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectFDXConsentSystemOK, error)
+
+	RevokeFDXConsent(params *RevokeFDXConsentParams, opts ...ClientOption) (*RevokeFDXConsentNoContent, error)
+
+	RevokeFDXConsents(params *RevokeFDXConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeFDXConsentsOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
 
 /*
-  AcceptFDXConsentSystem accepts f d x consent
+AcceptFDXConsentSystem accepts f d x consent
 
-  This API can be used by a custom openbanking consent page to notify ACP that user accepted access.
+This API can be used by a custom openbanking consent page to notify ACP that user accepted access.
 */
 func (a *Client) AcceptFDXConsentSystem(params *AcceptFDXConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptFDXConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -85,9 +93,10 @@ func (a *Client) AcceptFDXConsentSystem(params *AcceptFDXConsentSystemParams, au
 }
 
 /*
-  FdxConsentIntrospect introspects fdx consent
+	FdxConsentIntrospect introspects f d x consent
 
-  This endpoint takes an OAuth 2.0 token and, in addition to returning
+	This endpoint takes an OAuth 2.0 token and, in addition to returning
+
 meta information surrounding the token, returns the fdx consent.
 */
 func (a *Client) FdxConsentIntrospect(params *FdxConsentIntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FdxConsentIntrospectOK, error) {
@@ -127,9 +136,9 @@ func (a *Client) FdxConsentIntrospect(params *FdxConsentIntrospectParams, authIn
 }
 
 /*
-  GetFDXConsent gets a consent grant
+GetFDXConsent gets a consent grant
 
-  Get a Consent Grant
+Get a Consent Grant
 */
 func (a *Client) GetFDXConsent(params *GetFDXConsentParams, opts ...ClientOption) (*GetFDXConsentOK, error) {
 	// TODO: Validate the params before sending
@@ -167,9 +176,53 @@ func (a *Client) GetFDXConsent(params *GetFDXConsentParams, opts ...ClientOption
 }
 
 /*
-  GetFDXConsentSystem gets f d x consent
+	GetFDXConsentRevocation retrieves consent revocation record
 
-  This API can be used by a custom openbanking consent page.
+	This API can be used used to get information about consent revocation.
+
+404 response code is returned in two cases:
+when consent does not exists or consent is not revoked
+*/
+func (a *Client) GetFDXConsentRevocation(params *GetFDXConsentRevocationParams, opts ...ClientOption) (*GetFDXConsentRevocationOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetFDXConsentRevocationParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getFDXConsentRevocation",
+		Method:             "GET",
+		PathPattern:        "/consents/{consentID}/revocation",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetFDXConsentRevocationReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetFDXConsentRevocationOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getFDXConsentRevocation: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	GetFDXConsentSystem gets f d x consent
+
+	This API can be used by a custom openbanking consent page.
+
 The consent page must first use client credentials flow to create consent.
 */
 func (a *Client) GetFDXConsentSystem(params *GetFDXConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetFDXConsentSystemOK, error) {
@@ -209,9 +262,52 @@ func (a *Client) GetFDXConsentSystem(params *GetFDXConsentSystemParams, authInfo
 }
 
 /*
-  RejectFDXConsentSystem rejects f d x consent
+	ListFDXConsents lists f d x consents
 
-  This API can be used by a custom openbanking consent page to notify ACP that user rejected access.
+	This API returns the list of FDX Consents.
+
+You can narrow the list of returned consents using filters defined in request body.
+*/
+func (a *Client) ListFDXConsents(params *ListFDXConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListFDXConsentsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListFDXConsentsParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "listFDXConsents",
+		Method:             "POST",
+		PathPattern:        "/servers/{wid}/fdx/consents",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListFDXConsentsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ListFDXConsentsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for listFDXConsents: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+RejectFDXConsentSystem rejects f d x consent
+
+This API can be used by a custom openbanking consent page to notify ACP that user rejected access.
 */
 func (a *Client) RejectFDXConsentSystem(params *RejectFDXConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectFDXConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -246,6 +342,93 @@ func (a *Client) RejectFDXConsentSystem(params *RejectFDXConsentSystemParams, au
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for rejectFDXConsentSystem: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	RevokeFDXConsent revokes a consent
+
+	This API can be used used to revoke user's consent.
+
+As a result consent's state is changed to REVOKED
+and revocation reason and initiator passed in request body are saved.
+*/
+func (a *Client) RevokeFDXConsent(params *RevokeFDXConsentParams, opts ...ClientOption) (*RevokeFDXConsentNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRevokeFDXConsentParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "revokeFDXConsent",
+		Method:             "PUT",
+		PathPattern:        "/consents/{consentID}/revocation",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RevokeFDXConsentReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*RevokeFDXConsentNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for revokeFDXConsent: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	RevokeFDXConsents revokes f d x consents
+
+	This API revokes FDX consents matching provided parameters.
+
+Currently supporting removal by client id.
+RevocationDetails also have to be provided.
+*/
+func (a *Client) RevokeFDXConsents(params *RevokeFDXConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeFDXConsentsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRevokeFDXConsentsParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "revokeFDXConsents",
+		Method:             "DELETE",
+		PathPattern:        "/servers/{wid}/fdx/consents",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RevokeFDXConsentsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*RevokeFDXConsentsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for revokeFDXConsents: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

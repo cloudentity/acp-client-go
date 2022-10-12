@@ -81,7 +81,8 @@ func NewCreatePolicyCreated() *CreatePolicyCreated {
 	return &CreatePolicyCreated{}
 }
 
-/* CreatePolicyCreated describes a response with status code 201, with default header values.
+/*
+CreatePolicyCreated describes a response with status code 201, with default header values.
 
 Policy
 */
@@ -89,9 +90,39 @@ type CreatePolicyCreated struct {
 	Payload *models.Policy
 }
 
+// IsSuccess returns true when this create policy created response has a 2xx status code
+func (o *CreatePolicyCreated) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this create policy created response has a 3xx status code
+func (o *CreatePolicyCreated) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create policy created response has a 4xx status code
+func (o *CreatePolicyCreated) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create policy created response has a 5xx status code
+func (o *CreatePolicyCreated) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create policy created response a status code equal to that given
+func (o *CreatePolicyCreated) IsCode(code int) bool {
+	return code == 201
+}
+
 func (o *CreatePolicyCreated) Error() string {
 	return fmt.Sprintf("[POST /policies][%d] createPolicyCreated  %+v", 201, o.Payload)
 }
+
+func (o *CreatePolicyCreated) String() string {
+	return fmt.Sprintf("[POST /policies][%d] createPolicyCreated  %+v", 201, o.Payload)
+}
+
 func (o *CreatePolicyCreated) GetPayload() *models.Policy {
 	return o.Payload
 }
@@ -113,7 +144,8 @@ func NewCreatePolicyBadRequest() *CreatePolicyBadRequest {
 	return &CreatePolicyBadRequest{}
 }
 
-/* CreatePolicyBadRequest describes a response with status code 400, with default header values.
+/*
+CreatePolicyBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -121,9 +153,39 @@ type CreatePolicyBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create policy bad request response has a 2xx status code
+func (o *CreatePolicyBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create policy bad request response has a 3xx status code
+func (o *CreatePolicyBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create policy bad request response has a 4xx status code
+func (o *CreatePolicyBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create policy bad request response has a 5xx status code
+func (o *CreatePolicyBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create policy bad request response a status code equal to that given
+func (o *CreatePolicyBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *CreatePolicyBadRequest) Error() string {
 	return fmt.Sprintf("[POST /policies][%d] createPolicyBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *CreatePolicyBadRequest) String() string {
+	return fmt.Sprintf("[POST /policies][%d] createPolicyBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *CreatePolicyBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -145,7 +207,8 @@ func NewCreatePolicyUnauthorized() *CreatePolicyUnauthorized {
 	return &CreatePolicyUnauthorized{}
 }
 
-/* CreatePolicyUnauthorized describes a response with status code 401, with default header values.
+/*
+CreatePolicyUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -153,9 +216,39 @@ type CreatePolicyUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create policy unauthorized response has a 2xx status code
+func (o *CreatePolicyUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create policy unauthorized response has a 3xx status code
+func (o *CreatePolicyUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create policy unauthorized response has a 4xx status code
+func (o *CreatePolicyUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create policy unauthorized response has a 5xx status code
+func (o *CreatePolicyUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create policy unauthorized response a status code equal to that given
+func (o *CreatePolicyUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *CreatePolicyUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /policies][%d] createPolicyUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *CreatePolicyUnauthorized) String() string {
+	return fmt.Sprintf("[POST /policies][%d] createPolicyUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *CreatePolicyUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -177,7 +270,8 @@ func NewCreatePolicyForbidden() *CreatePolicyForbidden {
 	return &CreatePolicyForbidden{}
 }
 
-/* CreatePolicyForbidden describes a response with status code 403, with default header values.
+/*
+CreatePolicyForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -185,9 +279,39 @@ type CreatePolicyForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create policy forbidden response has a 2xx status code
+func (o *CreatePolicyForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create policy forbidden response has a 3xx status code
+func (o *CreatePolicyForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create policy forbidden response has a 4xx status code
+func (o *CreatePolicyForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create policy forbidden response has a 5xx status code
+func (o *CreatePolicyForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create policy forbidden response a status code equal to that given
+func (o *CreatePolicyForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *CreatePolicyForbidden) Error() string {
 	return fmt.Sprintf("[POST /policies][%d] createPolicyForbidden  %+v", 403, o.Payload)
 }
+
+func (o *CreatePolicyForbidden) String() string {
+	return fmt.Sprintf("[POST /policies][%d] createPolicyForbidden  %+v", 403, o.Payload)
+}
+
 func (o *CreatePolicyForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -209,7 +333,8 @@ func NewCreatePolicyNotFound() *CreatePolicyNotFound {
 	return &CreatePolicyNotFound{}
 }
 
-/* CreatePolicyNotFound describes a response with status code 404, with default header values.
+/*
+CreatePolicyNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -217,9 +342,39 @@ type CreatePolicyNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create policy not found response has a 2xx status code
+func (o *CreatePolicyNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create policy not found response has a 3xx status code
+func (o *CreatePolicyNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create policy not found response has a 4xx status code
+func (o *CreatePolicyNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create policy not found response has a 5xx status code
+func (o *CreatePolicyNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create policy not found response a status code equal to that given
+func (o *CreatePolicyNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *CreatePolicyNotFound) Error() string {
 	return fmt.Sprintf("[POST /policies][%d] createPolicyNotFound  %+v", 404, o.Payload)
 }
+
+func (o *CreatePolicyNotFound) String() string {
+	return fmt.Sprintf("[POST /policies][%d] createPolicyNotFound  %+v", 404, o.Payload)
+}
+
 func (o *CreatePolicyNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -241,7 +396,8 @@ func NewCreatePolicyConflict() *CreatePolicyConflict {
 	return &CreatePolicyConflict{}
 }
 
-/* CreatePolicyConflict describes a response with status code 409, with default header values.
+/*
+CreatePolicyConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -249,9 +405,39 @@ type CreatePolicyConflict struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create policy conflict response has a 2xx status code
+func (o *CreatePolicyConflict) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create policy conflict response has a 3xx status code
+func (o *CreatePolicyConflict) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create policy conflict response has a 4xx status code
+func (o *CreatePolicyConflict) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create policy conflict response has a 5xx status code
+func (o *CreatePolicyConflict) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create policy conflict response a status code equal to that given
+func (o *CreatePolicyConflict) IsCode(code int) bool {
+	return code == 409
+}
+
 func (o *CreatePolicyConflict) Error() string {
 	return fmt.Sprintf("[POST /policies][%d] createPolicyConflict  %+v", 409, o.Payload)
 }
+
+func (o *CreatePolicyConflict) String() string {
+	return fmt.Sprintf("[POST /policies][%d] createPolicyConflict  %+v", 409, o.Payload)
+}
+
 func (o *CreatePolicyConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -273,7 +459,8 @@ func NewCreatePolicyUnprocessableEntity() *CreatePolicyUnprocessableEntity {
 	return &CreatePolicyUnprocessableEntity{}
 }
 
-/* CreatePolicyUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+CreatePolicyUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -281,9 +468,39 @@ type CreatePolicyUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create policy unprocessable entity response has a 2xx status code
+func (o *CreatePolicyUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create policy unprocessable entity response has a 3xx status code
+func (o *CreatePolicyUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create policy unprocessable entity response has a 4xx status code
+func (o *CreatePolicyUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create policy unprocessable entity response has a 5xx status code
+func (o *CreatePolicyUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create policy unprocessable entity response a status code equal to that given
+func (o *CreatePolicyUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *CreatePolicyUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /policies][%d] createPolicyUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *CreatePolicyUnprocessableEntity) String() string {
+	return fmt.Sprintf("[POST /policies][%d] createPolicyUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *CreatePolicyUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -305,7 +522,8 @@ func NewCreatePolicyTooManyRequests() *CreatePolicyTooManyRequests {
 	return &CreatePolicyTooManyRequests{}
 }
 
-/* CreatePolicyTooManyRequests describes a response with status code 429, with default header values.
+/*
+CreatePolicyTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -313,9 +531,39 @@ type CreatePolicyTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create policy too many requests response has a 2xx status code
+func (o *CreatePolicyTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create policy too many requests response has a 3xx status code
+func (o *CreatePolicyTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create policy too many requests response has a 4xx status code
+func (o *CreatePolicyTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create policy too many requests response has a 5xx status code
+func (o *CreatePolicyTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create policy too many requests response a status code equal to that given
+func (o *CreatePolicyTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *CreatePolicyTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /policies][%d] createPolicyTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *CreatePolicyTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /policies][%d] createPolicyTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *CreatePolicyTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

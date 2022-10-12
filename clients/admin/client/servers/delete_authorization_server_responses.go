@@ -69,14 +69,44 @@ func NewDeleteAuthorizationServerNoContent() *DeleteAuthorizationServerNoContent
 	return &DeleteAuthorizationServerNoContent{}
 }
 
-/* DeleteAuthorizationServerNoContent describes a response with status code 204, with default header values.
+/*
+DeleteAuthorizationServerNoContent describes a response with status code 204, with default header values.
 
-Authorization server has been deleted
+	Authorization server has been deleted
 */
 type DeleteAuthorizationServerNoContent struct {
 }
 
+// IsSuccess returns true when this delete authorization server no content response has a 2xx status code
+func (o *DeleteAuthorizationServerNoContent) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this delete authorization server no content response has a 3xx status code
+func (o *DeleteAuthorizationServerNoContent) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete authorization server no content response has a 4xx status code
+func (o *DeleteAuthorizationServerNoContent) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this delete authorization server no content response has a 5xx status code
+func (o *DeleteAuthorizationServerNoContent) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete authorization server no content response a status code equal to that given
+func (o *DeleteAuthorizationServerNoContent) IsCode(code int) bool {
+	return code == 204
+}
+
 func (o *DeleteAuthorizationServerNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerNoContent ", 204)
+}
+
+func (o *DeleteAuthorizationServerNoContent) String() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerNoContent ", 204)
 }
 
@@ -90,7 +120,8 @@ func NewDeleteAuthorizationServerBadRequest() *DeleteAuthorizationServerBadReque
 	return &DeleteAuthorizationServerBadRequest{}
 }
 
-/* DeleteAuthorizationServerBadRequest describes a response with status code 400, with default header values.
+/*
+DeleteAuthorizationServerBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -98,9 +129,39 @@ type DeleteAuthorizationServerBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete authorization server bad request response has a 2xx status code
+func (o *DeleteAuthorizationServerBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete authorization server bad request response has a 3xx status code
+func (o *DeleteAuthorizationServerBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete authorization server bad request response has a 4xx status code
+func (o *DeleteAuthorizationServerBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete authorization server bad request response has a 5xx status code
+func (o *DeleteAuthorizationServerBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete authorization server bad request response a status code equal to that given
+func (o *DeleteAuthorizationServerBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *DeleteAuthorizationServerBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *DeleteAuthorizationServerBadRequest) String() string {
+	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *DeleteAuthorizationServerBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -122,7 +183,8 @@ func NewDeleteAuthorizationServerUnauthorized() *DeleteAuthorizationServerUnauth
 	return &DeleteAuthorizationServerUnauthorized{}
 }
 
-/* DeleteAuthorizationServerUnauthorized describes a response with status code 401, with default header values.
+/*
+DeleteAuthorizationServerUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -130,9 +192,39 @@ type DeleteAuthorizationServerUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete authorization server unauthorized response has a 2xx status code
+func (o *DeleteAuthorizationServerUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete authorization server unauthorized response has a 3xx status code
+func (o *DeleteAuthorizationServerUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete authorization server unauthorized response has a 4xx status code
+func (o *DeleteAuthorizationServerUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete authorization server unauthorized response has a 5xx status code
+func (o *DeleteAuthorizationServerUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete authorization server unauthorized response a status code equal to that given
+func (o *DeleteAuthorizationServerUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *DeleteAuthorizationServerUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *DeleteAuthorizationServerUnauthorized) String() string {
+	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *DeleteAuthorizationServerUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -154,7 +246,8 @@ func NewDeleteAuthorizationServerForbidden() *DeleteAuthorizationServerForbidden
 	return &DeleteAuthorizationServerForbidden{}
 }
 
-/* DeleteAuthorizationServerForbidden describes a response with status code 403, with default header values.
+/*
+DeleteAuthorizationServerForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -162,9 +255,39 @@ type DeleteAuthorizationServerForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete authorization server forbidden response has a 2xx status code
+func (o *DeleteAuthorizationServerForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete authorization server forbidden response has a 3xx status code
+func (o *DeleteAuthorizationServerForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete authorization server forbidden response has a 4xx status code
+func (o *DeleteAuthorizationServerForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete authorization server forbidden response has a 5xx status code
+func (o *DeleteAuthorizationServerForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete authorization server forbidden response a status code equal to that given
+func (o *DeleteAuthorizationServerForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *DeleteAuthorizationServerForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerForbidden  %+v", 403, o.Payload)
 }
+
+func (o *DeleteAuthorizationServerForbidden) String() string {
+	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerForbidden  %+v", 403, o.Payload)
+}
+
 func (o *DeleteAuthorizationServerForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -186,7 +309,8 @@ func NewDeleteAuthorizationServerNotFound() *DeleteAuthorizationServerNotFound {
 	return &DeleteAuthorizationServerNotFound{}
 }
 
-/* DeleteAuthorizationServerNotFound describes a response with status code 404, with default header values.
+/*
+DeleteAuthorizationServerNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -194,9 +318,39 @@ type DeleteAuthorizationServerNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete authorization server not found response has a 2xx status code
+func (o *DeleteAuthorizationServerNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete authorization server not found response has a 3xx status code
+func (o *DeleteAuthorizationServerNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete authorization server not found response has a 4xx status code
+func (o *DeleteAuthorizationServerNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete authorization server not found response has a 5xx status code
+func (o *DeleteAuthorizationServerNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete authorization server not found response a status code equal to that given
+func (o *DeleteAuthorizationServerNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *DeleteAuthorizationServerNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerNotFound  %+v", 404, o.Payload)
 }
+
+func (o *DeleteAuthorizationServerNotFound) String() string {
+	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerNotFound  %+v", 404, o.Payload)
+}
+
 func (o *DeleteAuthorizationServerNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -218,7 +372,8 @@ func NewDeleteAuthorizationServerTooManyRequests() *DeleteAuthorizationServerToo
 	return &DeleteAuthorizationServerTooManyRequests{}
 }
 
-/* DeleteAuthorizationServerTooManyRequests describes a response with status code 429, with default header values.
+/*
+DeleteAuthorizationServerTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -226,9 +381,39 @@ type DeleteAuthorizationServerTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete authorization server too many requests response has a 2xx status code
+func (o *DeleteAuthorizationServerTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete authorization server too many requests response has a 3xx status code
+func (o *DeleteAuthorizationServerTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete authorization server too many requests response has a 4xx status code
+func (o *DeleteAuthorizationServerTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete authorization server too many requests response has a 5xx status code
+func (o *DeleteAuthorizationServerTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete authorization server too many requests response a status code equal to that given
+func (o *DeleteAuthorizationServerTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *DeleteAuthorizationServerTooManyRequests) Error() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *DeleteAuthorizationServerTooManyRequests) String() string {
+	return fmt.Sprintf("[DELETE /servers/{wid}][%d] deleteAuthorizationServerTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *DeleteAuthorizationServerTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

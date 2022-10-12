@@ -54,10 +54,12 @@ func NewUpdateSAMLIDPParamsWithHTTPClient(client *http.Client) *UpdateSAMLIDPPar
 	}
 }
 
-/* UpdateSAMLIDPParams contains all the parameters to send to the API endpoint
-   for the update s a m l ID p operation.
+/*
+UpdateSAMLIDPParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update s a m l ID p operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateSAMLIDPParams struct {
 

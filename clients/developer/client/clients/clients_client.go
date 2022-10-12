@@ -48,9 +48,9 @@ type ClientService interface {
 }
 
 /*
-  CreateClientForDeveloper creates new o auth client
+	CreateClientForDeveloper creates new o auth client
 
-  Client must be created under existing tenant and authorization server.
+	Client must be created under existing tenant and authorization server.
 
 Authorization server id where client should be assigned must be provided in the request body.
 
@@ -102,9 +102,9 @@ func (a *Client) CreateClientForDeveloper(params *CreateClientForDeveloperParams
 }
 
 /*
-  DeleteClientForDeveloper deletes client
+DeleteClientForDeveloper deletes client
 
-  Delete client owned by developer.
+Delete client owned by developer.
 */
 func (a *Client) DeleteClientForDeveloper(params *DeleteClientForDeveloperParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteClientForDeveloperNoContent, error) {
 	// TODO: Validate the params before sending
@@ -143,9 +143,9 @@ func (a *Client) DeleteClientForDeveloper(params *DeleteClientForDeveloperParams
 }
 
 /*
-  GetClientForDeveloper gets client
+GetClientForDeveloper gets client
 
-  Get client owned by developer.
+Get client owned by developer.
 */
 func (a *Client) GetClientForDeveloper(params *GetClientForDeveloperParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetClientForDeveloperOK, error) {
 	// TODO: Validate the params before sending
@@ -184,9 +184,9 @@ func (a *Client) GetClientForDeveloper(params *GetClientForDeveloperParams, auth
 }
 
 /*
-  ListClientsForDeveloper lists clients
+ListClientsForDeveloper lists clients
 
-  List clients owner by developer.
+List clients owner by developer.
 */
 func (a *Client) ListClientsForDeveloper(params *ListClientsForDeveloperParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListClientsForDeveloperOK, error) {
 	// TODO: Validate the params before sending
@@ -225,9 +225,9 @@ func (a *Client) ListClientsForDeveloper(params *ListClientsForDeveloperParams, 
 }
 
 /*
-  RevokeRotatedClientSecretsAsDeveloper revokes rotated secrets
+RevokeRotatedClientSecretsAsDeveloper revokes rotated secrets
 
-  Revoke all rotated client's secrets.
+Revoke all rotated client's secrets.
 */
 func (a *Client) RevokeRotatedClientSecretsAsDeveloper(params *RevokeRotatedClientSecretsAsDeveloperParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeRotatedClientSecretsAsDeveloperNoContent, error) {
 	// TODO: Validate the params before sending
@@ -266,9 +266,10 @@ func (a *Client) RevokeRotatedClientSecretsAsDeveloper(params *RevokeRotatedClie
 }
 
 /*
-  RotateClientSecretAsDeveloper rotates client s secret
+	RotateClientSecretAsDeveloper rotates client s secret
 
-  Generate a new client secret, move old secret to rotated secrets list and return
+	Generate a new client secret, move old secret to rotated secrets list and return
+
 new client secret as a response. The max number of client rotated secrets is 2.
 The rotated secrets over the limit are dropped.
 */
@@ -309,9 +310,9 @@ func (a *Client) RotateClientSecretAsDeveloper(params *RotateClientSecretAsDevel
 }
 
 /*
-  UpdateClientForDeveloper updates client
+UpdateClientForDeveloper updates client
 
-  The entire client object must be send for update.
+The entire client object must be send for update.
 */
 func (a *Client) UpdateClientForDeveloper(params *UpdateClientForDeveloperParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateClientForDeveloperOK, error) {
 	// TODO: Validate the params before sending

@@ -52,10 +52,12 @@ func NewListPolicyExecutionPointsParamsWithHTTPClient(client *http.Client) *List
 	}
 }
 
-/* ListPolicyExecutionPointsParams contains all the parameters to send to the API endpoint
-   for the list policy execution points operation.
+/*
+ListPolicyExecutionPointsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the list policy execution points operation.
+
+	Typically these are written to a http.Request.
 */
 type ListPolicyExecutionPointsParams struct {
 

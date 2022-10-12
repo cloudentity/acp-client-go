@@ -56,9 +56,9 @@ type ClientService interface {
 }
 
 /*
-  CreateConsent creates consent
+	CreateConsent creates consent
 
-  Consents are created per tenant.
+	Consents are created per tenant.
 
 ID, Name and UpdateExistingGrants strategy are required fields when creating a new consent.
 
@@ -110,9 +110,10 @@ func (a *Client) CreateConsent(params *CreateConsentParams, authInfo runtime.Cli
 }
 
 /*
-  CreateConsentAction creates consent action
+	CreateConsentAction creates consent action
 
-  Consent action allows to group list of consents. A Tenant Application asking for the consent it can
+	Consent action allows to group list of consents. A Tenant Application asking for the consent it can
+
 ask for +by the action name+ instead of asking for a list of consents directly. It allows for cleaner
 abstraction and adds the ability to dynamically configure the consents required for particular applications.
 
@@ -157,9 +158,9 @@ func (a *Client) CreateConsentAction(params *CreateConsentActionParams, authInfo
 }
 
 /*
-  DeleteConsent deletes consent
+DeleteConsent deletes consent
 
-  Delete consent.
+Delete consent.
 */
 func (a *Client) DeleteConsent(params *DeleteConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteConsentNoContent, error) {
 	// TODO: Validate the params before sending
@@ -198,9 +199,9 @@ func (a *Client) DeleteConsent(params *DeleteConsentParams, authInfo runtime.Cli
 }
 
 /*
-  DeleteConsentAction deletes consent action
+DeleteConsentAction deletes consent action
 
-  Delete consent action.
+Delete consent action.
 */
 func (a *Client) DeleteConsentAction(params *DeleteConsentActionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteConsentActionNoContent, error) {
 	// TODO: Validate the params before sending
@@ -239,9 +240,9 @@ func (a *Client) DeleteConsentAction(params *DeleteConsentActionParams, authInfo
 }
 
 /*
-  GetConsent gets consent details
+GetConsent gets consent details
 
-  Get consent details.
+Get consent details.
 */
 func (a *Client) GetConsent(params *GetConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetConsentOK, error) {
 	// TODO: Validate the params before sending
@@ -280,9 +281,9 @@ func (a *Client) GetConsent(params *GetConsentParams, authInfo runtime.ClientAut
 }
 
 /*
-  GetConsentAction gets consent action with consents
+GetConsentAction gets consent action with consents
 
-  Get consent action with consents.
+Get consent action with consents.
 */
 func (a *Client) GetConsentAction(params *GetConsentActionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetConsentActionOK, error) {
 	// TODO: Validate the params before sending
@@ -321,9 +322,9 @@ func (a *Client) GetConsentAction(params *GetConsentActionParams, authInfo runti
 }
 
 /*
-  ListConsentActions lists consent actions
+ListConsentActions lists consent actions
 
-  List consent actions.
+List consent actions.
 */
 func (a *Client) ListConsentActions(params *ListConsentActionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListConsentActionsOK, error) {
 	// TODO: Validate the params before sending
@@ -362,9 +363,9 @@ func (a *Client) ListConsentActions(params *ListConsentActionsParams, authInfo r
 }
 
 /*
-  ListConsents lists consents
+ListConsents lists consents
 
-  List consents.
+List consents.
 */
 func (a *Client) ListConsents(params *ListConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListConsentsOK, error) {
 	// TODO: Validate the params before sending
@@ -403,9 +404,9 @@ func (a *Client) ListConsents(params *ListConsentsParams, authInfo runtime.Clien
 }
 
 /*
-  ListPrivacyLedgerEventsBySubject lists privacy ledger events
+ListPrivacyLedgerEventsBySubject lists privacy ledger events
 
-  List privacy ledger events.
+List privacy ledger events.
 */
 func (a *Client) ListPrivacyLedgerEventsBySubject(params *ListPrivacyLedgerEventsBySubjectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListPrivacyLedgerEventsBySubjectOK, error) {
 	// TODO: Validate the params before sending
@@ -444,9 +445,9 @@ func (a *Client) ListPrivacyLedgerEventsBySubject(params *ListPrivacyLedgerEvent
 }
 
 /*
-  UpdateConsent updates consent
+	UpdateConsent updates consent
 
-  Every time consent is updated, its version is incremented.
+	Every time consent is updated, its version is incremented.
 
 If ValidFrom attribute is not provided it will be set to current time.
 */
@@ -487,9 +488,9 @@ func (a *Client) UpdateConsent(params *UpdateConsentParams, authInfo runtime.Cli
 }
 
 /*
-  UpdateConsentAction updates consent action
+UpdateConsentAction updates consent action
 
-  Update consent action.
+Update consent action.
 */
 func (a *Client) UpdateConsentAction(params *UpdateConsentActionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateConsentActionCreated, error) {
 	// TODO: Validate the params before sending

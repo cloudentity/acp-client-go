@@ -23,6 +23,9 @@ type Features struct {
 	// block access to tenant for traffic not originated from the vanity domain
 	BlockNonVanityDomainAccess bool `json:"block_non_vanity_domain_access,omitempty"`
 
+	// disable unique software id for CDR
+	CdrDisableUniqueSoftwareID bool `json:"cdr_disable_unique_software_id,omitempty"`
+
 	// enable ciba (system)
 	Ciba bool `json:"ciba,omitempty"`
 
@@ -41,9 +44,6 @@ type Features struct {
 	// extended audit events retention
 	ExtendedAuditEventsRetention bool `json:"extended_audit_events_retention,omitempty"`
 
-	// FDX (tenant)
-	Fdx bool `json:"fdx,omitempty"`
-
 	// when enabled and the display_workspace_wizard feature flag is set to true, a demo workspace with a set of preconfigured IDPs is created and no welcome screen is displayed (tenant)
 	InitializeDemoWorkspace bool `json:"initialize_demo_workspace,omitempty"`
 
@@ -56,14 +56,14 @@ type Features struct {
 	// enable global import and export configuration endpoints (system)
 	IntegrationEndpoints bool `json:"integration_endpoints,omitempty"`
 
-	// enable Kusk API Gateway (tenant)
-	Kusk bool `json:"kusk,omitempty"`
-
 	// enable login with select_account param (tenant)
 	LoginWithSelectAccount bool `json:"login_with_select_account,omitempty"`
 
 	// enable consents v2 apis for open banking brasil
 	OpenbankingBrasilConsentsV2 bool `json:"openbanking_brasil_consents_v2,omitempty"`
+
+	// enable permissions
+	Permissions bool `json:"permissions,omitempty"`
 
 	// enable planet scale authorization
 	PlanetScaleAuthorization bool `json:"planet_scale_authorization,omitempty"`

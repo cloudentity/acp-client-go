@@ -81,7 +81,8 @@ func NewUpdateMFAMethodOK() *UpdateMFAMethodOK {
 	return &UpdateMFAMethodOK{}
 }
 
-/* UpdateMFAMethodOK describes a response with status code 200, with default header values.
+/*
+UpdateMFAMethodOK describes a response with status code 200, with default header values.
 
 MFAMethod
 */
@@ -89,9 +90,39 @@ type UpdateMFAMethodOK struct {
 	Payload *models.MFAMethod
 }
 
+// IsSuccess returns true when this update m f a method o k response has a 2xx status code
+func (o *UpdateMFAMethodOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this update m f a method o k response has a 3xx status code
+func (o *UpdateMFAMethodOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update m f a method o k response has a 4xx status code
+func (o *UpdateMFAMethodOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this update m f a method o k response has a 5xx status code
+func (o *UpdateMFAMethodOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update m f a method o k response a status code equal to that given
+func (o *UpdateMFAMethodOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *UpdateMFAMethodOK) Error() string {
 	return fmt.Sprintf("[PUT /mfa-methods/{mfaID}][%d] updateMFAMethodOK  %+v", 200, o.Payload)
 }
+
+func (o *UpdateMFAMethodOK) String() string {
+	return fmt.Sprintf("[PUT /mfa-methods/{mfaID}][%d] updateMFAMethodOK  %+v", 200, o.Payload)
+}
+
 func (o *UpdateMFAMethodOK) GetPayload() *models.MFAMethod {
 	return o.Payload
 }
@@ -113,7 +144,8 @@ func NewUpdateMFAMethodBadRequest() *UpdateMFAMethodBadRequest {
 	return &UpdateMFAMethodBadRequest{}
 }
 
-/* UpdateMFAMethodBadRequest describes a response with status code 400, with default header values.
+/*
+UpdateMFAMethodBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -121,9 +153,39 @@ type UpdateMFAMethodBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update m f a method bad request response has a 2xx status code
+func (o *UpdateMFAMethodBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update m f a method bad request response has a 3xx status code
+func (o *UpdateMFAMethodBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update m f a method bad request response has a 4xx status code
+func (o *UpdateMFAMethodBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update m f a method bad request response has a 5xx status code
+func (o *UpdateMFAMethodBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update m f a method bad request response a status code equal to that given
+func (o *UpdateMFAMethodBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *UpdateMFAMethodBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /mfa-methods/{mfaID}][%d] updateMFAMethodBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *UpdateMFAMethodBadRequest) String() string {
+	return fmt.Sprintf("[PUT /mfa-methods/{mfaID}][%d] updateMFAMethodBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *UpdateMFAMethodBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -145,7 +207,8 @@ func NewUpdateMFAMethodUnauthorized() *UpdateMFAMethodUnauthorized {
 	return &UpdateMFAMethodUnauthorized{}
 }
 
-/* UpdateMFAMethodUnauthorized describes a response with status code 401, with default header values.
+/*
+UpdateMFAMethodUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -153,9 +216,39 @@ type UpdateMFAMethodUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update m f a method unauthorized response has a 2xx status code
+func (o *UpdateMFAMethodUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update m f a method unauthorized response has a 3xx status code
+func (o *UpdateMFAMethodUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update m f a method unauthorized response has a 4xx status code
+func (o *UpdateMFAMethodUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update m f a method unauthorized response has a 5xx status code
+func (o *UpdateMFAMethodUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update m f a method unauthorized response a status code equal to that given
+func (o *UpdateMFAMethodUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *UpdateMFAMethodUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /mfa-methods/{mfaID}][%d] updateMFAMethodUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *UpdateMFAMethodUnauthorized) String() string {
+	return fmt.Sprintf("[PUT /mfa-methods/{mfaID}][%d] updateMFAMethodUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *UpdateMFAMethodUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -177,7 +270,8 @@ func NewUpdateMFAMethodForbidden() *UpdateMFAMethodForbidden {
 	return &UpdateMFAMethodForbidden{}
 }
 
-/* UpdateMFAMethodForbidden describes a response with status code 403, with default header values.
+/*
+UpdateMFAMethodForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -185,9 +279,39 @@ type UpdateMFAMethodForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update m f a method forbidden response has a 2xx status code
+func (o *UpdateMFAMethodForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update m f a method forbidden response has a 3xx status code
+func (o *UpdateMFAMethodForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update m f a method forbidden response has a 4xx status code
+func (o *UpdateMFAMethodForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update m f a method forbidden response has a 5xx status code
+func (o *UpdateMFAMethodForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update m f a method forbidden response a status code equal to that given
+func (o *UpdateMFAMethodForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *UpdateMFAMethodForbidden) Error() string {
 	return fmt.Sprintf("[PUT /mfa-methods/{mfaID}][%d] updateMFAMethodForbidden  %+v", 403, o.Payload)
 }
+
+func (o *UpdateMFAMethodForbidden) String() string {
+	return fmt.Sprintf("[PUT /mfa-methods/{mfaID}][%d] updateMFAMethodForbidden  %+v", 403, o.Payload)
+}
+
 func (o *UpdateMFAMethodForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -209,7 +333,8 @@ func NewUpdateMFAMethodNotFound() *UpdateMFAMethodNotFound {
 	return &UpdateMFAMethodNotFound{}
 }
 
-/* UpdateMFAMethodNotFound describes a response with status code 404, with default header values.
+/*
+UpdateMFAMethodNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -217,9 +342,39 @@ type UpdateMFAMethodNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update m f a method not found response has a 2xx status code
+func (o *UpdateMFAMethodNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update m f a method not found response has a 3xx status code
+func (o *UpdateMFAMethodNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update m f a method not found response has a 4xx status code
+func (o *UpdateMFAMethodNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update m f a method not found response has a 5xx status code
+func (o *UpdateMFAMethodNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update m f a method not found response a status code equal to that given
+func (o *UpdateMFAMethodNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *UpdateMFAMethodNotFound) Error() string {
 	return fmt.Sprintf("[PUT /mfa-methods/{mfaID}][%d] updateMFAMethodNotFound  %+v", 404, o.Payload)
 }
+
+func (o *UpdateMFAMethodNotFound) String() string {
+	return fmt.Sprintf("[PUT /mfa-methods/{mfaID}][%d] updateMFAMethodNotFound  %+v", 404, o.Payload)
+}
+
 func (o *UpdateMFAMethodNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -241,7 +396,8 @@ func NewUpdateMFAMethodConflict() *UpdateMFAMethodConflict {
 	return &UpdateMFAMethodConflict{}
 }
 
-/* UpdateMFAMethodConflict describes a response with status code 409, with default header values.
+/*
+UpdateMFAMethodConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -249,9 +405,39 @@ type UpdateMFAMethodConflict struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update m f a method conflict response has a 2xx status code
+func (o *UpdateMFAMethodConflict) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update m f a method conflict response has a 3xx status code
+func (o *UpdateMFAMethodConflict) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update m f a method conflict response has a 4xx status code
+func (o *UpdateMFAMethodConflict) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update m f a method conflict response has a 5xx status code
+func (o *UpdateMFAMethodConflict) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update m f a method conflict response a status code equal to that given
+func (o *UpdateMFAMethodConflict) IsCode(code int) bool {
+	return code == 409
+}
+
 func (o *UpdateMFAMethodConflict) Error() string {
 	return fmt.Sprintf("[PUT /mfa-methods/{mfaID}][%d] updateMFAMethodConflict  %+v", 409, o.Payload)
 }
+
+func (o *UpdateMFAMethodConflict) String() string {
+	return fmt.Sprintf("[PUT /mfa-methods/{mfaID}][%d] updateMFAMethodConflict  %+v", 409, o.Payload)
+}
+
 func (o *UpdateMFAMethodConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -273,7 +459,8 @@ func NewUpdateMFAMethodUnprocessableEntity() *UpdateMFAMethodUnprocessableEntity
 	return &UpdateMFAMethodUnprocessableEntity{}
 }
 
-/* UpdateMFAMethodUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+UpdateMFAMethodUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -281,9 +468,39 @@ type UpdateMFAMethodUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update m f a method unprocessable entity response has a 2xx status code
+func (o *UpdateMFAMethodUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update m f a method unprocessable entity response has a 3xx status code
+func (o *UpdateMFAMethodUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update m f a method unprocessable entity response has a 4xx status code
+func (o *UpdateMFAMethodUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update m f a method unprocessable entity response has a 5xx status code
+func (o *UpdateMFAMethodUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update m f a method unprocessable entity response a status code equal to that given
+func (o *UpdateMFAMethodUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *UpdateMFAMethodUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /mfa-methods/{mfaID}][%d] updateMFAMethodUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *UpdateMFAMethodUnprocessableEntity) String() string {
+	return fmt.Sprintf("[PUT /mfa-methods/{mfaID}][%d] updateMFAMethodUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *UpdateMFAMethodUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -305,7 +522,8 @@ func NewUpdateMFAMethodTooManyRequests() *UpdateMFAMethodTooManyRequests {
 	return &UpdateMFAMethodTooManyRequests{}
 }
 
-/* UpdateMFAMethodTooManyRequests describes a response with status code 429, with default header values.
+/*
+UpdateMFAMethodTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -313,9 +531,39 @@ type UpdateMFAMethodTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update m f a method too many requests response has a 2xx status code
+func (o *UpdateMFAMethodTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update m f a method too many requests response has a 3xx status code
+func (o *UpdateMFAMethodTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update m f a method too many requests response has a 4xx status code
+func (o *UpdateMFAMethodTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update m f a method too many requests response has a 5xx status code
+func (o *UpdateMFAMethodTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update m f a method too many requests response a status code equal to that given
+func (o *UpdateMFAMethodTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *UpdateMFAMethodTooManyRequests) Error() string {
 	return fmt.Sprintf("[PUT /mfa-methods/{mfaID}][%d] updateMFAMethodTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *UpdateMFAMethodTooManyRequests) String() string {
+	return fmt.Sprintf("[PUT /mfa-methods/{mfaID}][%d] updateMFAMethodTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *UpdateMFAMethodTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

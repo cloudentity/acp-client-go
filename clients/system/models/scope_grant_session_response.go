@@ -36,6 +36,9 @@ type ScopeGrantSessionResponse struct {
 	// authentication context
 	AuthenticationContext AuthenticationContext `json:"authentication_context,omitempty"`
 
+	// authorization details
+	AuthorizationDetails []map[string]interface{} `json:"authorization_details"`
+
 	// OAuth client identifier
 	// Example: default
 	ClientID string `json:"client_id,omitempty"`
@@ -58,6 +61,9 @@ type ScopeGrantSessionResponse struct {
 
 	// idp identifier
 	IdpID string `json:"idp_id,omitempty"`
+
+	// idp subject
+	IdpSubject string `json:"idp_subject,omitempty"`
 
 	// is login approved
 	// Example: false

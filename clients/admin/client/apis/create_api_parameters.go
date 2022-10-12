@@ -54,10 +54,12 @@ func NewCreateAPIParamsWithHTTPClient(client *http.Client) *CreateAPIParams {
 	}
 }
 
-/* CreateAPIParams contains all the parameters to send to the API endpoint
-   for the create API operation.
+/*
+CreateAPIParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the create API operation.
+
+	Typically these are written to a http.Request.
 */
 type CreateAPIParams struct {
 

@@ -75,7 +75,8 @@ func NewExportTenantConfigurationOK() *ExportTenantConfigurationOK {
 	return &ExportTenantConfigurationOK{}
 }
 
-/* ExportTenantConfigurationOK describes a response with status code 200, with default header values.
+/*
+ExportTenantConfigurationOK describes a response with status code 200, with default header values.
 
 Tenant dump
 */
@@ -83,9 +84,39 @@ type ExportTenantConfigurationOK struct {
 	Payload *models.TenantDump
 }
 
+// IsSuccess returns true when this export tenant configuration o k response has a 2xx status code
+func (o *ExportTenantConfigurationOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this export tenant configuration o k response has a 3xx status code
+func (o *ExportTenantConfigurationOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this export tenant configuration o k response has a 4xx status code
+func (o *ExportTenantConfigurationOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this export tenant configuration o k response has a 5xx status code
+func (o *ExportTenantConfigurationOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this export tenant configuration o k response a status code equal to that given
+func (o *ExportTenantConfigurationOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *ExportTenantConfigurationOK) Error() string {
 	return fmt.Sprintf("[GET /configuration][%d] exportTenantConfigurationOK  %+v", 200, o.Payload)
 }
+
+func (o *ExportTenantConfigurationOK) String() string {
+	return fmt.Sprintf("[GET /configuration][%d] exportTenantConfigurationOK  %+v", 200, o.Payload)
+}
+
 func (o *ExportTenantConfigurationOK) GetPayload() *models.TenantDump {
 	return o.Payload
 }
@@ -107,7 +138,8 @@ func NewExportTenantConfigurationBadRequest() *ExportTenantConfigurationBadReque
 	return &ExportTenantConfigurationBadRequest{}
 }
 
-/* ExportTenantConfigurationBadRequest describes a response with status code 400, with default header values.
+/*
+ExportTenantConfigurationBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -115,9 +147,39 @@ type ExportTenantConfigurationBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this export tenant configuration bad request response has a 2xx status code
+func (o *ExportTenantConfigurationBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this export tenant configuration bad request response has a 3xx status code
+func (o *ExportTenantConfigurationBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this export tenant configuration bad request response has a 4xx status code
+func (o *ExportTenantConfigurationBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this export tenant configuration bad request response has a 5xx status code
+func (o *ExportTenantConfigurationBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this export tenant configuration bad request response a status code equal to that given
+func (o *ExportTenantConfigurationBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *ExportTenantConfigurationBadRequest) Error() string {
 	return fmt.Sprintf("[GET /configuration][%d] exportTenantConfigurationBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *ExportTenantConfigurationBadRequest) String() string {
+	return fmt.Sprintf("[GET /configuration][%d] exportTenantConfigurationBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *ExportTenantConfigurationBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -139,7 +201,8 @@ func NewExportTenantConfigurationUnauthorized() *ExportTenantConfigurationUnauth
 	return &ExportTenantConfigurationUnauthorized{}
 }
 
-/* ExportTenantConfigurationUnauthorized describes a response with status code 401, with default header values.
+/*
+ExportTenantConfigurationUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,9 +210,39 @@ type ExportTenantConfigurationUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this export tenant configuration unauthorized response has a 2xx status code
+func (o *ExportTenantConfigurationUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this export tenant configuration unauthorized response has a 3xx status code
+func (o *ExportTenantConfigurationUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this export tenant configuration unauthorized response has a 4xx status code
+func (o *ExportTenantConfigurationUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this export tenant configuration unauthorized response has a 5xx status code
+func (o *ExportTenantConfigurationUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this export tenant configuration unauthorized response a status code equal to that given
+func (o *ExportTenantConfigurationUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *ExportTenantConfigurationUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /configuration][%d] exportTenantConfigurationUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *ExportTenantConfigurationUnauthorized) String() string {
+	return fmt.Sprintf("[GET /configuration][%d] exportTenantConfigurationUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *ExportTenantConfigurationUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -171,7 +264,8 @@ func NewExportTenantConfigurationForbidden() *ExportTenantConfigurationForbidden
 	return &ExportTenantConfigurationForbidden{}
 }
 
-/* ExportTenantConfigurationForbidden describes a response with status code 403, with default header values.
+/*
+ExportTenantConfigurationForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -179,9 +273,39 @@ type ExportTenantConfigurationForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this export tenant configuration forbidden response has a 2xx status code
+func (o *ExportTenantConfigurationForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this export tenant configuration forbidden response has a 3xx status code
+func (o *ExportTenantConfigurationForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this export tenant configuration forbidden response has a 4xx status code
+func (o *ExportTenantConfigurationForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this export tenant configuration forbidden response has a 5xx status code
+func (o *ExportTenantConfigurationForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this export tenant configuration forbidden response a status code equal to that given
+func (o *ExportTenantConfigurationForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *ExportTenantConfigurationForbidden) Error() string {
 	return fmt.Sprintf("[GET /configuration][%d] exportTenantConfigurationForbidden  %+v", 403, o.Payload)
 }
+
+func (o *ExportTenantConfigurationForbidden) String() string {
+	return fmt.Sprintf("[GET /configuration][%d] exportTenantConfigurationForbidden  %+v", 403, o.Payload)
+}
+
 func (o *ExportTenantConfigurationForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -203,7 +327,8 @@ func NewExportTenantConfigurationNotFound() *ExportTenantConfigurationNotFound {
 	return &ExportTenantConfigurationNotFound{}
 }
 
-/* ExportTenantConfigurationNotFound describes a response with status code 404, with default header values.
+/*
+ExportTenantConfigurationNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -211,9 +336,39 @@ type ExportTenantConfigurationNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this export tenant configuration not found response has a 2xx status code
+func (o *ExportTenantConfigurationNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this export tenant configuration not found response has a 3xx status code
+func (o *ExportTenantConfigurationNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this export tenant configuration not found response has a 4xx status code
+func (o *ExportTenantConfigurationNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this export tenant configuration not found response has a 5xx status code
+func (o *ExportTenantConfigurationNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this export tenant configuration not found response a status code equal to that given
+func (o *ExportTenantConfigurationNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *ExportTenantConfigurationNotFound) Error() string {
 	return fmt.Sprintf("[GET /configuration][%d] exportTenantConfigurationNotFound  %+v", 404, o.Payload)
 }
+
+func (o *ExportTenantConfigurationNotFound) String() string {
+	return fmt.Sprintf("[GET /configuration][%d] exportTenantConfigurationNotFound  %+v", 404, o.Payload)
+}
+
 func (o *ExportTenantConfigurationNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +390,8 @@ func NewExportTenantConfigurationUnprocessableEntity() *ExportTenantConfiguratio
 	return &ExportTenantConfigurationUnprocessableEntity{}
 }
 
-/* ExportTenantConfigurationUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+ExportTenantConfigurationUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -243,9 +399,39 @@ type ExportTenantConfigurationUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this export tenant configuration unprocessable entity response has a 2xx status code
+func (o *ExportTenantConfigurationUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this export tenant configuration unprocessable entity response has a 3xx status code
+func (o *ExportTenantConfigurationUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this export tenant configuration unprocessable entity response has a 4xx status code
+func (o *ExportTenantConfigurationUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this export tenant configuration unprocessable entity response has a 5xx status code
+func (o *ExportTenantConfigurationUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this export tenant configuration unprocessable entity response a status code equal to that given
+func (o *ExportTenantConfigurationUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *ExportTenantConfigurationUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[GET /configuration][%d] exportTenantConfigurationUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *ExportTenantConfigurationUnprocessableEntity) String() string {
+	return fmt.Sprintf("[GET /configuration][%d] exportTenantConfigurationUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *ExportTenantConfigurationUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -267,7 +453,8 @@ func NewExportTenantConfigurationTooManyRequests() *ExportTenantConfigurationToo
 	return &ExportTenantConfigurationTooManyRequests{}
 }
 
-/* ExportTenantConfigurationTooManyRequests describes a response with status code 429, with default header values.
+/*
+ExportTenantConfigurationTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -275,9 +462,39 @@ type ExportTenantConfigurationTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this export tenant configuration too many requests response has a 2xx status code
+func (o *ExportTenantConfigurationTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this export tenant configuration too many requests response has a 3xx status code
+func (o *ExportTenantConfigurationTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this export tenant configuration too many requests response has a 4xx status code
+func (o *ExportTenantConfigurationTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this export tenant configuration too many requests response has a 5xx status code
+func (o *ExportTenantConfigurationTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this export tenant configuration too many requests response a status code equal to that given
+func (o *ExportTenantConfigurationTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *ExportTenantConfigurationTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /configuration][%d] exportTenantConfigurationTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *ExportTenantConfigurationTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /configuration][%d] exportTenantConfigurationTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *ExportTenantConfigurationTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

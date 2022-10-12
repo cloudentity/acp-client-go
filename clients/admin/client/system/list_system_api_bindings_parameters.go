@@ -52,10 +52,12 @@ func NewListSystemAPIBindingsParamsWithHTTPClient(client *http.Client) *ListSyst
 	}
 }
 
-/* ListSystemAPIBindingsParams contains all the parameters to send to the API endpoint
-   for the list system API bindings operation.
+/*
+ListSystemAPIBindingsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the list system API bindings operation.
+
+	Typically these are written to a http.Request.
 */
 type ListSystemAPIBindingsParams struct {
 

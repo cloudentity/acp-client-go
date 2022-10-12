@@ -41,6 +41,9 @@ type Pool struct {
 	// otp settings
 	OtpSettings *OtpSettings `json:"otp_settings,omitempty"`
 
+	// password policy
+	PasswordPolicy *PasswordPolicy `json:"password_policy,omitempty"`
+
 	// password settings
 	PasswordSettings *PasswordSettings `json:"password_settings,omitempty"`
 
@@ -69,6 +72,10 @@ func (m *Pool) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateOtpSettings(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePasswordPolicy(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -131,6 +138,25 @@ func (m *Pool) validateOtpSettings(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Pool) validatePasswordPolicy(formats strfmt.Registry) error {
+	if swag.IsZero(m.PasswordPolicy) { // not required
+		return nil
+	}
+
+	if m.PasswordPolicy != nil {
+		if err := m.PasswordPolicy.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("password_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("password_policy")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *Pool) validatePasswordSettings(formats strfmt.Registry) error {
 	if swag.IsZero(m.PasswordSettings) { // not required
 		return nil
@@ -171,6 +197,10 @@ func (m *Pool) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 		res = append(res, err)
 	}
 
+	if err := m.contextValidatePasswordPolicy(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidatePasswordSettings(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -203,6 +233,22 @@ func (m *Pool) contextValidateOtpSettings(ctx context.Context, formats strfmt.Re
 				return ve.ValidateName("otp_settings")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("otp_settings")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *Pool) contextValidatePasswordPolicy(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.PasswordPolicy != nil {
+		if err := m.PasswordPolicy.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("password_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("password_policy")
 			}
 			return err
 		}

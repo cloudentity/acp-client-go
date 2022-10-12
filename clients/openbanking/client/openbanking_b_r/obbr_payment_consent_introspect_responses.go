@@ -57,7 +57,8 @@ func NewObbrPaymentConsentIntrospectOK() *ObbrPaymentConsentIntrospectOK {
 	return &ObbrPaymentConsentIntrospectOK{}
 }
 
-/* ObbrPaymentConsentIntrospectOK describes a response with status code 200, with default header values.
+/*
+ObbrPaymentConsentIntrospectOK describes a response with status code 200, with default header values.
 
 Introspect Openbanking Brazil Payment Consent Response
 */
@@ -65,9 +66,39 @@ type ObbrPaymentConsentIntrospectOK struct {
 	Payload *models.IntrospectOBBRPaymentConsentResponse
 }
 
+// IsSuccess returns true when this obbr payment consent introspect o k response has a 2xx status code
+func (o *ObbrPaymentConsentIntrospectOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this obbr payment consent introspect o k response has a 3xx status code
+func (o *ObbrPaymentConsentIntrospectOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this obbr payment consent introspect o k response has a 4xx status code
+func (o *ObbrPaymentConsentIntrospectOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this obbr payment consent introspect o k response has a 5xx status code
+func (o *ObbrPaymentConsentIntrospectOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this obbr payment consent introspect o k response a status code equal to that given
+func (o *ObbrPaymentConsentIntrospectOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *ObbrPaymentConsentIntrospectOK) Error() string {
 	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v1/consents/introspect][%d] obbrPaymentConsentIntrospectOK  %+v", 200, o.Payload)
 }
+
+func (o *ObbrPaymentConsentIntrospectOK) String() string {
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v1/consents/introspect][%d] obbrPaymentConsentIntrospectOK  %+v", 200, o.Payload)
+}
+
 func (o *ObbrPaymentConsentIntrospectOK) GetPayload() *models.IntrospectOBBRPaymentConsentResponse {
 	return o.Payload
 }
@@ -89,7 +120,8 @@ func NewObbrPaymentConsentIntrospectUnauthorized() *ObbrPaymentConsentIntrospect
 	return &ObbrPaymentConsentIntrospectUnauthorized{}
 }
 
-/* ObbrPaymentConsentIntrospectUnauthorized describes a response with status code 401, with default header values.
+/*
+ObbrPaymentConsentIntrospectUnauthorized describes a response with status code 401, with default header values.
 
 ErrorResponse
 */
@@ -97,9 +129,39 @@ type ObbrPaymentConsentIntrospectUnauthorized struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this obbr payment consent introspect unauthorized response has a 2xx status code
+func (o *ObbrPaymentConsentIntrospectUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this obbr payment consent introspect unauthorized response has a 3xx status code
+func (o *ObbrPaymentConsentIntrospectUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this obbr payment consent introspect unauthorized response has a 4xx status code
+func (o *ObbrPaymentConsentIntrospectUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this obbr payment consent introspect unauthorized response has a 5xx status code
+func (o *ObbrPaymentConsentIntrospectUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this obbr payment consent introspect unauthorized response a status code equal to that given
+func (o *ObbrPaymentConsentIntrospectUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *ObbrPaymentConsentIntrospectUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v1/consents/introspect][%d] obbrPaymentConsentIntrospectUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *ObbrPaymentConsentIntrospectUnauthorized) String() string {
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v1/consents/introspect][%d] obbrPaymentConsentIntrospectUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *ObbrPaymentConsentIntrospectUnauthorized) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -121,7 +183,8 @@ func NewObbrPaymentConsentIntrospectNotFound() *ObbrPaymentConsentIntrospectNotF
 	return &ObbrPaymentConsentIntrospectNotFound{}
 }
 
-/* ObbrPaymentConsentIntrospectNotFound describes a response with status code 404, with default header values.
+/*
+ObbrPaymentConsentIntrospectNotFound describes a response with status code 404, with default header values.
 
 ErrorResponse
 */
@@ -129,9 +192,39 @@ type ObbrPaymentConsentIntrospectNotFound struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this obbr payment consent introspect not found response has a 2xx status code
+func (o *ObbrPaymentConsentIntrospectNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this obbr payment consent introspect not found response has a 3xx status code
+func (o *ObbrPaymentConsentIntrospectNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this obbr payment consent introspect not found response has a 4xx status code
+func (o *ObbrPaymentConsentIntrospectNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this obbr payment consent introspect not found response has a 5xx status code
+func (o *ObbrPaymentConsentIntrospectNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this obbr payment consent introspect not found response a status code equal to that given
+func (o *ObbrPaymentConsentIntrospectNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *ObbrPaymentConsentIntrospectNotFound) Error() string {
 	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v1/consents/introspect][%d] obbrPaymentConsentIntrospectNotFound  %+v", 404, o.Payload)
 }
+
+func (o *ObbrPaymentConsentIntrospectNotFound) String() string {
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v1/consents/introspect][%d] obbrPaymentConsentIntrospectNotFound  %+v", 404, o.Payload)
+}
+
 func (o *ObbrPaymentConsentIntrospectNotFound) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -153,7 +246,8 @@ func NewObbrPaymentConsentIntrospectTooManyRequests() *ObbrPaymentConsentIntrosp
 	return &ObbrPaymentConsentIntrospectTooManyRequests{}
 }
 
-/* ObbrPaymentConsentIntrospectTooManyRequests describes a response with status code 429, with default header values.
+/*
+ObbrPaymentConsentIntrospectTooManyRequests describes a response with status code 429, with default header values.
 
 ErrorResponse
 */
@@ -161,9 +255,39 @@ type ObbrPaymentConsentIntrospectTooManyRequests struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this obbr payment consent introspect too many requests response has a 2xx status code
+func (o *ObbrPaymentConsentIntrospectTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this obbr payment consent introspect too many requests response has a 3xx status code
+func (o *ObbrPaymentConsentIntrospectTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this obbr payment consent introspect too many requests response has a 4xx status code
+func (o *ObbrPaymentConsentIntrospectTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this obbr payment consent introspect too many requests response has a 5xx status code
+func (o *ObbrPaymentConsentIntrospectTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this obbr payment consent introspect too many requests response a status code equal to that given
+func (o *ObbrPaymentConsentIntrospectTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *ObbrPaymentConsentIntrospectTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v1/consents/introspect][%d] obbrPaymentConsentIntrospectTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *ObbrPaymentConsentIntrospectTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v1/consents/introspect][%d] obbrPaymentConsentIntrospectTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *ObbrPaymentConsentIntrospectTooManyRequests) GetPayload() *models.GenericError {
 	return o.Payload
 }

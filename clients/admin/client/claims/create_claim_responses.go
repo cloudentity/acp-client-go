@@ -75,7 +75,8 @@ func NewCreateClaimCreated() *CreateClaimCreated {
 	return &CreateClaimCreated{}
 }
 
-/* CreateClaimCreated describes a response with status code 201, with default header values.
+/*
+CreateClaimCreated describes a response with status code 201, with default header values.
 
 Claim
 */
@@ -83,9 +84,39 @@ type CreateClaimCreated struct {
 	Payload *models.Claim
 }
 
+// IsSuccess returns true when this create claim created response has a 2xx status code
+func (o *CreateClaimCreated) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this create claim created response has a 3xx status code
+func (o *CreateClaimCreated) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create claim created response has a 4xx status code
+func (o *CreateClaimCreated) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create claim created response has a 5xx status code
+func (o *CreateClaimCreated) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create claim created response a status code equal to that given
+func (o *CreateClaimCreated) IsCode(code int) bool {
+	return code == 201
+}
+
 func (o *CreateClaimCreated) Error() string {
 	return fmt.Sprintf("[POST /claims][%d] createClaimCreated  %+v", 201, o.Payload)
 }
+
+func (o *CreateClaimCreated) String() string {
+	return fmt.Sprintf("[POST /claims][%d] createClaimCreated  %+v", 201, o.Payload)
+}
+
 func (o *CreateClaimCreated) GetPayload() *models.Claim {
 	return o.Payload
 }
@@ -107,7 +138,8 @@ func NewCreateClaimUnauthorized() *CreateClaimUnauthorized {
 	return &CreateClaimUnauthorized{}
 }
 
-/* CreateClaimUnauthorized describes a response with status code 401, with default header values.
+/*
+CreateClaimUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -115,9 +147,39 @@ type CreateClaimUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create claim unauthorized response has a 2xx status code
+func (o *CreateClaimUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create claim unauthorized response has a 3xx status code
+func (o *CreateClaimUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create claim unauthorized response has a 4xx status code
+func (o *CreateClaimUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create claim unauthorized response has a 5xx status code
+func (o *CreateClaimUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create claim unauthorized response a status code equal to that given
+func (o *CreateClaimUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *CreateClaimUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /claims][%d] createClaimUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *CreateClaimUnauthorized) String() string {
+	return fmt.Sprintf("[POST /claims][%d] createClaimUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *CreateClaimUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -139,7 +201,8 @@ func NewCreateClaimForbidden() *CreateClaimForbidden {
 	return &CreateClaimForbidden{}
 }
 
-/* CreateClaimForbidden describes a response with status code 403, with default header values.
+/*
+CreateClaimForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -147,9 +210,39 @@ type CreateClaimForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create claim forbidden response has a 2xx status code
+func (o *CreateClaimForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create claim forbidden response has a 3xx status code
+func (o *CreateClaimForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create claim forbidden response has a 4xx status code
+func (o *CreateClaimForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create claim forbidden response has a 5xx status code
+func (o *CreateClaimForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create claim forbidden response a status code equal to that given
+func (o *CreateClaimForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *CreateClaimForbidden) Error() string {
 	return fmt.Sprintf("[POST /claims][%d] createClaimForbidden  %+v", 403, o.Payload)
 }
+
+func (o *CreateClaimForbidden) String() string {
+	return fmt.Sprintf("[POST /claims][%d] createClaimForbidden  %+v", 403, o.Payload)
+}
+
 func (o *CreateClaimForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -171,7 +264,8 @@ func NewCreateClaimNotFound() *CreateClaimNotFound {
 	return &CreateClaimNotFound{}
 }
 
-/* CreateClaimNotFound describes a response with status code 404, with default header values.
+/*
+CreateClaimNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -179,9 +273,39 @@ type CreateClaimNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create claim not found response has a 2xx status code
+func (o *CreateClaimNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create claim not found response has a 3xx status code
+func (o *CreateClaimNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create claim not found response has a 4xx status code
+func (o *CreateClaimNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create claim not found response has a 5xx status code
+func (o *CreateClaimNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create claim not found response a status code equal to that given
+func (o *CreateClaimNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *CreateClaimNotFound) Error() string {
 	return fmt.Sprintf("[POST /claims][%d] createClaimNotFound  %+v", 404, o.Payload)
 }
+
+func (o *CreateClaimNotFound) String() string {
+	return fmt.Sprintf("[POST /claims][%d] createClaimNotFound  %+v", 404, o.Payload)
+}
+
 func (o *CreateClaimNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -203,7 +327,8 @@ func NewCreateClaimConflict() *CreateClaimConflict {
 	return &CreateClaimConflict{}
 }
 
-/* CreateClaimConflict describes a response with status code 409, with default header values.
+/*
+CreateClaimConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -211,9 +336,39 @@ type CreateClaimConflict struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create claim conflict response has a 2xx status code
+func (o *CreateClaimConflict) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create claim conflict response has a 3xx status code
+func (o *CreateClaimConflict) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create claim conflict response has a 4xx status code
+func (o *CreateClaimConflict) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create claim conflict response has a 5xx status code
+func (o *CreateClaimConflict) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create claim conflict response a status code equal to that given
+func (o *CreateClaimConflict) IsCode(code int) bool {
+	return code == 409
+}
+
 func (o *CreateClaimConflict) Error() string {
 	return fmt.Sprintf("[POST /claims][%d] createClaimConflict  %+v", 409, o.Payload)
 }
+
+func (o *CreateClaimConflict) String() string {
+	return fmt.Sprintf("[POST /claims][%d] createClaimConflict  %+v", 409, o.Payload)
+}
+
 func (o *CreateClaimConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +390,8 @@ func NewCreateClaimUnprocessableEntity() *CreateClaimUnprocessableEntity {
 	return &CreateClaimUnprocessableEntity{}
 }
 
-/* CreateClaimUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+CreateClaimUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -243,9 +399,39 @@ type CreateClaimUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create claim unprocessable entity response has a 2xx status code
+func (o *CreateClaimUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create claim unprocessable entity response has a 3xx status code
+func (o *CreateClaimUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create claim unprocessable entity response has a 4xx status code
+func (o *CreateClaimUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create claim unprocessable entity response has a 5xx status code
+func (o *CreateClaimUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create claim unprocessable entity response a status code equal to that given
+func (o *CreateClaimUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *CreateClaimUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /claims][%d] createClaimUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *CreateClaimUnprocessableEntity) String() string {
+	return fmt.Sprintf("[POST /claims][%d] createClaimUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *CreateClaimUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -267,7 +453,8 @@ func NewCreateClaimTooManyRequests() *CreateClaimTooManyRequests {
 	return &CreateClaimTooManyRequests{}
 }
 
-/* CreateClaimTooManyRequests describes a response with status code 429, with default header values.
+/*
+CreateClaimTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -275,9 +462,39 @@ type CreateClaimTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create claim too many requests response has a 2xx status code
+func (o *CreateClaimTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create claim too many requests response has a 3xx status code
+func (o *CreateClaimTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create claim too many requests response has a 4xx status code
+func (o *CreateClaimTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create claim too many requests response has a 5xx status code
+func (o *CreateClaimTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create claim too many requests response a status code equal to that given
+func (o *CreateClaimTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *CreateClaimTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /claims][%d] createClaimTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *CreateClaimTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /claims][%d] createClaimTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *CreateClaimTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

@@ -52,10 +52,12 @@ func NewGetGatewayConfigurationParamsWithHTTPClient(client *http.Client) *GetGat
 	}
 }
 
-/* GetGatewayConfigurationParams contains all the parameters to send to the API endpoint
-   for the get gateway configuration operation.
+/*
+GetGatewayConfigurationParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get gateway configuration operation.
+
+	Typically these are written to a http.Request.
 */
 type GetGatewayConfigurationParams struct {
 

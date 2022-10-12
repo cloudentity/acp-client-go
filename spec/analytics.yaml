@@ -1,0 +1,1337 @@
+basePath: /api/analytics/default
+consumes:
+- application/json
+definitions:
+  AggregatedDataPoint:
+    properties:
+      timestamp:
+        format: date-time
+        type: string
+        x-nullable: false
+      values:
+        additionalProperties:
+          format: double
+          type: number
+        type: object
+        x-nullable: false
+    type: object
+  AggregatedDataPoints:
+    properties:
+      bucket:
+        type: string
+        x-nullable: false
+      data:
+        items:
+          $ref: '#/definitions/AggregatedDataPoint'
+        type: array
+        x-nullable: false
+    type: object
+  DataPoints:
+    properties:
+      bucket:
+        type: string
+        x-nullable: false
+      data:
+        items:
+          $ref: '#/definitions/SingleDataPoint'
+        type: array
+        x-nullable: false
+    type: object
+  Error:
+    description: HTTP error response
+    properties:
+      details:
+        type: object
+        x-nullable: false
+      error:
+        type: string
+        x-nullable: false
+      status_code:
+        format: int64
+        type: integer
+        x-nullable: false
+    type: object
+  SingleDataPoint:
+    properties:
+      timestamp:
+        format: date-time
+        type: string
+        x-nullable: false
+      value:
+        format: double
+        type: number
+        x-nullable: false
+    type: object
+host: localhost:8443
+info:
+  description: Cloudentity Authorization Control Plane Analytics API
+  title: Cloudentity Authorization Control Plane API
+  version: latest
+paths:
+  /servers/{wid}/access-tokens:
+    get:
+      description: Query access token data points.
+      operationId: singleAccessTokenMetrics
+      parameters:
+      - default: default
+        description: Workspace ID
+        in: path
+        name: wid
+        required: true
+        type: string
+      - default: auto
+        description: |-
+          Bucket
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+        enum:
+        - auto
+        - all
+        - 1m
+        - 5m
+        - 15m
+        - 30m
+        - 1h
+        - 3h
+        - 6h
+        - 12h
+        - 1d
+        - 1w
+        - 1M
+        - 3M
+        - 6M
+        - 1Y
+        in: query
+        name: bucket
+        type: string
+        x-go-enum-desc: |-
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+      - description: Origin
+        format: date-time
+        in: query
+        name: origin
+        type: string
+      - description: From
+        in: query
+        name: from
+        type: string
+      - description: To
+        in: query
+        name: to
+        type: string
+      - default: count
+        description: |-
+          Function
+          count AccessTokensCount
+          unique AccessTokensUnique
+          unique_clients AccessTokensUniqueClients
+        enum:
+        - count
+        - unique
+        - unique_clients
+        in: query
+        name: function
+        type: string
+        x-go-enum-desc: |-
+          count AccessTokensCount
+          unique AccessTokensUnique
+          unique_clients AccessTokensUniqueClients
+      responses:
+        "200":
+          $ref: '#/responses/DataPoints'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Query access tokens
+      tags:
+      - Metrics
+  /servers/{wid}/access-tokens/{group}:
+    get:
+      description: Query access token data points by group.
+      operationId: aggregatedAccessTokenMetrics
+      parameters:
+      - default: default
+        description: Workspace ID
+        in: path
+        name: wid
+        required: true
+        type: string
+      - default: auto
+        description: |-
+          Bucket
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+        enum:
+        - auto
+        - all
+        - 1m
+        - 5m
+        - 15m
+        - 30m
+        - 1h
+        - 3h
+        - 6h
+        - 12h
+        - 1d
+        - 1w
+        - 1M
+        - 3M
+        - 6M
+        - 1Y
+        in: query
+        name: bucket
+        type: string
+        x-go-enum-desc: |-
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+      - description: Origin
+        format: date-time
+        in: query
+        name: origin
+        type: string
+      - description: From
+        in: query
+        name: from
+        type: string
+      - description: To
+        in: query
+        name: to
+        type: string
+      - default: count
+        description: |-
+          Function
+          count AccessTokensCount
+          unique AccessTokensUnique
+          unique_clients AccessTokensUniqueClients
+        enum:
+        - count
+        - unique
+        - unique_clients
+        in: query
+        name: function
+        type: string
+        x-go-enum-desc: |-
+          count AccessTokensCount
+          unique AccessTokensUnique
+          unique_clients AccessTokensUniqueClients
+      - default: grant_type
+        description: |-
+          Group by
+          grant_type AccessTokensByGrantType
+        enum:
+        - grant_type
+        in: path
+        name: group
+        required: true
+        type: string
+        x-go-enum-desc: grant_type AccessTokensByGrantType
+      responses:
+        "200":
+          $ref: '#/responses/AggregatedDataPoints'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Query access tokens by group
+      tags:
+      - Metrics
+  /servers/{wid}/gateway-requests:
+    get:
+      description: Query gateway request data points.
+      operationId: singleGatewayRequestMetrics
+      parameters:
+      - default: default
+        description: Workspace ID
+        in: path
+        name: wid
+        required: true
+        type: string
+      - default: auto
+        description: |-
+          Bucket
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+        enum:
+        - auto
+        - all
+        - 1m
+        - 5m
+        - 15m
+        - 30m
+        - 1h
+        - 3h
+        - 6h
+        - 12h
+        - 1d
+        - 1w
+        - 1M
+        - 3M
+        - 6M
+        - 1Y
+        in: query
+        name: bucket
+        type: string
+        x-go-enum-desc: |-
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+      - description: Origin
+        format: date-time
+        in: query
+        name: origin
+        type: string
+      - description: From
+        in: query
+        name: from
+        type: string
+      - description: To
+        in: query
+        name: to
+        type: string
+      - default: count
+        description: |-
+          Function
+          count GatewayRequestsCount
+          sum GatewayRequestsSum
+          p50 GatewayRequestsP50
+          p75 GatewayRequestsP75
+          p95 GatewayRequestsP95
+          p99 GatewayRequestsP99
+        enum:
+        - count
+        - sum
+        - p50
+        - p75
+        - p95
+        - p99
+        in: query
+        name: function
+        type: string
+        x-go-enum-desc: |-
+          count GatewayRequestsCount
+          sum GatewayRequestsSum
+          p50 GatewayRequestsP50
+          p75 GatewayRequestsP75
+          p95 GatewayRequestsP95
+          p99 GatewayRequestsP99
+      responses:
+        "200":
+          $ref: '#/responses/DataPoints'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Query gateway requests
+      tags:
+      - Metrics
+  /servers/{wid}/gateway-requests/{group}:
+    get:
+      description: Query gateway request data points by group.
+      operationId: aggregatedGatewayRequestMetrics
+      parameters:
+      - default: default
+        description: Workspace ID
+        in: path
+        name: wid
+        required: true
+        type: string
+      - default: auto
+        description: |-
+          Bucket
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+        enum:
+        - auto
+        - all
+        - 1m
+        - 5m
+        - 15m
+        - 30m
+        - 1h
+        - 3h
+        - 6h
+        - 12h
+        - 1d
+        - 1w
+        - 1M
+        - 3M
+        - 6M
+        - 1Y
+        in: query
+        name: bucket
+        type: string
+        x-go-enum-desc: |-
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+      - description: Origin
+        format: date-time
+        in: query
+        name: origin
+        type: string
+      - description: From
+        in: query
+        name: from
+        type: string
+      - description: To
+        in: query
+        name: to
+        type: string
+      - default: count
+        description: |-
+          Function
+          count GatewayRequestsCount
+          sum GatewayRequestsSum
+          p50 GatewayRequestsP50
+          p75 GatewayRequestsP75
+          p95 GatewayRequestsP95
+          p99 GatewayRequestsP99
+        enum:
+        - count
+        - sum
+        - p50
+        - p75
+        - p95
+        - p99
+        in: query
+        name: function
+        type: string
+        x-go-enum-desc: |-
+          count GatewayRequestsCount
+          sum GatewayRequestsSum
+          p50 GatewayRequestsP50
+          p75 GatewayRequestsP75
+          p95 GatewayRequestsP95
+          p99 GatewayRequestsP99
+      - default: result
+        description: |-
+          Group by
+          result GatewayRequestsByResult
+        enum:
+        - result
+        in: path
+        name: group
+        required: true
+        type: string
+        x-go-enum-desc: result GatewayRequestsByResult
+      responses:
+        "200":
+          $ref: '#/responses/AggregatedDataPoints'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Query gateway requests by group
+      tags:
+      - Metrics
+  /servers/{wid}/http-requests:
+    get:
+      description: Query http request data points.
+      operationId: singleHttpRequestMetrics
+      parameters:
+      - default: default
+        description: Workspace ID
+        in: path
+        name: wid
+        required: true
+        type: string
+      - default: auto
+        description: |-
+          Bucket
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+        enum:
+        - auto
+        - all
+        - 1m
+        - 5m
+        - 15m
+        - 30m
+        - 1h
+        - 3h
+        - 6h
+        - 12h
+        - 1d
+        - 1w
+        - 1M
+        - 3M
+        - 6M
+        - 1Y
+        in: query
+        name: bucket
+        type: string
+        x-go-enum-desc: |-
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+      - description: Origin
+        format: date-time
+        in: query
+        name: origin
+        type: string
+      - description: From
+        in: query
+        name: from
+        type: string
+      - description: To
+        in: query
+        name: to
+        type: string
+      - default: count
+        description: |-
+          Function
+          count HTTPRequestsCount
+          sum HTTPRequestsSum
+          p50 HTTPRequestsP50
+          p75 HTTPRequestsP75
+          p95 HTTPRequestsP95
+          p99 HTTPRequestsP99
+          le1 HTTPRequestsLe1
+          le10 HTTPRequestsLe10
+          le50 HTTPRequestsLe50
+          le100 HTTPRequestsLe100
+          le500 HTTPRequestsLe500
+          le1000 HTTPRequestsLe1000
+          leinf HTTPRequestsLeinf
+        enum:
+        - count
+        - sum
+        - p50
+        - p75
+        - p95
+        - p99
+        - le1
+        - le10
+        - le50
+        - le100
+        - le500
+        - le1000
+        - leinf
+        in: query
+        name: function
+        type: string
+        x-go-enum-desc: |-
+          count HTTPRequestsCount
+          sum HTTPRequestsSum
+          p50 HTTPRequestsP50
+          p75 HTTPRequestsP75
+          p95 HTTPRequestsP95
+          p99 HTTPRequestsP99
+          le1 HTTPRequestsLe1
+          le10 HTTPRequestsLe10
+          le50 HTTPRequestsLe50
+          le100 HTTPRequestsLe100
+          le500 HTTPRequestsLe500
+          le1000 HTTPRequestsLe1000
+          leinf HTTPRequestsLeinf
+      responses:
+        "200":
+          $ref: '#/responses/DataPoints'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Query http requests
+      tags:
+      - Metrics
+  /servers/{wid}/http-requests/{group}:
+    get:
+      description: Query http request data points by group.
+      operationId: aggregatedHttpRequestMetrics
+      parameters:
+      - default: default
+        description: Workspace ID
+        in: path
+        name: wid
+        required: true
+        type: string
+      - default: auto
+        description: |-
+          Bucket
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+        enum:
+        - auto
+        - all
+        - 1m
+        - 5m
+        - 15m
+        - 30m
+        - 1h
+        - 3h
+        - 6h
+        - 12h
+        - 1d
+        - 1w
+        - 1M
+        - 3M
+        - 6M
+        - 1Y
+        in: query
+        name: bucket
+        type: string
+        x-go-enum-desc: |-
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+      - description: Origin
+        format: date-time
+        in: query
+        name: origin
+        type: string
+      - description: From
+        in: query
+        name: from
+        type: string
+      - description: To
+        in: query
+        name: to
+        type: string
+      - default: count
+        description: |-
+          Function
+          count HTTPRequestsCount
+          sum HTTPRequestsSum
+          p50 HTTPRequestsP50
+          p75 HTTPRequestsP75
+          p95 HTTPRequestsP95
+          p99 HTTPRequestsP99
+          le1 HTTPRequestsLe1
+          le10 HTTPRequestsLe10
+          le50 HTTPRequestsLe50
+          le100 HTTPRequestsLe100
+          le500 HTTPRequestsLe500
+          le1000 HTTPRequestsLe1000
+          leinf HTTPRequestsLeinf
+        enum:
+        - count
+        - sum
+        - p50
+        - p75
+        - p95
+        - p99
+        - le1
+        - le10
+        - le50
+        - le100
+        - le500
+        - le1000
+        - leinf
+        in: query
+        name: function
+        type: string
+        x-go-enum-desc: |-
+          count HTTPRequestsCount
+          sum HTTPRequestsSum
+          p50 HTTPRequestsP50
+          p75 HTTPRequestsP75
+          p95 HTTPRequestsP95
+          p99 HTTPRequestsP99
+          le1 HTTPRequestsLe1
+          le10 HTTPRequestsLe10
+          le50 HTTPRequestsLe50
+          le100 HTTPRequestsLe100
+          le500 HTTPRequestsLe500
+          le1000 HTTPRequestsLe1000
+          leinf HTTPRequestsLeinf
+      - default: api
+        description: |-
+          Group by
+          api HTTPRequestsByAPI
+          code HTTPRequestsByCode
+          category HTTPRequestsByCategory
+        enum:
+        - api
+        - code
+        - category
+        in: path
+        name: group
+        required: true
+        type: string
+        x-go-enum-desc: |-
+          api HTTPRequestsByAPI
+          code HTTPRequestsByCode
+          category HTTPRequestsByCategory
+      responses:
+        "200":
+          $ref: '#/responses/AggregatedDataPoints'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Query http requests by group
+      tags:
+      - Metrics
+  /servers/{wid}/otp-operations:
+    get:
+      description: Query otp operation data points.
+      operationId: singleOTPOperationMetrics
+      parameters:
+      - default: default
+        description: Workspace ID
+        in: path
+        name: wid
+        required: true
+        type: string
+      - default: auto
+        description: |-
+          Bucket
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+        enum:
+        - auto
+        - all
+        - 1m
+        - 5m
+        - 15m
+        - 30m
+        - 1h
+        - 3h
+        - 6h
+        - 12h
+        - 1d
+        - 1w
+        - 1M
+        - 3M
+        - 6M
+        - 1Y
+        in: query
+        name: bucket
+        type: string
+        x-go-enum-desc: |-
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+      - description: Origin
+        format: date-time
+        in: query
+        name: origin
+        type: string
+      - description: From
+        in: query
+        name: from
+        type: string
+      - description: To
+        in: query
+        name: to
+        type: string
+      - default: count
+        description: |-
+          Function
+          count OTPOperationsCount
+        enum:
+        - count
+        in: query
+        name: function
+        type: string
+        x-go-enum-desc: count OTPOperationsCount
+      responses:
+        "200":
+          $ref: '#/responses/DataPoints'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Query otp operations
+      tags:
+      - Metrics
+  /servers/{wid}/otp-operations/{group}:
+    get:
+      description: Query otp operation data points by group.
+      operationId: aggregatedOTPOperationMetrics
+      parameters:
+      - default: default
+        description: Workspace ID
+        in: path
+        name: wid
+        required: true
+        type: string
+      - default: auto
+        description: |-
+          Bucket
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+        enum:
+        - auto
+        - all
+        - 1m
+        - 5m
+        - 15m
+        - 30m
+        - 1h
+        - 3h
+        - 6h
+        - 12h
+        - 1d
+        - 1w
+        - 1M
+        - 3M
+        - 6M
+        - 1Y
+        in: query
+        name: bucket
+        type: string
+        x-go-enum-desc: |-
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+      - description: Origin
+        format: date-time
+        in: query
+        name: origin
+        type: string
+      - description: From
+        in: query
+        name: from
+        type: string
+      - description: To
+        in: query
+        name: to
+        type: string
+      - default: count
+        description: |-
+          Function
+          count OTPOperationsCount
+        enum:
+        - count
+        in: query
+        name: function
+        type: string
+        x-go-enum-desc: count OTPOperationsCount
+      - default: operation
+        description: |-
+          Group by
+          operation OTPOperationsByResult
+        enum:
+        - operation
+        in: path
+        name: group
+        required: true
+        type: string
+        x-go-enum-desc: operation OTPOperationsByResult
+      responses:
+        "200":
+          $ref: '#/responses/AggregatedDataPoints'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Query otp operations by group
+      tags:
+      - Metrics
+  /servers/{wid}/policy-validations:
+    get:
+      description: Query policy validation data points.
+      operationId: singlePolicyValidationMetrics
+      parameters:
+      - default: default
+        description: Workspace ID
+        in: path
+        name: wid
+        required: true
+        type: string
+      - default: auto
+        description: |-
+          Bucket
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+        enum:
+        - auto
+        - all
+        - 1m
+        - 5m
+        - 15m
+        - 30m
+        - 1h
+        - 3h
+        - 6h
+        - 12h
+        - 1d
+        - 1w
+        - 1M
+        - 3M
+        - 6M
+        - 1Y
+        in: query
+        name: bucket
+        type: string
+        x-go-enum-desc: |-
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+      - description: Origin
+        format: date-time
+        in: query
+        name: origin
+        type: string
+      - description: From
+        in: query
+        name: from
+        type: string
+      - description: To
+        in: query
+        name: to
+        type: string
+      - default: count
+        description: |-
+          Function
+          count PolicyValidationsCount
+        enum:
+        - count
+        in: query
+        name: function
+        type: string
+        x-go-enum-desc: count PolicyValidationsCount
+      responses:
+        "200":
+          $ref: '#/responses/DataPoints'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Query policy validations
+      tags:
+      - Metrics
+  /servers/{wid}/policy-validations/{group}:
+    get:
+      description: Query policy validation data points by group.
+      operationId: aggregatedPolicyValidationMetrics
+      parameters:
+      - default: default
+        description: Workspace ID
+        in: path
+        name: wid
+        required: true
+        type: string
+      - default: auto
+        description: |-
+          Bucket
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+        enum:
+        - auto
+        - all
+        - 1m
+        - 5m
+        - 15m
+        - 30m
+        - 1h
+        - 3h
+        - 6h
+        - 12h
+        - 1d
+        - 1w
+        - 1M
+        - 3M
+        - 6M
+        - 1Y
+        in: query
+        name: bucket
+        type: string
+        x-go-enum-desc: |-
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+      - description: Origin
+        format: date-time
+        in: query
+        name: origin
+        type: string
+      - description: From
+        in: query
+        name: from
+        type: string
+      - description: To
+        in: query
+        name: to
+        type: string
+      - default: count
+        description: |-
+          Function
+          count PolicyValidationsCount
+        enum:
+        - count
+        in: query
+        name: function
+        type: string
+        x-go-enum-desc: count PolicyValidationsCount
+      - default: result
+        description: |-
+          Group by
+          result PolicyValidationsByResult
+        enum:
+        - result
+        in: path
+        name: group
+        required: true
+        type: string
+        x-go-enum-desc: result PolicyValidationsByResult
+      responses:
+        "200":
+          $ref: '#/responses/AggregatedDataPoints'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Query policy validations by group
+      tags:
+      - Metrics
+produces:
+- application/json
+- text/csv
+responses:
+  AggregatedDataPoints:
+    description: Aggregated data points
+    schema:
+      $ref: '#/definitions/AggregatedDataPoints'
+  DataPoints:
+    description: Data points
+    schema:
+      $ref: '#/definitions/DataPoints'
+  httpError:
+    description: HttpError
+    schema:
+      $ref: '#/definitions/Error'
+schemes:
+- https
+securityDefinitions:
+  admin:
+    authorizationUrl: /default/admin/oauth2/authorize
+    flow: application
+    tokenUrl: /default/admin/oauth2/token
+    type: oauth2
+swagger: "2.0"

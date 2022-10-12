@@ -52,10 +52,12 @@ func NewListUserConsentsByActionParamsWithHTTPClient(client *http.Client) *ListU
 	}
 }
 
-/* ListUserConsentsByActionParams contains all the parameters to send to the API endpoint
-   for the list user consents by action operation.
+/*
+ListUserConsentsByActionParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the list user consents by action operation.
+
+	Typically these are written to a http.Request.
 */
 type ListUserConsentsByActionParams struct {
 

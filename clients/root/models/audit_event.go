@@ -31,7 +31,7 @@ type AuditEvent struct {
 	EventPayload interface{} `json:"event_payload,omitempty"`
 
 	// event subject
-	// Enum: [request gateway_request gateway_policy policy client login consent client_consents authorization_code access_token saml_assertion scopes otp user selfuser schema pool password bruteforce]
+	// Enum: [request gateway_request gateway_policy policy client login consent client_consents authorization_code access_token saml_assertion scopes otp user selfuser schema pool password bruteforce dcr]
 	EventSubject string `json:"event_subject,omitempty"`
 
 	// event type
@@ -181,7 +181,7 @@ var auditEventTypeEventSubjectPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["request","gateway_request","gateway_policy","policy","client","login","consent","client_consents","authorization_code","access_token","saml_assertion","scopes","otp","user","selfuser","schema","pool","password","bruteforce"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["request","gateway_request","gateway_policy","policy","client","login","consent","client_consents","authorization_code","access_token","saml_assertion","scopes","otp","user","selfuser","schema","pool","password","bruteforce","dcr"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -247,6 +247,9 @@ const (
 
 	// AuditEventEventSubjectBruteforce captures enum value "bruteforce"
 	AuditEventEventSubjectBruteforce string = "bruteforce"
+
+	// AuditEventEventSubjectDcr captures enum value "dcr"
+	AuditEventEventSubjectDcr string = "dcr"
 )
 
 // prop value enum

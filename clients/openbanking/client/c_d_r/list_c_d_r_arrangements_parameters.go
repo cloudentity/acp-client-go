@@ -54,15 +54,17 @@ func NewListCDRArrangementsParamsWithHTTPClient(client *http.Client) *ListCDRArr
 	}
 }
 
-/* ListCDRArrangementsParams contains all the parameters to send to the API endpoint
-   for the list c d r arrangements operation.
+/*
+ListCDRArrangementsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the list c d r arrangements operation.
+
+	Typically these are written to a http.Request.
 */
 type ListCDRArrangementsParams struct {
 
 	// ConsentsRequest.
-	ConsentsRequest *models.ConsentsRequest
+	ConsentsRequest *models.CDRConsentsRequest
 
 	/* Wid.
 
@@ -137,13 +139,13 @@ func (o *ListCDRArrangementsParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithConsentsRequest adds the consentsRequest to the list c d r arrangements params
-func (o *ListCDRArrangementsParams) WithConsentsRequest(consentsRequest *models.ConsentsRequest) *ListCDRArrangementsParams {
+func (o *ListCDRArrangementsParams) WithConsentsRequest(consentsRequest *models.CDRConsentsRequest) *ListCDRArrangementsParams {
 	o.SetConsentsRequest(consentsRequest)
 	return o
 }
 
 // SetConsentsRequest adds the consentsRequest to the list c d r arrangements params
-func (o *ListCDRArrangementsParams) SetConsentsRequest(consentsRequest *models.ConsentsRequest) {
+func (o *ListCDRArrangementsParams) SetConsentsRequest(consentsRequest *models.CDRConsentsRequest) {
 	o.ConsentsRequest = consentsRequest
 }
 

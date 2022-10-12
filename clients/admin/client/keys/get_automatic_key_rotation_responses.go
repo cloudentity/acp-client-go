@@ -63,7 +63,8 @@ func NewGetAutomaticKeyRotationOK() *GetAutomaticKeyRotationOK {
 	return &GetAutomaticKeyRotationOK{}
 }
 
-/* GetAutomaticKeyRotationOK describes a response with status code 200, with default header values.
+/*
+GetAutomaticKeyRotationOK describes a response with status code 200, with default header values.
 
 Automation key rotation
 */
@@ -71,9 +72,39 @@ type GetAutomaticKeyRotationOK struct {
 	Payload *models.AutomaticKeyRotation
 }
 
+// IsSuccess returns true when this get automatic key rotation o k response has a 2xx status code
+func (o *GetAutomaticKeyRotationOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get automatic key rotation o k response has a 3xx status code
+func (o *GetAutomaticKeyRotationOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get automatic key rotation o k response has a 4xx status code
+func (o *GetAutomaticKeyRotationOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get automatic key rotation o k response has a 5xx status code
+func (o *GetAutomaticKeyRotationOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get automatic key rotation o k response a status code equal to that given
+func (o *GetAutomaticKeyRotationOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetAutomaticKeyRotationOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/keys/automatic-key-rotation][%d] getAutomaticKeyRotationOK  %+v", 200, o.Payload)
 }
+
+func (o *GetAutomaticKeyRotationOK) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/keys/automatic-key-rotation][%d] getAutomaticKeyRotationOK  %+v", 200, o.Payload)
+}
+
 func (o *GetAutomaticKeyRotationOK) GetPayload() *models.AutomaticKeyRotation {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewGetAutomaticKeyRotationUnauthorized() *GetAutomaticKeyRotationUnauthoriz
 	return &GetAutomaticKeyRotationUnauthorized{}
 }
 
-/* GetAutomaticKeyRotationUnauthorized describes a response with status code 401, with default header values.
+/*
+GetAutomaticKeyRotationUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type GetAutomaticKeyRotationUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get automatic key rotation unauthorized response has a 2xx status code
+func (o *GetAutomaticKeyRotationUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get automatic key rotation unauthorized response has a 3xx status code
+func (o *GetAutomaticKeyRotationUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get automatic key rotation unauthorized response has a 4xx status code
+func (o *GetAutomaticKeyRotationUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get automatic key rotation unauthorized response has a 5xx status code
+func (o *GetAutomaticKeyRotationUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get automatic key rotation unauthorized response a status code equal to that given
+func (o *GetAutomaticKeyRotationUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *GetAutomaticKeyRotationUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/keys/automatic-key-rotation][%d] getAutomaticKeyRotationUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *GetAutomaticKeyRotationUnauthorized) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/keys/automatic-key-rotation][%d] getAutomaticKeyRotationUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *GetAutomaticKeyRotationUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewGetAutomaticKeyRotationForbidden() *GetAutomaticKeyRotationForbidden {
 	return &GetAutomaticKeyRotationForbidden{}
 }
 
-/* GetAutomaticKeyRotationForbidden describes a response with status code 403, with default header values.
+/*
+GetAutomaticKeyRotationForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type GetAutomaticKeyRotationForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get automatic key rotation forbidden response has a 2xx status code
+func (o *GetAutomaticKeyRotationForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get automatic key rotation forbidden response has a 3xx status code
+func (o *GetAutomaticKeyRotationForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get automatic key rotation forbidden response has a 4xx status code
+func (o *GetAutomaticKeyRotationForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get automatic key rotation forbidden response has a 5xx status code
+func (o *GetAutomaticKeyRotationForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get automatic key rotation forbidden response a status code equal to that given
+func (o *GetAutomaticKeyRotationForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetAutomaticKeyRotationForbidden) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/keys/automatic-key-rotation][%d] getAutomaticKeyRotationForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetAutomaticKeyRotationForbidden) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/keys/automatic-key-rotation][%d] getAutomaticKeyRotationForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetAutomaticKeyRotationForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewGetAutomaticKeyRotationNotFound() *GetAutomaticKeyRotationNotFound {
 	return &GetAutomaticKeyRotationNotFound{}
 }
 
-/* GetAutomaticKeyRotationNotFound describes a response with status code 404, with default header values.
+/*
+GetAutomaticKeyRotationNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type GetAutomaticKeyRotationNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get automatic key rotation not found response has a 2xx status code
+func (o *GetAutomaticKeyRotationNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get automatic key rotation not found response has a 3xx status code
+func (o *GetAutomaticKeyRotationNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get automatic key rotation not found response has a 4xx status code
+func (o *GetAutomaticKeyRotationNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get automatic key rotation not found response has a 5xx status code
+func (o *GetAutomaticKeyRotationNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get automatic key rotation not found response a status code equal to that given
+func (o *GetAutomaticKeyRotationNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *GetAutomaticKeyRotationNotFound) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/keys/automatic-key-rotation][%d] getAutomaticKeyRotationNotFound  %+v", 404, o.Payload)
 }
+
+func (o *GetAutomaticKeyRotationNotFound) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/keys/automatic-key-rotation][%d] getAutomaticKeyRotationNotFound  %+v", 404, o.Payload)
+}
+
 func (o *GetAutomaticKeyRotationNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewGetAutomaticKeyRotationTooManyRequests() *GetAutomaticKeyRotationTooMany
 	return &GetAutomaticKeyRotationTooManyRequests{}
 }
 
-/* GetAutomaticKeyRotationTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetAutomaticKeyRotationTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type GetAutomaticKeyRotationTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get automatic key rotation too many requests response has a 2xx status code
+func (o *GetAutomaticKeyRotationTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get automatic key rotation too many requests response has a 3xx status code
+func (o *GetAutomaticKeyRotationTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get automatic key rotation too many requests response has a 4xx status code
+func (o *GetAutomaticKeyRotationTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get automatic key rotation too many requests response has a 5xx status code
+func (o *GetAutomaticKeyRotationTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get automatic key rotation too many requests response a status code equal to that given
+func (o *GetAutomaticKeyRotationTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *GetAutomaticKeyRotationTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/keys/automatic-key-rotation][%d] getAutomaticKeyRotationTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *GetAutomaticKeyRotationTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/keys/automatic-key-rotation][%d] getAutomaticKeyRotationTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *GetAutomaticKeyRotationTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

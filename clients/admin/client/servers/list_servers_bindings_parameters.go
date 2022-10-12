@@ -52,10 +52,12 @@ func NewListServersBindingsParamsWithHTTPClient(client *http.Client) *ListServer
 	}
 }
 
-/* ListServersBindingsParams contains all the parameters to send to the API endpoint
-   for the list servers bindings operation.
+/*
+ListServersBindingsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the list servers bindings operation.
+
+	Typically these are written to a http.Request.
 */
 type ListServersBindingsParams struct {
 	timeout    time.Duration

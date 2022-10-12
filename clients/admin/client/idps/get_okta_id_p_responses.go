@@ -63,7 +63,8 @@ func NewGetOktaIDPOK() *GetOktaIDPOK {
 	return &GetOktaIDPOK{}
 }
 
-/* GetOktaIDPOK describes a response with status code 200, with default header values.
+/*
+GetOktaIDPOK describes a response with status code 200, with default header values.
 
 OktaIDP
 */
@@ -71,9 +72,39 @@ type GetOktaIDPOK struct {
 	Payload *models.OktaIDP
 }
 
+// IsSuccess returns true when this get okta Id p o k response has a 2xx status code
+func (o *GetOktaIDPOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get okta Id p o k response has a 3xx status code
+func (o *GetOktaIDPOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get okta Id p o k response has a 4xx status code
+func (o *GetOktaIDPOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get okta Id p o k response has a 5xx status code
+func (o *GetOktaIDPOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get okta Id p o k response a status code equal to that given
+func (o *GetOktaIDPOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetOktaIDPOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/idps/okta/{iid}][%d] getOktaIdPOK  %+v", 200, o.Payload)
 }
+
+func (o *GetOktaIDPOK) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/idps/okta/{iid}][%d] getOktaIdPOK  %+v", 200, o.Payload)
+}
+
 func (o *GetOktaIDPOK) GetPayload() *models.OktaIDP {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewGetOktaIDPUnauthorized() *GetOktaIDPUnauthorized {
 	return &GetOktaIDPUnauthorized{}
 }
 
-/* GetOktaIDPUnauthorized describes a response with status code 401, with default header values.
+/*
+GetOktaIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type GetOktaIDPUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get okta Id p unauthorized response has a 2xx status code
+func (o *GetOktaIDPUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get okta Id p unauthorized response has a 3xx status code
+func (o *GetOktaIDPUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get okta Id p unauthorized response has a 4xx status code
+func (o *GetOktaIDPUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get okta Id p unauthorized response has a 5xx status code
+func (o *GetOktaIDPUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get okta Id p unauthorized response a status code equal to that given
+func (o *GetOktaIDPUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *GetOktaIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/idps/okta/{iid}][%d] getOktaIdPUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *GetOktaIDPUnauthorized) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/idps/okta/{iid}][%d] getOktaIdPUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *GetOktaIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewGetOktaIDPForbidden() *GetOktaIDPForbidden {
 	return &GetOktaIDPForbidden{}
 }
 
-/* GetOktaIDPForbidden describes a response with status code 403, with default header values.
+/*
+GetOktaIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type GetOktaIDPForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get okta Id p forbidden response has a 2xx status code
+func (o *GetOktaIDPForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get okta Id p forbidden response has a 3xx status code
+func (o *GetOktaIDPForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get okta Id p forbidden response has a 4xx status code
+func (o *GetOktaIDPForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get okta Id p forbidden response has a 5xx status code
+func (o *GetOktaIDPForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get okta Id p forbidden response a status code equal to that given
+func (o *GetOktaIDPForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetOktaIDPForbidden) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/idps/okta/{iid}][%d] getOktaIdPForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetOktaIDPForbidden) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/idps/okta/{iid}][%d] getOktaIdPForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetOktaIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewGetOktaIDPNotFound() *GetOktaIDPNotFound {
 	return &GetOktaIDPNotFound{}
 }
 
-/* GetOktaIDPNotFound describes a response with status code 404, with default header values.
+/*
+GetOktaIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type GetOktaIDPNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get okta Id p not found response has a 2xx status code
+func (o *GetOktaIDPNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get okta Id p not found response has a 3xx status code
+func (o *GetOktaIDPNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get okta Id p not found response has a 4xx status code
+func (o *GetOktaIDPNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get okta Id p not found response has a 5xx status code
+func (o *GetOktaIDPNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get okta Id p not found response a status code equal to that given
+func (o *GetOktaIDPNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *GetOktaIDPNotFound) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/idps/okta/{iid}][%d] getOktaIdPNotFound  %+v", 404, o.Payload)
 }
+
+func (o *GetOktaIDPNotFound) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/idps/okta/{iid}][%d] getOktaIdPNotFound  %+v", 404, o.Payload)
+}
+
 func (o *GetOktaIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewGetOktaIDPTooManyRequests() *GetOktaIDPTooManyRequests {
 	return &GetOktaIDPTooManyRequests{}
 }
 
-/* GetOktaIDPTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetOktaIDPTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type GetOktaIDPTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get okta Id p too many requests response has a 2xx status code
+func (o *GetOktaIDPTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get okta Id p too many requests response has a 3xx status code
+func (o *GetOktaIDPTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get okta Id p too many requests response has a 4xx status code
+func (o *GetOktaIDPTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get okta Id p too many requests response has a 5xx status code
+func (o *GetOktaIDPTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get okta Id p too many requests response a status code equal to that given
+func (o *GetOktaIDPTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *GetOktaIDPTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/idps/okta/{iid}][%d] getOktaIdPTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *GetOktaIDPTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/idps/okta/{iid}][%d] getOktaIdPTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *GetOktaIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

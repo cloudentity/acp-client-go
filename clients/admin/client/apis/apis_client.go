@@ -48,9 +48,9 @@ type ClientService interface {
 }
 
 /*
-  CreateAPI creates API
+CreateAPI creates API
 
-  It is not possible to create APIs for a service with imported specification.
+It is not possible to create APIs for a service with imported specification.
 */
 func (a *Client) CreateAPI(params *CreateAPIParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateAPICreated, error) {
 	// TODO: Validate the params before sending
@@ -89,9 +89,10 @@ func (a *Client) CreateAPI(params *CreateAPIParams, authInfo runtime.ClientAuthI
 }
 
 /*
-  DeleteAPI deletes API
+	DeleteAPI deletes API
 
-  If this API was created by import specification operation then
+	If this API was created by import specification operation then
+
 it is not possible to delete it.
 */
 func (a *Client) DeleteAPI(params *DeleteAPIParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteAPINoContent, error) {
@@ -131,9 +132,9 @@ func (a *Client) DeleteAPI(params *DeleteAPIParams, authInfo runtime.ClientAuthI
 }
 
 /*
-  GetAPI gets API
+GetAPI gets API
 
-  Get API.
+Get API.
 */
 func (a *Client) GetAPI(params *GetAPIParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAPIOK, error) {
 	// TODO: Validate the params before sending
@@ -172,9 +173,9 @@ func (a *Client) GetAPI(params *GetAPIParams, authInfo runtime.ClientAuthInfoWri
 }
 
 /*
-  ListAPIsByServer lists a p is
+ListAPIsByServer lists a p is
 
-  List APIs.
+List APIs.
 */
 func (a *Client) ListAPIsByServer(params *ListAPIsByServerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListAPIsByServerOK, error) {
 	// TODO: Validate the params before sending
@@ -213,9 +214,9 @@ func (a *Client) ListAPIsByServer(params *ListAPIsByServerParams, authInfo runti
 }
 
 /*
-  ListAPIsByService lists a p is
+ListAPIsByService lists a p is
 
-  List APIs.
+List APIs.
 */
 func (a *Client) ListAPIsByService(params *ListAPIsByServiceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListAPIsByServiceOK, error) {
 	// TODO: Validate the params before sending
@@ -254,9 +255,9 @@ func (a *Client) ListAPIsByService(params *ListAPIsByServiceParams, authInfo run
 }
 
 /*
-  TestAPI tests API
+TestAPI tests API
 
-  Check if an example request matches given API, if so, return policy list to evaluate.
+Check if an example request matches given API, if so, return policy list to evaluate.
 */
 func (a *Client) TestAPI(params *TestAPIParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*TestAPIOK, error) {
 	// TODO: Validate the params before sending
@@ -295,9 +296,9 @@ func (a *Client) TestAPI(params *TestAPIParams, authInfo runtime.ClientAuthInfoW
 }
 
 /*
-  UpdateAPI updates API
+UpdateAPI updates API
 
-  Update API.
+Update API.
 */
 func (a *Client) UpdateAPI(params *UpdateAPIParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateAPIOK, error) {
 	// TODO: Validate the params before sending

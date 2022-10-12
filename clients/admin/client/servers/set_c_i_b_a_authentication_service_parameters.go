@@ -54,10 +54,12 @@ func NewSetCIBAAuthenticationServiceParamsWithHTTPClient(client *http.Client) *S
 	}
 }
 
-/* SetCIBAAuthenticationServiceParams contains all the parameters to send to the API endpoint
-   for the set c i b a authentication service operation.
+/*
+SetCIBAAuthenticationServiceParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the set c i b a authentication service operation.
+
+	Typically these are written to a http.Request.
 */
 type SetCIBAAuthenticationServiceParams struct {
 

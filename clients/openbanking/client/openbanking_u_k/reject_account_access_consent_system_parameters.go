@@ -54,10 +54,12 @@ func NewRejectAccountAccessConsentSystemParamsWithHTTPClient(client *http.Client
 	}
 }
 
-/* RejectAccountAccessConsentSystemParams contains all the parameters to send to the API endpoint
-   for the reject account access consent system operation.
+/*
+RejectAccountAccessConsentSystemParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the reject account access consent system operation.
+
+	Typically these are written to a http.Request.
 */
 type RejectAccountAccessConsentSystemParams struct {
 

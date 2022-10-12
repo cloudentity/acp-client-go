@@ -63,7 +63,8 @@ func NewGetClientOK() *GetClientOK {
 	return &GetClientOK{}
 }
 
-/* GetClientOK describes a response with status code 200, with default header values.
+/*
+GetClientOK describes a response with status code 200, with default header values.
 
 Client
 */
@@ -71,9 +72,39 @@ type GetClientOK struct {
 	Payload *models.ClientAdminResponse
 }
 
+// IsSuccess returns true when this get client o k response has a 2xx status code
+func (o *GetClientOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get client o k response has a 3xx status code
+func (o *GetClientOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get client o k response has a 4xx status code
+func (o *GetClientOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get client o k response has a 5xx status code
+func (o *GetClientOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get client o k response a status code equal to that given
+func (o *GetClientOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetClientOK) Error() string {
 	return fmt.Sprintf("[GET /clients/{cid}][%d] getClientOK  %+v", 200, o.Payload)
 }
+
+func (o *GetClientOK) String() string {
+	return fmt.Sprintf("[GET /clients/{cid}][%d] getClientOK  %+v", 200, o.Payload)
+}
+
 func (o *GetClientOK) GetPayload() *models.ClientAdminResponse {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewGetClientUnauthorized() *GetClientUnauthorized {
 	return &GetClientUnauthorized{}
 }
 
-/* GetClientUnauthorized describes a response with status code 401, with default header values.
+/*
+GetClientUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type GetClientUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get client unauthorized response has a 2xx status code
+func (o *GetClientUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get client unauthorized response has a 3xx status code
+func (o *GetClientUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get client unauthorized response has a 4xx status code
+func (o *GetClientUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get client unauthorized response has a 5xx status code
+func (o *GetClientUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get client unauthorized response a status code equal to that given
+func (o *GetClientUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *GetClientUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /clients/{cid}][%d] getClientUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *GetClientUnauthorized) String() string {
+	return fmt.Sprintf("[GET /clients/{cid}][%d] getClientUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *GetClientUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewGetClientForbidden() *GetClientForbidden {
 	return &GetClientForbidden{}
 }
 
-/* GetClientForbidden describes a response with status code 403, with default header values.
+/*
+GetClientForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type GetClientForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get client forbidden response has a 2xx status code
+func (o *GetClientForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get client forbidden response has a 3xx status code
+func (o *GetClientForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get client forbidden response has a 4xx status code
+func (o *GetClientForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get client forbidden response has a 5xx status code
+func (o *GetClientForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get client forbidden response a status code equal to that given
+func (o *GetClientForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetClientForbidden) Error() string {
 	return fmt.Sprintf("[GET /clients/{cid}][%d] getClientForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetClientForbidden) String() string {
+	return fmt.Sprintf("[GET /clients/{cid}][%d] getClientForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetClientForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewGetClientNotFound() *GetClientNotFound {
 	return &GetClientNotFound{}
 }
 
-/* GetClientNotFound describes a response with status code 404, with default header values.
+/*
+GetClientNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type GetClientNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get client not found response has a 2xx status code
+func (o *GetClientNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get client not found response has a 3xx status code
+func (o *GetClientNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get client not found response has a 4xx status code
+func (o *GetClientNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get client not found response has a 5xx status code
+func (o *GetClientNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get client not found response a status code equal to that given
+func (o *GetClientNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *GetClientNotFound) Error() string {
 	return fmt.Sprintf("[GET /clients/{cid}][%d] getClientNotFound  %+v", 404, o.Payload)
 }
+
+func (o *GetClientNotFound) String() string {
+	return fmt.Sprintf("[GET /clients/{cid}][%d] getClientNotFound  %+v", 404, o.Payload)
+}
+
 func (o *GetClientNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewGetClientTooManyRequests() *GetClientTooManyRequests {
 	return &GetClientTooManyRequests{}
 }
 
-/* GetClientTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetClientTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type GetClientTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get client too many requests response has a 2xx status code
+func (o *GetClientTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get client too many requests response has a 3xx status code
+func (o *GetClientTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get client too many requests response has a 4xx status code
+func (o *GetClientTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get client too many requests response has a 5xx status code
+func (o *GetClientTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get client too many requests response a status code equal to that given
+func (o *GetClientTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *GetClientTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /clients/{cid}][%d] getClientTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *GetClientTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /clients/{cid}][%d] getClientTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *GetClientTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

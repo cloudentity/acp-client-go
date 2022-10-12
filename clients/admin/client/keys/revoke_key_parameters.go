@@ -52,10 +52,12 @@ func NewRevokeKeyParamsWithHTTPClient(client *http.Client) *RevokeKeyParams {
 	}
 }
 
-/* RevokeKeyParams contains all the parameters to send to the API endpoint
-   for the revoke key operation.
+/*
+RevokeKeyParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the revoke key operation.
+
+	Typically these are written to a http.Request.
 */
 type RevokeKeyParams struct {
 

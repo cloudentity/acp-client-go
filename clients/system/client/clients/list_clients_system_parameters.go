@@ -52,10 +52,12 @@ func NewListClientsSystemParamsWithHTTPClient(client *http.Client) *ListClientsS
 	}
 }
 
-/* ListClientsSystemParams contains all the parameters to send to the API endpoint
-   for the list clients system operation.
+/*
+ListClientsSystemParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the list clients system operation.
+
+	Typically these are written to a http.Request.
 */
 type ListClientsSystemParams struct {
 

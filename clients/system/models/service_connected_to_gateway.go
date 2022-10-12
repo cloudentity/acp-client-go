@@ -7,10 +7,12 @@ package models
 
 import (
 	"context"
+	"encoding/json"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // ServiceConnectedToGateway service connected to gateway
@@ -55,6 +57,14 @@ type ServiceConnectedToGateway struct {
 	// Example: default
 	TenantID string `json:"tenant_id,omitempty"`
 
+	// service type
+	// Enum: [oauth2 oidc system user openbanking]
+	Type string `json:"type,omitempty"`
+
+	// Updated at date
+	// Format: date-time
+	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty"`
+
 	// true if service has openapi 3 specification
 	WithSpecification bool `json:"with_specification,omitempty"`
 }
@@ -64,6 +74,14 @@ func (m *ServiceConnectedToGateway) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAPIGroupMetadata(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUpdatedAt(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -87,6 +105,69 @@ func (m *ServiceConnectedToGateway) validateAPIGroupMetadata(formats strfmt.Regi
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+var serviceConnectedToGatewayTypeTypePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["oauth2","oidc","system","user","openbanking"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		serviceConnectedToGatewayTypeTypePropEnum = append(serviceConnectedToGatewayTypeTypePropEnum, v)
+	}
+}
+
+const (
+
+	// ServiceConnectedToGatewayTypeOauth2 captures enum value "oauth2"
+	ServiceConnectedToGatewayTypeOauth2 string = "oauth2"
+
+	// ServiceConnectedToGatewayTypeOidc captures enum value "oidc"
+	ServiceConnectedToGatewayTypeOidc string = "oidc"
+
+	// ServiceConnectedToGatewayTypeSystem captures enum value "system"
+	ServiceConnectedToGatewayTypeSystem string = "system"
+
+	// ServiceConnectedToGatewayTypeUser captures enum value "user"
+	ServiceConnectedToGatewayTypeUser string = "user"
+
+	// ServiceConnectedToGatewayTypeOpenbanking captures enum value "openbanking"
+	ServiceConnectedToGatewayTypeOpenbanking string = "openbanking"
+)
+
+// prop value enum
+func (m *ServiceConnectedToGateway) validateTypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, serviceConnectedToGatewayTypeTypePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *ServiceConnectedToGateway) validateType(formats strfmt.Registry) error {
+	if swag.IsZero(m.Type) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateTypeEnum("type", "body", m.Type); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ServiceConnectedToGateway) validateUpdatedAt(formats strfmt.Registry) error {
+	if swag.IsZero(m.UpdatedAt) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("updated_at", "body", "date-time", m.UpdatedAt.String(), formats); err != nil {
+		return err
 	}
 
 	return nil

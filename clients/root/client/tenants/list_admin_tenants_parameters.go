@@ -52,10 +52,12 @@ func NewListAdminTenantsParamsWithHTTPClient(client *http.Client) *ListAdminTena
 	}
 }
 
-/* ListAdminTenantsParams contains all the parameters to send to the API endpoint
-   for the list admin tenants operation.
+/*
+ListAdminTenantsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the list admin tenants operation.
+
+	Typically these are written to a http.Request.
 */
 type ListAdminTenantsParams struct {
 	timeout    time.Duration

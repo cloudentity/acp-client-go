@@ -63,7 +63,8 @@ func NewRejectAccountAccessConsentSystemOK() *RejectAccountAccessConsentSystemOK
 	return &RejectAccountAccessConsentSystemOK{}
 }
 
-/* RejectAccountAccessConsentSystemOK describes a response with status code 200, with default header values.
+/*
+RejectAccountAccessConsentSystemOK describes a response with status code 200, with default header values.
 
 Consent rejected
 */
@@ -71,9 +72,39 @@ type RejectAccountAccessConsentSystemOK struct {
 	Payload *models.ConsentRejected
 }
 
+// IsSuccess returns true when this reject account access consent system o k response has a 2xx status code
+func (o *RejectAccountAccessConsentSystemOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this reject account access consent system o k response has a 3xx status code
+func (o *RejectAccountAccessConsentSystemOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this reject account access consent system o k response has a 4xx status code
+func (o *RejectAccountAccessConsentSystemOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this reject account access consent system o k response has a 5xx status code
+func (o *RejectAccountAccessConsentSystemOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this reject account access consent system o k response a status code equal to that given
+func (o *RejectAccountAccessConsentSystemOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *RejectAccountAccessConsentSystemOK) Error() string {
 	return fmt.Sprintf("[POST /open-banking/account-access-consent/{login}/reject][%d] rejectAccountAccessConsentSystemOK  %+v", 200, o.Payload)
 }
+
+func (o *RejectAccountAccessConsentSystemOK) String() string {
+	return fmt.Sprintf("[POST /open-banking/account-access-consent/{login}/reject][%d] rejectAccountAccessConsentSystemOK  %+v", 200, o.Payload)
+}
+
 func (o *RejectAccountAccessConsentSystemOK) GetPayload() *models.ConsentRejected {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewRejectAccountAccessConsentSystemUnauthorized() *RejectAccountAccessConse
 	return &RejectAccountAccessConsentSystemUnauthorized{}
 }
 
-/* RejectAccountAccessConsentSystemUnauthorized describes a response with status code 401, with default header values.
+/*
+RejectAccountAccessConsentSystemUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type RejectAccountAccessConsentSystemUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this reject account access consent system unauthorized response has a 2xx status code
+func (o *RejectAccountAccessConsentSystemUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this reject account access consent system unauthorized response has a 3xx status code
+func (o *RejectAccountAccessConsentSystemUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this reject account access consent system unauthorized response has a 4xx status code
+func (o *RejectAccountAccessConsentSystemUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this reject account access consent system unauthorized response has a 5xx status code
+func (o *RejectAccountAccessConsentSystemUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this reject account access consent system unauthorized response a status code equal to that given
+func (o *RejectAccountAccessConsentSystemUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *RejectAccountAccessConsentSystemUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /open-banking/account-access-consent/{login}/reject][%d] rejectAccountAccessConsentSystemUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *RejectAccountAccessConsentSystemUnauthorized) String() string {
+	return fmt.Sprintf("[POST /open-banking/account-access-consent/{login}/reject][%d] rejectAccountAccessConsentSystemUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *RejectAccountAccessConsentSystemUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewRejectAccountAccessConsentSystemForbidden() *RejectAccountAccessConsentS
 	return &RejectAccountAccessConsentSystemForbidden{}
 }
 
-/* RejectAccountAccessConsentSystemForbidden describes a response with status code 403, with default header values.
+/*
+RejectAccountAccessConsentSystemForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type RejectAccountAccessConsentSystemForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this reject account access consent system forbidden response has a 2xx status code
+func (o *RejectAccountAccessConsentSystemForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this reject account access consent system forbidden response has a 3xx status code
+func (o *RejectAccountAccessConsentSystemForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this reject account access consent system forbidden response has a 4xx status code
+func (o *RejectAccountAccessConsentSystemForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this reject account access consent system forbidden response has a 5xx status code
+func (o *RejectAccountAccessConsentSystemForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this reject account access consent system forbidden response a status code equal to that given
+func (o *RejectAccountAccessConsentSystemForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *RejectAccountAccessConsentSystemForbidden) Error() string {
 	return fmt.Sprintf("[POST /open-banking/account-access-consent/{login}/reject][%d] rejectAccountAccessConsentSystemForbidden  %+v", 403, o.Payload)
 }
+
+func (o *RejectAccountAccessConsentSystemForbidden) String() string {
+	return fmt.Sprintf("[POST /open-banking/account-access-consent/{login}/reject][%d] rejectAccountAccessConsentSystemForbidden  %+v", 403, o.Payload)
+}
+
 func (o *RejectAccountAccessConsentSystemForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewRejectAccountAccessConsentSystemNotFound() *RejectAccountAccessConsentSy
 	return &RejectAccountAccessConsentSystemNotFound{}
 }
 
-/* RejectAccountAccessConsentSystemNotFound describes a response with status code 404, with default header values.
+/*
+RejectAccountAccessConsentSystemNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type RejectAccountAccessConsentSystemNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this reject account access consent system not found response has a 2xx status code
+func (o *RejectAccountAccessConsentSystemNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this reject account access consent system not found response has a 3xx status code
+func (o *RejectAccountAccessConsentSystemNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this reject account access consent system not found response has a 4xx status code
+func (o *RejectAccountAccessConsentSystemNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this reject account access consent system not found response has a 5xx status code
+func (o *RejectAccountAccessConsentSystemNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this reject account access consent system not found response a status code equal to that given
+func (o *RejectAccountAccessConsentSystemNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *RejectAccountAccessConsentSystemNotFound) Error() string {
 	return fmt.Sprintf("[POST /open-banking/account-access-consent/{login}/reject][%d] rejectAccountAccessConsentSystemNotFound  %+v", 404, o.Payload)
 }
+
+func (o *RejectAccountAccessConsentSystemNotFound) String() string {
+	return fmt.Sprintf("[POST /open-banking/account-access-consent/{login}/reject][%d] rejectAccountAccessConsentSystemNotFound  %+v", 404, o.Payload)
+}
+
 func (o *RejectAccountAccessConsentSystemNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewRejectAccountAccessConsentSystemTooManyRequests() *RejectAccountAccessCo
 	return &RejectAccountAccessConsentSystemTooManyRequests{}
 }
 
-/* RejectAccountAccessConsentSystemTooManyRequests describes a response with status code 429, with default header values.
+/*
+RejectAccountAccessConsentSystemTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type RejectAccountAccessConsentSystemTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this reject account access consent system too many requests response has a 2xx status code
+func (o *RejectAccountAccessConsentSystemTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this reject account access consent system too many requests response has a 3xx status code
+func (o *RejectAccountAccessConsentSystemTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this reject account access consent system too many requests response has a 4xx status code
+func (o *RejectAccountAccessConsentSystemTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this reject account access consent system too many requests response has a 5xx status code
+func (o *RejectAccountAccessConsentSystemTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this reject account access consent system too many requests response a status code equal to that given
+func (o *RejectAccountAccessConsentSystemTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *RejectAccountAccessConsentSystemTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /open-banking/account-access-consent/{login}/reject][%d] rejectAccountAccessConsentSystemTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *RejectAccountAccessConsentSystemTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /open-banking/account-access-consent/{login}/reject][%d] rejectAccountAccessConsentSystemTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *RejectAccountAccessConsentSystemTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

@@ -75,7 +75,8 @@ func NewGrantConsentCreated() *GrantConsentCreated {
 	return &GrantConsentCreated{}
 }
 
-/* GrantConsentCreated describes a response with status code 201, with default header values.
+/*
+GrantConsentCreated describes a response with status code 201, with default header values.
 
 Consent grant
 */
@@ -83,9 +84,39 @@ type GrantConsentCreated struct {
 	Payload *models.ConsentGrant
 }
 
+// IsSuccess returns true when this grant consent created response has a 2xx status code
+func (o *GrantConsentCreated) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this grant consent created response has a 3xx status code
+func (o *GrantConsentCreated) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this grant consent created response has a 4xx status code
+func (o *GrantConsentCreated) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this grant consent created response has a 5xx status code
+func (o *GrantConsentCreated) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this grant consent created response a status code equal to that given
+func (o *GrantConsentCreated) IsCode(code int) bool {
+	return code == 201
+}
+
 func (o *GrantConsentCreated) Error() string {
 	return fmt.Sprintf("[POST /privacy/consents/grant][%d] grantConsentCreated  %+v", 201, o.Payload)
 }
+
+func (o *GrantConsentCreated) String() string {
+	return fmt.Sprintf("[POST /privacy/consents/grant][%d] grantConsentCreated  %+v", 201, o.Payload)
+}
+
 func (o *GrantConsentCreated) GetPayload() *models.ConsentGrant {
 	return o.Payload
 }
@@ -107,7 +138,8 @@ func NewGrantConsentUnauthorized() *GrantConsentUnauthorized {
 	return &GrantConsentUnauthorized{}
 }
 
-/* GrantConsentUnauthorized describes a response with status code 401, with default header values.
+/*
+GrantConsentUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -115,9 +147,39 @@ type GrantConsentUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this grant consent unauthorized response has a 2xx status code
+func (o *GrantConsentUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this grant consent unauthorized response has a 3xx status code
+func (o *GrantConsentUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this grant consent unauthorized response has a 4xx status code
+func (o *GrantConsentUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this grant consent unauthorized response has a 5xx status code
+func (o *GrantConsentUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this grant consent unauthorized response a status code equal to that given
+func (o *GrantConsentUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *GrantConsentUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /privacy/consents/grant][%d] grantConsentUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *GrantConsentUnauthorized) String() string {
+	return fmt.Sprintf("[POST /privacy/consents/grant][%d] grantConsentUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *GrantConsentUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -139,7 +201,8 @@ func NewGrantConsentForbidden() *GrantConsentForbidden {
 	return &GrantConsentForbidden{}
 }
 
-/* GrantConsentForbidden describes a response with status code 403, with default header values.
+/*
+GrantConsentForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -147,9 +210,39 @@ type GrantConsentForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this grant consent forbidden response has a 2xx status code
+func (o *GrantConsentForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this grant consent forbidden response has a 3xx status code
+func (o *GrantConsentForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this grant consent forbidden response has a 4xx status code
+func (o *GrantConsentForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this grant consent forbidden response has a 5xx status code
+func (o *GrantConsentForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this grant consent forbidden response a status code equal to that given
+func (o *GrantConsentForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GrantConsentForbidden) Error() string {
 	return fmt.Sprintf("[POST /privacy/consents/grant][%d] grantConsentForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GrantConsentForbidden) String() string {
+	return fmt.Sprintf("[POST /privacy/consents/grant][%d] grantConsentForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GrantConsentForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -171,7 +264,8 @@ func NewGrantConsentNotFound() *GrantConsentNotFound {
 	return &GrantConsentNotFound{}
 }
 
-/* GrantConsentNotFound describes a response with status code 404, with default header values.
+/*
+GrantConsentNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -179,9 +273,39 @@ type GrantConsentNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this grant consent not found response has a 2xx status code
+func (o *GrantConsentNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this grant consent not found response has a 3xx status code
+func (o *GrantConsentNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this grant consent not found response has a 4xx status code
+func (o *GrantConsentNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this grant consent not found response has a 5xx status code
+func (o *GrantConsentNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this grant consent not found response a status code equal to that given
+func (o *GrantConsentNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *GrantConsentNotFound) Error() string {
 	return fmt.Sprintf("[POST /privacy/consents/grant][%d] grantConsentNotFound  %+v", 404, o.Payload)
 }
+
+func (o *GrantConsentNotFound) String() string {
+	return fmt.Sprintf("[POST /privacy/consents/grant][%d] grantConsentNotFound  %+v", 404, o.Payload)
+}
+
 func (o *GrantConsentNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -203,7 +327,8 @@ func NewGrantConsentConflict() *GrantConsentConflict {
 	return &GrantConsentConflict{}
 }
 
-/* GrantConsentConflict describes a response with status code 409, with default header values.
+/*
+GrantConsentConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -211,9 +336,39 @@ type GrantConsentConflict struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this grant consent conflict response has a 2xx status code
+func (o *GrantConsentConflict) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this grant consent conflict response has a 3xx status code
+func (o *GrantConsentConflict) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this grant consent conflict response has a 4xx status code
+func (o *GrantConsentConflict) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this grant consent conflict response has a 5xx status code
+func (o *GrantConsentConflict) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this grant consent conflict response a status code equal to that given
+func (o *GrantConsentConflict) IsCode(code int) bool {
+	return code == 409
+}
+
 func (o *GrantConsentConflict) Error() string {
 	return fmt.Sprintf("[POST /privacy/consents/grant][%d] grantConsentConflict  %+v", 409, o.Payload)
 }
+
+func (o *GrantConsentConflict) String() string {
+	return fmt.Sprintf("[POST /privacy/consents/grant][%d] grantConsentConflict  %+v", 409, o.Payload)
+}
+
 func (o *GrantConsentConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +390,8 @@ func NewGrantConsentUnprocessableEntity() *GrantConsentUnprocessableEntity {
 	return &GrantConsentUnprocessableEntity{}
 }
 
-/* GrantConsentUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+GrantConsentUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -243,9 +399,39 @@ type GrantConsentUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this grant consent unprocessable entity response has a 2xx status code
+func (o *GrantConsentUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this grant consent unprocessable entity response has a 3xx status code
+func (o *GrantConsentUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this grant consent unprocessable entity response has a 4xx status code
+func (o *GrantConsentUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this grant consent unprocessable entity response has a 5xx status code
+func (o *GrantConsentUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this grant consent unprocessable entity response a status code equal to that given
+func (o *GrantConsentUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *GrantConsentUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /privacy/consents/grant][%d] grantConsentUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *GrantConsentUnprocessableEntity) String() string {
+	return fmt.Sprintf("[POST /privacy/consents/grant][%d] grantConsentUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *GrantConsentUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -267,7 +453,8 @@ func NewGrantConsentTooManyRequests() *GrantConsentTooManyRequests {
 	return &GrantConsentTooManyRequests{}
 }
 
-/* GrantConsentTooManyRequests describes a response with status code 429, with default header values.
+/*
+GrantConsentTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -275,9 +462,39 @@ type GrantConsentTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this grant consent too many requests response has a 2xx status code
+func (o *GrantConsentTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this grant consent too many requests response has a 3xx status code
+func (o *GrantConsentTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this grant consent too many requests response has a 4xx status code
+func (o *GrantConsentTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this grant consent too many requests response has a 5xx status code
+func (o *GrantConsentTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this grant consent too many requests response a status code equal to that given
+func (o *GrantConsentTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *GrantConsentTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /privacy/consents/grant][%d] grantConsentTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *GrantConsentTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /privacy/consents/grant][%d] grantConsentTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *GrantConsentTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

@@ -20,7 +20,7 @@ import (
 type ClaimsRequests struct {
 
 	// extra
-	Extra map[string]interface{} `json:"Extra,omitempty"`
+	Extra map[string]interface{} `json:"extra,omitempty"`
 
 	// id token
 	IDToken map[string]ClaimRequest `json:"id_token,omitempty"`

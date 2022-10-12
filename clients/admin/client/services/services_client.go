@@ -52,9 +52,9 @@ type ClientService interface {
 }
 
 /*
-  CreateService creates service
+CreateService creates service
 
-  Service name is required. Service id will be generated if not provided.
+Service name is required. Service id will be generated if not provided.
 */
 func (a *Client) CreateService(params *CreateServiceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateServiceCreated, error) {
 	// TODO: Validate the params before sending
@@ -93,9 +93,9 @@ func (a *Client) CreateService(params *CreateServiceParams, authInfo runtime.Cli
 }
 
 /*
-  DeleteService deletes service
+DeleteService deletes service
 
-  Delete service.
+Delete service.
 */
 func (a *Client) DeleteService(params *DeleteServiceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteServiceNoContent, error) {
 	// TODO: Validate the params before sending
@@ -134,9 +134,9 @@ func (a *Client) DeleteService(params *DeleteServiceParams, authInfo runtime.Cli
 }
 
 /*
-  GetService gets service
+GetService gets service
 
-  Get service.
+Get service.
 */
 func (a *Client) GetService(params *GetServiceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetServiceOK, error) {
 	// TODO: Validate the params before sending
@@ -175,9 +175,9 @@ func (a *Client) GetService(params *GetServiceParams, authInfo runtime.ClientAut
 }
 
 /*
-  ImportSpecificationFromFile imports open API specification from file
+ImportSpecificationFromFile imports open API specification from file
 
-  It removes all apis before import.
+It removes all apis before import.
 */
 func (a *Client) ImportSpecificationFromFile(params *ImportSpecificationFromFileParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportSpecificationFromFileOK, error) {
 	// TODO: Validate the params before sending
@@ -216,9 +216,9 @@ func (a *Client) ImportSpecificationFromFile(params *ImportSpecificationFromFile
 }
 
 /*
-  ImportSpecificationFromText imports open API specification from text
+ImportSpecificationFromText imports open API specification from text
 
-  It removes all apis and policies (created by previous import) before import.
+It removes all apis and policies (created by previous import) before import.
 */
 func (a *Client) ImportSpecificationFromText(params *ImportSpecificationFromTextParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportSpecificationFromTextOK, error) {
 	// TODO: Validate the params before sending
@@ -257,9 +257,9 @@ func (a *Client) ImportSpecificationFromText(params *ImportSpecificationFromText
 }
 
 /*
-  ImportSpecificationFromURL imports open API specification from url
+ImportSpecificationFromURL imports open API specification from url
 
-  It removes all apis before import.
+It removes all apis before import.
 */
 func (a *Client) ImportSpecificationFromURL(params *ImportSpecificationFromURLParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportSpecificationFromURLOK, error) {
 	// TODO: Validate the params before sending
@@ -298,9 +298,9 @@ func (a *Client) ImportSpecificationFromURL(params *ImportSpecificationFromURLPa
 }
 
 /*
-  ListServices lists services
+ListServices lists services
 
-  List services.
+List services.
 */
 func (a *Client) ListServices(params *ListServicesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListServicesOK, error) {
 	// TODO: Validate the params before sending
@@ -339,9 +339,9 @@ func (a *Client) ListServices(params *ListServicesParams, authInfo runtime.Clien
 }
 
 /*
-  RemoveSpecification removes imported apis and policies
+	RemoveSpecification removes imported apis and policies
 
-  Remove all apis and policies created during import for a service.
+	Remove all apis and policies created during import for a service.
 
 If policy is used by another service it will not be removed.
 
@@ -386,9 +386,9 @@ func (a *Client) RemoveSpecification(params *RemoveSpecificationParams, authInfo
 }
 
 /*
-  UpdateService updates service
+UpdateService updates service
 
-  Update service.
+Update service.
 */
 func (a *Client) UpdateService(params *UpdateServiceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateServiceOK, error) {
 	// TODO: Validate the params before sending

@@ -93,7 +93,8 @@ func NewGetDataAccessConsentOK() *GetDataAccessConsentOK {
 	return &GetDataAccessConsentOK{}
 }
 
-/* GetDataAccessConsentOK describes a response with status code 200, with default header values.
+/*
+GetDataAccessConsentOK describes a response with status code 200, with default header values.
 
 Customer data access consent
 */
@@ -101,9 +102,39 @@ type GetDataAccessConsentOK struct {
 	Payload *models.BrazilCustomerDataAccessConsentResponse
 }
 
+// IsSuccess returns true when this get data access consent o k response has a 2xx status code
+func (o *GetDataAccessConsentOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get data access consent o k response has a 3xx status code
+func (o *GetDataAccessConsentOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get data access consent o k response has a 4xx status code
+func (o *GetDataAccessConsentOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get data access consent o k response has a 5xx status code
+func (o *GetDataAccessConsentOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get data access consent o k response a status code equal to that given
+func (o *GetDataAccessConsentOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetDataAccessConsentOK) Error() string {
 	return fmt.Sprintf("[GET /open-banking/consents/v1/consents/{consentID}][%d] getDataAccessConsentOK  %+v", 200, o.Payload)
 }
+
+func (o *GetDataAccessConsentOK) String() string {
+	return fmt.Sprintf("[GET /open-banking/consents/v1/consents/{consentID}][%d] getDataAccessConsentOK  %+v", 200, o.Payload)
+}
+
 func (o *GetDataAccessConsentOK) GetPayload() *models.BrazilCustomerDataAccessConsentResponse {
 	return o.Payload
 }
@@ -125,7 +156,8 @@ func NewGetDataAccessConsentBadRequest() *GetDataAccessConsentBadRequest {
 	return &GetDataAccessConsentBadRequest{}
 }
 
-/* GetDataAccessConsentBadRequest describes a response with status code 400, with default header values.
+/*
+GetDataAccessConsentBadRequest describes a response with status code 400, with default header values.
 
 Error
 */
@@ -133,9 +165,39 @@ type GetDataAccessConsentBadRequest struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this get data access consent bad request response has a 2xx status code
+func (o *GetDataAccessConsentBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get data access consent bad request response has a 3xx status code
+func (o *GetDataAccessConsentBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get data access consent bad request response has a 4xx status code
+func (o *GetDataAccessConsentBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get data access consent bad request response has a 5xx status code
+func (o *GetDataAccessConsentBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get data access consent bad request response a status code equal to that given
+func (o *GetDataAccessConsentBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *GetDataAccessConsentBadRequest) Error() string {
 	return fmt.Sprintf("[GET /open-banking/consents/v1/consents/{consentID}][%d] getDataAccessConsentBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *GetDataAccessConsentBadRequest) String() string {
+	return fmt.Sprintf("[GET /open-banking/consents/v1/consents/{consentID}][%d] getDataAccessConsentBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *GetDataAccessConsentBadRequest) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -157,7 +219,8 @@ func NewGetDataAccessConsentUnauthorized() *GetDataAccessConsentUnauthorized {
 	return &GetDataAccessConsentUnauthorized{}
 }
 
-/* GetDataAccessConsentUnauthorized describes a response with status code 401, with default header values.
+/*
+GetDataAccessConsentUnauthorized describes a response with status code 401, with default header values.
 
 Error
 */
@@ -165,9 +228,39 @@ type GetDataAccessConsentUnauthorized struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this get data access consent unauthorized response has a 2xx status code
+func (o *GetDataAccessConsentUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get data access consent unauthorized response has a 3xx status code
+func (o *GetDataAccessConsentUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get data access consent unauthorized response has a 4xx status code
+func (o *GetDataAccessConsentUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get data access consent unauthorized response has a 5xx status code
+func (o *GetDataAccessConsentUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get data access consent unauthorized response a status code equal to that given
+func (o *GetDataAccessConsentUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *GetDataAccessConsentUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /open-banking/consents/v1/consents/{consentID}][%d] getDataAccessConsentUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *GetDataAccessConsentUnauthorized) String() string {
+	return fmt.Sprintf("[GET /open-banking/consents/v1/consents/{consentID}][%d] getDataAccessConsentUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *GetDataAccessConsentUnauthorized) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -189,7 +282,8 @@ func NewGetDataAccessConsentForbidden() *GetDataAccessConsentForbidden {
 	return &GetDataAccessConsentForbidden{}
 }
 
-/* GetDataAccessConsentForbidden describes a response with status code 403, with default header values.
+/*
+GetDataAccessConsentForbidden describes a response with status code 403, with default header values.
 
 Error
 */
@@ -197,9 +291,39 @@ type GetDataAccessConsentForbidden struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this get data access consent forbidden response has a 2xx status code
+func (o *GetDataAccessConsentForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get data access consent forbidden response has a 3xx status code
+func (o *GetDataAccessConsentForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get data access consent forbidden response has a 4xx status code
+func (o *GetDataAccessConsentForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get data access consent forbidden response has a 5xx status code
+func (o *GetDataAccessConsentForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get data access consent forbidden response a status code equal to that given
+func (o *GetDataAccessConsentForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetDataAccessConsentForbidden) Error() string {
 	return fmt.Sprintf("[GET /open-banking/consents/v1/consents/{consentID}][%d] getDataAccessConsentForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetDataAccessConsentForbidden) String() string {
+	return fmt.Sprintf("[GET /open-banking/consents/v1/consents/{consentID}][%d] getDataAccessConsentForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetDataAccessConsentForbidden) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -221,7 +345,8 @@ func NewGetDataAccessConsentMethodNotAllowed() *GetDataAccessConsentMethodNotAll
 	return &GetDataAccessConsentMethodNotAllowed{}
 }
 
-/* GetDataAccessConsentMethodNotAllowed describes a response with status code 405, with default header values.
+/*
+GetDataAccessConsentMethodNotAllowed describes a response with status code 405, with default header values.
 
 Error
 */
@@ -229,9 +354,39 @@ type GetDataAccessConsentMethodNotAllowed struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this get data access consent method not allowed response has a 2xx status code
+func (o *GetDataAccessConsentMethodNotAllowed) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get data access consent method not allowed response has a 3xx status code
+func (o *GetDataAccessConsentMethodNotAllowed) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get data access consent method not allowed response has a 4xx status code
+func (o *GetDataAccessConsentMethodNotAllowed) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get data access consent method not allowed response has a 5xx status code
+func (o *GetDataAccessConsentMethodNotAllowed) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get data access consent method not allowed response a status code equal to that given
+func (o *GetDataAccessConsentMethodNotAllowed) IsCode(code int) bool {
+	return code == 405
+}
+
 func (o *GetDataAccessConsentMethodNotAllowed) Error() string {
 	return fmt.Sprintf("[GET /open-banking/consents/v1/consents/{consentID}][%d] getDataAccessConsentMethodNotAllowed  %+v", 405, o.Payload)
 }
+
+func (o *GetDataAccessConsentMethodNotAllowed) String() string {
+	return fmt.Sprintf("[GET /open-banking/consents/v1/consents/{consentID}][%d] getDataAccessConsentMethodNotAllowed  %+v", 405, o.Payload)
+}
+
 func (o *GetDataAccessConsentMethodNotAllowed) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -253,7 +408,8 @@ func NewGetDataAccessConsentNotAcceptable() *GetDataAccessConsentNotAcceptable {
 	return &GetDataAccessConsentNotAcceptable{}
 }
 
-/* GetDataAccessConsentNotAcceptable describes a response with status code 406, with default header values.
+/*
+GetDataAccessConsentNotAcceptable describes a response with status code 406, with default header values.
 
 Error
 */
@@ -261,9 +417,39 @@ type GetDataAccessConsentNotAcceptable struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this get data access consent not acceptable response has a 2xx status code
+func (o *GetDataAccessConsentNotAcceptable) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get data access consent not acceptable response has a 3xx status code
+func (o *GetDataAccessConsentNotAcceptable) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get data access consent not acceptable response has a 4xx status code
+func (o *GetDataAccessConsentNotAcceptable) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get data access consent not acceptable response has a 5xx status code
+func (o *GetDataAccessConsentNotAcceptable) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get data access consent not acceptable response a status code equal to that given
+func (o *GetDataAccessConsentNotAcceptable) IsCode(code int) bool {
+	return code == 406
+}
+
 func (o *GetDataAccessConsentNotAcceptable) Error() string {
 	return fmt.Sprintf("[GET /open-banking/consents/v1/consents/{consentID}][%d] getDataAccessConsentNotAcceptable  %+v", 406, o.Payload)
 }
+
+func (o *GetDataAccessConsentNotAcceptable) String() string {
+	return fmt.Sprintf("[GET /open-banking/consents/v1/consents/{consentID}][%d] getDataAccessConsentNotAcceptable  %+v", 406, o.Payload)
+}
+
 func (o *GetDataAccessConsentNotAcceptable) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -285,7 +471,8 @@ func NewGetDataAccessConsentUnsupportedMediaType() *GetDataAccessConsentUnsuppor
 	return &GetDataAccessConsentUnsupportedMediaType{}
 }
 
-/* GetDataAccessConsentUnsupportedMediaType describes a response with status code 415, with default header values.
+/*
+GetDataAccessConsentUnsupportedMediaType describes a response with status code 415, with default header values.
 
 Error
 */
@@ -293,9 +480,39 @@ type GetDataAccessConsentUnsupportedMediaType struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this get data access consent unsupported media type response has a 2xx status code
+func (o *GetDataAccessConsentUnsupportedMediaType) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get data access consent unsupported media type response has a 3xx status code
+func (o *GetDataAccessConsentUnsupportedMediaType) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get data access consent unsupported media type response has a 4xx status code
+func (o *GetDataAccessConsentUnsupportedMediaType) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get data access consent unsupported media type response has a 5xx status code
+func (o *GetDataAccessConsentUnsupportedMediaType) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get data access consent unsupported media type response a status code equal to that given
+func (o *GetDataAccessConsentUnsupportedMediaType) IsCode(code int) bool {
+	return code == 415
+}
+
 func (o *GetDataAccessConsentUnsupportedMediaType) Error() string {
 	return fmt.Sprintf("[GET /open-banking/consents/v1/consents/{consentID}][%d] getDataAccessConsentUnsupportedMediaType  %+v", 415, o.Payload)
 }
+
+func (o *GetDataAccessConsentUnsupportedMediaType) String() string {
+	return fmt.Sprintf("[GET /open-banking/consents/v1/consents/{consentID}][%d] getDataAccessConsentUnsupportedMediaType  %+v", 415, o.Payload)
+}
+
 func (o *GetDataAccessConsentUnsupportedMediaType) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -317,7 +534,8 @@ func NewGetDataAccessConsentUnprocessableEntity() *GetDataAccessConsentUnprocess
 	return &GetDataAccessConsentUnprocessableEntity{}
 }
 
-/* GetDataAccessConsentUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+GetDataAccessConsentUnprocessableEntity describes a response with status code 422, with default header values.
 
 Error
 */
@@ -325,9 +543,39 @@ type GetDataAccessConsentUnprocessableEntity struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this get data access consent unprocessable entity response has a 2xx status code
+func (o *GetDataAccessConsentUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get data access consent unprocessable entity response has a 3xx status code
+func (o *GetDataAccessConsentUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get data access consent unprocessable entity response has a 4xx status code
+func (o *GetDataAccessConsentUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get data access consent unprocessable entity response has a 5xx status code
+func (o *GetDataAccessConsentUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get data access consent unprocessable entity response a status code equal to that given
+func (o *GetDataAccessConsentUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *GetDataAccessConsentUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[GET /open-banking/consents/v1/consents/{consentID}][%d] getDataAccessConsentUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *GetDataAccessConsentUnprocessableEntity) String() string {
+	return fmt.Sprintf("[GET /open-banking/consents/v1/consents/{consentID}][%d] getDataAccessConsentUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *GetDataAccessConsentUnprocessableEntity) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -349,7 +597,8 @@ func NewGetDataAccessConsentTooManyRequests() *GetDataAccessConsentTooManyReques
 	return &GetDataAccessConsentTooManyRequests{}
 }
 
-/* GetDataAccessConsentTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetDataAccessConsentTooManyRequests describes a response with status code 429, with default header values.
 
 Error
 */
@@ -357,9 +606,39 @@ type GetDataAccessConsentTooManyRequests struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this get data access consent too many requests response has a 2xx status code
+func (o *GetDataAccessConsentTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get data access consent too many requests response has a 3xx status code
+func (o *GetDataAccessConsentTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get data access consent too many requests response has a 4xx status code
+func (o *GetDataAccessConsentTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get data access consent too many requests response has a 5xx status code
+func (o *GetDataAccessConsentTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get data access consent too many requests response a status code equal to that given
+func (o *GetDataAccessConsentTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *GetDataAccessConsentTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /open-banking/consents/v1/consents/{consentID}][%d] getDataAccessConsentTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *GetDataAccessConsentTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /open-banking/consents/v1/consents/{consentID}][%d] getDataAccessConsentTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *GetDataAccessConsentTooManyRequests) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -381,7 +660,8 @@ func NewGetDataAccessConsentInternalServerError() *GetDataAccessConsentInternalS
 	return &GetDataAccessConsentInternalServerError{}
 }
 
-/* GetDataAccessConsentInternalServerError describes a response with status code 500, with default header values.
+/*
+GetDataAccessConsentInternalServerError describes a response with status code 500, with default header values.
 
 Error
 */
@@ -389,9 +669,39 @@ type GetDataAccessConsentInternalServerError struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this get data access consent internal server error response has a 2xx status code
+func (o *GetDataAccessConsentInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get data access consent internal server error response has a 3xx status code
+func (o *GetDataAccessConsentInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get data access consent internal server error response has a 4xx status code
+func (o *GetDataAccessConsentInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get data access consent internal server error response has a 5xx status code
+func (o *GetDataAccessConsentInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this get data access consent internal server error response a status code equal to that given
+func (o *GetDataAccessConsentInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *GetDataAccessConsentInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /open-banking/consents/v1/consents/{consentID}][%d] getDataAccessConsentInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *GetDataAccessConsentInternalServerError) String() string {
+	return fmt.Sprintf("[GET /open-banking/consents/v1/consents/{consentID}][%d] getDataAccessConsentInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *GetDataAccessConsentInternalServerError) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }

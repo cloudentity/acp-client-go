@@ -54,10 +54,12 @@ func NewTestMFAMethodParamsWithHTTPClient(client *http.Client) *TestMFAMethodPar
 	}
 }
 
-/* TestMFAMethodParams contains all the parameters to send to the API endpoint
-   for the test m f a method operation.
+/*
+TestMFAMethodParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the test m f a method operation.
+
+	Typically these are written to a http.Request.
 */
 type TestMFAMethodParams struct {
 

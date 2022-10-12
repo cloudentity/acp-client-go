@@ -87,7 +87,8 @@ func NewCreateInternationalPaymentConsentCreated() *CreateInternationalPaymentCo
 	return &CreateInternationalPaymentConsentCreated{}
 }
 
-/* CreateInternationalPaymentConsentCreated describes a response with status code 201, with default header values.
+/*
+CreateInternationalPaymentConsentCreated describes a response with status code 201, with default header values.
 
 International payment consent
 */
@@ -95,9 +96,39 @@ type CreateInternationalPaymentConsentCreated struct {
 	Payload *models.InternationalPaymentConsentResponse
 }
 
+// IsSuccess returns true when this create international payment consent created response has a 2xx status code
+func (o *CreateInternationalPaymentConsentCreated) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this create international payment consent created response has a 3xx status code
+func (o *CreateInternationalPaymentConsentCreated) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create international payment consent created response has a 4xx status code
+func (o *CreateInternationalPaymentConsentCreated) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create international payment consent created response has a 5xx status code
+func (o *CreateInternationalPaymentConsentCreated) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create international payment consent created response a status code equal to that given
+func (o *CreateInternationalPaymentConsentCreated) IsCode(code int) bool {
+	return code == 201
+}
+
 func (o *CreateInternationalPaymentConsentCreated) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents][%d] createInternationalPaymentConsentCreated  %+v", 201, o.Payload)
 }
+
+func (o *CreateInternationalPaymentConsentCreated) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents][%d] createInternationalPaymentConsentCreated  %+v", 201, o.Payload)
+}
+
 func (o *CreateInternationalPaymentConsentCreated) GetPayload() *models.InternationalPaymentConsentResponse {
 	return o.Payload
 }
@@ -119,7 +150,8 @@ func NewCreateInternationalPaymentConsentBadRequest() *CreateInternationalPaymen
 	return &CreateInternationalPaymentConsentBadRequest{}
 }
 
-/* CreateInternationalPaymentConsentBadRequest describes a response with status code 400, with default header values.
+/*
+CreateInternationalPaymentConsentBadRequest describes a response with status code 400, with default header values.
 
 Error
 */
@@ -127,9 +159,39 @@ type CreateInternationalPaymentConsentBadRequest struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this create international payment consent bad request response has a 2xx status code
+func (o *CreateInternationalPaymentConsentBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create international payment consent bad request response has a 3xx status code
+func (o *CreateInternationalPaymentConsentBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create international payment consent bad request response has a 4xx status code
+func (o *CreateInternationalPaymentConsentBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create international payment consent bad request response has a 5xx status code
+func (o *CreateInternationalPaymentConsentBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create international payment consent bad request response a status code equal to that given
+func (o *CreateInternationalPaymentConsentBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *CreateInternationalPaymentConsentBadRequest) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents][%d] createInternationalPaymentConsentBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *CreateInternationalPaymentConsentBadRequest) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents][%d] createInternationalPaymentConsentBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *CreateInternationalPaymentConsentBadRequest) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -151,7 +213,8 @@ func NewCreateInternationalPaymentConsentUnauthorized() *CreateInternationalPaym
 	return &CreateInternationalPaymentConsentUnauthorized{}
 }
 
-/* CreateInternationalPaymentConsentUnauthorized describes a response with status code 401, with default header values.
+/*
+CreateInternationalPaymentConsentUnauthorized describes a response with status code 401, with default header values.
 
 Error
 */
@@ -159,9 +222,39 @@ type CreateInternationalPaymentConsentUnauthorized struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this create international payment consent unauthorized response has a 2xx status code
+func (o *CreateInternationalPaymentConsentUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create international payment consent unauthorized response has a 3xx status code
+func (o *CreateInternationalPaymentConsentUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create international payment consent unauthorized response has a 4xx status code
+func (o *CreateInternationalPaymentConsentUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create international payment consent unauthorized response has a 5xx status code
+func (o *CreateInternationalPaymentConsentUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create international payment consent unauthorized response a status code equal to that given
+func (o *CreateInternationalPaymentConsentUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *CreateInternationalPaymentConsentUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents][%d] createInternationalPaymentConsentUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *CreateInternationalPaymentConsentUnauthorized) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents][%d] createInternationalPaymentConsentUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *CreateInternationalPaymentConsentUnauthorized) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -183,7 +276,8 @@ func NewCreateInternationalPaymentConsentForbidden() *CreateInternationalPayment
 	return &CreateInternationalPaymentConsentForbidden{}
 }
 
-/* CreateInternationalPaymentConsentForbidden describes a response with status code 403, with default header values.
+/*
+CreateInternationalPaymentConsentForbidden describes a response with status code 403, with default header values.
 
 Error
 */
@@ -191,9 +285,39 @@ type CreateInternationalPaymentConsentForbidden struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this create international payment consent forbidden response has a 2xx status code
+func (o *CreateInternationalPaymentConsentForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create international payment consent forbidden response has a 3xx status code
+func (o *CreateInternationalPaymentConsentForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create international payment consent forbidden response has a 4xx status code
+func (o *CreateInternationalPaymentConsentForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create international payment consent forbidden response has a 5xx status code
+func (o *CreateInternationalPaymentConsentForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create international payment consent forbidden response a status code equal to that given
+func (o *CreateInternationalPaymentConsentForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *CreateInternationalPaymentConsentForbidden) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents][%d] createInternationalPaymentConsentForbidden  %+v", 403, o.Payload)
 }
+
+func (o *CreateInternationalPaymentConsentForbidden) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents][%d] createInternationalPaymentConsentForbidden  %+v", 403, o.Payload)
+}
+
 func (o *CreateInternationalPaymentConsentForbidden) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -215,7 +339,8 @@ func NewCreateInternationalPaymentConsentMethodNotAllowed() *CreateInternational
 	return &CreateInternationalPaymentConsentMethodNotAllowed{}
 }
 
-/* CreateInternationalPaymentConsentMethodNotAllowed describes a response with status code 405, with default header values.
+/*
+CreateInternationalPaymentConsentMethodNotAllowed describes a response with status code 405, with default header values.
 
 Error
 */
@@ -223,9 +348,39 @@ type CreateInternationalPaymentConsentMethodNotAllowed struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this create international payment consent method not allowed response has a 2xx status code
+func (o *CreateInternationalPaymentConsentMethodNotAllowed) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create international payment consent method not allowed response has a 3xx status code
+func (o *CreateInternationalPaymentConsentMethodNotAllowed) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create international payment consent method not allowed response has a 4xx status code
+func (o *CreateInternationalPaymentConsentMethodNotAllowed) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create international payment consent method not allowed response has a 5xx status code
+func (o *CreateInternationalPaymentConsentMethodNotAllowed) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create international payment consent method not allowed response a status code equal to that given
+func (o *CreateInternationalPaymentConsentMethodNotAllowed) IsCode(code int) bool {
+	return code == 405
+}
+
 func (o *CreateInternationalPaymentConsentMethodNotAllowed) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents][%d] createInternationalPaymentConsentMethodNotAllowed  %+v", 405, o.Payload)
 }
+
+func (o *CreateInternationalPaymentConsentMethodNotAllowed) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents][%d] createInternationalPaymentConsentMethodNotAllowed  %+v", 405, o.Payload)
+}
+
 func (o *CreateInternationalPaymentConsentMethodNotAllowed) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -247,7 +402,8 @@ func NewCreateInternationalPaymentConsentNotAcceptable() *CreateInternationalPay
 	return &CreateInternationalPaymentConsentNotAcceptable{}
 }
 
-/* CreateInternationalPaymentConsentNotAcceptable describes a response with status code 406, with default header values.
+/*
+CreateInternationalPaymentConsentNotAcceptable describes a response with status code 406, with default header values.
 
 Error
 */
@@ -255,9 +411,39 @@ type CreateInternationalPaymentConsentNotAcceptable struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this create international payment consent not acceptable response has a 2xx status code
+func (o *CreateInternationalPaymentConsentNotAcceptable) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create international payment consent not acceptable response has a 3xx status code
+func (o *CreateInternationalPaymentConsentNotAcceptable) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create international payment consent not acceptable response has a 4xx status code
+func (o *CreateInternationalPaymentConsentNotAcceptable) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create international payment consent not acceptable response has a 5xx status code
+func (o *CreateInternationalPaymentConsentNotAcceptable) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create international payment consent not acceptable response a status code equal to that given
+func (o *CreateInternationalPaymentConsentNotAcceptable) IsCode(code int) bool {
+	return code == 406
+}
+
 func (o *CreateInternationalPaymentConsentNotAcceptable) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents][%d] createInternationalPaymentConsentNotAcceptable  %+v", 406, o.Payload)
 }
+
+func (o *CreateInternationalPaymentConsentNotAcceptable) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents][%d] createInternationalPaymentConsentNotAcceptable  %+v", 406, o.Payload)
+}
+
 func (o *CreateInternationalPaymentConsentNotAcceptable) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -279,7 +465,8 @@ func NewCreateInternationalPaymentConsentUnsupportedMediaType() *CreateInternati
 	return &CreateInternationalPaymentConsentUnsupportedMediaType{}
 }
 
-/* CreateInternationalPaymentConsentUnsupportedMediaType describes a response with status code 415, with default header values.
+/*
+CreateInternationalPaymentConsentUnsupportedMediaType describes a response with status code 415, with default header values.
 
 Error
 */
@@ -287,9 +474,39 @@ type CreateInternationalPaymentConsentUnsupportedMediaType struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this create international payment consent unsupported media type response has a 2xx status code
+func (o *CreateInternationalPaymentConsentUnsupportedMediaType) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create international payment consent unsupported media type response has a 3xx status code
+func (o *CreateInternationalPaymentConsentUnsupportedMediaType) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create international payment consent unsupported media type response has a 4xx status code
+func (o *CreateInternationalPaymentConsentUnsupportedMediaType) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create international payment consent unsupported media type response has a 5xx status code
+func (o *CreateInternationalPaymentConsentUnsupportedMediaType) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create international payment consent unsupported media type response a status code equal to that given
+func (o *CreateInternationalPaymentConsentUnsupportedMediaType) IsCode(code int) bool {
+	return code == 415
+}
+
 func (o *CreateInternationalPaymentConsentUnsupportedMediaType) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents][%d] createInternationalPaymentConsentUnsupportedMediaType  %+v", 415, o.Payload)
 }
+
+func (o *CreateInternationalPaymentConsentUnsupportedMediaType) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents][%d] createInternationalPaymentConsentUnsupportedMediaType  %+v", 415, o.Payload)
+}
+
 func (o *CreateInternationalPaymentConsentUnsupportedMediaType) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -311,7 +528,8 @@ func NewCreateInternationalPaymentConsentTooManyRequests() *CreateInternationalP
 	return &CreateInternationalPaymentConsentTooManyRequests{}
 }
 
-/* CreateInternationalPaymentConsentTooManyRequests describes a response with status code 429, with default header values.
+/*
+CreateInternationalPaymentConsentTooManyRequests describes a response with status code 429, with default header values.
 
 Error
 */
@@ -319,9 +537,39 @@ type CreateInternationalPaymentConsentTooManyRequests struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this create international payment consent too many requests response has a 2xx status code
+func (o *CreateInternationalPaymentConsentTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create international payment consent too many requests response has a 3xx status code
+func (o *CreateInternationalPaymentConsentTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create international payment consent too many requests response has a 4xx status code
+func (o *CreateInternationalPaymentConsentTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create international payment consent too many requests response has a 5xx status code
+func (o *CreateInternationalPaymentConsentTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create international payment consent too many requests response a status code equal to that given
+func (o *CreateInternationalPaymentConsentTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *CreateInternationalPaymentConsentTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents][%d] createInternationalPaymentConsentTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *CreateInternationalPaymentConsentTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents][%d] createInternationalPaymentConsentTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *CreateInternationalPaymentConsentTooManyRequests) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -343,7 +591,8 @@ func NewCreateInternationalPaymentConsentInternalServerError() *CreateInternatio
 	return &CreateInternationalPaymentConsentInternalServerError{}
 }
 
-/* CreateInternationalPaymentConsentInternalServerError describes a response with status code 500, with default header values.
+/*
+CreateInternationalPaymentConsentInternalServerError describes a response with status code 500, with default header values.
 
 Error
 */
@@ -351,9 +600,39 @@ type CreateInternationalPaymentConsentInternalServerError struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this create international payment consent internal server error response has a 2xx status code
+func (o *CreateInternationalPaymentConsentInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create international payment consent internal server error response has a 3xx status code
+func (o *CreateInternationalPaymentConsentInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create international payment consent internal server error response has a 4xx status code
+func (o *CreateInternationalPaymentConsentInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create international payment consent internal server error response has a 5xx status code
+func (o *CreateInternationalPaymentConsentInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this create international payment consent internal server error response a status code equal to that given
+func (o *CreateInternationalPaymentConsentInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *CreateInternationalPaymentConsentInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents][%d] createInternationalPaymentConsentInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *CreateInternationalPaymentConsentInternalServerError) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents][%d] createInternationalPaymentConsentInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *CreateInternationalPaymentConsentInternalServerError) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

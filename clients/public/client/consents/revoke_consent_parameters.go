@@ -54,10 +54,12 @@ func NewRevokeConsentParamsWithHTTPClient(client *http.Client) *RevokeConsentPar
 	}
 }
 
-/* RevokeConsentParams contains all the parameters to send to the API endpoint
-   for the revoke consent operation.
+/*
+RevokeConsentParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the revoke consent operation.
+
+	Typically these are written to a http.Request.
 */
 type RevokeConsentParams struct {
 

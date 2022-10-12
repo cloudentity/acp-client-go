@@ -52,10 +52,12 @@ func NewIntrospectParamsWithHTTPClient(client *http.Client) *IntrospectParams {
 	}
 }
 
-/* IntrospectParams contains all the parameters to send to the API endpoint
-   for the introspect operation.
+/*
+IntrospectParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the introspect operation.
+
+	Typically these are written to a http.Request.
 */
 type IntrospectParams struct {
 

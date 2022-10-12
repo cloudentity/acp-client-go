@@ -52,10 +52,12 @@ func NewGetIntelliTrustIDPParamsWithHTTPClient(client *http.Client) *GetIntelliT
 	}
 }
 
-/* GetIntelliTrustIDPParams contains all the parameters to send to the API endpoint
-   for the get intelli trust ID p operation.
+/*
+GetIntelliTrustIDPParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get intelli trust ID p operation.
+
+	Typically these are written to a http.Request.
 */
 type GetIntelliTrustIDPParams struct {
 

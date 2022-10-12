@@ -81,7 +81,8 @@ func NewTestPolicyOK() *TestPolicyOK {
 	return &TestPolicyOK{}
 }
 
-/* TestPolicyOK describes a response with status code 200, with default header values.
+/*
+TestPolicyOK describes a response with status code 200, with default header values.
 
 Test policy result
 */
@@ -89,9 +90,39 @@ type TestPolicyOK struct {
 	Payload *models.TestPolicyResponse
 }
 
+// IsSuccess returns true when this test policy o k response has a 2xx status code
+func (o *TestPolicyOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this test policy o k response has a 3xx status code
+func (o *TestPolicyOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this test policy o k response has a 4xx status code
+func (o *TestPolicyOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this test policy o k response has a 5xx status code
+func (o *TestPolicyOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this test policy o k response a status code equal to that given
+func (o *TestPolicyOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *TestPolicyOK) Error() string {
 	return fmt.Sprintf("[POST /policies/test][%d] testPolicyOK  %+v", 200, o.Payload)
 }
+
+func (o *TestPolicyOK) String() string {
+	return fmt.Sprintf("[POST /policies/test][%d] testPolicyOK  %+v", 200, o.Payload)
+}
+
 func (o *TestPolicyOK) GetPayload() *models.TestPolicyResponse {
 	return o.Payload
 }
@@ -113,7 +144,8 @@ func NewTestPolicyBadRequest() *TestPolicyBadRequest {
 	return &TestPolicyBadRequest{}
 }
 
-/* TestPolicyBadRequest describes a response with status code 400, with default header values.
+/*
+TestPolicyBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -121,9 +153,39 @@ type TestPolicyBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this test policy bad request response has a 2xx status code
+func (o *TestPolicyBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this test policy bad request response has a 3xx status code
+func (o *TestPolicyBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this test policy bad request response has a 4xx status code
+func (o *TestPolicyBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this test policy bad request response has a 5xx status code
+func (o *TestPolicyBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this test policy bad request response a status code equal to that given
+func (o *TestPolicyBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *TestPolicyBadRequest) Error() string {
 	return fmt.Sprintf("[POST /policies/test][%d] testPolicyBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *TestPolicyBadRequest) String() string {
+	return fmt.Sprintf("[POST /policies/test][%d] testPolicyBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *TestPolicyBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -145,7 +207,8 @@ func NewTestPolicyUnauthorized() *TestPolicyUnauthorized {
 	return &TestPolicyUnauthorized{}
 }
 
-/* TestPolicyUnauthorized describes a response with status code 401, with default header values.
+/*
+TestPolicyUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -153,9 +216,39 @@ type TestPolicyUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this test policy unauthorized response has a 2xx status code
+func (o *TestPolicyUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this test policy unauthorized response has a 3xx status code
+func (o *TestPolicyUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this test policy unauthorized response has a 4xx status code
+func (o *TestPolicyUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this test policy unauthorized response has a 5xx status code
+func (o *TestPolicyUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this test policy unauthorized response a status code equal to that given
+func (o *TestPolicyUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *TestPolicyUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /policies/test][%d] testPolicyUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *TestPolicyUnauthorized) String() string {
+	return fmt.Sprintf("[POST /policies/test][%d] testPolicyUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *TestPolicyUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -177,7 +270,8 @@ func NewTestPolicyForbidden() *TestPolicyForbidden {
 	return &TestPolicyForbidden{}
 }
 
-/* TestPolicyForbidden describes a response with status code 403, with default header values.
+/*
+TestPolicyForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -185,9 +279,39 @@ type TestPolicyForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this test policy forbidden response has a 2xx status code
+func (o *TestPolicyForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this test policy forbidden response has a 3xx status code
+func (o *TestPolicyForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this test policy forbidden response has a 4xx status code
+func (o *TestPolicyForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this test policy forbidden response has a 5xx status code
+func (o *TestPolicyForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this test policy forbidden response a status code equal to that given
+func (o *TestPolicyForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *TestPolicyForbidden) Error() string {
 	return fmt.Sprintf("[POST /policies/test][%d] testPolicyForbidden  %+v", 403, o.Payload)
 }
+
+func (o *TestPolicyForbidden) String() string {
+	return fmt.Sprintf("[POST /policies/test][%d] testPolicyForbidden  %+v", 403, o.Payload)
+}
+
 func (o *TestPolicyForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -209,7 +333,8 @@ func NewTestPolicyNotFound() *TestPolicyNotFound {
 	return &TestPolicyNotFound{}
 }
 
-/* TestPolicyNotFound describes a response with status code 404, with default header values.
+/*
+TestPolicyNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -217,9 +342,39 @@ type TestPolicyNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this test policy not found response has a 2xx status code
+func (o *TestPolicyNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this test policy not found response has a 3xx status code
+func (o *TestPolicyNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this test policy not found response has a 4xx status code
+func (o *TestPolicyNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this test policy not found response has a 5xx status code
+func (o *TestPolicyNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this test policy not found response a status code equal to that given
+func (o *TestPolicyNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *TestPolicyNotFound) Error() string {
 	return fmt.Sprintf("[POST /policies/test][%d] testPolicyNotFound  %+v", 404, o.Payload)
 }
+
+func (o *TestPolicyNotFound) String() string {
+	return fmt.Sprintf("[POST /policies/test][%d] testPolicyNotFound  %+v", 404, o.Payload)
+}
+
 func (o *TestPolicyNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -241,7 +396,8 @@ func NewTestPolicyConflict() *TestPolicyConflict {
 	return &TestPolicyConflict{}
 }
 
-/* TestPolicyConflict describes a response with status code 409, with default header values.
+/*
+TestPolicyConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -249,9 +405,39 @@ type TestPolicyConflict struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this test policy conflict response has a 2xx status code
+func (o *TestPolicyConflict) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this test policy conflict response has a 3xx status code
+func (o *TestPolicyConflict) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this test policy conflict response has a 4xx status code
+func (o *TestPolicyConflict) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this test policy conflict response has a 5xx status code
+func (o *TestPolicyConflict) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this test policy conflict response a status code equal to that given
+func (o *TestPolicyConflict) IsCode(code int) bool {
+	return code == 409
+}
+
 func (o *TestPolicyConflict) Error() string {
 	return fmt.Sprintf("[POST /policies/test][%d] testPolicyConflict  %+v", 409, o.Payload)
 }
+
+func (o *TestPolicyConflict) String() string {
+	return fmt.Sprintf("[POST /policies/test][%d] testPolicyConflict  %+v", 409, o.Payload)
+}
+
 func (o *TestPolicyConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -273,7 +459,8 @@ func NewTestPolicyUnprocessableEntity() *TestPolicyUnprocessableEntity {
 	return &TestPolicyUnprocessableEntity{}
 }
 
-/* TestPolicyUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+TestPolicyUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -281,9 +468,39 @@ type TestPolicyUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this test policy unprocessable entity response has a 2xx status code
+func (o *TestPolicyUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this test policy unprocessable entity response has a 3xx status code
+func (o *TestPolicyUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this test policy unprocessable entity response has a 4xx status code
+func (o *TestPolicyUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this test policy unprocessable entity response has a 5xx status code
+func (o *TestPolicyUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this test policy unprocessable entity response a status code equal to that given
+func (o *TestPolicyUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *TestPolicyUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /policies/test][%d] testPolicyUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *TestPolicyUnprocessableEntity) String() string {
+	return fmt.Sprintf("[POST /policies/test][%d] testPolicyUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *TestPolicyUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -305,7 +522,8 @@ func NewTestPolicyTooManyRequests() *TestPolicyTooManyRequests {
 	return &TestPolicyTooManyRequests{}
 }
 
-/* TestPolicyTooManyRequests describes a response with status code 429, with default header values.
+/*
+TestPolicyTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -313,9 +531,39 @@ type TestPolicyTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this test policy too many requests response has a 2xx status code
+func (o *TestPolicyTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this test policy too many requests response has a 3xx status code
+func (o *TestPolicyTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this test policy too many requests response has a 4xx status code
+func (o *TestPolicyTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this test policy too many requests response has a 5xx status code
+func (o *TestPolicyTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this test policy too many requests response a status code equal to that given
+func (o *TestPolicyTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *TestPolicyTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /policies/test][%d] testPolicyTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *TestPolicyTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /policies/test][%d] testPolicyTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *TestPolicyTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

@@ -54,10 +54,12 @@ func NewTestScriptParamsWithHTTPClient(client *http.Client) *TestScriptParams {
 	}
 }
 
-/* TestScriptParams contains all the parameters to send to the API endpoint
-   for the test script operation.
+/*
+TestScriptParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the test script operation.
+
+	Typically these are written to a http.Request.
 */
 type TestScriptParams struct {
 

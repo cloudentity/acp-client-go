@@ -75,7 +75,8 @@ func NewCreateAuth0IDPCreated() *CreateAuth0IDPCreated {
 	return &CreateAuth0IDPCreated{}
 }
 
-/* CreateAuth0IDPCreated describes a response with status code 201, with default header values.
+/*
+CreateAuth0IDPCreated describes a response with status code 201, with default header values.
 
 Auth0IDP
 */
@@ -83,9 +84,39 @@ type CreateAuth0IDPCreated struct {
 	Payload *models.Auth0IDP
 }
 
+// IsSuccess returns true when this create auth0 Id p created response has a 2xx status code
+func (o *CreateAuth0IDPCreated) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this create auth0 Id p created response has a 3xx status code
+func (o *CreateAuth0IDPCreated) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create auth0 Id p created response has a 4xx status code
+func (o *CreateAuth0IDPCreated) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create auth0 Id p created response has a 5xx status code
+func (o *CreateAuth0IDPCreated) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create auth0 Id p created response a status code equal to that given
+func (o *CreateAuth0IDPCreated) IsCode(code int) bool {
+	return code == 201
+}
+
 func (o *CreateAuth0IDPCreated) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/auth0][%d] createAuth0IdPCreated  %+v", 201, o.Payload)
 }
+
+func (o *CreateAuth0IDPCreated) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/auth0][%d] createAuth0IdPCreated  %+v", 201, o.Payload)
+}
+
 func (o *CreateAuth0IDPCreated) GetPayload() *models.Auth0IDP {
 	return o.Payload
 }
@@ -107,7 +138,8 @@ func NewCreateAuth0IDPBadRequest() *CreateAuth0IDPBadRequest {
 	return &CreateAuth0IDPBadRequest{}
 }
 
-/* CreateAuth0IDPBadRequest describes a response with status code 400, with default header values.
+/*
+CreateAuth0IDPBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -115,9 +147,39 @@ type CreateAuth0IDPBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create auth0 Id p bad request response has a 2xx status code
+func (o *CreateAuth0IDPBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create auth0 Id p bad request response has a 3xx status code
+func (o *CreateAuth0IDPBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create auth0 Id p bad request response has a 4xx status code
+func (o *CreateAuth0IDPBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create auth0 Id p bad request response has a 5xx status code
+func (o *CreateAuth0IDPBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create auth0 Id p bad request response a status code equal to that given
+func (o *CreateAuth0IDPBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *CreateAuth0IDPBadRequest) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/auth0][%d] createAuth0IdPBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *CreateAuth0IDPBadRequest) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/auth0][%d] createAuth0IdPBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *CreateAuth0IDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -139,7 +201,8 @@ func NewCreateAuth0IDPUnauthorized() *CreateAuth0IDPUnauthorized {
 	return &CreateAuth0IDPUnauthorized{}
 }
 
-/* CreateAuth0IDPUnauthorized describes a response with status code 401, with default header values.
+/*
+CreateAuth0IDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,9 +210,39 @@ type CreateAuth0IDPUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create auth0 Id p unauthorized response has a 2xx status code
+func (o *CreateAuth0IDPUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create auth0 Id p unauthorized response has a 3xx status code
+func (o *CreateAuth0IDPUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create auth0 Id p unauthorized response has a 4xx status code
+func (o *CreateAuth0IDPUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create auth0 Id p unauthorized response has a 5xx status code
+func (o *CreateAuth0IDPUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create auth0 Id p unauthorized response a status code equal to that given
+func (o *CreateAuth0IDPUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *CreateAuth0IDPUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/auth0][%d] createAuth0IdPUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *CreateAuth0IDPUnauthorized) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/auth0][%d] createAuth0IdPUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *CreateAuth0IDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -171,7 +264,8 @@ func NewCreateAuth0IDPForbidden() *CreateAuth0IDPForbidden {
 	return &CreateAuth0IDPForbidden{}
 }
 
-/* CreateAuth0IDPForbidden describes a response with status code 403, with default header values.
+/*
+CreateAuth0IDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -179,9 +273,39 @@ type CreateAuth0IDPForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create auth0 Id p forbidden response has a 2xx status code
+func (o *CreateAuth0IDPForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create auth0 Id p forbidden response has a 3xx status code
+func (o *CreateAuth0IDPForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create auth0 Id p forbidden response has a 4xx status code
+func (o *CreateAuth0IDPForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create auth0 Id p forbidden response has a 5xx status code
+func (o *CreateAuth0IDPForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create auth0 Id p forbidden response a status code equal to that given
+func (o *CreateAuth0IDPForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *CreateAuth0IDPForbidden) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/auth0][%d] createAuth0IdPForbidden  %+v", 403, o.Payload)
 }
+
+func (o *CreateAuth0IDPForbidden) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/auth0][%d] createAuth0IdPForbidden  %+v", 403, o.Payload)
+}
+
 func (o *CreateAuth0IDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -203,7 +327,8 @@ func NewCreateAuth0IDPNotFound() *CreateAuth0IDPNotFound {
 	return &CreateAuth0IDPNotFound{}
 }
 
-/* CreateAuth0IDPNotFound describes a response with status code 404, with default header values.
+/*
+CreateAuth0IDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -211,9 +336,39 @@ type CreateAuth0IDPNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create auth0 Id p not found response has a 2xx status code
+func (o *CreateAuth0IDPNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create auth0 Id p not found response has a 3xx status code
+func (o *CreateAuth0IDPNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create auth0 Id p not found response has a 4xx status code
+func (o *CreateAuth0IDPNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create auth0 Id p not found response has a 5xx status code
+func (o *CreateAuth0IDPNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create auth0 Id p not found response a status code equal to that given
+func (o *CreateAuth0IDPNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *CreateAuth0IDPNotFound) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/auth0][%d] createAuth0IdPNotFound  %+v", 404, o.Payload)
 }
+
+func (o *CreateAuth0IDPNotFound) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/auth0][%d] createAuth0IdPNotFound  %+v", 404, o.Payload)
+}
+
 func (o *CreateAuth0IDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +390,8 @@ func NewCreateAuth0IDPUnprocessableEntity() *CreateAuth0IDPUnprocessableEntity {
 	return &CreateAuth0IDPUnprocessableEntity{}
 }
 
-/* CreateAuth0IDPUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+CreateAuth0IDPUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -243,9 +399,39 @@ type CreateAuth0IDPUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create auth0 Id p unprocessable entity response has a 2xx status code
+func (o *CreateAuth0IDPUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create auth0 Id p unprocessable entity response has a 3xx status code
+func (o *CreateAuth0IDPUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create auth0 Id p unprocessable entity response has a 4xx status code
+func (o *CreateAuth0IDPUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create auth0 Id p unprocessable entity response has a 5xx status code
+func (o *CreateAuth0IDPUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create auth0 Id p unprocessable entity response a status code equal to that given
+func (o *CreateAuth0IDPUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *CreateAuth0IDPUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/auth0][%d] createAuth0IdPUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *CreateAuth0IDPUnprocessableEntity) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/auth0][%d] createAuth0IdPUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *CreateAuth0IDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -267,7 +453,8 @@ func NewCreateAuth0IDPTooManyRequests() *CreateAuth0IDPTooManyRequests {
 	return &CreateAuth0IDPTooManyRequests{}
 }
 
-/* CreateAuth0IDPTooManyRequests describes a response with status code 429, with default header values.
+/*
+CreateAuth0IDPTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -275,9 +462,39 @@ type CreateAuth0IDPTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create auth0 Id p too many requests response has a 2xx status code
+func (o *CreateAuth0IDPTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create auth0 Id p too many requests response has a 3xx status code
+func (o *CreateAuth0IDPTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create auth0 Id p too many requests response has a 4xx status code
+func (o *CreateAuth0IDPTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create auth0 Id p too many requests response has a 5xx status code
+func (o *CreateAuth0IDPTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create auth0 Id p too many requests response a status code equal to that given
+func (o *CreateAuth0IDPTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *CreateAuth0IDPTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/auth0][%d] createAuth0IdPTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *CreateAuth0IDPTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/auth0][%d] createAuth0IdPTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *CreateAuth0IDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

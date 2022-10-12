@@ -63,7 +63,8 @@ func NewAcceptFDXConsentSystemOK() *AcceptFDXConsentSystemOK {
 	return &AcceptFDXConsentSystemOK{}
 }
 
-/* AcceptFDXConsentSystemOK describes a response with status code 200, with default header values.
+/*
+AcceptFDXConsentSystemOK describes a response with status code 200, with default header values.
 
 Consent accepted
 */
@@ -71,9 +72,39 @@ type AcceptFDXConsentSystemOK struct {
 	Payload *models.ConsentAccepted
 }
 
+// IsSuccess returns true when this accept f d x consent system o k response has a 2xx status code
+func (o *AcceptFDXConsentSystemOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this accept f d x consent system o k response has a 3xx status code
+func (o *AcceptFDXConsentSystemOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this accept f d x consent system o k response has a 4xx status code
+func (o *AcceptFDXConsentSystemOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this accept f d x consent system o k response has a 5xx status code
+func (o *AcceptFDXConsentSystemOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this accept f d x consent system o k response a status code equal to that given
+func (o *AcceptFDXConsentSystemOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *AcceptFDXConsentSystemOK) Error() string {
 	return fmt.Sprintf("[POST /fdx/fdx/{login}/accept][%d] acceptFDXConsentSystemOK  %+v", 200, o.Payload)
 }
+
+func (o *AcceptFDXConsentSystemOK) String() string {
+	return fmt.Sprintf("[POST /fdx/fdx/{login}/accept][%d] acceptFDXConsentSystemOK  %+v", 200, o.Payload)
+}
+
 func (o *AcceptFDXConsentSystemOK) GetPayload() *models.ConsentAccepted {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewAcceptFDXConsentSystemUnauthorized() *AcceptFDXConsentSystemUnauthorized
 	return &AcceptFDXConsentSystemUnauthorized{}
 }
 
-/* AcceptFDXConsentSystemUnauthorized describes a response with status code 401, with default header values.
+/*
+AcceptFDXConsentSystemUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type AcceptFDXConsentSystemUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this accept f d x consent system unauthorized response has a 2xx status code
+func (o *AcceptFDXConsentSystemUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this accept f d x consent system unauthorized response has a 3xx status code
+func (o *AcceptFDXConsentSystemUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this accept f d x consent system unauthorized response has a 4xx status code
+func (o *AcceptFDXConsentSystemUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this accept f d x consent system unauthorized response has a 5xx status code
+func (o *AcceptFDXConsentSystemUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this accept f d x consent system unauthorized response a status code equal to that given
+func (o *AcceptFDXConsentSystemUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *AcceptFDXConsentSystemUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /fdx/fdx/{login}/accept][%d] acceptFDXConsentSystemUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *AcceptFDXConsentSystemUnauthorized) String() string {
+	return fmt.Sprintf("[POST /fdx/fdx/{login}/accept][%d] acceptFDXConsentSystemUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *AcceptFDXConsentSystemUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewAcceptFDXConsentSystemForbidden() *AcceptFDXConsentSystemForbidden {
 	return &AcceptFDXConsentSystemForbidden{}
 }
 
-/* AcceptFDXConsentSystemForbidden describes a response with status code 403, with default header values.
+/*
+AcceptFDXConsentSystemForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type AcceptFDXConsentSystemForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this accept f d x consent system forbidden response has a 2xx status code
+func (o *AcceptFDXConsentSystemForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this accept f d x consent system forbidden response has a 3xx status code
+func (o *AcceptFDXConsentSystemForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this accept f d x consent system forbidden response has a 4xx status code
+func (o *AcceptFDXConsentSystemForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this accept f d x consent system forbidden response has a 5xx status code
+func (o *AcceptFDXConsentSystemForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this accept f d x consent system forbidden response a status code equal to that given
+func (o *AcceptFDXConsentSystemForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *AcceptFDXConsentSystemForbidden) Error() string {
 	return fmt.Sprintf("[POST /fdx/fdx/{login}/accept][%d] acceptFDXConsentSystemForbidden  %+v", 403, o.Payload)
 }
+
+func (o *AcceptFDXConsentSystemForbidden) String() string {
+	return fmt.Sprintf("[POST /fdx/fdx/{login}/accept][%d] acceptFDXConsentSystemForbidden  %+v", 403, o.Payload)
+}
+
 func (o *AcceptFDXConsentSystemForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewAcceptFDXConsentSystemNotFound() *AcceptFDXConsentSystemNotFound {
 	return &AcceptFDXConsentSystemNotFound{}
 }
 
-/* AcceptFDXConsentSystemNotFound describes a response with status code 404, with default header values.
+/*
+AcceptFDXConsentSystemNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type AcceptFDXConsentSystemNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this accept f d x consent system not found response has a 2xx status code
+func (o *AcceptFDXConsentSystemNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this accept f d x consent system not found response has a 3xx status code
+func (o *AcceptFDXConsentSystemNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this accept f d x consent system not found response has a 4xx status code
+func (o *AcceptFDXConsentSystemNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this accept f d x consent system not found response has a 5xx status code
+func (o *AcceptFDXConsentSystemNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this accept f d x consent system not found response a status code equal to that given
+func (o *AcceptFDXConsentSystemNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *AcceptFDXConsentSystemNotFound) Error() string {
 	return fmt.Sprintf("[POST /fdx/fdx/{login}/accept][%d] acceptFDXConsentSystemNotFound  %+v", 404, o.Payload)
 }
+
+func (o *AcceptFDXConsentSystemNotFound) String() string {
+	return fmt.Sprintf("[POST /fdx/fdx/{login}/accept][%d] acceptFDXConsentSystemNotFound  %+v", 404, o.Payload)
+}
+
 func (o *AcceptFDXConsentSystemNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewAcceptFDXConsentSystemTooManyRequests() *AcceptFDXConsentSystemTooManyRe
 	return &AcceptFDXConsentSystemTooManyRequests{}
 }
 
-/* AcceptFDXConsentSystemTooManyRequests describes a response with status code 429, with default header values.
+/*
+AcceptFDXConsentSystemTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type AcceptFDXConsentSystemTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this accept f d x consent system too many requests response has a 2xx status code
+func (o *AcceptFDXConsentSystemTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this accept f d x consent system too many requests response has a 3xx status code
+func (o *AcceptFDXConsentSystemTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this accept f d x consent system too many requests response has a 4xx status code
+func (o *AcceptFDXConsentSystemTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this accept f d x consent system too many requests response has a 5xx status code
+func (o *AcceptFDXConsentSystemTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this accept f d x consent system too many requests response a status code equal to that given
+func (o *AcceptFDXConsentSystemTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *AcceptFDXConsentSystemTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /fdx/fdx/{login}/accept][%d] acceptFDXConsentSystemTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *AcceptFDXConsentSystemTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /fdx/fdx/{login}/accept][%d] acceptFDXConsentSystemTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *AcceptFDXConsentSystemTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

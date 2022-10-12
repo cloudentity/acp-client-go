@@ -40,9 +40,9 @@ type ClientService interface {
 }
 
 /*
-  ExportConfiguration exports global tenants configuration
+	ExportConfiguration exports global tenants configuration
 
-  Returns a JSON with all tenants and their configuration.
+	Returns a JSON with all tenants and their configuration.
 
 Customers that use the on-premise version of the ACP deployment can use the
 global tenants' configuration export ACP REST API. The requirement to
@@ -94,9 +94,9 @@ func (a *Client) ExportConfiguration(params *ExportConfigurationParams, authInfo
 }
 
 /*
-  ImportConfiguration imports global tenants configuration
+	ImportConfiguration imports global tenants configuration
 
-  Allows to import a JSON file that contains all the tenants and their configuration.
+	Allows to import a JSON file that contains all the tenants and their configuration.
 
 Customers that use the on-premise version of the ACP deployment can use the
 global tenants' configuration import ACP REST API. The requirement to
@@ -148,9 +148,9 @@ func (a *Client) ImportConfiguration(params *ImportConfigurationParams, authInfo
 }
 
 /*
-  PatchConfiguration patches configuration
+PatchConfiguration patches configuration
 
-  Patch tenant configuration using RFC 6902 JSON Patch.
+Patch tenant configuration using RFC 6902 JSON Patch.
 */
 func (a *Client) PatchConfiguration(params *PatchConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchConfigurationNoContent, error) {
 	// TODO: Validate the params before sending

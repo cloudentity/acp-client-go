@@ -18,6 +18,9 @@ import (
 // swagger:model PolicyEvaluatedPayload
 type PolicyEvaluatedPayload struct {
 
+	// Policy output
+	Output map[string]string `json:"output,omitempty"`
+
 	// policy
 	Policy *PolicyPayload `json:"policy,omitempty"`
 

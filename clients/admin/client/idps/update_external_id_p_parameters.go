@@ -54,10 +54,12 @@ func NewUpdateExternalIDPParamsWithHTTPClient(client *http.Client) *UpdateExtern
 	}
 }
 
-/* UpdateExternalIDPParams contains all the parameters to send to the API endpoint
-   for the update external ID p operation.
+/*
+UpdateExternalIDPParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update external ID p operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateExternalIDPParams struct {
 

@@ -63,7 +63,8 @@ func NewGetAzureB2CIDPOK() *GetAzureB2CIDPOK {
 	return &GetAzureB2CIDPOK{}
 }
 
-/* GetAzureB2CIDPOK describes a response with status code 200, with default header values.
+/*
+GetAzureB2CIDPOK describes a response with status code 200, with default header values.
 
 AzureB2CIDP
 */
@@ -71,9 +72,39 @@ type GetAzureB2CIDPOK struct {
 	Payload *models.AzureB2CIDP
 }
 
+// IsSuccess returns true when this get azure b2 c Id p o k response has a 2xx status code
+func (o *GetAzureB2CIDPOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get azure b2 c Id p o k response has a 3xx status code
+func (o *GetAzureB2CIDPOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get azure b2 c Id p o k response has a 4xx status code
+func (o *GetAzureB2CIDPOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get azure b2 c Id p o k response has a 5xx status code
+func (o *GetAzureB2CIDPOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get azure b2 c Id p o k response a status code equal to that given
+func (o *GetAzureB2CIDPOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetAzureB2CIDPOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPOK  %+v", 200, o.Payload)
 }
+
+func (o *GetAzureB2CIDPOK) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPOK  %+v", 200, o.Payload)
+}
+
 func (o *GetAzureB2CIDPOK) GetPayload() *models.AzureB2CIDP {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewGetAzureB2CIDPUnauthorized() *GetAzureB2CIDPUnauthorized {
 	return &GetAzureB2CIDPUnauthorized{}
 }
 
-/* GetAzureB2CIDPUnauthorized describes a response with status code 401, with default header values.
+/*
+GetAzureB2CIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type GetAzureB2CIDPUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get azure b2 c Id p unauthorized response has a 2xx status code
+func (o *GetAzureB2CIDPUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get azure b2 c Id p unauthorized response has a 3xx status code
+func (o *GetAzureB2CIDPUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get azure b2 c Id p unauthorized response has a 4xx status code
+func (o *GetAzureB2CIDPUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get azure b2 c Id p unauthorized response has a 5xx status code
+func (o *GetAzureB2CIDPUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get azure b2 c Id p unauthorized response a status code equal to that given
+func (o *GetAzureB2CIDPUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *GetAzureB2CIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *GetAzureB2CIDPUnauthorized) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *GetAzureB2CIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewGetAzureB2CIDPForbidden() *GetAzureB2CIDPForbidden {
 	return &GetAzureB2CIDPForbidden{}
 }
 
-/* GetAzureB2CIDPForbidden describes a response with status code 403, with default header values.
+/*
+GetAzureB2CIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type GetAzureB2CIDPForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get azure b2 c Id p forbidden response has a 2xx status code
+func (o *GetAzureB2CIDPForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get azure b2 c Id p forbidden response has a 3xx status code
+func (o *GetAzureB2CIDPForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get azure b2 c Id p forbidden response has a 4xx status code
+func (o *GetAzureB2CIDPForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get azure b2 c Id p forbidden response has a 5xx status code
+func (o *GetAzureB2CIDPForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get azure b2 c Id p forbidden response a status code equal to that given
+func (o *GetAzureB2CIDPForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetAzureB2CIDPForbidden) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetAzureB2CIDPForbidden) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetAzureB2CIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewGetAzureB2CIDPNotFound() *GetAzureB2CIDPNotFound {
 	return &GetAzureB2CIDPNotFound{}
 }
 
-/* GetAzureB2CIDPNotFound describes a response with status code 404, with default header values.
+/*
+GetAzureB2CIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type GetAzureB2CIDPNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get azure b2 c Id p not found response has a 2xx status code
+func (o *GetAzureB2CIDPNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get azure b2 c Id p not found response has a 3xx status code
+func (o *GetAzureB2CIDPNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get azure b2 c Id p not found response has a 4xx status code
+func (o *GetAzureB2CIDPNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get azure b2 c Id p not found response has a 5xx status code
+func (o *GetAzureB2CIDPNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get azure b2 c Id p not found response a status code equal to that given
+func (o *GetAzureB2CIDPNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *GetAzureB2CIDPNotFound) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPNotFound  %+v", 404, o.Payload)
 }
+
+func (o *GetAzureB2CIDPNotFound) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPNotFound  %+v", 404, o.Payload)
+}
+
 func (o *GetAzureB2CIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewGetAzureB2CIDPTooManyRequests() *GetAzureB2CIDPTooManyRequests {
 	return &GetAzureB2CIDPTooManyRequests{}
 }
 
-/* GetAzureB2CIDPTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetAzureB2CIDPTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type GetAzureB2CIDPTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get azure b2 c Id p too many requests response has a 2xx status code
+func (o *GetAzureB2CIDPTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get azure b2 c Id p too many requests response has a 3xx status code
+func (o *GetAzureB2CIDPTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get azure b2 c Id p too many requests response has a 4xx status code
+func (o *GetAzureB2CIDPTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get azure b2 c Id p too many requests response has a 5xx status code
+func (o *GetAzureB2CIDPTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get azure b2 c Id p too many requests response a status code equal to that given
+func (o *GetAzureB2CIDPTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *GetAzureB2CIDPTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *GetAzureB2CIDPTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *GetAzureB2CIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

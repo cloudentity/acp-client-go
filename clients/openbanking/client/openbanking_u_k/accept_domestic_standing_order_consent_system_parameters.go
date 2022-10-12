@@ -54,10 +54,12 @@ func NewAcceptDomesticStandingOrderConsentSystemParamsWithHTTPClient(client *htt
 	}
 }
 
-/* AcceptDomesticStandingOrderConsentSystemParams contains all the parameters to send to the API endpoint
-   for the accept domestic standing order consent system operation.
+/*
+AcceptDomesticStandingOrderConsentSystemParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the accept domestic standing order consent system operation.
+
+	Typically these are written to a http.Request.
 */
 type AcceptDomesticStandingOrderConsentSystemParams struct {
 

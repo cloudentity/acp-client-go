@@ -87,7 +87,8 @@ func NewCreateInternationalStandingOrderConsentCreated() *CreateInternationalSta
 	return &CreateInternationalStandingOrderConsentCreated{}
 }
 
-/* CreateInternationalStandingOrderConsentCreated describes a response with status code 201, with default header values.
+/*
+CreateInternationalStandingOrderConsentCreated describes a response with status code 201, with default header values.
 
 International standing order consent
 */
@@ -95,9 +96,39 @@ type CreateInternationalStandingOrderConsentCreated struct {
 	Payload *models.InternationalStandingOrderConsentResponse
 }
 
+// IsSuccess returns true when this create international standing order consent created response has a 2xx status code
+func (o *CreateInternationalStandingOrderConsentCreated) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this create international standing order consent created response has a 3xx status code
+func (o *CreateInternationalStandingOrderConsentCreated) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create international standing order consent created response has a 4xx status code
+func (o *CreateInternationalStandingOrderConsentCreated) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create international standing order consent created response has a 5xx status code
+func (o *CreateInternationalStandingOrderConsentCreated) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create international standing order consent created response a status code equal to that given
+func (o *CreateInternationalStandingOrderConsentCreated) IsCode(code int) bool {
+	return code == 201
+}
+
 func (o *CreateInternationalStandingOrderConsentCreated) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentCreated  %+v", 201, o.Payload)
 }
+
+func (o *CreateInternationalStandingOrderConsentCreated) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentCreated  %+v", 201, o.Payload)
+}
+
 func (o *CreateInternationalStandingOrderConsentCreated) GetPayload() *models.InternationalStandingOrderConsentResponse {
 	return o.Payload
 }
@@ -119,7 +150,8 @@ func NewCreateInternationalStandingOrderConsentBadRequest() *CreateInternational
 	return &CreateInternationalStandingOrderConsentBadRequest{}
 }
 
-/* CreateInternationalStandingOrderConsentBadRequest describes a response with status code 400, with default header values.
+/*
+CreateInternationalStandingOrderConsentBadRequest describes a response with status code 400, with default header values.
 
 Error
 */
@@ -127,9 +159,39 @@ type CreateInternationalStandingOrderConsentBadRequest struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this create international standing order consent bad request response has a 2xx status code
+func (o *CreateInternationalStandingOrderConsentBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create international standing order consent bad request response has a 3xx status code
+func (o *CreateInternationalStandingOrderConsentBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create international standing order consent bad request response has a 4xx status code
+func (o *CreateInternationalStandingOrderConsentBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create international standing order consent bad request response has a 5xx status code
+func (o *CreateInternationalStandingOrderConsentBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create international standing order consent bad request response a status code equal to that given
+func (o *CreateInternationalStandingOrderConsentBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *CreateInternationalStandingOrderConsentBadRequest) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *CreateInternationalStandingOrderConsentBadRequest) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *CreateInternationalStandingOrderConsentBadRequest) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -151,7 +213,8 @@ func NewCreateInternationalStandingOrderConsentUnauthorized() *CreateInternation
 	return &CreateInternationalStandingOrderConsentUnauthorized{}
 }
 
-/* CreateInternationalStandingOrderConsentUnauthorized describes a response with status code 401, with default header values.
+/*
+CreateInternationalStandingOrderConsentUnauthorized describes a response with status code 401, with default header values.
 
 Error
 */
@@ -159,9 +222,39 @@ type CreateInternationalStandingOrderConsentUnauthorized struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this create international standing order consent unauthorized response has a 2xx status code
+func (o *CreateInternationalStandingOrderConsentUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create international standing order consent unauthorized response has a 3xx status code
+func (o *CreateInternationalStandingOrderConsentUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create international standing order consent unauthorized response has a 4xx status code
+func (o *CreateInternationalStandingOrderConsentUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create international standing order consent unauthorized response has a 5xx status code
+func (o *CreateInternationalStandingOrderConsentUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create international standing order consent unauthorized response a status code equal to that given
+func (o *CreateInternationalStandingOrderConsentUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *CreateInternationalStandingOrderConsentUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *CreateInternationalStandingOrderConsentUnauthorized) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *CreateInternationalStandingOrderConsentUnauthorized) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -183,7 +276,8 @@ func NewCreateInternationalStandingOrderConsentForbidden() *CreateInternationalS
 	return &CreateInternationalStandingOrderConsentForbidden{}
 }
 
-/* CreateInternationalStandingOrderConsentForbidden describes a response with status code 403, with default header values.
+/*
+CreateInternationalStandingOrderConsentForbidden describes a response with status code 403, with default header values.
 
 Error
 */
@@ -191,9 +285,39 @@ type CreateInternationalStandingOrderConsentForbidden struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this create international standing order consent forbidden response has a 2xx status code
+func (o *CreateInternationalStandingOrderConsentForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create international standing order consent forbidden response has a 3xx status code
+func (o *CreateInternationalStandingOrderConsentForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create international standing order consent forbidden response has a 4xx status code
+func (o *CreateInternationalStandingOrderConsentForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create international standing order consent forbidden response has a 5xx status code
+func (o *CreateInternationalStandingOrderConsentForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create international standing order consent forbidden response a status code equal to that given
+func (o *CreateInternationalStandingOrderConsentForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *CreateInternationalStandingOrderConsentForbidden) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentForbidden  %+v", 403, o.Payload)
 }
+
+func (o *CreateInternationalStandingOrderConsentForbidden) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentForbidden  %+v", 403, o.Payload)
+}
+
 func (o *CreateInternationalStandingOrderConsentForbidden) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -215,7 +339,8 @@ func NewCreateInternationalStandingOrderConsentMethodNotAllowed() *CreateInterna
 	return &CreateInternationalStandingOrderConsentMethodNotAllowed{}
 }
 
-/* CreateInternationalStandingOrderConsentMethodNotAllowed describes a response with status code 405, with default header values.
+/*
+CreateInternationalStandingOrderConsentMethodNotAllowed describes a response with status code 405, with default header values.
 
 Error
 */
@@ -223,9 +348,39 @@ type CreateInternationalStandingOrderConsentMethodNotAllowed struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this create international standing order consent method not allowed response has a 2xx status code
+func (o *CreateInternationalStandingOrderConsentMethodNotAllowed) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create international standing order consent method not allowed response has a 3xx status code
+func (o *CreateInternationalStandingOrderConsentMethodNotAllowed) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create international standing order consent method not allowed response has a 4xx status code
+func (o *CreateInternationalStandingOrderConsentMethodNotAllowed) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create international standing order consent method not allowed response has a 5xx status code
+func (o *CreateInternationalStandingOrderConsentMethodNotAllowed) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create international standing order consent method not allowed response a status code equal to that given
+func (o *CreateInternationalStandingOrderConsentMethodNotAllowed) IsCode(code int) bool {
+	return code == 405
+}
+
 func (o *CreateInternationalStandingOrderConsentMethodNotAllowed) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentMethodNotAllowed  %+v", 405, o.Payload)
 }
+
+func (o *CreateInternationalStandingOrderConsentMethodNotAllowed) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentMethodNotAllowed  %+v", 405, o.Payload)
+}
+
 func (o *CreateInternationalStandingOrderConsentMethodNotAllowed) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -247,7 +402,8 @@ func NewCreateInternationalStandingOrderConsentNotAcceptable() *CreateInternatio
 	return &CreateInternationalStandingOrderConsentNotAcceptable{}
 }
 
-/* CreateInternationalStandingOrderConsentNotAcceptable describes a response with status code 406, with default header values.
+/*
+CreateInternationalStandingOrderConsentNotAcceptable describes a response with status code 406, with default header values.
 
 Error
 */
@@ -255,9 +411,39 @@ type CreateInternationalStandingOrderConsentNotAcceptable struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this create international standing order consent not acceptable response has a 2xx status code
+func (o *CreateInternationalStandingOrderConsentNotAcceptable) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create international standing order consent not acceptable response has a 3xx status code
+func (o *CreateInternationalStandingOrderConsentNotAcceptable) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create international standing order consent not acceptable response has a 4xx status code
+func (o *CreateInternationalStandingOrderConsentNotAcceptable) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create international standing order consent not acceptable response has a 5xx status code
+func (o *CreateInternationalStandingOrderConsentNotAcceptable) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create international standing order consent not acceptable response a status code equal to that given
+func (o *CreateInternationalStandingOrderConsentNotAcceptable) IsCode(code int) bool {
+	return code == 406
+}
+
 func (o *CreateInternationalStandingOrderConsentNotAcceptable) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentNotAcceptable  %+v", 406, o.Payload)
 }
+
+func (o *CreateInternationalStandingOrderConsentNotAcceptable) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentNotAcceptable  %+v", 406, o.Payload)
+}
+
 func (o *CreateInternationalStandingOrderConsentNotAcceptable) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -279,7 +465,8 @@ func NewCreateInternationalStandingOrderConsentUnsupportedMediaType() *CreateInt
 	return &CreateInternationalStandingOrderConsentUnsupportedMediaType{}
 }
 
-/* CreateInternationalStandingOrderConsentUnsupportedMediaType describes a response with status code 415, with default header values.
+/*
+CreateInternationalStandingOrderConsentUnsupportedMediaType describes a response with status code 415, with default header values.
 
 Error
 */
@@ -287,9 +474,39 @@ type CreateInternationalStandingOrderConsentUnsupportedMediaType struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this create international standing order consent unsupported media type response has a 2xx status code
+func (o *CreateInternationalStandingOrderConsentUnsupportedMediaType) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create international standing order consent unsupported media type response has a 3xx status code
+func (o *CreateInternationalStandingOrderConsentUnsupportedMediaType) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create international standing order consent unsupported media type response has a 4xx status code
+func (o *CreateInternationalStandingOrderConsentUnsupportedMediaType) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create international standing order consent unsupported media type response has a 5xx status code
+func (o *CreateInternationalStandingOrderConsentUnsupportedMediaType) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create international standing order consent unsupported media type response a status code equal to that given
+func (o *CreateInternationalStandingOrderConsentUnsupportedMediaType) IsCode(code int) bool {
+	return code == 415
+}
+
 func (o *CreateInternationalStandingOrderConsentUnsupportedMediaType) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentUnsupportedMediaType  %+v", 415, o.Payload)
 }
+
+func (o *CreateInternationalStandingOrderConsentUnsupportedMediaType) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentUnsupportedMediaType  %+v", 415, o.Payload)
+}
+
 func (o *CreateInternationalStandingOrderConsentUnsupportedMediaType) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -311,7 +528,8 @@ func NewCreateInternationalStandingOrderConsentTooManyRequests() *CreateInternat
 	return &CreateInternationalStandingOrderConsentTooManyRequests{}
 }
 
-/* CreateInternationalStandingOrderConsentTooManyRequests describes a response with status code 429, with default header values.
+/*
+CreateInternationalStandingOrderConsentTooManyRequests describes a response with status code 429, with default header values.
 
 Error
 */
@@ -319,9 +537,39 @@ type CreateInternationalStandingOrderConsentTooManyRequests struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this create international standing order consent too many requests response has a 2xx status code
+func (o *CreateInternationalStandingOrderConsentTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create international standing order consent too many requests response has a 3xx status code
+func (o *CreateInternationalStandingOrderConsentTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create international standing order consent too many requests response has a 4xx status code
+func (o *CreateInternationalStandingOrderConsentTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create international standing order consent too many requests response has a 5xx status code
+func (o *CreateInternationalStandingOrderConsentTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create international standing order consent too many requests response a status code equal to that given
+func (o *CreateInternationalStandingOrderConsentTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *CreateInternationalStandingOrderConsentTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *CreateInternationalStandingOrderConsentTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *CreateInternationalStandingOrderConsentTooManyRequests) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -343,7 +591,8 @@ func NewCreateInternationalStandingOrderConsentInternalServerError() *CreateInte
 	return &CreateInternationalStandingOrderConsentInternalServerError{}
 }
 
-/* CreateInternationalStandingOrderConsentInternalServerError describes a response with status code 500, with default header values.
+/*
+CreateInternationalStandingOrderConsentInternalServerError describes a response with status code 500, with default header values.
 
 Error
 */
@@ -351,9 +600,39 @@ type CreateInternationalStandingOrderConsentInternalServerError struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this create international standing order consent internal server error response has a 2xx status code
+func (o *CreateInternationalStandingOrderConsentInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create international standing order consent internal server error response has a 3xx status code
+func (o *CreateInternationalStandingOrderConsentInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create international standing order consent internal server error response has a 4xx status code
+func (o *CreateInternationalStandingOrderConsentInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create international standing order consent internal server error response has a 5xx status code
+func (o *CreateInternationalStandingOrderConsentInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this create international standing order consent internal server error response a status code equal to that given
+func (o *CreateInternationalStandingOrderConsentInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *CreateInternationalStandingOrderConsentInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *CreateInternationalStandingOrderConsentInternalServerError) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-standing-order-consents][%d] createInternationalStandingOrderConsentInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *CreateInternationalStandingOrderConsentInternalServerError) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

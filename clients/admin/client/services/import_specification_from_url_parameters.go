@@ -52,10 +52,12 @@ func NewImportSpecificationFromURLParamsWithHTTPClient(client *http.Client) *Imp
 	}
 }
 
-/* ImportSpecificationFromURLParams contains all the parameters to send to the API endpoint
-   for the import specification from URL operation.
+/*
+ImportSpecificationFromURLParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the import specification from URL operation.
+
+	Typically these are written to a http.Request.
 */
 type ImportSpecificationFromURLParams struct {
 

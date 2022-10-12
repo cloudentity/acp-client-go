@@ -75,7 +75,8 @@ func NewBindGroupToServiceOK() *BindGroupToServiceOK {
 	return &BindGroupToServiceOK{}
 }
 
-/* BindGroupToServiceOK describes a response with status code 200, with default header values.
+/*
+BindGroupToServiceOK describes a response with status code 200, with default header values.
 
 Bind group to service response
 */
@@ -83,9 +84,39 @@ type BindGroupToServiceOK struct {
 	Payload *models.RemoveServiceConfigurationResult
 }
 
+// IsSuccess returns true when this bind group to service o k response has a 2xx status code
+func (o *BindGroupToServiceOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this bind group to service o k response has a 3xx status code
+func (o *BindGroupToServiceOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this bind group to service o k response has a 4xx status code
+func (o *BindGroupToServiceOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this bind group to service o k response has a 5xx status code
+func (o *BindGroupToServiceOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this bind group to service o k response a status code equal to that given
+func (o *BindGroupToServiceOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *BindGroupToServiceOK) Error() string {
 	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceOK  %+v", 200, o.Payload)
 }
+
+func (o *BindGroupToServiceOK) String() string {
+	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceOK  %+v", 200, o.Payload)
+}
+
 func (o *BindGroupToServiceOK) GetPayload() *models.RemoveServiceConfigurationResult {
 	return o.Payload
 }
@@ -107,7 +138,8 @@ func NewBindGroupToServiceBadRequest() *BindGroupToServiceBadRequest {
 	return &BindGroupToServiceBadRequest{}
 }
 
-/* BindGroupToServiceBadRequest describes a response with status code 400, with default header values.
+/*
+BindGroupToServiceBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -115,9 +147,39 @@ type BindGroupToServiceBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this bind group to service bad request response has a 2xx status code
+func (o *BindGroupToServiceBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this bind group to service bad request response has a 3xx status code
+func (o *BindGroupToServiceBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this bind group to service bad request response has a 4xx status code
+func (o *BindGroupToServiceBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this bind group to service bad request response has a 5xx status code
+func (o *BindGroupToServiceBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this bind group to service bad request response a status code equal to that given
+func (o *BindGroupToServiceBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *BindGroupToServiceBadRequest) Error() string {
 	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *BindGroupToServiceBadRequest) String() string {
+	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *BindGroupToServiceBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -139,7 +201,8 @@ func NewBindGroupToServiceUnauthorized() *BindGroupToServiceUnauthorized {
 	return &BindGroupToServiceUnauthorized{}
 }
 
-/* BindGroupToServiceUnauthorized describes a response with status code 401, with default header values.
+/*
+BindGroupToServiceUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,9 +210,39 @@ type BindGroupToServiceUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this bind group to service unauthorized response has a 2xx status code
+func (o *BindGroupToServiceUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this bind group to service unauthorized response has a 3xx status code
+func (o *BindGroupToServiceUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this bind group to service unauthorized response has a 4xx status code
+func (o *BindGroupToServiceUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this bind group to service unauthorized response has a 5xx status code
+func (o *BindGroupToServiceUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this bind group to service unauthorized response a status code equal to that given
+func (o *BindGroupToServiceUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *BindGroupToServiceUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *BindGroupToServiceUnauthorized) String() string {
+	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *BindGroupToServiceUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -171,7 +264,8 @@ func NewBindGroupToServiceForbidden() *BindGroupToServiceForbidden {
 	return &BindGroupToServiceForbidden{}
 }
 
-/* BindGroupToServiceForbidden describes a response with status code 403, with default header values.
+/*
+BindGroupToServiceForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -179,9 +273,39 @@ type BindGroupToServiceForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this bind group to service forbidden response has a 2xx status code
+func (o *BindGroupToServiceForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this bind group to service forbidden response has a 3xx status code
+func (o *BindGroupToServiceForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this bind group to service forbidden response has a 4xx status code
+func (o *BindGroupToServiceForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this bind group to service forbidden response has a 5xx status code
+func (o *BindGroupToServiceForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this bind group to service forbidden response a status code equal to that given
+func (o *BindGroupToServiceForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *BindGroupToServiceForbidden) Error() string {
 	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceForbidden  %+v", 403, o.Payload)
 }
+
+func (o *BindGroupToServiceForbidden) String() string {
+	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceForbidden  %+v", 403, o.Payload)
+}
+
 func (o *BindGroupToServiceForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -203,7 +327,8 @@ func NewBindGroupToServiceNotFound() *BindGroupToServiceNotFound {
 	return &BindGroupToServiceNotFound{}
 }
 
-/* BindGroupToServiceNotFound describes a response with status code 404, with default header values.
+/*
+BindGroupToServiceNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -211,9 +336,39 @@ type BindGroupToServiceNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this bind group to service not found response has a 2xx status code
+func (o *BindGroupToServiceNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this bind group to service not found response has a 3xx status code
+func (o *BindGroupToServiceNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this bind group to service not found response has a 4xx status code
+func (o *BindGroupToServiceNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this bind group to service not found response has a 5xx status code
+func (o *BindGroupToServiceNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this bind group to service not found response a status code equal to that given
+func (o *BindGroupToServiceNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *BindGroupToServiceNotFound) Error() string {
 	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceNotFound  %+v", 404, o.Payload)
 }
+
+func (o *BindGroupToServiceNotFound) String() string {
+	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceNotFound  %+v", 404, o.Payload)
+}
+
 func (o *BindGroupToServiceNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +390,8 @@ func NewBindGroupToServiceUnprocessableEntity() *BindGroupToServiceUnprocessable
 	return &BindGroupToServiceUnprocessableEntity{}
 }
 
-/* BindGroupToServiceUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+BindGroupToServiceUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -243,9 +399,39 @@ type BindGroupToServiceUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this bind group to service unprocessable entity response has a 2xx status code
+func (o *BindGroupToServiceUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this bind group to service unprocessable entity response has a 3xx status code
+func (o *BindGroupToServiceUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this bind group to service unprocessable entity response has a 4xx status code
+func (o *BindGroupToServiceUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this bind group to service unprocessable entity response has a 5xx status code
+func (o *BindGroupToServiceUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this bind group to service unprocessable entity response a status code equal to that given
+func (o *BindGroupToServiceUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *BindGroupToServiceUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *BindGroupToServiceUnprocessableEntity) String() string {
+	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *BindGroupToServiceUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -267,7 +453,8 @@ func NewBindGroupToServiceTooManyRequests() *BindGroupToServiceTooManyRequests {
 	return &BindGroupToServiceTooManyRequests{}
 }
 
-/* BindGroupToServiceTooManyRequests describes a response with status code 429, with default header values.
+/*
+BindGroupToServiceTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -275,9 +462,39 @@ type BindGroupToServiceTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this bind group to service too many requests response has a 2xx status code
+func (o *BindGroupToServiceTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this bind group to service too many requests response has a 3xx status code
+func (o *BindGroupToServiceTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this bind group to service too many requests response has a 4xx status code
+func (o *BindGroupToServiceTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this bind group to service too many requests response has a 5xx status code
+func (o *BindGroupToServiceTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this bind group to service too many requests response a status code equal to that given
+func (o *BindGroupToServiceTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *BindGroupToServiceTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *BindGroupToServiceTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *BindGroupToServiceTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

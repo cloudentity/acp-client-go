@@ -75,7 +75,8 @@ func NewUpdateAuthorizationServerOK() *UpdateAuthorizationServerOK {
 	return &UpdateAuthorizationServerOK{}
 }
 
-/* UpdateAuthorizationServerOK describes a response with status code 200, with default header values.
+/*
+UpdateAuthorizationServerOK describes a response with status code 200, with default header values.
 
 Server
 */
@@ -83,9 +84,39 @@ type UpdateAuthorizationServerOK struct {
 	Payload *models.ServerResponse
 }
 
+// IsSuccess returns true when this update authorization server o k response has a 2xx status code
+func (o *UpdateAuthorizationServerOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this update authorization server o k response has a 3xx status code
+func (o *UpdateAuthorizationServerOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update authorization server o k response has a 4xx status code
+func (o *UpdateAuthorizationServerOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this update authorization server o k response has a 5xx status code
+func (o *UpdateAuthorizationServerOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update authorization server o k response a status code equal to that given
+func (o *UpdateAuthorizationServerOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *UpdateAuthorizationServerOK) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}][%d] updateAuthorizationServerOK  %+v", 200, o.Payload)
 }
+
+func (o *UpdateAuthorizationServerOK) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}][%d] updateAuthorizationServerOK  %+v", 200, o.Payload)
+}
+
 func (o *UpdateAuthorizationServerOK) GetPayload() *models.ServerResponse {
 	return o.Payload
 }
@@ -107,7 +138,8 @@ func NewUpdateAuthorizationServerBadRequest() *UpdateAuthorizationServerBadReque
 	return &UpdateAuthorizationServerBadRequest{}
 }
 
-/* UpdateAuthorizationServerBadRequest describes a response with status code 400, with default header values.
+/*
+UpdateAuthorizationServerBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -115,9 +147,39 @@ type UpdateAuthorizationServerBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update authorization server bad request response has a 2xx status code
+func (o *UpdateAuthorizationServerBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update authorization server bad request response has a 3xx status code
+func (o *UpdateAuthorizationServerBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update authorization server bad request response has a 4xx status code
+func (o *UpdateAuthorizationServerBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update authorization server bad request response has a 5xx status code
+func (o *UpdateAuthorizationServerBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update authorization server bad request response a status code equal to that given
+func (o *UpdateAuthorizationServerBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *UpdateAuthorizationServerBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}][%d] updateAuthorizationServerBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *UpdateAuthorizationServerBadRequest) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}][%d] updateAuthorizationServerBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *UpdateAuthorizationServerBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -139,7 +201,8 @@ func NewUpdateAuthorizationServerUnauthorized() *UpdateAuthorizationServerUnauth
 	return &UpdateAuthorizationServerUnauthorized{}
 }
 
-/* UpdateAuthorizationServerUnauthorized describes a response with status code 401, with default header values.
+/*
+UpdateAuthorizationServerUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,9 +210,39 @@ type UpdateAuthorizationServerUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update authorization server unauthorized response has a 2xx status code
+func (o *UpdateAuthorizationServerUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update authorization server unauthorized response has a 3xx status code
+func (o *UpdateAuthorizationServerUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update authorization server unauthorized response has a 4xx status code
+func (o *UpdateAuthorizationServerUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update authorization server unauthorized response has a 5xx status code
+func (o *UpdateAuthorizationServerUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update authorization server unauthorized response a status code equal to that given
+func (o *UpdateAuthorizationServerUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *UpdateAuthorizationServerUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}][%d] updateAuthorizationServerUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *UpdateAuthorizationServerUnauthorized) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}][%d] updateAuthorizationServerUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *UpdateAuthorizationServerUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -171,7 +264,8 @@ func NewUpdateAuthorizationServerForbidden() *UpdateAuthorizationServerForbidden
 	return &UpdateAuthorizationServerForbidden{}
 }
 
-/* UpdateAuthorizationServerForbidden describes a response with status code 403, with default header values.
+/*
+UpdateAuthorizationServerForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -179,9 +273,39 @@ type UpdateAuthorizationServerForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update authorization server forbidden response has a 2xx status code
+func (o *UpdateAuthorizationServerForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update authorization server forbidden response has a 3xx status code
+func (o *UpdateAuthorizationServerForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update authorization server forbidden response has a 4xx status code
+func (o *UpdateAuthorizationServerForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update authorization server forbidden response has a 5xx status code
+func (o *UpdateAuthorizationServerForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update authorization server forbidden response a status code equal to that given
+func (o *UpdateAuthorizationServerForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *UpdateAuthorizationServerForbidden) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}][%d] updateAuthorizationServerForbidden  %+v", 403, o.Payload)
 }
+
+func (o *UpdateAuthorizationServerForbidden) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}][%d] updateAuthorizationServerForbidden  %+v", 403, o.Payload)
+}
+
 func (o *UpdateAuthorizationServerForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -203,7 +327,8 @@ func NewUpdateAuthorizationServerNotFound() *UpdateAuthorizationServerNotFound {
 	return &UpdateAuthorizationServerNotFound{}
 }
 
-/* UpdateAuthorizationServerNotFound describes a response with status code 404, with default header values.
+/*
+UpdateAuthorizationServerNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -211,9 +336,39 @@ type UpdateAuthorizationServerNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update authorization server not found response has a 2xx status code
+func (o *UpdateAuthorizationServerNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update authorization server not found response has a 3xx status code
+func (o *UpdateAuthorizationServerNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update authorization server not found response has a 4xx status code
+func (o *UpdateAuthorizationServerNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update authorization server not found response has a 5xx status code
+func (o *UpdateAuthorizationServerNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update authorization server not found response a status code equal to that given
+func (o *UpdateAuthorizationServerNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *UpdateAuthorizationServerNotFound) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}][%d] updateAuthorizationServerNotFound  %+v", 404, o.Payload)
 }
+
+func (o *UpdateAuthorizationServerNotFound) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}][%d] updateAuthorizationServerNotFound  %+v", 404, o.Payload)
+}
+
 func (o *UpdateAuthorizationServerNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +390,8 @@ func NewUpdateAuthorizationServerUnprocessableEntity() *UpdateAuthorizationServe
 	return &UpdateAuthorizationServerUnprocessableEntity{}
 }
 
-/* UpdateAuthorizationServerUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+UpdateAuthorizationServerUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -243,9 +399,39 @@ type UpdateAuthorizationServerUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update authorization server unprocessable entity response has a 2xx status code
+func (o *UpdateAuthorizationServerUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update authorization server unprocessable entity response has a 3xx status code
+func (o *UpdateAuthorizationServerUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update authorization server unprocessable entity response has a 4xx status code
+func (o *UpdateAuthorizationServerUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update authorization server unprocessable entity response has a 5xx status code
+func (o *UpdateAuthorizationServerUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update authorization server unprocessable entity response a status code equal to that given
+func (o *UpdateAuthorizationServerUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *UpdateAuthorizationServerUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}][%d] updateAuthorizationServerUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *UpdateAuthorizationServerUnprocessableEntity) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}][%d] updateAuthorizationServerUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *UpdateAuthorizationServerUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -267,7 +453,8 @@ func NewUpdateAuthorizationServerTooManyRequests() *UpdateAuthorizationServerToo
 	return &UpdateAuthorizationServerTooManyRequests{}
 }
 
-/* UpdateAuthorizationServerTooManyRequests describes a response with status code 429, with default header values.
+/*
+UpdateAuthorizationServerTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -275,9 +462,39 @@ type UpdateAuthorizationServerTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update authorization server too many requests response has a 2xx status code
+func (o *UpdateAuthorizationServerTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update authorization server too many requests response has a 3xx status code
+func (o *UpdateAuthorizationServerTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update authorization server too many requests response has a 4xx status code
+func (o *UpdateAuthorizationServerTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update authorization server too many requests response has a 5xx status code
+func (o *UpdateAuthorizationServerTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update authorization server too many requests response a status code equal to that given
+func (o *UpdateAuthorizationServerTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *UpdateAuthorizationServerTooManyRequests) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}][%d] updateAuthorizationServerTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *UpdateAuthorizationServerTooManyRequests) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}][%d] updateAuthorizationServerTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *UpdateAuthorizationServerTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

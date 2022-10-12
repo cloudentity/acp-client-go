@@ -54,10 +54,12 @@ func NewUpdateIntelliTrustIDPParamsWithHTTPClient(client *http.Client) *UpdateIn
 	}
 }
 
-/* UpdateIntelliTrustIDPParams contains all the parameters to send to the API endpoint
-   for the update intelli trust ID p operation.
+/*
+UpdateIntelliTrustIDPParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update intelli trust ID p operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateIntelliTrustIDPParams struct {
 

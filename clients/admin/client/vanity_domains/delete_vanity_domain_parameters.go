@@ -54,10 +54,12 @@ func NewDeleteVanityDomainParamsWithHTTPClient(client *http.Client) *DeleteVanit
 	}
 }
 
-/* DeleteVanityDomainParams contains all the parameters to send to the API endpoint
-   for the delete vanity domain operation.
+/*
+DeleteVanityDomainParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the delete vanity domain operation.
+
+	Typically these are written to a http.Request.
 */
 type DeleteVanityDomainParams struct {
 

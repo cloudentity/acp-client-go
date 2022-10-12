@@ -54,10 +54,12 @@ func NewBindSystemAPIParamsWithHTTPClient(client *http.Client) *BindSystemAPIPar
 	}
 }
 
-/* BindSystemAPIParams contains all the parameters to send to the API endpoint
-   for the bind system API operation.
+/*
+BindSystemAPIParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the bind system API operation.
+
+	Typically these are written to a http.Request.
 */
 type BindSystemAPIParams struct {
 

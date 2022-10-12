@@ -63,7 +63,8 @@ func NewUnbindServerOK() *UnbindServerOK {
 	return &UnbindServerOK{}
 }
 
-/* UnbindServerOK describes a response with status code 200, with default header values.
+/*
+UnbindServerOK describes a response with status code 200, with default header values.
 
 Server to server binding
 */
@@ -71,9 +72,39 @@ type UnbindServerOK struct {
 	Payload *models.ServerToServer
 }
 
+// IsSuccess returns true when this unbind server o k response has a 2xx status code
+func (o *UnbindServerOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this unbind server o k response has a 3xx status code
+func (o *UnbindServerOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this unbind server o k response has a 4xx status code
+func (o *UnbindServerOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this unbind server o k response has a 5xx status code
+func (o *UnbindServerOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this unbind server o k response a status code equal to that given
+func (o *UnbindServerOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *UnbindServerOK) Error() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}/unbind/{rid}][%d] unbindServerOK  %+v", 200, o.Payload)
 }
+
+func (o *UnbindServerOK) String() string {
+	return fmt.Sprintf("[DELETE /servers/{wid}/unbind/{rid}][%d] unbindServerOK  %+v", 200, o.Payload)
+}
+
 func (o *UnbindServerOK) GetPayload() *models.ServerToServer {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewUnbindServerUnauthorized() *UnbindServerUnauthorized {
 	return &UnbindServerUnauthorized{}
 }
 
-/* UnbindServerUnauthorized describes a response with status code 401, with default header values.
+/*
+UnbindServerUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type UnbindServerUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this unbind server unauthorized response has a 2xx status code
+func (o *UnbindServerUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this unbind server unauthorized response has a 3xx status code
+func (o *UnbindServerUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this unbind server unauthorized response has a 4xx status code
+func (o *UnbindServerUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this unbind server unauthorized response has a 5xx status code
+func (o *UnbindServerUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this unbind server unauthorized response a status code equal to that given
+func (o *UnbindServerUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *UnbindServerUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}/unbind/{rid}][%d] unbindServerUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *UnbindServerUnauthorized) String() string {
+	return fmt.Sprintf("[DELETE /servers/{wid}/unbind/{rid}][%d] unbindServerUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *UnbindServerUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewUnbindServerForbidden() *UnbindServerForbidden {
 	return &UnbindServerForbidden{}
 }
 
-/* UnbindServerForbidden describes a response with status code 403, with default header values.
+/*
+UnbindServerForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type UnbindServerForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this unbind server forbidden response has a 2xx status code
+func (o *UnbindServerForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this unbind server forbidden response has a 3xx status code
+func (o *UnbindServerForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this unbind server forbidden response has a 4xx status code
+func (o *UnbindServerForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this unbind server forbidden response has a 5xx status code
+func (o *UnbindServerForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this unbind server forbidden response a status code equal to that given
+func (o *UnbindServerForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *UnbindServerForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}/unbind/{rid}][%d] unbindServerForbidden  %+v", 403, o.Payload)
 }
+
+func (o *UnbindServerForbidden) String() string {
+	return fmt.Sprintf("[DELETE /servers/{wid}/unbind/{rid}][%d] unbindServerForbidden  %+v", 403, o.Payload)
+}
+
 func (o *UnbindServerForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewUnbindServerNotFound() *UnbindServerNotFound {
 	return &UnbindServerNotFound{}
 }
 
-/* UnbindServerNotFound describes a response with status code 404, with default header values.
+/*
+UnbindServerNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type UnbindServerNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this unbind server not found response has a 2xx status code
+func (o *UnbindServerNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this unbind server not found response has a 3xx status code
+func (o *UnbindServerNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this unbind server not found response has a 4xx status code
+func (o *UnbindServerNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this unbind server not found response has a 5xx status code
+func (o *UnbindServerNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this unbind server not found response a status code equal to that given
+func (o *UnbindServerNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *UnbindServerNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}/unbind/{rid}][%d] unbindServerNotFound  %+v", 404, o.Payload)
 }
+
+func (o *UnbindServerNotFound) String() string {
+	return fmt.Sprintf("[DELETE /servers/{wid}/unbind/{rid}][%d] unbindServerNotFound  %+v", 404, o.Payload)
+}
+
 func (o *UnbindServerNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewUnbindServerTooManyRequests() *UnbindServerTooManyRequests {
 	return &UnbindServerTooManyRequests{}
 }
 
-/* UnbindServerTooManyRequests describes a response with status code 429, with default header values.
+/*
+UnbindServerTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type UnbindServerTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this unbind server too many requests response has a 2xx status code
+func (o *UnbindServerTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this unbind server too many requests response has a 3xx status code
+func (o *UnbindServerTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this unbind server too many requests response has a 4xx status code
+func (o *UnbindServerTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this unbind server too many requests response has a 5xx status code
+func (o *UnbindServerTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this unbind server too many requests response a status code equal to that given
+func (o *UnbindServerTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *UnbindServerTooManyRequests) Error() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}/unbind/{rid}][%d] unbindServerTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *UnbindServerTooManyRequests) String() string {
+	return fmt.Sprintf("[DELETE /servers/{wid}/unbind/{rid}][%d] unbindServerTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *UnbindServerTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

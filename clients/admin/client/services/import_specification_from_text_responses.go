@@ -81,7 +81,8 @@ func NewImportSpecificationFromTextOK() *ImportSpecificationFromTextOK {
 	return &ImportSpecificationFromTextOK{}
 }
 
-/* ImportSpecificationFromTextOK describes a response with status code 200, with default header values.
+/*
+ImportSpecificationFromTextOK describes a response with status code 200, with default header values.
 
 Import service configuration result
 */
@@ -89,9 +90,39 @@ type ImportSpecificationFromTextOK struct {
 	Payload *models.ImportServiceConfigurationResult
 }
 
+// IsSuccess returns true when this import specification from text o k response has a 2xx status code
+func (o *ImportSpecificationFromTextOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this import specification from text o k response has a 3xx status code
+func (o *ImportSpecificationFromTextOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this import specification from text o k response has a 4xx status code
+func (o *ImportSpecificationFromTextOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this import specification from text o k response has a 5xx status code
+func (o *ImportSpecificationFromTextOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this import specification from text o k response a status code equal to that given
+func (o *ImportSpecificationFromTextOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *ImportSpecificationFromTextOK) Error() string {
 	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextOK  %+v", 200, o.Payload)
 }
+
+func (o *ImportSpecificationFromTextOK) String() string {
+	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextOK  %+v", 200, o.Payload)
+}
+
 func (o *ImportSpecificationFromTextOK) GetPayload() *models.ImportServiceConfigurationResult {
 	return o.Payload
 }
@@ -113,7 +144,8 @@ func NewImportSpecificationFromTextBadRequest() *ImportSpecificationFromTextBadR
 	return &ImportSpecificationFromTextBadRequest{}
 }
 
-/* ImportSpecificationFromTextBadRequest describes a response with status code 400, with default header values.
+/*
+ImportSpecificationFromTextBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -121,9 +153,39 @@ type ImportSpecificationFromTextBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this import specification from text bad request response has a 2xx status code
+func (o *ImportSpecificationFromTextBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this import specification from text bad request response has a 3xx status code
+func (o *ImportSpecificationFromTextBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this import specification from text bad request response has a 4xx status code
+func (o *ImportSpecificationFromTextBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this import specification from text bad request response has a 5xx status code
+func (o *ImportSpecificationFromTextBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this import specification from text bad request response a status code equal to that given
+func (o *ImportSpecificationFromTextBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *ImportSpecificationFromTextBadRequest) Error() string {
 	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *ImportSpecificationFromTextBadRequest) String() string {
+	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *ImportSpecificationFromTextBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -145,7 +207,8 @@ func NewImportSpecificationFromTextUnauthorized() *ImportSpecificationFromTextUn
 	return &ImportSpecificationFromTextUnauthorized{}
 }
 
-/* ImportSpecificationFromTextUnauthorized describes a response with status code 401, with default header values.
+/*
+ImportSpecificationFromTextUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -153,9 +216,39 @@ type ImportSpecificationFromTextUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this import specification from text unauthorized response has a 2xx status code
+func (o *ImportSpecificationFromTextUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this import specification from text unauthorized response has a 3xx status code
+func (o *ImportSpecificationFromTextUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this import specification from text unauthorized response has a 4xx status code
+func (o *ImportSpecificationFromTextUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this import specification from text unauthorized response has a 5xx status code
+func (o *ImportSpecificationFromTextUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this import specification from text unauthorized response a status code equal to that given
+func (o *ImportSpecificationFromTextUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *ImportSpecificationFromTextUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *ImportSpecificationFromTextUnauthorized) String() string {
+	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *ImportSpecificationFromTextUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -177,7 +270,8 @@ func NewImportSpecificationFromTextForbidden() *ImportSpecificationFromTextForbi
 	return &ImportSpecificationFromTextForbidden{}
 }
 
-/* ImportSpecificationFromTextForbidden describes a response with status code 403, with default header values.
+/*
+ImportSpecificationFromTextForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -185,9 +279,39 @@ type ImportSpecificationFromTextForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this import specification from text forbidden response has a 2xx status code
+func (o *ImportSpecificationFromTextForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this import specification from text forbidden response has a 3xx status code
+func (o *ImportSpecificationFromTextForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this import specification from text forbidden response has a 4xx status code
+func (o *ImportSpecificationFromTextForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this import specification from text forbidden response has a 5xx status code
+func (o *ImportSpecificationFromTextForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this import specification from text forbidden response a status code equal to that given
+func (o *ImportSpecificationFromTextForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *ImportSpecificationFromTextForbidden) Error() string {
 	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextForbidden  %+v", 403, o.Payload)
 }
+
+func (o *ImportSpecificationFromTextForbidden) String() string {
+	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextForbidden  %+v", 403, o.Payload)
+}
+
 func (o *ImportSpecificationFromTextForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -209,7 +333,8 @@ func NewImportSpecificationFromTextNotFound() *ImportSpecificationFromTextNotFou
 	return &ImportSpecificationFromTextNotFound{}
 }
 
-/* ImportSpecificationFromTextNotFound describes a response with status code 404, with default header values.
+/*
+ImportSpecificationFromTextNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -217,9 +342,39 @@ type ImportSpecificationFromTextNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this import specification from text not found response has a 2xx status code
+func (o *ImportSpecificationFromTextNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this import specification from text not found response has a 3xx status code
+func (o *ImportSpecificationFromTextNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this import specification from text not found response has a 4xx status code
+func (o *ImportSpecificationFromTextNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this import specification from text not found response has a 5xx status code
+func (o *ImportSpecificationFromTextNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this import specification from text not found response a status code equal to that given
+func (o *ImportSpecificationFromTextNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *ImportSpecificationFromTextNotFound) Error() string {
 	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextNotFound  %+v", 404, o.Payload)
 }
+
+func (o *ImportSpecificationFromTextNotFound) String() string {
+	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextNotFound  %+v", 404, o.Payload)
+}
+
 func (o *ImportSpecificationFromTextNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -241,7 +396,8 @@ func NewImportSpecificationFromTextConflict() *ImportSpecificationFromTextConfli
 	return &ImportSpecificationFromTextConflict{}
 }
 
-/* ImportSpecificationFromTextConflict describes a response with status code 409, with default header values.
+/*
+ImportSpecificationFromTextConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -249,9 +405,39 @@ type ImportSpecificationFromTextConflict struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this import specification from text conflict response has a 2xx status code
+func (o *ImportSpecificationFromTextConflict) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this import specification from text conflict response has a 3xx status code
+func (o *ImportSpecificationFromTextConflict) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this import specification from text conflict response has a 4xx status code
+func (o *ImportSpecificationFromTextConflict) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this import specification from text conflict response has a 5xx status code
+func (o *ImportSpecificationFromTextConflict) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this import specification from text conflict response a status code equal to that given
+func (o *ImportSpecificationFromTextConflict) IsCode(code int) bool {
+	return code == 409
+}
+
 func (o *ImportSpecificationFromTextConflict) Error() string {
 	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextConflict  %+v", 409, o.Payload)
 }
+
+func (o *ImportSpecificationFromTextConflict) String() string {
+	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextConflict  %+v", 409, o.Payload)
+}
+
 func (o *ImportSpecificationFromTextConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -273,7 +459,8 @@ func NewImportSpecificationFromTextUnprocessableEntity() *ImportSpecificationFro
 	return &ImportSpecificationFromTextUnprocessableEntity{}
 }
 
-/* ImportSpecificationFromTextUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+ImportSpecificationFromTextUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -281,9 +468,39 @@ type ImportSpecificationFromTextUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this import specification from text unprocessable entity response has a 2xx status code
+func (o *ImportSpecificationFromTextUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this import specification from text unprocessable entity response has a 3xx status code
+func (o *ImportSpecificationFromTextUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this import specification from text unprocessable entity response has a 4xx status code
+func (o *ImportSpecificationFromTextUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this import specification from text unprocessable entity response has a 5xx status code
+func (o *ImportSpecificationFromTextUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this import specification from text unprocessable entity response a status code equal to that given
+func (o *ImportSpecificationFromTextUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *ImportSpecificationFromTextUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *ImportSpecificationFromTextUnprocessableEntity) String() string {
+	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *ImportSpecificationFromTextUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -305,7 +522,8 @@ func NewImportSpecificationFromTextTooManyRequests() *ImportSpecificationFromTex
 	return &ImportSpecificationFromTextTooManyRequests{}
 }
 
-/* ImportSpecificationFromTextTooManyRequests describes a response with status code 429, with default header values.
+/*
+ImportSpecificationFromTextTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -313,9 +531,39 @@ type ImportSpecificationFromTextTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this import specification from text too many requests response has a 2xx status code
+func (o *ImportSpecificationFromTextTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this import specification from text too many requests response has a 3xx status code
+func (o *ImportSpecificationFromTextTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this import specification from text too many requests response has a 4xx status code
+func (o *ImportSpecificationFromTextTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this import specification from text too many requests response has a 5xx status code
+func (o *ImportSpecificationFromTextTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this import specification from text too many requests response a status code equal to that given
+func (o *ImportSpecificationFromTextTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *ImportSpecificationFromTextTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *ImportSpecificationFromTextTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *ImportSpecificationFromTextTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

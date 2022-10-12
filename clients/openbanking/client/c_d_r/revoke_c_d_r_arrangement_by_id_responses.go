@@ -47,6 +47,12 @@ func (o *RevokeCDRArrangementByIDReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 		return nil, result
+	case 422:
+		result := NewRevokeCDRArrangementByIDUnprocessableEntity()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 429:
 		result := NewRevokeCDRArrangementByIDTooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -63,14 +69,44 @@ func NewRevokeCDRArrangementByIDNoContent() *RevokeCDRArrangementByIDNoContent {
 	return &RevokeCDRArrangementByIDNoContent{}
 }
 
-/* RevokeCDRArrangementByIDNoContent describes a response with status code 204, with default header values.
+/*
+RevokeCDRArrangementByIDNoContent describes a response with status code 204, with default header values.
 
-Arrangement has been revoked
+	Arrangement has been revoked
 */
 type RevokeCDRArrangementByIDNoContent struct {
 }
 
+// IsSuccess returns true when this revoke c d r arrangement by Id no content response has a 2xx status code
+func (o *RevokeCDRArrangementByIDNoContent) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this revoke c d r arrangement by Id no content response has a 3xx status code
+func (o *RevokeCDRArrangementByIDNoContent) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke c d r arrangement by Id no content response has a 4xx status code
+func (o *RevokeCDRArrangementByIDNoContent) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this revoke c d r arrangement by Id no content response has a 5xx status code
+func (o *RevokeCDRArrangementByIDNoContent) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke c d r arrangement by Id no content response a status code equal to that given
+func (o *RevokeCDRArrangementByIDNoContent) IsCode(code int) bool {
+	return code == 204
+}
+
 func (o *RevokeCDRArrangementByIDNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements/{arrangementID}][%d] revokeCDRArrangementByIdNoContent ", 204)
+}
+
+func (o *RevokeCDRArrangementByIDNoContent) String() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements/{arrangementID}][%d] revokeCDRArrangementByIdNoContent ", 204)
 }
 
@@ -84,7 +120,8 @@ func NewRevokeCDRArrangementByIDUnauthorized() *RevokeCDRArrangementByIDUnauthor
 	return &RevokeCDRArrangementByIDUnauthorized{}
 }
 
-/* RevokeCDRArrangementByIDUnauthorized describes a response with status code 401, with default header values.
+/*
+RevokeCDRArrangementByIDUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -92,9 +129,39 @@ type RevokeCDRArrangementByIDUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this revoke c d r arrangement by Id unauthorized response has a 2xx status code
+func (o *RevokeCDRArrangementByIDUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this revoke c d r arrangement by Id unauthorized response has a 3xx status code
+func (o *RevokeCDRArrangementByIDUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke c d r arrangement by Id unauthorized response has a 4xx status code
+func (o *RevokeCDRArrangementByIDUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this revoke c d r arrangement by Id unauthorized response has a 5xx status code
+func (o *RevokeCDRArrangementByIDUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke c d r arrangement by Id unauthorized response a status code equal to that given
+func (o *RevokeCDRArrangementByIDUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *RevokeCDRArrangementByIDUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements/{arrangementID}][%d] revokeCDRArrangementByIdUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *RevokeCDRArrangementByIDUnauthorized) String() string {
+	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements/{arrangementID}][%d] revokeCDRArrangementByIdUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *RevokeCDRArrangementByIDUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -116,7 +183,8 @@ func NewRevokeCDRArrangementByIDForbidden() *RevokeCDRArrangementByIDForbidden {
 	return &RevokeCDRArrangementByIDForbidden{}
 }
 
-/* RevokeCDRArrangementByIDForbidden describes a response with status code 403, with default header values.
+/*
+RevokeCDRArrangementByIDForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -124,9 +192,39 @@ type RevokeCDRArrangementByIDForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this revoke c d r arrangement by Id forbidden response has a 2xx status code
+func (o *RevokeCDRArrangementByIDForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this revoke c d r arrangement by Id forbidden response has a 3xx status code
+func (o *RevokeCDRArrangementByIDForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke c d r arrangement by Id forbidden response has a 4xx status code
+func (o *RevokeCDRArrangementByIDForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this revoke c d r arrangement by Id forbidden response has a 5xx status code
+func (o *RevokeCDRArrangementByIDForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke c d r arrangement by Id forbidden response a status code equal to that given
+func (o *RevokeCDRArrangementByIDForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *RevokeCDRArrangementByIDForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements/{arrangementID}][%d] revokeCDRArrangementByIdForbidden  %+v", 403, o.Payload)
 }
+
+func (o *RevokeCDRArrangementByIDForbidden) String() string {
+	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements/{arrangementID}][%d] revokeCDRArrangementByIdForbidden  %+v", 403, o.Payload)
+}
+
 func (o *RevokeCDRArrangementByIDForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -148,7 +246,8 @@ func NewRevokeCDRArrangementByIDNotFound() *RevokeCDRArrangementByIDNotFound {
 	return &RevokeCDRArrangementByIDNotFound{}
 }
 
-/* RevokeCDRArrangementByIDNotFound describes a response with status code 404, with default header values.
+/*
+RevokeCDRArrangementByIDNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -156,9 +255,39 @@ type RevokeCDRArrangementByIDNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this revoke c d r arrangement by Id not found response has a 2xx status code
+func (o *RevokeCDRArrangementByIDNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this revoke c d r arrangement by Id not found response has a 3xx status code
+func (o *RevokeCDRArrangementByIDNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke c d r arrangement by Id not found response has a 4xx status code
+func (o *RevokeCDRArrangementByIDNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this revoke c d r arrangement by Id not found response has a 5xx status code
+func (o *RevokeCDRArrangementByIDNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke c d r arrangement by Id not found response a status code equal to that given
+func (o *RevokeCDRArrangementByIDNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *RevokeCDRArrangementByIDNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements/{arrangementID}][%d] revokeCDRArrangementByIdNotFound  %+v", 404, o.Payload)
 }
+
+func (o *RevokeCDRArrangementByIDNotFound) String() string {
+	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements/{arrangementID}][%d] revokeCDRArrangementByIdNotFound  %+v", 404, o.Payload)
+}
+
 func (o *RevokeCDRArrangementByIDNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -175,12 +304,76 @@ func (o *RevokeCDRArrangementByIDNotFound) readResponse(response runtime.ClientR
 	return nil
 }
 
+// NewRevokeCDRArrangementByIDUnprocessableEntity creates a RevokeCDRArrangementByIDUnprocessableEntity with default headers values
+func NewRevokeCDRArrangementByIDUnprocessableEntity() *RevokeCDRArrangementByIDUnprocessableEntity {
+	return &RevokeCDRArrangementByIDUnprocessableEntity{}
+}
+
+/*
+RevokeCDRArrangementByIDUnprocessableEntity describes a response with status code 422, with default header values.
+
+HttpError
+*/
+type RevokeCDRArrangementByIDUnprocessableEntity struct {
+	Payload *models.Error
+}
+
+// IsSuccess returns true when this revoke c d r arrangement by Id unprocessable entity response has a 2xx status code
+func (o *RevokeCDRArrangementByIDUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this revoke c d r arrangement by Id unprocessable entity response has a 3xx status code
+func (o *RevokeCDRArrangementByIDUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke c d r arrangement by Id unprocessable entity response has a 4xx status code
+func (o *RevokeCDRArrangementByIDUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this revoke c d r arrangement by Id unprocessable entity response has a 5xx status code
+func (o *RevokeCDRArrangementByIDUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke c d r arrangement by Id unprocessable entity response a status code equal to that given
+func (o *RevokeCDRArrangementByIDUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
+func (o *RevokeCDRArrangementByIDUnprocessableEntity) Error() string {
+	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements/{arrangementID}][%d] revokeCDRArrangementByIdUnprocessableEntity  %+v", 422, o.Payload)
+}
+
+func (o *RevokeCDRArrangementByIDUnprocessableEntity) String() string {
+	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements/{arrangementID}][%d] revokeCDRArrangementByIdUnprocessableEntity  %+v", 422, o.Payload)
+}
+
+func (o *RevokeCDRArrangementByIDUnprocessableEntity) GetPayload() *models.Error {
+	return o.Payload
+}
+
+func (o *RevokeCDRArrangementByIDUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewRevokeCDRArrangementByIDTooManyRequests creates a RevokeCDRArrangementByIDTooManyRequests with default headers values
 func NewRevokeCDRArrangementByIDTooManyRequests() *RevokeCDRArrangementByIDTooManyRequests {
 	return &RevokeCDRArrangementByIDTooManyRequests{}
 }
 
-/* RevokeCDRArrangementByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+RevokeCDRArrangementByIDTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -188,9 +381,39 @@ type RevokeCDRArrangementByIDTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this revoke c d r arrangement by Id too many requests response has a 2xx status code
+func (o *RevokeCDRArrangementByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this revoke c d r arrangement by Id too many requests response has a 3xx status code
+func (o *RevokeCDRArrangementByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke c d r arrangement by Id too many requests response has a 4xx status code
+func (o *RevokeCDRArrangementByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this revoke c d r arrangement by Id too many requests response has a 5xx status code
+func (o *RevokeCDRArrangementByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke c d r arrangement by Id too many requests response a status code equal to that given
+func (o *RevokeCDRArrangementByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *RevokeCDRArrangementByIDTooManyRequests) Error() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements/{arrangementID}][%d] revokeCDRArrangementByIdTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *RevokeCDRArrangementByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements/{arrangementID}][%d] revokeCDRArrangementByIdTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *RevokeCDRArrangementByIDTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

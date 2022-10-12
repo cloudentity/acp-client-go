@@ -42,9 +42,9 @@ type ClientService interface {
 }
 
 /*
-  CreateVanityDomain creates vanity domain
+CreateVanityDomain creates vanity domain
 
-  Create vanity domain.
+Create vanity domain.
 */
 func (a *Client) CreateVanityDomain(params *CreateVanityDomainParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateVanityDomainOK, error) {
 	// TODO: Validate the params before sending
@@ -83,9 +83,9 @@ func (a *Client) CreateVanityDomain(params *CreateVanityDomainParams, authInfo r
 }
 
 /*
-  DeleteVanityDomain deletes vanity domain
+DeleteVanityDomain deletes vanity domain
 
-  Delete vanity domain.
+Delete vanity domain.
 */
 func (a *Client) DeleteVanityDomain(params *DeleteVanityDomainParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteVanityDomainNoContent, error) {
 	// TODO: Validate the params before sending
@@ -124,9 +124,9 @@ func (a *Client) DeleteVanityDomain(params *DeleteVanityDomainParams, authInfo r
 }
 
 /*
-  GetVanityDomain gets vanity domain
+GetVanityDomain gets vanity domain
 
-  Get vanity domain.
+Get vanity domain.
 */
 func (a *Client) GetVanityDomain(params *GetVanityDomainParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetVanityDomainOK, error) {
 	// TODO: Validate the params before sending
@@ -165,9 +165,9 @@ func (a *Client) GetVanityDomain(params *GetVanityDomainParams, authInfo runtime
 }
 
 /*
-  UpdateVanityDomain updates vanity domain
+UpdateVanityDomain updates vanity domain
 
-  Update vanity domain.
+Update vanity domain.
 */
 func (a *Client) UpdateVanityDomain(params *UpdateVanityDomainParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateVanityDomainOK, error) {
 	// TODO: Validate the params before sending

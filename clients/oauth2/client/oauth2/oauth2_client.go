@@ -34,6 +34,8 @@ type ClientService interface {
 
 	BackchannelAuthentication(params *BackchannelAuthenticationParams, opts ...ClientOption) (*BackchannelAuthenticationOK, error)
 
+	DeviceAuthorization(params *DeviceAuthorizationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeviceAuthorizationOK, error)
+
 	DynamicClientRegistration(params *DynamicClientRegistrationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationCreated, error)
 
 	DynamicClientRegistrationDeleteClient(params *DynamicClientRegistrationDeleteClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationDeleteClientNoContent, error)
@@ -46,7 +48,7 @@ type ClientService interface {
 
 	Jwks(params *JwksParams, opts ...ClientOption) (*JwksOK, error)
 
-	PushedAuthorizationRequest(params *PushedAuthorizationRequestParams, opts ...ClientOption) (*PushedAuthorizationRequestCreated, error)
+	PushedAuthorizationRequest(params *PushedAuthorizationRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PushedAuthorizationRequestCreated, error)
 
 	Revoke(params *RevokeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeOK, error)
 
@@ -60,9 +62,10 @@ type ClientService interface {
 }
 
 /*
-  Authorize thes o auth 2 0 authorize endpoint
+	Authorize thes o auth 2 0 authorize endpoint
 
-  The authorization endpoint is used to interact with the resource
+	The authorization endpoint is used to interact with the resource
+
 owner and obtain an authorization grant.
 */
 func (a *Client) Authorize(params *AuthorizeParams, opts ...ClientOption) error {
@@ -94,9 +97,9 @@ func (a *Client) Authorize(params *AuthorizeParams, opts ...ClientOption) error 
 }
 
 /*
-  BackchannelAuthentication opens ID connect client initiated backchannel authentication flow endpoint
+BackchannelAuthentication opens ID connect client initiated backchannel authentication endpoint
 
-  Client-Initiated Backchannel Authentication defines an authentication request that is requested directly from the Client to the OpenID Provider without going through the user's browser.
+Client-Initiated Backchannel Authentication defines an authentication request that is requested directly from the Client to the OpenID Provider without going through the user's browser.
 */
 func (a *Client) BackchannelAuthentication(params *BackchannelAuthenticationParams, opts ...ClientOption) (*BackchannelAuthenticationOK, error) {
 	// TODO: Validate the params before sending
@@ -134,7 +137,61 @@ func (a *Client) BackchannelAuthentication(params *BackchannelAuthenticationPara
 }
 
 /*
-  DynamicClientRegistration The OAuth 2.0 Dynamic Client Registration endpoint
+	DeviceAuthorization os auth 2 0 device authorization endpoint
+
+	The Device Authorization endpoint is designed for Internet-
+
+connected devices that either lack a browser to perform a user-agent-
+based authorization or are input constrained to the extent that
+requiring the user to input text in order to authenticate during the
+authorization flow is impractical.
+*/
+func (a *Client) DeviceAuthorization(params *DeviceAuthorizationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeviceAuthorizationOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeviceAuthorizationParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "deviceAuthorization",
+		Method:             "POST",
+		PathPattern:        "/device/authorization",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeviceAuthorizationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DeviceAuthorizationOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for deviceAuthorization: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	DynamicClientRegistration thes o auth 2 0 dynamic client registration endpoint
+
+	Dynamic Client Registration endpoint allows to dynamically register OAuth 2.0 client applications
+
+with the Cloudentity Platform. When a request with all required registration metadata
+values reaches the Cloudentity authorization server, the server issues a client
+identifier and provides client metadata values registered for the client.
+Client applications can use their registration data to communicate with the Cloudentity
+platform using the OAuth 2.0 protocol.
 */
 func (a *Client) DynamicClientRegistration(params *DynamicClientRegistrationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationCreated, error) {
 	// TODO: Validate the params before sending
@@ -173,7 +230,9 @@ func (a *Client) DynamicClientRegistration(params *DynamicClientRegistrationPara
 }
 
 /*
-  DynamicClientRegistrationDeleteClient The OAuth 2.0 Dynamic Client Registration Delete Client endpoint
+DynamicClientRegistrationDeleteClient thes o auth 2 0 dynamic client registration delete client endpoint
+
+This endpoint allows to delete a dynamically registered client.
 */
 func (a *Client) DynamicClientRegistrationDeleteClient(params *DynamicClientRegistrationDeleteClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationDeleteClientNoContent, error) {
 	// TODO: Validate the params before sending
@@ -212,7 +271,9 @@ func (a *Client) DynamicClientRegistrationDeleteClient(params *DynamicClientRegi
 }
 
 /*
-  DynamicClientRegistrationGetClient The OAuth 2.0 Dynamic Client Registration Get Client endpoint
+DynamicClientRegistrationGetClient thes o auth 2 0 dynamic client registration get client endpoint
+
+This endpoint allows to get metadata values of a dynamically registered client.
 */
 func (a *Client) DynamicClientRegistrationGetClient(params *DynamicClientRegistrationGetClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationGetClientOK, error) {
 	// TODO: Validate the params before sending
@@ -251,7 +312,9 @@ func (a *Client) DynamicClientRegistrationGetClient(params *DynamicClientRegistr
 }
 
 /*
-  DynamicClientRegistrationUpdateClient The OAuth 2.0 Dynamic Client Registration Update Client endpoint
+DynamicClientRegistrationUpdateClient thes o auth 2 0 dynamic client registration update client endpoint
+
+This endpoint allows to update metadata values of a dynamically registered client.
 */
 func (a *Client) DynamicClientRegistrationUpdateClient(params *DynamicClientRegistrationUpdateClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationUpdateClientOK, error) {
 	// TODO: Validate the params before sending
@@ -290,9 +353,10 @@ func (a *Client) DynamicClientRegistrationUpdateClient(params *DynamicClientRegi
 }
 
 /*
-  Introspect thes o auth 2 0 introspection endpoint
+	Introspect thes o auth 2 0 introspection endpoint
 
-  The introspection endpoint is an OAuth 2.0 endpoint that takes a
+	The introspection endpoint is an OAuth 2.0 endpoint that takes a
+
 parameter representing an OAuth 2.0 token and returns a JSON
 document representing the meta information surrounding the
 token, including whether this token is currently active.
@@ -334,9 +398,10 @@ func (a *Client) Introspect(params *IntrospectParams, authInfo runtime.ClientAut
 }
 
 /*
-  Jwks JSONs web keys discovery endpoint
+	Jwks JSONs web keys discovery endpoint
 
-  This endpoint returns the signing key(s) the client uses to validate
+	This endpoint returns the signing key(s) the client uses to validate
+
 signatures from the authorization server.
 */
 func (a *Client) Jwks(params *JwksParams, opts ...ClientOption) (*JwksOK, error) {
@@ -375,13 +440,14 @@ func (a *Client) Jwks(params *JwksParams, opts ...ClientOption) (*JwksOK, error)
 }
 
 /*
-  PushedAuthorizationRequest pusheds authorization request p a r endpoint
+	PushedAuthorizationRequest pusheds authorization request p a r endpoint
 
-  This endpoint allows clients to push the payload of an OAuth 2.0 authorization request to the authorization server
+	This endpoint allows clients to push the payload of an OAuth 2.0 authorization request to the authorization server
+
 via a direct request and provides them with a request URI that is used as reference to the data in a subsequent call
 to the authorization endpoint.
 */
-func (a *Client) PushedAuthorizationRequest(params *PushedAuthorizationRequestParams, opts ...ClientOption) (*PushedAuthorizationRequestCreated, error) {
+func (a *Client) PushedAuthorizationRequest(params *PushedAuthorizationRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PushedAuthorizationRequestCreated, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewPushedAuthorizationRequestParams()
@@ -395,6 +461,7 @@ func (a *Client) PushedAuthorizationRequest(params *PushedAuthorizationRequestPa
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &PushedAuthorizationRequestReader{formats: a.formats},
+		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -417,9 +484,9 @@ func (a *Client) PushedAuthorizationRequest(params *PushedAuthorizationRequestPa
 }
 
 /*
-  Revoke thes o auth 2 0 revocation endpoint
+Revoke thes o auth 2 0 revocation endpoint
 
-  Supports revocation of access and refresh tokens.
+Supports revocation of access and refresh tokens.
 */
 func (a *Client) Revoke(params *RevokeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeOK, error) {
 	// TODO: Validate the params before sending
@@ -458,9 +525,10 @@ func (a *Client) Revoke(params *RevokeParams, authInfo runtime.ClientAuthInfoWri
 }
 
 /*
-  Token thes o auth 2 0 token endpoint
+	Token thes o auth 2 0 token endpoint
 
-  The token endpoint is used by the client to obtain an access token by
+	The token endpoint is used by the client to obtain an access token by
+
 presenting its authorization grant or refresh token.
 */
 func (a *Client) Token(params *TokenParams, opts ...ClientOption) (*TokenOK, error) {
@@ -499,9 +567,10 @@ func (a *Client) Token(params *TokenParams, opts ...ClientOption) (*TokenOK, err
 }
 
 /*
-  Userinfo opens ID connect userinfo endpoint
+	Userinfo opens ID connect userinfo endpoint
 
-  The UserInfo Endpoint is an OAuth 2.0 Protected Resource that
+	The UserInfo Endpoint is an OAuth 2.0 Protected Resource that
+
 returns Claims about the authenticated End-User. To obtain the requested
 Claims about the End-User, the Client makes a request to the UserInfo Endpoint
 using an Access Token obtained through OpenID Connect Authentication. These Claims
@@ -545,9 +614,9 @@ func (a *Client) Userinfo(params *UserinfoParams, authInfo runtime.ClientAuthInf
 }
 
 /*
-  WellKnown opens ID connect discovery endpoint
+WellKnown opens ID connect discovery endpoint
 
-  Returns OpenID configuration.
+Returns OpenID configuration.
 */
 func (a *Client) WellKnown(params *WellKnownParams, opts ...ClientOption) (*WellKnownOK, error) {
 	// TODO: Validate the params before sending

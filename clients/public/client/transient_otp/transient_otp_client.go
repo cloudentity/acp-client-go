@@ -40,9 +40,9 @@ type ClientService interface {
 }
 
 /*
-  GetTransientOTP gets the one time password o t p object
+GetTransientOTP gets the one time password o t p object
 
-  Determine whether this OTP has been verified already.
+Determine whether this OTP has been verified already.
 */
 func (a *Client) GetTransientOTP(params *GetTransientOTPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetTransientOTPOK, error) {
 	// TODO: Validate the params before sending
@@ -81,9 +81,9 @@ func (a *Client) GetTransientOTP(params *GetTransientOTPParams, authInfo runtime
 }
 
 /*
-  InitiateTransientOTP sends a transient one time password o t p
+InitiateTransientOTP sends a transient one time password o t p
 
-  Initiate a new transient OTP verification.
+Initiate a new transient OTP verification.
 */
 func (a *Client) InitiateTransientOTP(params *InitiateTransientOTPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*InitiateTransientOTPOK, error) {
 	// TODO: Validate the params before sending
@@ -122,9 +122,9 @@ func (a *Client) InitiateTransientOTP(params *InitiateTransientOTPParams, authIn
 }
 
 /*
-  VerifyTransientOTP verifies the one time password o t p
+VerifyTransientOTP verifies the one time password o t p
 
-  Compare the OTP submitted by the user to the OTP that was sent.
+Compare the OTP submitted by the user to the OTP that was sent.
 */
 func (a *Client) VerifyTransientOTP(params *VerifyTransientOTPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*VerifyTransientOTPNoContent, error) {
 	// TODO: Validate the params before sending

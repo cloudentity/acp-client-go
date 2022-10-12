@@ -36,9 +36,10 @@ type ClientService interface {
 }
 
 /*
-  CompleteAddressVerification completes address verification
+	CompleteAddressVerification completes address verification
 
-  Completes unverified address verification by checking if code is valid or not.
+	Completes unverified address verification by checking if code is valid or not.
+
 Both address and code must be provided.
 Fails if address is not user's address or is user's verified or is someone's verified address.
 If the OTP is valid it is removed and a successful response is returned.

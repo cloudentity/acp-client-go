@@ -54,10 +54,12 @@ func NewCreateAuth0IDPParamsWithHTTPClient(client *http.Client) *CreateAuth0IDPP
 	}
 }
 
-/* CreateAuth0IDPParams contains all the parameters to send to the API endpoint
-   for the create auth0 ID p operation.
+/*
+CreateAuth0IDPParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the create auth0 ID p operation.
+
+	Typically these are written to a http.Request.
 */
 type CreateAuth0IDPParams struct {
 

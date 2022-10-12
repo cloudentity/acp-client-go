@@ -54,10 +54,12 @@ func NewUpdateScopeParamsWithHTTPClient(client *http.Client) *UpdateScopeParams 
 	}
 }
 
-/* UpdateScopeParams contains all the parameters to send to the API endpoint
-   for the update scope operation.
+/*
+UpdateScopeParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update scope operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateScopeParams struct {
 

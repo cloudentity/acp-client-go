@@ -57,7 +57,8 @@ func NewListSystemServicesOK() *ListSystemServicesOK {
 	return &ListSystemServicesOK{}
 }
 
-/* ListSystemServicesOK describes a response with status code 200, with default header values.
+/*
+ListSystemServicesOK describes a response with status code 200, with default header values.
 
 System services
 */
@@ -65,9 +66,39 @@ type ListSystemServicesOK struct {
 	Payload *models.SystemServicesResponse
 }
 
+// IsSuccess returns true when this list system services o k response has a 2xx status code
+func (o *ListSystemServicesOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this list system services o k response has a 3xx status code
+func (o *ListSystemServicesOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list system services o k response has a 4xx status code
+func (o *ListSystemServicesOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this list system services o k response has a 5xx status code
+func (o *ListSystemServicesOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list system services o k response a status code equal to that given
+func (o *ListSystemServicesOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *ListSystemServicesOK) Error() string {
 	return fmt.Sprintf("[GET /system/services][%d] listSystemServicesOK  %+v", 200, o.Payload)
 }
+
+func (o *ListSystemServicesOK) String() string {
+	return fmt.Sprintf("[GET /system/services][%d] listSystemServicesOK  %+v", 200, o.Payload)
+}
+
 func (o *ListSystemServicesOK) GetPayload() *models.SystemServicesResponse {
 	return o.Payload
 }
@@ -89,7 +120,8 @@ func NewListSystemServicesUnauthorized() *ListSystemServicesUnauthorized {
 	return &ListSystemServicesUnauthorized{}
 }
 
-/* ListSystemServicesUnauthorized describes a response with status code 401, with default header values.
+/*
+ListSystemServicesUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -97,9 +129,39 @@ type ListSystemServicesUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list system services unauthorized response has a 2xx status code
+func (o *ListSystemServicesUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list system services unauthorized response has a 3xx status code
+func (o *ListSystemServicesUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list system services unauthorized response has a 4xx status code
+func (o *ListSystemServicesUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list system services unauthorized response has a 5xx status code
+func (o *ListSystemServicesUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list system services unauthorized response a status code equal to that given
+func (o *ListSystemServicesUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *ListSystemServicesUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /system/services][%d] listSystemServicesUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *ListSystemServicesUnauthorized) String() string {
+	return fmt.Sprintf("[GET /system/services][%d] listSystemServicesUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *ListSystemServicesUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -121,7 +183,8 @@ func NewListSystemServicesForbidden() *ListSystemServicesForbidden {
 	return &ListSystemServicesForbidden{}
 }
 
-/* ListSystemServicesForbidden describes a response with status code 403, with default header values.
+/*
+ListSystemServicesForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -129,9 +192,39 @@ type ListSystemServicesForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list system services forbidden response has a 2xx status code
+func (o *ListSystemServicesForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list system services forbidden response has a 3xx status code
+func (o *ListSystemServicesForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list system services forbidden response has a 4xx status code
+func (o *ListSystemServicesForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list system services forbidden response has a 5xx status code
+func (o *ListSystemServicesForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list system services forbidden response a status code equal to that given
+func (o *ListSystemServicesForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *ListSystemServicesForbidden) Error() string {
 	return fmt.Sprintf("[GET /system/services][%d] listSystemServicesForbidden  %+v", 403, o.Payload)
 }
+
+func (o *ListSystemServicesForbidden) String() string {
+	return fmt.Sprintf("[GET /system/services][%d] listSystemServicesForbidden  %+v", 403, o.Payload)
+}
+
 func (o *ListSystemServicesForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -153,7 +246,8 @@ func NewListSystemServicesTooManyRequests() *ListSystemServicesTooManyRequests {
 	return &ListSystemServicesTooManyRequests{}
 }
 
-/* ListSystemServicesTooManyRequests describes a response with status code 429, with default header values.
+/*
+ListSystemServicesTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -161,9 +255,39 @@ type ListSystemServicesTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list system services too many requests response has a 2xx status code
+func (o *ListSystemServicesTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list system services too many requests response has a 3xx status code
+func (o *ListSystemServicesTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list system services too many requests response has a 4xx status code
+func (o *ListSystemServicesTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list system services too many requests response has a 5xx status code
+func (o *ListSystemServicesTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list system services too many requests response a status code equal to that given
+func (o *ListSystemServicesTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *ListSystemServicesTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /system/services][%d] listSystemServicesTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *ListSystemServicesTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /system/services][%d] listSystemServicesTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *ListSystemServicesTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

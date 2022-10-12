@@ -54,10 +54,12 @@ func NewDynamicClientRegistrationOpenbankingUKParamsWithHTTPClient(client *http.
 	}
 }
 
-/* DynamicClientRegistrationOpenbankingUKParams contains all the parameters to send to the API endpoint
-   for the dynamic client registration openbanking u k operation.
+/*
+DynamicClientRegistrationOpenbankingUKParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the dynamic client registration openbanking u k operation.
+
+	Typically these are written to a http.Request.
 */
 type DynamicClientRegistrationOpenbankingUKParams struct {
 

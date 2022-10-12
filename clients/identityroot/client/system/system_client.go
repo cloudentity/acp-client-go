@@ -36,19 +36,22 @@ type ClientService interface {
 }
 
 /*
-  SystemGenerateCode generates code of a specific type
+	SystemGenerateCode generates code of a specific type
 
-  Generate code of a specific type for provided identifier
+	Generate code of a specific type for provided address
+
 Invalidates previously generated OTPs for action associated with the type.
 Code is valid for specific period of time configured in Identity Pool.
 
-Keep in mind that `identifier` attribute for different code types does not mean the same:
+Keep in mind that `address` attribute for different code types does not mean the same:
 for `reset_password` and `challenge` it must be user's address (verified or unverified)
 for `activation` it is not mandatory (system will pick up address itself if there is only one in user entry) but if provided it must be one of the user's addresses (can be not verified)
 for `verify_address` it must be user's unverified address and that address cannot be someone's else verified address
 
 For `activation`, `reset_password` and `challenge` there is only one active code for a user (generating new one invalidates previous)
 For `verify_address` there might be many codes for a user. During verification latest for an address is being compared.
+
+REFACTORED: input field name has been changed from `identifier` to `address`; field `identifier` stays for backward compatibility and overrides `address` if not empty
 */
 func (a *Client) SystemGenerateCode(params *SystemGenerateCodeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemGenerateCodeCreated, error) {
 	// TODO: Validate the params before sending

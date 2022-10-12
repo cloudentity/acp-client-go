@@ -52,10 +52,12 @@ func NewListClaimsParamsWithHTTPClient(client *http.Client) *ListClaimsParams {
 	}
 }
 
-/* ListClaimsParams contains all the parameters to send to the API endpoint
-   for the list claims operation.
+/*
+ListClaimsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the list claims operation.
+
+	Typically these are written to a http.Request.
 */
 type ListClaimsParams struct {
 

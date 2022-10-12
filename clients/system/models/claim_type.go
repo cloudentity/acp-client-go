@@ -11,7 +11,7 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// ClaimType claim type, one of: id_token, access_token
+// ClaimType claim type, one of: id_token, access_token, saml_assertion
 // example: id_token
 //
 // swagger:model ClaimType

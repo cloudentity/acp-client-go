@@ -23,24 +23,27 @@ type Environment struct {
 	// enable admin workspace access (tenant)
 	AdminWorkspaceAccess bool `json:"admin_workspace_access,omitempty"`
 
-	// enable analytics (tenant)
-	Analytics bool `json:"analytics,omitempty"`
-
-	// enable analytics v2 (tenant)
-	AnalyticsV2 bool `json:"analytics_v2,omitempty"`
-
 	// audit events duration
 	// Format: duration
 	AuditEventsDuration strfmt.Duration `json:"audit_events_duration,omitempty"`
 
-	// enable Audit Events UI (tenant)
-	AuditEventsUI bool `json:"audit_events_ui,omitempty"`
+	// block access to tenant for traffic not originated from the vanity domain
+	BlockNonVanityDomainAccess bool `json:"block_non_vanity_domain_access,omitempty"`
+
+	// brute force limits
+	BruteForceLimits *DefaultBruteForceLimits `json:"brute_force_limits,omitempty"`
+
+	// disable unique software id for CDR
+	CdrDisableUniqueSoftwareID bool `json:"cdr_disable_unique_software_id,omitempty"`
 
 	// enable ciba (system)
 	Ciba bool `json:"ciba,omitempty"`
 
 	// store client secrets as a one way hash (tenant)
 	ClientSecretsStoredAsOneWayHash bool `json:"client_secrets_stored_as_one_way_hash,omitempty"`
+
+	// enable Cloudentity IDP (tenant)
+	CloudentityIdp bool `json:"cloudentity_idp,omitempty"`
 
 	// commit
 	Commit string `json:"commit,omitempty"`
@@ -54,20 +57,20 @@ type Environment struct {
 	// display workspace wizard
 	DisplayWorkspaceWizard bool `json:"display_workspace_wizard,omitempty"`
 
-	// enable pushing events to elasticsearch (system)
-	Elasticsearch bool `json:"elasticsearch,omitempty"`
-
 	// extended audit events retention
 	ExtendedAuditEventsRetention bool `json:"extended_audit_events_retention,omitempty"`
 
-	// enable external datastore idp (system)
-	ExternalDatastore bool `json:"external_datastore,omitempty"`
-
-	// enable Identity Pools (tenant)
-	IdentityPools bool `json:"identity_pools,omitempty"`
+	// grpc url
+	GrpcURL string `json:"grpc_url,omitempty"`
 
 	// when enabled and the display_workspace_wizard feature flag is set to true, a demo workspace with a set of preconfigured IDPs is created and no welcome screen is displayed (tenant)
 	InitializeDemoWorkspace bool `json:"initialize_demo_workspace,omitempty"`
+
+	// INSECURE disable csrf (tenant)
+	InsecureDisableCsrf bool `json:"insecure_disable_csrf,omitempty"`
+
+	// enable insecure token exchange public clients (tenant)
+	InsecureTokenExchangePublicClients bool `json:"insecure_token_exchange_public_clients,omitempty"`
 
 	// enable global import and export configuration endpoints (system)
 	IntegrationEndpoints bool `json:"integration_endpoints,omitempty"`
@@ -75,11 +78,26 @@ type Environment struct {
 	// enable login with select_account param (tenant)
 	LoginWithSelectAccount bool `json:"login_with_select_account,omitempty"`
 
+	// enable consents v2 apis for open banking brasil
+	OpenbankingBrasilConsentsV2 bool `json:"openbanking_brasil_consents_v2,omitempty"`
+
+	// enable permissions
+	Permissions bool `json:"permissions,omitempty"`
+
+	// enable planet scale authorization
+	PlanetScaleAuthorization bool `json:"planet_scale_authorization,omitempty"`
+
+	// enable planet scale identity
+	PlanetScaleIdentity bool `json:"planet_scale_identity,omitempty"`
+
 	// enable when ACP is running on-prem and Pyron is used as a gateway (tenant)
 	PyronOnPrem bool `json:"pyron_on_prem,omitempty"`
 
 	// enable quick access functionality on UI (system)
 	QuickAccess bool `json:"quick_access,omitempty"`
+
+	// enable SAML (tenant)
+	Saml bool `json:"saml,omitempty"`
 
 	// enable scope transient_otp (tenant)
 	ScopeTransientOtp bool `json:"scope_transient_otp,omitempty"`
@@ -90,14 +108,8 @@ type Environment struct {
 	// enable the javascript transformer (tenant)
 	ScriptTransformer bool `json:"script_transformer,omitempty"`
 
-	// enable custom scripts (tenant)
-	Scripts bool `json:"scripts,omitempty"`
-
 	// enable swagger ui (system)
 	SwaggerUI bool `json:"swagger_ui,omitempty"`
-
-	// enable system client management APIs (system)
-	SystemClientsManagement bool `json:"system_clients_management,omitempty"`
 
 	// system flags
 	SystemFlags []string `json:"system_flags"`
@@ -108,17 +120,23 @@ type Environment struct {
 	// tenant flags
 	TenantFlags []string `json:"tenant_flags"`
 
+	// enable Custom Branding Themes (tenant)
+	Themes bool `json:"themes,omitempty"`
+
 	// enable Token Exchange (system)
 	TokenExchange bool `json:"token_exchange,omitempty"`
 
-	// enable Token Exchange for authorizers (tenant)
-	TokenExchangeForAuthorizers bool `json:"token_exchange_for_authorizers,omitempty"`
-
-	// enable trust anchor integration (system)
-	TrustAnchorIntegration bool `json:"trust_anchor_integration,omitempty"`
+	// enable Token Exchange Delegation (tenant)
+	TokenExchangeDelegation bool `json:"token_exchange_delegation,omitempty"`
 
 	// version
 	Version string `json:"version,omitempty"`
+
+	// with analytics
+	WithAnalytics bool `json:"with_analytics,omitempty"`
+
+	// with permissions
+	WithPermissions bool `json:"with_permissions,omitempty"`
 }
 
 // Validate validates this environment
@@ -126,6 +144,10 @@ func (m *Environment) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAuditEventsDuration(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBruteForceLimits(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -146,6 +168,25 @@ func (m *Environment) validateAuditEventsDuration(formats strfmt.Registry) error
 
 	if err := validate.FormatOf("audit_events_duration", "body", "duration", m.AuditEventsDuration.String(), formats); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *Environment) validateBruteForceLimits(formats strfmt.Registry) error {
+	if swag.IsZero(m.BruteForceLimits) { // not required
+		return nil
+	}
+
+	if m.BruteForceLimits != nil {
+		if err := m.BruteForceLimits.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("brute_force_limits")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("brute_force_limits")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -181,6 +222,10 @@ func (m *Environment) validateScriptRuntimes(formats strfmt.Registry) error {
 func (m *Environment) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateBruteForceLimits(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateScriptRuntimes(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -188,6 +233,22 @@ func (m *Environment) ContextValidate(ctx context.Context, formats strfmt.Regist
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *Environment) contextValidateBruteForceLimits(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.BruteForceLimits != nil {
+		if err := m.BruteForceLimits.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("brute_force_limits")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("brute_force_limits")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

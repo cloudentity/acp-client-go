@@ -40,9 +40,9 @@ type ClientService interface {
 }
 
 /*
-  ExportTenantConfiguration exports tenant s configuration
+	ExportTenantConfiguration exports tenant s configuration
 
-  Returns a JSON with the configuration of the specified tenant.
+	Returns a JSON with the configuration of the specified tenant.
 
 With ACP system API, you can export a specified tenant's
 configuration. You can, for example, move your tenant's configuration between different ACP deployments
@@ -94,9 +94,9 @@ func (a *Client) ExportTenantConfiguration(params *ExportTenantConfigurationPara
 }
 
 /*
-  ImportTenantConfiguration imports tenant configuration
+	ImportTenantConfiguration imports tenant configuration
 
-  Allows to quickly import the specified tenant configuration.
+	Allows to quickly import the specified tenant configuration.
 
 With ACP system API, you can import a specific tenant's
 configuration. You can, for example, move your tenant's configuration between different ACP deployments.
@@ -147,9 +147,9 @@ func (a *Client) ImportTenantConfiguration(params *ImportTenantConfigurationPara
 }
 
 /*
-  PatchTenantConfiguration patches tenant configuration
+PatchTenantConfiguration patches tenant configuration
 
-  Patch tenant configuration using RFC 6902 JSON Patch.
+Patch tenant configuration using RFC 6902 JSON Patch.
 */
 func (a *Client) PatchTenantConfiguration(params *PatchTenantConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchTenantConfigurationNoContent, error) {
 	// TODO: Validate the params before sending

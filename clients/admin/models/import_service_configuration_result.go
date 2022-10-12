@@ -7,11 +7,13 @@ package models
 
 import (
 	"context"
+	"encoding/json"
 	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // ImportServiceConfigurationResult import service configuration result
@@ -68,6 +70,14 @@ type ImportServiceConfigurationResult struct {
 	// Example: default
 	TenantID string `json:"tenant_id,omitempty"`
 
+	// service type
+	// Enum: [oauth2 oidc system user openbanking]
+	Type string `json:"type,omitempty"`
+
+	// Updated at date
+	// Format: date-time
+	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty"`
+
 	// true if service has openapi 3 specification
 	WithSpecification bool `json:"with_specification,omitempty"`
 }
@@ -97,6 +107,14 @@ func (m *ImportServiceConfigurationResult) Validate(formats strfmt.Registry) err
 	}
 
 	if err := m.validateRemovedPolicies(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUpdatedAt(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -257,6 +275,69 @@ func (m *ImportServiceConfigurationResult) validateRemovedPolicies(formats strfm
 			}
 		}
 
+	}
+
+	return nil
+}
+
+var importServiceConfigurationResultTypeTypePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["oauth2","oidc","system","user","openbanking"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		importServiceConfigurationResultTypeTypePropEnum = append(importServiceConfigurationResultTypeTypePropEnum, v)
+	}
+}
+
+const (
+
+	// ImportServiceConfigurationResultTypeOauth2 captures enum value "oauth2"
+	ImportServiceConfigurationResultTypeOauth2 string = "oauth2"
+
+	// ImportServiceConfigurationResultTypeOidc captures enum value "oidc"
+	ImportServiceConfigurationResultTypeOidc string = "oidc"
+
+	// ImportServiceConfigurationResultTypeSystem captures enum value "system"
+	ImportServiceConfigurationResultTypeSystem string = "system"
+
+	// ImportServiceConfigurationResultTypeUser captures enum value "user"
+	ImportServiceConfigurationResultTypeUser string = "user"
+
+	// ImportServiceConfigurationResultTypeOpenbanking captures enum value "openbanking"
+	ImportServiceConfigurationResultTypeOpenbanking string = "openbanking"
+)
+
+// prop value enum
+func (m *ImportServiceConfigurationResult) validateTypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, importServiceConfigurationResultTypeTypePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *ImportServiceConfigurationResult) validateType(formats strfmt.Registry) error {
+	if swag.IsZero(m.Type) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateTypeEnum("type", "body", m.Type); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ImportServiceConfigurationResult) validateUpdatedAt(formats strfmt.Registry) error {
+	if swag.IsZero(m.UpdatedAt) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("updated_at", "body", "date-time", m.UpdatedAt.String(), formats); err != nil {
+		return err
 	}
 
 	return nil

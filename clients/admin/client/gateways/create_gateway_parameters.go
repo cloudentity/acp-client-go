@@ -54,10 +54,12 @@ func NewCreateGatewayParamsWithHTTPClient(client *http.Client) *CreateGatewayPar
 	}
 }
 
-/* CreateGatewayParams contains all the parameters to send to the API endpoint
-   for the create gateway operation.
+/*
+CreateGatewayParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the create gateway operation.
+
+	Typically these are written to a http.Request.
 */
 type CreateGatewayParams struct {
 

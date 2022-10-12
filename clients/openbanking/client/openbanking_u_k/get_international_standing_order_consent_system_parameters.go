@@ -52,10 +52,12 @@ func NewGetInternationalStandingOrderConsentSystemParamsWithHTTPClient(client *h
 	}
 }
 
-/* GetInternationalStandingOrderConsentSystemParams contains all the parameters to send to the API endpoint
-   for the get international standing order consent system operation.
+/*
+GetInternationalStandingOrderConsentSystemParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get international standing order consent system operation.
+
+	Typically these are written to a http.Request.
 */
 type GetInternationalStandingOrderConsentSystemParams struct {
 

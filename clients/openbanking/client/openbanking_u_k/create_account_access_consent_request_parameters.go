@@ -54,10 +54,12 @@ func NewCreateAccountAccessConsentRequestParamsWithHTTPClient(client *http.Clien
 	}
 }
 
-/* CreateAccountAccessConsentRequestParams contains all the parameters to send to the API endpoint
-   for the create account access consent request operation.
+/*
+CreateAccountAccessConsentRequestParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the create account access consent request operation.
+
+	Typically these are written to a http.Request.
 */
 type CreateAccountAccessConsentRequestParams struct {
 

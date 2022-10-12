@@ -54,10 +54,12 @@ func NewUpdateGithubIDPParamsWithHTTPClient(client *http.Client) *UpdateGithubID
 	}
 }
 
-/* UpdateGithubIDPParams contains all the parameters to send to the API endpoint
-   for the update github ID p operation.
+/*
+UpdateGithubIDPParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update github ID p operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateGithubIDPParams struct {
 

@@ -53,10 +53,12 @@ func NewListScriptsParamsWithHTTPClient(client *http.Client) *ListScriptsParams 
 	}
 }
 
-/* ListScriptsParams contains all the parameters to send to the API endpoint
-   for the list scripts operation.
+/*
+ListScriptsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the list scripts operation.
+
+	Typically these are written to a http.Request.
 */
 type ListScriptsParams struct {
 

@@ -52,10 +52,12 @@ func NewListSchemasParamsWithHTTPClient(client *http.Client) *ListSchemasParams 
 	}
 }
 
-/* ListSchemasParams contains all the parameters to send to the API endpoint
-   for the list schemas operation.
+/*
+ListSchemasParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the list schemas operation.
+
+	Typically these are written to a http.Request.
 */
 type ListSchemasParams struct {
 	timeout    time.Duration

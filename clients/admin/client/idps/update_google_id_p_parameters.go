@@ -54,10 +54,12 @@ func NewUpdateGoogleIDPParamsWithHTTPClient(client *http.Client) *UpdateGoogleID
 	}
 }
 
-/* UpdateGoogleIDPParams contains all the parameters to send to the API endpoint
-   for the update google ID p operation.
+/*
+UpdateGoogleIDPParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update google ID p operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateGoogleIDPParams struct {
 

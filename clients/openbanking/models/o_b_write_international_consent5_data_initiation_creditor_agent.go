@@ -22,7 +22,7 @@ type OBWriteInternationalConsent5DataInitiationCreditorAgent struct {
 	Identification Identification1 `json:"Identification,omitempty"`
 
 	// name
-	Name Name `json:"Name,omitempty"`
+	Name *Name `json:"Name,omitempty"`
 
 	// postal address
 	PostalAddress *OBPostalAddress6 `json:"PostalAddress,omitempty"`
@@ -79,13 +79,15 @@ func (m *OBWriteInternationalConsent5DataInitiationCreditorAgent) validateName(f
 		return nil
 	}
 
-	if err := m.Name.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("Name")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("Name")
+	if m.Name != nil {
+		if err := m.Name.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("Name")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("Name")
+			}
+			return err
 		}
-		return err
 	}
 
 	return nil
@@ -169,13 +171,15 @@ func (m *OBWriteInternationalConsent5DataInitiationCreditorAgent) contextValidat
 
 func (m *OBWriteInternationalConsent5DataInitiationCreditorAgent) contextValidateName(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := m.Name.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("Name")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("Name")
+	if m.Name != nil {
+		if err := m.Name.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("Name")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("Name")
+			}
+			return err
 		}
-		return err
 	}
 
 	return nil

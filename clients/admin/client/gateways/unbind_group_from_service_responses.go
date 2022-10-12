@@ -75,7 +75,8 @@ func NewUnbindGroupFromServiceOK() *UnbindGroupFromServiceOK {
 	return &UnbindGroupFromServiceOK{}
 }
 
-/* UnbindGroupFromServiceOK describes a response with status code 200, with default header values.
+/*
+UnbindGroupFromServiceOK describes a response with status code 200, with default header values.
 
 Unbind group from service response
 */
@@ -83,9 +84,39 @@ type UnbindGroupFromServiceOK struct {
 	Payload *models.RemoveServiceConfigurationResult
 }
 
+// IsSuccess returns true when this unbind group from service o k response has a 2xx status code
+func (o *UnbindGroupFromServiceOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this unbind group from service o k response has a 3xx status code
+func (o *UnbindGroupFromServiceOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this unbind group from service o k response has a 4xx status code
+func (o *UnbindGroupFromServiceOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this unbind group from service o k response has a 5xx status code
+func (o *UnbindGroupFromServiceOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this unbind group from service o k response a status code equal to that given
+func (o *UnbindGroupFromServiceOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *UnbindGroupFromServiceOK) Error() string {
 	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceOK  %+v", 200, o.Payload)
 }
+
+func (o *UnbindGroupFromServiceOK) String() string {
+	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceOK  %+v", 200, o.Payload)
+}
+
 func (o *UnbindGroupFromServiceOK) GetPayload() *models.RemoveServiceConfigurationResult {
 	return o.Payload
 }
@@ -107,7 +138,8 @@ func NewUnbindGroupFromServiceBadRequest() *UnbindGroupFromServiceBadRequest {
 	return &UnbindGroupFromServiceBadRequest{}
 }
 
-/* UnbindGroupFromServiceBadRequest describes a response with status code 400, with default header values.
+/*
+UnbindGroupFromServiceBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -115,9 +147,39 @@ type UnbindGroupFromServiceBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this unbind group from service bad request response has a 2xx status code
+func (o *UnbindGroupFromServiceBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this unbind group from service bad request response has a 3xx status code
+func (o *UnbindGroupFromServiceBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this unbind group from service bad request response has a 4xx status code
+func (o *UnbindGroupFromServiceBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this unbind group from service bad request response has a 5xx status code
+func (o *UnbindGroupFromServiceBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this unbind group from service bad request response a status code equal to that given
+func (o *UnbindGroupFromServiceBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *UnbindGroupFromServiceBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *UnbindGroupFromServiceBadRequest) String() string {
+	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *UnbindGroupFromServiceBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -139,7 +201,8 @@ func NewUnbindGroupFromServiceUnauthorized() *UnbindGroupFromServiceUnauthorized
 	return &UnbindGroupFromServiceUnauthorized{}
 }
 
-/* UnbindGroupFromServiceUnauthorized describes a response with status code 401, with default header values.
+/*
+UnbindGroupFromServiceUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,9 +210,39 @@ type UnbindGroupFromServiceUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this unbind group from service unauthorized response has a 2xx status code
+func (o *UnbindGroupFromServiceUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this unbind group from service unauthorized response has a 3xx status code
+func (o *UnbindGroupFromServiceUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this unbind group from service unauthorized response has a 4xx status code
+func (o *UnbindGroupFromServiceUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this unbind group from service unauthorized response has a 5xx status code
+func (o *UnbindGroupFromServiceUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this unbind group from service unauthorized response a status code equal to that given
+func (o *UnbindGroupFromServiceUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *UnbindGroupFromServiceUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *UnbindGroupFromServiceUnauthorized) String() string {
+	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *UnbindGroupFromServiceUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -171,7 +264,8 @@ func NewUnbindGroupFromServiceForbidden() *UnbindGroupFromServiceForbidden {
 	return &UnbindGroupFromServiceForbidden{}
 }
 
-/* UnbindGroupFromServiceForbidden describes a response with status code 403, with default header values.
+/*
+UnbindGroupFromServiceForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -179,9 +273,39 @@ type UnbindGroupFromServiceForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this unbind group from service forbidden response has a 2xx status code
+func (o *UnbindGroupFromServiceForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this unbind group from service forbidden response has a 3xx status code
+func (o *UnbindGroupFromServiceForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this unbind group from service forbidden response has a 4xx status code
+func (o *UnbindGroupFromServiceForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this unbind group from service forbidden response has a 5xx status code
+func (o *UnbindGroupFromServiceForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this unbind group from service forbidden response a status code equal to that given
+func (o *UnbindGroupFromServiceForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *UnbindGroupFromServiceForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceForbidden  %+v", 403, o.Payload)
 }
+
+func (o *UnbindGroupFromServiceForbidden) String() string {
+	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceForbidden  %+v", 403, o.Payload)
+}
+
 func (o *UnbindGroupFromServiceForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -203,7 +327,8 @@ func NewUnbindGroupFromServiceNotFound() *UnbindGroupFromServiceNotFound {
 	return &UnbindGroupFromServiceNotFound{}
 }
 
-/* UnbindGroupFromServiceNotFound describes a response with status code 404, with default header values.
+/*
+UnbindGroupFromServiceNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -211,9 +336,39 @@ type UnbindGroupFromServiceNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this unbind group from service not found response has a 2xx status code
+func (o *UnbindGroupFromServiceNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this unbind group from service not found response has a 3xx status code
+func (o *UnbindGroupFromServiceNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this unbind group from service not found response has a 4xx status code
+func (o *UnbindGroupFromServiceNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this unbind group from service not found response has a 5xx status code
+func (o *UnbindGroupFromServiceNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this unbind group from service not found response a status code equal to that given
+func (o *UnbindGroupFromServiceNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *UnbindGroupFromServiceNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceNotFound  %+v", 404, o.Payload)
 }
+
+func (o *UnbindGroupFromServiceNotFound) String() string {
+	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceNotFound  %+v", 404, o.Payload)
+}
+
 func (o *UnbindGroupFromServiceNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +390,8 @@ func NewUnbindGroupFromServiceUnprocessableEntity() *UnbindGroupFromServiceUnpro
 	return &UnbindGroupFromServiceUnprocessableEntity{}
 }
 
-/* UnbindGroupFromServiceUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+UnbindGroupFromServiceUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -243,9 +399,39 @@ type UnbindGroupFromServiceUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this unbind group from service unprocessable entity response has a 2xx status code
+func (o *UnbindGroupFromServiceUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this unbind group from service unprocessable entity response has a 3xx status code
+func (o *UnbindGroupFromServiceUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this unbind group from service unprocessable entity response has a 4xx status code
+func (o *UnbindGroupFromServiceUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this unbind group from service unprocessable entity response has a 5xx status code
+func (o *UnbindGroupFromServiceUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this unbind group from service unprocessable entity response a status code equal to that given
+func (o *UnbindGroupFromServiceUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *UnbindGroupFromServiceUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *UnbindGroupFromServiceUnprocessableEntity) String() string {
+	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *UnbindGroupFromServiceUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -267,7 +453,8 @@ func NewUnbindGroupFromServiceTooManyRequests() *UnbindGroupFromServiceTooManyRe
 	return &UnbindGroupFromServiceTooManyRequests{}
 }
 
-/* UnbindGroupFromServiceTooManyRequests describes a response with status code 429, with default header values.
+/*
+UnbindGroupFromServiceTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -275,9 +462,39 @@ type UnbindGroupFromServiceTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this unbind group from service too many requests response has a 2xx status code
+func (o *UnbindGroupFromServiceTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this unbind group from service too many requests response has a 3xx status code
+func (o *UnbindGroupFromServiceTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this unbind group from service too many requests response has a 4xx status code
+func (o *UnbindGroupFromServiceTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this unbind group from service too many requests response has a 5xx status code
+func (o *UnbindGroupFromServiceTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this unbind group from service too many requests response a status code equal to that given
+func (o *UnbindGroupFromServiceTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *UnbindGroupFromServiceTooManyRequests) Error() string {
 	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *UnbindGroupFromServiceTooManyRequests) String() string {
+	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *UnbindGroupFromServiceTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

@@ -75,7 +75,8 @@ func NewUpdateScopeOK() *UpdateScopeOK {
 	return &UpdateScopeOK{}
 }
 
-/* UpdateScopeOK describes a response with status code 200, with default header values.
+/*
+UpdateScopeOK describes a response with status code 200, with default header values.
 
 Scope
 */
@@ -83,9 +84,39 @@ type UpdateScopeOK struct {
 	Payload *models.ScopeWithServiceID
 }
 
+// IsSuccess returns true when this update scope o k response has a 2xx status code
+func (o *UpdateScopeOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this update scope o k response has a 3xx status code
+func (o *UpdateScopeOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update scope o k response has a 4xx status code
+func (o *UpdateScopeOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this update scope o k response has a 5xx status code
+func (o *UpdateScopeOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update scope o k response a status code equal to that given
+func (o *UpdateScopeOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *UpdateScopeOK) Error() string {
 	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeOK  %+v", 200, o.Payload)
 }
+
+func (o *UpdateScopeOK) String() string {
+	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeOK  %+v", 200, o.Payload)
+}
+
 func (o *UpdateScopeOK) GetPayload() *models.ScopeWithServiceID {
 	return o.Payload
 }
@@ -107,7 +138,8 @@ func NewUpdateScopeBadRequest() *UpdateScopeBadRequest {
 	return &UpdateScopeBadRequest{}
 }
 
-/* UpdateScopeBadRequest describes a response with status code 400, with default header values.
+/*
+UpdateScopeBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -115,9 +147,39 @@ type UpdateScopeBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update scope bad request response has a 2xx status code
+func (o *UpdateScopeBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update scope bad request response has a 3xx status code
+func (o *UpdateScopeBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update scope bad request response has a 4xx status code
+func (o *UpdateScopeBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update scope bad request response has a 5xx status code
+func (o *UpdateScopeBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update scope bad request response a status code equal to that given
+func (o *UpdateScopeBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *UpdateScopeBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *UpdateScopeBadRequest) String() string {
+	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *UpdateScopeBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -139,7 +201,8 @@ func NewUpdateScopeUnauthorized() *UpdateScopeUnauthorized {
 	return &UpdateScopeUnauthorized{}
 }
 
-/* UpdateScopeUnauthorized describes a response with status code 401, with default header values.
+/*
+UpdateScopeUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,9 +210,39 @@ type UpdateScopeUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update scope unauthorized response has a 2xx status code
+func (o *UpdateScopeUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update scope unauthorized response has a 3xx status code
+func (o *UpdateScopeUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update scope unauthorized response has a 4xx status code
+func (o *UpdateScopeUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update scope unauthorized response has a 5xx status code
+func (o *UpdateScopeUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update scope unauthorized response a status code equal to that given
+func (o *UpdateScopeUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *UpdateScopeUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *UpdateScopeUnauthorized) String() string {
+	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *UpdateScopeUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -171,7 +264,8 @@ func NewUpdateScopeForbidden() *UpdateScopeForbidden {
 	return &UpdateScopeForbidden{}
 }
 
-/* UpdateScopeForbidden describes a response with status code 403, with default header values.
+/*
+UpdateScopeForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -179,9 +273,39 @@ type UpdateScopeForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update scope forbidden response has a 2xx status code
+func (o *UpdateScopeForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update scope forbidden response has a 3xx status code
+func (o *UpdateScopeForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update scope forbidden response has a 4xx status code
+func (o *UpdateScopeForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update scope forbidden response has a 5xx status code
+func (o *UpdateScopeForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update scope forbidden response a status code equal to that given
+func (o *UpdateScopeForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *UpdateScopeForbidden) Error() string {
 	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeForbidden  %+v", 403, o.Payload)
 }
+
+func (o *UpdateScopeForbidden) String() string {
+	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeForbidden  %+v", 403, o.Payload)
+}
+
 func (o *UpdateScopeForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -203,7 +327,8 @@ func NewUpdateScopeNotFound() *UpdateScopeNotFound {
 	return &UpdateScopeNotFound{}
 }
 
-/* UpdateScopeNotFound describes a response with status code 404, with default header values.
+/*
+UpdateScopeNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -211,9 +336,39 @@ type UpdateScopeNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update scope not found response has a 2xx status code
+func (o *UpdateScopeNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update scope not found response has a 3xx status code
+func (o *UpdateScopeNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update scope not found response has a 4xx status code
+func (o *UpdateScopeNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update scope not found response has a 5xx status code
+func (o *UpdateScopeNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update scope not found response a status code equal to that given
+func (o *UpdateScopeNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *UpdateScopeNotFound) Error() string {
 	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeNotFound  %+v", 404, o.Payload)
 }
+
+func (o *UpdateScopeNotFound) String() string {
+	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeNotFound  %+v", 404, o.Payload)
+}
+
 func (o *UpdateScopeNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +390,8 @@ func NewUpdateScopeUnprocessableEntity() *UpdateScopeUnprocessableEntity {
 	return &UpdateScopeUnprocessableEntity{}
 }
 
-/* UpdateScopeUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+UpdateScopeUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -243,9 +399,39 @@ type UpdateScopeUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update scope unprocessable entity response has a 2xx status code
+func (o *UpdateScopeUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update scope unprocessable entity response has a 3xx status code
+func (o *UpdateScopeUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update scope unprocessable entity response has a 4xx status code
+func (o *UpdateScopeUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update scope unprocessable entity response has a 5xx status code
+func (o *UpdateScopeUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update scope unprocessable entity response a status code equal to that given
+func (o *UpdateScopeUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *UpdateScopeUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *UpdateScopeUnprocessableEntity) String() string {
+	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *UpdateScopeUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -267,7 +453,8 @@ func NewUpdateScopeTooManyRequests() *UpdateScopeTooManyRequests {
 	return &UpdateScopeTooManyRequests{}
 }
 
-/* UpdateScopeTooManyRequests describes a response with status code 429, with default header values.
+/*
+UpdateScopeTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -275,9 +462,39 @@ type UpdateScopeTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update scope too many requests response has a 2xx status code
+func (o *UpdateScopeTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update scope too many requests response has a 3xx status code
+func (o *UpdateScopeTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update scope too many requests response has a 4xx status code
+func (o *UpdateScopeTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update scope too many requests response has a 5xx status code
+func (o *UpdateScopeTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update scope too many requests response a status code equal to that given
+func (o *UpdateScopeTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *UpdateScopeTooManyRequests) Error() string {
 	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *UpdateScopeTooManyRequests) String() string {
+	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *UpdateScopeTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

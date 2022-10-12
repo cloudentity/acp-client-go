@@ -60,7 +60,8 @@ func NewOpenbankingInternationalScheduledPaymentConsentIntrospectOK() *Openbanki
 	return &OpenbankingInternationalScheduledPaymentConsentIntrospectOK{}
 }
 
-/* OpenbankingInternationalScheduledPaymentConsentIntrospectOK describes a response with status code 200, with default header values.
+/*
+OpenbankingInternationalScheduledPaymentConsentIntrospectOK describes a response with status code 200, with default header values.
 
 Introspect Openbanking International Scheduled Payment Consent Response
 */
@@ -68,9 +69,39 @@ type OpenbankingInternationalScheduledPaymentConsentIntrospectOK struct {
 	Payload *OpenbankingInternationalScheduledPaymentConsentIntrospectOKBody
 }
 
+// IsSuccess returns true when this openbanking international scheduled payment consent introspect o k response has a 2xx status code
+func (o *OpenbankingInternationalScheduledPaymentConsentIntrospectOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this openbanking international scheduled payment consent introspect o k response has a 3xx status code
+func (o *OpenbankingInternationalScheduledPaymentConsentIntrospectOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this openbanking international scheduled payment consent introspect o k response has a 4xx status code
+func (o *OpenbankingInternationalScheduledPaymentConsentIntrospectOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this openbanking international scheduled payment consent introspect o k response has a 5xx status code
+func (o *OpenbankingInternationalScheduledPaymentConsentIntrospectOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this openbanking international scheduled payment consent introspect o k response a status code equal to that given
+func (o *OpenbankingInternationalScheduledPaymentConsentIntrospectOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *OpenbankingInternationalScheduledPaymentConsentIntrospectOK) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-scheduled-payment-consents/introspect][%d] openbankingInternationalScheduledPaymentConsentIntrospectOK  %+v", 200, o.Payload)
 }
+
+func (o *OpenbankingInternationalScheduledPaymentConsentIntrospectOK) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-scheduled-payment-consents/introspect][%d] openbankingInternationalScheduledPaymentConsentIntrospectOK  %+v", 200, o.Payload)
+}
+
 func (o *OpenbankingInternationalScheduledPaymentConsentIntrospectOK) GetPayload() *OpenbankingInternationalScheduledPaymentConsentIntrospectOKBody {
 	return o.Payload
 }
@@ -92,7 +123,8 @@ func NewOpenbankingInternationalScheduledPaymentConsentIntrospectUnauthorized() 
 	return &OpenbankingInternationalScheduledPaymentConsentIntrospectUnauthorized{}
 }
 
-/* OpenbankingInternationalScheduledPaymentConsentIntrospectUnauthorized describes a response with status code 401, with default header values.
+/*
+OpenbankingInternationalScheduledPaymentConsentIntrospectUnauthorized describes a response with status code 401, with default header values.
 
 ErrorResponse
 */
@@ -100,9 +132,39 @@ type OpenbankingInternationalScheduledPaymentConsentIntrospectUnauthorized struc
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this openbanking international scheduled payment consent introspect unauthorized response has a 2xx status code
+func (o *OpenbankingInternationalScheduledPaymentConsentIntrospectUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this openbanking international scheduled payment consent introspect unauthorized response has a 3xx status code
+func (o *OpenbankingInternationalScheduledPaymentConsentIntrospectUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this openbanking international scheduled payment consent introspect unauthorized response has a 4xx status code
+func (o *OpenbankingInternationalScheduledPaymentConsentIntrospectUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this openbanking international scheduled payment consent introspect unauthorized response has a 5xx status code
+func (o *OpenbankingInternationalScheduledPaymentConsentIntrospectUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this openbanking international scheduled payment consent introspect unauthorized response a status code equal to that given
+func (o *OpenbankingInternationalScheduledPaymentConsentIntrospectUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *OpenbankingInternationalScheduledPaymentConsentIntrospectUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-scheduled-payment-consents/introspect][%d] openbankingInternationalScheduledPaymentConsentIntrospectUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *OpenbankingInternationalScheduledPaymentConsentIntrospectUnauthorized) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-scheduled-payment-consents/introspect][%d] openbankingInternationalScheduledPaymentConsentIntrospectUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *OpenbankingInternationalScheduledPaymentConsentIntrospectUnauthorized) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -124,7 +186,8 @@ func NewOpenbankingInternationalScheduledPaymentConsentIntrospectNotFound() *Ope
 	return &OpenbankingInternationalScheduledPaymentConsentIntrospectNotFound{}
 }
 
-/* OpenbankingInternationalScheduledPaymentConsentIntrospectNotFound describes a response with status code 404, with default header values.
+/*
+OpenbankingInternationalScheduledPaymentConsentIntrospectNotFound describes a response with status code 404, with default header values.
 
 ErrorResponse
 */
@@ -132,9 +195,39 @@ type OpenbankingInternationalScheduledPaymentConsentIntrospectNotFound struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this openbanking international scheduled payment consent introspect not found response has a 2xx status code
+func (o *OpenbankingInternationalScheduledPaymentConsentIntrospectNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this openbanking international scheduled payment consent introspect not found response has a 3xx status code
+func (o *OpenbankingInternationalScheduledPaymentConsentIntrospectNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this openbanking international scheduled payment consent introspect not found response has a 4xx status code
+func (o *OpenbankingInternationalScheduledPaymentConsentIntrospectNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this openbanking international scheduled payment consent introspect not found response has a 5xx status code
+func (o *OpenbankingInternationalScheduledPaymentConsentIntrospectNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this openbanking international scheduled payment consent introspect not found response a status code equal to that given
+func (o *OpenbankingInternationalScheduledPaymentConsentIntrospectNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *OpenbankingInternationalScheduledPaymentConsentIntrospectNotFound) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-scheduled-payment-consents/introspect][%d] openbankingInternationalScheduledPaymentConsentIntrospectNotFound  %+v", 404, o.Payload)
 }
+
+func (o *OpenbankingInternationalScheduledPaymentConsentIntrospectNotFound) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-scheduled-payment-consents/introspect][%d] openbankingInternationalScheduledPaymentConsentIntrospectNotFound  %+v", 404, o.Payload)
+}
+
 func (o *OpenbankingInternationalScheduledPaymentConsentIntrospectNotFound) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -156,7 +249,8 @@ func NewOpenbankingInternationalScheduledPaymentConsentIntrospectTooManyRequests
 	return &OpenbankingInternationalScheduledPaymentConsentIntrospectTooManyRequests{}
 }
 
-/* OpenbankingInternationalScheduledPaymentConsentIntrospectTooManyRequests describes a response with status code 429, with default header values.
+/*
+OpenbankingInternationalScheduledPaymentConsentIntrospectTooManyRequests describes a response with status code 429, with default header values.
 
 ErrorResponse
 */
@@ -164,9 +258,39 @@ type OpenbankingInternationalScheduledPaymentConsentIntrospectTooManyRequests st
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this openbanking international scheduled payment consent introspect too many requests response has a 2xx status code
+func (o *OpenbankingInternationalScheduledPaymentConsentIntrospectTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this openbanking international scheduled payment consent introspect too many requests response has a 3xx status code
+func (o *OpenbankingInternationalScheduledPaymentConsentIntrospectTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this openbanking international scheduled payment consent introspect too many requests response has a 4xx status code
+func (o *OpenbankingInternationalScheduledPaymentConsentIntrospectTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this openbanking international scheduled payment consent introspect too many requests response has a 5xx status code
+func (o *OpenbankingInternationalScheduledPaymentConsentIntrospectTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this openbanking international scheduled payment consent introspect too many requests response a status code equal to that given
+func (o *OpenbankingInternationalScheduledPaymentConsentIntrospectTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *OpenbankingInternationalScheduledPaymentConsentIntrospectTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-scheduled-payment-consents/introspect][%d] openbankingInternationalScheduledPaymentConsentIntrospectTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *OpenbankingInternationalScheduledPaymentConsentIntrospectTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-scheduled-payment-consents/introspect][%d] openbankingInternationalScheduledPaymentConsentIntrospectTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *OpenbankingInternationalScheduledPaymentConsentIntrospectTooManyRequests) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -183,7 +307,8 @@ func (o *OpenbankingInternationalScheduledPaymentConsentIntrospectTooManyRequest
 	return nil
 }
 
-/*OpenbankingInternationalScheduledPaymentConsentIntrospectOKBody openbanking international scheduled payment consent introspect o k body
+/*
+OpenbankingInternationalScheduledPaymentConsentIntrospectOKBody openbanking international scheduled payment consent introspect o k body
 swagger:model OpenbankingInternationalScheduledPaymentConsentIntrospectOKBody
 */
 type OpenbankingInternationalScheduledPaymentConsentIntrospectOKBody struct {

@@ -69,7 +69,8 @@ func NewConsumeOpenbankingConsentOK() *ConsumeOpenbankingConsentOK {
 	return &ConsumeOpenbankingConsentOK{}
 }
 
-/* ConsumeOpenbankingConsentOK describes a response with status code 200, with default header values.
+/*
+ConsumeOpenbankingConsentOK describes a response with status code 200, with default header values.
 
 UKConsent
 */
@@ -77,9 +78,39 @@ type ConsumeOpenbankingConsentOK struct {
 	Payload *models.UKConsent
 }
 
+// IsSuccess returns true when this consume openbanking consent o k response has a 2xx status code
+func (o *ConsumeOpenbankingConsentOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this consume openbanking consent o k response has a 3xx status code
+func (o *ConsumeOpenbankingConsentOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this consume openbanking consent o k response has a 4xx status code
+func (o *ConsumeOpenbankingConsentOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this consume openbanking consent o k response has a 5xx status code
+func (o *ConsumeOpenbankingConsentOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this consume openbanking consent o k response a status code equal to that given
+func (o *ConsumeOpenbankingConsentOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *ConsumeOpenbankingConsentOK) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents/{consentID}/consume][%d] consumeOpenbankingConsentOK  %+v", 200, o.Payload)
 }
+
+func (o *ConsumeOpenbankingConsentOK) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents/{consentID}/consume][%d] consumeOpenbankingConsentOK  %+v", 200, o.Payload)
+}
+
 func (o *ConsumeOpenbankingConsentOK) GetPayload() *models.UKConsent {
 	return o.Payload
 }
@@ -101,7 +132,8 @@ func NewConsumeOpenbankingConsentBadRequest() *ConsumeOpenbankingConsentBadReque
 	return &ConsumeOpenbankingConsentBadRequest{}
 }
 
-/* ConsumeOpenbankingConsentBadRequest describes a response with status code 400, with default header values.
+/*
+ConsumeOpenbankingConsentBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -109,9 +141,39 @@ type ConsumeOpenbankingConsentBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this consume openbanking consent bad request response has a 2xx status code
+func (o *ConsumeOpenbankingConsentBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this consume openbanking consent bad request response has a 3xx status code
+func (o *ConsumeOpenbankingConsentBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this consume openbanking consent bad request response has a 4xx status code
+func (o *ConsumeOpenbankingConsentBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this consume openbanking consent bad request response has a 5xx status code
+func (o *ConsumeOpenbankingConsentBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this consume openbanking consent bad request response a status code equal to that given
+func (o *ConsumeOpenbankingConsentBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *ConsumeOpenbankingConsentBadRequest) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents/{consentID}/consume][%d] consumeOpenbankingConsentBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *ConsumeOpenbankingConsentBadRequest) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents/{consentID}/consume][%d] consumeOpenbankingConsentBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *ConsumeOpenbankingConsentBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -133,7 +195,8 @@ func NewConsumeOpenbankingConsentUnauthorized() *ConsumeOpenbankingConsentUnauth
 	return &ConsumeOpenbankingConsentUnauthorized{}
 }
 
-/* ConsumeOpenbankingConsentUnauthorized describes a response with status code 401, with default header values.
+/*
+ConsumeOpenbankingConsentUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -141,9 +204,39 @@ type ConsumeOpenbankingConsentUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this consume openbanking consent unauthorized response has a 2xx status code
+func (o *ConsumeOpenbankingConsentUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this consume openbanking consent unauthorized response has a 3xx status code
+func (o *ConsumeOpenbankingConsentUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this consume openbanking consent unauthorized response has a 4xx status code
+func (o *ConsumeOpenbankingConsentUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this consume openbanking consent unauthorized response has a 5xx status code
+func (o *ConsumeOpenbankingConsentUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this consume openbanking consent unauthorized response a status code equal to that given
+func (o *ConsumeOpenbankingConsentUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *ConsumeOpenbankingConsentUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents/{consentID}/consume][%d] consumeOpenbankingConsentUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *ConsumeOpenbankingConsentUnauthorized) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents/{consentID}/consume][%d] consumeOpenbankingConsentUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *ConsumeOpenbankingConsentUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -165,7 +258,8 @@ func NewConsumeOpenbankingConsentForbidden() *ConsumeOpenbankingConsentForbidden
 	return &ConsumeOpenbankingConsentForbidden{}
 }
 
-/* ConsumeOpenbankingConsentForbidden describes a response with status code 403, with default header values.
+/*
+ConsumeOpenbankingConsentForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -173,9 +267,39 @@ type ConsumeOpenbankingConsentForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this consume openbanking consent forbidden response has a 2xx status code
+func (o *ConsumeOpenbankingConsentForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this consume openbanking consent forbidden response has a 3xx status code
+func (o *ConsumeOpenbankingConsentForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this consume openbanking consent forbidden response has a 4xx status code
+func (o *ConsumeOpenbankingConsentForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this consume openbanking consent forbidden response has a 5xx status code
+func (o *ConsumeOpenbankingConsentForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this consume openbanking consent forbidden response a status code equal to that given
+func (o *ConsumeOpenbankingConsentForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *ConsumeOpenbankingConsentForbidden) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents/{consentID}/consume][%d] consumeOpenbankingConsentForbidden  %+v", 403, o.Payload)
 }
+
+func (o *ConsumeOpenbankingConsentForbidden) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents/{consentID}/consume][%d] consumeOpenbankingConsentForbidden  %+v", 403, o.Payload)
+}
+
 func (o *ConsumeOpenbankingConsentForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -197,7 +321,8 @@ func NewConsumeOpenbankingConsentNotFound() *ConsumeOpenbankingConsentNotFound {
 	return &ConsumeOpenbankingConsentNotFound{}
 }
 
-/* ConsumeOpenbankingConsentNotFound describes a response with status code 404, with default header values.
+/*
+ConsumeOpenbankingConsentNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -205,9 +330,39 @@ type ConsumeOpenbankingConsentNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this consume openbanking consent not found response has a 2xx status code
+func (o *ConsumeOpenbankingConsentNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this consume openbanking consent not found response has a 3xx status code
+func (o *ConsumeOpenbankingConsentNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this consume openbanking consent not found response has a 4xx status code
+func (o *ConsumeOpenbankingConsentNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this consume openbanking consent not found response has a 5xx status code
+func (o *ConsumeOpenbankingConsentNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this consume openbanking consent not found response a status code equal to that given
+func (o *ConsumeOpenbankingConsentNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *ConsumeOpenbankingConsentNotFound) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents/{consentID}/consume][%d] consumeOpenbankingConsentNotFound  %+v", 404, o.Payload)
 }
+
+func (o *ConsumeOpenbankingConsentNotFound) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents/{consentID}/consume][%d] consumeOpenbankingConsentNotFound  %+v", 404, o.Payload)
+}
+
 func (o *ConsumeOpenbankingConsentNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -229,7 +384,8 @@ func NewConsumeOpenbankingConsentTooManyRequests() *ConsumeOpenbankingConsentToo
 	return &ConsumeOpenbankingConsentTooManyRequests{}
 }
 
-/* ConsumeOpenbankingConsentTooManyRequests describes a response with status code 429, with default header values.
+/*
+ConsumeOpenbankingConsentTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -237,9 +393,39 @@ type ConsumeOpenbankingConsentTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this consume openbanking consent too many requests response has a 2xx status code
+func (o *ConsumeOpenbankingConsentTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this consume openbanking consent too many requests response has a 3xx status code
+func (o *ConsumeOpenbankingConsentTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this consume openbanking consent too many requests response has a 4xx status code
+func (o *ConsumeOpenbankingConsentTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this consume openbanking consent too many requests response has a 5xx status code
+func (o *ConsumeOpenbankingConsentTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this consume openbanking consent too many requests response a status code equal to that given
+func (o *ConsumeOpenbankingConsentTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *ConsumeOpenbankingConsentTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents/{consentID}/consume][%d] consumeOpenbankingConsentTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *ConsumeOpenbankingConsentTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents/{consentID}/consume][%d] consumeOpenbankingConsentTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *ConsumeOpenbankingConsentTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

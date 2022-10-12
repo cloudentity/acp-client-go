@@ -75,7 +75,8 @@ func NewListCDRArrangementsOK() *ListCDRArrangementsOK {
 	return &ListCDRArrangementsOK{}
 }
 
-/* ListCDRArrangementsOK describes a response with status code 200, with default header values.
+/*
+ListCDRArrangementsOK describes a response with status code 200, with default header values.
 
 CDRArrangements
 */
@@ -83,9 +84,39 @@ type ListCDRArrangementsOK struct {
 	Payload *models.CDRArrangements
 }
 
+// IsSuccess returns true when this list c d r arrangements o k response has a 2xx status code
+func (o *ListCDRArrangementsOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this list c d r arrangements o k response has a 3xx status code
+func (o *ListCDRArrangementsOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list c d r arrangements o k response has a 4xx status code
+func (o *ListCDRArrangementsOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this list c d r arrangements o k response has a 5xx status code
+func (o *ListCDRArrangementsOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list c d r arrangements o k response a status code equal to that given
+func (o *ListCDRArrangementsOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *ListCDRArrangementsOK) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/cdr/arrangements][%d] listCDRArrangementsOK  %+v", 200, o.Payload)
 }
+
+func (o *ListCDRArrangementsOK) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/cdr/arrangements][%d] listCDRArrangementsOK  %+v", 200, o.Payload)
+}
+
 func (o *ListCDRArrangementsOK) GetPayload() *models.CDRArrangements {
 	return o.Payload
 }
@@ -107,7 +138,8 @@ func NewListCDRArrangementsBadRequest() *ListCDRArrangementsBadRequest {
 	return &ListCDRArrangementsBadRequest{}
 }
 
-/* ListCDRArrangementsBadRequest describes a response with status code 400, with default header values.
+/*
+ListCDRArrangementsBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -115,9 +147,39 @@ type ListCDRArrangementsBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list c d r arrangements bad request response has a 2xx status code
+func (o *ListCDRArrangementsBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list c d r arrangements bad request response has a 3xx status code
+func (o *ListCDRArrangementsBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list c d r arrangements bad request response has a 4xx status code
+func (o *ListCDRArrangementsBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list c d r arrangements bad request response has a 5xx status code
+func (o *ListCDRArrangementsBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list c d r arrangements bad request response a status code equal to that given
+func (o *ListCDRArrangementsBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *ListCDRArrangementsBadRequest) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/cdr/arrangements][%d] listCDRArrangementsBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *ListCDRArrangementsBadRequest) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/cdr/arrangements][%d] listCDRArrangementsBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *ListCDRArrangementsBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -139,7 +201,8 @@ func NewListCDRArrangementsUnauthorized() *ListCDRArrangementsUnauthorized {
 	return &ListCDRArrangementsUnauthorized{}
 }
 
-/* ListCDRArrangementsUnauthorized describes a response with status code 401, with default header values.
+/*
+ListCDRArrangementsUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,9 +210,39 @@ type ListCDRArrangementsUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list c d r arrangements unauthorized response has a 2xx status code
+func (o *ListCDRArrangementsUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list c d r arrangements unauthorized response has a 3xx status code
+func (o *ListCDRArrangementsUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list c d r arrangements unauthorized response has a 4xx status code
+func (o *ListCDRArrangementsUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list c d r arrangements unauthorized response has a 5xx status code
+func (o *ListCDRArrangementsUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list c d r arrangements unauthorized response a status code equal to that given
+func (o *ListCDRArrangementsUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *ListCDRArrangementsUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/cdr/arrangements][%d] listCDRArrangementsUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *ListCDRArrangementsUnauthorized) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/cdr/arrangements][%d] listCDRArrangementsUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *ListCDRArrangementsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -171,7 +264,8 @@ func NewListCDRArrangementsForbidden() *ListCDRArrangementsForbidden {
 	return &ListCDRArrangementsForbidden{}
 }
 
-/* ListCDRArrangementsForbidden describes a response with status code 403, with default header values.
+/*
+ListCDRArrangementsForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -179,9 +273,39 @@ type ListCDRArrangementsForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list c d r arrangements forbidden response has a 2xx status code
+func (o *ListCDRArrangementsForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list c d r arrangements forbidden response has a 3xx status code
+func (o *ListCDRArrangementsForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list c d r arrangements forbidden response has a 4xx status code
+func (o *ListCDRArrangementsForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list c d r arrangements forbidden response has a 5xx status code
+func (o *ListCDRArrangementsForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list c d r arrangements forbidden response a status code equal to that given
+func (o *ListCDRArrangementsForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *ListCDRArrangementsForbidden) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/cdr/arrangements][%d] listCDRArrangementsForbidden  %+v", 403, o.Payload)
 }
+
+func (o *ListCDRArrangementsForbidden) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/cdr/arrangements][%d] listCDRArrangementsForbidden  %+v", 403, o.Payload)
+}
+
 func (o *ListCDRArrangementsForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -203,7 +327,8 @@ func NewListCDRArrangementsNotFound() *ListCDRArrangementsNotFound {
 	return &ListCDRArrangementsNotFound{}
 }
 
-/* ListCDRArrangementsNotFound describes a response with status code 404, with default header values.
+/*
+ListCDRArrangementsNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -211,9 +336,39 @@ type ListCDRArrangementsNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list c d r arrangements not found response has a 2xx status code
+func (o *ListCDRArrangementsNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list c d r arrangements not found response has a 3xx status code
+func (o *ListCDRArrangementsNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list c d r arrangements not found response has a 4xx status code
+func (o *ListCDRArrangementsNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list c d r arrangements not found response has a 5xx status code
+func (o *ListCDRArrangementsNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list c d r arrangements not found response a status code equal to that given
+func (o *ListCDRArrangementsNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *ListCDRArrangementsNotFound) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/cdr/arrangements][%d] listCDRArrangementsNotFound  %+v", 404, o.Payload)
 }
+
+func (o *ListCDRArrangementsNotFound) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/cdr/arrangements][%d] listCDRArrangementsNotFound  %+v", 404, o.Payload)
+}
+
 func (o *ListCDRArrangementsNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +390,8 @@ func NewListCDRArrangementsUnprocessableEntity() *ListCDRArrangementsUnprocessab
 	return &ListCDRArrangementsUnprocessableEntity{}
 }
 
-/* ListCDRArrangementsUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+ListCDRArrangementsUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -243,9 +399,39 @@ type ListCDRArrangementsUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list c d r arrangements unprocessable entity response has a 2xx status code
+func (o *ListCDRArrangementsUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list c d r arrangements unprocessable entity response has a 3xx status code
+func (o *ListCDRArrangementsUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list c d r arrangements unprocessable entity response has a 4xx status code
+func (o *ListCDRArrangementsUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list c d r arrangements unprocessable entity response has a 5xx status code
+func (o *ListCDRArrangementsUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list c d r arrangements unprocessable entity response a status code equal to that given
+func (o *ListCDRArrangementsUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *ListCDRArrangementsUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/cdr/arrangements][%d] listCDRArrangementsUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *ListCDRArrangementsUnprocessableEntity) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/cdr/arrangements][%d] listCDRArrangementsUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *ListCDRArrangementsUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -267,7 +453,8 @@ func NewListCDRArrangementsTooManyRequests() *ListCDRArrangementsTooManyRequests
 	return &ListCDRArrangementsTooManyRequests{}
 }
 
-/* ListCDRArrangementsTooManyRequests describes a response with status code 429, with default header values.
+/*
+ListCDRArrangementsTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -275,9 +462,39 @@ type ListCDRArrangementsTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list c d r arrangements too many requests response has a 2xx status code
+func (o *ListCDRArrangementsTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list c d r arrangements too many requests response has a 3xx status code
+func (o *ListCDRArrangementsTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list c d r arrangements too many requests response has a 4xx status code
+func (o *ListCDRArrangementsTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list c d r arrangements too many requests response has a 5xx status code
+func (o *ListCDRArrangementsTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list c d r arrangements too many requests response a status code equal to that given
+func (o *ListCDRArrangementsTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *ListCDRArrangementsTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/cdr/arrangements][%d] listCDRArrangementsTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *ListCDRArrangementsTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/cdr/arrangements][%d] listCDRArrangementsTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *ListCDRArrangementsTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

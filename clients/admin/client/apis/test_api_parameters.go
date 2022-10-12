@@ -54,10 +54,12 @@ func NewTestAPIParamsWithHTTPClient(client *http.Client) *TestAPIParams {
 	}
 }
 
-/* TestAPIParams contains all the parameters to send to the API endpoint
-   for the test API operation.
+/*
+TestAPIParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the test API operation.
+
+	Typically these are written to a http.Request.
 */
 type TestAPIParams struct {
 

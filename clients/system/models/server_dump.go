@@ -43,6 +43,12 @@ type ServerDump struct {
 	// Format: duration
 	AccessTokenTTL strfmt.Duration `json:"access_token_ttl,omitempty"`
 
+	// advanced
+	Advanced *AdvancedConfiguration `json:"advanced,omitempty"`
+
+	// authentication context settings
+	AuthenticationContextSettings *AuthenticationContextSettings `json:"authentication_context_settings,omitempty"`
+
 	// Authorization code time to live
 	//
 	// After an authorization code reaches its time to live, it expires and it cannot be used to
@@ -56,6 +62,9 @@ type ServerDump struct {
 
 	// backchannel user code parameter supported
 	BackchannelUserCodeParameterSupported bool `json:"backchannel_user_code_parameter_supported,omitempty"`
+
+	// cdr
+	Cdr *CDRConfiguration `json:"cdr,omitempty"`
 
 	// Your server's label color in a HEX format.
 	// Example: #007FFF
@@ -81,6 +90,9 @@ type ServerDump struct {
 	// Example: http://example.com/default/default
 	CustomIssuerURL string `json:"custom_issuer_url,omitempty"`
 
+	// device authorization
+	DeviceAuthorization *DeviceAuthorizationConfiguration `json:"device_authorization,omitempty"`
+
 	// flag to skip default claims creation (applicable only if server does not exist)
 	DoNotCreateDefaultClaims bool `json:"do_not_create_default_claims,omitempty"`
 
@@ -95,14 +107,15 @@ type ServerDump struct {
 	// For Open Banking Brazil compliant servers, the `:` separator should be used.
 	DynamicScopeSeparator string `json:"dynamic_scope_separator,omitempty"`
 
-	// When enabled, the authorization server will encrypt any id tokens it issues
-	EnableIDTokenEncryption bool `json:"enable_id_token_encryption,omitempty"`
-
+	// Deprecated: Use IDPDiscovery instead
+	//
 	// If enabled, IDP discovery automatically redirects the user to their own IDP and does not
 	// display IDPs of other users while the users accesses the server/application.
 	// Example: false
 	EnableIdpDiscovery bool `json:"enable_idp_discovery,omitempty"`
 
+	// Deprecated
+	//
 	// If enabled, it is possible to manually register clients withouth the use of software
 	// statements.
 	//
@@ -114,12 +127,16 @@ type ServerDump struct {
 	EnableQuickAccess bool `json:"enable_quick_access,omitempty"`
 
 	// If enabled, it makes it obligatory to provide a software statement signed by a trusted certificate authority
+	//
 	// when registering a client application with the use of the Dynamic Client Registration (DCR).
 	//
 	// In public key infrastructure (PKI), trust anchors are certification authorities. They are
 	// represented by a certificate that is used to verify the signature of a certificate issued by
 	// a particular trust anchor.
 	EnableTrustAnchor bool `json:"enable_trust_anchor,omitempty"`
+
+	// When enabled, the authorization server will enforce encrypted id tokens it issues
+	EnforceIDTokenEncryption bool `json:"enforce_id_token_encryption,omitempty"`
 
 	// Define whether you want to enforce using the Proof Key of Code Exchange (PKCE) for both
 	// private and public clients.
@@ -161,6 +178,9 @@ type ServerDump struct {
 	// Format: duration
 	IDTokenTTL strfmt.Duration `json:"id_token_ttl,omitempty"`
 
+	// idp discovery
+	IdpDiscovery *IDPDiscovery `json:"idp_discovery,omitempty"`
+
 	// flag to initialize server default configuration (applicable only if server does not exist)
 	Initialize bool `json:"initialize,omitempty"`
 
@@ -181,6 +201,9 @@ type ServerDump struct {
 	// Enum: [rsa ecdsa ps]
 	KeyType string `json:"key_type,omitempty"`
 
+	// legal entity
+	LegalEntity *LegalEntity `json:"legal_entity,omitempty"`
+
 	// Logo URI
 	LogoURI string `json:"logo_uri,omitempty"`
 
@@ -188,13 +211,16 @@ type ServerDump struct {
 	// Example: Sample authorization server
 	Name string `json:"name,omitempty"`
 
+	// obbr
+	Obbr *OBBRConfiguration `json:"obbr,omitempty"`
+
 	// The profile of a server
 	//
 	// ACP is delivered with preconfigured workspace templates that enable quick and easy setup for
 	// specific configuration patterns. For example, you can instantly create an Open Banking
 	// compliant workspace that has all of the required mechanisms and settings already in place.
 	// Example: default
-	// Enum: [default demo workforce consumer partners third_party fapi_advanced fapi_rw fapi_ro openbanking_uk_fapi_advanced openbanking_uk openbanking_br cdr_australia cdr_australia_fapi_rw]
+	// Enum: [default demo workforce consumer partners third_party fapi_advanced fapi_rw fapi_ro openbanking_uk_fapi_advanced openbanking_uk openbanking_br cdr_australia cdr_australia_fapi_rw fdx]
 	Profile string `json:"profile,omitempty"`
 
 	// Custom pushed authentication request TTL
@@ -230,6 +256,11 @@ type ServerDump struct {
 	// It must have at least 32 characters. If not provided, it is generated.
 	// Example: hW5WhKX_7w7BLwUQ6mn7Cp70_OoKI_F1y1hLS5U8lIU
 	Secret string `json:"secret,omitempty"`
+
+	// Define the format of a subject
+	// When set to hash sub value is a one way hash of idp id and idp sub
+	// Enum: [hash legacy]
+	SubjectFormat string `json:"subject_format,omitempty"`
 
 	// Salt used to hash `subject` when the `pairwise` subject type is used.
 	//
@@ -291,11 +322,27 @@ func (m *ServerDump) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateAdvanced(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateAuthenticationContextSettings(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateAuthorizationCodeTTL(formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.validateCdr(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateCookieMaxAge(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDeviceAuthorization(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -311,11 +358,23 @@ func (m *ServerDump) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateIdpDiscovery(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateJwks(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateKeyType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateLegalEntity(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateObbr(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -328,6 +387,10 @@ func (m *ServerDump) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateRefreshTokenTTL(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSubjectFormat(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -415,6 +478,44 @@ func (m *ServerDump) validateAccessTokenTTL(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *ServerDump) validateAdvanced(formats strfmt.Registry) error {
+	if swag.IsZero(m.Advanced) { // not required
+		return nil
+	}
+
+	if m.Advanced != nil {
+		if err := m.Advanced.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("advanced")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("advanced")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ServerDump) validateAuthenticationContextSettings(formats strfmt.Registry) error {
+	if swag.IsZero(m.AuthenticationContextSettings) { // not required
+		return nil
+	}
+
+	if m.AuthenticationContextSettings != nil {
+		if err := m.AuthenticationContextSettings.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("authentication_context_settings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("authentication_context_settings")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *ServerDump) validateAuthorizationCodeTTL(formats strfmt.Registry) error {
 	if swag.IsZero(m.AuthorizationCodeTTL) { // not required
 		return nil
@@ -427,6 +528,25 @@ func (m *ServerDump) validateAuthorizationCodeTTL(formats strfmt.Registry) error
 	return nil
 }
 
+func (m *ServerDump) validateCdr(formats strfmt.Registry) error {
+	if swag.IsZero(m.Cdr) { // not required
+		return nil
+	}
+
+	if m.Cdr != nil {
+		if err := m.Cdr.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cdr")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cdr")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *ServerDump) validateCookieMaxAge(formats strfmt.Registry) error {
 	if swag.IsZero(m.CookieMaxAge) { // not required
 		return nil
@@ -434,6 +554,25 @@ func (m *ServerDump) validateCookieMaxAge(formats strfmt.Registry) error {
 
 	if err := validate.FormatOf("cookie_max_age", "body", "duration", m.CookieMaxAge.String(), formats); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *ServerDump) validateDeviceAuthorization(formats strfmt.Registry) error {
+	if swag.IsZero(m.DeviceAuthorization) { // not required
+		return nil
+	}
+
+	if m.DeviceAuthorization != nil {
+		if err := m.DeviceAuthorization.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("device_authorization")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("device_authorization")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -462,7 +601,7 @@ var serverDumpGrantTypesItemsEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["authorization_code","implicit","client_credentials","refresh_token","password","urn:ietf:params:oauth:grant-type:jwt-bearer","urn:openid:params:grant-type:ciba","urn:ietf:params:oauth:grant-type:token-exchange"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["authorization_code","implicit","client_credentials","refresh_token","password","urn:ietf:params:oauth:grant-type:jwt-bearer","urn:openid:params:grant-type:ciba","urn:ietf:params:oauth:grant-type:token-exchange","urn:ietf:params:oauth:grant-type:device_code"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -501,6 +640,25 @@ func (m *ServerDump) validateIDTokenTTL(formats strfmt.Registry) error {
 
 	if err := validate.FormatOf("id_token_ttl", "body", "duration", m.IDTokenTTL.String(), formats); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *ServerDump) validateIdpDiscovery(formats strfmt.Registry) error {
+	if swag.IsZero(m.IdpDiscovery) { // not required
+		return nil
+	}
+
+	if m.IdpDiscovery != nil {
+		if err := m.IdpDiscovery.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("idp_discovery")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("idp_discovery")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -570,11 +728,49 @@ func (m *ServerDump) validateKeyType(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *ServerDump) validateLegalEntity(formats strfmt.Registry) error {
+	if swag.IsZero(m.LegalEntity) { // not required
+		return nil
+	}
+
+	if m.LegalEntity != nil {
+		if err := m.LegalEntity.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("legal_entity")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("legal_entity")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ServerDump) validateObbr(formats strfmt.Registry) error {
+	if swag.IsZero(m.Obbr) { // not required
+		return nil
+	}
+
+	if m.Obbr != nil {
+		if err := m.Obbr.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("obbr")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("obbr")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 var serverDumpTypeProfilePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["default","demo","workforce","consumer","partners","third_party","fapi_advanced","fapi_rw","fapi_ro","openbanking_uk_fapi_advanced","openbanking_uk","openbanking_br","cdr_australia","cdr_australia_fapi_rw"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["default","demo","workforce","consumer","partners","third_party","fapi_advanced","fapi_rw","fapi_ro","openbanking_uk_fapi_advanced","openbanking_uk","openbanking_br","cdr_australia","cdr_australia_fapi_rw","fdx"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -625,6 +821,9 @@ const (
 
 	// ServerDumpProfileCdrAustraliaFapiRw captures enum value "cdr_australia_fapi_rw"
 	ServerDumpProfileCdrAustraliaFapiRw string = "cdr_australia_fapi_rw"
+
+	// ServerDumpProfileFdx captures enum value "fdx"
+	ServerDumpProfileFdx string = "fdx"
 )
 
 // prop value enum
@@ -666,6 +865,48 @@ func (m *ServerDump) validateRefreshTokenTTL(formats strfmt.Registry) error {
 	}
 
 	if err := validate.FormatOf("refresh_token_ttl", "body", "duration", m.RefreshTokenTTL.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var serverDumpTypeSubjectFormatPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["hash","legacy"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		serverDumpTypeSubjectFormatPropEnum = append(serverDumpTypeSubjectFormatPropEnum, v)
+	}
+}
+
+const (
+
+	// ServerDumpSubjectFormatHash captures enum value "hash"
+	ServerDumpSubjectFormatHash string = "hash"
+
+	// ServerDumpSubjectFormatLegacy captures enum value "legacy"
+	ServerDumpSubjectFormatLegacy string = "legacy"
+)
+
+// prop value enum
+func (m *ServerDump) validateSubjectFormatEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, serverDumpTypeSubjectFormatPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *ServerDump) validateSubjectFormat(formats strfmt.Registry) error {
+	if swag.IsZero(m.SubjectFormat) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateSubjectFormatEnum("subject_format", "body", m.SubjectFormat); err != nil {
 		return err
 	}
 
@@ -860,11 +1101,39 @@ func (m *ServerDump) validateType(formats strfmt.Registry) error {
 func (m *ServerDump) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateAdvanced(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateAuthenticationContextSettings(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCdr(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDeviceAuthorization(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateDynamicClientRegistration(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateIdpDiscovery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateJwks(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLegalEntity(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateObbr(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -875,6 +1144,70 @@ func (m *ServerDump) ContextValidate(ctx context.Context, formats strfmt.Registr
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ServerDump) contextValidateAdvanced(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Advanced != nil {
+		if err := m.Advanced.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("advanced")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("advanced")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ServerDump) contextValidateAuthenticationContextSettings(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.AuthenticationContextSettings != nil {
+		if err := m.AuthenticationContextSettings.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("authentication_context_settings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("authentication_context_settings")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ServerDump) contextValidateCdr(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Cdr != nil {
+		if err := m.Cdr.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cdr")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cdr")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ServerDump) contextValidateDeviceAuthorization(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.DeviceAuthorization != nil {
+		if err := m.DeviceAuthorization.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("device_authorization")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("device_authorization")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -894,6 +1227,22 @@ func (m *ServerDump) contextValidateDynamicClientRegistration(ctx context.Contex
 	return nil
 }
 
+func (m *ServerDump) contextValidateIdpDiscovery(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.IdpDiscovery != nil {
+		if err := m.IdpDiscovery.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("idp_discovery")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("idp_discovery")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *ServerDump) contextValidateJwks(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Jwks != nil {
@@ -902,6 +1251,38 @@ func (m *ServerDump) contextValidateJwks(ctx context.Context, formats strfmt.Reg
 				return ve.ValidateName("jwks")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("jwks")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ServerDump) contextValidateLegalEntity(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.LegalEntity != nil {
+		if err := m.LegalEntity.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("legal_entity")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("legal_entity")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ServerDump) contextValidateObbr(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Obbr != nil {
+		if err := m.Obbr.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("obbr")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("obbr")
 			}
 			return err
 		}

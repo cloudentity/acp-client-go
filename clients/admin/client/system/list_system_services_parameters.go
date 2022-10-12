@@ -52,10 +52,12 @@ func NewListSystemServicesParamsWithHTTPClient(client *http.Client) *ListSystemS
 	}
 }
 
-/* ListSystemServicesParams contains all the parameters to send to the API endpoint
-   for the list system services operation.
+/*
+ListSystemServicesParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the list system services operation.
+
+	Typically these are written to a http.Request.
 */
 type ListSystemServicesParams struct {
 	timeout    time.Duration

@@ -38,6 +38,14 @@ type Claim struct {
 	// included in userinfo/introspect endpoints only
 	Opaque bool `json:"opaque,omitempty"`
 
+	// saml name
+	// Example: email
+	SamlName string `json:"saml_name,omitempty"`
+
+	// saml name format
+	// Example: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
+	SamlNameFormat string `json:"saml_name_format,omitempty"`
+
 	// list of scopes - when at least one of listed scopes has been granted to a client, then claim will be added to id / access token.
 	// In case of empty array claim is always added.
 	// Example: ["email","email_verified"]

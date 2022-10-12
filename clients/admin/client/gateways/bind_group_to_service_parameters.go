@@ -54,10 +54,12 @@ func NewBindGroupToServiceParamsWithHTTPClient(client *http.Client) *BindGroupTo
 	}
 }
 
-/* BindGroupToServiceParams contains all the parameters to send to the API endpoint
-   for the bind group to service operation.
+/*
+BindGroupToServiceParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the bind group to service operation.
+
+	Typically these are written to a http.Request.
 */
 type BindGroupToServiceParams struct {
 

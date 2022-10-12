@@ -75,7 +75,8 @@ func NewUpdateGatewayOK() *UpdateGatewayOK {
 	return &UpdateGatewayOK{}
 }
 
-/* UpdateGatewayOK describes a response with status code 200, with default header values.
+/*
+UpdateGatewayOK describes a response with status code 200, with default header values.
 
 Gateway
 */
@@ -83,9 +84,39 @@ type UpdateGatewayOK struct {
 	Payload *models.Gateway
 }
 
+// IsSuccess returns true when this update gateway o k response has a 2xx status code
+func (o *UpdateGatewayOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this update gateway o k response has a 3xx status code
+func (o *UpdateGatewayOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update gateway o k response has a 4xx status code
+func (o *UpdateGatewayOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this update gateway o k response has a 5xx status code
+func (o *UpdateGatewayOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update gateway o k response a status code equal to that given
+func (o *UpdateGatewayOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *UpdateGatewayOK) Error() string {
 	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayOK  %+v", 200, o.Payload)
 }
+
+func (o *UpdateGatewayOK) String() string {
+	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayOK  %+v", 200, o.Payload)
+}
+
 func (o *UpdateGatewayOK) GetPayload() *models.Gateway {
 	return o.Payload
 }
@@ -107,7 +138,8 @@ func NewUpdateGatewayBadRequest() *UpdateGatewayBadRequest {
 	return &UpdateGatewayBadRequest{}
 }
 
-/* UpdateGatewayBadRequest describes a response with status code 400, with default header values.
+/*
+UpdateGatewayBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -115,9 +147,39 @@ type UpdateGatewayBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update gateway bad request response has a 2xx status code
+func (o *UpdateGatewayBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update gateway bad request response has a 3xx status code
+func (o *UpdateGatewayBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update gateway bad request response has a 4xx status code
+func (o *UpdateGatewayBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update gateway bad request response has a 5xx status code
+func (o *UpdateGatewayBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update gateway bad request response a status code equal to that given
+func (o *UpdateGatewayBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *UpdateGatewayBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *UpdateGatewayBadRequest) String() string {
+	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *UpdateGatewayBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -139,7 +201,8 @@ func NewUpdateGatewayUnauthorized() *UpdateGatewayUnauthorized {
 	return &UpdateGatewayUnauthorized{}
 }
 
-/* UpdateGatewayUnauthorized describes a response with status code 401, with default header values.
+/*
+UpdateGatewayUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,9 +210,39 @@ type UpdateGatewayUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update gateway unauthorized response has a 2xx status code
+func (o *UpdateGatewayUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update gateway unauthorized response has a 3xx status code
+func (o *UpdateGatewayUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update gateway unauthorized response has a 4xx status code
+func (o *UpdateGatewayUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update gateway unauthorized response has a 5xx status code
+func (o *UpdateGatewayUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update gateway unauthorized response a status code equal to that given
+func (o *UpdateGatewayUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *UpdateGatewayUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *UpdateGatewayUnauthorized) String() string {
+	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *UpdateGatewayUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -171,7 +264,8 @@ func NewUpdateGatewayForbidden() *UpdateGatewayForbidden {
 	return &UpdateGatewayForbidden{}
 }
 
-/* UpdateGatewayForbidden describes a response with status code 403, with default header values.
+/*
+UpdateGatewayForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -179,9 +273,39 @@ type UpdateGatewayForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update gateway forbidden response has a 2xx status code
+func (o *UpdateGatewayForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update gateway forbidden response has a 3xx status code
+func (o *UpdateGatewayForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update gateway forbidden response has a 4xx status code
+func (o *UpdateGatewayForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update gateway forbidden response has a 5xx status code
+func (o *UpdateGatewayForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update gateway forbidden response a status code equal to that given
+func (o *UpdateGatewayForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *UpdateGatewayForbidden) Error() string {
 	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayForbidden  %+v", 403, o.Payload)
 }
+
+func (o *UpdateGatewayForbidden) String() string {
+	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayForbidden  %+v", 403, o.Payload)
+}
+
 func (o *UpdateGatewayForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -203,7 +327,8 @@ func NewUpdateGatewayNotFound() *UpdateGatewayNotFound {
 	return &UpdateGatewayNotFound{}
 }
 
-/* UpdateGatewayNotFound describes a response with status code 404, with default header values.
+/*
+UpdateGatewayNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -211,9 +336,39 @@ type UpdateGatewayNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update gateway not found response has a 2xx status code
+func (o *UpdateGatewayNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update gateway not found response has a 3xx status code
+func (o *UpdateGatewayNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update gateway not found response has a 4xx status code
+func (o *UpdateGatewayNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update gateway not found response has a 5xx status code
+func (o *UpdateGatewayNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update gateway not found response a status code equal to that given
+func (o *UpdateGatewayNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *UpdateGatewayNotFound) Error() string {
 	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayNotFound  %+v", 404, o.Payload)
 }
+
+func (o *UpdateGatewayNotFound) String() string {
+	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayNotFound  %+v", 404, o.Payload)
+}
+
 func (o *UpdateGatewayNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +390,8 @@ func NewUpdateGatewayUnprocessableEntity() *UpdateGatewayUnprocessableEntity {
 	return &UpdateGatewayUnprocessableEntity{}
 }
 
-/* UpdateGatewayUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+UpdateGatewayUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -243,9 +399,39 @@ type UpdateGatewayUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update gateway unprocessable entity response has a 2xx status code
+func (o *UpdateGatewayUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update gateway unprocessable entity response has a 3xx status code
+func (o *UpdateGatewayUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update gateway unprocessable entity response has a 4xx status code
+func (o *UpdateGatewayUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update gateway unprocessable entity response has a 5xx status code
+func (o *UpdateGatewayUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update gateway unprocessable entity response a status code equal to that given
+func (o *UpdateGatewayUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *UpdateGatewayUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *UpdateGatewayUnprocessableEntity) String() string {
+	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *UpdateGatewayUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -267,7 +453,8 @@ func NewUpdateGatewayTooManyRequests() *UpdateGatewayTooManyRequests {
 	return &UpdateGatewayTooManyRequests{}
 }
 
-/* UpdateGatewayTooManyRequests describes a response with status code 429, with default header values.
+/*
+UpdateGatewayTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -275,9 +462,39 @@ type UpdateGatewayTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update gateway too many requests response has a 2xx status code
+func (o *UpdateGatewayTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update gateway too many requests response has a 3xx status code
+func (o *UpdateGatewayTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update gateway too many requests response has a 4xx status code
+func (o *UpdateGatewayTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update gateway too many requests response has a 5xx status code
+func (o *UpdateGatewayTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update gateway too many requests response a status code equal to that given
+func (o *UpdateGatewayTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *UpdateGatewayTooManyRequests) Error() string {
 	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *UpdateGatewayTooManyRequests) String() string {
+	return fmt.Sprintf("[PUT /gateways/{gw}][%d] updateGatewayTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *UpdateGatewayTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

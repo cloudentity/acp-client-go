@@ -87,7 +87,8 @@ func NewCreateAccountAccessConsentRequestCreated() *CreateAccountAccessConsentRe
 	return &CreateAccountAccessConsentRequestCreated{}
 }
 
-/* CreateAccountAccessConsentRequestCreated describes a response with status code 201, with default header values.
+/*
+CreateAccountAccessConsentRequestCreated describes a response with status code 201, with default header values.
 
 Account access consent
 */
@@ -95,9 +96,39 @@ type CreateAccountAccessConsentRequestCreated struct {
 	Payload *models.AccountAccessConsentResponse
 }
 
+// IsSuccess returns true when this create account access consent request created response has a 2xx status code
+func (o *CreateAccountAccessConsentRequestCreated) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this create account access consent request created response has a 3xx status code
+func (o *CreateAccountAccessConsentRequestCreated) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create account access consent request created response has a 4xx status code
+func (o *CreateAccountAccessConsentRequestCreated) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create account access consent request created response has a 5xx status code
+func (o *CreateAccountAccessConsentRequestCreated) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create account access consent request created response a status code equal to that given
+func (o *CreateAccountAccessConsentRequestCreated) IsCode(code int) bool {
+	return code == 201
+}
+
 func (o *CreateAccountAccessConsentRequestCreated) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestCreated  %+v", 201, o.Payload)
 }
+
+func (o *CreateAccountAccessConsentRequestCreated) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestCreated  %+v", 201, o.Payload)
+}
+
 func (o *CreateAccountAccessConsentRequestCreated) GetPayload() *models.AccountAccessConsentResponse {
 	return o.Payload
 }
@@ -119,7 +150,8 @@ func NewCreateAccountAccessConsentRequestBadRequest() *CreateAccountAccessConsen
 	return &CreateAccountAccessConsentRequestBadRequest{}
 }
 
-/* CreateAccountAccessConsentRequestBadRequest describes a response with status code 400, with default header values.
+/*
+CreateAccountAccessConsentRequestBadRequest describes a response with status code 400, with default header values.
 
 Error
 */
@@ -127,9 +159,39 @@ type CreateAccountAccessConsentRequestBadRequest struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this create account access consent request bad request response has a 2xx status code
+func (o *CreateAccountAccessConsentRequestBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create account access consent request bad request response has a 3xx status code
+func (o *CreateAccountAccessConsentRequestBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create account access consent request bad request response has a 4xx status code
+func (o *CreateAccountAccessConsentRequestBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create account access consent request bad request response has a 5xx status code
+func (o *CreateAccountAccessConsentRequestBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create account access consent request bad request response a status code equal to that given
+func (o *CreateAccountAccessConsentRequestBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *CreateAccountAccessConsentRequestBadRequest) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *CreateAccountAccessConsentRequestBadRequest) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *CreateAccountAccessConsentRequestBadRequest) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -151,7 +213,8 @@ func NewCreateAccountAccessConsentRequestUnauthorized() *CreateAccountAccessCons
 	return &CreateAccountAccessConsentRequestUnauthorized{}
 }
 
-/* CreateAccountAccessConsentRequestUnauthorized describes a response with status code 401, with default header values.
+/*
+CreateAccountAccessConsentRequestUnauthorized describes a response with status code 401, with default header values.
 
 Error
 */
@@ -159,9 +222,39 @@ type CreateAccountAccessConsentRequestUnauthorized struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this create account access consent request unauthorized response has a 2xx status code
+func (o *CreateAccountAccessConsentRequestUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create account access consent request unauthorized response has a 3xx status code
+func (o *CreateAccountAccessConsentRequestUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create account access consent request unauthorized response has a 4xx status code
+func (o *CreateAccountAccessConsentRequestUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create account access consent request unauthorized response has a 5xx status code
+func (o *CreateAccountAccessConsentRequestUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create account access consent request unauthorized response a status code equal to that given
+func (o *CreateAccountAccessConsentRequestUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *CreateAccountAccessConsentRequestUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *CreateAccountAccessConsentRequestUnauthorized) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *CreateAccountAccessConsentRequestUnauthorized) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -183,7 +276,8 @@ func NewCreateAccountAccessConsentRequestForbidden() *CreateAccountAccessConsent
 	return &CreateAccountAccessConsentRequestForbidden{}
 }
 
-/* CreateAccountAccessConsentRequestForbidden describes a response with status code 403, with default header values.
+/*
+CreateAccountAccessConsentRequestForbidden describes a response with status code 403, with default header values.
 
 Error
 */
@@ -191,9 +285,39 @@ type CreateAccountAccessConsentRequestForbidden struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this create account access consent request forbidden response has a 2xx status code
+func (o *CreateAccountAccessConsentRequestForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create account access consent request forbidden response has a 3xx status code
+func (o *CreateAccountAccessConsentRequestForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create account access consent request forbidden response has a 4xx status code
+func (o *CreateAccountAccessConsentRequestForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create account access consent request forbidden response has a 5xx status code
+func (o *CreateAccountAccessConsentRequestForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create account access consent request forbidden response a status code equal to that given
+func (o *CreateAccountAccessConsentRequestForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *CreateAccountAccessConsentRequestForbidden) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestForbidden  %+v", 403, o.Payload)
 }
+
+func (o *CreateAccountAccessConsentRequestForbidden) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestForbidden  %+v", 403, o.Payload)
+}
+
 func (o *CreateAccountAccessConsentRequestForbidden) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -215,7 +339,8 @@ func NewCreateAccountAccessConsentRequestMethodNotAllowed() *CreateAccountAccess
 	return &CreateAccountAccessConsentRequestMethodNotAllowed{}
 }
 
-/* CreateAccountAccessConsentRequestMethodNotAllowed describes a response with status code 405, with default header values.
+/*
+CreateAccountAccessConsentRequestMethodNotAllowed describes a response with status code 405, with default header values.
 
 Error
 */
@@ -223,9 +348,39 @@ type CreateAccountAccessConsentRequestMethodNotAllowed struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this create account access consent request method not allowed response has a 2xx status code
+func (o *CreateAccountAccessConsentRequestMethodNotAllowed) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create account access consent request method not allowed response has a 3xx status code
+func (o *CreateAccountAccessConsentRequestMethodNotAllowed) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create account access consent request method not allowed response has a 4xx status code
+func (o *CreateAccountAccessConsentRequestMethodNotAllowed) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create account access consent request method not allowed response has a 5xx status code
+func (o *CreateAccountAccessConsentRequestMethodNotAllowed) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create account access consent request method not allowed response a status code equal to that given
+func (o *CreateAccountAccessConsentRequestMethodNotAllowed) IsCode(code int) bool {
+	return code == 405
+}
+
 func (o *CreateAccountAccessConsentRequestMethodNotAllowed) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestMethodNotAllowed  %+v", 405, o.Payload)
 }
+
+func (o *CreateAccountAccessConsentRequestMethodNotAllowed) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestMethodNotAllowed  %+v", 405, o.Payload)
+}
+
 func (o *CreateAccountAccessConsentRequestMethodNotAllowed) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -247,7 +402,8 @@ func NewCreateAccountAccessConsentRequestNotAcceptable() *CreateAccountAccessCon
 	return &CreateAccountAccessConsentRequestNotAcceptable{}
 }
 
-/* CreateAccountAccessConsentRequestNotAcceptable describes a response with status code 406, with default header values.
+/*
+CreateAccountAccessConsentRequestNotAcceptable describes a response with status code 406, with default header values.
 
 Error
 */
@@ -255,9 +411,39 @@ type CreateAccountAccessConsentRequestNotAcceptable struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this create account access consent request not acceptable response has a 2xx status code
+func (o *CreateAccountAccessConsentRequestNotAcceptable) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create account access consent request not acceptable response has a 3xx status code
+func (o *CreateAccountAccessConsentRequestNotAcceptable) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create account access consent request not acceptable response has a 4xx status code
+func (o *CreateAccountAccessConsentRequestNotAcceptable) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create account access consent request not acceptable response has a 5xx status code
+func (o *CreateAccountAccessConsentRequestNotAcceptable) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create account access consent request not acceptable response a status code equal to that given
+func (o *CreateAccountAccessConsentRequestNotAcceptable) IsCode(code int) bool {
+	return code == 406
+}
+
 func (o *CreateAccountAccessConsentRequestNotAcceptable) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestNotAcceptable  %+v", 406, o.Payload)
 }
+
+func (o *CreateAccountAccessConsentRequestNotAcceptable) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestNotAcceptable  %+v", 406, o.Payload)
+}
+
 func (o *CreateAccountAccessConsentRequestNotAcceptable) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -279,7 +465,8 @@ func NewCreateAccountAccessConsentRequestUnsupportedMediaType() *CreateAccountAc
 	return &CreateAccountAccessConsentRequestUnsupportedMediaType{}
 }
 
-/* CreateAccountAccessConsentRequestUnsupportedMediaType describes a response with status code 415, with default header values.
+/*
+CreateAccountAccessConsentRequestUnsupportedMediaType describes a response with status code 415, with default header values.
 
 Error
 */
@@ -287,9 +474,39 @@ type CreateAccountAccessConsentRequestUnsupportedMediaType struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this create account access consent request unsupported media type response has a 2xx status code
+func (o *CreateAccountAccessConsentRequestUnsupportedMediaType) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create account access consent request unsupported media type response has a 3xx status code
+func (o *CreateAccountAccessConsentRequestUnsupportedMediaType) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create account access consent request unsupported media type response has a 4xx status code
+func (o *CreateAccountAccessConsentRequestUnsupportedMediaType) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create account access consent request unsupported media type response has a 5xx status code
+func (o *CreateAccountAccessConsentRequestUnsupportedMediaType) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create account access consent request unsupported media type response a status code equal to that given
+func (o *CreateAccountAccessConsentRequestUnsupportedMediaType) IsCode(code int) bool {
+	return code == 415
+}
+
 func (o *CreateAccountAccessConsentRequestUnsupportedMediaType) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestUnsupportedMediaType  %+v", 415, o.Payload)
 }
+
+func (o *CreateAccountAccessConsentRequestUnsupportedMediaType) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestUnsupportedMediaType  %+v", 415, o.Payload)
+}
+
 func (o *CreateAccountAccessConsentRequestUnsupportedMediaType) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -311,7 +528,8 @@ func NewCreateAccountAccessConsentRequestTooManyRequests() *CreateAccountAccessC
 	return &CreateAccountAccessConsentRequestTooManyRequests{}
 }
 
-/* CreateAccountAccessConsentRequestTooManyRequests describes a response with status code 429, with default header values.
+/*
+CreateAccountAccessConsentRequestTooManyRequests describes a response with status code 429, with default header values.
 
 Error
 */
@@ -319,9 +537,39 @@ type CreateAccountAccessConsentRequestTooManyRequests struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this create account access consent request too many requests response has a 2xx status code
+func (o *CreateAccountAccessConsentRequestTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create account access consent request too many requests response has a 3xx status code
+func (o *CreateAccountAccessConsentRequestTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create account access consent request too many requests response has a 4xx status code
+func (o *CreateAccountAccessConsentRequestTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create account access consent request too many requests response has a 5xx status code
+func (o *CreateAccountAccessConsentRequestTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create account access consent request too many requests response a status code equal to that given
+func (o *CreateAccountAccessConsentRequestTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *CreateAccountAccessConsentRequestTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *CreateAccountAccessConsentRequestTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *CreateAccountAccessConsentRequestTooManyRequests) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -343,7 +591,8 @@ func NewCreateAccountAccessConsentRequestInternalServerError() *CreateAccountAcc
 	return &CreateAccountAccessConsentRequestInternalServerError{}
 }
 
-/* CreateAccountAccessConsentRequestInternalServerError describes a response with status code 500, with default header values.
+/*
+CreateAccountAccessConsentRequestInternalServerError describes a response with status code 500, with default header values.
 
 Error
 */
@@ -351,9 +600,39 @@ type CreateAccountAccessConsentRequestInternalServerError struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this create account access consent request internal server error response has a 2xx status code
+func (o *CreateAccountAccessConsentRequestInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create account access consent request internal server error response has a 3xx status code
+func (o *CreateAccountAccessConsentRequestInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create account access consent request internal server error response has a 4xx status code
+func (o *CreateAccountAccessConsentRequestInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create account access consent request internal server error response has a 5xx status code
+func (o *CreateAccountAccessConsentRequestInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this create account access consent request internal server error response a status code equal to that given
+func (o *CreateAccountAccessConsentRequestInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *CreateAccountAccessConsentRequestInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *CreateAccountAccessConsentRequestInternalServerError) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents][%d] createAccountAccessConsentRequestInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *CreateAccountAccessConsentRequestInternalServerError) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

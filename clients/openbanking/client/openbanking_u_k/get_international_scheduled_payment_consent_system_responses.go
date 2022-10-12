@@ -63,7 +63,8 @@ func NewGetInternationalScheduledPaymentConsentSystemOK() *GetInternationalSched
 	return &GetInternationalScheduledPaymentConsentSystemOK{}
 }
 
-/* GetInternationalScheduledPaymentConsentSystemOK describes a response with status code 200, with default header values.
+/*
+GetInternationalScheduledPaymentConsentSystemOK describes a response with status code 200, with default header values.
 
 GetInternationalScheduledPaymentConsentResponse
 */
@@ -71,9 +72,39 @@ type GetInternationalScheduledPaymentConsentSystemOK struct {
 	Payload *models.GetInternationalScheduledPaymentConsentResponse
 }
 
+// IsSuccess returns true when this get international scheduled payment consent system o k response has a 2xx status code
+func (o *GetInternationalScheduledPaymentConsentSystemOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get international scheduled payment consent system o k response has a 3xx status code
+func (o *GetInternationalScheduledPaymentConsentSystemOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get international scheduled payment consent system o k response has a 4xx status code
+func (o *GetInternationalScheduledPaymentConsentSystemOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get international scheduled payment consent system o k response has a 5xx status code
+func (o *GetInternationalScheduledPaymentConsentSystemOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get international scheduled payment consent system o k response a status code equal to that given
+func (o *GetInternationalScheduledPaymentConsentSystemOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetInternationalScheduledPaymentConsentSystemOK) Error() string {
 	return fmt.Sprintf("[GET /open-banking/international-scheduled-payment-consent/{login}][%d] getInternationalScheduledPaymentConsentSystemOK  %+v", 200, o.Payload)
 }
+
+func (o *GetInternationalScheduledPaymentConsentSystemOK) String() string {
+	return fmt.Sprintf("[GET /open-banking/international-scheduled-payment-consent/{login}][%d] getInternationalScheduledPaymentConsentSystemOK  %+v", 200, o.Payload)
+}
+
 func (o *GetInternationalScheduledPaymentConsentSystemOK) GetPayload() *models.GetInternationalScheduledPaymentConsentResponse {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewGetInternationalScheduledPaymentConsentSystemUnauthorized() *GetInternat
 	return &GetInternationalScheduledPaymentConsentSystemUnauthorized{}
 }
 
-/* GetInternationalScheduledPaymentConsentSystemUnauthorized describes a response with status code 401, with default header values.
+/*
+GetInternationalScheduledPaymentConsentSystemUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type GetInternationalScheduledPaymentConsentSystemUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get international scheduled payment consent system unauthorized response has a 2xx status code
+func (o *GetInternationalScheduledPaymentConsentSystemUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get international scheduled payment consent system unauthorized response has a 3xx status code
+func (o *GetInternationalScheduledPaymentConsentSystemUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get international scheduled payment consent system unauthorized response has a 4xx status code
+func (o *GetInternationalScheduledPaymentConsentSystemUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get international scheduled payment consent system unauthorized response has a 5xx status code
+func (o *GetInternationalScheduledPaymentConsentSystemUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get international scheduled payment consent system unauthorized response a status code equal to that given
+func (o *GetInternationalScheduledPaymentConsentSystemUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *GetInternationalScheduledPaymentConsentSystemUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /open-banking/international-scheduled-payment-consent/{login}][%d] getInternationalScheduledPaymentConsentSystemUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *GetInternationalScheduledPaymentConsentSystemUnauthorized) String() string {
+	return fmt.Sprintf("[GET /open-banking/international-scheduled-payment-consent/{login}][%d] getInternationalScheduledPaymentConsentSystemUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *GetInternationalScheduledPaymentConsentSystemUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewGetInternationalScheduledPaymentConsentSystemForbidden() *GetInternation
 	return &GetInternationalScheduledPaymentConsentSystemForbidden{}
 }
 
-/* GetInternationalScheduledPaymentConsentSystemForbidden describes a response with status code 403, with default header values.
+/*
+GetInternationalScheduledPaymentConsentSystemForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type GetInternationalScheduledPaymentConsentSystemForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get international scheduled payment consent system forbidden response has a 2xx status code
+func (o *GetInternationalScheduledPaymentConsentSystemForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get international scheduled payment consent system forbidden response has a 3xx status code
+func (o *GetInternationalScheduledPaymentConsentSystemForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get international scheduled payment consent system forbidden response has a 4xx status code
+func (o *GetInternationalScheduledPaymentConsentSystemForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get international scheduled payment consent system forbidden response has a 5xx status code
+func (o *GetInternationalScheduledPaymentConsentSystemForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get international scheduled payment consent system forbidden response a status code equal to that given
+func (o *GetInternationalScheduledPaymentConsentSystemForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetInternationalScheduledPaymentConsentSystemForbidden) Error() string {
 	return fmt.Sprintf("[GET /open-banking/international-scheduled-payment-consent/{login}][%d] getInternationalScheduledPaymentConsentSystemForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetInternationalScheduledPaymentConsentSystemForbidden) String() string {
+	return fmt.Sprintf("[GET /open-banking/international-scheduled-payment-consent/{login}][%d] getInternationalScheduledPaymentConsentSystemForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetInternationalScheduledPaymentConsentSystemForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewGetInternationalScheduledPaymentConsentSystemNotFound() *GetInternationa
 	return &GetInternationalScheduledPaymentConsentSystemNotFound{}
 }
 
-/* GetInternationalScheduledPaymentConsentSystemNotFound describes a response with status code 404, with default header values.
+/*
+GetInternationalScheduledPaymentConsentSystemNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type GetInternationalScheduledPaymentConsentSystemNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get international scheduled payment consent system not found response has a 2xx status code
+func (o *GetInternationalScheduledPaymentConsentSystemNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get international scheduled payment consent system not found response has a 3xx status code
+func (o *GetInternationalScheduledPaymentConsentSystemNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get international scheduled payment consent system not found response has a 4xx status code
+func (o *GetInternationalScheduledPaymentConsentSystemNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get international scheduled payment consent system not found response has a 5xx status code
+func (o *GetInternationalScheduledPaymentConsentSystemNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get international scheduled payment consent system not found response a status code equal to that given
+func (o *GetInternationalScheduledPaymentConsentSystemNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *GetInternationalScheduledPaymentConsentSystemNotFound) Error() string {
 	return fmt.Sprintf("[GET /open-banking/international-scheduled-payment-consent/{login}][%d] getInternationalScheduledPaymentConsentSystemNotFound  %+v", 404, o.Payload)
 }
+
+func (o *GetInternationalScheduledPaymentConsentSystemNotFound) String() string {
+	return fmt.Sprintf("[GET /open-banking/international-scheduled-payment-consent/{login}][%d] getInternationalScheduledPaymentConsentSystemNotFound  %+v", 404, o.Payload)
+}
+
 func (o *GetInternationalScheduledPaymentConsentSystemNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewGetInternationalScheduledPaymentConsentSystemTooManyRequests() *GetInter
 	return &GetInternationalScheduledPaymentConsentSystemTooManyRequests{}
 }
 
-/* GetInternationalScheduledPaymentConsentSystemTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetInternationalScheduledPaymentConsentSystemTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type GetInternationalScheduledPaymentConsentSystemTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get international scheduled payment consent system too many requests response has a 2xx status code
+func (o *GetInternationalScheduledPaymentConsentSystemTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get international scheduled payment consent system too many requests response has a 3xx status code
+func (o *GetInternationalScheduledPaymentConsentSystemTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get international scheduled payment consent system too many requests response has a 4xx status code
+func (o *GetInternationalScheduledPaymentConsentSystemTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get international scheduled payment consent system too many requests response has a 5xx status code
+func (o *GetInternationalScheduledPaymentConsentSystemTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get international scheduled payment consent system too many requests response a status code equal to that given
+func (o *GetInternationalScheduledPaymentConsentSystemTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *GetInternationalScheduledPaymentConsentSystemTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /open-banking/international-scheduled-payment-consent/{login}][%d] getInternationalScheduledPaymentConsentSystemTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *GetInternationalScheduledPaymentConsentSystemTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /open-banking/international-scheduled-payment-consent/{login}][%d] getInternationalScheduledPaymentConsentSystemTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *GetInternationalScheduledPaymentConsentSystemTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

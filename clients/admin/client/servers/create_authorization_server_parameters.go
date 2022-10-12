@@ -55,10 +55,12 @@ func NewCreateAuthorizationServerParamsWithHTTPClient(client *http.Client) *Crea
 	}
 }
 
-/* CreateAuthorizationServerParams contains all the parameters to send to the API endpoint
-   for the create authorization server operation.
+/*
+CreateAuthorizationServerParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the create authorization server operation.
+
+	Typically these are written to a http.Request.
 */
 type CreateAuthorizationServerParams struct {
 

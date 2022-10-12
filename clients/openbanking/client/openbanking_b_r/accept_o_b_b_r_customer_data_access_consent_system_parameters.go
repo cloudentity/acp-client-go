@@ -54,10 +54,12 @@ func NewAcceptOBBRCustomerDataAccessConsentSystemParamsWithHTTPClient(client *ht
 	}
 }
 
-/* AcceptOBBRCustomerDataAccessConsentSystemParams contains all the parameters to send to the API endpoint
-   for the accept o b b r customer data access consent system operation.
+/*
+AcceptOBBRCustomerDataAccessConsentSystemParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the accept o b b r customer data access consent system operation.
+
+	Typically these are written to a http.Request.
 */
 type AcceptOBBRCustomerDataAccessConsentSystemParams struct {
 

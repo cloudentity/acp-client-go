@@ -54,10 +54,12 @@ func NewPushGatewayRequestsParamsWithHTTPClient(client *http.Client) *PushGatewa
 	}
 }
 
-/* PushGatewayRequestsParams contains all the parameters to send to the API endpoint
-   for the push gateway requests operation.
+/*
+PushGatewayRequestsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the push gateway requests operation.
+
+	Typically these are written to a http.Request.
 */
 type PushGatewayRequestsParams struct {
 

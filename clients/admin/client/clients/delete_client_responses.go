@@ -69,14 +69,44 @@ func NewDeleteClientNoContent() *DeleteClientNoContent {
 	return &DeleteClientNoContent{}
 }
 
-/* DeleteClientNoContent describes a response with status code 204, with default header values.
+/*
+DeleteClientNoContent describes a response with status code 204, with default header values.
 
-Client has been deleted
+	Client has been deleted
 */
 type DeleteClientNoContent struct {
 }
 
+// IsSuccess returns true when this delete client no content response has a 2xx status code
+func (o *DeleteClientNoContent) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this delete client no content response has a 3xx status code
+func (o *DeleteClientNoContent) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete client no content response has a 4xx status code
+func (o *DeleteClientNoContent) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this delete client no content response has a 5xx status code
+func (o *DeleteClientNoContent) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete client no content response a status code equal to that given
+func (o *DeleteClientNoContent) IsCode(code int) bool {
+	return code == 204
+}
+
 func (o *DeleteClientNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /clients/{cid}][%d] deleteClientNoContent ", 204)
+}
+
+func (o *DeleteClientNoContent) String() string {
 	return fmt.Sprintf("[DELETE /clients/{cid}][%d] deleteClientNoContent ", 204)
 }
 
@@ -90,7 +120,8 @@ func NewDeleteClientBadRequest() *DeleteClientBadRequest {
 	return &DeleteClientBadRequest{}
 }
 
-/* DeleteClientBadRequest describes a response with status code 400, with default header values.
+/*
+DeleteClientBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -98,9 +129,39 @@ type DeleteClientBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete client bad request response has a 2xx status code
+func (o *DeleteClientBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete client bad request response has a 3xx status code
+func (o *DeleteClientBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete client bad request response has a 4xx status code
+func (o *DeleteClientBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete client bad request response has a 5xx status code
+func (o *DeleteClientBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete client bad request response a status code equal to that given
+func (o *DeleteClientBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *DeleteClientBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /clients/{cid}][%d] deleteClientBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *DeleteClientBadRequest) String() string {
+	return fmt.Sprintf("[DELETE /clients/{cid}][%d] deleteClientBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *DeleteClientBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -122,7 +183,8 @@ func NewDeleteClientUnauthorized() *DeleteClientUnauthorized {
 	return &DeleteClientUnauthorized{}
 }
 
-/* DeleteClientUnauthorized describes a response with status code 401, with default header values.
+/*
+DeleteClientUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -130,9 +192,39 @@ type DeleteClientUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete client unauthorized response has a 2xx status code
+func (o *DeleteClientUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete client unauthorized response has a 3xx status code
+func (o *DeleteClientUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete client unauthorized response has a 4xx status code
+func (o *DeleteClientUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete client unauthorized response has a 5xx status code
+func (o *DeleteClientUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete client unauthorized response a status code equal to that given
+func (o *DeleteClientUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *DeleteClientUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /clients/{cid}][%d] deleteClientUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *DeleteClientUnauthorized) String() string {
+	return fmt.Sprintf("[DELETE /clients/{cid}][%d] deleteClientUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *DeleteClientUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -154,7 +246,8 @@ func NewDeleteClientForbidden() *DeleteClientForbidden {
 	return &DeleteClientForbidden{}
 }
 
-/* DeleteClientForbidden describes a response with status code 403, with default header values.
+/*
+DeleteClientForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -162,9 +255,39 @@ type DeleteClientForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete client forbidden response has a 2xx status code
+func (o *DeleteClientForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete client forbidden response has a 3xx status code
+func (o *DeleteClientForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete client forbidden response has a 4xx status code
+func (o *DeleteClientForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete client forbidden response has a 5xx status code
+func (o *DeleteClientForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete client forbidden response a status code equal to that given
+func (o *DeleteClientForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *DeleteClientForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /clients/{cid}][%d] deleteClientForbidden  %+v", 403, o.Payload)
 }
+
+func (o *DeleteClientForbidden) String() string {
+	return fmt.Sprintf("[DELETE /clients/{cid}][%d] deleteClientForbidden  %+v", 403, o.Payload)
+}
+
 func (o *DeleteClientForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -186,7 +309,8 @@ func NewDeleteClientNotFound() *DeleteClientNotFound {
 	return &DeleteClientNotFound{}
 }
 
-/* DeleteClientNotFound describes a response with status code 404, with default header values.
+/*
+DeleteClientNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -194,9 +318,39 @@ type DeleteClientNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete client not found response has a 2xx status code
+func (o *DeleteClientNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete client not found response has a 3xx status code
+func (o *DeleteClientNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete client not found response has a 4xx status code
+func (o *DeleteClientNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete client not found response has a 5xx status code
+func (o *DeleteClientNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete client not found response a status code equal to that given
+func (o *DeleteClientNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *DeleteClientNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /clients/{cid}][%d] deleteClientNotFound  %+v", 404, o.Payload)
 }
+
+func (o *DeleteClientNotFound) String() string {
+	return fmt.Sprintf("[DELETE /clients/{cid}][%d] deleteClientNotFound  %+v", 404, o.Payload)
+}
+
 func (o *DeleteClientNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -218,7 +372,8 @@ func NewDeleteClientTooManyRequests() *DeleteClientTooManyRequests {
 	return &DeleteClientTooManyRequests{}
 }
 
-/* DeleteClientTooManyRequests describes a response with status code 429, with default header values.
+/*
+DeleteClientTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -226,9 +381,39 @@ type DeleteClientTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete client too many requests response has a 2xx status code
+func (o *DeleteClientTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete client too many requests response has a 3xx status code
+func (o *DeleteClientTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete client too many requests response has a 4xx status code
+func (o *DeleteClientTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete client too many requests response has a 5xx status code
+func (o *DeleteClientTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete client too many requests response a status code equal to that given
+func (o *DeleteClientTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *DeleteClientTooManyRequests) Error() string {
 	return fmt.Sprintf("[DELETE /clients/{cid}][%d] deleteClientTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *DeleteClientTooManyRequests) String() string {
+	return fmt.Sprintf("[DELETE /clients/{cid}][%d] deleteClientTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *DeleteClientTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

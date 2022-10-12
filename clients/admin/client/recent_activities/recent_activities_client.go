@@ -36,9 +36,9 @@ type ClientService interface {
 }
 
 /*
-  GetRecentActivities gets recent activities
+GetRecentActivities gets recent activities
 
-  Get recent activities
+Get recent activities
 */
 func (a *Client) GetRecentActivities(params *GetRecentActivitiesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetRecentActivitiesOK, error) {
 	// TODO: Validate the params before sending

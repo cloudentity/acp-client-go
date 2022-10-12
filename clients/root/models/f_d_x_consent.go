@@ -40,6 +40,10 @@ type FDXConsent struct {
 	// Format: date-time
 	ExpirationTime strfmt.DateTime `json:"expirationTime,omitempty"`
 
+	// Enumeration of the Clusters of granted data elements permissioned by this Consent Grant.
+	// Data Clusters are described in FDX RFC 0167.
+	GrantedResources []*FDXGrantedResource `json:"granted_resources"`
+
 	// id
 	ID FDXConsentID `json:"id,omitempty"`
 
@@ -51,9 +55,9 @@ type FDXConsent struct {
 	// and populated during issuance by DataProvider from its registry;
 	Parties []*FDXConsentGrantParty `json:"parties"`
 
-	// Enumeration of the Clusters of data elements permissioned by this Consent Grant.
+	// Enumeration of the Clusters of requested data elements permissioned by this Consent Grant.
 	// Data Clusters are described in FDX RFC 0167.
-	Resources []*FDXGrantedResource `json:"resources"`
+	Resources []*FDXRequestedResource `json:"resources"`
 
 	// revocation reason
 	RevocationReason *FDXConsentRevocation `json:"revocationReason,omitempty"`
@@ -82,6 +86,10 @@ func (m *FDXConsent) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateExpirationTime(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateGrantedResources(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -151,6 +159,32 @@ func (m *FDXConsent) validateExpirationTime(formats strfmt.Registry) error {
 
 	if err := validate.FormatOf("expirationTime", "body", "date-time", m.ExpirationTime.String(), formats); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *FDXConsent) validateGrantedResources(formats strfmt.Registry) error {
+	if swag.IsZero(m.GrantedResources) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.GrantedResources); i++ {
+		if swag.IsZero(m.GrantedResources[i]) { // not required
+			continue
+		}
+
+		if m.GrantedResources[i] != nil {
+			if err := m.GrantedResources[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("granted_resources" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("granted_resources" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -281,6 +315,10 @@ func (m *FDXConsent) ContextValidate(ctx context.Context, formats strfmt.Registr
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateGrantedResources(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateID(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -316,6 +354,26 @@ func (m *FDXConsent) contextValidateDurationType(ctx context.Context, formats st
 			return ce.ValidateName("durationType")
 		}
 		return err
+	}
+
+	return nil
+}
+
+func (m *FDXConsent) contextValidateGrantedResources(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.GrantedResources); i++ {
+
+		if m.GrantedResources[i] != nil {
+			if err := m.GrantedResources[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("granted_resources" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("granted_resources" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil

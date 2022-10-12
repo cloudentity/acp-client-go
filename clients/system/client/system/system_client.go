@@ -34,11 +34,13 @@ type ClientService interface {
 
 	GatewayIntrospect(params *GatewayIntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GatewayIntrospectOK, error)
 
+	RevokeTokens(params *RevokeTokensParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeTokensNoContent, error)
+
 	SetTransport(transport runtime.ClientTransport)
 }
 
 /*
-  GatewayExchange Exchange token endpoint as a gateway
+GatewayExchange Exchange token endpoint as a gateway
 */
 func (a *Client) GatewayExchange(params *GatewayExchangeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GatewayExchangeOK, error) {
 	// TODO: Validate the params before sending
@@ -77,7 +79,7 @@ func (a *Client) GatewayExchange(params *GatewayExchangeParams, authInfo runtime
 }
 
 /*
-  GatewayIntrospect Introspect access token endpoint as a gateway
+GatewayIntrospect Introspect access token endpoint as a gateway
 */
 func (a *Client) GatewayIntrospect(params *GatewayIntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GatewayIntrospectOK, error) {
 	// TODO: Validate the params before sending
@@ -112,6 +114,47 @@ func (a *Client) GatewayIntrospect(params *GatewayIntrospectParams, authInfo run
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for gatewayIntrospect: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+RevokeTokens revokes tokens
+
+Revokes tokens issued for consent id provided in the query param.
+*/
+func (a *Client) RevokeTokens(params *RevokeTokensParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeTokensNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRevokeTokensParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "revokeTokens",
+		Method:             "DELETE",
+		PathPattern:        "/servers/{wid}/tokens",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RevokeTokensReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*RevokeTokensNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for revokeTokens: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

@@ -54,10 +54,12 @@ func NewUpdateAuth0IDPParamsWithHTTPClient(client *http.Client) *UpdateAuth0IDPP
 	}
 }
 
-/* UpdateAuth0IDPParams contains all the parameters to send to the API endpoint
-   for the update auth0 ID p operation.
+/*
+UpdateAuth0IDPParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update auth0 ID p operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateAuth0IDPParams struct {
 

@@ -75,7 +75,8 @@ func NewCreateCustomIDPCreated() *CreateCustomIDPCreated {
 	return &CreateCustomIDPCreated{}
 }
 
-/* CreateCustomIDPCreated describes a response with status code 201, with default header values.
+/*
+CreateCustomIDPCreated describes a response with status code 201, with default header values.
 
 CustomIDP
 */
@@ -83,9 +84,39 @@ type CreateCustomIDPCreated struct {
 	Payload *models.CustomIDP
 }
 
+// IsSuccess returns true when this create custom Id p created response has a 2xx status code
+func (o *CreateCustomIDPCreated) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this create custom Id p created response has a 3xx status code
+func (o *CreateCustomIDPCreated) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create custom Id p created response has a 4xx status code
+func (o *CreateCustomIDPCreated) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create custom Id p created response has a 5xx status code
+func (o *CreateCustomIDPCreated) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create custom Id p created response a status code equal to that given
+func (o *CreateCustomIDPCreated) IsCode(code int) bool {
+	return code == 201
+}
+
 func (o *CreateCustomIDPCreated) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/custom][%d] createCustomIdPCreated  %+v", 201, o.Payload)
 }
+
+func (o *CreateCustomIDPCreated) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/custom][%d] createCustomIdPCreated  %+v", 201, o.Payload)
+}
+
 func (o *CreateCustomIDPCreated) GetPayload() *models.CustomIDP {
 	return o.Payload
 }
@@ -107,7 +138,8 @@ func NewCreateCustomIDPBadRequest() *CreateCustomIDPBadRequest {
 	return &CreateCustomIDPBadRequest{}
 }
 
-/* CreateCustomIDPBadRequest describes a response with status code 400, with default header values.
+/*
+CreateCustomIDPBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -115,9 +147,39 @@ type CreateCustomIDPBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create custom Id p bad request response has a 2xx status code
+func (o *CreateCustomIDPBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create custom Id p bad request response has a 3xx status code
+func (o *CreateCustomIDPBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create custom Id p bad request response has a 4xx status code
+func (o *CreateCustomIDPBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create custom Id p bad request response has a 5xx status code
+func (o *CreateCustomIDPBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create custom Id p bad request response a status code equal to that given
+func (o *CreateCustomIDPBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *CreateCustomIDPBadRequest) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/custom][%d] createCustomIdPBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *CreateCustomIDPBadRequest) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/custom][%d] createCustomIdPBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *CreateCustomIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -139,7 +201,8 @@ func NewCreateCustomIDPUnauthorized() *CreateCustomIDPUnauthorized {
 	return &CreateCustomIDPUnauthorized{}
 }
 
-/* CreateCustomIDPUnauthorized describes a response with status code 401, with default header values.
+/*
+CreateCustomIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,9 +210,39 @@ type CreateCustomIDPUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create custom Id p unauthorized response has a 2xx status code
+func (o *CreateCustomIDPUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create custom Id p unauthorized response has a 3xx status code
+func (o *CreateCustomIDPUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create custom Id p unauthorized response has a 4xx status code
+func (o *CreateCustomIDPUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create custom Id p unauthorized response has a 5xx status code
+func (o *CreateCustomIDPUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create custom Id p unauthorized response a status code equal to that given
+func (o *CreateCustomIDPUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *CreateCustomIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/custom][%d] createCustomIdPUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *CreateCustomIDPUnauthorized) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/custom][%d] createCustomIdPUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *CreateCustomIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -171,7 +264,8 @@ func NewCreateCustomIDPForbidden() *CreateCustomIDPForbidden {
 	return &CreateCustomIDPForbidden{}
 }
 
-/* CreateCustomIDPForbidden describes a response with status code 403, with default header values.
+/*
+CreateCustomIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -179,9 +273,39 @@ type CreateCustomIDPForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create custom Id p forbidden response has a 2xx status code
+func (o *CreateCustomIDPForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create custom Id p forbidden response has a 3xx status code
+func (o *CreateCustomIDPForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create custom Id p forbidden response has a 4xx status code
+func (o *CreateCustomIDPForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create custom Id p forbidden response has a 5xx status code
+func (o *CreateCustomIDPForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create custom Id p forbidden response a status code equal to that given
+func (o *CreateCustomIDPForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *CreateCustomIDPForbidden) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/custom][%d] createCustomIdPForbidden  %+v", 403, o.Payload)
 }
+
+func (o *CreateCustomIDPForbidden) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/custom][%d] createCustomIdPForbidden  %+v", 403, o.Payload)
+}
+
 func (o *CreateCustomIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -203,7 +327,8 @@ func NewCreateCustomIDPNotFound() *CreateCustomIDPNotFound {
 	return &CreateCustomIDPNotFound{}
 }
 
-/* CreateCustomIDPNotFound describes a response with status code 404, with default header values.
+/*
+CreateCustomIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -211,9 +336,39 @@ type CreateCustomIDPNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create custom Id p not found response has a 2xx status code
+func (o *CreateCustomIDPNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create custom Id p not found response has a 3xx status code
+func (o *CreateCustomIDPNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create custom Id p not found response has a 4xx status code
+func (o *CreateCustomIDPNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create custom Id p not found response has a 5xx status code
+func (o *CreateCustomIDPNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create custom Id p not found response a status code equal to that given
+func (o *CreateCustomIDPNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *CreateCustomIDPNotFound) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/custom][%d] createCustomIdPNotFound  %+v", 404, o.Payload)
 }
+
+func (o *CreateCustomIDPNotFound) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/custom][%d] createCustomIdPNotFound  %+v", 404, o.Payload)
+}
+
 func (o *CreateCustomIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +390,8 @@ func NewCreateCustomIDPUnprocessableEntity() *CreateCustomIDPUnprocessableEntity
 	return &CreateCustomIDPUnprocessableEntity{}
 }
 
-/* CreateCustomIDPUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+CreateCustomIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -243,9 +399,39 @@ type CreateCustomIDPUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create custom Id p unprocessable entity response has a 2xx status code
+func (o *CreateCustomIDPUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create custom Id p unprocessable entity response has a 3xx status code
+func (o *CreateCustomIDPUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create custom Id p unprocessable entity response has a 4xx status code
+func (o *CreateCustomIDPUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create custom Id p unprocessable entity response has a 5xx status code
+func (o *CreateCustomIDPUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create custom Id p unprocessable entity response a status code equal to that given
+func (o *CreateCustomIDPUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *CreateCustomIDPUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/custom][%d] createCustomIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *CreateCustomIDPUnprocessableEntity) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/custom][%d] createCustomIdPUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *CreateCustomIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -267,7 +453,8 @@ func NewCreateCustomIDPTooManyRequests() *CreateCustomIDPTooManyRequests {
 	return &CreateCustomIDPTooManyRequests{}
 }
 
-/* CreateCustomIDPTooManyRequests describes a response with status code 429, with default header values.
+/*
+CreateCustomIDPTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -275,9 +462,39 @@ type CreateCustomIDPTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create custom Id p too many requests response has a 2xx status code
+func (o *CreateCustomIDPTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create custom Id p too many requests response has a 3xx status code
+func (o *CreateCustomIDPTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create custom Id p too many requests response has a 4xx status code
+func (o *CreateCustomIDPTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create custom Id p too many requests response has a 5xx status code
+func (o *CreateCustomIDPTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create custom Id p too many requests response a status code equal to that given
+func (o *CreateCustomIDPTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *CreateCustomIDPTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/custom][%d] createCustomIdPTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *CreateCustomIDPTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/custom][%d] createCustomIdPTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *CreateCustomIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

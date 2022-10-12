@@ -52,10 +52,12 @@ func NewOpenbankingDomesticPaymentConsentIntrospectParamsWithHTTPClient(client *
 	}
 }
 
-/* OpenbankingDomesticPaymentConsentIntrospectParams contains all the parameters to send to the API endpoint
-   for the openbanking domestic payment consent introspect operation.
+/*
+OpenbankingDomesticPaymentConsentIntrospectParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the openbanking domestic payment consent introspect operation.
+
+	Typically these are written to a http.Request.
 */
 type OpenbankingDomesticPaymentConsentIntrospectParams struct {
 

@@ -57,7 +57,8 @@ func NewListScopesOK() *ListScopesOK {
 	return &ListScopesOK{}
 }
 
-/* ListScopesOK describes a response with status code 200, with default header values.
+/*
+ListScopesOK describes a response with status code 200, with default header values.
 
 Scopes with services
 */
@@ -65,9 +66,39 @@ type ListScopesOK struct {
 	Payload *models.ScopesWithServices
 }
 
+// IsSuccess returns true when this list scopes o k response has a 2xx status code
+func (o *ListScopesOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this list scopes o k response has a 3xx status code
+func (o *ListScopesOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list scopes o k response has a 4xx status code
+func (o *ListScopesOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this list scopes o k response has a 5xx status code
+func (o *ListScopesOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list scopes o k response a status code equal to that given
+func (o *ListScopesOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *ListScopesOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/scopes][%d] listScopesOK  %+v", 200, o.Payload)
 }
+
+func (o *ListScopesOK) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/scopes][%d] listScopesOK  %+v", 200, o.Payload)
+}
+
 func (o *ListScopesOK) GetPayload() *models.ScopesWithServices {
 	return o.Payload
 }
@@ -89,7 +120,8 @@ func NewListScopesUnauthorized() *ListScopesUnauthorized {
 	return &ListScopesUnauthorized{}
 }
 
-/* ListScopesUnauthorized describes a response with status code 401, with default header values.
+/*
+ListScopesUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -97,9 +129,39 @@ type ListScopesUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list scopes unauthorized response has a 2xx status code
+func (o *ListScopesUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list scopes unauthorized response has a 3xx status code
+func (o *ListScopesUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list scopes unauthorized response has a 4xx status code
+func (o *ListScopesUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list scopes unauthorized response has a 5xx status code
+func (o *ListScopesUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list scopes unauthorized response a status code equal to that given
+func (o *ListScopesUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *ListScopesUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/scopes][%d] listScopesUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *ListScopesUnauthorized) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/scopes][%d] listScopesUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *ListScopesUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -121,7 +183,8 @@ func NewListScopesForbidden() *ListScopesForbidden {
 	return &ListScopesForbidden{}
 }
 
-/* ListScopesForbidden describes a response with status code 403, with default header values.
+/*
+ListScopesForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -129,9 +192,39 @@ type ListScopesForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list scopes forbidden response has a 2xx status code
+func (o *ListScopesForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list scopes forbidden response has a 3xx status code
+func (o *ListScopesForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list scopes forbidden response has a 4xx status code
+func (o *ListScopesForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list scopes forbidden response has a 5xx status code
+func (o *ListScopesForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list scopes forbidden response a status code equal to that given
+func (o *ListScopesForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *ListScopesForbidden) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/scopes][%d] listScopesForbidden  %+v", 403, o.Payload)
 }
+
+func (o *ListScopesForbidden) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/scopes][%d] listScopesForbidden  %+v", 403, o.Payload)
+}
+
 func (o *ListScopesForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -153,7 +246,8 @@ func NewListScopesTooManyRequests() *ListScopesTooManyRequests {
 	return &ListScopesTooManyRequests{}
 }
 
-/* ListScopesTooManyRequests describes a response with status code 429, with default header values.
+/*
+ListScopesTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -161,9 +255,39 @@ type ListScopesTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list scopes too many requests response has a 2xx status code
+func (o *ListScopesTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list scopes too many requests response has a 3xx status code
+func (o *ListScopesTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list scopes too many requests response has a 4xx status code
+func (o *ListScopesTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list scopes too many requests response has a 5xx status code
+func (o *ListScopesTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list scopes too many requests response a status code equal to that given
+func (o *ListScopesTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *ListScopesTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/scopes][%d] listScopesTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *ListScopesTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/scopes][%d] listScopesTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *ListScopesTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

@@ -93,7 +93,8 @@ func NewCreateDataAccessConsentDeprecatedCreated() *CreateDataAccessConsentDepre
 	return &CreateDataAccessConsentDeprecatedCreated{}
 }
 
-/* CreateDataAccessConsentDeprecatedCreated describes a response with status code 201, with default header values.
+/*
+CreateDataAccessConsentDeprecatedCreated describes a response with status code 201, with default header values.
 
 Customer data access consent
 */
@@ -101,9 +102,39 @@ type CreateDataAccessConsentDeprecatedCreated struct {
 	Payload *models.BrazilCustomerDataAccessConsentResponse
 }
 
+// IsSuccess returns true when this create data access consent deprecated created response has a 2xx status code
+func (o *CreateDataAccessConsentDeprecatedCreated) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this create data access consent deprecated created response has a 3xx status code
+func (o *CreateDataAccessConsentDeprecatedCreated) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create data access consent deprecated created response has a 4xx status code
+func (o *CreateDataAccessConsentDeprecatedCreated) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create data access consent deprecated created response has a 5xx status code
+func (o *CreateDataAccessConsentDeprecatedCreated) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create data access consent deprecated created response a status code equal to that given
+func (o *CreateDataAccessConsentDeprecatedCreated) IsCode(code int) bool {
+	return code == 201
+}
+
 func (o *CreateDataAccessConsentDeprecatedCreated) Error() string {
 	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedCreated  %+v", 201, o.Payload)
 }
+
+func (o *CreateDataAccessConsentDeprecatedCreated) String() string {
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedCreated  %+v", 201, o.Payload)
+}
+
 func (o *CreateDataAccessConsentDeprecatedCreated) GetPayload() *models.BrazilCustomerDataAccessConsentResponse {
 	return o.Payload
 }
@@ -125,7 +156,8 @@ func NewCreateDataAccessConsentDeprecatedBadRequest() *CreateDataAccessConsentDe
 	return &CreateDataAccessConsentDeprecatedBadRequest{}
 }
 
-/* CreateDataAccessConsentDeprecatedBadRequest describes a response with status code 400, with default header values.
+/*
+CreateDataAccessConsentDeprecatedBadRequest describes a response with status code 400, with default header values.
 
 Error
 */
@@ -133,9 +165,39 @@ type CreateDataAccessConsentDeprecatedBadRequest struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this create data access consent deprecated bad request response has a 2xx status code
+func (o *CreateDataAccessConsentDeprecatedBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create data access consent deprecated bad request response has a 3xx status code
+func (o *CreateDataAccessConsentDeprecatedBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create data access consent deprecated bad request response has a 4xx status code
+func (o *CreateDataAccessConsentDeprecatedBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create data access consent deprecated bad request response has a 5xx status code
+func (o *CreateDataAccessConsentDeprecatedBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create data access consent deprecated bad request response a status code equal to that given
+func (o *CreateDataAccessConsentDeprecatedBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *CreateDataAccessConsentDeprecatedBadRequest) Error() string {
 	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *CreateDataAccessConsentDeprecatedBadRequest) String() string {
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *CreateDataAccessConsentDeprecatedBadRequest) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -157,7 +219,8 @@ func NewCreateDataAccessConsentDeprecatedUnauthorized() *CreateDataAccessConsent
 	return &CreateDataAccessConsentDeprecatedUnauthorized{}
 }
 
-/* CreateDataAccessConsentDeprecatedUnauthorized describes a response with status code 401, with default header values.
+/*
+CreateDataAccessConsentDeprecatedUnauthorized describes a response with status code 401, with default header values.
 
 Error
 */
@@ -165,9 +228,39 @@ type CreateDataAccessConsentDeprecatedUnauthorized struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this create data access consent deprecated unauthorized response has a 2xx status code
+func (o *CreateDataAccessConsentDeprecatedUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create data access consent deprecated unauthorized response has a 3xx status code
+func (o *CreateDataAccessConsentDeprecatedUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create data access consent deprecated unauthorized response has a 4xx status code
+func (o *CreateDataAccessConsentDeprecatedUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create data access consent deprecated unauthorized response has a 5xx status code
+func (o *CreateDataAccessConsentDeprecatedUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create data access consent deprecated unauthorized response a status code equal to that given
+func (o *CreateDataAccessConsentDeprecatedUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *CreateDataAccessConsentDeprecatedUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *CreateDataAccessConsentDeprecatedUnauthorized) String() string {
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *CreateDataAccessConsentDeprecatedUnauthorized) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -189,7 +282,8 @@ func NewCreateDataAccessConsentDeprecatedForbidden() *CreateDataAccessConsentDep
 	return &CreateDataAccessConsentDeprecatedForbidden{}
 }
 
-/* CreateDataAccessConsentDeprecatedForbidden describes a response with status code 403, with default header values.
+/*
+CreateDataAccessConsentDeprecatedForbidden describes a response with status code 403, with default header values.
 
 Error
 */
@@ -197,9 +291,39 @@ type CreateDataAccessConsentDeprecatedForbidden struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this create data access consent deprecated forbidden response has a 2xx status code
+func (o *CreateDataAccessConsentDeprecatedForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create data access consent deprecated forbidden response has a 3xx status code
+func (o *CreateDataAccessConsentDeprecatedForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create data access consent deprecated forbidden response has a 4xx status code
+func (o *CreateDataAccessConsentDeprecatedForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create data access consent deprecated forbidden response has a 5xx status code
+func (o *CreateDataAccessConsentDeprecatedForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create data access consent deprecated forbidden response a status code equal to that given
+func (o *CreateDataAccessConsentDeprecatedForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *CreateDataAccessConsentDeprecatedForbidden) Error() string {
 	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedForbidden  %+v", 403, o.Payload)
 }
+
+func (o *CreateDataAccessConsentDeprecatedForbidden) String() string {
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedForbidden  %+v", 403, o.Payload)
+}
+
 func (o *CreateDataAccessConsentDeprecatedForbidden) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -221,7 +345,8 @@ func NewCreateDataAccessConsentDeprecatedMethodNotAllowed() *CreateDataAccessCon
 	return &CreateDataAccessConsentDeprecatedMethodNotAllowed{}
 }
 
-/* CreateDataAccessConsentDeprecatedMethodNotAllowed describes a response with status code 405, with default header values.
+/*
+CreateDataAccessConsentDeprecatedMethodNotAllowed describes a response with status code 405, with default header values.
 
 Error
 */
@@ -229,9 +354,39 @@ type CreateDataAccessConsentDeprecatedMethodNotAllowed struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this create data access consent deprecated method not allowed response has a 2xx status code
+func (o *CreateDataAccessConsentDeprecatedMethodNotAllowed) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create data access consent deprecated method not allowed response has a 3xx status code
+func (o *CreateDataAccessConsentDeprecatedMethodNotAllowed) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create data access consent deprecated method not allowed response has a 4xx status code
+func (o *CreateDataAccessConsentDeprecatedMethodNotAllowed) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create data access consent deprecated method not allowed response has a 5xx status code
+func (o *CreateDataAccessConsentDeprecatedMethodNotAllowed) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create data access consent deprecated method not allowed response a status code equal to that given
+func (o *CreateDataAccessConsentDeprecatedMethodNotAllowed) IsCode(code int) bool {
+	return code == 405
+}
+
 func (o *CreateDataAccessConsentDeprecatedMethodNotAllowed) Error() string {
 	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedMethodNotAllowed  %+v", 405, o.Payload)
 }
+
+func (o *CreateDataAccessConsentDeprecatedMethodNotAllowed) String() string {
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedMethodNotAllowed  %+v", 405, o.Payload)
+}
+
 func (o *CreateDataAccessConsentDeprecatedMethodNotAllowed) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -253,7 +408,8 @@ func NewCreateDataAccessConsentDeprecatedNotAcceptable() *CreateDataAccessConsen
 	return &CreateDataAccessConsentDeprecatedNotAcceptable{}
 }
 
-/* CreateDataAccessConsentDeprecatedNotAcceptable describes a response with status code 406, with default header values.
+/*
+CreateDataAccessConsentDeprecatedNotAcceptable describes a response with status code 406, with default header values.
 
 Error
 */
@@ -261,9 +417,39 @@ type CreateDataAccessConsentDeprecatedNotAcceptable struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this create data access consent deprecated not acceptable response has a 2xx status code
+func (o *CreateDataAccessConsentDeprecatedNotAcceptable) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create data access consent deprecated not acceptable response has a 3xx status code
+func (o *CreateDataAccessConsentDeprecatedNotAcceptable) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create data access consent deprecated not acceptable response has a 4xx status code
+func (o *CreateDataAccessConsentDeprecatedNotAcceptable) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create data access consent deprecated not acceptable response has a 5xx status code
+func (o *CreateDataAccessConsentDeprecatedNotAcceptable) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create data access consent deprecated not acceptable response a status code equal to that given
+func (o *CreateDataAccessConsentDeprecatedNotAcceptable) IsCode(code int) bool {
+	return code == 406
+}
+
 func (o *CreateDataAccessConsentDeprecatedNotAcceptable) Error() string {
 	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedNotAcceptable  %+v", 406, o.Payload)
 }
+
+func (o *CreateDataAccessConsentDeprecatedNotAcceptable) String() string {
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedNotAcceptable  %+v", 406, o.Payload)
+}
+
 func (o *CreateDataAccessConsentDeprecatedNotAcceptable) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -285,7 +471,8 @@ func NewCreateDataAccessConsentDeprecatedUnsupportedMediaType() *CreateDataAcces
 	return &CreateDataAccessConsentDeprecatedUnsupportedMediaType{}
 }
 
-/* CreateDataAccessConsentDeprecatedUnsupportedMediaType describes a response with status code 415, with default header values.
+/*
+CreateDataAccessConsentDeprecatedUnsupportedMediaType describes a response with status code 415, with default header values.
 
 Error
 */
@@ -293,9 +480,39 @@ type CreateDataAccessConsentDeprecatedUnsupportedMediaType struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this create data access consent deprecated unsupported media type response has a 2xx status code
+func (o *CreateDataAccessConsentDeprecatedUnsupportedMediaType) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create data access consent deprecated unsupported media type response has a 3xx status code
+func (o *CreateDataAccessConsentDeprecatedUnsupportedMediaType) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create data access consent deprecated unsupported media type response has a 4xx status code
+func (o *CreateDataAccessConsentDeprecatedUnsupportedMediaType) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create data access consent deprecated unsupported media type response has a 5xx status code
+func (o *CreateDataAccessConsentDeprecatedUnsupportedMediaType) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create data access consent deprecated unsupported media type response a status code equal to that given
+func (o *CreateDataAccessConsentDeprecatedUnsupportedMediaType) IsCode(code int) bool {
+	return code == 415
+}
+
 func (o *CreateDataAccessConsentDeprecatedUnsupportedMediaType) Error() string {
 	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedUnsupportedMediaType  %+v", 415, o.Payload)
 }
+
+func (o *CreateDataAccessConsentDeprecatedUnsupportedMediaType) String() string {
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedUnsupportedMediaType  %+v", 415, o.Payload)
+}
+
 func (o *CreateDataAccessConsentDeprecatedUnsupportedMediaType) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -317,7 +534,8 @@ func NewCreateDataAccessConsentDeprecatedUnprocessableEntity() *CreateDataAccess
 	return &CreateDataAccessConsentDeprecatedUnprocessableEntity{}
 }
 
-/* CreateDataAccessConsentDeprecatedUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+CreateDataAccessConsentDeprecatedUnprocessableEntity describes a response with status code 422, with default header values.
 
 Error
 */
@@ -325,9 +543,39 @@ type CreateDataAccessConsentDeprecatedUnprocessableEntity struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this create data access consent deprecated unprocessable entity response has a 2xx status code
+func (o *CreateDataAccessConsentDeprecatedUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create data access consent deprecated unprocessable entity response has a 3xx status code
+func (o *CreateDataAccessConsentDeprecatedUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create data access consent deprecated unprocessable entity response has a 4xx status code
+func (o *CreateDataAccessConsentDeprecatedUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create data access consent deprecated unprocessable entity response has a 5xx status code
+func (o *CreateDataAccessConsentDeprecatedUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create data access consent deprecated unprocessable entity response a status code equal to that given
+func (o *CreateDataAccessConsentDeprecatedUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *CreateDataAccessConsentDeprecatedUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *CreateDataAccessConsentDeprecatedUnprocessableEntity) String() string {
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *CreateDataAccessConsentDeprecatedUnprocessableEntity) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -349,7 +597,8 @@ func NewCreateDataAccessConsentDeprecatedTooManyRequests() *CreateDataAccessCons
 	return &CreateDataAccessConsentDeprecatedTooManyRequests{}
 }
 
-/* CreateDataAccessConsentDeprecatedTooManyRequests describes a response with status code 429, with default header values.
+/*
+CreateDataAccessConsentDeprecatedTooManyRequests describes a response with status code 429, with default header values.
 
 Error
 */
@@ -357,9 +606,39 @@ type CreateDataAccessConsentDeprecatedTooManyRequests struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this create data access consent deprecated too many requests response has a 2xx status code
+func (o *CreateDataAccessConsentDeprecatedTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create data access consent deprecated too many requests response has a 3xx status code
+func (o *CreateDataAccessConsentDeprecatedTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create data access consent deprecated too many requests response has a 4xx status code
+func (o *CreateDataAccessConsentDeprecatedTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create data access consent deprecated too many requests response has a 5xx status code
+func (o *CreateDataAccessConsentDeprecatedTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create data access consent deprecated too many requests response a status code equal to that given
+func (o *CreateDataAccessConsentDeprecatedTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *CreateDataAccessConsentDeprecatedTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *CreateDataAccessConsentDeprecatedTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *CreateDataAccessConsentDeprecatedTooManyRequests) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -381,7 +660,8 @@ func NewCreateDataAccessConsentDeprecatedInternalServerError() *CreateDataAccess
 	return &CreateDataAccessConsentDeprecatedInternalServerError{}
 }
 
-/* CreateDataAccessConsentDeprecatedInternalServerError describes a response with status code 500, with default header values.
+/*
+CreateDataAccessConsentDeprecatedInternalServerError describes a response with status code 500, with default header values.
 
 Error
 */
@@ -389,9 +669,39 @@ type CreateDataAccessConsentDeprecatedInternalServerError struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this create data access consent deprecated internal server error response has a 2xx status code
+func (o *CreateDataAccessConsentDeprecatedInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create data access consent deprecated internal server error response has a 3xx status code
+func (o *CreateDataAccessConsentDeprecatedInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create data access consent deprecated internal server error response has a 4xx status code
+func (o *CreateDataAccessConsentDeprecatedInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create data access consent deprecated internal server error response has a 5xx status code
+func (o *CreateDataAccessConsentDeprecatedInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this create data access consent deprecated internal server error response a status code equal to that given
+func (o *CreateDataAccessConsentDeprecatedInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *CreateDataAccessConsentDeprecatedInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *CreateDataAccessConsentDeprecatedInternalServerError) String() string {
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/consents/v1/consents][%d] createDataAccessConsentDeprecatedInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *CreateDataAccessConsentDeprecatedInternalServerError) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }

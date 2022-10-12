@@ -63,7 +63,8 @@ func NewRejectInternationalStandingOrderConsentSystemOK() *RejectInternationalSt
 	return &RejectInternationalStandingOrderConsentSystemOK{}
 }
 
-/* RejectInternationalStandingOrderConsentSystemOK describes a response with status code 200, with default header values.
+/*
+RejectInternationalStandingOrderConsentSystemOK describes a response with status code 200, with default header values.
 
 Consent rejected
 */
@@ -71,9 +72,39 @@ type RejectInternationalStandingOrderConsentSystemOK struct {
 	Payload *models.ConsentRejected
 }
 
+// IsSuccess returns true when this reject international standing order consent system o k response has a 2xx status code
+func (o *RejectInternationalStandingOrderConsentSystemOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this reject international standing order consent system o k response has a 3xx status code
+func (o *RejectInternationalStandingOrderConsentSystemOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this reject international standing order consent system o k response has a 4xx status code
+func (o *RejectInternationalStandingOrderConsentSystemOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this reject international standing order consent system o k response has a 5xx status code
+func (o *RejectInternationalStandingOrderConsentSystemOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this reject international standing order consent system o k response a status code equal to that given
+func (o *RejectInternationalStandingOrderConsentSystemOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *RejectInternationalStandingOrderConsentSystemOK) Error() string {
 	return fmt.Sprintf("[POST /open-banking/international-standing-order-consent/{login}/reject][%d] rejectInternationalStandingOrderConsentSystemOK  %+v", 200, o.Payload)
 }
+
+func (o *RejectInternationalStandingOrderConsentSystemOK) String() string {
+	return fmt.Sprintf("[POST /open-banking/international-standing-order-consent/{login}/reject][%d] rejectInternationalStandingOrderConsentSystemOK  %+v", 200, o.Payload)
+}
+
 func (o *RejectInternationalStandingOrderConsentSystemOK) GetPayload() *models.ConsentRejected {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewRejectInternationalStandingOrderConsentSystemUnauthorized() *RejectInter
 	return &RejectInternationalStandingOrderConsentSystemUnauthorized{}
 }
 
-/* RejectInternationalStandingOrderConsentSystemUnauthorized describes a response with status code 401, with default header values.
+/*
+RejectInternationalStandingOrderConsentSystemUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type RejectInternationalStandingOrderConsentSystemUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this reject international standing order consent system unauthorized response has a 2xx status code
+func (o *RejectInternationalStandingOrderConsentSystemUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this reject international standing order consent system unauthorized response has a 3xx status code
+func (o *RejectInternationalStandingOrderConsentSystemUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this reject international standing order consent system unauthorized response has a 4xx status code
+func (o *RejectInternationalStandingOrderConsentSystemUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this reject international standing order consent system unauthorized response has a 5xx status code
+func (o *RejectInternationalStandingOrderConsentSystemUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this reject international standing order consent system unauthorized response a status code equal to that given
+func (o *RejectInternationalStandingOrderConsentSystemUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *RejectInternationalStandingOrderConsentSystemUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /open-banking/international-standing-order-consent/{login}/reject][%d] rejectInternationalStandingOrderConsentSystemUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *RejectInternationalStandingOrderConsentSystemUnauthorized) String() string {
+	return fmt.Sprintf("[POST /open-banking/international-standing-order-consent/{login}/reject][%d] rejectInternationalStandingOrderConsentSystemUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *RejectInternationalStandingOrderConsentSystemUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewRejectInternationalStandingOrderConsentSystemForbidden() *RejectInternat
 	return &RejectInternationalStandingOrderConsentSystemForbidden{}
 }
 
-/* RejectInternationalStandingOrderConsentSystemForbidden describes a response with status code 403, with default header values.
+/*
+RejectInternationalStandingOrderConsentSystemForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type RejectInternationalStandingOrderConsentSystemForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this reject international standing order consent system forbidden response has a 2xx status code
+func (o *RejectInternationalStandingOrderConsentSystemForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this reject international standing order consent system forbidden response has a 3xx status code
+func (o *RejectInternationalStandingOrderConsentSystemForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this reject international standing order consent system forbidden response has a 4xx status code
+func (o *RejectInternationalStandingOrderConsentSystemForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this reject international standing order consent system forbidden response has a 5xx status code
+func (o *RejectInternationalStandingOrderConsentSystemForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this reject international standing order consent system forbidden response a status code equal to that given
+func (o *RejectInternationalStandingOrderConsentSystemForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *RejectInternationalStandingOrderConsentSystemForbidden) Error() string {
 	return fmt.Sprintf("[POST /open-banking/international-standing-order-consent/{login}/reject][%d] rejectInternationalStandingOrderConsentSystemForbidden  %+v", 403, o.Payload)
 }
+
+func (o *RejectInternationalStandingOrderConsentSystemForbidden) String() string {
+	return fmt.Sprintf("[POST /open-banking/international-standing-order-consent/{login}/reject][%d] rejectInternationalStandingOrderConsentSystemForbidden  %+v", 403, o.Payload)
+}
+
 func (o *RejectInternationalStandingOrderConsentSystemForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewRejectInternationalStandingOrderConsentSystemNotFound() *RejectInternati
 	return &RejectInternationalStandingOrderConsentSystemNotFound{}
 }
 
-/* RejectInternationalStandingOrderConsentSystemNotFound describes a response with status code 404, with default header values.
+/*
+RejectInternationalStandingOrderConsentSystemNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type RejectInternationalStandingOrderConsentSystemNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this reject international standing order consent system not found response has a 2xx status code
+func (o *RejectInternationalStandingOrderConsentSystemNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this reject international standing order consent system not found response has a 3xx status code
+func (o *RejectInternationalStandingOrderConsentSystemNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this reject international standing order consent system not found response has a 4xx status code
+func (o *RejectInternationalStandingOrderConsentSystemNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this reject international standing order consent system not found response has a 5xx status code
+func (o *RejectInternationalStandingOrderConsentSystemNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this reject international standing order consent system not found response a status code equal to that given
+func (o *RejectInternationalStandingOrderConsentSystemNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *RejectInternationalStandingOrderConsentSystemNotFound) Error() string {
 	return fmt.Sprintf("[POST /open-banking/international-standing-order-consent/{login}/reject][%d] rejectInternationalStandingOrderConsentSystemNotFound  %+v", 404, o.Payload)
 }
+
+func (o *RejectInternationalStandingOrderConsentSystemNotFound) String() string {
+	return fmt.Sprintf("[POST /open-banking/international-standing-order-consent/{login}/reject][%d] rejectInternationalStandingOrderConsentSystemNotFound  %+v", 404, o.Payload)
+}
+
 func (o *RejectInternationalStandingOrderConsentSystemNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewRejectInternationalStandingOrderConsentSystemTooManyRequests() *RejectIn
 	return &RejectInternationalStandingOrderConsentSystemTooManyRequests{}
 }
 
-/* RejectInternationalStandingOrderConsentSystemTooManyRequests describes a response with status code 429, with default header values.
+/*
+RejectInternationalStandingOrderConsentSystemTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type RejectInternationalStandingOrderConsentSystemTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this reject international standing order consent system too many requests response has a 2xx status code
+func (o *RejectInternationalStandingOrderConsentSystemTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this reject international standing order consent system too many requests response has a 3xx status code
+func (o *RejectInternationalStandingOrderConsentSystemTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this reject international standing order consent system too many requests response has a 4xx status code
+func (o *RejectInternationalStandingOrderConsentSystemTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this reject international standing order consent system too many requests response has a 5xx status code
+func (o *RejectInternationalStandingOrderConsentSystemTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this reject international standing order consent system too many requests response a status code equal to that given
+func (o *RejectInternationalStandingOrderConsentSystemTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *RejectInternationalStandingOrderConsentSystemTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /open-banking/international-standing-order-consent/{login}/reject][%d] rejectInternationalStandingOrderConsentSystemTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *RejectInternationalStandingOrderConsentSystemTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /open-banking/international-standing-order-consent/{login}/reject][%d] rejectInternationalStandingOrderConsentSystemTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *RejectInternationalStandingOrderConsentSystemTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

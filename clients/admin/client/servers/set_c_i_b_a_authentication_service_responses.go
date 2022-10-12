@@ -63,7 +63,8 @@ func NewSetCIBAAuthenticationServiceOK() *SetCIBAAuthenticationServiceOK {
 	return &SetCIBAAuthenticationServiceOK{}
 }
 
-/* SetCIBAAuthenticationServiceOK describes a response with status code 200, with default header values.
+/*
+SetCIBAAuthenticationServiceOK describes a response with status code 200, with default header values.
 
 CIBA authentication service
 */
@@ -71,9 +72,39 @@ type SetCIBAAuthenticationServiceOK struct {
 	Payload *models.CIBAAuthenticationService
 }
 
+// IsSuccess returns true when this set c i b a authentication service o k response has a 2xx status code
+func (o *SetCIBAAuthenticationServiceOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this set c i b a authentication service o k response has a 3xx status code
+func (o *SetCIBAAuthenticationServiceOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set c i b a authentication service o k response has a 4xx status code
+func (o *SetCIBAAuthenticationServiceOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this set c i b a authentication service o k response has a 5xx status code
+func (o *SetCIBAAuthenticationServiceOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set c i b a authentication service o k response a status code equal to that given
+func (o *SetCIBAAuthenticationServiceOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *SetCIBAAuthenticationServiceOK) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/ciba-authentication-service][%d] setCIBAAuthenticationServiceOK  %+v", 200, o.Payload)
 }
+
+func (o *SetCIBAAuthenticationServiceOK) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/ciba-authentication-service][%d] setCIBAAuthenticationServiceOK  %+v", 200, o.Payload)
+}
+
 func (o *SetCIBAAuthenticationServiceOK) GetPayload() *models.CIBAAuthenticationService {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewSetCIBAAuthenticationServiceUnauthorized() *SetCIBAAuthenticationService
 	return &SetCIBAAuthenticationServiceUnauthorized{}
 }
 
-/* SetCIBAAuthenticationServiceUnauthorized describes a response with status code 401, with default header values.
+/*
+SetCIBAAuthenticationServiceUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type SetCIBAAuthenticationServiceUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this set c i b a authentication service unauthorized response has a 2xx status code
+func (o *SetCIBAAuthenticationServiceUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this set c i b a authentication service unauthorized response has a 3xx status code
+func (o *SetCIBAAuthenticationServiceUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set c i b a authentication service unauthorized response has a 4xx status code
+func (o *SetCIBAAuthenticationServiceUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this set c i b a authentication service unauthorized response has a 5xx status code
+func (o *SetCIBAAuthenticationServiceUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set c i b a authentication service unauthorized response a status code equal to that given
+func (o *SetCIBAAuthenticationServiceUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *SetCIBAAuthenticationServiceUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/ciba-authentication-service][%d] setCIBAAuthenticationServiceUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *SetCIBAAuthenticationServiceUnauthorized) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/ciba-authentication-service][%d] setCIBAAuthenticationServiceUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *SetCIBAAuthenticationServiceUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewSetCIBAAuthenticationServiceForbidden() *SetCIBAAuthenticationServiceFor
 	return &SetCIBAAuthenticationServiceForbidden{}
 }
 
-/* SetCIBAAuthenticationServiceForbidden describes a response with status code 403, with default header values.
+/*
+SetCIBAAuthenticationServiceForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type SetCIBAAuthenticationServiceForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this set c i b a authentication service forbidden response has a 2xx status code
+func (o *SetCIBAAuthenticationServiceForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this set c i b a authentication service forbidden response has a 3xx status code
+func (o *SetCIBAAuthenticationServiceForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set c i b a authentication service forbidden response has a 4xx status code
+func (o *SetCIBAAuthenticationServiceForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this set c i b a authentication service forbidden response has a 5xx status code
+func (o *SetCIBAAuthenticationServiceForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set c i b a authentication service forbidden response a status code equal to that given
+func (o *SetCIBAAuthenticationServiceForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *SetCIBAAuthenticationServiceForbidden) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/ciba-authentication-service][%d] setCIBAAuthenticationServiceForbidden  %+v", 403, o.Payload)
 }
+
+func (o *SetCIBAAuthenticationServiceForbidden) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/ciba-authentication-service][%d] setCIBAAuthenticationServiceForbidden  %+v", 403, o.Payload)
+}
+
 func (o *SetCIBAAuthenticationServiceForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewSetCIBAAuthenticationServiceNotFound() *SetCIBAAuthenticationServiceNotF
 	return &SetCIBAAuthenticationServiceNotFound{}
 }
 
-/* SetCIBAAuthenticationServiceNotFound describes a response with status code 404, with default header values.
+/*
+SetCIBAAuthenticationServiceNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type SetCIBAAuthenticationServiceNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this set c i b a authentication service not found response has a 2xx status code
+func (o *SetCIBAAuthenticationServiceNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this set c i b a authentication service not found response has a 3xx status code
+func (o *SetCIBAAuthenticationServiceNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set c i b a authentication service not found response has a 4xx status code
+func (o *SetCIBAAuthenticationServiceNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this set c i b a authentication service not found response has a 5xx status code
+func (o *SetCIBAAuthenticationServiceNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set c i b a authentication service not found response a status code equal to that given
+func (o *SetCIBAAuthenticationServiceNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *SetCIBAAuthenticationServiceNotFound) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/ciba-authentication-service][%d] setCIBAAuthenticationServiceNotFound  %+v", 404, o.Payload)
 }
+
+func (o *SetCIBAAuthenticationServiceNotFound) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/ciba-authentication-service][%d] setCIBAAuthenticationServiceNotFound  %+v", 404, o.Payload)
+}
+
 func (o *SetCIBAAuthenticationServiceNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewSetCIBAAuthenticationServiceTooManyRequests() *SetCIBAAuthenticationServ
 	return &SetCIBAAuthenticationServiceTooManyRequests{}
 }
 
-/* SetCIBAAuthenticationServiceTooManyRequests describes a response with status code 429, with default header values.
+/*
+SetCIBAAuthenticationServiceTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type SetCIBAAuthenticationServiceTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this set c i b a authentication service too many requests response has a 2xx status code
+func (o *SetCIBAAuthenticationServiceTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this set c i b a authentication service too many requests response has a 3xx status code
+func (o *SetCIBAAuthenticationServiceTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set c i b a authentication service too many requests response has a 4xx status code
+func (o *SetCIBAAuthenticationServiceTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this set c i b a authentication service too many requests response has a 5xx status code
+func (o *SetCIBAAuthenticationServiceTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set c i b a authentication service too many requests response a status code equal to that given
+func (o *SetCIBAAuthenticationServiceTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *SetCIBAAuthenticationServiceTooManyRequests) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/ciba-authentication-service][%d] setCIBAAuthenticationServiceTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *SetCIBAAuthenticationServiceTooManyRequests) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/ciba-authentication-service][%d] setCIBAAuthenticationServiceTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *SetCIBAAuthenticationServiceTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

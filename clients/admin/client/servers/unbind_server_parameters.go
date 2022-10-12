@@ -52,10 +52,12 @@ func NewUnbindServerParamsWithHTTPClient(client *http.Client) *UnbindServerParam
 	}
 }
 
-/* UnbindServerParams contains all the parameters to send to the API endpoint
-   for the unbind server operation.
+/*
+UnbindServerParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the unbind server operation.
+
+	Typically these are written to a http.Request.
 */
 type UnbindServerParams struct {
 

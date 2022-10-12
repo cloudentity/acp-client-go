@@ -52,10 +52,12 @@ func NewRevokeOBBRConsentParamsWithHTTPClient(client *http.Client) *RevokeOBBRCo
 	}
 }
 
-/* RevokeOBBRConsentParams contains all the parameters to send to the API endpoint
-   for the revoke o b b r consent operation.
+/*
+RevokeOBBRConsentParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the revoke o b b r consent operation.
+
+	Typically these are written to a http.Request.
 */
 type RevokeOBBRConsentParams struct {
 

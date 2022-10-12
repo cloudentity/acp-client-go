@@ -40,9 +40,9 @@ type ClientService interface {
 }
 
 /*
-  DeleteRateLimit deletes rate limit
+DeleteRateLimit deletes rate limit
 
-  Delete custom rate limit for a module per tenant.
+Delete custom rate limit for a module per tenant.
 */
 func (a *Client) DeleteRateLimit(params *DeleteRateLimitParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteRateLimitNoContent, error) {
 	// TODO: Validate the params before sending
@@ -81,9 +81,9 @@ func (a *Client) DeleteRateLimit(params *DeleteRateLimitParams, authInfo runtime
 }
 
 /*
-  ListRateLimits lists rate limits
+ListRateLimits lists rate limits
 
-  List custom rate limits per tenant.
+List custom rate limits per tenant.
 */
 func (a *Client) ListRateLimits(params *ListRateLimitsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListRateLimitsOK, error) {
 	// TODO: Validate the params before sending
@@ -122,9 +122,9 @@ func (a *Client) ListRateLimits(params *ListRateLimitsParams, authInfo runtime.C
 }
 
 /*
-  SetRateLimit sets rate limit
+SetRateLimit sets rate limit
 
-  Set custom rate limit for a module per tenant.
+Set custom rate limit for a module per tenant.
 */
 func (a *Client) SetRateLimit(params *SetRateLimitParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetRateLimitNoContent, error) {
 	// TODO: Validate the params before sending

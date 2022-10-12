@@ -57,7 +57,8 @@ func NewListScriptExecutionPointsOK() *ListScriptExecutionPointsOK {
 	return &ListScriptExecutionPointsOK{}
 }
 
-/* ListScriptExecutionPointsOK describes a response with status code 200, with default header values.
+/*
+ListScriptExecutionPointsOK describes a response with status code 200, with default header values.
 
 Script execution points
 */
@@ -65,9 +66,39 @@ type ListScriptExecutionPointsOK struct {
 	Payload *models.ScriptExecutionPoints
 }
 
+// IsSuccess returns true when this list script execution points o k response has a 2xx status code
+func (o *ListScriptExecutionPointsOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this list script execution points o k response has a 3xx status code
+func (o *ListScriptExecutionPointsOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list script execution points o k response has a 4xx status code
+func (o *ListScriptExecutionPointsOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this list script execution points o k response has a 5xx status code
+func (o *ListScriptExecutionPointsOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list script execution points o k response a status code equal to that given
+func (o *ListScriptExecutionPointsOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *ListScriptExecutionPointsOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/script-execution-points][%d] listScriptExecutionPointsOK  %+v", 200, o.Payload)
 }
+
+func (o *ListScriptExecutionPointsOK) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/script-execution-points][%d] listScriptExecutionPointsOK  %+v", 200, o.Payload)
+}
+
 func (o *ListScriptExecutionPointsOK) GetPayload() *models.ScriptExecutionPoints {
 	return o.Payload
 }
@@ -89,7 +120,8 @@ func NewListScriptExecutionPointsUnauthorized() *ListScriptExecutionPointsUnauth
 	return &ListScriptExecutionPointsUnauthorized{}
 }
 
-/* ListScriptExecutionPointsUnauthorized describes a response with status code 401, with default header values.
+/*
+ListScriptExecutionPointsUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -97,9 +129,39 @@ type ListScriptExecutionPointsUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list script execution points unauthorized response has a 2xx status code
+func (o *ListScriptExecutionPointsUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list script execution points unauthorized response has a 3xx status code
+func (o *ListScriptExecutionPointsUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list script execution points unauthorized response has a 4xx status code
+func (o *ListScriptExecutionPointsUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list script execution points unauthorized response has a 5xx status code
+func (o *ListScriptExecutionPointsUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list script execution points unauthorized response a status code equal to that given
+func (o *ListScriptExecutionPointsUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *ListScriptExecutionPointsUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/script-execution-points][%d] listScriptExecutionPointsUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *ListScriptExecutionPointsUnauthorized) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/script-execution-points][%d] listScriptExecutionPointsUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *ListScriptExecutionPointsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -121,7 +183,8 @@ func NewListScriptExecutionPointsForbidden() *ListScriptExecutionPointsForbidden
 	return &ListScriptExecutionPointsForbidden{}
 }
 
-/* ListScriptExecutionPointsForbidden describes a response with status code 403, with default header values.
+/*
+ListScriptExecutionPointsForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -129,9 +192,39 @@ type ListScriptExecutionPointsForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list script execution points forbidden response has a 2xx status code
+func (o *ListScriptExecutionPointsForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list script execution points forbidden response has a 3xx status code
+func (o *ListScriptExecutionPointsForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list script execution points forbidden response has a 4xx status code
+func (o *ListScriptExecutionPointsForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list script execution points forbidden response has a 5xx status code
+func (o *ListScriptExecutionPointsForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list script execution points forbidden response a status code equal to that given
+func (o *ListScriptExecutionPointsForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *ListScriptExecutionPointsForbidden) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/script-execution-points][%d] listScriptExecutionPointsForbidden  %+v", 403, o.Payload)
 }
+
+func (o *ListScriptExecutionPointsForbidden) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/script-execution-points][%d] listScriptExecutionPointsForbidden  %+v", 403, o.Payload)
+}
+
 func (o *ListScriptExecutionPointsForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -153,7 +246,8 @@ func NewListScriptExecutionPointsTooManyRequests() *ListScriptExecutionPointsToo
 	return &ListScriptExecutionPointsTooManyRequests{}
 }
 
-/* ListScriptExecutionPointsTooManyRequests describes a response with status code 429, with default header values.
+/*
+ListScriptExecutionPointsTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -161,9 +255,39 @@ type ListScriptExecutionPointsTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list script execution points too many requests response has a 2xx status code
+func (o *ListScriptExecutionPointsTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list script execution points too many requests response has a 3xx status code
+func (o *ListScriptExecutionPointsTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list script execution points too many requests response has a 4xx status code
+func (o *ListScriptExecutionPointsTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list script execution points too many requests response has a 5xx status code
+func (o *ListScriptExecutionPointsTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list script execution points too many requests response a status code equal to that given
+func (o *ListScriptExecutionPointsTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *ListScriptExecutionPointsTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/script-execution-points][%d] listScriptExecutionPointsTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *ListScriptExecutionPointsTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/script-execution-points][%d] listScriptExecutionPointsTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *ListScriptExecutionPointsTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

@@ -63,7 +63,8 @@ func NewAcceptLoginRequestOK() *AcceptLoginRequestOK {
 	return &AcceptLoginRequestOK{}
 }
 
-/* AcceptLoginRequestOK describes a response with status code 200, with default header values.
+/*
+AcceptLoginRequestOK describes a response with status code 200, with default header values.
 
 Login accepted
 */
@@ -71,9 +72,39 @@ type AcceptLoginRequestOK struct {
 	Payload *models.LoginAccepted
 }
 
+// IsSuccess returns true when this accept login request o k response has a 2xx status code
+func (o *AcceptLoginRequestOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this accept login request o k response has a 3xx status code
+func (o *AcceptLoginRequestOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this accept login request o k response has a 4xx status code
+func (o *AcceptLoginRequestOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this accept login request o k response has a 5xx status code
+func (o *AcceptLoginRequestOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this accept login request o k response a status code equal to that given
+func (o *AcceptLoginRequestOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *AcceptLoginRequestOK) Error() string {
 	return fmt.Sprintf("[POST /logins/{login}/accept][%d] acceptLoginRequestOK  %+v", 200, o.Payload)
 }
+
+func (o *AcceptLoginRequestOK) String() string {
+	return fmt.Sprintf("[POST /logins/{login}/accept][%d] acceptLoginRequestOK  %+v", 200, o.Payload)
+}
+
 func (o *AcceptLoginRequestOK) GetPayload() *models.LoginAccepted {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewAcceptLoginRequestUnauthorized() *AcceptLoginRequestUnauthorized {
 	return &AcceptLoginRequestUnauthorized{}
 }
 
-/* AcceptLoginRequestUnauthorized describes a response with status code 401, with default header values.
+/*
+AcceptLoginRequestUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type AcceptLoginRequestUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this accept login request unauthorized response has a 2xx status code
+func (o *AcceptLoginRequestUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this accept login request unauthorized response has a 3xx status code
+func (o *AcceptLoginRequestUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this accept login request unauthorized response has a 4xx status code
+func (o *AcceptLoginRequestUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this accept login request unauthorized response has a 5xx status code
+func (o *AcceptLoginRequestUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this accept login request unauthorized response a status code equal to that given
+func (o *AcceptLoginRequestUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *AcceptLoginRequestUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /logins/{login}/accept][%d] acceptLoginRequestUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *AcceptLoginRequestUnauthorized) String() string {
+	return fmt.Sprintf("[POST /logins/{login}/accept][%d] acceptLoginRequestUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *AcceptLoginRequestUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewAcceptLoginRequestForbidden() *AcceptLoginRequestForbidden {
 	return &AcceptLoginRequestForbidden{}
 }
 
-/* AcceptLoginRequestForbidden describes a response with status code 403, with default header values.
+/*
+AcceptLoginRequestForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type AcceptLoginRequestForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this accept login request forbidden response has a 2xx status code
+func (o *AcceptLoginRequestForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this accept login request forbidden response has a 3xx status code
+func (o *AcceptLoginRequestForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this accept login request forbidden response has a 4xx status code
+func (o *AcceptLoginRequestForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this accept login request forbidden response has a 5xx status code
+func (o *AcceptLoginRequestForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this accept login request forbidden response a status code equal to that given
+func (o *AcceptLoginRequestForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *AcceptLoginRequestForbidden) Error() string {
 	return fmt.Sprintf("[POST /logins/{login}/accept][%d] acceptLoginRequestForbidden  %+v", 403, o.Payload)
 }
+
+func (o *AcceptLoginRequestForbidden) String() string {
+	return fmt.Sprintf("[POST /logins/{login}/accept][%d] acceptLoginRequestForbidden  %+v", 403, o.Payload)
+}
+
 func (o *AcceptLoginRequestForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewAcceptLoginRequestNotFound() *AcceptLoginRequestNotFound {
 	return &AcceptLoginRequestNotFound{}
 }
 
-/* AcceptLoginRequestNotFound describes a response with status code 404, with default header values.
+/*
+AcceptLoginRequestNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type AcceptLoginRequestNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this accept login request not found response has a 2xx status code
+func (o *AcceptLoginRequestNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this accept login request not found response has a 3xx status code
+func (o *AcceptLoginRequestNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this accept login request not found response has a 4xx status code
+func (o *AcceptLoginRequestNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this accept login request not found response has a 5xx status code
+func (o *AcceptLoginRequestNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this accept login request not found response a status code equal to that given
+func (o *AcceptLoginRequestNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *AcceptLoginRequestNotFound) Error() string {
 	return fmt.Sprintf("[POST /logins/{login}/accept][%d] acceptLoginRequestNotFound  %+v", 404, o.Payload)
 }
+
+func (o *AcceptLoginRequestNotFound) String() string {
+	return fmt.Sprintf("[POST /logins/{login}/accept][%d] acceptLoginRequestNotFound  %+v", 404, o.Payload)
+}
+
 func (o *AcceptLoginRequestNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewAcceptLoginRequestTooManyRequests() *AcceptLoginRequestTooManyRequests {
 	return &AcceptLoginRequestTooManyRequests{}
 }
 
-/* AcceptLoginRequestTooManyRequests describes a response with status code 429, with default header values.
+/*
+AcceptLoginRequestTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type AcceptLoginRequestTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this accept login request too many requests response has a 2xx status code
+func (o *AcceptLoginRequestTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this accept login request too many requests response has a 3xx status code
+func (o *AcceptLoginRequestTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this accept login request too many requests response has a 4xx status code
+func (o *AcceptLoginRequestTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this accept login request too many requests response has a 5xx status code
+func (o *AcceptLoginRequestTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this accept login request too many requests response a status code equal to that given
+func (o *AcceptLoginRequestTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *AcceptLoginRequestTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /logins/{login}/accept][%d] acceptLoginRequestTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *AcceptLoginRequestTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /logins/{login}/accept][%d] acceptLoginRequestTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *AcceptLoginRequestTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

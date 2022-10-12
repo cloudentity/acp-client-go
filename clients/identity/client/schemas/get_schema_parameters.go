@@ -52,10 +52,12 @@ func NewGetSchemaParamsWithHTTPClient(client *http.Client) *GetSchemaParams {
 	}
 }
 
-/* GetSchemaParams contains all the parameters to send to the API endpoint
-   for the get schema operation.
+/*
+GetSchemaParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get schema operation.
+
+	Typically these are written to a http.Request.
 */
 type GetSchemaParams struct {
 

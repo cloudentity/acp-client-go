@@ -38,9 +38,9 @@ type ClientService interface {
 }
 
 /*
-  GetServerForDeveloper gets authorization server
+GetServerForDeveloper gets authorization server
 
-  Returns authorization server details with list of scopes.
+Returns authorization server details with list of scopes.
 */
 func (a *Client) GetServerForDeveloper(params *GetServerForDeveloperParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetServerForDeveloperOK, error) {
 	// TODO: Validate the params before sending
@@ -79,9 +79,9 @@ func (a *Client) GetServerForDeveloper(params *GetServerForDeveloperParams, auth
 }
 
 /*
-  ListServersForDeveloper lists authorization servers
+ListServersForDeveloper lists authorization servers
 
-  Returns list of authorization severs.
+Returns list of authorization severs.
 */
 func (a *Client) ListServersForDeveloper(params *ListServersForDeveloperParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListServersForDeveloperOK, error) {
 	// TODO: Validate the params before sending

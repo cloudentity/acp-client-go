@@ -45,6 +45,28 @@ type DynamicClientRegistrationRequest struct {
 	// It is considered a good practice to limit the audience of the token for security purposes.
 	Audience []string `json:"audience"`
 
+	// Algorithm used for encrypting authorization responses.
+	// If both signing and encryption are requested, the response will be signed then encrypted,
+	// with the result being a Nested JWT, as defined in JWT [RFC7519].
+	// The default, if omitted, is that no encryption is performed.
+	// Example: RSA-OAEP-256
+	// Enum: [RSA-OAEP RSA-OAEP-256]
+	AuthorizationEncryptedResponseAlg string `json:"authorization_encrypted_response_alg,omitempty"`
+
+	// Algorithm used for encrypting authorization responses.
+	// If authorization_encrypted_response_alg is specified, the default for this value is A128CBC-HS256.
+	// When authorization_encrypted_response_enc is included, authorization_encrypted_response_alg
+	// MUST also be provided.
+	// Example: A128CBC-HS256
+	// Enum: [A256GCM A128CBC-HS256]
+	AuthorizationEncryptedResponseEnc string `json:"authorization_encrypted_response_enc,omitempty"`
+
+	// Algorithm used for signing authorization responses.
+	// If this is specified, the response will be signed using JWS and the configured algorithm.
+	// The algorithm none is not allowed.
+	// Example: RS256
+	AuthorizationSignedResponseAlg string `json:"authorization_signed_response_alg,omitempty"`
+
 	// OPTIONAL. The JWS algorithm alg value that the Client will use for signing authentication requests.
 	// When omitted, the Client will not send signed authentication requests.
 	BackchannelAuthenticationRequestSigningAlg string `json:"backchannel_authentication_request_signing_alg,omitempty"`
@@ -81,6 +103,11 @@ type DynamicClientRegistrationRequest struct {
 	// URI of a client application
 	ClientURI string `json:"client_uri,omitempty"`
 
+	// Date when the client was created
+	// Example: 2022-04-07T19:17:31.323187Z
+	// Format: date-time
+	CreatedAt strfmt.DateTime `json:"created_at,omitempty"`
+
 	// Description of a client application
 	Description string `json:"description,omitempty"`
 
@@ -108,6 +135,18 @@ type DynamicClientRegistrationRequest struct {
 	// Enum: [RS256 ES256 PS256]
 	IDTokenSignedResponseAlg string `json:"id_token_signed_response_alg,omitempty"`
 
+	// Introspection endpoint authentication method configured for a client application
+	// If empty, the token_endpoint_auth_method will be used
+	//
+	// ACP supports the following client authentication methods:
+	// client_secret_basic, client_secret_post, client_secret_jwt, private_key_jwt,
+	// self_signed_tls_client_auth, tls_client_auth, none.
+	//
+	// To learn more, see the [ACP client authentication documentation](https://docs.authorization.cloudentity.com/features/oauth/client_auth/)
+	// Example: client_secret_basic
+	// Enum: [client_secret_basic client_secret_post client_secret_jwt private_key_jwt self_signed_tls_client_auth tls_client_auth none]
+	IntrospectionEndpointAuthMethod string `json:"introspection_endpoint_auth_method,omitempty"`
+
 	// jwks
 	Jwks *ClientJWKs `json:"jwks,omitempty"`
 
@@ -130,12 +169,19 @@ type DynamicClientRegistrationRequest struct {
 	// privacy
 	Privacy *ClientPrivacy `json:"privacy,omitempty"`
 
-	// An array of OAuth allowed redirect URIs
-	//
-	// Redirect URIs are used after a user authorizes an application and ACP redirect them back to
-	// the application with an authorization code or an access token included in the URL.
-	// Example: ["https://example.com/callback"]
-	RedirectUris []string `json:"redirect_uris"`
+	// redirect uris
+	RedirectUris RedirectURIs `json:"redirect_uris,omitempty"`
+
+	// Optional JWE alg algorithm the client is declaring that it may use for encrypting Request Objects
+	// Example: RSA-OAEP
+	// Enum: [RSA-OAEP RSA-OAEP-256]
+	RequestObjectEncryptionAlg string `json:"request_object_encryption_alg,omitempty"`
+
+	// Optional JWE enc algorithm the client is declaring that it may use for encrypting Request Objects
+	// When request_object_encryption_enc is included, request_object_encryption_alg MUST also be provided.
+	// Example: A256GCM
+	// Enum: [A256GCM A128CBC-HS256]
+	RequestObjectEncryptionEnc string `json:"request_object_encryption_enc,omitempty"`
 
 	// Request object signing algorithm for the token endpoint
 	//
@@ -151,29 +197,20 @@ type DynamicClientRegistrationRequest struct {
 	// Boolean parameter indicating whether the only means of initiating an authorization request the client is allowed to use is PAR.
 	RequirePushedAuthorizationRequests bool `json:"require_pushed_authorization_requests,omitempty"`
 
-	// An array of OAuth client response types configured for a client application
+	// response types
+	ResponseTypes ResponseTypes `json:"response_types,omitempty"`
+
+	// Revocation endpoint authentication method configured for a client application
+	// If empty, the token_endpoint_auth_method will be used
 	//
-	// The array may consist of the following arguments:
+	// ACP supports the following client authentication methods:
+	// client_secret_basic, client_secret_post, client_secret_jwt, private_key_jwt,
+	// self_signed_tls_client_auth, tls_client_auth, none.
 	//
-	// `code` - when supplied as the value for the `response_type` parameter, a successful
-	// response includes an authorization code
-	//
-	// `code token` - when supplied as the value for the `response_type` parameter, a successful
-	// response includes an access token, an access token type, and an authorization code
-	//
-	// `id_token token` - when supplied as the value for the `response_type` parameter, a successful
-	// response includes an access token, an access token type, and an ID token
-	//
-	// `code id_token token` - when supplied as the value for the `response_type` parameter, a successful
-	// response includes an authorization code, an ID token, an access token, and an access token
-	// type.
-	//
-	// `token` - when supplied as the value for the `response_type` parameter, a successful
-	// response includes an access token and its type. This argument is used for the implicit grant
-	// flow, but is not recommended. Instead, you should use either the authorization code grant
-	// flow with PKCE or client authentication set to `none` and with the use of PKCE.
-	// Example: ["token","id_token","code"]
-	ResponseTypes []string `json:"response_types"`
+	// To learn more, see the [ACP client authentication documentation](https://docs.authorization.cloudentity.com/features/oauth/client_auth/)
+	// Example: client_secret_basic
+	// Enum: [client_secret_basic client_secret_post client_secret_jwt private_key_jwt self_signed_tls_client_auth tls_client_auth none]
+	RevocationEndpointAuthMethod string `json:"revocation_endpoint_auth_method,omitempty"`
 
 	// Space separated scopes for compatibility with OAuth specification
 	// Example: email offline_access openid
@@ -276,8 +313,16 @@ type DynamicClientRegistrationRequest struct {
 	// Enum: [none RS256 ES256 PS256 HS256]
 	TokenEndpointAuthSigningAlg string `json:"token_endpoint_auth_signing_alg,omitempty"`
 
+	// token exchange
+	TokenExchange *ClientTokenExchangeConfiguration `json:"token_exchange,omitempty"`
+
 	// Terms of Service URL
 	TosURI string `json:"tos_uri,omitempty"`
+
+	// Date when the client was updated
+	// Example: 2022-05-08T01:11:51.1262916Z
+	// Format: date-time
+	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty"`
 
 	// JWS alg algorithm REQUIRED for signing UserInfo Responses.
 	//
@@ -299,6 +344,18 @@ func (m *DynamicClientRegistrationRequest) Validate(formats strfmt.Registry) err
 		res = append(res, err)
 	}
 
+	if err := m.validateAuthorizationEncryptedResponseAlg(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateAuthorizationEncryptedResponseEnc(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCreatedAt(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateGrantTypes(formats); err != nil {
 		res = append(res, err)
 	}
@@ -315,6 +372,10 @@ func (m *DynamicClientRegistrationRequest) Validate(formats strfmt.Registry) err
 		res = append(res, err)
 	}
 
+	if err := m.validateIntrospectionEndpointAuthMethod(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateJwks(formats); err != nil {
 		res = append(res, err)
 	}
@@ -323,11 +384,27 @@ func (m *DynamicClientRegistrationRequest) Validate(formats strfmt.Registry) err
 		res = append(res, err)
 	}
 
+	if err := m.validateRedirectUris(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRequestObjectEncryptionAlg(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRequestObjectEncryptionEnc(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateRequestObjectSigningAlg(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateResponseTypes(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRevocationEndpointAuthMethod(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -340,6 +417,14 @@ func (m *DynamicClientRegistrationRequest) Validate(formats strfmt.Registry) err
 	}
 
 	if err := m.validateTokenEndpointAuthSigningAlg(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTokenExchange(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUpdatedAt(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -389,11 +474,107 @@ func (m *DynamicClientRegistrationRequest) validateApplicationTypes(formats strf
 	return nil
 }
 
+var dynamicClientRegistrationRequestTypeAuthorizationEncryptedResponseAlgPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["RSA-OAEP","RSA-OAEP-256"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		dynamicClientRegistrationRequestTypeAuthorizationEncryptedResponseAlgPropEnum = append(dynamicClientRegistrationRequestTypeAuthorizationEncryptedResponseAlgPropEnum, v)
+	}
+}
+
+const (
+
+	// DynamicClientRegistrationRequestAuthorizationEncryptedResponseAlgRSADashOAEP captures enum value "RSA-OAEP"
+	DynamicClientRegistrationRequestAuthorizationEncryptedResponseAlgRSADashOAEP string = "RSA-OAEP"
+
+	// DynamicClientRegistrationRequestAuthorizationEncryptedResponseAlgRSADashOAEPDash256 captures enum value "RSA-OAEP-256"
+	DynamicClientRegistrationRequestAuthorizationEncryptedResponseAlgRSADashOAEPDash256 string = "RSA-OAEP-256"
+)
+
+// prop value enum
+func (m *DynamicClientRegistrationRequest) validateAuthorizationEncryptedResponseAlgEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, dynamicClientRegistrationRequestTypeAuthorizationEncryptedResponseAlgPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *DynamicClientRegistrationRequest) validateAuthorizationEncryptedResponseAlg(formats strfmt.Registry) error {
+	if swag.IsZero(m.AuthorizationEncryptedResponseAlg) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateAuthorizationEncryptedResponseAlgEnum("authorization_encrypted_response_alg", "body", m.AuthorizationEncryptedResponseAlg); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var dynamicClientRegistrationRequestTypeAuthorizationEncryptedResponseEncPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["A256GCM","A128CBC-HS256"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		dynamicClientRegistrationRequestTypeAuthorizationEncryptedResponseEncPropEnum = append(dynamicClientRegistrationRequestTypeAuthorizationEncryptedResponseEncPropEnum, v)
+	}
+}
+
+const (
+
+	// DynamicClientRegistrationRequestAuthorizationEncryptedResponseEncA256GCM captures enum value "A256GCM"
+	DynamicClientRegistrationRequestAuthorizationEncryptedResponseEncA256GCM string = "A256GCM"
+
+	// DynamicClientRegistrationRequestAuthorizationEncryptedResponseEncA128CBCDashHS256 captures enum value "A128CBC-HS256"
+	DynamicClientRegistrationRequestAuthorizationEncryptedResponseEncA128CBCDashHS256 string = "A128CBC-HS256"
+)
+
+// prop value enum
+func (m *DynamicClientRegistrationRequest) validateAuthorizationEncryptedResponseEncEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, dynamicClientRegistrationRequestTypeAuthorizationEncryptedResponseEncPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *DynamicClientRegistrationRequest) validateAuthorizationEncryptedResponseEnc(formats strfmt.Registry) error {
+	if swag.IsZero(m.AuthorizationEncryptedResponseEnc) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateAuthorizationEncryptedResponseEncEnum("authorization_encrypted_response_enc", "body", m.AuthorizationEncryptedResponseEnc); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DynamicClientRegistrationRequest) validateCreatedAt(formats strfmt.Registry) error {
+	if swag.IsZero(m.CreatedAt) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("created_at", "body", "date-time", m.CreatedAt.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 var dynamicClientRegistrationRequestGrantTypesItemsEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["authorization_code","implicit","client_credentials","refresh_token","password","urn:ietf:params:oauth:grant-type:jwt-bearer","urn:openid:params:grant-type:ciba","urn:ietf:params:oauth:grant-type:token-exchange"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["authorization_code","implicit","client_credentials","refresh_token","password","urn:ietf:params:oauth:grant-type:jwt-bearer","urn:openid:params:grant-type:ciba","urn:ietf:params:oauth:grant-type:token-exchange","urn:ietf:params:oauth:grant-type:device_code"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -554,6 +735,63 @@ func (m *DynamicClientRegistrationRequest) validateIDTokenSignedResponseAlg(form
 	return nil
 }
 
+var dynamicClientRegistrationRequestTypeIntrospectionEndpointAuthMethodPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["client_secret_basic","client_secret_post","client_secret_jwt","private_key_jwt","self_signed_tls_client_auth","tls_client_auth","none"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		dynamicClientRegistrationRequestTypeIntrospectionEndpointAuthMethodPropEnum = append(dynamicClientRegistrationRequestTypeIntrospectionEndpointAuthMethodPropEnum, v)
+	}
+}
+
+const (
+
+	// DynamicClientRegistrationRequestIntrospectionEndpointAuthMethodClientSecretBasic captures enum value "client_secret_basic"
+	DynamicClientRegistrationRequestIntrospectionEndpointAuthMethodClientSecretBasic string = "client_secret_basic"
+
+	// DynamicClientRegistrationRequestIntrospectionEndpointAuthMethodClientSecretPost captures enum value "client_secret_post"
+	DynamicClientRegistrationRequestIntrospectionEndpointAuthMethodClientSecretPost string = "client_secret_post"
+
+	// DynamicClientRegistrationRequestIntrospectionEndpointAuthMethodClientSecretJwt captures enum value "client_secret_jwt"
+	DynamicClientRegistrationRequestIntrospectionEndpointAuthMethodClientSecretJwt string = "client_secret_jwt"
+
+	// DynamicClientRegistrationRequestIntrospectionEndpointAuthMethodPrivateKeyJwt captures enum value "private_key_jwt"
+	DynamicClientRegistrationRequestIntrospectionEndpointAuthMethodPrivateKeyJwt string = "private_key_jwt"
+
+	// DynamicClientRegistrationRequestIntrospectionEndpointAuthMethodSelfSignedTLSClientAuth captures enum value "self_signed_tls_client_auth"
+	DynamicClientRegistrationRequestIntrospectionEndpointAuthMethodSelfSignedTLSClientAuth string = "self_signed_tls_client_auth"
+
+	// DynamicClientRegistrationRequestIntrospectionEndpointAuthMethodTLSClientAuth captures enum value "tls_client_auth"
+	DynamicClientRegistrationRequestIntrospectionEndpointAuthMethodTLSClientAuth string = "tls_client_auth"
+
+	// DynamicClientRegistrationRequestIntrospectionEndpointAuthMethodNone captures enum value "none"
+	DynamicClientRegistrationRequestIntrospectionEndpointAuthMethodNone string = "none"
+)
+
+// prop value enum
+func (m *DynamicClientRegistrationRequest) validateIntrospectionEndpointAuthMethodEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, dynamicClientRegistrationRequestTypeIntrospectionEndpointAuthMethodPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *DynamicClientRegistrationRequest) validateIntrospectionEndpointAuthMethod(formats strfmt.Registry) error {
+	if swag.IsZero(m.IntrospectionEndpointAuthMethod) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateIntrospectionEndpointAuthMethodEnum("introspection_endpoint_auth_method", "body", m.IntrospectionEndpointAuthMethod); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *DynamicClientRegistrationRequest) validateJwks(formats strfmt.Registry) error {
 	if swag.IsZero(m.Jwks) { // not required
 		return nil
@@ -587,6 +825,107 @@ func (m *DynamicClientRegistrationRequest) validatePrivacy(formats strfmt.Regist
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *DynamicClientRegistrationRequest) validateRedirectUris(formats strfmt.Registry) error {
+	if swag.IsZero(m.RedirectUris) { // not required
+		return nil
+	}
+
+	if err := m.RedirectUris.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("redirect_uris")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("redirect_uris")
+		}
+		return err
+	}
+
+	return nil
+}
+
+var dynamicClientRegistrationRequestTypeRequestObjectEncryptionAlgPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["RSA-OAEP","RSA-OAEP-256"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		dynamicClientRegistrationRequestTypeRequestObjectEncryptionAlgPropEnum = append(dynamicClientRegistrationRequestTypeRequestObjectEncryptionAlgPropEnum, v)
+	}
+}
+
+const (
+
+	// DynamicClientRegistrationRequestRequestObjectEncryptionAlgRSADashOAEP captures enum value "RSA-OAEP"
+	DynamicClientRegistrationRequestRequestObjectEncryptionAlgRSADashOAEP string = "RSA-OAEP"
+
+	// DynamicClientRegistrationRequestRequestObjectEncryptionAlgRSADashOAEPDash256 captures enum value "RSA-OAEP-256"
+	DynamicClientRegistrationRequestRequestObjectEncryptionAlgRSADashOAEPDash256 string = "RSA-OAEP-256"
+)
+
+// prop value enum
+func (m *DynamicClientRegistrationRequest) validateRequestObjectEncryptionAlgEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, dynamicClientRegistrationRequestTypeRequestObjectEncryptionAlgPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *DynamicClientRegistrationRequest) validateRequestObjectEncryptionAlg(formats strfmt.Registry) error {
+	if swag.IsZero(m.RequestObjectEncryptionAlg) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateRequestObjectEncryptionAlgEnum("request_object_encryption_alg", "body", m.RequestObjectEncryptionAlg); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var dynamicClientRegistrationRequestTypeRequestObjectEncryptionEncPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["A256GCM","A128CBC-HS256"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		dynamicClientRegistrationRequestTypeRequestObjectEncryptionEncPropEnum = append(dynamicClientRegistrationRequestTypeRequestObjectEncryptionEncPropEnum, v)
+	}
+}
+
+const (
+
+	// DynamicClientRegistrationRequestRequestObjectEncryptionEncA256GCM captures enum value "A256GCM"
+	DynamicClientRegistrationRequestRequestObjectEncryptionEncA256GCM string = "A256GCM"
+
+	// DynamicClientRegistrationRequestRequestObjectEncryptionEncA128CBCDashHS256 captures enum value "A128CBC-HS256"
+	DynamicClientRegistrationRequestRequestObjectEncryptionEncA128CBCDashHS256 string = "A128CBC-HS256"
+)
+
+// prop value enum
+func (m *DynamicClientRegistrationRequest) validateRequestObjectEncryptionEncEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, dynamicClientRegistrationRequestTypeRequestObjectEncryptionEncPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *DynamicClientRegistrationRequest) validateRequestObjectEncryptionEnc(formats strfmt.Registry) error {
+	if swag.IsZero(m.RequestObjectEncryptionEnc) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateRequestObjectEncryptionEncEnum("request_object_encryption_enc", "body", m.RequestObjectEncryptionEnc); err != nil {
+		return err
 	}
 
 	return nil
@@ -643,37 +982,75 @@ func (m *DynamicClientRegistrationRequest) validateRequestObjectSigningAlg(forma
 	return nil
 }
 
-var dynamicClientRegistrationRequestResponseTypesItemsEnum []interface{}
-
-func init() {
-	var res []string
-	if err := json.Unmarshal([]byte(`["token","id_token","code","code id_token","token id_token","token code","token id_token code"]`), &res); err != nil {
-		panic(err)
-	}
-	for _, v := range res {
-		dynamicClientRegistrationRequestResponseTypesItemsEnum = append(dynamicClientRegistrationRequestResponseTypesItemsEnum, v)
-	}
-}
-
-func (m *DynamicClientRegistrationRequest) validateResponseTypesItemsEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, dynamicClientRegistrationRequestResponseTypesItemsEnum, true); err != nil {
-		return err
-	}
-	return nil
-}
-
 func (m *DynamicClientRegistrationRequest) validateResponseTypes(formats strfmt.Registry) error {
 	if swag.IsZero(m.ResponseTypes) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.ResponseTypes); i++ {
-
-		// value enum
-		if err := m.validateResponseTypesItemsEnum("response_types"+"."+strconv.Itoa(i), "body", m.ResponseTypes[i]); err != nil {
-			return err
+	if err := m.ResponseTypes.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("response_types")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("response_types")
 		}
+		return err
+	}
 
+	return nil
+}
+
+var dynamicClientRegistrationRequestTypeRevocationEndpointAuthMethodPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["client_secret_basic","client_secret_post","client_secret_jwt","private_key_jwt","self_signed_tls_client_auth","tls_client_auth","none"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		dynamicClientRegistrationRequestTypeRevocationEndpointAuthMethodPropEnum = append(dynamicClientRegistrationRequestTypeRevocationEndpointAuthMethodPropEnum, v)
+	}
+}
+
+const (
+
+	// DynamicClientRegistrationRequestRevocationEndpointAuthMethodClientSecretBasic captures enum value "client_secret_basic"
+	DynamicClientRegistrationRequestRevocationEndpointAuthMethodClientSecretBasic string = "client_secret_basic"
+
+	// DynamicClientRegistrationRequestRevocationEndpointAuthMethodClientSecretPost captures enum value "client_secret_post"
+	DynamicClientRegistrationRequestRevocationEndpointAuthMethodClientSecretPost string = "client_secret_post"
+
+	// DynamicClientRegistrationRequestRevocationEndpointAuthMethodClientSecretJwt captures enum value "client_secret_jwt"
+	DynamicClientRegistrationRequestRevocationEndpointAuthMethodClientSecretJwt string = "client_secret_jwt"
+
+	// DynamicClientRegistrationRequestRevocationEndpointAuthMethodPrivateKeyJwt captures enum value "private_key_jwt"
+	DynamicClientRegistrationRequestRevocationEndpointAuthMethodPrivateKeyJwt string = "private_key_jwt"
+
+	// DynamicClientRegistrationRequestRevocationEndpointAuthMethodSelfSignedTLSClientAuth captures enum value "self_signed_tls_client_auth"
+	DynamicClientRegistrationRequestRevocationEndpointAuthMethodSelfSignedTLSClientAuth string = "self_signed_tls_client_auth"
+
+	// DynamicClientRegistrationRequestRevocationEndpointAuthMethodTLSClientAuth captures enum value "tls_client_auth"
+	DynamicClientRegistrationRequestRevocationEndpointAuthMethodTLSClientAuth string = "tls_client_auth"
+
+	// DynamicClientRegistrationRequestRevocationEndpointAuthMethodNone captures enum value "none"
+	DynamicClientRegistrationRequestRevocationEndpointAuthMethodNone string = "none"
+)
+
+// prop value enum
+func (m *DynamicClientRegistrationRequest) validateRevocationEndpointAuthMethodEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, dynamicClientRegistrationRequestTypeRevocationEndpointAuthMethodPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *DynamicClientRegistrationRequest) validateRevocationEndpointAuthMethod(formats strfmt.Registry) error {
+	if swag.IsZero(m.RevocationEndpointAuthMethod) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateRevocationEndpointAuthMethodEnum("revocation_endpoint_auth_method", "body", m.RevocationEndpointAuthMethod); err != nil {
+		return err
 	}
 
 	return nil
@@ -829,6 +1206,37 @@ func (m *DynamicClientRegistrationRequest) validateTokenEndpointAuthSigningAlg(f
 	return nil
 }
 
+func (m *DynamicClientRegistrationRequest) validateTokenExchange(formats strfmt.Registry) error {
+	if swag.IsZero(m.TokenExchange) { // not required
+		return nil
+	}
+
+	if m.TokenExchange != nil {
+		if err := m.TokenExchange.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("token_exchange")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("token_exchange")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *DynamicClientRegistrationRequest) validateUpdatedAt(formats strfmt.Registry) error {
+	if swag.IsZero(m.UpdatedAt) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("updated_at", "body", "date-time", m.UpdatedAt.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 var dynamicClientRegistrationRequestTypeUserinfoSignedResponseAlgPropEnum []interface{}
 
 func init() {
@@ -890,6 +1298,18 @@ func (m *DynamicClientRegistrationRequest) ContextValidate(ctx context.Context, 
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateRedirectUris(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateResponseTypes(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateTokenExchange(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -929,6 +1349,50 @@ func (m *DynamicClientRegistrationRequest) contextValidatePrivacy(ctx context.Co
 				return ve.ValidateName("privacy")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("privacy")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *DynamicClientRegistrationRequest) contextValidateRedirectUris(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.RedirectUris.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("redirect_uris")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("redirect_uris")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *DynamicClientRegistrationRequest) contextValidateResponseTypes(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.ResponseTypes.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("response_types")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("response_types")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *DynamicClientRegistrationRequest) contextValidateTokenExchange(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.TokenExchange != nil {
+		if err := m.TokenExchange.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("token_exchange")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("token_exchange")
 			}
 			return err
 		}

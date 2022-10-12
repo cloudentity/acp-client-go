@@ -34,6 +34,8 @@ type ClientService interface {
 
 	CreateDataAccessConsentDeprecated(params *CreateDataAccessConsentDeprecatedParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateDataAccessConsentDeprecatedCreated, error)
 
+	CreateDataAccessConsentV2(params *CreateDataAccessConsentV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateDataAccessConsentV2Created, error)
+
 	CreatePaymentConsent(params *CreatePaymentConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreatePaymentConsentCreated, error)
 
 	CreatePaymentConsentDeprecated(params *CreatePaymentConsentDeprecatedParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreatePaymentConsentDeprecatedCreated, error)
@@ -42,9 +44,13 @@ type ClientService interface {
 
 	DeleteDataAccessConsentDeprecated(params *DeleteDataAccessConsentDeprecatedParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteDataAccessConsentDeprecatedNoContent, error)
 
+	DeleteDataAccessConsentV2(params *DeleteDataAccessConsentV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteDataAccessConsentV2NoContent, error)
+
 	GetDataAccessConsent(params *GetDataAccessConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDataAccessConsentOK, error)
 
 	GetDataAccessConsentDeprecated(params *GetDataAccessConsentDeprecatedParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDataAccessConsentDeprecatedOK, error)
+
+	GetDataAccessConsentV2(params *GetDataAccessConsentV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDataAccessConsentV2OK, error)
 
 	GetPaymentConsent(params *GetPaymentConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPaymentConsentOK, error)
 
@@ -68,6 +74,8 @@ type ClientService interface {
 
 	ObbrDataAccessConsentIntrospect(params *ObbrDataAccessConsentIntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ObbrDataAccessConsentIntrospectOK, error)
 
+	ObbrDataAccessConsentV2Introspect(params *ObbrDataAccessConsentV2IntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ObbrDataAccessConsentV2IntrospectOK, error)
+
 	ObbrPaymentConsentIntrospect(params *ObbrPaymentConsentIntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ObbrPaymentConsentIntrospectOK, error)
 
 	RejectOBBRCustomerDataAccessConsentSystem(params *RejectOBBRCustomerDataAccessConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectOBBRCustomerDataAccessConsentSystemOK, error)
@@ -82,9 +90,9 @@ type ClientService interface {
 }
 
 /*
-  CreateDataAccessConsent creates data access consent
+CreateDataAccessConsent creates data access consent
 
-  This API allows AISP to create consent to access PSU registration data, information about transactions in their accounts, credit card and contracted credit products
+This API allows AISP to create consent to access PSU registration data, information about transactions in their accounts, credit card and contracted credit products
 */
 func (a *Client) CreateDataAccessConsent(params *CreateDataAccessConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateDataAccessConsentCreated, error) {
 	// TODO: Validate the params before sending
@@ -123,9 +131,9 @@ func (a *Client) CreateDataAccessConsent(params *CreateDataAccessConsentParams, 
 }
 
 /*
-  CreateDataAccessConsentDeprecated creates data access consent
+CreateDataAccessConsentDeprecated creates data access consent
 
-  This API allows AISP to create consent to access PSU registration data, information about transactions in their accounts, credit card and contracted credit products
+This API allows AISP to create consent to access PSU registration data, information about transactions in their accounts, credit card and contracted credit products
 */
 func (a *Client) CreateDataAccessConsentDeprecated(params *CreateDataAccessConsentDeprecatedParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateDataAccessConsentDeprecatedCreated, error) {
 	// TODO: Validate the params before sending
@@ -164,9 +172,50 @@ func (a *Client) CreateDataAccessConsentDeprecated(params *CreateDataAccessConse
 }
 
 /*
-  CreatePaymentConsent creates payment consent
+CreateDataAccessConsentV2 creates data access consent
 
-  This API allows AISP to create consent to initiate payments between banks and financial institutions
+This API allows AISP to create consent to access PSU registration data, information about transactions in their accounts, credit card and contracted credit products
+*/
+func (a *Client) CreateDataAccessConsentV2(params *CreateDataAccessConsentV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateDataAccessConsentV2Created, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateDataAccessConsentV2Params()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "CreateDataAccessConsentV2",
+		Method:             "POST",
+		PathPattern:        "/open-banking/consents/v2/consents",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateDataAccessConsentV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CreateDataAccessConsentV2Created)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for CreateDataAccessConsentV2: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+CreatePaymentConsent creates payment consent
+
+This API allows AISP to create consent to initiate payments between banks and financial institutions
 */
 func (a *Client) CreatePaymentConsent(params *CreatePaymentConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreatePaymentConsentCreated, error) {
 	// TODO: Validate the params before sending
@@ -205,9 +254,9 @@ func (a *Client) CreatePaymentConsent(params *CreatePaymentConsentParams, authIn
 }
 
 /*
-  CreatePaymentConsentDeprecated creates payment consent
+CreatePaymentConsentDeprecated creates payment consent
 
-  This API allows AISP to create consent to initiate payments between banks and financial institutions
+This API allows AISP to create consent to initiate payments between banks and financial institutions
 */
 func (a *Client) CreatePaymentConsentDeprecated(params *CreatePaymentConsentDeprecatedParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreatePaymentConsentDeprecatedCreated, error) {
 	// TODO: Validate the params before sending
@@ -246,9 +295,9 @@ func (a *Client) CreatePaymentConsentDeprecated(params *CreatePaymentConsentDepr
 }
 
 /*
-  DeleteDataAccessConsent deletes data access consent
+DeleteDataAccessConsent deletes data access consent
 
-  This API allows PISP to remove previously created consent
+This API allows PISP to remove previously created consent
 */
 func (a *Client) DeleteDataAccessConsent(params *DeleteDataAccessConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteDataAccessConsentNoContent, error) {
 	// TODO: Validate the params before sending
@@ -287,9 +336,9 @@ func (a *Client) DeleteDataAccessConsent(params *DeleteDataAccessConsentParams, 
 }
 
 /*
-  DeleteDataAccessConsentDeprecated deletes data access consent
+DeleteDataAccessConsentDeprecated deletes data access consent
 
-  This API allows PISP to remove previously created consent
+This API allows PISP to remove previously created consent
 */
 func (a *Client) DeleteDataAccessConsentDeprecated(params *DeleteDataAccessConsentDeprecatedParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteDataAccessConsentDeprecatedNoContent, error) {
 	// TODO: Validate the params before sending
@@ -328,9 +377,50 @@ func (a *Client) DeleteDataAccessConsentDeprecated(params *DeleteDataAccessConse
 }
 
 /*
-  GetDataAccessConsent gets data access consent
+DeleteDataAccessConsentV2 deletes data access consent
 
-  This API allows PISP to retrieve previously created consent
+This API allows PISP to remove previously created consent
+*/
+func (a *Client) DeleteDataAccessConsentV2(params *DeleteDataAccessConsentV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteDataAccessConsentV2NoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteDataAccessConsentV2Params()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "DeleteDataAccessConsentV2",
+		Method:             "DELETE",
+		PathPattern:        "/open-banking/consents/v2/consents/{consentID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteDataAccessConsentV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DeleteDataAccessConsentV2NoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for DeleteDataAccessConsentV2: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetDataAccessConsent gets data access consent
+
+This API allows PISP to retrieve previously created consent
 */
 func (a *Client) GetDataAccessConsent(params *GetDataAccessConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDataAccessConsentOK, error) {
 	// TODO: Validate the params before sending
@@ -369,9 +459,9 @@ func (a *Client) GetDataAccessConsent(params *GetDataAccessConsentParams, authIn
 }
 
 /*
-  GetDataAccessConsentDeprecated gets data access consent
+GetDataAccessConsentDeprecated gets data access consent
 
-  This API allows PISP to retrieve previously created consent
+This API allows PISP to retrieve previously created consent
 */
 func (a *Client) GetDataAccessConsentDeprecated(params *GetDataAccessConsentDeprecatedParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDataAccessConsentDeprecatedOK, error) {
 	// TODO: Validate the params before sending
@@ -410,9 +500,50 @@ func (a *Client) GetDataAccessConsentDeprecated(params *GetDataAccessConsentDepr
 }
 
 /*
-  GetPaymentConsent gets payment consent
+GetDataAccessConsentV2 gets data access consent
 
-  This API allows PISP to retrieve previously created payment consent
+This API allows PISP to retrieve previously created consent
+*/
+func (a *Client) GetDataAccessConsentV2(params *GetDataAccessConsentV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDataAccessConsentV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetDataAccessConsentV2Params()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetDataAccessConsentV2",
+		Method:             "GET",
+		PathPattern:        "/open-banking/consents/v2/consents/{consentID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetDataAccessConsentV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetDataAccessConsentV2OK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetDataAccessConsentV2: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetPaymentConsent gets payment consent
+
+This API allows PISP to retrieve previously created payment consent
 */
 func (a *Client) GetPaymentConsent(params *GetPaymentConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPaymentConsentOK, error) {
 	// TODO: Validate the params before sending
@@ -451,9 +582,9 @@ func (a *Client) GetPaymentConsent(params *GetPaymentConsentParams, authInfo run
 }
 
 /*
-  GetPaymentConsentDeprecated gets payment consent
+GetPaymentConsentDeprecated gets payment consent
 
-  This API allows PISP to retrieve previously created payment consent
+This API allows PISP to retrieve previously created payment consent
 */
 func (a *Client) GetPaymentConsentDeprecated(params *GetPaymentConsentDeprecatedParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPaymentConsentDeprecatedOK, error) {
 	// TODO: Validate the params before sending
@@ -492,9 +623,9 @@ func (a *Client) GetPaymentConsentDeprecated(params *GetPaymentConsentDeprecated
 }
 
 /*
-  PatchPaymentConsent revokes payment consent
+PatchPaymentConsent revokes payment consent
 
-  This API allows PISP to revoke a payment consent
+This API allows PISP to revoke a payment consent
 */
 func (a *Client) PatchPaymentConsent(params *PatchPaymentConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchPaymentConsentOK, error) {
 	// TODO: Validate the params before sending
@@ -533,9 +664,9 @@ func (a *Client) PatchPaymentConsent(params *PatchPaymentConsentParams, authInfo
 }
 
 /*
-  AcceptOBBRCustomerDataAccessConsentSystem accepts customer data access consent
+AcceptOBBRCustomerDataAccessConsentSystem accepts customer data access consent
 
-  This API can be used by a custom openbanking consent page to notify ACP that user granted consent to a customer data access.
+This API can be used by a custom openbanking consent page to notify ACP that user granted consent to a customer data access.
 */
 func (a *Client) AcceptOBBRCustomerDataAccessConsentSystem(params *AcceptOBBRCustomerDataAccessConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptOBBRCustomerDataAccessConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -574,9 +705,9 @@ func (a *Client) AcceptOBBRCustomerDataAccessConsentSystem(params *AcceptOBBRCus
 }
 
 /*
-  AcceptOBBRCustomerPaymentConsentSystem accepts customer payment initiation consent
+AcceptOBBRCustomerPaymentConsentSystem accepts customer payment initiation consent
 
-  This API can be used by a custom openbanking consent page to notify ACP that user granted consent for payment initiation.
+This API can be used by a custom openbanking consent page to notify ACP that user granted consent for payment initiation.
 */
 func (a *Client) AcceptOBBRCustomerPaymentConsentSystem(params *AcceptOBBRCustomerPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptOBBRCustomerPaymentConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -615,9 +746,9 @@ func (a *Client) AcceptOBBRCustomerPaymentConsentSystem(params *AcceptOBBRCustom
 }
 
 /*
-  ConsumeOBBRConsent consumes openbanking consent by ID
+ConsumeOBBRConsent consumes openbanking consent by ID
 
-  This API consumes openbanking consent by consent id.
+This API consumes openbanking consent by consent id.
 */
 func (a *Client) ConsumeOBBRConsent(params *ConsumeOBBRConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ConsumeOBBRConsentOK, error) {
 	// TODO: Validate the params before sending
@@ -656,9 +787,11 @@ func (a *Client) ConsumeOBBRConsent(params *ConsumeOBBRConsentParams, authInfo r
 }
 
 /*
-  GetOBBRConsents gets openbanking brasil consents
+	GetOBBRConsents gets openbanking brasil consents
 
-  This API returns the list of openbanking brasil consents.
+	This API returns the list of openbanking brasil consents.
+
+Currently supporting v1 and v2 consents.
 You can narrow the list of returned consents using filters defined in query parameters.
 See GetConsentsParams for details.
 */
@@ -699,9 +832,10 @@ func (a *Client) GetOBBRConsents(params *GetOBBRConsentsParams, authInfo runtime
 }
 
 /*
-  GetOBBRCustomerDataAccessConsentSystem gets customer data access consent
+	GetOBBRCustomerDataAccessConsentSystem gets customer data access consent
 
-  This API can be used by a custom openbanking consent page.
+	This API can be used by a custom openbanking consent page.
+
 The consent page must first use client credentials flow to create consent.
 */
 func (a *Client) GetOBBRCustomerDataAccessConsentSystem(params *GetOBBRCustomerDataAccessConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOBBRCustomerDataAccessConsentSystemOK, error) {
@@ -741,9 +875,10 @@ func (a *Client) GetOBBRCustomerDataAccessConsentSystem(params *GetOBBRCustomerD
 }
 
 /*
-  GetOBBRCustomerPaymentConsentSystem gets customer payment initiation consent
+	GetOBBRCustomerPaymentConsentSystem gets customer payment initiation consent
 
-  This API can be used by a custom openbanking consent page.
+	This API can be used by a custom openbanking consent page.
+
 The consent page must first use client credentials flow to create consent.
 */
 func (a *Client) GetOBBRCustomerPaymentConsentSystem(params *GetOBBRCustomerPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOBBRCustomerPaymentConsentSystemOK, error) {
@@ -783,9 +918,11 @@ func (a *Client) GetOBBRCustomerPaymentConsentSystem(params *GetOBBRCustomerPaym
 }
 
 /*
-  ListOBBRConsents lists openbanking brasil consents
+	ListOBBRConsents lists openbanking brasil consents
 
-  This API returns the list of openbanking brasil consents.
+	This API returns the list of openbanking brasil consents.
+
+Currently supporting v1 and v2 consents.
 You can narrow the list of returned consents using filters defined in request body.
 See ListConsentsParams for details.
 */
@@ -826,9 +963,9 @@ func (a *Client) ListOBBRConsents(params *ListOBBRConsentsParams, authInfo runti
 }
 
 /*
-  ObbrDataAccessConsentIntrospect introspects openbanking brasil data access consent
+ObbrDataAccessConsentIntrospect introspects openbanking brasil data access consent
 
-  Introspect openbanking brasil data access consent
+Introspect openbanking brasil data access consent
 */
 func (a *Client) ObbrDataAccessConsentIntrospect(params *ObbrDataAccessConsentIntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ObbrDataAccessConsentIntrospectOK, error) {
 	// TODO: Validate the params before sending
@@ -867,9 +1004,51 @@ func (a *Client) ObbrDataAccessConsentIntrospect(params *ObbrDataAccessConsentIn
 }
 
 /*
-  ObbrPaymentConsentIntrospect introspects openbanking brasil payment consent
+ObbrDataAccessConsentV2Introspect introspects openbanking brasil data access consent
 
-  This endpoint takes an OAuth 2.0 token and, in addition to returning
+This API allows introspection of tokens bound to v2 consents. It is also backwards compatible with v1 consent tokens.
+*/
+func (a *Client) ObbrDataAccessConsentV2Introspect(params *ObbrDataAccessConsentV2IntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ObbrDataAccessConsentV2IntrospectOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewObbrDataAccessConsentV2IntrospectParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "obbrDataAccessConsentV2Introspect",
+		Method:             "POST",
+		PathPattern:        "/open-banking-brasil/open-banking/consents/v2/consents/introspect",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ObbrDataAccessConsentV2IntrospectReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ObbrDataAccessConsentV2IntrospectOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for obbrDataAccessConsentV2Introspect: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	ObbrPaymentConsentIntrospect introspects openbanking brasil payment consent
+
+	This endpoint takes an OAuth 2.0 token and, in addition to returning
+
 meta information surrounding the token, returns the payment consent and
 associated account ids.
 */
@@ -910,9 +1089,9 @@ func (a *Client) ObbrPaymentConsentIntrospect(params *ObbrPaymentConsentIntrospe
 }
 
 /*
-  RejectOBBRCustomerDataAccessConsentSystem rejects consent
+RejectOBBRCustomerDataAccessConsentSystem rejects consent
 
-  This API can be used by a custom openbanking consent page to notify ACP that user rejected access.
+This API can be used by a custom openbanking consent page to notify ACP that user rejected access.
 */
 func (a *Client) RejectOBBRCustomerDataAccessConsentSystem(params *RejectOBBRCustomerDataAccessConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectOBBRCustomerDataAccessConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -951,9 +1130,9 @@ func (a *Client) RejectOBBRCustomerDataAccessConsentSystem(params *RejectOBBRCus
 }
 
 /*
-  RejectOBBRCustomerPaymentConsentSystem rejects consent
+RejectOBBRCustomerPaymentConsentSystem rejects consent
 
-  This API can be used by a custom openbanking consent page to notify ACP that user rejected payment initiation.
+This API can be used by a custom openbanking consent page to notify ACP that user rejected payment initiation.
 */
 func (a *Client) RejectOBBRCustomerPaymentConsentSystem(params *RejectOBBRCustomerPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectOBBRCustomerPaymentConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -992,9 +1171,11 @@ func (a *Client) RejectOBBRCustomerPaymentConsentSystem(params *RejectOBBRCustom
 }
 
 /*
-  RevokeOBBRConsent revokes openbanking consent by ID
+	RevokeOBBRConsent revokes openbanking consent by ID
 
-  This API revokes openbanking consent by consent id.
+	This API revokes openbanking consent by consent id.
+
+Currently supporting v1 and v2 consents.
 */
 func (a *Client) RevokeOBBRConsent(params *RevokeOBBRConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeOBBRConsentNoContent, error) {
 	// TODO: Validate the params before sending
@@ -1033,10 +1214,11 @@ func (a *Client) RevokeOBBRConsent(params *RevokeOBBRConsentParams, authInfo run
 }
 
 /*
-  RevokeOBBRConsents revokes openbanking brasil consents
+	RevokeOBBRConsents revokes openbanking brasil consents
 
-  This API revokes openbanking consents matching provided parameters.
+	This API revokes openbanking consents matching provided parameters.
 
+Currently supporting v1 and v2 consents.
 Currently supporting removal by client id.
 Use ?client_id={clientID} to remove all consents by a given client.
 

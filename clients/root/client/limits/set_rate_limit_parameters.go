@@ -54,10 +54,12 @@ func NewSetRateLimitParamsWithHTTPClient(client *http.Client) *SetRateLimitParam
 	}
 }
 
-/* SetRateLimitParams contains all the parameters to send to the API endpoint
-   for the set rate limit operation.
+/*
+SetRateLimitParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the set rate limit operation.
+
+	Typically these are written to a http.Request.
 */
 type SetRateLimitParams struct {
 

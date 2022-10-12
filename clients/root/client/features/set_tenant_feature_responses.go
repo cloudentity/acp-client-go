@@ -75,14 +75,44 @@ func NewSetTenantFeatureNoContent() *SetTenantFeatureNoContent {
 	return &SetTenantFeatureNoContent{}
 }
 
-/* SetTenantFeatureNoContent describes a response with status code 204, with default header values.
+/*
+SetTenantFeatureNoContent describes a response with status code 204, with default header values.
 
-tenant feature set
+	tenant feature set
 */
 type SetTenantFeatureNoContent struct {
 }
 
+// IsSuccess returns true when this set tenant feature no content response has a 2xx status code
+func (o *SetTenantFeatureNoContent) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this set tenant feature no content response has a 3xx status code
+func (o *SetTenantFeatureNoContent) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set tenant feature no content response has a 4xx status code
+func (o *SetTenantFeatureNoContent) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this set tenant feature no content response has a 5xx status code
+func (o *SetTenantFeatureNoContent) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set tenant feature no content response a status code equal to that given
+func (o *SetTenantFeatureNoContent) IsCode(code int) bool {
+	return code == 204
+}
+
 func (o *SetTenantFeatureNoContent) Error() string {
+	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureNoContent ", 204)
+}
+
+func (o *SetTenantFeatureNoContent) String() string {
 	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureNoContent ", 204)
 }
 
@@ -96,7 +126,8 @@ func NewSetTenantFeatureBadRequest() *SetTenantFeatureBadRequest {
 	return &SetTenantFeatureBadRequest{}
 }
 
-/* SetTenantFeatureBadRequest describes a response with status code 400, with default header values.
+/*
+SetTenantFeatureBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -104,9 +135,39 @@ type SetTenantFeatureBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this set tenant feature bad request response has a 2xx status code
+func (o *SetTenantFeatureBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this set tenant feature bad request response has a 3xx status code
+func (o *SetTenantFeatureBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set tenant feature bad request response has a 4xx status code
+func (o *SetTenantFeatureBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this set tenant feature bad request response has a 5xx status code
+func (o *SetTenantFeatureBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set tenant feature bad request response a status code equal to that given
+func (o *SetTenantFeatureBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *SetTenantFeatureBadRequest) Error() string {
 	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *SetTenantFeatureBadRequest) String() string {
+	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *SetTenantFeatureBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -128,7 +189,8 @@ func NewSetTenantFeatureUnauthorized() *SetTenantFeatureUnauthorized {
 	return &SetTenantFeatureUnauthorized{}
 }
 
-/* SetTenantFeatureUnauthorized describes a response with status code 401, with default header values.
+/*
+SetTenantFeatureUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -136,9 +198,39 @@ type SetTenantFeatureUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this set tenant feature unauthorized response has a 2xx status code
+func (o *SetTenantFeatureUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this set tenant feature unauthorized response has a 3xx status code
+func (o *SetTenantFeatureUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set tenant feature unauthorized response has a 4xx status code
+func (o *SetTenantFeatureUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this set tenant feature unauthorized response has a 5xx status code
+func (o *SetTenantFeatureUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set tenant feature unauthorized response a status code equal to that given
+func (o *SetTenantFeatureUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *SetTenantFeatureUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *SetTenantFeatureUnauthorized) String() string {
+	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *SetTenantFeatureUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -160,7 +252,8 @@ func NewSetTenantFeatureForbidden() *SetTenantFeatureForbidden {
 	return &SetTenantFeatureForbidden{}
 }
 
-/* SetTenantFeatureForbidden describes a response with status code 403, with default header values.
+/*
+SetTenantFeatureForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -168,9 +261,39 @@ type SetTenantFeatureForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this set tenant feature forbidden response has a 2xx status code
+func (o *SetTenantFeatureForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this set tenant feature forbidden response has a 3xx status code
+func (o *SetTenantFeatureForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set tenant feature forbidden response has a 4xx status code
+func (o *SetTenantFeatureForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this set tenant feature forbidden response has a 5xx status code
+func (o *SetTenantFeatureForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set tenant feature forbidden response a status code equal to that given
+func (o *SetTenantFeatureForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *SetTenantFeatureForbidden) Error() string {
 	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureForbidden  %+v", 403, o.Payload)
 }
+
+func (o *SetTenantFeatureForbidden) String() string {
+	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureForbidden  %+v", 403, o.Payload)
+}
+
 func (o *SetTenantFeatureForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -192,7 +315,8 @@ func NewSetTenantFeatureNotFound() *SetTenantFeatureNotFound {
 	return &SetTenantFeatureNotFound{}
 }
 
-/* SetTenantFeatureNotFound describes a response with status code 404, with default header values.
+/*
+SetTenantFeatureNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -200,9 +324,39 @@ type SetTenantFeatureNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this set tenant feature not found response has a 2xx status code
+func (o *SetTenantFeatureNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this set tenant feature not found response has a 3xx status code
+func (o *SetTenantFeatureNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set tenant feature not found response has a 4xx status code
+func (o *SetTenantFeatureNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this set tenant feature not found response has a 5xx status code
+func (o *SetTenantFeatureNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set tenant feature not found response a status code equal to that given
+func (o *SetTenantFeatureNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *SetTenantFeatureNotFound) Error() string {
 	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureNotFound  %+v", 404, o.Payload)
 }
+
+func (o *SetTenantFeatureNotFound) String() string {
+	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureNotFound  %+v", 404, o.Payload)
+}
+
 func (o *SetTenantFeatureNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -224,7 +378,8 @@ func NewSetTenantFeatureUnprocessableEntity() *SetTenantFeatureUnprocessableEnti
 	return &SetTenantFeatureUnprocessableEntity{}
 }
 
-/* SetTenantFeatureUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+SetTenantFeatureUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -232,9 +387,39 @@ type SetTenantFeatureUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this set tenant feature unprocessable entity response has a 2xx status code
+func (o *SetTenantFeatureUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this set tenant feature unprocessable entity response has a 3xx status code
+func (o *SetTenantFeatureUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set tenant feature unprocessable entity response has a 4xx status code
+func (o *SetTenantFeatureUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this set tenant feature unprocessable entity response has a 5xx status code
+func (o *SetTenantFeatureUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set tenant feature unprocessable entity response a status code equal to that given
+func (o *SetTenantFeatureUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *SetTenantFeatureUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *SetTenantFeatureUnprocessableEntity) String() string {
+	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *SetTenantFeatureUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -256,7 +441,8 @@ func NewSetTenantFeatureTooManyRequests() *SetTenantFeatureTooManyRequests {
 	return &SetTenantFeatureTooManyRequests{}
 }
 
-/* SetTenantFeatureTooManyRequests describes a response with status code 429, with default header values.
+/*
+SetTenantFeatureTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -264,9 +450,39 @@ type SetTenantFeatureTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this set tenant feature too many requests response has a 2xx status code
+func (o *SetTenantFeatureTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this set tenant feature too many requests response has a 3xx status code
+func (o *SetTenantFeatureTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set tenant feature too many requests response has a 4xx status code
+func (o *SetTenantFeatureTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this set tenant feature too many requests response has a 5xx status code
+func (o *SetTenantFeatureTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set tenant feature too many requests response a status code equal to that given
+func (o *SetTenantFeatureTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *SetTenantFeatureTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *SetTenantFeatureTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *SetTenantFeatureTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

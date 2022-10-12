@@ -38,17 +38,15 @@ type ClientService interface {
 
 	ListSchemas(params *ListSchemasParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListSchemasOK, error)
 
-	SystemGetSchema(params *SystemGetSchemaParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemGetSchemaOK, error)
-
 	UpdateSchema(params *UpdateSchemaParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateSchemaOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
 
 /*
-  CreateSchema creates schema
+CreateSchema creates schema
 
-  Creates schema. If the `system` flag is set then that schema cannot be later deleted or modified.
+Creates schema. If the `system` flag is set then that schema cannot be later deleted or modified.
 */
 func (a *Client) CreateSchema(params *CreateSchemaParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateSchemaCreated, error) {
 	// TODO: Validate the params before sending
@@ -87,9 +85,9 @@ func (a *Client) CreateSchema(params *CreateSchemaParams, authInfo runtime.Clien
 }
 
 /*
-  DeleteSchema deletes schema
+DeleteSchema deletes schema
 
-  Deletes schema. It is not possible to delete schema marked as `system`.
+Deletes schema. It is not possible to delete schema marked as `system`.
 */
 func (a *Client) DeleteSchema(params *DeleteSchemaParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteSchemaNoContent, error) {
 	// TODO: Validate the params before sending
@@ -128,9 +126,9 @@ func (a *Client) DeleteSchema(params *DeleteSchemaParams, authInfo runtime.Clien
 }
 
 /*
-  GetSchema gets schema
+GetSchema gets schema
 
-  Gets schema.
+Gets schema.
 */
 func (a *Client) GetSchema(params *GetSchemaParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetSchemaOK, error) {
 	// TODO: Validate the params before sending
@@ -169,9 +167,9 @@ func (a *Client) GetSchema(params *GetSchemaParams, authInfo runtime.ClientAuthI
 }
 
 /*
-  ListSchemas lists schemas
+ListSchemas lists schemas
 
-  Lists schemas.
+Lists schemas.
 */
 func (a *Client) ListSchemas(params *ListSchemasParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListSchemasOK, error) {
 	// TODO: Validate the params before sending
@@ -210,50 +208,9 @@ func (a *Client) ListSchemas(params *ListSchemasParams, authInfo runtime.ClientA
 }
 
 /*
-  SystemGetSchema gets schema
+UpdateSchema updates schema
 
-  Gets schema.
-*/
-func (a *Client) SystemGetSchema(params *SystemGetSchemaParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemGetSchemaOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewSystemGetSchemaParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "systemGetSchema",
-		Method:             "GET",
-		PathPattern:        "/system/schemas/{schID}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &SystemGetSchemaReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*SystemGetSchemaOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for systemGetSchema: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-  UpdateSchema updates schema
-
-  Updates schema. It is not possible to update schema marked as `system`.
+Updates schema. It is not possible to update schema marked as `system`.
 */
 func (a *Client) UpdateSchema(params *UpdateSchemaParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateSchemaOK, error) {
 	// TODO: Validate the params before sending

@@ -69,7 +69,8 @@ func NewRotateKeyOK() *RotateKeyOK {
 	return &RotateKeyOK{}
 }
 
-/* RotateKeyOK describes a response with status code 200, with default header values.
+/*
+RotateKeyOK describes a response with status code 200, with default header values.
 
 JWK
 */
@@ -77,9 +78,39 @@ type RotateKeyOK struct {
 	Payload *models.ServerJWK
 }
 
+// IsSuccess returns true when this rotate key o k response has a 2xx status code
+func (o *RotateKeyOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this rotate key o k response has a 3xx status code
+func (o *RotateKeyOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this rotate key o k response has a 4xx status code
+func (o *RotateKeyOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this rotate key o k response has a 5xx status code
+func (o *RotateKeyOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this rotate key o k response a status code equal to that given
+func (o *RotateKeyOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *RotateKeyOK) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyOK  %+v", 200, o.Payload)
 }
+
+func (o *RotateKeyOK) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyOK  %+v", 200, o.Payload)
+}
+
 func (o *RotateKeyOK) GetPayload() *models.ServerJWK {
 	return o.Payload
 }
@@ -101,7 +132,8 @@ func NewRotateKeyBadRequest() *RotateKeyBadRequest {
 	return &RotateKeyBadRequest{}
 }
 
-/* RotateKeyBadRequest describes a response with status code 400, with default header values.
+/*
+RotateKeyBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -109,9 +141,39 @@ type RotateKeyBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this rotate key bad request response has a 2xx status code
+func (o *RotateKeyBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this rotate key bad request response has a 3xx status code
+func (o *RotateKeyBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this rotate key bad request response has a 4xx status code
+func (o *RotateKeyBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this rotate key bad request response has a 5xx status code
+func (o *RotateKeyBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this rotate key bad request response a status code equal to that given
+func (o *RotateKeyBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *RotateKeyBadRequest) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *RotateKeyBadRequest) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *RotateKeyBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -133,7 +195,8 @@ func NewRotateKeyUnauthorized() *RotateKeyUnauthorized {
 	return &RotateKeyUnauthorized{}
 }
 
-/* RotateKeyUnauthorized describes a response with status code 401, with default header values.
+/*
+RotateKeyUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -141,9 +204,39 @@ type RotateKeyUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this rotate key unauthorized response has a 2xx status code
+func (o *RotateKeyUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this rotate key unauthorized response has a 3xx status code
+func (o *RotateKeyUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this rotate key unauthorized response has a 4xx status code
+func (o *RotateKeyUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this rotate key unauthorized response has a 5xx status code
+func (o *RotateKeyUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this rotate key unauthorized response a status code equal to that given
+func (o *RotateKeyUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *RotateKeyUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *RotateKeyUnauthorized) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *RotateKeyUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -165,7 +258,8 @@ func NewRotateKeyForbidden() *RotateKeyForbidden {
 	return &RotateKeyForbidden{}
 }
 
-/* RotateKeyForbidden describes a response with status code 403, with default header values.
+/*
+RotateKeyForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -173,9 +267,39 @@ type RotateKeyForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this rotate key forbidden response has a 2xx status code
+func (o *RotateKeyForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this rotate key forbidden response has a 3xx status code
+func (o *RotateKeyForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this rotate key forbidden response has a 4xx status code
+func (o *RotateKeyForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this rotate key forbidden response has a 5xx status code
+func (o *RotateKeyForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this rotate key forbidden response a status code equal to that given
+func (o *RotateKeyForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *RotateKeyForbidden) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyForbidden  %+v", 403, o.Payload)
 }
+
+func (o *RotateKeyForbidden) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyForbidden  %+v", 403, o.Payload)
+}
+
 func (o *RotateKeyForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -197,7 +321,8 @@ func NewRotateKeyNotFound() *RotateKeyNotFound {
 	return &RotateKeyNotFound{}
 }
 
-/* RotateKeyNotFound describes a response with status code 404, with default header values.
+/*
+RotateKeyNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -205,9 +330,39 @@ type RotateKeyNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this rotate key not found response has a 2xx status code
+func (o *RotateKeyNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this rotate key not found response has a 3xx status code
+func (o *RotateKeyNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this rotate key not found response has a 4xx status code
+func (o *RotateKeyNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this rotate key not found response has a 5xx status code
+func (o *RotateKeyNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this rotate key not found response a status code equal to that given
+func (o *RotateKeyNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *RotateKeyNotFound) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyNotFound  %+v", 404, o.Payload)
 }
+
+func (o *RotateKeyNotFound) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyNotFound  %+v", 404, o.Payload)
+}
+
 func (o *RotateKeyNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -229,7 +384,8 @@ func NewRotateKeyTooManyRequests() *RotateKeyTooManyRequests {
 	return &RotateKeyTooManyRequests{}
 }
 
-/* RotateKeyTooManyRequests describes a response with status code 429, with default header values.
+/*
+RotateKeyTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -237,9 +393,39 @@ type RotateKeyTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this rotate key too many requests response has a 2xx status code
+func (o *RotateKeyTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this rotate key too many requests response has a 3xx status code
+func (o *RotateKeyTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this rotate key too many requests response has a 4xx status code
+func (o *RotateKeyTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this rotate key too many requests response has a 5xx status code
+func (o *RotateKeyTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this rotate key too many requests response a status code equal to that given
+func (o *RotateKeyTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *RotateKeyTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *RotateKeyTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/keys/rotate][%d] rotateKeyTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *RotateKeyTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

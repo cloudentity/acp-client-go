@@ -69,14 +69,44 @@ func NewDeleteServiceNoContent() *DeleteServiceNoContent {
 	return &DeleteServiceNoContent{}
 }
 
-/* DeleteServiceNoContent describes a response with status code 204, with default header values.
+/*
+DeleteServiceNoContent describes a response with status code 204, with default header values.
 
-Service has been deleted
+	Service has been deleted
 */
 type DeleteServiceNoContent struct {
 }
 
+// IsSuccess returns true when this delete service no content response has a 2xx status code
+func (o *DeleteServiceNoContent) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this delete service no content response has a 3xx status code
+func (o *DeleteServiceNoContent) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete service no content response has a 4xx status code
+func (o *DeleteServiceNoContent) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this delete service no content response has a 5xx status code
+func (o *DeleteServiceNoContent) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete service no content response a status code equal to that given
+func (o *DeleteServiceNoContent) IsCode(code int) bool {
+	return code == 204
+}
+
 func (o *DeleteServiceNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /services/{sid}][%d] deleteServiceNoContent ", 204)
+}
+
+func (o *DeleteServiceNoContent) String() string {
 	return fmt.Sprintf("[DELETE /services/{sid}][%d] deleteServiceNoContent ", 204)
 }
 
@@ -90,7 +120,8 @@ func NewDeleteServiceBadRequest() *DeleteServiceBadRequest {
 	return &DeleteServiceBadRequest{}
 }
 
-/* DeleteServiceBadRequest describes a response with status code 400, with default header values.
+/*
+DeleteServiceBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -98,9 +129,39 @@ type DeleteServiceBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete service bad request response has a 2xx status code
+func (o *DeleteServiceBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete service bad request response has a 3xx status code
+func (o *DeleteServiceBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete service bad request response has a 4xx status code
+func (o *DeleteServiceBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete service bad request response has a 5xx status code
+func (o *DeleteServiceBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete service bad request response a status code equal to that given
+func (o *DeleteServiceBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *DeleteServiceBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /services/{sid}][%d] deleteServiceBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *DeleteServiceBadRequest) String() string {
+	return fmt.Sprintf("[DELETE /services/{sid}][%d] deleteServiceBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *DeleteServiceBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -122,7 +183,8 @@ func NewDeleteServiceUnauthorized() *DeleteServiceUnauthorized {
 	return &DeleteServiceUnauthorized{}
 }
 
-/* DeleteServiceUnauthorized describes a response with status code 401, with default header values.
+/*
+DeleteServiceUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -130,9 +192,39 @@ type DeleteServiceUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete service unauthorized response has a 2xx status code
+func (o *DeleteServiceUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete service unauthorized response has a 3xx status code
+func (o *DeleteServiceUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete service unauthorized response has a 4xx status code
+func (o *DeleteServiceUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete service unauthorized response has a 5xx status code
+func (o *DeleteServiceUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete service unauthorized response a status code equal to that given
+func (o *DeleteServiceUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *DeleteServiceUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /services/{sid}][%d] deleteServiceUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *DeleteServiceUnauthorized) String() string {
+	return fmt.Sprintf("[DELETE /services/{sid}][%d] deleteServiceUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *DeleteServiceUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -154,7 +246,8 @@ func NewDeleteServiceForbidden() *DeleteServiceForbidden {
 	return &DeleteServiceForbidden{}
 }
 
-/* DeleteServiceForbidden describes a response with status code 403, with default header values.
+/*
+DeleteServiceForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -162,9 +255,39 @@ type DeleteServiceForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete service forbidden response has a 2xx status code
+func (o *DeleteServiceForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete service forbidden response has a 3xx status code
+func (o *DeleteServiceForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete service forbidden response has a 4xx status code
+func (o *DeleteServiceForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete service forbidden response has a 5xx status code
+func (o *DeleteServiceForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete service forbidden response a status code equal to that given
+func (o *DeleteServiceForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *DeleteServiceForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /services/{sid}][%d] deleteServiceForbidden  %+v", 403, o.Payload)
 }
+
+func (o *DeleteServiceForbidden) String() string {
+	return fmt.Sprintf("[DELETE /services/{sid}][%d] deleteServiceForbidden  %+v", 403, o.Payload)
+}
+
 func (o *DeleteServiceForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -186,7 +309,8 @@ func NewDeleteServiceNotFound() *DeleteServiceNotFound {
 	return &DeleteServiceNotFound{}
 }
 
-/* DeleteServiceNotFound describes a response with status code 404, with default header values.
+/*
+DeleteServiceNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -194,9 +318,39 @@ type DeleteServiceNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete service not found response has a 2xx status code
+func (o *DeleteServiceNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete service not found response has a 3xx status code
+func (o *DeleteServiceNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete service not found response has a 4xx status code
+func (o *DeleteServiceNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete service not found response has a 5xx status code
+func (o *DeleteServiceNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete service not found response a status code equal to that given
+func (o *DeleteServiceNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *DeleteServiceNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /services/{sid}][%d] deleteServiceNotFound  %+v", 404, o.Payload)
 }
+
+func (o *DeleteServiceNotFound) String() string {
+	return fmt.Sprintf("[DELETE /services/{sid}][%d] deleteServiceNotFound  %+v", 404, o.Payload)
+}
+
 func (o *DeleteServiceNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -218,7 +372,8 @@ func NewDeleteServiceTooManyRequests() *DeleteServiceTooManyRequests {
 	return &DeleteServiceTooManyRequests{}
 }
 
-/* DeleteServiceTooManyRequests describes a response with status code 429, with default header values.
+/*
+DeleteServiceTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -226,9 +381,39 @@ type DeleteServiceTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete service too many requests response has a 2xx status code
+func (o *DeleteServiceTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete service too many requests response has a 3xx status code
+func (o *DeleteServiceTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete service too many requests response has a 4xx status code
+func (o *DeleteServiceTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete service too many requests response has a 5xx status code
+func (o *DeleteServiceTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete service too many requests response a status code equal to that given
+func (o *DeleteServiceTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *DeleteServiceTooManyRequests) Error() string {
 	return fmt.Sprintf("[DELETE /services/{sid}][%d] deleteServiceTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *DeleteServiceTooManyRequests) String() string {
+	return fmt.Sprintf("[DELETE /services/{sid}][%d] deleteServiceTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *DeleteServiceTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

@@ -52,10 +52,12 @@ func NewJwksParamsWithHTTPClient(client *http.Client) *JwksParams {
 	}
 }
 
-/* JwksParams contains all the parameters to send to the API endpoint
-   for the jwks operation.
+/*
+JwksParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the jwks operation.
+
+	Typically these are written to a http.Request.
 */
 type JwksParams struct {
 	timeout    time.Duration

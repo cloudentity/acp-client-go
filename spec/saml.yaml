@@ -1,0 +1,868 @@
+basePath: /default/default
+consumes:
+- application/xml
+definitions:
+  AffiliationDescriptor:
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
+      §2.5
+    properties:
+      AffiliateMembers:
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      AffiliationOwnerID:
+        type: string
+        x-nullable: false
+      CacheDuration:
+        $ref: '#/definitions/Duration'
+      ID:
+        type: string
+        x-nullable: false
+      KeyDescriptors:
+        items:
+          $ref: '#/definitions/KeyDescriptor'
+        type: array
+        x-nullable: false
+      Signature:
+        $ref: '#/definitions/Element'
+      ValidUntil:
+        format: date-time
+        type: string
+        x-nullable: false
+    title: AffiliationDescriptor represents the SAML AffiliationDescriptor object.
+    type: object
+  Attr:
+    properties:
+      Space:
+        type: string
+        x-nullable: false
+      Value:
+        type: string
+        x-nullable: false
+    title: An Attr represents a key-value attribute of an XML element.
+    type: object
+  Attribute:
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf
+      §2.7.3.1
+    properties:
+      FriendlyName:
+        type: string
+        x-nullable: false
+      Name:
+        type: string
+        x-nullable: false
+      NameFormat:
+        type: string
+        x-nullable: false
+      Values:
+        items:
+          $ref: '#/definitions/AttributeValue'
+        type: array
+        x-nullable: false
+    title: Attribute represents the SAML element Attribute.
+    type: object
+  AttributeAuthorityDescriptor:
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
+      §2.4.7
+    properties:
+      AssertionIDRequestServices:
+        items:
+          $ref: '#/definitions/Endpoint'
+        type: array
+        x-nullable: false
+      AttributeProfiles:
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      AttributeServices:
+        items:
+          $ref: '#/definitions/Endpoint'
+        type: array
+        x-nullable: false
+      Attributes:
+        items:
+          $ref: '#/definitions/Attribute'
+        type: array
+        x-nullable: false
+      CacheDuration:
+        $ref: '#/definitions/Duration'
+      ContactPeople:
+        items:
+          $ref: '#/definitions/ContactPerson'
+        type: array
+        x-nullable: false
+      ErrorURL:
+        type: string
+        x-nullable: false
+      ID:
+        type: string
+        x-nullable: false
+      KeyDescriptors:
+        items:
+          $ref: '#/definitions/KeyDescriptor'
+        type: array
+        x-nullable: false
+      NameIDFormats:
+        items:
+          $ref: '#/definitions/NameIDFormat'
+        type: array
+        x-nullable: false
+      Organization:
+        $ref: '#/definitions/Organization'
+      ProtocolSupportEnumeration:
+        type: string
+        x-nullable: false
+      Signature:
+        $ref: '#/definitions/Element'
+      ValidUntil:
+        format: date-time
+        type: string
+        x-nullable: false
+    title: AttributeAuthorityDescriptor represents the SAML AttributeAuthorityDescriptor
+      object.
+    type: object
+  AttributeConsumingService:
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
+      §2.4.4.1
+    properties:
+      Index:
+        format: int64
+        type: integer
+        x-nullable: false
+      IsDefault:
+        type: boolean
+        x-nullable: false
+      RequestedAttributes:
+        items:
+          $ref: '#/definitions/RequestedAttribute'
+        type: array
+        x-nullable: false
+      ServiceDescriptions:
+        items:
+          $ref: '#/definitions/LocalizedName'
+        type: array
+        x-nullable: false
+      ServiceNames:
+        items:
+          $ref: '#/definitions/LocalizedName'
+        type: array
+        x-nullable: false
+    title: AttributeConsumingService represents the SAML AttributeConsumingService
+      object.
+    type: object
+  AttributeValue:
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf
+      §2.7.3.1.1
+    properties:
+      NameID:
+        $ref: '#/definitions/NameID'
+      Type:
+        type: string
+        x-nullable: false
+      Value:
+        type: string
+        x-nullable: false
+    title: AttributeValue represents the SAML element AttributeValue.
+    type: object
+  AuthnAuthorityDescriptor:
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
+      §2.4.5
+    properties:
+      AssertionIDRequestServices:
+        items:
+          $ref: '#/definitions/Endpoint'
+        type: array
+        x-nullable: false
+      AuthnQueryServices:
+        items:
+          $ref: '#/definitions/Endpoint'
+        type: array
+        x-nullable: false
+      CacheDuration:
+        $ref: '#/definitions/Duration'
+      ContactPeople:
+        items:
+          $ref: '#/definitions/ContactPerson'
+        type: array
+        x-nullable: false
+      ErrorURL:
+        type: string
+        x-nullable: false
+      ID:
+        type: string
+        x-nullable: false
+      KeyDescriptors:
+        items:
+          $ref: '#/definitions/KeyDescriptor'
+        type: array
+        x-nullable: false
+      NameIDFormats:
+        items:
+          $ref: '#/definitions/NameIDFormat'
+        type: array
+        x-nullable: false
+      Organization:
+        $ref: '#/definitions/Organization'
+      ProtocolSupportEnumeration:
+        type: string
+        x-nullable: false
+      Signature:
+        $ref: '#/definitions/Element'
+      ValidUntil:
+        format: date-time
+        type: string
+        x-nullable: false
+    title: AuthnAuthorityDescriptor represents the SAML AuthnAuthorityDescriptor object.
+    type: object
+  ContactPerson:
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
+      §2.3.2.2
+    properties:
+      Company:
+        type: string
+        x-nullable: false
+      ContactType:
+        type: string
+        x-nullable: false
+      EmailAddresses:
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      GivenName:
+        type: string
+        x-nullable: false
+      SurName:
+        type: string
+        x-nullable: false
+      TelephoneNumbers:
+        items:
+          type: string
+        type: array
+        x-nullable: false
+    title: ContactPerson represents the SAML element ContactPerson.
+    type: object
+  Duration:
+    description: |-
+      A Duration represents the elapsed time between two instants
+      as an int64 nanosecond count. The representation limits the
+      largest representable duration to approximately 290 years.
+    format: int64
+    type: integer
+  Element:
+    properties:
+      Attr:
+        items:
+          $ref: '#/definitions/Attr'
+        type: array
+        x-nullable: false
+      Child:
+        items:
+          $ref: '#/definitions/Token'
+        type: array
+        x-nullable: false
+      Space:
+        type: string
+        x-nullable: false
+    title: An Element represents an XML element, its attributes, and its child tokens.
+    type: object
+  EncryptionMethod:
+    description: EncryptionMethod represents the XMLSEC object of the same name
+    properties:
+      Algorithm:
+        type: string
+        x-nullable: false
+    type: object
+  Endpoint:
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
+      §2.2.2
+    properties:
+      Binding:
+        type: string
+        x-nullable: false
+      Location:
+        type: string
+        x-nullable: false
+      ResponseLocation:
+        type: string
+        x-nullable: false
+    title: Endpoint represents the SAML EndpointType object.
+    type: object
+  EntityDescriptor:
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
+      §2.3.2
+    properties:
+      AdditionalMetadataLocations:
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      AffiliationDescriptor:
+        $ref: '#/definitions/AffiliationDescriptor'
+      AttributeAuthorityDescriptors:
+        items:
+          $ref: '#/definitions/AttributeAuthorityDescriptor'
+        type: array
+        x-nullable: false
+      AuthnAuthorityDescriptors:
+        items:
+          $ref: '#/definitions/AuthnAuthorityDescriptor'
+        type: array
+        x-nullable: false
+      CacheDuration:
+        $ref: '#/definitions/Duration'
+      ContactPerson:
+        $ref: '#/definitions/ContactPerson'
+      EntityID:
+        type: string
+        x-nullable: false
+      ID:
+        type: string
+        x-nullable: false
+      IDPSSODescriptors:
+        items:
+          $ref: '#/definitions/IDPSSODescriptor'
+        type: array
+        x-nullable: false
+      Organization:
+        $ref: '#/definitions/Organization'
+      PDPDescriptors:
+        items:
+          $ref: '#/definitions/PDPDescriptor'
+        type: array
+        x-nullable: false
+      RoleDescriptors:
+        items:
+          $ref: '#/definitions/RoleDescriptor'
+        type: array
+        x-nullable: false
+      SPSSODescriptors:
+        items:
+          $ref: '#/definitions/SPSSODescriptor'
+        type: array
+        x-nullable: false
+      Signature:
+        $ref: '#/definitions/Element'
+      ValidUntil:
+        format: date-time
+        type: string
+        x-nullable: false
+      XMLName:
+        $ref: '#/definitions/Name'
+    title: EntityDescriptor represents the SAML EntityDescriptor object.
+    type: object
+  Error:
+    description: HTTP error response
+    properties:
+      details:
+        type: object
+        x-nullable: false
+      error:
+        type: string
+        x-nullable: false
+      status_code:
+        format: int64
+        type: integer
+        x-nullable: false
+    type: object
+  IDPSSODescriptor:
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
+      §2.4.3
+    properties:
+      ArtifactResolutionServices:
+        items:
+          $ref: '#/definitions/Endpoint'
+        type: array
+        x-nullable: false
+      AssertionIDRequestServices:
+        items:
+          $ref: '#/definitions/Endpoint'
+        type: array
+        x-nullable: false
+      AttributeProfiles:
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      Attributes:
+        items:
+          $ref: '#/definitions/Attribute'
+        type: array
+        x-nullable: false
+      CacheDuration:
+        $ref: '#/definitions/Duration'
+      ContactPeople:
+        items:
+          $ref: '#/definitions/ContactPerson'
+        type: array
+        x-nullable: false
+      ErrorURL:
+        type: string
+        x-nullable: false
+      ID:
+        type: string
+        x-nullable: false
+      KeyDescriptors:
+        items:
+          $ref: '#/definitions/KeyDescriptor'
+        type: array
+        x-nullable: false
+      ManageNameIDServices:
+        items:
+          $ref: '#/definitions/Endpoint'
+        type: array
+        x-nullable: false
+      NameIDFormats:
+        items:
+          $ref: '#/definitions/NameIDFormat'
+        type: array
+        x-nullable: false
+      NameIDMappingServices:
+        items:
+          $ref: '#/definitions/Endpoint'
+        type: array
+        x-nullable: false
+      Organization:
+        $ref: '#/definitions/Organization'
+      ProtocolSupportEnumeration:
+        type: string
+        x-nullable: false
+      Signature:
+        $ref: '#/definitions/Element'
+      SingleLogoutServices:
+        items:
+          $ref: '#/definitions/Endpoint'
+        type: array
+        x-nullable: false
+      SingleSignOnServices:
+        items:
+          $ref: '#/definitions/Endpoint'
+        type: array
+        x-nullable: false
+      ValidUntil:
+        format: date-time
+        type: string
+        x-nullable: false
+      WantAuthnRequestsSigned:
+        type: boolean
+        x-nullable: false
+      XMLName:
+        $ref: '#/definitions/Name'
+    title: IDPSSODescriptor represents the SAML IDPSSODescriptorType object.
+    type: object
+  IndexedEndpoint:
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
+      §2.2.3
+    properties:
+      Binding:
+        type: string
+        x-nullable: false
+      Index:
+        format: int64
+        type: integer
+        x-nullable: false
+      IsDefault:
+        type: boolean
+        x-nullable: false
+      Location:
+        type: string
+        x-nullable: false
+      ResponseLocation:
+        type: string
+        x-nullable: false
+    title: IndexedEndpoint represents the SAML IndexedEndpointType object.
+    type: object
+  KeyDescriptor:
+    description: KeyDescriptor represents the XMLSEC object of the same name
+    properties:
+      EncryptionMethods:
+        items:
+          $ref: '#/definitions/EncryptionMethod'
+        type: array
+        x-nullable: false
+      KeyInfo:
+        $ref: '#/definitions/KeyInfo'
+      Use:
+        type: string
+        x-nullable: false
+    type: object
+  KeyInfo:
+    description: KeyInfo represents the XMLSEC object of the same name
+    properties:
+      X509Data:
+        $ref: '#/definitions/X509Data'
+      XMLName:
+        $ref: '#/definitions/Name'
+    type: object
+  LocalizedName:
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
+      §2.2.4
+    properties:
+      Lang:
+        type: string
+        x-nullable: false
+      Value:
+        type: string
+        x-nullable: false
+    title: LocalizedName represents the SAML type localizedNameType.
+    type: object
+  LocalizedURI:
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
+      §2.2.5
+    properties:
+      Lang:
+        type: string
+        x-nullable: false
+      Value:
+        type: string
+        x-nullable: false
+    title: LocalizedURI represents the SAML type localizedURIType.
+    type: object
+  Name:
+    description: |-
+      A Name represents an XML name (Local) annotated
+      with a name space identifier (Space).
+      In tokens returned by Decoder.Token, the Space identifier
+      is given as a canonical URL, not the short prefix used
+      in the document being parsed.
+    properties:
+      Space:
+        type: string
+        x-nullable: false
+    type: object
+  NameID:
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf
+      §2.2.3
+    properties:
+      Format:
+        type: string
+        x-nullable: false
+      NameQualifier:
+        type: string
+        x-nullable: false
+      SPNameQualifier:
+        type: string
+        x-nullable: false
+      SPProvidedID:
+        type: string
+        x-nullable: false
+      Value:
+        type: string
+        x-nullable: false
+    title: NameID represents the SAML element NameID.
+    type: object
+  NameIDFormat:
+    description: NameIDFormat is the format of the id
+    type: string
+  Organization:
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
+      §2.3.2.1
+    properties:
+      OrganizationDisplayNames:
+        items:
+          $ref: '#/definitions/LocalizedName'
+        type: array
+        x-nullable: false
+      OrganizationNames:
+        items:
+          $ref: '#/definitions/LocalizedName'
+        type: array
+        x-nullable: false
+      OrganizationURLs:
+        items:
+          $ref: '#/definitions/LocalizedURI'
+        type: array
+        x-nullable: false
+    title: Organization represents the SAML Organization object.
+    type: object
+  PDPDescriptor:
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
+      §2.4.6
+    properties:
+      AssertionIDRequestServices:
+        items:
+          $ref: '#/definitions/Endpoint'
+        type: array
+        x-nullable: false
+      AuthzServices:
+        items:
+          $ref: '#/definitions/Endpoint'
+        type: array
+        x-nullable: false
+      CacheDuration:
+        $ref: '#/definitions/Duration'
+      ContactPeople:
+        items:
+          $ref: '#/definitions/ContactPerson'
+        type: array
+        x-nullable: false
+      ErrorURL:
+        type: string
+        x-nullable: false
+      ID:
+        type: string
+        x-nullable: false
+      KeyDescriptors:
+        items:
+          $ref: '#/definitions/KeyDescriptor'
+        type: array
+        x-nullable: false
+      NameIDFormats:
+        items:
+          $ref: '#/definitions/NameIDFormat'
+        type: array
+        x-nullable: false
+      Organization:
+        $ref: '#/definitions/Organization'
+      ProtocolSupportEnumeration:
+        type: string
+        x-nullable: false
+      Signature:
+        $ref: '#/definitions/Element'
+      ValidUntil:
+        format: date-time
+        type: string
+        x-nullable: false
+    title: PDPDescriptor represents the SAML PDPDescriptor object.
+    type: object
+  RequestedAttribute:
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
+      §2.4.4.2
+    properties:
+      FriendlyName:
+        type: string
+        x-nullable: false
+      IsRequired:
+        type: boolean
+        x-nullable: false
+      Name:
+        type: string
+        x-nullable: false
+      NameFormat:
+        type: string
+        x-nullable: false
+      Values:
+        items:
+          $ref: '#/definitions/AttributeValue'
+        type: array
+        x-nullable: false
+    title: RequestedAttribute represents the SAML RequestedAttribute object.
+    type: object
+  RoleDescriptor:
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
+      §2.4.1
+    properties:
+      CacheDuration:
+        $ref: '#/definitions/Duration'
+      ContactPeople:
+        items:
+          $ref: '#/definitions/ContactPerson'
+        type: array
+        x-nullable: false
+      ErrorURL:
+        type: string
+        x-nullable: false
+      ID:
+        type: string
+        x-nullable: false
+      KeyDescriptors:
+        items:
+          $ref: '#/definitions/KeyDescriptor'
+        type: array
+        x-nullable: false
+      Organization:
+        $ref: '#/definitions/Organization'
+      ProtocolSupportEnumeration:
+        type: string
+        x-nullable: false
+      Signature:
+        $ref: '#/definitions/Element'
+      ValidUntil:
+        format: date-time
+        type: string
+        x-nullable: false
+    title: RoleDescriptor represents the SAML element RoleDescriptor.
+    type: object
+  SPSSODescriptor:
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
+      §2.4.2
+    properties:
+      ArtifactResolutionServices:
+        items:
+          $ref: '#/definitions/IndexedEndpoint'
+        type: array
+        x-nullable: false
+      AssertionConsumerServices:
+        items:
+          $ref: '#/definitions/IndexedEndpoint'
+        type: array
+        x-nullable: false
+      AttributeConsumingServices:
+        items:
+          $ref: '#/definitions/AttributeConsumingService'
+        type: array
+        x-nullable: false
+      AuthnRequestsSigned:
+        type: boolean
+        x-nullable: false
+      CacheDuration:
+        $ref: '#/definitions/Duration'
+      ContactPeople:
+        items:
+          $ref: '#/definitions/ContactPerson'
+        type: array
+        x-nullable: false
+      ErrorURL:
+        type: string
+        x-nullable: false
+      ID:
+        type: string
+        x-nullable: false
+      KeyDescriptors:
+        items:
+          $ref: '#/definitions/KeyDescriptor'
+        type: array
+        x-nullable: false
+      ManageNameIDServices:
+        items:
+          $ref: '#/definitions/Endpoint'
+        type: array
+        x-nullable: false
+      NameIDFormats:
+        items:
+          $ref: '#/definitions/NameIDFormat'
+        type: array
+        x-nullable: false
+      Organization:
+        $ref: '#/definitions/Organization'
+      ProtocolSupportEnumeration:
+        type: string
+        x-nullable: false
+      Signature:
+        $ref: '#/definitions/Element'
+      SingleLogoutServices:
+        items:
+          $ref: '#/definitions/Endpoint'
+        type: array
+        x-nullable: false
+      ValidUntil:
+        format: date-time
+        type: string
+        x-nullable: false
+      WantAssertionsSigned:
+        type: boolean
+        x-nullable: false
+      XMLName:
+        $ref: '#/definitions/Name'
+    title: SPSSODescriptor represents the SAML SPSSODescriptorType object.
+    type: object
+  Token:
+    description: Comment, Directive, or ProcInst.
+    properties:
+      Index:
+        format: int64
+        type: integer
+        x-nullable: false
+      Parent:
+        $ref: '#/definitions/Element'
+    title: A Token is an empty interface that represents an Element, CharData,
+    type: object
+  X509Certificate:
+    description: X509Certificate represents the XMLSEC object of the same name
+    properties:
+      Data:
+        type: string
+        x-nullable: false
+      XMLName:
+        $ref: '#/definitions/Name'
+    type: object
+  X509Data:
+    description: X509Data represents the XMLSEC object of the same name
+    properties:
+      X509Certificates:
+        items:
+          $ref: '#/definitions/X509Certificate'
+        type: array
+        x-nullable: false
+      XMLName:
+        $ref: '#/definitions/Name'
+    type: object
+  genericError:
+    description: Error response
+    properties:
+      error:
+        example: The requested resource could not be found
+        type: string
+        x-nullable: false
+      error_code:
+        description: Code represents the error status code (404, 403, 401, ...).
+        example: 404
+        format: int64
+        type: integer
+        x-nullable: false
+      error_hint:
+        example: Object with ID 12345 does not exist
+        type: string
+        x-nullable: false
+    required:
+    - error
+    type: object
+host: localhost:8443
+info:
+  description: Cloudentity Authorization Control Plane SAML API
+  title: Cloudentity Authorization Control Plane API
+  version: latest
+paths:
+  /saml/metadata:
+    get:
+      description: Returns SAML metadata.
+      operationId: metadata
+      responses:
+        "200":
+          $ref: '#/responses/samlMetadataResponse'
+        "404":
+          $ref: '#/responses/genericError'
+      summary: SAML metadata endpoint
+      tags:
+      - saml
+  /saml/sso:
+    get:
+      description: SAML sso endpoint.
+      operationId: sso
+      parameters:
+      - in: query
+        name: SAMLRequest
+        type: string
+      - in: query
+        name: RelayState
+        type: string
+      responses:
+        "302":
+          $ref: '#/responses/emptyResponse'
+        "404":
+          $ref: '#/responses/genericError'
+      summary: SAML sso endpoint
+      tags:
+      - saml
+produces:
+- application/xml
+responses:
+  emptyResponse:
+    description: Empty response
+  genericError:
+    description: ErrorResponse
+    schema:
+      $ref: '#/definitions/genericError'
+  httpError:
+    description: HttpError
+    schema:
+      $ref: '#/definitions/Error'
+  samlMetadataResponse:
+    description: Metadata
+    schema:
+      $ref: '#/definitions/EntityDescriptor'
+schemes:
+- https
+swagger: "2.0"

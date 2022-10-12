@@ -81,7 +81,8 @@ func NewCreateVanityDomainOK() *CreateVanityDomainOK {
 	return &CreateVanityDomainOK{}
 }
 
-/* CreateVanityDomainOK describes a response with status code 200, with default header values.
+/*
+CreateVanityDomainOK describes a response with status code 200, with default header values.
 
 Vanity domain
 */
@@ -89,9 +90,39 @@ type CreateVanityDomainOK struct {
 	Payload *models.VanityDomain
 }
 
+// IsSuccess returns true when this create vanity domain o k response has a 2xx status code
+func (o *CreateVanityDomainOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this create vanity domain o k response has a 3xx status code
+func (o *CreateVanityDomainOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create vanity domain o k response has a 4xx status code
+func (o *CreateVanityDomainOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create vanity domain o k response has a 5xx status code
+func (o *CreateVanityDomainOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create vanity domain o k response a status code equal to that given
+func (o *CreateVanityDomainOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *CreateVanityDomainOK) Error() string {
 	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainOK  %+v", 200, o.Payload)
 }
+
+func (o *CreateVanityDomainOK) String() string {
+	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainOK  %+v", 200, o.Payload)
+}
+
 func (o *CreateVanityDomainOK) GetPayload() *models.VanityDomain {
 	return o.Payload
 }
@@ -113,7 +144,8 @@ func NewCreateVanityDomainBadRequest() *CreateVanityDomainBadRequest {
 	return &CreateVanityDomainBadRequest{}
 }
 
-/* CreateVanityDomainBadRequest describes a response with status code 400, with default header values.
+/*
+CreateVanityDomainBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -121,9 +153,39 @@ type CreateVanityDomainBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create vanity domain bad request response has a 2xx status code
+func (o *CreateVanityDomainBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create vanity domain bad request response has a 3xx status code
+func (o *CreateVanityDomainBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create vanity domain bad request response has a 4xx status code
+func (o *CreateVanityDomainBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create vanity domain bad request response has a 5xx status code
+func (o *CreateVanityDomainBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create vanity domain bad request response a status code equal to that given
+func (o *CreateVanityDomainBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *CreateVanityDomainBadRequest) Error() string {
 	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *CreateVanityDomainBadRequest) String() string {
+	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *CreateVanityDomainBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -145,7 +207,8 @@ func NewCreateVanityDomainUnauthorized() *CreateVanityDomainUnauthorized {
 	return &CreateVanityDomainUnauthorized{}
 }
 
-/* CreateVanityDomainUnauthorized describes a response with status code 401, with default header values.
+/*
+CreateVanityDomainUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -153,9 +216,39 @@ type CreateVanityDomainUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create vanity domain unauthorized response has a 2xx status code
+func (o *CreateVanityDomainUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create vanity domain unauthorized response has a 3xx status code
+func (o *CreateVanityDomainUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create vanity domain unauthorized response has a 4xx status code
+func (o *CreateVanityDomainUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create vanity domain unauthorized response has a 5xx status code
+func (o *CreateVanityDomainUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create vanity domain unauthorized response a status code equal to that given
+func (o *CreateVanityDomainUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *CreateVanityDomainUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *CreateVanityDomainUnauthorized) String() string {
+	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *CreateVanityDomainUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -177,7 +270,8 @@ func NewCreateVanityDomainForbidden() *CreateVanityDomainForbidden {
 	return &CreateVanityDomainForbidden{}
 }
 
-/* CreateVanityDomainForbidden describes a response with status code 403, with default header values.
+/*
+CreateVanityDomainForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -185,9 +279,39 @@ type CreateVanityDomainForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create vanity domain forbidden response has a 2xx status code
+func (o *CreateVanityDomainForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create vanity domain forbidden response has a 3xx status code
+func (o *CreateVanityDomainForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create vanity domain forbidden response has a 4xx status code
+func (o *CreateVanityDomainForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create vanity domain forbidden response has a 5xx status code
+func (o *CreateVanityDomainForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create vanity domain forbidden response a status code equal to that given
+func (o *CreateVanityDomainForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *CreateVanityDomainForbidden) Error() string {
 	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainForbidden  %+v", 403, o.Payload)
 }
+
+func (o *CreateVanityDomainForbidden) String() string {
+	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainForbidden  %+v", 403, o.Payload)
+}
+
 func (o *CreateVanityDomainForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -209,7 +333,8 @@ func NewCreateVanityDomainNotFound() *CreateVanityDomainNotFound {
 	return &CreateVanityDomainNotFound{}
 }
 
-/* CreateVanityDomainNotFound describes a response with status code 404, with default header values.
+/*
+CreateVanityDomainNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -217,9 +342,39 @@ type CreateVanityDomainNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create vanity domain not found response has a 2xx status code
+func (o *CreateVanityDomainNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create vanity domain not found response has a 3xx status code
+func (o *CreateVanityDomainNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create vanity domain not found response has a 4xx status code
+func (o *CreateVanityDomainNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create vanity domain not found response has a 5xx status code
+func (o *CreateVanityDomainNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create vanity domain not found response a status code equal to that given
+func (o *CreateVanityDomainNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *CreateVanityDomainNotFound) Error() string {
 	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainNotFound  %+v", 404, o.Payload)
 }
+
+func (o *CreateVanityDomainNotFound) String() string {
+	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainNotFound  %+v", 404, o.Payload)
+}
+
 func (o *CreateVanityDomainNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -241,7 +396,8 @@ func NewCreateVanityDomainConflict() *CreateVanityDomainConflict {
 	return &CreateVanityDomainConflict{}
 }
 
-/* CreateVanityDomainConflict describes a response with status code 409, with default header values.
+/*
+CreateVanityDomainConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -249,9 +405,39 @@ type CreateVanityDomainConflict struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create vanity domain conflict response has a 2xx status code
+func (o *CreateVanityDomainConflict) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create vanity domain conflict response has a 3xx status code
+func (o *CreateVanityDomainConflict) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create vanity domain conflict response has a 4xx status code
+func (o *CreateVanityDomainConflict) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create vanity domain conflict response has a 5xx status code
+func (o *CreateVanityDomainConflict) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create vanity domain conflict response a status code equal to that given
+func (o *CreateVanityDomainConflict) IsCode(code int) bool {
+	return code == 409
+}
+
 func (o *CreateVanityDomainConflict) Error() string {
 	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainConflict  %+v", 409, o.Payload)
 }
+
+func (o *CreateVanityDomainConflict) String() string {
+	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainConflict  %+v", 409, o.Payload)
+}
+
 func (o *CreateVanityDomainConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -273,7 +459,8 @@ func NewCreateVanityDomainUnprocessableEntity() *CreateVanityDomainUnprocessable
 	return &CreateVanityDomainUnprocessableEntity{}
 }
 
-/* CreateVanityDomainUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+CreateVanityDomainUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -281,9 +468,39 @@ type CreateVanityDomainUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create vanity domain unprocessable entity response has a 2xx status code
+func (o *CreateVanityDomainUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create vanity domain unprocessable entity response has a 3xx status code
+func (o *CreateVanityDomainUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create vanity domain unprocessable entity response has a 4xx status code
+func (o *CreateVanityDomainUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create vanity domain unprocessable entity response has a 5xx status code
+func (o *CreateVanityDomainUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create vanity domain unprocessable entity response a status code equal to that given
+func (o *CreateVanityDomainUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *CreateVanityDomainUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *CreateVanityDomainUnprocessableEntity) String() string {
+	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *CreateVanityDomainUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -305,7 +522,8 @@ func NewCreateVanityDomainTooManyRequests() *CreateVanityDomainTooManyRequests {
 	return &CreateVanityDomainTooManyRequests{}
 }
 
-/* CreateVanityDomainTooManyRequests describes a response with status code 429, with default header values.
+/*
+CreateVanityDomainTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -313,9 +531,39 @@ type CreateVanityDomainTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create vanity domain too many requests response has a 2xx status code
+func (o *CreateVanityDomainTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create vanity domain too many requests response has a 3xx status code
+func (o *CreateVanityDomainTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create vanity domain too many requests response has a 4xx status code
+func (o *CreateVanityDomainTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create vanity domain too many requests response has a 5xx status code
+func (o *CreateVanityDomainTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create vanity domain too many requests response a status code equal to that given
+func (o *CreateVanityDomainTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *CreateVanityDomainTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *CreateVanityDomainTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /vanity-domains][%d] createVanityDomainTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *CreateVanityDomainTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

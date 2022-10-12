@@ -54,10 +54,12 @@ func NewListOBConsentsParamsWithHTTPClient(client *http.Client) *ListOBConsentsP
 	}
 }
 
-/* ListOBConsentsParams contains all the parameters to send to the API endpoint
-   for the list o b consents operation.
+/*
+ListOBConsentsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the list o b consents operation.
+
+	Typically these are written to a http.Request.
 */
 type ListOBConsentsParams struct {
 

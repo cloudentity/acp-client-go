@@ -75,7 +75,8 @@ func NewUpdateGithubIDPOK() *UpdateGithubIDPOK {
 	return &UpdateGithubIDPOK{}
 }
 
-/* UpdateGithubIDPOK describes a response with status code 200, with default header values.
+/*
+UpdateGithubIDPOK describes a response with status code 200, with default header values.
 
 GithubIDP
 */
@@ -83,9 +84,39 @@ type UpdateGithubIDPOK struct {
 	Payload *models.GithubIDP
 }
 
+// IsSuccess returns true when this update github Id p o k response has a 2xx status code
+func (o *UpdateGithubIDPOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this update github Id p o k response has a 3xx status code
+func (o *UpdateGithubIDPOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update github Id p o k response has a 4xx status code
+func (o *UpdateGithubIDPOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this update github Id p o k response has a 5xx status code
+func (o *UpdateGithubIDPOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update github Id p o k response a status code equal to that given
+func (o *UpdateGithubIDPOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *UpdateGithubIDPOK) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPOK  %+v", 200, o.Payload)
 }
+
+func (o *UpdateGithubIDPOK) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPOK  %+v", 200, o.Payload)
+}
+
 func (o *UpdateGithubIDPOK) GetPayload() *models.GithubIDP {
 	return o.Payload
 }
@@ -107,7 +138,8 @@ func NewUpdateGithubIDPBadRequest() *UpdateGithubIDPBadRequest {
 	return &UpdateGithubIDPBadRequest{}
 }
 
-/* UpdateGithubIDPBadRequest describes a response with status code 400, with default header values.
+/*
+UpdateGithubIDPBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -115,9 +147,39 @@ type UpdateGithubIDPBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update github Id p bad request response has a 2xx status code
+func (o *UpdateGithubIDPBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update github Id p bad request response has a 3xx status code
+func (o *UpdateGithubIDPBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update github Id p bad request response has a 4xx status code
+func (o *UpdateGithubIDPBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update github Id p bad request response has a 5xx status code
+func (o *UpdateGithubIDPBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update github Id p bad request response a status code equal to that given
+func (o *UpdateGithubIDPBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *UpdateGithubIDPBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *UpdateGithubIDPBadRequest) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *UpdateGithubIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -139,7 +201,8 @@ func NewUpdateGithubIDPUnauthorized() *UpdateGithubIDPUnauthorized {
 	return &UpdateGithubIDPUnauthorized{}
 }
 
-/* UpdateGithubIDPUnauthorized describes a response with status code 401, with default header values.
+/*
+UpdateGithubIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,9 +210,39 @@ type UpdateGithubIDPUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update github Id p unauthorized response has a 2xx status code
+func (o *UpdateGithubIDPUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update github Id p unauthorized response has a 3xx status code
+func (o *UpdateGithubIDPUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update github Id p unauthorized response has a 4xx status code
+func (o *UpdateGithubIDPUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update github Id p unauthorized response has a 5xx status code
+func (o *UpdateGithubIDPUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update github Id p unauthorized response a status code equal to that given
+func (o *UpdateGithubIDPUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *UpdateGithubIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *UpdateGithubIDPUnauthorized) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *UpdateGithubIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -171,7 +264,8 @@ func NewUpdateGithubIDPForbidden() *UpdateGithubIDPForbidden {
 	return &UpdateGithubIDPForbidden{}
 }
 
-/* UpdateGithubIDPForbidden describes a response with status code 403, with default header values.
+/*
+UpdateGithubIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -179,9 +273,39 @@ type UpdateGithubIDPForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update github Id p forbidden response has a 2xx status code
+func (o *UpdateGithubIDPForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update github Id p forbidden response has a 3xx status code
+func (o *UpdateGithubIDPForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update github Id p forbidden response has a 4xx status code
+func (o *UpdateGithubIDPForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update github Id p forbidden response has a 5xx status code
+func (o *UpdateGithubIDPForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update github Id p forbidden response a status code equal to that given
+func (o *UpdateGithubIDPForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *UpdateGithubIDPForbidden) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPForbidden  %+v", 403, o.Payload)
 }
+
+func (o *UpdateGithubIDPForbidden) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPForbidden  %+v", 403, o.Payload)
+}
+
 func (o *UpdateGithubIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -203,7 +327,8 @@ func NewUpdateGithubIDPNotFound() *UpdateGithubIDPNotFound {
 	return &UpdateGithubIDPNotFound{}
 }
 
-/* UpdateGithubIDPNotFound describes a response with status code 404, with default header values.
+/*
+UpdateGithubIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -211,9 +336,39 @@ type UpdateGithubIDPNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update github Id p not found response has a 2xx status code
+func (o *UpdateGithubIDPNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update github Id p not found response has a 3xx status code
+func (o *UpdateGithubIDPNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update github Id p not found response has a 4xx status code
+func (o *UpdateGithubIDPNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update github Id p not found response has a 5xx status code
+func (o *UpdateGithubIDPNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update github Id p not found response a status code equal to that given
+func (o *UpdateGithubIDPNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *UpdateGithubIDPNotFound) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPNotFound  %+v", 404, o.Payload)
 }
+
+func (o *UpdateGithubIDPNotFound) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPNotFound  %+v", 404, o.Payload)
+}
+
 func (o *UpdateGithubIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +390,8 @@ func NewUpdateGithubIDPUnprocessableEntity() *UpdateGithubIDPUnprocessableEntity
 	return &UpdateGithubIDPUnprocessableEntity{}
 }
 
-/* UpdateGithubIDPUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+UpdateGithubIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -243,9 +399,39 @@ type UpdateGithubIDPUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update github Id p unprocessable entity response has a 2xx status code
+func (o *UpdateGithubIDPUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update github Id p unprocessable entity response has a 3xx status code
+func (o *UpdateGithubIDPUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update github Id p unprocessable entity response has a 4xx status code
+func (o *UpdateGithubIDPUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update github Id p unprocessable entity response has a 5xx status code
+func (o *UpdateGithubIDPUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update github Id p unprocessable entity response a status code equal to that given
+func (o *UpdateGithubIDPUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *UpdateGithubIDPUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *UpdateGithubIDPUnprocessableEntity) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *UpdateGithubIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -267,7 +453,8 @@ func NewUpdateGithubIDPTooManyRequests() *UpdateGithubIDPTooManyRequests {
 	return &UpdateGithubIDPTooManyRequests{}
 }
 
-/* UpdateGithubIDPTooManyRequests describes a response with status code 429, with default header values.
+/*
+UpdateGithubIDPTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -275,9 +462,39 @@ type UpdateGithubIDPTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update github Id p too many requests response has a 2xx status code
+func (o *UpdateGithubIDPTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update github Id p too many requests response has a 3xx status code
+func (o *UpdateGithubIDPTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update github Id p too many requests response has a 4xx status code
+func (o *UpdateGithubIDPTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update github Id p too many requests response has a 5xx status code
+func (o *UpdateGithubIDPTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update github Id p too many requests response a status code equal to that given
+func (o *UpdateGithubIDPTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *UpdateGithubIDPTooManyRequests) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *UpdateGithubIDPTooManyRequests) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/github/{iid}][%d] updateGithubIdPTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *UpdateGithubIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

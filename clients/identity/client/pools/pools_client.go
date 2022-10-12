@@ -38,17 +38,16 @@ type ClientService interface {
 
 	ListPools(params *ListPoolsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListPoolsOK, error)
 
-	SystemGetPool(params *SystemGetPoolParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemGetPoolOK, error)
-
 	UpdatePool(params *UpdatePoolParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdatePoolOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
 
 /*
-  CreatePool creates pool
+	CreatePool creates pool
 
-  Creates a pool.
+	Creates a pool.
+
 If metadata or payload IDs are not provided,
 they default to `default_payload` and `default_metadata` system schemas.
 */
@@ -89,9 +88,9 @@ func (a *Client) CreatePool(params *CreatePoolParams, authInfo runtime.ClientAut
 }
 
 /*
-  DeletePool deletes pool
+DeletePool deletes pool
 
-  Deletes pool.
+Deletes pool.
 */
 func (a *Client) DeletePool(params *DeletePoolParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeletePoolNoContent, error) {
 	// TODO: Validate the params before sending
@@ -130,9 +129,9 @@ func (a *Client) DeletePool(params *DeletePoolParams, authInfo runtime.ClientAut
 }
 
 /*
-  GetPool gets pool
+GetPool gets pool
 
-  Gets pool.
+Gets pool.
 */
 func (a *Client) GetPool(params *GetPoolParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPoolOK, error) {
 	// TODO: Validate the params before sending
@@ -171,9 +170,9 @@ func (a *Client) GetPool(params *GetPoolParams, authInfo runtime.ClientAuthInfoW
 }
 
 /*
-  ListPools lists pools
+ListPools lists pools
 
-  Lists pools.
+Lists pools.
 */
 func (a *Client) ListPools(params *ListPoolsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListPoolsOK, error) {
 	// TODO: Validate the params before sending
@@ -212,50 +211,9 @@ func (a *Client) ListPools(params *ListPoolsParams, authInfo runtime.ClientAuthI
 }
 
 /*
-  SystemGetPool gets pool
+UpdatePool updates pool
 
-  Gets pool.
-*/
-func (a *Client) SystemGetPool(params *SystemGetPoolParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemGetPoolOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewSystemGetPoolParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "systemGetPool",
-		Method:             "GET",
-		PathPattern:        "/system/pools/{ipID}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &SystemGetPoolReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*SystemGetPoolOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for systemGetPool: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-  UpdatePool updates pool
-
-  Updates pool.
+Updates pool.
 */
 func (a *Client) UpdatePool(params *UpdatePoolParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdatePoolOK, error) {
 	// TODO: Validate the params before sending

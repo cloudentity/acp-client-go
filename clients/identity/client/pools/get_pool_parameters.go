@@ -52,10 +52,12 @@ func NewGetPoolParamsWithHTTPClient(client *http.Client) *GetPoolParams {
 	}
 }
 
-/* GetPoolParams contains all the parameters to send to the API endpoint
-   for the get pool operation.
+/*
+GetPoolParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get pool operation.
+
+	Typically these are written to a http.Request.
 */
 type GetPoolParams struct {
 

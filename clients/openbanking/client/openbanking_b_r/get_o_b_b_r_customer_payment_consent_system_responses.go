@@ -63,7 +63,8 @@ func NewGetOBBRCustomerPaymentConsentSystemOK() *GetOBBRCustomerPaymentConsentSy
 	return &GetOBBRCustomerPaymentConsentSystemOK{}
 }
 
-/* GetOBBRCustomerPaymentConsentSystemOK describes a response with status code 200, with default header values.
+/*
+GetOBBRCustomerPaymentConsentSystemOK describes a response with status code 200, with default header values.
 
 GetOBBRCustomerPaymentConsentResponse
 */
@@ -71,9 +72,39 @@ type GetOBBRCustomerPaymentConsentSystemOK struct {
 	Payload *models.GetOBBRCustomerPaymentConsentResponse
 }
 
+// IsSuccess returns true when this get o b b r customer payment consent system o k response has a 2xx status code
+func (o *GetOBBRCustomerPaymentConsentSystemOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get o b b r customer payment consent system o k response has a 3xx status code
+func (o *GetOBBRCustomerPaymentConsentSystemOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get o b b r customer payment consent system o k response has a 4xx status code
+func (o *GetOBBRCustomerPaymentConsentSystemOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get o b b r customer payment consent system o k response has a 5xx status code
+func (o *GetOBBRCustomerPaymentConsentSystemOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get o b b r customer payment consent system o k response a status code equal to that given
+func (o *GetOBBRCustomerPaymentConsentSystemOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetOBBRCustomerPaymentConsentSystemOK) Error() string {
 	return fmt.Sprintf("[GET /open-banking-brasil/payment/{login}][%d] getOBBRCustomerPaymentConsentSystemOK  %+v", 200, o.Payload)
 }
+
+func (o *GetOBBRCustomerPaymentConsentSystemOK) String() string {
+	return fmt.Sprintf("[GET /open-banking-brasil/payment/{login}][%d] getOBBRCustomerPaymentConsentSystemOK  %+v", 200, o.Payload)
+}
+
 func (o *GetOBBRCustomerPaymentConsentSystemOK) GetPayload() *models.GetOBBRCustomerPaymentConsentResponse {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewGetOBBRCustomerPaymentConsentSystemUnauthorized() *GetOBBRCustomerPaymen
 	return &GetOBBRCustomerPaymentConsentSystemUnauthorized{}
 }
 
-/* GetOBBRCustomerPaymentConsentSystemUnauthorized describes a response with status code 401, with default header values.
+/*
+GetOBBRCustomerPaymentConsentSystemUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type GetOBBRCustomerPaymentConsentSystemUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get o b b r customer payment consent system unauthorized response has a 2xx status code
+func (o *GetOBBRCustomerPaymentConsentSystemUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get o b b r customer payment consent system unauthorized response has a 3xx status code
+func (o *GetOBBRCustomerPaymentConsentSystemUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get o b b r customer payment consent system unauthorized response has a 4xx status code
+func (o *GetOBBRCustomerPaymentConsentSystemUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get o b b r customer payment consent system unauthorized response has a 5xx status code
+func (o *GetOBBRCustomerPaymentConsentSystemUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get o b b r customer payment consent system unauthorized response a status code equal to that given
+func (o *GetOBBRCustomerPaymentConsentSystemUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *GetOBBRCustomerPaymentConsentSystemUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /open-banking-brasil/payment/{login}][%d] getOBBRCustomerPaymentConsentSystemUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *GetOBBRCustomerPaymentConsentSystemUnauthorized) String() string {
+	return fmt.Sprintf("[GET /open-banking-brasil/payment/{login}][%d] getOBBRCustomerPaymentConsentSystemUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *GetOBBRCustomerPaymentConsentSystemUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewGetOBBRCustomerPaymentConsentSystemForbidden() *GetOBBRCustomerPaymentCo
 	return &GetOBBRCustomerPaymentConsentSystemForbidden{}
 }
 
-/* GetOBBRCustomerPaymentConsentSystemForbidden describes a response with status code 403, with default header values.
+/*
+GetOBBRCustomerPaymentConsentSystemForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type GetOBBRCustomerPaymentConsentSystemForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get o b b r customer payment consent system forbidden response has a 2xx status code
+func (o *GetOBBRCustomerPaymentConsentSystemForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get o b b r customer payment consent system forbidden response has a 3xx status code
+func (o *GetOBBRCustomerPaymentConsentSystemForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get o b b r customer payment consent system forbidden response has a 4xx status code
+func (o *GetOBBRCustomerPaymentConsentSystemForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get o b b r customer payment consent system forbidden response has a 5xx status code
+func (o *GetOBBRCustomerPaymentConsentSystemForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get o b b r customer payment consent system forbidden response a status code equal to that given
+func (o *GetOBBRCustomerPaymentConsentSystemForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetOBBRCustomerPaymentConsentSystemForbidden) Error() string {
 	return fmt.Sprintf("[GET /open-banking-brasil/payment/{login}][%d] getOBBRCustomerPaymentConsentSystemForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetOBBRCustomerPaymentConsentSystemForbidden) String() string {
+	return fmt.Sprintf("[GET /open-banking-brasil/payment/{login}][%d] getOBBRCustomerPaymentConsentSystemForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetOBBRCustomerPaymentConsentSystemForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewGetOBBRCustomerPaymentConsentSystemNotFound() *GetOBBRCustomerPaymentCon
 	return &GetOBBRCustomerPaymentConsentSystemNotFound{}
 }
 
-/* GetOBBRCustomerPaymentConsentSystemNotFound describes a response with status code 404, with default header values.
+/*
+GetOBBRCustomerPaymentConsentSystemNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type GetOBBRCustomerPaymentConsentSystemNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get o b b r customer payment consent system not found response has a 2xx status code
+func (o *GetOBBRCustomerPaymentConsentSystemNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get o b b r customer payment consent system not found response has a 3xx status code
+func (o *GetOBBRCustomerPaymentConsentSystemNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get o b b r customer payment consent system not found response has a 4xx status code
+func (o *GetOBBRCustomerPaymentConsentSystemNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get o b b r customer payment consent system not found response has a 5xx status code
+func (o *GetOBBRCustomerPaymentConsentSystemNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get o b b r customer payment consent system not found response a status code equal to that given
+func (o *GetOBBRCustomerPaymentConsentSystemNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *GetOBBRCustomerPaymentConsentSystemNotFound) Error() string {
 	return fmt.Sprintf("[GET /open-banking-brasil/payment/{login}][%d] getOBBRCustomerPaymentConsentSystemNotFound  %+v", 404, o.Payload)
 }
+
+func (o *GetOBBRCustomerPaymentConsentSystemNotFound) String() string {
+	return fmt.Sprintf("[GET /open-banking-brasil/payment/{login}][%d] getOBBRCustomerPaymentConsentSystemNotFound  %+v", 404, o.Payload)
+}
+
 func (o *GetOBBRCustomerPaymentConsentSystemNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewGetOBBRCustomerPaymentConsentSystemTooManyRequests() *GetOBBRCustomerPay
 	return &GetOBBRCustomerPaymentConsentSystemTooManyRequests{}
 }
 
-/* GetOBBRCustomerPaymentConsentSystemTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetOBBRCustomerPaymentConsentSystemTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type GetOBBRCustomerPaymentConsentSystemTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get o b b r customer payment consent system too many requests response has a 2xx status code
+func (o *GetOBBRCustomerPaymentConsentSystemTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get o b b r customer payment consent system too many requests response has a 3xx status code
+func (o *GetOBBRCustomerPaymentConsentSystemTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get o b b r customer payment consent system too many requests response has a 4xx status code
+func (o *GetOBBRCustomerPaymentConsentSystemTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get o b b r customer payment consent system too many requests response has a 5xx status code
+func (o *GetOBBRCustomerPaymentConsentSystemTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get o b b r customer payment consent system too many requests response a status code equal to that given
+func (o *GetOBBRCustomerPaymentConsentSystemTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *GetOBBRCustomerPaymentConsentSystemTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /open-banking-brasil/payment/{login}][%d] getOBBRCustomerPaymentConsentSystemTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *GetOBBRCustomerPaymentConsentSystemTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /open-banking-brasil/payment/{login}][%d] getOBBRCustomerPaymentConsentSystemTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *GetOBBRCustomerPaymentConsentSystemTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

@@ -52,10 +52,12 @@ func NewExportConfigurationParamsWithHTTPClient(client *http.Client) *ExportConf
 	}
 }
 
-/* ExportConfigurationParams contains all the parameters to send to the API endpoint
-   for the export configuration operation.
+/*
+ExportConfigurationParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the export configuration operation.
+
+	Typically these are written to a http.Request.
 */
 type ExportConfigurationParams struct {
 

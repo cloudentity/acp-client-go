@@ -54,10 +54,12 @@ func NewUpdateMFAMethodParamsWithHTTPClient(client *http.Client) *UpdateMFAMetho
 	}
 }
 
-/* UpdateMFAMethodParams contains all the parameters to send to the API endpoint
-   for the update m f a method operation.
+/*
+UpdateMFAMethodParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update m f a method operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateMFAMethodParams struct {
 

@@ -53,10 +53,12 @@ func NewGetCDRArrangementsParamsWithHTTPClient(client *http.Client) *GetCDRArran
 	}
 }
 
-/* GetCDRArrangementsParams contains all the parameters to send to the API endpoint
-   for the get c d r arrangements operation.
+/*
+GetCDRArrangementsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get c d r arrangements operation.
+
+	Typically these are written to a http.Request.
 */
 type GetCDRArrangementsParams struct {
 
@@ -87,6 +89,13 @@ type GetCDRArrangementsParams struct {
 	ClientID
 	*/
 	ClientID *string
+
+	/* CustomerID.
+
+	     Optional customer id
+	CustomerID
+	*/
+	CustomerID *string
 
 	/* Limit.
 
@@ -245,6 +254,17 @@ func (o *GetCDRArrangementsParams) SetClientID(clientID *string) {
 	o.ClientID = clientID
 }
 
+// WithCustomerID adds the customerID to the get c d r arrangements params
+func (o *GetCDRArrangementsParams) WithCustomerID(customerID *string) *GetCDRArrangementsParams {
+	o.SetCustomerID(customerID)
+	return o
+}
+
+// SetCustomerID adds the customerId to the get c d r arrangements params
+func (o *GetCDRArrangementsParams) SetCustomerID(customerID *string) {
+	o.CustomerID = customerID
+}
+
 // WithLimit adds the limit to the get c d r arrangements params
 func (o *GetCDRArrangementsParams) WithLimit(limit *int64) *GetCDRArrangementsParams {
 	o.SetLimit(limit)
@@ -376,6 +396,23 @@ func (o *GetCDRArrangementsParams) WriteToRequest(r runtime.ClientRequest, reg s
 		if qClientID != "" {
 
 			if err := r.SetQueryParam("client_id", qClientID); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.CustomerID != nil {
+
+		// query param customer_id
+		var qrCustomerID string
+
+		if o.CustomerID != nil {
+			qrCustomerID = *o.CustomerID
+		}
+		qCustomerID := qrCustomerID
+		if qCustomerID != "" {
+
+			if err := r.SetQueryParam("customer_id", qCustomerID); err != nil {
 				return err
 			}
 		}

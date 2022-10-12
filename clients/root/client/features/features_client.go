@@ -38,9 +38,10 @@ type ClientService interface {
 }
 
 /*
-  GetTenantFeatures gets tenant features
+	GetTenantFeatures gets tenant features
 
-  Returns a map of all feature flags and their values.
+	Returns a map of all feature flags and their values.
+
 To be able to set a tenant feature flag, you need to use an access token issued for a system tenant and admin workspace.
 */
 func (a *Client) GetTenantFeatures(params *GetTenantFeaturesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetTenantFeaturesOK, error) {
@@ -80,9 +81,10 @@ func (a *Client) GetTenantFeatures(params *GetTenantFeaturesParams, authInfo run
 }
 
 /*
-  SetTenantFeature sets tenant feature
+	SetTenantFeature sets tenant feature
 
-  Enable or disable one of the tenant's features.
+	Enable or disable one of the tenant's features.
+
 To be able to set a tenant feature flag, you need to use an access token issued for a system tenant and admin workspace.
 */
 func (a *Client) SetTenantFeature(params *SetTenantFeatureParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetTenantFeatureNoContent, error) {

@@ -25,6 +25,10 @@ type UserCredential struct {
 	// Format: date-time
 	CreatedAt strfmt.DateTime `json:"created_at"`
 
+	// expires at
+	// Format: date-time
+	ExpiresAt strfmt.DateTime `json:"expires_at,omitempty"`
+
 	// id
 	ID string `json:"id,omitempty"`
 
@@ -67,6 +71,10 @@ func (m *UserCredential) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateExpiresAt(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validatePayload(formats); err != nil {
 		res = append(res, err)
 	}
@@ -104,6 +112,18 @@ func (m *UserCredential) validateCreatedAt(formats strfmt.Registry) error {
 	}
 
 	if err := validate.FormatOf("created_at", "body", "date-time", m.CreatedAt.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *UserCredential) validateExpiresAt(formats strfmt.Registry) error {
+	if swag.IsZero(m.ExpiresAt) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("expires_at", "body", "date-time", m.ExpiresAt.String(), formats); err != nil {
 		return err
 	}
 

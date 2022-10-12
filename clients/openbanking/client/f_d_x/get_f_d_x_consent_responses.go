@@ -57,7 +57,8 @@ func NewGetFDXConsentOK() *GetFDXConsentOK {
 	return &GetFDXConsentOK{}
 }
 
-/* GetFDXConsentOK describes a response with status code 200, with default header values.
+/*
+GetFDXConsentOK describes a response with status code 200, with default header values.
 
 GetFDXConsent
 */
@@ -65,9 +66,39 @@ type GetFDXConsentOK struct {
 	Payload *models.GetFDXConsent
 }
 
+// IsSuccess returns true when this get f d x consent o k response has a 2xx status code
+func (o *GetFDXConsentOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get f d x consent o k response has a 3xx status code
+func (o *GetFDXConsentOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get f d x consent o k response has a 4xx status code
+func (o *GetFDXConsentOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get f d x consent o k response has a 5xx status code
+func (o *GetFDXConsentOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get f d x consent o k response a status code equal to that given
+func (o *GetFDXConsentOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetFDXConsentOK) Error() string {
 	return fmt.Sprintf("[GET /consents/{consentID}][%d] getFDXConsentOK  %+v", 200, o.Payload)
 }
+
+func (o *GetFDXConsentOK) String() string {
+	return fmt.Sprintf("[GET /consents/{consentID}][%d] getFDXConsentOK  %+v", 200, o.Payload)
+}
+
 func (o *GetFDXConsentOK) GetPayload() *models.GetFDXConsent {
 	return o.Payload
 }
@@ -89,7 +120,8 @@ func NewGetFDXConsentBadRequest() *GetFDXConsentBadRequest {
 	return &GetFDXConsentBadRequest{}
 }
 
-/* GetFDXConsentBadRequest describes a response with status code 400, with default header values.
+/*
+GetFDXConsentBadRequest describes a response with status code 400, with default header values.
 
 FDX Error
 */
@@ -97,9 +129,39 @@ type GetFDXConsentBadRequest struct {
 	Payload *models.FDXErrorResponse
 }
 
+// IsSuccess returns true when this get f d x consent bad request response has a 2xx status code
+func (o *GetFDXConsentBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get f d x consent bad request response has a 3xx status code
+func (o *GetFDXConsentBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get f d x consent bad request response has a 4xx status code
+func (o *GetFDXConsentBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get f d x consent bad request response has a 5xx status code
+func (o *GetFDXConsentBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get f d x consent bad request response a status code equal to that given
+func (o *GetFDXConsentBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *GetFDXConsentBadRequest) Error() string {
 	return fmt.Sprintf("[GET /consents/{consentID}][%d] getFDXConsentBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *GetFDXConsentBadRequest) String() string {
+	return fmt.Sprintf("[GET /consents/{consentID}][%d] getFDXConsentBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *GetFDXConsentBadRequest) GetPayload() *models.FDXErrorResponse {
 	return o.Payload
 }
@@ -121,7 +183,8 @@ func NewGetFDXConsentUnauthorized() *GetFDXConsentUnauthorized {
 	return &GetFDXConsentUnauthorized{}
 }
 
-/* GetFDXConsentUnauthorized describes a response with status code 401, with default header values.
+/*
+GetFDXConsentUnauthorized describes a response with status code 401, with default header values.
 
 FDX Error
 */
@@ -129,9 +192,39 @@ type GetFDXConsentUnauthorized struct {
 	Payload *models.FDXErrorResponse
 }
 
+// IsSuccess returns true when this get f d x consent unauthorized response has a 2xx status code
+func (o *GetFDXConsentUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get f d x consent unauthorized response has a 3xx status code
+func (o *GetFDXConsentUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get f d x consent unauthorized response has a 4xx status code
+func (o *GetFDXConsentUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get f d x consent unauthorized response has a 5xx status code
+func (o *GetFDXConsentUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get f d x consent unauthorized response a status code equal to that given
+func (o *GetFDXConsentUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *GetFDXConsentUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /consents/{consentID}][%d] getFDXConsentUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *GetFDXConsentUnauthorized) String() string {
+	return fmt.Sprintf("[GET /consents/{consentID}][%d] getFDXConsentUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *GetFDXConsentUnauthorized) GetPayload() *models.FDXErrorResponse {
 	return o.Payload
 }
@@ -153,7 +246,8 @@ func NewGetFDXConsentNotFound() *GetFDXConsentNotFound {
 	return &GetFDXConsentNotFound{}
 }
 
-/* GetFDXConsentNotFound describes a response with status code 404, with default header values.
+/*
+GetFDXConsentNotFound describes a response with status code 404, with default header values.
 
 FDX Error
 */
@@ -161,9 +255,39 @@ type GetFDXConsentNotFound struct {
 	Payload *models.FDXErrorResponse
 }
 
+// IsSuccess returns true when this get f d x consent not found response has a 2xx status code
+func (o *GetFDXConsentNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get f d x consent not found response has a 3xx status code
+func (o *GetFDXConsentNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get f d x consent not found response has a 4xx status code
+func (o *GetFDXConsentNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get f d x consent not found response has a 5xx status code
+func (o *GetFDXConsentNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get f d x consent not found response a status code equal to that given
+func (o *GetFDXConsentNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *GetFDXConsentNotFound) Error() string {
 	return fmt.Sprintf("[GET /consents/{consentID}][%d] getFDXConsentNotFound  %+v", 404, o.Payload)
 }
+
+func (o *GetFDXConsentNotFound) String() string {
+	return fmt.Sprintf("[GET /consents/{consentID}][%d] getFDXConsentNotFound  %+v", 404, o.Payload)
+}
+
 func (o *GetFDXConsentNotFound) GetPayload() *models.FDXErrorResponse {
 	return o.Payload
 }

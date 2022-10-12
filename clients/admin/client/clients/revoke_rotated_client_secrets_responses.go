@@ -63,14 +63,44 @@ func NewRevokeRotatedClientSecretsNoContent() *RevokeRotatedClientSecretsNoConte
 	return &RevokeRotatedClientSecretsNoContent{}
 }
 
-/* RevokeRotatedClientSecretsNoContent describes a response with status code 204, with default header values.
+/*
+RevokeRotatedClientSecretsNoContent describes a response with status code 204, with default header values.
 
-all client's rotated secrets has been revoked
+	all client's rotated secrets has been revoked
 */
 type RevokeRotatedClientSecretsNoContent struct {
 }
 
+// IsSuccess returns true when this revoke rotated client secrets no content response has a 2xx status code
+func (o *RevokeRotatedClientSecretsNoContent) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this revoke rotated client secrets no content response has a 3xx status code
+func (o *RevokeRotatedClientSecretsNoContent) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke rotated client secrets no content response has a 4xx status code
+func (o *RevokeRotatedClientSecretsNoContent) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this revoke rotated client secrets no content response has a 5xx status code
+func (o *RevokeRotatedClientSecretsNoContent) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke rotated client secrets no content response a status code equal to that given
+func (o *RevokeRotatedClientSecretsNoContent) IsCode(code int) bool {
+	return code == 204
+}
+
 func (o *RevokeRotatedClientSecretsNoContent) Error() string {
+	return fmt.Sprintf("[POST /clients/{cid}/revokeRotatedSecrets][%d] revokeRotatedClientSecretsNoContent ", 204)
+}
+
+func (o *RevokeRotatedClientSecretsNoContent) String() string {
 	return fmt.Sprintf("[POST /clients/{cid}/revokeRotatedSecrets][%d] revokeRotatedClientSecretsNoContent ", 204)
 }
 
@@ -84,7 +114,8 @@ func NewRevokeRotatedClientSecretsUnauthorized() *RevokeRotatedClientSecretsUnau
 	return &RevokeRotatedClientSecretsUnauthorized{}
 }
 
-/* RevokeRotatedClientSecretsUnauthorized describes a response with status code 401, with default header values.
+/*
+RevokeRotatedClientSecretsUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -92,9 +123,39 @@ type RevokeRotatedClientSecretsUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this revoke rotated client secrets unauthorized response has a 2xx status code
+func (o *RevokeRotatedClientSecretsUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this revoke rotated client secrets unauthorized response has a 3xx status code
+func (o *RevokeRotatedClientSecretsUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke rotated client secrets unauthorized response has a 4xx status code
+func (o *RevokeRotatedClientSecretsUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this revoke rotated client secrets unauthorized response has a 5xx status code
+func (o *RevokeRotatedClientSecretsUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke rotated client secrets unauthorized response a status code equal to that given
+func (o *RevokeRotatedClientSecretsUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *RevokeRotatedClientSecretsUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /clients/{cid}/revokeRotatedSecrets][%d] revokeRotatedClientSecretsUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *RevokeRotatedClientSecretsUnauthorized) String() string {
+	return fmt.Sprintf("[POST /clients/{cid}/revokeRotatedSecrets][%d] revokeRotatedClientSecretsUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *RevokeRotatedClientSecretsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -116,7 +177,8 @@ func NewRevokeRotatedClientSecretsForbidden() *RevokeRotatedClientSecretsForbidd
 	return &RevokeRotatedClientSecretsForbidden{}
 }
 
-/* RevokeRotatedClientSecretsForbidden describes a response with status code 403, with default header values.
+/*
+RevokeRotatedClientSecretsForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -124,9 +186,39 @@ type RevokeRotatedClientSecretsForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this revoke rotated client secrets forbidden response has a 2xx status code
+func (o *RevokeRotatedClientSecretsForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this revoke rotated client secrets forbidden response has a 3xx status code
+func (o *RevokeRotatedClientSecretsForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke rotated client secrets forbidden response has a 4xx status code
+func (o *RevokeRotatedClientSecretsForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this revoke rotated client secrets forbidden response has a 5xx status code
+func (o *RevokeRotatedClientSecretsForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke rotated client secrets forbidden response a status code equal to that given
+func (o *RevokeRotatedClientSecretsForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *RevokeRotatedClientSecretsForbidden) Error() string {
 	return fmt.Sprintf("[POST /clients/{cid}/revokeRotatedSecrets][%d] revokeRotatedClientSecretsForbidden  %+v", 403, o.Payload)
 }
+
+func (o *RevokeRotatedClientSecretsForbidden) String() string {
+	return fmt.Sprintf("[POST /clients/{cid}/revokeRotatedSecrets][%d] revokeRotatedClientSecretsForbidden  %+v", 403, o.Payload)
+}
+
 func (o *RevokeRotatedClientSecretsForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -148,7 +240,8 @@ func NewRevokeRotatedClientSecretsNotFound() *RevokeRotatedClientSecretsNotFound
 	return &RevokeRotatedClientSecretsNotFound{}
 }
 
-/* RevokeRotatedClientSecretsNotFound describes a response with status code 404, with default header values.
+/*
+RevokeRotatedClientSecretsNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -156,9 +249,39 @@ type RevokeRotatedClientSecretsNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this revoke rotated client secrets not found response has a 2xx status code
+func (o *RevokeRotatedClientSecretsNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this revoke rotated client secrets not found response has a 3xx status code
+func (o *RevokeRotatedClientSecretsNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke rotated client secrets not found response has a 4xx status code
+func (o *RevokeRotatedClientSecretsNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this revoke rotated client secrets not found response has a 5xx status code
+func (o *RevokeRotatedClientSecretsNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke rotated client secrets not found response a status code equal to that given
+func (o *RevokeRotatedClientSecretsNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *RevokeRotatedClientSecretsNotFound) Error() string {
 	return fmt.Sprintf("[POST /clients/{cid}/revokeRotatedSecrets][%d] revokeRotatedClientSecretsNotFound  %+v", 404, o.Payload)
 }
+
+func (o *RevokeRotatedClientSecretsNotFound) String() string {
+	return fmt.Sprintf("[POST /clients/{cid}/revokeRotatedSecrets][%d] revokeRotatedClientSecretsNotFound  %+v", 404, o.Payload)
+}
+
 func (o *RevokeRotatedClientSecretsNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -180,7 +303,8 @@ func NewRevokeRotatedClientSecretsTooManyRequests() *RevokeRotatedClientSecretsT
 	return &RevokeRotatedClientSecretsTooManyRequests{}
 }
 
-/* RevokeRotatedClientSecretsTooManyRequests describes a response with status code 429, with default header values.
+/*
+RevokeRotatedClientSecretsTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -188,9 +312,39 @@ type RevokeRotatedClientSecretsTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this revoke rotated client secrets too many requests response has a 2xx status code
+func (o *RevokeRotatedClientSecretsTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this revoke rotated client secrets too many requests response has a 3xx status code
+func (o *RevokeRotatedClientSecretsTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke rotated client secrets too many requests response has a 4xx status code
+func (o *RevokeRotatedClientSecretsTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this revoke rotated client secrets too many requests response has a 5xx status code
+func (o *RevokeRotatedClientSecretsTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke rotated client secrets too many requests response a status code equal to that given
+func (o *RevokeRotatedClientSecretsTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *RevokeRotatedClientSecretsTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /clients/{cid}/revokeRotatedSecrets][%d] revokeRotatedClientSecretsTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *RevokeRotatedClientSecretsTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /clients/{cid}/revokeRotatedSecrets][%d] revokeRotatedClientSecretsTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *RevokeRotatedClientSecretsTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

@@ -40,9 +40,9 @@ type ClientService interface {
 }
 
 /*
-  ListUserConsentsByActionSystem lists user consents by action
+ListUserConsentsByActionSystem lists user consents by action
 
-  User identifier must be provided in the header.
+User identifier must be provided in the header.
 */
 func (a *Client) ListUserConsentsByActionSystem(params *ListUserConsentsByActionSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListUserConsentsByActionSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -81,9 +81,9 @@ func (a *Client) ListUserConsentsByActionSystem(params *ListUserConsentsByAction
 }
 
 /*
-  ListUserConsentsSystem lists user consents
+	ListUserConsentsSystem lists user consents
 
-  User identifier must be provided in the header.
+	User identifier must be provided in the header.
 
 To limit list of consents, you can provide consent identifiers in query param.
 */
@@ -124,9 +124,9 @@ func (a *Client) ListUserConsentsSystem(params *ListUserConsentsSystemParams, au
 }
 
 /*
-  PatchConsentGrantsSystem patches consent grants
+	PatchConsentGrantsSystem patches consent grants
 
-  This is a non-standardized PATCH request.
+	This is a non-standardized PATCH request.
 
 Allows to update multiple consents approval in one API call.
 

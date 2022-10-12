@@ -53,10 +53,12 @@ func NewListServicesParamsWithHTTPClient(client *http.Client) *ListServicesParam
 	}
 }
 
-/* ListServicesParams contains all the parameters to send to the API endpoint
-   for the list services operation.
+/*
+ListServicesParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the list services operation.
+
+	Typically these are written to a http.Request.
 */
 type ListServicesParams struct {
 
@@ -98,6 +100,14 @@ type ListServicesParams struct {
 	*/
 	SearchPhrase *string
 
+	/* ServiceTypes.
+
+	   comma separated service types that are to be filtered out
+
+	   Default: "user,oauth2,oidc,system,openbanking"
+	*/
+	ServiceTypes *string
+
 	/* Sort.
 
 	     optional sort services by given field
@@ -133,12 +143,15 @@ func (o *ListServicesParams) SetDefaults() {
 	var (
 		limitDefault = int64(20)
 
+		serviceTypesDefault = string("user,oauth2,oidc,system,openbanking")
+
 		widDefault = string("default")
 	)
 
 	val := ListServicesParams{
-		Limit: &limitDefault,
-		Wid:   widDefault,
+		Limit:        &limitDefault,
+		ServiceTypes: &serviceTypesDefault,
+		Wid:          widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -233,6 +246,17 @@ func (o *ListServicesParams) WithSearchPhrase(searchPhrase *string) *ListService
 // SetSearchPhrase adds the searchPhrase to the list services params
 func (o *ListServicesParams) SetSearchPhrase(searchPhrase *string) {
 	o.SearchPhrase = searchPhrase
+}
+
+// WithServiceTypes adds the serviceTypes to the list services params
+func (o *ListServicesParams) WithServiceTypes(serviceTypes *string) *ListServicesParams {
+	o.SetServiceTypes(serviceTypes)
+	return o
+}
+
+// SetServiceTypes adds the serviceTypes to the list services params
+func (o *ListServicesParams) SetServiceTypes(serviceTypes *string) {
+	o.ServiceTypes = serviceTypes
 }
 
 // WithSort adds the sort to the list services params
@@ -345,6 +369,23 @@ func (o *ListServicesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		if qSearchPhrase != "" {
 
 			if err := r.SetQueryParam("search_phrase", qSearchPhrase); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.ServiceTypes != nil {
+
+		// query param service_types
+		var qrServiceTypes string
+
+		if o.ServiceTypes != nil {
+			qrServiceTypes = *o.ServiceTypes
+		}
+		qServiceTypes := qrServiceTypes
+		if qServiceTypes != "" {
+
+			if err := r.SetQueryParam("service_types", qServiceTypes); err != nil {
 				return err
 			}
 		}

@@ -21,6 +21,11 @@ type AzureB2CSettings struct {
 	// Example: client
 	ClientID string `json:"client_id,omitempty"`
 
+	// Custom domain from your Microsoft Azure application settings when using a custom
+	// domain such as with Azure Front Door. This is optional.
+	// Example: my.customdomain.com
+	CustomDomain string `json:"custom_domain,omitempty"`
+
 	// If enabled, the groups a user belongs to are collected
 	//
 	// Groups are collections of users and other principals who share access to resources in

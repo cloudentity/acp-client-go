@@ -60,7 +60,8 @@ func NewFdxConsentIntrospectOK() *FdxConsentIntrospectOK {
 	return &FdxConsentIntrospectOK{}
 }
 
-/* FdxConsentIntrospectOK describes a response with status code 200, with default header values.
+/*
+FdxConsentIntrospectOK describes a response with status code 200, with default header values.
 
 Introspect FDX Consent Response
 */
@@ -68,9 +69,39 @@ type FdxConsentIntrospectOK struct {
 	Payload *FdxConsentIntrospectOKBody
 }
 
+// IsSuccess returns true when this fdx consent introspect o k response has a 2xx status code
+func (o *FdxConsentIntrospectOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this fdx consent introspect o k response has a 3xx status code
+func (o *FdxConsentIntrospectOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this fdx consent introspect o k response has a 4xx status code
+func (o *FdxConsentIntrospectOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this fdx consent introspect o k response has a 5xx status code
+func (o *FdxConsentIntrospectOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this fdx consent introspect o k response a status code equal to that given
+func (o *FdxConsentIntrospectOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *FdxConsentIntrospectOK) Error() string {
 	return fmt.Sprintf("[POST /fdx/consents/introspect][%d] fdxConsentIntrospectOK  %+v", 200, o.Payload)
 }
+
+func (o *FdxConsentIntrospectOK) String() string {
+	return fmt.Sprintf("[POST /fdx/consents/introspect][%d] fdxConsentIntrospectOK  %+v", 200, o.Payload)
+}
+
 func (o *FdxConsentIntrospectOK) GetPayload() *FdxConsentIntrospectOKBody {
 	return o.Payload
 }
@@ -92,7 +123,8 @@ func NewFdxConsentIntrospectUnauthorized() *FdxConsentIntrospectUnauthorized {
 	return &FdxConsentIntrospectUnauthorized{}
 }
 
-/* FdxConsentIntrospectUnauthorized describes a response with status code 401, with default header values.
+/*
+FdxConsentIntrospectUnauthorized describes a response with status code 401, with default header values.
 
 ErrorResponse
 */
@@ -100,9 +132,39 @@ type FdxConsentIntrospectUnauthorized struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this fdx consent introspect unauthorized response has a 2xx status code
+func (o *FdxConsentIntrospectUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this fdx consent introspect unauthorized response has a 3xx status code
+func (o *FdxConsentIntrospectUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this fdx consent introspect unauthorized response has a 4xx status code
+func (o *FdxConsentIntrospectUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this fdx consent introspect unauthorized response has a 5xx status code
+func (o *FdxConsentIntrospectUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this fdx consent introspect unauthorized response a status code equal to that given
+func (o *FdxConsentIntrospectUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *FdxConsentIntrospectUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /fdx/consents/introspect][%d] fdxConsentIntrospectUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *FdxConsentIntrospectUnauthorized) String() string {
+	return fmt.Sprintf("[POST /fdx/consents/introspect][%d] fdxConsentIntrospectUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *FdxConsentIntrospectUnauthorized) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -124,7 +186,8 @@ func NewFdxConsentIntrospectNotFound() *FdxConsentIntrospectNotFound {
 	return &FdxConsentIntrospectNotFound{}
 }
 
-/* FdxConsentIntrospectNotFound describes a response with status code 404, with default header values.
+/*
+FdxConsentIntrospectNotFound describes a response with status code 404, with default header values.
 
 ErrorResponse
 */
@@ -132,9 +195,39 @@ type FdxConsentIntrospectNotFound struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this fdx consent introspect not found response has a 2xx status code
+func (o *FdxConsentIntrospectNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this fdx consent introspect not found response has a 3xx status code
+func (o *FdxConsentIntrospectNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this fdx consent introspect not found response has a 4xx status code
+func (o *FdxConsentIntrospectNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this fdx consent introspect not found response has a 5xx status code
+func (o *FdxConsentIntrospectNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this fdx consent introspect not found response a status code equal to that given
+func (o *FdxConsentIntrospectNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *FdxConsentIntrospectNotFound) Error() string {
 	return fmt.Sprintf("[POST /fdx/consents/introspect][%d] fdxConsentIntrospectNotFound  %+v", 404, o.Payload)
 }
+
+func (o *FdxConsentIntrospectNotFound) String() string {
+	return fmt.Sprintf("[POST /fdx/consents/introspect][%d] fdxConsentIntrospectNotFound  %+v", 404, o.Payload)
+}
+
 func (o *FdxConsentIntrospectNotFound) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -156,7 +249,8 @@ func NewFdxConsentIntrospectTooManyRequests() *FdxConsentIntrospectTooManyReques
 	return &FdxConsentIntrospectTooManyRequests{}
 }
 
-/* FdxConsentIntrospectTooManyRequests describes a response with status code 429, with default header values.
+/*
+FdxConsentIntrospectTooManyRequests describes a response with status code 429, with default header values.
 
 ErrorResponse
 */
@@ -164,9 +258,39 @@ type FdxConsentIntrospectTooManyRequests struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this fdx consent introspect too many requests response has a 2xx status code
+func (o *FdxConsentIntrospectTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this fdx consent introspect too many requests response has a 3xx status code
+func (o *FdxConsentIntrospectTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this fdx consent introspect too many requests response has a 4xx status code
+func (o *FdxConsentIntrospectTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this fdx consent introspect too many requests response has a 5xx status code
+func (o *FdxConsentIntrospectTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this fdx consent introspect too many requests response a status code equal to that given
+func (o *FdxConsentIntrospectTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *FdxConsentIntrospectTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /fdx/consents/introspect][%d] fdxConsentIntrospectTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *FdxConsentIntrospectTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /fdx/consents/introspect][%d] fdxConsentIntrospectTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *FdxConsentIntrospectTooManyRequests) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -183,7 +307,8 @@ func (o *FdxConsentIntrospectTooManyRequests) readResponse(response runtime.Clie
 	return nil
 }
 
-/*FdxConsentIntrospectOKBody fdx consent introspect o k body
+/*
+FdxConsentIntrospectOKBody fdx consent introspect o k body
 swagger:model FdxConsentIntrospectOKBody
 */
 type FdxConsentIntrospectOKBody struct {

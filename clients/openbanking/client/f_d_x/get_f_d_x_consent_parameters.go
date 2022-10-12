@@ -52,10 +52,12 @@ func NewGetFDXConsentParamsWithHTTPClient(client *http.Client) *GetFDXConsentPar
 	}
 }
 
-/* GetFDXConsentParams contains all the parameters to send to the API endpoint
-   for the get f d x consent operation.
+/*
+GetFDXConsentParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get f d x consent operation.
+
+	Typically these are written to a http.Request.
 */
 type GetFDXConsentParams struct {
 

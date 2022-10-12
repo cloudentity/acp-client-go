@@ -75,7 +75,8 @@ func NewCreateExternalIDPCreated() *CreateExternalIDPCreated {
 	return &CreateExternalIDPCreated{}
 }
 
-/* CreateExternalIDPCreated describes a response with status code 201, with default header values.
+/*
+CreateExternalIDPCreated describes a response with status code 201, with default header values.
 
 ExternalIDP
 */
@@ -83,9 +84,39 @@ type CreateExternalIDPCreated struct {
 	Payload *models.ExternalIDP
 }
 
+// IsSuccess returns true when this create external Id p created response has a 2xx status code
+func (o *CreateExternalIDPCreated) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this create external Id p created response has a 3xx status code
+func (o *CreateExternalIDPCreated) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create external Id p created response has a 4xx status code
+func (o *CreateExternalIDPCreated) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create external Id p created response has a 5xx status code
+func (o *CreateExternalIDPCreated) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create external Id p created response a status code equal to that given
+func (o *CreateExternalIDPCreated) IsCode(code int) bool {
+	return code == 201
+}
+
 func (o *CreateExternalIDPCreated) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPCreated  %+v", 201, o.Payload)
 }
+
+func (o *CreateExternalIDPCreated) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPCreated  %+v", 201, o.Payload)
+}
+
 func (o *CreateExternalIDPCreated) GetPayload() *models.ExternalIDP {
 	return o.Payload
 }
@@ -107,7 +138,8 @@ func NewCreateExternalIDPBadRequest() *CreateExternalIDPBadRequest {
 	return &CreateExternalIDPBadRequest{}
 }
 
-/* CreateExternalIDPBadRequest describes a response with status code 400, with default header values.
+/*
+CreateExternalIDPBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -115,9 +147,39 @@ type CreateExternalIDPBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create external Id p bad request response has a 2xx status code
+func (o *CreateExternalIDPBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create external Id p bad request response has a 3xx status code
+func (o *CreateExternalIDPBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create external Id p bad request response has a 4xx status code
+func (o *CreateExternalIDPBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create external Id p bad request response has a 5xx status code
+func (o *CreateExternalIDPBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create external Id p bad request response a status code equal to that given
+func (o *CreateExternalIDPBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *CreateExternalIDPBadRequest) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *CreateExternalIDPBadRequest) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *CreateExternalIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -139,7 +201,8 @@ func NewCreateExternalIDPUnauthorized() *CreateExternalIDPUnauthorized {
 	return &CreateExternalIDPUnauthorized{}
 }
 
-/* CreateExternalIDPUnauthorized describes a response with status code 401, with default header values.
+/*
+CreateExternalIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,9 +210,39 @@ type CreateExternalIDPUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create external Id p unauthorized response has a 2xx status code
+func (o *CreateExternalIDPUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create external Id p unauthorized response has a 3xx status code
+func (o *CreateExternalIDPUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create external Id p unauthorized response has a 4xx status code
+func (o *CreateExternalIDPUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create external Id p unauthorized response has a 5xx status code
+func (o *CreateExternalIDPUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create external Id p unauthorized response a status code equal to that given
+func (o *CreateExternalIDPUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *CreateExternalIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *CreateExternalIDPUnauthorized) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *CreateExternalIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -171,7 +264,8 @@ func NewCreateExternalIDPForbidden() *CreateExternalIDPForbidden {
 	return &CreateExternalIDPForbidden{}
 }
 
-/* CreateExternalIDPForbidden describes a response with status code 403, with default header values.
+/*
+CreateExternalIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -179,9 +273,39 @@ type CreateExternalIDPForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create external Id p forbidden response has a 2xx status code
+func (o *CreateExternalIDPForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create external Id p forbidden response has a 3xx status code
+func (o *CreateExternalIDPForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create external Id p forbidden response has a 4xx status code
+func (o *CreateExternalIDPForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create external Id p forbidden response has a 5xx status code
+func (o *CreateExternalIDPForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create external Id p forbidden response a status code equal to that given
+func (o *CreateExternalIDPForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *CreateExternalIDPForbidden) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPForbidden  %+v", 403, o.Payload)
 }
+
+func (o *CreateExternalIDPForbidden) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPForbidden  %+v", 403, o.Payload)
+}
+
 func (o *CreateExternalIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -203,7 +327,8 @@ func NewCreateExternalIDPNotFound() *CreateExternalIDPNotFound {
 	return &CreateExternalIDPNotFound{}
 }
 
-/* CreateExternalIDPNotFound describes a response with status code 404, with default header values.
+/*
+CreateExternalIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -211,9 +336,39 @@ type CreateExternalIDPNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create external Id p not found response has a 2xx status code
+func (o *CreateExternalIDPNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create external Id p not found response has a 3xx status code
+func (o *CreateExternalIDPNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create external Id p not found response has a 4xx status code
+func (o *CreateExternalIDPNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create external Id p not found response has a 5xx status code
+func (o *CreateExternalIDPNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create external Id p not found response a status code equal to that given
+func (o *CreateExternalIDPNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *CreateExternalIDPNotFound) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPNotFound  %+v", 404, o.Payload)
 }
+
+func (o *CreateExternalIDPNotFound) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPNotFound  %+v", 404, o.Payload)
+}
+
 func (o *CreateExternalIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +390,8 @@ func NewCreateExternalIDPUnprocessableEntity() *CreateExternalIDPUnprocessableEn
 	return &CreateExternalIDPUnprocessableEntity{}
 }
 
-/* CreateExternalIDPUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+CreateExternalIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -243,9 +399,39 @@ type CreateExternalIDPUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create external Id p unprocessable entity response has a 2xx status code
+func (o *CreateExternalIDPUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create external Id p unprocessable entity response has a 3xx status code
+func (o *CreateExternalIDPUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create external Id p unprocessable entity response has a 4xx status code
+func (o *CreateExternalIDPUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create external Id p unprocessable entity response has a 5xx status code
+func (o *CreateExternalIDPUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create external Id p unprocessable entity response a status code equal to that given
+func (o *CreateExternalIDPUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *CreateExternalIDPUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *CreateExternalIDPUnprocessableEntity) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *CreateExternalIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -267,7 +453,8 @@ func NewCreateExternalIDPTooManyRequests() *CreateExternalIDPTooManyRequests {
 	return &CreateExternalIDPTooManyRequests{}
 }
 
-/* CreateExternalIDPTooManyRequests describes a response with status code 429, with default header values.
+/*
+CreateExternalIDPTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -275,9 +462,39 @@ type CreateExternalIDPTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create external Id p too many requests response has a 2xx status code
+func (o *CreateExternalIDPTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create external Id p too many requests response has a 3xx status code
+func (o *CreateExternalIDPTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create external Id p too many requests response has a 4xx status code
+func (o *CreateExternalIDPTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create external Id p too many requests response has a 5xx status code
+func (o *CreateExternalIDPTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create external Id p too many requests response a status code equal to that given
+func (o *CreateExternalIDPTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *CreateExternalIDPTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *CreateExternalIDPTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/external][%d] createExternalIdPTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *CreateExternalIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

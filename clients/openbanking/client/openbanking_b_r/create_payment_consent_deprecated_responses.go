@@ -93,7 +93,8 @@ func NewCreatePaymentConsentDeprecatedCreated() *CreatePaymentConsentDeprecatedC
 	return &CreatePaymentConsentDeprecatedCreated{}
 }
 
-/* CreatePaymentConsentDeprecatedCreated describes a response with status code 201, with default header values.
+/*
+CreatePaymentConsentDeprecatedCreated describes a response with status code 201, with default header values.
 
 Customer payment consent
 */
@@ -101,9 +102,39 @@ type CreatePaymentConsentDeprecatedCreated struct {
 	Payload *models.BrazilCustomerPaymentConsentResponse
 }
 
+// IsSuccess returns true when this create payment consent deprecated created response has a 2xx status code
+func (o *CreatePaymentConsentDeprecatedCreated) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this create payment consent deprecated created response has a 3xx status code
+func (o *CreatePaymentConsentDeprecatedCreated) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create payment consent deprecated created response has a 4xx status code
+func (o *CreatePaymentConsentDeprecatedCreated) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create payment consent deprecated created response has a 5xx status code
+func (o *CreatePaymentConsentDeprecatedCreated) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create payment consent deprecated created response a status code equal to that given
+func (o *CreatePaymentConsentDeprecatedCreated) IsCode(code int) bool {
+	return code == 201
+}
+
 func (o *CreatePaymentConsentDeprecatedCreated) Error() string {
 	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v1/consents][%d] createPaymentConsentDeprecatedCreated  %+v", 201, o.Payload)
 }
+
+func (o *CreatePaymentConsentDeprecatedCreated) String() string {
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v1/consents][%d] createPaymentConsentDeprecatedCreated  %+v", 201, o.Payload)
+}
+
 func (o *CreatePaymentConsentDeprecatedCreated) GetPayload() *models.BrazilCustomerPaymentConsentResponse {
 	return o.Payload
 }
@@ -125,7 +156,8 @@ func NewCreatePaymentConsentDeprecatedBadRequest() *CreatePaymentConsentDeprecat
 	return &CreatePaymentConsentDeprecatedBadRequest{}
 }
 
-/* CreatePaymentConsentDeprecatedBadRequest describes a response with status code 400, with default header values.
+/*
+CreatePaymentConsentDeprecatedBadRequest describes a response with status code 400, with default header values.
 
 Error
 */
@@ -133,9 +165,39 @@ type CreatePaymentConsentDeprecatedBadRequest struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this create payment consent deprecated bad request response has a 2xx status code
+func (o *CreatePaymentConsentDeprecatedBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create payment consent deprecated bad request response has a 3xx status code
+func (o *CreatePaymentConsentDeprecatedBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create payment consent deprecated bad request response has a 4xx status code
+func (o *CreatePaymentConsentDeprecatedBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create payment consent deprecated bad request response has a 5xx status code
+func (o *CreatePaymentConsentDeprecatedBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create payment consent deprecated bad request response a status code equal to that given
+func (o *CreatePaymentConsentDeprecatedBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *CreatePaymentConsentDeprecatedBadRequest) Error() string {
 	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v1/consents][%d] createPaymentConsentDeprecatedBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *CreatePaymentConsentDeprecatedBadRequest) String() string {
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v1/consents][%d] createPaymentConsentDeprecatedBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *CreatePaymentConsentDeprecatedBadRequest) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -157,7 +219,8 @@ func NewCreatePaymentConsentDeprecatedUnauthorized() *CreatePaymentConsentDeprec
 	return &CreatePaymentConsentDeprecatedUnauthorized{}
 }
 
-/* CreatePaymentConsentDeprecatedUnauthorized describes a response with status code 401, with default header values.
+/*
+CreatePaymentConsentDeprecatedUnauthorized describes a response with status code 401, with default header values.
 
 Error
 */
@@ -165,9 +228,39 @@ type CreatePaymentConsentDeprecatedUnauthorized struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this create payment consent deprecated unauthorized response has a 2xx status code
+func (o *CreatePaymentConsentDeprecatedUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create payment consent deprecated unauthorized response has a 3xx status code
+func (o *CreatePaymentConsentDeprecatedUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create payment consent deprecated unauthorized response has a 4xx status code
+func (o *CreatePaymentConsentDeprecatedUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create payment consent deprecated unauthorized response has a 5xx status code
+func (o *CreatePaymentConsentDeprecatedUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create payment consent deprecated unauthorized response a status code equal to that given
+func (o *CreatePaymentConsentDeprecatedUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *CreatePaymentConsentDeprecatedUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v1/consents][%d] createPaymentConsentDeprecatedUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *CreatePaymentConsentDeprecatedUnauthorized) String() string {
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v1/consents][%d] createPaymentConsentDeprecatedUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *CreatePaymentConsentDeprecatedUnauthorized) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -189,7 +282,8 @@ func NewCreatePaymentConsentDeprecatedForbidden() *CreatePaymentConsentDeprecate
 	return &CreatePaymentConsentDeprecatedForbidden{}
 }
 
-/* CreatePaymentConsentDeprecatedForbidden describes a response with status code 403, with default header values.
+/*
+CreatePaymentConsentDeprecatedForbidden describes a response with status code 403, with default header values.
 
 Error
 */
@@ -197,9 +291,39 @@ type CreatePaymentConsentDeprecatedForbidden struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this create payment consent deprecated forbidden response has a 2xx status code
+func (o *CreatePaymentConsentDeprecatedForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create payment consent deprecated forbidden response has a 3xx status code
+func (o *CreatePaymentConsentDeprecatedForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create payment consent deprecated forbidden response has a 4xx status code
+func (o *CreatePaymentConsentDeprecatedForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create payment consent deprecated forbidden response has a 5xx status code
+func (o *CreatePaymentConsentDeprecatedForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create payment consent deprecated forbidden response a status code equal to that given
+func (o *CreatePaymentConsentDeprecatedForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *CreatePaymentConsentDeprecatedForbidden) Error() string {
 	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v1/consents][%d] createPaymentConsentDeprecatedForbidden  %+v", 403, o.Payload)
 }
+
+func (o *CreatePaymentConsentDeprecatedForbidden) String() string {
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v1/consents][%d] createPaymentConsentDeprecatedForbidden  %+v", 403, o.Payload)
+}
+
 func (o *CreatePaymentConsentDeprecatedForbidden) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -221,7 +345,8 @@ func NewCreatePaymentConsentDeprecatedMethodNotAllowed() *CreatePaymentConsentDe
 	return &CreatePaymentConsentDeprecatedMethodNotAllowed{}
 }
 
-/* CreatePaymentConsentDeprecatedMethodNotAllowed describes a response with status code 405, with default header values.
+/*
+CreatePaymentConsentDeprecatedMethodNotAllowed describes a response with status code 405, with default header values.
 
 Error
 */
@@ -229,9 +354,39 @@ type CreatePaymentConsentDeprecatedMethodNotAllowed struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this create payment consent deprecated method not allowed response has a 2xx status code
+func (o *CreatePaymentConsentDeprecatedMethodNotAllowed) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create payment consent deprecated method not allowed response has a 3xx status code
+func (o *CreatePaymentConsentDeprecatedMethodNotAllowed) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create payment consent deprecated method not allowed response has a 4xx status code
+func (o *CreatePaymentConsentDeprecatedMethodNotAllowed) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create payment consent deprecated method not allowed response has a 5xx status code
+func (o *CreatePaymentConsentDeprecatedMethodNotAllowed) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create payment consent deprecated method not allowed response a status code equal to that given
+func (o *CreatePaymentConsentDeprecatedMethodNotAllowed) IsCode(code int) bool {
+	return code == 405
+}
+
 func (o *CreatePaymentConsentDeprecatedMethodNotAllowed) Error() string {
 	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v1/consents][%d] createPaymentConsentDeprecatedMethodNotAllowed  %+v", 405, o.Payload)
 }
+
+func (o *CreatePaymentConsentDeprecatedMethodNotAllowed) String() string {
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v1/consents][%d] createPaymentConsentDeprecatedMethodNotAllowed  %+v", 405, o.Payload)
+}
+
 func (o *CreatePaymentConsentDeprecatedMethodNotAllowed) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -253,7 +408,8 @@ func NewCreatePaymentConsentDeprecatedNotAcceptable() *CreatePaymentConsentDepre
 	return &CreatePaymentConsentDeprecatedNotAcceptable{}
 }
 
-/* CreatePaymentConsentDeprecatedNotAcceptable describes a response with status code 406, with default header values.
+/*
+CreatePaymentConsentDeprecatedNotAcceptable describes a response with status code 406, with default header values.
 
 Error
 */
@@ -261,9 +417,39 @@ type CreatePaymentConsentDeprecatedNotAcceptable struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this create payment consent deprecated not acceptable response has a 2xx status code
+func (o *CreatePaymentConsentDeprecatedNotAcceptable) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create payment consent deprecated not acceptable response has a 3xx status code
+func (o *CreatePaymentConsentDeprecatedNotAcceptable) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create payment consent deprecated not acceptable response has a 4xx status code
+func (o *CreatePaymentConsentDeprecatedNotAcceptable) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create payment consent deprecated not acceptable response has a 5xx status code
+func (o *CreatePaymentConsentDeprecatedNotAcceptable) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create payment consent deprecated not acceptable response a status code equal to that given
+func (o *CreatePaymentConsentDeprecatedNotAcceptable) IsCode(code int) bool {
+	return code == 406
+}
+
 func (o *CreatePaymentConsentDeprecatedNotAcceptable) Error() string {
 	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v1/consents][%d] createPaymentConsentDeprecatedNotAcceptable  %+v", 406, o.Payload)
 }
+
+func (o *CreatePaymentConsentDeprecatedNotAcceptable) String() string {
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v1/consents][%d] createPaymentConsentDeprecatedNotAcceptable  %+v", 406, o.Payload)
+}
+
 func (o *CreatePaymentConsentDeprecatedNotAcceptable) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -285,7 +471,8 @@ func NewCreatePaymentConsentDeprecatedUnsupportedMediaType() *CreatePaymentConse
 	return &CreatePaymentConsentDeprecatedUnsupportedMediaType{}
 }
 
-/* CreatePaymentConsentDeprecatedUnsupportedMediaType describes a response with status code 415, with default header values.
+/*
+CreatePaymentConsentDeprecatedUnsupportedMediaType describes a response with status code 415, with default header values.
 
 Error
 */
@@ -293,9 +480,39 @@ type CreatePaymentConsentDeprecatedUnsupportedMediaType struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this create payment consent deprecated unsupported media type response has a 2xx status code
+func (o *CreatePaymentConsentDeprecatedUnsupportedMediaType) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create payment consent deprecated unsupported media type response has a 3xx status code
+func (o *CreatePaymentConsentDeprecatedUnsupportedMediaType) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create payment consent deprecated unsupported media type response has a 4xx status code
+func (o *CreatePaymentConsentDeprecatedUnsupportedMediaType) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create payment consent deprecated unsupported media type response has a 5xx status code
+func (o *CreatePaymentConsentDeprecatedUnsupportedMediaType) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create payment consent deprecated unsupported media type response a status code equal to that given
+func (o *CreatePaymentConsentDeprecatedUnsupportedMediaType) IsCode(code int) bool {
+	return code == 415
+}
+
 func (o *CreatePaymentConsentDeprecatedUnsupportedMediaType) Error() string {
 	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v1/consents][%d] createPaymentConsentDeprecatedUnsupportedMediaType  %+v", 415, o.Payload)
 }
+
+func (o *CreatePaymentConsentDeprecatedUnsupportedMediaType) String() string {
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v1/consents][%d] createPaymentConsentDeprecatedUnsupportedMediaType  %+v", 415, o.Payload)
+}
+
 func (o *CreatePaymentConsentDeprecatedUnsupportedMediaType) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -317,7 +534,8 @@ func NewCreatePaymentConsentDeprecatedUnprocessableEntity() *CreatePaymentConsen
 	return &CreatePaymentConsentDeprecatedUnprocessableEntity{}
 }
 
-/* CreatePaymentConsentDeprecatedUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+CreatePaymentConsentDeprecatedUnprocessableEntity describes a response with status code 422, with default header values.
 
 Error
 */
@@ -325,9 +543,39 @@ type CreatePaymentConsentDeprecatedUnprocessableEntity struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this create payment consent deprecated unprocessable entity response has a 2xx status code
+func (o *CreatePaymentConsentDeprecatedUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create payment consent deprecated unprocessable entity response has a 3xx status code
+func (o *CreatePaymentConsentDeprecatedUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create payment consent deprecated unprocessable entity response has a 4xx status code
+func (o *CreatePaymentConsentDeprecatedUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create payment consent deprecated unprocessable entity response has a 5xx status code
+func (o *CreatePaymentConsentDeprecatedUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create payment consent deprecated unprocessable entity response a status code equal to that given
+func (o *CreatePaymentConsentDeprecatedUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *CreatePaymentConsentDeprecatedUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v1/consents][%d] createPaymentConsentDeprecatedUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *CreatePaymentConsentDeprecatedUnprocessableEntity) String() string {
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v1/consents][%d] createPaymentConsentDeprecatedUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *CreatePaymentConsentDeprecatedUnprocessableEntity) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -349,7 +597,8 @@ func NewCreatePaymentConsentDeprecatedTooManyRequests() *CreatePaymentConsentDep
 	return &CreatePaymentConsentDeprecatedTooManyRequests{}
 }
 
-/* CreatePaymentConsentDeprecatedTooManyRequests describes a response with status code 429, with default header values.
+/*
+CreatePaymentConsentDeprecatedTooManyRequests describes a response with status code 429, with default header values.
 
 Error
 */
@@ -357,9 +606,39 @@ type CreatePaymentConsentDeprecatedTooManyRequests struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this create payment consent deprecated too many requests response has a 2xx status code
+func (o *CreatePaymentConsentDeprecatedTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create payment consent deprecated too many requests response has a 3xx status code
+func (o *CreatePaymentConsentDeprecatedTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create payment consent deprecated too many requests response has a 4xx status code
+func (o *CreatePaymentConsentDeprecatedTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create payment consent deprecated too many requests response has a 5xx status code
+func (o *CreatePaymentConsentDeprecatedTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create payment consent deprecated too many requests response a status code equal to that given
+func (o *CreatePaymentConsentDeprecatedTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *CreatePaymentConsentDeprecatedTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v1/consents][%d] createPaymentConsentDeprecatedTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *CreatePaymentConsentDeprecatedTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v1/consents][%d] createPaymentConsentDeprecatedTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *CreatePaymentConsentDeprecatedTooManyRequests) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -381,7 +660,8 @@ func NewCreatePaymentConsentDeprecatedInternalServerError() *CreatePaymentConsen
 	return &CreatePaymentConsentDeprecatedInternalServerError{}
 }
 
-/* CreatePaymentConsentDeprecatedInternalServerError describes a response with status code 500, with default header values.
+/*
+CreatePaymentConsentDeprecatedInternalServerError describes a response with status code 500, with default header values.
 
 Error
 */
@@ -389,9 +669,39 @@ type CreatePaymentConsentDeprecatedInternalServerError struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this create payment consent deprecated internal server error response has a 2xx status code
+func (o *CreatePaymentConsentDeprecatedInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create payment consent deprecated internal server error response has a 3xx status code
+func (o *CreatePaymentConsentDeprecatedInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create payment consent deprecated internal server error response has a 4xx status code
+func (o *CreatePaymentConsentDeprecatedInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create payment consent deprecated internal server error response has a 5xx status code
+func (o *CreatePaymentConsentDeprecatedInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this create payment consent deprecated internal server error response a status code equal to that given
+func (o *CreatePaymentConsentDeprecatedInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *CreatePaymentConsentDeprecatedInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v1/consents][%d] createPaymentConsentDeprecatedInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *CreatePaymentConsentDeprecatedInternalServerError) String() string {
+	return fmt.Sprintf("[POST /open-banking-brasil/open-banking/payments/v1/consents][%d] createPaymentConsentDeprecatedInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *CreatePaymentConsentDeprecatedInternalServerError) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }

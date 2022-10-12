@@ -87,7 +87,8 @@ func NewGetDomesticStandingOrderConsentRequestOK() *GetDomesticStandingOrderCons
 	return &GetDomesticStandingOrderConsentRequestOK{}
 }
 
-/* GetDomesticStandingOrderConsentRequestOK describes a response with status code 200, with default header values.
+/*
+GetDomesticStandingOrderConsentRequestOK describes a response with status code 200, with default header values.
 
 Domestic standing order consent
 */
@@ -95,9 +96,39 @@ type GetDomesticStandingOrderConsentRequestOK struct {
 	Payload *models.DomesticStandingOrderConsentResponse
 }
 
+// IsSuccess returns true when this get domestic standing order consent request o k response has a 2xx status code
+func (o *GetDomesticStandingOrderConsentRequestOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get domestic standing order consent request o k response has a 3xx status code
+func (o *GetDomesticStandingOrderConsentRequestOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get domestic standing order consent request o k response has a 4xx status code
+func (o *GetDomesticStandingOrderConsentRequestOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get domestic standing order consent request o k response has a 5xx status code
+func (o *GetDomesticStandingOrderConsentRequestOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get domestic standing order consent request o k response a status code equal to that given
+func (o *GetDomesticStandingOrderConsentRequestOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetDomesticStandingOrderConsentRequestOK) Error() string {
 	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/domestic-standing-order-consents/{consentID}][%d] getDomesticStandingOrderConsentRequestOK  %+v", 200, o.Payload)
 }
+
+func (o *GetDomesticStandingOrderConsentRequestOK) String() string {
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/domestic-standing-order-consents/{consentID}][%d] getDomesticStandingOrderConsentRequestOK  %+v", 200, o.Payload)
+}
+
 func (o *GetDomesticStandingOrderConsentRequestOK) GetPayload() *models.DomesticStandingOrderConsentResponse {
 	return o.Payload
 }
@@ -119,7 +150,8 @@ func NewGetDomesticStandingOrderConsentRequestBadRequest() *GetDomesticStandingO
 	return &GetDomesticStandingOrderConsentRequestBadRequest{}
 }
 
-/* GetDomesticStandingOrderConsentRequestBadRequest describes a response with status code 400, with default header values.
+/*
+GetDomesticStandingOrderConsentRequestBadRequest describes a response with status code 400, with default header values.
 
 Error
 */
@@ -127,9 +159,39 @@ type GetDomesticStandingOrderConsentRequestBadRequest struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get domestic standing order consent request bad request response has a 2xx status code
+func (o *GetDomesticStandingOrderConsentRequestBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get domestic standing order consent request bad request response has a 3xx status code
+func (o *GetDomesticStandingOrderConsentRequestBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get domestic standing order consent request bad request response has a 4xx status code
+func (o *GetDomesticStandingOrderConsentRequestBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get domestic standing order consent request bad request response has a 5xx status code
+func (o *GetDomesticStandingOrderConsentRequestBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get domestic standing order consent request bad request response a status code equal to that given
+func (o *GetDomesticStandingOrderConsentRequestBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *GetDomesticStandingOrderConsentRequestBadRequest) Error() string {
 	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/domestic-standing-order-consents/{consentID}][%d] getDomesticStandingOrderConsentRequestBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *GetDomesticStandingOrderConsentRequestBadRequest) String() string {
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/domestic-standing-order-consents/{consentID}][%d] getDomesticStandingOrderConsentRequestBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *GetDomesticStandingOrderConsentRequestBadRequest) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -151,7 +213,8 @@ func NewGetDomesticStandingOrderConsentRequestUnauthorized() *GetDomesticStandin
 	return &GetDomesticStandingOrderConsentRequestUnauthorized{}
 }
 
-/* GetDomesticStandingOrderConsentRequestUnauthorized describes a response with status code 401, with default header values.
+/*
+GetDomesticStandingOrderConsentRequestUnauthorized describes a response with status code 401, with default header values.
 
 Error
 */
@@ -159,9 +222,39 @@ type GetDomesticStandingOrderConsentRequestUnauthorized struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get domestic standing order consent request unauthorized response has a 2xx status code
+func (o *GetDomesticStandingOrderConsentRequestUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get domestic standing order consent request unauthorized response has a 3xx status code
+func (o *GetDomesticStandingOrderConsentRequestUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get domestic standing order consent request unauthorized response has a 4xx status code
+func (o *GetDomesticStandingOrderConsentRequestUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get domestic standing order consent request unauthorized response has a 5xx status code
+func (o *GetDomesticStandingOrderConsentRequestUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get domestic standing order consent request unauthorized response a status code equal to that given
+func (o *GetDomesticStandingOrderConsentRequestUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *GetDomesticStandingOrderConsentRequestUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/domestic-standing-order-consents/{consentID}][%d] getDomesticStandingOrderConsentRequestUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *GetDomesticStandingOrderConsentRequestUnauthorized) String() string {
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/domestic-standing-order-consents/{consentID}][%d] getDomesticStandingOrderConsentRequestUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *GetDomesticStandingOrderConsentRequestUnauthorized) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -183,7 +276,8 @@ func NewGetDomesticStandingOrderConsentRequestForbidden() *GetDomesticStandingOr
 	return &GetDomesticStandingOrderConsentRequestForbidden{}
 }
 
-/* GetDomesticStandingOrderConsentRequestForbidden describes a response with status code 403, with default header values.
+/*
+GetDomesticStandingOrderConsentRequestForbidden describes a response with status code 403, with default header values.
 
 Error
 */
@@ -191,9 +285,39 @@ type GetDomesticStandingOrderConsentRequestForbidden struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get domestic standing order consent request forbidden response has a 2xx status code
+func (o *GetDomesticStandingOrderConsentRequestForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get domestic standing order consent request forbidden response has a 3xx status code
+func (o *GetDomesticStandingOrderConsentRequestForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get domestic standing order consent request forbidden response has a 4xx status code
+func (o *GetDomesticStandingOrderConsentRequestForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get domestic standing order consent request forbidden response has a 5xx status code
+func (o *GetDomesticStandingOrderConsentRequestForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get domestic standing order consent request forbidden response a status code equal to that given
+func (o *GetDomesticStandingOrderConsentRequestForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetDomesticStandingOrderConsentRequestForbidden) Error() string {
 	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/domestic-standing-order-consents/{consentID}][%d] getDomesticStandingOrderConsentRequestForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetDomesticStandingOrderConsentRequestForbidden) String() string {
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/domestic-standing-order-consents/{consentID}][%d] getDomesticStandingOrderConsentRequestForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetDomesticStandingOrderConsentRequestForbidden) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -215,7 +339,8 @@ func NewGetDomesticStandingOrderConsentRequestMethodNotAllowed() *GetDomesticSta
 	return &GetDomesticStandingOrderConsentRequestMethodNotAllowed{}
 }
 
-/* GetDomesticStandingOrderConsentRequestMethodNotAllowed describes a response with status code 405, with default header values.
+/*
+GetDomesticStandingOrderConsentRequestMethodNotAllowed describes a response with status code 405, with default header values.
 
 Error
 */
@@ -223,9 +348,39 @@ type GetDomesticStandingOrderConsentRequestMethodNotAllowed struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get domestic standing order consent request method not allowed response has a 2xx status code
+func (o *GetDomesticStandingOrderConsentRequestMethodNotAllowed) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get domestic standing order consent request method not allowed response has a 3xx status code
+func (o *GetDomesticStandingOrderConsentRequestMethodNotAllowed) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get domestic standing order consent request method not allowed response has a 4xx status code
+func (o *GetDomesticStandingOrderConsentRequestMethodNotAllowed) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get domestic standing order consent request method not allowed response has a 5xx status code
+func (o *GetDomesticStandingOrderConsentRequestMethodNotAllowed) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get domestic standing order consent request method not allowed response a status code equal to that given
+func (o *GetDomesticStandingOrderConsentRequestMethodNotAllowed) IsCode(code int) bool {
+	return code == 405
+}
+
 func (o *GetDomesticStandingOrderConsentRequestMethodNotAllowed) Error() string {
 	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/domestic-standing-order-consents/{consentID}][%d] getDomesticStandingOrderConsentRequestMethodNotAllowed  %+v", 405, o.Payload)
 }
+
+func (o *GetDomesticStandingOrderConsentRequestMethodNotAllowed) String() string {
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/domestic-standing-order-consents/{consentID}][%d] getDomesticStandingOrderConsentRequestMethodNotAllowed  %+v", 405, o.Payload)
+}
+
 func (o *GetDomesticStandingOrderConsentRequestMethodNotAllowed) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -247,7 +402,8 @@ func NewGetDomesticStandingOrderConsentRequestNotAcceptable() *GetDomesticStandi
 	return &GetDomesticStandingOrderConsentRequestNotAcceptable{}
 }
 
-/* GetDomesticStandingOrderConsentRequestNotAcceptable describes a response with status code 406, with default header values.
+/*
+GetDomesticStandingOrderConsentRequestNotAcceptable describes a response with status code 406, with default header values.
 
 Error
 */
@@ -255,9 +411,39 @@ type GetDomesticStandingOrderConsentRequestNotAcceptable struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get domestic standing order consent request not acceptable response has a 2xx status code
+func (o *GetDomesticStandingOrderConsentRequestNotAcceptable) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get domestic standing order consent request not acceptable response has a 3xx status code
+func (o *GetDomesticStandingOrderConsentRequestNotAcceptable) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get domestic standing order consent request not acceptable response has a 4xx status code
+func (o *GetDomesticStandingOrderConsentRequestNotAcceptable) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get domestic standing order consent request not acceptable response has a 5xx status code
+func (o *GetDomesticStandingOrderConsentRequestNotAcceptable) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get domestic standing order consent request not acceptable response a status code equal to that given
+func (o *GetDomesticStandingOrderConsentRequestNotAcceptable) IsCode(code int) bool {
+	return code == 406
+}
+
 func (o *GetDomesticStandingOrderConsentRequestNotAcceptable) Error() string {
 	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/domestic-standing-order-consents/{consentID}][%d] getDomesticStandingOrderConsentRequestNotAcceptable  %+v", 406, o.Payload)
 }
+
+func (o *GetDomesticStandingOrderConsentRequestNotAcceptable) String() string {
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/domestic-standing-order-consents/{consentID}][%d] getDomesticStandingOrderConsentRequestNotAcceptable  %+v", 406, o.Payload)
+}
+
 func (o *GetDomesticStandingOrderConsentRequestNotAcceptable) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -279,7 +465,8 @@ func NewGetDomesticStandingOrderConsentRequestUnsupportedMediaType() *GetDomesti
 	return &GetDomesticStandingOrderConsentRequestUnsupportedMediaType{}
 }
 
-/* GetDomesticStandingOrderConsentRequestUnsupportedMediaType describes a response with status code 415, with default header values.
+/*
+GetDomesticStandingOrderConsentRequestUnsupportedMediaType describes a response with status code 415, with default header values.
 
 Error
 */
@@ -287,9 +474,39 @@ type GetDomesticStandingOrderConsentRequestUnsupportedMediaType struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get domestic standing order consent request unsupported media type response has a 2xx status code
+func (o *GetDomesticStandingOrderConsentRequestUnsupportedMediaType) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get domestic standing order consent request unsupported media type response has a 3xx status code
+func (o *GetDomesticStandingOrderConsentRequestUnsupportedMediaType) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get domestic standing order consent request unsupported media type response has a 4xx status code
+func (o *GetDomesticStandingOrderConsentRequestUnsupportedMediaType) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get domestic standing order consent request unsupported media type response has a 5xx status code
+func (o *GetDomesticStandingOrderConsentRequestUnsupportedMediaType) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get domestic standing order consent request unsupported media type response a status code equal to that given
+func (o *GetDomesticStandingOrderConsentRequestUnsupportedMediaType) IsCode(code int) bool {
+	return code == 415
+}
+
 func (o *GetDomesticStandingOrderConsentRequestUnsupportedMediaType) Error() string {
 	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/domestic-standing-order-consents/{consentID}][%d] getDomesticStandingOrderConsentRequestUnsupportedMediaType  %+v", 415, o.Payload)
 }
+
+func (o *GetDomesticStandingOrderConsentRequestUnsupportedMediaType) String() string {
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/domestic-standing-order-consents/{consentID}][%d] getDomesticStandingOrderConsentRequestUnsupportedMediaType  %+v", 415, o.Payload)
+}
+
 func (o *GetDomesticStandingOrderConsentRequestUnsupportedMediaType) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -311,7 +528,8 @@ func NewGetDomesticStandingOrderConsentRequestTooManyRequests() *GetDomesticStan
 	return &GetDomesticStandingOrderConsentRequestTooManyRequests{}
 }
 
-/* GetDomesticStandingOrderConsentRequestTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetDomesticStandingOrderConsentRequestTooManyRequests describes a response with status code 429, with default header values.
 
 Error
 */
@@ -319,9 +537,39 @@ type GetDomesticStandingOrderConsentRequestTooManyRequests struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get domestic standing order consent request too many requests response has a 2xx status code
+func (o *GetDomesticStandingOrderConsentRequestTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get domestic standing order consent request too many requests response has a 3xx status code
+func (o *GetDomesticStandingOrderConsentRequestTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get domestic standing order consent request too many requests response has a 4xx status code
+func (o *GetDomesticStandingOrderConsentRequestTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get domestic standing order consent request too many requests response has a 5xx status code
+func (o *GetDomesticStandingOrderConsentRequestTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get domestic standing order consent request too many requests response a status code equal to that given
+func (o *GetDomesticStandingOrderConsentRequestTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *GetDomesticStandingOrderConsentRequestTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/domestic-standing-order-consents/{consentID}][%d] getDomesticStandingOrderConsentRequestTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *GetDomesticStandingOrderConsentRequestTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/domestic-standing-order-consents/{consentID}][%d] getDomesticStandingOrderConsentRequestTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *GetDomesticStandingOrderConsentRequestTooManyRequests) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -343,7 +591,8 @@ func NewGetDomesticStandingOrderConsentRequestInternalServerError() *GetDomestic
 	return &GetDomesticStandingOrderConsentRequestInternalServerError{}
 }
 
-/* GetDomesticStandingOrderConsentRequestInternalServerError describes a response with status code 500, with default header values.
+/*
+GetDomesticStandingOrderConsentRequestInternalServerError describes a response with status code 500, with default header values.
 
 Error
 */
@@ -351,9 +600,39 @@ type GetDomesticStandingOrderConsentRequestInternalServerError struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get domestic standing order consent request internal server error response has a 2xx status code
+func (o *GetDomesticStandingOrderConsentRequestInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get domestic standing order consent request internal server error response has a 3xx status code
+func (o *GetDomesticStandingOrderConsentRequestInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get domestic standing order consent request internal server error response has a 4xx status code
+func (o *GetDomesticStandingOrderConsentRequestInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get domestic standing order consent request internal server error response has a 5xx status code
+func (o *GetDomesticStandingOrderConsentRequestInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this get domestic standing order consent request internal server error response a status code equal to that given
+func (o *GetDomesticStandingOrderConsentRequestInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *GetDomesticStandingOrderConsentRequestInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/domestic-standing-order-consents/{consentID}][%d] getDomesticStandingOrderConsentRequestInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *GetDomesticStandingOrderConsentRequestInternalServerError) String() string {
+	return fmt.Sprintf("[GET /open-banking/v3.1/pisp/domestic-standing-order-consents/{consentID}][%d] getDomesticStandingOrderConsentRequestInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *GetDomesticStandingOrderConsentRequestInternalServerError) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

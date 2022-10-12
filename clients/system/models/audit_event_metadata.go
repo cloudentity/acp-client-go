@@ -17,6 +17,11 @@ import (
 // swagger:model AuditEventMetadata
 type AuditEventMetadata struct {
 
+	// Access request actor claims.
+	//
+	// It's only populated if the token has been issued in token exchange delegation flow.
+	ActorClaims map[string]interface{} `json:"actor_claims,omitempty"`
+
 	// Access request client ID related to an audit event.
 	//
 	// May be empty when the access is incorrect or missing.

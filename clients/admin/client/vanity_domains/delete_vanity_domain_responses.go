@@ -63,14 +63,44 @@ func NewDeleteVanityDomainNoContent() *DeleteVanityDomainNoContent {
 	return &DeleteVanityDomainNoContent{}
 }
 
-/* DeleteVanityDomainNoContent describes a response with status code 204, with default header values.
+/*
+DeleteVanityDomainNoContent describes a response with status code 204, with default header values.
 
-Vanity domain has been deleted
+	Vanity domain has been deleted
 */
 type DeleteVanityDomainNoContent struct {
 }
 
+// IsSuccess returns true when this delete vanity domain no content response has a 2xx status code
+func (o *DeleteVanityDomainNoContent) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this delete vanity domain no content response has a 3xx status code
+func (o *DeleteVanityDomainNoContent) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete vanity domain no content response has a 4xx status code
+func (o *DeleteVanityDomainNoContent) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this delete vanity domain no content response has a 5xx status code
+func (o *DeleteVanityDomainNoContent) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete vanity domain no content response a status code equal to that given
+func (o *DeleteVanityDomainNoContent) IsCode(code int) bool {
+	return code == 204
+}
+
 func (o *DeleteVanityDomainNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /vanity-domains][%d] deleteVanityDomainNoContent ", 204)
+}
+
+func (o *DeleteVanityDomainNoContent) String() string {
 	return fmt.Sprintf("[DELETE /vanity-domains][%d] deleteVanityDomainNoContent ", 204)
 }
 
@@ -84,7 +114,8 @@ func NewDeleteVanityDomainUnauthorized() *DeleteVanityDomainUnauthorized {
 	return &DeleteVanityDomainUnauthorized{}
 }
 
-/* DeleteVanityDomainUnauthorized describes a response with status code 401, with default header values.
+/*
+DeleteVanityDomainUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -92,9 +123,39 @@ type DeleteVanityDomainUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete vanity domain unauthorized response has a 2xx status code
+func (o *DeleteVanityDomainUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete vanity domain unauthorized response has a 3xx status code
+func (o *DeleteVanityDomainUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete vanity domain unauthorized response has a 4xx status code
+func (o *DeleteVanityDomainUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete vanity domain unauthorized response has a 5xx status code
+func (o *DeleteVanityDomainUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete vanity domain unauthorized response a status code equal to that given
+func (o *DeleteVanityDomainUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *DeleteVanityDomainUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /vanity-domains][%d] deleteVanityDomainUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *DeleteVanityDomainUnauthorized) String() string {
+	return fmt.Sprintf("[DELETE /vanity-domains][%d] deleteVanityDomainUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *DeleteVanityDomainUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -116,7 +177,8 @@ func NewDeleteVanityDomainForbidden() *DeleteVanityDomainForbidden {
 	return &DeleteVanityDomainForbidden{}
 }
 
-/* DeleteVanityDomainForbidden describes a response with status code 403, with default header values.
+/*
+DeleteVanityDomainForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -124,9 +186,39 @@ type DeleteVanityDomainForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete vanity domain forbidden response has a 2xx status code
+func (o *DeleteVanityDomainForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete vanity domain forbidden response has a 3xx status code
+func (o *DeleteVanityDomainForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete vanity domain forbidden response has a 4xx status code
+func (o *DeleteVanityDomainForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete vanity domain forbidden response has a 5xx status code
+func (o *DeleteVanityDomainForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete vanity domain forbidden response a status code equal to that given
+func (o *DeleteVanityDomainForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *DeleteVanityDomainForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /vanity-domains][%d] deleteVanityDomainForbidden  %+v", 403, o.Payload)
 }
+
+func (o *DeleteVanityDomainForbidden) String() string {
+	return fmt.Sprintf("[DELETE /vanity-domains][%d] deleteVanityDomainForbidden  %+v", 403, o.Payload)
+}
+
 func (o *DeleteVanityDomainForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -148,7 +240,8 @@ func NewDeleteVanityDomainNotFound() *DeleteVanityDomainNotFound {
 	return &DeleteVanityDomainNotFound{}
 }
 
-/* DeleteVanityDomainNotFound describes a response with status code 404, with default header values.
+/*
+DeleteVanityDomainNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -156,9 +249,39 @@ type DeleteVanityDomainNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete vanity domain not found response has a 2xx status code
+func (o *DeleteVanityDomainNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete vanity domain not found response has a 3xx status code
+func (o *DeleteVanityDomainNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete vanity domain not found response has a 4xx status code
+func (o *DeleteVanityDomainNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete vanity domain not found response has a 5xx status code
+func (o *DeleteVanityDomainNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete vanity domain not found response a status code equal to that given
+func (o *DeleteVanityDomainNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *DeleteVanityDomainNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /vanity-domains][%d] deleteVanityDomainNotFound  %+v", 404, o.Payload)
 }
+
+func (o *DeleteVanityDomainNotFound) String() string {
+	return fmt.Sprintf("[DELETE /vanity-domains][%d] deleteVanityDomainNotFound  %+v", 404, o.Payload)
+}
+
 func (o *DeleteVanityDomainNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -180,7 +303,8 @@ func NewDeleteVanityDomainTooManyRequests() *DeleteVanityDomainTooManyRequests {
 	return &DeleteVanityDomainTooManyRequests{}
 }
 
-/* DeleteVanityDomainTooManyRequests describes a response with status code 429, with default header values.
+/*
+DeleteVanityDomainTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -188,9 +312,39 @@ type DeleteVanityDomainTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete vanity domain too many requests response has a 2xx status code
+func (o *DeleteVanityDomainTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete vanity domain too many requests response has a 3xx status code
+func (o *DeleteVanityDomainTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete vanity domain too many requests response has a 4xx status code
+func (o *DeleteVanityDomainTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete vanity domain too many requests response has a 5xx status code
+func (o *DeleteVanityDomainTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete vanity domain too many requests response a status code equal to that given
+func (o *DeleteVanityDomainTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *DeleteVanityDomainTooManyRequests) Error() string {
 	return fmt.Sprintf("[DELETE /vanity-domains][%d] deleteVanityDomainTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *DeleteVanityDomainTooManyRequests) String() string {
+	return fmt.Sprintf("[DELETE /vanity-domains][%d] deleteVanityDomainTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *DeleteVanityDomainTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

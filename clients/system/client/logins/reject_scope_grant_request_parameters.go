@@ -54,10 +54,12 @@ func NewRejectScopeGrantRequestParamsWithHTTPClient(client *http.Client) *Reject
 	}
 }
 
-/* RejectScopeGrantRequestParams contains all the parameters to send to the API endpoint
-   for the reject scope grant request operation.
+/*
+RejectScopeGrantRequestParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the reject scope grant request operation.
+
+	Typically these are written to a http.Request.
 */
 type RejectScopeGrantRequestParams struct {
 

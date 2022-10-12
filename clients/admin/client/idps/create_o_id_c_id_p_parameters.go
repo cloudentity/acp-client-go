@@ -54,10 +54,12 @@ func NewCreateOIDCIDPParamsWithHTTPClient(client *http.Client) *CreateOIDCIDPPar
 	}
 }
 
-/* CreateOIDCIDPParams contains all the parameters to send to the API endpoint
-   for the create o ID c ID p operation.
+/*
+CreateOIDCIDPParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the create o ID c ID p operation.
+
+	Typically these are written to a http.Request.
 */
 type CreateOIDCIDPParams struct {
 

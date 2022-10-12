@@ -52,10 +52,12 @@ func NewDynamicClientRegistrationOpenbankingUKDeleteClientParamsWithHTTPClient(c
 	}
 }
 
-/* DynamicClientRegistrationOpenbankingUKDeleteClientParams contains all the parameters to send to the API endpoint
-   for the dynamic client registration openbanking u k delete client operation.
+/*
+DynamicClientRegistrationOpenbankingUKDeleteClientParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the dynamic client registration openbanking u k delete client operation.
+
+	Typically these are written to a http.Request.
 */
 type DynamicClientRegistrationOpenbankingUKDeleteClientParams struct {
 

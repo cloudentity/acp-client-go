@@ -63,7 +63,8 @@ func NewGetTenantOK() *GetTenantOK {
 	return &GetTenantOK{}
 }
 
-/* GetTenantOK describes a response with status code 200, with default header values.
+/*
+GetTenantOK describes a response with status code 200, with default header values.
 
 Tenant
 */
@@ -71,9 +72,39 @@ type GetTenantOK struct {
 	Payload *models.Tenant
 }
 
+// IsSuccess returns true when this get tenant o k response has a 2xx status code
+func (o *GetTenantOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get tenant o k response has a 3xx status code
+func (o *GetTenantOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get tenant o k response has a 4xx status code
+func (o *GetTenantOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get tenant o k response has a 5xx status code
+func (o *GetTenantOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get tenant o k response a status code equal to that given
+func (o *GetTenantOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetTenantOK) Error() string {
 	return fmt.Sprintf("[GET /api/system/tenants/{tid}][%d] getTenantOK  %+v", 200, o.Payload)
 }
+
+func (o *GetTenantOK) String() string {
+	return fmt.Sprintf("[GET /api/system/tenants/{tid}][%d] getTenantOK  %+v", 200, o.Payload)
+}
+
 func (o *GetTenantOK) GetPayload() *models.Tenant {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewGetTenantUnauthorized() *GetTenantUnauthorized {
 	return &GetTenantUnauthorized{}
 }
 
-/* GetTenantUnauthorized describes a response with status code 401, with default header values.
+/*
+GetTenantUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type GetTenantUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get tenant unauthorized response has a 2xx status code
+func (o *GetTenantUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get tenant unauthorized response has a 3xx status code
+func (o *GetTenantUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get tenant unauthorized response has a 4xx status code
+func (o *GetTenantUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get tenant unauthorized response has a 5xx status code
+func (o *GetTenantUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get tenant unauthorized response a status code equal to that given
+func (o *GetTenantUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *GetTenantUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/system/tenants/{tid}][%d] getTenantUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *GetTenantUnauthorized) String() string {
+	return fmt.Sprintf("[GET /api/system/tenants/{tid}][%d] getTenantUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *GetTenantUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewGetTenantForbidden() *GetTenantForbidden {
 	return &GetTenantForbidden{}
 }
 
-/* GetTenantForbidden describes a response with status code 403, with default header values.
+/*
+GetTenantForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type GetTenantForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get tenant forbidden response has a 2xx status code
+func (o *GetTenantForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get tenant forbidden response has a 3xx status code
+func (o *GetTenantForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get tenant forbidden response has a 4xx status code
+func (o *GetTenantForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get tenant forbidden response has a 5xx status code
+func (o *GetTenantForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get tenant forbidden response a status code equal to that given
+func (o *GetTenantForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetTenantForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/system/tenants/{tid}][%d] getTenantForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetTenantForbidden) String() string {
+	return fmt.Sprintf("[GET /api/system/tenants/{tid}][%d] getTenantForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetTenantForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewGetTenantNotFound() *GetTenantNotFound {
 	return &GetTenantNotFound{}
 }
 
-/* GetTenantNotFound describes a response with status code 404, with default header values.
+/*
+GetTenantNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type GetTenantNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get tenant not found response has a 2xx status code
+func (o *GetTenantNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get tenant not found response has a 3xx status code
+func (o *GetTenantNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get tenant not found response has a 4xx status code
+func (o *GetTenantNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get tenant not found response has a 5xx status code
+func (o *GetTenantNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get tenant not found response a status code equal to that given
+func (o *GetTenantNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *GetTenantNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/system/tenants/{tid}][%d] getTenantNotFound  %+v", 404, o.Payload)
 }
+
+func (o *GetTenantNotFound) String() string {
+	return fmt.Sprintf("[GET /api/system/tenants/{tid}][%d] getTenantNotFound  %+v", 404, o.Payload)
+}
+
 func (o *GetTenantNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewGetTenantTooManyRequests() *GetTenantTooManyRequests {
 	return &GetTenantTooManyRequests{}
 }
 
-/* GetTenantTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetTenantTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type GetTenantTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get tenant too many requests response has a 2xx status code
+func (o *GetTenantTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get tenant too many requests response has a 3xx status code
+func (o *GetTenantTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get tenant too many requests response has a 4xx status code
+func (o *GetTenantTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get tenant too many requests response has a 5xx status code
+func (o *GetTenantTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get tenant too many requests response a status code equal to that given
+func (o *GetTenantTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *GetTenantTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /api/system/tenants/{tid}][%d] getTenantTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *GetTenantTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /api/system/tenants/{tid}][%d] getTenantTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *GetTenantTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

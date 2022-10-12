@@ -52,10 +52,12 @@ func NewPushedAuthorizationRequestParamsWithHTTPClient(client *http.Client) *Pus
 	}
 }
 
-/* PushedAuthorizationRequestParams contains all the parameters to send to the API endpoint
-   for the pushed authorization request operation.
+/*
+PushedAuthorizationRequestParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the pushed authorization request operation.
+
+	Typically these are written to a http.Request.
 */
 type PushedAuthorizationRequestParams struct {
 

@@ -52,10 +52,12 @@ func NewListScriptExecutionPointsParamsWithHTTPClient(client *http.Client) *List
 	}
 }
 
-/* ListScriptExecutionPointsParams contains all the parameters to send to the API endpoint
-   for the list script execution points operation.
+/*
+ListScriptExecutionPointsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the list script execution points operation.
+
+	Typically these are written to a http.Request.
 */
 type ListScriptExecutionPointsParams struct {
 

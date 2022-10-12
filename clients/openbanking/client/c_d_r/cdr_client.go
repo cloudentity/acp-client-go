@@ -42,6 +42,12 @@ type ClientService interface {
 
 	ListCDRArrangements(params *ListCDRArrangementsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListCDRArrangementsOK, error)
 
+	ListCDRCustomerArrangements(params *ListCDRCustomerArrangementsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListCDRCustomerArrangementsOK, error)
+
+	ListCustomerClients(params *ListCustomerClientsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListCustomerClientsOK, error)
+
+	RefreshMetadata(params *RefreshMetadataParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RefreshMetadataOK, error)
+
 	RejectCDRArrangementSystem(params *RejectCDRArrangementSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectCDRArrangementSystemOK, error)
 
 	RevokeCDRArrangement(params *RevokeCDRArrangementParams, opts ...ClientOption) (*RevokeCDRArrangementNoContent, error)
@@ -50,13 +56,15 @@ type ClientService interface {
 
 	RevokeCDRArrangements(params *RevokeCDRArrangementsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeCDRArrangementsOK, error)
 
+	RevokeCDRCustomerArrangements(params *RevokeCDRCustomerArrangementsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeCDRCustomerArrangementsOK, error)
+
 	SetTransport(transport runtime.ClientTransport)
 }
 
 /*
-  AcceptCDRArrangementSystem accepts c d r arrangement
+AcceptCDRArrangementSystem accepts c d r arrangement
 
-  This API can be used by a custom openbanking consent page to notify ACP that user accepted access.
+Notifies Cloudentity that the user accepted the consent.
 */
 func (a *Client) AcceptCDRArrangementSystem(params *AcceptCDRArrangementSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptCDRArrangementSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -95,11 +103,21 @@ func (a *Client) AcceptCDRArrangementSystem(params *AcceptCDRArrangementSystemPa
 }
 
 /*
-  CdrConsentIntrospect introspects cdr consent
+	CdrConsentIntrospect introspects c d r arrangement
 
-  This endpoint takes an OAuth 2.0 token and, in addition to returning
-meta information surrounding the token, returns the cdr arrangement consent and
-associated account ids.
+	This endpoint takes an OAuth 2.0 refresh token and, in addition to returning
+
+meta information surrounding the token, returns the cdr arrangement consent.
+
+Note that as per CDR regulations it's not possible to introspect Access Tokens nor ID Tokens.
+
+The response contains:
+`active` flag indicating wheather the token is currently active
+`exp` - token expiration timestamp (number of seconds from 1970-01-01T00:00:00Z)
+`scope` - space separated list of scopes associated with the token
+`cdr_arrangement_id` - unique arrangement identifier
+`cdr_arrangement` - object containing arrangement details
+`cdr_register_client_metadata` - metadata from CDR Register including Data Recipient and Software Product statuses
 */
 func (a *Client) CdrConsentIntrospect(params *CdrConsentIntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CdrConsentIntrospectOK, error) {
 	// TODO: Validate the params before sending
@@ -138,9 +156,9 @@ func (a *Client) CdrConsentIntrospect(params *CdrConsentIntrospectParams, authIn
 }
 
 /*
-  GetCDRArrangement gets c d r arrangement by ID
+GetCDRArrangement gets c d r arrangement
 
-  This API retrieves CDR arrangement by ID.
+This API retrieves CDR arrangement by ID.
 */
 func (a *Client) GetCDRArrangement(params *GetCDRArrangementParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCDRArrangementOK, error) {
 	// TODO: Validate the params before sending
@@ -179,10 +197,11 @@ func (a *Client) GetCDRArrangement(params *GetCDRArrangementParams, authInfo run
 }
 
 /*
-  GetCDRArrangementSystem gets c d r arrangement
+	GetCDRArrangementSystem gets c d r request
 
-  This API can be used by a custom openbanking consent page.
-The consent page must first use client credentials flow to create consent.
+	Returns all data necessary to build the consent page.
+
+The response contains details about the arrangement, client, requested scopes, and authenticated user.
 */
 func (a *Client) GetCDRArrangementSystem(params *GetCDRArrangementSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCDRArrangementSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -221,9 +240,10 @@ func (a *Client) GetCDRArrangementSystem(params *GetCDRArrangementSystemParams, 
 }
 
 /*
-  GetCDRArrangements lists c d r arrangements
+	GetCDRArrangements lists c d r arrangements
 
-  This API returns the list of CDR arrangements.
+	This API returns the list of CDR arrangements.
+
 You can narrow the list of returned arrangements using filters defined in request parameters.
 See getCDRArrangements for details.
 */
@@ -264,9 +284,10 @@ func (a *Client) GetCDRArrangements(params *GetCDRArrangementsParams, authInfo r
 }
 
 /*
-  ListCDRArrangements lists c d r arrangements
+	ListCDRArrangements lists c d r arrangements
 
-  This API returns the list of CDR arrangements.
+	This API returns the list of CDR arrangements.
+
 You can narrow the list of returned arrangements using filters defined in request body.
 See listCDRArrangements for details.
 */
@@ -307,9 +328,140 @@ func (a *Client) ListCDRArrangements(params *ListCDRArrangementsParams, authInfo
 }
 
 /*
-  RejectCDRArrangementSystem rejects c d r arrangement
+	ListCDRCustomerArrangements lists c d r customer arrangements
 
-  This API can be used by a custom openbanking consent page to notify ACP that user rejected access.
+	This API returns the list of CDR arrangements for a given customer.
+
+Customer must passed as customer_id claim in the access token.
+You can narrow the list of returned arrangements using filters defined in request body.
+See listCDRCustomerArrangements for details.
+*/
+func (a *Client) ListCDRCustomerArrangements(params *ListCDRCustomerArrangementsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListCDRCustomerArrangementsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListCDRCustomerArrangementsParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "listCDRCustomerArrangements",
+		Method:             "POST",
+		PathPattern:        "/servers/{wid}/cdr/customer-arrangements",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListCDRCustomerArrangementsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ListCDRCustomerArrangementsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for listCDRCustomerArrangements: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	ListCustomerClients lists c d r customer clients
+
+	This API returns clients that currently have arrangements assigned to them.
+
+Customer must passed as customer_id claim in the access token.
+*/
+func (a *Client) ListCustomerClients(params *ListCustomerClientsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListCustomerClientsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListCustomerClientsParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "listCustomerClients",
+		Method:             "GET",
+		PathPattern:        "/servers/{wid}/cdr/customer-clients",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListCustomerClientsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ListCustomerClientsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for listCustomerClients: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	RefreshMetadata refreshes a d r metadata
+
+	This API is used by the CDR registry to indicate that a critical update to the metadata
+
+for Accredited Data Recipients has been made and should be obtained
+*/
+func (a *Client) RefreshMetadata(params *RefreshMetadataParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RefreshMetadataOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRefreshMetadataParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "refreshMetadata",
+		Method:             "POST",
+		PathPattern:        "/admin/register/metadata",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RefreshMetadataReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*RefreshMetadataOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for refreshMetadata: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+RejectCDRArrangementSystem rejects c d r arrangement
+
+Notifies Cloudentity that the user rejected the consent.
 */
 func (a *Client) RejectCDRArrangementSystem(params *RejectCDRArrangementSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectCDRArrangementSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -348,9 +500,12 @@ func (a *Client) RejectCDRArrangementSystem(params *RejectCDRArrangementSystemPa
 }
 
 /*
-  RevokeCDRArrangement thes c d r arrangement revocation endpoint
+	RevokeCDRArrangement revokes c d r arrangement
 
-  Supports revocation of CDR arrangement.
+	Allows a client to withdraw consent for an arrangement in compliance with the
+
+revocation endpoint defined by the Consumer Data Standards specification.
+This endpoint requires inline private key jwt authentication.
 */
 func (a *Client) RevokeCDRArrangement(params *RevokeCDRArrangementParams, opts ...ClientOption) (*RevokeCDRArrangementNoContent, error) {
 	// TODO: Validate the params before sending
@@ -388,9 +543,9 @@ func (a *Client) RevokeCDRArrangement(params *RevokeCDRArrangementParams, opts .
 }
 
 /*
-  RevokeCDRArrangementByID revokes c d r arrangement
+RevokeCDRArrangementByID revokes c d r arrangement
 
-  This API revokes a single CDR Arrangement with the matching arrangement id
+This API revokes a single CDR Arrangement with the matching arrangement id
 */
 func (a *Client) RevokeCDRArrangementByID(params *RevokeCDRArrangementByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeCDRArrangementByIDNoContent, error) {
 	// TODO: Validate the params before sending
@@ -429,9 +584,9 @@ func (a *Client) RevokeCDRArrangementByID(params *RevokeCDRArrangementByIDParams
 }
 
 /*
-  RevokeCDRArrangements revokes c d r arrangements
+	RevokeCDRArrangements revokes c d r arrangements
 
-  This API revokes CDR arrangements matching provided parameters.
+	This API revokes CDR arrangements matching provided parameters.
 
 Currently supporting removal by client id.
 Use ?client_id={clientID} to remove all arrangements by a given client.
@@ -469,6 +624,49 @@ func (a *Client) RevokeCDRArrangements(params *RevokeCDRArrangementsParams, auth
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for revokeCDRArrangements: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	RevokeCDRCustomerArrangements revokes c d r customer arrangements
+
+	This API revokes CDR arrangements, access tokens, and refresh tokens for a given customer.
+
+Customer must passed as customer_id claim in the access token.
+*/
+func (a *Client) RevokeCDRCustomerArrangements(params *RevokeCDRCustomerArrangementsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeCDRCustomerArrangementsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRevokeCDRCustomerArrangementsParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "revokeCDRCustomerArrangements",
+		Method:             "DELETE",
+		PathPattern:        "/servers/{wid}/cdr/customer-arrangements",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RevokeCDRCustomerArrangementsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*RevokeCDRCustomerArrangementsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for revokeCDRCustomerArrangements: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

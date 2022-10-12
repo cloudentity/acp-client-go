@@ -51,7 +51,8 @@ func NewGatewayIntrospectOK() *GatewayIntrospectOK {
 	return &GatewayIntrospectOK{}
 }
 
-/* GatewayIntrospectOK describes a response with status code 200, with default header values.
+/*
+GatewayIntrospectOK describes a response with status code 200, with default header values.
 
 Introspect
 */
@@ -59,9 +60,39 @@ type GatewayIntrospectOK struct {
 	Payload *models.IntrospectResponse
 }
 
+// IsSuccess returns true when this gateway introspect o k response has a 2xx status code
+func (o *GatewayIntrospectOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this gateway introspect o k response has a 3xx status code
+func (o *GatewayIntrospectOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this gateway introspect o k response has a 4xx status code
+func (o *GatewayIntrospectOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this gateway introspect o k response has a 5xx status code
+func (o *GatewayIntrospectOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this gateway introspect o k response a status code equal to that given
+func (o *GatewayIntrospectOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GatewayIntrospectOK) Error() string {
 	return fmt.Sprintf("[POST /gateways/introspect][%d] gatewayIntrospectOK  %+v", 200, o.Payload)
 }
+
+func (o *GatewayIntrospectOK) String() string {
+	return fmt.Sprintf("[POST /gateways/introspect][%d] gatewayIntrospectOK  %+v", 200, o.Payload)
+}
+
 func (o *GatewayIntrospectOK) GetPayload() *models.IntrospectResponse {
 	return o.Payload
 }
@@ -83,7 +114,8 @@ func NewGatewayIntrospectBadRequest() *GatewayIntrospectBadRequest {
 	return &GatewayIntrospectBadRequest{}
 }
 
-/* GatewayIntrospectBadRequest describes a response with status code 400, with default header values.
+/*
+GatewayIntrospectBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -91,9 +123,39 @@ type GatewayIntrospectBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this gateway introspect bad request response has a 2xx status code
+func (o *GatewayIntrospectBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this gateway introspect bad request response has a 3xx status code
+func (o *GatewayIntrospectBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this gateway introspect bad request response has a 4xx status code
+func (o *GatewayIntrospectBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this gateway introspect bad request response has a 5xx status code
+func (o *GatewayIntrospectBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this gateway introspect bad request response a status code equal to that given
+func (o *GatewayIntrospectBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *GatewayIntrospectBadRequest) Error() string {
 	return fmt.Sprintf("[POST /gateways/introspect][%d] gatewayIntrospectBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *GatewayIntrospectBadRequest) String() string {
+	return fmt.Sprintf("[POST /gateways/introspect][%d] gatewayIntrospectBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *GatewayIntrospectBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -115,7 +177,8 @@ func NewGatewayIntrospectUnprocessableEntity() *GatewayIntrospectUnprocessableEn
 	return &GatewayIntrospectUnprocessableEntity{}
 }
 
-/* GatewayIntrospectUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+GatewayIntrospectUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -123,9 +186,39 @@ type GatewayIntrospectUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this gateway introspect unprocessable entity response has a 2xx status code
+func (o *GatewayIntrospectUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this gateway introspect unprocessable entity response has a 3xx status code
+func (o *GatewayIntrospectUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this gateway introspect unprocessable entity response has a 4xx status code
+func (o *GatewayIntrospectUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this gateway introspect unprocessable entity response has a 5xx status code
+func (o *GatewayIntrospectUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this gateway introspect unprocessable entity response a status code equal to that given
+func (o *GatewayIntrospectUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *GatewayIntrospectUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /gateways/introspect][%d] gatewayIntrospectUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *GatewayIntrospectUnprocessableEntity) String() string {
+	return fmt.Sprintf("[POST /gateways/introspect][%d] gatewayIntrospectUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *GatewayIntrospectUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

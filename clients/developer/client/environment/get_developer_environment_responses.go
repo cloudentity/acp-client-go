@@ -57,7 +57,8 @@ func NewGetDeveloperEnvironmentOK() *GetDeveloperEnvironmentOK {
 	return &GetDeveloperEnvironmentOK{}
 }
 
-/* GetDeveloperEnvironmentOK describes a response with status code 200, with default header values.
+/*
+GetDeveloperEnvironmentOK describes a response with status code 200, with default header values.
 
 Developer environment
 */
@@ -65,9 +66,39 @@ type GetDeveloperEnvironmentOK struct {
 	Payload *models.DeveloperEnvironment
 }
 
+// IsSuccess returns true when this get developer environment o k response has a 2xx status code
+func (o *GetDeveloperEnvironmentOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get developer environment o k response has a 3xx status code
+func (o *GetDeveloperEnvironmentOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get developer environment o k response has a 4xx status code
+func (o *GetDeveloperEnvironmentOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get developer environment o k response has a 5xx status code
+func (o *GetDeveloperEnvironmentOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get developer environment o k response a status code equal to that given
+func (o *GetDeveloperEnvironmentOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetDeveloperEnvironmentOK) Error() string {
 	return fmt.Sprintf("[GET /environment][%d] getDeveloperEnvironmentOK  %+v", 200, o.Payload)
 }
+
+func (o *GetDeveloperEnvironmentOK) String() string {
+	return fmt.Sprintf("[GET /environment][%d] getDeveloperEnvironmentOK  %+v", 200, o.Payload)
+}
+
 func (o *GetDeveloperEnvironmentOK) GetPayload() *models.DeveloperEnvironment {
 	return o.Payload
 }
@@ -89,7 +120,8 @@ func NewGetDeveloperEnvironmentUnauthorized() *GetDeveloperEnvironmentUnauthoriz
 	return &GetDeveloperEnvironmentUnauthorized{}
 }
 
-/* GetDeveloperEnvironmentUnauthorized describes a response with status code 401, with default header values.
+/*
+GetDeveloperEnvironmentUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -97,9 +129,39 @@ type GetDeveloperEnvironmentUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get developer environment unauthorized response has a 2xx status code
+func (o *GetDeveloperEnvironmentUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get developer environment unauthorized response has a 3xx status code
+func (o *GetDeveloperEnvironmentUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get developer environment unauthorized response has a 4xx status code
+func (o *GetDeveloperEnvironmentUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get developer environment unauthorized response has a 5xx status code
+func (o *GetDeveloperEnvironmentUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get developer environment unauthorized response a status code equal to that given
+func (o *GetDeveloperEnvironmentUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *GetDeveloperEnvironmentUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /environment][%d] getDeveloperEnvironmentUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *GetDeveloperEnvironmentUnauthorized) String() string {
+	return fmt.Sprintf("[GET /environment][%d] getDeveloperEnvironmentUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *GetDeveloperEnvironmentUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -121,7 +183,8 @@ func NewGetDeveloperEnvironmentForbidden() *GetDeveloperEnvironmentForbidden {
 	return &GetDeveloperEnvironmentForbidden{}
 }
 
-/* GetDeveloperEnvironmentForbidden describes a response with status code 403, with default header values.
+/*
+GetDeveloperEnvironmentForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -129,9 +192,39 @@ type GetDeveloperEnvironmentForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get developer environment forbidden response has a 2xx status code
+func (o *GetDeveloperEnvironmentForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get developer environment forbidden response has a 3xx status code
+func (o *GetDeveloperEnvironmentForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get developer environment forbidden response has a 4xx status code
+func (o *GetDeveloperEnvironmentForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get developer environment forbidden response has a 5xx status code
+func (o *GetDeveloperEnvironmentForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get developer environment forbidden response a status code equal to that given
+func (o *GetDeveloperEnvironmentForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetDeveloperEnvironmentForbidden) Error() string {
 	return fmt.Sprintf("[GET /environment][%d] getDeveloperEnvironmentForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetDeveloperEnvironmentForbidden) String() string {
+	return fmt.Sprintf("[GET /environment][%d] getDeveloperEnvironmentForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetDeveloperEnvironmentForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -153,7 +246,8 @@ func NewGetDeveloperEnvironmentTooManyRequests() *GetDeveloperEnvironmentTooMany
 	return &GetDeveloperEnvironmentTooManyRequests{}
 }
 
-/* GetDeveloperEnvironmentTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetDeveloperEnvironmentTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -161,9 +255,39 @@ type GetDeveloperEnvironmentTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get developer environment too many requests response has a 2xx status code
+func (o *GetDeveloperEnvironmentTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get developer environment too many requests response has a 3xx status code
+func (o *GetDeveloperEnvironmentTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get developer environment too many requests response has a 4xx status code
+func (o *GetDeveloperEnvironmentTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get developer environment too many requests response has a 5xx status code
+func (o *GetDeveloperEnvironmentTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get developer environment too many requests response a status code equal to that given
+func (o *GetDeveloperEnvironmentTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *GetDeveloperEnvironmentTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /environment][%d] getDeveloperEnvironmentTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *GetDeveloperEnvironmentTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /environment][%d] getDeveloperEnvironmentTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *GetDeveloperEnvironmentTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

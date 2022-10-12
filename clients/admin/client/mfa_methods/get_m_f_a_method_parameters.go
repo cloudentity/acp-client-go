@@ -52,10 +52,12 @@ func NewGetMFAMethodParamsWithHTTPClient(client *http.Client) *GetMFAMethodParam
 	}
 }
 
-/* GetMFAMethodParams contains all the parameters to send to the API endpoint
-   for the get m f a method operation.
+/*
+GetMFAMethodParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get m f a method operation.
+
+	Typically these are written to a http.Request.
 */
 type GetMFAMethodParams struct {
 

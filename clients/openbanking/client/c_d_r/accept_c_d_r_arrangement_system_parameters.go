@@ -54,17 +54,27 @@ func NewAcceptCDRArrangementSystemParamsWithHTTPClient(client *http.Client) *Acc
 	}
 }
 
-/* AcceptCDRArrangementSystemParams contains all the parameters to send to the API endpoint
-   for the accept c d r arrangement system operation.
+/*
+AcceptCDRArrangementSystemParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the accept c d r arrangement system operation.
+
+	Typically these are written to a http.Request.
 */
 type AcceptCDRArrangementSystemParams struct {
 
-	// AcceptConsent.
-	AcceptConsent *models.AcceptConsentRequest
+	/* AcceptConsent.
 
-	// Login.
+	   Accept Consent Request
+	*/
+	AcceptConsent *models.AcceptCDRConsentRequest
+
+	/* Login.
+
+	     Login session identifier.
+
+	Cloudentity sends this identifier as the `login_id` query parameter when redirecting the user to the consent page.
+	*/
 	Login string
 
 	timeout    time.Duration
@@ -121,13 +131,13 @@ func (o *AcceptCDRArrangementSystemParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithAcceptConsent adds the acceptConsent to the accept c d r arrangement system params
-func (o *AcceptCDRArrangementSystemParams) WithAcceptConsent(acceptConsent *models.AcceptConsentRequest) *AcceptCDRArrangementSystemParams {
+func (o *AcceptCDRArrangementSystemParams) WithAcceptConsent(acceptConsent *models.AcceptCDRConsentRequest) *AcceptCDRArrangementSystemParams {
 	o.SetAcceptConsent(acceptConsent)
 	return o
 }
 
 // SetAcceptConsent adds the acceptConsent to the accept c d r arrangement system params
-func (o *AcceptCDRArrangementSystemParams) SetAcceptConsent(acceptConsent *models.AcceptConsentRequest) {
+func (o *AcceptCDRArrangementSystemParams) SetAcceptConsent(acceptConsent *models.AcceptCDRConsentRequest) {
 	o.AcceptConsent = acceptConsent
 }
 
