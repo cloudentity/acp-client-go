@@ -18,7 +18,7 @@ import (
 type FDXRequestedResource struct {
 
 	// Name of cluster of data elements permissioned
-	// Example: ACCOUNT_DETAILED TRANSACTIONS STATEMENTS
+	// Example: ["ACCOUNT_DETAILED","TRANSACTIONS","STATEMENTS"]
 	DataClusters []string `json:"dataClusters"`
 
 	// Resource for which data may be permissioned; can be extended to supportadditional types of resources

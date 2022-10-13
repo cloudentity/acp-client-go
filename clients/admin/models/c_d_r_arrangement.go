@@ -35,7 +35,7 @@ type CDRArrangement struct {
 	CdrArrangementID CDRArrangementID `json:"cdr_arrangement_id,omitempty"`
 
 	// cdr arrangement metadata
-	CdrArrangementMetadata CDRArrangementMetadata `json:"cdr_arrangement_metadata,omitempty"`
+	CdrArrangementMetadata *CDRArrangementMetadata `json:"cdr_arrangement_metadata,omitempty"`
 
 	// Client Identifier
 	// Example: bugkgm23g9kregtu051g
@@ -97,6 +97,10 @@ func (m *CDRArrangement) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateCdrArrangementID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCdrArrangementMetadata(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -167,6 +171,25 @@ func (m *CDRArrangement) validateCdrArrangementID(formats strfmt.Registry) error
 			return ce.ValidateName("cdr_arrangement_id")
 		}
 		return err
+	}
+
+	return nil
+}
+
+func (m *CDRArrangement) validateCdrArrangementMetadata(formats strfmt.Registry) error {
+	if swag.IsZero(m.CdrArrangementMetadata) { // not required
+		return nil
+	}
+
+	if m.CdrArrangementMetadata != nil {
+		if err := m.CdrArrangementMetadata.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cdr_arrangement_metadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cdr_arrangement_metadata")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -364,6 +387,10 @@ func (m *CDRArrangement) ContextValidate(ctx context.Context, formats strfmt.Reg
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateCdrArrangementMetadata(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateCustomerID(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -405,6 +432,22 @@ func (m *CDRArrangement) contextValidateCdrArrangementID(ctx context.Context, fo
 			return ce.ValidateName("cdr_arrangement_id")
 		}
 		return err
+	}
+
+	return nil
+}
+
+func (m *CDRArrangement) contextValidateCdrArrangementMetadata(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.CdrArrangementMetadata != nil {
+		if err := m.CdrArrangementMetadata.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cdr_arrangement_metadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cdr_arrangement_metadata")
+			}
+			return err
+		}
 	}
 
 	return nil

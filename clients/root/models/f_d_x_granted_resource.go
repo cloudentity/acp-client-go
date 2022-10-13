@@ -18,7 +18,7 @@ import (
 type FDXGrantedResource struct {
 
 	// Name of cluster of data elements permissioned
-	// Example: ACCOUNT_DETAILED TRANSACTIONS STATEMENTS
+	// Example: ["ACCOUNT_DETAILED","TRANSACTIONS","STATEMENTS"]
 	DataClusters []string `json:"dataClusters"`
 
 	// resource ID

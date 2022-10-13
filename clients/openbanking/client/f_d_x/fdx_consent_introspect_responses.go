@@ -315,7 +315,7 @@ type FdxConsentIntrospectOKBody struct {
 	models.IntrospectResponse
 
 	// fdx consent
-	FdxConsent *models.FDXConsent `json:"fdx_consent,omitempty"`
+	FdxConsent *models.GetFDXConsent `json:"fdx_consent,omitempty"`
 }
 
 // UnmarshalJSON unmarshals this object from a JSON structure
@@ -329,7 +329,7 @@ func (o *FdxConsentIntrospectOKBody) UnmarshalJSON(raw []byte) error {
 
 	// FdxConsentIntrospectOKBodyAO1
 	var dataFdxConsentIntrospectOKBodyAO1 struct {
-		FdxConsent *models.FDXConsent `json:"fdx_consent,omitempty"`
+		FdxConsent *models.GetFDXConsent `json:"fdx_consent,omitempty"`
 	}
 	if err := swag.ReadJSON(raw, &dataFdxConsentIntrospectOKBodyAO1); err != nil {
 		return err
@@ -350,7 +350,7 @@ func (o FdxConsentIntrospectOKBody) MarshalJSON() ([]byte, error) {
 	}
 	_parts = append(_parts, fdxConsentIntrospectOKBodyAO0)
 	var dataFdxConsentIntrospectOKBodyAO1 struct {
-		FdxConsent *models.FDXConsent `json:"fdx_consent,omitempty"`
+		FdxConsent *models.GetFDXConsent `json:"fdx_consent,omitempty"`
 	}
 
 	dataFdxConsentIntrospectOKBodyAO1.FdxConsent = o.FdxConsent

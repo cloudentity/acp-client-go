@@ -1013,6 +1013,13 @@ definitions:
   CDRArrangementID:
     type: string
   CDRArrangementMetadata:
+    properties:
+      personal_details:
+        $ref: '#/definitions/PersonalDetails'
+      revocation_channel:
+        $ref: '#/definitions/RevocationChannel'
+      revocation_reason:
+        $ref: '#/definitions/RevocationReason'
     type: object
   CDRArrangements:
     properties:
@@ -2571,7 +2578,10 @@ definitions:
     properties:
       dataClusters:
         description: Name of cluster of data elements permissioned
-        example: ACCOUNT_DETAILED TRANSACTIONS STATEMENTS
+        example:
+        - ACCOUNT_DETAILED
+        - TRANSACTIONS
+        - STATEMENTS
         items:
           type: string
         type: array
@@ -2592,7 +2602,10 @@ definitions:
     properties:
       dataClusters:
         description: Name of cluster of data elements permissioned
-        example: ACCOUNT_DETAILED TRANSACTIONS STATEMENTS
+        example:
+        - ACCOUNT_DETAILED
+        - TRANSACTIONS
+        - STATEMENTS
         items:
           type: string
         type: array
@@ -11657,6 +11670,10 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  PersonalDetails:
+    additionalProperties:
+      type: object
+    type: object
   PostCode:
     title: PostCode Identifier consisting of a group of letters and/or numbers that
       is added to a postal address to assist the sorting of mail.
@@ -11903,6 +11920,10 @@ definitions:
       type: string
     title: An array of OAuth client response types configured for a client application
     type: array
+  RevocationChannel:
+    type: string
+  RevocationReason:
+    type: string
   RoleDescriptor:
     description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
       §2.4.1
@@ -18020,7 +18041,7 @@ responses:
       - $ref: '#/definitions/IntrospectResponse'
       - properties:
           fdx_consent:
-            $ref: '#/definitions/FDXConsent'
+            $ref: '#/definitions/GetFDXConsent'
         type: object
   IntrospectOBBRDataAccessConsentResponse:
     description: Introspect Openbanking Brazil Data Access Consent Response

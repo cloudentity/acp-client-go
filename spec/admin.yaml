@@ -1637,6 +1637,13 @@ definitions:
   CDRArrangementID:
     type: string
   CDRArrangementMetadata:
+    properties:
+      personal_details:
+        $ref: '#/definitions/PersonalDetails'
+      revocation_channel:
+        $ref: '#/definitions/RevocationChannel'
+      revocation_reason:
+        $ref: '#/definitions/RevocationReason'
     type: object
   CDRConfiguration:
     properties:
@@ -5506,6 +5513,11 @@ definitions:
       commit:
         type: string
         x-nullable: false
+      dedicated_faas:
+        description: enable usage of dedicated faas rego/js environment (MANUAL DEPLOYMENT
+          OF DEDICATED ENVS IS REQUIRED FIRST)
+        type: boolean
+        x-nullable: false
       demo_app:
         description: enable demo app endpoints (system)
         type: boolean
@@ -5965,7 +5977,10 @@ definitions:
     properties:
       dataClusters:
         description: Name of cluster of data elements permissioned
-        example: ACCOUNT_DETAILED TRANSACTIONS STATEMENTS
+        example:
+        - ACCOUNT_DETAILED
+        - TRANSACTIONS
+        - STATEMENTS
         items:
           type: string
         type: array
@@ -6007,7 +6022,10 @@ definitions:
     properties:
       dataClusters:
         description: Name of cluster of data elements permissioned
-        example: ACCOUNT_DETAILED TRANSACTIONS STATEMENTS
+        example:
+        - ACCOUNT_DETAILED
+        - TRANSACTIONS
+        - STATEMENTS
         items:
           type: string
         type: array
@@ -8251,6 +8269,10 @@ definitions:
       jws_payload:
         $ref: '#/definitions/JWSPayloadSettings'
     type: object
+  PersonalDetails:
+    additionalProperties:
+      type: object
+    type: object
   Policies:
     properties:
       policies:
@@ -8851,6 +8873,10 @@ definitions:
       type: string
     title: An array of OAuth client response types configured for a client application
     type: array
+  RevocationChannel:
+    type: string
+  RevocationReason:
+    type: string
   RoleDescriptor:
     description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
       §2.4.1

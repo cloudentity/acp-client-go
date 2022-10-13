@@ -35,6 +35,9 @@ type Features struct {
 	// enable Cloudentity IDP (tenant)
 	CloudentityIdp bool `json:"cloudentity_idp,omitempty"`
 
+	// enable usage of dedicated faas rego/js environment (MANUAL DEPLOYMENT OF DEDICATED ENVS IS REQUIRED FIRST)
+	DedicatedFaas bool `json:"dedicated_faas,omitempty"`
+
 	// enable demo app endpoints (system)
 	DemoApp bool `json:"demo_app,omitempty"`
 

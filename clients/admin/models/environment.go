@@ -48,6 +48,9 @@ type Environment struct {
 	// commit
 	Commit string `json:"commit,omitempty"`
 
+	// enable usage of dedicated faas rego/js environment (MANUAL DEPLOYMENT OF DEDICATED ENVS IS REQUIRED FIRST)
+	DedicatedFaas bool `json:"dedicated_faas,omitempty"`
+
 	// enable demo app endpoints (system)
 	DemoApp bool `json:"demo_app,omitempty"`
 
