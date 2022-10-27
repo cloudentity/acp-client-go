@@ -36,9 +36,9 @@ type ClientService interface {
 }
 
 /*
-  ListClientsSystem lists clients by authorization server
+ListClientsSystem lists clients by authorization server
 
-  This API lists clients by server
+This API lists clients by server
 */
 func (a *Client) ListClientsSystem(params *ListClientsSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListClientsSystemOK, error) {
 	// TODO: Validate the params before sending

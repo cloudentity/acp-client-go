@@ -45,10 +45,32 @@ type ClientAdminResponse struct {
 	// It is considered a good practice to limit the audience of the token for security purposes.
 	Audience []string `json:"audience"`
 
+	// Algorithm used for encrypting authorization responses.
+	// If both signing and encryption are requested, the response will be signed then encrypted,
+	// with the result being a Nested JWT, as defined in JWT [RFC7519].
+	// The default, if omitted, is that no encryption is performed.
+	// Example: RSA-OAEP-256
+	// Enum: [RSA-OAEP RSA-OAEP-256]
+	AuthorizationEncryptedResponseAlg string `json:"authorization_encrypted_response_alg,omitempty"`
+
+	// Algorithm used for encrypting authorization responses.
+	// If authorization_encrypted_response_alg is specified, the default for this value is A128CBC-HS256.
+	// When authorization_encrypted_response_enc is included, authorization_encrypted_response_alg
+	// MUST also be provided.
+	// Example: A128CBC-HS256
+	// Enum: [A256GCM A128CBC-HS256]
+	AuthorizationEncryptedResponseEnc string `json:"authorization_encrypted_response_enc,omitempty"`
+
 	// ID of the authorization server (workspace) to which a client application is tied
 	// Example: default
 	// Required: true
 	AuthorizationServerID string `json:"authorization_server_id"`
+
+	// Algorithm used for signing authorization responses.
+	// If this is specified, the response will be signed using JWS and the configured algorithm.
+	// The algorithm none is not allowed.
+	// Example: RS256
+	AuthorizationSignedResponseAlg string `json:"authorization_signed_response_alg,omitempty"`
 
 	// OPTIONAL. The JWS algorithm alg value that the Client will use for signing authentication requests.
 	// When omitted, the Client will not send signed authentication requests.
@@ -94,8 +116,23 @@ type ClientAdminResponse struct {
 	// If the client secret does not expire, the value should be set to `0`.
 	ClientSecretExpiresAt int64 `json:"client_secret_expires_at,omitempty"`
 
+	// Defines if client is active
+	//
+	// Only clients with status Active can preform authorization, authentication and PAR requests.
+	// Enum: [active inactive]
+	ClientStatus string `json:"client_status,omitempty"`
+
+	// client type
+	// Enum: [oauth2 saml]
+	ClientType string `json:"client_type,omitempty"`
+
 	// URI of a client application
 	ClientURI string `json:"client_uri,omitempty"`
+
+	// Date when the client was created
+	// Example: 2022-04-07T19:17:31.323187Z
+	// Format: date-time
+	CreatedAt strfmt.DateTime `json:"created_at,omitempty"`
 
 	// Description of a client application
 	Description string `json:"description,omitempty"`
@@ -142,6 +179,18 @@ type ClientAdminResponse struct {
 	// Enum: [RS256 ES256 PS256]
 	IDTokenSignedResponseAlg string `json:"id_token_signed_response_alg,omitempty"`
 
+	// Introspection endpoint authentication method configured for a client application
+	// If empty, the token_endpoint_auth_method will be used
+	//
+	// ACP supports the following client authentication methods:
+	// client_secret_basic, client_secret_post, client_secret_jwt, private_key_jwt,
+	// self_signed_tls_client_auth, tls_client_auth, none.
+	//
+	// To learn more, see the [ACP client authentication documentation](https://docs.authorization.cloudentity.com/features/oauth/client_auth/)
+	// Example: client_secret_basic
+	// Enum: [client_secret_basic client_secret_post client_secret_jwt private_key_jwt self_signed_tls_client_auth tls_client_auth none]
+	IntrospectionEndpointAuthMethod string `json:"introspection_endpoint_auth_method,omitempty"`
+
 	// jwks
 	Jwks *ClientJWKs `json:"jwks,omitempty"`
 
@@ -167,12 +216,19 @@ type ClientAdminResponse struct {
 	// privacy
 	Privacy *ClientPrivacy `json:"privacy,omitempty"`
 
-	// An array of OAuth allowed redirect URIs
-	//
-	// Redirect URIs are used after a user authorizes an application and ACP redirect them back to
-	// the application with an authorization code or an access token included in the URL.
-	// Example: ["https://example.com/callback"]
-	RedirectUris []string `json:"redirect_uris"`
+	// redirect uris
+	RedirectUris RedirectURIs `json:"redirect_uris,omitempty"`
+
+	// Optional JWE alg algorithm the client is declaring that it may use for encrypting Request Objects
+	// Example: RSA-OAEP
+	// Enum: [RSA-OAEP RSA-OAEP-256]
+	RequestObjectEncryptionAlg string `json:"request_object_encryption_alg,omitempty"`
+
+	// Optional JWE enc algorithm the client is declaring that it may use for encrypting Request Objects
+	// When request_object_encryption_enc is included, request_object_encryption_alg MUST also be provided.
+	// Example: A256GCM
+	// Enum: [A256GCM A128CBC-HS256]
+	RequestObjectEncryptionEnc string `json:"request_object_encryption_enc,omitempty"`
 
 	// Request object signing algorithm for the token endpoint
 	//
@@ -188,32 +244,29 @@ type ClientAdminResponse struct {
 	// Boolean parameter indicating whether the only means of initiating an authorization request the client is allowed to use is PAR.
 	RequirePushedAuthorizationRequests bool `json:"require_pushed_authorization_requests,omitempty"`
 
-	// An array of OAuth client response types configured for a client application
+	// response types
+	ResponseTypes ResponseTypes `json:"response_types,omitempty"`
+
+	// Revocation endpoint authentication method configured for a client application
+	// If empty, the token_endpoint_auth_method will be used
 	//
-	// The array may consist of the following arguments:
+	// ACP supports the following client authentication methods:
+	// client_secret_basic, client_secret_post, client_secret_jwt, private_key_jwt,
+	// self_signed_tls_client_auth, tls_client_auth, none.
 	//
-	// `code` - when supplied as the value for the `response_type` parameter, a successful
-	// response includes an authorization code
-	//
-	// `code token` - when supplied as the value for the `response_type` parameter, a successful
-	// response includes an access token, an access token type, and an authorization code
-	//
-	// `id_token token` - when supplied as the value for the `response_type` parameter, a successful
-	// response includes an access token, an access token type, and an ID token
-	//
-	// `code id_token token` - when supplied as the value for the `response_type` parameter, a successful
-	// response includes an authorization code, an ID token, an access token, and an access token
-	// type.
-	//
-	// `token` - when supplied as the value for the `response_type` parameter, a successful
-	// response includes an access token and its type. This argument is used for the implicit grant
-	// flow, but is not recommended. Instead, you should use either the authorization code grant
-	// flow with PKCE or client authentication set to `none` and with the use of PKCE.
-	// Example: ["token","id_token","code"]
-	ResponseTypes []string `json:"response_types"`
+	// To learn more, see the [ACP client authentication documentation](https://docs.authorization.cloudentity.com/features/oauth/client_auth/)
+	// Example: client_secret_basic
+	// Enum: [client_secret_basic client_secret_post client_secret_jwt private_key_jwt self_signed_tls_client_auth tls_client_auth none]
+	RevocationEndpointAuthMethod string `json:"revocation_endpoint_auth_method,omitempty"`
 
 	// An array of rotated OAuth client secrets
 	RotatedSecrets []string `json:"rotated_secrets"`
+
+	// saml metadata
+	SamlMetadata *EntityDescriptor `json:"saml_metadata,omitempty"`
+
+	// saml service provider id
+	SamlServiceProviderID string `json:"saml_service_provider_id,omitempty"`
 
 	// Space separated scopes for compatibility with OAuth specification
 	// Example: email offline_access openid
@@ -250,6 +303,9 @@ type ClientAdminResponse struct {
 	// A software statement can be presented to an
 	// authorization server as part of the client registration request.
 	SoftwareStatement string `json:"software_statement,omitempty"`
+
+	// software statement payload
+	SoftwareStatementPayload Metadata `json:"software_statement_payload,omitempty"`
 
 	// A version identifier string for the client software identified by
 	// "software_id".  The value of the "software_version" SHOULD change
@@ -322,6 +378,9 @@ type ClientAdminResponse struct {
 	// Enum: [none RS256 ES256 PS256 HS256]
 	TokenEndpointAuthSigningAlg string `json:"token_endpoint_auth_signing_alg,omitempty"`
 
+	// token exchange
+	TokenExchange *ClientTokenExchangeConfiguration `json:"token_exchange,omitempty"`
+
 	// Terms of Service URL
 	TosURI string `json:"tos_uri,omitempty"`
 
@@ -329,6 +388,11 @@ type ClientAdminResponse struct {
 	//
 	// For trusted clients, consent pages are skipped during the authorization process.
 	Trusted bool `json:"trusted,omitempty"`
+
+	// Date when the client was updated
+	// Example: 2022-05-08T01:11:51.1262916Z
+	// Format: date-time
+	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty"`
 
 	// JWS alg algorithm REQUIRED for signing UserInfo Responses.
 	//
@@ -350,11 +414,31 @@ func (m *ClientAdminResponse) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateAuthorizationEncryptedResponseAlg(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateAuthorizationEncryptedResponseEnc(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateAuthorizationServerID(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateClientSecret(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateClientStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateClientType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCreatedAt(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -378,6 +462,10 @@ func (m *ClientAdminResponse) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateIntrospectionEndpointAuthMethod(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateJwks(formats); err != nil {
 		res = append(res, err)
 	}
@@ -390,11 +478,35 @@ func (m *ClientAdminResponse) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateRedirectUris(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRequestObjectEncryptionAlg(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRequestObjectEncryptionEnc(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateRequestObjectSigningAlg(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateResponseTypes(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRevocationEndpointAuthMethod(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSamlMetadata(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSoftwareStatementPayload(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -407,6 +519,14 @@ func (m *ClientAdminResponse) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateTokenEndpointAuthSigningAlg(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTokenExchange(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUpdatedAt(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -456,6 +576,90 @@ func (m *ClientAdminResponse) validateApplicationTypes(formats strfmt.Registry) 
 	return nil
 }
 
+var clientAdminResponseTypeAuthorizationEncryptedResponseAlgPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["RSA-OAEP","RSA-OAEP-256"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		clientAdminResponseTypeAuthorizationEncryptedResponseAlgPropEnum = append(clientAdminResponseTypeAuthorizationEncryptedResponseAlgPropEnum, v)
+	}
+}
+
+const (
+
+	// ClientAdminResponseAuthorizationEncryptedResponseAlgRSADashOAEP captures enum value "RSA-OAEP"
+	ClientAdminResponseAuthorizationEncryptedResponseAlgRSADashOAEP string = "RSA-OAEP"
+
+	// ClientAdminResponseAuthorizationEncryptedResponseAlgRSADashOAEPDash256 captures enum value "RSA-OAEP-256"
+	ClientAdminResponseAuthorizationEncryptedResponseAlgRSADashOAEPDash256 string = "RSA-OAEP-256"
+)
+
+// prop value enum
+func (m *ClientAdminResponse) validateAuthorizationEncryptedResponseAlgEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, clientAdminResponseTypeAuthorizationEncryptedResponseAlgPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *ClientAdminResponse) validateAuthorizationEncryptedResponseAlg(formats strfmt.Registry) error {
+	if swag.IsZero(m.AuthorizationEncryptedResponseAlg) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateAuthorizationEncryptedResponseAlgEnum("authorization_encrypted_response_alg", "body", m.AuthorizationEncryptedResponseAlg); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var clientAdminResponseTypeAuthorizationEncryptedResponseEncPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["A256GCM","A128CBC-HS256"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		clientAdminResponseTypeAuthorizationEncryptedResponseEncPropEnum = append(clientAdminResponseTypeAuthorizationEncryptedResponseEncPropEnum, v)
+	}
+}
+
+const (
+
+	// ClientAdminResponseAuthorizationEncryptedResponseEncA256GCM captures enum value "A256GCM"
+	ClientAdminResponseAuthorizationEncryptedResponseEncA256GCM string = "A256GCM"
+
+	// ClientAdminResponseAuthorizationEncryptedResponseEncA128CBCDashHS256 captures enum value "A128CBC-HS256"
+	ClientAdminResponseAuthorizationEncryptedResponseEncA128CBCDashHS256 string = "A128CBC-HS256"
+)
+
+// prop value enum
+func (m *ClientAdminResponse) validateAuthorizationEncryptedResponseEncEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, clientAdminResponseTypeAuthorizationEncryptedResponseEncPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *ClientAdminResponse) validateAuthorizationEncryptedResponseEnc(formats strfmt.Registry) error {
+	if swag.IsZero(m.AuthorizationEncryptedResponseEnc) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateAuthorizationEncryptedResponseEncEnum("authorization_encrypted_response_enc", "body", m.AuthorizationEncryptedResponseEnc); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *ClientAdminResponse) validateAuthorizationServerID(formats strfmt.Registry) error {
 
 	if err := validate.RequiredString("authorization_server_id", "body", m.AuthorizationServerID); err != nil {
@@ -471,6 +675,102 @@ func (m *ClientAdminResponse) validateClientSecret(formats strfmt.Registry) erro
 	}
 
 	if err := validate.MinLength("client_secret", "body", m.ClientSecret, 32); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var clientAdminResponseTypeClientStatusPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["active","inactive"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		clientAdminResponseTypeClientStatusPropEnum = append(clientAdminResponseTypeClientStatusPropEnum, v)
+	}
+}
+
+const (
+
+	// ClientAdminResponseClientStatusActive captures enum value "active"
+	ClientAdminResponseClientStatusActive string = "active"
+
+	// ClientAdminResponseClientStatusInactive captures enum value "inactive"
+	ClientAdminResponseClientStatusInactive string = "inactive"
+)
+
+// prop value enum
+func (m *ClientAdminResponse) validateClientStatusEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, clientAdminResponseTypeClientStatusPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *ClientAdminResponse) validateClientStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.ClientStatus) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateClientStatusEnum("client_status", "body", m.ClientStatus); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var clientAdminResponseTypeClientTypePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["oauth2","saml"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		clientAdminResponseTypeClientTypePropEnum = append(clientAdminResponseTypeClientTypePropEnum, v)
+	}
+}
+
+const (
+
+	// ClientAdminResponseClientTypeOauth2 captures enum value "oauth2"
+	ClientAdminResponseClientTypeOauth2 string = "oauth2"
+
+	// ClientAdminResponseClientTypeSaml captures enum value "saml"
+	ClientAdminResponseClientTypeSaml string = "saml"
+)
+
+// prop value enum
+func (m *ClientAdminResponse) validateClientTypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, clientAdminResponseTypeClientTypePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *ClientAdminResponse) validateClientType(formats strfmt.Registry) error {
+	if swag.IsZero(m.ClientType) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateClientTypeEnum("client_type", "body", m.ClientType); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ClientAdminResponse) validateCreatedAt(formats strfmt.Registry) error {
+	if swag.IsZero(m.CreatedAt) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("created_at", "body", "date-time", m.CreatedAt.String(), formats); err != nil {
 		return err
 	}
 
@@ -500,7 +800,7 @@ var clientAdminResponseGrantTypesItemsEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["authorization_code","implicit","client_credentials","refresh_token","password","urn:ietf:params:oauth:grant-type:jwt-bearer","urn:openid:params:grant-type:ciba","urn:ietf:params:oauth:grant-type:token-exchange"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["authorization_code","implicit","client_credentials","refresh_token","password","urn:ietf:params:oauth:grant-type:jwt-bearer","urn:openid:params:grant-type:ciba","urn:ietf:params:oauth:grant-type:token-exchange","urn:ietf:params:oauth:grant-type:device_code"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -661,6 +961,63 @@ func (m *ClientAdminResponse) validateIDTokenSignedResponseAlg(formats strfmt.Re
 	return nil
 }
 
+var clientAdminResponseTypeIntrospectionEndpointAuthMethodPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["client_secret_basic","client_secret_post","client_secret_jwt","private_key_jwt","self_signed_tls_client_auth","tls_client_auth","none"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		clientAdminResponseTypeIntrospectionEndpointAuthMethodPropEnum = append(clientAdminResponseTypeIntrospectionEndpointAuthMethodPropEnum, v)
+	}
+}
+
+const (
+
+	// ClientAdminResponseIntrospectionEndpointAuthMethodClientSecretBasic captures enum value "client_secret_basic"
+	ClientAdminResponseIntrospectionEndpointAuthMethodClientSecretBasic string = "client_secret_basic"
+
+	// ClientAdminResponseIntrospectionEndpointAuthMethodClientSecretPost captures enum value "client_secret_post"
+	ClientAdminResponseIntrospectionEndpointAuthMethodClientSecretPost string = "client_secret_post"
+
+	// ClientAdminResponseIntrospectionEndpointAuthMethodClientSecretJwt captures enum value "client_secret_jwt"
+	ClientAdminResponseIntrospectionEndpointAuthMethodClientSecretJwt string = "client_secret_jwt"
+
+	// ClientAdminResponseIntrospectionEndpointAuthMethodPrivateKeyJwt captures enum value "private_key_jwt"
+	ClientAdminResponseIntrospectionEndpointAuthMethodPrivateKeyJwt string = "private_key_jwt"
+
+	// ClientAdminResponseIntrospectionEndpointAuthMethodSelfSignedTLSClientAuth captures enum value "self_signed_tls_client_auth"
+	ClientAdminResponseIntrospectionEndpointAuthMethodSelfSignedTLSClientAuth string = "self_signed_tls_client_auth"
+
+	// ClientAdminResponseIntrospectionEndpointAuthMethodTLSClientAuth captures enum value "tls_client_auth"
+	ClientAdminResponseIntrospectionEndpointAuthMethodTLSClientAuth string = "tls_client_auth"
+
+	// ClientAdminResponseIntrospectionEndpointAuthMethodNone captures enum value "none"
+	ClientAdminResponseIntrospectionEndpointAuthMethodNone string = "none"
+)
+
+// prop value enum
+func (m *ClientAdminResponse) validateIntrospectionEndpointAuthMethodEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, clientAdminResponseTypeIntrospectionEndpointAuthMethodPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *ClientAdminResponse) validateIntrospectionEndpointAuthMethod(formats strfmt.Registry) error {
+	if swag.IsZero(m.IntrospectionEndpointAuthMethod) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateIntrospectionEndpointAuthMethodEnum("introspection_endpoint_auth_method", "body", m.IntrospectionEndpointAuthMethod); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *ClientAdminResponse) validateJwks(formats strfmt.Registry) error {
 	if swag.IsZero(m.Jwks) { // not required
 		return nil
@@ -718,6 +1075,107 @@ func (m *ClientAdminResponse) validatePrivacy(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *ClientAdminResponse) validateRedirectUris(formats strfmt.Registry) error {
+	if swag.IsZero(m.RedirectUris) { // not required
+		return nil
+	}
+
+	if err := m.RedirectUris.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("redirect_uris")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("redirect_uris")
+		}
+		return err
+	}
+
+	return nil
+}
+
+var clientAdminResponseTypeRequestObjectEncryptionAlgPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["RSA-OAEP","RSA-OAEP-256"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		clientAdminResponseTypeRequestObjectEncryptionAlgPropEnum = append(clientAdminResponseTypeRequestObjectEncryptionAlgPropEnum, v)
+	}
+}
+
+const (
+
+	// ClientAdminResponseRequestObjectEncryptionAlgRSADashOAEP captures enum value "RSA-OAEP"
+	ClientAdminResponseRequestObjectEncryptionAlgRSADashOAEP string = "RSA-OAEP"
+
+	// ClientAdminResponseRequestObjectEncryptionAlgRSADashOAEPDash256 captures enum value "RSA-OAEP-256"
+	ClientAdminResponseRequestObjectEncryptionAlgRSADashOAEPDash256 string = "RSA-OAEP-256"
+)
+
+// prop value enum
+func (m *ClientAdminResponse) validateRequestObjectEncryptionAlgEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, clientAdminResponseTypeRequestObjectEncryptionAlgPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *ClientAdminResponse) validateRequestObjectEncryptionAlg(formats strfmt.Registry) error {
+	if swag.IsZero(m.RequestObjectEncryptionAlg) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateRequestObjectEncryptionAlgEnum("request_object_encryption_alg", "body", m.RequestObjectEncryptionAlg); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var clientAdminResponseTypeRequestObjectEncryptionEncPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["A256GCM","A128CBC-HS256"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		clientAdminResponseTypeRequestObjectEncryptionEncPropEnum = append(clientAdminResponseTypeRequestObjectEncryptionEncPropEnum, v)
+	}
+}
+
+const (
+
+	// ClientAdminResponseRequestObjectEncryptionEncA256GCM captures enum value "A256GCM"
+	ClientAdminResponseRequestObjectEncryptionEncA256GCM string = "A256GCM"
+
+	// ClientAdminResponseRequestObjectEncryptionEncA128CBCDashHS256 captures enum value "A128CBC-HS256"
+	ClientAdminResponseRequestObjectEncryptionEncA128CBCDashHS256 string = "A128CBC-HS256"
+)
+
+// prop value enum
+func (m *ClientAdminResponse) validateRequestObjectEncryptionEncEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, clientAdminResponseTypeRequestObjectEncryptionEncPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *ClientAdminResponse) validateRequestObjectEncryptionEnc(formats strfmt.Registry) error {
+	if swag.IsZero(m.RequestObjectEncryptionEnc) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateRequestObjectEncryptionEncEnum("request_object_encryption_enc", "body", m.RequestObjectEncryptionEnc); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 var clientAdminResponseTypeRequestObjectSigningAlgPropEnum []interface{}
 
 func init() {
@@ -769,37 +1227,113 @@ func (m *ClientAdminResponse) validateRequestObjectSigningAlg(formats strfmt.Reg
 	return nil
 }
 
-var clientAdminResponseResponseTypesItemsEnum []interface{}
-
-func init() {
-	var res []string
-	if err := json.Unmarshal([]byte(`["token","id_token","code","code id_token","token id_token","token code","token id_token code"]`), &res); err != nil {
-		panic(err)
-	}
-	for _, v := range res {
-		clientAdminResponseResponseTypesItemsEnum = append(clientAdminResponseResponseTypesItemsEnum, v)
-	}
-}
-
-func (m *ClientAdminResponse) validateResponseTypesItemsEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, clientAdminResponseResponseTypesItemsEnum, true); err != nil {
-		return err
-	}
-	return nil
-}
-
 func (m *ClientAdminResponse) validateResponseTypes(formats strfmt.Registry) error {
 	if swag.IsZero(m.ResponseTypes) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.ResponseTypes); i++ {
+	if err := m.ResponseTypes.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("response_types")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("response_types")
+		}
+		return err
+	}
 
-		// value enum
-		if err := m.validateResponseTypesItemsEnum("response_types"+"."+strconv.Itoa(i), "body", m.ResponseTypes[i]); err != nil {
+	return nil
+}
+
+var clientAdminResponseTypeRevocationEndpointAuthMethodPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["client_secret_basic","client_secret_post","client_secret_jwt","private_key_jwt","self_signed_tls_client_auth","tls_client_auth","none"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		clientAdminResponseTypeRevocationEndpointAuthMethodPropEnum = append(clientAdminResponseTypeRevocationEndpointAuthMethodPropEnum, v)
+	}
+}
+
+const (
+
+	// ClientAdminResponseRevocationEndpointAuthMethodClientSecretBasic captures enum value "client_secret_basic"
+	ClientAdminResponseRevocationEndpointAuthMethodClientSecretBasic string = "client_secret_basic"
+
+	// ClientAdminResponseRevocationEndpointAuthMethodClientSecretPost captures enum value "client_secret_post"
+	ClientAdminResponseRevocationEndpointAuthMethodClientSecretPost string = "client_secret_post"
+
+	// ClientAdminResponseRevocationEndpointAuthMethodClientSecretJwt captures enum value "client_secret_jwt"
+	ClientAdminResponseRevocationEndpointAuthMethodClientSecretJwt string = "client_secret_jwt"
+
+	// ClientAdminResponseRevocationEndpointAuthMethodPrivateKeyJwt captures enum value "private_key_jwt"
+	ClientAdminResponseRevocationEndpointAuthMethodPrivateKeyJwt string = "private_key_jwt"
+
+	// ClientAdminResponseRevocationEndpointAuthMethodSelfSignedTLSClientAuth captures enum value "self_signed_tls_client_auth"
+	ClientAdminResponseRevocationEndpointAuthMethodSelfSignedTLSClientAuth string = "self_signed_tls_client_auth"
+
+	// ClientAdminResponseRevocationEndpointAuthMethodTLSClientAuth captures enum value "tls_client_auth"
+	ClientAdminResponseRevocationEndpointAuthMethodTLSClientAuth string = "tls_client_auth"
+
+	// ClientAdminResponseRevocationEndpointAuthMethodNone captures enum value "none"
+	ClientAdminResponseRevocationEndpointAuthMethodNone string = "none"
+)
+
+// prop value enum
+func (m *ClientAdminResponse) validateRevocationEndpointAuthMethodEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, clientAdminResponseTypeRevocationEndpointAuthMethodPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *ClientAdminResponse) validateRevocationEndpointAuthMethod(formats strfmt.Registry) error {
+	if swag.IsZero(m.RevocationEndpointAuthMethod) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateRevocationEndpointAuthMethodEnum("revocation_endpoint_auth_method", "body", m.RevocationEndpointAuthMethod); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ClientAdminResponse) validateSamlMetadata(formats strfmt.Registry) error {
+	if swag.IsZero(m.SamlMetadata) { // not required
+		return nil
+	}
+
+	if m.SamlMetadata != nil {
+		if err := m.SamlMetadata.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("saml_metadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("saml_metadata")
+			}
 			return err
 		}
+	}
 
+	return nil
+}
+
+func (m *ClientAdminResponse) validateSoftwareStatementPayload(formats strfmt.Registry) error {
+	if swag.IsZero(m.SoftwareStatementPayload) { // not required
+		return nil
+	}
+
+	if m.SoftwareStatementPayload != nil {
+		if err := m.SoftwareStatementPayload.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("software_statement_payload")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("software_statement_payload")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -955,6 +1489,37 @@ func (m *ClientAdminResponse) validateTokenEndpointAuthSigningAlg(formats strfmt
 	return nil
 }
 
+func (m *ClientAdminResponse) validateTokenExchange(formats strfmt.Registry) error {
+	if swag.IsZero(m.TokenExchange) { // not required
+		return nil
+	}
+
+	if m.TokenExchange != nil {
+		if err := m.TokenExchange.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("token_exchange")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("token_exchange")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ClientAdminResponse) validateUpdatedAt(formats strfmt.Registry) error {
+	if swag.IsZero(m.UpdatedAt) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("updated_at", "body", "date-time", m.UpdatedAt.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 var clientAdminResponseTypeUserinfoSignedResponseAlgPropEnum []interface{}
 
 func init() {
@@ -1021,6 +1586,26 @@ func (m *ClientAdminResponse) ContextValidate(ctx context.Context, formats strfm
 	}
 
 	if err := m.contextValidatePrivacy(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateRedirectUris(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateResponseTypes(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSamlMetadata(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSoftwareStatementPayload(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateTokenExchange(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1091,6 +1676,80 @@ func (m *ClientAdminResponse) contextValidatePrivacy(ctx context.Context, format
 				return ve.ValidateName("privacy")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("privacy")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ClientAdminResponse) contextValidateRedirectUris(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.RedirectUris.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("redirect_uris")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("redirect_uris")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *ClientAdminResponse) contextValidateResponseTypes(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.ResponseTypes.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("response_types")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("response_types")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *ClientAdminResponse) contextValidateSamlMetadata(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.SamlMetadata != nil {
+		if err := m.SamlMetadata.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("saml_metadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("saml_metadata")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ClientAdminResponse) contextValidateSoftwareStatementPayload(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.SoftwareStatementPayload.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("software_statement_payload")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("software_statement_payload")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *ClientAdminResponse) contextValidateTokenExchange(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.TokenExchange != nil {
+		if err := m.TokenExchange.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("token_exchange")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("token_exchange")
 			}
 			return err
 		}

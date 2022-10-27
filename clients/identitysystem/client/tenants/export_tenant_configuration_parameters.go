@@ -52,10 +52,12 @@ func NewExportTenantConfigurationParamsWithHTTPClient(client *http.Client) *Expo
 	}
 }
 
-/* ExportTenantConfigurationParams contains all the parameters to send to the API endpoint
-   for the export tenant configuration operation.
+/*
+ExportTenantConfigurationParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the export tenant configuration operation.
+
+	Typically these are written to a http.Request.
 */
 type ExportTenantConfigurationParams struct {
 	timeout    time.Duration

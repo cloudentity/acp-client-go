@@ -54,10 +54,12 @@ func NewUpdateOIDCIDPParamsWithHTTPClient(client *http.Client) *UpdateOIDCIDPPar
 	}
 }
 
-/* UpdateOIDCIDPParams contains all the parameters to send to the API endpoint
-   for the update o ID c ID p operation.
+/*
+UpdateOIDCIDPParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update o ID c ID p operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateOIDCIDPParams struct {
 

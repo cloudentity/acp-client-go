@@ -63,7 +63,8 @@ func NewDynamicClientRegistrationOpenbankingUKUpdateClientOK() *DynamicClientReg
 	return &DynamicClientRegistrationOpenbankingUKUpdateClientOK{}
 }
 
-/* DynamicClientRegistrationOpenbankingUKUpdateClientOK describes a response with status code 200, with default header values.
+/*
+DynamicClientRegistrationOpenbankingUKUpdateClientOK describes a response with status code 200, with default header values.
 
 OpenbankingUK Dynamic Client Registration Update Client Response
 */
@@ -71,9 +72,39 @@ type DynamicClientRegistrationOpenbankingUKUpdateClientOK struct {
 	Payload *models.OpenbankingUKDynamicClientRegistrationResponse
 }
 
+// IsSuccess returns true when this dynamic client registration openbanking u k update client o k response has a 2xx status code
+func (o *DynamicClientRegistrationOpenbankingUKUpdateClientOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this dynamic client registration openbanking u k update client o k response has a 3xx status code
+func (o *DynamicClientRegistrationOpenbankingUKUpdateClientOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this dynamic client registration openbanking u k update client o k response has a 4xx status code
+func (o *DynamicClientRegistrationOpenbankingUKUpdateClientOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this dynamic client registration openbanking u k update client o k response has a 5xx status code
+func (o *DynamicClientRegistrationOpenbankingUKUpdateClientOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this dynamic client registration openbanking u k update client o k response a status code equal to that given
+func (o *DynamicClientRegistrationOpenbankingUKUpdateClientOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *DynamicClientRegistrationOpenbankingUKUpdateClientOK) Error() string {
 	return fmt.Sprintf("[PUT /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKUpdateClientOK  %+v", 200, o.Payload)
 }
+
+func (o *DynamicClientRegistrationOpenbankingUKUpdateClientOK) String() string {
+	return fmt.Sprintf("[PUT /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKUpdateClientOK  %+v", 200, o.Payload)
+}
+
 func (o *DynamicClientRegistrationOpenbankingUKUpdateClientOK) GetPayload() *models.OpenbankingUKDynamicClientRegistrationResponse {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewDynamicClientRegistrationOpenbankingUKUpdateClientBadRequest() *DynamicC
 	return &DynamicClientRegistrationOpenbankingUKUpdateClientBadRequest{}
 }
 
-/* DynamicClientRegistrationOpenbankingUKUpdateClientBadRequest describes a response with status code 400, with default header values.
+/*
+DynamicClientRegistrationOpenbankingUKUpdateClientBadRequest describes a response with status code 400, with default header values.
 
 RFC6749 error
 */
@@ -103,9 +135,39 @@ type DynamicClientRegistrationOpenbankingUKUpdateClientBadRequest struct {
 	Payload *models.RFC6749Error
 }
 
+// IsSuccess returns true when this dynamic client registration openbanking u k update client bad request response has a 2xx status code
+func (o *DynamicClientRegistrationOpenbankingUKUpdateClientBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this dynamic client registration openbanking u k update client bad request response has a 3xx status code
+func (o *DynamicClientRegistrationOpenbankingUKUpdateClientBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this dynamic client registration openbanking u k update client bad request response has a 4xx status code
+func (o *DynamicClientRegistrationOpenbankingUKUpdateClientBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this dynamic client registration openbanking u k update client bad request response has a 5xx status code
+func (o *DynamicClientRegistrationOpenbankingUKUpdateClientBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this dynamic client registration openbanking u k update client bad request response a status code equal to that given
+func (o *DynamicClientRegistrationOpenbankingUKUpdateClientBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *DynamicClientRegistrationOpenbankingUKUpdateClientBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKUpdateClientBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *DynamicClientRegistrationOpenbankingUKUpdateClientBadRequest) String() string {
+	return fmt.Sprintf("[PUT /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKUpdateClientBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *DynamicClientRegistrationOpenbankingUKUpdateClientBadRequest) GetPayload() *models.RFC6749Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewDynamicClientRegistrationOpenbankingUKUpdateClientUnauthorized() *Dynami
 	return &DynamicClientRegistrationOpenbankingUKUpdateClientUnauthorized{}
 }
 
-/* DynamicClientRegistrationOpenbankingUKUpdateClientUnauthorized describes a response with status code 401, with default header values.
+/*
+DynamicClientRegistrationOpenbankingUKUpdateClientUnauthorized describes a response with status code 401, with default header values.
 
 RFC6749 error
 */
@@ -135,9 +198,39 @@ type DynamicClientRegistrationOpenbankingUKUpdateClientUnauthorized struct {
 	Payload *models.RFC6749Error
 }
 
+// IsSuccess returns true when this dynamic client registration openbanking u k update client unauthorized response has a 2xx status code
+func (o *DynamicClientRegistrationOpenbankingUKUpdateClientUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this dynamic client registration openbanking u k update client unauthorized response has a 3xx status code
+func (o *DynamicClientRegistrationOpenbankingUKUpdateClientUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this dynamic client registration openbanking u k update client unauthorized response has a 4xx status code
+func (o *DynamicClientRegistrationOpenbankingUKUpdateClientUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this dynamic client registration openbanking u k update client unauthorized response has a 5xx status code
+func (o *DynamicClientRegistrationOpenbankingUKUpdateClientUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this dynamic client registration openbanking u k update client unauthorized response a status code equal to that given
+func (o *DynamicClientRegistrationOpenbankingUKUpdateClientUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *DynamicClientRegistrationOpenbankingUKUpdateClientUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKUpdateClientUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *DynamicClientRegistrationOpenbankingUKUpdateClientUnauthorized) String() string {
+	return fmt.Sprintf("[PUT /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKUpdateClientUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *DynamicClientRegistrationOpenbankingUKUpdateClientUnauthorized) GetPayload() *models.RFC6749Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewDynamicClientRegistrationOpenbankingUKUpdateClientForbidden() *DynamicCl
 	return &DynamicClientRegistrationOpenbankingUKUpdateClientForbidden{}
 }
 
-/* DynamicClientRegistrationOpenbankingUKUpdateClientForbidden describes a response with status code 403, with default header values.
+/*
+DynamicClientRegistrationOpenbankingUKUpdateClientForbidden describes a response with status code 403, with default header values.
 
 RFC6749 error
 */
@@ -167,9 +261,39 @@ type DynamicClientRegistrationOpenbankingUKUpdateClientForbidden struct {
 	Payload *models.RFC6749Error
 }
 
+// IsSuccess returns true when this dynamic client registration openbanking u k update client forbidden response has a 2xx status code
+func (o *DynamicClientRegistrationOpenbankingUKUpdateClientForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this dynamic client registration openbanking u k update client forbidden response has a 3xx status code
+func (o *DynamicClientRegistrationOpenbankingUKUpdateClientForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this dynamic client registration openbanking u k update client forbidden response has a 4xx status code
+func (o *DynamicClientRegistrationOpenbankingUKUpdateClientForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this dynamic client registration openbanking u k update client forbidden response has a 5xx status code
+func (o *DynamicClientRegistrationOpenbankingUKUpdateClientForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this dynamic client registration openbanking u k update client forbidden response a status code equal to that given
+func (o *DynamicClientRegistrationOpenbankingUKUpdateClientForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *DynamicClientRegistrationOpenbankingUKUpdateClientForbidden) Error() string {
 	return fmt.Sprintf("[PUT /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKUpdateClientForbidden  %+v", 403, o.Payload)
 }
+
+func (o *DynamicClientRegistrationOpenbankingUKUpdateClientForbidden) String() string {
+	return fmt.Sprintf("[PUT /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKUpdateClientForbidden  %+v", 403, o.Payload)
+}
+
 func (o *DynamicClientRegistrationOpenbankingUKUpdateClientForbidden) GetPayload() *models.RFC6749Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewDynamicClientRegistrationOpenbankingUKUpdateClientNotFound() *DynamicCli
 	return &DynamicClientRegistrationOpenbankingUKUpdateClientNotFound{}
 }
 
-/* DynamicClientRegistrationOpenbankingUKUpdateClientNotFound describes a response with status code 404, with default header values.
+/*
+DynamicClientRegistrationOpenbankingUKUpdateClientNotFound describes a response with status code 404, with default header values.
 
 ErrorResponse
 */
@@ -199,9 +324,39 @@ type DynamicClientRegistrationOpenbankingUKUpdateClientNotFound struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this dynamic client registration openbanking u k update client not found response has a 2xx status code
+func (o *DynamicClientRegistrationOpenbankingUKUpdateClientNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this dynamic client registration openbanking u k update client not found response has a 3xx status code
+func (o *DynamicClientRegistrationOpenbankingUKUpdateClientNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this dynamic client registration openbanking u k update client not found response has a 4xx status code
+func (o *DynamicClientRegistrationOpenbankingUKUpdateClientNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this dynamic client registration openbanking u k update client not found response has a 5xx status code
+func (o *DynamicClientRegistrationOpenbankingUKUpdateClientNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this dynamic client registration openbanking u k update client not found response a status code equal to that given
+func (o *DynamicClientRegistrationOpenbankingUKUpdateClientNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *DynamicClientRegistrationOpenbankingUKUpdateClientNotFound) Error() string {
 	return fmt.Sprintf("[PUT /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKUpdateClientNotFound  %+v", 404, o.Payload)
 }
+
+func (o *DynamicClientRegistrationOpenbankingUKUpdateClientNotFound) String() string {
+	return fmt.Sprintf("[PUT /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKUpdateClientNotFound  %+v", 404, o.Payload)
+}
+
 func (o *DynamicClientRegistrationOpenbankingUKUpdateClientNotFound) GetPayload() *models.GenericError {
 	return o.Payload
 }

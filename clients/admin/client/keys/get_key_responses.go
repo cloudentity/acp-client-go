@@ -63,7 +63,8 @@ func NewGetKeyOK() *GetKeyOK {
 	return &GetKeyOK{}
 }
 
-/* GetKeyOK describes a response with status code 200, with default header values.
+/*
+GetKeyOK describes a response with status code 200, with default header values.
 
 JWK
 */
@@ -71,9 +72,39 @@ type GetKeyOK struct {
 	Payload *models.ClientJWK
 }
 
+// IsSuccess returns true when this get key o k response has a 2xx status code
+func (o *GetKeyOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get key o k response has a 3xx status code
+func (o *GetKeyOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get key o k response has a 4xx status code
+func (o *GetKeyOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get key o k response has a 5xx status code
+func (o *GetKeyOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get key o k response a status code equal to that given
+func (o *GetKeyOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetKeyOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/keys/{kid}/raw][%d] getKeyOK  %+v", 200, o.Payload)
 }
+
+func (o *GetKeyOK) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/keys/{kid}/raw][%d] getKeyOK  %+v", 200, o.Payload)
+}
+
 func (o *GetKeyOK) GetPayload() *models.ClientJWK {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewGetKeyUnauthorized() *GetKeyUnauthorized {
 	return &GetKeyUnauthorized{}
 }
 
-/* GetKeyUnauthorized describes a response with status code 401, with default header values.
+/*
+GetKeyUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type GetKeyUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get key unauthorized response has a 2xx status code
+func (o *GetKeyUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get key unauthorized response has a 3xx status code
+func (o *GetKeyUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get key unauthorized response has a 4xx status code
+func (o *GetKeyUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get key unauthorized response has a 5xx status code
+func (o *GetKeyUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get key unauthorized response a status code equal to that given
+func (o *GetKeyUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *GetKeyUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/keys/{kid}/raw][%d] getKeyUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *GetKeyUnauthorized) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/keys/{kid}/raw][%d] getKeyUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *GetKeyUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewGetKeyForbidden() *GetKeyForbidden {
 	return &GetKeyForbidden{}
 }
 
-/* GetKeyForbidden describes a response with status code 403, with default header values.
+/*
+GetKeyForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type GetKeyForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get key forbidden response has a 2xx status code
+func (o *GetKeyForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get key forbidden response has a 3xx status code
+func (o *GetKeyForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get key forbidden response has a 4xx status code
+func (o *GetKeyForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get key forbidden response has a 5xx status code
+func (o *GetKeyForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get key forbidden response a status code equal to that given
+func (o *GetKeyForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetKeyForbidden) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/keys/{kid}/raw][%d] getKeyForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetKeyForbidden) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/keys/{kid}/raw][%d] getKeyForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetKeyForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewGetKeyNotFound() *GetKeyNotFound {
 	return &GetKeyNotFound{}
 }
 
-/* GetKeyNotFound describes a response with status code 404, with default header values.
+/*
+GetKeyNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type GetKeyNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get key not found response has a 2xx status code
+func (o *GetKeyNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get key not found response has a 3xx status code
+func (o *GetKeyNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get key not found response has a 4xx status code
+func (o *GetKeyNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get key not found response has a 5xx status code
+func (o *GetKeyNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get key not found response a status code equal to that given
+func (o *GetKeyNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *GetKeyNotFound) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/keys/{kid}/raw][%d] getKeyNotFound  %+v", 404, o.Payload)
 }
+
+func (o *GetKeyNotFound) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/keys/{kid}/raw][%d] getKeyNotFound  %+v", 404, o.Payload)
+}
+
 func (o *GetKeyNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewGetKeyTooManyRequests() *GetKeyTooManyRequests {
 	return &GetKeyTooManyRequests{}
 }
 
-/* GetKeyTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetKeyTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type GetKeyTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get key too many requests response has a 2xx status code
+func (o *GetKeyTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get key too many requests response has a 3xx status code
+func (o *GetKeyTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get key too many requests response has a 4xx status code
+func (o *GetKeyTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get key too many requests response has a 5xx status code
+func (o *GetKeyTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get key too many requests response a status code equal to that given
+func (o *GetKeyTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *GetKeyTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/keys/{kid}/raw][%d] getKeyTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *GetKeyTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/keys/{kid}/raw][%d] getKeyTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *GetKeyTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

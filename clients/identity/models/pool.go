@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	"encoding/json"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -41,11 +42,19 @@ type Pool struct {
 	// otp settings
 	OtpSettings *OtpSettings `json:"otp_settings,omitempty"`
 
+	// password policy
+	PasswordPolicy *PasswordPolicy `json:"password_policy,omitempty"`
+
 	// password settings
 	PasswordSettings *PasswordSettings `json:"password_settings,omitempty"`
 
 	// payload schema id
 	PayloadSchemaID string `json:"payload_schema_id,omitempty"`
+
+	// preferred authentication mechanism
+	// Example: password
+	// Enum: [password otp]
+	PreferredAuthenticationMechanism string `json:"preferred_authentication_mechanism,omitempty"`
 
 	// public registration allowed
 	PublicRegistrationAllowed bool `json:"public_registration_allowed,omitempty"`
@@ -72,7 +81,15 @@ func (m *Pool) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validatePasswordPolicy(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validatePasswordSettings(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePreferredAuthenticationMechanism(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -131,6 +148,25 @@ func (m *Pool) validateOtpSettings(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Pool) validatePasswordPolicy(formats strfmt.Registry) error {
+	if swag.IsZero(m.PasswordPolicy) { // not required
+		return nil
+	}
+
+	if m.PasswordPolicy != nil {
+		if err := m.PasswordPolicy.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("password_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("password_policy")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *Pool) validatePasswordSettings(formats strfmt.Registry) error {
 	if swag.IsZero(m.PasswordSettings) { // not required
 		return nil
@@ -145,6 +181,48 @@ func (m *Pool) validatePasswordSettings(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+var poolTypePreferredAuthenticationMechanismPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["password","otp"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		poolTypePreferredAuthenticationMechanismPropEnum = append(poolTypePreferredAuthenticationMechanismPropEnum, v)
+	}
+}
+
+const (
+
+	// PoolPreferredAuthenticationMechanismPassword captures enum value "password"
+	PoolPreferredAuthenticationMechanismPassword string = "password"
+
+	// PoolPreferredAuthenticationMechanismOtp captures enum value "otp"
+	PoolPreferredAuthenticationMechanismOtp string = "otp"
+)
+
+// prop value enum
+func (m *Pool) validatePreferredAuthenticationMechanismEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, poolTypePreferredAuthenticationMechanismPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *Pool) validatePreferredAuthenticationMechanism(formats strfmt.Registry) error {
+	if swag.IsZero(m.PreferredAuthenticationMechanism) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validatePreferredAuthenticationMechanismEnum("preferred_authentication_mechanism", "body", m.PreferredAuthenticationMechanism); err != nil {
+		return err
 	}
 
 	return nil
@@ -168,6 +246,10 @@ func (m *Pool) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 	}
 
 	if err := m.contextValidateOtpSettings(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePasswordPolicy(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -203,6 +285,22 @@ func (m *Pool) contextValidateOtpSettings(ctx context.Context, formats strfmt.Re
 				return ve.ValidateName("otp_settings")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("otp_settings")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *Pool) contextValidatePasswordPolicy(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.PasswordPolicy != nil {
+		if err := m.PasswordPolicy.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("password_policy")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("password_policy")
 			}
 			return err
 		}

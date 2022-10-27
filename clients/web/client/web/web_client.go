@@ -36,7 +36,7 @@ type ClientService interface {
 }
 
 /*
-  GetStyling gets styling for a tenant
+GetStyling gets styling for a tenant
 */
 func (a *Client) GetStyling(params *GetStylingParams, opts ...ClientOption) (*GetStylingOK, error) {
 	// TODO: Validate the params before sending

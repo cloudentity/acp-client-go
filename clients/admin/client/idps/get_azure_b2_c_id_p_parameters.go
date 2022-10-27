@@ -52,10 +52,12 @@ func NewGetAzureB2CIDPParamsWithHTTPClient(client *http.Client) *GetAzureB2CIDPP
 	}
 }
 
-/* GetAzureB2CIDPParams contains all the parameters to send to the API endpoint
-   for the get azure b2 c ID p operation.
+/*
+GetAzureB2CIDPParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get azure b2 c ID p operation.
+
+	Typically these are written to a http.Request.
 */
 type GetAzureB2CIDPParams struct {
 

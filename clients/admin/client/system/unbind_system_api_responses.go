@@ -57,14 +57,44 @@ func NewUnbindSystemAPINoContent() *UnbindSystemAPINoContent {
 	return &UnbindSystemAPINoContent{}
 }
 
-/* UnbindSystemAPINoContent describes a response with status code 204, with default header values.
+/*
+UnbindSystemAPINoContent describes a response with status code 204, with default header values.
 
-success
+	success
 */
 type UnbindSystemAPINoContent struct {
 }
 
+// IsSuccess returns true when this unbind system Api no content response has a 2xx status code
+func (o *UnbindSystemAPINoContent) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this unbind system Api no content response has a 3xx status code
+func (o *UnbindSystemAPINoContent) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this unbind system Api no content response has a 4xx status code
+func (o *UnbindSystemAPINoContent) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this unbind system Api no content response has a 5xx status code
+func (o *UnbindSystemAPINoContent) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this unbind system Api no content response a status code equal to that given
+func (o *UnbindSystemAPINoContent) IsCode(code int) bool {
+	return code == 204
+}
+
 func (o *UnbindSystemAPINoContent) Error() string {
+	return fmt.Sprintf("[DELETE /system/apis/unbind][%d] unbindSystemApiNoContent ", 204)
+}
+
+func (o *UnbindSystemAPINoContent) String() string {
 	return fmt.Sprintf("[DELETE /system/apis/unbind][%d] unbindSystemApiNoContent ", 204)
 }
 
@@ -78,7 +108,8 @@ func NewUnbindSystemAPIUnauthorized() *UnbindSystemAPIUnauthorized {
 	return &UnbindSystemAPIUnauthorized{}
 }
 
-/* UnbindSystemAPIUnauthorized describes a response with status code 401, with default header values.
+/*
+UnbindSystemAPIUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -86,9 +117,39 @@ type UnbindSystemAPIUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this unbind system Api unauthorized response has a 2xx status code
+func (o *UnbindSystemAPIUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this unbind system Api unauthorized response has a 3xx status code
+func (o *UnbindSystemAPIUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this unbind system Api unauthorized response has a 4xx status code
+func (o *UnbindSystemAPIUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this unbind system Api unauthorized response has a 5xx status code
+func (o *UnbindSystemAPIUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this unbind system Api unauthorized response a status code equal to that given
+func (o *UnbindSystemAPIUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *UnbindSystemAPIUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /system/apis/unbind][%d] unbindSystemApiUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *UnbindSystemAPIUnauthorized) String() string {
+	return fmt.Sprintf("[DELETE /system/apis/unbind][%d] unbindSystemApiUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *UnbindSystemAPIUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -110,7 +171,8 @@ func NewUnbindSystemAPIForbidden() *UnbindSystemAPIForbidden {
 	return &UnbindSystemAPIForbidden{}
 }
 
-/* UnbindSystemAPIForbidden describes a response with status code 403, with default header values.
+/*
+UnbindSystemAPIForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -118,9 +180,39 @@ type UnbindSystemAPIForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this unbind system Api forbidden response has a 2xx status code
+func (o *UnbindSystemAPIForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this unbind system Api forbidden response has a 3xx status code
+func (o *UnbindSystemAPIForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this unbind system Api forbidden response has a 4xx status code
+func (o *UnbindSystemAPIForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this unbind system Api forbidden response has a 5xx status code
+func (o *UnbindSystemAPIForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this unbind system Api forbidden response a status code equal to that given
+func (o *UnbindSystemAPIForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *UnbindSystemAPIForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /system/apis/unbind][%d] unbindSystemApiForbidden  %+v", 403, o.Payload)
 }
+
+func (o *UnbindSystemAPIForbidden) String() string {
+	return fmt.Sprintf("[DELETE /system/apis/unbind][%d] unbindSystemApiForbidden  %+v", 403, o.Payload)
+}
+
 func (o *UnbindSystemAPIForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -142,7 +234,8 @@ func NewUnbindSystemAPITooManyRequests() *UnbindSystemAPITooManyRequests {
 	return &UnbindSystemAPITooManyRequests{}
 }
 
-/* UnbindSystemAPITooManyRequests describes a response with status code 429, with default header values.
+/*
+UnbindSystemAPITooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -150,9 +243,39 @@ type UnbindSystemAPITooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this unbind system Api too many requests response has a 2xx status code
+func (o *UnbindSystemAPITooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this unbind system Api too many requests response has a 3xx status code
+func (o *UnbindSystemAPITooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this unbind system Api too many requests response has a 4xx status code
+func (o *UnbindSystemAPITooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this unbind system Api too many requests response has a 5xx status code
+func (o *UnbindSystemAPITooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this unbind system Api too many requests response a status code equal to that given
+func (o *UnbindSystemAPITooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *UnbindSystemAPITooManyRequests) Error() string {
 	return fmt.Sprintf("[DELETE /system/apis/unbind][%d] unbindSystemApiTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *UnbindSystemAPITooManyRequests) String() string {
+	return fmt.Sprintf("[DELETE /system/apis/unbind][%d] unbindSystemApiTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *UnbindSystemAPITooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

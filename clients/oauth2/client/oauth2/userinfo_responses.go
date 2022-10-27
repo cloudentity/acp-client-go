@@ -57,7 +57,8 @@ func NewUserinfoOK() *UserinfoOK {
 	return &UserinfoOK{}
 }
 
-/* UserinfoOK describes a response with status code 200, with default header values.
+/*
+UserinfoOK describes a response with status code 200, with default header values.
 
 Userinfo
 */
@@ -65,9 +66,39 @@ type UserinfoOK struct {
 	Payload *models.UserinfoResponse
 }
 
+// IsSuccess returns true when this userinfo o k response has a 2xx status code
+func (o *UserinfoOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this userinfo o k response has a 3xx status code
+func (o *UserinfoOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this userinfo o k response has a 4xx status code
+func (o *UserinfoOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this userinfo o k response has a 5xx status code
+func (o *UserinfoOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this userinfo o k response a status code equal to that given
+func (o *UserinfoOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *UserinfoOK) Error() string {
 	return fmt.Sprintf("[GET /userinfo][%d] userinfoOK  %+v", 200, o.Payload)
 }
+
+func (o *UserinfoOK) String() string {
+	return fmt.Sprintf("[GET /userinfo][%d] userinfoOK  %+v", 200, o.Payload)
+}
+
 func (o *UserinfoOK) GetPayload() *models.UserinfoResponse {
 	return o.Payload
 }
@@ -89,7 +120,8 @@ func NewUserinfoUnauthorized() *UserinfoUnauthorized {
 	return &UserinfoUnauthorized{}
 }
 
-/* UserinfoUnauthorized describes a response with status code 401, with default header values.
+/*
+UserinfoUnauthorized describes a response with status code 401, with default header values.
 
 ErrorResponse
 */
@@ -97,9 +129,39 @@ type UserinfoUnauthorized struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this userinfo unauthorized response has a 2xx status code
+func (o *UserinfoUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this userinfo unauthorized response has a 3xx status code
+func (o *UserinfoUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this userinfo unauthorized response has a 4xx status code
+func (o *UserinfoUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this userinfo unauthorized response has a 5xx status code
+func (o *UserinfoUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this userinfo unauthorized response a status code equal to that given
+func (o *UserinfoUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *UserinfoUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /userinfo][%d] userinfoUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *UserinfoUnauthorized) String() string {
+	return fmt.Sprintf("[GET /userinfo][%d] userinfoUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *UserinfoUnauthorized) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -121,7 +183,8 @@ func NewUserinfoNotFound() *UserinfoNotFound {
 	return &UserinfoNotFound{}
 }
 
-/* UserinfoNotFound describes a response with status code 404, with default header values.
+/*
+UserinfoNotFound describes a response with status code 404, with default header values.
 
 ErrorResponse
 */
@@ -129,9 +192,39 @@ type UserinfoNotFound struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this userinfo not found response has a 2xx status code
+func (o *UserinfoNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this userinfo not found response has a 3xx status code
+func (o *UserinfoNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this userinfo not found response has a 4xx status code
+func (o *UserinfoNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this userinfo not found response has a 5xx status code
+func (o *UserinfoNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this userinfo not found response a status code equal to that given
+func (o *UserinfoNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *UserinfoNotFound) Error() string {
 	return fmt.Sprintf("[GET /userinfo][%d] userinfoNotFound  %+v", 404, o.Payload)
 }
+
+func (o *UserinfoNotFound) String() string {
+	return fmt.Sprintf("[GET /userinfo][%d] userinfoNotFound  %+v", 404, o.Payload)
+}
+
 func (o *UserinfoNotFound) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -153,7 +246,8 @@ func NewUserinfoTooManyRequests() *UserinfoTooManyRequests {
 	return &UserinfoTooManyRequests{}
 }
 
-/* UserinfoTooManyRequests describes a response with status code 429, with default header values.
+/*
+UserinfoTooManyRequests describes a response with status code 429, with default header values.
 
 ErrorResponse
 */
@@ -161,9 +255,39 @@ type UserinfoTooManyRequests struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this userinfo too many requests response has a 2xx status code
+func (o *UserinfoTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this userinfo too many requests response has a 3xx status code
+func (o *UserinfoTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this userinfo too many requests response has a 4xx status code
+func (o *UserinfoTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this userinfo too many requests response has a 5xx status code
+func (o *UserinfoTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this userinfo too many requests response a status code equal to that given
+func (o *UserinfoTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *UserinfoTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /userinfo][%d] userinfoTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *UserinfoTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /userinfo][%d] userinfoTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *UserinfoTooManyRequests) GetPayload() *models.GenericError {
 	return o.Payload
 }

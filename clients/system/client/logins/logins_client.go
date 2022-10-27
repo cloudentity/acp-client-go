@@ -46,9 +46,9 @@ type ClientService interface {
 }
 
 /*
-  AcceptLoginRequest accepts login request
+AcceptLoginRequest accepts login request
 
-  This API is used by a login page to notify ACP that user has successfully authenticated.
+This API is used by a login page to notify ACP that user has successfully authenticated.
 */
 func (a *Client) AcceptLoginRequest(params *AcceptLoginRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptLoginRequestOK, error) {
 	// TODO: Validate the params before sending
@@ -87,9 +87,9 @@ func (a *Client) AcceptLoginRequest(params *AcceptLoginRequestParams, authInfo r
 }
 
 /*
-  AcceptScopeGrantRequest accepts scope grant
+AcceptScopeGrantRequest accepts scope grant
 
-  This API is used to notify ACP that user granted consent.
+This API is used to notify ACP that user granted consent.
 */
 func (a *Client) AcceptScopeGrantRequest(params *AcceptScopeGrantRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptScopeGrantRequestOK, error) {
 	// TODO: Validate the params before sending
@@ -128,9 +128,9 @@ func (a *Client) AcceptScopeGrantRequest(params *AcceptScopeGrantRequestParams, 
 }
 
 /*
-  GetLoginRequest gets login request
+GetLoginRequest gets login request
 
-  This API is used by a login page to make a decision if user should authenticate.
+This API is used by a login page to make a decision if user should authenticate.
 */
 func (a *Client) GetLoginRequest(params *GetLoginRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetLoginRequestOK, error) {
 	// TODO: Validate the params before sending
@@ -169,9 +169,9 @@ func (a *Client) GetLoginRequest(params *GetLoginRequestParams, authInfo runtime
 }
 
 /*
-  GetScopeGrantRequest gets consent request
+GetScopeGrantRequest gets scope grants
 
-  This API is used by a consent page to display requested scopes.
+This API is used by a consent page to display requested scopes.
 */
 func (a *Client) GetScopeGrantRequest(params *GetScopeGrantRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScopeGrantRequestOK, error) {
 	// TODO: Validate the params before sending
@@ -210,9 +210,9 @@ func (a *Client) GetScopeGrantRequest(params *GetScopeGrantRequestParams, authIn
 }
 
 /*
-  RejectLoginRequest rejects login request
+RejectLoginRequest rejects login request
 
-  This API is used by a login page to notify ACP that login has been rejected.
+This API is used by a login page to notify ACP that login has been rejected.
 */
 func (a *Client) RejectLoginRequest(params *RejectLoginRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectLoginRequestOK, error) {
 	// TODO: Validate the params before sending
@@ -251,9 +251,9 @@ func (a *Client) RejectLoginRequest(params *RejectLoginRequestParams, authInfo r
 }
 
 /*
-  RejectScopeGrantRequest rejects scope grant
+RejectScopeGrantRequest rejects scope grant
 
-  This API is used to notify ACP that scope grant has been rejected.
+This API is used to notify ACP that scope grant has been rejected.
 */
 func (a *Client) RejectScopeGrantRequest(params *RejectScopeGrantRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectScopeGrantRequestOK, error) {
 	// TODO: Validate the params before sending

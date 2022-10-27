@@ -57,14 +57,44 @@ func NewAuthorizeFound() *AuthorizeFound {
 	return &AuthorizeFound{}
 }
 
-/* AuthorizeFound describes a response with status code 302, with default header values.
+/*
+AuthorizeFound describes a response with status code 302, with default header values.
 
 Empty response
 */
 type AuthorizeFound struct {
 }
 
+// IsSuccess returns true when this authorize found response has a 2xx status code
+func (o *AuthorizeFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this authorize found response has a 3xx status code
+func (o *AuthorizeFound) IsRedirect() bool {
+	return true
+}
+
+// IsClientError returns true when this authorize found response has a 4xx status code
+func (o *AuthorizeFound) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this authorize found response has a 5xx status code
+func (o *AuthorizeFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this authorize found response a status code equal to that given
+func (o *AuthorizeFound) IsCode(code int) bool {
+	return code == 302
+}
+
 func (o *AuthorizeFound) Error() string {
+	return fmt.Sprintf("[GET /oauth2/authorize][%d] authorizeFound ", 302)
+}
+
+func (o *AuthorizeFound) String() string {
 	return fmt.Sprintf("[GET /oauth2/authorize][%d] authorizeFound ", 302)
 }
 
@@ -78,7 +108,8 @@ func NewAuthorizeUnauthorized() *AuthorizeUnauthorized {
 	return &AuthorizeUnauthorized{}
 }
 
-/* AuthorizeUnauthorized describes a response with status code 401, with default header values.
+/*
+AuthorizeUnauthorized describes a response with status code 401, with default header values.
 
 ErrorResponse
 */
@@ -86,9 +117,39 @@ type AuthorizeUnauthorized struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this authorize unauthorized response has a 2xx status code
+func (o *AuthorizeUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this authorize unauthorized response has a 3xx status code
+func (o *AuthorizeUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this authorize unauthorized response has a 4xx status code
+func (o *AuthorizeUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this authorize unauthorized response has a 5xx status code
+func (o *AuthorizeUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this authorize unauthorized response a status code equal to that given
+func (o *AuthorizeUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *AuthorizeUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /oauth2/authorize][%d] authorizeUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *AuthorizeUnauthorized) String() string {
+	return fmt.Sprintf("[GET /oauth2/authorize][%d] authorizeUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *AuthorizeUnauthorized) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -110,7 +171,8 @@ func NewAuthorizeNotFound() *AuthorizeNotFound {
 	return &AuthorizeNotFound{}
 }
 
-/* AuthorizeNotFound describes a response with status code 404, with default header values.
+/*
+AuthorizeNotFound describes a response with status code 404, with default header values.
 
 ErrorResponse
 */
@@ -118,9 +180,39 @@ type AuthorizeNotFound struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this authorize not found response has a 2xx status code
+func (o *AuthorizeNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this authorize not found response has a 3xx status code
+func (o *AuthorizeNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this authorize not found response has a 4xx status code
+func (o *AuthorizeNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this authorize not found response has a 5xx status code
+func (o *AuthorizeNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this authorize not found response a status code equal to that given
+func (o *AuthorizeNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *AuthorizeNotFound) Error() string {
 	return fmt.Sprintf("[GET /oauth2/authorize][%d] authorizeNotFound  %+v", 404, o.Payload)
 }
+
+func (o *AuthorizeNotFound) String() string {
+	return fmt.Sprintf("[GET /oauth2/authorize][%d] authorizeNotFound  %+v", 404, o.Payload)
+}
+
 func (o *AuthorizeNotFound) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -142,7 +234,8 @@ func NewAuthorizeTooManyRequests() *AuthorizeTooManyRequests {
 	return &AuthorizeTooManyRequests{}
 }
 
-/* AuthorizeTooManyRequests describes a response with status code 429, with default header values.
+/*
+AuthorizeTooManyRequests describes a response with status code 429, with default header values.
 
 ErrorResponse
 */
@@ -150,9 +243,39 @@ type AuthorizeTooManyRequests struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this authorize too many requests response has a 2xx status code
+func (o *AuthorizeTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this authorize too many requests response has a 3xx status code
+func (o *AuthorizeTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this authorize too many requests response has a 4xx status code
+func (o *AuthorizeTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this authorize too many requests response has a 5xx status code
+func (o *AuthorizeTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this authorize too many requests response a status code equal to that given
+func (o *AuthorizeTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *AuthorizeTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /oauth2/authorize][%d] authorizeTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *AuthorizeTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /oauth2/authorize][%d] authorizeTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *AuthorizeTooManyRequests) GetPayload() *models.GenericError {
 	return o.Payload
 }

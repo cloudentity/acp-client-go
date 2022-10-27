@@ -63,7 +63,8 @@ func NewGetMFAMethodOK() *GetMFAMethodOK {
 	return &GetMFAMethodOK{}
 }
 
-/* GetMFAMethodOK describes a response with status code 200, with default header values.
+/*
+GetMFAMethodOK describes a response with status code 200, with default header values.
 
 MFA method
 */
@@ -71,9 +72,39 @@ type GetMFAMethodOK struct {
 	Payload *models.MFAMethodResponse
 }
 
+// IsSuccess returns true when this get m f a method o k response has a 2xx status code
+func (o *GetMFAMethodOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get m f a method o k response has a 3xx status code
+func (o *GetMFAMethodOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get m f a method o k response has a 4xx status code
+func (o *GetMFAMethodOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get m f a method o k response has a 5xx status code
+func (o *GetMFAMethodOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get m f a method o k response a status code equal to that given
+func (o *GetMFAMethodOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetMFAMethodOK) Error() string {
 	return fmt.Sprintf("[GET /mfa-methods/{mfaID}][%d] getMFAMethodOK  %+v", 200, o.Payload)
 }
+
+func (o *GetMFAMethodOK) String() string {
+	return fmt.Sprintf("[GET /mfa-methods/{mfaID}][%d] getMFAMethodOK  %+v", 200, o.Payload)
+}
+
 func (o *GetMFAMethodOK) GetPayload() *models.MFAMethodResponse {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewGetMFAMethodUnauthorized() *GetMFAMethodUnauthorized {
 	return &GetMFAMethodUnauthorized{}
 }
 
-/* GetMFAMethodUnauthorized describes a response with status code 401, with default header values.
+/*
+GetMFAMethodUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type GetMFAMethodUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get m f a method unauthorized response has a 2xx status code
+func (o *GetMFAMethodUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get m f a method unauthorized response has a 3xx status code
+func (o *GetMFAMethodUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get m f a method unauthorized response has a 4xx status code
+func (o *GetMFAMethodUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get m f a method unauthorized response has a 5xx status code
+func (o *GetMFAMethodUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get m f a method unauthorized response a status code equal to that given
+func (o *GetMFAMethodUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *GetMFAMethodUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /mfa-methods/{mfaID}][%d] getMFAMethodUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *GetMFAMethodUnauthorized) String() string {
+	return fmt.Sprintf("[GET /mfa-methods/{mfaID}][%d] getMFAMethodUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *GetMFAMethodUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewGetMFAMethodForbidden() *GetMFAMethodForbidden {
 	return &GetMFAMethodForbidden{}
 }
 
-/* GetMFAMethodForbidden describes a response with status code 403, with default header values.
+/*
+GetMFAMethodForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type GetMFAMethodForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get m f a method forbidden response has a 2xx status code
+func (o *GetMFAMethodForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get m f a method forbidden response has a 3xx status code
+func (o *GetMFAMethodForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get m f a method forbidden response has a 4xx status code
+func (o *GetMFAMethodForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get m f a method forbidden response has a 5xx status code
+func (o *GetMFAMethodForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get m f a method forbidden response a status code equal to that given
+func (o *GetMFAMethodForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetMFAMethodForbidden) Error() string {
 	return fmt.Sprintf("[GET /mfa-methods/{mfaID}][%d] getMFAMethodForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetMFAMethodForbidden) String() string {
+	return fmt.Sprintf("[GET /mfa-methods/{mfaID}][%d] getMFAMethodForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetMFAMethodForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewGetMFAMethodNotFound() *GetMFAMethodNotFound {
 	return &GetMFAMethodNotFound{}
 }
 
-/* GetMFAMethodNotFound describes a response with status code 404, with default header values.
+/*
+GetMFAMethodNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type GetMFAMethodNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get m f a method not found response has a 2xx status code
+func (o *GetMFAMethodNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get m f a method not found response has a 3xx status code
+func (o *GetMFAMethodNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get m f a method not found response has a 4xx status code
+func (o *GetMFAMethodNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get m f a method not found response has a 5xx status code
+func (o *GetMFAMethodNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get m f a method not found response a status code equal to that given
+func (o *GetMFAMethodNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *GetMFAMethodNotFound) Error() string {
 	return fmt.Sprintf("[GET /mfa-methods/{mfaID}][%d] getMFAMethodNotFound  %+v", 404, o.Payload)
 }
+
+func (o *GetMFAMethodNotFound) String() string {
+	return fmt.Sprintf("[GET /mfa-methods/{mfaID}][%d] getMFAMethodNotFound  %+v", 404, o.Payload)
+}
+
 func (o *GetMFAMethodNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewGetMFAMethodTooManyRequests() *GetMFAMethodTooManyRequests {
 	return &GetMFAMethodTooManyRequests{}
 }
 
-/* GetMFAMethodTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetMFAMethodTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type GetMFAMethodTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get m f a method too many requests response has a 2xx status code
+func (o *GetMFAMethodTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get m f a method too many requests response has a 3xx status code
+func (o *GetMFAMethodTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get m f a method too many requests response has a 4xx status code
+func (o *GetMFAMethodTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get m f a method too many requests response has a 5xx status code
+func (o *GetMFAMethodTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get m f a method too many requests response a status code equal to that given
+func (o *GetMFAMethodTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *GetMFAMethodTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /mfa-methods/{mfaID}][%d] getMFAMethodTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *GetMFAMethodTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /mfa-methods/{mfaID}][%d] getMFAMethodTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *GetMFAMethodTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

@@ -69,7 +69,8 @@ func NewRevokeCDRArrangementsOK() *RevokeCDRArrangementsOK {
 	return &RevokeCDRArrangementsOK{}
 }
 
-/* RevokeCDRArrangementsOK describes a response with status code 200, with default header values.
+/*
+RevokeCDRArrangementsOK describes a response with status code 200, with default header values.
 
 ConsentsRemovedResponse
 */
@@ -77,9 +78,39 @@ type RevokeCDRArrangementsOK struct {
 	Payload *models.ConsentsRemovedResponse
 }
 
+// IsSuccess returns true when this revoke c d r arrangements o k response has a 2xx status code
+func (o *RevokeCDRArrangementsOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this revoke c d r arrangements o k response has a 3xx status code
+func (o *RevokeCDRArrangementsOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke c d r arrangements o k response has a 4xx status code
+func (o *RevokeCDRArrangementsOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this revoke c d r arrangements o k response has a 5xx status code
+func (o *RevokeCDRArrangementsOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke c d r arrangements o k response a status code equal to that given
+func (o *RevokeCDRArrangementsOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *RevokeCDRArrangementsOK) Error() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements][%d] revokeCDRArrangementsOK  %+v", 200, o.Payload)
 }
+
+func (o *RevokeCDRArrangementsOK) String() string {
+	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements][%d] revokeCDRArrangementsOK  %+v", 200, o.Payload)
+}
+
 func (o *RevokeCDRArrangementsOK) GetPayload() *models.ConsentsRemovedResponse {
 	return o.Payload
 }
@@ -101,7 +132,8 @@ func NewRevokeCDRArrangementsBadRequest() *RevokeCDRArrangementsBadRequest {
 	return &RevokeCDRArrangementsBadRequest{}
 }
 
-/* RevokeCDRArrangementsBadRequest describes a response with status code 400, with default header values.
+/*
+RevokeCDRArrangementsBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -109,9 +141,39 @@ type RevokeCDRArrangementsBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this revoke c d r arrangements bad request response has a 2xx status code
+func (o *RevokeCDRArrangementsBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this revoke c d r arrangements bad request response has a 3xx status code
+func (o *RevokeCDRArrangementsBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke c d r arrangements bad request response has a 4xx status code
+func (o *RevokeCDRArrangementsBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this revoke c d r arrangements bad request response has a 5xx status code
+func (o *RevokeCDRArrangementsBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke c d r arrangements bad request response a status code equal to that given
+func (o *RevokeCDRArrangementsBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *RevokeCDRArrangementsBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements][%d] revokeCDRArrangementsBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *RevokeCDRArrangementsBadRequest) String() string {
+	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements][%d] revokeCDRArrangementsBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *RevokeCDRArrangementsBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -133,7 +195,8 @@ func NewRevokeCDRArrangementsUnauthorized() *RevokeCDRArrangementsUnauthorized {
 	return &RevokeCDRArrangementsUnauthorized{}
 }
 
-/* RevokeCDRArrangementsUnauthorized describes a response with status code 401, with default header values.
+/*
+RevokeCDRArrangementsUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -141,9 +204,39 @@ type RevokeCDRArrangementsUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this revoke c d r arrangements unauthorized response has a 2xx status code
+func (o *RevokeCDRArrangementsUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this revoke c d r arrangements unauthorized response has a 3xx status code
+func (o *RevokeCDRArrangementsUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke c d r arrangements unauthorized response has a 4xx status code
+func (o *RevokeCDRArrangementsUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this revoke c d r arrangements unauthorized response has a 5xx status code
+func (o *RevokeCDRArrangementsUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke c d r arrangements unauthorized response a status code equal to that given
+func (o *RevokeCDRArrangementsUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *RevokeCDRArrangementsUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements][%d] revokeCDRArrangementsUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *RevokeCDRArrangementsUnauthorized) String() string {
+	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements][%d] revokeCDRArrangementsUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *RevokeCDRArrangementsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -165,7 +258,8 @@ func NewRevokeCDRArrangementsForbidden() *RevokeCDRArrangementsForbidden {
 	return &RevokeCDRArrangementsForbidden{}
 }
 
-/* RevokeCDRArrangementsForbidden describes a response with status code 403, with default header values.
+/*
+RevokeCDRArrangementsForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -173,9 +267,39 @@ type RevokeCDRArrangementsForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this revoke c d r arrangements forbidden response has a 2xx status code
+func (o *RevokeCDRArrangementsForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this revoke c d r arrangements forbidden response has a 3xx status code
+func (o *RevokeCDRArrangementsForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke c d r arrangements forbidden response has a 4xx status code
+func (o *RevokeCDRArrangementsForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this revoke c d r arrangements forbidden response has a 5xx status code
+func (o *RevokeCDRArrangementsForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke c d r arrangements forbidden response a status code equal to that given
+func (o *RevokeCDRArrangementsForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *RevokeCDRArrangementsForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements][%d] revokeCDRArrangementsForbidden  %+v", 403, o.Payload)
 }
+
+func (o *RevokeCDRArrangementsForbidden) String() string {
+	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements][%d] revokeCDRArrangementsForbidden  %+v", 403, o.Payload)
+}
+
 func (o *RevokeCDRArrangementsForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -197,7 +321,8 @@ func NewRevokeCDRArrangementsNotFound() *RevokeCDRArrangementsNotFound {
 	return &RevokeCDRArrangementsNotFound{}
 }
 
-/* RevokeCDRArrangementsNotFound describes a response with status code 404, with default header values.
+/*
+RevokeCDRArrangementsNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -205,9 +330,39 @@ type RevokeCDRArrangementsNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this revoke c d r arrangements not found response has a 2xx status code
+func (o *RevokeCDRArrangementsNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this revoke c d r arrangements not found response has a 3xx status code
+func (o *RevokeCDRArrangementsNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke c d r arrangements not found response has a 4xx status code
+func (o *RevokeCDRArrangementsNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this revoke c d r arrangements not found response has a 5xx status code
+func (o *RevokeCDRArrangementsNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke c d r arrangements not found response a status code equal to that given
+func (o *RevokeCDRArrangementsNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *RevokeCDRArrangementsNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements][%d] revokeCDRArrangementsNotFound  %+v", 404, o.Payload)
 }
+
+func (o *RevokeCDRArrangementsNotFound) String() string {
+	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements][%d] revokeCDRArrangementsNotFound  %+v", 404, o.Payload)
+}
+
 func (o *RevokeCDRArrangementsNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -229,7 +384,8 @@ func NewRevokeCDRArrangementsTooManyRequests() *RevokeCDRArrangementsTooManyRequ
 	return &RevokeCDRArrangementsTooManyRequests{}
 }
 
-/* RevokeCDRArrangementsTooManyRequests describes a response with status code 429, with default header values.
+/*
+RevokeCDRArrangementsTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -237,9 +393,39 @@ type RevokeCDRArrangementsTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this revoke c d r arrangements too many requests response has a 2xx status code
+func (o *RevokeCDRArrangementsTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this revoke c d r arrangements too many requests response has a 3xx status code
+func (o *RevokeCDRArrangementsTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke c d r arrangements too many requests response has a 4xx status code
+func (o *RevokeCDRArrangementsTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this revoke c d r arrangements too many requests response has a 5xx status code
+func (o *RevokeCDRArrangementsTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke c d r arrangements too many requests response a status code equal to that given
+func (o *RevokeCDRArrangementsTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *RevokeCDRArrangementsTooManyRequests) Error() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements][%d] revokeCDRArrangementsTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *RevokeCDRArrangementsTooManyRequests) String() string {
+	return fmt.Sprintf("[DELETE /servers/{wid}/cdr/arrangements][%d] revokeCDRArrangementsTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *RevokeCDRArrangementsTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

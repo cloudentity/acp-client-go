@@ -54,10 +54,12 @@ func NewUpdateAzureB2CIDPParamsWithHTTPClient(client *http.Client) *UpdateAzureB
 	}
 }
 
-/* UpdateAzureB2CIDPParams contains all the parameters to send to the API endpoint
-   for the update azure b2 c ID p operation.
+/*
+UpdateAzureB2CIDPParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update azure b2 c ID p operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateAzureB2CIDPParams struct {
 

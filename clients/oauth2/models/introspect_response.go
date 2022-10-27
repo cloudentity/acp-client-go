@@ -21,6 +21,9 @@ type IntrospectResponse struct {
 	// Authentication Context Class Reference
 	Acr string `json:"acr,omitempty"`
 
+	// actor claims used in token exchange flow
+	Act map[string]interface{} `json:"act,omitempty"`
+
 	// Active is a boolean indicator of whether or not the presented token
 	// is currently active.  The specifics of a token's "active" state
 	// will vary depending on the implementation of the authorization
@@ -57,6 +60,12 @@ type IntrospectResponse struct {
 	// originally issued.
 	Iat int64 `json:"iat,omitempty"`
 
+	// IDP ID that user authenticated with
+	Idp string `json:"idp,omitempty"`
+
+	// Idp subject
+	IdpSub string `json:"idp_sub,omitempty"`
+
 	// IssuerURL is a string representing the issuer of this token
 	Iss string `json:"iss,omitempty"`
 
@@ -65,6 +74,7 @@ type IntrospectResponse struct {
 	// used before.
 	Nbf int64 `json:"nbf,omitempty"`
 
+	// Deprecated and can be removed at any time.
 	// Refresh Token Expires at is an integer timestamp, measured in the number
 	// of seconds since January 1 1970 UTC, indicating when the issued refresh
 	// token witll expire.

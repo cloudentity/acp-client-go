@@ -18,15 +18,15 @@ import (
 // swagger:model Tenant
 type Tenant struct {
 
-	// authentication context settings
-	AuthenticationContextSettings *AuthenticationContextSettings `json:"authentication_context_settings,omitempty"`
-
 	// tenant unique identifier
 	// exampe: default
 	ID string `json:"id,omitempty"`
 
 	// jwks
 	Jwks *ServerJWKs `json:"jwks,omitempty"`
+
+	// metadata
+	Metadata TenantMetadata `json:"metadata,omitempty"`
 
 	// tenant name
 	// Example: Default
@@ -44,11 +44,11 @@ type Tenant struct {
 func (m *Tenant) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateAuthenticationContextSettings(formats); err != nil {
+	if err := m.validateJwks(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateJwks(formats); err != nil {
+	if err := m.validateMetadata(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -59,25 +59,6 @@ func (m *Tenant) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *Tenant) validateAuthenticationContextSettings(formats strfmt.Registry) error {
-	if swag.IsZero(m.AuthenticationContextSettings) { // not required
-		return nil
-	}
-
-	if m.AuthenticationContextSettings != nil {
-		if err := m.AuthenticationContextSettings.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("authentication_context_settings")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("authentication_context_settings")
-			}
-			return err
-		}
-	}
-
 	return nil
 }
 
@@ -92,6 +73,25 @@ func (m *Tenant) validateJwks(formats strfmt.Registry) error {
 				return ve.ValidateName("jwks")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("jwks")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *Tenant) validateMetadata(formats strfmt.Registry) error {
+	if swag.IsZero(m.Metadata) { // not required
+		return nil
+	}
+
+	if m.Metadata != nil {
+		if err := m.Metadata.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("metadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("metadata")
 			}
 			return err
 		}
@@ -123,11 +123,11 @@ func (m *Tenant) validateStyling(formats strfmt.Registry) error {
 func (m *Tenant) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateAuthenticationContextSettings(ctx, formats); err != nil {
+	if err := m.contextValidateJwks(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateJwks(ctx, formats); err != nil {
+	if err := m.contextValidateMetadata(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -138,22 +138,6 @@ func (m *Tenant) ContextValidate(ctx context.Context, formats strfmt.Registry) e
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *Tenant) contextValidateAuthenticationContextSettings(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.AuthenticationContextSettings != nil {
-		if err := m.AuthenticationContextSettings.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("authentication_context_settings")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("authentication_context_settings")
-			}
-			return err
-		}
-	}
-
 	return nil
 }
 
@@ -168,6 +152,20 @@ func (m *Tenant) contextValidateJwks(ctx context.Context, formats strfmt.Registr
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *Tenant) contextValidateMetadata(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.Metadata.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("metadata")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("metadata")
+		}
+		return err
 	}
 
 	return nil

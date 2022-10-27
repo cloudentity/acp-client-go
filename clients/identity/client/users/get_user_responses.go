@@ -63,22 +63,69 @@ func NewGetUserOK() *GetUserOK {
 	return &GetUserOK{}
 }
 
-/* GetUserOK describes a response with status code 200, with default header values.
+/*
+GetUserOK describes a response with status code 200, with default header values.
 
 User
 */
 type GetUserOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.UserWithData
+}
+
+// IsSuccess returns true when this get user o k response has a 2xx status code
+func (o *GetUserOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get user o k response has a 3xx status code
+func (o *GetUserOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get user o k response has a 4xx status code
+func (o *GetUserOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get user o k response has a 5xx status code
+func (o *GetUserOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get user o k response a status code equal to that given
+func (o *GetUserOK) IsCode(code int) bool {
+	return code == 200
 }
 
 func (o *GetUserOK) Error() string {
 	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}][%d] getUserOK  %+v", 200, o.Payload)
 }
+
+func (o *GetUserOK) String() string {
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}][%d] getUserOK  %+v", 200, o.Payload)
+}
+
 func (o *GetUserOK) GetPayload() *models.UserWithData {
 	return o.Payload
 }
 
 func (o *GetUserOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.UserWithData)
 
@@ -95,7 +142,8 @@ func NewGetUserUnauthorized() *GetUserUnauthorized {
 	return &GetUserUnauthorized{}
 }
 
-/* GetUserUnauthorized describes a response with status code 401, with default header values.
+/*
+GetUserUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +151,39 @@ type GetUserUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get user unauthorized response has a 2xx status code
+func (o *GetUserUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get user unauthorized response has a 3xx status code
+func (o *GetUserUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get user unauthorized response has a 4xx status code
+func (o *GetUserUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get user unauthorized response has a 5xx status code
+func (o *GetUserUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get user unauthorized response a status code equal to that given
+func (o *GetUserUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *GetUserUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}][%d] getUserUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *GetUserUnauthorized) String() string {
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}][%d] getUserUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *GetUserUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +205,8 @@ func NewGetUserForbidden() *GetUserForbidden {
 	return &GetUserForbidden{}
 }
 
-/* GetUserForbidden describes a response with status code 403, with default header values.
+/*
+GetUserForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +214,39 @@ type GetUserForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get user forbidden response has a 2xx status code
+func (o *GetUserForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get user forbidden response has a 3xx status code
+func (o *GetUserForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get user forbidden response has a 4xx status code
+func (o *GetUserForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get user forbidden response has a 5xx status code
+func (o *GetUserForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get user forbidden response a status code equal to that given
+func (o *GetUserForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetUserForbidden) Error() string {
 	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}][%d] getUserForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetUserForbidden) String() string {
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}][%d] getUserForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetUserForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +268,8 @@ func NewGetUserNotFound() *GetUserNotFound {
 	return &GetUserNotFound{}
 }
 
-/* GetUserNotFound describes a response with status code 404, with default header values.
+/*
+GetUserNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +277,39 @@ type GetUserNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get user not found response has a 2xx status code
+func (o *GetUserNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get user not found response has a 3xx status code
+func (o *GetUserNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get user not found response has a 4xx status code
+func (o *GetUserNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get user not found response has a 5xx status code
+func (o *GetUserNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get user not found response a status code equal to that given
+func (o *GetUserNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *GetUserNotFound) Error() string {
 	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}][%d] getUserNotFound  %+v", 404, o.Payload)
 }
+
+func (o *GetUserNotFound) String() string {
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}][%d] getUserNotFound  %+v", 404, o.Payload)
+}
+
 func (o *GetUserNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +331,8 @@ func NewGetUserTooManyRequests() *GetUserTooManyRequests {
 	return &GetUserTooManyRequests{}
 }
 
-/* GetUserTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetUserTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +340,39 @@ type GetUserTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get user too many requests response has a 2xx status code
+func (o *GetUserTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get user too many requests response has a 3xx status code
+func (o *GetUserTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get user too many requests response has a 4xx status code
+func (o *GetUserTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get user too many requests response has a 5xx status code
+func (o *GetUserTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get user too many requests response a status code equal to that given
+func (o *GetUserTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *GetUserTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}][%d] getUserTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *GetUserTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}][%d] getUserTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *GetUserTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

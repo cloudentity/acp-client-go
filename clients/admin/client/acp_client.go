@@ -12,6 +12,7 @@ import (
 
 	"github.com/cloudentity/acp-client-go/clients/admin/client/apis"
 	"github.com/cloudentity/acp-client-go/clients/admin/client/audit_events"
+	"github.com/cloudentity/acp-client-go/clients/admin/client/brute_force_limits"
 	"github.com/cloudentity/acp-client-go/clients/admin/client/claims"
 	"github.com/cloudentity/acp-client-go/clients/admin/client/clients"
 	"github.com/cloudentity/acp-client-go/clients/admin/client/consents"
@@ -20,6 +21,7 @@ import (
 	"github.com/cloudentity/acp-client-go/clients/admin/client/idps"
 	"github.com/cloudentity/acp-client-go/clients/admin/client/keys"
 	"github.com/cloudentity/acp-client-go/clients/admin/client/mfa_methods"
+	"github.com/cloudentity/acp-client-go/clients/admin/client/openbanking"
 	"github.com/cloudentity/acp-client-go/clients/admin/client/policies"
 	"github.com/cloudentity/acp-client-go/clients/admin/client/recent_activities"
 	"github.com/cloudentity/acp-client-go/clients/admin/client/scopes"
@@ -27,10 +29,12 @@ import (
 	"github.com/cloudentity/acp-client-go/clients/admin/client/secrets"
 	"github.com/cloudentity/acp-client-go/clients/admin/client/servers"
 	"github.com/cloudentity/acp-client-go/clients/admin/client/services"
-	"github.com/cloudentity/acp-client-go/clients/admin/client/stats"
 	"github.com/cloudentity/acp-client-go/clients/admin/client/system"
+	"github.com/cloudentity/acp-client-go/clients/admin/client/templates"
 	"github.com/cloudentity/acp-client-go/clients/admin/client/tenants"
+	"github.com/cloudentity/acp-client-go/clients/admin/client/themes"
 	"github.com/cloudentity/acp-client-go/clients/admin/client/vanity_domains"
+	"github.com/cloudentity/acp-client-go/clients/admin/client/webhooks"
 )
 
 // Default acp HTTP client.
@@ -77,6 +81,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *Acp {
 	cli.Transport = transport
 	cli.Apis = apis.New(transport, formats)
 	cli.AuditEvents = audit_events.New(transport, formats)
+	cli.BruteForceLimits = brute_force_limits.New(transport, formats)
 	cli.Claims = claims.New(transport, formats)
 	cli.Clients = clients.New(transport, formats)
 	cli.Consents = consents.New(transport, formats)
@@ -85,6 +90,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *Acp {
 	cli.Idps = idps.New(transport, formats)
 	cli.Keys = keys.New(transport, formats)
 	cli.MfaMethods = mfa_methods.New(transport, formats)
+	cli.Openbanking = openbanking.New(transport, formats)
 	cli.Policies = policies.New(transport, formats)
 	cli.RecentActivities = recent_activities.New(transport, formats)
 	cli.Scopes = scopes.New(transport, formats)
@@ -92,10 +98,12 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *Acp {
 	cli.Secrets = secrets.New(transport, formats)
 	cli.Servers = servers.New(transport, formats)
 	cli.Services = services.New(transport, formats)
-	cli.Stats = stats.New(transport, formats)
 	cli.System = system.New(transport, formats)
+	cli.Templates = templates.New(transport, formats)
 	cli.Tenants = tenants.New(transport, formats)
+	cli.Themes = themes.New(transport, formats)
 	cli.VanityDomains = vanity_domains.New(transport, formats)
+	cli.Webhooks = webhooks.New(transport, formats)
 	return cli
 }
 
@@ -144,6 +152,8 @@ type Acp struct {
 
 	AuditEvents audit_events.ClientService
 
+	BruteForceLimits brute_force_limits.ClientService
+
 	Claims claims.ClientService
 
 	Clients clients.ClientService
@@ -160,6 +170,8 @@ type Acp struct {
 
 	MfaMethods mfa_methods.ClientService
 
+	Openbanking openbanking.ClientService
+
 	Policies policies.ClientService
 
 	RecentActivities recent_activities.ClientService
@@ -174,13 +186,17 @@ type Acp struct {
 
 	Services services.ClientService
 
-	Stats stats.ClientService
-
 	System system.ClientService
+
+	Templates templates.ClientService
 
 	Tenants tenants.ClientService
 
+	Themes themes.ClientService
+
 	VanityDomains vanity_domains.ClientService
+
+	Webhooks webhooks.ClientService
 
 	Transport runtime.ClientTransport
 }
@@ -190,6 +206,7 @@ func (c *Acp) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 	c.Apis.SetTransport(transport)
 	c.AuditEvents.SetTransport(transport)
+	c.BruteForceLimits.SetTransport(transport)
 	c.Claims.SetTransport(transport)
 	c.Clients.SetTransport(transport)
 	c.Consents.SetTransport(transport)
@@ -198,6 +215,7 @@ func (c *Acp) SetTransport(transport runtime.ClientTransport) {
 	c.Idps.SetTransport(transport)
 	c.Keys.SetTransport(transport)
 	c.MfaMethods.SetTransport(transport)
+	c.Openbanking.SetTransport(transport)
 	c.Policies.SetTransport(transport)
 	c.RecentActivities.SetTransport(transport)
 	c.Scopes.SetTransport(transport)
@@ -205,8 +223,10 @@ func (c *Acp) SetTransport(transport runtime.ClientTransport) {
 	c.Secrets.SetTransport(transport)
 	c.Servers.SetTransport(transport)
 	c.Services.SetTransport(transport)
-	c.Stats.SetTransport(transport)
 	c.System.SetTransport(transport)
+	c.Templates.SetTransport(transport)
 	c.Tenants.SetTransport(transport)
+	c.Themes.SetTransport(transport)
 	c.VanityDomains.SetTransport(transport)
+	c.Webhooks.SetTransport(transport)
 }

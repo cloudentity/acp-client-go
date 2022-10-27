@@ -69,7 +69,8 @@ func NewGetOBConsentsOK() *GetOBConsentsOK {
 	return &GetOBConsentsOK{}
 }
 
-/* GetOBConsentsOK describes a response with status code 200, with default header values.
+/*
+GetOBConsentsOK describes a response with status code 200, with default header values.
 
 Consents
 */
@@ -77,9 +78,39 @@ type GetOBConsentsOK struct {
 	Payload *models.OBUKConsents
 }
 
+// IsSuccess returns true when this get o b consents o k response has a 2xx status code
+func (o *GetOBConsentsOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get o b consents o k response has a 3xx status code
+func (o *GetOBConsentsOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get o b consents o k response has a 4xx status code
+func (o *GetOBConsentsOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get o b consents o k response has a 5xx status code
+func (o *GetOBConsentsOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get o b consents o k response a status code equal to that given
+func (o *GetOBConsentsOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetOBConsentsOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/open-banking/consents][%d] getOBConsentsOK  %+v", 200, o.Payload)
 }
+
+func (o *GetOBConsentsOK) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/open-banking/consents][%d] getOBConsentsOK  %+v", 200, o.Payload)
+}
+
 func (o *GetOBConsentsOK) GetPayload() *models.OBUKConsents {
 	return o.Payload
 }
@@ -101,7 +132,8 @@ func NewGetOBConsentsBadRequest() *GetOBConsentsBadRequest {
 	return &GetOBConsentsBadRequest{}
 }
 
-/* GetOBConsentsBadRequest describes a response with status code 400, with default header values.
+/*
+GetOBConsentsBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -109,9 +141,39 @@ type GetOBConsentsBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get o b consents bad request response has a 2xx status code
+func (o *GetOBConsentsBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get o b consents bad request response has a 3xx status code
+func (o *GetOBConsentsBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get o b consents bad request response has a 4xx status code
+func (o *GetOBConsentsBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get o b consents bad request response has a 5xx status code
+func (o *GetOBConsentsBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get o b consents bad request response a status code equal to that given
+func (o *GetOBConsentsBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *GetOBConsentsBadRequest) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/open-banking/consents][%d] getOBConsentsBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *GetOBConsentsBadRequest) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/open-banking/consents][%d] getOBConsentsBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *GetOBConsentsBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -133,7 +195,8 @@ func NewGetOBConsentsUnauthorized() *GetOBConsentsUnauthorized {
 	return &GetOBConsentsUnauthorized{}
 }
 
-/* GetOBConsentsUnauthorized describes a response with status code 401, with default header values.
+/*
+GetOBConsentsUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -141,9 +204,39 @@ type GetOBConsentsUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get o b consents unauthorized response has a 2xx status code
+func (o *GetOBConsentsUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get o b consents unauthorized response has a 3xx status code
+func (o *GetOBConsentsUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get o b consents unauthorized response has a 4xx status code
+func (o *GetOBConsentsUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get o b consents unauthorized response has a 5xx status code
+func (o *GetOBConsentsUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get o b consents unauthorized response a status code equal to that given
+func (o *GetOBConsentsUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *GetOBConsentsUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/open-banking/consents][%d] getOBConsentsUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *GetOBConsentsUnauthorized) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/open-banking/consents][%d] getOBConsentsUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *GetOBConsentsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -165,7 +258,8 @@ func NewGetOBConsentsForbidden() *GetOBConsentsForbidden {
 	return &GetOBConsentsForbidden{}
 }
 
-/* GetOBConsentsForbidden describes a response with status code 403, with default header values.
+/*
+GetOBConsentsForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -173,9 +267,39 @@ type GetOBConsentsForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get o b consents forbidden response has a 2xx status code
+func (o *GetOBConsentsForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get o b consents forbidden response has a 3xx status code
+func (o *GetOBConsentsForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get o b consents forbidden response has a 4xx status code
+func (o *GetOBConsentsForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get o b consents forbidden response has a 5xx status code
+func (o *GetOBConsentsForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get o b consents forbidden response a status code equal to that given
+func (o *GetOBConsentsForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetOBConsentsForbidden) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/open-banking/consents][%d] getOBConsentsForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetOBConsentsForbidden) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/open-banking/consents][%d] getOBConsentsForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetOBConsentsForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -197,7 +321,8 @@ func NewGetOBConsentsNotFound() *GetOBConsentsNotFound {
 	return &GetOBConsentsNotFound{}
 }
 
-/* GetOBConsentsNotFound describes a response with status code 404, with default header values.
+/*
+GetOBConsentsNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -205,9 +330,39 @@ type GetOBConsentsNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get o b consents not found response has a 2xx status code
+func (o *GetOBConsentsNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get o b consents not found response has a 3xx status code
+func (o *GetOBConsentsNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get o b consents not found response has a 4xx status code
+func (o *GetOBConsentsNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get o b consents not found response has a 5xx status code
+func (o *GetOBConsentsNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get o b consents not found response a status code equal to that given
+func (o *GetOBConsentsNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *GetOBConsentsNotFound) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/open-banking/consents][%d] getOBConsentsNotFound  %+v", 404, o.Payload)
 }
+
+func (o *GetOBConsentsNotFound) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/open-banking/consents][%d] getOBConsentsNotFound  %+v", 404, o.Payload)
+}
+
 func (o *GetOBConsentsNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -229,7 +384,8 @@ func NewGetOBConsentsTooManyRequests() *GetOBConsentsTooManyRequests {
 	return &GetOBConsentsTooManyRequests{}
 }
 
-/* GetOBConsentsTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetOBConsentsTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -237,9 +393,39 @@ type GetOBConsentsTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get o b consents too many requests response has a 2xx status code
+func (o *GetOBConsentsTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get o b consents too many requests response has a 3xx status code
+func (o *GetOBConsentsTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get o b consents too many requests response has a 4xx status code
+func (o *GetOBConsentsTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get o b consents too many requests response has a 5xx status code
+func (o *GetOBConsentsTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get o b consents too many requests response a status code equal to that given
+func (o *GetOBConsentsTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *GetOBConsentsTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/open-banking/consents][%d] getOBConsentsTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *GetOBConsentsTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/open-banking/consents][%d] getOBConsentsTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *GetOBConsentsTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

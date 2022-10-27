@@ -57,7 +57,8 @@ func NewListPoolsOK() *ListPoolsOK {
 	return &ListPoolsOK{}
 }
 
-/* ListPoolsOK describes a response with status code 200, with default header values.
+/*
+ListPoolsOK describes a response with status code 200, with default header values.
 
 Pools
 */
@@ -65,9 +66,39 @@ type ListPoolsOK struct {
 	Payload *models.Pools
 }
 
+// IsSuccess returns true when this list pools o k response has a 2xx status code
+func (o *ListPoolsOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this list pools o k response has a 3xx status code
+func (o *ListPoolsOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list pools o k response has a 4xx status code
+func (o *ListPoolsOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this list pools o k response has a 5xx status code
+func (o *ListPoolsOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list pools o k response a status code equal to that given
+func (o *ListPoolsOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *ListPoolsOK) Error() string {
 	return fmt.Sprintf("[GET /admin/pools][%d] listPoolsOK  %+v", 200, o.Payload)
 }
+
+func (o *ListPoolsOK) String() string {
+	return fmt.Sprintf("[GET /admin/pools][%d] listPoolsOK  %+v", 200, o.Payload)
+}
+
 func (o *ListPoolsOK) GetPayload() *models.Pools {
 	return o.Payload
 }
@@ -89,7 +120,8 @@ func NewListPoolsUnauthorized() *ListPoolsUnauthorized {
 	return &ListPoolsUnauthorized{}
 }
 
-/* ListPoolsUnauthorized describes a response with status code 401, with default header values.
+/*
+ListPoolsUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -97,9 +129,39 @@ type ListPoolsUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list pools unauthorized response has a 2xx status code
+func (o *ListPoolsUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list pools unauthorized response has a 3xx status code
+func (o *ListPoolsUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list pools unauthorized response has a 4xx status code
+func (o *ListPoolsUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list pools unauthorized response has a 5xx status code
+func (o *ListPoolsUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list pools unauthorized response a status code equal to that given
+func (o *ListPoolsUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *ListPoolsUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /admin/pools][%d] listPoolsUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *ListPoolsUnauthorized) String() string {
+	return fmt.Sprintf("[GET /admin/pools][%d] listPoolsUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *ListPoolsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -121,7 +183,8 @@ func NewListPoolsForbidden() *ListPoolsForbidden {
 	return &ListPoolsForbidden{}
 }
 
-/* ListPoolsForbidden describes a response with status code 403, with default header values.
+/*
+ListPoolsForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -129,9 +192,39 @@ type ListPoolsForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list pools forbidden response has a 2xx status code
+func (o *ListPoolsForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list pools forbidden response has a 3xx status code
+func (o *ListPoolsForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list pools forbidden response has a 4xx status code
+func (o *ListPoolsForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list pools forbidden response has a 5xx status code
+func (o *ListPoolsForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list pools forbidden response a status code equal to that given
+func (o *ListPoolsForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *ListPoolsForbidden) Error() string {
 	return fmt.Sprintf("[GET /admin/pools][%d] listPoolsForbidden  %+v", 403, o.Payload)
 }
+
+func (o *ListPoolsForbidden) String() string {
+	return fmt.Sprintf("[GET /admin/pools][%d] listPoolsForbidden  %+v", 403, o.Payload)
+}
+
 func (o *ListPoolsForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -153,7 +246,8 @@ func NewListPoolsTooManyRequests() *ListPoolsTooManyRequests {
 	return &ListPoolsTooManyRequests{}
 }
 
-/* ListPoolsTooManyRequests describes a response with status code 429, with default header values.
+/*
+ListPoolsTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -161,9 +255,39 @@ type ListPoolsTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list pools too many requests response has a 2xx status code
+func (o *ListPoolsTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list pools too many requests response has a 3xx status code
+func (o *ListPoolsTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list pools too many requests response has a 4xx status code
+func (o *ListPoolsTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list pools too many requests response has a 5xx status code
+func (o *ListPoolsTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list pools too many requests response a status code equal to that given
+func (o *ListPoolsTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *ListPoolsTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /admin/pools][%d] listPoolsTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *ListPoolsTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /admin/pools][%d] listPoolsTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *ListPoolsTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

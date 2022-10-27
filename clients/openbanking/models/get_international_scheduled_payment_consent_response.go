@@ -20,13 +20,14 @@ import (
 // swagger:model GetInternationalScheduledPaymentConsentResponse
 type GetInternationalScheduledPaymentConsentResponse struct {
 
-	// account ids
+	// List of account identifiers
 	AccountIds []string `json:"account_ids"`
 
 	// authentication context
 	AuthenticationContext AuthenticationContext `json:"authentication_context,omitempty"`
 
-	// client id
+	// Client identifier
+	// Example: \"cauqo9c9vpbs0aj2b2v0\
 	ClientID string `json:"client_id,omitempty"`
 
 	// client info
@@ -35,26 +36,28 @@ type GetInternationalScheduledPaymentConsentResponse struct {
 	// consent id
 	ConsentID string `json:"consent_id,omitempty"`
 
-	// created at
+	// Consent creation time
 	// Format: date-time
 	CreatedAt strfmt.DateTime `json:"created_at,omitempty"`
 
 	// international scheduled payment consent
 	InternationalScheduledPaymentConsent *InternationalScheduledPaymentConsent `json:"international_scheduled_payment_consent,omitempty"`
 
-	// requested scopes
+	// List of requested scopes
 	RequestedScopes []*RequestedScope `json:"requested_scopes"`
 
-	// server id
+	// Server / Workspace identifier
+	// Example: \"server\
 	ServerID string `json:"server_id,omitempty"`
 
-	// status
+	// Consent status
 	Status string `json:"status,omitempty"`
 
-	// subject
+	// Subject
 	Subject string `json:"subject,omitempty"`
 
-	// tenant id
+	// Tenant identifier
+	// Example: \"tenant\
 	TenantID string `json:"tenant_id,omitempty"`
 
 	// type

@@ -36,9 +36,9 @@ type ClientService interface {
 }
 
 /*
-  GetDeveloperEnvironment gets environment
+GetDeveloperEnvironment gets environment
 
-  Get environment settings.
+Get environment settings.
 */
 func (a *Client) GetDeveloperEnvironment(params *GetDeveloperEnvironmentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDeveloperEnvironmentOK, error) {
 	// TODO: Validate the params before sending

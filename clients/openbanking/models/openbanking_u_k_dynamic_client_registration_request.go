@@ -54,6 +54,28 @@ type OpenbankingUKDynamicClientRegistrationRequest struct {
 	// It is considered a good practice to limit the audience of the token for security purposes.
 	Audience []string `json:"audience"`
 
+	// Algorithm used for encrypting authorization responses.
+	// If both signing and encryption are requested, the response will be signed then encrypted,
+	// with the result being a Nested JWT, as defined in JWT [RFC7519].
+	// The default, if omitted, is that no encryption is performed.
+	// Example: RSA-OAEP-256
+	// Enum: [RSA-OAEP RSA-OAEP-256]
+	AuthorizationEncryptedResponseAlg string `json:"authorization_encrypted_response_alg,omitempty"`
+
+	// Algorithm used for encrypting authorization responses.
+	// If authorization_encrypted_response_alg is specified, the default for this value is A128CBC-HS256.
+	// When authorization_encrypted_response_enc is included, authorization_encrypted_response_alg
+	// MUST also be provided.
+	// Example: A128CBC-HS256
+	// Enum: [A256GCM A128CBC-HS256]
+	AuthorizationEncryptedResponseEnc string `json:"authorization_encrypted_response_enc,omitempty"`
+
+	// Algorithm used for signing authorization responses.
+	// If this is specified, the response will be signed using JWS and the configured algorithm.
+	// The algorithm none is not allowed.
+	// Example: RS256
+	AuthorizationSignedResponseAlg string `json:"authorization_signed_response_alg,omitempty"`
+
 	// OPTIONAL. The JWS algorithm alg value that the Client will use for signing authentication requests.
 	// When omitted, the Client will not send signed authentication requests.
 	BackchannelAuthenticationRequestSigningAlg string `json:"backchannel_authentication_request_signing_alg,omitempty"`
@@ -89,6 +111,11 @@ type OpenbankingUKDynamicClientRegistrationRequest struct {
 
 	// URI of a client application
 	ClientURI string `json:"client_uri,omitempty"`
+
+	// Date when the client was created
+	// Example: 2022-04-07T19:17:31.323187Z
+	// Format: date-time
+	CreatedAt strfmt.DateTime `json:"created_at,omitempty"`
 
 	// Description of a client application
 	Description string `json:"description,omitempty"`
@@ -126,6 +153,18 @@ type OpenbankingUKDynamicClientRegistrationRequest struct {
 	// Enum: [RS256 ES256 PS256]
 	IDTokenSignedResponseAlg string `json:"id_token_signed_response_alg,omitempty"`
 
+	// Introspection endpoint authentication method configured for a client application
+	// If empty, the token_endpoint_auth_method will be used
+	//
+	// ACP supports the following client authentication methods:
+	// client_secret_basic, client_secret_post, client_secret_jwt, private_key_jwt,
+	// self_signed_tls_client_auth, tls_client_auth, none.
+	//
+	// To learn more, see the [ACP client authentication documentation](https://docs.authorization.cloudentity.com/features/oauth/client_auth/)
+	// Example: client_secret_basic
+	// Enum: [client_secret_basic client_secret_post client_secret_jwt private_key_jwt self_signed_tls_client_auth tls_client_auth none]
+	IntrospectionEndpointAuthMethod string `json:"introspection_endpoint_auth_method,omitempty"`
+
 	// Identifier for the TPP. This value must be unique for each TPP
 	// registered by the issuer of the SSA.The value must be a Base62
 	// encoded GUID. For SSAs issued by the OB Directory,
@@ -159,12 +198,19 @@ type OpenbankingUKDynamicClientRegistrationRequest struct {
 	// privacy
 	Privacy *ClientPrivacy `json:"privacy,omitempty"`
 
-	// An array of OAuth allowed redirect URIs
-	//
-	// Redirect URIs are used after a user authorizes an application and ACP redirect them back to
-	// the application with an authorization code or an access token included in the URL.
-	// Example: ["https://example.com/callback"]
-	RedirectUris []string `json:"redirect_uris"`
+	// redirect uris
+	RedirectUris RedirectURIs `json:"redirect_uris,omitempty"`
+
+	// Optional JWE alg algorithm the client is declaring that it may use for encrypting Request Objects
+	// Example: RSA-OAEP
+	// Enum: [RSA-OAEP RSA-OAEP-256]
+	RequestObjectEncryptionAlg string `json:"request_object_encryption_alg,omitempty"`
+
+	// Optional JWE enc algorithm the client is declaring that it may use for encrypting Request Objects
+	// When request_object_encryption_enc is included, request_object_encryption_alg MUST also be provided.
+	// Example: A256GCM
+	// Enum: [A256GCM A128CBC-HS256]
+	RequestObjectEncryptionEnc string `json:"request_object_encryption_enc,omitempty"`
 
 	// Request object signing algorithm for the token endpoint
 	//
@@ -180,29 +226,20 @@ type OpenbankingUKDynamicClientRegistrationRequest struct {
 	// Boolean parameter indicating whether the only means of initiating an authorization request the client is allowed to use is PAR.
 	RequirePushedAuthorizationRequests bool `json:"require_pushed_authorization_requests,omitempty"`
 
-	// An array of OAuth client response types configured for a client application
+	// response types
+	ResponseTypes ResponseTypes `json:"response_types,omitempty"`
+
+	// Revocation endpoint authentication method configured for a client application
+	// If empty, the token_endpoint_auth_method will be used
 	//
-	// The array may consist of the following arguments:
+	// ACP supports the following client authentication methods:
+	// client_secret_basic, client_secret_post, client_secret_jwt, private_key_jwt,
+	// self_signed_tls_client_auth, tls_client_auth, none.
 	//
-	// `code` - when supplied as the value for the `response_type` parameter, a successful
-	// response includes an authorization code
-	//
-	// `code token` - when supplied as the value for the `response_type` parameter, a successful
-	// response includes an access token, an access token type, and an authorization code
-	//
-	// `id_token token` - when supplied as the value for the `response_type` parameter, a successful
-	// response includes an access token, an access token type, and an ID token
-	//
-	// `code id_token token` - when supplied as the value for the `response_type` parameter, a successful
-	// response includes an authorization code, an ID token, an access token, and an access token
-	// type.
-	//
-	// `token` - when supplied as the value for the `response_type` parameter, a successful
-	// response includes an access token and its type. This argument is used for the implicit grant
-	// flow, but is not recommended. Instead, you should use either the authorization code grant
-	// flow with PKCE or client authentication set to `none` and with the use of PKCE.
-	// Example: ["token","id_token","code"]
-	ResponseTypes []string `json:"response_types"`
+	// To learn more, see the [ACP client authentication documentation](https://docs.authorization.cloudentity.com/features/oauth/client_auth/)
+	// Example: client_secret_basic
+	// Enum: [client_secret_basic client_secret_post client_secret_jwt private_key_jwt self_signed_tls_client_auth tls_client_auth none]
+	RevocationEndpointAuthMethod string `json:"revocation_endpoint_auth_method,omitempty"`
 
 	// Space separated scopes for compatibility with OAuth specification
 	// Example: email offline_access openid
@@ -305,8 +342,16 @@ type OpenbankingUKDynamicClientRegistrationRequest struct {
 	// Enum: [none RS256 ES256 PS256 HS256]
 	TokenEndpointAuthSigningAlg string `json:"token_endpoint_auth_signing_alg,omitempty"`
 
+	// token exchange
+	TokenExchange *ClientTokenExchangeConfiguration `json:"token_exchange,omitempty"`
+
 	// Terms of Service URL
 	TosURI string `json:"tos_uri,omitempty"`
+
+	// Date when the client was updated
+	// Example: 2022-05-08T01:11:51.1262916Z
+	// Format: date-time
+	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty"`
 
 	// JWS alg algorithm REQUIRED for signing UserInfo Responses.
 	//
@@ -332,6 +377,18 @@ func (m *OpenbankingUKDynamicClientRegistrationRequest) Validate(formats strfmt.
 		res = append(res, err)
 	}
 
+	if err := m.validateAuthorizationEncryptedResponseAlg(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateAuthorizationEncryptedResponseEnc(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCreatedAt(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateGrantTypes(formats); err != nil {
 		res = append(res, err)
 	}
@@ -345,6 +402,10 @@ func (m *OpenbankingUKDynamicClientRegistrationRequest) Validate(formats strfmt.
 	}
 
 	if err := m.validateIDTokenSignedResponseAlg(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIntrospectionEndpointAuthMethod(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -364,11 +425,27 @@ func (m *OpenbankingUKDynamicClientRegistrationRequest) Validate(formats strfmt.
 		res = append(res, err)
 	}
 
+	if err := m.validateRedirectUris(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRequestObjectEncryptionAlg(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRequestObjectEncryptionEnc(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateRequestObjectSigningAlg(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateResponseTypes(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRevocationEndpointAuthMethod(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -381,6 +458,14 @@ func (m *OpenbankingUKDynamicClientRegistrationRequest) Validate(formats strfmt.
 	}
 
 	if err := m.validateTokenEndpointAuthSigningAlg(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTokenExchange(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUpdatedAt(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -442,11 +527,107 @@ func (m *OpenbankingUKDynamicClientRegistrationRequest) validateAud(formats strf
 	return nil
 }
 
+var openbankingUKDynamicClientRegistrationRequestTypeAuthorizationEncryptedResponseAlgPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["RSA-OAEP","RSA-OAEP-256"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		openbankingUKDynamicClientRegistrationRequestTypeAuthorizationEncryptedResponseAlgPropEnum = append(openbankingUKDynamicClientRegistrationRequestTypeAuthorizationEncryptedResponseAlgPropEnum, v)
+	}
+}
+
+const (
+
+	// OpenbankingUKDynamicClientRegistrationRequestAuthorizationEncryptedResponseAlgRSADashOAEP captures enum value "RSA-OAEP"
+	OpenbankingUKDynamicClientRegistrationRequestAuthorizationEncryptedResponseAlgRSADashOAEP string = "RSA-OAEP"
+
+	// OpenbankingUKDynamicClientRegistrationRequestAuthorizationEncryptedResponseAlgRSADashOAEPDash256 captures enum value "RSA-OAEP-256"
+	OpenbankingUKDynamicClientRegistrationRequestAuthorizationEncryptedResponseAlgRSADashOAEPDash256 string = "RSA-OAEP-256"
+)
+
+// prop value enum
+func (m *OpenbankingUKDynamicClientRegistrationRequest) validateAuthorizationEncryptedResponseAlgEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, openbankingUKDynamicClientRegistrationRequestTypeAuthorizationEncryptedResponseAlgPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *OpenbankingUKDynamicClientRegistrationRequest) validateAuthorizationEncryptedResponseAlg(formats strfmt.Registry) error {
+	if swag.IsZero(m.AuthorizationEncryptedResponseAlg) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateAuthorizationEncryptedResponseAlgEnum("authorization_encrypted_response_alg", "body", m.AuthorizationEncryptedResponseAlg); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var openbankingUKDynamicClientRegistrationRequestTypeAuthorizationEncryptedResponseEncPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["A256GCM","A128CBC-HS256"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		openbankingUKDynamicClientRegistrationRequestTypeAuthorizationEncryptedResponseEncPropEnum = append(openbankingUKDynamicClientRegistrationRequestTypeAuthorizationEncryptedResponseEncPropEnum, v)
+	}
+}
+
+const (
+
+	// OpenbankingUKDynamicClientRegistrationRequestAuthorizationEncryptedResponseEncA256GCM captures enum value "A256GCM"
+	OpenbankingUKDynamicClientRegistrationRequestAuthorizationEncryptedResponseEncA256GCM string = "A256GCM"
+
+	// OpenbankingUKDynamicClientRegistrationRequestAuthorizationEncryptedResponseEncA128CBCDashHS256 captures enum value "A128CBC-HS256"
+	OpenbankingUKDynamicClientRegistrationRequestAuthorizationEncryptedResponseEncA128CBCDashHS256 string = "A128CBC-HS256"
+)
+
+// prop value enum
+func (m *OpenbankingUKDynamicClientRegistrationRequest) validateAuthorizationEncryptedResponseEncEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, openbankingUKDynamicClientRegistrationRequestTypeAuthorizationEncryptedResponseEncPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *OpenbankingUKDynamicClientRegistrationRequest) validateAuthorizationEncryptedResponseEnc(formats strfmt.Registry) error {
+	if swag.IsZero(m.AuthorizationEncryptedResponseEnc) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateAuthorizationEncryptedResponseEncEnum("authorization_encrypted_response_enc", "body", m.AuthorizationEncryptedResponseEnc); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *OpenbankingUKDynamicClientRegistrationRequest) validateCreatedAt(formats strfmt.Registry) error {
+	if swag.IsZero(m.CreatedAt) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("created_at", "body", "date-time", m.CreatedAt.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 var openbankingUKDynamicClientRegistrationRequestGrantTypesItemsEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["authorization_code","implicit","client_credentials","refresh_token","password","urn:ietf:params:oauth:grant-type:jwt-bearer","urn:openid:params:grant-type:ciba","urn:ietf:params:oauth:grant-type:token-exchange"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["authorization_code","implicit","client_credentials","refresh_token","password","urn:ietf:params:oauth:grant-type:jwt-bearer","urn:openid:params:grant-type:ciba","urn:ietf:params:oauth:grant-type:token-exchange","urn:ietf:params:oauth:grant-type:device_code"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -607,6 +788,63 @@ func (m *OpenbankingUKDynamicClientRegistrationRequest) validateIDTokenSignedRes
 	return nil
 }
 
+var openbankingUKDynamicClientRegistrationRequestTypeIntrospectionEndpointAuthMethodPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["client_secret_basic","client_secret_post","client_secret_jwt","private_key_jwt","self_signed_tls_client_auth","tls_client_auth","none"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		openbankingUKDynamicClientRegistrationRequestTypeIntrospectionEndpointAuthMethodPropEnum = append(openbankingUKDynamicClientRegistrationRequestTypeIntrospectionEndpointAuthMethodPropEnum, v)
+	}
+}
+
+const (
+
+	// OpenbankingUKDynamicClientRegistrationRequestIntrospectionEndpointAuthMethodClientSecretBasic captures enum value "client_secret_basic"
+	OpenbankingUKDynamicClientRegistrationRequestIntrospectionEndpointAuthMethodClientSecretBasic string = "client_secret_basic"
+
+	// OpenbankingUKDynamicClientRegistrationRequestIntrospectionEndpointAuthMethodClientSecretPost captures enum value "client_secret_post"
+	OpenbankingUKDynamicClientRegistrationRequestIntrospectionEndpointAuthMethodClientSecretPost string = "client_secret_post"
+
+	// OpenbankingUKDynamicClientRegistrationRequestIntrospectionEndpointAuthMethodClientSecretJwt captures enum value "client_secret_jwt"
+	OpenbankingUKDynamicClientRegistrationRequestIntrospectionEndpointAuthMethodClientSecretJwt string = "client_secret_jwt"
+
+	// OpenbankingUKDynamicClientRegistrationRequestIntrospectionEndpointAuthMethodPrivateKeyJwt captures enum value "private_key_jwt"
+	OpenbankingUKDynamicClientRegistrationRequestIntrospectionEndpointAuthMethodPrivateKeyJwt string = "private_key_jwt"
+
+	// OpenbankingUKDynamicClientRegistrationRequestIntrospectionEndpointAuthMethodSelfSignedTLSClientAuth captures enum value "self_signed_tls_client_auth"
+	OpenbankingUKDynamicClientRegistrationRequestIntrospectionEndpointAuthMethodSelfSignedTLSClientAuth string = "self_signed_tls_client_auth"
+
+	// OpenbankingUKDynamicClientRegistrationRequestIntrospectionEndpointAuthMethodTLSClientAuth captures enum value "tls_client_auth"
+	OpenbankingUKDynamicClientRegistrationRequestIntrospectionEndpointAuthMethodTLSClientAuth string = "tls_client_auth"
+
+	// OpenbankingUKDynamicClientRegistrationRequestIntrospectionEndpointAuthMethodNone captures enum value "none"
+	OpenbankingUKDynamicClientRegistrationRequestIntrospectionEndpointAuthMethodNone string = "none"
+)
+
+// prop value enum
+func (m *OpenbankingUKDynamicClientRegistrationRequest) validateIntrospectionEndpointAuthMethodEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, openbankingUKDynamicClientRegistrationRequestTypeIntrospectionEndpointAuthMethodPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *OpenbankingUKDynamicClientRegistrationRequest) validateIntrospectionEndpointAuthMethod(formats strfmt.Registry) error {
+	if swag.IsZero(m.IntrospectionEndpointAuthMethod) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateIntrospectionEndpointAuthMethodEnum("introspection_endpoint_auth_method", "body", m.IntrospectionEndpointAuthMethod); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *OpenbankingUKDynamicClientRegistrationRequest) validateIss(formats strfmt.Registry) error {
 	if swag.IsZero(m.Iss) { // not required
 		return nil
@@ -669,6 +907,107 @@ func (m *OpenbankingUKDynamicClientRegistrationRequest) validatePrivacy(formats 
 	return nil
 }
 
+func (m *OpenbankingUKDynamicClientRegistrationRequest) validateRedirectUris(formats strfmt.Registry) error {
+	if swag.IsZero(m.RedirectUris) { // not required
+		return nil
+	}
+
+	if err := m.RedirectUris.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("redirect_uris")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("redirect_uris")
+		}
+		return err
+	}
+
+	return nil
+}
+
+var openbankingUKDynamicClientRegistrationRequestTypeRequestObjectEncryptionAlgPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["RSA-OAEP","RSA-OAEP-256"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		openbankingUKDynamicClientRegistrationRequestTypeRequestObjectEncryptionAlgPropEnum = append(openbankingUKDynamicClientRegistrationRequestTypeRequestObjectEncryptionAlgPropEnum, v)
+	}
+}
+
+const (
+
+	// OpenbankingUKDynamicClientRegistrationRequestRequestObjectEncryptionAlgRSADashOAEP captures enum value "RSA-OAEP"
+	OpenbankingUKDynamicClientRegistrationRequestRequestObjectEncryptionAlgRSADashOAEP string = "RSA-OAEP"
+
+	// OpenbankingUKDynamicClientRegistrationRequestRequestObjectEncryptionAlgRSADashOAEPDash256 captures enum value "RSA-OAEP-256"
+	OpenbankingUKDynamicClientRegistrationRequestRequestObjectEncryptionAlgRSADashOAEPDash256 string = "RSA-OAEP-256"
+)
+
+// prop value enum
+func (m *OpenbankingUKDynamicClientRegistrationRequest) validateRequestObjectEncryptionAlgEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, openbankingUKDynamicClientRegistrationRequestTypeRequestObjectEncryptionAlgPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *OpenbankingUKDynamicClientRegistrationRequest) validateRequestObjectEncryptionAlg(formats strfmt.Registry) error {
+	if swag.IsZero(m.RequestObjectEncryptionAlg) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateRequestObjectEncryptionAlgEnum("request_object_encryption_alg", "body", m.RequestObjectEncryptionAlg); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var openbankingUKDynamicClientRegistrationRequestTypeRequestObjectEncryptionEncPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["A256GCM","A128CBC-HS256"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		openbankingUKDynamicClientRegistrationRequestTypeRequestObjectEncryptionEncPropEnum = append(openbankingUKDynamicClientRegistrationRequestTypeRequestObjectEncryptionEncPropEnum, v)
+	}
+}
+
+const (
+
+	// OpenbankingUKDynamicClientRegistrationRequestRequestObjectEncryptionEncA256GCM captures enum value "A256GCM"
+	OpenbankingUKDynamicClientRegistrationRequestRequestObjectEncryptionEncA256GCM string = "A256GCM"
+
+	// OpenbankingUKDynamicClientRegistrationRequestRequestObjectEncryptionEncA128CBCDashHS256 captures enum value "A128CBC-HS256"
+	OpenbankingUKDynamicClientRegistrationRequestRequestObjectEncryptionEncA128CBCDashHS256 string = "A128CBC-HS256"
+)
+
+// prop value enum
+func (m *OpenbankingUKDynamicClientRegistrationRequest) validateRequestObjectEncryptionEncEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, openbankingUKDynamicClientRegistrationRequestTypeRequestObjectEncryptionEncPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *OpenbankingUKDynamicClientRegistrationRequest) validateRequestObjectEncryptionEnc(formats strfmt.Registry) error {
+	if swag.IsZero(m.RequestObjectEncryptionEnc) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateRequestObjectEncryptionEncEnum("request_object_encryption_enc", "body", m.RequestObjectEncryptionEnc); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 var openbankingUKDynamicClientRegistrationRequestTypeRequestObjectSigningAlgPropEnum []interface{}
 
 func init() {
@@ -720,37 +1059,75 @@ func (m *OpenbankingUKDynamicClientRegistrationRequest) validateRequestObjectSig
 	return nil
 }
 
-var openbankingUKDynamicClientRegistrationRequestResponseTypesItemsEnum []interface{}
-
-func init() {
-	var res []string
-	if err := json.Unmarshal([]byte(`["token","id_token","code","code id_token","token id_token","token code","token id_token code"]`), &res); err != nil {
-		panic(err)
-	}
-	for _, v := range res {
-		openbankingUKDynamicClientRegistrationRequestResponseTypesItemsEnum = append(openbankingUKDynamicClientRegistrationRequestResponseTypesItemsEnum, v)
-	}
-}
-
-func (m *OpenbankingUKDynamicClientRegistrationRequest) validateResponseTypesItemsEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, openbankingUKDynamicClientRegistrationRequestResponseTypesItemsEnum, true); err != nil {
-		return err
-	}
-	return nil
-}
-
 func (m *OpenbankingUKDynamicClientRegistrationRequest) validateResponseTypes(formats strfmt.Registry) error {
 	if swag.IsZero(m.ResponseTypes) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.ResponseTypes); i++ {
-
-		// value enum
-		if err := m.validateResponseTypesItemsEnum("response_types"+"."+strconv.Itoa(i), "body", m.ResponseTypes[i]); err != nil {
-			return err
+	if err := m.ResponseTypes.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("response_types")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("response_types")
 		}
+		return err
+	}
 
+	return nil
+}
+
+var openbankingUKDynamicClientRegistrationRequestTypeRevocationEndpointAuthMethodPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["client_secret_basic","client_secret_post","client_secret_jwt","private_key_jwt","self_signed_tls_client_auth","tls_client_auth","none"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		openbankingUKDynamicClientRegistrationRequestTypeRevocationEndpointAuthMethodPropEnum = append(openbankingUKDynamicClientRegistrationRequestTypeRevocationEndpointAuthMethodPropEnum, v)
+	}
+}
+
+const (
+
+	// OpenbankingUKDynamicClientRegistrationRequestRevocationEndpointAuthMethodClientSecretBasic captures enum value "client_secret_basic"
+	OpenbankingUKDynamicClientRegistrationRequestRevocationEndpointAuthMethodClientSecretBasic string = "client_secret_basic"
+
+	// OpenbankingUKDynamicClientRegistrationRequestRevocationEndpointAuthMethodClientSecretPost captures enum value "client_secret_post"
+	OpenbankingUKDynamicClientRegistrationRequestRevocationEndpointAuthMethodClientSecretPost string = "client_secret_post"
+
+	// OpenbankingUKDynamicClientRegistrationRequestRevocationEndpointAuthMethodClientSecretJwt captures enum value "client_secret_jwt"
+	OpenbankingUKDynamicClientRegistrationRequestRevocationEndpointAuthMethodClientSecretJwt string = "client_secret_jwt"
+
+	// OpenbankingUKDynamicClientRegistrationRequestRevocationEndpointAuthMethodPrivateKeyJwt captures enum value "private_key_jwt"
+	OpenbankingUKDynamicClientRegistrationRequestRevocationEndpointAuthMethodPrivateKeyJwt string = "private_key_jwt"
+
+	// OpenbankingUKDynamicClientRegistrationRequestRevocationEndpointAuthMethodSelfSignedTLSClientAuth captures enum value "self_signed_tls_client_auth"
+	OpenbankingUKDynamicClientRegistrationRequestRevocationEndpointAuthMethodSelfSignedTLSClientAuth string = "self_signed_tls_client_auth"
+
+	// OpenbankingUKDynamicClientRegistrationRequestRevocationEndpointAuthMethodTLSClientAuth captures enum value "tls_client_auth"
+	OpenbankingUKDynamicClientRegistrationRequestRevocationEndpointAuthMethodTLSClientAuth string = "tls_client_auth"
+
+	// OpenbankingUKDynamicClientRegistrationRequestRevocationEndpointAuthMethodNone captures enum value "none"
+	OpenbankingUKDynamicClientRegistrationRequestRevocationEndpointAuthMethodNone string = "none"
+)
+
+// prop value enum
+func (m *OpenbankingUKDynamicClientRegistrationRequest) validateRevocationEndpointAuthMethodEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, openbankingUKDynamicClientRegistrationRequestTypeRevocationEndpointAuthMethodPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *OpenbankingUKDynamicClientRegistrationRequest) validateRevocationEndpointAuthMethod(formats strfmt.Registry) error {
+	if swag.IsZero(m.RevocationEndpointAuthMethod) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateRevocationEndpointAuthMethodEnum("revocation_endpoint_auth_method", "body", m.RevocationEndpointAuthMethod); err != nil {
+		return err
 	}
 
 	return nil
@@ -906,6 +1283,37 @@ func (m *OpenbankingUKDynamicClientRegistrationRequest) validateTokenEndpointAut
 	return nil
 }
 
+func (m *OpenbankingUKDynamicClientRegistrationRequest) validateTokenExchange(formats strfmt.Registry) error {
+	if swag.IsZero(m.TokenExchange) { // not required
+		return nil
+	}
+
+	if m.TokenExchange != nil {
+		if err := m.TokenExchange.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("token_exchange")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("token_exchange")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *OpenbankingUKDynamicClientRegistrationRequest) validateUpdatedAt(formats strfmt.Registry) error {
+	if swag.IsZero(m.UpdatedAt) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("updated_at", "body", "date-time", m.UpdatedAt.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 var openbankingUKDynamicClientRegistrationRequestTypeUserinfoSignedResponseAlgPropEnum []interface{}
 
 func init() {
@@ -967,6 +1375,18 @@ func (m *OpenbankingUKDynamicClientRegistrationRequest) ContextValidate(ctx cont
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateRedirectUris(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateResponseTypes(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateTokenExchange(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -1006,6 +1426,50 @@ func (m *OpenbankingUKDynamicClientRegistrationRequest) contextValidatePrivacy(c
 				return ve.ValidateName("privacy")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("privacy")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *OpenbankingUKDynamicClientRegistrationRequest) contextValidateRedirectUris(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.RedirectUris.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("redirect_uris")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("redirect_uris")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *OpenbankingUKDynamicClientRegistrationRequest) contextValidateResponseTypes(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.ResponseTypes.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("response_types")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("response_types")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *OpenbankingUKDynamicClientRegistrationRequest) contextValidateTokenExchange(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.TokenExchange != nil {
+		if err := m.TokenExchange.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("token_exchange")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("token_exchange")
 			}
 			return err
 		}

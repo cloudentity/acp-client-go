@@ -63,14 +63,44 @@ func NewDeletePoolNoContent() *DeletePoolNoContent {
 	return &DeletePoolNoContent{}
 }
 
-/* DeletePoolNoContent describes a response with status code 204, with default header values.
+/*
+DeletePoolNoContent describes a response with status code 204, with default header values.
 
-Pool has been deleted
+	Pool has been deleted
 */
 type DeletePoolNoContent struct {
 }
 
+// IsSuccess returns true when this delete pool no content response has a 2xx status code
+func (o *DeletePoolNoContent) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this delete pool no content response has a 3xx status code
+func (o *DeletePoolNoContent) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete pool no content response has a 4xx status code
+func (o *DeletePoolNoContent) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this delete pool no content response has a 5xx status code
+func (o *DeletePoolNoContent) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete pool no content response a status code equal to that given
+func (o *DeletePoolNoContent) IsCode(code int) bool {
+	return code == 204
+}
+
 func (o *DeletePoolNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /admin/pools/{ipID}][%d] deletePoolNoContent ", 204)
+}
+
+func (o *DeletePoolNoContent) String() string {
 	return fmt.Sprintf("[DELETE /admin/pools/{ipID}][%d] deletePoolNoContent ", 204)
 }
 
@@ -84,7 +114,8 @@ func NewDeletePoolUnauthorized() *DeletePoolUnauthorized {
 	return &DeletePoolUnauthorized{}
 }
 
-/* DeletePoolUnauthorized describes a response with status code 401, with default header values.
+/*
+DeletePoolUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -92,9 +123,39 @@ type DeletePoolUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete pool unauthorized response has a 2xx status code
+func (o *DeletePoolUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete pool unauthorized response has a 3xx status code
+func (o *DeletePoolUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete pool unauthorized response has a 4xx status code
+func (o *DeletePoolUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete pool unauthorized response has a 5xx status code
+func (o *DeletePoolUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete pool unauthorized response a status code equal to that given
+func (o *DeletePoolUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *DeletePoolUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /admin/pools/{ipID}][%d] deletePoolUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *DeletePoolUnauthorized) String() string {
+	return fmt.Sprintf("[DELETE /admin/pools/{ipID}][%d] deletePoolUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *DeletePoolUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -116,7 +177,8 @@ func NewDeletePoolForbidden() *DeletePoolForbidden {
 	return &DeletePoolForbidden{}
 }
 
-/* DeletePoolForbidden describes a response with status code 403, with default header values.
+/*
+DeletePoolForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -124,9 +186,39 @@ type DeletePoolForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete pool forbidden response has a 2xx status code
+func (o *DeletePoolForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete pool forbidden response has a 3xx status code
+func (o *DeletePoolForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete pool forbidden response has a 4xx status code
+func (o *DeletePoolForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete pool forbidden response has a 5xx status code
+func (o *DeletePoolForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete pool forbidden response a status code equal to that given
+func (o *DeletePoolForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *DeletePoolForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /admin/pools/{ipID}][%d] deletePoolForbidden  %+v", 403, o.Payload)
 }
+
+func (o *DeletePoolForbidden) String() string {
+	return fmt.Sprintf("[DELETE /admin/pools/{ipID}][%d] deletePoolForbidden  %+v", 403, o.Payload)
+}
+
 func (o *DeletePoolForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -148,7 +240,8 @@ func NewDeletePoolNotFound() *DeletePoolNotFound {
 	return &DeletePoolNotFound{}
 }
 
-/* DeletePoolNotFound describes a response with status code 404, with default header values.
+/*
+DeletePoolNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -156,9 +249,39 @@ type DeletePoolNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete pool not found response has a 2xx status code
+func (o *DeletePoolNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete pool not found response has a 3xx status code
+func (o *DeletePoolNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete pool not found response has a 4xx status code
+func (o *DeletePoolNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete pool not found response has a 5xx status code
+func (o *DeletePoolNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete pool not found response a status code equal to that given
+func (o *DeletePoolNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *DeletePoolNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /admin/pools/{ipID}][%d] deletePoolNotFound  %+v", 404, o.Payload)
 }
+
+func (o *DeletePoolNotFound) String() string {
+	return fmt.Sprintf("[DELETE /admin/pools/{ipID}][%d] deletePoolNotFound  %+v", 404, o.Payload)
+}
+
 func (o *DeletePoolNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -180,7 +303,8 @@ func NewDeletePoolTooManyRequests() *DeletePoolTooManyRequests {
 	return &DeletePoolTooManyRequests{}
 }
 
-/* DeletePoolTooManyRequests describes a response with status code 429, with default header values.
+/*
+DeletePoolTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -188,9 +312,39 @@ type DeletePoolTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete pool too many requests response has a 2xx status code
+func (o *DeletePoolTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete pool too many requests response has a 3xx status code
+func (o *DeletePoolTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete pool too many requests response has a 4xx status code
+func (o *DeletePoolTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete pool too many requests response has a 5xx status code
+func (o *DeletePoolTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete pool too many requests response a status code equal to that given
+func (o *DeletePoolTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *DeletePoolTooManyRequests) Error() string {
 	return fmt.Sprintf("[DELETE /admin/pools/{ipID}][%d] deletePoolTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *DeletePoolTooManyRequests) String() string {
+	return fmt.Sprintf("[DELETE /admin/pools/{ipID}][%d] deletePoolTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *DeletePoolTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

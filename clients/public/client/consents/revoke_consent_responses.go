@@ -69,7 +69,8 @@ func NewRevokeConsentOK() *RevokeConsentOK {
 	return &RevokeConsentOK{}
 }
 
-/* RevokeConsentOK describes a response with status code 200, with default header values.
+/*
+RevokeConsentOK describes a response with status code 200, with default header values.
 
 Consent grant
 */
@@ -77,9 +78,39 @@ type RevokeConsentOK struct {
 	Payload *models.ConsentGrant
 }
 
+// IsSuccess returns true when this revoke consent o k response has a 2xx status code
+func (o *RevokeConsentOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this revoke consent o k response has a 3xx status code
+func (o *RevokeConsentOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke consent o k response has a 4xx status code
+func (o *RevokeConsentOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this revoke consent o k response has a 5xx status code
+func (o *RevokeConsentOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke consent o k response a status code equal to that given
+func (o *RevokeConsentOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *RevokeConsentOK) Error() string {
 	return fmt.Sprintf("[POST /privacy/consents/revoke][%d] revokeConsentOK  %+v", 200, o.Payload)
 }
+
+func (o *RevokeConsentOK) String() string {
+	return fmt.Sprintf("[POST /privacy/consents/revoke][%d] revokeConsentOK  %+v", 200, o.Payload)
+}
+
 func (o *RevokeConsentOK) GetPayload() *models.ConsentGrant {
 	return o.Payload
 }
@@ -101,7 +132,8 @@ func NewRevokeConsentUnauthorized() *RevokeConsentUnauthorized {
 	return &RevokeConsentUnauthorized{}
 }
 
-/* RevokeConsentUnauthorized describes a response with status code 401, with default header values.
+/*
+RevokeConsentUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -109,9 +141,39 @@ type RevokeConsentUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this revoke consent unauthorized response has a 2xx status code
+func (o *RevokeConsentUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this revoke consent unauthorized response has a 3xx status code
+func (o *RevokeConsentUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke consent unauthorized response has a 4xx status code
+func (o *RevokeConsentUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this revoke consent unauthorized response has a 5xx status code
+func (o *RevokeConsentUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke consent unauthorized response a status code equal to that given
+func (o *RevokeConsentUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *RevokeConsentUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /privacy/consents/revoke][%d] revokeConsentUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *RevokeConsentUnauthorized) String() string {
+	return fmt.Sprintf("[POST /privacy/consents/revoke][%d] revokeConsentUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *RevokeConsentUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -133,7 +195,8 @@ func NewRevokeConsentForbidden() *RevokeConsentForbidden {
 	return &RevokeConsentForbidden{}
 }
 
-/* RevokeConsentForbidden describes a response with status code 403, with default header values.
+/*
+RevokeConsentForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -141,9 +204,39 @@ type RevokeConsentForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this revoke consent forbidden response has a 2xx status code
+func (o *RevokeConsentForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this revoke consent forbidden response has a 3xx status code
+func (o *RevokeConsentForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke consent forbidden response has a 4xx status code
+func (o *RevokeConsentForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this revoke consent forbidden response has a 5xx status code
+func (o *RevokeConsentForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke consent forbidden response a status code equal to that given
+func (o *RevokeConsentForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *RevokeConsentForbidden) Error() string {
 	return fmt.Sprintf("[POST /privacy/consents/revoke][%d] revokeConsentForbidden  %+v", 403, o.Payload)
 }
+
+func (o *RevokeConsentForbidden) String() string {
+	return fmt.Sprintf("[POST /privacy/consents/revoke][%d] revokeConsentForbidden  %+v", 403, o.Payload)
+}
+
 func (o *RevokeConsentForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -165,7 +258,8 @@ func NewRevokeConsentNotFound() *RevokeConsentNotFound {
 	return &RevokeConsentNotFound{}
 }
 
-/* RevokeConsentNotFound describes a response with status code 404, with default header values.
+/*
+RevokeConsentNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -173,9 +267,39 @@ type RevokeConsentNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this revoke consent not found response has a 2xx status code
+func (o *RevokeConsentNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this revoke consent not found response has a 3xx status code
+func (o *RevokeConsentNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke consent not found response has a 4xx status code
+func (o *RevokeConsentNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this revoke consent not found response has a 5xx status code
+func (o *RevokeConsentNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke consent not found response a status code equal to that given
+func (o *RevokeConsentNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *RevokeConsentNotFound) Error() string {
 	return fmt.Sprintf("[POST /privacy/consents/revoke][%d] revokeConsentNotFound  %+v", 404, o.Payload)
 }
+
+func (o *RevokeConsentNotFound) String() string {
+	return fmt.Sprintf("[POST /privacy/consents/revoke][%d] revokeConsentNotFound  %+v", 404, o.Payload)
+}
+
 func (o *RevokeConsentNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -197,7 +321,8 @@ func NewRevokeConsentUnprocessableEntity() *RevokeConsentUnprocessableEntity {
 	return &RevokeConsentUnprocessableEntity{}
 }
 
-/* RevokeConsentUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+RevokeConsentUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -205,9 +330,39 @@ type RevokeConsentUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this revoke consent unprocessable entity response has a 2xx status code
+func (o *RevokeConsentUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this revoke consent unprocessable entity response has a 3xx status code
+func (o *RevokeConsentUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke consent unprocessable entity response has a 4xx status code
+func (o *RevokeConsentUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this revoke consent unprocessable entity response has a 5xx status code
+func (o *RevokeConsentUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke consent unprocessable entity response a status code equal to that given
+func (o *RevokeConsentUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *RevokeConsentUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /privacy/consents/revoke][%d] revokeConsentUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *RevokeConsentUnprocessableEntity) String() string {
+	return fmt.Sprintf("[POST /privacy/consents/revoke][%d] revokeConsentUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *RevokeConsentUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -229,7 +384,8 @@ func NewRevokeConsentTooManyRequests() *RevokeConsentTooManyRequests {
 	return &RevokeConsentTooManyRequests{}
 }
 
-/* RevokeConsentTooManyRequests describes a response with status code 429, with default header values.
+/*
+RevokeConsentTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -237,9 +393,39 @@ type RevokeConsentTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this revoke consent too many requests response has a 2xx status code
+func (o *RevokeConsentTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this revoke consent too many requests response has a 3xx status code
+func (o *RevokeConsentTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke consent too many requests response has a 4xx status code
+func (o *RevokeConsentTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this revoke consent too many requests response has a 5xx status code
+func (o *RevokeConsentTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke consent too many requests response a status code equal to that given
+func (o *RevokeConsentTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *RevokeConsentTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /privacy/consents/revoke][%d] revokeConsentTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *RevokeConsentTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /privacy/consents/revoke][%d] revokeConsentTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *RevokeConsentTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

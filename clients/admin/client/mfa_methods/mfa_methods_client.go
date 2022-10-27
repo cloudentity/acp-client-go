@@ -46,9 +46,9 @@ type ClientService interface {
 }
 
 /*
-  CreateMFAMethod creates m f a method
+CreateMFAMethod creates m f a method
 
-  Create MFA method.
+Create MFA method.
 */
 func (a *Client) CreateMFAMethod(params *CreateMFAMethodParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateMFAMethodCreated, error) {
 	// TODO: Validate the params before sending
@@ -87,9 +87,9 @@ func (a *Client) CreateMFAMethod(params *CreateMFAMethodParams, authInfo runtime
 }
 
 /*
-  DeleteMFAMethod deletes m f a method
+DeleteMFAMethod deletes m f a method
 
-  Delete MFA method.
+Delete MFA method.
 */
 func (a *Client) DeleteMFAMethod(params *DeleteMFAMethodParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteMFAMethodNoContent, error) {
 	// TODO: Validate the params before sending
@@ -128,9 +128,9 @@ func (a *Client) DeleteMFAMethod(params *DeleteMFAMethodParams, authInfo runtime
 }
 
 /*
-  GetMFAMethod gets m f a method
+GetMFAMethod gets m f a method
 
-  Get MFA method.
+Get MFA method.
 */
 func (a *Client) GetMFAMethod(params *GetMFAMethodParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetMFAMethodOK, error) {
 	// TODO: Validate the params before sending
@@ -169,9 +169,9 @@ func (a *Client) GetMFAMethod(params *GetMFAMethodParams, authInfo runtime.Clien
 }
 
 /*
-  ListMFAMethods lists m f a methods
+ListMFAMethods lists m f a methods
 
-  List MFA methods.
+List MFA methods.
 */
 func (a *Client) ListMFAMethods(params *ListMFAMethodsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListMFAMethodsOK, error) {
 	// TODO: Validate the params before sending
@@ -210,9 +210,9 @@ func (a *Client) ListMFAMethods(params *ListMFAMethodsParams, authInfo runtime.C
 }
 
 /*
-  TestMFAMethod sends test o t p message
+TestMFAMethod sends test o t p message
 
-  Send test OTP message.
+Send test OTP message.
 */
 func (a *Client) TestMFAMethod(params *TestMFAMethodParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*TestMFAMethodOK, error) {
 	// TODO: Validate the params before sending
@@ -251,9 +251,9 @@ func (a *Client) TestMFAMethod(params *TestMFAMethodParams, authInfo runtime.Cli
 }
 
 /*
-  UpdateMFAMethod updates mfa method
+UpdateMFAMethod updates mfa method
 
-  Update mfaMethod.
+Update mfaMethod.
 */
 func (a *Client) UpdateMFAMethod(params *UpdateMFAMethodParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateMFAMethodOK, error) {
 	// TODO: Validate the params before sending

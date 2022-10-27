@@ -42,9 +42,9 @@ type ClientService interface {
 }
 
 /*
-  ChangePassword changes password
+ChangePassword changes password
 
-  Changes user password if provided password matches current user password.
+Changes user password if provided password matches current user password.
 */
 func (a *Client) ChangePassword(params *ChangePasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ChangePasswordNoContent, error) {
 	// TODO: Validate the params before sending
@@ -83,9 +83,10 @@ func (a *Client) ChangePassword(params *ChangePasswordParams, authInfo runtime.C
 }
 
 /*
-  GetUserProfile selves get user profile
+	GetUserProfile selves get user profile
 
-  Returns base view on user entry. Besides basic user entry it returns all user identifiers and addresses.
+	Returns base view on user entry. Besides basic user entry it returns all user identifiers and addresses.
+
 Also returns user metadata (only fields not marked as hidden) and payload.
 */
 func (a *Client) GetUserProfile(params *GetUserProfileParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserProfileOK, error) {
@@ -125,9 +126,10 @@ func (a *Client) GetUserProfile(params *GetUserProfileParams, authInfo runtime.C
 }
 
 /*
-  ResetPasswordConfirm confirms reset password
+	ResetPasswordConfirm confirms reset password
 
-  Resets password for user if the provided OTP is valid. It's the second and final step of the
+	Resets password for user if the provided OTP is valid. It's the second and final step of the
+
 flow to reset the password.
 Either user identifier or extended code must be provided.
 Endpoint returns generic `401` regardless of the reason of failure to prevent email/mobile enumeration.
@@ -170,9 +172,10 @@ func (a *Client) ResetPasswordConfirm(params *ResetPasswordConfirmParams, opts .
 }
 
 /*
-  UpdateUserProfile selves update user profile
+	UpdateUserProfile selves update user profile
 
-  Updates user payload.
+	Updates user payload.
+
 Payload must be valid against schema defined in user entry.
 
 Returns base view on user entry (see Self Get User Profile endpoint).

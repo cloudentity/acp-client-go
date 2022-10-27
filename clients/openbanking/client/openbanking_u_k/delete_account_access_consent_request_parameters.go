@@ -52,10 +52,12 @@ func NewDeleteAccountAccessConsentRequestParamsWithHTTPClient(client *http.Clien
 	}
 }
 
-/* DeleteAccountAccessConsentRequestParams contains all the parameters to send to the API endpoint
-   for the delete account access consent request operation.
+/*
+DeleteAccountAccessConsentRequestParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the delete account access consent request operation.
+
+	Typically these are written to a http.Request.
 */
 type DeleteAccountAccessConsentRequestParams struct {
 

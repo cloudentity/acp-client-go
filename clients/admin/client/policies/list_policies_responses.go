@@ -63,7 +63,8 @@ func NewListPoliciesOK() *ListPoliciesOK {
 	return &ListPoliciesOK{}
 }
 
-/* ListPoliciesOK describes a response with status code 200, with default header values.
+/*
+ListPoliciesOK describes a response with status code 200, with default header values.
 
 Policies
 */
@@ -71,9 +72,39 @@ type ListPoliciesOK struct {
 	Payload *models.Policies
 }
 
+// IsSuccess returns true when this list policies o k response has a 2xx status code
+func (o *ListPoliciesOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this list policies o k response has a 3xx status code
+func (o *ListPoliciesOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list policies o k response has a 4xx status code
+func (o *ListPoliciesOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this list policies o k response has a 5xx status code
+func (o *ListPoliciesOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list policies o k response a status code equal to that given
+func (o *ListPoliciesOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *ListPoliciesOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/policies][%d] listPoliciesOK  %+v", 200, o.Payload)
 }
+
+func (o *ListPoliciesOK) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/policies][%d] listPoliciesOK  %+v", 200, o.Payload)
+}
+
 func (o *ListPoliciesOK) GetPayload() *models.Policies {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewListPoliciesBadRequest() *ListPoliciesBadRequest {
 	return &ListPoliciesBadRequest{}
 }
 
-/* ListPoliciesBadRequest describes a response with status code 400, with default header values.
+/*
+ListPoliciesBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type ListPoliciesBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list policies bad request response has a 2xx status code
+func (o *ListPoliciesBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list policies bad request response has a 3xx status code
+func (o *ListPoliciesBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list policies bad request response has a 4xx status code
+func (o *ListPoliciesBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list policies bad request response has a 5xx status code
+func (o *ListPoliciesBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list policies bad request response a status code equal to that given
+func (o *ListPoliciesBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *ListPoliciesBadRequest) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/policies][%d] listPoliciesBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *ListPoliciesBadRequest) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/policies][%d] listPoliciesBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *ListPoliciesBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewListPoliciesUnauthorized() *ListPoliciesUnauthorized {
 	return &ListPoliciesUnauthorized{}
 }
 
-/* ListPoliciesUnauthorized describes a response with status code 401, with default header values.
+/*
+ListPoliciesUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type ListPoliciesUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list policies unauthorized response has a 2xx status code
+func (o *ListPoliciesUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list policies unauthorized response has a 3xx status code
+func (o *ListPoliciesUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list policies unauthorized response has a 4xx status code
+func (o *ListPoliciesUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list policies unauthorized response has a 5xx status code
+func (o *ListPoliciesUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list policies unauthorized response a status code equal to that given
+func (o *ListPoliciesUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *ListPoliciesUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/policies][%d] listPoliciesUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *ListPoliciesUnauthorized) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/policies][%d] listPoliciesUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *ListPoliciesUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewListPoliciesForbidden() *ListPoliciesForbidden {
 	return &ListPoliciesForbidden{}
 }
 
-/* ListPoliciesForbidden describes a response with status code 403, with default header values.
+/*
+ListPoliciesForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type ListPoliciesForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list policies forbidden response has a 2xx status code
+func (o *ListPoliciesForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list policies forbidden response has a 3xx status code
+func (o *ListPoliciesForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list policies forbidden response has a 4xx status code
+func (o *ListPoliciesForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list policies forbidden response has a 5xx status code
+func (o *ListPoliciesForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list policies forbidden response a status code equal to that given
+func (o *ListPoliciesForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *ListPoliciesForbidden) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/policies][%d] listPoliciesForbidden  %+v", 403, o.Payload)
 }
+
+func (o *ListPoliciesForbidden) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/policies][%d] listPoliciesForbidden  %+v", 403, o.Payload)
+}
+
 func (o *ListPoliciesForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewListPoliciesTooManyRequests() *ListPoliciesTooManyRequests {
 	return &ListPoliciesTooManyRequests{}
 }
 
-/* ListPoliciesTooManyRequests describes a response with status code 429, with default header values.
+/*
+ListPoliciesTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type ListPoliciesTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list policies too many requests response has a 2xx status code
+func (o *ListPoliciesTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list policies too many requests response has a 3xx status code
+func (o *ListPoliciesTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list policies too many requests response has a 4xx status code
+func (o *ListPoliciesTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list policies too many requests response has a 5xx status code
+func (o *ListPoliciesTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list policies too many requests response a status code equal to that given
+func (o *ListPoliciesTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *ListPoliciesTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/policies][%d] listPoliciesTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *ListPoliciesTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/policies][%d] listPoliciesTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *ListPoliciesTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

@@ -52,10 +52,12 @@ func NewDeleteScriptParamsWithHTTPClient(client *http.Client) *DeleteScriptParam
 	}
 }
 
-/* DeleteScriptParams contains all the parameters to send to the API endpoint
-   for the delete script operation.
+/*
+DeleteScriptParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the delete script operation.
+
+	Typically these are written to a http.Request.
 */
 type DeleteScriptParams struct {
 

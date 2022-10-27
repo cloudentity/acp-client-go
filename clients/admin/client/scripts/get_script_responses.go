@@ -63,7 +63,8 @@ func NewGetScriptOK() *GetScriptOK {
 	return &GetScriptOK{}
 }
 
-/* GetScriptOK describes a response with status code 200, with default header values.
+/*
+GetScriptOK describes a response with status code 200, with default header values.
 
 Script
 */
@@ -71,9 +72,39 @@ type GetScriptOK struct {
 	Payload *models.Script
 }
 
+// IsSuccess returns true when this get script o k response has a 2xx status code
+func (o *GetScriptOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get script o k response has a 3xx status code
+func (o *GetScriptOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get script o k response has a 4xx status code
+func (o *GetScriptOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get script o k response has a 5xx status code
+func (o *GetScriptOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get script o k response a status code equal to that given
+func (o *GetScriptOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetScriptOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/scripts/{script}][%d] getScriptOK  %+v", 200, o.Payload)
 }
+
+func (o *GetScriptOK) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/scripts/{script}][%d] getScriptOK  %+v", 200, o.Payload)
+}
+
 func (o *GetScriptOK) GetPayload() *models.Script {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewGetScriptUnauthorized() *GetScriptUnauthorized {
 	return &GetScriptUnauthorized{}
 }
 
-/* GetScriptUnauthorized describes a response with status code 401, with default header values.
+/*
+GetScriptUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type GetScriptUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get script unauthorized response has a 2xx status code
+func (o *GetScriptUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get script unauthorized response has a 3xx status code
+func (o *GetScriptUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get script unauthorized response has a 4xx status code
+func (o *GetScriptUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get script unauthorized response has a 5xx status code
+func (o *GetScriptUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get script unauthorized response a status code equal to that given
+func (o *GetScriptUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *GetScriptUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/scripts/{script}][%d] getScriptUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *GetScriptUnauthorized) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/scripts/{script}][%d] getScriptUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *GetScriptUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewGetScriptForbidden() *GetScriptForbidden {
 	return &GetScriptForbidden{}
 }
 
-/* GetScriptForbidden describes a response with status code 403, with default header values.
+/*
+GetScriptForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type GetScriptForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get script forbidden response has a 2xx status code
+func (o *GetScriptForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get script forbidden response has a 3xx status code
+func (o *GetScriptForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get script forbidden response has a 4xx status code
+func (o *GetScriptForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get script forbidden response has a 5xx status code
+func (o *GetScriptForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get script forbidden response a status code equal to that given
+func (o *GetScriptForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetScriptForbidden) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/scripts/{script}][%d] getScriptForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetScriptForbidden) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/scripts/{script}][%d] getScriptForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetScriptForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewGetScriptNotFound() *GetScriptNotFound {
 	return &GetScriptNotFound{}
 }
 
-/* GetScriptNotFound describes a response with status code 404, with default header values.
+/*
+GetScriptNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type GetScriptNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get script not found response has a 2xx status code
+func (o *GetScriptNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get script not found response has a 3xx status code
+func (o *GetScriptNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get script not found response has a 4xx status code
+func (o *GetScriptNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get script not found response has a 5xx status code
+func (o *GetScriptNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get script not found response a status code equal to that given
+func (o *GetScriptNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *GetScriptNotFound) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/scripts/{script}][%d] getScriptNotFound  %+v", 404, o.Payload)
 }
+
+func (o *GetScriptNotFound) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/scripts/{script}][%d] getScriptNotFound  %+v", 404, o.Payload)
+}
+
 func (o *GetScriptNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewGetScriptTooManyRequests() *GetScriptTooManyRequests {
 	return &GetScriptTooManyRequests{}
 }
 
-/* GetScriptTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetScriptTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type GetScriptTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get script too many requests response has a 2xx status code
+func (o *GetScriptTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get script too many requests response has a 3xx status code
+func (o *GetScriptTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get script too many requests response has a 4xx status code
+func (o *GetScriptTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get script too many requests response has a 5xx status code
+func (o *GetScriptTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get script too many requests response a status code equal to that given
+func (o *GetScriptTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *GetScriptTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/scripts/{script}][%d] getScriptTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *GetScriptTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/scripts/{script}][%d] getScriptTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *GetScriptTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

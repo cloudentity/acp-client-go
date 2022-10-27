@@ -69,7 +69,8 @@ func NewPushedAuthorizationRequestCreated() *PushedAuthorizationRequestCreated {
 	return &PushedAuthorizationRequestCreated{}
 }
 
-/* PushedAuthorizationRequestCreated describes a response with status code 201, with default header values.
+/*
+PushedAuthorizationRequestCreated describes a response with status code 201, with default header values.
 
 Pushed Authorization Response
 */
@@ -77,9 +78,39 @@ type PushedAuthorizationRequestCreated struct {
 	Payload *models.PARResponse
 }
 
+// IsSuccess returns true when this pushed authorization request created response has a 2xx status code
+func (o *PushedAuthorizationRequestCreated) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this pushed authorization request created response has a 3xx status code
+func (o *PushedAuthorizationRequestCreated) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this pushed authorization request created response has a 4xx status code
+func (o *PushedAuthorizationRequestCreated) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this pushed authorization request created response has a 5xx status code
+func (o *PushedAuthorizationRequestCreated) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this pushed authorization request created response a status code equal to that given
+func (o *PushedAuthorizationRequestCreated) IsCode(code int) bool {
+	return code == 201
+}
+
 func (o *PushedAuthorizationRequestCreated) Error() string {
 	return fmt.Sprintf("[POST /par][%d] pushedAuthorizationRequestCreated  %+v", 201, o.Payload)
 }
+
+func (o *PushedAuthorizationRequestCreated) String() string {
+	return fmt.Sprintf("[POST /par][%d] pushedAuthorizationRequestCreated  %+v", 201, o.Payload)
+}
+
 func (o *PushedAuthorizationRequestCreated) GetPayload() *models.PARResponse {
 	return o.Payload
 }
@@ -101,7 +132,8 @@ func NewPushedAuthorizationRequestBadRequest() *PushedAuthorizationRequestBadReq
 	return &PushedAuthorizationRequestBadRequest{}
 }
 
-/* PushedAuthorizationRequestBadRequest describes a response with status code 400, with default header values.
+/*
+PushedAuthorizationRequestBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -109,9 +141,39 @@ type PushedAuthorizationRequestBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this pushed authorization request bad request response has a 2xx status code
+func (o *PushedAuthorizationRequestBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this pushed authorization request bad request response has a 3xx status code
+func (o *PushedAuthorizationRequestBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this pushed authorization request bad request response has a 4xx status code
+func (o *PushedAuthorizationRequestBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this pushed authorization request bad request response has a 5xx status code
+func (o *PushedAuthorizationRequestBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this pushed authorization request bad request response a status code equal to that given
+func (o *PushedAuthorizationRequestBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *PushedAuthorizationRequestBadRequest) Error() string {
 	return fmt.Sprintf("[POST /par][%d] pushedAuthorizationRequestBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *PushedAuthorizationRequestBadRequest) String() string {
+	return fmt.Sprintf("[POST /par][%d] pushedAuthorizationRequestBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *PushedAuthorizationRequestBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -133,7 +195,8 @@ func NewPushedAuthorizationRequestUnauthorized() *PushedAuthorizationRequestUnau
 	return &PushedAuthorizationRequestUnauthorized{}
 }
 
-/* PushedAuthorizationRequestUnauthorized describes a response with status code 401, with default header values.
+/*
+PushedAuthorizationRequestUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -141,9 +204,39 @@ type PushedAuthorizationRequestUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this pushed authorization request unauthorized response has a 2xx status code
+func (o *PushedAuthorizationRequestUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this pushed authorization request unauthorized response has a 3xx status code
+func (o *PushedAuthorizationRequestUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this pushed authorization request unauthorized response has a 4xx status code
+func (o *PushedAuthorizationRequestUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this pushed authorization request unauthorized response has a 5xx status code
+func (o *PushedAuthorizationRequestUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this pushed authorization request unauthorized response a status code equal to that given
+func (o *PushedAuthorizationRequestUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *PushedAuthorizationRequestUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /par][%d] pushedAuthorizationRequestUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *PushedAuthorizationRequestUnauthorized) String() string {
+	return fmt.Sprintf("[POST /par][%d] pushedAuthorizationRequestUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *PushedAuthorizationRequestUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -165,7 +258,8 @@ func NewPushedAuthorizationRequestMethodNotAllowed() *PushedAuthorizationRequest
 	return &PushedAuthorizationRequestMethodNotAllowed{}
 }
 
-/* PushedAuthorizationRequestMethodNotAllowed describes a response with status code 405, with default header values.
+/*
+PushedAuthorizationRequestMethodNotAllowed describes a response with status code 405, with default header values.
 
 HttpError
 */
@@ -173,9 +267,39 @@ type PushedAuthorizationRequestMethodNotAllowed struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this pushed authorization request method not allowed response has a 2xx status code
+func (o *PushedAuthorizationRequestMethodNotAllowed) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this pushed authorization request method not allowed response has a 3xx status code
+func (o *PushedAuthorizationRequestMethodNotAllowed) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this pushed authorization request method not allowed response has a 4xx status code
+func (o *PushedAuthorizationRequestMethodNotAllowed) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this pushed authorization request method not allowed response has a 5xx status code
+func (o *PushedAuthorizationRequestMethodNotAllowed) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this pushed authorization request method not allowed response a status code equal to that given
+func (o *PushedAuthorizationRequestMethodNotAllowed) IsCode(code int) bool {
+	return code == 405
+}
+
 func (o *PushedAuthorizationRequestMethodNotAllowed) Error() string {
 	return fmt.Sprintf("[POST /par][%d] pushedAuthorizationRequestMethodNotAllowed  %+v", 405, o.Payload)
 }
+
+func (o *PushedAuthorizationRequestMethodNotAllowed) String() string {
+	return fmt.Sprintf("[POST /par][%d] pushedAuthorizationRequestMethodNotAllowed  %+v", 405, o.Payload)
+}
+
 func (o *PushedAuthorizationRequestMethodNotAllowed) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -197,7 +321,8 @@ func NewPushedAuthorizationRequestRequestEntityTooLarge() *PushedAuthorizationRe
 	return &PushedAuthorizationRequestRequestEntityTooLarge{}
 }
 
-/* PushedAuthorizationRequestRequestEntityTooLarge describes a response with status code 413, with default header values.
+/*
+PushedAuthorizationRequestRequestEntityTooLarge describes a response with status code 413, with default header values.
 
 HttpError
 */
@@ -205,9 +330,39 @@ type PushedAuthorizationRequestRequestEntityTooLarge struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this pushed authorization request request entity too large response has a 2xx status code
+func (o *PushedAuthorizationRequestRequestEntityTooLarge) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this pushed authorization request request entity too large response has a 3xx status code
+func (o *PushedAuthorizationRequestRequestEntityTooLarge) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this pushed authorization request request entity too large response has a 4xx status code
+func (o *PushedAuthorizationRequestRequestEntityTooLarge) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this pushed authorization request request entity too large response has a 5xx status code
+func (o *PushedAuthorizationRequestRequestEntityTooLarge) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this pushed authorization request request entity too large response a status code equal to that given
+func (o *PushedAuthorizationRequestRequestEntityTooLarge) IsCode(code int) bool {
+	return code == 413
+}
+
 func (o *PushedAuthorizationRequestRequestEntityTooLarge) Error() string {
 	return fmt.Sprintf("[POST /par][%d] pushedAuthorizationRequestRequestEntityTooLarge  %+v", 413, o.Payload)
 }
+
+func (o *PushedAuthorizationRequestRequestEntityTooLarge) String() string {
+	return fmt.Sprintf("[POST /par][%d] pushedAuthorizationRequestRequestEntityTooLarge  %+v", 413, o.Payload)
+}
+
 func (o *PushedAuthorizationRequestRequestEntityTooLarge) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -229,7 +384,8 @@ func NewPushedAuthorizationRequestTooManyRequests() *PushedAuthorizationRequestT
 	return &PushedAuthorizationRequestTooManyRequests{}
 }
 
-/* PushedAuthorizationRequestTooManyRequests describes a response with status code 429, with default header values.
+/*
+PushedAuthorizationRequestTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -237,9 +393,39 @@ type PushedAuthorizationRequestTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this pushed authorization request too many requests response has a 2xx status code
+func (o *PushedAuthorizationRequestTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this pushed authorization request too many requests response has a 3xx status code
+func (o *PushedAuthorizationRequestTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this pushed authorization request too many requests response has a 4xx status code
+func (o *PushedAuthorizationRequestTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this pushed authorization request too many requests response has a 5xx status code
+func (o *PushedAuthorizationRequestTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this pushed authorization request too many requests response a status code equal to that given
+func (o *PushedAuthorizationRequestTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *PushedAuthorizationRequestTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /par][%d] pushedAuthorizationRequestTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *PushedAuthorizationRequestTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /par][%d] pushedAuthorizationRequestTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *PushedAuthorizationRequestTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

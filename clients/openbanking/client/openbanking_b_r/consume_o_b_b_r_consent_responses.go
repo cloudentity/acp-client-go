@@ -69,7 +69,8 @@ func NewConsumeOBBRConsentOK() *ConsumeOBBRConsentOK {
 	return &ConsumeOBBRConsentOK{}
 }
 
-/* ConsumeOBBRConsentOK describes a response with status code 200, with default header values.
+/*
+ConsumeOBBRConsentOK describes a response with status code 200, with default header values.
 
 BrazilConsent
 */
@@ -77,9 +78,39 @@ type ConsumeOBBRConsentOK struct {
 	Payload *models.BrazilConsent
 }
 
+// IsSuccess returns true when this consume o b b r consent o k response has a 2xx status code
+func (o *ConsumeOBBRConsentOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this consume o b b r consent o k response has a 3xx status code
+func (o *ConsumeOBBRConsentOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this consume o b b r consent o k response has a 4xx status code
+func (o *ConsumeOBBRConsentOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this consume o b b r consent o k response has a 5xx status code
+func (o *ConsumeOBBRConsentOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this consume o b b r consent o k response a status code equal to that given
+func (o *ConsumeOBBRConsentOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *ConsumeOBBRConsentOK) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents/{consentID}/consume][%d] consumeOBBRConsentOK  %+v", 200, o.Payload)
 }
+
+func (o *ConsumeOBBRConsentOK) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents/{consentID}/consume][%d] consumeOBBRConsentOK  %+v", 200, o.Payload)
+}
+
 func (o *ConsumeOBBRConsentOK) GetPayload() *models.BrazilConsent {
 	return o.Payload
 }
@@ -101,7 +132,8 @@ func NewConsumeOBBRConsentBadRequest() *ConsumeOBBRConsentBadRequest {
 	return &ConsumeOBBRConsentBadRequest{}
 }
 
-/* ConsumeOBBRConsentBadRequest describes a response with status code 400, with default header values.
+/*
+ConsumeOBBRConsentBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -109,9 +141,39 @@ type ConsumeOBBRConsentBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this consume o b b r consent bad request response has a 2xx status code
+func (o *ConsumeOBBRConsentBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this consume o b b r consent bad request response has a 3xx status code
+func (o *ConsumeOBBRConsentBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this consume o b b r consent bad request response has a 4xx status code
+func (o *ConsumeOBBRConsentBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this consume o b b r consent bad request response has a 5xx status code
+func (o *ConsumeOBBRConsentBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this consume o b b r consent bad request response a status code equal to that given
+func (o *ConsumeOBBRConsentBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *ConsumeOBBRConsentBadRequest) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents/{consentID}/consume][%d] consumeOBBRConsentBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *ConsumeOBBRConsentBadRequest) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents/{consentID}/consume][%d] consumeOBBRConsentBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *ConsumeOBBRConsentBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -133,7 +195,8 @@ func NewConsumeOBBRConsentUnauthorized() *ConsumeOBBRConsentUnauthorized {
 	return &ConsumeOBBRConsentUnauthorized{}
 }
 
-/* ConsumeOBBRConsentUnauthorized describes a response with status code 401, with default header values.
+/*
+ConsumeOBBRConsentUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -141,9 +204,39 @@ type ConsumeOBBRConsentUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this consume o b b r consent unauthorized response has a 2xx status code
+func (o *ConsumeOBBRConsentUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this consume o b b r consent unauthorized response has a 3xx status code
+func (o *ConsumeOBBRConsentUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this consume o b b r consent unauthorized response has a 4xx status code
+func (o *ConsumeOBBRConsentUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this consume o b b r consent unauthorized response has a 5xx status code
+func (o *ConsumeOBBRConsentUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this consume o b b r consent unauthorized response a status code equal to that given
+func (o *ConsumeOBBRConsentUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *ConsumeOBBRConsentUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents/{consentID}/consume][%d] consumeOBBRConsentUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *ConsumeOBBRConsentUnauthorized) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents/{consentID}/consume][%d] consumeOBBRConsentUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *ConsumeOBBRConsentUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -165,7 +258,8 @@ func NewConsumeOBBRConsentForbidden() *ConsumeOBBRConsentForbidden {
 	return &ConsumeOBBRConsentForbidden{}
 }
 
-/* ConsumeOBBRConsentForbidden describes a response with status code 403, with default header values.
+/*
+ConsumeOBBRConsentForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -173,9 +267,39 @@ type ConsumeOBBRConsentForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this consume o b b r consent forbidden response has a 2xx status code
+func (o *ConsumeOBBRConsentForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this consume o b b r consent forbidden response has a 3xx status code
+func (o *ConsumeOBBRConsentForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this consume o b b r consent forbidden response has a 4xx status code
+func (o *ConsumeOBBRConsentForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this consume o b b r consent forbidden response has a 5xx status code
+func (o *ConsumeOBBRConsentForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this consume o b b r consent forbidden response a status code equal to that given
+func (o *ConsumeOBBRConsentForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *ConsumeOBBRConsentForbidden) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents/{consentID}/consume][%d] consumeOBBRConsentForbidden  %+v", 403, o.Payload)
 }
+
+func (o *ConsumeOBBRConsentForbidden) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents/{consentID}/consume][%d] consumeOBBRConsentForbidden  %+v", 403, o.Payload)
+}
+
 func (o *ConsumeOBBRConsentForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -197,7 +321,8 @@ func NewConsumeOBBRConsentNotFound() *ConsumeOBBRConsentNotFound {
 	return &ConsumeOBBRConsentNotFound{}
 }
 
-/* ConsumeOBBRConsentNotFound describes a response with status code 404, with default header values.
+/*
+ConsumeOBBRConsentNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -205,9 +330,39 @@ type ConsumeOBBRConsentNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this consume o b b r consent not found response has a 2xx status code
+func (o *ConsumeOBBRConsentNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this consume o b b r consent not found response has a 3xx status code
+func (o *ConsumeOBBRConsentNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this consume o b b r consent not found response has a 4xx status code
+func (o *ConsumeOBBRConsentNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this consume o b b r consent not found response has a 5xx status code
+func (o *ConsumeOBBRConsentNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this consume o b b r consent not found response a status code equal to that given
+func (o *ConsumeOBBRConsentNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *ConsumeOBBRConsentNotFound) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents/{consentID}/consume][%d] consumeOBBRConsentNotFound  %+v", 404, o.Payload)
 }
+
+func (o *ConsumeOBBRConsentNotFound) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents/{consentID}/consume][%d] consumeOBBRConsentNotFound  %+v", 404, o.Payload)
+}
+
 func (o *ConsumeOBBRConsentNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -229,7 +384,8 @@ func NewConsumeOBBRConsentTooManyRequests() *ConsumeOBBRConsentTooManyRequests {
 	return &ConsumeOBBRConsentTooManyRequests{}
 }
 
-/* ConsumeOBBRConsentTooManyRequests describes a response with status code 429, with default header values.
+/*
+ConsumeOBBRConsentTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -237,9 +393,39 @@ type ConsumeOBBRConsentTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this consume o b b r consent too many requests response has a 2xx status code
+func (o *ConsumeOBBRConsentTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this consume o b b r consent too many requests response has a 3xx status code
+func (o *ConsumeOBBRConsentTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this consume o b b r consent too many requests response has a 4xx status code
+func (o *ConsumeOBBRConsentTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this consume o b b r consent too many requests response has a 5xx status code
+func (o *ConsumeOBBRConsentTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this consume o b b r consent too many requests response a status code equal to that given
+func (o *ConsumeOBBRConsentTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *ConsumeOBBRConsentTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents/{consentID}/consume][%d] consumeOBBRConsentTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *ConsumeOBBRConsentTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking-brasil/consents/{consentID}/consume][%d] consumeOBBRConsentTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *ConsumeOBBRConsentTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

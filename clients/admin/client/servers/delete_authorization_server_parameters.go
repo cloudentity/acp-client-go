@@ -52,10 +52,12 @@ func NewDeleteAuthorizationServerParamsWithHTTPClient(client *http.Client) *Dele
 	}
 }
 
-/* DeleteAuthorizationServerParams contains all the parameters to send to the API endpoint
-   for the delete authorization server operation.
+/*
+DeleteAuthorizationServerParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the delete authorization server operation.
+
+	Typically these are written to a http.Request.
 */
 type DeleteAuthorizationServerParams struct {
 

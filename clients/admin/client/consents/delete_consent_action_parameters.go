@@ -52,10 +52,12 @@ func NewDeleteConsentActionParamsWithHTTPClient(client *http.Client) *DeleteCons
 	}
 }
 
-/* DeleteConsentActionParams contains all the parameters to send to the API endpoint
-   for the delete consent action operation.
+/*
+DeleteConsentActionParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the delete consent action operation.
+
+	Typically these are written to a http.Request.
 */
 type DeleteConsentActionParams struct {
 

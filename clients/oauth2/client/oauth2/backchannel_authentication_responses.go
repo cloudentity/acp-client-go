@@ -51,7 +51,8 @@ func NewBackchannelAuthenticationOK() *BackchannelAuthenticationOK {
 	return &BackchannelAuthenticationOK{}
 }
 
-/* BackchannelAuthenticationOK describes a response with status code 200, with default header values.
+/*
+BackchannelAuthenticationOK describes a response with status code 200, with default header values.
 
 Backchannel authentication response
 */
@@ -59,9 +60,39 @@ type BackchannelAuthenticationOK struct {
 	Payload *models.BackchannelAuthenticationResponse
 }
 
+// IsSuccess returns true when this backchannel authentication o k response has a 2xx status code
+func (o *BackchannelAuthenticationOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this backchannel authentication o k response has a 3xx status code
+func (o *BackchannelAuthenticationOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this backchannel authentication o k response has a 4xx status code
+func (o *BackchannelAuthenticationOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this backchannel authentication o k response has a 5xx status code
+func (o *BackchannelAuthenticationOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this backchannel authentication o k response a status code equal to that given
+func (o *BackchannelAuthenticationOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *BackchannelAuthenticationOK) Error() string {
 	return fmt.Sprintf("[POST /backchannel/authentication][%d] backchannelAuthenticationOK  %+v", 200, o.Payload)
 }
+
+func (o *BackchannelAuthenticationOK) String() string {
+	return fmt.Sprintf("[POST /backchannel/authentication][%d] backchannelAuthenticationOK  %+v", 200, o.Payload)
+}
+
 func (o *BackchannelAuthenticationOK) GetPayload() *models.BackchannelAuthenticationResponse {
 	return o.Payload
 }
@@ -83,7 +114,8 @@ func NewBackchannelAuthenticationBadRequest() *BackchannelAuthenticationBadReque
 	return &BackchannelAuthenticationBadRequest{}
 }
 
-/* BackchannelAuthenticationBadRequest describes a response with status code 400, with default header values.
+/*
+BackchannelAuthenticationBadRequest describes a response with status code 400, with default header values.
 
 Backchannel authentication error
 */
@@ -91,9 +123,39 @@ type BackchannelAuthenticationBadRequest struct {
 	Payload *models.BackchannelAuthenticationError
 }
 
+// IsSuccess returns true when this backchannel authentication bad request response has a 2xx status code
+func (o *BackchannelAuthenticationBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this backchannel authentication bad request response has a 3xx status code
+func (o *BackchannelAuthenticationBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this backchannel authentication bad request response has a 4xx status code
+func (o *BackchannelAuthenticationBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this backchannel authentication bad request response has a 5xx status code
+func (o *BackchannelAuthenticationBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this backchannel authentication bad request response a status code equal to that given
+func (o *BackchannelAuthenticationBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *BackchannelAuthenticationBadRequest) Error() string {
 	return fmt.Sprintf("[POST /backchannel/authentication][%d] backchannelAuthenticationBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *BackchannelAuthenticationBadRequest) String() string {
+	return fmt.Sprintf("[POST /backchannel/authentication][%d] backchannelAuthenticationBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *BackchannelAuthenticationBadRequest) GetPayload() *models.BackchannelAuthenticationError {
 	return o.Payload
 }
@@ -115,7 +177,8 @@ func NewBackchannelAuthenticationUnauthorized() *BackchannelAuthenticationUnauth
 	return &BackchannelAuthenticationUnauthorized{}
 }
 
-/* BackchannelAuthenticationUnauthorized describes a response with status code 401, with default header values.
+/*
+BackchannelAuthenticationUnauthorized describes a response with status code 401, with default header values.
 
 Backchannel authentication error
 */
@@ -123,9 +186,39 @@ type BackchannelAuthenticationUnauthorized struct {
 	Payload *models.BackchannelAuthenticationError
 }
 
+// IsSuccess returns true when this backchannel authentication unauthorized response has a 2xx status code
+func (o *BackchannelAuthenticationUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this backchannel authentication unauthorized response has a 3xx status code
+func (o *BackchannelAuthenticationUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this backchannel authentication unauthorized response has a 4xx status code
+func (o *BackchannelAuthenticationUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this backchannel authentication unauthorized response has a 5xx status code
+func (o *BackchannelAuthenticationUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this backchannel authentication unauthorized response a status code equal to that given
+func (o *BackchannelAuthenticationUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *BackchannelAuthenticationUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /backchannel/authentication][%d] backchannelAuthenticationUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *BackchannelAuthenticationUnauthorized) String() string {
+	return fmt.Sprintf("[POST /backchannel/authentication][%d] backchannelAuthenticationUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *BackchannelAuthenticationUnauthorized) GetPayload() *models.BackchannelAuthenticationError {
 	return o.Payload
 }

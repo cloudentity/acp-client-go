@@ -57,14 +57,44 @@ func NewVerifyTransientOTPNoContent() *VerifyTransientOTPNoContent {
 	return &VerifyTransientOTPNoContent{}
 }
 
-/* VerifyTransientOTPNoContent describes a response with status code 204, with default header values.
+/*
+VerifyTransientOTPNoContent describes a response with status code 204, with default header values.
 
-one-time password verified
+	one-time password verified
 */
 type VerifyTransientOTPNoContent struct {
 }
 
+// IsSuccess returns true when this verify transient o t p no content response has a 2xx status code
+func (o *VerifyTransientOTPNoContent) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this verify transient o t p no content response has a 3xx status code
+func (o *VerifyTransientOTPNoContent) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this verify transient o t p no content response has a 4xx status code
+func (o *VerifyTransientOTPNoContent) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this verify transient o t p no content response has a 5xx status code
+func (o *VerifyTransientOTPNoContent) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this verify transient o t p no content response a status code equal to that given
+func (o *VerifyTransientOTPNoContent) IsCode(code int) bool {
+	return code == 204
+}
+
 func (o *VerifyTransientOTPNoContent) Error() string {
+	return fmt.Sprintf("[POST /authn/otp/transient/{otpID}][%d] verifyTransientOTPNoContent ", 204)
+}
+
+func (o *VerifyTransientOTPNoContent) String() string {
 	return fmt.Sprintf("[POST /authn/otp/transient/{otpID}][%d] verifyTransientOTPNoContent ", 204)
 }
 
@@ -78,7 +108,8 @@ func NewVerifyTransientOTPUnauthorized() *VerifyTransientOTPUnauthorized {
 	return &VerifyTransientOTPUnauthorized{}
 }
 
-/* VerifyTransientOTPUnauthorized describes a response with status code 401, with default header values.
+/*
+VerifyTransientOTPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -86,9 +117,39 @@ type VerifyTransientOTPUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this verify transient o t p unauthorized response has a 2xx status code
+func (o *VerifyTransientOTPUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this verify transient o t p unauthorized response has a 3xx status code
+func (o *VerifyTransientOTPUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this verify transient o t p unauthorized response has a 4xx status code
+func (o *VerifyTransientOTPUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this verify transient o t p unauthorized response has a 5xx status code
+func (o *VerifyTransientOTPUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this verify transient o t p unauthorized response a status code equal to that given
+func (o *VerifyTransientOTPUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *VerifyTransientOTPUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /authn/otp/transient/{otpID}][%d] verifyTransientOTPUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *VerifyTransientOTPUnauthorized) String() string {
+	return fmt.Sprintf("[POST /authn/otp/transient/{otpID}][%d] verifyTransientOTPUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *VerifyTransientOTPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -110,7 +171,8 @@ func NewVerifyTransientOTPForbidden() *VerifyTransientOTPForbidden {
 	return &VerifyTransientOTPForbidden{}
 }
 
-/* VerifyTransientOTPForbidden describes a response with status code 403, with default header values.
+/*
+VerifyTransientOTPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -118,9 +180,39 @@ type VerifyTransientOTPForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this verify transient o t p forbidden response has a 2xx status code
+func (o *VerifyTransientOTPForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this verify transient o t p forbidden response has a 3xx status code
+func (o *VerifyTransientOTPForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this verify transient o t p forbidden response has a 4xx status code
+func (o *VerifyTransientOTPForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this verify transient o t p forbidden response has a 5xx status code
+func (o *VerifyTransientOTPForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this verify transient o t p forbidden response a status code equal to that given
+func (o *VerifyTransientOTPForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *VerifyTransientOTPForbidden) Error() string {
 	return fmt.Sprintf("[POST /authn/otp/transient/{otpID}][%d] verifyTransientOTPForbidden  %+v", 403, o.Payload)
 }
+
+func (o *VerifyTransientOTPForbidden) String() string {
+	return fmt.Sprintf("[POST /authn/otp/transient/{otpID}][%d] verifyTransientOTPForbidden  %+v", 403, o.Payload)
+}
+
 func (o *VerifyTransientOTPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -142,7 +234,8 @@ func NewVerifyTransientOTPNotFound() *VerifyTransientOTPNotFound {
 	return &VerifyTransientOTPNotFound{}
 }
 
-/* VerifyTransientOTPNotFound describes a response with status code 404, with default header values.
+/*
+VerifyTransientOTPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -150,9 +243,39 @@ type VerifyTransientOTPNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this verify transient o t p not found response has a 2xx status code
+func (o *VerifyTransientOTPNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this verify transient o t p not found response has a 3xx status code
+func (o *VerifyTransientOTPNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this verify transient o t p not found response has a 4xx status code
+func (o *VerifyTransientOTPNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this verify transient o t p not found response has a 5xx status code
+func (o *VerifyTransientOTPNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this verify transient o t p not found response a status code equal to that given
+func (o *VerifyTransientOTPNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *VerifyTransientOTPNotFound) Error() string {
 	return fmt.Sprintf("[POST /authn/otp/transient/{otpID}][%d] verifyTransientOTPNotFound  %+v", 404, o.Payload)
 }
+
+func (o *VerifyTransientOTPNotFound) String() string {
+	return fmt.Sprintf("[POST /authn/otp/transient/{otpID}][%d] verifyTransientOTPNotFound  %+v", 404, o.Payload)
+}
+
 func (o *VerifyTransientOTPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

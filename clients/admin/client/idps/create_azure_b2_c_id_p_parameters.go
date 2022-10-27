@@ -54,10 +54,12 @@ func NewCreateAzureB2CIDPParamsWithHTTPClient(client *http.Client) *CreateAzureB
 	}
 }
 
-/* CreateAzureB2CIDPParams contains all the parameters to send to the API endpoint
-   for the create azure b2 c ID p operation.
+/*
+CreateAzureB2CIDPParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the create azure b2 c ID p operation.
+
+	Typically these are written to a http.Request.
 */
 type CreateAzureB2CIDPParams struct {
 

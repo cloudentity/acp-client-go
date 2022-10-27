@@ -54,10 +54,12 @@ func NewDynamicClientRegistrationParamsWithHTTPClient(client *http.Client) *Dyna
 	}
 }
 
-/* DynamicClientRegistrationParams contains all the parameters to send to the API endpoint
-   for the dynamic client registration operation.
+/*
+DynamicClientRegistrationParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the dynamic client registration operation.
+
+	Typically these are written to a http.Request.
 */
 type DynamicClientRegistrationParams struct {
 

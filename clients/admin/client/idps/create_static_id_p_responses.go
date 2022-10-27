@@ -75,7 +75,8 @@ func NewCreateStaticIDPCreated() *CreateStaticIDPCreated {
 	return &CreateStaticIDPCreated{}
 }
 
-/* CreateStaticIDPCreated describes a response with status code 201, with default header values.
+/*
+CreateStaticIDPCreated describes a response with status code 201, with default header values.
 
 StaticIDP
 */
@@ -83,9 +84,39 @@ type CreateStaticIDPCreated struct {
 	Payload *models.StaticIDP
 }
 
+// IsSuccess returns true when this create static Id p created response has a 2xx status code
+func (o *CreateStaticIDPCreated) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this create static Id p created response has a 3xx status code
+func (o *CreateStaticIDPCreated) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create static Id p created response has a 4xx status code
+func (o *CreateStaticIDPCreated) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create static Id p created response has a 5xx status code
+func (o *CreateStaticIDPCreated) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create static Id p created response a status code equal to that given
+func (o *CreateStaticIDPCreated) IsCode(code int) bool {
+	return code == 201
+}
+
 func (o *CreateStaticIDPCreated) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPCreated  %+v", 201, o.Payload)
 }
+
+func (o *CreateStaticIDPCreated) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPCreated  %+v", 201, o.Payload)
+}
+
 func (o *CreateStaticIDPCreated) GetPayload() *models.StaticIDP {
 	return o.Payload
 }
@@ -107,7 +138,8 @@ func NewCreateStaticIDPBadRequest() *CreateStaticIDPBadRequest {
 	return &CreateStaticIDPBadRequest{}
 }
 
-/* CreateStaticIDPBadRequest describes a response with status code 400, with default header values.
+/*
+CreateStaticIDPBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -115,9 +147,39 @@ type CreateStaticIDPBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create static Id p bad request response has a 2xx status code
+func (o *CreateStaticIDPBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create static Id p bad request response has a 3xx status code
+func (o *CreateStaticIDPBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create static Id p bad request response has a 4xx status code
+func (o *CreateStaticIDPBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create static Id p bad request response has a 5xx status code
+func (o *CreateStaticIDPBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create static Id p bad request response a status code equal to that given
+func (o *CreateStaticIDPBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *CreateStaticIDPBadRequest) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *CreateStaticIDPBadRequest) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *CreateStaticIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -139,7 +201,8 @@ func NewCreateStaticIDPUnauthorized() *CreateStaticIDPUnauthorized {
 	return &CreateStaticIDPUnauthorized{}
 }
 
-/* CreateStaticIDPUnauthorized describes a response with status code 401, with default header values.
+/*
+CreateStaticIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,9 +210,39 @@ type CreateStaticIDPUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create static Id p unauthorized response has a 2xx status code
+func (o *CreateStaticIDPUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create static Id p unauthorized response has a 3xx status code
+func (o *CreateStaticIDPUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create static Id p unauthorized response has a 4xx status code
+func (o *CreateStaticIDPUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create static Id p unauthorized response has a 5xx status code
+func (o *CreateStaticIDPUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create static Id p unauthorized response a status code equal to that given
+func (o *CreateStaticIDPUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *CreateStaticIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *CreateStaticIDPUnauthorized) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *CreateStaticIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -171,7 +264,8 @@ func NewCreateStaticIDPForbidden() *CreateStaticIDPForbidden {
 	return &CreateStaticIDPForbidden{}
 }
 
-/* CreateStaticIDPForbidden describes a response with status code 403, with default header values.
+/*
+CreateStaticIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -179,9 +273,39 @@ type CreateStaticIDPForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create static Id p forbidden response has a 2xx status code
+func (o *CreateStaticIDPForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create static Id p forbidden response has a 3xx status code
+func (o *CreateStaticIDPForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create static Id p forbidden response has a 4xx status code
+func (o *CreateStaticIDPForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create static Id p forbidden response has a 5xx status code
+func (o *CreateStaticIDPForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create static Id p forbidden response a status code equal to that given
+func (o *CreateStaticIDPForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *CreateStaticIDPForbidden) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPForbidden  %+v", 403, o.Payload)
 }
+
+func (o *CreateStaticIDPForbidden) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPForbidden  %+v", 403, o.Payload)
+}
+
 func (o *CreateStaticIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -203,7 +327,8 @@ func NewCreateStaticIDPNotFound() *CreateStaticIDPNotFound {
 	return &CreateStaticIDPNotFound{}
 }
 
-/* CreateStaticIDPNotFound describes a response with status code 404, with default header values.
+/*
+CreateStaticIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -211,9 +336,39 @@ type CreateStaticIDPNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create static Id p not found response has a 2xx status code
+func (o *CreateStaticIDPNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create static Id p not found response has a 3xx status code
+func (o *CreateStaticIDPNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create static Id p not found response has a 4xx status code
+func (o *CreateStaticIDPNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create static Id p not found response has a 5xx status code
+func (o *CreateStaticIDPNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create static Id p not found response a status code equal to that given
+func (o *CreateStaticIDPNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *CreateStaticIDPNotFound) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPNotFound  %+v", 404, o.Payload)
 }
+
+func (o *CreateStaticIDPNotFound) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPNotFound  %+v", 404, o.Payload)
+}
+
 func (o *CreateStaticIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +390,8 @@ func NewCreateStaticIDPUnprocessableEntity() *CreateStaticIDPUnprocessableEntity
 	return &CreateStaticIDPUnprocessableEntity{}
 }
 
-/* CreateStaticIDPUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+CreateStaticIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -243,9 +399,39 @@ type CreateStaticIDPUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create static Id p unprocessable entity response has a 2xx status code
+func (o *CreateStaticIDPUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create static Id p unprocessable entity response has a 3xx status code
+func (o *CreateStaticIDPUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create static Id p unprocessable entity response has a 4xx status code
+func (o *CreateStaticIDPUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create static Id p unprocessable entity response has a 5xx status code
+func (o *CreateStaticIDPUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create static Id p unprocessable entity response a status code equal to that given
+func (o *CreateStaticIDPUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *CreateStaticIDPUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *CreateStaticIDPUnprocessableEntity) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *CreateStaticIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -267,7 +453,8 @@ func NewCreateStaticIDPTooManyRequests() *CreateStaticIDPTooManyRequests {
 	return &CreateStaticIDPTooManyRequests{}
 }
 
-/* CreateStaticIDPTooManyRequests describes a response with status code 429, with default header values.
+/*
+CreateStaticIDPTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -275,9 +462,39 @@ type CreateStaticIDPTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create static Id p too many requests response has a 2xx status code
+func (o *CreateStaticIDPTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create static Id p too many requests response has a 3xx status code
+func (o *CreateStaticIDPTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create static Id p too many requests response has a 4xx status code
+func (o *CreateStaticIDPTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create static Id p too many requests response has a 5xx status code
+func (o *CreateStaticIDPTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create static Id p too many requests response a status code equal to that given
+func (o *CreateStaticIDPTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *CreateStaticIDPTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *CreateStaticIDPTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/static][%d] createStaticIdPTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *CreateStaticIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

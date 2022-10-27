@@ -75,7 +75,8 @@ func NewUpdateOIDCIDPOK() *UpdateOIDCIDPOK {
 	return &UpdateOIDCIDPOK{}
 }
 
-/* UpdateOIDCIDPOK describes a response with status code 200, with default header values.
+/*
+UpdateOIDCIDPOK describes a response with status code 200, with default header values.
 
 OIDCIDP
 */
@@ -83,9 +84,39 @@ type UpdateOIDCIDPOK struct {
 	Payload *models.OIDCIDP
 }
 
+// IsSuccess returns true when this update o Id c Id p o k response has a 2xx status code
+func (o *UpdateOIDCIDPOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this update o Id c Id p o k response has a 3xx status code
+func (o *UpdateOIDCIDPOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update o Id c Id p o k response has a 4xx status code
+func (o *UpdateOIDCIDPOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this update o Id c Id p o k response has a 5xx status code
+func (o *UpdateOIDCIDPOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update o Id c Id p o k response a status code equal to that given
+func (o *UpdateOIDCIDPOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *UpdateOIDCIDPOK) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/oidc/{iid}][%d] updateOIdCIdPOK  %+v", 200, o.Payload)
 }
+
+func (o *UpdateOIDCIDPOK) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/oidc/{iid}][%d] updateOIdCIdPOK  %+v", 200, o.Payload)
+}
+
 func (o *UpdateOIDCIDPOK) GetPayload() *models.OIDCIDP {
 	return o.Payload
 }
@@ -107,7 +138,8 @@ func NewUpdateOIDCIDPBadRequest() *UpdateOIDCIDPBadRequest {
 	return &UpdateOIDCIDPBadRequest{}
 }
 
-/* UpdateOIDCIDPBadRequest describes a response with status code 400, with default header values.
+/*
+UpdateOIDCIDPBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -115,9 +147,39 @@ type UpdateOIDCIDPBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update o Id c Id p bad request response has a 2xx status code
+func (o *UpdateOIDCIDPBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update o Id c Id p bad request response has a 3xx status code
+func (o *UpdateOIDCIDPBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update o Id c Id p bad request response has a 4xx status code
+func (o *UpdateOIDCIDPBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update o Id c Id p bad request response has a 5xx status code
+func (o *UpdateOIDCIDPBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update o Id c Id p bad request response a status code equal to that given
+func (o *UpdateOIDCIDPBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *UpdateOIDCIDPBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/oidc/{iid}][%d] updateOIdCIdPBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *UpdateOIDCIDPBadRequest) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/oidc/{iid}][%d] updateOIdCIdPBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *UpdateOIDCIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -139,7 +201,8 @@ func NewUpdateOIDCIDPUnauthorized() *UpdateOIDCIDPUnauthorized {
 	return &UpdateOIDCIDPUnauthorized{}
 }
 
-/* UpdateOIDCIDPUnauthorized describes a response with status code 401, with default header values.
+/*
+UpdateOIDCIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,9 +210,39 @@ type UpdateOIDCIDPUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update o Id c Id p unauthorized response has a 2xx status code
+func (o *UpdateOIDCIDPUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update o Id c Id p unauthorized response has a 3xx status code
+func (o *UpdateOIDCIDPUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update o Id c Id p unauthorized response has a 4xx status code
+func (o *UpdateOIDCIDPUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update o Id c Id p unauthorized response has a 5xx status code
+func (o *UpdateOIDCIDPUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update o Id c Id p unauthorized response a status code equal to that given
+func (o *UpdateOIDCIDPUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *UpdateOIDCIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/oidc/{iid}][%d] updateOIdCIdPUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *UpdateOIDCIDPUnauthorized) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/oidc/{iid}][%d] updateOIdCIdPUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *UpdateOIDCIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -171,7 +264,8 @@ func NewUpdateOIDCIDPForbidden() *UpdateOIDCIDPForbidden {
 	return &UpdateOIDCIDPForbidden{}
 }
 
-/* UpdateOIDCIDPForbidden describes a response with status code 403, with default header values.
+/*
+UpdateOIDCIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -179,9 +273,39 @@ type UpdateOIDCIDPForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update o Id c Id p forbidden response has a 2xx status code
+func (o *UpdateOIDCIDPForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update o Id c Id p forbidden response has a 3xx status code
+func (o *UpdateOIDCIDPForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update o Id c Id p forbidden response has a 4xx status code
+func (o *UpdateOIDCIDPForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update o Id c Id p forbidden response has a 5xx status code
+func (o *UpdateOIDCIDPForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update o Id c Id p forbidden response a status code equal to that given
+func (o *UpdateOIDCIDPForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *UpdateOIDCIDPForbidden) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/oidc/{iid}][%d] updateOIdCIdPForbidden  %+v", 403, o.Payload)
 }
+
+func (o *UpdateOIDCIDPForbidden) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/oidc/{iid}][%d] updateOIdCIdPForbidden  %+v", 403, o.Payload)
+}
+
 func (o *UpdateOIDCIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -203,7 +327,8 @@ func NewUpdateOIDCIDPNotFound() *UpdateOIDCIDPNotFound {
 	return &UpdateOIDCIDPNotFound{}
 }
 
-/* UpdateOIDCIDPNotFound describes a response with status code 404, with default header values.
+/*
+UpdateOIDCIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -211,9 +336,39 @@ type UpdateOIDCIDPNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update o Id c Id p not found response has a 2xx status code
+func (o *UpdateOIDCIDPNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update o Id c Id p not found response has a 3xx status code
+func (o *UpdateOIDCIDPNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update o Id c Id p not found response has a 4xx status code
+func (o *UpdateOIDCIDPNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update o Id c Id p not found response has a 5xx status code
+func (o *UpdateOIDCIDPNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update o Id c Id p not found response a status code equal to that given
+func (o *UpdateOIDCIDPNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *UpdateOIDCIDPNotFound) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/oidc/{iid}][%d] updateOIdCIdPNotFound  %+v", 404, o.Payload)
 }
+
+func (o *UpdateOIDCIDPNotFound) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/oidc/{iid}][%d] updateOIdCIdPNotFound  %+v", 404, o.Payload)
+}
+
 func (o *UpdateOIDCIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +390,8 @@ func NewUpdateOIDCIDPUnprocessableEntity() *UpdateOIDCIDPUnprocessableEntity {
 	return &UpdateOIDCIDPUnprocessableEntity{}
 }
 
-/* UpdateOIDCIDPUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+UpdateOIDCIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -243,9 +399,39 @@ type UpdateOIDCIDPUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update o Id c Id p unprocessable entity response has a 2xx status code
+func (o *UpdateOIDCIDPUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update o Id c Id p unprocessable entity response has a 3xx status code
+func (o *UpdateOIDCIDPUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update o Id c Id p unprocessable entity response has a 4xx status code
+func (o *UpdateOIDCIDPUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update o Id c Id p unprocessable entity response has a 5xx status code
+func (o *UpdateOIDCIDPUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update o Id c Id p unprocessable entity response a status code equal to that given
+func (o *UpdateOIDCIDPUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *UpdateOIDCIDPUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/oidc/{iid}][%d] updateOIdCIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *UpdateOIDCIDPUnprocessableEntity) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/oidc/{iid}][%d] updateOIdCIdPUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *UpdateOIDCIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -267,7 +453,8 @@ func NewUpdateOIDCIDPTooManyRequests() *UpdateOIDCIDPTooManyRequests {
 	return &UpdateOIDCIDPTooManyRequests{}
 }
 
-/* UpdateOIDCIDPTooManyRequests describes a response with status code 429, with default header values.
+/*
+UpdateOIDCIDPTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -275,9 +462,39 @@ type UpdateOIDCIDPTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update o Id c Id p too many requests response has a 2xx status code
+func (o *UpdateOIDCIDPTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update o Id c Id p too many requests response has a 3xx status code
+func (o *UpdateOIDCIDPTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update o Id c Id p too many requests response has a 4xx status code
+func (o *UpdateOIDCIDPTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update o Id c Id p too many requests response has a 5xx status code
+func (o *UpdateOIDCIDPTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update o Id c Id p too many requests response a status code equal to that given
+func (o *UpdateOIDCIDPTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *UpdateOIDCIDPTooManyRequests) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/oidc/{iid}][%d] updateOIdCIdPTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *UpdateOIDCIDPTooManyRequests) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/oidc/{iid}][%d] updateOIdCIdPTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *UpdateOIDCIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

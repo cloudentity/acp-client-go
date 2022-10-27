@@ -36,6 +36,14 @@ type ClientService interface {
 
 	GetClient(params *GetClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetClientOK, error)
 
+	GetClientSAMLMetadata(params *GetClientSAMLMetadataParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetClientSAMLMetadataOK, error)
+
+	ImportSAMLMetadataFromFile(params *ImportSAMLMetadataFromFileParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportSAMLMetadataFromFileNoContent, error)
+
+	ImportSAMLMetadataFromText(params *ImportSAMLMetadataFromTextParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportSAMLMetadataFromTextNoContent, error)
+
+	ImportSAMLMetadataFromURL(params *ImportSAMLMetadataFromURLParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportSAMLMetadataFromURLNoContent, error)
+
 	ListClients(params *ListClientsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListClientsOK, error)
 
 	RevokeRotatedClientSecrets(params *RevokeRotatedClientSecretsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeRotatedClientSecretsNoContent, error)
@@ -48,9 +56,9 @@ type ClientService interface {
 }
 
 /*
-  CreateClient creates new o auth client
+	CreateClient creates new o auth s a m l client available values are saml oauth2 if omitted then oauth2 will be used as default
 
-  Client must be created under existing tenant and authorization server.
+	Client must be created under existing tenant and authorization server.
 
 Authorization server id must be provided in the request body.
 
@@ -97,9 +105,9 @@ func (a *Client) CreateClient(params *CreateClientParams, authInfo runtime.Clien
 }
 
 /*
-  DeleteClient deletes client
+DeleteClient deletes client
 
-  Delete client.
+Delete client.
 */
 func (a *Client) DeleteClient(params *DeleteClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteClientNoContent, error) {
 	// TODO: Validate the params before sending
@@ -138,9 +146,9 @@ func (a *Client) DeleteClient(params *DeleteClientParams, authInfo runtime.Clien
 }
 
 /*
-  GetClient gets client
+GetClient gets client
 
-  If client has been created by a developer, client's secret will be empty.
+If client has been created by a developer, client's secret will be empty.
 */
 func (a *Client) GetClient(params *GetClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetClientOK, error) {
 	// TODO: Validate the params before sending
@@ -179,9 +187,165 @@ func (a *Client) GetClient(params *GetClientParams, authInfo runtime.ClientAuthI
 }
 
 /*
-  ListClients lists clients
+GetClientSAMLMetadata gets saml metadata
+*/
+func (a *Client) GetClientSAMLMetadata(params *GetClientSAMLMetadataParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetClientSAMLMetadataOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetClientSAMLMetadataParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getClientSAMLMetadata",
+		Method:             "GET",
+		PathPattern:        "/clients/{cid}/saml/metadata",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetClientSAMLMetadataReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
 
-  Returns clients created by admins and developers. If client has been created by a developer, client secret will be empty.
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetClientSAMLMetadataOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getClientSAMLMetadata: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+ImportSAMLMetadataFromFile imports saml metadata from file
+*/
+func (a *Client) ImportSAMLMetadataFromFile(params *ImportSAMLMetadataFromFileParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportSAMLMetadataFromFileNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImportSAMLMetadataFromFileParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "importSAMLMetadataFromFile",
+		Method:             "POST",
+		PathPattern:        "/clients/{cid}/saml/metadata/import/file",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImportSAMLMetadataFromFileReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ImportSAMLMetadataFromFileNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for importSAMLMetadataFromFile: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+ImportSAMLMetadataFromText imports saml metadata from text
+*/
+func (a *Client) ImportSAMLMetadataFromText(params *ImportSAMLMetadataFromTextParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportSAMLMetadataFromTextNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImportSAMLMetadataFromTextParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "importSAMLMetadataFromText",
+		Method:             "POST",
+		PathPattern:        "/clients/{cid}/saml/metadata/import/text",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/xml"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImportSAMLMetadataFromTextReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ImportSAMLMetadataFromTextNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for importSAMLMetadataFromText: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+ImportSAMLMetadataFromURL imports saml metadata from url
+*/
+func (a *Client) ImportSAMLMetadataFromURL(params *ImportSAMLMetadataFromURLParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportSAMLMetadataFromURLNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImportSAMLMetadataFromURLParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "importSAMLMetadataFromURL",
+		Method:             "POST",
+		PathPattern:        "/clients/{cid}/saml/metadata/import/url",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImportSAMLMetadataFromURLReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ImportSAMLMetadataFromURLNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for importSAMLMetadataFromURL: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+ListClients lists clients
+
+Returns clients created by admins and developers. If client has been created by a developer, client secret will be empty.
 */
 func (a *Client) ListClients(params *ListClientsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListClientsOK, error) {
 	// TODO: Validate the params before sending
@@ -220,9 +384,9 @@ func (a *Client) ListClients(params *ListClientsParams, authInfo runtime.ClientA
 }
 
 /*
-  RevokeRotatedClientSecrets revokes rotated secrets
+RevokeRotatedClientSecrets revokes rotated secrets
 
-  Revoke all rotated client's secrets.
+Revoke all rotated client's secrets.
 */
 func (a *Client) RevokeRotatedClientSecrets(params *RevokeRotatedClientSecretsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeRotatedClientSecretsNoContent, error) {
 	// TODO: Validate the params before sending
@@ -261,9 +425,10 @@ func (a *Client) RevokeRotatedClientSecrets(params *RevokeRotatedClientSecretsPa
 }
 
 /*
-  RotateClientSecret rotates client s secret
+	RotateClientSecret rotates client s secret
 
-  Generate a new client secret, move old secret to rotated secrets list and return
+	Generate a new client secret, move old secret to rotated secrets list and return
+
 new client secret as a response. The max number of client rotated secrets is 2.
 The rotated secrets over the limit are dropped.
 
@@ -309,9 +474,9 @@ func (a *Client) RotateClientSecret(params *RotateClientSecretParams, authInfo r
 }
 
 /*
-  UpdateClient updates client
+	UpdateClient updates client
 
-  Update client.
+	Update client.
 
 For clients created by developers only metadata, system and trusted attributes
 can be updated.

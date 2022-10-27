@@ -52,10 +52,12 @@ func NewListSecretsParamsWithHTTPClient(client *http.Client) *ListSecretsParams 
 	}
 }
 
-/* ListSecretsParams contains all the parameters to send to the API endpoint
-   for the list secrets operation.
+/*
+ListSecretsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the list secrets operation.
+
+	Typically these are written to a http.Request.
 */
 type ListSecretsParams struct {
 

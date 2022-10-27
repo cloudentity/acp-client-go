@@ -38,9 +38,9 @@ type ClientService interface {
 }
 
 /*
-  ListClientsWithAccess lists clients that user shared data with
+ListClientsWithAccess lists clients that user shared data with
 
-  Each client contains list of scopes that user agreed to.
+Each client contains list of scopes that user agreed to.
 */
 func (a *Client) ListClientsWithAccess(params *ListClientsWithAccessParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListClientsWithAccessOK, error) {
 	// TODO: Validate the params before sending
@@ -79,9 +79,9 @@ func (a *Client) ListClientsWithAccess(params *ListClientsWithAccessParams, auth
 }
 
 /*
-  RevokeClientAccess revokes client access
+RevokeClientAccess revokes client access
 
-  Upon removal client won't be able to use user data anymore.
+Upon removal client won't be able to use user data anymore.
 */
 func (a *Client) RevokeClientAccess(params *RevokeClientAccessParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeClientAccessNoContent, error) {
 	// TODO: Validate the params before sending

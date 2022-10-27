@@ -54,10 +54,12 @@ func NewRejectFDXConsentSystemParamsWithHTTPClient(client *http.Client) *RejectF
 	}
 }
 
-/* RejectFDXConsentSystemParams contains all the parameters to send to the API endpoint
-   for the reject f d x consent system operation.
+/*
+RejectFDXConsentSystemParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the reject f d x consent system operation.
+
+	Typically these are written to a http.Request.
 */
 type RejectFDXConsentSystemParams struct {
 

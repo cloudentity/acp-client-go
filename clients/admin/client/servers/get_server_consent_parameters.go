@@ -52,10 +52,12 @@ func NewGetServerConsentParamsWithHTTPClient(client *http.Client) *GetServerCons
 	}
 }
 
-/* GetServerConsentParams contains all the parameters to send to the API endpoint
-   for the get server consent operation.
+/*
+GetServerConsentParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get server consent operation.
+
+	Typically these are written to a http.Request.
 */
 type GetServerConsentParams struct {
 

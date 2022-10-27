@@ -18,6 +18,9 @@ import (
 // swagger:model AcceptScopeGrant
 type AcceptScopeGrant struct {
 
+	// optional consent identifier
+	ConsentID string `json:"consent_id,omitempty"`
+
 	// granted scopes
 	GrantedScopes GrantedScopes `json:"granted_scopes,omitempty"`
 

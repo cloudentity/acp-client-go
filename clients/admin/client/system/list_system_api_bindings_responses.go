@@ -57,7 +57,8 @@ func NewListSystemAPIBindingsOK() *ListSystemAPIBindingsOK {
 	return &ListSystemAPIBindingsOK{}
 }
 
-/* ListSystemAPIBindingsOK describes a response with status code 200, with default header values.
+/*
+ListSystemAPIBindingsOK describes a response with status code 200, with default header values.
 
 System API bindings
 */
@@ -65,9 +66,39 @@ type ListSystemAPIBindingsOK struct {
 	Payload *models.SystemAPIBindings
 }
 
+// IsSuccess returns true when this list system Api bindings o k response has a 2xx status code
+func (o *ListSystemAPIBindingsOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this list system Api bindings o k response has a 3xx status code
+func (o *ListSystemAPIBindingsOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list system Api bindings o k response has a 4xx status code
+func (o *ListSystemAPIBindingsOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this list system Api bindings o k response has a 5xx status code
+func (o *ListSystemAPIBindingsOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list system Api bindings o k response a status code equal to that given
+func (o *ListSystemAPIBindingsOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *ListSystemAPIBindingsOK) Error() string {
 	return fmt.Sprintf("[GET /system/apis/{wid}/bindings][%d] listSystemApiBindingsOK  %+v", 200, o.Payload)
 }
+
+func (o *ListSystemAPIBindingsOK) String() string {
+	return fmt.Sprintf("[GET /system/apis/{wid}/bindings][%d] listSystemApiBindingsOK  %+v", 200, o.Payload)
+}
+
 func (o *ListSystemAPIBindingsOK) GetPayload() *models.SystemAPIBindings {
 	return o.Payload
 }
@@ -89,7 +120,8 @@ func NewListSystemAPIBindingsUnauthorized() *ListSystemAPIBindingsUnauthorized {
 	return &ListSystemAPIBindingsUnauthorized{}
 }
 
-/* ListSystemAPIBindingsUnauthorized describes a response with status code 401, with default header values.
+/*
+ListSystemAPIBindingsUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -97,9 +129,39 @@ type ListSystemAPIBindingsUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list system Api bindings unauthorized response has a 2xx status code
+func (o *ListSystemAPIBindingsUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list system Api bindings unauthorized response has a 3xx status code
+func (o *ListSystemAPIBindingsUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list system Api bindings unauthorized response has a 4xx status code
+func (o *ListSystemAPIBindingsUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list system Api bindings unauthorized response has a 5xx status code
+func (o *ListSystemAPIBindingsUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list system Api bindings unauthorized response a status code equal to that given
+func (o *ListSystemAPIBindingsUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *ListSystemAPIBindingsUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /system/apis/{wid}/bindings][%d] listSystemApiBindingsUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *ListSystemAPIBindingsUnauthorized) String() string {
+	return fmt.Sprintf("[GET /system/apis/{wid}/bindings][%d] listSystemApiBindingsUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *ListSystemAPIBindingsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -121,7 +183,8 @@ func NewListSystemAPIBindingsForbidden() *ListSystemAPIBindingsForbidden {
 	return &ListSystemAPIBindingsForbidden{}
 }
 
-/* ListSystemAPIBindingsForbidden describes a response with status code 403, with default header values.
+/*
+ListSystemAPIBindingsForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -129,9 +192,39 @@ type ListSystemAPIBindingsForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list system Api bindings forbidden response has a 2xx status code
+func (o *ListSystemAPIBindingsForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list system Api bindings forbidden response has a 3xx status code
+func (o *ListSystemAPIBindingsForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list system Api bindings forbidden response has a 4xx status code
+func (o *ListSystemAPIBindingsForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list system Api bindings forbidden response has a 5xx status code
+func (o *ListSystemAPIBindingsForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list system Api bindings forbidden response a status code equal to that given
+func (o *ListSystemAPIBindingsForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *ListSystemAPIBindingsForbidden) Error() string {
 	return fmt.Sprintf("[GET /system/apis/{wid}/bindings][%d] listSystemApiBindingsForbidden  %+v", 403, o.Payload)
 }
+
+func (o *ListSystemAPIBindingsForbidden) String() string {
+	return fmt.Sprintf("[GET /system/apis/{wid}/bindings][%d] listSystemApiBindingsForbidden  %+v", 403, o.Payload)
+}
+
 func (o *ListSystemAPIBindingsForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -153,7 +246,8 @@ func NewListSystemAPIBindingsTooManyRequests() *ListSystemAPIBindingsTooManyRequ
 	return &ListSystemAPIBindingsTooManyRequests{}
 }
 
-/* ListSystemAPIBindingsTooManyRequests describes a response with status code 429, with default header values.
+/*
+ListSystemAPIBindingsTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -161,9 +255,39 @@ type ListSystemAPIBindingsTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list system Api bindings too many requests response has a 2xx status code
+func (o *ListSystemAPIBindingsTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list system Api bindings too many requests response has a 3xx status code
+func (o *ListSystemAPIBindingsTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list system Api bindings too many requests response has a 4xx status code
+func (o *ListSystemAPIBindingsTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list system Api bindings too many requests response has a 5xx status code
+func (o *ListSystemAPIBindingsTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list system Api bindings too many requests response a status code equal to that given
+func (o *ListSystemAPIBindingsTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *ListSystemAPIBindingsTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /system/apis/{wid}/bindings][%d] listSystemApiBindingsTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *ListSystemAPIBindingsTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /system/apis/{wid}/bindings][%d] listSystemApiBindingsTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *ListSystemAPIBindingsTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

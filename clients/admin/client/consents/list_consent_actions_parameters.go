@@ -52,10 +52,12 @@ func NewListConsentActionsParamsWithHTTPClient(client *http.Client) *ListConsent
 	}
 }
 
-/* ListConsentActionsParams contains all the parameters to send to the API endpoint
-   for the list consent actions operation.
+/*
+ListConsentActionsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the list consent actions operation.
+
+	Typically these are written to a http.Request.
 */
 type ListConsentActionsParams struct {
 	timeout    time.Duration

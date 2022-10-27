@@ -50,16 +50,16 @@ type ClientService interface {
 }
 
 /*
-  CreatePolicy creates policy
+	CreatePolicy creates policy
 
-  ACP supports creating Cloudentity policies (using a visual editor or defined using JSON or
+	ACP supports creating Cloudentity policies (using a visual editor or defined using JSON or
+
 YAML) and policies defined using REGO (language used by Open Policy Agent (OPA)).
 
 In ACP, policies are created per tenant. It means that is not possible to create policies with
 the same ID in two different workspaces within the same tenant. Additionally, when a policy is
 created, a workspace prefix is added to your policy name on the UI side. It is not possible to
 reuse policies between different authorization servers.
-
 
 Sample validators which can be used to build policies: identity-context, consent, header, true, false.
 */
@@ -100,9 +100,9 @@ func (a *Client) CreatePolicy(params *CreatePolicyParams, authInfo runtime.Clien
 }
 
 /*
-  DeletePolicy deletes policy
+DeletePolicy deletes policy
 
-  It is not possible to delete policies that are currently in use.
+It is not possible to delete policies that are currently in use.
 */
 func (a *Client) DeletePolicy(params *DeletePolicyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeletePolicyNoContent, error) {
 	// TODO: Validate the params before sending
@@ -141,9 +141,9 @@ func (a *Client) DeletePolicy(params *DeletePolicyParams, authInfo runtime.Clien
 }
 
 /*
-  GetPolicy gets policy
+GetPolicy gets policy
 
-  Returns a policy and it's definition.
+Returns a policy and it's definition.
 */
 func (a *Client) GetPolicy(params *GetPolicyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPolicyOK, error) {
 	// TODO: Validate the params before sending
@@ -182,9 +182,9 @@ func (a *Client) GetPolicy(params *GetPolicyParams, authInfo runtime.ClientAuthI
 }
 
 /*
-  ListPolicies lists policies
+ListPolicies lists policies
 
-  Lists authorization servers' (workspace) policies by type.
+Lists authorization servers' (workspace) policies by type.
 */
 func (a *Client) ListPolicies(params *ListPoliciesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListPoliciesOK, error) {
 	// TODO: Validate the params before sending
@@ -223,9 +223,9 @@ func (a *Client) ListPolicies(params *ListPoliciesParams, authInfo runtime.Clien
 }
 
 /*
-  ListPolicyExecutionPoints lists policy execution points
+ListPolicyExecutionPoints lists policy execution points
 
-  Returns a list of policy execution points for a given workspace.
+Returns a list of policy execution points for a given workspace.
 */
 func (a *Client) ListPolicyExecutionPoints(params *ListPolicyExecutionPointsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListPolicyExecutionPointsOK, error) {
 	// TODO: Validate the params before sending
@@ -264,9 +264,10 @@ func (a *Client) ListPolicyExecutionPoints(params *ListPolicyExecutionPointsPara
 }
 
 /*
-  SetPolicyExecutionPoints sets policy execution points
+	SetPolicyExecutionPoints sets policy execution points
 
-  Available execution points: `scope_client_assignment`, `scope_user_grant`,
+	Available execution points: `scope_client_assignment`, `scope_user_grant`,
+
 `server_client_assignment`, `server_user_token`, `client_user_token`, `api`
 */
 func (a *Client) SetPolicyExecutionPoints(params *SetPolicyExecutionPointsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetPolicyExecutionPointsOK, error) {
@@ -306,9 +307,10 @@ func (a *Client) SetPolicyExecutionPoints(params *SetPolicyExecutionPointsParams
 }
 
 /*
-  TestPolicy tests policy
+	TestPolicy tests policy
 
-  You can test a policy and check if it works correctly using this endpoint. Provide your mock input and
+	You can test a policy and check if it works correctly using this endpoint. Provide your mock input and
+
 pass it as the value of the `input` parameter. Define your policy. Then, fire a request to the
 test policy endpoint. By doing so, you can test if a policy would fail or pass for a given request.
 */
@@ -349,9 +351,9 @@ func (a *Client) TestPolicy(params *TestPolicyParams, authInfo runtime.ClientAut
 }
 
 /*
-  UpdatePolicy updates policy
+UpdatePolicy updates policy
 
-  Update existing authorization policies.
+Update existing authorization policies.
 */
 func (a *Client) UpdatePolicy(params *UpdatePolicyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdatePolicyCreated, error) {
 	// TODO: Validate the params before sending

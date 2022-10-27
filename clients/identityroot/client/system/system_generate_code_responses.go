@@ -69,22 +69,69 @@ func NewSystemGenerateCodeCreated() *SystemGenerateCodeCreated {
 	return &SystemGenerateCodeCreated{}
 }
 
-/* SystemGenerateCodeCreated describes a response with status code 201, with default header values.
+/*
+SystemGenerateCodeCreated describes a response with status code 201, with default header values.
 
 User
 */
 type SystemGenerateCodeCreated struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.Codes
+}
+
+// IsSuccess returns true when this system generate code created response has a 2xx status code
+func (o *SystemGenerateCodeCreated) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this system generate code created response has a 3xx status code
+func (o *SystemGenerateCodeCreated) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this system generate code created response has a 4xx status code
+func (o *SystemGenerateCodeCreated) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this system generate code created response has a 5xx status code
+func (o *SystemGenerateCodeCreated) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this system generate code created response a status code equal to that given
+func (o *SystemGenerateCodeCreated) IsCode(code int) bool {
+	return code == 201
 }
 
 func (o *SystemGenerateCodeCreated) Error() string {
 	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeCreated  %+v", 201, o.Payload)
 }
+
+func (o *SystemGenerateCodeCreated) String() string {
+	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeCreated  %+v", 201, o.Payload)
+}
+
 func (o *SystemGenerateCodeCreated) GetPayload() *models.Codes {
 	return o.Payload
 }
 
 func (o *SystemGenerateCodeCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.Codes)
 
@@ -101,7 +148,8 @@ func NewSystemGenerateCodeBadRequest() *SystemGenerateCodeBadRequest {
 	return &SystemGenerateCodeBadRequest{}
 }
 
-/* SystemGenerateCodeBadRequest describes a response with status code 400, with default header values.
+/*
+SystemGenerateCodeBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -109,9 +157,39 @@ type SystemGenerateCodeBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this system generate code bad request response has a 2xx status code
+func (o *SystemGenerateCodeBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this system generate code bad request response has a 3xx status code
+func (o *SystemGenerateCodeBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this system generate code bad request response has a 4xx status code
+func (o *SystemGenerateCodeBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this system generate code bad request response has a 5xx status code
+func (o *SystemGenerateCodeBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this system generate code bad request response a status code equal to that given
+func (o *SystemGenerateCodeBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *SystemGenerateCodeBadRequest) Error() string {
 	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *SystemGenerateCodeBadRequest) String() string {
+	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *SystemGenerateCodeBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -133,7 +211,8 @@ func NewSystemGenerateCodeUnauthorized() *SystemGenerateCodeUnauthorized {
 	return &SystemGenerateCodeUnauthorized{}
 }
 
-/* SystemGenerateCodeUnauthorized describes a response with status code 401, with default header values.
+/*
+SystemGenerateCodeUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -141,9 +220,39 @@ type SystemGenerateCodeUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this system generate code unauthorized response has a 2xx status code
+func (o *SystemGenerateCodeUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this system generate code unauthorized response has a 3xx status code
+func (o *SystemGenerateCodeUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this system generate code unauthorized response has a 4xx status code
+func (o *SystemGenerateCodeUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this system generate code unauthorized response has a 5xx status code
+func (o *SystemGenerateCodeUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this system generate code unauthorized response a status code equal to that given
+func (o *SystemGenerateCodeUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *SystemGenerateCodeUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *SystemGenerateCodeUnauthorized) String() string {
+	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *SystemGenerateCodeUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -165,7 +274,8 @@ func NewSystemGenerateCodeNotFound() *SystemGenerateCodeNotFound {
 	return &SystemGenerateCodeNotFound{}
 }
 
-/* SystemGenerateCodeNotFound describes a response with status code 404, with default header values.
+/*
+SystemGenerateCodeNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -173,9 +283,39 @@ type SystemGenerateCodeNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this system generate code not found response has a 2xx status code
+func (o *SystemGenerateCodeNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this system generate code not found response has a 3xx status code
+func (o *SystemGenerateCodeNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this system generate code not found response has a 4xx status code
+func (o *SystemGenerateCodeNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this system generate code not found response has a 5xx status code
+func (o *SystemGenerateCodeNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this system generate code not found response a status code equal to that given
+func (o *SystemGenerateCodeNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *SystemGenerateCodeNotFound) Error() string {
 	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeNotFound  %+v", 404, o.Payload)
 }
+
+func (o *SystemGenerateCodeNotFound) String() string {
+	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeNotFound  %+v", 404, o.Payload)
+}
+
 func (o *SystemGenerateCodeNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -197,7 +337,8 @@ func NewSystemGenerateCodeUnprocessableEntity() *SystemGenerateCodeUnprocessable
 	return &SystemGenerateCodeUnprocessableEntity{}
 }
 
-/* SystemGenerateCodeUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+SystemGenerateCodeUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -205,9 +346,39 @@ type SystemGenerateCodeUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this system generate code unprocessable entity response has a 2xx status code
+func (o *SystemGenerateCodeUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this system generate code unprocessable entity response has a 3xx status code
+func (o *SystemGenerateCodeUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this system generate code unprocessable entity response has a 4xx status code
+func (o *SystemGenerateCodeUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this system generate code unprocessable entity response has a 5xx status code
+func (o *SystemGenerateCodeUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this system generate code unprocessable entity response a status code equal to that given
+func (o *SystemGenerateCodeUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *SystemGenerateCodeUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *SystemGenerateCodeUnprocessableEntity) String() string {
+	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *SystemGenerateCodeUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -229,7 +400,8 @@ func NewSystemGenerateCodeTooManyRequests() *SystemGenerateCodeTooManyRequests {
 	return &SystemGenerateCodeTooManyRequests{}
 }
 
-/* SystemGenerateCodeTooManyRequests describes a response with status code 429, with default header values.
+/*
+SystemGenerateCodeTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -237,9 +409,39 @@ type SystemGenerateCodeTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this system generate code too many requests response has a 2xx status code
+func (o *SystemGenerateCodeTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this system generate code too many requests response has a 3xx status code
+func (o *SystemGenerateCodeTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this system generate code too many requests response has a 4xx status code
+func (o *SystemGenerateCodeTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this system generate code too many requests response has a 5xx status code
+func (o *SystemGenerateCodeTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this system generate code too many requests response a status code equal to that given
+func (o *SystemGenerateCodeTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *SystemGenerateCodeTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *SystemGenerateCodeTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *SystemGenerateCodeTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

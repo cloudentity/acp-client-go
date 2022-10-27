@@ -52,10 +52,12 @@ func NewDeleteClaimParamsWithHTTPClient(client *http.Client) *DeleteClaimParams 
 	}
 }
 
-/* DeleteClaimParams contains all the parameters to send to the API endpoint
-   for the delete claim operation.
+/*
+DeleteClaimParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the delete claim operation.
+
+	Typically these are written to a http.Request.
 */
 type DeleteClaimParams struct {
 

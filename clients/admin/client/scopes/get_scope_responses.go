@@ -63,7 +63,8 @@ func NewGetScopeOK() *GetScopeOK {
 	return &GetScopeOK{}
 }
 
-/* GetScopeOK describes a response with status code 200, with default header values.
+/*
+GetScopeOK describes a response with status code 200, with default header values.
 
 Scope with service
 */
@@ -71,9 +72,39 @@ type GetScopeOK struct {
 	Payload *models.ScopeWithService
 }
 
+// IsSuccess returns true when this get scope o k response has a 2xx status code
+func (o *GetScopeOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get scope o k response has a 3xx status code
+func (o *GetScopeOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get scope o k response has a 4xx status code
+func (o *GetScopeOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get scope o k response has a 5xx status code
+func (o *GetScopeOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get scope o k response a status code equal to that given
+func (o *GetScopeOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetScopeOK) Error() string {
 	return fmt.Sprintf("[GET /scopes/{scp}][%d] getScopeOK  %+v", 200, o.Payload)
 }
+
+func (o *GetScopeOK) String() string {
+	return fmt.Sprintf("[GET /scopes/{scp}][%d] getScopeOK  %+v", 200, o.Payload)
+}
+
 func (o *GetScopeOK) GetPayload() *models.ScopeWithService {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewGetScopeUnauthorized() *GetScopeUnauthorized {
 	return &GetScopeUnauthorized{}
 }
 
-/* GetScopeUnauthorized describes a response with status code 401, with default header values.
+/*
+GetScopeUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type GetScopeUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get scope unauthorized response has a 2xx status code
+func (o *GetScopeUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get scope unauthorized response has a 3xx status code
+func (o *GetScopeUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get scope unauthorized response has a 4xx status code
+func (o *GetScopeUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get scope unauthorized response has a 5xx status code
+func (o *GetScopeUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get scope unauthorized response a status code equal to that given
+func (o *GetScopeUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *GetScopeUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /scopes/{scp}][%d] getScopeUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *GetScopeUnauthorized) String() string {
+	return fmt.Sprintf("[GET /scopes/{scp}][%d] getScopeUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *GetScopeUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewGetScopeForbidden() *GetScopeForbidden {
 	return &GetScopeForbidden{}
 }
 
-/* GetScopeForbidden describes a response with status code 403, with default header values.
+/*
+GetScopeForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type GetScopeForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get scope forbidden response has a 2xx status code
+func (o *GetScopeForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get scope forbidden response has a 3xx status code
+func (o *GetScopeForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get scope forbidden response has a 4xx status code
+func (o *GetScopeForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get scope forbidden response has a 5xx status code
+func (o *GetScopeForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get scope forbidden response a status code equal to that given
+func (o *GetScopeForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetScopeForbidden) Error() string {
 	return fmt.Sprintf("[GET /scopes/{scp}][%d] getScopeForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetScopeForbidden) String() string {
+	return fmt.Sprintf("[GET /scopes/{scp}][%d] getScopeForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetScopeForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewGetScopeNotFound() *GetScopeNotFound {
 	return &GetScopeNotFound{}
 }
 
-/* GetScopeNotFound describes a response with status code 404, with default header values.
+/*
+GetScopeNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type GetScopeNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get scope not found response has a 2xx status code
+func (o *GetScopeNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get scope not found response has a 3xx status code
+func (o *GetScopeNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get scope not found response has a 4xx status code
+func (o *GetScopeNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get scope not found response has a 5xx status code
+func (o *GetScopeNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get scope not found response a status code equal to that given
+func (o *GetScopeNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *GetScopeNotFound) Error() string {
 	return fmt.Sprintf("[GET /scopes/{scp}][%d] getScopeNotFound  %+v", 404, o.Payload)
 }
+
+func (o *GetScopeNotFound) String() string {
+	return fmt.Sprintf("[GET /scopes/{scp}][%d] getScopeNotFound  %+v", 404, o.Payload)
+}
+
 func (o *GetScopeNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewGetScopeTooManyRequests() *GetScopeTooManyRequests {
 	return &GetScopeTooManyRequests{}
 }
 
-/* GetScopeTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetScopeTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type GetScopeTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get scope too many requests response has a 2xx status code
+func (o *GetScopeTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get scope too many requests response has a 3xx status code
+func (o *GetScopeTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get scope too many requests response has a 4xx status code
+func (o *GetScopeTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get scope too many requests response has a 5xx status code
+func (o *GetScopeTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get scope too many requests response a status code equal to that given
+func (o *GetScopeTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *GetScopeTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /scopes/{scp}][%d] getScopeTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *GetScopeTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /scopes/{scp}][%d] getScopeTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *GetScopeTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

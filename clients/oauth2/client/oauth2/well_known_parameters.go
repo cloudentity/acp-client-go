@@ -52,10 +52,12 @@ func NewWellKnownParamsWithHTTPClient(client *http.Client) *WellKnownParams {
 	}
 }
 
-/* WellKnownParams contains all the parameters to send to the API endpoint
-   for the well known operation.
+/*
+WellKnownParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the well known operation.
+
+	Typically these are written to a http.Request.
 */
 type WellKnownParams struct {
 	timeout    time.Duration

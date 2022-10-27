@@ -52,10 +52,12 @@ func NewRevokeCDRArrangementsParamsWithHTTPClient(client *http.Client) *RevokeCD
 	}
 }
 
-/* RevokeCDRArrangementsParams contains all the parameters to send to the API endpoint
-   for the revoke c d r arrangements operation.
+/*
+RevokeCDRArrangementsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the revoke c d r arrangements operation.
+
+	Typically these are written to a http.Request.
 */
 type RevokeCDRArrangementsParams struct {
 
@@ -64,6 +66,20 @@ type RevokeCDRArrangementsParams struct {
 	   Client ID
 	*/
 	ClientID *string
+
+	/* RevocationChannel.
+
+	   Stores the channel that was used to revoke the arrangement
+
+	   Default: "online"
+	*/
+	RevocationChannel *string
+
+	/* RevocationReason.
+
+	   Stores the reason why the arrangement was revoked
+	*/
+	RevocationReason *string
 
 	/* Wid.
 
@@ -91,11 +107,14 @@ func (o *RevokeCDRArrangementsParams) WithDefaults() *RevokeCDRArrangementsParam
 // All values with no default are reset to their zero value.
 func (o *RevokeCDRArrangementsParams) SetDefaults() {
 	var (
+		revocationChannelDefault = string("online")
+
 		widDefault = string("default")
 	)
 
 	val := RevokeCDRArrangementsParams{
-		Wid: widDefault,
+		RevocationChannel: &revocationChannelDefault,
+		Wid:               widDefault,
 	}
 
 	val.timeout = o.timeout
@@ -148,6 +167,28 @@ func (o *RevokeCDRArrangementsParams) SetClientID(clientID *string) {
 	o.ClientID = clientID
 }
 
+// WithRevocationChannel adds the revocationChannel to the revoke c d r arrangements params
+func (o *RevokeCDRArrangementsParams) WithRevocationChannel(revocationChannel *string) *RevokeCDRArrangementsParams {
+	o.SetRevocationChannel(revocationChannel)
+	return o
+}
+
+// SetRevocationChannel adds the revocationChannel to the revoke c d r arrangements params
+func (o *RevokeCDRArrangementsParams) SetRevocationChannel(revocationChannel *string) {
+	o.RevocationChannel = revocationChannel
+}
+
+// WithRevocationReason adds the revocationReason to the revoke c d r arrangements params
+func (o *RevokeCDRArrangementsParams) WithRevocationReason(revocationReason *string) *RevokeCDRArrangementsParams {
+	o.SetRevocationReason(revocationReason)
+	return o
+}
+
+// SetRevocationReason adds the revocationReason to the revoke c d r arrangements params
+func (o *RevokeCDRArrangementsParams) SetRevocationReason(revocationReason *string) {
+	o.RevocationReason = revocationReason
+}
+
 // WithWid adds the wid to the revoke c d r arrangements params
 func (o *RevokeCDRArrangementsParams) WithWid(wid string) *RevokeCDRArrangementsParams {
 	o.SetWid(wid)
@@ -179,6 +220,40 @@ func (o *RevokeCDRArrangementsParams) WriteToRequest(r runtime.ClientRequest, re
 		if qClientID != "" {
 
 			if err := r.SetQueryParam("client_id", qClientID); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.RevocationChannel != nil {
+
+		// query param revocation_channel
+		var qrRevocationChannel string
+
+		if o.RevocationChannel != nil {
+			qrRevocationChannel = *o.RevocationChannel
+		}
+		qRevocationChannel := qrRevocationChannel
+		if qRevocationChannel != "" {
+
+			if err := r.SetQueryParam("revocation_channel", qRevocationChannel); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.RevocationReason != nil {
+
+		// query param revocation_reason
+		var qrRevocationReason string
+
+		if o.RevocationReason != nil {
+			qrRevocationReason = *o.RevocationReason
+		}
+		qRevocationReason := qrRevocationReason
+		if qRevocationReason != "" {
+
+			if err := r.SetQueryParam("revocation_reason", qRevocationReason); err != nil {
 				return err
 			}
 		}

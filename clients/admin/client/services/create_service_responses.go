@@ -81,7 +81,8 @@ func NewCreateServiceCreated() *CreateServiceCreated {
 	return &CreateServiceCreated{}
 }
 
-/* CreateServiceCreated describes a response with status code 201, with default header values.
+/*
+CreateServiceCreated describes a response with status code 201, with default header values.
 
 Service
 */
@@ -89,9 +90,39 @@ type CreateServiceCreated struct {
 	Payload *models.ServiceWithAudience
 }
 
+// IsSuccess returns true when this create service created response has a 2xx status code
+func (o *CreateServiceCreated) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this create service created response has a 3xx status code
+func (o *CreateServiceCreated) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create service created response has a 4xx status code
+func (o *CreateServiceCreated) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create service created response has a 5xx status code
+func (o *CreateServiceCreated) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create service created response a status code equal to that given
+func (o *CreateServiceCreated) IsCode(code int) bool {
+	return code == 201
+}
+
 func (o *CreateServiceCreated) Error() string {
 	return fmt.Sprintf("[POST /services][%d] createServiceCreated  %+v", 201, o.Payload)
 }
+
+func (o *CreateServiceCreated) String() string {
+	return fmt.Sprintf("[POST /services][%d] createServiceCreated  %+v", 201, o.Payload)
+}
+
 func (o *CreateServiceCreated) GetPayload() *models.ServiceWithAudience {
 	return o.Payload
 }
@@ -113,7 +144,8 @@ func NewCreateServiceBadRequest() *CreateServiceBadRequest {
 	return &CreateServiceBadRequest{}
 }
 
-/* CreateServiceBadRequest describes a response with status code 400, with default header values.
+/*
+CreateServiceBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -121,9 +153,39 @@ type CreateServiceBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create service bad request response has a 2xx status code
+func (o *CreateServiceBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create service bad request response has a 3xx status code
+func (o *CreateServiceBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create service bad request response has a 4xx status code
+func (o *CreateServiceBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create service bad request response has a 5xx status code
+func (o *CreateServiceBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create service bad request response a status code equal to that given
+func (o *CreateServiceBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *CreateServiceBadRequest) Error() string {
 	return fmt.Sprintf("[POST /services][%d] createServiceBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *CreateServiceBadRequest) String() string {
+	return fmt.Sprintf("[POST /services][%d] createServiceBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *CreateServiceBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -145,7 +207,8 @@ func NewCreateServiceUnauthorized() *CreateServiceUnauthorized {
 	return &CreateServiceUnauthorized{}
 }
 
-/* CreateServiceUnauthorized describes a response with status code 401, with default header values.
+/*
+CreateServiceUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -153,9 +216,39 @@ type CreateServiceUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create service unauthorized response has a 2xx status code
+func (o *CreateServiceUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create service unauthorized response has a 3xx status code
+func (o *CreateServiceUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create service unauthorized response has a 4xx status code
+func (o *CreateServiceUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create service unauthorized response has a 5xx status code
+func (o *CreateServiceUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create service unauthorized response a status code equal to that given
+func (o *CreateServiceUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *CreateServiceUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /services][%d] createServiceUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *CreateServiceUnauthorized) String() string {
+	return fmt.Sprintf("[POST /services][%d] createServiceUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *CreateServiceUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -177,7 +270,8 @@ func NewCreateServiceForbidden() *CreateServiceForbidden {
 	return &CreateServiceForbidden{}
 }
 
-/* CreateServiceForbidden describes a response with status code 403, with default header values.
+/*
+CreateServiceForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -185,9 +279,39 @@ type CreateServiceForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create service forbidden response has a 2xx status code
+func (o *CreateServiceForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create service forbidden response has a 3xx status code
+func (o *CreateServiceForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create service forbidden response has a 4xx status code
+func (o *CreateServiceForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create service forbidden response has a 5xx status code
+func (o *CreateServiceForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create service forbidden response a status code equal to that given
+func (o *CreateServiceForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *CreateServiceForbidden) Error() string {
 	return fmt.Sprintf("[POST /services][%d] createServiceForbidden  %+v", 403, o.Payload)
 }
+
+func (o *CreateServiceForbidden) String() string {
+	return fmt.Sprintf("[POST /services][%d] createServiceForbidden  %+v", 403, o.Payload)
+}
+
 func (o *CreateServiceForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -209,7 +333,8 @@ func NewCreateServiceNotFound() *CreateServiceNotFound {
 	return &CreateServiceNotFound{}
 }
 
-/* CreateServiceNotFound describes a response with status code 404, with default header values.
+/*
+CreateServiceNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -217,9 +342,39 @@ type CreateServiceNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create service not found response has a 2xx status code
+func (o *CreateServiceNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create service not found response has a 3xx status code
+func (o *CreateServiceNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create service not found response has a 4xx status code
+func (o *CreateServiceNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create service not found response has a 5xx status code
+func (o *CreateServiceNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create service not found response a status code equal to that given
+func (o *CreateServiceNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *CreateServiceNotFound) Error() string {
 	return fmt.Sprintf("[POST /services][%d] createServiceNotFound  %+v", 404, o.Payload)
 }
+
+func (o *CreateServiceNotFound) String() string {
+	return fmt.Sprintf("[POST /services][%d] createServiceNotFound  %+v", 404, o.Payload)
+}
+
 func (o *CreateServiceNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -241,7 +396,8 @@ func NewCreateServiceConflict() *CreateServiceConflict {
 	return &CreateServiceConflict{}
 }
 
-/* CreateServiceConflict describes a response with status code 409, with default header values.
+/*
+CreateServiceConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -249,9 +405,39 @@ type CreateServiceConflict struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create service conflict response has a 2xx status code
+func (o *CreateServiceConflict) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create service conflict response has a 3xx status code
+func (o *CreateServiceConflict) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create service conflict response has a 4xx status code
+func (o *CreateServiceConflict) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create service conflict response has a 5xx status code
+func (o *CreateServiceConflict) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create service conflict response a status code equal to that given
+func (o *CreateServiceConflict) IsCode(code int) bool {
+	return code == 409
+}
+
 func (o *CreateServiceConflict) Error() string {
 	return fmt.Sprintf("[POST /services][%d] createServiceConflict  %+v", 409, o.Payload)
 }
+
+func (o *CreateServiceConflict) String() string {
+	return fmt.Sprintf("[POST /services][%d] createServiceConflict  %+v", 409, o.Payload)
+}
+
 func (o *CreateServiceConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -273,7 +459,8 @@ func NewCreateServiceUnprocessableEntity() *CreateServiceUnprocessableEntity {
 	return &CreateServiceUnprocessableEntity{}
 }
 
-/* CreateServiceUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+CreateServiceUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -281,9 +468,39 @@ type CreateServiceUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create service unprocessable entity response has a 2xx status code
+func (o *CreateServiceUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create service unprocessable entity response has a 3xx status code
+func (o *CreateServiceUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create service unprocessable entity response has a 4xx status code
+func (o *CreateServiceUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create service unprocessable entity response has a 5xx status code
+func (o *CreateServiceUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create service unprocessable entity response a status code equal to that given
+func (o *CreateServiceUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *CreateServiceUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /services][%d] createServiceUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *CreateServiceUnprocessableEntity) String() string {
+	return fmt.Sprintf("[POST /services][%d] createServiceUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *CreateServiceUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -305,7 +522,8 @@ func NewCreateServiceTooManyRequests() *CreateServiceTooManyRequests {
 	return &CreateServiceTooManyRequests{}
 }
 
-/* CreateServiceTooManyRequests describes a response with status code 429, with default header values.
+/*
+CreateServiceTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -313,9 +531,39 @@ type CreateServiceTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create service too many requests response has a 2xx status code
+func (o *CreateServiceTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create service too many requests response has a 3xx status code
+func (o *CreateServiceTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create service too many requests response has a 4xx status code
+func (o *CreateServiceTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create service too many requests response has a 5xx status code
+func (o *CreateServiceTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create service too many requests response a status code equal to that given
+func (o *CreateServiceTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *CreateServiceTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /services][%d] createServiceTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *CreateServiceTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /services][%d] createServiceTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *CreateServiceTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

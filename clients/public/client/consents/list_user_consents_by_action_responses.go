@@ -63,7 +63,8 @@ func NewListUserConsentsByActionOK() *ListUserConsentsByActionOK {
 	return &ListUserConsentsByActionOK{}
 }
 
-/* ListUserConsentsByActionOK describes a response with status code 200, with default header values.
+/*
+ListUserConsentsByActionOK describes a response with status code 200, with default header values.
 
 Consents with grants
 */
@@ -71,9 +72,39 @@ type ListUserConsentsByActionOK struct {
 	Payload *models.ConsentsWithGrants
 }
 
+// IsSuccess returns true when this list user consents by action o k response has a 2xx status code
+func (o *ListUserConsentsByActionOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this list user consents by action o k response has a 3xx status code
+func (o *ListUserConsentsByActionOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list user consents by action o k response has a 4xx status code
+func (o *ListUserConsentsByActionOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this list user consents by action o k response has a 5xx status code
+func (o *ListUserConsentsByActionOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list user consents by action o k response a status code equal to that given
+func (o *ListUserConsentsByActionOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *ListUserConsentsByActionOK) Error() string {
 	return fmt.Sprintf("[GET /privacy/consents/{action}][%d] listUserConsentsByActionOK  %+v", 200, o.Payload)
 }
+
+func (o *ListUserConsentsByActionOK) String() string {
+	return fmt.Sprintf("[GET /privacy/consents/{action}][%d] listUserConsentsByActionOK  %+v", 200, o.Payload)
+}
+
 func (o *ListUserConsentsByActionOK) GetPayload() *models.ConsentsWithGrants {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewListUserConsentsByActionUnauthorized() *ListUserConsentsByActionUnauthor
 	return &ListUserConsentsByActionUnauthorized{}
 }
 
-/* ListUserConsentsByActionUnauthorized describes a response with status code 401, with default header values.
+/*
+ListUserConsentsByActionUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type ListUserConsentsByActionUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list user consents by action unauthorized response has a 2xx status code
+func (o *ListUserConsentsByActionUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list user consents by action unauthorized response has a 3xx status code
+func (o *ListUserConsentsByActionUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list user consents by action unauthorized response has a 4xx status code
+func (o *ListUserConsentsByActionUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list user consents by action unauthorized response has a 5xx status code
+func (o *ListUserConsentsByActionUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list user consents by action unauthorized response a status code equal to that given
+func (o *ListUserConsentsByActionUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *ListUserConsentsByActionUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /privacy/consents/{action}][%d] listUserConsentsByActionUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *ListUserConsentsByActionUnauthorized) String() string {
+	return fmt.Sprintf("[GET /privacy/consents/{action}][%d] listUserConsentsByActionUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *ListUserConsentsByActionUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewListUserConsentsByActionForbidden() *ListUserConsentsByActionForbidden {
 	return &ListUserConsentsByActionForbidden{}
 }
 
-/* ListUserConsentsByActionForbidden describes a response with status code 403, with default header values.
+/*
+ListUserConsentsByActionForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type ListUserConsentsByActionForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list user consents by action forbidden response has a 2xx status code
+func (o *ListUserConsentsByActionForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list user consents by action forbidden response has a 3xx status code
+func (o *ListUserConsentsByActionForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list user consents by action forbidden response has a 4xx status code
+func (o *ListUserConsentsByActionForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list user consents by action forbidden response has a 5xx status code
+func (o *ListUserConsentsByActionForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list user consents by action forbidden response a status code equal to that given
+func (o *ListUserConsentsByActionForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *ListUserConsentsByActionForbidden) Error() string {
 	return fmt.Sprintf("[GET /privacy/consents/{action}][%d] listUserConsentsByActionForbidden  %+v", 403, o.Payload)
 }
+
+func (o *ListUserConsentsByActionForbidden) String() string {
+	return fmt.Sprintf("[GET /privacy/consents/{action}][%d] listUserConsentsByActionForbidden  %+v", 403, o.Payload)
+}
+
 func (o *ListUserConsentsByActionForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewListUserConsentsByActionNotFound() *ListUserConsentsByActionNotFound {
 	return &ListUserConsentsByActionNotFound{}
 }
 
-/* ListUserConsentsByActionNotFound describes a response with status code 404, with default header values.
+/*
+ListUserConsentsByActionNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type ListUserConsentsByActionNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list user consents by action not found response has a 2xx status code
+func (o *ListUserConsentsByActionNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list user consents by action not found response has a 3xx status code
+func (o *ListUserConsentsByActionNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list user consents by action not found response has a 4xx status code
+func (o *ListUserConsentsByActionNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list user consents by action not found response has a 5xx status code
+func (o *ListUserConsentsByActionNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list user consents by action not found response a status code equal to that given
+func (o *ListUserConsentsByActionNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *ListUserConsentsByActionNotFound) Error() string {
 	return fmt.Sprintf("[GET /privacy/consents/{action}][%d] listUserConsentsByActionNotFound  %+v", 404, o.Payload)
 }
+
+func (o *ListUserConsentsByActionNotFound) String() string {
+	return fmt.Sprintf("[GET /privacy/consents/{action}][%d] listUserConsentsByActionNotFound  %+v", 404, o.Payload)
+}
+
 func (o *ListUserConsentsByActionNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewListUserConsentsByActionTooManyRequests() *ListUserConsentsByActionTooMa
 	return &ListUserConsentsByActionTooManyRequests{}
 }
 
-/* ListUserConsentsByActionTooManyRequests describes a response with status code 429, with default header values.
+/*
+ListUserConsentsByActionTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type ListUserConsentsByActionTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list user consents by action too many requests response has a 2xx status code
+func (o *ListUserConsentsByActionTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list user consents by action too many requests response has a 3xx status code
+func (o *ListUserConsentsByActionTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list user consents by action too many requests response has a 4xx status code
+func (o *ListUserConsentsByActionTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list user consents by action too many requests response has a 5xx status code
+func (o *ListUserConsentsByActionTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list user consents by action too many requests response a status code equal to that given
+func (o *ListUserConsentsByActionTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *ListUserConsentsByActionTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /privacy/consents/{action}][%d] listUserConsentsByActionTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *ListUserConsentsByActionTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /privacy/consents/{action}][%d] listUserConsentsByActionTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *ListUserConsentsByActionTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

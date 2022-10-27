@@ -81,7 +81,8 @@ func NewUpdateSchemaOK() *UpdateSchemaOK {
 	return &UpdateSchemaOK{}
 }
 
-/* UpdateSchemaOK describes a response with status code 200, with default header values.
+/*
+UpdateSchemaOK describes a response with status code 200, with default header values.
 
 Schema
 */
@@ -89,9 +90,39 @@ type UpdateSchemaOK struct {
 	Payload *models.Schema
 }
 
+// IsSuccess returns true when this update schema o k response has a 2xx status code
+func (o *UpdateSchemaOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this update schema o k response has a 3xx status code
+func (o *UpdateSchemaOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update schema o k response has a 4xx status code
+func (o *UpdateSchemaOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this update schema o k response has a 5xx status code
+func (o *UpdateSchemaOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update schema o k response a status code equal to that given
+func (o *UpdateSchemaOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *UpdateSchemaOK) Error() string {
 	return fmt.Sprintf("[PUT /admin/schemas/{schID}][%d] updateSchemaOK  %+v", 200, o.Payload)
 }
+
+func (o *UpdateSchemaOK) String() string {
+	return fmt.Sprintf("[PUT /admin/schemas/{schID}][%d] updateSchemaOK  %+v", 200, o.Payload)
+}
+
 func (o *UpdateSchemaOK) GetPayload() *models.Schema {
 	return o.Payload
 }
@@ -113,7 +144,8 @@ func NewUpdateSchemaBadRequest() *UpdateSchemaBadRequest {
 	return &UpdateSchemaBadRequest{}
 }
 
-/* UpdateSchemaBadRequest describes a response with status code 400, with default header values.
+/*
+UpdateSchemaBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -121,9 +153,39 @@ type UpdateSchemaBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update schema bad request response has a 2xx status code
+func (o *UpdateSchemaBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update schema bad request response has a 3xx status code
+func (o *UpdateSchemaBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update schema bad request response has a 4xx status code
+func (o *UpdateSchemaBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update schema bad request response has a 5xx status code
+func (o *UpdateSchemaBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update schema bad request response a status code equal to that given
+func (o *UpdateSchemaBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *UpdateSchemaBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /admin/schemas/{schID}][%d] updateSchemaBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *UpdateSchemaBadRequest) String() string {
+	return fmt.Sprintf("[PUT /admin/schemas/{schID}][%d] updateSchemaBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *UpdateSchemaBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -145,7 +207,8 @@ func NewUpdateSchemaUnauthorized() *UpdateSchemaUnauthorized {
 	return &UpdateSchemaUnauthorized{}
 }
 
-/* UpdateSchemaUnauthorized describes a response with status code 401, with default header values.
+/*
+UpdateSchemaUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -153,9 +216,39 @@ type UpdateSchemaUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update schema unauthorized response has a 2xx status code
+func (o *UpdateSchemaUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update schema unauthorized response has a 3xx status code
+func (o *UpdateSchemaUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update schema unauthorized response has a 4xx status code
+func (o *UpdateSchemaUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update schema unauthorized response has a 5xx status code
+func (o *UpdateSchemaUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update schema unauthorized response a status code equal to that given
+func (o *UpdateSchemaUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *UpdateSchemaUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /admin/schemas/{schID}][%d] updateSchemaUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *UpdateSchemaUnauthorized) String() string {
+	return fmt.Sprintf("[PUT /admin/schemas/{schID}][%d] updateSchemaUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *UpdateSchemaUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -177,7 +270,8 @@ func NewUpdateSchemaForbidden() *UpdateSchemaForbidden {
 	return &UpdateSchemaForbidden{}
 }
 
-/* UpdateSchemaForbidden describes a response with status code 403, with default header values.
+/*
+UpdateSchemaForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -185,9 +279,39 @@ type UpdateSchemaForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update schema forbidden response has a 2xx status code
+func (o *UpdateSchemaForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update schema forbidden response has a 3xx status code
+func (o *UpdateSchemaForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update schema forbidden response has a 4xx status code
+func (o *UpdateSchemaForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update schema forbidden response has a 5xx status code
+func (o *UpdateSchemaForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update schema forbidden response a status code equal to that given
+func (o *UpdateSchemaForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *UpdateSchemaForbidden) Error() string {
 	return fmt.Sprintf("[PUT /admin/schemas/{schID}][%d] updateSchemaForbidden  %+v", 403, o.Payload)
 }
+
+func (o *UpdateSchemaForbidden) String() string {
+	return fmt.Sprintf("[PUT /admin/schemas/{schID}][%d] updateSchemaForbidden  %+v", 403, o.Payload)
+}
+
 func (o *UpdateSchemaForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -209,7 +333,8 @@ func NewUpdateSchemaNotFound() *UpdateSchemaNotFound {
 	return &UpdateSchemaNotFound{}
 }
 
-/* UpdateSchemaNotFound describes a response with status code 404, with default header values.
+/*
+UpdateSchemaNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -217,9 +342,39 @@ type UpdateSchemaNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update schema not found response has a 2xx status code
+func (o *UpdateSchemaNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update schema not found response has a 3xx status code
+func (o *UpdateSchemaNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update schema not found response has a 4xx status code
+func (o *UpdateSchemaNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update schema not found response has a 5xx status code
+func (o *UpdateSchemaNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update schema not found response a status code equal to that given
+func (o *UpdateSchemaNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *UpdateSchemaNotFound) Error() string {
 	return fmt.Sprintf("[PUT /admin/schemas/{schID}][%d] updateSchemaNotFound  %+v", 404, o.Payload)
 }
+
+func (o *UpdateSchemaNotFound) String() string {
+	return fmt.Sprintf("[PUT /admin/schemas/{schID}][%d] updateSchemaNotFound  %+v", 404, o.Payload)
+}
+
 func (o *UpdateSchemaNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -241,7 +396,8 @@ func NewUpdateSchemaConflict() *UpdateSchemaConflict {
 	return &UpdateSchemaConflict{}
 }
 
-/* UpdateSchemaConflict describes a response with status code 409, with default header values.
+/*
+UpdateSchemaConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -249,9 +405,39 @@ type UpdateSchemaConflict struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update schema conflict response has a 2xx status code
+func (o *UpdateSchemaConflict) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update schema conflict response has a 3xx status code
+func (o *UpdateSchemaConflict) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update schema conflict response has a 4xx status code
+func (o *UpdateSchemaConflict) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update schema conflict response has a 5xx status code
+func (o *UpdateSchemaConflict) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update schema conflict response a status code equal to that given
+func (o *UpdateSchemaConflict) IsCode(code int) bool {
+	return code == 409
+}
+
 func (o *UpdateSchemaConflict) Error() string {
 	return fmt.Sprintf("[PUT /admin/schemas/{schID}][%d] updateSchemaConflict  %+v", 409, o.Payload)
 }
+
+func (o *UpdateSchemaConflict) String() string {
+	return fmt.Sprintf("[PUT /admin/schemas/{schID}][%d] updateSchemaConflict  %+v", 409, o.Payload)
+}
+
 func (o *UpdateSchemaConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -273,7 +459,8 @@ func NewUpdateSchemaUnprocessableEntity() *UpdateSchemaUnprocessableEntity {
 	return &UpdateSchemaUnprocessableEntity{}
 }
 
-/* UpdateSchemaUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+UpdateSchemaUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -281,9 +468,39 @@ type UpdateSchemaUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update schema unprocessable entity response has a 2xx status code
+func (o *UpdateSchemaUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update schema unprocessable entity response has a 3xx status code
+func (o *UpdateSchemaUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update schema unprocessable entity response has a 4xx status code
+func (o *UpdateSchemaUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update schema unprocessable entity response has a 5xx status code
+func (o *UpdateSchemaUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update schema unprocessable entity response a status code equal to that given
+func (o *UpdateSchemaUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *UpdateSchemaUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /admin/schemas/{schID}][%d] updateSchemaUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *UpdateSchemaUnprocessableEntity) String() string {
+	return fmt.Sprintf("[PUT /admin/schemas/{schID}][%d] updateSchemaUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *UpdateSchemaUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -305,7 +522,8 @@ func NewUpdateSchemaTooManyRequests() *UpdateSchemaTooManyRequests {
 	return &UpdateSchemaTooManyRequests{}
 }
 
-/* UpdateSchemaTooManyRequests describes a response with status code 429, with default header values.
+/*
+UpdateSchemaTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -313,9 +531,39 @@ type UpdateSchemaTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update schema too many requests response has a 2xx status code
+func (o *UpdateSchemaTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update schema too many requests response has a 3xx status code
+func (o *UpdateSchemaTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update schema too many requests response has a 4xx status code
+func (o *UpdateSchemaTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update schema too many requests response has a 5xx status code
+func (o *UpdateSchemaTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update schema too many requests response a status code equal to that given
+func (o *UpdateSchemaTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *UpdateSchemaTooManyRequests) Error() string {
 	return fmt.Sprintf("[PUT /admin/schemas/{schID}][%d] updateSchemaTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *UpdateSchemaTooManyRequests) String() string {
+	return fmt.Sprintf("[PUT /admin/schemas/{schID}][%d] updateSchemaTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *UpdateSchemaTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

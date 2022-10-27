@@ -63,7 +63,8 @@ func NewListPrivacyLedgerEventsBySubjectOK() *ListPrivacyLedgerEventsBySubjectOK
 	return &ListPrivacyLedgerEventsBySubjectOK{}
 }
 
-/* ListPrivacyLedgerEventsBySubjectOK describes a response with status code 200, with default header values.
+/*
+ListPrivacyLedgerEventsBySubjectOK describes a response with status code 200, with default header values.
 
 Privacy ledger events
 */
@@ -71,9 +72,39 @@ type ListPrivacyLedgerEventsBySubjectOK struct {
 	Payload *models.PrivacyLedgerEvents
 }
 
+// IsSuccess returns true when this list privacy ledger events by subject o k response has a 2xx status code
+func (o *ListPrivacyLedgerEventsBySubjectOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this list privacy ledger events by subject o k response has a 3xx status code
+func (o *ListPrivacyLedgerEventsBySubjectOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list privacy ledger events by subject o k response has a 4xx status code
+func (o *ListPrivacyLedgerEventsBySubjectOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this list privacy ledger events by subject o k response has a 5xx status code
+func (o *ListPrivacyLedgerEventsBySubjectOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list privacy ledger events by subject o k response a status code equal to that given
+func (o *ListPrivacyLedgerEventsBySubjectOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *ListPrivacyLedgerEventsBySubjectOK) Error() string {
 	return fmt.Sprintf("[GET /events][%d] listPrivacyLedgerEventsBySubjectOK  %+v", 200, o.Payload)
 }
+
+func (o *ListPrivacyLedgerEventsBySubjectOK) String() string {
+	return fmt.Sprintf("[GET /events][%d] listPrivacyLedgerEventsBySubjectOK  %+v", 200, o.Payload)
+}
+
 func (o *ListPrivacyLedgerEventsBySubjectOK) GetPayload() *models.PrivacyLedgerEvents {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewListPrivacyLedgerEventsBySubjectUnauthorized() *ListPrivacyLedgerEventsB
 	return &ListPrivacyLedgerEventsBySubjectUnauthorized{}
 }
 
-/* ListPrivacyLedgerEventsBySubjectUnauthorized describes a response with status code 401, with default header values.
+/*
+ListPrivacyLedgerEventsBySubjectUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type ListPrivacyLedgerEventsBySubjectUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list privacy ledger events by subject unauthorized response has a 2xx status code
+func (o *ListPrivacyLedgerEventsBySubjectUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list privacy ledger events by subject unauthorized response has a 3xx status code
+func (o *ListPrivacyLedgerEventsBySubjectUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list privacy ledger events by subject unauthorized response has a 4xx status code
+func (o *ListPrivacyLedgerEventsBySubjectUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list privacy ledger events by subject unauthorized response has a 5xx status code
+func (o *ListPrivacyLedgerEventsBySubjectUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list privacy ledger events by subject unauthorized response a status code equal to that given
+func (o *ListPrivacyLedgerEventsBySubjectUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *ListPrivacyLedgerEventsBySubjectUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /events][%d] listPrivacyLedgerEventsBySubjectUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *ListPrivacyLedgerEventsBySubjectUnauthorized) String() string {
+	return fmt.Sprintf("[GET /events][%d] listPrivacyLedgerEventsBySubjectUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *ListPrivacyLedgerEventsBySubjectUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewListPrivacyLedgerEventsBySubjectForbidden() *ListPrivacyLedgerEventsBySu
 	return &ListPrivacyLedgerEventsBySubjectForbidden{}
 }
 
-/* ListPrivacyLedgerEventsBySubjectForbidden describes a response with status code 403, with default header values.
+/*
+ListPrivacyLedgerEventsBySubjectForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type ListPrivacyLedgerEventsBySubjectForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list privacy ledger events by subject forbidden response has a 2xx status code
+func (o *ListPrivacyLedgerEventsBySubjectForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list privacy ledger events by subject forbidden response has a 3xx status code
+func (o *ListPrivacyLedgerEventsBySubjectForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list privacy ledger events by subject forbidden response has a 4xx status code
+func (o *ListPrivacyLedgerEventsBySubjectForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list privacy ledger events by subject forbidden response has a 5xx status code
+func (o *ListPrivacyLedgerEventsBySubjectForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list privacy ledger events by subject forbidden response a status code equal to that given
+func (o *ListPrivacyLedgerEventsBySubjectForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *ListPrivacyLedgerEventsBySubjectForbidden) Error() string {
 	return fmt.Sprintf("[GET /events][%d] listPrivacyLedgerEventsBySubjectForbidden  %+v", 403, o.Payload)
 }
+
+func (o *ListPrivacyLedgerEventsBySubjectForbidden) String() string {
+	return fmt.Sprintf("[GET /events][%d] listPrivacyLedgerEventsBySubjectForbidden  %+v", 403, o.Payload)
+}
+
 func (o *ListPrivacyLedgerEventsBySubjectForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewListPrivacyLedgerEventsBySubjectNotFound() *ListPrivacyLedgerEventsBySub
 	return &ListPrivacyLedgerEventsBySubjectNotFound{}
 }
 
-/* ListPrivacyLedgerEventsBySubjectNotFound describes a response with status code 404, with default header values.
+/*
+ListPrivacyLedgerEventsBySubjectNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type ListPrivacyLedgerEventsBySubjectNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list privacy ledger events by subject not found response has a 2xx status code
+func (o *ListPrivacyLedgerEventsBySubjectNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list privacy ledger events by subject not found response has a 3xx status code
+func (o *ListPrivacyLedgerEventsBySubjectNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list privacy ledger events by subject not found response has a 4xx status code
+func (o *ListPrivacyLedgerEventsBySubjectNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list privacy ledger events by subject not found response has a 5xx status code
+func (o *ListPrivacyLedgerEventsBySubjectNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list privacy ledger events by subject not found response a status code equal to that given
+func (o *ListPrivacyLedgerEventsBySubjectNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *ListPrivacyLedgerEventsBySubjectNotFound) Error() string {
 	return fmt.Sprintf("[GET /events][%d] listPrivacyLedgerEventsBySubjectNotFound  %+v", 404, o.Payload)
 }
+
+func (o *ListPrivacyLedgerEventsBySubjectNotFound) String() string {
+	return fmt.Sprintf("[GET /events][%d] listPrivacyLedgerEventsBySubjectNotFound  %+v", 404, o.Payload)
+}
+
 func (o *ListPrivacyLedgerEventsBySubjectNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewListPrivacyLedgerEventsBySubjectTooManyRequests() *ListPrivacyLedgerEven
 	return &ListPrivacyLedgerEventsBySubjectTooManyRequests{}
 }
 
-/* ListPrivacyLedgerEventsBySubjectTooManyRequests describes a response with status code 429, with default header values.
+/*
+ListPrivacyLedgerEventsBySubjectTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type ListPrivacyLedgerEventsBySubjectTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list privacy ledger events by subject too many requests response has a 2xx status code
+func (o *ListPrivacyLedgerEventsBySubjectTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list privacy ledger events by subject too many requests response has a 3xx status code
+func (o *ListPrivacyLedgerEventsBySubjectTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list privacy ledger events by subject too many requests response has a 4xx status code
+func (o *ListPrivacyLedgerEventsBySubjectTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list privacy ledger events by subject too many requests response has a 5xx status code
+func (o *ListPrivacyLedgerEventsBySubjectTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list privacy ledger events by subject too many requests response a status code equal to that given
+func (o *ListPrivacyLedgerEventsBySubjectTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *ListPrivacyLedgerEventsBySubjectTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /events][%d] listPrivacyLedgerEventsBySubjectTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *ListPrivacyLedgerEventsBySubjectTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /events][%d] listPrivacyLedgerEventsBySubjectTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *ListPrivacyLedgerEventsBySubjectTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

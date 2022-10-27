@@ -34,6 +34,9 @@ type ScopeWithService struct {
 	// Example: 1
 	ID string `json:"id,omitempty"`
 
+	// metadata
+	Metadata Metadata `json:"metadata,omitempty"`
+
 	// scope name
 	// Example: offline_access
 	Name string `json:"name,omitempty"`
@@ -45,6 +48,9 @@ type ScopeWithService struct {
 	// Example: default
 	TenantID string `json:"tenant_id,omitempty"`
 
+	// disable storage of scope grants
+	Transient bool `json:"transient,omitempty"`
+
 	// with service
 	WithService bool `json:"with_service,omitempty"`
 }
@@ -53,6 +59,10 @@ type ScopeWithService struct {
 func (m *ScopeWithService) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateMetadata(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateService(formats); err != nil {
 		res = append(res, err)
 	}
@@ -60,6 +70,25 @@ func (m *ScopeWithService) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ScopeWithService) validateMetadata(formats strfmt.Registry) error {
+	if swag.IsZero(m.Metadata) { // not required
+		return nil
+	}
+
+	if m.Metadata != nil {
+		if err := m.Metadata.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("metadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("metadata")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -86,6 +115,10 @@ func (m *ScopeWithService) validateService(formats strfmt.Registry) error {
 func (m *ScopeWithService) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateMetadata(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateService(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -93,6 +126,20 @@ func (m *ScopeWithService) ContextValidate(ctx context.Context, formats strfmt.R
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ScopeWithService) contextValidateMetadata(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.Metadata.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("metadata")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("metadata")
+		}
+		return err
+	}
+
 	return nil
 }
 

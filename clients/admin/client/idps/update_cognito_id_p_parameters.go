@@ -54,10 +54,12 @@ func NewUpdateCognitoIDPParamsWithHTTPClient(client *http.Client) *UpdateCognito
 	}
 }
 
-/* UpdateCognitoIDPParams contains all the parameters to send to the API endpoint
-   for the update cognito ID p operation.
+/*
+UpdateCognitoIDPParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update cognito ID p operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateCognitoIDPParams struct {
 

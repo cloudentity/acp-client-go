@@ -53,10 +53,12 @@ func NewGetCDRArrangementsParamsWithHTTPClient(client *http.Client) *GetCDRArran
 	}
 }
 
-/* GetCDRArrangementsParams contains all the parameters to send to the API endpoint
-   for the get c d r arrangements operation.
+/*
+GetCDRArrangementsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get c d r arrangements operation.
+
+	Typically these are written to a http.Request.
 */
 type GetCDRArrangementsParams struct {
 
@@ -87,6 +89,13 @@ type GetCDRArrangementsParams struct {
 	ClientID
 	*/
 	ClientID *string
+
+	/* CustomerID.
+
+	     Optional customer id
+	CustomerID
+	*/
+	CustomerID *string
 
 	/* Limit.
 
@@ -125,6 +134,13 @@ type GetCDRArrangementsParams struct {
 	Types
 	*/
 	Types []string
+
+	/* UserID.
+
+	     Optional User id
+	UserID
+	*/
+	UserID *string
 
 	/* Wid.
 
@@ -245,6 +261,17 @@ func (o *GetCDRArrangementsParams) SetClientID(clientID *string) {
 	o.ClientID = clientID
 }
 
+// WithCustomerID adds the customerID to the get c d r arrangements params
+func (o *GetCDRArrangementsParams) WithCustomerID(customerID *string) *GetCDRArrangementsParams {
+	o.SetCustomerID(customerID)
+	return o
+}
+
+// SetCustomerID adds the customerId to the get c d r arrangements params
+func (o *GetCDRArrangementsParams) SetCustomerID(customerID *string) {
+	o.CustomerID = customerID
+}
+
 // WithLimit adds the limit to the get c d r arrangements params
 func (o *GetCDRArrangementsParams) WithLimit(limit *int64) *GetCDRArrangementsParams {
 	o.SetLimit(limit)
@@ -298,6 +325,17 @@ func (o *GetCDRArrangementsParams) WithTypes(types []string) *GetCDRArrangements
 // SetTypes adds the types to the get c d r arrangements params
 func (o *GetCDRArrangementsParams) SetTypes(types []string) {
 	o.Types = types
+}
+
+// WithUserID adds the userID to the get c d r arrangements params
+func (o *GetCDRArrangementsParams) WithUserID(userID *string) *GetCDRArrangementsParams {
+	o.SetUserID(userID)
+	return o
+}
+
+// SetUserID adds the userId to the get c d r arrangements params
+func (o *GetCDRArrangementsParams) SetUserID(userID *string) {
+	o.UserID = userID
 }
 
 // WithWid adds the wid to the get c d r arrangements params
@@ -381,6 +419,23 @@ func (o *GetCDRArrangementsParams) WriteToRequest(r runtime.ClientRequest, reg s
 		}
 	}
 
+	if o.CustomerID != nil {
+
+		// query param customer_id
+		var qrCustomerID string
+
+		if o.CustomerID != nil {
+			qrCustomerID = *o.CustomerID
+		}
+		qCustomerID := qrCustomerID
+		if qCustomerID != "" {
+
+			if err := r.SetQueryParam("customer_id", qCustomerID); err != nil {
+				return err
+			}
+		}
+	}
+
 	if o.Limit != nil {
 
 		// query param limit
@@ -451,6 +506,23 @@ func (o *GetCDRArrangementsParams) WriteToRequest(r runtime.ClientRequest, reg s
 		// query array param types
 		if err := r.SetQueryParam("types", joinedTypes...); err != nil {
 			return err
+		}
+	}
+
+	if o.UserID != nil {
+
+		// query param user_id
+		var qrUserID string
+
+		if o.UserID != nil {
+			qrUserID = *o.UserID
+		}
+		qUserID := qrUserID
+		if qUserID != "" {
+
+			if err := r.SetQueryParam("user_id", qUserID); err != nil {
+				return err
+			}
 		}
 	}
 

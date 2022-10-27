@@ -22,7 +22,8 @@ type OBConsent struct {
 	// account ids
 	AccountIds []string `json:"account_ids"`
 
-	// client id
+	// Client identifier
+	// Example: \"cauqo9c9vpbs0aj2b2v0\
 	ClientID string `json:"client_id,omitempty"`
 
 	// consent id
@@ -38,19 +39,21 @@ type OBConsent struct {
 	// request hash
 	RequestHash string `json:"request_hash,omitempty"`
 
-	// server id
+	// Server / Workspace identifier
+	// Example: \"server\
 	ServerID string `json:"server_id,omitempty"`
 
 	// spec
 	Spec string `json:"spec,omitempty"`
 
 	// spec version
-	SpecVersion string `json:"spec_version,omitempty"`
+	SpecVersion SpecVersion `json:"spec_version,omitempty"`
 
 	// status
 	Status string `json:"status,omitempty"`
 
-	// tenant id
+	// Tenant identifier
+	// Example: \"tenant\
 	TenantID string `json:"tenant_id,omitempty"`
 
 	// type
@@ -62,6 +65,10 @@ func (m *OBConsent) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCreatedAt(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSpecVersion(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -81,6 +88,23 @@ func (m *OBConsent) validateCreatedAt(formats strfmt.Registry) error {
 	}
 
 	if err := validate.FormatOf("created_at", "body", "date-time", m.CreatedAt.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *OBConsent) validateSpecVersion(formats strfmt.Registry) error {
+	if swag.IsZero(m.SpecVersion) { // not required
+		return nil
+	}
+
+	if err := m.SpecVersion.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("spec_version")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("spec_version")
+		}
 		return err
 	}
 
@@ -108,6 +132,10 @@ func (m *OBConsent) validateType(formats strfmt.Registry) error {
 func (m *OBConsent) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateSpecVersion(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateType(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -115,6 +143,20 @@ func (m *OBConsent) ContextValidate(ctx context.Context, formats strfmt.Registry
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *OBConsent) contextValidateSpecVersion(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.SpecVersion.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("spec_version")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("spec_version")
+		}
+		return err
+	}
+
 	return nil
 }
 

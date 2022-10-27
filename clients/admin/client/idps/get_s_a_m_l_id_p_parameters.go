@@ -52,10 +52,12 @@ func NewGetSAMLIDPParamsWithHTTPClient(client *http.Client) *GetSAMLIDPParams {
 	}
 }
 
-/* GetSAMLIDPParams contains all the parameters to send to the API endpoint
-   for the get s a m l ID p operation.
+/*
+GetSAMLIDPParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get s a m l ID p operation.
+
+	Typically these are written to a http.Request.
 */
 type GetSAMLIDPParams struct {
 

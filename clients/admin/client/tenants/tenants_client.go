@@ -38,9 +38,9 @@ type ClientService interface {
 }
 
 /*
-  GetAdminTenant gets tenant
+GetAdminTenant gets tenant
 
-  Get tenant.
+Get tenant.
 */
 func (a *Client) GetAdminTenant(params *GetAdminTenantParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAdminTenantOK, error) {
 	// TODO: Validate the params before sending
@@ -79,9 +79,9 @@ func (a *Client) GetAdminTenant(params *GetAdminTenantParams, authInfo runtime.C
 }
 
 /*
-  UpdateAdminTenant updates tenant
+UpdateAdminTenant updates tenant
 
-  Update tenant.
+Update tenant.
 */
 func (a *Client) UpdateAdminTenant(params *UpdateAdminTenantParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateAdminTenantOK, error) {
 	// TODO: Validate the params before sending

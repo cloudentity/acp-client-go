@@ -52,10 +52,12 @@ func NewGetDataAccessConsentDeprecatedParamsWithHTTPClient(client *http.Client) 
 	}
 }
 
-/* GetDataAccessConsentDeprecatedParams contains all the parameters to send to the API endpoint
-   for the get data access consent deprecated operation.
+/*
+GetDataAccessConsentDeprecatedParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get data access consent deprecated operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDataAccessConsentDeprecatedParams struct {
 

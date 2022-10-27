@@ -52,10 +52,12 @@ func NewObbrPaymentConsentIntrospectParamsWithHTTPClient(client *http.Client) *O
 	}
 }
 
-/* ObbrPaymentConsentIntrospectParams contains all the parameters to send to the API endpoint
-   for the obbr payment consent introspect operation.
+/*
+ObbrPaymentConsentIntrospectParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the obbr payment consent introspect operation.
+
+	Typically these are written to a http.Request.
 */
 type ObbrPaymentConsentIntrospectParams struct {
 

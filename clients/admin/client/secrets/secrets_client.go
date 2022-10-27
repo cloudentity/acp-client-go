@@ -42,9 +42,10 @@ type ClientService interface {
 }
 
 /*
-  CreateSecret creates secret
+	CreateSecret creates secret
 
-  Creates a secret for a given tenant id and authorization server (workspace).
+	Creates a secret for a given tenant id and authorization server (workspace).
+
 Secrets API is storage for keeping encrypted sensitive variables that may be used within rego policies or scripts.
 */
 func (a *Client) CreateSecret(params *CreateSecretParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateSecretCreated, error) {
@@ -84,9 +85,9 @@ func (a *Client) CreateSecret(params *CreateSecretParams, authInfo runtime.Clien
 }
 
 /*
-  DeleteSecret deletes secret
+DeleteSecret deletes secret
 
-  Delete previously created secrets for a given tenant id and autorization server (workspace).
+Delete previously created secrets for a given tenant id and autorization server (workspace).
 */
 func (a *Client) DeleteSecret(params *DeleteSecretParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteSecretNoContent, error) {
 	// TODO: Validate the params before sending
@@ -125,9 +126,10 @@ func (a *Client) DeleteSecret(params *DeleteSecretParams, authInfo runtime.Clien
 }
 
 /*
-  ListSecrets lists secrets
+	ListSecrets lists secrets
 
-  List previously created secrets for a given tenant id and autorization server (workspace).
+	List previously created secrets for a given tenant id and autorization server (workspace).
+
 The secret value is ciphered when it's created, it's not possible to retrieve it in any way.
 */
 func (a *Client) ListSecrets(params *ListSecretsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListSecretsOK, error) {
@@ -167,9 +169,9 @@ func (a *Client) ListSecrets(params *ListSecretsParams, authInfo runtime.ClientA
 }
 
 /*
-  UpdateSecret updates secret
+UpdateSecret updates secret
 
-  Updates a secret for a given tenant id and authorization server (workspace).
+Updates a secret for a given tenant id and authorization server (workspace).
 */
 func (a *Client) UpdateSecret(params *UpdateSecretParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateSecretCreated, error) {
 	// TODO: Validate the params before sending

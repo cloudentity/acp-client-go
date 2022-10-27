@@ -60,7 +60,8 @@ func NewCdrConsentIntrospectOK() *CdrConsentIntrospectOK {
 	return &CdrConsentIntrospectOK{}
 }
 
-/* CdrConsentIntrospectOK describes a response with status code 200, with default header values.
+/*
+CdrConsentIntrospectOK describes a response with status code 200, with default header values.
 
 Introspect CDR Consent Response
 */
@@ -68,9 +69,39 @@ type CdrConsentIntrospectOK struct {
 	Payload *CdrConsentIntrospectOKBody
 }
 
+// IsSuccess returns true when this cdr consent introspect o k response has a 2xx status code
+func (o *CdrConsentIntrospectOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this cdr consent introspect o k response has a 3xx status code
+func (o *CdrConsentIntrospectOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this cdr consent introspect o k response has a 4xx status code
+func (o *CdrConsentIntrospectOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this cdr consent introspect o k response has a 5xx status code
+func (o *CdrConsentIntrospectOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this cdr consent introspect o k response a status code equal to that given
+func (o *CdrConsentIntrospectOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *CdrConsentIntrospectOK) Error() string {
 	return fmt.Sprintf("[POST /cdr/consents/introspect][%d] cdrConsentIntrospectOK  %+v", 200, o.Payload)
 }
+
+func (o *CdrConsentIntrospectOK) String() string {
+	return fmt.Sprintf("[POST /cdr/consents/introspect][%d] cdrConsentIntrospectOK  %+v", 200, o.Payload)
+}
+
 func (o *CdrConsentIntrospectOK) GetPayload() *CdrConsentIntrospectOKBody {
 	return o.Payload
 }
@@ -92,7 +123,8 @@ func NewCdrConsentIntrospectUnauthorized() *CdrConsentIntrospectUnauthorized {
 	return &CdrConsentIntrospectUnauthorized{}
 }
 
-/* CdrConsentIntrospectUnauthorized describes a response with status code 401, with default header values.
+/*
+CdrConsentIntrospectUnauthorized describes a response with status code 401, with default header values.
 
 ErrorResponse
 */
@@ -100,9 +132,39 @@ type CdrConsentIntrospectUnauthorized struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this cdr consent introspect unauthorized response has a 2xx status code
+func (o *CdrConsentIntrospectUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this cdr consent introspect unauthorized response has a 3xx status code
+func (o *CdrConsentIntrospectUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this cdr consent introspect unauthorized response has a 4xx status code
+func (o *CdrConsentIntrospectUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this cdr consent introspect unauthorized response has a 5xx status code
+func (o *CdrConsentIntrospectUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this cdr consent introspect unauthorized response a status code equal to that given
+func (o *CdrConsentIntrospectUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *CdrConsentIntrospectUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /cdr/consents/introspect][%d] cdrConsentIntrospectUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *CdrConsentIntrospectUnauthorized) String() string {
+	return fmt.Sprintf("[POST /cdr/consents/introspect][%d] cdrConsentIntrospectUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *CdrConsentIntrospectUnauthorized) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -124,7 +186,8 @@ func NewCdrConsentIntrospectNotFound() *CdrConsentIntrospectNotFound {
 	return &CdrConsentIntrospectNotFound{}
 }
 
-/* CdrConsentIntrospectNotFound describes a response with status code 404, with default header values.
+/*
+CdrConsentIntrospectNotFound describes a response with status code 404, with default header values.
 
 ErrorResponse
 */
@@ -132,9 +195,39 @@ type CdrConsentIntrospectNotFound struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this cdr consent introspect not found response has a 2xx status code
+func (o *CdrConsentIntrospectNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this cdr consent introspect not found response has a 3xx status code
+func (o *CdrConsentIntrospectNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this cdr consent introspect not found response has a 4xx status code
+func (o *CdrConsentIntrospectNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this cdr consent introspect not found response has a 5xx status code
+func (o *CdrConsentIntrospectNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this cdr consent introspect not found response a status code equal to that given
+func (o *CdrConsentIntrospectNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *CdrConsentIntrospectNotFound) Error() string {
 	return fmt.Sprintf("[POST /cdr/consents/introspect][%d] cdrConsentIntrospectNotFound  %+v", 404, o.Payload)
 }
+
+func (o *CdrConsentIntrospectNotFound) String() string {
+	return fmt.Sprintf("[POST /cdr/consents/introspect][%d] cdrConsentIntrospectNotFound  %+v", 404, o.Payload)
+}
+
 func (o *CdrConsentIntrospectNotFound) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -156,7 +249,8 @@ func NewCdrConsentIntrospectTooManyRequests() *CdrConsentIntrospectTooManyReques
 	return &CdrConsentIntrospectTooManyRequests{}
 }
 
-/* CdrConsentIntrospectTooManyRequests describes a response with status code 429, with default header values.
+/*
+CdrConsentIntrospectTooManyRequests describes a response with status code 429, with default header values.
 
 ErrorResponse
 */
@@ -164,9 +258,39 @@ type CdrConsentIntrospectTooManyRequests struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this cdr consent introspect too many requests response has a 2xx status code
+func (o *CdrConsentIntrospectTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this cdr consent introspect too many requests response has a 3xx status code
+func (o *CdrConsentIntrospectTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this cdr consent introspect too many requests response has a 4xx status code
+func (o *CdrConsentIntrospectTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this cdr consent introspect too many requests response has a 5xx status code
+func (o *CdrConsentIntrospectTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this cdr consent introspect too many requests response a status code equal to that given
+func (o *CdrConsentIntrospectTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *CdrConsentIntrospectTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /cdr/consents/introspect][%d] cdrConsentIntrospectTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *CdrConsentIntrospectTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /cdr/consents/introspect][%d] cdrConsentIntrospectTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *CdrConsentIntrospectTooManyRequests) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -183,23 +307,24 @@ func (o *CdrConsentIntrospectTooManyRequests) readResponse(response runtime.Clie
 	return nil
 }
 
-/*CdrConsentIntrospectOKBody cdr consent introspect o k body
+/*
+CdrConsentIntrospectOKBody cdr consent introspect o k body
 swagger:model CdrConsentIntrospectOKBody
 */
 type CdrConsentIntrospectOKBody struct {
 	models.IntrospectResponse
 
-	// account i ds
+	// Deprecated list of account ids, use account_ids from cdr_arrangement
 	AccountIDs []string `json:"AccountIDs"`
 
 	// cdr arrangement
 	CdrArrangement *models.CDRArrangement `json:"cdr_arrangement,omitempty"`
 
-	// cdr arrangement id
+	// CDR arrangement id
 	CdrArrangementID string `json:"cdr_arrangement_id,omitempty"`
 
-	// sharing expires at
-	SharingExpiresAt int64 `json:"sharing_expires_at,omitempty"`
+	// cdr register client metadata
+	CdrRegisterClientMetadata *models.CDRRegisterClientMetadata `json:"cdr_register_client_metadata,omitempty"`
 }
 
 // UnmarshalJSON unmarshals this object from a JSON structure
@@ -219,7 +344,7 @@ func (o *CdrConsentIntrospectOKBody) UnmarshalJSON(raw []byte) error {
 
 		CdrArrangementID string `json:"cdr_arrangement_id,omitempty"`
 
-		SharingExpiresAt int64 `json:"sharing_expires_at,omitempty"`
+		CdrRegisterClientMetadata *models.CDRRegisterClientMetadata `json:"cdr_register_client_metadata,omitempty"`
 	}
 	if err := swag.ReadJSON(raw, &dataCdrConsentIntrospectOKBodyAO1); err != nil {
 		return err
@@ -231,7 +356,7 @@ func (o *CdrConsentIntrospectOKBody) UnmarshalJSON(raw []byte) error {
 
 	o.CdrArrangementID = dataCdrConsentIntrospectOKBodyAO1.CdrArrangementID
 
-	o.SharingExpiresAt = dataCdrConsentIntrospectOKBodyAO1.SharingExpiresAt
+	o.CdrRegisterClientMetadata = dataCdrConsentIntrospectOKBodyAO1.CdrRegisterClientMetadata
 
 	return nil
 }
@@ -252,7 +377,7 @@ func (o CdrConsentIntrospectOKBody) MarshalJSON() ([]byte, error) {
 
 		CdrArrangementID string `json:"cdr_arrangement_id,omitempty"`
 
-		SharingExpiresAt int64 `json:"sharing_expires_at,omitempty"`
+		CdrRegisterClientMetadata *models.CDRRegisterClientMetadata `json:"cdr_register_client_metadata,omitempty"`
 	}
 
 	dataCdrConsentIntrospectOKBodyAO1.AccountIDs = o.AccountIDs
@@ -261,7 +386,7 @@ func (o CdrConsentIntrospectOKBody) MarshalJSON() ([]byte, error) {
 
 	dataCdrConsentIntrospectOKBodyAO1.CdrArrangementID = o.CdrArrangementID
 
-	dataCdrConsentIntrospectOKBodyAO1.SharingExpiresAt = o.SharingExpiresAt
+	dataCdrConsentIntrospectOKBodyAO1.CdrRegisterClientMetadata = o.CdrRegisterClientMetadata
 
 	jsonDataCdrConsentIntrospectOKBodyAO1, errCdrConsentIntrospectOKBodyAO1 := swag.WriteJSON(dataCdrConsentIntrospectOKBodyAO1)
 	if errCdrConsentIntrospectOKBodyAO1 != nil {
@@ -281,6 +406,10 @@ func (o *CdrConsentIntrospectOKBody) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := o.validateCdrArrangement(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := o.validateCdrRegisterClientMetadata(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -310,6 +439,26 @@ func (o *CdrConsentIntrospectOKBody) validateCdrArrangement(formats strfmt.Regis
 	return nil
 }
 
+func (o *CdrConsentIntrospectOKBody) validateCdrRegisterClientMetadata(formats strfmt.Registry) error {
+
+	if swag.IsZero(o.CdrRegisterClientMetadata) { // not required
+		return nil
+	}
+
+	if o.CdrRegisterClientMetadata != nil {
+		if err := o.CdrRegisterClientMetadata.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cdrConsentIntrospectOK" + "." + "cdr_register_client_metadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cdrConsentIntrospectOK" + "." + "cdr_register_client_metadata")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 // ContextValidate validate this cdr consent introspect o k body based on the context it is used
 func (o *CdrConsentIntrospectOKBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
@@ -320,6 +469,10 @@ func (o *CdrConsentIntrospectOKBody) ContextValidate(ctx context.Context, format
 	}
 
 	if err := o.contextValidateCdrArrangement(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := o.contextValidateCdrRegisterClientMetadata(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -337,6 +490,22 @@ func (o *CdrConsentIntrospectOKBody) contextValidateCdrArrangement(ctx context.C
 				return ve.ValidateName("cdrConsentIntrospectOK" + "." + "cdr_arrangement")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("cdrConsentIntrospectOK" + "." + "cdr_arrangement")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (o *CdrConsentIntrospectOKBody) contextValidateCdrRegisterClientMetadata(ctx context.Context, formats strfmt.Registry) error {
+
+	if o.CdrRegisterClientMetadata != nil {
+		if err := o.CdrRegisterClientMetadata.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cdrConsentIntrospectOK" + "." + "cdr_register_client_metadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cdrConsentIntrospectOK" + "." + "cdr_register_client_metadata")
 			}
 			return err
 		}

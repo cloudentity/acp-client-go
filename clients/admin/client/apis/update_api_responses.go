@@ -75,7 +75,8 @@ func NewUpdateAPIOK() *UpdateAPIOK {
 	return &UpdateAPIOK{}
 }
 
-/* UpdateAPIOK describes a response with status code 200, with default header values.
+/*
+UpdateAPIOK describes a response with status code 200, with default header values.
 
 API
 */
@@ -83,9 +84,39 @@ type UpdateAPIOK struct {
 	Payload *models.API
 }
 
+// IsSuccess returns true when this update Api o k response has a 2xx status code
+func (o *UpdateAPIOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this update Api o k response has a 3xx status code
+func (o *UpdateAPIOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update Api o k response has a 4xx status code
+func (o *UpdateAPIOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this update Api o k response has a 5xx status code
+func (o *UpdateAPIOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update Api o k response a status code equal to that given
+func (o *UpdateAPIOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *UpdateAPIOK) Error() string {
 	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiOK  %+v", 200, o.Payload)
 }
+
+func (o *UpdateAPIOK) String() string {
+	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiOK  %+v", 200, o.Payload)
+}
+
 func (o *UpdateAPIOK) GetPayload() *models.API {
 	return o.Payload
 }
@@ -107,7 +138,8 @@ func NewUpdateAPIBadRequest() *UpdateAPIBadRequest {
 	return &UpdateAPIBadRequest{}
 }
 
-/* UpdateAPIBadRequest describes a response with status code 400, with default header values.
+/*
+UpdateAPIBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -115,9 +147,39 @@ type UpdateAPIBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update Api bad request response has a 2xx status code
+func (o *UpdateAPIBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update Api bad request response has a 3xx status code
+func (o *UpdateAPIBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update Api bad request response has a 4xx status code
+func (o *UpdateAPIBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update Api bad request response has a 5xx status code
+func (o *UpdateAPIBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update Api bad request response a status code equal to that given
+func (o *UpdateAPIBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *UpdateAPIBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *UpdateAPIBadRequest) String() string {
+	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *UpdateAPIBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -139,7 +201,8 @@ func NewUpdateAPIUnauthorized() *UpdateAPIUnauthorized {
 	return &UpdateAPIUnauthorized{}
 }
 
-/* UpdateAPIUnauthorized describes a response with status code 401, with default header values.
+/*
+UpdateAPIUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,9 +210,39 @@ type UpdateAPIUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update Api unauthorized response has a 2xx status code
+func (o *UpdateAPIUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update Api unauthorized response has a 3xx status code
+func (o *UpdateAPIUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update Api unauthorized response has a 4xx status code
+func (o *UpdateAPIUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update Api unauthorized response has a 5xx status code
+func (o *UpdateAPIUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update Api unauthorized response a status code equal to that given
+func (o *UpdateAPIUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *UpdateAPIUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *UpdateAPIUnauthorized) String() string {
+	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *UpdateAPIUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -171,7 +264,8 @@ func NewUpdateAPIForbidden() *UpdateAPIForbidden {
 	return &UpdateAPIForbidden{}
 }
 
-/* UpdateAPIForbidden describes a response with status code 403, with default header values.
+/*
+UpdateAPIForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -179,9 +273,39 @@ type UpdateAPIForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update Api forbidden response has a 2xx status code
+func (o *UpdateAPIForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update Api forbidden response has a 3xx status code
+func (o *UpdateAPIForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update Api forbidden response has a 4xx status code
+func (o *UpdateAPIForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update Api forbidden response has a 5xx status code
+func (o *UpdateAPIForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update Api forbidden response a status code equal to that given
+func (o *UpdateAPIForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *UpdateAPIForbidden) Error() string {
 	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiForbidden  %+v", 403, o.Payload)
 }
+
+func (o *UpdateAPIForbidden) String() string {
+	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiForbidden  %+v", 403, o.Payload)
+}
+
 func (o *UpdateAPIForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -203,7 +327,8 @@ func NewUpdateAPINotFound() *UpdateAPINotFound {
 	return &UpdateAPINotFound{}
 }
 
-/* UpdateAPINotFound describes a response with status code 404, with default header values.
+/*
+UpdateAPINotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -211,9 +336,39 @@ type UpdateAPINotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update Api not found response has a 2xx status code
+func (o *UpdateAPINotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update Api not found response has a 3xx status code
+func (o *UpdateAPINotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update Api not found response has a 4xx status code
+func (o *UpdateAPINotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update Api not found response has a 5xx status code
+func (o *UpdateAPINotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update Api not found response a status code equal to that given
+func (o *UpdateAPINotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *UpdateAPINotFound) Error() string {
 	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiNotFound  %+v", 404, o.Payload)
 }
+
+func (o *UpdateAPINotFound) String() string {
+	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiNotFound  %+v", 404, o.Payload)
+}
+
 func (o *UpdateAPINotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +390,8 @@ func NewUpdateAPIUnprocessableEntity() *UpdateAPIUnprocessableEntity {
 	return &UpdateAPIUnprocessableEntity{}
 }
 
-/* UpdateAPIUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+UpdateAPIUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -243,9 +399,39 @@ type UpdateAPIUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update Api unprocessable entity response has a 2xx status code
+func (o *UpdateAPIUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update Api unprocessable entity response has a 3xx status code
+func (o *UpdateAPIUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update Api unprocessable entity response has a 4xx status code
+func (o *UpdateAPIUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update Api unprocessable entity response has a 5xx status code
+func (o *UpdateAPIUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update Api unprocessable entity response a status code equal to that given
+func (o *UpdateAPIUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *UpdateAPIUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *UpdateAPIUnprocessableEntity) String() string {
+	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *UpdateAPIUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -267,7 +453,8 @@ func NewUpdateAPITooManyRequests() *UpdateAPITooManyRequests {
 	return &UpdateAPITooManyRequests{}
 }
 
-/* UpdateAPITooManyRequests describes a response with status code 429, with default header values.
+/*
+UpdateAPITooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -275,9 +462,39 @@ type UpdateAPITooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update Api too many requests response has a 2xx status code
+func (o *UpdateAPITooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update Api too many requests response has a 3xx status code
+func (o *UpdateAPITooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update Api too many requests response has a 4xx status code
+func (o *UpdateAPITooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update Api too many requests response has a 5xx status code
+func (o *UpdateAPITooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update Api too many requests response a status code equal to that given
+func (o *UpdateAPITooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *UpdateAPITooManyRequests) Error() string {
 	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *UpdateAPITooManyRequests) String() string {
+	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *UpdateAPITooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

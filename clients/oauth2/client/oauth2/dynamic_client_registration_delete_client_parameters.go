@@ -52,10 +52,12 @@ func NewDynamicClientRegistrationDeleteClientParamsWithHTTPClient(client *http.C
 	}
 }
 
-/* DynamicClientRegistrationDeleteClientParams contains all the parameters to send to the API endpoint
-   for the dynamic client registration delete client operation.
+/*
+DynamicClientRegistrationDeleteClientParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the dynamic client registration delete client operation.
+
+	Typically these are written to a http.Request.
 */
 type DynamicClientRegistrationDeleteClientParams struct {
 

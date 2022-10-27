@@ -63,7 +63,8 @@ func NewListScriptsOK() *ListScriptsOK {
 	return &ListScriptsOK{}
 }
 
-/* ListScriptsOK describes a response with status code 200, with default header values.
+/*
+ListScriptsOK describes a response with status code 200, with default header values.
 
 Scripts
 */
@@ -71,9 +72,39 @@ type ListScriptsOK struct {
 	Payload *models.Scripts
 }
 
+// IsSuccess returns true when this list scripts o k response has a 2xx status code
+func (o *ListScriptsOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this list scripts o k response has a 3xx status code
+func (o *ListScriptsOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list scripts o k response has a 4xx status code
+func (o *ListScriptsOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this list scripts o k response has a 5xx status code
+func (o *ListScriptsOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list scripts o k response a status code equal to that given
+func (o *ListScriptsOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *ListScriptsOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/scripts][%d] listScriptsOK  %+v", 200, o.Payload)
 }
+
+func (o *ListScriptsOK) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/scripts][%d] listScriptsOK  %+v", 200, o.Payload)
+}
+
 func (o *ListScriptsOK) GetPayload() *models.Scripts {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewListScriptsBadRequest() *ListScriptsBadRequest {
 	return &ListScriptsBadRequest{}
 }
 
-/* ListScriptsBadRequest describes a response with status code 400, with default header values.
+/*
+ListScriptsBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type ListScriptsBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list scripts bad request response has a 2xx status code
+func (o *ListScriptsBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list scripts bad request response has a 3xx status code
+func (o *ListScriptsBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list scripts bad request response has a 4xx status code
+func (o *ListScriptsBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list scripts bad request response has a 5xx status code
+func (o *ListScriptsBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list scripts bad request response a status code equal to that given
+func (o *ListScriptsBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *ListScriptsBadRequest) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/scripts][%d] listScriptsBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *ListScriptsBadRequest) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/scripts][%d] listScriptsBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *ListScriptsBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewListScriptsUnauthorized() *ListScriptsUnauthorized {
 	return &ListScriptsUnauthorized{}
 }
 
-/* ListScriptsUnauthorized describes a response with status code 401, with default header values.
+/*
+ListScriptsUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type ListScriptsUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list scripts unauthorized response has a 2xx status code
+func (o *ListScriptsUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list scripts unauthorized response has a 3xx status code
+func (o *ListScriptsUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list scripts unauthorized response has a 4xx status code
+func (o *ListScriptsUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list scripts unauthorized response has a 5xx status code
+func (o *ListScriptsUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list scripts unauthorized response a status code equal to that given
+func (o *ListScriptsUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *ListScriptsUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/scripts][%d] listScriptsUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *ListScriptsUnauthorized) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/scripts][%d] listScriptsUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *ListScriptsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewListScriptsForbidden() *ListScriptsForbidden {
 	return &ListScriptsForbidden{}
 }
 
-/* ListScriptsForbidden describes a response with status code 403, with default header values.
+/*
+ListScriptsForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type ListScriptsForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list scripts forbidden response has a 2xx status code
+func (o *ListScriptsForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list scripts forbidden response has a 3xx status code
+func (o *ListScriptsForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list scripts forbidden response has a 4xx status code
+func (o *ListScriptsForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list scripts forbidden response has a 5xx status code
+func (o *ListScriptsForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list scripts forbidden response a status code equal to that given
+func (o *ListScriptsForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *ListScriptsForbidden) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/scripts][%d] listScriptsForbidden  %+v", 403, o.Payload)
 }
+
+func (o *ListScriptsForbidden) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/scripts][%d] listScriptsForbidden  %+v", 403, o.Payload)
+}
+
 func (o *ListScriptsForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewListScriptsTooManyRequests() *ListScriptsTooManyRequests {
 	return &ListScriptsTooManyRequests{}
 }
 
-/* ListScriptsTooManyRequests describes a response with status code 429, with default header values.
+/*
+ListScriptsTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type ListScriptsTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list scripts too many requests response has a 2xx status code
+func (o *ListScriptsTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list scripts too many requests response has a 3xx status code
+func (o *ListScriptsTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list scripts too many requests response has a 4xx status code
+func (o *ListScriptsTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list scripts too many requests response has a 5xx status code
+func (o *ListScriptsTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list scripts too many requests response a status code equal to that given
+func (o *ListScriptsTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *ListScriptsTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/scripts][%d] listScriptsTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *ListScriptsTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/scripts][%d] listScriptsTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *ListScriptsTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

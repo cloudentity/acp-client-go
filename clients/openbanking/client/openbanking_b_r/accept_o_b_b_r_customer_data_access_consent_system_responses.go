@@ -63,7 +63,8 @@ func NewAcceptOBBRCustomerDataAccessConsentSystemOK() *AcceptOBBRCustomerDataAcc
 	return &AcceptOBBRCustomerDataAccessConsentSystemOK{}
 }
 
-/* AcceptOBBRCustomerDataAccessConsentSystemOK describes a response with status code 200, with default header values.
+/*
+AcceptOBBRCustomerDataAccessConsentSystemOK describes a response with status code 200, with default header values.
 
 Consent accepted
 */
@@ -71,9 +72,39 @@ type AcceptOBBRCustomerDataAccessConsentSystemOK struct {
 	Payload *models.ConsentAccepted
 }
 
+// IsSuccess returns true when this accept o b b r customer data access consent system o k response has a 2xx status code
+func (o *AcceptOBBRCustomerDataAccessConsentSystemOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this accept o b b r customer data access consent system o k response has a 3xx status code
+func (o *AcceptOBBRCustomerDataAccessConsentSystemOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this accept o b b r customer data access consent system o k response has a 4xx status code
+func (o *AcceptOBBRCustomerDataAccessConsentSystemOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this accept o b b r customer data access consent system o k response has a 5xx status code
+func (o *AcceptOBBRCustomerDataAccessConsentSystemOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this accept o b b r customer data access consent system o k response a status code equal to that given
+func (o *AcceptOBBRCustomerDataAccessConsentSystemOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *AcceptOBBRCustomerDataAccessConsentSystemOK) Error() string {
 	return fmt.Sprintf("[POST /open-banking-brasil/consent/{login}/accept][%d] acceptOBBRCustomerDataAccessConsentSystemOK  %+v", 200, o.Payload)
 }
+
+func (o *AcceptOBBRCustomerDataAccessConsentSystemOK) String() string {
+	return fmt.Sprintf("[POST /open-banking-brasil/consent/{login}/accept][%d] acceptOBBRCustomerDataAccessConsentSystemOK  %+v", 200, o.Payload)
+}
+
 func (o *AcceptOBBRCustomerDataAccessConsentSystemOK) GetPayload() *models.ConsentAccepted {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewAcceptOBBRCustomerDataAccessConsentSystemUnauthorized() *AcceptOBBRCusto
 	return &AcceptOBBRCustomerDataAccessConsentSystemUnauthorized{}
 }
 
-/* AcceptOBBRCustomerDataAccessConsentSystemUnauthorized describes a response with status code 401, with default header values.
+/*
+AcceptOBBRCustomerDataAccessConsentSystemUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type AcceptOBBRCustomerDataAccessConsentSystemUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this accept o b b r customer data access consent system unauthorized response has a 2xx status code
+func (o *AcceptOBBRCustomerDataAccessConsentSystemUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this accept o b b r customer data access consent system unauthorized response has a 3xx status code
+func (o *AcceptOBBRCustomerDataAccessConsentSystemUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this accept o b b r customer data access consent system unauthorized response has a 4xx status code
+func (o *AcceptOBBRCustomerDataAccessConsentSystemUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this accept o b b r customer data access consent system unauthorized response has a 5xx status code
+func (o *AcceptOBBRCustomerDataAccessConsentSystemUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this accept o b b r customer data access consent system unauthorized response a status code equal to that given
+func (o *AcceptOBBRCustomerDataAccessConsentSystemUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *AcceptOBBRCustomerDataAccessConsentSystemUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /open-banking-brasil/consent/{login}/accept][%d] acceptOBBRCustomerDataAccessConsentSystemUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *AcceptOBBRCustomerDataAccessConsentSystemUnauthorized) String() string {
+	return fmt.Sprintf("[POST /open-banking-brasil/consent/{login}/accept][%d] acceptOBBRCustomerDataAccessConsentSystemUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *AcceptOBBRCustomerDataAccessConsentSystemUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewAcceptOBBRCustomerDataAccessConsentSystemForbidden() *AcceptOBBRCustomer
 	return &AcceptOBBRCustomerDataAccessConsentSystemForbidden{}
 }
 
-/* AcceptOBBRCustomerDataAccessConsentSystemForbidden describes a response with status code 403, with default header values.
+/*
+AcceptOBBRCustomerDataAccessConsentSystemForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type AcceptOBBRCustomerDataAccessConsentSystemForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this accept o b b r customer data access consent system forbidden response has a 2xx status code
+func (o *AcceptOBBRCustomerDataAccessConsentSystemForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this accept o b b r customer data access consent system forbidden response has a 3xx status code
+func (o *AcceptOBBRCustomerDataAccessConsentSystemForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this accept o b b r customer data access consent system forbidden response has a 4xx status code
+func (o *AcceptOBBRCustomerDataAccessConsentSystemForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this accept o b b r customer data access consent system forbidden response has a 5xx status code
+func (o *AcceptOBBRCustomerDataAccessConsentSystemForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this accept o b b r customer data access consent system forbidden response a status code equal to that given
+func (o *AcceptOBBRCustomerDataAccessConsentSystemForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *AcceptOBBRCustomerDataAccessConsentSystemForbidden) Error() string {
 	return fmt.Sprintf("[POST /open-banking-brasil/consent/{login}/accept][%d] acceptOBBRCustomerDataAccessConsentSystemForbidden  %+v", 403, o.Payload)
 }
+
+func (o *AcceptOBBRCustomerDataAccessConsentSystemForbidden) String() string {
+	return fmt.Sprintf("[POST /open-banking-brasil/consent/{login}/accept][%d] acceptOBBRCustomerDataAccessConsentSystemForbidden  %+v", 403, o.Payload)
+}
+
 func (o *AcceptOBBRCustomerDataAccessConsentSystemForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewAcceptOBBRCustomerDataAccessConsentSystemNotFound() *AcceptOBBRCustomerD
 	return &AcceptOBBRCustomerDataAccessConsentSystemNotFound{}
 }
 
-/* AcceptOBBRCustomerDataAccessConsentSystemNotFound describes a response with status code 404, with default header values.
+/*
+AcceptOBBRCustomerDataAccessConsentSystemNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type AcceptOBBRCustomerDataAccessConsentSystemNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this accept o b b r customer data access consent system not found response has a 2xx status code
+func (o *AcceptOBBRCustomerDataAccessConsentSystemNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this accept o b b r customer data access consent system not found response has a 3xx status code
+func (o *AcceptOBBRCustomerDataAccessConsentSystemNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this accept o b b r customer data access consent system not found response has a 4xx status code
+func (o *AcceptOBBRCustomerDataAccessConsentSystemNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this accept o b b r customer data access consent system not found response has a 5xx status code
+func (o *AcceptOBBRCustomerDataAccessConsentSystemNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this accept o b b r customer data access consent system not found response a status code equal to that given
+func (o *AcceptOBBRCustomerDataAccessConsentSystemNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *AcceptOBBRCustomerDataAccessConsentSystemNotFound) Error() string {
 	return fmt.Sprintf("[POST /open-banking-brasil/consent/{login}/accept][%d] acceptOBBRCustomerDataAccessConsentSystemNotFound  %+v", 404, o.Payload)
 }
+
+func (o *AcceptOBBRCustomerDataAccessConsentSystemNotFound) String() string {
+	return fmt.Sprintf("[POST /open-banking-brasil/consent/{login}/accept][%d] acceptOBBRCustomerDataAccessConsentSystemNotFound  %+v", 404, o.Payload)
+}
+
 func (o *AcceptOBBRCustomerDataAccessConsentSystemNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewAcceptOBBRCustomerDataAccessConsentSystemTooManyRequests() *AcceptOBBRCu
 	return &AcceptOBBRCustomerDataAccessConsentSystemTooManyRequests{}
 }
 
-/* AcceptOBBRCustomerDataAccessConsentSystemTooManyRequests describes a response with status code 429, with default header values.
+/*
+AcceptOBBRCustomerDataAccessConsentSystemTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type AcceptOBBRCustomerDataAccessConsentSystemTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this accept o b b r customer data access consent system too many requests response has a 2xx status code
+func (o *AcceptOBBRCustomerDataAccessConsentSystemTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this accept o b b r customer data access consent system too many requests response has a 3xx status code
+func (o *AcceptOBBRCustomerDataAccessConsentSystemTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this accept o b b r customer data access consent system too many requests response has a 4xx status code
+func (o *AcceptOBBRCustomerDataAccessConsentSystemTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this accept o b b r customer data access consent system too many requests response has a 5xx status code
+func (o *AcceptOBBRCustomerDataAccessConsentSystemTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this accept o b b r customer data access consent system too many requests response a status code equal to that given
+func (o *AcceptOBBRCustomerDataAccessConsentSystemTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *AcceptOBBRCustomerDataAccessConsentSystemTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /open-banking-brasil/consent/{login}/accept][%d] acceptOBBRCustomerDataAccessConsentSystemTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *AcceptOBBRCustomerDataAccessConsentSystemTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /open-banking-brasil/consent/{login}/accept][%d] acceptOBBRCustomerDataAccessConsentSystemTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *AcceptOBBRCustomerDataAccessConsentSystemTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

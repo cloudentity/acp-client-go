@@ -75,7 +75,8 @@ func NewUpdateStaticIDPOK() *UpdateStaticIDPOK {
 	return &UpdateStaticIDPOK{}
 }
 
-/* UpdateStaticIDPOK describes a response with status code 200, with default header values.
+/*
+UpdateStaticIDPOK describes a response with status code 200, with default header values.
 
 StaticIDP
 */
@@ -83,9 +84,39 @@ type UpdateStaticIDPOK struct {
 	Payload *models.StaticIDP
 }
 
+// IsSuccess returns true when this update static Id p o k response has a 2xx status code
+func (o *UpdateStaticIDPOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this update static Id p o k response has a 3xx status code
+func (o *UpdateStaticIDPOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update static Id p o k response has a 4xx status code
+func (o *UpdateStaticIDPOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this update static Id p o k response has a 5xx status code
+func (o *UpdateStaticIDPOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update static Id p o k response a status code equal to that given
+func (o *UpdateStaticIDPOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *UpdateStaticIDPOK) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/static/{iid}][%d] updateStaticIdPOK  %+v", 200, o.Payload)
 }
+
+func (o *UpdateStaticIDPOK) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/static/{iid}][%d] updateStaticIdPOK  %+v", 200, o.Payload)
+}
+
 func (o *UpdateStaticIDPOK) GetPayload() *models.StaticIDP {
 	return o.Payload
 }
@@ -107,7 +138,8 @@ func NewUpdateStaticIDPBadRequest() *UpdateStaticIDPBadRequest {
 	return &UpdateStaticIDPBadRequest{}
 }
 
-/* UpdateStaticIDPBadRequest describes a response with status code 400, with default header values.
+/*
+UpdateStaticIDPBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -115,9 +147,39 @@ type UpdateStaticIDPBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update static Id p bad request response has a 2xx status code
+func (o *UpdateStaticIDPBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update static Id p bad request response has a 3xx status code
+func (o *UpdateStaticIDPBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update static Id p bad request response has a 4xx status code
+func (o *UpdateStaticIDPBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update static Id p bad request response has a 5xx status code
+func (o *UpdateStaticIDPBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update static Id p bad request response a status code equal to that given
+func (o *UpdateStaticIDPBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *UpdateStaticIDPBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/static/{iid}][%d] updateStaticIdPBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *UpdateStaticIDPBadRequest) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/static/{iid}][%d] updateStaticIdPBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *UpdateStaticIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -139,7 +201,8 @@ func NewUpdateStaticIDPUnauthorized() *UpdateStaticIDPUnauthorized {
 	return &UpdateStaticIDPUnauthorized{}
 }
 
-/* UpdateStaticIDPUnauthorized describes a response with status code 401, with default header values.
+/*
+UpdateStaticIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,9 +210,39 @@ type UpdateStaticIDPUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update static Id p unauthorized response has a 2xx status code
+func (o *UpdateStaticIDPUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update static Id p unauthorized response has a 3xx status code
+func (o *UpdateStaticIDPUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update static Id p unauthorized response has a 4xx status code
+func (o *UpdateStaticIDPUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update static Id p unauthorized response has a 5xx status code
+func (o *UpdateStaticIDPUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update static Id p unauthorized response a status code equal to that given
+func (o *UpdateStaticIDPUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *UpdateStaticIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/static/{iid}][%d] updateStaticIdPUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *UpdateStaticIDPUnauthorized) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/static/{iid}][%d] updateStaticIdPUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *UpdateStaticIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -171,7 +264,8 @@ func NewUpdateStaticIDPForbidden() *UpdateStaticIDPForbidden {
 	return &UpdateStaticIDPForbidden{}
 }
 
-/* UpdateStaticIDPForbidden describes a response with status code 403, with default header values.
+/*
+UpdateStaticIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -179,9 +273,39 @@ type UpdateStaticIDPForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update static Id p forbidden response has a 2xx status code
+func (o *UpdateStaticIDPForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update static Id p forbidden response has a 3xx status code
+func (o *UpdateStaticIDPForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update static Id p forbidden response has a 4xx status code
+func (o *UpdateStaticIDPForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update static Id p forbidden response has a 5xx status code
+func (o *UpdateStaticIDPForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update static Id p forbidden response a status code equal to that given
+func (o *UpdateStaticIDPForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *UpdateStaticIDPForbidden) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/static/{iid}][%d] updateStaticIdPForbidden  %+v", 403, o.Payload)
 }
+
+func (o *UpdateStaticIDPForbidden) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/static/{iid}][%d] updateStaticIdPForbidden  %+v", 403, o.Payload)
+}
+
 func (o *UpdateStaticIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -203,7 +327,8 @@ func NewUpdateStaticIDPNotFound() *UpdateStaticIDPNotFound {
 	return &UpdateStaticIDPNotFound{}
 }
 
-/* UpdateStaticIDPNotFound describes a response with status code 404, with default header values.
+/*
+UpdateStaticIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -211,9 +336,39 @@ type UpdateStaticIDPNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update static Id p not found response has a 2xx status code
+func (o *UpdateStaticIDPNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update static Id p not found response has a 3xx status code
+func (o *UpdateStaticIDPNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update static Id p not found response has a 4xx status code
+func (o *UpdateStaticIDPNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update static Id p not found response has a 5xx status code
+func (o *UpdateStaticIDPNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update static Id p not found response a status code equal to that given
+func (o *UpdateStaticIDPNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *UpdateStaticIDPNotFound) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/static/{iid}][%d] updateStaticIdPNotFound  %+v", 404, o.Payload)
 }
+
+func (o *UpdateStaticIDPNotFound) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/static/{iid}][%d] updateStaticIdPNotFound  %+v", 404, o.Payload)
+}
+
 func (o *UpdateStaticIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +390,8 @@ func NewUpdateStaticIDPUnprocessableEntity() *UpdateStaticIDPUnprocessableEntity
 	return &UpdateStaticIDPUnprocessableEntity{}
 }
 
-/* UpdateStaticIDPUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+UpdateStaticIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -243,9 +399,39 @@ type UpdateStaticIDPUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update static Id p unprocessable entity response has a 2xx status code
+func (o *UpdateStaticIDPUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update static Id p unprocessable entity response has a 3xx status code
+func (o *UpdateStaticIDPUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update static Id p unprocessable entity response has a 4xx status code
+func (o *UpdateStaticIDPUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update static Id p unprocessable entity response has a 5xx status code
+func (o *UpdateStaticIDPUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update static Id p unprocessable entity response a status code equal to that given
+func (o *UpdateStaticIDPUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *UpdateStaticIDPUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/static/{iid}][%d] updateStaticIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *UpdateStaticIDPUnprocessableEntity) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/static/{iid}][%d] updateStaticIdPUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *UpdateStaticIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -267,7 +453,8 @@ func NewUpdateStaticIDPTooManyRequests() *UpdateStaticIDPTooManyRequests {
 	return &UpdateStaticIDPTooManyRequests{}
 }
 
-/* UpdateStaticIDPTooManyRequests describes a response with status code 429, with default header values.
+/*
+UpdateStaticIDPTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -275,9 +462,39 @@ type UpdateStaticIDPTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update static Id p too many requests response has a 2xx status code
+func (o *UpdateStaticIDPTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update static Id p too many requests response has a 3xx status code
+func (o *UpdateStaticIDPTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update static Id p too many requests response has a 4xx status code
+func (o *UpdateStaticIDPTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update static Id p too many requests response has a 5xx status code
+func (o *UpdateStaticIDPTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update static Id p too many requests response a status code equal to that given
+func (o *UpdateStaticIDPTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *UpdateStaticIDPTooManyRequests) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/static/{iid}][%d] updateStaticIdPTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *UpdateStaticIDPTooManyRequests) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/static/{iid}][%d] updateStaticIdPTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *UpdateStaticIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

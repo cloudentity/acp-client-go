@@ -52,10 +52,12 @@ func NewDeleteSchemaParamsWithHTTPClient(client *http.Client) *DeleteSchemaParam
 	}
 }
 
-/* DeleteSchemaParams contains all the parameters to send to the API endpoint
-   for the delete schema operation.
+/*
+DeleteSchemaParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the delete schema operation.
+
+	Typically these are written to a http.Request.
 */
 type DeleteSchemaParams struct {
 

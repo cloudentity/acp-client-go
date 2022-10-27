@@ -54,10 +54,12 @@ func NewSetPolicyExecutionPointsParamsWithHTTPClient(client *http.Client) *SetPo
 	}
 }
 
-/* SetPolicyExecutionPointsParams contains all the parameters to send to the API endpoint
-   for the set policy execution points operation.
+/*
+SetPolicyExecutionPointsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the set policy execution points operation.
+
+	Typically these are written to a http.Request.
 */
 type SetPolicyExecutionPointsParams struct {
 

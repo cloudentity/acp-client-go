@@ -52,10 +52,12 @@ func NewAuthorizeParamsWithHTTPClient(client *http.Client) *AuthorizeParams {
 	}
 }
 
-/* AuthorizeParams contains all the parameters to send to the API endpoint
-   for the authorize operation.
+/*
+AuthorizeParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the authorize operation.
+
+	Typically these are written to a http.Request.
 */
 type AuthorizeParams struct {
 
@@ -70,6 +72,9 @@ type AuthorizeParams struct {
 
 	// CodeChallengeMethod.
 	CodeChallengeMethod *string
+
+	// IdpHint.
+	IdpHint *string
 
 	// Nonce.
 	Nonce *string
@@ -187,6 +192,17 @@ func (o *AuthorizeParams) WithCodeChallengeMethod(codeChallengeMethod *string) *
 // SetCodeChallengeMethod adds the codeChallengeMethod to the authorize params
 func (o *AuthorizeParams) SetCodeChallengeMethod(codeChallengeMethod *string) {
 	o.CodeChallengeMethod = codeChallengeMethod
+}
+
+// WithIdpHint adds the idpHint to the authorize params
+func (o *AuthorizeParams) WithIdpHint(idpHint *string) *AuthorizeParams {
+	o.SetIdpHint(idpHint)
+	return o
+}
+
+// SetIdpHint adds the idpHint to the authorize params
+func (o *AuthorizeParams) SetIdpHint(idpHint *string) {
+	o.IdpHint = idpHint
 }
 
 // WithNonce adds the nonce to the authorize params
@@ -330,6 +346,23 @@ func (o *AuthorizeParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 		if qCodeChallengeMethod != "" {
 
 			if err := r.SetQueryParam("code_challenge_method", qCodeChallengeMethod); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.IdpHint != nil {
+
+		// query param idp_hint
+		var qrIdpHint string
+
+		if o.IdpHint != nil {
+			qrIdpHint = *o.IdpHint
+		}
+		qIdpHint := qrIdpHint
+		if qIdpHint != "" {
+
+			if err := r.SetQueryParam("idp_hint", qIdpHint); err != nil {
 				return err
 			}
 		}

@@ -57,14 +57,44 @@ func NewRevokeClientAccessNoContent() *RevokeClientAccessNoContent {
 	return &RevokeClientAccessNoContent{}
 }
 
-/* RevokeClientAccessNoContent describes a response with status code 204, with default header values.
+/*
+RevokeClientAccessNoContent describes a response with status code 204, with default header values.
 
-Client access has been revoked
+	Client access has been revoked
 */
 type RevokeClientAccessNoContent struct {
 }
 
+// IsSuccess returns true when this revoke client access no content response has a 2xx status code
+func (o *RevokeClientAccessNoContent) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this revoke client access no content response has a 3xx status code
+func (o *RevokeClientAccessNoContent) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke client access no content response has a 4xx status code
+func (o *RevokeClientAccessNoContent) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this revoke client access no content response has a 5xx status code
+func (o *RevokeClientAccessNoContent) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke client access no content response a status code equal to that given
+func (o *RevokeClientAccessNoContent) IsCode(code int) bool {
+	return code == 204
+}
+
 func (o *RevokeClientAccessNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /clients/{cid}][%d] revokeClientAccessNoContent ", 204)
+}
+
+func (o *RevokeClientAccessNoContent) String() string {
 	return fmt.Sprintf("[DELETE /clients/{cid}][%d] revokeClientAccessNoContent ", 204)
 }
 
@@ -78,7 +108,8 @@ func NewRevokeClientAccessUnauthorized() *RevokeClientAccessUnauthorized {
 	return &RevokeClientAccessUnauthorized{}
 }
 
-/* RevokeClientAccessUnauthorized describes a response with status code 401, with default header values.
+/*
+RevokeClientAccessUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -86,9 +117,39 @@ type RevokeClientAccessUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this revoke client access unauthorized response has a 2xx status code
+func (o *RevokeClientAccessUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this revoke client access unauthorized response has a 3xx status code
+func (o *RevokeClientAccessUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke client access unauthorized response has a 4xx status code
+func (o *RevokeClientAccessUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this revoke client access unauthorized response has a 5xx status code
+func (o *RevokeClientAccessUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke client access unauthorized response a status code equal to that given
+func (o *RevokeClientAccessUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *RevokeClientAccessUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /clients/{cid}][%d] revokeClientAccessUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *RevokeClientAccessUnauthorized) String() string {
+	return fmt.Sprintf("[DELETE /clients/{cid}][%d] revokeClientAccessUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *RevokeClientAccessUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -110,7 +171,8 @@ func NewRevokeClientAccessForbidden() *RevokeClientAccessForbidden {
 	return &RevokeClientAccessForbidden{}
 }
 
-/* RevokeClientAccessForbidden describes a response with status code 403, with default header values.
+/*
+RevokeClientAccessForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -118,9 +180,39 @@ type RevokeClientAccessForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this revoke client access forbidden response has a 2xx status code
+func (o *RevokeClientAccessForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this revoke client access forbidden response has a 3xx status code
+func (o *RevokeClientAccessForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke client access forbidden response has a 4xx status code
+func (o *RevokeClientAccessForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this revoke client access forbidden response has a 5xx status code
+func (o *RevokeClientAccessForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke client access forbidden response a status code equal to that given
+func (o *RevokeClientAccessForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *RevokeClientAccessForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /clients/{cid}][%d] revokeClientAccessForbidden  %+v", 403, o.Payload)
 }
+
+func (o *RevokeClientAccessForbidden) String() string {
+	return fmt.Sprintf("[DELETE /clients/{cid}][%d] revokeClientAccessForbidden  %+v", 403, o.Payload)
+}
+
 func (o *RevokeClientAccessForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -142,7 +234,8 @@ func NewRevokeClientAccessTooManyRequests() *RevokeClientAccessTooManyRequests {
 	return &RevokeClientAccessTooManyRequests{}
 }
 
-/* RevokeClientAccessTooManyRequests describes a response with status code 429, with default header values.
+/*
+RevokeClientAccessTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -150,9 +243,39 @@ type RevokeClientAccessTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this revoke client access too many requests response has a 2xx status code
+func (o *RevokeClientAccessTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this revoke client access too many requests response has a 3xx status code
+func (o *RevokeClientAccessTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke client access too many requests response has a 4xx status code
+func (o *RevokeClientAccessTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this revoke client access too many requests response has a 5xx status code
+func (o *RevokeClientAccessTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke client access too many requests response a status code equal to that given
+func (o *RevokeClientAccessTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *RevokeClientAccessTooManyRequests) Error() string {
 	return fmt.Sprintf("[DELETE /clients/{cid}][%d] revokeClientAccessTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *RevokeClientAccessTooManyRequests) String() string {
+	return fmt.Sprintf("[DELETE /clients/{cid}][%d] revokeClientAccessTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *RevokeClientAccessTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

@@ -75,7 +75,8 @@ func NewCreateIntelliTrustIDPCreated() *CreateIntelliTrustIDPCreated {
 	return &CreateIntelliTrustIDPCreated{}
 }
 
-/* CreateIntelliTrustIDPCreated describes a response with status code 201, with default header values.
+/*
+CreateIntelliTrustIDPCreated describes a response with status code 201, with default header values.
 
 IntelliTrustIDP
 */
@@ -83,9 +84,39 @@ type CreateIntelliTrustIDPCreated struct {
 	Payload *models.IntelliTrustIDP
 }
 
+// IsSuccess returns true when this create intelli trust Id p created response has a 2xx status code
+func (o *CreateIntelliTrustIDPCreated) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this create intelli trust Id p created response has a 3xx status code
+func (o *CreateIntelliTrustIDPCreated) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create intelli trust Id p created response has a 4xx status code
+func (o *CreateIntelliTrustIDPCreated) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create intelli trust Id p created response has a 5xx status code
+func (o *CreateIntelliTrustIDPCreated) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create intelli trust Id p created response a status code equal to that given
+func (o *CreateIntelliTrustIDPCreated) IsCode(code int) bool {
+	return code == 201
+}
+
 func (o *CreateIntelliTrustIDPCreated) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPCreated  %+v", 201, o.Payload)
 }
+
+func (o *CreateIntelliTrustIDPCreated) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPCreated  %+v", 201, o.Payload)
+}
+
 func (o *CreateIntelliTrustIDPCreated) GetPayload() *models.IntelliTrustIDP {
 	return o.Payload
 }
@@ -107,7 +138,8 @@ func NewCreateIntelliTrustIDPBadRequest() *CreateIntelliTrustIDPBadRequest {
 	return &CreateIntelliTrustIDPBadRequest{}
 }
 
-/* CreateIntelliTrustIDPBadRequest describes a response with status code 400, with default header values.
+/*
+CreateIntelliTrustIDPBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -115,9 +147,39 @@ type CreateIntelliTrustIDPBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create intelli trust Id p bad request response has a 2xx status code
+func (o *CreateIntelliTrustIDPBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create intelli trust Id p bad request response has a 3xx status code
+func (o *CreateIntelliTrustIDPBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create intelli trust Id p bad request response has a 4xx status code
+func (o *CreateIntelliTrustIDPBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create intelli trust Id p bad request response has a 5xx status code
+func (o *CreateIntelliTrustIDPBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create intelli trust Id p bad request response a status code equal to that given
+func (o *CreateIntelliTrustIDPBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *CreateIntelliTrustIDPBadRequest) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *CreateIntelliTrustIDPBadRequest) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *CreateIntelliTrustIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -139,7 +201,8 @@ func NewCreateIntelliTrustIDPUnauthorized() *CreateIntelliTrustIDPUnauthorized {
 	return &CreateIntelliTrustIDPUnauthorized{}
 }
 
-/* CreateIntelliTrustIDPUnauthorized describes a response with status code 401, with default header values.
+/*
+CreateIntelliTrustIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,9 +210,39 @@ type CreateIntelliTrustIDPUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create intelli trust Id p unauthorized response has a 2xx status code
+func (o *CreateIntelliTrustIDPUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create intelli trust Id p unauthorized response has a 3xx status code
+func (o *CreateIntelliTrustIDPUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create intelli trust Id p unauthorized response has a 4xx status code
+func (o *CreateIntelliTrustIDPUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create intelli trust Id p unauthorized response has a 5xx status code
+func (o *CreateIntelliTrustIDPUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create intelli trust Id p unauthorized response a status code equal to that given
+func (o *CreateIntelliTrustIDPUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *CreateIntelliTrustIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *CreateIntelliTrustIDPUnauthorized) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *CreateIntelliTrustIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -171,7 +264,8 @@ func NewCreateIntelliTrustIDPForbidden() *CreateIntelliTrustIDPForbidden {
 	return &CreateIntelliTrustIDPForbidden{}
 }
 
-/* CreateIntelliTrustIDPForbidden describes a response with status code 403, with default header values.
+/*
+CreateIntelliTrustIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -179,9 +273,39 @@ type CreateIntelliTrustIDPForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create intelli trust Id p forbidden response has a 2xx status code
+func (o *CreateIntelliTrustIDPForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create intelli trust Id p forbidden response has a 3xx status code
+func (o *CreateIntelliTrustIDPForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create intelli trust Id p forbidden response has a 4xx status code
+func (o *CreateIntelliTrustIDPForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create intelli trust Id p forbidden response has a 5xx status code
+func (o *CreateIntelliTrustIDPForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create intelli trust Id p forbidden response a status code equal to that given
+func (o *CreateIntelliTrustIDPForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *CreateIntelliTrustIDPForbidden) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPForbidden  %+v", 403, o.Payload)
 }
+
+func (o *CreateIntelliTrustIDPForbidden) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPForbidden  %+v", 403, o.Payload)
+}
+
 func (o *CreateIntelliTrustIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -203,7 +327,8 @@ func NewCreateIntelliTrustIDPNotFound() *CreateIntelliTrustIDPNotFound {
 	return &CreateIntelliTrustIDPNotFound{}
 }
 
-/* CreateIntelliTrustIDPNotFound describes a response with status code 404, with default header values.
+/*
+CreateIntelliTrustIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -211,9 +336,39 @@ type CreateIntelliTrustIDPNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create intelli trust Id p not found response has a 2xx status code
+func (o *CreateIntelliTrustIDPNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create intelli trust Id p not found response has a 3xx status code
+func (o *CreateIntelliTrustIDPNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create intelli trust Id p not found response has a 4xx status code
+func (o *CreateIntelliTrustIDPNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create intelli trust Id p not found response has a 5xx status code
+func (o *CreateIntelliTrustIDPNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create intelli trust Id p not found response a status code equal to that given
+func (o *CreateIntelliTrustIDPNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *CreateIntelliTrustIDPNotFound) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPNotFound  %+v", 404, o.Payload)
 }
+
+func (o *CreateIntelliTrustIDPNotFound) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPNotFound  %+v", 404, o.Payload)
+}
+
 func (o *CreateIntelliTrustIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +390,8 @@ func NewCreateIntelliTrustIDPUnprocessableEntity() *CreateIntelliTrustIDPUnproce
 	return &CreateIntelliTrustIDPUnprocessableEntity{}
 }
 
-/* CreateIntelliTrustIDPUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+CreateIntelliTrustIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -243,9 +399,39 @@ type CreateIntelliTrustIDPUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create intelli trust Id p unprocessable entity response has a 2xx status code
+func (o *CreateIntelliTrustIDPUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create intelli trust Id p unprocessable entity response has a 3xx status code
+func (o *CreateIntelliTrustIDPUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create intelli trust Id p unprocessable entity response has a 4xx status code
+func (o *CreateIntelliTrustIDPUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create intelli trust Id p unprocessable entity response has a 5xx status code
+func (o *CreateIntelliTrustIDPUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create intelli trust Id p unprocessable entity response a status code equal to that given
+func (o *CreateIntelliTrustIDPUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *CreateIntelliTrustIDPUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *CreateIntelliTrustIDPUnprocessableEntity) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *CreateIntelliTrustIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -267,7 +453,8 @@ func NewCreateIntelliTrustIDPTooManyRequests() *CreateIntelliTrustIDPTooManyRequ
 	return &CreateIntelliTrustIDPTooManyRequests{}
 }
 
-/* CreateIntelliTrustIDPTooManyRequests describes a response with status code 429, with default header values.
+/*
+CreateIntelliTrustIDPTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -275,9 +462,39 @@ type CreateIntelliTrustIDPTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create intelli trust Id p too many requests response has a 2xx status code
+func (o *CreateIntelliTrustIDPTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create intelli trust Id p too many requests response has a 3xx status code
+func (o *CreateIntelliTrustIDPTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create intelli trust Id p too many requests response has a 4xx status code
+func (o *CreateIntelliTrustIDPTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create intelli trust Id p too many requests response has a 5xx status code
+func (o *CreateIntelliTrustIDPTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create intelli trust Id p too many requests response a status code equal to that given
+func (o *CreateIntelliTrustIDPTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *CreateIntelliTrustIDPTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *CreateIntelliTrustIDPTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *CreateIntelliTrustIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

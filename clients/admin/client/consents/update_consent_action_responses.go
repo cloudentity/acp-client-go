@@ -75,7 +75,8 @@ func NewUpdateConsentActionCreated() *UpdateConsentActionCreated {
 	return &UpdateConsentActionCreated{}
 }
 
-/* UpdateConsentActionCreated describes a response with status code 201, with default header values.
+/*
+UpdateConsentActionCreated describes a response with status code 201, with default header values.
 
 Consent action with consents
 */
@@ -83,9 +84,39 @@ type UpdateConsentActionCreated struct {
 	Payload *models.ConsentActionWithConsents
 }
 
+// IsSuccess returns true when this update consent action created response has a 2xx status code
+func (o *UpdateConsentActionCreated) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this update consent action created response has a 3xx status code
+func (o *UpdateConsentActionCreated) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update consent action created response has a 4xx status code
+func (o *UpdateConsentActionCreated) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this update consent action created response has a 5xx status code
+func (o *UpdateConsentActionCreated) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update consent action created response a status code equal to that given
+func (o *UpdateConsentActionCreated) IsCode(code int) bool {
+	return code == 201
+}
+
 func (o *UpdateConsentActionCreated) Error() string {
 	return fmt.Sprintf("[PUT /actions/{action}][%d] updateConsentActionCreated  %+v", 201, o.Payload)
 }
+
+func (o *UpdateConsentActionCreated) String() string {
+	return fmt.Sprintf("[PUT /actions/{action}][%d] updateConsentActionCreated  %+v", 201, o.Payload)
+}
+
 func (o *UpdateConsentActionCreated) GetPayload() *models.ConsentActionWithConsents {
 	return o.Payload
 }
@@ -107,7 +138,8 @@ func NewUpdateConsentActionUnauthorized() *UpdateConsentActionUnauthorized {
 	return &UpdateConsentActionUnauthorized{}
 }
 
-/* UpdateConsentActionUnauthorized describes a response with status code 401, with default header values.
+/*
+UpdateConsentActionUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -115,9 +147,39 @@ type UpdateConsentActionUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update consent action unauthorized response has a 2xx status code
+func (o *UpdateConsentActionUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update consent action unauthorized response has a 3xx status code
+func (o *UpdateConsentActionUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update consent action unauthorized response has a 4xx status code
+func (o *UpdateConsentActionUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update consent action unauthorized response has a 5xx status code
+func (o *UpdateConsentActionUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update consent action unauthorized response a status code equal to that given
+func (o *UpdateConsentActionUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *UpdateConsentActionUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /actions/{action}][%d] updateConsentActionUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *UpdateConsentActionUnauthorized) String() string {
+	return fmt.Sprintf("[PUT /actions/{action}][%d] updateConsentActionUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *UpdateConsentActionUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -139,7 +201,8 @@ func NewUpdateConsentActionForbidden() *UpdateConsentActionForbidden {
 	return &UpdateConsentActionForbidden{}
 }
 
-/* UpdateConsentActionForbidden describes a response with status code 403, with default header values.
+/*
+UpdateConsentActionForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -147,9 +210,39 @@ type UpdateConsentActionForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update consent action forbidden response has a 2xx status code
+func (o *UpdateConsentActionForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update consent action forbidden response has a 3xx status code
+func (o *UpdateConsentActionForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update consent action forbidden response has a 4xx status code
+func (o *UpdateConsentActionForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update consent action forbidden response has a 5xx status code
+func (o *UpdateConsentActionForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update consent action forbidden response a status code equal to that given
+func (o *UpdateConsentActionForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *UpdateConsentActionForbidden) Error() string {
 	return fmt.Sprintf("[PUT /actions/{action}][%d] updateConsentActionForbidden  %+v", 403, o.Payload)
 }
+
+func (o *UpdateConsentActionForbidden) String() string {
+	return fmt.Sprintf("[PUT /actions/{action}][%d] updateConsentActionForbidden  %+v", 403, o.Payload)
+}
+
 func (o *UpdateConsentActionForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -171,7 +264,8 @@ func NewUpdateConsentActionNotFound() *UpdateConsentActionNotFound {
 	return &UpdateConsentActionNotFound{}
 }
 
-/* UpdateConsentActionNotFound describes a response with status code 404, with default header values.
+/*
+UpdateConsentActionNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -179,9 +273,39 @@ type UpdateConsentActionNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update consent action not found response has a 2xx status code
+func (o *UpdateConsentActionNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update consent action not found response has a 3xx status code
+func (o *UpdateConsentActionNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update consent action not found response has a 4xx status code
+func (o *UpdateConsentActionNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update consent action not found response has a 5xx status code
+func (o *UpdateConsentActionNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update consent action not found response a status code equal to that given
+func (o *UpdateConsentActionNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *UpdateConsentActionNotFound) Error() string {
 	return fmt.Sprintf("[PUT /actions/{action}][%d] updateConsentActionNotFound  %+v", 404, o.Payload)
 }
+
+func (o *UpdateConsentActionNotFound) String() string {
+	return fmt.Sprintf("[PUT /actions/{action}][%d] updateConsentActionNotFound  %+v", 404, o.Payload)
+}
+
 func (o *UpdateConsentActionNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -203,7 +327,8 @@ func NewUpdateConsentActionConflict() *UpdateConsentActionConflict {
 	return &UpdateConsentActionConflict{}
 }
 
-/* UpdateConsentActionConflict describes a response with status code 409, with default header values.
+/*
+UpdateConsentActionConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -211,9 +336,39 @@ type UpdateConsentActionConflict struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update consent action conflict response has a 2xx status code
+func (o *UpdateConsentActionConflict) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update consent action conflict response has a 3xx status code
+func (o *UpdateConsentActionConflict) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update consent action conflict response has a 4xx status code
+func (o *UpdateConsentActionConflict) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update consent action conflict response has a 5xx status code
+func (o *UpdateConsentActionConflict) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update consent action conflict response a status code equal to that given
+func (o *UpdateConsentActionConflict) IsCode(code int) bool {
+	return code == 409
+}
+
 func (o *UpdateConsentActionConflict) Error() string {
 	return fmt.Sprintf("[PUT /actions/{action}][%d] updateConsentActionConflict  %+v", 409, o.Payload)
 }
+
+func (o *UpdateConsentActionConflict) String() string {
+	return fmt.Sprintf("[PUT /actions/{action}][%d] updateConsentActionConflict  %+v", 409, o.Payload)
+}
+
 func (o *UpdateConsentActionConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +390,8 @@ func NewUpdateConsentActionUnprocessableEntity() *UpdateConsentActionUnprocessab
 	return &UpdateConsentActionUnprocessableEntity{}
 }
 
-/* UpdateConsentActionUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+UpdateConsentActionUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -243,9 +399,39 @@ type UpdateConsentActionUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update consent action unprocessable entity response has a 2xx status code
+func (o *UpdateConsentActionUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update consent action unprocessable entity response has a 3xx status code
+func (o *UpdateConsentActionUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update consent action unprocessable entity response has a 4xx status code
+func (o *UpdateConsentActionUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update consent action unprocessable entity response has a 5xx status code
+func (o *UpdateConsentActionUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update consent action unprocessable entity response a status code equal to that given
+func (o *UpdateConsentActionUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *UpdateConsentActionUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /actions/{action}][%d] updateConsentActionUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *UpdateConsentActionUnprocessableEntity) String() string {
+	return fmt.Sprintf("[PUT /actions/{action}][%d] updateConsentActionUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *UpdateConsentActionUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -267,7 +453,8 @@ func NewUpdateConsentActionTooManyRequests() *UpdateConsentActionTooManyRequests
 	return &UpdateConsentActionTooManyRequests{}
 }
 
-/* UpdateConsentActionTooManyRequests describes a response with status code 429, with default header values.
+/*
+UpdateConsentActionTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -275,9 +462,39 @@ type UpdateConsentActionTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update consent action too many requests response has a 2xx status code
+func (o *UpdateConsentActionTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update consent action too many requests response has a 3xx status code
+func (o *UpdateConsentActionTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update consent action too many requests response has a 4xx status code
+func (o *UpdateConsentActionTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update consent action too many requests response has a 5xx status code
+func (o *UpdateConsentActionTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update consent action too many requests response a status code equal to that given
+func (o *UpdateConsentActionTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *UpdateConsentActionTooManyRequests) Error() string {
 	return fmt.Sprintf("[PUT /actions/{action}][%d] updateConsentActionTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *UpdateConsentActionTooManyRequests) String() string {
+	return fmt.Sprintf("[PUT /actions/{action}][%d] updateConsentActionTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *UpdateConsentActionTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

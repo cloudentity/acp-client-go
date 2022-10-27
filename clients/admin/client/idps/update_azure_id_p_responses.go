@@ -75,7 +75,8 @@ func NewUpdateAzureIDPOK() *UpdateAzureIDPOK {
 	return &UpdateAzureIDPOK{}
 }
 
-/* UpdateAzureIDPOK describes a response with status code 200, with default header values.
+/*
+UpdateAzureIDPOK describes a response with status code 200, with default header values.
 
 AzureIDP
 */
@@ -83,9 +84,39 @@ type UpdateAzureIDPOK struct {
 	Payload *models.AzureIDP
 }
 
+// IsSuccess returns true when this update azure Id p o k response has a 2xx status code
+func (o *UpdateAzureIDPOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this update azure Id p o k response has a 3xx status code
+func (o *UpdateAzureIDPOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update azure Id p o k response has a 4xx status code
+func (o *UpdateAzureIDPOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this update azure Id p o k response has a 5xx status code
+func (o *UpdateAzureIDPOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update azure Id p o k response a status code equal to that given
+func (o *UpdateAzureIDPOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *UpdateAzureIDPOK) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPOK  %+v", 200, o.Payload)
 }
+
+func (o *UpdateAzureIDPOK) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPOK  %+v", 200, o.Payload)
+}
+
 func (o *UpdateAzureIDPOK) GetPayload() *models.AzureIDP {
 	return o.Payload
 }
@@ -107,7 +138,8 @@ func NewUpdateAzureIDPBadRequest() *UpdateAzureIDPBadRequest {
 	return &UpdateAzureIDPBadRequest{}
 }
 
-/* UpdateAzureIDPBadRequest describes a response with status code 400, with default header values.
+/*
+UpdateAzureIDPBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -115,9 +147,39 @@ type UpdateAzureIDPBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update azure Id p bad request response has a 2xx status code
+func (o *UpdateAzureIDPBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update azure Id p bad request response has a 3xx status code
+func (o *UpdateAzureIDPBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update azure Id p bad request response has a 4xx status code
+func (o *UpdateAzureIDPBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update azure Id p bad request response has a 5xx status code
+func (o *UpdateAzureIDPBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update azure Id p bad request response a status code equal to that given
+func (o *UpdateAzureIDPBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *UpdateAzureIDPBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *UpdateAzureIDPBadRequest) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *UpdateAzureIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -139,7 +201,8 @@ func NewUpdateAzureIDPUnauthorized() *UpdateAzureIDPUnauthorized {
 	return &UpdateAzureIDPUnauthorized{}
 }
 
-/* UpdateAzureIDPUnauthorized describes a response with status code 401, with default header values.
+/*
+UpdateAzureIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,9 +210,39 @@ type UpdateAzureIDPUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update azure Id p unauthorized response has a 2xx status code
+func (o *UpdateAzureIDPUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update azure Id p unauthorized response has a 3xx status code
+func (o *UpdateAzureIDPUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update azure Id p unauthorized response has a 4xx status code
+func (o *UpdateAzureIDPUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update azure Id p unauthorized response has a 5xx status code
+func (o *UpdateAzureIDPUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update azure Id p unauthorized response a status code equal to that given
+func (o *UpdateAzureIDPUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *UpdateAzureIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *UpdateAzureIDPUnauthorized) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *UpdateAzureIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -171,7 +264,8 @@ func NewUpdateAzureIDPForbidden() *UpdateAzureIDPForbidden {
 	return &UpdateAzureIDPForbidden{}
 }
 
-/* UpdateAzureIDPForbidden describes a response with status code 403, with default header values.
+/*
+UpdateAzureIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -179,9 +273,39 @@ type UpdateAzureIDPForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update azure Id p forbidden response has a 2xx status code
+func (o *UpdateAzureIDPForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update azure Id p forbidden response has a 3xx status code
+func (o *UpdateAzureIDPForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update azure Id p forbidden response has a 4xx status code
+func (o *UpdateAzureIDPForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update azure Id p forbidden response has a 5xx status code
+func (o *UpdateAzureIDPForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update azure Id p forbidden response a status code equal to that given
+func (o *UpdateAzureIDPForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *UpdateAzureIDPForbidden) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPForbidden  %+v", 403, o.Payload)
 }
+
+func (o *UpdateAzureIDPForbidden) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPForbidden  %+v", 403, o.Payload)
+}
+
 func (o *UpdateAzureIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -203,7 +327,8 @@ func NewUpdateAzureIDPNotFound() *UpdateAzureIDPNotFound {
 	return &UpdateAzureIDPNotFound{}
 }
 
-/* UpdateAzureIDPNotFound describes a response with status code 404, with default header values.
+/*
+UpdateAzureIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -211,9 +336,39 @@ type UpdateAzureIDPNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update azure Id p not found response has a 2xx status code
+func (o *UpdateAzureIDPNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update azure Id p not found response has a 3xx status code
+func (o *UpdateAzureIDPNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update azure Id p not found response has a 4xx status code
+func (o *UpdateAzureIDPNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update azure Id p not found response has a 5xx status code
+func (o *UpdateAzureIDPNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update azure Id p not found response a status code equal to that given
+func (o *UpdateAzureIDPNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *UpdateAzureIDPNotFound) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPNotFound  %+v", 404, o.Payload)
 }
+
+func (o *UpdateAzureIDPNotFound) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPNotFound  %+v", 404, o.Payload)
+}
+
 func (o *UpdateAzureIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +390,8 @@ func NewUpdateAzureIDPUnprocessableEntity() *UpdateAzureIDPUnprocessableEntity {
 	return &UpdateAzureIDPUnprocessableEntity{}
 }
 
-/* UpdateAzureIDPUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+UpdateAzureIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -243,9 +399,39 @@ type UpdateAzureIDPUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update azure Id p unprocessable entity response has a 2xx status code
+func (o *UpdateAzureIDPUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update azure Id p unprocessable entity response has a 3xx status code
+func (o *UpdateAzureIDPUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update azure Id p unprocessable entity response has a 4xx status code
+func (o *UpdateAzureIDPUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update azure Id p unprocessable entity response has a 5xx status code
+func (o *UpdateAzureIDPUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update azure Id p unprocessable entity response a status code equal to that given
+func (o *UpdateAzureIDPUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *UpdateAzureIDPUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *UpdateAzureIDPUnprocessableEntity) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *UpdateAzureIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -267,7 +453,8 @@ func NewUpdateAzureIDPTooManyRequests() *UpdateAzureIDPTooManyRequests {
 	return &UpdateAzureIDPTooManyRequests{}
 }
 
-/* UpdateAzureIDPTooManyRequests describes a response with status code 429, with default header values.
+/*
+UpdateAzureIDPTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -275,9 +462,39 @@ type UpdateAzureIDPTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update azure Id p too many requests response has a 2xx status code
+func (o *UpdateAzureIDPTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update azure Id p too many requests response has a 3xx status code
+func (o *UpdateAzureIDPTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update azure Id p too many requests response has a 4xx status code
+func (o *UpdateAzureIDPTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update azure Id p too many requests response has a 5xx status code
+func (o *UpdateAzureIDPTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update azure Id p too many requests response a status code equal to that given
+func (o *UpdateAzureIDPTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *UpdateAzureIDPTooManyRequests) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *UpdateAzureIDPTooManyRequests) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *UpdateAzureIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

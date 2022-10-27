@@ -54,10 +54,12 @@ func NewAcceptDomesticScheduledPaymentConsentSystemParamsWithHTTPClient(client *
 	}
 }
 
-/* AcceptDomesticScheduledPaymentConsentSystemParams contains all the parameters to send to the API endpoint
-   for the accept domestic scheduled payment consent system operation.
+/*
+AcceptDomesticScheduledPaymentConsentSystemParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the accept domestic scheduled payment consent system operation.
+
+	Typically these are written to a http.Request.
 */
 type AcceptDomesticScheduledPaymentConsentSystemParams struct {
 

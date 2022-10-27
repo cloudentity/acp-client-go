@@ -54,10 +54,12 @@ func NewCreateClaimParamsWithHTTPClient(client *http.Client) *CreateClaimParams 
 	}
 }
 
-/* CreateClaimParams contains all the parameters to send to the API endpoint
-   for the create claim operation.
+/*
+CreateClaimParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the create claim operation.
+
+	Typically these are written to a http.Request.
 */
 type CreateClaimParams struct {
 

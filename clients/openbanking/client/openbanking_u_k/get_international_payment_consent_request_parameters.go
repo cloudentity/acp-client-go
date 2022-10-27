@@ -52,10 +52,12 @@ func NewGetInternationalPaymentConsentRequestParamsWithHTTPClient(client *http.C
 	}
 }
 
-/* GetInternationalPaymentConsentRequestParams contains all the parameters to send to the API endpoint
-   for the get international payment consent request operation.
+/*
+GetInternationalPaymentConsentRequestParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get international payment consent request operation.
+
+	Typically these are written to a http.Request.
 */
 type GetInternationalPaymentConsentRequestParams struct {
 

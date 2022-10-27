@@ -63,14 +63,44 @@ func NewSetRateLimitNoContent() *SetRateLimitNoContent {
 	return &SetRateLimitNoContent{}
 }
 
-/* SetRateLimitNoContent describes a response with status code 204, with default header values.
+/*
+SetRateLimitNoContent describes a response with status code 204, with default header values.
 
-custom rate limit has been saved
+	custom rate limit has been saved
 */
 type SetRateLimitNoContent struct {
 }
 
+// IsSuccess returns true when this set rate limit no content response has a 2xx status code
+func (o *SetRateLimitNoContent) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this set rate limit no content response has a 3xx status code
+func (o *SetRateLimitNoContent) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set rate limit no content response has a 4xx status code
+func (o *SetRateLimitNoContent) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this set rate limit no content response has a 5xx status code
+func (o *SetRateLimitNoContent) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set rate limit no content response a status code equal to that given
+func (o *SetRateLimitNoContent) IsCode(code int) bool {
+	return code == 204
+}
+
 func (o *SetRateLimitNoContent) Error() string {
+	return fmt.Sprintf("[PUT /api/admin/tenants/{tid}/rate-limits/{module}][%d] setRateLimitNoContent ", 204)
+}
+
+func (o *SetRateLimitNoContent) String() string {
 	return fmt.Sprintf("[PUT /api/admin/tenants/{tid}/rate-limits/{module}][%d] setRateLimitNoContent ", 204)
 }
 
@@ -84,7 +114,8 @@ func NewSetRateLimitUnauthorized() *SetRateLimitUnauthorized {
 	return &SetRateLimitUnauthorized{}
 }
 
-/* SetRateLimitUnauthorized describes a response with status code 401, with default header values.
+/*
+SetRateLimitUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -92,9 +123,39 @@ type SetRateLimitUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this set rate limit unauthorized response has a 2xx status code
+func (o *SetRateLimitUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this set rate limit unauthorized response has a 3xx status code
+func (o *SetRateLimitUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set rate limit unauthorized response has a 4xx status code
+func (o *SetRateLimitUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this set rate limit unauthorized response has a 5xx status code
+func (o *SetRateLimitUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set rate limit unauthorized response a status code equal to that given
+func (o *SetRateLimitUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *SetRateLimitUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/tenants/{tid}/rate-limits/{module}][%d] setRateLimitUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *SetRateLimitUnauthorized) String() string {
+	return fmt.Sprintf("[PUT /api/admin/tenants/{tid}/rate-limits/{module}][%d] setRateLimitUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *SetRateLimitUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -116,7 +177,8 @@ func NewSetRateLimitForbidden() *SetRateLimitForbidden {
 	return &SetRateLimitForbidden{}
 }
 
-/* SetRateLimitForbidden describes a response with status code 403, with default header values.
+/*
+SetRateLimitForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -124,9 +186,39 @@ type SetRateLimitForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this set rate limit forbidden response has a 2xx status code
+func (o *SetRateLimitForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this set rate limit forbidden response has a 3xx status code
+func (o *SetRateLimitForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set rate limit forbidden response has a 4xx status code
+func (o *SetRateLimitForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this set rate limit forbidden response has a 5xx status code
+func (o *SetRateLimitForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set rate limit forbidden response a status code equal to that given
+func (o *SetRateLimitForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *SetRateLimitForbidden) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/tenants/{tid}/rate-limits/{module}][%d] setRateLimitForbidden  %+v", 403, o.Payload)
 }
+
+func (o *SetRateLimitForbidden) String() string {
+	return fmt.Sprintf("[PUT /api/admin/tenants/{tid}/rate-limits/{module}][%d] setRateLimitForbidden  %+v", 403, o.Payload)
+}
+
 func (o *SetRateLimitForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -148,7 +240,8 @@ func NewSetRateLimitNotFound() *SetRateLimitNotFound {
 	return &SetRateLimitNotFound{}
 }
 
-/* SetRateLimitNotFound describes a response with status code 404, with default header values.
+/*
+SetRateLimitNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -156,9 +249,39 @@ type SetRateLimitNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this set rate limit not found response has a 2xx status code
+func (o *SetRateLimitNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this set rate limit not found response has a 3xx status code
+func (o *SetRateLimitNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set rate limit not found response has a 4xx status code
+func (o *SetRateLimitNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this set rate limit not found response has a 5xx status code
+func (o *SetRateLimitNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set rate limit not found response a status code equal to that given
+func (o *SetRateLimitNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *SetRateLimitNotFound) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/tenants/{tid}/rate-limits/{module}][%d] setRateLimitNotFound  %+v", 404, o.Payload)
 }
+
+func (o *SetRateLimitNotFound) String() string {
+	return fmt.Sprintf("[PUT /api/admin/tenants/{tid}/rate-limits/{module}][%d] setRateLimitNotFound  %+v", 404, o.Payload)
+}
+
 func (o *SetRateLimitNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -180,7 +303,8 @@ func NewSetRateLimitTooManyRequests() *SetRateLimitTooManyRequests {
 	return &SetRateLimitTooManyRequests{}
 }
 
-/* SetRateLimitTooManyRequests describes a response with status code 429, with default header values.
+/*
+SetRateLimitTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -188,9 +312,39 @@ type SetRateLimitTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this set rate limit too many requests response has a 2xx status code
+func (o *SetRateLimitTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this set rate limit too many requests response has a 3xx status code
+func (o *SetRateLimitTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set rate limit too many requests response has a 4xx status code
+func (o *SetRateLimitTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this set rate limit too many requests response has a 5xx status code
+func (o *SetRateLimitTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set rate limit too many requests response a status code equal to that given
+func (o *SetRateLimitTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *SetRateLimitTooManyRequests) Error() string {
 	return fmt.Sprintf("[PUT /api/admin/tenants/{tid}/rate-limits/{module}][%d] setRateLimitTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *SetRateLimitTooManyRequests) String() string {
+	return fmt.Sprintf("[PUT /api/admin/tenants/{tid}/rate-limits/{module}][%d] setRateLimitTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *SetRateLimitTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

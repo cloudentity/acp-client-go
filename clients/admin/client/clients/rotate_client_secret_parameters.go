@@ -52,10 +52,12 @@ func NewRotateClientSecretParamsWithHTTPClient(client *http.Client) *RotateClien
 	}
 }
 
-/* RotateClientSecretParams contains all the parameters to send to the API endpoint
-   for the rotate client secret operation.
+/*
+RotateClientSecretParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the rotate client secret operation.
+
+	Typically these are written to a http.Request.
 */
 type RotateClientSecretParams struct {
 

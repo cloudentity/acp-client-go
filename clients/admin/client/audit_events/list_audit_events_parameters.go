@@ -53,10 +53,12 @@ func NewListAuditEventsParamsWithHTTPClient(client *http.Client) *ListAuditEvent
 	}
 }
 
-/* ListAuditEventsParams contains all the parameters to send to the API endpoint
-   for the list audit events operation.
+/*
+ListAuditEventsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the list audit events operation.
+
+	Typically these are written to a http.Request.
 */
 type ListAuditEventsParams struct {
 
@@ -90,7 +92,7 @@ type ListAuditEventsParams struct {
 
 	/* EventSubject.
 
-	     Optional event subject, one of: request client gateway_request policy consent authorization_code recovery login access_token scopes otp
+	     Optional event subject, one of: request client gateway_request policy consent authorization_code recovery login access_token scopes otp gateway_policy user credential dcr
 	EventType
 	*/
 	EventSubject *string

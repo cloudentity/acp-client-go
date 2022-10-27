@@ -63,7 +63,8 @@ func NewGatewayExchangeOK() *GatewayExchangeOK {
 	return &GatewayExchangeOK{}
 }
 
-/* GatewayExchangeOK describes a response with status code 200, with default header values.
+/*
+GatewayExchangeOK describes a response with status code 200, with default header values.
 
 Gateway Exchange response
 */
@@ -71,9 +72,39 @@ type GatewayExchangeOK struct {
 	Payload *models.GatewayExchangeResponse
 }
 
+// IsSuccess returns true when this gateway exchange o k response has a 2xx status code
+func (o *GatewayExchangeOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this gateway exchange o k response has a 3xx status code
+func (o *GatewayExchangeOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this gateway exchange o k response has a 4xx status code
+func (o *GatewayExchangeOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this gateway exchange o k response has a 5xx status code
+func (o *GatewayExchangeOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this gateway exchange o k response a status code equal to that given
+func (o *GatewayExchangeOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GatewayExchangeOK) Error() string {
 	return fmt.Sprintf("[POST /gateways/exchange][%d] gatewayExchangeOK  %+v", 200, o.Payload)
 }
+
+func (o *GatewayExchangeOK) String() string {
+	return fmt.Sprintf("[POST /gateways/exchange][%d] gatewayExchangeOK  %+v", 200, o.Payload)
+}
+
 func (o *GatewayExchangeOK) GetPayload() *models.GatewayExchangeResponse {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewGatewayExchangeBadRequest() *GatewayExchangeBadRequest {
 	return &GatewayExchangeBadRequest{}
 }
 
-/* GatewayExchangeBadRequest describes a response with status code 400, with default header values.
+/*
+GatewayExchangeBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type GatewayExchangeBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this gateway exchange bad request response has a 2xx status code
+func (o *GatewayExchangeBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this gateway exchange bad request response has a 3xx status code
+func (o *GatewayExchangeBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this gateway exchange bad request response has a 4xx status code
+func (o *GatewayExchangeBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this gateway exchange bad request response has a 5xx status code
+func (o *GatewayExchangeBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this gateway exchange bad request response a status code equal to that given
+func (o *GatewayExchangeBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *GatewayExchangeBadRequest) Error() string {
 	return fmt.Sprintf("[POST /gateways/exchange][%d] gatewayExchangeBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *GatewayExchangeBadRequest) String() string {
+	return fmt.Sprintf("[POST /gateways/exchange][%d] gatewayExchangeBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *GatewayExchangeBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewGatewayExchangeUnauthorized() *GatewayExchangeUnauthorized {
 	return &GatewayExchangeUnauthorized{}
 }
 
-/* GatewayExchangeUnauthorized describes a response with status code 401, with default header values.
+/*
+GatewayExchangeUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type GatewayExchangeUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this gateway exchange unauthorized response has a 2xx status code
+func (o *GatewayExchangeUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this gateway exchange unauthorized response has a 3xx status code
+func (o *GatewayExchangeUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this gateway exchange unauthorized response has a 4xx status code
+func (o *GatewayExchangeUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this gateway exchange unauthorized response has a 5xx status code
+func (o *GatewayExchangeUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this gateway exchange unauthorized response a status code equal to that given
+func (o *GatewayExchangeUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *GatewayExchangeUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /gateways/exchange][%d] gatewayExchangeUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *GatewayExchangeUnauthorized) String() string {
+	return fmt.Sprintf("[POST /gateways/exchange][%d] gatewayExchangeUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *GatewayExchangeUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewGatewayExchangeForbidden() *GatewayExchangeForbidden {
 	return &GatewayExchangeForbidden{}
 }
 
-/* GatewayExchangeForbidden describes a response with status code 403, with default header values.
+/*
+GatewayExchangeForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type GatewayExchangeForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this gateway exchange forbidden response has a 2xx status code
+func (o *GatewayExchangeForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this gateway exchange forbidden response has a 3xx status code
+func (o *GatewayExchangeForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this gateway exchange forbidden response has a 4xx status code
+func (o *GatewayExchangeForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this gateway exchange forbidden response has a 5xx status code
+func (o *GatewayExchangeForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this gateway exchange forbidden response a status code equal to that given
+func (o *GatewayExchangeForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GatewayExchangeForbidden) Error() string {
 	return fmt.Sprintf("[POST /gateways/exchange][%d] gatewayExchangeForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GatewayExchangeForbidden) String() string {
+	return fmt.Sprintf("[POST /gateways/exchange][%d] gatewayExchangeForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GatewayExchangeForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewGatewayExchangeUnprocessableEntity() *GatewayExchangeUnprocessableEntity
 	return &GatewayExchangeUnprocessableEntity{}
 }
 
-/* GatewayExchangeUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+GatewayExchangeUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type GatewayExchangeUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this gateway exchange unprocessable entity response has a 2xx status code
+func (o *GatewayExchangeUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this gateway exchange unprocessable entity response has a 3xx status code
+func (o *GatewayExchangeUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this gateway exchange unprocessable entity response has a 4xx status code
+func (o *GatewayExchangeUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this gateway exchange unprocessable entity response has a 5xx status code
+func (o *GatewayExchangeUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this gateway exchange unprocessable entity response a status code equal to that given
+func (o *GatewayExchangeUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *GatewayExchangeUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /gateways/exchange][%d] gatewayExchangeUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *GatewayExchangeUnprocessableEntity) String() string {
+	return fmt.Sprintf("[POST /gateways/exchange][%d] gatewayExchangeUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *GatewayExchangeUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }

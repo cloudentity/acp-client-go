@@ -69,7 +69,8 @@ func NewTestAPIOK() *TestAPIOK {
 	return &TestAPIOK{}
 }
 
-/* TestAPIOK describes a response with status code 200, with default header values.
+/*
+TestAPIOK describes a response with status code 200, with default header values.
 
 API test result
 */
@@ -77,9 +78,39 @@ type TestAPIOK struct {
 	Payload *models.TestAPIResult
 }
 
+// IsSuccess returns true when this test Api o k response has a 2xx status code
+func (o *TestAPIOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this test Api o k response has a 3xx status code
+func (o *TestAPIOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this test Api o k response has a 4xx status code
+func (o *TestAPIOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this test Api o k response has a 5xx status code
+func (o *TestAPIOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this test Api o k response a status code equal to that given
+func (o *TestAPIOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *TestAPIOK) Error() string {
 	return fmt.Sprintf("[POST /apis/test][%d] testApiOK  %+v", 200, o.Payload)
 }
+
+func (o *TestAPIOK) String() string {
+	return fmt.Sprintf("[POST /apis/test][%d] testApiOK  %+v", 200, o.Payload)
+}
+
 func (o *TestAPIOK) GetPayload() *models.TestAPIResult {
 	return o.Payload
 }
@@ -101,7 +132,8 @@ func NewTestAPIUnauthorized() *TestAPIUnauthorized {
 	return &TestAPIUnauthorized{}
 }
 
-/* TestAPIUnauthorized describes a response with status code 401, with default header values.
+/*
+TestAPIUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -109,9 +141,39 @@ type TestAPIUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this test Api unauthorized response has a 2xx status code
+func (o *TestAPIUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this test Api unauthorized response has a 3xx status code
+func (o *TestAPIUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this test Api unauthorized response has a 4xx status code
+func (o *TestAPIUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this test Api unauthorized response has a 5xx status code
+func (o *TestAPIUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this test Api unauthorized response a status code equal to that given
+func (o *TestAPIUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *TestAPIUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /apis/test][%d] testApiUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *TestAPIUnauthorized) String() string {
+	return fmt.Sprintf("[POST /apis/test][%d] testApiUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *TestAPIUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -133,7 +195,8 @@ func NewTestAPIForbidden() *TestAPIForbidden {
 	return &TestAPIForbidden{}
 }
 
-/* TestAPIForbidden describes a response with status code 403, with default header values.
+/*
+TestAPIForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -141,9 +204,39 @@ type TestAPIForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this test Api forbidden response has a 2xx status code
+func (o *TestAPIForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this test Api forbidden response has a 3xx status code
+func (o *TestAPIForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this test Api forbidden response has a 4xx status code
+func (o *TestAPIForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this test Api forbidden response has a 5xx status code
+func (o *TestAPIForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this test Api forbidden response a status code equal to that given
+func (o *TestAPIForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *TestAPIForbidden) Error() string {
 	return fmt.Sprintf("[POST /apis/test][%d] testApiForbidden  %+v", 403, o.Payload)
 }
+
+func (o *TestAPIForbidden) String() string {
+	return fmt.Sprintf("[POST /apis/test][%d] testApiForbidden  %+v", 403, o.Payload)
+}
+
 func (o *TestAPIForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -165,7 +258,8 @@ func NewTestAPINotFound() *TestAPINotFound {
 	return &TestAPINotFound{}
 }
 
-/* TestAPINotFound describes a response with status code 404, with default header values.
+/*
+TestAPINotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -173,9 +267,39 @@ type TestAPINotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this test Api not found response has a 2xx status code
+func (o *TestAPINotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this test Api not found response has a 3xx status code
+func (o *TestAPINotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this test Api not found response has a 4xx status code
+func (o *TestAPINotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this test Api not found response has a 5xx status code
+func (o *TestAPINotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this test Api not found response a status code equal to that given
+func (o *TestAPINotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *TestAPINotFound) Error() string {
 	return fmt.Sprintf("[POST /apis/test][%d] testApiNotFound  %+v", 404, o.Payload)
 }
+
+func (o *TestAPINotFound) String() string {
+	return fmt.Sprintf("[POST /apis/test][%d] testApiNotFound  %+v", 404, o.Payload)
+}
+
 func (o *TestAPINotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -197,7 +321,8 @@ func NewTestAPIUnprocessableEntity() *TestAPIUnprocessableEntity {
 	return &TestAPIUnprocessableEntity{}
 }
 
-/* TestAPIUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+TestAPIUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -205,9 +330,39 @@ type TestAPIUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this test Api unprocessable entity response has a 2xx status code
+func (o *TestAPIUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this test Api unprocessable entity response has a 3xx status code
+func (o *TestAPIUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this test Api unprocessable entity response has a 4xx status code
+func (o *TestAPIUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this test Api unprocessable entity response has a 5xx status code
+func (o *TestAPIUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this test Api unprocessable entity response a status code equal to that given
+func (o *TestAPIUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *TestAPIUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /apis/test][%d] testApiUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *TestAPIUnprocessableEntity) String() string {
+	return fmt.Sprintf("[POST /apis/test][%d] testApiUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *TestAPIUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -229,7 +384,8 @@ func NewTestAPITooManyRequests() *TestAPITooManyRequests {
 	return &TestAPITooManyRequests{}
 }
 
-/* TestAPITooManyRequests describes a response with status code 429, with default header values.
+/*
+TestAPITooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -237,9 +393,39 @@ type TestAPITooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this test Api too many requests response has a 2xx status code
+func (o *TestAPITooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this test Api too many requests response has a 3xx status code
+func (o *TestAPITooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this test Api too many requests response has a 4xx status code
+func (o *TestAPITooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this test Api too many requests response has a 5xx status code
+func (o *TestAPITooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this test Api too many requests response a status code equal to that given
+func (o *TestAPITooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *TestAPITooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /apis/test][%d] testApiTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *TestAPITooManyRequests) String() string {
+	return fmt.Sprintf("[POST /apis/test][%d] testApiTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *TestAPITooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

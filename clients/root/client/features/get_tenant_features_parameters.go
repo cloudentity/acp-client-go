@@ -52,10 +52,12 @@ func NewGetTenantFeaturesParamsWithHTTPClient(client *http.Client) *GetTenantFea
 	}
 }
 
-/* GetTenantFeaturesParams contains all the parameters to send to the API endpoint
-   for the get tenant features operation.
+/*
+GetTenantFeaturesParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get tenant features operation.
+
+	Typically these are written to a http.Request.
 */
 type GetTenantFeaturesParams struct {
 

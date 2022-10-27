@@ -57,7 +57,8 @@ func NewIntrospectOK() *IntrospectOK {
 	return &IntrospectOK{}
 }
 
-/* IntrospectOK describes a response with status code 200, with default header values.
+/*
+IntrospectOK describes a response with status code 200, with default header values.
 
 Token introspection response
 */
@@ -65,9 +66,39 @@ type IntrospectOK struct {
 	Payload *models.IntrospectResponse
 }
 
+// IsSuccess returns true when this introspect o k response has a 2xx status code
+func (o *IntrospectOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this introspect o k response has a 3xx status code
+func (o *IntrospectOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this introspect o k response has a 4xx status code
+func (o *IntrospectOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this introspect o k response has a 5xx status code
+func (o *IntrospectOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this introspect o k response a status code equal to that given
+func (o *IntrospectOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *IntrospectOK) Error() string {
 	return fmt.Sprintf("[POST /oauth2/introspect][%d] introspectOK  %+v", 200, o.Payload)
 }
+
+func (o *IntrospectOK) String() string {
+	return fmt.Sprintf("[POST /oauth2/introspect][%d] introspectOK  %+v", 200, o.Payload)
+}
+
 func (o *IntrospectOK) GetPayload() *models.IntrospectResponse {
 	return o.Payload
 }
@@ -89,7 +120,8 @@ func NewIntrospectUnauthorized() *IntrospectUnauthorized {
 	return &IntrospectUnauthorized{}
 }
 
-/* IntrospectUnauthorized describes a response with status code 401, with default header values.
+/*
+IntrospectUnauthorized describes a response with status code 401, with default header values.
 
 ErrorResponse
 */
@@ -97,9 +129,39 @@ type IntrospectUnauthorized struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this introspect unauthorized response has a 2xx status code
+func (o *IntrospectUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this introspect unauthorized response has a 3xx status code
+func (o *IntrospectUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this introspect unauthorized response has a 4xx status code
+func (o *IntrospectUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this introspect unauthorized response has a 5xx status code
+func (o *IntrospectUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this introspect unauthorized response a status code equal to that given
+func (o *IntrospectUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *IntrospectUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /oauth2/introspect][%d] introspectUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *IntrospectUnauthorized) String() string {
+	return fmt.Sprintf("[POST /oauth2/introspect][%d] introspectUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *IntrospectUnauthorized) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -121,7 +183,8 @@ func NewIntrospectNotFound() *IntrospectNotFound {
 	return &IntrospectNotFound{}
 }
 
-/* IntrospectNotFound describes a response with status code 404, with default header values.
+/*
+IntrospectNotFound describes a response with status code 404, with default header values.
 
 ErrorResponse
 */
@@ -129,9 +192,39 @@ type IntrospectNotFound struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this introspect not found response has a 2xx status code
+func (o *IntrospectNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this introspect not found response has a 3xx status code
+func (o *IntrospectNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this introspect not found response has a 4xx status code
+func (o *IntrospectNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this introspect not found response has a 5xx status code
+func (o *IntrospectNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this introspect not found response a status code equal to that given
+func (o *IntrospectNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *IntrospectNotFound) Error() string {
 	return fmt.Sprintf("[POST /oauth2/introspect][%d] introspectNotFound  %+v", 404, o.Payload)
 }
+
+func (o *IntrospectNotFound) String() string {
+	return fmt.Sprintf("[POST /oauth2/introspect][%d] introspectNotFound  %+v", 404, o.Payload)
+}
+
 func (o *IntrospectNotFound) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -153,7 +246,8 @@ func NewIntrospectTooManyRequests() *IntrospectTooManyRequests {
 	return &IntrospectTooManyRequests{}
 }
 
-/* IntrospectTooManyRequests describes a response with status code 429, with default header values.
+/*
+IntrospectTooManyRequests describes a response with status code 429, with default header values.
 
 ErrorResponse
 */
@@ -161,9 +255,39 @@ type IntrospectTooManyRequests struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this introspect too many requests response has a 2xx status code
+func (o *IntrospectTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this introspect too many requests response has a 3xx status code
+func (o *IntrospectTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this introspect too many requests response has a 4xx status code
+func (o *IntrospectTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this introspect too many requests response has a 5xx status code
+func (o *IntrospectTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this introspect too many requests response a status code equal to that given
+func (o *IntrospectTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *IntrospectTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /oauth2/introspect][%d] introspectTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *IntrospectTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /oauth2/introspect][%d] introspectTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *IntrospectTooManyRequests) GetPayload() *models.GenericError {
 	return o.Payload
 }

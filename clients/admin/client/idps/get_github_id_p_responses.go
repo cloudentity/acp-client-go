@@ -63,7 +63,8 @@ func NewGetGithubIDPOK() *GetGithubIDPOK {
 	return &GetGithubIDPOK{}
 }
 
-/* GetGithubIDPOK describes a response with status code 200, with default header values.
+/*
+GetGithubIDPOK describes a response with status code 200, with default header values.
 
 GithubIDP
 */
@@ -71,9 +72,39 @@ type GetGithubIDPOK struct {
 	Payload *models.GithubIDP
 }
 
+// IsSuccess returns true when this get github Id p o k response has a 2xx status code
+func (o *GetGithubIDPOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get github Id p o k response has a 3xx status code
+func (o *GetGithubIDPOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get github Id p o k response has a 4xx status code
+func (o *GetGithubIDPOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get github Id p o k response has a 5xx status code
+func (o *GetGithubIDPOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get github Id p o k response a status code equal to that given
+func (o *GetGithubIDPOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetGithubIDPOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/idps/github/{iid}][%d] getGithubIdPOK  %+v", 200, o.Payload)
 }
+
+func (o *GetGithubIDPOK) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/idps/github/{iid}][%d] getGithubIdPOK  %+v", 200, o.Payload)
+}
+
 func (o *GetGithubIDPOK) GetPayload() *models.GithubIDP {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewGetGithubIDPUnauthorized() *GetGithubIDPUnauthorized {
 	return &GetGithubIDPUnauthorized{}
 }
 
-/* GetGithubIDPUnauthorized describes a response with status code 401, with default header values.
+/*
+GetGithubIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type GetGithubIDPUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get github Id p unauthorized response has a 2xx status code
+func (o *GetGithubIDPUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get github Id p unauthorized response has a 3xx status code
+func (o *GetGithubIDPUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get github Id p unauthorized response has a 4xx status code
+func (o *GetGithubIDPUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get github Id p unauthorized response has a 5xx status code
+func (o *GetGithubIDPUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get github Id p unauthorized response a status code equal to that given
+func (o *GetGithubIDPUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *GetGithubIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/idps/github/{iid}][%d] getGithubIdPUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *GetGithubIDPUnauthorized) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/idps/github/{iid}][%d] getGithubIdPUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *GetGithubIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewGetGithubIDPForbidden() *GetGithubIDPForbidden {
 	return &GetGithubIDPForbidden{}
 }
 
-/* GetGithubIDPForbidden describes a response with status code 403, with default header values.
+/*
+GetGithubIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type GetGithubIDPForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get github Id p forbidden response has a 2xx status code
+func (o *GetGithubIDPForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get github Id p forbidden response has a 3xx status code
+func (o *GetGithubIDPForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get github Id p forbidden response has a 4xx status code
+func (o *GetGithubIDPForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get github Id p forbidden response has a 5xx status code
+func (o *GetGithubIDPForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get github Id p forbidden response a status code equal to that given
+func (o *GetGithubIDPForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetGithubIDPForbidden) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/idps/github/{iid}][%d] getGithubIdPForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetGithubIDPForbidden) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/idps/github/{iid}][%d] getGithubIdPForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetGithubIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewGetGithubIDPNotFound() *GetGithubIDPNotFound {
 	return &GetGithubIDPNotFound{}
 }
 
-/* GetGithubIDPNotFound describes a response with status code 404, with default header values.
+/*
+GetGithubIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type GetGithubIDPNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get github Id p not found response has a 2xx status code
+func (o *GetGithubIDPNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get github Id p not found response has a 3xx status code
+func (o *GetGithubIDPNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get github Id p not found response has a 4xx status code
+func (o *GetGithubIDPNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get github Id p not found response has a 5xx status code
+func (o *GetGithubIDPNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get github Id p not found response a status code equal to that given
+func (o *GetGithubIDPNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *GetGithubIDPNotFound) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/idps/github/{iid}][%d] getGithubIdPNotFound  %+v", 404, o.Payload)
 }
+
+func (o *GetGithubIDPNotFound) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/idps/github/{iid}][%d] getGithubIdPNotFound  %+v", 404, o.Payload)
+}
+
 func (o *GetGithubIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewGetGithubIDPTooManyRequests() *GetGithubIDPTooManyRequests {
 	return &GetGithubIDPTooManyRequests{}
 }
 
-/* GetGithubIDPTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetGithubIDPTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type GetGithubIDPTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get github Id p too many requests response has a 2xx status code
+func (o *GetGithubIDPTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get github Id p too many requests response has a 3xx status code
+func (o *GetGithubIDPTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get github Id p too many requests response has a 4xx status code
+func (o *GetGithubIDPTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get github Id p too many requests response has a 5xx status code
+func (o *GetGithubIDPTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get github Id p too many requests response a status code equal to that given
+func (o *GetGithubIDPTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *GetGithubIDPTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/idps/github/{iid}][%d] getGithubIdPTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *GetGithubIDPTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/idps/github/{iid}][%d] getGithubIdPTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *GetGithubIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

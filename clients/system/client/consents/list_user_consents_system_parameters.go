@@ -53,10 +53,12 @@ func NewListUserConsentsSystemParamsWithHTTPClient(client *http.Client) *ListUse
 	}
 }
 
-/* ListUserConsentsSystemParams contains all the parameters to send to the API endpoint
-   for the list user consents system operation.
+/*
+ListUserConsentsSystemParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the list user consents system operation.
+
+	Typically these are written to a http.Request.
 */
 type ListUserConsentsSystemParams struct {
 

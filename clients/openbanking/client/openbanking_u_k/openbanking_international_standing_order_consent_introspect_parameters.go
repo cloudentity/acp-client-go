@@ -52,10 +52,12 @@ func NewOpenbankingInternationalStandingOrderConsentIntrospectParamsWithHTTPClie
 	}
 }
 
-/* OpenbankingInternationalStandingOrderConsentIntrospectParams contains all the parameters to send to the API endpoint
-   for the openbanking international standing order consent introspect operation.
+/*
+OpenbankingInternationalStandingOrderConsentIntrospectParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the openbanking international standing order consent introspect operation.
+
+	Typically these are written to a http.Request.
 */
 type OpenbankingInternationalStandingOrderConsentIntrospectParams struct {
 

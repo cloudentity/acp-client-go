@@ -81,7 +81,8 @@ func NewUpdateUserProfileOK() *UpdateUserProfileOK {
 	return &UpdateUserProfileOK{}
 }
 
-/* UpdateUserProfileOK describes a response with status code 200, with default header values.
+/*
+UpdateUserProfileOK describes a response with status code 200, with default header values.
 
 Self
 */
@@ -89,9 +90,39 @@ type UpdateUserProfileOK struct {
 	Payload *models.SelfUserWithData
 }
 
+// IsSuccess returns true when this update user profile o k response has a 2xx status code
+func (o *UpdateUserProfileOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this update user profile o k response has a 3xx status code
+func (o *UpdateUserProfileOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update user profile o k response has a 4xx status code
+func (o *UpdateUserProfileOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this update user profile o k response has a 5xx status code
+func (o *UpdateUserProfileOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update user profile o k response a status code equal to that given
+func (o *UpdateUserProfileOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *UpdateUserProfileOK) Error() string {
 	return fmt.Sprintf("[PUT /self/me][%d] updateUserProfileOK  %+v", 200, o.Payload)
 }
+
+func (o *UpdateUserProfileOK) String() string {
+	return fmt.Sprintf("[PUT /self/me][%d] updateUserProfileOK  %+v", 200, o.Payload)
+}
+
 func (o *UpdateUserProfileOK) GetPayload() *models.SelfUserWithData {
 	return o.Payload
 }
@@ -113,7 +144,8 @@ func NewUpdateUserProfileBadRequest() *UpdateUserProfileBadRequest {
 	return &UpdateUserProfileBadRequest{}
 }
 
-/* UpdateUserProfileBadRequest describes a response with status code 400, with default header values.
+/*
+UpdateUserProfileBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -121,9 +153,39 @@ type UpdateUserProfileBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update user profile bad request response has a 2xx status code
+func (o *UpdateUserProfileBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update user profile bad request response has a 3xx status code
+func (o *UpdateUserProfileBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update user profile bad request response has a 4xx status code
+func (o *UpdateUserProfileBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update user profile bad request response has a 5xx status code
+func (o *UpdateUserProfileBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update user profile bad request response a status code equal to that given
+func (o *UpdateUserProfileBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *UpdateUserProfileBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /self/me][%d] updateUserProfileBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *UpdateUserProfileBadRequest) String() string {
+	return fmt.Sprintf("[PUT /self/me][%d] updateUserProfileBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *UpdateUserProfileBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -145,7 +207,8 @@ func NewUpdateUserProfileUnauthorized() *UpdateUserProfileUnauthorized {
 	return &UpdateUserProfileUnauthorized{}
 }
 
-/* UpdateUserProfileUnauthorized describes a response with status code 401, with default header values.
+/*
+UpdateUserProfileUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -153,9 +216,39 @@ type UpdateUserProfileUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update user profile unauthorized response has a 2xx status code
+func (o *UpdateUserProfileUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update user profile unauthorized response has a 3xx status code
+func (o *UpdateUserProfileUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update user profile unauthorized response has a 4xx status code
+func (o *UpdateUserProfileUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update user profile unauthorized response has a 5xx status code
+func (o *UpdateUserProfileUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update user profile unauthorized response a status code equal to that given
+func (o *UpdateUserProfileUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *UpdateUserProfileUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /self/me][%d] updateUserProfileUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *UpdateUserProfileUnauthorized) String() string {
+	return fmt.Sprintf("[PUT /self/me][%d] updateUserProfileUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *UpdateUserProfileUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -177,7 +270,8 @@ func NewUpdateUserProfileForbidden() *UpdateUserProfileForbidden {
 	return &UpdateUserProfileForbidden{}
 }
 
-/* UpdateUserProfileForbidden describes a response with status code 403, with default header values.
+/*
+UpdateUserProfileForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -185,9 +279,39 @@ type UpdateUserProfileForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update user profile forbidden response has a 2xx status code
+func (o *UpdateUserProfileForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update user profile forbidden response has a 3xx status code
+func (o *UpdateUserProfileForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update user profile forbidden response has a 4xx status code
+func (o *UpdateUserProfileForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update user profile forbidden response has a 5xx status code
+func (o *UpdateUserProfileForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update user profile forbidden response a status code equal to that given
+func (o *UpdateUserProfileForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *UpdateUserProfileForbidden) Error() string {
 	return fmt.Sprintf("[PUT /self/me][%d] updateUserProfileForbidden  %+v", 403, o.Payload)
 }
+
+func (o *UpdateUserProfileForbidden) String() string {
+	return fmt.Sprintf("[PUT /self/me][%d] updateUserProfileForbidden  %+v", 403, o.Payload)
+}
+
 func (o *UpdateUserProfileForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -209,7 +333,8 @@ func NewUpdateUserProfileNotFound() *UpdateUserProfileNotFound {
 	return &UpdateUserProfileNotFound{}
 }
 
-/* UpdateUserProfileNotFound describes a response with status code 404, with default header values.
+/*
+UpdateUserProfileNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -217,9 +342,39 @@ type UpdateUserProfileNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update user profile not found response has a 2xx status code
+func (o *UpdateUserProfileNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update user profile not found response has a 3xx status code
+func (o *UpdateUserProfileNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update user profile not found response has a 4xx status code
+func (o *UpdateUserProfileNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update user profile not found response has a 5xx status code
+func (o *UpdateUserProfileNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update user profile not found response a status code equal to that given
+func (o *UpdateUserProfileNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *UpdateUserProfileNotFound) Error() string {
 	return fmt.Sprintf("[PUT /self/me][%d] updateUserProfileNotFound  %+v", 404, o.Payload)
 }
+
+func (o *UpdateUserProfileNotFound) String() string {
+	return fmt.Sprintf("[PUT /self/me][%d] updateUserProfileNotFound  %+v", 404, o.Payload)
+}
+
 func (o *UpdateUserProfileNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -241,7 +396,8 @@ func NewUpdateUserProfileConflict() *UpdateUserProfileConflict {
 	return &UpdateUserProfileConflict{}
 }
 
-/* UpdateUserProfileConflict describes a response with status code 409, with default header values.
+/*
+UpdateUserProfileConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -249,9 +405,39 @@ type UpdateUserProfileConflict struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update user profile conflict response has a 2xx status code
+func (o *UpdateUserProfileConflict) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update user profile conflict response has a 3xx status code
+func (o *UpdateUserProfileConflict) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update user profile conflict response has a 4xx status code
+func (o *UpdateUserProfileConflict) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update user profile conflict response has a 5xx status code
+func (o *UpdateUserProfileConflict) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update user profile conflict response a status code equal to that given
+func (o *UpdateUserProfileConflict) IsCode(code int) bool {
+	return code == 409
+}
+
 func (o *UpdateUserProfileConflict) Error() string {
 	return fmt.Sprintf("[PUT /self/me][%d] updateUserProfileConflict  %+v", 409, o.Payload)
 }
+
+func (o *UpdateUserProfileConflict) String() string {
+	return fmt.Sprintf("[PUT /self/me][%d] updateUserProfileConflict  %+v", 409, o.Payload)
+}
+
 func (o *UpdateUserProfileConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -273,7 +459,8 @@ func NewUpdateUserProfileUnprocessableEntity() *UpdateUserProfileUnprocessableEn
 	return &UpdateUserProfileUnprocessableEntity{}
 }
 
-/* UpdateUserProfileUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+UpdateUserProfileUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -281,9 +468,39 @@ type UpdateUserProfileUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update user profile unprocessable entity response has a 2xx status code
+func (o *UpdateUserProfileUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update user profile unprocessable entity response has a 3xx status code
+func (o *UpdateUserProfileUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update user profile unprocessable entity response has a 4xx status code
+func (o *UpdateUserProfileUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update user profile unprocessable entity response has a 5xx status code
+func (o *UpdateUserProfileUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update user profile unprocessable entity response a status code equal to that given
+func (o *UpdateUserProfileUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *UpdateUserProfileUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /self/me][%d] updateUserProfileUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *UpdateUserProfileUnprocessableEntity) String() string {
+	return fmt.Sprintf("[PUT /self/me][%d] updateUserProfileUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *UpdateUserProfileUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -305,7 +522,8 @@ func NewUpdateUserProfileTooManyRequests() *UpdateUserProfileTooManyRequests {
 	return &UpdateUserProfileTooManyRequests{}
 }
 
-/* UpdateUserProfileTooManyRequests describes a response with status code 429, with default header values.
+/*
+UpdateUserProfileTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -313,9 +531,39 @@ type UpdateUserProfileTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update user profile too many requests response has a 2xx status code
+func (o *UpdateUserProfileTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update user profile too many requests response has a 3xx status code
+func (o *UpdateUserProfileTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update user profile too many requests response has a 4xx status code
+func (o *UpdateUserProfileTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update user profile too many requests response has a 5xx status code
+func (o *UpdateUserProfileTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update user profile too many requests response a status code equal to that given
+func (o *UpdateUserProfileTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *UpdateUserProfileTooManyRequests) Error() string {
 	return fmt.Sprintf("[PUT /self/me][%d] updateUserProfileTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *UpdateUserProfileTooManyRequests) String() string {
+	return fmt.Sprintf("[PUT /self/me][%d] updateUserProfileTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *UpdateUserProfileTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

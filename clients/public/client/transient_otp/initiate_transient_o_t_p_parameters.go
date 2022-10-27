@@ -54,10 +54,12 @@ func NewInitiateTransientOTPParamsWithHTTPClient(client *http.Client) *InitiateT
 	}
 }
 
-/* InitiateTransientOTPParams contains all the parameters to send to the API endpoint
-   for the initiate transient o t p operation.
+/*
+InitiateTransientOTPParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the initiate transient o t p operation.
+
+	Typically these are written to a http.Request.
 */
 type InitiateTransientOTPParams struct {
 

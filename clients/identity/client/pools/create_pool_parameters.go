@@ -54,10 +54,12 @@ func NewCreatePoolParamsWithHTTPClient(client *http.Client) *CreatePoolParams {
 	}
 }
 
-/* CreatePoolParams contains all the parameters to send to the API endpoint
-   for the create pool operation.
+/*
+CreatePoolParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the create pool operation.
+
+	Typically these are written to a http.Request.
 */
 type CreatePoolParams struct {
 

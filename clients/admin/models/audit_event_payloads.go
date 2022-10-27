@@ -19,16 +19,25 @@ import (
 type AuditEventPayloads struct {
 
 	// access token denied
-	AccessTokenDenied *RequestUnauthorizedPayload `json:"access_token_denied,omitempty"`
+	AccessTokenDenied *AccessRequestDataWithError `json:"access_token_denied,omitempty"`
 
 	// access token issued
 	AccessTokenIssued *AccessRequestData `json:"access_token_issued,omitempty"`
 
 	// authorization code denied
-	AuthorizationCodeDenied *RequestUnauthorizedPayload `json:"authorization_code_denied,omitempty"`
+	AuthorizationCodeDenied *AccessRequestDataWithError `json:"authorization_code_denied,omitempty"`
 
 	// authorization code issued
 	AuthorizationCodeIssued *AccessRequestData `json:"authorization_code_issued,omitempty"`
+
+	// bruteforce deleted
+	BruteforceDeleted *BruteForcePayload `json:"bruteforce_deleted,omitempty"`
+
+	// bruteforce updated
+	BruteforceUpdated *BruteForcePayload `json:"bruteforce_updated,omitempty"`
+
+	// client consents revoked
+	ClientConsentsRevoked *ClientConsentsAuditEventPayload `json:"client_consents_revoked,omitempty"`
 
 	// client created
 	ClientCreated *ClientAuditPayload `json:"client_created,omitempty"`
@@ -51,6 +60,27 @@ type AuditEventPayloads struct {
 	// consent revoked
 	ConsentRevoked *ConsentAuditEventPayload `json:"consent_revoked,omitempty"`
 
+	// consent updated
+	ConsentUpdated *ConsentAuditEventPayload `json:"consent_updated,omitempty"`
+
+	// credential created
+	CredentialCreated *UserCredential `json:"credential_created,omitempty"`
+
+	// credential updated
+	CredentialUpdated *UserCredential `json:"credential_updated,omitempty"`
+
+	// dcr created
+	DcrCreated *DCRCreatedEventPayload `json:"dcr_created,omitempty"`
+
+	// dcr rejected
+	DcrRejected *DCRRejectedEventPayload `json:"dcr_rejected,omitempty"`
+
+	// gateway policy authorized
+	GatewayPolicyAuthorized *RequestValidatedPayload `json:"gateway_policy_authorized,omitempty"`
+
+	// gateway policy unauthorized
+	GatewayPolicyUnauthorized *RequestValidatedPayload `json:"gateway_policy_unauthorized,omitempty"`
+
 	// gateway request authorized
 	GatewayRequestAuthorized *RequestValidatedPayload `json:"gateway_request_authorized,omitempty"`
 
@@ -66,11 +96,35 @@ type AuditEventPayloads struct {
 	// login failed
 	LoginFailed *LoginFailedPayload `json:"login_failed,omitempty"`
 
+	// otp accepted
+	OtpAccepted *OTPPayload `json:"otp_accepted,omitempty"`
+
 	// otp not sent
-	OtpNotSent *RecoveryPayload `json:"otp_not_sent,omitempty"`
+	OtpNotSent *OTPPayload `json:"otp_not_sent,omitempty"`
+
+	// otp rejected
+	OtpRejected *OTPPayload `json:"otp_rejected,omitempty"`
+
+	// otp requested
+	OtpRequested *OTPPayload `json:"otp_requested,omitempty"`
 
 	// otp sent
-	OtpSent *RecoveryPayload `json:"otp_sent,omitempty"`
+	OtpSent *OTPPayload `json:"otp_sent,omitempty"`
+
+	// password accepted
+	PasswordAccepted *PasswordPayload `json:"password_accepted,omitempty"`
+
+	// password confirmed
+	PasswordConfirmed *PasswordPayload `json:"password_confirmed,omitempty"`
+
+	// password rejected
+	PasswordRejected *PasswordPayload `json:"password_rejected,omitempty"`
+
+	// password requested
+	PasswordRequested *PasswordPayload `json:"password_requested,omitempty"`
+
+	// password updated
+	PasswordUpdated *PasswordPayload `json:"password_updated,omitempty"`
 
 	// policy authorized
 	PolicyAuthorized *PolicyEvaluatedPayload `json:"policy_authorized,omitempty"`
@@ -78,23 +132,44 @@ type AuditEventPayloads struct {
 	// policy unauthorized
 	PolicyUnauthorized *PolicyEvaluatedPayload `json:"policy_unauthorized,omitempty"`
 
-	// recovery authorized
-	RecoveryAuthorized *RecoveryPayload `json:"recovery_authorized,omitempty"`
+	// pool created
+	PoolCreated *PoolAuditPayload `json:"pool_created,omitempty"`
 
-	// recovery requested
-	RecoveryRequested *RecoveryPayload `json:"recovery_requested,omitempty"`
+	// pool deleted
+	PoolDeleted *PoolAuditPayload `json:"pool_deleted,omitempty"`
 
-	// recovery unauthorized
-	RecoveryUnauthorized *RecoveryPayload `json:"recovery_unauthorized,omitempty"`
+	// pool updated
+	PoolUpdated *PoolAuditPayload `json:"pool_updated,omitempty"`
 
-	// request authorized
-	RequestAuthorized *RequestAuthorizedPayload `json:"request_authorized,omitempty"`
+	// saml assertion denied
+	SamlAssertionDenied *AccessRequestDataWithError `json:"saml_assertion_denied,omitempty"`
 
-	// request unauthorized
-	RequestUnauthorized *RequestUnauthorizedPayload `json:"request_unauthorized,omitempty"`
+	// saml assertion issued
+	SamlAssertionIssued *AccessRequestData `json:"saml_assertion_issued,omitempty"`
 
-	// scopes granted payload
-	ScopesGrantedPayload *ScopesGrantedPayload `json:"scopes_granted_payload,omitempty"`
+	// schema created
+	SchemaCreated *SchemaAuditPayload `json:"schema_created,omitempty"`
+
+	// schema deleted
+	SchemaDeleted *SchemaAuditPayload `json:"schema_deleted,omitempty"`
+
+	// schema updated
+	SchemaUpdated *SchemaAuditPayload `json:"schema_updated,omitempty"`
+
+	// scopes granted
+	ScopesGranted *ScopesGrantedPayload `json:"scopes_granted,omitempty"`
+
+	// user authenticated
+	UserAuthenticated *UserAuthenticatedPayload `json:"user_authenticated,omitempty"`
+
+	// user created
+	UserCreated *NewUserAuditPayload `json:"user_created,omitempty"`
+
+	// user deleted
+	UserDeleted *UserAuditPayload `json:"user_deleted,omitempty"`
+
+	// user updated
+	UserUpdated *NewUserAuditPayload `json:"user_updated,omitempty"`
 }
 
 // Validate validates this audit event payloads
@@ -114,6 +189,18 @@ func (m *AuditEventPayloads) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateAuthorizationCodeIssued(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBruteforceDeleted(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBruteforceUpdated(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateClientConsentsRevoked(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -145,6 +232,34 @@ func (m *AuditEventPayloads) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateConsentUpdated(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCredentialCreated(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCredentialUpdated(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDcrCreated(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDcrRejected(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateGatewayPolicyAuthorized(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateGatewayPolicyUnauthorized(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateGatewayRequestAuthorized(formats); err != nil {
 		res = append(res, err)
 	}
@@ -165,11 +280,43 @@ func (m *AuditEventPayloads) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateOtpAccepted(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateOtpNotSent(formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.validateOtpRejected(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateOtpRequested(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateOtpSent(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePasswordAccepted(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePasswordConfirmed(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePasswordRejected(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePasswordRequested(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePasswordUpdated(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -181,27 +328,55 @@ func (m *AuditEventPayloads) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateRecoveryAuthorized(formats); err != nil {
+	if err := m.validatePoolCreated(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateRecoveryRequested(formats); err != nil {
+	if err := m.validatePoolDeleted(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateRecoveryUnauthorized(formats); err != nil {
+	if err := m.validatePoolUpdated(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateRequestAuthorized(formats); err != nil {
+	if err := m.validateSamlAssertionDenied(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateRequestUnauthorized(formats); err != nil {
+	if err := m.validateSamlAssertionIssued(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateScopesGrantedPayload(formats); err != nil {
+	if err := m.validateSchemaCreated(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSchemaDeleted(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSchemaUpdated(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateScopesGranted(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUserAuthenticated(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUserCreated(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUserDeleted(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUserUpdated(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -279,6 +454,63 @@ func (m *AuditEventPayloads) validateAuthorizationCodeIssued(formats strfmt.Regi
 				return ve.ValidateName("authorization_code_issued")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("authorization_code_issued")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) validateBruteforceDeleted(formats strfmt.Registry) error {
+	if swag.IsZero(m.BruteforceDeleted) { // not required
+		return nil
+	}
+
+	if m.BruteforceDeleted != nil {
+		if err := m.BruteforceDeleted.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("bruteforce_deleted")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("bruteforce_deleted")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) validateBruteforceUpdated(formats strfmt.Registry) error {
+	if swag.IsZero(m.BruteforceUpdated) { // not required
+		return nil
+	}
+
+	if m.BruteforceUpdated != nil {
+		if err := m.BruteforceUpdated.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("bruteforce_updated")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("bruteforce_updated")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) validateClientConsentsRevoked(formats strfmt.Registry) error {
+	if swag.IsZero(m.ClientConsentsRevoked) { // not required
+		return nil
+	}
+
+	if m.ClientConsentsRevoked != nil {
+		if err := m.ClientConsentsRevoked.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("client_consents_revoked")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("client_consents_revoked")
 			}
 			return err
 		}
@@ -420,6 +652,139 @@ func (m *AuditEventPayloads) validateConsentRevoked(formats strfmt.Registry) err
 	return nil
 }
 
+func (m *AuditEventPayloads) validateConsentUpdated(formats strfmt.Registry) error {
+	if swag.IsZero(m.ConsentUpdated) { // not required
+		return nil
+	}
+
+	if m.ConsentUpdated != nil {
+		if err := m.ConsentUpdated.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("consent_updated")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("consent_updated")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) validateCredentialCreated(formats strfmt.Registry) error {
+	if swag.IsZero(m.CredentialCreated) { // not required
+		return nil
+	}
+
+	if m.CredentialCreated != nil {
+		if err := m.CredentialCreated.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("credential_created")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("credential_created")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) validateCredentialUpdated(formats strfmt.Registry) error {
+	if swag.IsZero(m.CredentialUpdated) { // not required
+		return nil
+	}
+
+	if m.CredentialUpdated != nil {
+		if err := m.CredentialUpdated.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("credential_updated")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("credential_updated")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) validateDcrCreated(formats strfmt.Registry) error {
+	if swag.IsZero(m.DcrCreated) { // not required
+		return nil
+	}
+
+	if m.DcrCreated != nil {
+		if err := m.DcrCreated.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("dcr_created")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("dcr_created")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) validateDcrRejected(formats strfmt.Registry) error {
+	if swag.IsZero(m.DcrRejected) { // not required
+		return nil
+	}
+
+	if m.DcrRejected != nil {
+		if err := m.DcrRejected.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("dcr_rejected")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("dcr_rejected")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) validateGatewayPolicyAuthorized(formats strfmt.Registry) error {
+	if swag.IsZero(m.GatewayPolicyAuthorized) { // not required
+		return nil
+	}
+
+	if m.GatewayPolicyAuthorized != nil {
+		if err := m.GatewayPolicyAuthorized.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("gateway_policy_authorized")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("gateway_policy_authorized")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) validateGatewayPolicyUnauthorized(formats strfmt.Registry) error {
+	if swag.IsZero(m.GatewayPolicyUnauthorized) { // not required
+		return nil
+	}
+
+	if m.GatewayPolicyUnauthorized != nil {
+		if err := m.GatewayPolicyUnauthorized.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("gateway_policy_unauthorized")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("gateway_policy_unauthorized")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *AuditEventPayloads) validateGatewayRequestAuthorized(formats strfmt.Registry) error {
 	if swag.IsZero(m.GatewayRequestAuthorized) { // not required
 		return nil
@@ -515,6 +880,25 @@ func (m *AuditEventPayloads) validateLoginFailed(formats strfmt.Registry) error 
 	return nil
 }
 
+func (m *AuditEventPayloads) validateOtpAccepted(formats strfmt.Registry) error {
+	if swag.IsZero(m.OtpAccepted) { // not required
+		return nil
+	}
+
+	if m.OtpAccepted != nil {
+		if err := m.OtpAccepted.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("otp_accepted")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("otp_accepted")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *AuditEventPayloads) validateOtpNotSent(formats strfmt.Registry) error {
 	if swag.IsZero(m.OtpNotSent) { // not required
 		return nil
@@ -534,6 +918,44 @@ func (m *AuditEventPayloads) validateOtpNotSent(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *AuditEventPayloads) validateOtpRejected(formats strfmt.Registry) error {
+	if swag.IsZero(m.OtpRejected) { // not required
+		return nil
+	}
+
+	if m.OtpRejected != nil {
+		if err := m.OtpRejected.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("otp_rejected")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("otp_rejected")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) validateOtpRequested(formats strfmt.Registry) error {
+	if swag.IsZero(m.OtpRequested) { // not required
+		return nil
+	}
+
+	if m.OtpRequested != nil {
+		if err := m.OtpRequested.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("otp_requested")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("otp_requested")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *AuditEventPayloads) validateOtpSent(formats strfmt.Registry) error {
 	if swag.IsZero(m.OtpSent) { // not required
 		return nil
@@ -545,6 +967,101 @@ func (m *AuditEventPayloads) validateOtpSent(formats strfmt.Registry) error {
 				return ve.ValidateName("otp_sent")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("otp_sent")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) validatePasswordAccepted(formats strfmt.Registry) error {
+	if swag.IsZero(m.PasswordAccepted) { // not required
+		return nil
+	}
+
+	if m.PasswordAccepted != nil {
+		if err := m.PasswordAccepted.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("password_accepted")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("password_accepted")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) validatePasswordConfirmed(formats strfmt.Registry) error {
+	if swag.IsZero(m.PasswordConfirmed) { // not required
+		return nil
+	}
+
+	if m.PasswordConfirmed != nil {
+		if err := m.PasswordConfirmed.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("password_confirmed")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("password_confirmed")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) validatePasswordRejected(formats strfmt.Registry) error {
+	if swag.IsZero(m.PasswordRejected) { // not required
+		return nil
+	}
+
+	if m.PasswordRejected != nil {
+		if err := m.PasswordRejected.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("password_rejected")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("password_rejected")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) validatePasswordRequested(formats strfmt.Registry) error {
+	if swag.IsZero(m.PasswordRequested) { // not required
+		return nil
+	}
+
+	if m.PasswordRequested != nil {
+		if err := m.PasswordRequested.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("password_requested")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("password_requested")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) validatePasswordUpdated(formats strfmt.Registry) error {
+	if swag.IsZero(m.PasswordUpdated) { // not required
+		return nil
+	}
+
+	if m.PasswordUpdated != nil {
+		if err := m.PasswordUpdated.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("password_updated")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("password_updated")
 			}
 			return err
 		}
@@ -591,17 +1108,17 @@ func (m *AuditEventPayloads) validatePolicyUnauthorized(formats strfmt.Registry)
 	return nil
 }
 
-func (m *AuditEventPayloads) validateRecoveryAuthorized(formats strfmt.Registry) error {
-	if swag.IsZero(m.RecoveryAuthorized) { // not required
+func (m *AuditEventPayloads) validatePoolCreated(formats strfmt.Registry) error {
+	if swag.IsZero(m.PoolCreated) { // not required
 		return nil
 	}
 
-	if m.RecoveryAuthorized != nil {
-		if err := m.RecoveryAuthorized.Validate(formats); err != nil {
+	if m.PoolCreated != nil {
+		if err := m.PoolCreated.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("recovery_authorized")
+				return ve.ValidateName("pool_created")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("recovery_authorized")
+				return ce.ValidateName("pool_created")
 			}
 			return err
 		}
@@ -610,17 +1127,17 @@ func (m *AuditEventPayloads) validateRecoveryAuthorized(formats strfmt.Registry)
 	return nil
 }
 
-func (m *AuditEventPayloads) validateRecoveryRequested(formats strfmt.Registry) error {
-	if swag.IsZero(m.RecoveryRequested) { // not required
+func (m *AuditEventPayloads) validatePoolDeleted(formats strfmt.Registry) error {
+	if swag.IsZero(m.PoolDeleted) { // not required
 		return nil
 	}
 
-	if m.RecoveryRequested != nil {
-		if err := m.RecoveryRequested.Validate(formats); err != nil {
+	if m.PoolDeleted != nil {
+		if err := m.PoolDeleted.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("recovery_requested")
+				return ve.ValidateName("pool_deleted")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("recovery_requested")
+				return ce.ValidateName("pool_deleted")
 			}
 			return err
 		}
@@ -629,17 +1146,17 @@ func (m *AuditEventPayloads) validateRecoveryRequested(formats strfmt.Registry) 
 	return nil
 }
 
-func (m *AuditEventPayloads) validateRecoveryUnauthorized(formats strfmt.Registry) error {
-	if swag.IsZero(m.RecoveryUnauthorized) { // not required
+func (m *AuditEventPayloads) validatePoolUpdated(formats strfmt.Registry) error {
+	if swag.IsZero(m.PoolUpdated) { // not required
 		return nil
 	}
 
-	if m.RecoveryUnauthorized != nil {
-		if err := m.RecoveryUnauthorized.Validate(formats); err != nil {
+	if m.PoolUpdated != nil {
+		if err := m.PoolUpdated.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("recovery_unauthorized")
+				return ve.ValidateName("pool_updated")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("recovery_unauthorized")
+				return ce.ValidateName("pool_updated")
 			}
 			return err
 		}
@@ -648,17 +1165,17 @@ func (m *AuditEventPayloads) validateRecoveryUnauthorized(formats strfmt.Registr
 	return nil
 }
 
-func (m *AuditEventPayloads) validateRequestAuthorized(formats strfmt.Registry) error {
-	if swag.IsZero(m.RequestAuthorized) { // not required
+func (m *AuditEventPayloads) validateSamlAssertionDenied(formats strfmt.Registry) error {
+	if swag.IsZero(m.SamlAssertionDenied) { // not required
 		return nil
 	}
 
-	if m.RequestAuthorized != nil {
-		if err := m.RequestAuthorized.Validate(formats); err != nil {
+	if m.SamlAssertionDenied != nil {
+		if err := m.SamlAssertionDenied.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("request_authorized")
+				return ve.ValidateName("saml_assertion_denied")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("request_authorized")
+				return ce.ValidateName("saml_assertion_denied")
 			}
 			return err
 		}
@@ -667,17 +1184,17 @@ func (m *AuditEventPayloads) validateRequestAuthorized(formats strfmt.Registry) 
 	return nil
 }
 
-func (m *AuditEventPayloads) validateRequestUnauthorized(formats strfmt.Registry) error {
-	if swag.IsZero(m.RequestUnauthorized) { // not required
+func (m *AuditEventPayloads) validateSamlAssertionIssued(formats strfmt.Registry) error {
+	if swag.IsZero(m.SamlAssertionIssued) { // not required
 		return nil
 	}
 
-	if m.RequestUnauthorized != nil {
-		if err := m.RequestUnauthorized.Validate(formats); err != nil {
+	if m.SamlAssertionIssued != nil {
+		if err := m.SamlAssertionIssued.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("request_unauthorized")
+				return ve.ValidateName("saml_assertion_issued")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("request_unauthorized")
+				return ce.ValidateName("saml_assertion_issued")
 			}
 			return err
 		}
@@ -686,17 +1203,150 @@ func (m *AuditEventPayloads) validateRequestUnauthorized(formats strfmt.Registry
 	return nil
 }
 
-func (m *AuditEventPayloads) validateScopesGrantedPayload(formats strfmt.Registry) error {
-	if swag.IsZero(m.ScopesGrantedPayload) { // not required
+func (m *AuditEventPayloads) validateSchemaCreated(formats strfmt.Registry) error {
+	if swag.IsZero(m.SchemaCreated) { // not required
 		return nil
 	}
 
-	if m.ScopesGrantedPayload != nil {
-		if err := m.ScopesGrantedPayload.Validate(formats); err != nil {
+	if m.SchemaCreated != nil {
+		if err := m.SchemaCreated.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("scopes_granted_payload")
+				return ve.ValidateName("schema_created")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("scopes_granted_payload")
+				return ce.ValidateName("schema_created")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) validateSchemaDeleted(formats strfmt.Registry) error {
+	if swag.IsZero(m.SchemaDeleted) { // not required
+		return nil
+	}
+
+	if m.SchemaDeleted != nil {
+		if err := m.SchemaDeleted.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("schema_deleted")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("schema_deleted")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) validateSchemaUpdated(formats strfmt.Registry) error {
+	if swag.IsZero(m.SchemaUpdated) { // not required
+		return nil
+	}
+
+	if m.SchemaUpdated != nil {
+		if err := m.SchemaUpdated.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("schema_updated")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("schema_updated")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) validateScopesGranted(formats strfmt.Registry) error {
+	if swag.IsZero(m.ScopesGranted) { // not required
+		return nil
+	}
+
+	if m.ScopesGranted != nil {
+		if err := m.ScopesGranted.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("scopes_granted")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("scopes_granted")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) validateUserAuthenticated(formats strfmt.Registry) error {
+	if swag.IsZero(m.UserAuthenticated) { // not required
+		return nil
+	}
+
+	if m.UserAuthenticated != nil {
+		if err := m.UserAuthenticated.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("user_authenticated")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("user_authenticated")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) validateUserCreated(formats strfmt.Registry) error {
+	if swag.IsZero(m.UserCreated) { // not required
+		return nil
+	}
+
+	if m.UserCreated != nil {
+		if err := m.UserCreated.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("user_created")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("user_created")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) validateUserDeleted(formats strfmt.Registry) error {
+	if swag.IsZero(m.UserDeleted) { // not required
+		return nil
+	}
+
+	if m.UserDeleted != nil {
+		if err := m.UserDeleted.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("user_deleted")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("user_deleted")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) validateUserUpdated(formats strfmt.Registry) error {
+	if swag.IsZero(m.UserUpdated) { // not required
+		return nil
+	}
+
+	if m.UserUpdated != nil {
+		if err := m.UserUpdated.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("user_updated")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("user_updated")
 			}
 			return err
 		}
@@ -722,6 +1372,18 @@ func (m *AuditEventPayloads) ContextValidate(ctx context.Context, formats strfmt
 	}
 
 	if err := m.contextValidateAuthorizationCodeIssued(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateBruteforceDeleted(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateBruteforceUpdated(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateClientConsentsRevoked(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -753,6 +1415,34 @@ func (m *AuditEventPayloads) ContextValidate(ctx context.Context, formats strfmt
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateConsentUpdated(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCredentialCreated(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCredentialUpdated(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDcrCreated(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDcrRejected(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateGatewayPolicyAuthorized(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateGatewayPolicyUnauthorized(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateGatewayRequestAuthorized(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -773,11 +1463,43 @@ func (m *AuditEventPayloads) ContextValidate(ctx context.Context, formats strfmt
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateOtpAccepted(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateOtpNotSent(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateOtpRejected(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateOtpRequested(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateOtpSent(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePasswordAccepted(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePasswordConfirmed(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePasswordRejected(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePasswordRequested(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePasswordUpdated(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -789,27 +1511,55 @@ func (m *AuditEventPayloads) ContextValidate(ctx context.Context, formats strfmt
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateRecoveryAuthorized(ctx, formats); err != nil {
+	if err := m.contextValidatePoolCreated(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateRecoveryRequested(ctx, formats); err != nil {
+	if err := m.contextValidatePoolDeleted(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateRecoveryUnauthorized(ctx, formats); err != nil {
+	if err := m.contextValidatePoolUpdated(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateRequestAuthorized(ctx, formats); err != nil {
+	if err := m.contextValidateSamlAssertionDenied(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateRequestUnauthorized(ctx, formats); err != nil {
+	if err := m.contextValidateSamlAssertionIssued(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateScopesGrantedPayload(ctx, formats); err != nil {
+	if err := m.contextValidateSchemaCreated(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSchemaDeleted(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSchemaUpdated(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateScopesGranted(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUserAuthenticated(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUserCreated(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUserDeleted(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUserUpdated(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -875,6 +1625,54 @@ func (m *AuditEventPayloads) contextValidateAuthorizationCodeIssued(ctx context.
 				return ve.ValidateName("authorization_code_issued")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("authorization_code_issued")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) contextValidateBruteforceDeleted(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.BruteforceDeleted != nil {
+		if err := m.BruteforceDeleted.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("bruteforce_deleted")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("bruteforce_deleted")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) contextValidateBruteforceUpdated(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.BruteforceUpdated != nil {
+		if err := m.BruteforceUpdated.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("bruteforce_updated")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("bruteforce_updated")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) contextValidateClientConsentsRevoked(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ClientConsentsRevoked != nil {
+		if err := m.ClientConsentsRevoked.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("client_consents_revoked")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("client_consents_revoked")
 			}
 			return err
 		}
@@ -995,6 +1793,118 @@ func (m *AuditEventPayloads) contextValidateConsentRevoked(ctx context.Context, 
 	return nil
 }
 
+func (m *AuditEventPayloads) contextValidateConsentUpdated(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ConsentUpdated != nil {
+		if err := m.ConsentUpdated.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("consent_updated")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("consent_updated")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) contextValidateCredentialCreated(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.CredentialCreated != nil {
+		if err := m.CredentialCreated.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("credential_created")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("credential_created")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) contextValidateCredentialUpdated(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.CredentialUpdated != nil {
+		if err := m.CredentialUpdated.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("credential_updated")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("credential_updated")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) contextValidateDcrCreated(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.DcrCreated != nil {
+		if err := m.DcrCreated.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("dcr_created")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("dcr_created")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) contextValidateDcrRejected(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.DcrRejected != nil {
+		if err := m.DcrRejected.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("dcr_rejected")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("dcr_rejected")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) contextValidateGatewayPolicyAuthorized(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.GatewayPolicyAuthorized != nil {
+		if err := m.GatewayPolicyAuthorized.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("gateway_policy_authorized")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("gateway_policy_authorized")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) contextValidateGatewayPolicyUnauthorized(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.GatewayPolicyUnauthorized != nil {
+		if err := m.GatewayPolicyUnauthorized.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("gateway_policy_unauthorized")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("gateway_policy_unauthorized")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *AuditEventPayloads) contextValidateGatewayRequestAuthorized(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.GatewayRequestAuthorized != nil {
@@ -1075,6 +1985,22 @@ func (m *AuditEventPayloads) contextValidateLoginFailed(ctx context.Context, for
 	return nil
 }
 
+func (m *AuditEventPayloads) contextValidateOtpAccepted(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.OtpAccepted != nil {
+		if err := m.OtpAccepted.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("otp_accepted")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("otp_accepted")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *AuditEventPayloads) contextValidateOtpNotSent(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtpNotSent != nil {
@@ -1091,6 +2017,38 @@ func (m *AuditEventPayloads) contextValidateOtpNotSent(ctx context.Context, form
 	return nil
 }
 
+func (m *AuditEventPayloads) contextValidateOtpRejected(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.OtpRejected != nil {
+		if err := m.OtpRejected.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("otp_rejected")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("otp_rejected")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) contextValidateOtpRequested(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.OtpRequested != nil {
+		if err := m.OtpRequested.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("otp_requested")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("otp_requested")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *AuditEventPayloads) contextValidateOtpSent(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtpSent != nil {
@@ -1099,6 +2057,86 @@ func (m *AuditEventPayloads) contextValidateOtpSent(ctx context.Context, formats
 				return ve.ValidateName("otp_sent")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("otp_sent")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) contextValidatePasswordAccepted(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.PasswordAccepted != nil {
+		if err := m.PasswordAccepted.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("password_accepted")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("password_accepted")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) contextValidatePasswordConfirmed(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.PasswordConfirmed != nil {
+		if err := m.PasswordConfirmed.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("password_confirmed")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("password_confirmed")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) contextValidatePasswordRejected(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.PasswordRejected != nil {
+		if err := m.PasswordRejected.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("password_rejected")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("password_rejected")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) contextValidatePasswordRequested(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.PasswordRequested != nil {
+		if err := m.PasswordRequested.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("password_requested")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("password_requested")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) contextValidatePasswordUpdated(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.PasswordUpdated != nil {
+		if err := m.PasswordUpdated.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("password_updated")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("password_updated")
 			}
 			return err
 		}
@@ -1139,14 +2177,14 @@ func (m *AuditEventPayloads) contextValidatePolicyUnauthorized(ctx context.Conte
 	return nil
 }
 
-func (m *AuditEventPayloads) contextValidateRecoveryAuthorized(ctx context.Context, formats strfmt.Registry) error {
+func (m *AuditEventPayloads) contextValidatePoolCreated(ctx context.Context, formats strfmt.Registry) error {
 
-	if m.RecoveryAuthorized != nil {
-		if err := m.RecoveryAuthorized.ContextValidate(ctx, formats); err != nil {
+	if m.PoolCreated != nil {
+		if err := m.PoolCreated.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("recovery_authorized")
+				return ve.ValidateName("pool_created")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("recovery_authorized")
+				return ce.ValidateName("pool_created")
 			}
 			return err
 		}
@@ -1155,14 +2193,14 @@ func (m *AuditEventPayloads) contextValidateRecoveryAuthorized(ctx context.Conte
 	return nil
 }
 
-func (m *AuditEventPayloads) contextValidateRecoveryRequested(ctx context.Context, formats strfmt.Registry) error {
+func (m *AuditEventPayloads) contextValidatePoolDeleted(ctx context.Context, formats strfmt.Registry) error {
 
-	if m.RecoveryRequested != nil {
-		if err := m.RecoveryRequested.ContextValidate(ctx, formats); err != nil {
+	if m.PoolDeleted != nil {
+		if err := m.PoolDeleted.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("recovery_requested")
+				return ve.ValidateName("pool_deleted")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("recovery_requested")
+				return ce.ValidateName("pool_deleted")
 			}
 			return err
 		}
@@ -1171,14 +2209,14 @@ func (m *AuditEventPayloads) contextValidateRecoveryRequested(ctx context.Contex
 	return nil
 }
 
-func (m *AuditEventPayloads) contextValidateRecoveryUnauthorized(ctx context.Context, formats strfmt.Registry) error {
+func (m *AuditEventPayloads) contextValidatePoolUpdated(ctx context.Context, formats strfmt.Registry) error {
 
-	if m.RecoveryUnauthorized != nil {
-		if err := m.RecoveryUnauthorized.ContextValidate(ctx, formats); err != nil {
+	if m.PoolUpdated != nil {
+		if err := m.PoolUpdated.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("recovery_unauthorized")
+				return ve.ValidateName("pool_updated")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("recovery_unauthorized")
+				return ce.ValidateName("pool_updated")
 			}
 			return err
 		}
@@ -1187,14 +2225,14 @@ func (m *AuditEventPayloads) contextValidateRecoveryUnauthorized(ctx context.Con
 	return nil
 }
 
-func (m *AuditEventPayloads) contextValidateRequestAuthorized(ctx context.Context, formats strfmt.Registry) error {
+func (m *AuditEventPayloads) contextValidateSamlAssertionDenied(ctx context.Context, formats strfmt.Registry) error {
 
-	if m.RequestAuthorized != nil {
-		if err := m.RequestAuthorized.ContextValidate(ctx, formats); err != nil {
+	if m.SamlAssertionDenied != nil {
+		if err := m.SamlAssertionDenied.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("request_authorized")
+				return ve.ValidateName("saml_assertion_denied")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("request_authorized")
+				return ce.ValidateName("saml_assertion_denied")
 			}
 			return err
 		}
@@ -1203,14 +2241,14 @@ func (m *AuditEventPayloads) contextValidateRequestAuthorized(ctx context.Contex
 	return nil
 }
 
-func (m *AuditEventPayloads) contextValidateRequestUnauthorized(ctx context.Context, formats strfmt.Registry) error {
+func (m *AuditEventPayloads) contextValidateSamlAssertionIssued(ctx context.Context, formats strfmt.Registry) error {
 
-	if m.RequestUnauthorized != nil {
-		if err := m.RequestUnauthorized.ContextValidate(ctx, formats); err != nil {
+	if m.SamlAssertionIssued != nil {
+		if err := m.SamlAssertionIssued.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("request_unauthorized")
+				return ve.ValidateName("saml_assertion_issued")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("request_unauthorized")
+				return ce.ValidateName("saml_assertion_issued")
 			}
 			return err
 		}
@@ -1219,14 +2257,126 @@ func (m *AuditEventPayloads) contextValidateRequestUnauthorized(ctx context.Cont
 	return nil
 }
 
-func (m *AuditEventPayloads) contextValidateScopesGrantedPayload(ctx context.Context, formats strfmt.Registry) error {
+func (m *AuditEventPayloads) contextValidateSchemaCreated(ctx context.Context, formats strfmt.Registry) error {
 
-	if m.ScopesGrantedPayload != nil {
-		if err := m.ScopesGrantedPayload.ContextValidate(ctx, formats); err != nil {
+	if m.SchemaCreated != nil {
+		if err := m.SchemaCreated.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("scopes_granted_payload")
+				return ve.ValidateName("schema_created")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("scopes_granted_payload")
+				return ce.ValidateName("schema_created")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) contextValidateSchemaDeleted(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.SchemaDeleted != nil {
+		if err := m.SchemaDeleted.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("schema_deleted")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("schema_deleted")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) contextValidateSchemaUpdated(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.SchemaUpdated != nil {
+		if err := m.SchemaUpdated.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("schema_updated")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("schema_updated")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) contextValidateScopesGranted(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ScopesGranted != nil {
+		if err := m.ScopesGranted.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("scopes_granted")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("scopes_granted")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) contextValidateUserAuthenticated(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.UserAuthenticated != nil {
+		if err := m.UserAuthenticated.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("user_authenticated")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("user_authenticated")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) contextValidateUserCreated(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.UserCreated != nil {
+		if err := m.UserCreated.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("user_created")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("user_created")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) contextValidateUserDeleted(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.UserDeleted != nil {
+		if err := m.UserDeleted.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("user_deleted")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("user_deleted")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AuditEventPayloads) contextValidateUserUpdated(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.UserUpdated != nil {
+		if err := m.UserUpdated.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("user_updated")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("user_updated")
 			}
 			return err
 		}

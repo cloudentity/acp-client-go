@@ -57,7 +57,8 @@ func NewListMFAMethodsOK() *ListMFAMethodsOK {
 	return &ListMFAMethodsOK{}
 }
 
-/* ListMFAMethodsOK describes a response with status code 200, with default header values.
+/*
+ListMFAMethodsOK describes a response with status code 200, with default header values.
 
 MFA methods
 */
@@ -65,9 +66,39 @@ type ListMFAMethodsOK struct {
 	Payload *models.MFAMethods
 }
 
+// IsSuccess returns true when this list m f a methods o k response has a 2xx status code
+func (o *ListMFAMethodsOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this list m f a methods o k response has a 3xx status code
+func (o *ListMFAMethodsOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list m f a methods o k response has a 4xx status code
+func (o *ListMFAMethodsOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this list m f a methods o k response has a 5xx status code
+func (o *ListMFAMethodsOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list m f a methods o k response a status code equal to that given
+func (o *ListMFAMethodsOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *ListMFAMethodsOK) Error() string {
 	return fmt.Sprintf("[GET /mfa-methods][%d] listMFAMethodsOK  %+v", 200, o.Payload)
 }
+
+func (o *ListMFAMethodsOK) String() string {
+	return fmt.Sprintf("[GET /mfa-methods][%d] listMFAMethodsOK  %+v", 200, o.Payload)
+}
+
 func (o *ListMFAMethodsOK) GetPayload() *models.MFAMethods {
 	return o.Payload
 }
@@ -89,7 +120,8 @@ func NewListMFAMethodsUnauthorized() *ListMFAMethodsUnauthorized {
 	return &ListMFAMethodsUnauthorized{}
 }
 
-/* ListMFAMethodsUnauthorized describes a response with status code 401, with default header values.
+/*
+ListMFAMethodsUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -97,9 +129,39 @@ type ListMFAMethodsUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list m f a methods unauthorized response has a 2xx status code
+func (o *ListMFAMethodsUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list m f a methods unauthorized response has a 3xx status code
+func (o *ListMFAMethodsUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list m f a methods unauthorized response has a 4xx status code
+func (o *ListMFAMethodsUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list m f a methods unauthorized response has a 5xx status code
+func (o *ListMFAMethodsUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list m f a methods unauthorized response a status code equal to that given
+func (o *ListMFAMethodsUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *ListMFAMethodsUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /mfa-methods][%d] listMFAMethodsUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *ListMFAMethodsUnauthorized) String() string {
+	return fmt.Sprintf("[GET /mfa-methods][%d] listMFAMethodsUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *ListMFAMethodsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -121,7 +183,8 @@ func NewListMFAMethodsForbidden() *ListMFAMethodsForbidden {
 	return &ListMFAMethodsForbidden{}
 }
 
-/* ListMFAMethodsForbidden describes a response with status code 403, with default header values.
+/*
+ListMFAMethodsForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -129,9 +192,39 @@ type ListMFAMethodsForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list m f a methods forbidden response has a 2xx status code
+func (o *ListMFAMethodsForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list m f a methods forbidden response has a 3xx status code
+func (o *ListMFAMethodsForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list m f a methods forbidden response has a 4xx status code
+func (o *ListMFAMethodsForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list m f a methods forbidden response has a 5xx status code
+func (o *ListMFAMethodsForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list m f a methods forbidden response a status code equal to that given
+func (o *ListMFAMethodsForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *ListMFAMethodsForbidden) Error() string {
 	return fmt.Sprintf("[GET /mfa-methods][%d] listMFAMethodsForbidden  %+v", 403, o.Payload)
 }
+
+func (o *ListMFAMethodsForbidden) String() string {
+	return fmt.Sprintf("[GET /mfa-methods][%d] listMFAMethodsForbidden  %+v", 403, o.Payload)
+}
+
 func (o *ListMFAMethodsForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -153,7 +246,8 @@ func NewListMFAMethodsTooManyRequests() *ListMFAMethodsTooManyRequests {
 	return &ListMFAMethodsTooManyRequests{}
 }
 
-/* ListMFAMethodsTooManyRequests describes a response with status code 429, with default header values.
+/*
+ListMFAMethodsTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -161,9 +255,39 @@ type ListMFAMethodsTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list m f a methods too many requests response has a 2xx status code
+func (o *ListMFAMethodsTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list m f a methods too many requests response has a 3xx status code
+func (o *ListMFAMethodsTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list m f a methods too many requests response has a 4xx status code
+func (o *ListMFAMethodsTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list m f a methods too many requests response has a 5xx status code
+func (o *ListMFAMethodsTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list m f a methods too many requests response a status code equal to that given
+func (o *ListMFAMethodsTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *ListMFAMethodsTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /mfa-methods][%d] listMFAMethodsTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *ListMFAMethodsTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /mfa-methods][%d] listMFAMethodsTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *ListMFAMethodsTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

@@ -53,10 +53,12 @@ func NewListClientsParamsWithHTTPClient(client *http.Client) *ListClientsParams 
 	}
 }
 
-/* ListClientsParams contains all the parameters to send to the API endpoint
-   for the list clients operation.
+/*
+ListClientsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the list clients operation.
+
+	Typically these are written to a http.Request.
 */
 type ListClientsParams struct {
 
@@ -107,7 +109,7 @@ type ListClientsParams struct {
 
 	/* Sort.
 
-	     optional sort clients by given field
+	     optional sort clients by given field, one of: name, client_id, issued_at
 	Sort
 	*/
 	Sort *string

@@ -45,7 +45,8 @@ func NewWellKnownOK() *WellKnownOK {
 	return &WellKnownOK{}
 }
 
-/* WellKnownOK describes a response with status code 200, with default header values.
+/*
+WellKnownOK describes a response with status code 200, with default header values.
 
 OpenID configuration
 */
@@ -53,9 +54,39 @@ type WellKnownOK struct {
 	Payload *models.WellKnown
 }
 
+// IsSuccess returns true when this well known o k response has a 2xx status code
+func (o *WellKnownOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this well known o k response has a 3xx status code
+func (o *WellKnownOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this well known o k response has a 4xx status code
+func (o *WellKnownOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this well known o k response has a 5xx status code
+func (o *WellKnownOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this well known o k response a status code equal to that given
+func (o *WellKnownOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *WellKnownOK) Error() string {
 	return fmt.Sprintf("[GET /.well-known/openid-configuration][%d] wellKnownOK  %+v", 200, o.Payload)
 }
+
+func (o *WellKnownOK) String() string {
+	return fmt.Sprintf("[GET /.well-known/openid-configuration][%d] wellKnownOK  %+v", 200, o.Payload)
+}
+
 func (o *WellKnownOK) GetPayload() *models.WellKnown {
 	return o.Payload
 }
@@ -77,7 +108,8 @@ func NewWellKnownNotFound() *WellKnownNotFound {
 	return &WellKnownNotFound{}
 }
 
-/* WellKnownNotFound describes a response with status code 404, with default header values.
+/*
+WellKnownNotFound describes a response with status code 404, with default header values.
 
 ErrorResponse
 */
@@ -85,9 +117,39 @@ type WellKnownNotFound struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this well known not found response has a 2xx status code
+func (o *WellKnownNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this well known not found response has a 3xx status code
+func (o *WellKnownNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this well known not found response has a 4xx status code
+func (o *WellKnownNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this well known not found response has a 5xx status code
+func (o *WellKnownNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this well known not found response a status code equal to that given
+func (o *WellKnownNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *WellKnownNotFound) Error() string {
 	return fmt.Sprintf("[GET /.well-known/openid-configuration][%d] wellKnownNotFound  %+v", 404, o.Payload)
 }
+
+func (o *WellKnownNotFound) String() string {
+	return fmt.Sprintf("[GET /.well-known/openid-configuration][%d] wellKnownNotFound  %+v", 404, o.Payload)
+}
+
 func (o *WellKnownNotFound) GetPayload() *models.GenericError {
 	return o.Payload
 }

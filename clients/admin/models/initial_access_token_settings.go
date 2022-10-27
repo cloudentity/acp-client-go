@@ -17,7 +17,11 @@ import (
 // swagger:model InitialAccessTokenSettings
 type InitialAccessTokenSettings struct {
 
-	// required
+	// Enables initial access token for dynamic client registration
+	//
+	// If enabled, the registration endpoint requires an access token with the dcr_register scope granted.
+	// To issue the access token, you need a separate client with the client credentials grant type.
+	// Upon successful registration, the access token is terminated.
 	Required bool `json:"required,omitempty"`
 }
 

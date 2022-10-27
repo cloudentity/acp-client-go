@@ -63,14 +63,44 @@ func NewBindSystemAPINoContent() *BindSystemAPINoContent {
 	return &BindSystemAPINoContent{}
 }
 
-/* BindSystemAPINoContent describes a response with status code 204, with default header values.
+/*
+BindSystemAPINoContent describes a response with status code 204, with default header values.
 
-success
+	success
 */
 type BindSystemAPINoContent struct {
 }
 
+// IsSuccess returns true when this bind system Api no content response has a 2xx status code
+func (o *BindSystemAPINoContent) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this bind system Api no content response has a 3xx status code
+func (o *BindSystemAPINoContent) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this bind system Api no content response has a 4xx status code
+func (o *BindSystemAPINoContent) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this bind system Api no content response has a 5xx status code
+func (o *BindSystemAPINoContent) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this bind system Api no content response a status code equal to that given
+func (o *BindSystemAPINoContent) IsCode(code int) bool {
+	return code == 204
+}
+
 func (o *BindSystemAPINoContent) Error() string {
+	return fmt.Sprintf("[POST /system/apis/bind][%d] bindSystemApiNoContent ", 204)
+}
+
+func (o *BindSystemAPINoContent) String() string {
 	return fmt.Sprintf("[POST /system/apis/bind][%d] bindSystemApiNoContent ", 204)
 }
 
@@ -84,7 +114,8 @@ func NewBindSystemAPIUnauthorized() *BindSystemAPIUnauthorized {
 	return &BindSystemAPIUnauthorized{}
 }
 
-/* BindSystemAPIUnauthorized describes a response with status code 401, with default header values.
+/*
+BindSystemAPIUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -92,9 +123,39 @@ type BindSystemAPIUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this bind system Api unauthorized response has a 2xx status code
+func (o *BindSystemAPIUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this bind system Api unauthorized response has a 3xx status code
+func (o *BindSystemAPIUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this bind system Api unauthorized response has a 4xx status code
+func (o *BindSystemAPIUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this bind system Api unauthorized response has a 5xx status code
+func (o *BindSystemAPIUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this bind system Api unauthorized response a status code equal to that given
+func (o *BindSystemAPIUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *BindSystemAPIUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /system/apis/bind][%d] bindSystemApiUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *BindSystemAPIUnauthorized) String() string {
+	return fmt.Sprintf("[POST /system/apis/bind][%d] bindSystemApiUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *BindSystemAPIUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -116,7 +177,8 @@ func NewBindSystemAPIForbidden() *BindSystemAPIForbidden {
 	return &BindSystemAPIForbidden{}
 }
 
-/* BindSystemAPIForbidden describes a response with status code 403, with default header values.
+/*
+BindSystemAPIForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -124,9 +186,39 @@ type BindSystemAPIForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this bind system Api forbidden response has a 2xx status code
+func (o *BindSystemAPIForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this bind system Api forbidden response has a 3xx status code
+func (o *BindSystemAPIForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this bind system Api forbidden response has a 4xx status code
+func (o *BindSystemAPIForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this bind system Api forbidden response has a 5xx status code
+func (o *BindSystemAPIForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this bind system Api forbidden response a status code equal to that given
+func (o *BindSystemAPIForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *BindSystemAPIForbidden) Error() string {
 	return fmt.Sprintf("[POST /system/apis/bind][%d] bindSystemApiForbidden  %+v", 403, o.Payload)
 }
+
+func (o *BindSystemAPIForbidden) String() string {
+	return fmt.Sprintf("[POST /system/apis/bind][%d] bindSystemApiForbidden  %+v", 403, o.Payload)
+}
+
 func (o *BindSystemAPIForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -148,7 +240,8 @@ func NewBindSystemAPIConflict() *BindSystemAPIConflict {
 	return &BindSystemAPIConflict{}
 }
 
-/* BindSystemAPIConflict describes a response with status code 409, with default header values.
+/*
+BindSystemAPIConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -156,9 +249,39 @@ type BindSystemAPIConflict struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this bind system Api conflict response has a 2xx status code
+func (o *BindSystemAPIConflict) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this bind system Api conflict response has a 3xx status code
+func (o *BindSystemAPIConflict) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this bind system Api conflict response has a 4xx status code
+func (o *BindSystemAPIConflict) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this bind system Api conflict response has a 5xx status code
+func (o *BindSystemAPIConflict) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this bind system Api conflict response a status code equal to that given
+func (o *BindSystemAPIConflict) IsCode(code int) bool {
+	return code == 409
+}
+
 func (o *BindSystemAPIConflict) Error() string {
 	return fmt.Sprintf("[POST /system/apis/bind][%d] bindSystemApiConflict  %+v", 409, o.Payload)
 }
+
+func (o *BindSystemAPIConflict) String() string {
+	return fmt.Sprintf("[POST /system/apis/bind][%d] bindSystemApiConflict  %+v", 409, o.Payload)
+}
+
 func (o *BindSystemAPIConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -180,7 +303,8 @@ func NewBindSystemAPITooManyRequests() *BindSystemAPITooManyRequests {
 	return &BindSystemAPITooManyRequests{}
 }
 
-/* BindSystemAPITooManyRequests describes a response with status code 429, with default header values.
+/*
+BindSystemAPITooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -188,9 +312,39 @@ type BindSystemAPITooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this bind system Api too many requests response has a 2xx status code
+func (o *BindSystemAPITooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this bind system Api too many requests response has a 3xx status code
+func (o *BindSystemAPITooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this bind system Api too many requests response has a 4xx status code
+func (o *BindSystemAPITooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this bind system Api too many requests response has a 5xx status code
+func (o *BindSystemAPITooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this bind system Api too many requests response a status code equal to that given
+func (o *BindSystemAPITooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *BindSystemAPITooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /system/apis/bind][%d] bindSystemApiTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *BindSystemAPITooManyRequests) String() string {
+	return fmt.Sprintf("[POST /system/apis/bind][%d] bindSystemApiTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *BindSystemAPITooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

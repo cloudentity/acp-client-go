@@ -52,10 +52,12 @@ func NewUnbindGroupFromServiceParamsWithHTTPClient(client *http.Client) *UnbindG
 	}
 }
 
-/* UnbindGroupFromServiceParams contains all the parameters to send to the API endpoint
-   for the unbind group from service operation.
+/*
+UnbindGroupFromServiceParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the unbind group from service operation.
+
+	Typically these are written to a http.Request.
 */
 type UnbindGroupFromServiceParams struct {
 

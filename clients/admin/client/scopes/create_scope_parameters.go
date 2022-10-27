@@ -54,10 +54,12 @@ func NewCreateScopeParamsWithHTTPClient(client *http.Client) *CreateScopeParams 
 	}
 }
 
-/* CreateScopeParams contains all the parameters to send to the API endpoint
-   for the create scope operation.
+/*
+CreateScopeParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the create scope operation.
+
+	Typically these are written to a http.Request.
 */
 type CreateScopeParams struct {
 

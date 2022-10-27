@@ -63,14 +63,44 @@ func NewDeleteClaimNoContent() *DeleteClaimNoContent {
 	return &DeleteClaimNoContent{}
 }
 
-/* DeleteClaimNoContent describes a response with status code 204, with default header values.
+/*
+DeleteClaimNoContent describes a response with status code 204, with default header values.
 
-Claim has been deleted
+	Claim has been deleted
 */
 type DeleteClaimNoContent struct {
 }
 
+// IsSuccess returns true when this delete claim no content response has a 2xx status code
+func (o *DeleteClaimNoContent) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this delete claim no content response has a 3xx status code
+func (o *DeleteClaimNoContent) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete claim no content response has a 4xx status code
+func (o *DeleteClaimNoContent) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this delete claim no content response has a 5xx status code
+func (o *DeleteClaimNoContent) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete claim no content response a status code equal to that given
+func (o *DeleteClaimNoContent) IsCode(code int) bool {
+	return code == 204
+}
+
 func (o *DeleteClaimNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /claims/{claim}][%d] deleteClaimNoContent ", 204)
+}
+
+func (o *DeleteClaimNoContent) String() string {
 	return fmt.Sprintf("[DELETE /claims/{claim}][%d] deleteClaimNoContent ", 204)
 }
 
@@ -84,7 +114,8 @@ func NewDeleteClaimUnauthorized() *DeleteClaimUnauthorized {
 	return &DeleteClaimUnauthorized{}
 }
 
-/* DeleteClaimUnauthorized describes a response with status code 401, with default header values.
+/*
+DeleteClaimUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -92,9 +123,39 @@ type DeleteClaimUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete claim unauthorized response has a 2xx status code
+func (o *DeleteClaimUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete claim unauthorized response has a 3xx status code
+func (o *DeleteClaimUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete claim unauthorized response has a 4xx status code
+func (o *DeleteClaimUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete claim unauthorized response has a 5xx status code
+func (o *DeleteClaimUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete claim unauthorized response a status code equal to that given
+func (o *DeleteClaimUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *DeleteClaimUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /claims/{claim}][%d] deleteClaimUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *DeleteClaimUnauthorized) String() string {
+	return fmt.Sprintf("[DELETE /claims/{claim}][%d] deleteClaimUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *DeleteClaimUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -116,7 +177,8 @@ func NewDeleteClaimForbidden() *DeleteClaimForbidden {
 	return &DeleteClaimForbidden{}
 }
 
-/* DeleteClaimForbidden describes a response with status code 403, with default header values.
+/*
+DeleteClaimForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -124,9 +186,39 @@ type DeleteClaimForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete claim forbidden response has a 2xx status code
+func (o *DeleteClaimForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete claim forbidden response has a 3xx status code
+func (o *DeleteClaimForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete claim forbidden response has a 4xx status code
+func (o *DeleteClaimForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete claim forbidden response has a 5xx status code
+func (o *DeleteClaimForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete claim forbidden response a status code equal to that given
+func (o *DeleteClaimForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *DeleteClaimForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /claims/{claim}][%d] deleteClaimForbidden  %+v", 403, o.Payload)
 }
+
+func (o *DeleteClaimForbidden) String() string {
+	return fmt.Sprintf("[DELETE /claims/{claim}][%d] deleteClaimForbidden  %+v", 403, o.Payload)
+}
+
 func (o *DeleteClaimForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -148,7 +240,8 @@ func NewDeleteClaimNotFound() *DeleteClaimNotFound {
 	return &DeleteClaimNotFound{}
 }
 
-/* DeleteClaimNotFound describes a response with status code 404, with default header values.
+/*
+DeleteClaimNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -156,9 +249,39 @@ type DeleteClaimNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete claim not found response has a 2xx status code
+func (o *DeleteClaimNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete claim not found response has a 3xx status code
+func (o *DeleteClaimNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete claim not found response has a 4xx status code
+func (o *DeleteClaimNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete claim not found response has a 5xx status code
+func (o *DeleteClaimNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete claim not found response a status code equal to that given
+func (o *DeleteClaimNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *DeleteClaimNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /claims/{claim}][%d] deleteClaimNotFound  %+v", 404, o.Payload)
 }
+
+func (o *DeleteClaimNotFound) String() string {
+	return fmt.Sprintf("[DELETE /claims/{claim}][%d] deleteClaimNotFound  %+v", 404, o.Payload)
+}
+
 func (o *DeleteClaimNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -180,7 +303,8 @@ func NewDeleteClaimTooManyRequests() *DeleteClaimTooManyRequests {
 	return &DeleteClaimTooManyRequests{}
 }
 
-/* DeleteClaimTooManyRequests describes a response with status code 429, with default header values.
+/*
+DeleteClaimTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -188,9 +312,39 @@ type DeleteClaimTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete claim too many requests response has a 2xx status code
+func (o *DeleteClaimTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete claim too many requests response has a 3xx status code
+func (o *DeleteClaimTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete claim too many requests response has a 4xx status code
+func (o *DeleteClaimTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete claim too many requests response has a 5xx status code
+func (o *DeleteClaimTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete claim too many requests response a status code equal to that given
+func (o *DeleteClaimTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *DeleteClaimTooManyRequests) Error() string {
 	return fmt.Sprintf("[DELETE /claims/{claim}][%d] deleteClaimTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *DeleteClaimTooManyRequests) String() string {
+	return fmt.Sprintf("[DELETE /claims/{claim}][%d] deleteClaimTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *DeleteClaimTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

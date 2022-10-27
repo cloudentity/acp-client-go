@@ -57,7 +57,8 @@ func NewGetRecentActivitiesOK() *GetRecentActivitiesOK {
 	return &GetRecentActivitiesOK{}
 }
 
-/* GetRecentActivitiesOK describes a response with status code 200, with default header values.
+/*
+GetRecentActivitiesOK describes a response with status code 200, with default header values.
 
 Recent activities
 */
@@ -65,9 +66,39 @@ type GetRecentActivitiesOK struct {
 	Payload *models.RecentActivities
 }
 
+// IsSuccess returns true when this get recent activities o k response has a 2xx status code
+func (o *GetRecentActivitiesOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get recent activities o k response has a 3xx status code
+func (o *GetRecentActivitiesOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get recent activities o k response has a 4xx status code
+func (o *GetRecentActivitiesOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get recent activities o k response has a 5xx status code
+func (o *GetRecentActivitiesOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get recent activities o k response a status code equal to that given
+func (o *GetRecentActivitiesOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetRecentActivitiesOK) Error() string {
 	return fmt.Sprintf("[GET /stats/{wid}/recent-activities][%d] getRecentActivitiesOK  %+v", 200, o.Payload)
 }
+
+func (o *GetRecentActivitiesOK) String() string {
+	return fmt.Sprintf("[GET /stats/{wid}/recent-activities][%d] getRecentActivitiesOK  %+v", 200, o.Payload)
+}
+
 func (o *GetRecentActivitiesOK) GetPayload() *models.RecentActivities {
 	return o.Payload
 }
@@ -89,7 +120,8 @@ func NewGetRecentActivitiesUnauthorized() *GetRecentActivitiesUnauthorized {
 	return &GetRecentActivitiesUnauthorized{}
 }
 
-/* GetRecentActivitiesUnauthorized describes a response with status code 401, with default header values.
+/*
+GetRecentActivitiesUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -97,9 +129,39 @@ type GetRecentActivitiesUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get recent activities unauthorized response has a 2xx status code
+func (o *GetRecentActivitiesUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get recent activities unauthorized response has a 3xx status code
+func (o *GetRecentActivitiesUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get recent activities unauthorized response has a 4xx status code
+func (o *GetRecentActivitiesUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get recent activities unauthorized response has a 5xx status code
+func (o *GetRecentActivitiesUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get recent activities unauthorized response a status code equal to that given
+func (o *GetRecentActivitiesUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *GetRecentActivitiesUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /stats/{wid}/recent-activities][%d] getRecentActivitiesUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *GetRecentActivitiesUnauthorized) String() string {
+	return fmt.Sprintf("[GET /stats/{wid}/recent-activities][%d] getRecentActivitiesUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *GetRecentActivitiesUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -121,7 +183,8 @@ func NewGetRecentActivitiesForbidden() *GetRecentActivitiesForbidden {
 	return &GetRecentActivitiesForbidden{}
 }
 
-/* GetRecentActivitiesForbidden describes a response with status code 403, with default header values.
+/*
+GetRecentActivitiesForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -129,9 +192,39 @@ type GetRecentActivitiesForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get recent activities forbidden response has a 2xx status code
+func (o *GetRecentActivitiesForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get recent activities forbidden response has a 3xx status code
+func (o *GetRecentActivitiesForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get recent activities forbidden response has a 4xx status code
+func (o *GetRecentActivitiesForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get recent activities forbidden response has a 5xx status code
+func (o *GetRecentActivitiesForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get recent activities forbidden response a status code equal to that given
+func (o *GetRecentActivitiesForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetRecentActivitiesForbidden) Error() string {
 	return fmt.Sprintf("[GET /stats/{wid}/recent-activities][%d] getRecentActivitiesForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetRecentActivitiesForbidden) String() string {
+	return fmt.Sprintf("[GET /stats/{wid}/recent-activities][%d] getRecentActivitiesForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetRecentActivitiesForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -153,7 +246,8 @@ func NewGetRecentActivitiesTooManyRequests() *GetRecentActivitiesTooManyRequests
 	return &GetRecentActivitiesTooManyRequests{}
 }
 
-/* GetRecentActivitiesTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetRecentActivitiesTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -161,9 +255,39 @@ type GetRecentActivitiesTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get recent activities too many requests response has a 2xx status code
+func (o *GetRecentActivitiesTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get recent activities too many requests response has a 3xx status code
+func (o *GetRecentActivitiesTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get recent activities too many requests response has a 4xx status code
+func (o *GetRecentActivitiesTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get recent activities too many requests response has a 5xx status code
+func (o *GetRecentActivitiesTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get recent activities too many requests response a status code equal to that given
+func (o *GetRecentActivitiesTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *GetRecentActivitiesTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /stats/{wid}/recent-activities][%d] getRecentActivitiesTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *GetRecentActivitiesTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /stats/{wid}/recent-activities][%d] getRecentActivitiesTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *GetRecentActivitiesTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

@@ -63,7 +63,8 @@ func NewListClientsForDeveloperOK() *ListClientsForDeveloperOK {
 	return &ListClientsForDeveloperOK{}
 }
 
-/* ListClientsForDeveloperOK describes a response with status code 200, with default header values.
+/*
+ListClientsForDeveloperOK describes a response with status code 200, with default header values.
 
 List clients
 */
@@ -71,9 +72,39 @@ type ListClientsForDeveloperOK struct {
 	Payload *models.ClientsForDeveloper
 }
 
+// IsSuccess returns true when this list clients for developer o k response has a 2xx status code
+func (o *ListClientsForDeveloperOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this list clients for developer o k response has a 3xx status code
+func (o *ListClientsForDeveloperOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list clients for developer o k response has a 4xx status code
+func (o *ListClientsForDeveloperOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this list clients for developer o k response has a 5xx status code
+func (o *ListClientsForDeveloperOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list clients for developer o k response a status code equal to that given
+func (o *ListClientsForDeveloperOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *ListClientsForDeveloperOK) Error() string {
 	return fmt.Sprintf("[GET /clients][%d] listClientsForDeveloperOK  %+v", 200, o.Payload)
 }
+
+func (o *ListClientsForDeveloperOK) String() string {
+	return fmt.Sprintf("[GET /clients][%d] listClientsForDeveloperOK  %+v", 200, o.Payload)
+}
+
 func (o *ListClientsForDeveloperOK) GetPayload() *models.ClientsForDeveloper {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewListClientsForDeveloperUnauthorized() *ListClientsForDeveloperUnauthoriz
 	return &ListClientsForDeveloperUnauthorized{}
 }
 
-/* ListClientsForDeveloperUnauthorized describes a response with status code 401, with default header values.
+/*
+ListClientsForDeveloperUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type ListClientsForDeveloperUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list clients for developer unauthorized response has a 2xx status code
+func (o *ListClientsForDeveloperUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list clients for developer unauthorized response has a 3xx status code
+func (o *ListClientsForDeveloperUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list clients for developer unauthorized response has a 4xx status code
+func (o *ListClientsForDeveloperUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list clients for developer unauthorized response has a 5xx status code
+func (o *ListClientsForDeveloperUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list clients for developer unauthorized response a status code equal to that given
+func (o *ListClientsForDeveloperUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *ListClientsForDeveloperUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /clients][%d] listClientsForDeveloperUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *ListClientsForDeveloperUnauthorized) String() string {
+	return fmt.Sprintf("[GET /clients][%d] listClientsForDeveloperUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *ListClientsForDeveloperUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewListClientsForDeveloperForbidden() *ListClientsForDeveloperForbidden {
 	return &ListClientsForDeveloperForbidden{}
 }
 
-/* ListClientsForDeveloperForbidden describes a response with status code 403, with default header values.
+/*
+ListClientsForDeveloperForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type ListClientsForDeveloperForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list clients for developer forbidden response has a 2xx status code
+func (o *ListClientsForDeveloperForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list clients for developer forbidden response has a 3xx status code
+func (o *ListClientsForDeveloperForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list clients for developer forbidden response has a 4xx status code
+func (o *ListClientsForDeveloperForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list clients for developer forbidden response has a 5xx status code
+func (o *ListClientsForDeveloperForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list clients for developer forbidden response a status code equal to that given
+func (o *ListClientsForDeveloperForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *ListClientsForDeveloperForbidden) Error() string {
 	return fmt.Sprintf("[GET /clients][%d] listClientsForDeveloperForbidden  %+v", 403, o.Payload)
 }
+
+func (o *ListClientsForDeveloperForbidden) String() string {
+	return fmt.Sprintf("[GET /clients][%d] listClientsForDeveloperForbidden  %+v", 403, o.Payload)
+}
+
 func (o *ListClientsForDeveloperForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewListClientsForDeveloperNotFound() *ListClientsForDeveloperNotFound {
 	return &ListClientsForDeveloperNotFound{}
 }
 
-/* ListClientsForDeveloperNotFound describes a response with status code 404, with default header values.
+/*
+ListClientsForDeveloperNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type ListClientsForDeveloperNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list clients for developer not found response has a 2xx status code
+func (o *ListClientsForDeveloperNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list clients for developer not found response has a 3xx status code
+func (o *ListClientsForDeveloperNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list clients for developer not found response has a 4xx status code
+func (o *ListClientsForDeveloperNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list clients for developer not found response has a 5xx status code
+func (o *ListClientsForDeveloperNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list clients for developer not found response a status code equal to that given
+func (o *ListClientsForDeveloperNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *ListClientsForDeveloperNotFound) Error() string {
 	return fmt.Sprintf("[GET /clients][%d] listClientsForDeveloperNotFound  %+v", 404, o.Payload)
 }
+
+func (o *ListClientsForDeveloperNotFound) String() string {
+	return fmt.Sprintf("[GET /clients][%d] listClientsForDeveloperNotFound  %+v", 404, o.Payload)
+}
+
 func (o *ListClientsForDeveloperNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewListClientsForDeveloperTooManyRequests() *ListClientsForDeveloperTooMany
 	return &ListClientsForDeveloperTooManyRequests{}
 }
 
-/* ListClientsForDeveloperTooManyRequests describes a response with status code 429, with default header values.
+/*
+ListClientsForDeveloperTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type ListClientsForDeveloperTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list clients for developer too many requests response has a 2xx status code
+func (o *ListClientsForDeveloperTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list clients for developer too many requests response has a 3xx status code
+func (o *ListClientsForDeveloperTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list clients for developer too many requests response has a 4xx status code
+func (o *ListClientsForDeveloperTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list clients for developer too many requests response has a 5xx status code
+func (o *ListClientsForDeveloperTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list clients for developer too many requests response a status code equal to that given
+func (o *ListClientsForDeveloperTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *ListClientsForDeveloperTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /clients][%d] listClientsForDeveloperTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *ListClientsForDeveloperTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /clients][%d] listClientsForDeveloperTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *ListClientsForDeveloperTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

@@ -52,10 +52,12 @@ func NewGetScriptParamsWithHTTPClient(client *http.Client) *GetScriptParams {
 	}
 }
 
-/* GetScriptParams contains all the parameters to send to the API endpoint
-   for the get script operation.
+/*
+GetScriptParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get script operation.
+
+	Typically these are written to a http.Request.
 */
 type GetScriptParams struct {
 

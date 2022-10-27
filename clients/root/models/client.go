@@ -219,12 +219,8 @@ type Client struct {
 	// privacy
 	Privacy *ClientPrivacy `json:"privacy,omitempty"`
 
-	// An array of OAuth allowed redirect URIs
-	//
-	// Redirect URIs are used after a user authorizes an application and ACP redirect them back to
-	// the application with an authorization code or an access token included in the URL.
-	// Example: ["https://example.com/callback"]
-	RedirectUris []string `json:"redirect_uris"`
+	// redirect uris
+	RedirectUris RedirectURIs `json:"redirect_uris,omitempty"`
 
 	// registration token
 	RegistrationToken *RegistrationToken `json:"registration_token,omitempty"`
@@ -254,29 +250,8 @@ type Client struct {
 	// Boolean parameter indicating whether the only means of initiating an authorization request the client is allowed to use is PAR.
 	RequirePushedAuthorizationRequests bool `json:"require_pushed_authorization_requests,omitempty"`
 
-	// An array of OAuth client response types configured for a client application
-	//
-	// The array may consist of the following arguments:
-	//
-	// `code` - when supplied as the value for the `response_type` parameter, a successful
-	// response includes an authorization code
-	//
-	// `code token` - when supplied as the value for the `response_type` parameter, a successful
-	// response includes an access token, an access token type, and an authorization code
-	//
-	// `id_token token` - when supplied as the value for the `response_type` parameter, a successful
-	// response includes an access token, an access token type, and an ID token
-	//
-	// `code id_token token` - when supplied as the value for the `response_type` parameter, a successful
-	// response includes an authorization code, an ID token, an access token, and an access token
-	// type.
-	//
-	// `token` - when supplied as the value for the `response_type` parameter, a successful
-	// response includes an access token and its type. This argument is used for the implicit grant
-	// flow, but is not recommended. Instead, you should use either the authorization code grant
-	// flow with PKCE or client authentication set to `none` and with the use of PKCE.
-	// Example: ["token","id_token","code"]
-	ResponseTypes []string `json:"response_types"`
+	// response types
+	ResponseTypes ResponseTypes `json:"response_types,omitempty"`
 
 	// Revocation endpoint authentication method configured for a client application
 	// If empty, the token_endpoint_auth_method will be used
@@ -512,6 +487,10 @@ func (m *Client) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validatePrivacy(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRedirectUris(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1135,6 +1114,23 @@ func (m *Client) validatePrivacy(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Client) validateRedirectUris(formats strfmt.Registry) error {
+	if swag.IsZero(m.RedirectUris) { // not required
+		return nil
+	}
+
+	if err := m.RedirectUris.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("redirect_uris")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("redirect_uris")
+		}
+		return err
+	}
+
+	return nil
+}
+
 func (m *Client) validateRegistrationToken(formats strfmt.Registry) error {
 	if swag.IsZero(m.RegistrationToken) { // not required
 		return nil
@@ -1289,37 +1285,18 @@ func (m *Client) validateRequestObjectSigningAlg(formats strfmt.Registry) error 
 	return nil
 }
 
-var clientResponseTypesItemsEnum []interface{}
-
-func init() {
-	var res []string
-	if err := json.Unmarshal([]byte(`["token","id_token","code","code id_token","token id_token","token code","token id_token code","none"]`), &res); err != nil {
-		panic(err)
-	}
-	for _, v := range res {
-		clientResponseTypesItemsEnum = append(clientResponseTypesItemsEnum, v)
-	}
-}
-
-func (m *Client) validateResponseTypesItemsEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, clientResponseTypesItemsEnum, true); err != nil {
-		return err
-	}
-	return nil
-}
-
 func (m *Client) validateResponseTypes(formats strfmt.Registry) error {
 	if swag.IsZero(m.ResponseTypes) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.ResponseTypes); i++ {
-
-		// value enum
-		if err := m.validateResponseTypesItemsEnum("response_types"+"."+strconv.Itoa(i), "body", m.ResponseTypes[i]); err != nil {
-			return err
+	if err := m.ResponseTypes.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("response_types")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("response_types")
 		}
-
+		return err
 	}
 
 	return nil
@@ -1683,7 +1660,15 @@ func (m *Client) ContextValidate(ctx context.Context, formats strfmt.Registry) e
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateRedirectUris(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateRegistrationToken(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateResponseTypes(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1790,6 +1775,20 @@ func (m *Client) contextValidatePrivacy(ctx context.Context, formats strfmt.Regi
 	return nil
 }
 
+func (m *Client) contextValidateRedirectUris(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.RedirectUris.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("redirect_uris")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("redirect_uris")
+		}
+		return err
+	}
+
+	return nil
+}
+
 func (m *Client) contextValidateRegistrationToken(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.RegistrationToken != nil {
@@ -1801,6 +1800,20 @@ func (m *Client) contextValidateRegistrationToken(ctx context.Context, formats s
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *Client) contextValidateResponseTypes(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.ResponseTypes.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("response_types")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("response_types")
+		}
+		return err
 	}
 
 	return nil

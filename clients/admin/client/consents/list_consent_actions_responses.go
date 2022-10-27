@@ -57,7 +57,8 @@ func NewListConsentActionsOK() *ListConsentActionsOK {
 	return &ListConsentActionsOK{}
 }
 
-/* ListConsentActionsOK describes a response with status code 200, with default header values.
+/*
+ListConsentActionsOK describes a response with status code 200, with default header values.
 
 Consent actions
 */
@@ -65,9 +66,39 @@ type ListConsentActionsOK struct {
 	Payload *models.ConsentActions
 }
 
+// IsSuccess returns true when this list consent actions o k response has a 2xx status code
+func (o *ListConsentActionsOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this list consent actions o k response has a 3xx status code
+func (o *ListConsentActionsOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list consent actions o k response has a 4xx status code
+func (o *ListConsentActionsOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this list consent actions o k response has a 5xx status code
+func (o *ListConsentActionsOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list consent actions o k response a status code equal to that given
+func (o *ListConsentActionsOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *ListConsentActionsOK) Error() string {
 	return fmt.Sprintf("[GET /actions][%d] listConsentActionsOK  %+v", 200, o.Payload)
 }
+
+func (o *ListConsentActionsOK) String() string {
+	return fmt.Sprintf("[GET /actions][%d] listConsentActionsOK  %+v", 200, o.Payload)
+}
+
 func (o *ListConsentActionsOK) GetPayload() *models.ConsentActions {
 	return o.Payload
 }
@@ -89,7 +120,8 @@ func NewListConsentActionsUnauthorized() *ListConsentActionsUnauthorized {
 	return &ListConsentActionsUnauthorized{}
 }
 
-/* ListConsentActionsUnauthorized describes a response with status code 401, with default header values.
+/*
+ListConsentActionsUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -97,9 +129,39 @@ type ListConsentActionsUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list consent actions unauthorized response has a 2xx status code
+func (o *ListConsentActionsUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list consent actions unauthorized response has a 3xx status code
+func (o *ListConsentActionsUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list consent actions unauthorized response has a 4xx status code
+func (o *ListConsentActionsUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list consent actions unauthorized response has a 5xx status code
+func (o *ListConsentActionsUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list consent actions unauthorized response a status code equal to that given
+func (o *ListConsentActionsUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *ListConsentActionsUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /actions][%d] listConsentActionsUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *ListConsentActionsUnauthorized) String() string {
+	return fmt.Sprintf("[GET /actions][%d] listConsentActionsUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *ListConsentActionsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -121,7 +183,8 @@ func NewListConsentActionsForbidden() *ListConsentActionsForbidden {
 	return &ListConsentActionsForbidden{}
 }
 
-/* ListConsentActionsForbidden describes a response with status code 403, with default header values.
+/*
+ListConsentActionsForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -129,9 +192,39 @@ type ListConsentActionsForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list consent actions forbidden response has a 2xx status code
+func (o *ListConsentActionsForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list consent actions forbidden response has a 3xx status code
+func (o *ListConsentActionsForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list consent actions forbidden response has a 4xx status code
+func (o *ListConsentActionsForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list consent actions forbidden response has a 5xx status code
+func (o *ListConsentActionsForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list consent actions forbidden response a status code equal to that given
+func (o *ListConsentActionsForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *ListConsentActionsForbidden) Error() string {
 	return fmt.Sprintf("[GET /actions][%d] listConsentActionsForbidden  %+v", 403, o.Payload)
 }
+
+func (o *ListConsentActionsForbidden) String() string {
+	return fmt.Sprintf("[GET /actions][%d] listConsentActionsForbidden  %+v", 403, o.Payload)
+}
+
 func (o *ListConsentActionsForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -153,7 +246,8 @@ func NewListConsentActionsTooManyRequests() *ListConsentActionsTooManyRequests {
 	return &ListConsentActionsTooManyRequests{}
 }
 
-/* ListConsentActionsTooManyRequests describes a response with status code 429, with default header values.
+/*
+ListConsentActionsTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -161,9 +255,39 @@ type ListConsentActionsTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list consent actions too many requests response has a 2xx status code
+func (o *ListConsentActionsTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list consent actions too many requests response has a 3xx status code
+func (o *ListConsentActionsTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list consent actions too many requests response has a 4xx status code
+func (o *ListConsentActionsTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list consent actions too many requests response has a 5xx status code
+func (o *ListConsentActionsTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list consent actions too many requests response a status code equal to that given
+func (o *ListConsentActionsTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *ListConsentActionsTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /actions][%d] listConsentActionsTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *ListConsentActionsTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /actions][%d] listConsentActionsTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *ListConsentActionsTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

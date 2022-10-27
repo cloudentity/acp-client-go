@@ -63,14 +63,44 @@ func NewDynamicClientRegistrationOpenbankingUKDeleteClientNoContent() *DynamicCl
 	return &DynamicClientRegistrationOpenbankingUKDeleteClientNoContent{}
 }
 
-/* DynamicClientRegistrationOpenbankingUKDeleteClientNoContent describes a response with status code 204, with default header values.
+/*
+DynamicClientRegistrationOpenbankingUKDeleteClientNoContent describes a response with status code 204, with default header values.
 
-Client has been deleted
+	Client has been deleted
 */
 type DynamicClientRegistrationOpenbankingUKDeleteClientNoContent struct {
 }
 
+// IsSuccess returns true when this dynamic client registration openbanking u k delete client no content response has a 2xx status code
+func (o *DynamicClientRegistrationOpenbankingUKDeleteClientNoContent) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this dynamic client registration openbanking u k delete client no content response has a 3xx status code
+func (o *DynamicClientRegistrationOpenbankingUKDeleteClientNoContent) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this dynamic client registration openbanking u k delete client no content response has a 4xx status code
+func (o *DynamicClientRegistrationOpenbankingUKDeleteClientNoContent) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this dynamic client registration openbanking u k delete client no content response has a 5xx status code
+func (o *DynamicClientRegistrationOpenbankingUKDeleteClientNoContent) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this dynamic client registration openbanking u k delete client no content response a status code equal to that given
+func (o *DynamicClientRegistrationOpenbankingUKDeleteClientNoContent) IsCode(code int) bool {
+	return code == 204
+}
+
 func (o *DynamicClientRegistrationOpenbankingUKDeleteClientNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKDeleteClientNoContent ", 204)
+}
+
+func (o *DynamicClientRegistrationOpenbankingUKDeleteClientNoContent) String() string {
 	return fmt.Sprintf("[DELETE /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKDeleteClientNoContent ", 204)
 }
 
@@ -84,7 +114,8 @@ func NewDynamicClientRegistrationOpenbankingUKDeleteClientBadRequest() *DynamicC
 	return &DynamicClientRegistrationOpenbankingUKDeleteClientBadRequest{}
 }
 
-/* DynamicClientRegistrationOpenbankingUKDeleteClientBadRequest describes a response with status code 400, with default header values.
+/*
+DynamicClientRegistrationOpenbankingUKDeleteClientBadRequest describes a response with status code 400, with default header values.
 
 RFC6749 error
 */
@@ -92,9 +123,39 @@ type DynamicClientRegistrationOpenbankingUKDeleteClientBadRequest struct {
 	Payload *models.RFC6749Error
 }
 
+// IsSuccess returns true when this dynamic client registration openbanking u k delete client bad request response has a 2xx status code
+func (o *DynamicClientRegistrationOpenbankingUKDeleteClientBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this dynamic client registration openbanking u k delete client bad request response has a 3xx status code
+func (o *DynamicClientRegistrationOpenbankingUKDeleteClientBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this dynamic client registration openbanking u k delete client bad request response has a 4xx status code
+func (o *DynamicClientRegistrationOpenbankingUKDeleteClientBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this dynamic client registration openbanking u k delete client bad request response has a 5xx status code
+func (o *DynamicClientRegistrationOpenbankingUKDeleteClientBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this dynamic client registration openbanking u k delete client bad request response a status code equal to that given
+func (o *DynamicClientRegistrationOpenbankingUKDeleteClientBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *DynamicClientRegistrationOpenbankingUKDeleteClientBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKDeleteClientBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *DynamicClientRegistrationOpenbankingUKDeleteClientBadRequest) String() string {
+	return fmt.Sprintf("[DELETE /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKDeleteClientBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *DynamicClientRegistrationOpenbankingUKDeleteClientBadRequest) GetPayload() *models.RFC6749Error {
 	return o.Payload
 }
@@ -116,7 +177,8 @@ func NewDynamicClientRegistrationOpenbankingUKDeleteClientUnauthorized() *Dynami
 	return &DynamicClientRegistrationOpenbankingUKDeleteClientUnauthorized{}
 }
 
-/* DynamicClientRegistrationOpenbankingUKDeleteClientUnauthorized describes a response with status code 401, with default header values.
+/*
+DynamicClientRegistrationOpenbankingUKDeleteClientUnauthorized describes a response with status code 401, with default header values.
 
 RFC6749 error
 */
@@ -124,9 +186,39 @@ type DynamicClientRegistrationOpenbankingUKDeleteClientUnauthorized struct {
 	Payload *models.RFC6749Error
 }
 
+// IsSuccess returns true when this dynamic client registration openbanking u k delete client unauthorized response has a 2xx status code
+func (o *DynamicClientRegistrationOpenbankingUKDeleteClientUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this dynamic client registration openbanking u k delete client unauthorized response has a 3xx status code
+func (o *DynamicClientRegistrationOpenbankingUKDeleteClientUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this dynamic client registration openbanking u k delete client unauthorized response has a 4xx status code
+func (o *DynamicClientRegistrationOpenbankingUKDeleteClientUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this dynamic client registration openbanking u k delete client unauthorized response has a 5xx status code
+func (o *DynamicClientRegistrationOpenbankingUKDeleteClientUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this dynamic client registration openbanking u k delete client unauthorized response a status code equal to that given
+func (o *DynamicClientRegistrationOpenbankingUKDeleteClientUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *DynamicClientRegistrationOpenbankingUKDeleteClientUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKDeleteClientUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *DynamicClientRegistrationOpenbankingUKDeleteClientUnauthorized) String() string {
+	return fmt.Sprintf("[DELETE /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKDeleteClientUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *DynamicClientRegistrationOpenbankingUKDeleteClientUnauthorized) GetPayload() *models.RFC6749Error {
 	return o.Payload
 }
@@ -148,7 +240,8 @@ func NewDynamicClientRegistrationOpenbankingUKDeleteClientForbidden() *DynamicCl
 	return &DynamicClientRegistrationOpenbankingUKDeleteClientForbidden{}
 }
 
-/* DynamicClientRegistrationOpenbankingUKDeleteClientForbidden describes a response with status code 403, with default header values.
+/*
+DynamicClientRegistrationOpenbankingUKDeleteClientForbidden describes a response with status code 403, with default header values.
 
 RFC6749 error
 */
@@ -156,9 +249,39 @@ type DynamicClientRegistrationOpenbankingUKDeleteClientForbidden struct {
 	Payload *models.RFC6749Error
 }
 
+// IsSuccess returns true when this dynamic client registration openbanking u k delete client forbidden response has a 2xx status code
+func (o *DynamicClientRegistrationOpenbankingUKDeleteClientForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this dynamic client registration openbanking u k delete client forbidden response has a 3xx status code
+func (o *DynamicClientRegistrationOpenbankingUKDeleteClientForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this dynamic client registration openbanking u k delete client forbidden response has a 4xx status code
+func (o *DynamicClientRegistrationOpenbankingUKDeleteClientForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this dynamic client registration openbanking u k delete client forbidden response has a 5xx status code
+func (o *DynamicClientRegistrationOpenbankingUKDeleteClientForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this dynamic client registration openbanking u k delete client forbidden response a status code equal to that given
+func (o *DynamicClientRegistrationOpenbankingUKDeleteClientForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *DynamicClientRegistrationOpenbankingUKDeleteClientForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKDeleteClientForbidden  %+v", 403, o.Payload)
 }
+
+func (o *DynamicClientRegistrationOpenbankingUKDeleteClientForbidden) String() string {
+	return fmt.Sprintf("[DELETE /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKDeleteClientForbidden  %+v", 403, o.Payload)
+}
+
 func (o *DynamicClientRegistrationOpenbankingUKDeleteClientForbidden) GetPayload() *models.RFC6749Error {
 	return o.Payload
 }
@@ -180,7 +303,8 @@ func NewDynamicClientRegistrationOpenbankingUKDeleteClientNotFound() *DynamicCli
 	return &DynamicClientRegistrationOpenbankingUKDeleteClientNotFound{}
 }
 
-/* DynamicClientRegistrationOpenbankingUKDeleteClientNotFound describes a response with status code 404, with default header values.
+/*
+DynamicClientRegistrationOpenbankingUKDeleteClientNotFound describes a response with status code 404, with default header values.
 
 ErrorResponse
 */
@@ -188,9 +312,39 @@ type DynamicClientRegistrationOpenbankingUKDeleteClientNotFound struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this dynamic client registration openbanking u k delete client not found response has a 2xx status code
+func (o *DynamicClientRegistrationOpenbankingUKDeleteClientNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this dynamic client registration openbanking u k delete client not found response has a 3xx status code
+func (o *DynamicClientRegistrationOpenbankingUKDeleteClientNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this dynamic client registration openbanking u k delete client not found response has a 4xx status code
+func (o *DynamicClientRegistrationOpenbankingUKDeleteClientNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this dynamic client registration openbanking u k delete client not found response has a 5xx status code
+func (o *DynamicClientRegistrationOpenbankingUKDeleteClientNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this dynamic client registration openbanking u k delete client not found response a status code equal to that given
+func (o *DynamicClientRegistrationOpenbankingUKDeleteClientNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *DynamicClientRegistrationOpenbankingUKDeleteClientNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKDeleteClientNotFound  %+v", 404, o.Payload)
 }
+
+func (o *DynamicClientRegistrationOpenbankingUKDeleteClientNotFound) String() string {
+	return fmt.Sprintf("[DELETE /openbankinguk/dcr/v3.2/register/{cid}][%d] dynamicClientRegistrationOpenbankingUKDeleteClientNotFound  %+v", 404, o.Payload)
+}
+
 func (o *DynamicClientRegistrationOpenbankingUKDeleteClientNotFound) GetPayload() *models.GenericError {
 	return o.Payload
 }

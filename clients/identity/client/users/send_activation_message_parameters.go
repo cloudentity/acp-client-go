@@ -54,10 +54,12 @@ func NewSendActivationMessageParamsWithHTTPClient(client *http.Client) *SendActi
 	}
 }
 
-/* SendActivationMessageParams contains all the parameters to send to the API endpoint
-   for the send activation message operation.
+/*
+SendActivationMessageParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the send activation message operation.
+
+	Typically these are written to a http.Request.
 */
 type SendActivationMessageParams struct {
 

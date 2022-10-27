@@ -54,10 +54,12 @@ func NewRejectLoginRequestParamsWithHTTPClient(client *http.Client) *RejectLogin
 	}
 }
 
-/* RejectLoginRequestParams contains all the parameters to send to the API endpoint
-   for the reject login request operation.
+/*
+RejectLoginRequestParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the reject login request operation.
+
+	Typically these are written to a http.Request.
 */
 type RejectLoginRequestParams struct {
 

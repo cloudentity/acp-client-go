@@ -315,6 +315,38 @@ definitions:
         type: integer
         x-nullable: false
     type: object
+  PasswordPolicy:
+    properties:
+      capital_letters:
+        format: uint64
+        type: integer
+        x-nullable: false
+      digits:
+        format: uint64
+        type: integer
+        x-nullable: false
+      min_length:
+        format: uint64
+        type: integer
+        x-nullable: false
+      not_used_since:
+        format: uint64
+        type: integer
+        x-nullable: false
+      special_characters:
+        format: uint64
+        type: integer
+        x-nullable: false
+      strength:
+        enum:
+        - any
+        - weak
+        - fair
+        - strong
+        - very_strong
+        type: string
+        x-nullable: false
+    type: object
   PasswordSettings:
     properties:
       hashing_method:
@@ -359,10 +391,19 @@ definitions:
         x-nullable: false
       otp_settings:
         $ref: '#/definitions/OtpSettings'
+      password_policy:
+        $ref: '#/definitions/PasswordPolicy'
       password_settings:
         $ref: '#/definitions/PasswordSettings'
       payload_schema_id:
         format: schemaID
+        type: string
+        x-nullable: false
+      preferred_authentication_mechanism:
+        enum:
+        - password
+        - otp
+        example: password
         type: string
         x-nullable: false
       public_registration_allowed:
@@ -379,6 +420,9 @@ definitions:
     type: object
   RequestCode:
     properties:
+      address:
+        type: string
+        x-nullable: false
       identifier:
         type: string
         x-nullable: false
@@ -649,6 +693,10 @@ definitions:
         format: date-time
         type: string
         x-nullable: false
+      expires_at:
+        format: date-time
+        type: string
+        x-nullable: false
       id:
         format: userCredentialID
         type: string
@@ -912,17 +960,19 @@ paths:
   /code/generate:
     post:
       description: |-
-        Generate code of a specific type for provided identifier
+        Generate code of a specific type for provided address
         Invalidates previously generated OTPs for action associated with the type.
         Code is valid for specific period of time configured in Identity Pool.
 
-        Keep in mind that `identifier` attribute for different code types does not mean the same:
+        Keep in mind that `address` attribute for different code types does not mean the same:
         for `reset_password` and `challenge` it must be user's address (verified or unverified)
         for `activation` it is not mandatory (system will pick up address itself if there is only one in user entry) but if provided it must be one of the user's addresses (can be not verified)
         for `verify_address` it must be user's unverified address and that address cannot be someone's else verified address
 
         For `activation`, `reset_password` and `challenge` there is only one active code for a user (generating new one invalidates previous)
         For `verify_address` there might be many codes for a user. During verification latest for an address is being compared.
+
+        REFACTORED: input field name has been changed from `identifier` to `address`; field `identifier` stays for backward compatibility and overrides `address` if not empty
       operationId: systemGenerateCode
       parameters:
       - in: query
@@ -1075,20 +1125,168 @@ paths:
 produces:
 - application/json
 responses:
+  AddressResponse:
+    description: User
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+    schema:
+      $ref: '#/definitions/UserVerifiableAddress'
+  ChangePasswordResponse:
+    description: Password has been changed
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
   CodeIDResponse:
     description: User
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
     schema:
       $ref: '#/definitions/CodeID'
+  CompleteResetPasswordResponse:
+    description: Password reset
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+  ConfirmResetPasswordResponse:
+    description: Password reset
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+  DeleteAddressResponse:
+    description: Deletes a verifiable address from the user account
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+  DeleteIdentifierResponse:
+    description: Deletes an identifier from the user account
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
   GenerateCodeResponse:
     description: User
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
     schema:
       $ref: '#/definitions/Codes'
+  IdentifierResponse:
+    description: User
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+    schema:
+      $ref: '#/definitions/UserIdentifier'
+  RequestResetPasswordResponse:
+    description: Request accepted
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+  SelfSendActivationMessageResponse:
+    description: Activation message sent
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+  SystemDeleteUserResponse:
+    description: User has been deleted
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+  SystemUsersResponse:
+    description: Identity Users
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+    schema:
+      $ref: '#/definitions/Users'
   UserIDResponse:
     description: User
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
     schema:
       $ref: '#/definitions/UserID'
   UserResponse:
     description: User
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
     schema:
       $ref: '#/definitions/UserWithData'
   UsersResponse:

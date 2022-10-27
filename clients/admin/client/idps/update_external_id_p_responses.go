@@ -75,7 +75,8 @@ func NewUpdateExternalIDPOK() *UpdateExternalIDPOK {
 	return &UpdateExternalIDPOK{}
 }
 
-/* UpdateExternalIDPOK describes a response with status code 200, with default header values.
+/*
+UpdateExternalIDPOK describes a response with status code 200, with default header values.
 
 ExternalIDP
 */
@@ -83,9 +84,39 @@ type UpdateExternalIDPOK struct {
 	Payload *models.ExternalIDP
 }
 
+// IsSuccess returns true when this update external Id p o k response has a 2xx status code
+func (o *UpdateExternalIDPOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this update external Id p o k response has a 3xx status code
+func (o *UpdateExternalIDPOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update external Id p o k response has a 4xx status code
+func (o *UpdateExternalIDPOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this update external Id p o k response has a 5xx status code
+func (o *UpdateExternalIDPOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update external Id p o k response a status code equal to that given
+func (o *UpdateExternalIDPOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *UpdateExternalIDPOK) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/external/{iid}][%d] updateExternalIdPOK  %+v", 200, o.Payload)
 }
+
+func (o *UpdateExternalIDPOK) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/external/{iid}][%d] updateExternalIdPOK  %+v", 200, o.Payload)
+}
+
 func (o *UpdateExternalIDPOK) GetPayload() *models.ExternalIDP {
 	return o.Payload
 }
@@ -107,7 +138,8 @@ func NewUpdateExternalIDPBadRequest() *UpdateExternalIDPBadRequest {
 	return &UpdateExternalIDPBadRequest{}
 }
 
-/* UpdateExternalIDPBadRequest describes a response with status code 400, with default header values.
+/*
+UpdateExternalIDPBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -115,9 +147,39 @@ type UpdateExternalIDPBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update external Id p bad request response has a 2xx status code
+func (o *UpdateExternalIDPBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update external Id p bad request response has a 3xx status code
+func (o *UpdateExternalIDPBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update external Id p bad request response has a 4xx status code
+func (o *UpdateExternalIDPBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update external Id p bad request response has a 5xx status code
+func (o *UpdateExternalIDPBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update external Id p bad request response a status code equal to that given
+func (o *UpdateExternalIDPBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *UpdateExternalIDPBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/external/{iid}][%d] updateExternalIdPBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *UpdateExternalIDPBadRequest) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/external/{iid}][%d] updateExternalIdPBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *UpdateExternalIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -139,7 +201,8 @@ func NewUpdateExternalIDPUnauthorized() *UpdateExternalIDPUnauthorized {
 	return &UpdateExternalIDPUnauthorized{}
 }
 
-/* UpdateExternalIDPUnauthorized describes a response with status code 401, with default header values.
+/*
+UpdateExternalIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,9 +210,39 @@ type UpdateExternalIDPUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update external Id p unauthorized response has a 2xx status code
+func (o *UpdateExternalIDPUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update external Id p unauthorized response has a 3xx status code
+func (o *UpdateExternalIDPUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update external Id p unauthorized response has a 4xx status code
+func (o *UpdateExternalIDPUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update external Id p unauthorized response has a 5xx status code
+func (o *UpdateExternalIDPUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update external Id p unauthorized response a status code equal to that given
+func (o *UpdateExternalIDPUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *UpdateExternalIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/external/{iid}][%d] updateExternalIdPUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *UpdateExternalIDPUnauthorized) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/external/{iid}][%d] updateExternalIdPUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *UpdateExternalIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -171,7 +264,8 @@ func NewUpdateExternalIDPForbidden() *UpdateExternalIDPForbidden {
 	return &UpdateExternalIDPForbidden{}
 }
 
-/* UpdateExternalIDPForbidden describes a response with status code 403, with default header values.
+/*
+UpdateExternalIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -179,9 +273,39 @@ type UpdateExternalIDPForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update external Id p forbidden response has a 2xx status code
+func (o *UpdateExternalIDPForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update external Id p forbidden response has a 3xx status code
+func (o *UpdateExternalIDPForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update external Id p forbidden response has a 4xx status code
+func (o *UpdateExternalIDPForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update external Id p forbidden response has a 5xx status code
+func (o *UpdateExternalIDPForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update external Id p forbidden response a status code equal to that given
+func (o *UpdateExternalIDPForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *UpdateExternalIDPForbidden) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/external/{iid}][%d] updateExternalIdPForbidden  %+v", 403, o.Payload)
 }
+
+func (o *UpdateExternalIDPForbidden) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/external/{iid}][%d] updateExternalIdPForbidden  %+v", 403, o.Payload)
+}
+
 func (o *UpdateExternalIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -203,7 +327,8 @@ func NewUpdateExternalIDPNotFound() *UpdateExternalIDPNotFound {
 	return &UpdateExternalIDPNotFound{}
 }
 
-/* UpdateExternalIDPNotFound describes a response with status code 404, with default header values.
+/*
+UpdateExternalIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -211,9 +336,39 @@ type UpdateExternalIDPNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update external Id p not found response has a 2xx status code
+func (o *UpdateExternalIDPNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update external Id p not found response has a 3xx status code
+func (o *UpdateExternalIDPNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update external Id p not found response has a 4xx status code
+func (o *UpdateExternalIDPNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update external Id p not found response has a 5xx status code
+func (o *UpdateExternalIDPNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update external Id p not found response a status code equal to that given
+func (o *UpdateExternalIDPNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *UpdateExternalIDPNotFound) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/external/{iid}][%d] updateExternalIdPNotFound  %+v", 404, o.Payload)
 }
+
+func (o *UpdateExternalIDPNotFound) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/external/{iid}][%d] updateExternalIdPNotFound  %+v", 404, o.Payload)
+}
+
 func (o *UpdateExternalIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +390,8 @@ func NewUpdateExternalIDPUnprocessableEntity() *UpdateExternalIDPUnprocessableEn
 	return &UpdateExternalIDPUnprocessableEntity{}
 }
 
-/* UpdateExternalIDPUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+UpdateExternalIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -243,9 +399,39 @@ type UpdateExternalIDPUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update external Id p unprocessable entity response has a 2xx status code
+func (o *UpdateExternalIDPUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update external Id p unprocessable entity response has a 3xx status code
+func (o *UpdateExternalIDPUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update external Id p unprocessable entity response has a 4xx status code
+func (o *UpdateExternalIDPUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update external Id p unprocessable entity response has a 5xx status code
+func (o *UpdateExternalIDPUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update external Id p unprocessable entity response a status code equal to that given
+func (o *UpdateExternalIDPUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *UpdateExternalIDPUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/external/{iid}][%d] updateExternalIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *UpdateExternalIDPUnprocessableEntity) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/external/{iid}][%d] updateExternalIdPUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *UpdateExternalIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -267,7 +453,8 @@ func NewUpdateExternalIDPTooManyRequests() *UpdateExternalIDPTooManyRequests {
 	return &UpdateExternalIDPTooManyRequests{}
 }
 
-/* UpdateExternalIDPTooManyRequests describes a response with status code 429, with default header values.
+/*
+UpdateExternalIDPTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -275,9 +462,39 @@ type UpdateExternalIDPTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update external Id p too many requests response has a 2xx status code
+func (o *UpdateExternalIDPTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update external Id p too many requests response has a 3xx status code
+func (o *UpdateExternalIDPTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update external Id p too many requests response has a 4xx status code
+func (o *UpdateExternalIDPTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update external Id p too many requests response has a 5xx status code
+func (o *UpdateExternalIDPTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update external Id p too many requests response a status code equal to that given
+func (o *UpdateExternalIDPTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *UpdateExternalIDPTooManyRequests) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/external/{iid}][%d] updateExternalIdPTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *UpdateExternalIDPTooManyRequests) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/external/{iid}][%d] updateExternalIdPTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *UpdateExternalIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

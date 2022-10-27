@@ -52,10 +52,12 @@ func NewConsumeOpenbankingConsentParamsWithHTTPClient(client *http.Client) *Cons
 	}
 }
 
-/* ConsumeOpenbankingConsentParams contains all the parameters to send to the API endpoint
-   for the consume openbanking consent operation.
+/*
+ConsumeOpenbankingConsentParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the consume openbanking consent operation.
+
+	Typically these are written to a http.Request.
 */
 type ConsumeOpenbankingConsentParams struct {
 

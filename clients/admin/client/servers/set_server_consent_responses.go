@@ -63,7 +63,8 @@ func NewSetServerConsentOK() *SetServerConsentOK {
 	return &SetServerConsentOK{}
 }
 
-/* SetServerConsentOK describes a response with status code 200, with default header values.
+/*
+SetServerConsentOK describes a response with status code 200, with default header values.
 
 ServerConsent
 */
@@ -71,9 +72,39 @@ type SetServerConsentOK struct {
 	Payload *models.ServerConsent
 }
 
+// IsSuccess returns true when this set server consent o k response has a 2xx status code
+func (o *SetServerConsentOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this set server consent o k response has a 3xx status code
+func (o *SetServerConsentOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set server consent o k response has a 4xx status code
+func (o *SetServerConsentOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this set server consent o k response has a 5xx status code
+func (o *SetServerConsentOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set server consent o k response a status code equal to that given
+func (o *SetServerConsentOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *SetServerConsentOK) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/server-consent][%d] setServerConsentOK  %+v", 200, o.Payload)
 }
+
+func (o *SetServerConsentOK) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/server-consent][%d] setServerConsentOK  %+v", 200, o.Payload)
+}
+
 func (o *SetServerConsentOK) GetPayload() *models.ServerConsent {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewSetServerConsentUnauthorized() *SetServerConsentUnauthorized {
 	return &SetServerConsentUnauthorized{}
 }
 
-/* SetServerConsentUnauthorized describes a response with status code 401, with default header values.
+/*
+SetServerConsentUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type SetServerConsentUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this set server consent unauthorized response has a 2xx status code
+func (o *SetServerConsentUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this set server consent unauthorized response has a 3xx status code
+func (o *SetServerConsentUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set server consent unauthorized response has a 4xx status code
+func (o *SetServerConsentUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this set server consent unauthorized response has a 5xx status code
+func (o *SetServerConsentUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set server consent unauthorized response a status code equal to that given
+func (o *SetServerConsentUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *SetServerConsentUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/server-consent][%d] setServerConsentUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *SetServerConsentUnauthorized) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/server-consent][%d] setServerConsentUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *SetServerConsentUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewSetServerConsentForbidden() *SetServerConsentForbidden {
 	return &SetServerConsentForbidden{}
 }
 
-/* SetServerConsentForbidden describes a response with status code 403, with default header values.
+/*
+SetServerConsentForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type SetServerConsentForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this set server consent forbidden response has a 2xx status code
+func (o *SetServerConsentForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this set server consent forbidden response has a 3xx status code
+func (o *SetServerConsentForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set server consent forbidden response has a 4xx status code
+func (o *SetServerConsentForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this set server consent forbidden response has a 5xx status code
+func (o *SetServerConsentForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set server consent forbidden response a status code equal to that given
+func (o *SetServerConsentForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *SetServerConsentForbidden) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/server-consent][%d] setServerConsentForbidden  %+v", 403, o.Payload)
 }
+
+func (o *SetServerConsentForbidden) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/server-consent][%d] setServerConsentForbidden  %+v", 403, o.Payload)
+}
+
 func (o *SetServerConsentForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewSetServerConsentNotFound() *SetServerConsentNotFound {
 	return &SetServerConsentNotFound{}
 }
 
-/* SetServerConsentNotFound describes a response with status code 404, with default header values.
+/*
+SetServerConsentNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type SetServerConsentNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this set server consent not found response has a 2xx status code
+func (o *SetServerConsentNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this set server consent not found response has a 3xx status code
+func (o *SetServerConsentNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set server consent not found response has a 4xx status code
+func (o *SetServerConsentNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this set server consent not found response has a 5xx status code
+func (o *SetServerConsentNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set server consent not found response a status code equal to that given
+func (o *SetServerConsentNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *SetServerConsentNotFound) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/server-consent][%d] setServerConsentNotFound  %+v", 404, o.Payload)
 }
+
+func (o *SetServerConsentNotFound) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/server-consent][%d] setServerConsentNotFound  %+v", 404, o.Payload)
+}
+
 func (o *SetServerConsentNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewSetServerConsentTooManyRequests() *SetServerConsentTooManyRequests {
 	return &SetServerConsentTooManyRequests{}
 }
 
-/* SetServerConsentTooManyRequests describes a response with status code 429, with default header values.
+/*
+SetServerConsentTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type SetServerConsentTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this set server consent too many requests response has a 2xx status code
+func (o *SetServerConsentTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this set server consent too many requests response has a 3xx status code
+func (o *SetServerConsentTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set server consent too many requests response has a 4xx status code
+func (o *SetServerConsentTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this set server consent too many requests response has a 5xx status code
+func (o *SetServerConsentTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set server consent too many requests response a status code equal to that given
+func (o *SetServerConsentTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *SetServerConsentTooManyRequests) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/server-consent][%d] setServerConsentTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *SetServerConsentTooManyRequests) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/server-consent][%d] setServerConsentTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *SetServerConsentTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

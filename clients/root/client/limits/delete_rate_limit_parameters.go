@@ -52,10 +52,12 @@ func NewDeleteRateLimitParamsWithHTTPClient(client *http.Client) *DeleteRateLimi
 	}
 }
 
-/* DeleteRateLimitParams contains all the parameters to send to the API endpoint
-   for the delete rate limit operation.
+/*
+DeleteRateLimitParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the delete rate limit operation.
+
+	Typically these are written to a http.Request.
 */
 type DeleteRateLimitParams struct {
 

@@ -54,10 +54,12 @@ func NewPatchTenantConfigurationParamsWithHTTPClient(client *http.Client) *Patch
 	}
 }
 
-/* PatchTenantConfigurationParams contains all the parameters to send to the API endpoint
-   for the patch tenant configuration operation.
+/*
+PatchTenantConfigurationParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the patch tenant configuration operation.
+
+	Typically these are written to a http.Request.
 */
 type PatchTenantConfigurationParams struct {
 

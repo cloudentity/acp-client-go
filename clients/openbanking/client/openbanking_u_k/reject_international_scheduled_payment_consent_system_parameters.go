@@ -54,10 +54,12 @@ func NewRejectInternationalScheduledPaymentConsentSystemParamsWithHTTPClient(cli
 	}
 }
 
-/* RejectInternationalScheduledPaymentConsentSystemParams contains all the parameters to send to the API endpoint
-   for the reject international scheduled payment consent system operation.
+/*
+RejectInternationalScheduledPaymentConsentSystemParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the reject international scheduled payment consent system operation.
+
+	Typically these are written to a http.Request.
 */
 type RejectInternationalScheduledPaymentConsentSystemParams struct {
 

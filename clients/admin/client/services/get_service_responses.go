@@ -63,7 +63,8 @@ func NewGetServiceOK() *GetServiceOK {
 	return &GetServiceOK{}
 }
 
-/* GetServiceOK describes a response with status code 200, with default header values.
+/*
+GetServiceOK describes a response with status code 200, with default header values.
 
 Service with scopes
 */
@@ -71,9 +72,39 @@ type GetServiceOK struct {
 	Payload *models.ServiceWithScopesResponse
 }
 
+// IsSuccess returns true when this get service o k response has a 2xx status code
+func (o *GetServiceOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get service o k response has a 3xx status code
+func (o *GetServiceOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get service o k response has a 4xx status code
+func (o *GetServiceOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get service o k response has a 5xx status code
+func (o *GetServiceOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get service o k response a status code equal to that given
+func (o *GetServiceOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetServiceOK) Error() string {
 	return fmt.Sprintf("[GET /services/{sid}][%d] getServiceOK  %+v", 200, o.Payload)
 }
+
+func (o *GetServiceOK) String() string {
+	return fmt.Sprintf("[GET /services/{sid}][%d] getServiceOK  %+v", 200, o.Payload)
+}
+
 func (o *GetServiceOK) GetPayload() *models.ServiceWithScopesResponse {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewGetServiceUnauthorized() *GetServiceUnauthorized {
 	return &GetServiceUnauthorized{}
 }
 
-/* GetServiceUnauthorized describes a response with status code 401, with default header values.
+/*
+GetServiceUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type GetServiceUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get service unauthorized response has a 2xx status code
+func (o *GetServiceUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get service unauthorized response has a 3xx status code
+func (o *GetServiceUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get service unauthorized response has a 4xx status code
+func (o *GetServiceUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get service unauthorized response has a 5xx status code
+func (o *GetServiceUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get service unauthorized response a status code equal to that given
+func (o *GetServiceUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *GetServiceUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /services/{sid}][%d] getServiceUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *GetServiceUnauthorized) String() string {
+	return fmt.Sprintf("[GET /services/{sid}][%d] getServiceUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *GetServiceUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewGetServiceForbidden() *GetServiceForbidden {
 	return &GetServiceForbidden{}
 }
 
-/* GetServiceForbidden describes a response with status code 403, with default header values.
+/*
+GetServiceForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type GetServiceForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get service forbidden response has a 2xx status code
+func (o *GetServiceForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get service forbidden response has a 3xx status code
+func (o *GetServiceForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get service forbidden response has a 4xx status code
+func (o *GetServiceForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get service forbidden response has a 5xx status code
+func (o *GetServiceForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get service forbidden response a status code equal to that given
+func (o *GetServiceForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetServiceForbidden) Error() string {
 	return fmt.Sprintf("[GET /services/{sid}][%d] getServiceForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetServiceForbidden) String() string {
+	return fmt.Sprintf("[GET /services/{sid}][%d] getServiceForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetServiceForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewGetServiceNotFound() *GetServiceNotFound {
 	return &GetServiceNotFound{}
 }
 
-/* GetServiceNotFound describes a response with status code 404, with default header values.
+/*
+GetServiceNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type GetServiceNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get service not found response has a 2xx status code
+func (o *GetServiceNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get service not found response has a 3xx status code
+func (o *GetServiceNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get service not found response has a 4xx status code
+func (o *GetServiceNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get service not found response has a 5xx status code
+func (o *GetServiceNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get service not found response a status code equal to that given
+func (o *GetServiceNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *GetServiceNotFound) Error() string {
 	return fmt.Sprintf("[GET /services/{sid}][%d] getServiceNotFound  %+v", 404, o.Payload)
 }
+
+func (o *GetServiceNotFound) String() string {
+	return fmt.Sprintf("[GET /services/{sid}][%d] getServiceNotFound  %+v", 404, o.Payload)
+}
+
 func (o *GetServiceNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewGetServiceTooManyRequests() *GetServiceTooManyRequests {
 	return &GetServiceTooManyRequests{}
 }
 
-/* GetServiceTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetServiceTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type GetServiceTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get service too many requests response has a 2xx status code
+func (o *GetServiceTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get service too many requests response has a 3xx status code
+func (o *GetServiceTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get service too many requests response has a 4xx status code
+func (o *GetServiceTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get service too many requests response has a 5xx status code
+func (o *GetServiceTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get service too many requests response a status code equal to that given
+func (o *GetServiceTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *GetServiceTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /services/{sid}][%d] getServiceTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *GetServiceTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /services/{sid}][%d] getServiceTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *GetServiceTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

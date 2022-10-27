@@ -54,10 +54,12 @@ func NewAcceptDomesticPaymentConsentSystemParamsWithHTTPClient(client *http.Clie
 	}
 }
 
-/* AcceptDomesticPaymentConsentSystemParams contains all the parameters to send to the API endpoint
-   for the accept domestic payment consent system operation.
+/*
+AcceptDomesticPaymentConsentSystemParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the accept domestic payment consent system operation.
+
+	Typically these are written to a http.Request.
 */
 type AcceptDomesticPaymentConsentSystemParams struct {
 

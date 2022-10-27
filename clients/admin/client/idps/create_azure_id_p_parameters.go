@@ -54,10 +54,12 @@ func NewCreateAzureIDPParamsWithHTTPClient(client *http.Client) *CreateAzureIDPP
 	}
 }
 
-/* CreateAzureIDPParams contains all the parameters to send to the API endpoint
-   for the create azure ID p operation.
+/*
+CreateAzureIDPParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the create azure ID p operation.
+
+	Typically these are written to a http.Request.
 */
 type CreateAzureIDPParams struct {
 

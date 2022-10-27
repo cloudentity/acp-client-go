@@ -52,10 +52,12 @@ func NewGetCustomIDPParamsWithHTTPClient(client *http.Client) *GetCustomIDPParam
 	}
 }
 
-/* GetCustomIDPParams contains all the parameters to send to the API endpoint
-   for the get custom ID p operation.
+/*
+GetCustomIDPParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get custom ID p operation.
+
+	Typically these are written to a http.Request.
 */
 type GetCustomIDPParams struct {
 

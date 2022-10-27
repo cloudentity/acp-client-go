@@ -54,10 +54,12 @@ func NewAcceptLoginRequestParamsWithHTTPClient(client *http.Client) *AcceptLogin
 	}
 }
 
-/* AcceptLoginRequestParams contains all the parameters to send to the API endpoint
-   for the accept login request operation.
+/*
+AcceptLoginRequestParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the accept login request operation.
+
+	Typically these are written to a http.Request.
 */
 type AcceptLoginRequestParams struct {
 

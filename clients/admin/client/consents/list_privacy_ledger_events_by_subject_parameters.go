@@ -53,10 +53,12 @@ func NewListPrivacyLedgerEventsBySubjectParamsWithHTTPClient(client *http.Client
 	}
 }
 
-/* ListPrivacyLedgerEventsBySubjectParams contains all the parameters to send to the API endpoint
-   for the list privacy ledger events by subject operation.
+/*
+ListPrivacyLedgerEventsBySubjectParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the list privacy ledger events by subject operation.
+
+	Typically these are written to a http.Request.
 */
 type ListPrivacyLedgerEventsBySubjectParams struct {
 

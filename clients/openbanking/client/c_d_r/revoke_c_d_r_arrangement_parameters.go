@@ -52,15 +52,42 @@ func NewRevokeCDRArrangementParamsWithHTTPClient(client *http.Client) *RevokeCDR
 	}
 }
 
-/* RevokeCDRArrangementParams contains all the parameters to send to the API endpoint
-   for the revoke c d r arrangement operation.
+/*
+RevokeCDRArrangementParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the revoke c d r arrangement operation.
+
+	Typically these are written to a http.Request.
 */
 type RevokeCDRArrangementParams struct {
 
 	// CdrArrangementID.
 	CdrArrangementID *string
+
+	// ClientAssertion.
+	ClientAssertion *string
+
+	// ClientAssertionType.
+	//
+	// Default: "urn:ietf:params:oauth:client-assertion-type:jwt-bearer"
+	ClientAssertionType *string
+
+	// ClientID.
+	ClientID *string
+
+	/* RevocationChannel.
+
+	   Stores the channel that was used to revoke the arrangement
+
+	   Default: "online"
+	*/
+	RevocationChannel *string
+
+	/* RevocationReason.
+
+	   Stores the reason why the arrangement was revoked
+	*/
+	RevocationReason *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -79,7 +106,21 @@ func (o *RevokeCDRArrangementParams) WithDefaults() *RevokeCDRArrangementParams 
 //
 // All values with no default are reset to their zero value.
 func (o *RevokeCDRArrangementParams) SetDefaults() {
-	// no default values defined for this parameter
+	var (
+		clientAssertionTypeDefault = string("urn:ietf:params:oauth:client-assertion-type:jwt-bearer")
+
+		revocationChannelDefault = string("online")
+	)
+
+	val := RevokeCDRArrangementParams{
+		ClientAssertionType: &clientAssertionTypeDefault,
+		RevocationChannel:   &revocationChannelDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the revoke c d r arrangement params
@@ -126,6 +167,61 @@ func (o *RevokeCDRArrangementParams) SetCdrArrangementID(cdrArrangementID *strin
 	o.CdrArrangementID = cdrArrangementID
 }
 
+// WithClientAssertion adds the clientAssertion to the revoke c d r arrangement params
+func (o *RevokeCDRArrangementParams) WithClientAssertion(clientAssertion *string) *RevokeCDRArrangementParams {
+	o.SetClientAssertion(clientAssertion)
+	return o
+}
+
+// SetClientAssertion adds the clientAssertion to the revoke c d r arrangement params
+func (o *RevokeCDRArrangementParams) SetClientAssertion(clientAssertion *string) {
+	o.ClientAssertion = clientAssertion
+}
+
+// WithClientAssertionType adds the clientAssertionType to the revoke c d r arrangement params
+func (o *RevokeCDRArrangementParams) WithClientAssertionType(clientAssertionType *string) *RevokeCDRArrangementParams {
+	o.SetClientAssertionType(clientAssertionType)
+	return o
+}
+
+// SetClientAssertionType adds the clientAssertionType to the revoke c d r arrangement params
+func (o *RevokeCDRArrangementParams) SetClientAssertionType(clientAssertionType *string) {
+	o.ClientAssertionType = clientAssertionType
+}
+
+// WithClientID adds the clientID to the revoke c d r arrangement params
+func (o *RevokeCDRArrangementParams) WithClientID(clientID *string) *RevokeCDRArrangementParams {
+	o.SetClientID(clientID)
+	return o
+}
+
+// SetClientID adds the clientId to the revoke c d r arrangement params
+func (o *RevokeCDRArrangementParams) SetClientID(clientID *string) {
+	o.ClientID = clientID
+}
+
+// WithRevocationChannel adds the revocationChannel to the revoke c d r arrangement params
+func (o *RevokeCDRArrangementParams) WithRevocationChannel(revocationChannel *string) *RevokeCDRArrangementParams {
+	o.SetRevocationChannel(revocationChannel)
+	return o
+}
+
+// SetRevocationChannel adds the revocationChannel to the revoke c d r arrangement params
+func (o *RevokeCDRArrangementParams) SetRevocationChannel(revocationChannel *string) {
+	o.RevocationChannel = revocationChannel
+}
+
+// WithRevocationReason adds the revocationReason to the revoke c d r arrangement params
+func (o *RevokeCDRArrangementParams) WithRevocationReason(revocationReason *string) *RevokeCDRArrangementParams {
+	o.SetRevocationReason(revocationReason)
+	return o
+}
+
+// SetRevocationReason adds the revocationReason to the revoke c d r arrangement params
+func (o *RevokeCDRArrangementParams) SetRevocationReason(revocationReason *string) {
+	o.RevocationReason = revocationReason
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *RevokeCDRArrangementParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -144,6 +240,85 @@ func (o *RevokeCDRArrangementParams) WriteToRequest(r runtime.ClientRequest, reg
 		fCdrArrangementID := frCdrArrangementID
 		if fCdrArrangementID != "" {
 			if err := r.SetFormParam("cdr_arrangement_id", fCdrArrangementID); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.ClientAssertion != nil {
+
+		// form param client_assertion
+		var frClientAssertion string
+		if o.ClientAssertion != nil {
+			frClientAssertion = *o.ClientAssertion
+		}
+		fClientAssertion := frClientAssertion
+		if fClientAssertion != "" {
+			if err := r.SetFormParam("client_assertion", fClientAssertion); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.ClientAssertionType != nil {
+
+		// form param client_assertion_type
+		var frClientAssertionType string
+		if o.ClientAssertionType != nil {
+			frClientAssertionType = *o.ClientAssertionType
+		}
+		fClientAssertionType := frClientAssertionType
+		if fClientAssertionType != "" {
+			if err := r.SetFormParam("client_assertion_type", fClientAssertionType); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.ClientID != nil {
+
+		// form param client_id
+		var frClientID string
+		if o.ClientID != nil {
+			frClientID = *o.ClientID
+		}
+		fClientID := frClientID
+		if fClientID != "" {
+			if err := r.SetFormParam("client_id", fClientID); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.RevocationChannel != nil {
+
+		// query param revocation_channel
+		var qrRevocationChannel string
+
+		if o.RevocationChannel != nil {
+			qrRevocationChannel = *o.RevocationChannel
+		}
+		qRevocationChannel := qrRevocationChannel
+		if qRevocationChannel != "" {
+
+			if err := r.SetQueryParam("revocation_channel", qRevocationChannel); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.RevocationReason != nil {
+
+		// query param revocation_reason
+		var qrRevocationReason string
+
+		if o.RevocationReason != nil {
+			qrRevocationReason = *o.RevocationReason
+		}
+		qRevocationReason := qrRevocationReason
+		if qRevocationReason != "" {
+
+			if err := r.SetQueryParam("revocation_reason", qRevocationReason); err != nil {
 				return err
 			}
 		}

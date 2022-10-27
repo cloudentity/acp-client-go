@@ -130,9 +130,9 @@ type ClientService interface {
 }
 
 /*
-  CreateAuth0IDP creates auth0 ID p
+CreateAuth0IDP creates auth0 ID p
 
-  Create Auth0 IDP.
+Create Auth0 IDP.
 */
 func (a *Client) CreateAuth0IDP(params *CreateAuth0IDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateAuth0IDPCreated, error) {
 	// TODO: Validate the params before sending
@@ -171,9 +171,9 @@ func (a *Client) CreateAuth0IDP(params *CreateAuth0IDPParams, authInfo runtime.C
 }
 
 /*
-  CreateAzureB2CIDP creates azure b2 c ID p
+CreateAzureB2CIDP creates azure b2 c ID p
 
-  Create AzureB2C IDP.
+Create AzureB2C IDP.
 */
 func (a *Client) CreateAzureB2CIDP(params *CreateAzureB2CIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateAzureB2CIDPCreated, error) {
 	// TODO: Validate the params before sending
@@ -212,9 +212,9 @@ func (a *Client) CreateAzureB2CIDP(params *CreateAzureB2CIDPParams, authInfo run
 }
 
 /*
-  CreateAzureIDP creates azure ID p
+CreateAzureIDP creates azure ID p
 
-  Create Azure IDP.
+Create Azure IDP.
 */
 func (a *Client) CreateAzureIDP(params *CreateAzureIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateAzureIDPCreated, error) {
 	// TODO: Validate the params before sending
@@ -253,9 +253,9 @@ func (a *Client) CreateAzureIDP(params *CreateAzureIDPParams, authInfo runtime.C
 }
 
 /*
-  CreateCognitoIDP creates cognito ID p
+CreateCognitoIDP creates cognito ID p
 
-  Create Cognito IDP.
+Create Cognito IDP.
 */
 func (a *Client) CreateCognitoIDP(params *CreateCognitoIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateCognitoIDPCreated, error) {
 	// TODO: Validate the params before sending
@@ -294,9 +294,9 @@ func (a *Client) CreateCognitoIDP(params *CreateCognitoIDPParams, authInfo runti
 }
 
 /*
-  CreateCustomIDP creates custom ID p
+CreateCustomIDP creates custom ID p
 
-  Create Custom IDP.
+Create Custom IDP.
 */
 func (a *Client) CreateCustomIDP(params *CreateCustomIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateCustomIDPCreated, error) {
 	// TODO: Validate the params before sending
@@ -335,9 +335,9 @@ func (a *Client) CreateCustomIDP(params *CreateCustomIDPParams, authInfo runtime
 }
 
 /*
-  CreateExternalIDP creates external ID p
+CreateExternalIDP creates external ID p
 
-  Create External IDP.
+Create External IDP.
 */
 func (a *Client) CreateExternalIDP(params *CreateExternalIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateExternalIDPCreated, error) {
 	// TODO: Validate the params before sending
@@ -376,9 +376,9 @@ func (a *Client) CreateExternalIDP(params *CreateExternalIDPParams, authInfo run
 }
 
 /*
-  CreateGithubIDP creates github ID p
+CreateGithubIDP creates github ID p
 
-  Create Github IDP.
+Create Github IDP.
 */
 func (a *Client) CreateGithubIDP(params *CreateGithubIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateGithubIDPCreated, error) {
 	// TODO: Validate the params before sending
@@ -417,9 +417,9 @@ func (a *Client) CreateGithubIDP(params *CreateGithubIDPParams, authInfo runtime
 }
 
 /*
-  CreateGoogleIDP creates google ID p
+CreateGoogleIDP creates google ID p
 
-  Create Google IDP.
+Create Google IDP.
 */
 func (a *Client) CreateGoogleIDP(params *CreateGoogleIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateGoogleIDPCreated, error) {
 	// TODO: Validate the params before sending
@@ -458,9 +458,9 @@ func (a *Client) CreateGoogleIDP(params *CreateGoogleIDPParams, authInfo runtime
 }
 
 /*
-  CreateIdentityPoolIDP creates identity pool ID p
+CreateIdentityPoolIDP creates identity pool ID p
 
-  Create IdentityPool IDP.
+Create IdentityPool IDP.
 */
 func (a *Client) CreateIdentityPoolIDP(params *CreateIdentityPoolIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateIdentityPoolIDPCreated, error) {
 	// TODO: Validate the params before sending
@@ -499,9 +499,9 @@ func (a *Client) CreateIdentityPoolIDP(params *CreateIdentityPoolIDPParams, auth
 }
 
 /*
-  CreateIntelliTrustIDP creates intelli trust ID p
+CreateIntelliTrustIDP creates intelli trust ID p
 
-  Create IntelliTrust IDP.
+Create IntelliTrust IDP.
 */
 func (a *Client) CreateIntelliTrustIDP(params *CreateIntelliTrustIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateIntelliTrustIDPCreated, error) {
 	// TODO: Validate the params before sending
@@ -540,9 +540,9 @@ func (a *Client) CreateIntelliTrustIDP(params *CreateIntelliTrustIDPParams, auth
 }
 
 /*
-  CreateOIDCIDP creates o ID c ID p
+CreateOIDCIDP creates o ID c ID p
 
-  Create OIDC IDP.
+Create OIDC IDP.
 */
 func (a *Client) CreateOIDCIDP(params *CreateOIDCIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateOIDCIDPCreated, error) {
 	// TODO: Validate the params before sending
@@ -581,9 +581,9 @@ func (a *Client) CreateOIDCIDP(params *CreateOIDCIDPParams, authInfo runtime.Cli
 }
 
 /*
-  CreateOktaIDP creates okta ID p
+CreateOktaIDP creates okta ID p
 
-  Create Okta IDP.
+Create Okta IDP.
 */
 func (a *Client) CreateOktaIDP(params *CreateOktaIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateOktaIDPCreated, error) {
 	// TODO: Validate the params before sending
@@ -622,9 +622,9 @@ func (a *Client) CreateOktaIDP(params *CreateOktaIDPParams, authInfo runtime.Cli
 }
 
 /*
-  CreateSAMLIDP creates s a m l ID p
+CreateSAMLIDP creates s a m l ID p
 
-  Create SAML IDP.
+Create SAML IDP.
 */
 func (a *Client) CreateSAMLIDP(params *CreateSAMLIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateSAMLIDPCreated, error) {
 	// TODO: Validate the params before sending
@@ -663,9 +663,9 @@ func (a *Client) CreateSAMLIDP(params *CreateSAMLIDPParams, authInfo runtime.Cli
 }
 
 /*
-  CreateStaticIDP creates static ID p
+CreateStaticIDP creates static ID p
 
-  Create Static IDP.
+Create Static IDP.
 */
 func (a *Client) CreateStaticIDP(params *CreateStaticIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateStaticIDPCreated, error) {
 	// TODO: Validate the params before sending
@@ -704,9 +704,9 @@ func (a *Client) CreateStaticIDP(params *CreateStaticIDPParams, authInfo runtime
 }
 
 /*
-  DeleteIDP deletes ID p
+	DeleteIDP deletes ID p
 
-  Deletes an IDP of your choice
+	Deletes an IDP of your choice
 
 Deleting an IDP is permament. Deleted IDPs cannot be restored.
 
@@ -749,9 +749,9 @@ func (a *Client) DeleteIDP(params *DeleteIDPParams, authInfo runtime.ClientAuthI
 }
 
 /*
-  GetAuth0IDP gets auth0 ID p
+GetAuth0IDP gets auth0 ID p
 
-  Get Auth0 IDP.
+Get Auth0 IDP.
 */
 func (a *Client) GetAuth0IDP(params *GetAuth0IDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAuth0IDPOK, error) {
 	// TODO: Validate the params before sending
@@ -790,9 +790,9 @@ func (a *Client) GetAuth0IDP(params *GetAuth0IDPParams, authInfo runtime.ClientA
 }
 
 /*
-  GetAzureB2CIDP gets azure b2 c ID p
+GetAzureB2CIDP gets azure b2 c ID p
 
-  Get AzureB2C IDP.
+Get AzureB2C IDP.
 */
 func (a *Client) GetAzureB2CIDP(params *GetAzureB2CIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAzureB2CIDPOK, error) {
 	// TODO: Validate the params before sending
@@ -831,9 +831,9 @@ func (a *Client) GetAzureB2CIDP(params *GetAzureB2CIDPParams, authInfo runtime.C
 }
 
 /*
-  GetAzureIDP gets azure ID p
+GetAzureIDP gets azure ID p
 
-  Get Azure IDP.
+Get Azure IDP.
 */
 func (a *Client) GetAzureIDP(params *GetAzureIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAzureIDPOK, error) {
 	// TODO: Validate the params before sending
@@ -872,9 +872,9 @@ func (a *Client) GetAzureIDP(params *GetAzureIDPParams, authInfo runtime.ClientA
 }
 
 /*
-  GetCognitoIDP gets cognito ID p
+GetCognitoIDP gets cognito ID p
 
-  Get Cognito IDP.
+Get Cognito IDP.
 */
 func (a *Client) GetCognitoIDP(params *GetCognitoIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCognitoIDPOK, error) {
 	// TODO: Validate the params before sending
@@ -913,9 +913,9 @@ func (a *Client) GetCognitoIDP(params *GetCognitoIDPParams, authInfo runtime.Cli
 }
 
 /*
-  GetCustomIDP gets custom ID p
+GetCustomIDP gets custom ID p
 
-  Get Custom IDP.
+Get Custom IDP.
 */
 func (a *Client) GetCustomIDP(params *GetCustomIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCustomIDPOK, error) {
 	// TODO: Validate the params before sending
@@ -954,9 +954,9 @@ func (a *Client) GetCustomIDP(params *GetCustomIDPParams, authInfo runtime.Clien
 }
 
 /*
-  GetExternalIDP gets external ID p
+GetExternalIDP gets external ID p
 
-  Get External IDP.
+Get External IDP.
 */
 func (a *Client) GetExternalIDP(params *GetExternalIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetExternalIDPOK, error) {
 	// TODO: Validate the params before sending
@@ -995,9 +995,9 @@ func (a *Client) GetExternalIDP(params *GetExternalIDPParams, authInfo runtime.C
 }
 
 /*
-  GetGithubEmbeddedIDP gets github embedded ID p
+GetGithubEmbeddedIDP gets github embedded ID p
 
-  Get GithubEmbedded IDP.
+Get GithubEmbedded IDP.
 */
 func (a *Client) GetGithubEmbeddedIDP(params *GetGithubEmbeddedIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetGithubEmbeddedIDPOK, error) {
 	// TODO: Validate the params before sending
@@ -1036,9 +1036,9 @@ func (a *Client) GetGithubEmbeddedIDP(params *GetGithubEmbeddedIDPParams, authIn
 }
 
 /*
-  GetGithubIDP gets github ID p
+GetGithubIDP gets github ID p
 
-  Get Github IDP.
+Get Github IDP.
 */
 func (a *Client) GetGithubIDP(params *GetGithubIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetGithubIDPOK, error) {
 	// TODO: Validate the params before sending
@@ -1077,9 +1077,9 @@ func (a *Client) GetGithubIDP(params *GetGithubIDPParams, authInfo runtime.Clien
 }
 
 /*
-  GetGoogleEmbeddedIDP gets google embedded ID p
+GetGoogleEmbeddedIDP gets google embedded ID p
 
-  Get GoogleEmbedded IDP.
+Get GoogleEmbedded IDP.
 */
 func (a *Client) GetGoogleEmbeddedIDP(params *GetGoogleEmbeddedIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetGoogleEmbeddedIDPOK, error) {
 	// TODO: Validate the params before sending
@@ -1118,9 +1118,9 @@ func (a *Client) GetGoogleEmbeddedIDP(params *GetGoogleEmbeddedIDPParams, authIn
 }
 
 /*
-  GetGoogleIDP gets google ID p
+GetGoogleIDP gets google ID p
 
-  Get Google IDP.
+Get Google IDP.
 */
 func (a *Client) GetGoogleIDP(params *GetGoogleIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetGoogleIDPOK, error) {
 	// TODO: Validate the params before sending
@@ -1159,9 +1159,9 @@ func (a *Client) GetGoogleIDP(params *GetGoogleIDPParams, authInfo runtime.Clien
 }
 
 /*
-  GetIdentityPoolIDP gets identity pool ID p
+GetIdentityPoolIDP gets identity pool ID p
 
-  Get IdentityPool IDP.
+Get IdentityPool IDP.
 */
 func (a *Client) GetIdentityPoolIDP(params *GetIdentityPoolIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetIdentityPoolIDPOK, error) {
 	// TODO: Validate the params before sending
@@ -1200,9 +1200,9 @@ func (a *Client) GetIdentityPoolIDP(params *GetIdentityPoolIDPParams, authInfo r
 }
 
 /*
-  GetIntelliTrustIDP gets intelli trust ID p
+GetIntelliTrustIDP gets intelli trust ID p
 
-  Get IntelliTrust IDP.
+Get IntelliTrust IDP.
 */
 func (a *Client) GetIntelliTrustIDP(params *GetIntelliTrustIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetIntelliTrustIDPOK, error) {
 	// TODO: Validate the params before sending
@@ -1241,9 +1241,9 @@ func (a *Client) GetIntelliTrustIDP(params *GetIntelliTrustIDPParams, authInfo r
 }
 
 /*
-  GetOIDCIDP gets o ID c ID p
+GetOIDCIDP gets o ID c ID p
 
-  Get OIDC IDP.
+Get OIDC IDP.
 */
 func (a *Client) GetOIDCIDP(params *GetOIDCIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOIDCIDPOK, error) {
 	// TODO: Validate the params before sending
@@ -1282,9 +1282,9 @@ func (a *Client) GetOIDCIDP(params *GetOIDCIDPParams, authInfo runtime.ClientAut
 }
 
 /*
-  GetOktaIDP gets okta ID p
+GetOktaIDP gets okta ID p
 
-  Get Okta IDP.
+Get Okta IDP.
 */
 func (a *Client) GetOktaIDP(params *GetOktaIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOktaIDPOK, error) {
 	// TODO: Validate the params before sending
@@ -1323,9 +1323,9 @@ func (a *Client) GetOktaIDP(params *GetOktaIDPParams, authInfo runtime.ClientAut
 }
 
 /*
-  GetSAMLIDP gets s a m l ID p
+GetSAMLIDP gets s a m l ID p
 
-  Get SAML IDP.
+Get SAML IDP.
 */
 func (a *Client) GetSAMLIDP(params *GetSAMLIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetSAMLIDPOK, error) {
 	// TODO: Validate the params before sending
@@ -1364,9 +1364,9 @@ func (a *Client) GetSAMLIDP(params *GetSAMLIDPParams, authInfo runtime.ClientAut
 }
 
 /*
-  GetStaticIDP gets static ID p
+GetStaticIDP gets static ID p
 
-  Get Static IDP.
+Get Static IDP.
 */
 func (a *Client) GetStaticIDP(params *GetStaticIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetStaticIDPOK, error) {
 	// TODO: Validate the params before sending
@@ -1405,7 +1405,7 @@ func (a *Client) GetStaticIDP(params *GetStaticIDPParams, authInfo runtime.Clien
 }
 
 /*
-  ListIDPs Returns a list of IDPs connected to a given authorization server (workspace)
+ListIDPs Returns a list of IDPs connected to a given authorization server (workspace)
 */
 func (a *Client) ListIDPs(params *ListIDPsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListIDPsOK, error) {
 	// TODO: Validate the params before sending
@@ -1444,9 +1444,9 @@ func (a *Client) ListIDPs(params *ListIDPsParams, authInfo runtime.ClientAuthInf
 }
 
 /*
-  UpdateAuth0IDP updates auth0 ID p
+UpdateAuth0IDP updates auth0 ID p
 
-  Update Auth0 IDP.
+Update Auth0 IDP.
 */
 func (a *Client) UpdateAuth0IDP(params *UpdateAuth0IDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateAuth0IDPOK, error) {
 	// TODO: Validate the params before sending
@@ -1485,9 +1485,9 @@ func (a *Client) UpdateAuth0IDP(params *UpdateAuth0IDPParams, authInfo runtime.C
 }
 
 /*
-  UpdateAzureB2CIDP updates azure b2 c ID p
+UpdateAzureB2CIDP updates azure b2 c ID p
 
-  Update AzureB2C IDP.
+Update AzureB2C IDP.
 */
 func (a *Client) UpdateAzureB2CIDP(params *UpdateAzureB2CIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateAzureB2CIDPOK, error) {
 	// TODO: Validate the params before sending
@@ -1526,9 +1526,9 @@ func (a *Client) UpdateAzureB2CIDP(params *UpdateAzureB2CIDPParams, authInfo run
 }
 
 /*
-  UpdateAzureIDP updates azure ID p
+UpdateAzureIDP updates azure ID p
 
-  Update Azure IDP.
+Update Azure IDP.
 */
 func (a *Client) UpdateAzureIDP(params *UpdateAzureIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateAzureIDPOK, error) {
 	// TODO: Validate the params before sending
@@ -1567,9 +1567,9 @@ func (a *Client) UpdateAzureIDP(params *UpdateAzureIDPParams, authInfo runtime.C
 }
 
 /*
-  UpdateCognitoIDP updates cognito ID p
+UpdateCognitoIDP updates cognito ID p
 
-  Update Cognito IDP.
+Update Cognito IDP.
 */
 func (a *Client) UpdateCognitoIDP(params *UpdateCognitoIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateCognitoIDPOK, error) {
 	// TODO: Validate the params before sending
@@ -1608,9 +1608,9 @@ func (a *Client) UpdateCognitoIDP(params *UpdateCognitoIDPParams, authInfo runti
 }
 
 /*
-  UpdateCustomIDP updates custom ID p
+UpdateCustomIDP updates custom ID p
 
-  Update Custom IDP.
+Update Custom IDP.
 */
 func (a *Client) UpdateCustomIDP(params *UpdateCustomIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateCustomIDPOK, error) {
 	// TODO: Validate the params before sending
@@ -1649,9 +1649,9 @@ func (a *Client) UpdateCustomIDP(params *UpdateCustomIDPParams, authInfo runtime
 }
 
 /*
-  UpdateExternalIDP updates external ID p
+UpdateExternalIDP updates external ID p
 
-  Update External IDP.
+Update External IDP.
 */
 func (a *Client) UpdateExternalIDP(params *UpdateExternalIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateExternalIDPOK, error) {
 	// TODO: Validate the params before sending
@@ -1690,9 +1690,9 @@ func (a *Client) UpdateExternalIDP(params *UpdateExternalIDPParams, authInfo run
 }
 
 /*
-  UpdateGithubEmbeddedIDP updates github embedded ID p
+UpdateGithubEmbeddedIDP updates github embedded ID p
 
-  Update GithubEmbedded IDP.
+Update GithubEmbedded IDP.
 */
 func (a *Client) UpdateGithubEmbeddedIDP(params *UpdateGithubEmbeddedIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateGithubEmbeddedIDPOK, error) {
 	// TODO: Validate the params before sending
@@ -1731,9 +1731,9 @@ func (a *Client) UpdateGithubEmbeddedIDP(params *UpdateGithubEmbeddedIDPParams, 
 }
 
 /*
-  UpdateGithubIDP updates github ID p
+UpdateGithubIDP updates github ID p
 
-  Update Github IDP.
+Update Github IDP.
 */
 func (a *Client) UpdateGithubIDP(params *UpdateGithubIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateGithubIDPOK, error) {
 	// TODO: Validate the params before sending
@@ -1772,9 +1772,9 @@ func (a *Client) UpdateGithubIDP(params *UpdateGithubIDPParams, authInfo runtime
 }
 
 /*
-  UpdateGoogleEmbeddedIDP updates google embedded ID p
+UpdateGoogleEmbeddedIDP updates google embedded ID p
 
-  Update GoogleEmbedded IDP.
+Update GoogleEmbedded IDP.
 */
 func (a *Client) UpdateGoogleEmbeddedIDP(params *UpdateGoogleEmbeddedIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateGoogleEmbeddedIDPOK, error) {
 	// TODO: Validate the params before sending
@@ -1813,9 +1813,9 @@ func (a *Client) UpdateGoogleEmbeddedIDP(params *UpdateGoogleEmbeddedIDPParams, 
 }
 
 /*
-  UpdateGoogleIDP updates google ID p
+UpdateGoogleIDP updates google ID p
 
-  Update Google IDP.
+Update Google IDP.
 */
 func (a *Client) UpdateGoogleIDP(params *UpdateGoogleIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateGoogleIDPOK, error) {
 	// TODO: Validate the params before sending
@@ -1854,9 +1854,9 @@ func (a *Client) UpdateGoogleIDP(params *UpdateGoogleIDPParams, authInfo runtime
 }
 
 /*
-  UpdateIdentityPoolIDP updates identity pool ID p
+UpdateIdentityPoolIDP updates identity pool ID p
 
-  Update IdentityPool IDP.
+Update IdentityPool IDP.
 */
 func (a *Client) UpdateIdentityPoolIDP(params *UpdateIdentityPoolIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateIdentityPoolIDPOK, error) {
 	// TODO: Validate the params before sending
@@ -1895,9 +1895,9 @@ func (a *Client) UpdateIdentityPoolIDP(params *UpdateIdentityPoolIDPParams, auth
 }
 
 /*
-  UpdateIntelliTrustIDP updates intelli trust ID p
+UpdateIntelliTrustIDP updates intelli trust ID p
 
-  Update IntelliTrust IDP.
+Update IntelliTrust IDP.
 */
 func (a *Client) UpdateIntelliTrustIDP(params *UpdateIntelliTrustIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateIntelliTrustIDPOK, error) {
 	// TODO: Validate the params before sending
@@ -1936,9 +1936,9 @@ func (a *Client) UpdateIntelliTrustIDP(params *UpdateIntelliTrustIDPParams, auth
 }
 
 /*
-  UpdateOIDCIDP updates o ID c ID p
+UpdateOIDCIDP updates o ID c ID p
 
-  Update OIDC IDP.
+Update OIDC IDP.
 */
 func (a *Client) UpdateOIDCIDP(params *UpdateOIDCIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateOIDCIDPOK, error) {
 	// TODO: Validate the params before sending
@@ -1977,9 +1977,9 @@ func (a *Client) UpdateOIDCIDP(params *UpdateOIDCIDPParams, authInfo runtime.Cli
 }
 
 /*
-  UpdateOktaIDP updates okta ID p
+UpdateOktaIDP updates okta ID p
 
-  Update Okta IDP.
+Update Okta IDP.
 */
 func (a *Client) UpdateOktaIDP(params *UpdateOktaIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateOktaIDPOK, error) {
 	// TODO: Validate the params before sending
@@ -2018,9 +2018,9 @@ func (a *Client) UpdateOktaIDP(params *UpdateOktaIDPParams, authInfo runtime.Cli
 }
 
 /*
-  UpdateSAMLIDP updates s a m l ID p
+UpdateSAMLIDP updates s a m l ID p
 
-  Update SAML IDP.
+Update SAML IDP.
 */
 func (a *Client) UpdateSAMLIDP(params *UpdateSAMLIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateSAMLIDPOK, error) {
 	// TODO: Validate the params before sending
@@ -2059,9 +2059,9 @@ func (a *Client) UpdateSAMLIDP(params *UpdateSAMLIDPParams, authInfo runtime.Cli
 }
 
 /*
-  UpdateStaticIDP updates static ID p
+UpdateStaticIDP updates static ID p
 
-  Update Static IDP.
+Update Static IDP.
 */
 func (a *Client) UpdateStaticIDP(params *UpdateStaticIDPParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateStaticIDPOK, error) {
 	// TODO: Validate the params before sending

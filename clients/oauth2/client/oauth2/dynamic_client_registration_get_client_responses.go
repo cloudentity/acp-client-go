@@ -63,7 +63,8 @@ func NewDynamicClientRegistrationGetClientOK() *DynamicClientRegistrationGetClie
 	return &DynamicClientRegistrationGetClientOK{}
 }
 
-/* DynamicClientRegistrationGetClientOK describes a response with status code 200, with default header values.
+/*
+DynamicClientRegistrationGetClientOK describes a response with status code 200, with default header values.
 
 Dynamic client registration response
 */
@@ -71,9 +72,39 @@ type DynamicClientRegistrationGetClientOK struct {
 	Payload *models.DynamicClientRegistrationResponse
 }
 
+// IsSuccess returns true when this dynamic client registration get client o k response has a 2xx status code
+func (o *DynamicClientRegistrationGetClientOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this dynamic client registration get client o k response has a 3xx status code
+func (o *DynamicClientRegistrationGetClientOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this dynamic client registration get client o k response has a 4xx status code
+func (o *DynamicClientRegistrationGetClientOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this dynamic client registration get client o k response has a 5xx status code
+func (o *DynamicClientRegistrationGetClientOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this dynamic client registration get client o k response a status code equal to that given
+func (o *DynamicClientRegistrationGetClientOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *DynamicClientRegistrationGetClientOK) Error() string {
 	return fmt.Sprintf("[GET /oauth2/register/{cid}][%d] dynamicClientRegistrationGetClientOK  %+v", 200, o.Payload)
 }
+
+func (o *DynamicClientRegistrationGetClientOK) String() string {
+	return fmt.Sprintf("[GET /oauth2/register/{cid}][%d] dynamicClientRegistrationGetClientOK  %+v", 200, o.Payload)
+}
+
 func (o *DynamicClientRegistrationGetClientOK) GetPayload() *models.DynamicClientRegistrationResponse {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewDynamicClientRegistrationGetClientBadRequest() *DynamicClientRegistratio
 	return &DynamicClientRegistrationGetClientBadRequest{}
 }
 
-/* DynamicClientRegistrationGetClientBadRequest describes a response with status code 400, with default header values.
+/*
+DynamicClientRegistrationGetClientBadRequest describes a response with status code 400, with default header values.
 
 RFC6749 error
 */
@@ -103,9 +135,39 @@ type DynamicClientRegistrationGetClientBadRequest struct {
 	Payload *models.RFC6749Error
 }
 
+// IsSuccess returns true when this dynamic client registration get client bad request response has a 2xx status code
+func (o *DynamicClientRegistrationGetClientBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this dynamic client registration get client bad request response has a 3xx status code
+func (o *DynamicClientRegistrationGetClientBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this dynamic client registration get client bad request response has a 4xx status code
+func (o *DynamicClientRegistrationGetClientBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this dynamic client registration get client bad request response has a 5xx status code
+func (o *DynamicClientRegistrationGetClientBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this dynamic client registration get client bad request response a status code equal to that given
+func (o *DynamicClientRegistrationGetClientBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *DynamicClientRegistrationGetClientBadRequest) Error() string {
 	return fmt.Sprintf("[GET /oauth2/register/{cid}][%d] dynamicClientRegistrationGetClientBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *DynamicClientRegistrationGetClientBadRequest) String() string {
+	return fmt.Sprintf("[GET /oauth2/register/{cid}][%d] dynamicClientRegistrationGetClientBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *DynamicClientRegistrationGetClientBadRequest) GetPayload() *models.RFC6749Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewDynamicClientRegistrationGetClientUnauthorized() *DynamicClientRegistrat
 	return &DynamicClientRegistrationGetClientUnauthorized{}
 }
 
-/* DynamicClientRegistrationGetClientUnauthorized describes a response with status code 401, with default header values.
+/*
+DynamicClientRegistrationGetClientUnauthorized describes a response with status code 401, with default header values.
 
 RFC6749 error
 */
@@ -135,9 +198,39 @@ type DynamicClientRegistrationGetClientUnauthorized struct {
 	Payload *models.RFC6749Error
 }
 
+// IsSuccess returns true when this dynamic client registration get client unauthorized response has a 2xx status code
+func (o *DynamicClientRegistrationGetClientUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this dynamic client registration get client unauthorized response has a 3xx status code
+func (o *DynamicClientRegistrationGetClientUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this dynamic client registration get client unauthorized response has a 4xx status code
+func (o *DynamicClientRegistrationGetClientUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this dynamic client registration get client unauthorized response has a 5xx status code
+func (o *DynamicClientRegistrationGetClientUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this dynamic client registration get client unauthorized response a status code equal to that given
+func (o *DynamicClientRegistrationGetClientUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *DynamicClientRegistrationGetClientUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /oauth2/register/{cid}][%d] dynamicClientRegistrationGetClientUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *DynamicClientRegistrationGetClientUnauthorized) String() string {
+	return fmt.Sprintf("[GET /oauth2/register/{cid}][%d] dynamicClientRegistrationGetClientUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *DynamicClientRegistrationGetClientUnauthorized) GetPayload() *models.RFC6749Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewDynamicClientRegistrationGetClientForbidden() *DynamicClientRegistration
 	return &DynamicClientRegistrationGetClientForbidden{}
 }
 
-/* DynamicClientRegistrationGetClientForbidden describes a response with status code 403, with default header values.
+/*
+DynamicClientRegistrationGetClientForbidden describes a response with status code 403, with default header values.
 
 RFC6749 error
 */
@@ -167,9 +261,39 @@ type DynamicClientRegistrationGetClientForbidden struct {
 	Payload *models.RFC6749Error
 }
 
+// IsSuccess returns true when this dynamic client registration get client forbidden response has a 2xx status code
+func (o *DynamicClientRegistrationGetClientForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this dynamic client registration get client forbidden response has a 3xx status code
+func (o *DynamicClientRegistrationGetClientForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this dynamic client registration get client forbidden response has a 4xx status code
+func (o *DynamicClientRegistrationGetClientForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this dynamic client registration get client forbidden response has a 5xx status code
+func (o *DynamicClientRegistrationGetClientForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this dynamic client registration get client forbidden response a status code equal to that given
+func (o *DynamicClientRegistrationGetClientForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *DynamicClientRegistrationGetClientForbidden) Error() string {
 	return fmt.Sprintf("[GET /oauth2/register/{cid}][%d] dynamicClientRegistrationGetClientForbidden  %+v", 403, o.Payload)
 }
+
+func (o *DynamicClientRegistrationGetClientForbidden) String() string {
+	return fmt.Sprintf("[GET /oauth2/register/{cid}][%d] dynamicClientRegistrationGetClientForbidden  %+v", 403, o.Payload)
+}
+
 func (o *DynamicClientRegistrationGetClientForbidden) GetPayload() *models.RFC6749Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewDynamicClientRegistrationGetClientNotFound() *DynamicClientRegistrationG
 	return &DynamicClientRegistrationGetClientNotFound{}
 }
 
-/* DynamicClientRegistrationGetClientNotFound describes a response with status code 404, with default header values.
+/*
+DynamicClientRegistrationGetClientNotFound describes a response with status code 404, with default header values.
 
 ErrorResponse
 */
@@ -199,9 +324,39 @@ type DynamicClientRegistrationGetClientNotFound struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this dynamic client registration get client not found response has a 2xx status code
+func (o *DynamicClientRegistrationGetClientNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this dynamic client registration get client not found response has a 3xx status code
+func (o *DynamicClientRegistrationGetClientNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this dynamic client registration get client not found response has a 4xx status code
+func (o *DynamicClientRegistrationGetClientNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this dynamic client registration get client not found response has a 5xx status code
+func (o *DynamicClientRegistrationGetClientNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this dynamic client registration get client not found response a status code equal to that given
+func (o *DynamicClientRegistrationGetClientNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *DynamicClientRegistrationGetClientNotFound) Error() string {
 	return fmt.Sprintf("[GET /oauth2/register/{cid}][%d] dynamicClientRegistrationGetClientNotFound  %+v", 404, o.Payload)
 }
+
+func (o *DynamicClientRegistrationGetClientNotFound) String() string {
+	return fmt.Sprintf("[GET /oauth2/register/{cid}][%d] dynamicClientRegistrationGetClientNotFound  %+v", 404, o.Payload)
+}
+
 func (o *DynamicClientRegistrationGetClientNotFound) GetPayload() *models.GenericError {
 	return o.Payload
 }

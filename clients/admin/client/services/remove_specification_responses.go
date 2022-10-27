@@ -81,7 +81,8 @@ func NewRemoveSpecificationOK() *RemoveSpecificationOK {
 	return &RemoveSpecificationOK{}
 }
 
-/* RemoveSpecificationOK describes a response with status code 200, with default header values.
+/*
+RemoveSpecificationOK describes a response with status code 200, with default header values.
 
 Remove service configuration result
 */
@@ -89,9 +90,39 @@ type RemoveSpecificationOK struct {
 	Payload *models.RemoveServiceConfigurationResult
 }
 
+// IsSuccess returns true when this remove specification o k response has a 2xx status code
+func (o *RemoveSpecificationOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this remove specification o k response has a 3xx status code
+func (o *RemoveSpecificationOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this remove specification o k response has a 4xx status code
+func (o *RemoveSpecificationOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this remove specification o k response has a 5xx status code
+func (o *RemoveSpecificationOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this remove specification o k response a status code equal to that given
+func (o *RemoveSpecificationOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *RemoveSpecificationOK) Error() string {
 	return fmt.Sprintf("[DELETE /services/{sid}/apis][%d] removeSpecificationOK  %+v", 200, o.Payload)
 }
+
+func (o *RemoveSpecificationOK) String() string {
+	return fmt.Sprintf("[DELETE /services/{sid}/apis][%d] removeSpecificationOK  %+v", 200, o.Payload)
+}
+
 func (o *RemoveSpecificationOK) GetPayload() *models.RemoveServiceConfigurationResult {
 	return o.Payload
 }
@@ -113,7 +144,8 @@ func NewRemoveSpecificationBadRequest() *RemoveSpecificationBadRequest {
 	return &RemoveSpecificationBadRequest{}
 }
 
-/* RemoveSpecificationBadRequest describes a response with status code 400, with default header values.
+/*
+RemoveSpecificationBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -121,9 +153,39 @@ type RemoveSpecificationBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this remove specification bad request response has a 2xx status code
+func (o *RemoveSpecificationBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this remove specification bad request response has a 3xx status code
+func (o *RemoveSpecificationBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this remove specification bad request response has a 4xx status code
+func (o *RemoveSpecificationBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this remove specification bad request response has a 5xx status code
+func (o *RemoveSpecificationBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this remove specification bad request response a status code equal to that given
+func (o *RemoveSpecificationBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *RemoveSpecificationBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /services/{sid}/apis][%d] removeSpecificationBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *RemoveSpecificationBadRequest) String() string {
+	return fmt.Sprintf("[DELETE /services/{sid}/apis][%d] removeSpecificationBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *RemoveSpecificationBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -145,7 +207,8 @@ func NewRemoveSpecificationUnauthorized() *RemoveSpecificationUnauthorized {
 	return &RemoveSpecificationUnauthorized{}
 }
 
-/* RemoveSpecificationUnauthorized describes a response with status code 401, with default header values.
+/*
+RemoveSpecificationUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -153,9 +216,39 @@ type RemoveSpecificationUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this remove specification unauthorized response has a 2xx status code
+func (o *RemoveSpecificationUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this remove specification unauthorized response has a 3xx status code
+func (o *RemoveSpecificationUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this remove specification unauthorized response has a 4xx status code
+func (o *RemoveSpecificationUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this remove specification unauthorized response has a 5xx status code
+func (o *RemoveSpecificationUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this remove specification unauthorized response a status code equal to that given
+func (o *RemoveSpecificationUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *RemoveSpecificationUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /services/{sid}/apis][%d] removeSpecificationUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *RemoveSpecificationUnauthorized) String() string {
+	return fmt.Sprintf("[DELETE /services/{sid}/apis][%d] removeSpecificationUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *RemoveSpecificationUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -177,7 +270,8 @@ func NewRemoveSpecificationForbidden() *RemoveSpecificationForbidden {
 	return &RemoveSpecificationForbidden{}
 }
 
-/* RemoveSpecificationForbidden describes a response with status code 403, with default header values.
+/*
+RemoveSpecificationForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -185,9 +279,39 @@ type RemoveSpecificationForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this remove specification forbidden response has a 2xx status code
+func (o *RemoveSpecificationForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this remove specification forbidden response has a 3xx status code
+func (o *RemoveSpecificationForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this remove specification forbidden response has a 4xx status code
+func (o *RemoveSpecificationForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this remove specification forbidden response has a 5xx status code
+func (o *RemoveSpecificationForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this remove specification forbidden response a status code equal to that given
+func (o *RemoveSpecificationForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *RemoveSpecificationForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /services/{sid}/apis][%d] removeSpecificationForbidden  %+v", 403, o.Payload)
 }
+
+func (o *RemoveSpecificationForbidden) String() string {
+	return fmt.Sprintf("[DELETE /services/{sid}/apis][%d] removeSpecificationForbidden  %+v", 403, o.Payload)
+}
+
 func (o *RemoveSpecificationForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -209,7 +333,8 @@ func NewRemoveSpecificationNotFound() *RemoveSpecificationNotFound {
 	return &RemoveSpecificationNotFound{}
 }
 
-/* RemoveSpecificationNotFound describes a response with status code 404, with default header values.
+/*
+RemoveSpecificationNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -217,9 +342,39 @@ type RemoveSpecificationNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this remove specification not found response has a 2xx status code
+func (o *RemoveSpecificationNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this remove specification not found response has a 3xx status code
+func (o *RemoveSpecificationNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this remove specification not found response has a 4xx status code
+func (o *RemoveSpecificationNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this remove specification not found response has a 5xx status code
+func (o *RemoveSpecificationNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this remove specification not found response a status code equal to that given
+func (o *RemoveSpecificationNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *RemoveSpecificationNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /services/{sid}/apis][%d] removeSpecificationNotFound  %+v", 404, o.Payload)
 }
+
+func (o *RemoveSpecificationNotFound) String() string {
+	return fmt.Sprintf("[DELETE /services/{sid}/apis][%d] removeSpecificationNotFound  %+v", 404, o.Payload)
+}
+
 func (o *RemoveSpecificationNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -241,7 +396,8 @@ func NewRemoveSpecificationConflict() *RemoveSpecificationConflict {
 	return &RemoveSpecificationConflict{}
 }
 
-/* RemoveSpecificationConflict describes a response with status code 409, with default header values.
+/*
+RemoveSpecificationConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -249,9 +405,39 @@ type RemoveSpecificationConflict struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this remove specification conflict response has a 2xx status code
+func (o *RemoveSpecificationConflict) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this remove specification conflict response has a 3xx status code
+func (o *RemoveSpecificationConflict) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this remove specification conflict response has a 4xx status code
+func (o *RemoveSpecificationConflict) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this remove specification conflict response has a 5xx status code
+func (o *RemoveSpecificationConflict) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this remove specification conflict response a status code equal to that given
+func (o *RemoveSpecificationConflict) IsCode(code int) bool {
+	return code == 409
+}
+
 func (o *RemoveSpecificationConflict) Error() string {
 	return fmt.Sprintf("[DELETE /services/{sid}/apis][%d] removeSpecificationConflict  %+v", 409, o.Payload)
 }
+
+func (o *RemoveSpecificationConflict) String() string {
+	return fmt.Sprintf("[DELETE /services/{sid}/apis][%d] removeSpecificationConflict  %+v", 409, o.Payload)
+}
+
 func (o *RemoveSpecificationConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -273,7 +459,8 @@ func NewRemoveSpecificationUnprocessableEntity() *RemoveSpecificationUnprocessab
 	return &RemoveSpecificationUnprocessableEntity{}
 }
 
-/* RemoveSpecificationUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+RemoveSpecificationUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -281,9 +468,39 @@ type RemoveSpecificationUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this remove specification unprocessable entity response has a 2xx status code
+func (o *RemoveSpecificationUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this remove specification unprocessable entity response has a 3xx status code
+func (o *RemoveSpecificationUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this remove specification unprocessable entity response has a 4xx status code
+func (o *RemoveSpecificationUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this remove specification unprocessable entity response has a 5xx status code
+func (o *RemoveSpecificationUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this remove specification unprocessable entity response a status code equal to that given
+func (o *RemoveSpecificationUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *RemoveSpecificationUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[DELETE /services/{sid}/apis][%d] removeSpecificationUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *RemoveSpecificationUnprocessableEntity) String() string {
+	return fmt.Sprintf("[DELETE /services/{sid}/apis][%d] removeSpecificationUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *RemoveSpecificationUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -305,7 +522,8 @@ func NewRemoveSpecificationTooManyRequests() *RemoveSpecificationTooManyRequests
 	return &RemoveSpecificationTooManyRequests{}
 }
 
-/* RemoveSpecificationTooManyRequests describes a response with status code 429, with default header values.
+/*
+RemoveSpecificationTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -313,9 +531,39 @@ type RemoveSpecificationTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this remove specification too many requests response has a 2xx status code
+func (o *RemoveSpecificationTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this remove specification too many requests response has a 3xx status code
+func (o *RemoveSpecificationTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this remove specification too many requests response has a 4xx status code
+func (o *RemoveSpecificationTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this remove specification too many requests response has a 5xx status code
+func (o *RemoveSpecificationTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this remove specification too many requests response a status code equal to that given
+func (o *RemoveSpecificationTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *RemoveSpecificationTooManyRequests) Error() string {
 	return fmt.Sprintf("[DELETE /services/{sid}/apis][%d] removeSpecificationTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *RemoveSpecificationTooManyRequests) String() string {
+	return fmt.Sprintf("[DELETE /services/{sid}/apis][%d] removeSpecificationTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *RemoveSpecificationTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

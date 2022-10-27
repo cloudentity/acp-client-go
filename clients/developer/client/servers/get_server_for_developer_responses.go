@@ -63,7 +63,8 @@ func NewGetServerForDeveloperOK() *GetServerForDeveloperOK {
 	return &GetServerForDeveloperOK{}
 }
 
-/* GetServerForDeveloperOK describes a response with status code 200, with default header values.
+/*
+GetServerForDeveloperOK describes a response with status code 200, with default header values.
 
 Get developer server with scopes
 */
@@ -71,9 +72,39 @@ type GetServerForDeveloperOK struct {
 	Payload *models.GetServerWithScopesDeveloperResponse
 }
 
+// IsSuccess returns true when this get server for developer o k response has a 2xx status code
+func (o *GetServerForDeveloperOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get server for developer o k response has a 3xx status code
+func (o *GetServerForDeveloperOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get server for developer o k response has a 4xx status code
+func (o *GetServerForDeveloperOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get server for developer o k response has a 5xx status code
+func (o *GetServerForDeveloperOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get server for developer o k response a status code equal to that given
+func (o *GetServerForDeveloperOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetServerForDeveloperOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{rid}][%d] getServerForDeveloperOK  %+v", 200, o.Payload)
 }
+
+func (o *GetServerForDeveloperOK) String() string {
+	return fmt.Sprintf("[GET /servers/{rid}][%d] getServerForDeveloperOK  %+v", 200, o.Payload)
+}
+
 func (o *GetServerForDeveloperOK) GetPayload() *models.GetServerWithScopesDeveloperResponse {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewGetServerForDeveloperUnauthorized() *GetServerForDeveloperUnauthorized {
 	return &GetServerForDeveloperUnauthorized{}
 }
 
-/* GetServerForDeveloperUnauthorized describes a response with status code 401, with default header values.
+/*
+GetServerForDeveloperUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type GetServerForDeveloperUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get server for developer unauthorized response has a 2xx status code
+func (o *GetServerForDeveloperUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get server for developer unauthorized response has a 3xx status code
+func (o *GetServerForDeveloperUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get server for developer unauthorized response has a 4xx status code
+func (o *GetServerForDeveloperUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get server for developer unauthorized response has a 5xx status code
+func (o *GetServerForDeveloperUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get server for developer unauthorized response a status code equal to that given
+func (o *GetServerForDeveloperUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *GetServerForDeveloperUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /servers/{rid}][%d] getServerForDeveloperUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *GetServerForDeveloperUnauthorized) String() string {
+	return fmt.Sprintf("[GET /servers/{rid}][%d] getServerForDeveloperUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *GetServerForDeveloperUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewGetServerForDeveloperForbidden() *GetServerForDeveloperForbidden {
 	return &GetServerForDeveloperForbidden{}
 }
 
-/* GetServerForDeveloperForbidden describes a response with status code 403, with default header values.
+/*
+GetServerForDeveloperForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type GetServerForDeveloperForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get server for developer forbidden response has a 2xx status code
+func (o *GetServerForDeveloperForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get server for developer forbidden response has a 3xx status code
+func (o *GetServerForDeveloperForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get server for developer forbidden response has a 4xx status code
+func (o *GetServerForDeveloperForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get server for developer forbidden response has a 5xx status code
+func (o *GetServerForDeveloperForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get server for developer forbidden response a status code equal to that given
+func (o *GetServerForDeveloperForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetServerForDeveloperForbidden) Error() string {
 	return fmt.Sprintf("[GET /servers/{rid}][%d] getServerForDeveloperForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetServerForDeveloperForbidden) String() string {
+	return fmt.Sprintf("[GET /servers/{rid}][%d] getServerForDeveloperForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetServerForDeveloperForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewGetServerForDeveloperNotFound() *GetServerForDeveloperNotFound {
 	return &GetServerForDeveloperNotFound{}
 }
 
-/* GetServerForDeveloperNotFound describes a response with status code 404, with default header values.
+/*
+GetServerForDeveloperNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type GetServerForDeveloperNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get server for developer not found response has a 2xx status code
+func (o *GetServerForDeveloperNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get server for developer not found response has a 3xx status code
+func (o *GetServerForDeveloperNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get server for developer not found response has a 4xx status code
+func (o *GetServerForDeveloperNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get server for developer not found response has a 5xx status code
+func (o *GetServerForDeveloperNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get server for developer not found response a status code equal to that given
+func (o *GetServerForDeveloperNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *GetServerForDeveloperNotFound) Error() string {
 	return fmt.Sprintf("[GET /servers/{rid}][%d] getServerForDeveloperNotFound  %+v", 404, o.Payload)
 }
+
+func (o *GetServerForDeveloperNotFound) String() string {
+	return fmt.Sprintf("[GET /servers/{rid}][%d] getServerForDeveloperNotFound  %+v", 404, o.Payload)
+}
+
 func (o *GetServerForDeveloperNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewGetServerForDeveloperTooManyRequests() *GetServerForDeveloperTooManyRequ
 	return &GetServerForDeveloperTooManyRequests{}
 }
 
-/* GetServerForDeveloperTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetServerForDeveloperTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type GetServerForDeveloperTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get server for developer too many requests response has a 2xx status code
+func (o *GetServerForDeveloperTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get server for developer too many requests response has a 3xx status code
+func (o *GetServerForDeveloperTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get server for developer too many requests response has a 4xx status code
+func (o *GetServerForDeveloperTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get server for developer too many requests response has a 5xx status code
+func (o *GetServerForDeveloperTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get server for developer too many requests response a status code equal to that given
+func (o *GetServerForDeveloperTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *GetServerForDeveloperTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /servers/{rid}][%d] getServerForDeveloperTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *GetServerForDeveloperTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /servers/{rid}][%d] getServerForDeveloperTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *GetServerForDeveloperTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

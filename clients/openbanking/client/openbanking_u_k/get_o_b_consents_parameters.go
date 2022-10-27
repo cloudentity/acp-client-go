@@ -53,10 +53,12 @@ func NewGetOBConsentsParamsWithHTTPClient(client *http.Client) *GetOBConsentsPar
 	}
 }
 
-/* GetOBConsentsParams contains all the parameters to send to the API endpoint
-   for the get o b consents operation.
+/*
+GetOBConsentsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get o b consents operation.
+
+	Typically these are written to a http.Request.
 */
 type GetOBConsentsParams struct {
 

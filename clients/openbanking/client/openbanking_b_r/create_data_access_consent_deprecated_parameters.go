@@ -54,10 +54,12 @@ func NewCreateDataAccessConsentDeprecatedParamsWithHTTPClient(client *http.Clien
 	}
 }
 
-/* CreateDataAccessConsentDeprecatedParams contains all the parameters to send to the API endpoint
-   for the create data access consent deprecated operation.
+/*
+CreateDataAccessConsentDeprecatedParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the create data access consent deprecated operation.
+
+	Typically these are written to a http.Request.
 */
 type CreateDataAccessConsentDeprecatedParams struct {
 
@@ -65,7 +67,7 @@ type CreateDataAccessConsentDeprecatedParams struct {
 
 	   Request
 	*/
-	Request *models.BrazilCustomerDataAccessConsentRequest
+	Request *models.BrazilCustomerDataAccessConsentRequestV1
 
 	/* XCustomerUserAgent.
 
@@ -169,13 +171,13 @@ func (o *CreateDataAccessConsentDeprecatedParams) SetHTTPClient(client *http.Cli
 }
 
 // WithRequest adds the request to the create data access consent deprecated params
-func (o *CreateDataAccessConsentDeprecatedParams) WithRequest(request *models.BrazilCustomerDataAccessConsentRequest) *CreateDataAccessConsentDeprecatedParams {
+func (o *CreateDataAccessConsentDeprecatedParams) WithRequest(request *models.BrazilCustomerDataAccessConsentRequestV1) *CreateDataAccessConsentDeprecatedParams {
 	o.SetRequest(request)
 	return o
 }
 
 // SetRequest adds the request to the create data access consent deprecated params
-func (o *CreateDataAccessConsentDeprecatedParams) SetRequest(request *models.BrazilCustomerDataAccessConsentRequest) {
+func (o *CreateDataAccessConsentDeprecatedParams) SetRequest(request *models.BrazilCustomerDataAccessConsentRequestV1) {
 	o.Request = request
 }
 

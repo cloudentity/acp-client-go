@@ -75,14 +75,44 @@ func NewPatchConfigurationNoContent() *PatchConfigurationNoContent {
 	return &PatchConfigurationNoContent{}
 }
 
-/* PatchConfigurationNoContent describes a response with status code 204, with default header values.
+/*
+PatchConfigurationNoContent describes a response with status code 204, with default header values.
 
-patch applied
+	patch applied
 */
 type PatchConfigurationNoContent struct {
 }
 
+// IsSuccess returns true when this patch configuration no content response has a 2xx status code
+func (o *PatchConfigurationNoContent) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this patch configuration no content response has a 3xx status code
+func (o *PatchConfigurationNoContent) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch configuration no content response has a 4xx status code
+func (o *PatchConfigurationNoContent) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this patch configuration no content response has a 5xx status code
+func (o *PatchConfigurationNoContent) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch configuration no content response a status code equal to that given
+func (o *PatchConfigurationNoContent) IsCode(code int) bool {
+	return code == 204
+}
+
 func (o *PatchConfigurationNoContent) Error() string {
+	return fmt.Sprintf("[PATCH /api/system/configuration][%d] patchConfigurationNoContent ", 204)
+}
+
+func (o *PatchConfigurationNoContent) String() string {
 	return fmt.Sprintf("[PATCH /api/system/configuration][%d] patchConfigurationNoContent ", 204)
 }
 
@@ -96,7 +126,8 @@ func NewPatchConfigurationBadRequest() *PatchConfigurationBadRequest {
 	return &PatchConfigurationBadRequest{}
 }
 
-/* PatchConfigurationBadRequest describes a response with status code 400, with default header values.
+/*
+PatchConfigurationBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -104,9 +135,39 @@ type PatchConfigurationBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this patch configuration bad request response has a 2xx status code
+func (o *PatchConfigurationBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this patch configuration bad request response has a 3xx status code
+func (o *PatchConfigurationBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch configuration bad request response has a 4xx status code
+func (o *PatchConfigurationBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this patch configuration bad request response has a 5xx status code
+func (o *PatchConfigurationBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch configuration bad request response a status code equal to that given
+func (o *PatchConfigurationBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *PatchConfigurationBadRequest) Error() string {
 	return fmt.Sprintf("[PATCH /api/system/configuration][%d] patchConfigurationBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *PatchConfigurationBadRequest) String() string {
+	return fmt.Sprintf("[PATCH /api/system/configuration][%d] patchConfigurationBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *PatchConfigurationBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -128,7 +189,8 @@ func NewPatchConfigurationUnauthorized() *PatchConfigurationUnauthorized {
 	return &PatchConfigurationUnauthorized{}
 }
 
-/* PatchConfigurationUnauthorized describes a response with status code 401, with default header values.
+/*
+PatchConfigurationUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -136,9 +198,39 @@ type PatchConfigurationUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this patch configuration unauthorized response has a 2xx status code
+func (o *PatchConfigurationUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this patch configuration unauthorized response has a 3xx status code
+func (o *PatchConfigurationUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch configuration unauthorized response has a 4xx status code
+func (o *PatchConfigurationUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this patch configuration unauthorized response has a 5xx status code
+func (o *PatchConfigurationUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch configuration unauthorized response a status code equal to that given
+func (o *PatchConfigurationUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *PatchConfigurationUnauthorized) Error() string {
 	return fmt.Sprintf("[PATCH /api/system/configuration][%d] patchConfigurationUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *PatchConfigurationUnauthorized) String() string {
+	return fmt.Sprintf("[PATCH /api/system/configuration][%d] patchConfigurationUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *PatchConfigurationUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -160,7 +252,8 @@ func NewPatchConfigurationForbidden() *PatchConfigurationForbidden {
 	return &PatchConfigurationForbidden{}
 }
 
-/* PatchConfigurationForbidden describes a response with status code 403, with default header values.
+/*
+PatchConfigurationForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -168,9 +261,39 @@ type PatchConfigurationForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this patch configuration forbidden response has a 2xx status code
+func (o *PatchConfigurationForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this patch configuration forbidden response has a 3xx status code
+func (o *PatchConfigurationForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch configuration forbidden response has a 4xx status code
+func (o *PatchConfigurationForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this patch configuration forbidden response has a 5xx status code
+func (o *PatchConfigurationForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch configuration forbidden response a status code equal to that given
+func (o *PatchConfigurationForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *PatchConfigurationForbidden) Error() string {
 	return fmt.Sprintf("[PATCH /api/system/configuration][%d] patchConfigurationForbidden  %+v", 403, o.Payload)
 }
+
+func (o *PatchConfigurationForbidden) String() string {
+	return fmt.Sprintf("[PATCH /api/system/configuration][%d] patchConfigurationForbidden  %+v", 403, o.Payload)
+}
+
 func (o *PatchConfigurationForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -192,7 +315,8 @@ func NewPatchConfigurationNotFound() *PatchConfigurationNotFound {
 	return &PatchConfigurationNotFound{}
 }
 
-/* PatchConfigurationNotFound describes a response with status code 404, with default header values.
+/*
+PatchConfigurationNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -200,9 +324,39 @@ type PatchConfigurationNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this patch configuration not found response has a 2xx status code
+func (o *PatchConfigurationNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this patch configuration not found response has a 3xx status code
+func (o *PatchConfigurationNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch configuration not found response has a 4xx status code
+func (o *PatchConfigurationNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this patch configuration not found response has a 5xx status code
+func (o *PatchConfigurationNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch configuration not found response a status code equal to that given
+func (o *PatchConfigurationNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *PatchConfigurationNotFound) Error() string {
 	return fmt.Sprintf("[PATCH /api/system/configuration][%d] patchConfigurationNotFound  %+v", 404, o.Payload)
 }
+
+func (o *PatchConfigurationNotFound) String() string {
+	return fmt.Sprintf("[PATCH /api/system/configuration][%d] patchConfigurationNotFound  %+v", 404, o.Payload)
+}
+
 func (o *PatchConfigurationNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -224,7 +378,8 @@ func NewPatchConfigurationUnprocessableEntity() *PatchConfigurationUnprocessable
 	return &PatchConfigurationUnprocessableEntity{}
 }
 
-/* PatchConfigurationUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+PatchConfigurationUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -232,9 +387,39 @@ type PatchConfigurationUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this patch configuration unprocessable entity response has a 2xx status code
+func (o *PatchConfigurationUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this patch configuration unprocessable entity response has a 3xx status code
+func (o *PatchConfigurationUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch configuration unprocessable entity response has a 4xx status code
+func (o *PatchConfigurationUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this patch configuration unprocessable entity response has a 5xx status code
+func (o *PatchConfigurationUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch configuration unprocessable entity response a status code equal to that given
+func (o *PatchConfigurationUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *PatchConfigurationUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PATCH /api/system/configuration][%d] patchConfigurationUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *PatchConfigurationUnprocessableEntity) String() string {
+	return fmt.Sprintf("[PATCH /api/system/configuration][%d] patchConfigurationUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *PatchConfigurationUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -256,7 +441,8 @@ func NewPatchConfigurationTooManyRequests() *PatchConfigurationTooManyRequests {
 	return &PatchConfigurationTooManyRequests{}
 }
 
-/* PatchConfigurationTooManyRequests describes a response with status code 429, with default header values.
+/*
+PatchConfigurationTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -264,9 +450,39 @@ type PatchConfigurationTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this patch configuration too many requests response has a 2xx status code
+func (o *PatchConfigurationTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this patch configuration too many requests response has a 3xx status code
+func (o *PatchConfigurationTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch configuration too many requests response has a 4xx status code
+func (o *PatchConfigurationTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this patch configuration too many requests response has a 5xx status code
+func (o *PatchConfigurationTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch configuration too many requests response a status code equal to that given
+func (o *PatchConfigurationTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *PatchConfigurationTooManyRequests) Error() string {
 	return fmt.Sprintf("[PATCH /api/system/configuration][%d] patchConfigurationTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *PatchConfigurationTooManyRequests) String() string {
+	return fmt.Sprintf("[PATCH /api/system/configuration][%d] patchConfigurationTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *PatchConfigurationTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

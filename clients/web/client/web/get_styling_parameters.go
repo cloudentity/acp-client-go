@@ -52,10 +52,12 @@ func NewGetStylingParamsWithHTTPClient(client *http.Client) *GetStylingParams {
 	}
 }
 
-/* GetStylingParams contains all the parameters to send to the API endpoint
-   for the get styling operation.
+/*
+GetStylingParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get styling operation.
+
+	Typically these are written to a http.Request.
 */
 type GetStylingParams struct {
 	timeout    time.Duration

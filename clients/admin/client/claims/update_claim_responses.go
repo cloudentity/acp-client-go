@@ -75,7 +75,8 @@ func NewUpdateClaimOK() *UpdateClaimOK {
 	return &UpdateClaimOK{}
 }
 
-/* UpdateClaimOK describes a response with status code 200, with default header values.
+/*
+UpdateClaimOK describes a response with status code 200, with default header values.
 
 Claim
 */
@@ -83,9 +84,39 @@ type UpdateClaimOK struct {
 	Payload *models.Claim
 }
 
+// IsSuccess returns true when this update claim o k response has a 2xx status code
+func (o *UpdateClaimOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this update claim o k response has a 3xx status code
+func (o *UpdateClaimOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update claim o k response has a 4xx status code
+func (o *UpdateClaimOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this update claim o k response has a 5xx status code
+func (o *UpdateClaimOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update claim o k response a status code equal to that given
+func (o *UpdateClaimOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *UpdateClaimOK) Error() string {
 	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimOK  %+v", 200, o.Payload)
 }
+
+func (o *UpdateClaimOK) String() string {
+	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimOK  %+v", 200, o.Payload)
+}
+
 func (o *UpdateClaimOK) GetPayload() *models.Claim {
 	return o.Payload
 }
@@ -107,7 +138,8 @@ func NewUpdateClaimBadRequest() *UpdateClaimBadRequest {
 	return &UpdateClaimBadRequest{}
 }
 
-/* UpdateClaimBadRequest describes a response with status code 400, with default header values.
+/*
+UpdateClaimBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -115,9 +147,39 @@ type UpdateClaimBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update claim bad request response has a 2xx status code
+func (o *UpdateClaimBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update claim bad request response has a 3xx status code
+func (o *UpdateClaimBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update claim bad request response has a 4xx status code
+func (o *UpdateClaimBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update claim bad request response has a 5xx status code
+func (o *UpdateClaimBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update claim bad request response a status code equal to that given
+func (o *UpdateClaimBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *UpdateClaimBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *UpdateClaimBadRequest) String() string {
+	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *UpdateClaimBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -139,7 +201,8 @@ func NewUpdateClaimUnauthorized() *UpdateClaimUnauthorized {
 	return &UpdateClaimUnauthorized{}
 }
 
-/* UpdateClaimUnauthorized describes a response with status code 401, with default header values.
+/*
+UpdateClaimUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,9 +210,39 @@ type UpdateClaimUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update claim unauthorized response has a 2xx status code
+func (o *UpdateClaimUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update claim unauthorized response has a 3xx status code
+func (o *UpdateClaimUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update claim unauthorized response has a 4xx status code
+func (o *UpdateClaimUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update claim unauthorized response has a 5xx status code
+func (o *UpdateClaimUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update claim unauthorized response a status code equal to that given
+func (o *UpdateClaimUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *UpdateClaimUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *UpdateClaimUnauthorized) String() string {
+	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *UpdateClaimUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -171,7 +264,8 @@ func NewUpdateClaimForbidden() *UpdateClaimForbidden {
 	return &UpdateClaimForbidden{}
 }
 
-/* UpdateClaimForbidden describes a response with status code 403, with default header values.
+/*
+UpdateClaimForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -179,9 +273,39 @@ type UpdateClaimForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update claim forbidden response has a 2xx status code
+func (o *UpdateClaimForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update claim forbidden response has a 3xx status code
+func (o *UpdateClaimForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update claim forbidden response has a 4xx status code
+func (o *UpdateClaimForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update claim forbidden response has a 5xx status code
+func (o *UpdateClaimForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update claim forbidden response a status code equal to that given
+func (o *UpdateClaimForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *UpdateClaimForbidden) Error() string {
 	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimForbidden  %+v", 403, o.Payload)
 }
+
+func (o *UpdateClaimForbidden) String() string {
+	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimForbidden  %+v", 403, o.Payload)
+}
+
 func (o *UpdateClaimForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -203,7 +327,8 @@ func NewUpdateClaimNotFound() *UpdateClaimNotFound {
 	return &UpdateClaimNotFound{}
 }
 
-/* UpdateClaimNotFound describes a response with status code 404, with default header values.
+/*
+UpdateClaimNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -211,9 +336,39 @@ type UpdateClaimNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update claim not found response has a 2xx status code
+func (o *UpdateClaimNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update claim not found response has a 3xx status code
+func (o *UpdateClaimNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update claim not found response has a 4xx status code
+func (o *UpdateClaimNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update claim not found response has a 5xx status code
+func (o *UpdateClaimNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update claim not found response a status code equal to that given
+func (o *UpdateClaimNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *UpdateClaimNotFound) Error() string {
 	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimNotFound  %+v", 404, o.Payload)
 }
+
+func (o *UpdateClaimNotFound) String() string {
+	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimNotFound  %+v", 404, o.Payload)
+}
+
 func (o *UpdateClaimNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +390,8 @@ func NewUpdateClaimUnprocessableEntity() *UpdateClaimUnprocessableEntity {
 	return &UpdateClaimUnprocessableEntity{}
 }
 
-/* UpdateClaimUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+UpdateClaimUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -243,9 +399,39 @@ type UpdateClaimUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update claim unprocessable entity response has a 2xx status code
+func (o *UpdateClaimUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update claim unprocessable entity response has a 3xx status code
+func (o *UpdateClaimUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update claim unprocessable entity response has a 4xx status code
+func (o *UpdateClaimUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update claim unprocessable entity response has a 5xx status code
+func (o *UpdateClaimUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update claim unprocessable entity response a status code equal to that given
+func (o *UpdateClaimUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *UpdateClaimUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *UpdateClaimUnprocessableEntity) String() string {
+	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *UpdateClaimUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -267,7 +453,8 @@ func NewUpdateClaimTooManyRequests() *UpdateClaimTooManyRequests {
 	return &UpdateClaimTooManyRequests{}
 }
 
-/* UpdateClaimTooManyRequests describes a response with status code 429, with default header values.
+/*
+UpdateClaimTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -275,9 +462,39 @@ type UpdateClaimTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update claim too many requests response has a 2xx status code
+func (o *UpdateClaimTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update claim too many requests response has a 3xx status code
+func (o *UpdateClaimTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update claim too many requests response has a 4xx status code
+func (o *UpdateClaimTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update claim too many requests response has a 5xx status code
+func (o *UpdateClaimTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update claim too many requests response a status code equal to that given
+func (o *UpdateClaimTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *UpdateClaimTooManyRequests) Error() string {
 	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *UpdateClaimTooManyRequests) String() string {
+	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *UpdateClaimTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

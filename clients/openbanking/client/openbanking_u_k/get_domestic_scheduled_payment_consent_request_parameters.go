@@ -52,10 +52,12 @@ func NewGetDomesticScheduledPaymentConsentRequestParamsWithHTTPClient(client *ht
 	}
 }
 
-/* GetDomesticScheduledPaymentConsentRequestParams contains all the parameters to send to the API endpoint
-   for the get domestic scheduled payment consent request operation.
+/*
+GetDomesticScheduledPaymentConsentRequestParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get domestic scheduled payment consent request operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDomesticScheduledPaymentConsentRequestParams struct {
 

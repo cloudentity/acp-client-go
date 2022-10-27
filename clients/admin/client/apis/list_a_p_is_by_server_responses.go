@@ -57,7 +57,8 @@ func NewListAPIsByServerOK() *ListAPIsByServerOK {
 	return &ListAPIsByServerOK{}
 }
 
-/* ListAPIsByServerOK describes a response with status code 200, with default header values.
+/*
+ListAPIsByServerOK describes a response with status code 200, with default header values.
 
 APIs grouped by service ids
 */
@@ -65,9 +66,39 @@ type ListAPIsByServerOK struct {
 	Payload *models.ServerAPIs
 }
 
+// IsSuccess returns true when this list a p is by server o k response has a 2xx status code
+func (o *ListAPIsByServerOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this list a p is by server o k response has a 3xx status code
+func (o *ListAPIsByServerOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list a p is by server o k response has a 4xx status code
+func (o *ListAPIsByServerOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this list a p is by server o k response has a 5xx status code
+func (o *ListAPIsByServerOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list a p is by server o k response a status code equal to that given
+func (o *ListAPIsByServerOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *ListAPIsByServerOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/apis][%d] listAPIsByServerOK  %+v", 200, o.Payload)
 }
+
+func (o *ListAPIsByServerOK) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/apis][%d] listAPIsByServerOK  %+v", 200, o.Payload)
+}
+
 func (o *ListAPIsByServerOK) GetPayload() *models.ServerAPIs {
 	return o.Payload
 }
@@ -89,7 +120,8 @@ func NewListAPIsByServerUnauthorized() *ListAPIsByServerUnauthorized {
 	return &ListAPIsByServerUnauthorized{}
 }
 
-/* ListAPIsByServerUnauthorized describes a response with status code 401, with default header values.
+/*
+ListAPIsByServerUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -97,9 +129,39 @@ type ListAPIsByServerUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list a p is by server unauthorized response has a 2xx status code
+func (o *ListAPIsByServerUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list a p is by server unauthorized response has a 3xx status code
+func (o *ListAPIsByServerUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list a p is by server unauthorized response has a 4xx status code
+func (o *ListAPIsByServerUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list a p is by server unauthorized response has a 5xx status code
+func (o *ListAPIsByServerUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list a p is by server unauthorized response a status code equal to that given
+func (o *ListAPIsByServerUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *ListAPIsByServerUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/apis][%d] listAPIsByServerUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *ListAPIsByServerUnauthorized) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/apis][%d] listAPIsByServerUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *ListAPIsByServerUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -121,7 +183,8 @@ func NewListAPIsByServerForbidden() *ListAPIsByServerForbidden {
 	return &ListAPIsByServerForbidden{}
 }
 
-/* ListAPIsByServerForbidden describes a response with status code 403, with default header values.
+/*
+ListAPIsByServerForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -129,9 +192,39 @@ type ListAPIsByServerForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list a p is by server forbidden response has a 2xx status code
+func (o *ListAPIsByServerForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list a p is by server forbidden response has a 3xx status code
+func (o *ListAPIsByServerForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list a p is by server forbidden response has a 4xx status code
+func (o *ListAPIsByServerForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list a p is by server forbidden response has a 5xx status code
+func (o *ListAPIsByServerForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list a p is by server forbidden response a status code equal to that given
+func (o *ListAPIsByServerForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *ListAPIsByServerForbidden) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/apis][%d] listAPIsByServerForbidden  %+v", 403, o.Payload)
 }
+
+func (o *ListAPIsByServerForbidden) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/apis][%d] listAPIsByServerForbidden  %+v", 403, o.Payload)
+}
+
 func (o *ListAPIsByServerForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -153,7 +246,8 @@ func NewListAPIsByServerTooManyRequests() *ListAPIsByServerTooManyRequests {
 	return &ListAPIsByServerTooManyRequests{}
 }
 
-/* ListAPIsByServerTooManyRequests describes a response with status code 429, with default header values.
+/*
+ListAPIsByServerTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -161,9 +255,39 @@ type ListAPIsByServerTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list a p is by server too many requests response has a 2xx status code
+func (o *ListAPIsByServerTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list a p is by server too many requests response has a 3xx status code
+func (o *ListAPIsByServerTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list a p is by server too many requests response has a 4xx status code
+func (o *ListAPIsByServerTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list a p is by server too many requests response has a 5xx status code
+func (o *ListAPIsByServerTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list a p is by server too many requests response a status code equal to that given
+func (o *ListAPIsByServerTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *ListAPIsByServerTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/apis][%d] listAPIsByServerTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *ListAPIsByServerTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/apis][%d] listAPIsByServerTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *ListAPIsByServerTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

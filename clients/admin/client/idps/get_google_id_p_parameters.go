@@ -52,10 +52,12 @@ func NewGetGoogleIDPParamsWithHTTPClient(client *http.Client) *GetGoogleIDPParam
 	}
 }
 
-/* GetGoogleIDPParams contains all the parameters to send to the API endpoint
-   for the get google ID p operation.
+/*
+GetGoogleIDPParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get google ID p operation.
+
+	Typically these are written to a http.Request.
 */
 type GetGoogleIDPParams struct {
 

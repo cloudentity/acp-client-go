@@ -63,7 +63,8 @@ func NewCreateScriptCreated() *CreateScriptCreated {
 	return &CreateScriptCreated{}
 }
 
-/* CreateScriptCreated describes a response with status code 201, with default header values.
+/*
+CreateScriptCreated describes a response with status code 201, with default header values.
 
 Script
 */
@@ -71,9 +72,39 @@ type CreateScriptCreated struct {
 	Payload *models.Script
 }
 
+// IsSuccess returns true when this create script created response has a 2xx status code
+func (o *CreateScriptCreated) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this create script created response has a 3xx status code
+func (o *CreateScriptCreated) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create script created response has a 4xx status code
+func (o *CreateScriptCreated) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create script created response has a 5xx status code
+func (o *CreateScriptCreated) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create script created response a status code equal to that given
+func (o *CreateScriptCreated) IsCode(code int) bool {
+	return code == 201
+}
+
 func (o *CreateScriptCreated) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/scripts][%d] createScriptCreated  %+v", 201, o.Payload)
 }
+
+func (o *CreateScriptCreated) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/scripts][%d] createScriptCreated  %+v", 201, o.Payload)
+}
+
 func (o *CreateScriptCreated) GetPayload() *models.Script {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewCreateScriptBadRequest() *CreateScriptBadRequest {
 	return &CreateScriptBadRequest{}
 }
 
-/* CreateScriptBadRequest describes a response with status code 400, with default header values.
+/*
+CreateScriptBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type CreateScriptBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create script bad request response has a 2xx status code
+func (o *CreateScriptBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create script bad request response has a 3xx status code
+func (o *CreateScriptBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create script bad request response has a 4xx status code
+func (o *CreateScriptBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create script bad request response has a 5xx status code
+func (o *CreateScriptBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create script bad request response a status code equal to that given
+func (o *CreateScriptBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *CreateScriptBadRequest) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/scripts][%d] createScriptBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *CreateScriptBadRequest) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/scripts][%d] createScriptBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *CreateScriptBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewCreateScriptUnauthorized() *CreateScriptUnauthorized {
 	return &CreateScriptUnauthorized{}
 }
 
-/* CreateScriptUnauthorized describes a response with status code 401, with default header values.
+/*
+CreateScriptUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type CreateScriptUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create script unauthorized response has a 2xx status code
+func (o *CreateScriptUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create script unauthorized response has a 3xx status code
+func (o *CreateScriptUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create script unauthorized response has a 4xx status code
+func (o *CreateScriptUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create script unauthorized response has a 5xx status code
+func (o *CreateScriptUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create script unauthorized response a status code equal to that given
+func (o *CreateScriptUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *CreateScriptUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/scripts][%d] createScriptUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *CreateScriptUnauthorized) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/scripts][%d] createScriptUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *CreateScriptUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewCreateScriptForbidden() *CreateScriptForbidden {
 	return &CreateScriptForbidden{}
 }
 
-/* CreateScriptForbidden describes a response with status code 403, with default header values.
+/*
+CreateScriptForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type CreateScriptForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create script forbidden response has a 2xx status code
+func (o *CreateScriptForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create script forbidden response has a 3xx status code
+func (o *CreateScriptForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create script forbidden response has a 4xx status code
+func (o *CreateScriptForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create script forbidden response has a 5xx status code
+func (o *CreateScriptForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create script forbidden response a status code equal to that given
+func (o *CreateScriptForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *CreateScriptForbidden) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/scripts][%d] createScriptForbidden  %+v", 403, o.Payload)
 }
+
+func (o *CreateScriptForbidden) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/scripts][%d] createScriptForbidden  %+v", 403, o.Payload)
+}
+
 func (o *CreateScriptForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewCreateScriptTooManyRequests() *CreateScriptTooManyRequests {
 	return &CreateScriptTooManyRequests{}
 }
 
-/* CreateScriptTooManyRequests describes a response with status code 429, with default header values.
+/*
+CreateScriptTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type CreateScriptTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create script too many requests response has a 2xx status code
+func (o *CreateScriptTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create script too many requests response has a 3xx status code
+func (o *CreateScriptTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create script too many requests response has a 4xx status code
+func (o *CreateScriptTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create script too many requests response has a 5xx status code
+func (o *CreateScriptTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create script too many requests response a status code equal to that given
+func (o *CreateScriptTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *CreateScriptTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/scripts][%d] createScriptTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *CreateScriptTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/scripts][%d] createScriptTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *CreateScriptTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

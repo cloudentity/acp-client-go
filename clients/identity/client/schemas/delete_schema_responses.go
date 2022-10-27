@@ -69,14 +69,44 @@ func NewDeleteSchemaNoContent() *DeleteSchemaNoContent {
 	return &DeleteSchemaNoContent{}
 }
 
-/* DeleteSchemaNoContent describes a response with status code 204, with default header values.
+/*
+DeleteSchemaNoContent describes a response with status code 204, with default header values.
 
-Schema has been deleted
+	Schema has been deleted
 */
 type DeleteSchemaNoContent struct {
 }
 
+// IsSuccess returns true when this delete schema no content response has a 2xx status code
+func (o *DeleteSchemaNoContent) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this delete schema no content response has a 3xx status code
+func (o *DeleteSchemaNoContent) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete schema no content response has a 4xx status code
+func (o *DeleteSchemaNoContent) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this delete schema no content response has a 5xx status code
+func (o *DeleteSchemaNoContent) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete schema no content response a status code equal to that given
+func (o *DeleteSchemaNoContent) IsCode(code int) bool {
+	return code == 204
+}
+
 func (o *DeleteSchemaNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /admin/schemas/{schID}][%d] deleteSchemaNoContent ", 204)
+}
+
+func (o *DeleteSchemaNoContent) String() string {
 	return fmt.Sprintf("[DELETE /admin/schemas/{schID}][%d] deleteSchemaNoContent ", 204)
 }
 
@@ -90,7 +120,8 @@ func NewDeleteSchemaUnauthorized() *DeleteSchemaUnauthorized {
 	return &DeleteSchemaUnauthorized{}
 }
 
-/* DeleteSchemaUnauthorized describes a response with status code 401, with default header values.
+/*
+DeleteSchemaUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -98,9 +129,39 @@ type DeleteSchemaUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete schema unauthorized response has a 2xx status code
+func (o *DeleteSchemaUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete schema unauthorized response has a 3xx status code
+func (o *DeleteSchemaUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete schema unauthorized response has a 4xx status code
+func (o *DeleteSchemaUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete schema unauthorized response has a 5xx status code
+func (o *DeleteSchemaUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete schema unauthorized response a status code equal to that given
+func (o *DeleteSchemaUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *DeleteSchemaUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /admin/schemas/{schID}][%d] deleteSchemaUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *DeleteSchemaUnauthorized) String() string {
+	return fmt.Sprintf("[DELETE /admin/schemas/{schID}][%d] deleteSchemaUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *DeleteSchemaUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -122,7 +183,8 @@ func NewDeleteSchemaForbidden() *DeleteSchemaForbidden {
 	return &DeleteSchemaForbidden{}
 }
 
-/* DeleteSchemaForbidden describes a response with status code 403, with default header values.
+/*
+DeleteSchemaForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -130,9 +192,39 @@ type DeleteSchemaForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete schema forbidden response has a 2xx status code
+func (o *DeleteSchemaForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete schema forbidden response has a 3xx status code
+func (o *DeleteSchemaForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete schema forbidden response has a 4xx status code
+func (o *DeleteSchemaForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete schema forbidden response has a 5xx status code
+func (o *DeleteSchemaForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete schema forbidden response a status code equal to that given
+func (o *DeleteSchemaForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *DeleteSchemaForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /admin/schemas/{schID}][%d] deleteSchemaForbidden  %+v", 403, o.Payload)
 }
+
+func (o *DeleteSchemaForbidden) String() string {
+	return fmt.Sprintf("[DELETE /admin/schemas/{schID}][%d] deleteSchemaForbidden  %+v", 403, o.Payload)
+}
+
 func (o *DeleteSchemaForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -154,7 +246,8 @@ func NewDeleteSchemaNotFound() *DeleteSchemaNotFound {
 	return &DeleteSchemaNotFound{}
 }
 
-/* DeleteSchemaNotFound describes a response with status code 404, with default header values.
+/*
+DeleteSchemaNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -162,9 +255,39 @@ type DeleteSchemaNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete schema not found response has a 2xx status code
+func (o *DeleteSchemaNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete schema not found response has a 3xx status code
+func (o *DeleteSchemaNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete schema not found response has a 4xx status code
+func (o *DeleteSchemaNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete schema not found response has a 5xx status code
+func (o *DeleteSchemaNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete schema not found response a status code equal to that given
+func (o *DeleteSchemaNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *DeleteSchemaNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /admin/schemas/{schID}][%d] deleteSchemaNotFound  %+v", 404, o.Payload)
 }
+
+func (o *DeleteSchemaNotFound) String() string {
+	return fmt.Sprintf("[DELETE /admin/schemas/{schID}][%d] deleteSchemaNotFound  %+v", 404, o.Payload)
+}
+
 func (o *DeleteSchemaNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -186,7 +309,8 @@ func NewDeleteSchemaConflict() *DeleteSchemaConflict {
 	return &DeleteSchemaConflict{}
 }
 
-/* DeleteSchemaConflict describes a response with status code 409, with default header values.
+/*
+DeleteSchemaConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -194,9 +318,39 @@ type DeleteSchemaConflict struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete schema conflict response has a 2xx status code
+func (o *DeleteSchemaConflict) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete schema conflict response has a 3xx status code
+func (o *DeleteSchemaConflict) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete schema conflict response has a 4xx status code
+func (o *DeleteSchemaConflict) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete schema conflict response has a 5xx status code
+func (o *DeleteSchemaConflict) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete schema conflict response a status code equal to that given
+func (o *DeleteSchemaConflict) IsCode(code int) bool {
+	return code == 409
+}
+
 func (o *DeleteSchemaConflict) Error() string {
 	return fmt.Sprintf("[DELETE /admin/schemas/{schID}][%d] deleteSchemaConflict  %+v", 409, o.Payload)
 }
+
+func (o *DeleteSchemaConflict) String() string {
+	return fmt.Sprintf("[DELETE /admin/schemas/{schID}][%d] deleteSchemaConflict  %+v", 409, o.Payload)
+}
+
 func (o *DeleteSchemaConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -218,7 +372,8 @@ func NewDeleteSchemaTooManyRequests() *DeleteSchemaTooManyRequests {
 	return &DeleteSchemaTooManyRequests{}
 }
 
-/* DeleteSchemaTooManyRequests describes a response with status code 429, with default header values.
+/*
+DeleteSchemaTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -226,9 +381,39 @@ type DeleteSchemaTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete schema too many requests response has a 2xx status code
+func (o *DeleteSchemaTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete schema too many requests response has a 3xx status code
+func (o *DeleteSchemaTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete schema too many requests response has a 4xx status code
+func (o *DeleteSchemaTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete schema too many requests response has a 5xx status code
+func (o *DeleteSchemaTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete schema too many requests response a status code equal to that given
+func (o *DeleteSchemaTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *DeleteSchemaTooManyRequests) Error() string {
 	return fmt.Sprintf("[DELETE /admin/schemas/{schID}][%d] deleteSchemaTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *DeleteSchemaTooManyRequests) String() string {
+	return fmt.Sprintf("[DELETE /admin/schemas/{schID}][%d] deleteSchemaTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *DeleteSchemaTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

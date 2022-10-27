@@ -41,6 +41,12 @@ func (o *TokenReader) ReadResponse(response runtime.ClientResponse, consumer run
 			return nil, err
 		}
 		return nil, result
+	case 412:
+		result := NewTokenPreconditionFailed()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 429:
 		result := NewTokenTooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -57,22 +63,69 @@ func NewTokenOK() *TokenOK {
 	return &TokenOK{}
 }
 
-/* TokenOK describes a response with status code 200, with default header values.
+/*
+TokenOK describes a response with status code 200, with default header values.
 
 Token
 */
 type TokenOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.TokenResponse
+}
+
+// IsSuccess returns true when this token o k response has a 2xx status code
+func (o *TokenOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this token o k response has a 3xx status code
+func (o *TokenOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this token o k response has a 4xx status code
+func (o *TokenOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this token o k response has a 5xx status code
+func (o *TokenOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this token o k response a status code equal to that given
+func (o *TokenOK) IsCode(code int) bool {
+	return code == 200
 }
 
 func (o *TokenOK) Error() string {
 	return fmt.Sprintf("[POST /oauth2/token][%d] tokenOK  %+v", 200, o.Payload)
 }
+
+func (o *TokenOK) String() string {
+	return fmt.Sprintf("[POST /oauth2/token][%d] tokenOK  %+v", 200, o.Payload)
+}
+
 func (o *TokenOK) GetPayload() *models.TokenResponse {
 	return o.Payload
 }
 
 func (o *TokenOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.TokenResponse)
 
@@ -89,7 +142,8 @@ func NewTokenUnauthorized() *TokenUnauthorized {
 	return &TokenUnauthorized{}
 }
 
-/* TokenUnauthorized describes a response with status code 401, with default header values.
+/*
+TokenUnauthorized describes a response with status code 401, with default header values.
 
 ErrorResponse
 */
@@ -97,9 +151,39 @@ type TokenUnauthorized struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this token unauthorized response has a 2xx status code
+func (o *TokenUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this token unauthorized response has a 3xx status code
+func (o *TokenUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this token unauthorized response has a 4xx status code
+func (o *TokenUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this token unauthorized response has a 5xx status code
+func (o *TokenUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this token unauthorized response a status code equal to that given
+func (o *TokenUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *TokenUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /oauth2/token][%d] tokenUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *TokenUnauthorized) String() string {
+	return fmt.Sprintf("[POST /oauth2/token][%d] tokenUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *TokenUnauthorized) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -121,7 +205,8 @@ func NewTokenNotFound() *TokenNotFound {
 	return &TokenNotFound{}
 }
 
-/* TokenNotFound describes a response with status code 404, with default header values.
+/*
+TokenNotFound describes a response with status code 404, with default header values.
 
 ErrorResponse
 */
@@ -129,9 +214,39 @@ type TokenNotFound struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this token not found response has a 2xx status code
+func (o *TokenNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this token not found response has a 3xx status code
+func (o *TokenNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this token not found response has a 4xx status code
+func (o *TokenNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this token not found response has a 5xx status code
+func (o *TokenNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this token not found response a status code equal to that given
+func (o *TokenNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *TokenNotFound) Error() string {
 	return fmt.Sprintf("[POST /oauth2/token][%d] tokenNotFound  %+v", 404, o.Payload)
 }
+
+func (o *TokenNotFound) String() string {
+	return fmt.Sprintf("[POST /oauth2/token][%d] tokenNotFound  %+v", 404, o.Payload)
+}
+
 func (o *TokenNotFound) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -148,12 +263,76 @@ func (o *TokenNotFound) readResponse(response runtime.ClientResponse, consumer r
 	return nil
 }
 
+// NewTokenPreconditionFailed creates a TokenPreconditionFailed with default headers values
+func NewTokenPreconditionFailed() *TokenPreconditionFailed {
+	return &TokenPreconditionFailed{}
+}
+
+/*
+TokenPreconditionFailed describes a response with status code 412, with default header values.
+
+ErrorResponse
+*/
+type TokenPreconditionFailed struct {
+	Payload *models.GenericError
+}
+
+// IsSuccess returns true when this token precondition failed response has a 2xx status code
+func (o *TokenPreconditionFailed) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this token precondition failed response has a 3xx status code
+func (o *TokenPreconditionFailed) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this token precondition failed response has a 4xx status code
+func (o *TokenPreconditionFailed) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this token precondition failed response has a 5xx status code
+func (o *TokenPreconditionFailed) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this token precondition failed response a status code equal to that given
+func (o *TokenPreconditionFailed) IsCode(code int) bool {
+	return code == 412
+}
+
+func (o *TokenPreconditionFailed) Error() string {
+	return fmt.Sprintf("[POST /oauth2/token][%d] tokenPreconditionFailed  %+v", 412, o.Payload)
+}
+
+func (o *TokenPreconditionFailed) String() string {
+	return fmt.Sprintf("[POST /oauth2/token][%d] tokenPreconditionFailed  %+v", 412, o.Payload)
+}
+
+func (o *TokenPreconditionFailed) GetPayload() *models.GenericError {
+	return o.Payload
+}
+
+func (o *TokenPreconditionFailed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.GenericError)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewTokenTooManyRequests creates a TokenTooManyRequests with default headers values
 func NewTokenTooManyRequests() *TokenTooManyRequests {
 	return &TokenTooManyRequests{}
 }
 
-/* TokenTooManyRequests describes a response with status code 429, with default header values.
+/*
+TokenTooManyRequests describes a response with status code 429, with default header values.
 
 ErrorResponse
 */
@@ -161,9 +340,39 @@ type TokenTooManyRequests struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this token too many requests response has a 2xx status code
+func (o *TokenTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this token too many requests response has a 3xx status code
+func (o *TokenTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this token too many requests response has a 4xx status code
+func (o *TokenTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this token too many requests response has a 5xx status code
+func (o *TokenTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this token too many requests response a status code equal to that given
+func (o *TokenTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *TokenTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /oauth2/token][%d] tokenTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *TokenTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /oauth2/token][%d] tokenTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *TokenTooManyRequests) GetPayload() *models.GenericError {
 	return o.Payload
 }

@@ -73,7 +73,8 @@ func NewGetGatewayPackageOK(writer io.Writer) *GetGatewayPackageOK {
 	}
 }
 
-/* GetGatewayPackageOK describes a response with status code 200, with default header values.
+/*
+GetGatewayPackageOK describes a response with status code 200, with default header values.
 
 Gateway package
 */
@@ -81,9 +82,39 @@ type GetGatewayPackageOK struct {
 	Payload io.Writer
 }
 
+// IsSuccess returns true when this get gateway package o k response has a 2xx status code
+func (o *GetGatewayPackageOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get gateway package o k response has a 3xx status code
+func (o *GetGatewayPackageOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get gateway package o k response has a 4xx status code
+func (o *GetGatewayPackageOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get gateway package o k response has a 5xx status code
+func (o *GetGatewayPackageOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get gateway package o k response a status code equal to that given
+func (o *GetGatewayPackageOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetGatewayPackageOK) Error() string {
 	return fmt.Sprintf("[GET /gateways/{gw}/package][%d] getGatewayPackageOK  %+v", 200, o.Payload)
 }
+
+func (o *GetGatewayPackageOK) String() string {
+	return fmt.Sprintf("[GET /gateways/{gw}/package][%d] getGatewayPackageOK  %+v", 200, o.Payload)
+}
+
 func (o *GetGatewayPackageOK) GetPayload() io.Writer {
 	return o.Payload
 }
@@ -103,7 +134,8 @@ func NewGetGatewayPackageBadRequest() *GetGatewayPackageBadRequest {
 	return &GetGatewayPackageBadRequest{}
 }
 
-/* GetGatewayPackageBadRequest describes a response with status code 400, with default header values.
+/*
+GetGatewayPackageBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -111,9 +143,39 @@ type GetGatewayPackageBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get gateway package bad request response has a 2xx status code
+func (o *GetGatewayPackageBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get gateway package bad request response has a 3xx status code
+func (o *GetGatewayPackageBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get gateway package bad request response has a 4xx status code
+func (o *GetGatewayPackageBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get gateway package bad request response has a 5xx status code
+func (o *GetGatewayPackageBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get gateway package bad request response a status code equal to that given
+func (o *GetGatewayPackageBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *GetGatewayPackageBadRequest) Error() string {
 	return fmt.Sprintf("[GET /gateways/{gw}/package][%d] getGatewayPackageBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *GetGatewayPackageBadRequest) String() string {
+	return fmt.Sprintf("[GET /gateways/{gw}/package][%d] getGatewayPackageBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *GetGatewayPackageBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -135,7 +197,8 @@ func NewGetGatewayPackageUnauthorized() *GetGatewayPackageUnauthorized {
 	return &GetGatewayPackageUnauthorized{}
 }
 
-/* GetGatewayPackageUnauthorized describes a response with status code 401, with default header values.
+/*
+GetGatewayPackageUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -143,9 +206,39 @@ type GetGatewayPackageUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get gateway package unauthorized response has a 2xx status code
+func (o *GetGatewayPackageUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get gateway package unauthorized response has a 3xx status code
+func (o *GetGatewayPackageUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get gateway package unauthorized response has a 4xx status code
+func (o *GetGatewayPackageUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get gateway package unauthorized response has a 5xx status code
+func (o *GetGatewayPackageUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get gateway package unauthorized response a status code equal to that given
+func (o *GetGatewayPackageUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *GetGatewayPackageUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /gateways/{gw}/package][%d] getGatewayPackageUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *GetGatewayPackageUnauthorized) String() string {
+	return fmt.Sprintf("[GET /gateways/{gw}/package][%d] getGatewayPackageUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *GetGatewayPackageUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -167,7 +260,8 @@ func NewGetGatewayPackageForbidden() *GetGatewayPackageForbidden {
 	return &GetGatewayPackageForbidden{}
 }
 
-/* GetGatewayPackageForbidden describes a response with status code 403, with default header values.
+/*
+GetGatewayPackageForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -175,9 +269,39 @@ type GetGatewayPackageForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get gateway package forbidden response has a 2xx status code
+func (o *GetGatewayPackageForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get gateway package forbidden response has a 3xx status code
+func (o *GetGatewayPackageForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get gateway package forbidden response has a 4xx status code
+func (o *GetGatewayPackageForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get gateway package forbidden response has a 5xx status code
+func (o *GetGatewayPackageForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get gateway package forbidden response a status code equal to that given
+func (o *GetGatewayPackageForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetGatewayPackageForbidden) Error() string {
 	return fmt.Sprintf("[GET /gateways/{gw}/package][%d] getGatewayPackageForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetGatewayPackageForbidden) String() string {
+	return fmt.Sprintf("[GET /gateways/{gw}/package][%d] getGatewayPackageForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetGatewayPackageForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -199,7 +323,8 @@ func NewGetGatewayPackageNotFound() *GetGatewayPackageNotFound {
 	return &GetGatewayPackageNotFound{}
 }
 
-/* GetGatewayPackageNotFound describes a response with status code 404, with default header values.
+/*
+GetGatewayPackageNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -207,9 +332,39 @@ type GetGatewayPackageNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get gateway package not found response has a 2xx status code
+func (o *GetGatewayPackageNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get gateway package not found response has a 3xx status code
+func (o *GetGatewayPackageNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get gateway package not found response has a 4xx status code
+func (o *GetGatewayPackageNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get gateway package not found response has a 5xx status code
+func (o *GetGatewayPackageNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get gateway package not found response a status code equal to that given
+func (o *GetGatewayPackageNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *GetGatewayPackageNotFound) Error() string {
 	return fmt.Sprintf("[GET /gateways/{gw}/package][%d] getGatewayPackageNotFound  %+v", 404, o.Payload)
 }
+
+func (o *GetGatewayPackageNotFound) String() string {
+	return fmt.Sprintf("[GET /gateways/{gw}/package][%d] getGatewayPackageNotFound  %+v", 404, o.Payload)
+}
+
 func (o *GetGatewayPackageNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -231,7 +386,8 @@ func NewGetGatewayPackageTooManyRequests() *GetGatewayPackageTooManyRequests {
 	return &GetGatewayPackageTooManyRequests{}
 }
 
-/* GetGatewayPackageTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetGatewayPackageTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -239,9 +395,39 @@ type GetGatewayPackageTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get gateway package too many requests response has a 2xx status code
+func (o *GetGatewayPackageTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get gateway package too many requests response has a 3xx status code
+func (o *GetGatewayPackageTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get gateway package too many requests response has a 4xx status code
+func (o *GetGatewayPackageTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get gateway package too many requests response has a 5xx status code
+func (o *GetGatewayPackageTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get gateway package too many requests response a status code equal to that given
+func (o *GetGatewayPackageTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *GetGatewayPackageTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /gateways/{gw}/package][%d] getGatewayPackageTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *GetGatewayPackageTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /gateways/{gw}/package][%d] getGatewayPackageTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *GetGatewayPackageTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

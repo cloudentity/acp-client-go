@@ -53,10 +53,12 @@ func NewBackchannelAuthenticationParamsWithHTTPClient(client *http.Client) *Back
 	}
 }
 
-/* BackchannelAuthenticationParams contains all the parameters to send to the API endpoint
-   for the backchannel authentication operation.
+/*
+BackchannelAuthenticationParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the backchannel authentication operation.
+
+	Typically these are written to a http.Request.
 */
 type BackchannelAuthenticationParams struct {
 

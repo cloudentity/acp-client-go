@@ -75,7 +75,8 @@ func NewUpdateAuth0IDPOK() *UpdateAuth0IDPOK {
 	return &UpdateAuth0IDPOK{}
 }
 
-/* UpdateAuth0IDPOK describes a response with status code 200, with default header values.
+/*
+UpdateAuth0IDPOK describes a response with status code 200, with default header values.
 
 Auth0IDP
 */
@@ -83,9 +84,39 @@ type UpdateAuth0IDPOK struct {
 	Payload *models.Auth0IDP
 }
 
+// IsSuccess returns true when this update auth0 Id p o k response has a 2xx status code
+func (o *UpdateAuth0IDPOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this update auth0 Id p o k response has a 3xx status code
+func (o *UpdateAuth0IDPOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update auth0 Id p o k response has a 4xx status code
+func (o *UpdateAuth0IDPOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this update auth0 Id p o k response has a 5xx status code
+func (o *UpdateAuth0IDPOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update auth0 Id p o k response a status code equal to that given
+func (o *UpdateAuth0IDPOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *UpdateAuth0IDPOK) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/auth0/{iid}][%d] updateAuth0IdPOK  %+v", 200, o.Payload)
 }
+
+func (o *UpdateAuth0IDPOK) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/auth0/{iid}][%d] updateAuth0IdPOK  %+v", 200, o.Payload)
+}
+
 func (o *UpdateAuth0IDPOK) GetPayload() *models.Auth0IDP {
 	return o.Payload
 }
@@ -107,7 +138,8 @@ func NewUpdateAuth0IDPBadRequest() *UpdateAuth0IDPBadRequest {
 	return &UpdateAuth0IDPBadRequest{}
 }
 
-/* UpdateAuth0IDPBadRequest describes a response with status code 400, with default header values.
+/*
+UpdateAuth0IDPBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -115,9 +147,39 @@ type UpdateAuth0IDPBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update auth0 Id p bad request response has a 2xx status code
+func (o *UpdateAuth0IDPBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update auth0 Id p bad request response has a 3xx status code
+func (o *UpdateAuth0IDPBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update auth0 Id p bad request response has a 4xx status code
+func (o *UpdateAuth0IDPBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update auth0 Id p bad request response has a 5xx status code
+func (o *UpdateAuth0IDPBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update auth0 Id p bad request response a status code equal to that given
+func (o *UpdateAuth0IDPBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *UpdateAuth0IDPBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/auth0/{iid}][%d] updateAuth0IdPBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *UpdateAuth0IDPBadRequest) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/auth0/{iid}][%d] updateAuth0IdPBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *UpdateAuth0IDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -139,7 +201,8 @@ func NewUpdateAuth0IDPUnauthorized() *UpdateAuth0IDPUnauthorized {
 	return &UpdateAuth0IDPUnauthorized{}
 }
 
-/* UpdateAuth0IDPUnauthorized describes a response with status code 401, with default header values.
+/*
+UpdateAuth0IDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,9 +210,39 @@ type UpdateAuth0IDPUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update auth0 Id p unauthorized response has a 2xx status code
+func (o *UpdateAuth0IDPUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update auth0 Id p unauthorized response has a 3xx status code
+func (o *UpdateAuth0IDPUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update auth0 Id p unauthorized response has a 4xx status code
+func (o *UpdateAuth0IDPUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update auth0 Id p unauthorized response has a 5xx status code
+func (o *UpdateAuth0IDPUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update auth0 Id p unauthorized response a status code equal to that given
+func (o *UpdateAuth0IDPUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *UpdateAuth0IDPUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/auth0/{iid}][%d] updateAuth0IdPUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *UpdateAuth0IDPUnauthorized) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/auth0/{iid}][%d] updateAuth0IdPUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *UpdateAuth0IDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -171,7 +264,8 @@ func NewUpdateAuth0IDPForbidden() *UpdateAuth0IDPForbidden {
 	return &UpdateAuth0IDPForbidden{}
 }
 
-/* UpdateAuth0IDPForbidden describes a response with status code 403, with default header values.
+/*
+UpdateAuth0IDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -179,9 +273,39 @@ type UpdateAuth0IDPForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update auth0 Id p forbidden response has a 2xx status code
+func (o *UpdateAuth0IDPForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update auth0 Id p forbidden response has a 3xx status code
+func (o *UpdateAuth0IDPForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update auth0 Id p forbidden response has a 4xx status code
+func (o *UpdateAuth0IDPForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update auth0 Id p forbidden response has a 5xx status code
+func (o *UpdateAuth0IDPForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update auth0 Id p forbidden response a status code equal to that given
+func (o *UpdateAuth0IDPForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *UpdateAuth0IDPForbidden) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/auth0/{iid}][%d] updateAuth0IdPForbidden  %+v", 403, o.Payload)
 }
+
+func (o *UpdateAuth0IDPForbidden) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/auth0/{iid}][%d] updateAuth0IdPForbidden  %+v", 403, o.Payload)
+}
+
 func (o *UpdateAuth0IDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -203,7 +327,8 @@ func NewUpdateAuth0IDPNotFound() *UpdateAuth0IDPNotFound {
 	return &UpdateAuth0IDPNotFound{}
 }
 
-/* UpdateAuth0IDPNotFound describes a response with status code 404, with default header values.
+/*
+UpdateAuth0IDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -211,9 +336,39 @@ type UpdateAuth0IDPNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update auth0 Id p not found response has a 2xx status code
+func (o *UpdateAuth0IDPNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update auth0 Id p not found response has a 3xx status code
+func (o *UpdateAuth0IDPNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update auth0 Id p not found response has a 4xx status code
+func (o *UpdateAuth0IDPNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update auth0 Id p not found response has a 5xx status code
+func (o *UpdateAuth0IDPNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update auth0 Id p not found response a status code equal to that given
+func (o *UpdateAuth0IDPNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *UpdateAuth0IDPNotFound) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/auth0/{iid}][%d] updateAuth0IdPNotFound  %+v", 404, o.Payload)
 }
+
+func (o *UpdateAuth0IDPNotFound) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/auth0/{iid}][%d] updateAuth0IdPNotFound  %+v", 404, o.Payload)
+}
+
 func (o *UpdateAuth0IDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +390,8 @@ func NewUpdateAuth0IDPUnprocessableEntity() *UpdateAuth0IDPUnprocessableEntity {
 	return &UpdateAuth0IDPUnprocessableEntity{}
 }
 
-/* UpdateAuth0IDPUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+UpdateAuth0IDPUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -243,9 +399,39 @@ type UpdateAuth0IDPUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update auth0 Id p unprocessable entity response has a 2xx status code
+func (o *UpdateAuth0IDPUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update auth0 Id p unprocessable entity response has a 3xx status code
+func (o *UpdateAuth0IDPUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update auth0 Id p unprocessable entity response has a 4xx status code
+func (o *UpdateAuth0IDPUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update auth0 Id p unprocessable entity response has a 5xx status code
+func (o *UpdateAuth0IDPUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update auth0 Id p unprocessable entity response a status code equal to that given
+func (o *UpdateAuth0IDPUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *UpdateAuth0IDPUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/auth0/{iid}][%d] updateAuth0IdPUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *UpdateAuth0IDPUnprocessableEntity) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/auth0/{iid}][%d] updateAuth0IdPUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *UpdateAuth0IDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -267,7 +453,8 @@ func NewUpdateAuth0IDPTooManyRequests() *UpdateAuth0IDPTooManyRequests {
 	return &UpdateAuth0IDPTooManyRequests{}
 }
 
-/* UpdateAuth0IDPTooManyRequests describes a response with status code 429, with default header values.
+/*
+UpdateAuth0IDPTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -275,9 +462,39 @@ type UpdateAuth0IDPTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update auth0 Id p too many requests response has a 2xx status code
+func (o *UpdateAuth0IDPTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update auth0 Id p too many requests response has a 3xx status code
+func (o *UpdateAuth0IDPTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update auth0 Id p too many requests response has a 4xx status code
+func (o *UpdateAuth0IDPTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update auth0 Id p too many requests response has a 5xx status code
+func (o *UpdateAuth0IDPTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update auth0 Id p too many requests response a status code equal to that given
+func (o *UpdateAuth0IDPTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *UpdateAuth0IDPTooManyRequests) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/auth0/{iid}][%d] updateAuth0IdPTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *UpdateAuth0IDPTooManyRequests) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/auth0/{iid}][%d] updateAuth0IdPTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *UpdateAuth0IDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

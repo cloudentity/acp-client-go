@@ -75,14 +75,44 @@ func NewDeleteIDPNoContent() *DeleteIDPNoContent {
 	return &DeleteIDPNoContent{}
 }
 
-/* DeleteIDPNoContent describes a response with status code 204, with default header values.
+/*
+DeleteIDPNoContent describes a response with status code 204, with default header values.
 
-IDP has been deleted
+	IDP has been deleted
 */
 type DeleteIDPNoContent struct {
 }
 
+// IsSuccess returns true when this delete Id p no content response has a 2xx status code
+func (o *DeleteIDPNoContent) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this delete Id p no content response has a 3xx status code
+func (o *DeleteIDPNoContent) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete Id p no content response has a 4xx status code
+func (o *DeleteIDPNoContent) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this delete Id p no content response has a 5xx status code
+func (o *DeleteIDPNoContent) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete Id p no content response a status code equal to that given
+func (o *DeleteIDPNoContent) IsCode(code int) bool {
+	return code == 204
+}
+
 func (o *DeleteIDPNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPNoContent ", 204)
+}
+
+func (o *DeleteIDPNoContent) String() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPNoContent ", 204)
 }
 
@@ -96,7 +126,8 @@ func NewDeleteIDPBadRequest() *DeleteIDPBadRequest {
 	return &DeleteIDPBadRequest{}
 }
 
-/* DeleteIDPBadRequest describes a response with status code 400, with default header values.
+/*
+DeleteIDPBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -104,9 +135,39 @@ type DeleteIDPBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete Id p bad request response has a 2xx status code
+func (o *DeleteIDPBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete Id p bad request response has a 3xx status code
+func (o *DeleteIDPBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete Id p bad request response has a 4xx status code
+func (o *DeleteIDPBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete Id p bad request response has a 5xx status code
+func (o *DeleteIDPBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete Id p bad request response a status code equal to that given
+func (o *DeleteIDPBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *DeleteIDPBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *DeleteIDPBadRequest) String() string {
+	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *DeleteIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -128,7 +189,8 @@ func NewDeleteIDPUnauthorized() *DeleteIDPUnauthorized {
 	return &DeleteIDPUnauthorized{}
 }
 
-/* DeleteIDPUnauthorized describes a response with status code 401, with default header values.
+/*
+DeleteIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -136,9 +198,39 @@ type DeleteIDPUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete Id p unauthorized response has a 2xx status code
+func (o *DeleteIDPUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete Id p unauthorized response has a 3xx status code
+func (o *DeleteIDPUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete Id p unauthorized response has a 4xx status code
+func (o *DeleteIDPUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete Id p unauthorized response has a 5xx status code
+func (o *DeleteIDPUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete Id p unauthorized response a status code equal to that given
+func (o *DeleteIDPUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *DeleteIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *DeleteIDPUnauthorized) String() string {
+	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *DeleteIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -160,7 +252,8 @@ func NewDeleteIDPForbidden() *DeleteIDPForbidden {
 	return &DeleteIDPForbidden{}
 }
 
-/* DeleteIDPForbidden describes a response with status code 403, with default header values.
+/*
+DeleteIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -168,9 +261,39 @@ type DeleteIDPForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete Id p forbidden response has a 2xx status code
+func (o *DeleteIDPForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete Id p forbidden response has a 3xx status code
+func (o *DeleteIDPForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete Id p forbidden response has a 4xx status code
+func (o *DeleteIDPForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete Id p forbidden response has a 5xx status code
+func (o *DeleteIDPForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete Id p forbidden response a status code equal to that given
+func (o *DeleteIDPForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *DeleteIDPForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPForbidden  %+v", 403, o.Payload)
 }
+
+func (o *DeleteIDPForbidden) String() string {
+	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPForbidden  %+v", 403, o.Payload)
+}
+
 func (o *DeleteIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -192,7 +315,8 @@ func NewDeleteIDPNotFound() *DeleteIDPNotFound {
 	return &DeleteIDPNotFound{}
 }
 
-/* DeleteIDPNotFound describes a response with status code 404, with default header values.
+/*
+DeleteIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -200,9 +324,39 @@ type DeleteIDPNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete Id p not found response has a 2xx status code
+func (o *DeleteIDPNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete Id p not found response has a 3xx status code
+func (o *DeleteIDPNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete Id p not found response has a 4xx status code
+func (o *DeleteIDPNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete Id p not found response has a 5xx status code
+func (o *DeleteIDPNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete Id p not found response a status code equal to that given
+func (o *DeleteIDPNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *DeleteIDPNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPNotFound  %+v", 404, o.Payload)
 }
+
+func (o *DeleteIDPNotFound) String() string {
+	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPNotFound  %+v", 404, o.Payload)
+}
+
 func (o *DeleteIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -224,7 +378,8 @@ func NewDeleteIDPUnprocessableEntity() *DeleteIDPUnprocessableEntity {
 	return &DeleteIDPUnprocessableEntity{}
 }
 
-/* DeleteIDPUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+DeleteIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -232,9 +387,39 @@ type DeleteIDPUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete Id p unprocessable entity response has a 2xx status code
+func (o *DeleteIDPUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete Id p unprocessable entity response has a 3xx status code
+func (o *DeleteIDPUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete Id p unprocessable entity response has a 4xx status code
+func (o *DeleteIDPUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete Id p unprocessable entity response has a 5xx status code
+func (o *DeleteIDPUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete Id p unprocessable entity response a status code equal to that given
+func (o *DeleteIDPUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *DeleteIDPUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *DeleteIDPUnprocessableEntity) String() string {
+	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *DeleteIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -256,7 +441,8 @@ func NewDeleteIDPTooManyRequests() *DeleteIDPTooManyRequests {
 	return &DeleteIDPTooManyRequests{}
 }
 
-/* DeleteIDPTooManyRequests describes a response with status code 429, with default header values.
+/*
+DeleteIDPTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -264,9 +450,39 @@ type DeleteIDPTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete Id p too many requests response has a 2xx status code
+func (o *DeleteIDPTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete Id p too many requests response has a 3xx status code
+func (o *DeleteIDPTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete Id p too many requests response has a 4xx status code
+func (o *DeleteIDPTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete Id p too many requests response has a 5xx status code
+func (o *DeleteIDPTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete Id p too many requests response a status code equal to that given
+func (o *DeleteIDPTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *DeleteIDPTooManyRequests) Error() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *DeleteIDPTooManyRequests) String() string {
+	return fmt.Sprintf("[DELETE /servers/{wid}/idps/{iid}][%d] deleteIdPTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *DeleteIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

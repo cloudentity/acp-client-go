@@ -75,7 +75,8 @@ func NewCreateTenantCreated() *CreateTenantCreated {
 	return &CreateTenantCreated{}
 }
 
-/* CreateTenantCreated describes a response with status code 201, with default header values.
+/*
+CreateTenantCreated describes a response with status code 201, with default header values.
 
 Tenant created
 */
@@ -83,9 +84,39 @@ type CreateTenantCreated struct {
 	Payload *models.TenantCreated
 }
 
+// IsSuccess returns true when this create tenant created response has a 2xx status code
+func (o *CreateTenantCreated) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this create tenant created response has a 3xx status code
+func (o *CreateTenantCreated) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create tenant created response has a 4xx status code
+func (o *CreateTenantCreated) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create tenant created response has a 5xx status code
+func (o *CreateTenantCreated) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create tenant created response a status code equal to that given
+func (o *CreateTenantCreated) IsCode(code int) bool {
+	return code == 201
+}
+
 func (o *CreateTenantCreated) Error() string {
 	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantCreated  %+v", 201, o.Payload)
 }
+
+func (o *CreateTenantCreated) String() string {
+	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantCreated  %+v", 201, o.Payload)
+}
+
 func (o *CreateTenantCreated) GetPayload() *models.TenantCreated {
 	return o.Payload
 }
@@ -107,7 +138,8 @@ func NewCreateTenantBadRequest() *CreateTenantBadRequest {
 	return &CreateTenantBadRequest{}
 }
 
-/* CreateTenantBadRequest describes a response with status code 400, with default header values.
+/*
+CreateTenantBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -115,9 +147,39 @@ type CreateTenantBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create tenant bad request response has a 2xx status code
+func (o *CreateTenantBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create tenant bad request response has a 3xx status code
+func (o *CreateTenantBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create tenant bad request response has a 4xx status code
+func (o *CreateTenantBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create tenant bad request response has a 5xx status code
+func (o *CreateTenantBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create tenant bad request response a status code equal to that given
+func (o *CreateTenantBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *CreateTenantBadRequest) Error() string {
 	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *CreateTenantBadRequest) String() string {
+	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *CreateTenantBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -139,7 +201,8 @@ func NewCreateTenantUnauthorized() *CreateTenantUnauthorized {
 	return &CreateTenantUnauthorized{}
 }
 
-/* CreateTenantUnauthorized describes a response with status code 401, with default header values.
+/*
+CreateTenantUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,9 +210,39 @@ type CreateTenantUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create tenant unauthorized response has a 2xx status code
+func (o *CreateTenantUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create tenant unauthorized response has a 3xx status code
+func (o *CreateTenantUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create tenant unauthorized response has a 4xx status code
+func (o *CreateTenantUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create tenant unauthorized response has a 5xx status code
+func (o *CreateTenantUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create tenant unauthorized response a status code equal to that given
+func (o *CreateTenantUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *CreateTenantUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *CreateTenantUnauthorized) String() string {
+	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *CreateTenantUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -171,7 +264,8 @@ func NewCreateTenantForbidden() *CreateTenantForbidden {
 	return &CreateTenantForbidden{}
 }
 
-/* CreateTenantForbidden describes a response with status code 403, with default header values.
+/*
+CreateTenantForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -179,9 +273,39 @@ type CreateTenantForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create tenant forbidden response has a 2xx status code
+func (o *CreateTenantForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create tenant forbidden response has a 3xx status code
+func (o *CreateTenantForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create tenant forbidden response has a 4xx status code
+func (o *CreateTenantForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create tenant forbidden response has a 5xx status code
+func (o *CreateTenantForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create tenant forbidden response a status code equal to that given
+func (o *CreateTenantForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *CreateTenantForbidden) Error() string {
 	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantForbidden  %+v", 403, o.Payload)
 }
+
+func (o *CreateTenantForbidden) String() string {
+	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantForbidden  %+v", 403, o.Payload)
+}
+
 func (o *CreateTenantForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -203,7 +327,8 @@ func NewCreateTenantConflict() *CreateTenantConflict {
 	return &CreateTenantConflict{}
 }
 
-/* CreateTenantConflict describes a response with status code 409, with default header values.
+/*
+CreateTenantConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -211,9 +336,39 @@ type CreateTenantConflict struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create tenant conflict response has a 2xx status code
+func (o *CreateTenantConflict) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create tenant conflict response has a 3xx status code
+func (o *CreateTenantConflict) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create tenant conflict response has a 4xx status code
+func (o *CreateTenantConflict) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create tenant conflict response has a 5xx status code
+func (o *CreateTenantConflict) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create tenant conflict response a status code equal to that given
+func (o *CreateTenantConflict) IsCode(code int) bool {
+	return code == 409
+}
+
 func (o *CreateTenantConflict) Error() string {
 	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantConflict  %+v", 409, o.Payload)
 }
+
+func (o *CreateTenantConflict) String() string {
+	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantConflict  %+v", 409, o.Payload)
+}
+
 func (o *CreateTenantConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +390,8 @@ func NewCreateTenantUnprocessableEntity() *CreateTenantUnprocessableEntity {
 	return &CreateTenantUnprocessableEntity{}
 }
 
-/* CreateTenantUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+CreateTenantUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -243,9 +399,39 @@ type CreateTenantUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create tenant unprocessable entity response has a 2xx status code
+func (o *CreateTenantUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create tenant unprocessable entity response has a 3xx status code
+func (o *CreateTenantUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create tenant unprocessable entity response has a 4xx status code
+func (o *CreateTenantUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create tenant unprocessable entity response has a 5xx status code
+func (o *CreateTenantUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create tenant unprocessable entity response a status code equal to that given
+func (o *CreateTenantUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *CreateTenantUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *CreateTenantUnprocessableEntity) String() string {
+	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *CreateTenantUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -267,7 +453,8 @@ func NewCreateTenantTooManyRequests() *CreateTenantTooManyRequests {
 	return &CreateTenantTooManyRequests{}
 }
 
-/* CreateTenantTooManyRequests describes a response with status code 429, with default header values.
+/*
+CreateTenantTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -275,9 +462,39 @@ type CreateTenantTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create tenant too many requests response has a 2xx status code
+func (o *CreateTenantTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create tenant too many requests response has a 3xx status code
+func (o *CreateTenantTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create tenant too many requests response has a 4xx status code
+func (o *CreateTenantTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create tenant too many requests response has a 5xx status code
+func (o *CreateTenantTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create tenant too many requests response a status code equal to that given
+func (o *CreateTenantTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *CreateTenantTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *CreateTenantTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /api/system/tenants][%d] createTenantTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *CreateTenantTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

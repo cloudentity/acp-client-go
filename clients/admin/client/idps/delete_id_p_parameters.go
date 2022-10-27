@@ -52,10 +52,12 @@ func NewDeleteIDPParamsWithHTTPClient(client *http.Client) *DeleteIDPParams {
 	}
 }
 
-/* DeleteIDPParams contains all the parameters to send to the API endpoint
-   for the delete ID p operation.
+/*
+DeleteIDPParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the delete ID p operation.
+
+	Typically these are written to a http.Request.
 */
 type DeleteIDPParams struct {
 

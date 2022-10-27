@@ -32,6 +32,8 @@ type ClientOption func(*runtime.ClientOperation)
 type ClientService interface {
 	BindServer(params *BindServerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*BindServerOK, error)
 
+	BindServerTheme(params *BindServerThemeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*BindServerThemeOK, error)
+
 	CreateAuthorizationServer(params *CreateAuthorizationServerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateAuthorizationServerCreated, error)
 
 	DeleteAuthorizationServer(params *DeleteAuthorizationServerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteAuthorizationServerNoContent, error)
@@ -42,9 +44,9 @@ type ClientService interface {
 
 	GetServerConsent(params *GetServerConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetServerConsentOK, error)
 
-	ListAuthorizationServers(params *ListAuthorizationServersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListAuthorizationServersOK, error)
+	GetServerTheme(params *GetServerThemeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetServerThemeOK, error)
 
-	ListDashboards(params *ListDashboardsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListDashboardsOK, error)
+	ListAuthorizationServers(params *ListAuthorizationServersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListAuthorizationServersOK, error)
 
 	ListServersBindings(params *ListServersBindingsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListServersBindingsOK, error)
 
@@ -54,15 +56,17 @@ type ClientService interface {
 
 	UnbindServer(params *UnbindServerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UnbindServerOK, error)
 
+	UnbindServerTheme(params *UnbindServerThemeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UnbindServerThemeOK, error)
+
 	UpdateAuthorizationServer(params *UpdateAuthorizationServerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateAuthorizationServerOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
 
 /*
-  BindServer binds server
+BindServer binds server
 
-  Bind server.
+Bind server.
 */
 func (a *Client) BindServer(params *BindServerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*BindServerOK, error) {
 	// TODO: Validate the params before sending
@@ -101,9 +105,51 @@ func (a *Client) BindServer(params *BindServerParams, authInfo runtime.ClientAut
 }
 
 /*
-  CreateAuthorizationServer creates authorization server
+BindServerTheme binds server to theme
 
-  Multiple authorization servers with unique id can be created within a tenant.
+Binds the workspace (authentication server) to the custom-branding theme.
+*/
+func (a *Client) BindServerTheme(params *BindServerThemeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*BindServerThemeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewBindServerThemeParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "bindServerTheme",
+		Method:             "POST",
+		PathPattern:        "/servers/{wid}/bind-theme/{themeID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &BindServerThemeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*BindServerThemeOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for bindServerTheme: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	CreateAuthorizationServer creates authorization server
+
+	Multiple authorization servers with unique id can be created within a tenant.
+
 If id and secret are not provided, will be generated.
 Secret if provided must have at least 32 characters.
 
@@ -162,9 +208,9 @@ func (a *Client) CreateAuthorizationServer(params *CreateAuthorizationServerPara
 }
 
 /*
-  DeleteAuthorizationServer deletes authorization server
+DeleteAuthorizationServer deletes authorization server
 
-  Delete authorization server.
+Delete authorization server.
 */
 func (a *Client) DeleteAuthorizationServer(params *DeleteAuthorizationServerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteAuthorizationServerNoContent, error) {
 	// TODO: Validate the params before sending
@@ -203,9 +249,9 @@ func (a *Client) DeleteAuthorizationServer(params *DeleteAuthorizationServerPara
 }
 
 /*
-  GetAuthorizationServer gets authorization server
+GetAuthorizationServer gets authorization server
 
-  Get authorization server.
+Get authorization server.
 */
 func (a *Client) GetAuthorizationServer(params *GetAuthorizationServerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAuthorizationServerOK, error) {
 	// TODO: Validate the params before sending
@@ -244,9 +290,9 @@ func (a *Client) GetAuthorizationServer(params *GetAuthorizationServerParams, au
 }
 
 /*
-  GetCIBAAuthenticationService gets c i b a authentication service
+GetCIBAAuthenticationService gets c i b a authentication service
 
-  This API returns details of CIBA authentication service.
+This API returns details of CIBA authentication service.
 */
 func (a *Client) GetCIBAAuthenticationService(params *GetCIBAAuthenticationServiceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetCIBAAuthenticationServiceOK, error) {
 	// TODO: Validate the params before sending
@@ -285,9 +331,9 @@ func (a *Client) GetCIBAAuthenticationService(params *GetCIBAAuthenticationServi
 }
 
 /*
-  GetServerConsent gets server consent
+GetServerConsent gets server consent
 
-  Get server consent.
+Get server consent.
 */
 func (a *Client) GetServerConsent(params *GetServerConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetServerConsentOK, error) {
 	// TODO: Validate the params before sending
@@ -326,9 +372,50 @@ func (a *Client) GetServerConsent(params *GetServerConsentParams, authInfo runti
 }
 
 /*
-  ListAuthorizationServers lists authorization servers
+GetServerTheme gets server theme
 
-  List authorization servers.
+Returns the server-to-theme mapping, if any.
+*/
+func (a *Client) GetServerTheme(params *GetServerThemeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetServerThemeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetServerThemeParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getServerTheme",
+		Method:             "GET",
+		PathPattern:        "/servers/{wid}/theme",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetServerThemeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetServerThemeOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getServerTheme: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+ListAuthorizationServers lists authorization servers
+
+List authorization servers.
 */
 func (a *Client) ListAuthorizationServers(params *ListAuthorizationServersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListAuthorizationServersOK, error) {
 	// TODO: Validate the params before sending
@@ -367,50 +454,9 @@ func (a *Client) ListAuthorizationServers(params *ListAuthorizationServersParams
 }
 
 /*
-  ListDashboards lists links to dashboards
+ListServersBindings lists servers bindings
 
-  List links to dashboards.
-*/
-func (a *Client) ListDashboards(params *ListDashboardsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListDashboardsOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewListDashboardsParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "listDashboards",
-		Method:             "GET",
-		PathPattern:        "/servers/{wid}/dashboards",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &ListDashboardsReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*ListDashboardsOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for listDashboards: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-  ListServersBindings lists servers bindings
-
-  List servers bindings.
+List servers bindings.
 */
 func (a *Client) ListServersBindings(params *ListServersBindingsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListServersBindingsOK, error) {
 	// TODO: Validate the params before sending
@@ -449,9 +495,10 @@ func (a *Client) ListServersBindings(params *ListServersBindingsParams, authInfo
 }
 
 /*
-  SetCIBAAuthenticationService sets c i b a authentication service
+	SetCIBAAuthenticationService sets c i b a authentication service
 
-  If you want to enable CIBA for the workspace, you need to provide url to external service that implements
+	If you want to enable CIBA for the workspace, you need to provide url to external service that implements
+
 rest api specified by ACP.
 */
 func (a *Client) SetCIBAAuthenticationService(params *SetCIBAAuthenticationServiceParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetCIBAAuthenticationServiceOK, error) {
@@ -491,9 +538,9 @@ func (a *Client) SetCIBAAuthenticationService(params *SetCIBAAuthenticationServi
 }
 
 /*
-  SetServerConsent sets server consent
+SetServerConsent sets server consent
 
-  Set server consent. For custom server consent a client in system server is created automatically.
+Set server consent. For custom server consent a client in system server is created automatically.
 */
 func (a *Client) SetServerConsent(params *SetServerConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetServerConsentOK, error) {
 	// TODO: Validate the params before sending
@@ -532,9 +579,9 @@ func (a *Client) SetServerConsent(params *SetServerConsentParams, authInfo runti
 }
 
 /*
-  UnbindServer unbinds server
+UnbindServer unbinds server
 
-  Unbind server.
+Unbind server.
 */
 func (a *Client) UnbindServer(params *UnbindServerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UnbindServerOK, error) {
 	// TODO: Validate the params before sending
@@ -573,9 +620,50 @@ func (a *Client) UnbindServer(params *UnbindServerParams, authInfo runtime.Clien
 }
 
 /*
-  UpdateAuthorizationServer updates authorization server
+UnbindServerTheme unbinds server theme
 
-  Update authorization server.
+Deletes the server's current binding to a customer-branding theme.
+*/
+func (a *Client) UnbindServerTheme(params *UnbindServerThemeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UnbindServerThemeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUnbindServerThemeParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "unbindServerTheme",
+		Method:             "POST",
+		PathPattern:        "/servers/{wid}/unbind-theme",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UnbindServerThemeReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*UnbindServerThemeOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for unbindServerTheme: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+UpdateAuthorizationServer updates authorization server
+
+Update authorization server.
 */
 func (a *Client) UpdateAuthorizationServer(params *UpdateAuthorizationServerParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateAuthorizationServerOK, error) {
 	// TODO: Validate the params before sending

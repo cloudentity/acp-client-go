@@ -17,8 +17,14 @@ import (
 // swagger:model MTLSEndpointAliases
 type MTLSEndpointAliases struct {
 
+	// backchannel authentication endpoint
+	BackchannelAuthenticationEndpoint string `json:"backchannel_authentication_endpoint,omitempty"`
+
 	// introspection endpoint
 	IntrospectionEndpoint string `json:"introspection_endpoint,omitempty"`
+
+	// pushed authorization request endpoint
+	PushedAuthorizationRequestEndpoint string `json:"pushed_authorization_request_endpoint,omitempty"`
 
 	// registration endpoint
 	RegistrationEndpoint string `json:"registration_endpoint,omitempty"`

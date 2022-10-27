@@ -52,10 +52,12 @@ func NewGetScopeGrantRequestParamsWithHTTPClient(client *http.Client) *GetScopeG
 	}
 }
 
-/* GetScopeGrantRequestParams contains all the parameters to send to the API endpoint
-   for the get scope grant request operation.
+/*
+GetScopeGrantRequestParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get scope grant request operation.
+
+	Typically these are written to a http.Request.
 */
 type GetScopeGrantRequestParams struct {
 

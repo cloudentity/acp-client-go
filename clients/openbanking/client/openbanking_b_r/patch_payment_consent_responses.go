@@ -93,7 +93,8 @@ func NewPatchPaymentConsentOK() *PatchPaymentConsentOK {
 	return &PatchPaymentConsentOK{}
 }
 
-/* PatchPaymentConsentOK describes a response with status code 200, with default header values.
+/*
+PatchPaymentConsentOK describes a response with status code 200, with default header values.
 
 Customer payment consent
 */
@@ -101,9 +102,39 @@ type PatchPaymentConsentOK struct {
 	Payload *models.BrazilCustomerPaymentConsentResponse
 }
 
+// IsSuccess returns true when this patch payment consent o k response has a 2xx status code
+func (o *PatchPaymentConsentOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this patch payment consent o k response has a 3xx status code
+func (o *PatchPaymentConsentOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch payment consent o k response has a 4xx status code
+func (o *PatchPaymentConsentOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this patch payment consent o k response has a 5xx status code
+func (o *PatchPaymentConsentOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch payment consent o k response a status code equal to that given
+func (o *PatchPaymentConsentOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *PatchPaymentConsentOK) Error() string {
 	return fmt.Sprintf("[PATCH /open-banking/payments/v1/consents/{consentID}][%d] patchPaymentConsentOK  %+v", 200, o.Payload)
 }
+
+func (o *PatchPaymentConsentOK) String() string {
+	return fmt.Sprintf("[PATCH /open-banking/payments/v1/consents/{consentID}][%d] patchPaymentConsentOK  %+v", 200, o.Payload)
+}
+
 func (o *PatchPaymentConsentOK) GetPayload() *models.BrazilCustomerPaymentConsentResponse {
 	return o.Payload
 }
@@ -125,7 +156,8 @@ func NewPatchPaymentConsentBadRequest() *PatchPaymentConsentBadRequest {
 	return &PatchPaymentConsentBadRequest{}
 }
 
-/* PatchPaymentConsentBadRequest describes a response with status code 400, with default header values.
+/*
+PatchPaymentConsentBadRequest describes a response with status code 400, with default header values.
 
 Error
 */
@@ -133,9 +165,39 @@ type PatchPaymentConsentBadRequest struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this patch payment consent bad request response has a 2xx status code
+func (o *PatchPaymentConsentBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this patch payment consent bad request response has a 3xx status code
+func (o *PatchPaymentConsentBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch payment consent bad request response has a 4xx status code
+func (o *PatchPaymentConsentBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this patch payment consent bad request response has a 5xx status code
+func (o *PatchPaymentConsentBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch payment consent bad request response a status code equal to that given
+func (o *PatchPaymentConsentBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *PatchPaymentConsentBadRequest) Error() string {
 	return fmt.Sprintf("[PATCH /open-banking/payments/v1/consents/{consentID}][%d] patchPaymentConsentBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *PatchPaymentConsentBadRequest) String() string {
+	return fmt.Sprintf("[PATCH /open-banking/payments/v1/consents/{consentID}][%d] patchPaymentConsentBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *PatchPaymentConsentBadRequest) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -157,7 +219,8 @@ func NewPatchPaymentConsentUnauthorized() *PatchPaymentConsentUnauthorized {
 	return &PatchPaymentConsentUnauthorized{}
 }
 
-/* PatchPaymentConsentUnauthorized describes a response with status code 401, with default header values.
+/*
+PatchPaymentConsentUnauthorized describes a response with status code 401, with default header values.
 
 Error
 */
@@ -165,9 +228,39 @@ type PatchPaymentConsentUnauthorized struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this patch payment consent unauthorized response has a 2xx status code
+func (o *PatchPaymentConsentUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this patch payment consent unauthorized response has a 3xx status code
+func (o *PatchPaymentConsentUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch payment consent unauthorized response has a 4xx status code
+func (o *PatchPaymentConsentUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this patch payment consent unauthorized response has a 5xx status code
+func (o *PatchPaymentConsentUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch payment consent unauthorized response a status code equal to that given
+func (o *PatchPaymentConsentUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *PatchPaymentConsentUnauthorized) Error() string {
 	return fmt.Sprintf("[PATCH /open-banking/payments/v1/consents/{consentID}][%d] patchPaymentConsentUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *PatchPaymentConsentUnauthorized) String() string {
+	return fmt.Sprintf("[PATCH /open-banking/payments/v1/consents/{consentID}][%d] patchPaymentConsentUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *PatchPaymentConsentUnauthorized) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -189,7 +282,8 @@ func NewPatchPaymentConsentForbidden() *PatchPaymentConsentForbidden {
 	return &PatchPaymentConsentForbidden{}
 }
 
-/* PatchPaymentConsentForbidden describes a response with status code 403, with default header values.
+/*
+PatchPaymentConsentForbidden describes a response with status code 403, with default header values.
 
 Error
 */
@@ -197,9 +291,39 @@ type PatchPaymentConsentForbidden struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this patch payment consent forbidden response has a 2xx status code
+func (o *PatchPaymentConsentForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this patch payment consent forbidden response has a 3xx status code
+func (o *PatchPaymentConsentForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch payment consent forbidden response has a 4xx status code
+func (o *PatchPaymentConsentForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this patch payment consent forbidden response has a 5xx status code
+func (o *PatchPaymentConsentForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch payment consent forbidden response a status code equal to that given
+func (o *PatchPaymentConsentForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *PatchPaymentConsentForbidden) Error() string {
 	return fmt.Sprintf("[PATCH /open-banking/payments/v1/consents/{consentID}][%d] patchPaymentConsentForbidden  %+v", 403, o.Payload)
 }
+
+func (o *PatchPaymentConsentForbidden) String() string {
+	return fmt.Sprintf("[PATCH /open-banking/payments/v1/consents/{consentID}][%d] patchPaymentConsentForbidden  %+v", 403, o.Payload)
+}
+
 func (o *PatchPaymentConsentForbidden) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -221,7 +345,8 @@ func NewPatchPaymentConsentMethodNotAllowed() *PatchPaymentConsentMethodNotAllow
 	return &PatchPaymentConsentMethodNotAllowed{}
 }
 
-/* PatchPaymentConsentMethodNotAllowed describes a response with status code 405, with default header values.
+/*
+PatchPaymentConsentMethodNotAllowed describes a response with status code 405, with default header values.
 
 Error
 */
@@ -229,9 +354,39 @@ type PatchPaymentConsentMethodNotAllowed struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this patch payment consent method not allowed response has a 2xx status code
+func (o *PatchPaymentConsentMethodNotAllowed) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this patch payment consent method not allowed response has a 3xx status code
+func (o *PatchPaymentConsentMethodNotAllowed) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch payment consent method not allowed response has a 4xx status code
+func (o *PatchPaymentConsentMethodNotAllowed) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this patch payment consent method not allowed response has a 5xx status code
+func (o *PatchPaymentConsentMethodNotAllowed) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch payment consent method not allowed response a status code equal to that given
+func (o *PatchPaymentConsentMethodNotAllowed) IsCode(code int) bool {
+	return code == 405
+}
+
 func (o *PatchPaymentConsentMethodNotAllowed) Error() string {
 	return fmt.Sprintf("[PATCH /open-banking/payments/v1/consents/{consentID}][%d] patchPaymentConsentMethodNotAllowed  %+v", 405, o.Payload)
 }
+
+func (o *PatchPaymentConsentMethodNotAllowed) String() string {
+	return fmt.Sprintf("[PATCH /open-banking/payments/v1/consents/{consentID}][%d] patchPaymentConsentMethodNotAllowed  %+v", 405, o.Payload)
+}
+
 func (o *PatchPaymentConsentMethodNotAllowed) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -253,7 +408,8 @@ func NewPatchPaymentConsentNotAcceptable() *PatchPaymentConsentNotAcceptable {
 	return &PatchPaymentConsentNotAcceptable{}
 }
 
-/* PatchPaymentConsentNotAcceptable describes a response with status code 406, with default header values.
+/*
+PatchPaymentConsentNotAcceptable describes a response with status code 406, with default header values.
 
 Error
 */
@@ -261,9 +417,39 @@ type PatchPaymentConsentNotAcceptable struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this patch payment consent not acceptable response has a 2xx status code
+func (o *PatchPaymentConsentNotAcceptable) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this patch payment consent not acceptable response has a 3xx status code
+func (o *PatchPaymentConsentNotAcceptable) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch payment consent not acceptable response has a 4xx status code
+func (o *PatchPaymentConsentNotAcceptable) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this patch payment consent not acceptable response has a 5xx status code
+func (o *PatchPaymentConsentNotAcceptable) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch payment consent not acceptable response a status code equal to that given
+func (o *PatchPaymentConsentNotAcceptable) IsCode(code int) bool {
+	return code == 406
+}
+
 func (o *PatchPaymentConsentNotAcceptable) Error() string {
 	return fmt.Sprintf("[PATCH /open-banking/payments/v1/consents/{consentID}][%d] patchPaymentConsentNotAcceptable  %+v", 406, o.Payload)
 }
+
+func (o *PatchPaymentConsentNotAcceptable) String() string {
+	return fmt.Sprintf("[PATCH /open-banking/payments/v1/consents/{consentID}][%d] patchPaymentConsentNotAcceptable  %+v", 406, o.Payload)
+}
+
 func (o *PatchPaymentConsentNotAcceptable) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -285,7 +471,8 @@ func NewPatchPaymentConsentUnsupportedMediaType() *PatchPaymentConsentUnsupporte
 	return &PatchPaymentConsentUnsupportedMediaType{}
 }
 
-/* PatchPaymentConsentUnsupportedMediaType describes a response with status code 415, with default header values.
+/*
+PatchPaymentConsentUnsupportedMediaType describes a response with status code 415, with default header values.
 
 Error
 */
@@ -293,9 +480,39 @@ type PatchPaymentConsentUnsupportedMediaType struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this patch payment consent unsupported media type response has a 2xx status code
+func (o *PatchPaymentConsentUnsupportedMediaType) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this patch payment consent unsupported media type response has a 3xx status code
+func (o *PatchPaymentConsentUnsupportedMediaType) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch payment consent unsupported media type response has a 4xx status code
+func (o *PatchPaymentConsentUnsupportedMediaType) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this patch payment consent unsupported media type response has a 5xx status code
+func (o *PatchPaymentConsentUnsupportedMediaType) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch payment consent unsupported media type response a status code equal to that given
+func (o *PatchPaymentConsentUnsupportedMediaType) IsCode(code int) bool {
+	return code == 415
+}
+
 func (o *PatchPaymentConsentUnsupportedMediaType) Error() string {
 	return fmt.Sprintf("[PATCH /open-banking/payments/v1/consents/{consentID}][%d] patchPaymentConsentUnsupportedMediaType  %+v", 415, o.Payload)
 }
+
+func (o *PatchPaymentConsentUnsupportedMediaType) String() string {
+	return fmt.Sprintf("[PATCH /open-banking/payments/v1/consents/{consentID}][%d] patchPaymentConsentUnsupportedMediaType  %+v", 415, o.Payload)
+}
+
 func (o *PatchPaymentConsentUnsupportedMediaType) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -317,7 +534,8 @@ func NewPatchPaymentConsentUnprocessableEntity() *PatchPaymentConsentUnprocessab
 	return &PatchPaymentConsentUnprocessableEntity{}
 }
 
-/* PatchPaymentConsentUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+PatchPaymentConsentUnprocessableEntity describes a response with status code 422, with default header values.
 
 Error
 */
@@ -325,9 +543,39 @@ type PatchPaymentConsentUnprocessableEntity struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this patch payment consent unprocessable entity response has a 2xx status code
+func (o *PatchPaymentConsentUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this patch payment consent unprocessable entity response has a 3xx status code
+func (o *PatchPaymentConsentUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch payment consent unprocessable entity response has a 4xx status code
+func (o *PatchPaymentConsentUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this patch payment consent unprocessable entity response has a 5xx status code
+func (o *PatchPaymentConsentUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch payment consent unprocessable entity response a status code equal to that given
+func (o *PatchPaymentConsentUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *PatchPaymentConsentUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PATCH /open-banking/payments/v1/consents/{consentID}][%d] patchPaymentConsentUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *PatchPaymentConsentUnprocessableEntity) String() string {
+	return fmt.Sprintf("[PATCH /open-banking/payments/v1/consents/{consentID}][%d] patchPaymentConsentUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *PatchPaymentConsentUnprocessableEntity) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -349,7 +597,8 @@ func NewPatchPaymentConsentTooManyRequests() *PatchPaymentConsentTooManyRequests
 	return &PatchPaymentConsentTooManyRequests{}
 }
 
-/* PatchPaymentConsentTooManyRequests describes a response with status code 429, with default header values.
+/*
+PatchPaymentConsentTooManyRequests describes a response with status code 429, with default header values.
 
 Error
 */
@@ -357,9 +606,39 @@ type PatchPaymentConsentTooManyRequests struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this patch payment consent too many requests response has a 2xx status code
+func (o *PatchPaymentConsentTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this patch payment consent too many requests response has a 3xx status code
+func (o *PatchPaymentConsentTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch payment consent too many requests response has a 4xx status code
+func (o *PatchPaymentConsentTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this patch payment consent too many requests response has a 5xx status code
+func (o *PatchPaymentConsentTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch payment consent too many requests response a status code equal to that given
+func (o *PatchPaymentConsentTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *PatchPaymentConsentTooManyRequests) Error() string {
 	return fmt.Sprintf("[PATCH /open-banking/payments/v1/consents/{consentID}][%d] patchPaymentConsentTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *PatchPaymentConsentTooManyRequests) String() string {
+	return fmt.Sprintf("[PATCH /open-banking/payments/v1/consents/{consentID}][%d] patchPaymentConsentTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *PatchPaymentConsentTooManyRequests) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -381,7 +660,8 @@ func NewPatchPaymentConsentInternalServerError() *PatchPaymentConsentInternalSer
 	return &PatchPaymentConsentInternalServerError{}
 }
 
-/* PatchPaymentConsentInternalServerError describes a response with status code 500, with default header values.
+/*
+PatchPaymentConsentInternalServerError describes a response with status code 500, with default header values.
 
 Error
 */
@@ -389,9 +669,39 @@ type PatchPaymentConsentInternalServerError struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this patch payment consent internal server error response has a 2xx status code
+func (o *PatchPaymentConsentInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this patch payment consent internal server error response has a 3xx status code
+func (o *PatchPaymentConsentInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch payment consent internal server error response has a 4xx status code
+func (o *PatchPaymentConsentInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this patch payment consent internal server error response has a 5xx status code
+func (o *PatchPaymentConsentInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this patch payment consent internal server error response a status code equal to that given
+func (o *PatchPaymentConsentInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *PatchPaymentConsentInternalServerError) Error() string {
 	return fmt.Sprintf("[PATCH /open-banking/payments/v1/consents/{consentID}][%d] patchPaymentConsentInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *PatchPaymentConsentInternalServerError) String() string {
+	return fmt.Sprintf("[PATCH /open-banking/payments/v1/consents/{consentID}][%d] patchPaymentConsentInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *PatchPaymentConsentInternalServerError) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }

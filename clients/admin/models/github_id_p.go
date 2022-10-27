@@ -45,6 +45,12 @@ type GithubIDP struct {
 	// discovery settings
 	DiscoverySettings *IDPDiscoverySettings `json:"discovery_settings,omitempty"`
 
+	// If set to `true`, the IDP is not displayed on the login page.
+	//
+	// When an IDP is hidden, it will not be displayed on the login page. It can still be used
+	// and script extensions can enabled it.
+	Hidden bool `json:"hidden,omitempty"`
+
 	// Unique ID of your identity provider
 	//
 	// If not provided, a random ID is generated.

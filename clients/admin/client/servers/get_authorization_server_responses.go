@@ -63,7 +63,8 @@ func NewGetAuthorizationServerOK() *GetAuthorizationServerOK {
 	return &GetAuthorizationServerOK{}
 }
 
-/* GetAuthorizationServerOK describes a response with status code 200, with default header values.
+/*
+GetAuthorizationServerOK describes a response with status code 200, with default header values.
 
 Server
 */
@@ -71,9 +72,39 @@ type GetAuthorizationServerOK struct {
 	Payload *models.ServerResponse
 }
 
+// IsSuccess returns true when this get authorization server o k response has a 2xx status code
+func (o *GetAuthorizationServerOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get authorization server o k response has a 3xx status code
+func (o *GetAuthorizationServerOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get authorization server o k response has a 4xx status code
+func (o *GetAuthorizationServerOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get authorization server o k response has a 5xx status code
+func (o *GetAuthorizationServerOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get authorization server o k response a status code equal to that given
+func (o *GetAuthorizationServerOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetAuthorizationServerOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}][%d] getAuthorizationServerOK  %+v", 200, o.Payload)
 }
+
+func (o *GetAuthorizationServerOK) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}][%d] getAuthorizationServerOK  %+v", 200, o.Payload)
+}
+
 func (o *GetAuthorizationServerOK) GetPayload() *models.ServerResponse {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewGetAuthorizationServerUnauthorized() *GetAuthorizationServerUnauthorized
 	return &GetAuthorizationServerUnauthorized{}
 }
 
-/* GetAuthorizationServerUnauthorized describes a response with status code 401, with default header values.
+/*
+GetAuthorizationServerUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type GetAuthorizationServerUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get authorization server unauthorized response has a 2xx status code
+func (o *GetAuthorizationServerUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get authorization server unauthorized response has a 3xx status code
+func (o *GetAuthorizationServerUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get authorization server unauthorized response has a 4xx status code
+func (o *GetAuthorizationServerUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get authorization server unauthorized response has a 5xx status code
+func (o *GetAuthorizationServerUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get authorization server unauthorized response a status code equal to that given
+func (o *GetAuthorizationServerUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *GetAuthorizationServerUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}][%d] getAuthorizationServerUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *GetAuthorizationServerUnauthorized) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}][%d] getAuthorizationServerUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *GetAuthorizationServerUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewGetAuthorizationServerForbidden() *GetAuthorizationServerForbidden {
 	return &GetAuthorizationServerForbidden{}
 }
 
-/* GetAuthorizationServerForbidden describes a response with status code 403, with default header values.
+/*
+GetAuthorizationServerForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type GetAuthorizationServerForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get authorization server forbidden response has a 2xx status code
+func (o *GetAuthorizationServerForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get authorization server forbidden response has a 3xx status code
+func (o *GetAuthorizationServerForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get authorization server forbidden response has a 4xx status code
+func (o *GetAuthorizationServerForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get authorization server forbidden response has a 5xx status code
+func (o *GetAuthorizationServerForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get authorization server forbidden response a status code equal to that given
+func (o *GetAuthorizationServerForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetAuthorizationServerForbidden) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}][%d] getAuthorizationServerForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetAuthorizationServerForbidden) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}][%d] getAuthorizationServerForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetAuthorizationServerForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewGetAuthorizationServerNotFound() *GetAuthorizationServerNotFound {
 	return &GetAuthorizationServerNotFound{}
 }
 
-/* GetAuthorizationServerNotFound describes a response with status code 404, with default header values.
+/*
+GetAuthorizationServerNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type GetAuthorizationServerNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get authorization server not found response has a 2xx status code
+func (o *GetAuthorizationServerNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get authorization server not found response has a 3xx status code
+func (o *GetAuthorizationServerNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get authorization server not found response has a 4xx status code
+func (o *GetAuthorizationServerNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get authorization server not found response has a 5xx status code
+func (o *GetAuthorizationServerNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get authorization server not found response a status code equal to that given
+func (o *GetAuthorizationServerNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *GetAuthorizationServerNotFound) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}][%d] getAuthorizationServerNotFound  %+v", 404, o.Payload)
 }
+
+func (o *GetAuthorizationServerNotFound) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}][%d] getAuthorizationServerNotFound  %+v", 404, o.Payload)
+}
+
 func (o *GetAuthorizationServerNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewGetAuthorizationServerTooManyRequests() *GetAuthorizationServerTooManyRe
 	return &GetAuthorizationServerTooManyRequests{}
 }
 
-/* GetAuthorizationServerTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetAuthorizationServerTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type GetAuthorizationServerTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get authorization server too many requests response has a 2xx status code
+func (o *GetAuthorizationServerTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get authorization server too many requests response has a 3xx status code
+func (o *GetAuthorizationServerTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get authorization server too many requests response has a 4xx status code
+func (o *GetAuthorizationServerTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get authorization server too many requests response has a 5xx status code
+func (o *GetAuthorizationServerTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get authorization server too many requests response a status code equal to that given
+func (o *GetAuthorizationServerTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *GetAuthorizationServerTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}][%d] getAuthorizationServerTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *GetAuthorizationServerTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}][%d] getAuthorizationServerTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *GetAuthorizationServerTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

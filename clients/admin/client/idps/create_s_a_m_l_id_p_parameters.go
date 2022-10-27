@@ -54,10 +54,12 @@ func NewCreateSAMLIDPParamsWithHTTPClient(client *http.Client) *CreateSAMLIDPPar
 	}
 }
 
-/* CreateSAMLIDPParams contains all the parameters to send to the API endpoint
-   for the create s a m l ID p operation.
+/*
+CreateSAMLIDPParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the create s a m l ID p operation.
+
+	Typically these are written to a http.Request.
 */
 type CreateSAMLIDPParams struct {
 

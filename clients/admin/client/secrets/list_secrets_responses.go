@@ -63,7 +63,8 @@ func NewListSecretsOK() *ListSecretsOK {
 	return &ListSecretsOK{}
 }
 
-/* ListSecretsOK describes a response with status code 200, with default header values.
+/*
+ListSecretsOK describes a response with status code 200, with default header values.
 
 Secrets
 */
@@ -71,9 +72,39 @@ type ListSecretsOK struct {
 	Payload *models.SecretsResponse
 }
 
+// IsSuccess returns true when this list secrets o k response has a 2xx status code
+func (o *ListSecretsOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this list secrets o k response has a 3xx status code
+func (o *ListSecretsOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list secrets o k response has a 4xx status code
+func (o *ListSecretsOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this list secrets o k response has a 5xx status code
+func (o *ListSecretsOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list secrets o k response a status code equal to that given
+func (o *ListSecretsOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *ListSecretsOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/secrets][%d] listSecretsOK  %+v", 200, o.Payload)
 }
+
+func (o *ListSecretsOK) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/secrets][%d] listSecretsOK  %+v", 200, o.Payload)
+}
+
 func (o *ListSecretsOK) GetPayload() *models.SecretsResponse {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewListSecretsBadRequest() *ListSecretsBadRequest {
 	return &ListSecretsBadRequest{}
 }
 
-/* ListSecretsBadRequest describes a response with status code 400, with default header values.
+/*
+ListSecretsBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type ListSecretsBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list secrets bad request response has a 2xx status code
+func (o *ListSecretsBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list secrets bad request response has a 3xx status code
+func (o *ListSecretsBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list secrets bad request response has a 4xx status code
+func (o *ListSecretsBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list secrets bad request response has a 5xx status code
+func (o *ListSecretsBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list secrets bad request response a status code equal to that given
+func (o *ListSecretsBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *ListSecretsBadRequest) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/secrets][%d] listSecretsBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *ListSecretsBadRequest) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/secrets][%d] listSecretsBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *ListSecretsBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewListSecretsUnauthorized() *ListSecretsUnauthorized {
 	return &ListSecretsUnauthorized{}
 }
 
-/* ListSecretsUnauthorized describes a response with status code 401, with default header values.
+/*
+ListSecretsUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type ListSecretsUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list secrets unauthorized response has a 2xx status code
+func (o *ListSecretsUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list secrets unauthorized response has a 3xx status code
+func (o *ListSecretsUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list secrets unauthorized response has a 4xx status code
+func (o *ListSecretsUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list secrets unauthorized response has a 5xx status code
+func (o *ListSecretsUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list secrets unauthorized response a status code equal to that given
+func (o *ListSecretsUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *ListSecretsUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/secrets][%d] listSecretsUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *ListSecretsUnauthorized) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/secrets][%d] listSecretsUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *ListSecretsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewListSecretsForbidden() *ListSecretsForbidden {
 	return &ListSecretsForbidden{}
 }
 
-/* ListSecretsForbidden describes a response with status code 403, with default header values.
+/*
+ListSecretsForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type ListSecretsForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list secrets forbidden response has a 2xx status code
+func (o *ListSecretsForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list secrets forbidden response has a 3xx status code
+func (o *ListSecretsForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list secrets forbidden response has a 4xx status code
+func (o *ListSecretsForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list secrets forbidden response has a 5xx status code
+func (o *ListSecretsForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list secrets forbidden response a status code equal to that given
+func (o *ListSecretsForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *ListSecretsForbidden) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/secrets][%d] listSecretsForbidden  %+v", 403, o.Payload)
 }
+
+func (o *ListSecretsForbidden) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/secrets][%d] listSecretsForbidden  %+v", 403, o.Payload)
+}
+
 func (o *ListSecretsForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewListSecretsTooManyRequests() *ListSecretsTooManyRequests {
 	return &ListSecretsTooManyRequests{}
 }
 
-/* ListSecretsTooManyRequests describes a response with status code 429, with default header values.
+/*
+ListSecretsTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type ListSecretsTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list secrets too many requests response has a 2xx status code
+func (o *ListSecretsTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list secrets too many requests response has a 3xx status code
+func (o *ListSecretsTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list secrets too many requests response has a 4xx status code
+func (o *ListSecretsTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list secrets too many requests response has a 5xx status code
+func (o *ListSecretsTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list secrets too many requests response a status code equal to that given
+func (o *ListSecretsTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *ListSecretsTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/secrets][%d] listSecretsTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *ListSecretsTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/secrets][%d] listSecretsTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *ListSecretsTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

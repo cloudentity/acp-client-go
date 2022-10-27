@@ -54,17 +54,29 @@ func NewRejectCDRArrangementSystemParamsWithHTTPClient(client *http.Client) *Rej
 	}
 }
 
-/* RejectCDRArrangementSystemParams contains all the parameters to send to the API endpoint
-   for the reject c d r arrangement system operation.
+/*
+RejectCDRArrangementSystemParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the reject c d r arrangement system operation.
+
+	Typically these are written to a http.Request.
 */
 type RejectCDRArrangementSystemParams struct {
 
-	// RejectConsent.
-	RejectConsent *models.RejectConsentRequest
+	/* RejectConsent.
 
-	// Login.
+	     Reject Consent Request
+
+	Contains details why the request was rejected by the user.
+	*/
+	RejectConsent *models.RejectCDRConsentRequest
+
+	/* Login.
+
+	     Login session identifier.
+
+	Cloudentity sends this identifier as the `login_id` query parameter when redirecting the user to the consent page.
+	*/
 	Login string
 
 	timeout    time.Duration
@@ -121,13 +133,13 @@ func (o *RejectCDRArrangementSystemParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRejectConsent adds the rejectConsent to the reject c d r arrangement system params
-func (o *RejectCDRArrangementSystemParams) WithRejectConsent(rejectConsent *models.RejectConsentRequest) *RejectCDRArrangementSystemParams {
+func (o *RejectCDRArrangementSystemParams) WithRejectConsent(rejectConsent *models.RejectCDRConsentRequest) *RejectCDRArrangementSystemParams {
 	o.SetRejectConsent(rejectConsent)
 	return o
 }
 
 // SetRejectConsent adds the rejectConsent to the reject c d r arrangement system params
-func (o *RejectCDRArrangementSystemParams) SetRejectConsent(rejectConsent *models.RejectConsentRequest) {
+func (o *RejectCDRArrangementSystemParams) SetRejectConsent(rejectConsent *models.RejectCDRConsentRequest) {
 	o.RejectConsent = rejectConsent
 }
 

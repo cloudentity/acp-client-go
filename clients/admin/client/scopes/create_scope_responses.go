@@ -81,7 +81,8 @@ func NewCreateScopeCreated() *CreateScopeCreated {
 	return &CreateScopeCreated{}
 }
 
-/* CreateScopeCreated describes a response with status code 201, with default header values.
+/*
+CreateScopeCreated describes a response with status code 201, with default header values.
 
 Scope
 */
@@ -89,9 +90,39 @@ type CreateScopeCreated struct {
 	Payload *models.ScopeWithServiceID
 }
 
+// IsSuccess returns true when this create scope created response has a 2xx status code
+func (o *CreateScopeCreated) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this create scope created response has a 3xx status code
+func (o *CreateScopeCreated) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create scope created response has a 4xx status code
+func (o *CreateScopeCreated) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create scope created response has a 5xx status code
+func (o *CreateScopeCreated) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create scope created response a status code equal to that given
+func (o *CreateScopeCreated) IsCode(code int) bool {
+	return code == 201
+}
+
 func (o *CreateScopeCreated) Error() string {
 	return fmt.Sprintf("[POST /scopes][%d] createScopeCreated  %+v", 201, o.Payload)
 }
+
+func (o *CreateScopeCreated) String() string {
+	return fmt.Sprintf("[POST /scopes][%d] createScopeCreated  %+v", 201, o.Payload)
+}
+
 func (o *CreateScopeCreated) GetPayload() *models.ScopeWithServiceID {
 	return o.Payload
 }
@@ -113,7 +144,8 @@ func NewCreateScopeBadRequest() *CreateScopeBadRequest {
 	return &CreateScopeBadRequest{}
 }
 
-/* CreateScopeBadRequest describes a response with status code 400, with default header values.
+/*
+CreateScopeBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -121,9 +153,39 @@ type CreateScopeBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create scope bad request response has a 2xx status code
+func (o *CreateScopeBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create scope bad request response has a 3xx status code
+func (o *CreateScopeBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create scope bad request response has a 4xx status code
+func (o *CreateScopeBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create scope bad request response has a 5xx status code
+func (o *CreateScopeBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create scope bad request response a status code equal to that given
+func (o *CreateScopeBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *CreateScopeBadRequest) Error() string {
 	return fmt.Sprintf("[POST /scopes][%d] createScopeBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *CreateScopeBadRequest) String() string {
+	return fmt.Sprintf("[POST /scopes][%d] createScopeBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *CreateScopeBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -145,7 +207,8 @@ func NewCreateScopeUnauthorized() *CreateScopeUnauthorized {
 	return &CreateScopeUnauthorized{}
 }
 
-/* CreateScopeUnauthorized describes a response with status code 401, with default header values.
+/*
+CreateScopeUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -153,9 +216,39 @@ type CreateScopeUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create scope unauthorized response has a 2xx status code
+func (o *CreateScopeUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create scope unauthorized response has a 3xx status code
+func (o *CreateScopeUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create scope unauthorized response has a 4xx status code
+func (o *CreateScopeUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create scope unauthorized response has a 5xx status code
+func (o *CreateScopeUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create scope unauthorized response a status code equal to that given
+func (o *CreateScopeUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *CreateScopeUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /scopes][%d] createScopeUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *CreateScopeUnauthorized) String() string {
+	return fmt.Sprintf("[POST /scopes][%d] createScopeUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *CreateScopeUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -177,7 +270,8 @@ func NewCreateScopeForbidden() *CreateScopeForbidden {
 	return &CreateScopeForbidden{}
 }
 
-/* CreateScopeForbidden describes a response with status code 403, with default header values.
+/*
+CreateScopeForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -185,9 +279,39 @@ type CreateScopeForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create scope forbidden response has a 2xx status code
+func (o *CreateScopeForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create scope forbidden response has a 3xx status code
+func (o *CreateScopeForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create scope forbidden response has a 4xx status code
+func (o *CreateScopeForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create scope forbidden response has a 5xx status code
+func (o *CreateScopeForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create scope forbidden response a status code equal to that given
+func (o *CreateScopeForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *CreateScopeForbidden) Error() string {
 	return fmt.Sprintf("[POST /scopes][%d] createScopeForbidden  %+v", 403, o.Payload)
 }
+
+func (o *CreateScopeForbidden) String() string {
+	return fmt.Sprintf("[POST /scopes][%d] createScopeForbidden  %+v", 403, o.Payload)
+}
+
 func (o *CreateScopeForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -209,7 +333,8 @@ func NewCreateScopeNotFound() *CreateScopeNotFound {
 	return &CreateScopeNotFound{}
 }
 
-/* CreateScopeNotFound describes a response with status code 404, with default header values.
+/*
+CreateScopeNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -217,9 +342,39 @@ type CreateScopeNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create scope not found response has a 2xx status code
+func (o *CreateScopeNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create scope not found response has a 3xx status code
+func (o *CreateScopeNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create scope not found response has a 4xx status code
+func (o *CreateScopeNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create scope not found response has a 5xx status code
+func (o *CreateScopeNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create scope not found response a status code equal to that given
+func (o *CreateScopeNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *CreateScopeNotFound) Error() string {
 	return fmt.Sprintf("[POST /scopes][%d] createScopeNotFound  %+v", 404, o.Payload)
 }
+
+func (o *CreateScopeNotFound) String() string {
+	return fmt.Sprintf("[POST /scopes][%d] createScopeNotFound  %+v", 404, o.Payload)
+}
+
 func (o *CreateScopeNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -241,7 +396,8 @@ func NewCreateScopeConflict() *CreateScopeConflict {
 	return &CreateScopeConflict{}
 }
 
-/* CreateScopeConflict describes a response with status code 409, with default header values.
+/*
+CreateScopeConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -249,9 +405,39 @@ type CreateScopeConflict struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create scope conflict response has a 2xx status code
+func (o *CreateScopeConflict) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create scope conflict response has a 3xx status code
+func (o *CreateScopeConflict) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create scope conflict response has a 4xx status code
+func (o *CreateScopeConflict) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create scope conflict response has a 5xx status code
+func (o *CreateScopeConflict) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create scope conflict response a status code equal to that given
+func (o *CreateScopeConflict) IsCode(code int) bool {
+	return code == 409
+}
+
 func (o *CreateScopeConflict) Error() string {
 	return fmt.Sprintf("[POST /scopes][%d] createScopeConflict  %+v", 409, o.Payload)
 }
+
+func (o *CreateScopeConflict) String() string {
+	return fmt.Sprintf("[POST /scopes][%d] createScopeConflict  %+v", 409, o.Payload)
+}
+
 func (o *CreateScopeConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -273,7 +459,8 @@ func NewCreateScopeUnprocessableEntity() *CreateScopeUnprocessableEntity {
 	return &CreateScopeUnprocessableEntity{}
 }
 
-/* CreateScopeUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+CreateScopeUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -281,9 +468,39 @@ type CreateScopeUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create scope unprocessable entity response has a 2xx status code
+func (o *CreateScopeUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create scope unprocessable entity response has a 3xx status code
+func (o *CreateScopeUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create scope unprocessable entity response has a 4xx status code
+func (o *CreateScopeUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create scope unprocessable entity response has a 5xx status code
+func (o *CreateScopeUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create scope unprocessable entity response a status code equal to that given
+func (o *CreateScopeUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *CreateScopeUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /scopes][%d] createScopeUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *CreateScopeUnprocessableEntity) String() string {
+	return fmt.Sprintf("[POST /scopes][%d] createScopeUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *CreateScopeUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -305,7 +522,8 @@ func NewCreateScopeTooManyRequests() *CreateScopeTooManyRequests {
 	return &CreateScopeTooManyRequests{}
 }
 
-/* CreateScopeTooManyRequests describes a response with status code 429, with default header values.
+/*
+CreateScopeTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -313,9 +531,39 @@ type CreateScopeTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create scope too many requests response has a 2xx status code
+func (o *CreateScopeTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create scope too many requests response has a 3xx status code
+func (o *CreateScopeTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create scope too many requests response has a 4xx status code
+func (o *CreateScopeTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create scope too many requests response has a 5xx status code
+func (o *CreateScopeTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create scope too many requests response a status code equal to that given
+func (o *CreateScopeTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *CreateScopeTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /scopes][%d] createScopeTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *CreateScopeTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /scopes][%d] createScopeTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *CreateScopeTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }
