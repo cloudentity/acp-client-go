@@ -8270,8 +8270,10 @@ definitions:
         $ref: '#/definitions/JWSPayloadSettings'
     type: object
   PersonalDetails:
-    additionalProperties:
-      type: object
+    properties:
+      user_id:
+        type: string
+        x-nullable: false
     type: object
   Policies:
     properties:
@@ -12131,6 +12133,11 @@ definitions:
         minLength: 32
         type: array
         x-nullable: false
+      saml_metadata:
+        $ref: '#/definitions/EntityDescriptor'
+      saml_service_provider_id:
+        type: string
+        x-nullable: false
       scope:
         description: Space separated scopes for compatibility with OAuth specification
         example: email offline_access openid
@@ -12939,7 +12946,7 @@ paths:
       - apis
   /bruteforce:
     get:
-      description: Get tenant's brute force limits
+      description: 'Get tenant''s brute force limits'
       operationId: listBruteForceLimits
       responses:
         "200":
@@ -13311,7 +13318,6 @@ paths:
       - clients
   /clients/{cid}/saml/metadata:
     get:
-      description: Get saml metadata
       operationId: getClientSAMLMetadata
       parameters:
       - default: default
@@ -13333,13 +13339,13 @@ paths:
           $ref: '#/responses/httpError'
       security:
       - admin: []
+      summary: Get saml metadata
       tags:
       - clients
   /clients/{cid}/saml/metadata/import/file:
     post:
       consumes:
       - multipart/form-data
-      description: Import saml metadata from file
       operationId: importSAMLMetadataFromFile
       parameters:
       - default: default
@@ -13370,13 +13376,13 @@ paths:
           $ref: '#/responses/httpError'
       security:
       - admin: []
+      summary: Import saml metadata from file
       tags:
       - clients
   /clients/{cid}/saml/metadata/import/text:
     post:
       consumes:
       - application/xml
-      description: Import saml metadata from text
       operationId: importSAMLMetadataFromText
       parameters:
       - default: default
@@ -13408,13 +13414,13 @@ paths:
           $ref: '#/responses/httpError'
       security:
       - admin: []
+      summary: Import saml metadata from text
       tags:
       - clients
   /clients/{cid}/saml/metadata/import/url:
     post:
       consumes:
       - multipart/form-data
-      description: Import saml metadata from url
       operationId: importSAMLMetadataFromURL
       parameters:
       - default: default
@@ -13445,6 +13451,7 @@ paths:
           $ref: '#/responses/httpError'
       security:
       - admin: []
+      summary: Import saml metadata from url
       tags:
       - clients
   /consents:
@@ -13476,9 +13483,11 @@ paths:
         explicitAll - all the existing grants should not be updated. It is required that the user grants the consent explicitly.
 
         implicitAll - all previously existing consent grants should be updated, to the new version of the consent, but
+
         all of those grants should be implicit from the moment on.
 
         keepCurrent - if a previously existing consent grant was set implicitly, it is automatically updated and a new
+
         consent grant is produced, which is also implicit. if a previously existing consent grant was set
         explicitly, it should not be updated. It is required that the user grants the consent explicitly.
       operationId: createConsent
@@ -14103,7 +14112,6 @@ paths:
         the same ID in two different workspaces within the same tenant. Additionally, when a policy is
         created, a workspace prefix is added to your policy name on the UI side. It is not possible to
         reuse policies between different authorization servers.
-
 
         Sample validators which can be used to build policies: identity-context, consent, header, true, false.
       operationId: createPolicy
@@ -16932,7 +16940,7 @@ paths:
       - keys
   /servers/{wid}/keys/revoke/{kid}:
     post:
-      description: Revoke rotated key
+      description: 'Revoke rotated key'
       operationId: revokeKey
       parameters:
       - default: default
@@ -17854,7 +17862,7 @@ paths:
       - servers
   /servers/{wid}/webhooks:
     get:
-      description: Returns list of webhooks for server
+      description: 'Returns list of webhooks for server'
       operationId: listServerWebhooks
       parameters:
       - description: Authorization server id
@@ -17877,7 +17885,7 @@ paths:
       tags:
       - webhooks
     post:
-      description: Creates a webhook
+      description: 'Creates a webhook'
       operationId: createWebhook
       parameters:
       - description: Authorization server id
@@ -17971,7 +17979,7 @@ paths:
       tags:
       - webhooks
     put:
-      description: Updates an existing Webhook
+      description: 'Updates an existing Webhook'
       operationId: updateWebhook
       parameters:
       - description: Authorization server id
@@ -18312,7 +18320,7 @@ paths:
       - services
   /stats/{wid}/recent-activities:
     get:
-      description: Get recent activities
+      description: 'Get recent activities'
       operationId: getRecentActivities
       parameters:
       - default: default
@@ -18515,7 +18523,7 @@ paths:
       - tenants
   /theme:
     post:
-      description: Creates a new Custom-Branding Theme
+      description: 'Creates a new Custom-Branding Theme'
       operationId: createTheme
       parameters:
       - in: body
@@ -18592,7 +18600,7 @@ paths:
       tags:
       - themes
     put:
-      description: Updates the custom-branding theme
+      description: 'Updates the custom-branding theme'
       operationId: updateTheme
       parameters:
       - description: Theme ID
@@ -18980,7 +18988,7 @@ paths:
       - vanityDomains
   /webhooks/events/{wid}:
     get:
-      description: Returns list of events that can be used with webhooks
+      description: 'Returns list of events that can be used with webhooks'
       operationId: listWebhookEvents
       parameters:
       - description: Authorization server id

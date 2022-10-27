@@ -64,7 +64,7 @@ ListCDRCustomerArrangementsParams contains all the parameters to send to the API
 type ListCDRCustomerArrangementsParams struct {
 
 	// ConsentsRequest.
-	ConsentsRequest *models.ConsentsRequest
+	ConsentsRequest *models.ListCDRCustomerArrangementsFilter
 
 	/* Wid.
 
@@ -139,13 +139,13 @@ func (o *ListCDRCustomerArrangementsParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithConsentsRequest adds the consentsRequest to the list c d r customer arrangements params
-func (o *ListCDRCustomerArrangementsParams) WithConsentsRequest(consentsRequest *models.ConsentsRequest) *ListCDRCustomerArrangementsParams {
+func (o *ListCDRCustomerArrangementsParams) WithConsentsRequest(consentsRequest *models.ListCDRCustomerArrangementsFilter) *ListCDRCustomerArrangementsParams {
 	o.SetConsentsRequest(consentsRequest)
 	return o
 }
 
 // SetConsentsRequest adds the consentsRequest to the list c d r customer arrangements params
-func (o *ListCDRCustomerArrangementsParams) SetConsentsRequest(consentsRequest *models.ConsentsRequest) {
+func (o *ListCDRCustomerArrangementsParams) SetConsentsRequest(consentsRequest *models.ListCDRCustomerArrangementsFilter) {
 	o.ConsentsRequest = consentsRequest
 }
 

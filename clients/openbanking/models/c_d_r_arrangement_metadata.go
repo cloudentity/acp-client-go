@@ -19,7 +19,7 @@ import (
 type CDRArrangementMetadata struct {
 
 	// personal details
-	PersonalDetails PersonalDetails `json:"personal_details,omitempty"`
+	PersonalDetails *PersonalDetails `json:"personal_details,omitempty"`
 
 	// revocation channel
 	RevocationChannel RevocationChannel `json:"revocation_channel,omitempty"`
@@ -127,13 +127,15 @@ func (m *CDRArrangementMetadata) ContextValidate(ctx context.Context, formats st
 
 func (m *CDRArrangementMetadata) contextValidatePersonalDetails(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := m.PersonalDetails.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("personal_details")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("personal_details")
+	if m.PersonalDetails != nil {
+		if err := m.PersonalDetails.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("personal_details")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("personal_details")
+			}
+			return err
 		}
-		return err
 	}
 
 	return nil

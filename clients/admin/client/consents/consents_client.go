@@ -67,9 +67,11 @@ UpdateExistingGrants has the following options:
 explicitAll - all the existing grants should not be updated. It is required that the user grants the consent explicitly.
 
 implicitAll - all previously existing consent grants should be updated, to the new version of the consent, but
+
 all of those grants should be implicit from the moment on.
 
 keepCurrent - if a previously existing consent grant was set implicitly, it is automatically updated and a new
+
 consent grant is produced, which is also implicit. if a previously existing consent grant was set
 explicitly, it should not be updated. It is required that the user grants the consent explicitly.
 */

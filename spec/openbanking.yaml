@@ -1102,6 +1102,12 @@ definitions:
           type: string
         type: array
         x-nullable: false
+      user_id:
+        description: |-
+          Optional User id
+          UserID
+        type: string
+        x-nullable: false
     type: object
   CDRCustomerID:
     type: string
@@ -4054,6 +4060,80 @@ definitions:
     required:
     - Self
     type: object
+  ListCDRCustomerArrangementsFilter:
+    properties:
+      accounts:
+        description: |-
+          Optional list of accounts
+          Accounts
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      after_consent_id:
+        description: |-
+          optional list consents after given id
+          AfterConsentID
+        type: string
+        x-nullable: false
+      before_consent_id:
+        description: |-
+          optional list consents before given id
+          BeforeConsentID
+        type: string
+        x-nullable: false
+      client_id:
+        description: |-
+          Optional client id
+          ClientID
+        type: string
+        x-nullable: false
+      limit:
+        default: 20
+        description: |-
+          optional limit results
+          Limit
+        format: int64
+        maximum: 100
+        minimum: 1
+        type: integer
+        x-nullable: false
+      order:
+        description: |-
+          optional sort consents by given fields
+          Order
+        type: string
+        x-nullable: false
+      sort:
+        description: |-
+          optional sort consents by given fields
+          Sort
+        type: string
+        x-nullable: false
+      status:
+        description: |-
+          Optional status
+          Status
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      types:
+        description: |-
+          Optional type
+          Types
+          in:query
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      user_id:
+        description: |-
+          Optional User id
+          UserID
+        type: string
+        x-nullable: false
+    type: object
   LocalizedName:
     description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
       §2.2.4
@@ -4079,7 +4159,7 @@ definitions:
     title: LocalizedURI represents the SAML type localizedURIType.
     type: object
   Meta:
-    description: Meta Data relevant to the payload
+    description: 'Meta Data relevant to the payload'
     properties:
       FirstAvailableDateTime:
         $ref: '#/definitions/ISODateTime'
@@ -11671,8 +11751,10 @@ definitions:
         x-nullable: false
     type: object
   PersonalDetails:
-    additionalProperties:
-      type: object
+    properties:
+      user_id:
+        type: string
+        x-nullable: false
     type: object
   PostCode:
     title: PostCode Identifier consisting of a group of letters and/or numbers that
@@ -12510,6 +12592,7 @@ paths:
         Note that as per CDR regulations it's not possible to introspect Access Tokens nor ID Tokens.
 
         The response contains:
+
         `active` flag indicating wheather the token is currently active
         `exp` - token expiration timestamp (number of seconds from 1970-01-01T00:00:00Z)
         `scope` - space separated list of scopes associated with the token
@@ -12538,7 +12621,7 @@ paths:
       - CDR
   /consents/{consentID}:
     get:
-      description: Get a Consent Grant
+      description: 'Get a Consent Grant'
       operationId: getFDXConsent
       parameters:
       - default: default
@@ -13071,7 +13154,7 @@ paths:
     post:
       consumes:
       - application/x-www-form-urlencoded
-      description: Introspect openbanking brasil data access consent
+      description: 'Introspect openbanking brasil data access consent'
       operationId: obbrDataAccessConsentIntrospect
       parameters:
       - in: formData
@@ -13493,9 +13576,9 @@ paths:
       - openbankingUK
   /open-banking/consents/v1/consents:
     post:
-      description: This API allows AISP to create consent to access PSU registration
+      description: 'This API allows AISP to create consent to access PSU registration
         data, information about transactions in their accounts, credit card and contracted
-        credit products
+        credit products'
       operationId: CreateDataAccessConsent
       parameters:
       - description: |-
@@ -13574,7 +13657,7 @@ paths:
       - openbankingBR
   /open-banking/consents/v1/consents/{consentID}:
     delete:
-      description: This API allows PISP to remove previously created consent
+      description: 'This API allows PISP to remove previously created consent'
       operationId: DeleteDataAccessConsent
       parameters:
       - description: |-
@@ -13647,7 +13730,7 @@ paths:
       tags:
       - openbankingBR
     get:
-      description: This API allows PISP to retrieve previously created consent
+      description: 'This API allows PISP to retrieve previously created consent'
       operationId: GetDataAccessConsent
       parameters:
       - description: |-
@@ -13721,9 +13804,9 @@ paths:
       - openbankingBR
   /open-banking/consents/v2/consents:
     post:
-      description: This API allows AISP to create consent to access PSU registration
+      description: 'This API allows AISP to create consent to access PSU registration
         data, information about transactions in their accounts, credit card and contracted
-        credit products
+        credit products'
       operationId: CreateDataAccessConsentV2
       parameters:
       - description: |-
@@ -13802,7 +13885,7 @@ paths:
       - openbankingBR
   /open-banking/consents/v2/consents/{consentID}:
     delete:
-      description: This API allows PISP to remove previously created consent
+      description: 'This API allows PISP to remove previously created consent'
       operationId: DeleteDataAccessConsentV2
       parameters:
       - description: |-
@@ -13875,7 +13958,7 @@ paths:
       tags:
       - openbankingBR
     get:
-      description: This API allows PISP to retrieve previously created consent
+      description: 'This API allows PISP to retrieve previously created consent'
       operationId: GetDataAccessConsentV2
       parameters:
       - description: |-
@@ -14595,8 +14678,8 @@ paths:
     post:
       consumes:
       - application/jwt
-      description: This API allows AISP to create consent to initiate payments between
-        banks and financial institutions
+      description: 'This API allows AISP to create consent to initiate payments
+        between banks and financial institutions'
       operationId: CreatePaymentConsent
       parameters:
       - description: |-
@@ -14677,7 +14760,8 @@ paths:
       - openbankingBR
   /open-banking/payments/v1/consents/{consentID}:
     get:
-      description: This API allows PISP to retrieve previously created payment consent
+      description: 'This API allows PISP to retrieve previously created payment
+        consent'
       operationId: GetPaymentConsent
       parameters:
       - description: |-
@@ -14750,7 +14834,7 @@ paths:
       tags:
       - openbankingBR
     patch:
-      description: This API allows PISP to revoke a payment consent
+      description: 'This API allows PISP to revoke a payment consent'
       operationId: PatchPaymentConsent
       parameters:
       - description: |-
@@ -15606,7 +15690,6 @@ paths:
     post:
       consumes:
       - application/x-www-form-urlencoded
-      description: Introspect openbanking domestic standing order consent
       operationId: openbankingDomesticStandingOrderConsentIntrospect
       parameters:
       - in: formData
@@ -15624,6 +15707,7 @@ paths:
       security:
       - default:
         - introspect_openbanking_tokens
+      summary: Introspect openbanking domestic standing order consent
       tags:
       - openbankingUK
   /open-banking/v3.1/pisp/file-payment-consents:
@@ -15950,7 +16034,6 @@ paths:
     post:
       consumes:
       - application/x-www-form-urlencoded
-      description: Introspect openbanking file payment consent
       operationId: openbankingFilePaymentConsentIntrospect
       parameters:
       - in: formData
@@ -15968,6 +16051,7 @@ paths:
       security:
       - default:
         - introspect_openbanking_tokens
+      summary: Introspect openbanking file payment consent
       tags:
       - openbankingUK
   /open-banking/v3.1/pisp/international-payment-consents:
@@ -16314,7 +16398,6 @@ paths:
     post:
       consumes:
       - application/x-www-form-urlencoded
-      description: Introspect openbanking international scheduled payment consent
       operationId: openbankingInternationalScheduledPaymentConsentIntrospect
       parameters:
       - in: formData
@@ -16332,6 +16415,7 @@ paths:
       security:
       - default:
         - introspect_openbanking_tokens
+      summary: Introspect openbanking international scheduled payment consent
       tags:
       - openbankingUK
   /open-banking/v3.1/pisp/international-standing-order-consents:
@@ -16494,7 +16578,6 @@ paths:
     post:
       consumes:
       - application/x-www-form-urlencoded
-      description: Introspect openbanking international standing order consent
       operationId: openbankingInternationalStandingOrderConsentIntrospect
       parameters:
       - in: formData
@@ -16512,13 +16595,14 @@ paths:
       security:
       - default:
         - introspect_openbanking_tokens
+      summary: Introspect openbanking international standing order consent
       tags:
       - openbankingUK
   /open-insurance/consents/v1/:
     post:
-      description: This API allows AISP to create consent to access PSU registration
+      description: 'This API allows AISP to create consent to access PSU registration
         data, information about transactions in their accounts, credit card and contracted
-        credit products
+        credit products'
       operationId: CreateInsuranceDataAccessConsent
       parameters:
       - description: |-
@@ -16597,7 +16681,7 @@ paths:
       - OPIN
   /open-insurance/consents/v1/{consentID}:
     delete:
-      description: This API allows PISP to remove previously created consent
+      description: 'This API allows PISP to remove previously created consent'
       operationId: DeleteInsuranceDataAccessConsent
       parameters:
       - description: |-
@@ -16670,7 +16754,7 @@ paths:
       tags:
       - OPIN
     get:
-      description: This API allows PISP to retrieve previously created consent
+      description: 'This API allows PISP to retrieve previously created consent'
       operationId: GetInsuranceDataAccessConsent
       parameters:
       - description: |-
@@ -16995,6 +17079,12 @@ paths:
         in: query
         name: customer_id
         type: string
+      - description: |-
+          Optional User id
+          UserID
+        in: query
+        name: user_id
+        type: string
       - default: default
         description: Workspace id
         in: path
@@ -17062,8 +17152,8 @@ paths:
       - CDR
   /servers/{wid}/cdr/arrangements/{arrangementID}:
     delete:
-      description: This API revokes a single CDR Arrangement with the matching arrangement
-        id
+      description: 'This API revokes a single CDR Arrangement with the matching
+        arrangement id'
       operationId: revokeCDRArrangementByID
       parameters:
       - default: default
@@ -17200,7 +17290,7 @@ paths:
         This API returns the list of CDR arrangements for a given customer.
         Customer must passed as customer_id claim in the access token.
         You can narrow the list of returned arrangements using filters defined in request body.
-        See listCDRCustomerArrangements for details.
+        See ListCDRCustomerArrangementsFilter for details.
       operationId: listCDRCustomerArrangements
       parameters:
       - default: default
@@ -17212,7 +17302,7 @@ paths:
       - in: body
         name: ConsentsRequest
         schema:
-          $ref: '#/definitions/ConsentsRequest'
+          $ref: '#/definitions/ListCDRCustomerArrangementsFilter'
       responses:
         "200":
           $ref: '#/responses/CDRArrangements'
@@ -17338,6 +17428,47 @@ paths:
       - system:
         - manage_openbanking_consents
       summary: List FDX Consents
+      tags:
+      - FDX
+  /servers/{wid}/fdx/consents/{consentID}:
+    delete:
+      description: 'This API revokes a single FDX Consent with the matching consent
+        id'
+      operationId: revokeFDXConsentByID
+      parameters:
+      - default: default
+        description: Workspace id
+        in: path
+        name: wid
+        required: true
+        type: string
+      - description: Consent id
+        in: path
+        name: consentID
+        required: true
+        type: string
+      - description: Revocation details
+        in: body
+        name: RevocationDetails
+        schema:
+          $ref: '#/definitions/FDXConsentRevocation'
+      responses:
+        "204":
+          description: ' Consnet has been revoked'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - system:
+        - manage_openbanking_consents
+      summary: Revoke FDX Consent
       tags:
       - FDX
   /servers/{wid}/open-banking-brasil/consents:

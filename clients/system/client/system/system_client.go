@@ -40,7 +40,7 @@ type ClientService interface {
 }
 
 /*
-GatewayExchange Exchange token endpoint as a gateway
+GatewayExchange exchanges token endpoint as a gateway
 */
 func (a *Client) GatewayExchange(params *GatewayExchangeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GatewayExchangeOK, error) {
 	// TODO: Validate the params before sending
@@ -79,7 +79,7 @@ func (a *Client) GatewayExchange(params *GatewayExchangeParams, authInfo runtime
 }
 
 /*
-GatewayIntrospect Introspect access token endpoint as a gateway
+GatewayIntrospect introspects access token endpoint as a gateway
 */
 func (a *Client) GatewayIntrospect(params *GatewayIntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GatewayIntrospectOK, error) {
 	// TODO: Validate the params before sending

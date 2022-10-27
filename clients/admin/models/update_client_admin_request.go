@@ -259,6 +259,12 @@ type UpdateClientAdminRequest struct {
 	// An array of rotated OAuth client secrets
 	RotatedSecrets []string `json:"rotated_secrets"`
 
+	// saml metadata
+	SamlMetadata *EntityDescriptor `json:"saml_metadata,omitempty"`
+
+	// saml service provider id
+	SamlServiceProviderID string `json:"saml_service_provider_id,omitempty"`
+
 	// Space separated scopes for compatibility with OAuth specification
 	// Example: email offline_access openid
 	Scope string `json:"scope,omitempty"`
@@ -473,6 +479,10 @@ func (m *UpdateClientAdminRequest) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateRevocationEndpointAuthMethod(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSamlMetadata(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1271,6 +1281,25 @@ func (m *UpdateClientAdminRequest) validateRevocationEndpointAuthMethod(formats 
 	return nil
 }
 
+func (m *UpdateClientAdminRequest) validateSamlMetadata(formats strfmt.Registry) error {
+	if swag.IsZero(m.SamlMetadata) { // not required
+		return nil
+	}
+
+	if m.SamlMetadata != nil {
+		if err := m.SamlMetadata.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("saml_metadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("saml_metadata")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *UpdateClientAdminRequest) validateSoftwareStatementPayload(formats strfmt.Registry) error {
 	if swag.IsZero(m.SoftwareStatementPayload) { // not required
 		return nil
@@ -1548,6 +1577,10 @@ func (m *UpdateClientAdminRequest) ContextValidate(ctx context.Context, formats 
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateSamlMetadata(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateSoftwareStatementPayload(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -1654,6 +1687,22 @@ func (m *UpdateClientAdminRequest) contextValidateResponseTypes(ctx context.Cont
 			return ce.ValidateName("response_types")
 		}
 		return err
+	}
+
+	return nil
+}
+
+func (m *UpdateClientAdminRequest) contextValidateSamlMetadata(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.SamlMetadata != nil {
+		if err := m.SamlMetadata.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("saml_metadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("saml_metadata")
+			}
+			return err
+		}
 	}
 
 	return nil

@@ -30,9 +30,17 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	AddUserIdentifier(params *AddUserIdentifierParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AddUserIdentifierOK, error)
+
+	AddUserVerifiableAddress(params *AddUserVerifiableAddressParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AddUserVerifiableAddressOK, error)
+
 	CreateUser(params *CreateUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateUserCreated, error)
 
 	DeleteUser(params *DeleteUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteUserNoContent, error)
+
+	DeleteUserIdentifier(params *DeleteUserIdentifierParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteUserIdentifierNoContent, error)
+
+	DeleteUserVerifiableAddress(params *DeleteUserVerifiableAddressParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteUserVerifiableAddressNoContent, error)
 
 	GetUser(params *GetUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserOK, error)
 
@@ -42,7 +50,91 @@ type ClientService interface {
 
 	UpdateUser(params *UpdateUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateUserOK, error)
 
+	UpdateUserVerifiableAddress(params *UpdateUserVerifiableAddressParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateUserVerifiableAddressOK, error)
+
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+AddUserIdentifier adds identifier
+
+Adds an identifier to the user account
+*/
+func (a *Client) AddUserIdentifier(params *AddUserIdentifierParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AddUserIdentifierOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAddUserIdentifierParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "addUserIdentifier",
+		Method:             "POST",
+		PathPattern:        "/admin/pools/{ipID}/users/{userID}/identifiers/add",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AddUserIdentifierReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*AddUserIdentifierOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for addUserIdentifier: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+AddUserVerifiableAddress adds verifiable address
+
+Adds a verifiable address to the user account
+*/
+func (a *Client) AddUserVerifiableAddress(params *AddUserVerifiableAddressParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AddUserVerifiableAddressOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAddUserVerifiableAddressParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "addUserVerifiableAddress",
+		Method:             "POST",
+		PathPattern:        "/admin/pools/{ipID}/users/{userID}/addresses/add",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AddUserVerifiableAddressReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*AddUserVerifiableAddressOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for addUserVerifiableAddress: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*
@@ -128,6 +220,88 @@ func (a *Client) DeleteUser(params *DeleteUserParams, authInfo runtime.ClientAut
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for deleteUser: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+DeleteUserIdentifier deletes identifier
+
+Deletes an identifier from the user account
+*/
+func (a *Client) DeleteUserIdentifier(params *DeleteUserIdentifierParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteUserIdentifierNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteUserIdentifierParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "deleteUserIdentifier",
+		Method:             "POST",
+		PathPattern:        "/admin/pools/{ipID}/users/{userID}/identifiers/remove",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteUserIdentifierReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DeleteUserIdentifierNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for deleteUserIdentifier: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+DeleteUserVerifiableAddress deletes verifiable address
+
+Deletes a verifiable address from the user account
+*/
+func (a *Client) DeleteUserVerifiableAddress(params *DeleteUserVerifiableAddressParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteUserVerifiableAddressNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteUserVerifiableAddressParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "deleteUserVerifiableAddress",
+		Method:             "POST",
+		PathPattern:        "/admin/pools/{ipID}/users/{userID}/addresses/remove",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteUserVerifiableAddressReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DeleteUserVerifiableAddressNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for deleteUserVerifiableAddress: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -311,6 +485,47 @@ func (a *Client) UpdateUser(params *UpdateUserParams, authInfo runtime.ClientAut
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for updateUser: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+UpdateUserVerifiableAddress updates verifiable address
+
+Updates a verifiable address of the user account
+*/
+func (a *Client) UpdateUserVerifiableAddress(params *UpdateUserVerifiableAddressParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateUserVerifiableAddressOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateUserVerifiableAddressParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "updateUserVerifiableAddress",
+		Method:             "POST",
+		PathPattern:        "/admin/pools/{ipID}/users/{userID}/addresses/update",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateUserVerifiableAddressReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*UpdateUserVerifiableAddressOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for updateUserVerifiableAddress: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

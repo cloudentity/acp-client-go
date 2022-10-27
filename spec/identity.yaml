@@ -2,6 +2,60 @@ basePath: /api/identity/default
 consumes:
 - application/json
 definitions:
+  AddUserIdentifier:
+    properties:
+      identifier:
+        format: userIdentifierValue
+        type: string
+        x-nullable: false
+      type:
+        enum:
+        - email
+        - mobile
+        - uid
+        - external
+        example: email
+        type: string
+        x-nullable: false
+    required:
+    - identifier
+    - type
+    type: object
+  AddUserVerifiableAddress:
+    properties:
+      address:
+        format: verifiableAddress
+        type: string
+        x-nullable: false
+      preferred_contact_method:
+        enum:
+        - sms
+        - voice
+        example: sms
+        type: string
+        x-nullable: false
+      status:
+        enum:
+        - active
+        - inactive
+        example: active
+        type: string
+        x-nullable: false
+      type:
+        enum:
+        - email
+        - mobile
+        example: mobile
+        type: string
+        x-nullable: false
+      verified:
+        type: boolean
+        x-nullable: false
+    required:
+    - address
+    - type
+    - verified
+    type: object
   AuthenticationMechanisms:
     items:
       enum:
@@ -30,6 +84,24 @@ definitions:
     required:
     - extended_code
     - code
+    type: object
+  DeleteUserIdentifier:
+    properties:
+      identifier:
+        format: userIdentifierValue
+        type: string
+        x-nullable: false
+    required:
+    - identifier
+    type: object
+  DeleteUserVerifiableAddress:
+    properties:
+      address:
+        format: verifiableAddress
+        type: string
+        x-nullable: false
+    required:
+    - address
     type: object
   Error:
     description: HTTP error response
@@ -333,6 +405,13 @@ definitions:
         format: schemaID
         type: string
         x-nullable: false
+      preferred_authentication_mechanism:
+        enum:
+        - password
+        - otp
+        example: password
+        type: string
+        x-nullable: false
       public_registration_allowed:
         type: boolean
         x-nullable: false
@@ -575,6 +654,35 @@ definitions:
         - new
         type: string
         x-nullable: false
+    type: object
+  UpdateUserVerifiableAddress:
+    properties:
+      address:
+        format: verifiableAddress
+        type: string
+        x-nullable: false
+      preferred_contact_method:
+        enum:
+        - sms
+        - voice
+        example: sms
+        type: string
+        x-nullable: false
+      status:
+        enum:
+        - active
+        - inactive
+        example: active
+        type: string
+        x-nullable: false
+      verified:
+        example: false
+        type: boolean
+        x-nullable: false
+    required:
+    - address
+    - status
+    - verified
     type: object
   UserCredential:
     properties:
@@ -1255,6 +1363,217 @@ paths:
       security:
       - admin: []
       summary: Send Activation Message
+      tags:
+      - Users
+  /admin/pools/{ipID}/users/{userID}/addresses/add:
+    post:
+      description: 'Adds a verifiable address to the user account'
+      operationId: addUserVerifiableAddress
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: userID
+        required: true
+        type: string
+      - in: body
+        name: NewAddress
+        schema:
+          $ref: '#/definitions/AddUserVerifiableAddress'
+      responses:
+        "200":
+          $ref: '#/responses/AddressResponse'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "409":
+          $ref: '#/responses/httpError'
+        "412":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Add Verifiable Address
+      tags:
+      - Users
+  /admin/pools/{ipID}/users/{userID}/addresses/remove:
+    post:
+      description: 'Deletes a verifiable address from the user account'
+      operationId: deleteUserVerifiableAddress
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: userID
+        required: true
+        type: string
+      - in: body
+        name: Address
+        schema:
+          $ref: '#/definitions/DeleteUserVerifiableAddress'
+      responses:
+        "204":
+          $ref: '#/responses/DeleteAddressResponse'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "412":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Delete Verifiable Address
+      tags:
+      - Users
+  /admin/pools/{ipID}/users/{userID}/addresses/update:
+    post:
+      description: 'Updates a verifiable address of the user account'
+      operationId: updateUserVerifiableAddress
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: userID
+        required: true
+        type: string
+      - in: body
+        name: UpdateAddress
+        schema:
+          $ref: '#/definitions/UpdateUserVerifiableAddress'
+      responses:
+        "200":
+          $ref: '#/responses/AddressResponse'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "409":
+          $ref: '#/responses/httpError'
+        "412":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Update Verifiable Address
+      tags:
+      - Users
+  /admin/pools/{ipID}/users/{userID}/identifiers/add:
+    post:
+      description: 'Adds an identifier to the user account'
+      operationId: addUserIdentifier
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: userID
+        required: true
+        type: string
+      - in: body
+        name: NewIdentifier
+        schema:
+          $ref: '#/definitions/AddUserIdentifier'
+      responses:
+        "200":
+          $ref: '#/responses/IdentifierResponse'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "409":
+          $ref: '#/responses/httpError'
+        "412":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Add Identifier
+      tags:
+      - Users
+  /admin/pools/{ipID}/users/{userID}/identifiers/remove:
+    post:
+      description: 'Deletes an identifier from the user account'
+      operationId: deleteUserIdentifier
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: userID
+        required: true
+        type: string
+      - in: body
+        name: Identifier
+        schema:
+          $ref: '#/definitions/DeleteUserIdentifier'
+      responses:
+        "204":
+          $ref: '#/responses/DeleteIdentifierResponse'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "412":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Delete Identifier
       tags:
       - Users
   /admin/schemas:

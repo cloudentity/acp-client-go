@@ -14,10 +14,10 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// CDRConsentsRequest c d r consents request
+// ListCDRCustomerArrangementsFilter list c d r customer arrangements filter
 //
-// swagger:model CDRConsentsRequest
-type CDRConsentsRequest struct {
+// swagger:model ListCDRCustomerArrangementsFilter
+type ListCDRCustomerArrangementsFilter struct {
 
 	// Optional list of accounts
 	// Accounts
@@ -34,10 +34,6 @@ type CDRConsentsRequest struct {
 	// Optional client id
 	// ClientID
 	ClientID string `json:"client_id,omitempty"`
-
-	// Optional customer id
-	// CustomerID
-	CustomerID string `json:"customer_id,omitempty"`
 
 	// optional limit results
 	// Limit
@@ -67,8 +63,8 @@ type CDRConsentsRequest struct {
 	UserID string `json:"user_id,omitempty"`
 }
 
-// Validate validates this c d r consents request
-func (m *CDRConsentsRequest) Validate(formats strfmt.Registry) error {
+// Validate validates this list c d r customer arrangements filter
+func (m *ListCDRCustomerArrangementsFilter) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateLimit(formats); err != nil {
@@ -81,7 +77,7 @@ func (m *CDRConsentsRequest) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *CDRConsentsRequest) validateLimit(formats strfmt.Registry) error {
+func (m *ListCDRCustomerArrangementsFilter) validateLimit(formats strfmt.Registry) error {
 	if swag.IsZero(m.Limit) { // not required
 		return nil
 	}
@@ -97,13 +93,13 @@ func (m *CDRConsentsRequest) validateLimit(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validates this c d r consents request based on context it is used
-func (m *CDRConsentsRequest) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validates this list c d r customer arrangements filter based on context it is used
+func (m *ListCDRCustomerArrangementsFilter) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 
 // MarshalBinary interface implementation
-func (m *CDRConsentsRequest) MarshalBinary() ([]byte, error) {
+func (m *ListCDRCustomerArrangementsFilter) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -111,8 +107,8 @@ func (m *CDRConsentsRequest) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *CDRConsentsRequest) UnmarshalBinary(b []byte) error {
-	var res CDRConsentsRequest
+func (m *ListCDRCustomerArrangementsFilter) UnmarshalBinary(b []byte) error {
+	var res ListCDRCustomerArrangementsFilter
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

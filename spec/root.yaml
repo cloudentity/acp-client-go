@@ -4358,8 +4358,10 @@ definitions:
         $ref: '#/definitions/JWSPayloadSettings'
     type: object
   PersonalDetails:
-    additionalProperties:
-      type: object
+    properties:
+      user_id:
+        type: string
+        x-nullable: false
     type: object
   Policy:
     properties:
@@ -7190,7 +7192,6 @@ paths:
       - tenants
   /api/system/tenants/{tid}:
     delete:
-      description: Delete tenant
       operationId: deleteTenant
       parameters:
       - default: default
@@ -7212,6 +7213,7 @@ paths:
           $ref: '#/responses/httpError'
       security:
       - setup: []
+      summary: Delete tenant
       tags:
       - tenants
     get:

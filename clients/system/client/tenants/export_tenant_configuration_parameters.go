@@ -14,6 +14,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewExportTenantConfigurationParams creates a new ExportTenantConfigurationParams object,
@@ -60,6 +61,10 @@ ExportTenantConfigurationParams contains all the parameters to send to the API e
 	Typically these are written to a http.Request.
 */
 type ExportTenantConfigurationParams struct {
+
+	// WithData.
+	WithData *bool
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -113,6 +118,17 @@ func (o *ExportTenantConfigurationParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithWithData adds the withData to the export tenant configuration params
+func (o *ExportTenantConfigurationParams) WithWithData(withData *bool) *ExportTenantConfigurationParams {
+	o.SetWithData(withData)
+	return o
+}
+
+// SetWithData adds the withData to the export tenant configuration params
+func (o *ExportTenantConfigurationParams) SetWithData(withData *bool) {
+	o.WithData = withData
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *ExportTenantConfigurationParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -120,6 +136,23 @@ func (o *ExportTenantConfigurationParams) WriteToRequest(r runtime.ClientRequest
 		return err
 	}
 	var res []error
+
+	if o.WithData != nil {
+
+		// query param with_data
+		var qrWithData bool
+
+		if o.WithData != nil {
+			qrWithData = *o.WithData
+		}
+		qWithData := swag.FormatBool(qrWithData)
+		if qWithData != "" {
+
+			if err := r.SetQueryParam("with_data", qWithData); err != nil {
+				return err
+			}
+		}
+	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)

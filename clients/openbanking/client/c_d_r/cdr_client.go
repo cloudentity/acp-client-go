@@ -112,6 +112,7 @@ meta information surrounding the token, returns the cdr arrangement consent.
 Note that as per CDR regulations it's not possible to introspect Access Tokens nor ID Tokens.
 
 The response contains:
+
 `active` flag indicating wheather the token is currently active
 `exp` - token expiration timestamp (number of seconds from 1970-01-01T00:00:00Z)
 `scope` - space separated list of scopes associated with the token
@@ -334,7 +335,7 @@ func (a *Client) ListCDRArrangements(params *ListCDRArrangementsParams, authInfo
 
 Customer must passed as customer_id claim in the access token.
 You can narrow the list of returned arrangements using filters defined in request body.
-See listCDRCustomerArrangements for details.
+See ListCDRCustomerArrangementsFilter for details.
 */
 func (a *Client) ListCDRCustomerArrangements(params *ListCDRCustomerArrangementsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListCDRCustomerArrangementsOK, error) {
 	// TODO: Validate the params before sending

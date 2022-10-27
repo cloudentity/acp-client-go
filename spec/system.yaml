@@ -4762,8 +4762,10 @@ definitions:
         $ref: '#/definitions/JWSPayloadSettings'
     type: object
   PersonalDetails:
-    additionalProperties:
-      type: object
+    properties:
+      user_id:
+        type: string
+        x-nullable: false
     type: object
   Policy:
     properties:
@@ -7436,7 +7438,7 @@ info:
 paths:
   /clients/{wid}:
     get:
-      description: This API lists clients by server
+      description: 'This API lists clients by server'
       operationId: listClientsSystem
       parameters:
       - default: default
@@ -7480,6 +7482,10 @@ paths:
 
         Use the `tid` path parameter to specify which tenant is to have the configuration exported.
       operationId: exportTenantConfiguration
+      parameters:
+      - in: query
+        name: with_data
+        type: boolean
       responses:
         "200":
           $ref: '#/responses/TenantDump'
@@ -7780,7 +7786,6 @@ paths:
     post:
       consumes:
       - application/x-www-form-urlencoded
-      description: Exchange token endpoint as a gateway
       operationId: gatewayExchange
       parameters:
       - in: formData
@@ -7800,13 +7805,13 @@ paths:
       security:
       - system:
         - gateway_exchange_tokens
+      summary: Exchange token endpoint as a gateway
       tags:
       - system
   /gateways/introspect:
     post:
       consumes:
       - application/x-www-form-urlencoded
-      description: Introspect access token endpoint as a gateway
       operationId: gatewayIntrospect
       parameters:
       - in: formData
@@ -7822,6 +7827,7 @@ paths:
       security:
       - system:
         - introspect_tokens
+      summary: Introspect access token endpoint as a gateway
       tags:
       - system
   /gateways/requests:
@@ -8038,7 +8044,7 @@ paths:
       - logins
   /scopes/{wid}:
     get:
-      description: This API lists scopes for a given authorization server
+      description: 'This API lists scopes for a given authorization server'
       operationId: listScopesSystem
       parameters:
       - default: default

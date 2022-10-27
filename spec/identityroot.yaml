@@ -399,6 +399,13 @@ definitions:
         format: schemaID
         type: string
         x-nullable: false
+      preferred_authentication_mechanism:
+        enum:
+        - password
+        - otp
+        example: password
+        type: string
+        x-nullable: false
       public_registration_allowed:
         type: boolean
         x-nullable: false

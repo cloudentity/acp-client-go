@@ -9,19 +9,42 @@ import (
 	"context"
 
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // PersonalDetails personal details
 //
 // swagger:model PersonalDetails
-type PersonalDetails map[string]interface{}
+type PersonalDetails struct {
+
+	// user id
+	UserID string `json:"user_id,omitempty"`
+}
 
 // Validate validates this personal details
-func (m PersonalDetails) Validate(formats strfmt.Registry) error {
+func (m *PersonalDetails) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
 // ContextValidate validates this personal details based on context it is used
-func (m PersonalDetails) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+func (m *PersonalDetails) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *PersonalDetails) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *PersonalDetails) UnmarshalBinary(b []byte) error {
+	var res PersonalDetails
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
 	return nil
 }

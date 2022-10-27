@@ -2106,7 +2106,7 @@ func (a *Client) OpenbankingDomesticScheduledPaymentConsentIntrospect(params *Op
 }
 
 /*
-OpenbankingDomesticStandingOrderConsentIntrospect Introspect openbanking domestic standing order consent
+OpenbankingDomesticStandingOrderConsentIntrospect introspects openbanking domestic standing order consent
 */
 func (a *Client) OpenbankingDomesticStandingOrderConsentIntrospect(params *OpenbankingDomesticStandingOrderConsentIntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*OpenbankingDomesticStandingOrderConsentIntrospectOK, error) {
 	// TODO: Validate the params before sending
@@ -2145,7 +2145,7 @@ func (a *Client) OpenbankingDomesticStandingOrderConsentIntrospect(params *Openb
 }
 
 /*
-OpenbankingFilePaymentConsentIntrospect Introspect openbanking file payment consent
+OpenbankingFilePaymentConsentIntrospect introspects openbanking file payment consent
 */
 func (a *Client) OpenbankingFilePaymentConsentIntrospect(params *OpenbankingFilePaymentConsentIntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*OpenbankingFilePaymentConsentIntrospectOK, error) {
 	// TODO: Validate the params before sending
@@ -2225,7 +2225,7 @@ func (a *Client) OpenbankingInternationalPaymentConsentIntrospect(params *Openba
 }
 
 /*
-OpenbankingInternationalScheduledPaymentConsentIntrospect Introspect openbanking international scheduled payment consent
+OpenbankingInternationalScheduledPaymentConsentIntrospect introspects openbanking international scheduled payment consent
 */
 func (a *Client) OpenbankingInternationalScheduledPaymentConsentIntrospect(params *OpenbankingInternationalScheduledPaymentConsentIntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*OpenbankingInternationalScheduledPaymentConsentIntrospectOK, error) {
 	// TODO: Validate the params before sending
@@ -2264,7 +2264,7 @@ func (a *Client) OpenbankingInternationalScheduledPaymentConsentIntrospect(param
 }
 
 /*
-OpenbankingInternationalStandingOrderConsentIntrospect Introspect openbanking international standing order consent
+OpenbankingInternationalStandingOrderConsentIntrospect introspects openbanking international standing order consent
 */
 func (a *Client) OpenbankingInternationalStandingOrderConsentIntrospect(params *OpenbankingInternationalStandingOrderConsentIntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*OpenbankingInternationalStandingOrderConsentIntrospectOK, error) {
 	// TODO: Validate the params before sending

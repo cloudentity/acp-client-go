@@ -135,6 +135,13 @@ type GetCDRArrangementsParams struct {
 	*/
 	Types []string
 
+	/* UserID.
+
+	     Optional User id
+	UserID
+	*/
+	UserID *string
+
 	/* Wid.
 
 	   Workspace id
@@ -320,6 +327,17 @@ func (o *GetCDRArrangementsParams) SetTypes(types []string) {
 	o.Types = types
 }
 
+// WithUserID adds the userID to the get c d r arrangements params
+func (o *GetCDRArrangementsParams) WithUserID(userID *string) *GetCDRArrangementsParams {
+	o.SetUserID(userID)
+	return o
+}
+
+// SetUserID adds the userId to the get c d r arrangements params
+func (o *GetCDRArrangementsParams) SetUserID(userID *string) {
+	o.UserID = userID
+}
+
 // WithWid adds the wid to the get c d r arrangements params
 func (o *GetCDRArrangementsParams) WithWid(wid string) *GetCDRArrangementsParams {
 	o.SetWid(wid)
@@ -488,6 +506,23 @@ func (o *GetCDRArrangementsParams) WriteToRequest(r runtime.ClientRequest, reg s
 		// query array param types
 		if err := r.SetQueryParam("types", joinedTypes...); err != nil {
 			return err
+		}
+	}
+
+	if o.UserID != nil {
+
+		// query param user_id
+		var qrUserID string
+
+		if o.UserID != nil {
+			qrUserID = *o.UserID
+		}
+		qUserID := qrUserID
+		if qUserID != "" {
+
+			if err := r.SetQueryParam("user_id", qUserID); err != nil {
+				return err
+			}
 		}
 	}
 

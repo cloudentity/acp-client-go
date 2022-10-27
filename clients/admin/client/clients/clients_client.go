@@ -187,7 +187,7 @@ func (a *Client) GetClient(params *GetClientParams, authInfo runtime.ClientAuthI
 }
 
 /*
-GetClientSAMLMetadata Get saml metadata
+GetClientSAMLMetadata gets saml metadata
 */
 func (a *Client) GetClientSAMLMetadata(params *GetClientSAMLMetadataParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetClientSAMLMetadataOK, error) {
 	// TODO: Validate the params before sending
@@ -226,7 +226,7 @@ func (a *Client) GetClientSAMLMetadata(params *GetClientSAMLMetadataParams, auth
 }
 
 /*
-ImportSAMLMetadataFromFile Import saml metadata from file
+ImportSAMLMetadataFromFile imports saml metadata from file
 */
 func (a *Client) ImportSAMLMetadataFromFile(params *ImportSAMLMetadataFromFileParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportSAMLMetadataFromFileNoContent, error) {
 	// TODO: Validate the params before sending
@@ -265,7 +265,7 @@ func (a *Client) ImportSAMLMetadataFromFile(params *ImportSAMLMetadataFromFilePa
 }
 
 /*
-ImportSAMLMetadataFromText Import saml metadata from text
+ImportSAMLMetadataFromText imports saml metadata from text
 */
 func (a *Client) ImportSAMLMetadataFromText(params *ImportSAMLMetadataFromTextParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportSAMLMetadataFromTextNoContent, error) {
 	// TODO: Validate the params before sending
@@ -304,7 +304,7 @@ func (a *Client) ImportSAMLMetadataFromText(params *ImportSAMLMetadataFromTextPa
 }
 
 /*
-ImportSAMLMetadataFromURL Import saml metadata from url
+ImportSAMLMetadataFromURL imports saml metadata from url
 */
 func (a *Client) ImportSAMLMetadataFromURL(params *ImportSAMLMetadataFromURLParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportSAMLMetadataFromURLNoContent, error) {
 	// TODO: Validate the params before sending

@@ -95,7 +95,7 @@ func (a *Client) CreateTenant(params *CreateTenantParams, authInfo runtime.Clien
 }
 
 /*
-DeleteTenant Delete tenant
+DeleteTenant deletes tenant
 */
 func (a *Client) DeleteTenant(params *DeleteTenantParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteTenantNoContent, error) {
 	// TODO: Validate the params before sending

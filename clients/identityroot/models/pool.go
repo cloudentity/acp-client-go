@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	"encoding/json"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -50,6 +51,11 @@ type Pool struct {
 	// payload schema id
 	PayloadSchemaID string `json:"payload_schema_id,omitempty"`
 
+	// preferred authentication mechanism
+	// Example: password
+	// Enum: [password otp]
+	PreferredAuthenticationMechanism string `json:"preferred_authentication_mechanism,omitempty"`
+
 	// public registration allowed
 	PublicRegistrationAllowed bool `json:"public_registration_allowed,omitempty"`
 
@@ -80,6 +86,10 @@ func (m *Pool) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validatePasswordSettings(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePreferredAuthenticationMechanism(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -171,6 +181,48 @@ func (m *Pool) validatePasswordSettings(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+var poolTypePreferredAuthenticationMechanismPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["password","otp"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		poolTypePreferredAuthenticationMechanismPropEnum = append(poolTypePreferredAuthenticationMechanismPropEnum, v)
+	}
+}
+
+const (
+
+	// PoolPreferredAuthenticationMechanismPassword captures enum value "password"
+	PoolPreferredAuthenticationMechanismPassword string = "password"
+
+	// PoolPreferredAuthenticationMechanismOtp captures enum value "otp"
+	PoolPreferredAuthenticationMechanismOtp string = "otp"
+)
+
+// prop value enum
+func (m *Pool) validatePreferredAuthenticationMechanismEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, poolTypePreferredAuthenticationMechanismPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *Pool) validatePreferredAuthenticationMechanism(formats strfmt.Registry) error {
+	if swag.IsZero(m.PreferredAuthenticationMechanism) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validatePreferredAuthenticationMechanismEnum("preferred_authentication_mechanism", "body", m.PreferredAuthenticationMechanism); err != nil {
+		return err
 	}
 
 	return nil
