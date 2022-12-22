@@ -44,7 +44,7 @@ import (
 	systemClient "github.com/cloudentity/acp-client-go/clients/system/client"
 	webClient "github.com/cloudentity/acp-client-go/clients/web/client"
 
-	"github.com/dgrijalva/jwt-go"
+	"github.com/golang-jwt/jwt/v4"
 	"github.com/google/uuid"
 
 	httptransport "github.com/go-openapi/runtime/client"
