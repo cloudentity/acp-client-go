@@ -143,9 +143,12 @@ type Client struct {
 
 	c                          *http.Client
 	requestObjectSigningKey    interface{}
+	requestObjectSigningAlg    string
 	requestObjectEncryptionKey jose.JSONWebKey
 
 	clientAssertionSigningKey interface{}
+
+	clientAssertionSigningAlg string
 
 	// Client configuration
 	Config Config
@@ -480,11 +483,19 @@ func New(cfg Config) (c Client, err error) {
 		if c.requestObjectSigningKey, err = loadSigningKeyFromFile(cfg.RequestObjectSigningKeyFile); err != nil {
 			return c, errors.Wrapf(err, "failed to load request object signing key file")
 		}
+
+		if c.requestObjectSigningKey == "" {
+			c.requestObjectSigningKey = "RS256"
+		}
 	}
 
 	if cfg.ClientAssertionSigningKeyFile != "" {
 		if c.clientAssertionSigningKey, err = loadSigningKeyFromFile(cfg.ClientAssertionSigningKeyFile); err != nil {
 			return c, errors.Wrapf(err, "failed to load client assertion signing key file")
+		}
+
+		if c.clientAssertionSigningAlg == "" {
+			c.clientAssertionSigningAlg = "RS256"
 		}
 	}
 
@@ -974,10 +985,15 @@ func WithSignedRequestObject(claims jwt.MapClaims) AuthorizeOption {
 	return authorizeHandler(func(c *Client, v url.Values, csrf *CSRF) error {
 		var (
 			signedToken string
+			method      jwt.SigningMethod
 			err         error
 		)
 
-		token := jwt.NewWithClaims(jwt.SigningMethodRS256, claims)
+		if method, err = getSigningMethod(c.clientAssertionSigningAlg); err != nil {
+			return errors.Wrapf(err, "failed to get signing method for request object")
+		}
+
+		token := jwt.NewWithClaims(method, claims)
 
 		if signedToken, err = token.SignedString(c.requestObjectSigningKey); err != nil {
 			return errors.Wrapf(err, "failed to sign openbanking request object")
@@ -1015,6 +1031,12 @@ func (c *Client) AuthorizeURL(options ...AuthorizeOption) (authorizeURL string, 
 }
 
 func (c *Client) GenerateClientAssertion() (assertion string, err error) {
+	var method jwt.SigningMethod
+
+	if method, err = getSigningMethod(c.clientAssertionSigningAlg); err != nil {
+		return "", errors.Wrapf(err, "failed to get signing method for client assertion")
+	}
+
 	claims := jwt.MapClaims{
 		"iss": c.Config.ClientID,
 		"sub": c.Config.ClientID,
@@ -1022,8 +1044,8 @@ func (c *Client) GenerateClientAssertion() (assertion string, err error) {
 		"jti": uuid.New().String(),
 		"exp": time.Now().Add(time.Minute * 5).Unix(),
 	}
-	t := jwt.NewWithClaims(jwt.SigningMethodRS256, claims)
-	return t.SignedString(c.clientAssertionSigningKey)
+
+	return jwt.NewWithClaims(method, claims).SignedString(c.clientAssertionSigningKey)
 }
 
 type PARResponse struct {
@@ -1233,4 +1255,17 @@ func loadSigningKeyFromFile(path string) (key interface{}, err error) {
 	}
 
 	return key, nil
+}
+
+func getSigningMethod(alg string) (jwt.SigningMethod, error) {
+	switch alg {
+	case "RS256":
+		return jwt.SigningMethodRS256, nil
+	case "ES256":
+		return jwt.SigningMethodES256, nil
+	case "PS256":
+		return jwt.SigningMethodPS256, nil
+	default:
+		return nil, fmt.Errorf("unsupported signing alg: %s", alg)
+	}
 }
