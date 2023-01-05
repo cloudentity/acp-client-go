@@ -7,7 +7,6 @@ package models
 
 import (
 	"context"
-	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -19,15 +18,15 @@ import (
 // swagger:model FDXErrorResponse
 type FDXErrorResponse struct {
 
-	// errors
-	Errors []*FDXError `json:"errors"`
+	// error
+	Error *FDXError `json:"error,omitempty"`
 }
 
 // Validate validates this f d x error response
 func (m *FDXErrorResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateErrors(formats); err != nil {
+	if err := m.validateError(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -37,27 +36,20 @@ func (m *FDXErrorResponse) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *FDXErrorResponse) validateErrors(formats strfmt.Registry) error {
-	if swag.IsZero(m.Errors) { // not required
+func (m *FDXErrorResponse) validateError(formats strfmt.Registry) error {
+	if swag.IsZero(m.Error) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.Errors); i++ {
-		if swag.IsZero(m.Errors[i]) { // not required
-			continue
-		}
-
-		if m.Errors[i] != nil {
-			if err := m.Errors[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("errors" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
-					return ce.ValidateName("errors" + "." + strconv.Itoa(i))
-				}
-				return err
+	if m.Error != nil {
+		if err := m.Error.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("error")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("error")
 			}
+			return err
 		}
-
 	}
 
 	return nil
@@ -67,7 +59,7 @@ func (m *FDXErrorResponse) validateErrors(formats strfmt.Registry) error {
 func (m *FDXErrorResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateErrors(ctx, formats); err != nil {
+	if err := m.contextValidateError(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -77,21 +69,17 @@ func (m *FDXErrorResponse) ContextValidate(ctx context.Context, formats strfmt.R
 	return nil
 }
 
-func (m *FDXErrorResponse) contextValidateErrors(ctx context.Context, formats strfmt.Registry) error {
+func (m *FDXErrorResponse) contextValidateError(ctx context.Context, formats strfmt.Registry) error {
 
-	for i := 0; i < len(m.Errors); i++ {
-
-		if m.Errors[i] != nil {
-			if err := m.Errors[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("errors" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
-					return ce.ValidateName("errors" + "." + strconv.Itoa(i))
-				}
-				return err
+	if m.Error != nil {
+		if err := m.Error.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("error")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("error")
 			}
+			return err
 		}
-
 	}
 
 	return nil

@@ -52,10 +52,12 @@ func NewListRateLimitsParamsWithHTTPClient(client *http.Client) *ListRateLimitsP
 	}
 }
 
-/* ListRateLimitsParams contains all the parameters to send to the API endpoint
-   for the list rate limits operation.
+/*
+ListRateLimitsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the list rate limits operation.
+
+	Typically these are written to a http.Request.
 */
 type ListRateLimitsParams struct {
 

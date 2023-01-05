@@ -87,7 +87,8 @@ func NewCreateFilePaymentConsentCreated() *CreateFilePaymentConsentCreated {
 	return &CreateFilePaymentConsentCreated{}
 }
 
-/* CreateFilePaymentConsentCreated describes a response with status code 201, with default header values.
+/*
+CreateFilePaymentConsentCreated describes a response with status code 201, with default header values.
 
 File payment consent
 */
@@ -95,9 +96,39 @@ type CreateFilePaymentConsentCreated struct {
 	Payload *models.FilePaymentConsentResponse
 }
 
+// IsSuccess returns true when this create file payment consent created response has a 2xx status code
+func (o *CreateFilePaymentConsentCreated) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this create file payment consent created response has a 3xx status code
+func (o *CreateFilePaymentConsentCreated) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create file payment consent created response has a 4xx status code
+func (o *CreateFilePaymentConsentCreated) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create file payment consent created response has a 5xx status code
+func (o *CreateFilePaymentConsentCreated) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create file payment consent created response a status code equal to that given
+func (o *CreateFilePaymentConsentCreated) IsCode(code int) bool {
+	return code == 201
+}
+
 func (o *CreateFilePaymentConsentCreated) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/file-payment-consents][%d] createFilePaymentConsentCreated  %+v", 201, o.Payload)
 }
+
+func (o *CreateFilePaymentConsentCreated) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/file-payment-consents][%d] createFilePaymentConsentCreated  %+v", 201, o.Payload)
+}
+
 func (o *CreateFilePaymentConsentCreated) GetPayload() *models.FilePaymentConsentResponse {
 	return o.Payload
 }
@@ -119,7 +150,8 @@ func NewCreateFilePaymentConsentBadRequest() *CreateFilePaymentConsentBadRequest
 	return &CreateFilePaymentConsentBadRequest{}
 }
 
-/* CreateFilePaymentConsentBadRequest describes a response with status code 400, with default header values.
+/*
+CreateFilePaymentConsentBadRequest describes a response with status code 400, with default header values.
 
 Error
 */
@@ -127,9 +159,39 @@ type CreateFilePaymentConsentBadRequest struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this create file payment consent bad request response has a 2xx status code
+func (o *CreateFilePaymentConsentBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create file payment consent bad request response has a 3xx status code
+func (o *CreateFilePaymentConsentBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create file payment consent bad request response has a 4xx status code
+func (o *CreateFilePaymentConsentBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create file payment consent bad request response has a 5xx status code
+func (o *CreateFilePaymentConsentBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create file payment consent bad request response a status code equal to that given
+func (o *CreateFilePaymentConsentBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *CreateFilePaymentConsentBadRequest) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/file-payment-consents][%d] createFilePaymentConsentBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *CreateFilePaymentConsentBadRequest) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/file-payment-consents][%d] createFilePaymentConsentBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *CreateFilePaymentConsentBadRequest) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -151,7 +213,8 @@ func NewCreateFilePaymentConsentUnauthorized() *CreateFilePaymentConsentUnauthor
 	return &CreateFilePaymentConsentUnauthorized{}
 }
 
-/* CreateFilePaymentConsentUnauthorized describes a response with status code 401, with default header values.
+/*
+CreateFilePaymentConsentUnauthorized describes a response with status code 401, with default header values.
 
 Error
 */
@@ -159,9 +222,39 @@ type CreateFilePaymentConsentUnauthorized struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this create file payment consent unauthorized response has a 2xx status code
+func (o *CreateFilePaymentConsentUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create file payment consent unauthorized response has a 3xx status code
+func (o *CreateFilePaymentConsentUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create file payment consent unauthorized response has a 4xx status code
+func (o *CreateFilePaymentConsentUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create file payment consent unauthorized response has a 5xx status code
+func (o *CreateFilePaymentConsentUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create file payment consent unauthorized response a status code equal to that given
+func (o *CreateFilePaymentConsentUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *CreateFilePaymentConsentUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/file-payment-consents][%d] createFilePaymentConsentUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *CreateFilePaymentConsentUnauthorized) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/file-payment-consents][%d] createFilePaymentConsentUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *CreateFilePaymentConsentUnauthorized) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -183,7 +276,8 @@ func NewCreateFilePaymentConsentForbidden() *CreateFilePaymentConsentForbidden {
 	return &CreateFilePaymentConsentForbidden{}
 }
 
-/* CreateFilePaymentConsentForbidden describes a response with status code 403, with default header values.
+/*
+CreateFilePaymentConsentForbidden describes a response with status code 403, with default header values.
 
 Error
 */
@@ -191,9 +285,39 @@ type CreateFilePaymentConsentForbidden struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this create file payment consent forbidden response has a 2xx status code
+func (o *CreateFilePaymentConsentForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create file payment consent forbidden response has a 3xx status code
+func (o *CreateFilePaymentConsentForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create file payment consent forbidden response has a 4xx status code
+func (o *CreateFilePaymentConsentForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create file payment consent forbidden response has a 5xx status code
+func (o *CreateFilePaymentConsentForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create file payment consent forbidden response a status code equal to that given
+func (o *CreateFilePaymentConsentForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *CreateFilePaymentConsentForbidden) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/file-payment-consents][%d] createFilePaymentConsentForbidden  %+v", 403, o.Payload)
 }
+
+func (o *CreateFilePaymentConsentForbidden) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/file-payment-consents][%d] createFilePaymentConsentForbidden  %+v", 403, o.Payload)
+}
+
 func (o *CreateFilePaymentConsentForbidden) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -215,7 +339,8 @@ func NewCreateFilePaymentConsentMethodNotAllowed() *CreateFilePaymentConsentMeth
 	return &CreateFilePaymentConsentMethodNotAllowed{}
 }
 
-/* CreateFilePaymentConsentMethodNotAllowed describes a response with status code 405, with default header values.
+/*
+CreateFilePaymentConsentMethodNotAllowed describes a response with status code 405, with default header values.
 
 Error
 */
@@ -223,9 +348,39 @@ type CreateFilePaymentConsentMethodNotAllowed struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this create file payment consent method not allowed response has a 2xx status code
+func (o *CreateFilePaymentConsentMethodNotAllowed) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create file payment consent method not allowed response has a 3xx status code
+func (o *CreateFilePaymentConsentMethodNotAllowed) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create file payment consent method not allowed response has a 4xx status code
+func (o *CreateFilePaymentConsentMethodNotAllowed) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create file payment consent method not allowed response has a 5xx status code
+func (o *CreateFilePaymentConsentMethodNotAllowed) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create file payment consent method not allowed response a status code equal to that given
+func (o *CreateFilePaymentConsentMethodNotAllowed) IsCode(code int) bool {
+	return code == 405
+}
+
 func (o *CreateFilePaymentConsentMethodNotAllowed) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/file-payment-consents][%d] createFilePaymentConsentMethodNotAllowed  %+v", 405, o.Payload)
 }
+
+func (o *CreateFilePaymentConsentMethodNotAllowed) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/file-payment-consents][%d] createFilePaymentConsentMethodNotAllowed  %+v", 405, o.Payload)
+}
+
 func (o *CreateFilePaymentConsentMethodNotAllowed) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -247,7 +402,8 @@ func NewCreateFilePaymentConsentNotAcceptable() *CreateFilePaymentConsentNotAcce
 	return &CreateFilePaymentConsentNotAcceptable{}
 }
 
-/* CreateFilePaymentConsentNotAcceptable describes a response with status code 406, with default header values.
+/*
+CreateFilePaymentConsentNotAcceptable describes a response with status code 406, with default header values.
 
 Error
 */
@@ -255,9 +411,39 @@ type CreateFilePaymentConsentNotAcceptable struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this create file payment consent not acceptable response has a 2xx status code
+func (o *CreateFilePaymentConsentNotAcceptable) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create file payment consent not acceptable response has a 3xx status code
+func (o *CreateFilePaymentConsentNotAcceptable) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create file payment consent not acceptable response has a 4xx status code
+func (o *CreateFilePaymentConsentNotAcceptable) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create file payment consent not acceptable response has a 5xx status code
+func (o *CreateFilePaymentConsentNotAcceptable) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create file payment consent not acceptable response a status code equal to that given
+func (o *CreateFilePaymentConsentNotAcceptable) IsCode(code int) bool {
+	return code == 406
+}
+
 func (o *CreateFilePaymentConsentNotAcceptable) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/file-payment-consents][%d] createFilePaymentConsentNotAcceptable  %+v", 406, o.Payload)
 }
+
+func (o *CreateFilePaymentConsentNotAcceptable) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/file-payment-consents][%d] createFilePaymentConsentNotAcceptable  %+v", 406, o.Payload)
+}
+
 func (o *CreateFilePaymentConsentNotAcceptable) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -279,7 +465,8 @@ func NewCreateFilePaymentConsentUnsupportedMediaType() *CreateFilePaymentConsent
 	return &CreateFilePaymentConsentUnsupportedMediaType{}
 }
 
-/* CreateFilePaymentConsentUnsupportedMediaType describes a response with status code 415, with default header values.
+/*
+CreateFilePaymentConsentUnsupportedMediaType describes a response with status code 415, with default header values.
 
 Error
 */
@@ -287,9 +474,39 @@ type CreateFilePaymentConsentUnsupportedMediaType struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this create file payment consent unsupported media type response has a 2xx status code
+func (o *CreateFilePaymentConsentUnsupportedMediaType) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create file payment consent unsupported media type response has a 3xx status code
+func (o *CreateFilePaymentConsentUnsupportedMediaType) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create file payment consent unsupported media type response has a 4xx status code
+func (o *CreateFilePaymentConsentUnsupportedMediaType) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create file payment consent unsupported media type response has a 5xx status code
+func (o *CreateFilePaymentConsentUnsupportedMediaType) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create file payment consent unsupported media type response a status code equal to that given
+func (o *CreateFilePaymentConsentUnsupportedMediaType) IsCode(code int) bool {
+	return code == 415
+}
+
 func (o *CreateFilePaymentConsentUnsupportedMediaType) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/file-payment-consents][%d] createFilePaymentConsentUnsupportedMediaType  %+v", 415, o.Payload)
 }
+
+func (o *CreateFilePaymentConsentUnsupportedMediaType) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/file-payment-consents][%d] createFilePaymentConsentUnsupportedMediaType  %+v", 415, o.Payload)
+}
+
 func (o *CreateFilePaymentConsentUnsupportedMediaType) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -311,7 +528,8 @@ func NewCreateFilePaymentConsentTooManyRequests() *CreateFilePaymentConsentTooMa
 	return &CreateFilePaymentConsentTooManyRequests{}
 }
 
-/* CreateFilePaymentConsentTooManyRequests describes a response with status code 429, with default header values.
+/*
+CreateFilePaymentConsentTooManyRequests describes a response with status code 429, with default header values.
 
 Error
 */
@@ -319,9 +537,39 @@ type CreateFilePaymentConsentTooManyRequests struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this create file payment consent too many requests response has a 2xx status code
+func (o *CreateFilePaymentConsentTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create file payment consent too many requests response has a 3xx status code
+func (o *CreateFilePaymentConsentTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create file payment consent too many requests response has a 4xx status code
+func (o *CreateFilePaymentConsentTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create file payment consent too many requests response has a 5xx status code
+func (o *CreateFilePaymentConsentTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create file payment consent too many requests response a status code equal to that given
+func (o *CreateFilePaymentConsentTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *CreateFilePaymentConsentTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/file-payment-consents][%d] createFilePaymentConsentTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *CreateFilePaymentConsentTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/file-payment-consents][%d] createFilePaymentConsentTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *CreateFilePaymentConsentTooManyRequests) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -343,7 +591,8 @@ func NewCreateFilePaymentConsentInternalServerError() *CreateFilePaymentConsentI
 	return &CreateFilePaymentConsentInternalServerError{}
 }
 
-/* CreateFilePaymentConsentInternalServerError describes a response with status code 500, with default header values.
+/*
+CreateFilePaymentConsentInternalServerError describes a response with status code 500, with default header values.
 
 Error
 */
@@ -351,9 +600,39 @@ type CreateFilePaymentConsentInternalServerError struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this create file payment consent internal server error response has a 2xx status code
+func (o *CreateFilePaymentConsentInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create file payment consent internal server error response has a 3xx status code
+func (o *CreateFilePaymentConsentInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create file payment consent internal server error response has a 4xx status code
+func (o *CreateFilePaymentConsentInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create file payment consent internal server error response has a 5xx status code
+func (o *CreateFilePaymentConsentInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this create file payment consent internal server error response a status code equal to that given
+func (o *CreateFilePaymentConsentInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *CreateFilePaymentConsentInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/file-payment-consents][%d] createFilePaymentConsentInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *CreateFilePaymentConsentInternalServerError) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/file-payment-consents][%d] createFilePaymentConsentInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *CreateFilePaymentConsentInternalServerError) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

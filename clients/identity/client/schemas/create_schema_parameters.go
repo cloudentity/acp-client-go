@@ -54,10 +54,12 @@ func NewCreateSchemaParamsWithHTTPClient(client *http.Client) *CreateSchemaParam
 	}
 }
 
-/* CreateSchemaParams contains all the parameters to send to the API endpoint
-   for the create schema operation.
+/*
+CreateSchemaParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the create schema operation.
+
+	Typically these are written to a http.Request.
 */
 type CreateSchemaParams struct {
 

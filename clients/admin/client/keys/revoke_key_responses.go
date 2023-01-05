@@ -69,7 +69,8 @@ func NewRevokeKeyOK() *RevokeKeyOK {
 	return &RevokeKeyOK{}
 }
 
-/* RevokeKeyOK describes a response with status code 200, with default header values.
+/*
+RevokeKeyOK describes a response with status code 200, with default header values.
 
 JWK
 */
@@ -77,9 +78,39 @@ type RevokeKeyOK struct {
 	Payload *models.ServerJWK
 }
 
+// IsSuccess returns true when this revoke key o k response has a 2xx status code
+func (o *RevokeKeyOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this revoke key o k response has a 3xx status code
+func (o *RevokeKeyOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke key o k response has a 4xx status code
+func (o *RevokeKeyOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this revoke key o k response has a 5xx status code
+func (o *RevokeKeyOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke key o k response a status code equal to that given
+func (o *RevokeKeyOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *RevokeKeyOK) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/keys/revoke/{kid}][%d] revokeKeyOK  %+v", 200, o.Payload)
 }
+
+func (o *RevokeKeyOK) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/keys/revoke/{kid}][%d] revokeKeyOK  %+v", 200, o.Payload)
+}
+
 func (o *RevokeKeyOK) GetPayload() *models.ServerJWK {
 	return o.Payload
 }
@@ -101,7 +132,8 @@ func NewRevokeKeyBadRequest() *RevokeKeyBadRequest {
 	return &RevokeKeyBadRequest{}
 }
 
-/* RevokeKeyBadRequest describes a response with status code 400, with default header values.
+/*
+RevokeKeyBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -109,9 +141,39 @@ type RevokeKeyBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this revoke key bad request response has a 2xx status code
+func (o *RevokeKeyBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this revoke key bad request response has a 3xx status code
+func (o *RevokeKeyBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke key bad request response has a 4xx status code
+func (o *RevokeKeyBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this revoke key bad request response has a 5xx status code
+func (o *RevokeKeyBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke key bad request response a status code equal to that given
+func (o *RevokeKeyBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *RevokeKeyBadRequest) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/keys/revoke/{kid}][%d] revokeKeyBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *RevokeKeyBadRequest) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/keys/revoke/{kid}][%d] revokeKeyBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *RevokeKeyBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -133,7 +195,8 @@ func NewRevokeKeyUnauthorized() *RevokeKeyUnauthorized {
 	return &RevokeKeyUnauthorized{}
 }
 
-/* RevokeKeyUnauthorized describes a response with status code 401, with default header values.
+/*
+RevokeKeyUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -141,9 +204,39 @@ type RevokeKeyUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this revoke key unauthorized response has a 2xx status code
+func (o *RevokeKeyUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this revoke key unauthorized response has a 3xx status code
+func (o *RevokeKeyUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke key unauthorized response has a 4xx status code
+func (o *RevokeKeyUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this revoke key unauthorized response has a 5xx status code
+func (o *RevokeKeyUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke key unauthorized response a status code equal to that given
+func (o *RevokeKeyUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *RevokeKeyUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/keys/revoke/{kid}][%d] revokeKeyUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *RevokeKeyUnauthorized) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/keys/revoke/{kid}][%d] revokeKeyUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *RevokeKeyUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -165,7 +258,8 @@ func NewRevokeKeyForbidden() *RevokeKeyForbidden {
 	return &RevokeKeyForbidden{}
 }
 
-/* RevokeKeyForbidden describes a response with status code 403, with default header values.
+/*
+RevokeKeyForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -173,9 +267,39 @@ type RevokeKeyForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this revoke key forbidden response has a 2xx status code
+func (o *RevokeKeyForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this revoke key forbidden response has a 3xx status code
+func (o *RevokeKeyForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke key forbidden response has a 4xx status code
+func (o *RevokeKeyForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this revoke key forbidden response has a 5xx status code
+func (o *RevokeKeyForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke key forbidden response a status code equal to that given
+func (o *RevokeKeyForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *RevokeKeyForbidden) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/keys/revoke/{kid}][%d] revokeKeyForbidden  %+v", 403, o.Payload)
 }
+
+func (o *RevokeKeyForbidden) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/keys/revoke/{kid}][%d] revokeKeyForbidden  %+v", 403, o.Payload)
+}
+
 func (o *RevokeKeyForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -197,7 +321,8 @@ func NewRevokeKeyNotFound() *RevokeKeyNotFound {
 	return &RevokeKeyNotFound{}
 }
 
-/* RevokeKeyNotFound describes a response with status code 404, with default header values.
+/*
+RevokeKeyNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -205,9 +330,39 @@ type RevokeKeyNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this revoke key not found response has a 2xx status code
+func (o *RevokeKeyNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this revoke key not found response has a 3xx status code
+func (o *RevokeKeyNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke key not found response has a 4xx status code
+func (o *RevokeKeyNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this revoke key not found response has a 5xx status code
+func (o *RevokeKeyNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke key not found response a status code equal to that given
+func (o *RevokeKeyNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *RevokeKeyNotFound) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/keys/revoke/{kid}][%d] revokeKeyNotFound  %+v", 404, o.Payload)
 }
+
+func (o *RevokeKeyNotFound) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/keys/revoke/{kid}][%d] revokeKeyNotFound  %+v", 404, o.Payload)
+}
+
 func (o *RevokeKeyNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -229,7 +384,8 @@ func NewRevokeKeyTooManyRequests() *RevokeKeyTooManyRequests {
 	return &RevokeKeyTooManyRequests{}
 }
 
-/* RevokeKeyTooManyRequests describes a response with status code 429, with default header values.
+/*
+RevokeKeyTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -237,9 +393,39 @@ type RevokeKeyTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this revoke key too many requests response has a 2xx status code
+func (o *RevokeKeyTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this revoke key too many requests response has a 3xx status code
+func (o *RevokeKeyTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke key too many requests response has a 4xx status code
+func (o *RevokeKeyTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this revoke key too many requests response has a 5xx status code
+func (o *RevokeKeyTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke key too many requests response a status code equal to that given
+func (o *RevokeKeyTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *RevokeKeyTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/keys/revoke/{kid}][%d] revokeKeyTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *RevokeKeyTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/keys/revoke/{kid}][%d] revokeKeyTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *RevokeKeyTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

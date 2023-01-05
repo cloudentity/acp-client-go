@@ -54,10 +54,12 @@ func NewUpdateGoogleEmbeddedIDPParamsWithHTTPClient(client *http.Client) *Update
 	}
 }
 
-/* UpdateGoogleEmbeddedIDPParams contains all the parameters to send to the API endpoint
-   for the update google embedded ID p operation.
+/*
+UpdateGoogleEmbeddedIDPParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update google embedded ID p operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateGoogleEmbeddedIDPParams struct {
 

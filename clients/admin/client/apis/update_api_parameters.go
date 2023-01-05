@@ -54,10 +54,12 @@ func NewUpdateAPIParamsWithHTTPClient(client *http.Client) *UpdateAPIParams {
 	}
 }
 
-/* UpdateAPIParams contains all the parameters to send to the API endpoint
-   for the update API operation.
+/*
+UpdateAPIParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update API operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateAPIParams struct {
 

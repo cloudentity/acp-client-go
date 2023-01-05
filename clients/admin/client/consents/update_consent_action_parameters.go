@@ -54,10 +54,12 @@ func NewUpdateConsentActionParamsWithHTTPClient(client *http.Client) *UpdateCons
 	}
 }
 
-/* UpdateConsentActionParams contains all the parameters to send to the API endpoint
-   for the update consent action operation.
+/*
+UpdateConsentActionParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update consent action operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateConsentActionParams struct {
 

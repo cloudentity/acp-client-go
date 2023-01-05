@@ -54,10 +54,12 @@ func NewUpdateCustomIDPParamsWithHTTPClient(client *http.Client) *UpdateCustomID
 	}
 }
 
-/* UpdateCustomIDPParams contains all the parameters to send to the API endpoint
-   for the update custom ID p operation.
+/*
+UpdateCustomIDPParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update custom ID p operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateCustomIDPParams struct {
 

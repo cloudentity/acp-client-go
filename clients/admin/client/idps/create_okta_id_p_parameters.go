@@ -54,10 +54,12 @@ func NewCreateOktaIDPParamsWithHTTPClient(client *http.Client) *CreateOktaIDPPar
 	}
 }
 
-/* CreateOktaIDPParams contains all the parameters to send to the API endpoint
-   for the create okta ID p operation.
+/*
+CreateOktaIDPParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the create okta ID p operation.
+
+	Typically these are written to a http.Request.
 */
 type CreateOktaIDPParams struct {
 

@@ -52,10 +52,12 @@ func NewDeleteDataAccessConsentDeprecatedParamsWithHTTPClient(client *http.Clien
 	}
 }
 
-/* DeleteDataAccessConsentDeprecatedParams contains all the parameters to send to the API endpoint
-   for the delete data access consent deprecated operation.
+/*
+DeleteDataAccessConsentDeprecatedParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the delete data access consent deprecated operation.
+
+	Typically these are written to a http.Request.
 */
 type DeleteDataAccessConsentDeprecatedParams struct {
 

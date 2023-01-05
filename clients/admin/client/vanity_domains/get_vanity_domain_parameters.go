@@ -52,10 +52,12 @@ func NewGetVanityDomainParamsWithHTTPClient(client *http.Client) *GetVanityDomai
 	}
 }
 
-/* GetVanityDomainParams contains all the parameters to send to the API endpoint
-   for the get vanity domain operation.
+/*
+GetVanityDomainParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get vanity domain operation.
+
+	Typically these are written to a http.Request.
 */
 type GetVanityDomainParams struct {
 

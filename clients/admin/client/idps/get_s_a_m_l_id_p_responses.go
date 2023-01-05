@@ -63,7 +63,8 @@ func NewGetSAMLIDPOK() *GetSAMLIDPOK {
 	return &GetSAMLIDPOK{}
 }
 
-/* GetSAMLIDPOK describes a response with status code 200, with default header values.
+/*
+GetSAMLIDPOK describes a response with status code 200, with default header values.
 
 SAMLIDP
 */
@@ -71,9 +72,39 @@ type GetSAMLIDPOK struct {
 	Payload *models.SAMLIDP
 }
 
+// IsSuccess returns true when this get s a m l Id p o k response has a 2xx status code
+func (o *GetSAMLIDPOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get s a m l Id p o k response has a 3xx status code
+func (o *GetSAMLIDPOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get s a m l Id p o k response has a 4xx status code
+func (o *GetSAMLIDPOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get s a m l Id p o k response has a 5xx status code
+func (o *GetSAMLIDPOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get s a m l Id p o k response a status code equal to that given
+func (o *GetSAMLIDPOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetSAMLIDPOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/idps/saml/{iid}][%d] getSAMLIdPOK  %+v", 200, o.Payload)
 }
+
+func (o *GetSAMLIDPOK) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/idps/saml/{iid}][%d] getSAMLIdPOK  %+v", 200, o.Payload)
+}
+
 func (o *GetSAMLIDPOK) GetPayload() *models.SAMLIDP {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewGetSAMLIDPUnauthorized() *GetSAMLIDPUnauthorized {
 	return &GetSAMLIDPUnauthorized{}
 }
 
-/* GetSAMLIDPUnauthorized describes a response with status code 401, with default header values.
+/*
+GetSAMLIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type GetSAMLIDPUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get s a m l Id p unauthorized response has a 2xx status code
+func (o *GetSAMLIDPUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get s a m l Id p unauthorized response has a 3xx status code
+func (o *GetSAMLIDPUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get s a m l Id p unauthorized response has a 4xx status code
+func (o *GetSAMLIDPUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get s a m l Id p unauthorized response has a 5xx status code
+func (o *GetSAMLIDPUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get s a m l Id p unauthorized response a status code equal to that given
+func (o *GetSAMLIDPUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *GetSAMLIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/idps/saml/{iid}][%d] getSAMLIdPUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *GetSAMLIDPUnauthorized) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/idps/saml/{iid}][%d] getSAMLIdPUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *GetSAMLIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewGetSAMLIDPForbidden() *GetSAMLIDPForbidden {
 	return &GetSAMLIDPForbidden{}
 }
 
-/* GetSAMLIDPForbidden describes a response with status code 403, with default header values.
+/*
+GetSAMLIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type GetSAMLIDPForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get s a m l Id p forbidden response has a 2xx status code
+func (o *GetSAMLIDPForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get s a m l Id p forbidden response has a 3xx status code
+func (o *GetSAMLIDPForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get s a m l Id p forbidden response has a 4xx status code
+func (o *GetSAMLIDPForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get s a m l Id p forbidden response has a 5xx status code
+func (o *GetSAMLIDPForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get s a m l Id p forbidden response a status code equal to that given
+func (o *GetSAMLIDPForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetSAMLIDPForbidden) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/idps/saml/{iid}][%d] getSAMLIdPForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetSAMLIDPForbidden) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/idps/saml/{iid}][%d] getSAMLIdPForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetSAMLIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewGetSAMLIDPNotFound() *GetSAMLIDPNotFound {
 	return &GetSAMLIDPNotFound{}
 }
 
-/* GetSAMLIDPNotFound describes a response with status code 404, with default header values.
+/*
+GetSAMLIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type GetSAMLIDPNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get s a m l Id p not found response has a 2xx status code
+func (o *GetSAMLIDPNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get s a m l Id p not found response has a 3xx status code
+func (o *GetSAMLIDPNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get s a m l Id p not found response has a 4xx status code
+func (o *GetSAMLIDPNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get s a m l Id p not found response has a 5xx status code
+func (o *GetSAMLIDPNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get s a m l Id p not found response a status code equal to that given
+func (o *GetSAMLIDPNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *GetSAMLIDPNotFound) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/idps/saml/{iid}][%d] getSAMLIdPNotFound  %+v", 404, o.Payload)
 }
+
+func (o *GetSAMLIDPNotFound) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/idps/saml/{iid}][%d] getSAMLIdPNotFound  %+v", 404, o.Payload)
+}
+
 func (o *GetSAMLIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewGetSAMLIDPTooManyRequests() *GetSAMLIDPTooManyRequests {
 	return &GetSAMLIDPTooManyRequests{}
 }
 
-/* GetSAMLIDPTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetSAMLIDPTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type GetSAMLIDPTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get s a m l Id p too many requests response has a 2xx status code
+func (o *GetSAMLIDPTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get s a m l Id p too many requests response has a 3xx status code
+func (o *GetSAMLIDPTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get s a m l Id p too many requests response has a 4xx status code
+func (o *GetSAMLIDPTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get s a m l Id p too many requests response has a 5xx status code
+func (o *GetSAMLIDPTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get s a m l Id p too many requests response a status code equal to that given
+func (o *GetSAMLIDPTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *GetSAMLIDPTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/idps/saml/{iid}][%d] getSAMLIdPTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *GetSAMLIDPTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/idps/saml/{iid}][%d] getSAMLIdPTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *GetSAMLIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

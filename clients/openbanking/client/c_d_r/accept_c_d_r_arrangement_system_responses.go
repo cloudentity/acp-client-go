@@ -63,7 +63,8 @@ func NewAcceptCDRArrangementSystemOK() *AcceptCDRArrangementSystemOK {
 	return &AcceptCDRArrangementSystemOK{}
 }
 
-/* AcceptCDRArrangementSystemOK describes a response with status code 200, with default header values.
+/*
+AcceptCDRArrangementSystemOK describes a response with status code 200, with default header values.
 
 Consent accepted
 */
@@ -71,9 +72,39 @@ type AcceptCDRArrangementSystemOK struct {
 	Payload *models.ConsentAccepted
 }
 
+// IsSuccess returns true when this accept c d r arrangement system o k response has a 2xx status code
+func (o *AcceptCDRArrangementSystemOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this accept c d r arrangement system o k response has a 3xx status code
+func (o *AcceptCDRArrangementSystemOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this accept c d r arrangement system o k response has a 4xx status code
+func (o *AcceptCDRArrangementSystemOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this accept c d r arrangement system o k response has a 5xx status code
+func (o *AcceptCDRArrangementSystemOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this accept c d r arrangement system o k response a status code equal to that given
+func (o *AcceptCDRArrangementSystemOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *AcceptCDRArrangementSystemOK) Error() string {
 	return fmt.Sprintf("[POST /cdr/cdr-arrangement/{login}/accept][%d] acceptCDRArrangementSystemOK  %+v", 200, o.Payload)
 }
+
+func (o *AcceptCDRArrangementSystemOK) String() string {
+	return fmt.Sprintf("[POST /cdr/cdr-arrangement/{login}/accept][%d] acceptCDRArrangementSystemOK  %+v", 200, o.Payload)
+}
+
 func (o *AcceptCDRArrangementSystemOK) GetPayload() *models.ConsentAccepted {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewAcceptCDRArrangementSystemUnauthorized() *AcceptCDRArrangementSystemUnau
 	return &AcceptCDRArrangementSystemUnauthorized{}
 }
 
-/* AcceptCDRArrangementSystemUnauthorized describes a response with status code 401, with default header values.
+/*
+AcceptCDRArrangementSystemUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type AcceptCDRArrangementSystemUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this accept c d r arrangement system unauthorized response has a 2xx status code
+func (o *AcceptCDRArrangementSystemUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this accept c d r arrangement system unauthorized response has a 3xx status code
+func (o *AcceptCDRArrangementSystemUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this accept c d r arrangement system unauthorized response has a 4xx status code
+func (o *AcceptCDRArrangementSystemUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this accept c d r arrangement system unauthorized response has a 5xx status code
+func (o *AcceptCDRArrangementSystemUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this accept c d r arrangement system unauthorized response a status code equal to that given
+func (o *AcceptCDRArrangementSystemUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *AcceptCDRArrangementSystemUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /cdr/cdr-arrangement/{login}/accept][%d] acceptCDRArrangementSystemUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *AcceptCDRArrangementSystemUnauthorized) String() string {
+	return fmt.Sprintf("[POST /cdr/cdr-arrangement/{login}/accept][%d] acceptCDRArrangementSystemUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *AcceptCDRArrangementSystemUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewAcceptCDRArrangementSystemForbidden() *AcceptCDRArrangementSystemForbidd
 	return &AcceptCDRArrangementSystemForbidden{}
 }
 
-/* AcceptCDRArrangementSystemForbidden describes a response with status code 403, with default header values.
+/*
+AcceptCDRArrangementSystemForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type AcceptCDRArrangementSystemForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this accept c d r arrangement system forbidden response has a 2xx status code
+func (o *AcceptCDRArrangementSystemForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this accept c d r arrangement system forbidden response has a 3xx status code
+func (o *AcceptCDRArrangementSystemForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this accept c d r arrangement system forbidden response has a 4xx status code
+func (o *AcceptCDRArrangementSystemForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this accept c d r arrangement system forbidden response has a 5xx status code
+func (o *AcceptCDRArrangementSystemForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this accept c d r arrangement system forbidden response a status code equal to that given
+func (o *AcceptCDRArrangementSystemForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *AcceptCDRArrangementSystemForbidden) Error() string {
 	return fmt.Sprintf("[POST /cdr/cdr-arrangement/{login}/accept][%d] acceptCDRArrangementSystemForbidden  %+v", 403, o.Payload)
 }
+
+func (o *AcceptCDRArrangementSystemForbidden) String() string {
+	return fmt.Sprintf("[POST /cdr/cdr-arrangement/{login}/accept][%d] acceptCDRArrangementSystemForbidden  %+v", 403, o.Payload)
+}
+
 func (o *AcceptCDRArrangementSystemForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewAcceptCDRArrangementSystemNotFound() *AcceptCDRArrangementSystemNotFound
 	return &AcceptCDRArrangementSystemNotFound{}
 }
 
-/* AcceptCDRArrangementSystemNotFound describes a response with status code 404, with default header values.
+/*
+AcceptCDRArrangementSystemNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type AcceptCDRArrangementSystemNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this accept c d r arrangement system not found response has a 2xx status code
+func (o *AcceptCDRArrangementSystemNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this accept c d r arrangement system not found response has a 3xx status code
+func (o *AcceptCDRArrangementSystemNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this accept c d r arrangement system not found response has a 4xx status code
+func (o *AcceptCDRArrangementSystemNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this accept c d r arrangement system not found response has a 5xx status code
+func (o *AcceptCDRArrangementSystemNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this accept c d r arrangement system not found response a status code equal to that given
+func (o *AcceptCDRArrangementSystemNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *AcceptCDRArrangementSystemNotFound) Error() string {
 	return fmt.Sprintf("[POST /cdr/cdr-arrangement/{login}/accept][%d] acceptCDRArrangementSystemNotFound  %+v", 404, o.Payload)
 }
+
+func (o *AcceptCDRArrangementSystemNotFound) String() string {
+	return fmt.Sprintf("[POST /cdr/cdr-arrangement/{login}/accept][%d] acceptCDRArrangementSystemNotFound  %+v", 404, o.Payload)
+}
+
 func (o *AcceptCDRArrangementSystemNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewAcceptCDRArrangementSystemTooManyRequests() *AcceptCDRArrangementSystemT
 	return &AcceptCDRArrangementSystemTooManyRequests{}
 }
 
-/* AcceptCDRArrangementSystemTooManyRequests describes a response with status code 429, with default header values.
+/*
+AcceptCDRArrangementSystemTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type AcceptCDRArrangementSystemTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this accept c d r arrangement system too many requests response has a 2xx status code
+func (o *AcceptCDRArrangementSystemTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this accept c d r arrangement system too many requests response has a 3xx status code
+func (o *AcceptCDRArrangementSystemTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this accept c d r arrangement system too many requests response has a 4xx status code
+func (o *AcceptCDRArrangementSystemTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this accept c d r arrangement system too many requests response has a 5xx status code
+func (o *AcceptCDRArrangementSystemTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this accept c d r arrangement system too many requests response a status code equal to that given
+func (o *AcceptCDRArrangementSystemTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *AcceptCDRArrangementSystemTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /cdr/cdr-arrangement/{login}/accept][%d] acceptCDRArrangementSystemTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *AcceptCDRArrangementSystemTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /cdr/cdr-arrangement/{login}/accept][%d] acceptCDRArrangementSystemTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *AcceptCDRArrangementSystemTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

@@ -63,14 +63,44 @@ func NewDeleteScopeNoContent() *DeleteScopeNoContent {
 	return &DeleteScopeNoContent{}
 }
 
-/* DeleteScopeNoContent describes a response with status code 204, with default header values.
+/*
+DeleteScopeNoContent describes a response with status code 204, with default header values.
 
-Scope has been deleted
+	Scope has been deleted
 */
 type DeleteScopeNoContent struct {
 }
 
+// IsSuccess returns true when this delete scope no content response has a 2xx status code
+func (o *DeleteScopeNoContent) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this delete scope no content response has a 3xx status code
+func (o *DeleteScopeNoContent) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete scope no content response has a 4xx status code
+func (o *DeleteScopeNoContent) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this delete scope no content response has a 5xx status code
+func (o *DeleteScopeNoContent) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete scope no content response a status code equal to that given
+func (o *DeleteScopeNoContent) IsCode(code int) bool {
+	return code == 204
+}
+
 func (o *DeleteScopeNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /scopes/{scp}][%d] deleteScopeNoContent ", 204)
+}
+
+func (o *DeleteScopeNoContent) String() string {
 	return fmt.Sprintf("[DELETE /scopes/{scp}][%d] deleteScopeNoContent ", 204)
 }
 
@@ -84,7 +114,8 @@ func NewDeleteScopeUnauthorized() *DeleteScopeUnauthorized {
 	return &DeleteScopeUnauthorized{}
 }
 
-/* DeleteScopeUnauthorized describes a response with status code 401, with default header values.
+/*
+DeleteScopeUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -92,9 +123,39 @@ type DeleteScopeUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete scope unauthorized response has a 2xx status code
+func (o *DeleteScopeUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete scope unauthorized response has a 3xx status code
+func (o *DeleteScopeUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete scope unauthorized response has a 4xx status code
+func (o *DeleteScopeUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete scope unauthorized response has a 5xx status code
+func (o *DeleteScopeUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete scope unauthorized response a status code equal to that given
+func (o *DeleteScopeUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *DeleteScopeUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /scopes/{scp}][%d] deleteScopeUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *DeleteScopeUnauthorized) String() string {
+	return fmt.Sprintf("[DELETE /scopes/{scp}][%d] deleteScopeUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *DeleteScopeUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -116,7 +177,8 @@ func NewDeleteScopeForbidden() *DeleteScopeForbidden {
 	return &DeleteScopeForbidden{}
 }
 
-/* DeleteScopeForbidden describes a response with status code 403, with default header values.
+/*
+DeleteScopeForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -124,9 +186,39 @@ type DeleteScopeForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete scope forbidden response has a 2xx status code
+func (o *DeleteScopeForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete scope forbidden response has a 3xx status code
+func (o *DeleteScopeForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete scope forbidden response has a 4xx status code
+func (o *DeleteScopeForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete scope forbidden response has a 5xx status code
+func (o *DeleteScopeForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete scope forbidden response a status code equal to that given
+func (o *DeleteScopeForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *DeleteScopeForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /scopes/{scp}][%d] deleteScopeForbidden  %+v", 403, o.Payload)
 }
+
+func (o *DeleteScopeForbidden) String() string {
+	return fmt.Sprintf("[DELETE /scopes/{scp}][%d] deleteScopeForbidden  %+v", 403, o.Payload)
+}
+
 func (o *DeleteScopeForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -148,7 +240,8 @@ func NewDeleteScopeNotFound() *DeleteScopeNotFound {
 	return &DeleteScopeNotFound{}
 }
 
-/* DeleteScopeNotFound describes a response with status code 404, with default header values.
+/*
+DeleteScopeNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -156,9 +249,39 @@ type DeleteScopeNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete scope not found response has a 2xx status code
+func (o *DeleteScopeNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete scope not found response has a 3xx status code
+func (o *DeleteScopeNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete scope not found response has a 4xx status code
+func (o *DeleteScopeNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete scope not found response has a 5xx status code
+func (o *DeleteScopeNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete scope not found response a status code equal to that given
+func (o *DeleteScopeNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *DeleteScopeNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /scopes/{scp}][%d] deleteScopeNotFound  %+v", 404, o.Payload)
 }
+
+func (o *DeleteScopeNotFound) String() string {
+	return fmt.Sprintf("[DELETE /scopes/{scp}][%d] deleteScopeNotFound  %+v", 404, o.Payload)
+}
+
 func (o *DeleteScopeNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -180,7 +303,8 @@ func NewDeleteScopeTooManyRequests() *DeleteScopeTooManyRequests {
 	return &DeleteScopeTooManyRequests{}
 }
 
-/* DeleteScopeTooManyRequests describes a response with status code 429, with default header values.
+/*
+DeleteScopeTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -188,9 +312,39 @@ type DeleteScopeTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete scope too many requests response has a 2xx status code
+func (o *DeleteScopeTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete scope too many requests response has a 3xx status code
+func (o *DeleteScopeTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete scope too many requests response has a 4xx status code
+func (o *DeleteScopeTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete scope too many requests response has a 5xx status code
+func (o *DeleteScopeTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete scope too many requests response a status code equal to that given
+func (o *DeleteScopeTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *DeleteScopeTooManyRequests) Error() string {
 	return fmt.Sprintf("[DELETE /scopes/{scp}][%d] deleteScopeTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *DeleteScopeTooManyRequests) String() string {
+	return fmt.Sprintf("[DELETE /scopes/{scp}][%d] deleteScopeTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *DeleteScopeTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

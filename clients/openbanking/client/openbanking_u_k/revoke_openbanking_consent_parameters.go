@@ -52,10 +52,12 @@ func NewRevokeOpenbankingConsentParamsWithHTTPClient(client *http.Client) *Revok
 	}
 }
 
-/* RevokeOpenbankingConsentParams contains all the parameters to send to the API endpoint
-   for the revoke openbanking consent operation.
+/*
+RevokeOpenbankingConsentParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the revoke openbanking consent operation.
+
+	Typically these are written to a http.Request.
 */
 type RevokeOpenbankingConsentParams struct {
 

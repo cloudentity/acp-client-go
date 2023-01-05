@@ -52,10 +52,12 @@ func NewListClientsForDeveloperParamsWithHTTPClient(client *http.Client) *ListCl
 	}
 }
 
-/* ListClientsForDeveloperParams contains all the parameters to send to the API endpoint
-   for the list clients for developer operation.
+/*
+ListClientsForDeveloperParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the list clients for developer operation.
+
+	Typically these are written to a http.Request.
 */
 type ListClientsForDeveloperParams struct {
 	timeout    time.Duration

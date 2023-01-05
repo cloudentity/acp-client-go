@@ -52,10 +52,12 @@ func NewObbrDataAccessConsentIntrospectParamsWithHTTPClient(client *http.Client)
 	}
 }
 
-/* ObbrDataAccessConsentIntrospectParams contains all the parameters to send to the API endpoint
-   for the obbr data access consent introspect operation.
+/*
+ObbrDataAccessConsentIntrospectParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the obbr data access consent introspect operation.
+
+	Typically these are written to a http.Request.
 */
 type ObbrDataAccessConsentIntrospectParams struct {
 

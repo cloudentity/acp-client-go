@@ -17,14 +17,12 @@ import (
 // swagger:model FDXError
 type FDXError struct {
 
-	// code
+	// Long term persistent identifier
+	// which can be used to trace error condition back to log information
 	Code string `json:"code,omitempty"`
 
-	// detail
-	Detail string `json:"detail,omitempty"`
-
-	// title
-	Title string `json:"title,omitempty"`
+	// End user displayable information which might help the customer diagnose an error
+	Message string `json:"message,omitempty"`
 }
 
 // Validate validates this f d x error

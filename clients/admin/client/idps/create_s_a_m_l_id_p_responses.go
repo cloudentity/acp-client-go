@@ -75,7 +75,8 @@ func NewCreateSAMLIDPCreated() *CreateSAMLIDPCreated {
 	return &CreateSAMLIDPCreated{}
 }
 
-/* CreateSAMLIDPCreated describes a response with status code 201, with default header values.
+/*
+CreateSAMLIDPCreated describes a response with status code 201, with default header values.
 
 SAMLIDP
 */
@@ -83,9 +84,39 @@ type CreateSAMLIDPCreated struct {
 	Payload *models.SAMLIDP
 }
 
+// IsSuccess returns true when this create s a m l Id p created response has a 2xx status code
+func (o *CreateSAMLIDPCreated) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this create s a m l Id p created response has a 3xx status code
+func (o *CreateSAMLIDPCreated) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create s a m l Id p created response has a 4xx status code
+func (o *CreateSAMLIDPCreated) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create s a m l Id p created response has a 5xx status code
+func (o *CreateSAMLIDPCreated) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create s a m l Id p created response a status code equal to that given
+func (o *CreateSAMLIDPCreated) IsCode(code int) bool {
+	return code == 201
+}
+
 func (o *CreateSAMLIDPCreated) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPCreated  %+v", 201, o.Payload)
 }
+
+func (o *CreateSAMLIDPCreated) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPCreated  %+v", 201, o.Payload)
+}
+
 func (o *CreateSAMLIDPCreated) GetPayload() *models.SAMLIDP {
 	return o.Payload
 }
@@ -107,7 +138,8 @@ func NewCreateSAMLIDPBadRequest() *CreateSAMLIDPBadRequest {
 	return &CreateSAMLIDPBadRequest{}
 }
 
-/* CreateSAMLIDPBadRequest describes a response with status code 400, with default header values.
+/*
+CreateSAMLIDPBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -115,9 +147,39 @@ type CreateSAMLIDPBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create s a m l Id p bad request response has a 2xx status code
+func (o *CreateSAMLIDPBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create s a m l Id p bad request response has a 3xx status code
+func (o *CreateSAMLIDPBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create s a m l Id p bad request response has a 4xx status code
+func (o *CreateSAMLIDPBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create s a m l Id p bad request response has a 5xx status code
+func (o *CreateSAMLIDPBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create s a m l Id p bad request response a status code equal to that given
+func (o *CreateSAMLIDPBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *CreateSAMLIDPBadRequest) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *CreateSAMLIDPBadRequest) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *CreateSAMLIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -139,7 +201,8 @@ func NewCreateSAMLIDPUnauthorized() *CreateSAMLIDPUnauthorized {
 	return &CreateSAMLIDPUnauthorized{}
 }
 
-/* CreateSAMLIDPUnauthorized describes a response with status code 401, with default header values.
+/*
+CreateSAMLIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,9 +210,39 @@ type CreateSAMLIDPUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create s a m l Id p unauthorized response has a 2xx status code
+func (o *CreateSAMLIDPUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create s a m l Id p unauthorized response has a 3xx status code
+func (o *CreateSAMLIDPUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create s a m l Id p unauthorized response has a 4xx status code
+func (o *CreateSAMLIDPUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create s a m l Id p unauthorized response has a 5xx status code
+func (o *CreateSAMLIDPUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create s a m l Id p unauthorized response a status code equal to that given
+func (o *CreateSAMLIDPUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *CreateSAMLIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *CreateSAMLIDPUnauthorized) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *CreateSAMLIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -171,7 +264,8 @@ func NewCreateSAMLIDPForbidden() *CreateSAMLIDPForbidden {
 	return &CreateSAMLIDPForbidden{}
 }
 
-/* CreateSAMLIDPForbidden describes a response with status code 403, with default header values.
+/*
+CreateSAMLIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -179,9 +273,39 @@ type CreateSAMLIDPForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create s a m l Id p forbidden response has a 2xx status code
+func (o *CreateSAMLIDPForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create s a m l Id p forbidden response has a 3xx status code
+func (o *CreateSAMLIDPForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create s a m l Id p forbidden response has a 4xx status code
+func (o *CreateSAMLIDPForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create s a m l Id p forbidden response has a 5xx status code
+func (o *CreateSAMLIDPForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create s a m l Id p forbidden response a status code equal to that given
+func (o *CreateSAMLIDPForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *CreateSAMLIDPForbidden) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPForbidden  %+v", 403, o.Payload)
 }
+
+func (o *CreateSAMLIDPForbidden) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPForbidden  %+v", 403, o.Payload)
+}
+
 func (o *CreateSAMLIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -203,7 +327,8 @@ func NewCreateSAMLIDPNotFound() *CreateSAMLIDPNotFound {
 	return &CreateSAMLIDPNotFound{}
 }
 
-/* CreateSAMLIDPNotFound describes a response with status code 404, with default header values.
+/*
+CreateSAMLIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -211,9 +336,39 @@ type CreateSAMLIDPNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create s a m l Id p not found response has a 2xx status code
+func (o *CreateSAMLIDPNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create s a m l Id p not found response has a 3xx status code
+func (o *CreateSAMLIDPNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create s a m l Id p not found response has a 4xx status code
+func (o *CreateSAMLIDPNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create s a m l Id p not found response has a 5xx status code
+func (o *CreateSAMLIDPNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create s a m l Id p not found response a status code equal to that given
+func (o *CreateSAMLIDPNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *CreateSAMLIDPNotFound) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPNotFound  %+v", 404, o.Payload)
 }
+
+func (o *CreateSAMLIDPNotFound) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPNotFound  %+v", 404, o.Payload)
+}
+
 func (o *CreateSAMLIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +390,8 @@ func NewCreateSAMLIDPUnprocessableEntity() *CreateSAMLIDPUnprocessableEntity {
 	return &CreateSAMLIDPUnprocessableEntity{}
 }
 
-/* CreateSAMLIDPUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+CreateSAMLIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -243,9 +399,39 @@ type CreateSAMLIDPUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create s a m l Id p unprocessable entity response has a 2xx status code
+func (o *CreateSAMLIDPUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create s a m l Id p unprocessable entity response has a 3xx status code
+func (o *CreateSAMLIDPUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create s a m l Id p unprocessable entity response has a 4xx status code
+func (o *CreateSAMLIDPUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create s a m l Id p unprocessable entity response has a 5xx status code
+func (o *CreateSAMLIDPUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create s a m l Id p unprocessable entity response a status code equal to that given
+func (o *CreateSAMLIDPUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *CreateSAMLIDPUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *CreateSAMLIDPUnprocessableEntity) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *CreateSAMLIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -267,7 +453,8 @@ func NewCreateSAMLIDPTooManyRequests() *CreateSAMLIDPTooManyRequests {
 	return &CreateSAMLIDPTooManyRequests{}
 }
 
-/* CreateSAMLIDPTooManyRequests describes a response with status code 429, with default header values.
+/*
+CreateSAMLIDPTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -275,9 +462,39 @@ type CreateSAMLIDPTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create s a m l Id p too many requests response has a 2xx status code
+func (o *CreateSAMLIDPTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create s a m l Id p too many requests response has a 3xx status code
+func (o *CreateSAMLIDPTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create s a m l Id p too many requests response has a 4xx status code
+func (o *CreateSAMLIDPTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create s a m l Id p too many requests response has a 5xx status code
+func (o *CreateSAMLIDPTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create s a m l Id p too many requests response a status code equal to that given
+func (o *CreateSAMLIDPTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *CreateSAMLIDPTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *CreateSAMLIDPTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *CreateSAMLIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

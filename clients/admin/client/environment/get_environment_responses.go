@@ -57,7 +57,8 @@ func NewGetEnvironmentOK() *GetEnvironmentOK {
 	return &GetEnvironmentOK{}
 }
 
-/* GetEnvironmentOK describes a response with status code 200, with default header values.
+/*
+GetEnvironmentOK describes a response with status code 200, with default header values.
 
 Environment
 */
@@ -65,9 +66,39 @@ type GetEnvironmentOK struct {
 	Payload *models.Environment
 }
 
+// IsSuccess returns true when this get environment o k response has a 2xx status code
+func (o *GetEnvironmentOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get environment o k response has a 3xx status code
+func (o *GetEnvironmentOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get environment o k response has a 4xx status code
+func (o *GetEnvironmentOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get environment o k response has a 5xx status code
+func (o *GetEnvironmentOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get environment o k response a status code equal to that given
+func (o *GetEnvironmentOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetEnvironmentOK) Error() string {
 	return fmt.Sprintf("[GET /environment][%d] getEnvironmentOK  %+v", 200, o.Payload)
 }
+
+func (o *GetEnvironmentOK) String() string {
+	return fmt.Sprintf("[GET /environment][%d] getEnvironmentOK  %+v", 200, o.Payload)
+}
+
 func (o *GetEnvironmentOK) GetPayload() *models.Environment {
 	return o.Payload
 }
@@ -89,7 +120,8 @@ func NewGetEnvironmentUnauthorized() *GetEnvironmentUnauthorized {
 	return &GetEnvironmentUnauthorized{}
 }
 
-/* GetEnvironmentUnauthorized describes a response with status code 401, with default header values.
+/*
+GetEnvironmentUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -97,9 +129,39 @@ type GetEnvironmentUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get environment unauthorized response has a 2xx status code
+func (o *GetEnvironmentUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get environment unauthorized response has a 3xx status code
+func (o *GetEnvironmentUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get environment unauthorized response has a 4xx status code
+func (o *GetEnvironmentUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get environment unauthorized response has a 5xx status code
+func (o *GetEnvironmentUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get environment unauthorized response a status code equal to that given
+func (o *GetEnvironmentUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *GetEnvironmentUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /environment][%d] getEnvironmentUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *GetEnvironmentUnauthorized) String() string {
+	return fmt.Sprintf("[GET /environment][%d] getEnvironmentUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *GetEnvironmentUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -121,7 +183,8 @@ func NewGetEnvironmentForbidden() *GetEnvironmentForbidden {
 	return &GetEnvironmentForbidden{}
 }
 
-/* GetEnvironmentForbidden describes a response with status code 403, with default header values.
+/*
+GetEnvironmentForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -129,9 +192,39 @@ type GetEnvironmentForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get environment forbidden response has a 2xx status code
+func (o *GetEnvironmentForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get environment forbidden response has a 3xx status code
+func (o *GetEnvironmentForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get environment forbidden response has a 4xx status code
+func (o *GetEnvironmentForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get environment forbidden response has a 5xx status code
+func (o *GetEnvironmentForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get environment forbidden response a status code equal to that given
+func (o *GetEnvironmentForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetEnvironmentForbidden) Error() string {
 	return fmt.Sprintf("[GET /environment][%d] getEnvironmentForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetEnvironmentForbidden) String() string {
+	return fmt.Sprintf("[GET /environment][%d] getEnvironmentForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetEnvironmentForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -153,7 +246,8 @@ func NewGetEnvironmentTooManyRequests() *GetEnvironmentTooManyRequests {
 	return &GetEnvironmentTooManyRequests{}
 }
 
-/* GetEnvironmentTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetEnvironmentTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -161,9 +255,39 @@ type GetEnvironmentTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get environment too many requests response has a 2xx status code
+func (o *GetEnvironmentTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get environment too many requests response has a 3xx status code
+func (o *GetEnvironmentTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get environment too many requests response has a 4xx status code
+func (o *GetEnvironmentTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get environment too many requests response has a 5xx status code
+func (o *GetEnvironmentTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get environment too many requests response a status code equal to that given
+func (o *GetEnvironmentTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *GetEnvironmentTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /environment][%d] getEnvironmentTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *GetEnvironmentTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /environment][%d] getEnvironmentTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *GetEnvironmentTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

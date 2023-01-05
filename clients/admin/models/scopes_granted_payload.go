@@ -19,9 +19,6 @@ import (
 // swagger:model ScopesGrantedPayload
 type ScopesGrantedPayload struct {
 
-	// List of already granted scopes.
-	CurrentScopeGrants []*ScopeGrant `json:"current_scope_grants"`
-
 	// List of scopes to grant.
 	NewScopeGrants []*ScopeGrant `json:"new_scope_grants"`
 }
@@ -30,10 +27,6 @@ type ScopesGrantedPayload struct {
 func (m *ScopesGrantedPayload) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateCurrentScopeGrants(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateNewScopeGrants(formats); err != nil {
 		res = append(res, err)
 	}
@@ -41,32 +34,6 @@ func (m *ScopesGrantedPayload) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *ScopesGrantedPayload) validateCurrentScopeGrants(formats strfmt.Registry) error {
-	if swag.IsZero(m.CurrentScopeGrants) { // not required
-		return nil
-	}
-
-	for i := 0; i < len(m.CurrentScopeGrants); i++ {
-		if swag.IsZero(m.CurrentScopeGrants[i]) { // not required
-			continue
-		}
-
-		if m.CurrentScopeGrants[i] != nil {
-			if err := m.CurrentScopeGrants[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("current_scope_grants" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
-					return ce.ValidateName("current_scope_grants" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
 	return nil
 }
 
@@ -100,10 +67,6 @@ func (m *ScopesGrantedPayload) validateNewScopeGrants(formats strfmt.Registry) e
 func (m *ScopesGrantedPayload) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateCurrentScopeGrants(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateNewScopeGrants(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -111,26 +74,6 @@ func (m *ScopesGrantedPayload) ContextValidate(ctx context.Context, formats strf
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *ScopesGrantedPayload) contextValidateCurrentScopeGrants(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.CurrentScopeGrants); i++ {
-
-		if m.CurrentScopeGrants[i] != nil {
-			if err := m.CurrentScopeGrants[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("current_scope_grants" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
-					return ce.ValidateName("current_scope_grants" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
 	return nil
 }
 

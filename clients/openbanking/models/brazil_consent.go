@@ -22,7 +22,8 @@ type BrazilConsent struct {
 	// account ids
 	AccountIds []string `json:"account_ids"`
 
-	// client id
+	// Client identifier
+	// Example: \"cauqo9c9vpbs0aj2b2v0\
 	ClientID string `json:"client_id,omitempty"`
 
 	// cnpj
@@ -39,7 +40,13 @@ type BrazilConsent struct {
 	CreatedAt strfmt.DateTime `json:"created_at,omitempty"`
 
 	// customer data access consent
-	CustomerDataAccessConsent *BrazilCustomerDataAccessConsent `json:"customer_data_access_consent,omitempty"`
+	CustomerDataAccessConsent *BrazilCustomerDataAccessConsentV1 `json:"customer_data_access_consent,omitempty"`
+
+	// customer data access consent v2
+	CustomerDataAccessConsentV2 *BrazilCustomerDataAccessConsentV2 `json:"customer_data_access_consent_v2,omitempty"`
+
+	// customer insurance data access consent
+	CustomerInsuranceDataAccessConsent *BrazilInsuranceCustomerDataAccessConsent `json:"customer_insurance_data_access_consent,omitempty"`
 
 	// customer payment consent
 	CustomerPaymentConsent *BrazilCustomerPaymentConsent `json:"customer_payment_consent,omitempty"`
@@ -50,19 +57,21 @@ type BrazilConsent struct {
 	// request hash
 	RequestHash string `json:"request_hash,omitempty"`
 
-	// server id
+	// Server / Workspace identifier
+	// Example: \"server\
 	ServerID string `json:"server_id,omitempty"`
 
 	// spec
 	Spec string `json:"spec,omitempty"`
 
 	// spec version
-	SpecVersion string `json:"spec_version,omitempty"`
+	SpecVersion SpecVersion `json:"spec_version,omitempty"`
 
 	// status
 	Status string `json:"status,omitempty"`
 
-	// tenant id
+	// Tenant identifier
+	// Example: \"tenant\
 	TenantID string `json:"tenant_id,omitempty"`
 
 	// type
@@ -81,7 +90,19 @@ func (m *BrazilConsent) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateCustomerDataAccessConsentV2(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCustomerInsuranceDataAccessConsent(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateCustomerPaymentConsent(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSpecVersion(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -126,6 +147,44 @@ func (m *BrazilConsent) validateCustomerDataAccessConsent(formats strfmt.Registr
 	return nil
 }
 
+func (m *BrazilConsent) validateCustomerDataAccessConsentV2(formats strfmt.Registry) error {
+	if swag.IsZero(m.CustomerDataAccessConsentV2) { // not required
+		return nil
+	}
+
+	if m.CustomerDataAccessConsentV2 != nil {
+		if err := m.CustomerDataAccessConsentV2.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("customer_data_access_consent_v2")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("customer_data_access_consent_v2")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *BrazilConsent) validateCustomerInsuranceDataAccessConsent(formats strfmt.Registry) error {
+	if swag.IsZero(m.CustomerInsuranceDataAccessConsent) { // not required
+		return nil
+	}
+
+	if m.CustomerInsuranceDataAccessConsent != nil {
+		if err := m.CustomerInsuranceDataAccessConsent.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("customer_insurance_data_access_consent")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("customer_insurance_data_access_consent")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *BrazilConsent) validateCustomerPaymentConsent(formats strfmt.Registry) error {
 	if swag.IsZero(m.CustomerPaymentConsent) { // not required
 		return nil
@@ -140,6 +199,23 @@ func (m *BrazilConsent) validateCustomerPaymentConsent(formats strfmt.Registry) 
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *BrazilConsent) validateSpecVersion(formats strfmt.Registry) error {
+	if swag.IsZero(m.SpecVersion) { // not required
+		return nil
+	}
+
+	if err := m.SpecVersion.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("spec_version")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("spec_version")
+		}
+		return err
 	}
 
 	return nil
@@ -170,7 +246,19 @@ func (m *BrazilConsent) ContextValidate(ctx context.Context, formats strfmt.Regi
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateCustomerDataAccessConsentV2(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCustomerInsuranceDataAccessConsent(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateCustomerPaymentConsent(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSpecVersion(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -200,6 +288,38 @@ func (m *BrazilConsent) contextValidateCustomerDataAccessConsent(ctx context.Con
 	return nil
 }
 
+func (m *BrazilConsent) contextValidateCustomerDataAccessConsentV2(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.CustomerDataAccessConsentV2 != nil {
+		if err := m.CustomerDataAccessConsentV2.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("customer_data_access_consent_v2")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("customer_data_access_consent_v2")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *BrazilConsent) contextValidateCustomerInsuranceDataAccessConsent(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.CustomerInsuranceDataAccessConsent != nil {
+		if err := m.CustomerInsuranceDataAccessConsent.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("customer_insurance_data_access_consent")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("customer_insurance_data_access_consent")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *BrazilConsent) contextValidateCustomerPaymentConsent(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CustomerPaymentConsent != nil {
@@ -211,6 +331,20 @@ func (m *BrazilConsent) contextValidateCustomerPaymentConsent(ctx context.Contex
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *BrazilConsent) contextValidateSpecVersion(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.SpecVersion.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("spec_version")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("spec_version")
+		}
+		return err
 	}
 
 	return nil

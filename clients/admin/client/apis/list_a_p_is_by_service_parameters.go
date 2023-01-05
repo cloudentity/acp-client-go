@@ -53,10 +53,12 @@ func NewListAPIsByServiceParamsWithHTTPClient(client *http.Client) *ListAPIsBySe
 	}
 }
 
-/* ListAPIsByServiceParams contains all the parameters to send to the API endpoint
-   for the list a p is by service operation.
+/*
+ListAPIsByServiceParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the list a p is by service operation.
+
+	Typically these are written to a http.Request.
 */
 type ListAPIsByServiceParams struct {
 

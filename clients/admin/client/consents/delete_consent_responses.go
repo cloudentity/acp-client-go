@@ -63,14 +63,44 @@ func NewDeleteConsentNoContent() *DeleteConsentNoContent {
 	return &DeleteConsentNoContent{}
 }
 
-/* DeleteConsentNoContent describes a response with status code 204, with default header values.
+/*
+DeleteConsentNoContent describes a response with status code 204, with default header values.
 
-Consent has been deleted
+	Consent has been deleted
 */
 type DeleteConsentNoContent struct {
 }
 
+// IsSuccess returns true when this delete consent no content response has a 2xx status code
+func (o *DeleteConsentNoContent) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this delete consent no content response has a 3xx status code
+func (o *DeleteConsentNoContent) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete consent no content response has a 4xx status code
+func (o *DeleteConsentNoContent) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this delete consent no content response has a 5xx status code
+func (o *DeleteConsentNoContent) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete consent no content response a status code equal to that given
+func (o *DeleteConsentNoContent) IsCode(code int) bool {
+	return code == 204
+}
+
 func (o *DeleteConsentNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /consents/{consent}][%d] deleteConsentNoContent ", 204)
+}
+
+func (o *DeleteConsentNoContent) String() string {
 	return fmt.Sprintf("[DELETE /consents/{consent}][%d] deleteConsentNoContent ", 204)
 }
 
@@ -84,7 +114,8 @@ func NewDeleteConsentUnauthorized() *DeleteConsentUnauthorized {
 	return &DeleteConsentUnauthorized{}
 }
 
-/* DeleteConsentUnauthorized describes a response with status code 401, with default header values.
+/*
+DeleteConsentUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -92,9 +123,39 @@ type DeleteConsentUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete consent unauthorized response has a 2xx status code
+func (o *DeleteConsentUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete consent unauthorized response has a 3xx status code
+func (o *DeleteConsentUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete consent unauthorized response has a 4xx status code
+func (o *DeleteConsentUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete consent unauthorized response has a 5xx status code
+func (o *DeleteConsentUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete consent unauthorized response a status code equal to that given
+func (o *DeleteConsentUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *DeleteConsentUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /consents/{consent}][%d] deleteConsentUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *DeleteConsentUnauthorized) String() string {
+	return fmt.Sprintf("[DELETE /consents/{consent}][%d] deleteConsentUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *DeleteConsentUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -116,7 +177,8 @@ func NewDeleteConsentForbidden() *DeleteConsentForbidden {
 	return &DeleteConsentForbidden{}
 }
 
-/* DeleteConsentForbidden describes a response with status code 403, with default header values.
+/*
+DeleteConsentForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -124,9 +186,39 @@ type DeleteConsentForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete consent forbidden response has a 2xx status code
+func (o *DeleteConsentForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete consent forbidden response has a 3xx status code
+func (o *DeleteConsentForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete consent forbidden response has a 4xx status code
+func (o *DeleteConsentForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete consent forbidden response has a 5xx status code
+func (o *DeleteConsentForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete consent forbidden response a status code equal to that given
+func (o *DeleteConsentForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *DeleteConsentForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /consents/{consent}][%d] deleteConsentForbidden  %+v", 403, o.Payload)
 }
+
+func (o *DeleteConsentForbidden) String() string {
+	return fmt.Sprintf("[DELETE /consents/{consent}][%d] deleteConsentForbidden  %+v", 403, o.Payload)
+}
+
 func (o *DeleteConsentForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -148,7 +240,8 @@ func NewDeleteConsentNotFound() *DeleteConsentNotFound {
 	return &DeleteConsentNotFound{}
 }
 
-/* DeleteConsentNotFound describes a response with status code 404, with default header values.
+/*
+DeleteConsentNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -156,9 +249,39 @@ type DeleteConsentNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete consent not found response has a 2xx status code
+func (o *DeleteConsentNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete consent not found response has a 3xx status code
+func (o *DeleteConsentNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete consent not found response has a 4xx status code
+func (o *DeleteConsentNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete consent not found response has a 5xx status code
+func (o *DeleteConsentNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete consent not found response a status code equal to that given
+func (o *DeleteConsentNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *DeleteConsentNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /consents/{consent}][%d] deleteConsentNotFound  %+v", 404, o.Payload)
 }
+
+func (o *DeleteConsentNotFound) String() string {
+	return fmt.Sprintf("[DELETE /consents/{consent}][%d] deleteConsentNotFound  %+v", 404, o.Payload)
+}
+
 func (o *DeleteConsentNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -180,7 +303,8 @@ func NewDeleteConsentTooManyRequests() *DeleteConsentTooManyRequests {
 	return &DeleteConsentTooManyRequests{}
 }
 
-/* DeleteConsentTooManyRequests describes a response with status code 429, with default header values.
+/*
+DeleteConsentTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -188,9 +312,39 @@ type DeleteConsentTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete consent too many requests response has a 2xx status code
+func (o *DeleteConsentTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete consent too many requests response has a 3xx status code
+func (o *DeleteConsentTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete consent too many requests response has a 4xx status code
+func (o *DeleteConsentTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete consent too many requests response has a 5xx status code
+func (o *DeleteConsentTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete consent too many requests response a status code equal to that given
+func (o *DeleteConsentTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *DeleteConsentTooManyRequests) Error() string {
 	return fmt.Sprintf("[DELETE /consents/{consent}][%d] deleteConsentTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *DeleteConsentTooManyRequests) String() string {
+	return fmt.Sprintf("[DELETE /consents/{consent}][%d] deleteConsentTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *DeleteConsentTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

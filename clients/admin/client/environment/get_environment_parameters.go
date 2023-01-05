@@ -52,10 +52,12 @@ func NewGetEnvironmentParamsWithHTTPClient(client *http.Client) *GetEnvironmentP
 	}
 }
 
-/* GetEnvironmentParams contains all the parameters to send to the API endpoint
-   for the get environment operation.
+/*
+GetEnvironmentParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get environment operation.
+
+	Typically these are written to a http.Request.
 */
 type GetEnvironmentParams struct {
 	timeout    time.Duration

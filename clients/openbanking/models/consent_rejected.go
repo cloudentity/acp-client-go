@@ -17,8 +17,9 @@ import (
 // swagger:model ConsentRejected
 type ConsentRejected struct {
 
-	// url where user should be redirected
-	// this aplies only for redirect flow
+	// URL where user should be redirected.
+	// This aplies only for redirect flow, i.e consent page.
+	// Example: https://authorization.cloudentity.com:8443/tenant/server/oauth2/authorize?client_id=bugkgm23g9kregtu051g\u0026consent_verified=true\u0026login_id=cavai7d8s9nelp7k792g\u0026login_state=cauq8fonbud6q8806bf0
 	RedirectTo string `json:"redirect_to,omitempty"`
 }
 

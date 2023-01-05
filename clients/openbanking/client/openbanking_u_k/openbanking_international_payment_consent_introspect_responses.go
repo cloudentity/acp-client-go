@@ -60,7 +60,8 @@ func NewOpenbankingInternationalPaymentConsentIntrospectOK() *OpenbankingInterna
 	return &OpenbankingInternationalPaymentConsentIntrospectOK{}
 }
 
-/* OpenbankingInternationalPaymentConsentIntrospectOK describes a response with status code 200, with default header values.
+/*
+OpenbankingInternationalPaymentConsentIntrospectOK describes a response with status code 200, with default header values.
 
 Introspect Openbanking International Payment Consent Response
 */
@@ -68,9 +69,39 @@ type OpenbankingInternationalPaymentConsentIntrospectOK struct {
 	Payload *OpenbankingInternationalPaymentConsentIntrospectOKBody
 }
 
+// IsSuccess returns true when this openbanking international payment consent introspect o k response has a 2xx status code
+func (o *OpenbankingInternationalPaymentConsentIntrospectOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this openbanking international payment consent introspect o k response has a 3xx status code
+func (o *OpenbankingInternationalPaymentConsentIntrospectOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this openbanking international payment consent introspect o k response has a 4xx status code
+func (o *OpenbankingInternationalPaymentConsentIntrospectOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this openbanking international payment consent introspect o k response has a 5xx status code
+func (o *OpenbankingInternationalPaymentConsentIntrospectOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this openbanking international payment consent introspect o k response a status code equal to that given
+func (o *OpenbankingInternationalPaymentConsentIntrospectOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *OpenbankingInternationalPaymentConsentIntrospectOK) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents/introspect][%d] openbankingInternationalPaymentConsentIntrospectOK  %+v", 200, o.Payload)
 }
+
+func (o *OpenbankingInternationalPaymentConsentIntrospectOK) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents/introspect][%d] openbankingInternationalPaymentConsentIntrospectOK  %+v", 200, o.Payload)
+}
+
 func (o *OpenbankingInternationalPaymentConsentIntrospectOK) GetPayload() *OpenbankingInternationalPaymentConsentIntrospectOKBody {
 	return o.Payload
 }
@@ -92,7 +123,8 @@ func NewOpenbankingInternationalPaymentConsentIntrospectUnauthorized() *Openbank
 	return &OpenbankingInternationalPaymentConsentIntrospectUnauthorized{}
 }
 
-/* OpenbankingInternationalPaymentConsentIntrospectUnauthorized describes a response with status code 401, with default header values.
+/*
+OpenbankingInternationalPaymentConsentIntrospectUnauthorized describes a response with status code 401, with default header values.
 
 ErrorResponse
 */
@@ -100,9 +132,39 @@ type OpenbankingInternationalPaymentConsentIntrospectUnauthorized struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this openbanking international payment consent introspect unauthorized response has a 2xx status code
+func (o *OpenbankingInternationalPaymentConsentIntrospectUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this openbanking international payment consent introspect unauthorized response has a 3xx status code
+func (o *OpenbankingInternationalPaymentConsentIntrospectUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this openbanking international payment consent introspect unauthorized response has a 4xx status code
+func (o *OpenbankingInternationalPaymentConsentIntrospectUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this openbanking international payment consent introspect unauthorized response has a 5xx status code
+func (o *OpenbankingInternationalPaymentConsentIntrospectUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this openbanking international payment consent introspect unauthorized response a status code equal to that given
+func (o *OpenbankingInternationalPaymentConsentIntrospectUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *OpenbankingInternationalPaymentConsentIntrospectUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents/introspect][%d] openbankingInternationalPaymentConsentIntrospectUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *OpenbankingInternationalPaymentConsentIntrospectUnauthorized) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents/introspect][%d] openbankingInternationalPaymentConsentIntrospectUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *OpenbankingInternationalPaymentConsentIntrospectUnauthorized) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -124,7 +186,8 @@ func NewOpenbankingInternationalPaymentConsentIntrospectNotFound() *OpenbankingI
 	return &OpenbankingInternationalPaymentConsentIntrospectNotFound{}
 }
 
-/* OpenbankingInternationalPaymentConsentIntrospectNotFound describes a response with status code 404, with default header values.
+/*
+OpenbankingInternationalPaymentConsentIntrospectNotFound describes a response with status code 404, with default header values.
 
 ErrorResponse
 */
@@ -132,9 +195,39 @@ type OpenbankingInternationalPaymentConsentIntrospectNotFound struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this openbanking international payment consent introspect not found response has a 2xx status code
+func (o *OpenbankingInternationalPaymentConsentIntrospectNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this openbanking international payment consent introspect not found response has a 3xx status code
+func (o *OpenbankingInternationalPaymentConsentIntrospectNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this openbanking international payment consent introspect not found response has a 4xx status code
+func (o *OpenbankingInternationalPaymentConsentIntrospectNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this openbanking international payment consent introspect not found response has a 5xx status code
+func (o *OpenbankingInternationalPaymentConsentIntrospectNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this openbanking international payment consent introspect not found response a status code equal to that given
+func (o *OpenbankingInternationalPaymentConsentIntrospectNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *OpenbankingInternationalPaymentConsentIntrospectNotFound) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents/introspect][%d] openbankingInternationalPaymentConsentIntrospectNotFound  %+v", 404, o.Payload)
 }
+
+func (o *OpenbankingInternationalPaymentConsentIntrospectNotFound) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents/introspect][%d] openbankingInternationalPaymentConsentIntrospectNotFound  %+v", 404, o.Payload)
+}
+
 func (o *OpenbankingInternationalPaymentConsentIntrospectNotFound) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -156,7 +249,8 @@ func NewOpenbankingInternationalPaymentConsentIntrospectTooManyRequests() *Openb
 	return &OpenbankingInternationalPaymentConsentIntrospectTooManyRequests{}
 }
 
-/* OpenbankingInternationalPaymentConsentIntrospectTooManyRequests describes a response with status code 429, with default header values.
+/*
+OpenbankingInternationalPaymentConsentIntrospectTooManyRequests describes a response with status code 429, with default header values.
 
 ErrorResponse
 */
@@ -164,9 +258,39 @@ type OpenbankingInternationalPaymentConsentIntrospectTooManyRequests struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this openbanking international payment consent introspect too many requests response has a 2xx status code
+func (o *OpenbankingInternationalPaymentConsentIntrospectTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this openbanking international payment consent introspect too many requests response has a 3xx status code
+func (o *OpenbankingInternationalPaymentConsentIntrospectTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this openbanking international payment consent introspect too many requests response has a 4xx status code
+func (o *OpenbankingInternationalPaymentConsentIntrospectTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this openbanking international payment consent introspect too many requests response has a 5xx status code
+func (o *OpenbankingInternationalPaymentConsentIntrospectTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this openbanking international payment consent introspect too many requests response a status code equal to that given
+func (o *OpenbankingInternationalPaymentConsentIntrospectTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *OpenbankingInternationalPaymentConsentIntrospectTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents/introspect][%d] openbankingInternationalPaymentConsentIntrospectTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *OpenbankingInternationalPaymentConsentIntrospectTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/international-payment-consents/introspect][%d] openbankingInternationalPaymentConsentIntrospectTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *OpenbankingInternationalPaymentConsentIntrospectTooManyRequests) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -183,7 +307,8 @@ func (o *OpenbankingInternationalPaymentConsentIntrospectTooManyRequests) readRe
 	return nil
 }
 
-/*OpenbankingInternationalPaymentConsentIntrospectOKBody openbanking international payment consent introspect o k body
+/*
+OpenbankingInternationalPaymentConsentIntrospectOKBody openbanking international payment consent introspect o k body
 swagger:model OpenbankingInternationalPaymentConsentIntrospectOKBody
 */
 type OpenbankingInternationalPaymentConsentIntrospectOKBody struct {

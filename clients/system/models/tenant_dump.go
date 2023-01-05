@@ -25,6 +25,9 @@ type TenantDump struct {
 	// audit events
 	AuditEvents []*AuditEvent `json:"audit_events"`
 
+	// brute force limits
+	BruteForceLimits []*BruteForceLimit `json:"brute_force_limits"`
+
 	// cdr arrangements
 	CdrArrangements []*CDRArrangement `json:"cdr_arrangements"`
 
@@ -64,6 +67,9 @@ type TenantDump struct {
 	// openbanking br consents
 	OpenbankingBrConsents []*OBConsent `json:"openbanking_br_consents"`
 
+	// openbanking fdx consents
+	OpenbankingFdxConsents []*FDXConsent `json:"openbanking_fdx_consents"`
+
 	// openbanking file payment consent file resources
 	OpenbankingFilePaymentConsentFileResources []*FilePaymentConsentFileResource `json:"openbanking_file_payment_consent_file_resources"`
 
@@ -78,9 +84,6 @@ type TenantDump struct {
 
 	// privacy ledger events
 	PrivacyLedgerEvents []*PrivacyLedgerEvent `json:"privacy_ledger_events"`
-
-	// quota usage
-	QuotaUsage []*QuotaUsage `json:"quota_usage"`
 
 	// recurring jobs
 	RecurringJobs []*RecurringJob `json:"recurring_jobs"`
@@ -112,11 +115,23 @@ type TenantDump struct {
 	// services
 	Services []*ServiceWithScopesAndAPIs `json:"services"`
 
+	// templates
+	Templates []*Template `json:"templates"`
+
 	// tenant
 	Tenant *Tenant `json:"tenant,omitempty"`
 
+	// theme bindings
+	ThemeBindings []*ServerToTheme `json:"theme_bindings"`
+
+	// themes
+	Themes []*Theme `json:"themes"`
+
 	// vanity domains
 	VanityDomains []*VanityDomain `json:"vanity_domains"`
+
+	// webhooks
+	Webhooks []*Webhook `json:"webhooks"`
 }
 
 // Validate validates this tenant dump
@@ -128,6 +143,10 @@ func (m *TenantDump) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateAuditEvents(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateBruteForceLimits(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -183,6 +202,10 @@ func (m *TenantDump) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateOpenbankingFdxConsents(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateOpenbankingFilePaymentConsentFileResources(formats); err != nil {
 		res = append(res, err)
 	}
@@ -200,10 +223,6 @@ func (m *TenantDump) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validatePrivacyLedgerEvents(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateQuotaUsage(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -247,11 +266,27 @@ func (m *TenantDump) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateTemplates(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateTenant(formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.validateThemeBindings(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateThemes(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateVanityDomains(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateWebhooks(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -303,6 +338,32 @@ func (m *TenantDump) validateAuditEvents(formats strfmt.Registry) error {
 					return ve.ValidateName("audit_events" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
 					return ce.ValidateName("audit_events" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *TenantDump) validateBruteForceLimits(formats strfmt.Registry) error {
+	if swag.IsZero(m.BruteForceLimits) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.BruteForceLimits); i++ {
+		if swag.IsZero(m.BruteForceLimits[i]) { // not required
+			continue
+		}
+
+		if m.BruteForceLimits[i] != nil {
+			if err := m.BruteForceLimits[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("brute_force_limits" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("brute_force_limits" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -642,6 +703,32 @@ func (m *TenantDump) validateOpenbankingBrConsents(formats strfmt.Registry) erro
 	return nil
 }
 
+func (m *TenantDump) validateOpenbankingFdxConsents(formats strfmt.Registry) error {
+	if swag.IsZero(m.OpenbankingFdxConsents) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.OpenbankingFdxConsents); i++ {
+		if swag.IsZero(m.OpenbankingFdxConsents[i]) { // not required
+			continue
+		}
+
+		if m.OpenbankingFdxConsents[i] != nil {
+			if err := m.OpenbankingFdxConsents[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("openbanking_fdx_consents" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("openbanking_fdx_consents" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *TenantDump) validateOpenbankingFilePaymentConsentFileResources(formats strfmt.Registry) error {
 	if swag.IsZero(m.OpenbankingFilePaymentConsentFileResources) { // not required
 		return nil
@@ -762,32 +849,6 @@ func (m *TenantDump) validatePrivacyLedgerEvents(formats strfmt.Registry) error 
 					return ve.ValidateName("privacy_ledger_events" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
 					return ce.ValidateName("privacy_ledger_events" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-func (m *TenantDump) validateQuotaUsage(formats strfmt.Registry) error {
-	if swag.IsZero(m.QuotaUsage) { // not required
-		return nil
-	}
-
-	for i := 0; i < len(m.QuotaUsage); i++ {
-		if swag.IsZero(m.QuotaUsage[i]) { // not required
-			continue
-		}
-
-		if m.QuotaUsage[i] != nil {
-			if err := m.QuotaUsage[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("quota_usage" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
-					return ce.ValidateName("quota_usage" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1058,6 +1119,32 @@ func (m *TenantDump) validateServices(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *TenantDump) validateTemplates(formats strfmt.Registry) error {
+	if swag.IsZero(m.Templates) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Templates); i++ {
+		if swag.IsZero(m.Templates[i]) { // not required
+			continue
+		}
+
+		if m.Templates[i] != nil {
+			if err := m.Templates[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("templates" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("templates" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *TenantDump) validateTenant(formats strfmt.Registry) error {
 	if swag.IsZero(m.Tenant) { // not required
 		return nil
@@ -1072,6 +1159,58 @@ func (m *TenantDump) validateTenant(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *TenantDump) validateThemeBindings(formats strfmt.Registry) error {
+	if swag.IsZero(m.ThemeBindings) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.ThemeBindings); i++ {
+		if swag.IsZero(m.ThemeBindings[i]) { // not required
+			continue
+		}
+
+		if m.ThemeBindings[i] != nil {
+			if err := m.ThemeBindings[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("theme_bindings" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("theme_bindings" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *TenantDump) validateThemes(formats strfmt.Registry) error {
+	if swag.IsZero(m.Themes) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Themes); i++ {
+		if swag.IsZero(m.Themes[i]) { // not required
+			continue
+		}
+
+		if m.Themes[i] != nil {
+			if err := m.Themes[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("themes" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("themes" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -1103,6 +1242,32 @@ func (m *TenantDump) validateVanityDomains(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *TenantDump) validateWebhooks(formats strfmt.Registry) error {
+	if swag.IsZero(m.Webhooks) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Webhooks); i++ {
+		if swag.IsZero(m.Webhooks[i]) { // not required
+			continue
+		}
+
+		if m.Webhooks[i] != nil {
+			if err := m.Webhooks[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("webhooks" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("webhooks" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 // ContextValidate validate this tenant dump based on the context it is used
 func (m *TenantDump) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
@@ -1112,6 +1277,10 @@ func (m *TenantDump) ContextValidate(ctx context.Context, formats strfmt.Registr
 	}
 
 	if err := m.contextValidateAuditEvents(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateBruteForceLimits(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1167,6 +1336,10 @@ func (m *TenantDump) ContextValidate(ctx context.Context, formats strfmt.Registr
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateOpenbankingFdxConsents(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateOpenbankingFilePaymentConsentFileResources(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -1184,10 +1357,6 @@ func (m *TenantDump) ContextValidate(ctx context.Context, formats strfmt.Registr
 	}
 
 	if err := m.contextValidatePrivacyLedgerEvents(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateQuotaUsage(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1231,11 +1400,27 @@ func (m *TenantDump) ContextValidate(ctx context.Context, formats strfmt.Registr
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateTemplates(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateTenant(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateThemeBindings(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateThemes(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateVanityDomains(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateWebhooks(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1275,6 +1460,26 @@ func (m *TenantDump) contextValidateAuditEvents(ctx context.Context, formats str
 					return ve.ValidateName("audit_events" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
 					return ce.ValidateName("audit_events" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *TenantDump) contextValidateBruteForceLimits(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.BruteForceLimits); i++ {
+
+		if m.BruteForceLimits[i] != nil {
+			if err := m.BruteForceLimits[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("brute_force_limits" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("brute_force_limits" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1539,6 +1744,26 @@ func (m *TenantDump) contextValidateOpenbankingBrConsents(ctx context.Context, f
 	return nil
 }
 
+func (m *TenantDump) contextValidateOpenbankingFdxConsents(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.OpenbankingFdxConsents); i++ {
+
+		if m.OpenbankingFdxConsents[i] != nil {
+			if err := m.OpenbankingFdxConsents[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("openbanking_fdx_consents" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("openbanking_fdx_consents" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *TenantDump) contextValidateOpenbankingFilePaymentConsentFileResources(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.OpenbankingFilePaymentConsentFileResources); i++ {
@@ -1629,26 +1854,6 @@ func (m *TenantDump) contextValidatePrivacyLedgerEvents(ctx context.Context, for
 					return ve.ValidateName("privacy_ledger_events" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
 					return ce.ValidateName("privacy_ledger_events" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-func (m *TenantDump) contextValidateQuotaUsage(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.QuotaUsage); i++ {
-
-		if m.QuotaUsage[i] != nil {
-			if err := m.QuotaUsage[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("quota_usage" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
-					return ce.ValidateName("quota_usage" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1859,6 +2064,26 @@ func (m *TenantDump) contextValidateServices(ctx context.Context, formats strfmt
 	return nil
 }
 
+func (m *TenantDump) contextValidateTemplates(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Templates); i++ {
+
+		if m.Templates[i] != nil {
+			if err := m.Templates[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("templates" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("templates" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *TenantDump) contextValidateTenant(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Tenant != nil {
@@ -1875,6 +2100,46 @@ func (m *TenantDump) contextValidateTenant(ctx context.Context, formats strfmt.R
 	return nil
 }
 
+func (m *TenantDump) contextValidateThemeBindings(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.ThemeBindings); i++ {
+
+		if m.ThemeBindings[i] != nil {
+			if err := m.ThemeBindings[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("theme_bindings" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("theme_bindings" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *TenantDump) contextValidateThemes(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Themes); i++ {
+
+		if m.Themes[i] != nil {
+			if err := m.Themes[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("themes" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("themes" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *TenantDump) contextValidateVanityDomains(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.VanityDomains); i++ {
@@ -1885,6 +2150,26 @@ func (m *TenantDump) contextValidateVanityDomains(ctx context.Context, formats s
 					return ve.ValidateName("vanity_domains" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
 					return ce.ValidateName("vanity_domains" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *TenantDump) contextValidateWebhooks(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Webhooks); i++ {
+
+		if m.Webhooks[i] != nil {
+			if err := m.Webhooks[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("webhooks" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("webhooks" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

@@ -44,9 +44,9 @@ type ClientService interface {
 }
 
 /*
-  BindSystemAPI binds system api
+BindSystemAPI binds system api
 
-  Bind policy to a system api.
+Bind policy to a system api.
 */
 func (a *Client) BindSystemAPI(params *BindSystemAPIParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*BindSystemAPINoContent, error) {
 	// TODO: Validate the params before sending
@@ -85,9 +85,9 @@ func (a *Client) BindSystemAPI(params *BindSystemAPIParams, authInfo runtime.Cli
 }
 
 /*
-  ListSystemAPIBindings lists system api bindings
+ListSystemAPIBindings lists system api bindings
 
-  List policy to system api bindings.
+List policy to system api bindings.
 */
 func (a *Client) ListSystemAPIBindings(params *ListSystemAPIBindingsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListSystemAPIBindingsOK, error) {
 	// TODO: Validate the params before sending
@@ -126,9 +126,9 @@ func (a *Client) ListSystemAPIBindings(params *ListSystemAPIBindingsParams, auth
 }
 
 /*
-  ListSystemAPIs lists system a p is
+ListSystemAPIs lists system a p is
 
-  List APIs of the system tenant and system authorization server.
+List APIs of the system tenant and system authorization server.
 */
 func (a *Client) ListSystemAPIs(params *ListSystemAPIsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListSystemAPIsOK, error) {
 	// TODO: Validate the params before sending
@@ -167,9 +167,9 @@ func (a *Client) ListSystemAPIs(params *ListSystemAPIsParams, authInfo runtime.C
 }
 
 /*
-  ListSystemServices lists system services
+ListSystemServices lists system services
 
-  List services of the system tenant and system authorization server.
+List services of the system tenant and system authorization server.
 */
 func (a *Client) ListSystemServices(params *ListSystemServicesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListSystemServicesOK, error) {
 	// TODO: Validate the params before sending
@@ -208,9 +208,9 @@ func (a *Client) ListSystemServices(params *ListSystemServicesParams, authInfo r
 }
 
 /*
-  UnbindSystemAPI unbinds system api
+UnbindSystemAPI unbinds system api
 
-  Unbind policy from a system api.
+Unbind policy from a system api.
 */
 func (a *Client) UnbindSystemAPI(params *UnbindSystemAPIParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UnbindSystemAPINoContent, error) {
 	// TODO: Validate the params before sending

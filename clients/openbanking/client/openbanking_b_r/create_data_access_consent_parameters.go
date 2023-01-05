@@ -54,10 +54,12 @@ func NewCreateDataAccessConsentParamsWithHTTPClient(client *http.Client) *Create
 	}
 }
 
-/* CreateDataAccessConsentParams contains all the parameters to send to the API endpoint
-   for the create data access consent operation.
+/*
+CreateDataAccessConsentParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the create data access consent operation.
+
+	Typically these are written to a http.Request.
 */
 type CreateDataAccessConsentParams struct {
 
@@ -65,7 +67,7 @@ type CreateDataAccessConsentParams struct {
 
 	   Request
 	*/
-	Request *models.BrazilCustomerDataAccessConsentRequest
+	Request *models.BrazilCustomerDataAccessConsentRequestV1
 
 	/* XCustomerUserAgent.
 
@@ -169,13 +171,13 @@ func (o *CreateDataAccessConsentParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequest adds the request to the create data access consent params
-func (o *CreateDataAccessConsentParams) WithRequest(request *models.BrazilCustomerDataAccessConsentRequest) *CreateDataAccessConsentParams {
+func (o *CreateDataAccessConsentParams) WithRequest(request *models.BrazilCustomerDataAccessConsentRequestV1) *CreateDataAccessConsentParams {
 	o.SetRequest(request)
 	return o
 }
 
 // SetRequest adds the request to the create data access consent params
-func (o *CreateDataAccessConsentParams) SetRequest(request *models.BrazilCustomerDataAccessConsentRequest) {
+func (o *CreateDataAccessConsentParams) SetRequest(request *models.BrazilCustomerDataAccessConsentRequestV1) {
 	o.Request = request
 }
 

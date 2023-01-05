@@ -57,7 +57,8 @@ func NewListSchemasOK() *ListSchemasOK {
 	return &ListSchemasOK{}
 }
 
-/* ListSchemasOK describes a response with status code 200, with default header values.
+/*
+ListSchemasOK describes a response with status code 200, with default header values.
 
 Schemas
 */
@@ -65,9 +66,39 @@ type ListSchemasOK struct {
 	Payload *models.Schemas
 }
 
+// IsSuccess returns true when this list schemas o k response has a 2xx status code
+func (o *ListSchemasOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this list schemas o k response has a 3xx status code
+func (o *ListSchemasOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list schemas o k response has a 4xx status code
+func (o *ListSchemasOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this list schemas o k response has a 5xx status code
+func (o *ListSchemasOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list schemas o k response a status code equal to that given
+func (o *ListSchemasOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *ListSchemasOK) Error() string {
 	return fmt.Sprintf("[GET /admin/schemas][%d] listSchemasOK  %+v", 200, o.Payload)
 }
+
+func (o *ListSchemasOK) String() string {
+	return fmt.Sprintf("[GET /admin/schemas][%d] listSchemasOK  %+v", 200, o.Payload)
+}
+
 func (o *ListSchemasOK) GetPayload() *models.Schemas {
 	return o.Payload
 }
@@ -89,7 +120,8 @@ func NewListSchemasUnauthorized() *ListSchemasUnauthorized {
 	return &ListSchemasUnauthorized{}
 }
 
-/* ListSchemasUnauthorized describes a response with status code 401, with default header values.
+/*
+ListSchemasUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -97,9 +129,39 @@ type ListSchemasUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list schemas unauthorized response has a 2xx status code
+func (o *ListSchemasUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list schemas unauthorized response has a 3xx status code
+func (o *ListSchemasUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list schemas unauthorized response has a 4xx status code
+func (o *ListSchemasUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list schemas unauthorized response has a 5xx status code
+func (o *ListSchemasUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list schemas unauthorized response a status code equal to that given
+func (o *ListSchemasUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *ListSchemasUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /admin/schemas][%d] listSchemasUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *ListSchemasUnauthorized) String() string {
+	return fmt.Sprintf("[GET /admin/schemas][%d] listSchemasUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *ListSchemasUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -121,7 +183,8 @@ func NewListSchemasForbidden() *ListSchemasForbidden {
 	return &ListSchemasForbidden{}
 }
 
-/* ListSchemasForbidden describes a response with status code 403, with default header values.
+/*
+ListSchemasForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -129,9 +192,39 @@ type ListSchemasForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list schemas forbidden response has a 2xx status code
+func (o *ListSchemasForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list schemas forbidden response has a 3xx status code
+func (o *ListSchemasForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list schemas forbidden response has a 4xx status code
+func (o *ListSchemasForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list schemas forbidden response has a 5xx status code
+func (o *ListSchemasForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list schemas forbidden response a status code equal to that given
+func (o *ListSchemasForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *ListSchemasForbidden) Error() string {
 	return fmt.Sprintf("[GET /admin/schemas][%d] listSchemasForbidden  %+v", 403, o.Payload)
 }
+
+func (o *ListSchemasForbidden) String() string {
+	return fmt.Sprintf("[GET /admin/schemas][%d] listSchemasForbidden  %+v", 403, o.Payload)
+}
+
 func (o *ListSchemasForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -153,7 +246,8 @@ func NewListSchemasTooManyRequests() *ListSchemasTooManyRequests {
 	return &ListSchemasTooManyRequests{}
 }
 
-/* ListSchemasTooManyRequests describes a response with status code 429, with default header values.
+/*
+ListSchemasTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -161,9 +255,39 @@ type ListSchemasTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list schemas too many requests response has a 2xx status code
+func (o *ListSchemasTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list schemas too many requests response has a 3xx status code
+func (o *ListSchemasTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list schemas too many requests response has a 4xx status code
+func (o *ListSchemasTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list schemas too many requests response has a 5xx status code
+func (o *ListSchemasTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list schemas too many requests response a status code equal to that given
+func (o *ListSchemasTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *ListSchemasTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /admin/schemas][%d] listSchemasTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *ListSchemasTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /admin/schemas][%d] listSchemasTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *ListSchemasTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

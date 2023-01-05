@@ -52,10 +52,12 @@ func NewGetGithubIDPParamsWithHTTPClient(client *http.Client) *GetGithubIDPParam
 	}
 }
 
-/* GetGithubIDPParams contains all the parameters to send to the API endpoint
-   for the get github ID p operation.
+/*
+GetGithubIDPParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get github ID p operation.
+
+	Typically these are written to a http.Request.
 */
 type GetGithubIDPParams struct {
 

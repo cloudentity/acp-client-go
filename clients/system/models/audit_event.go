@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	"encoding/json"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -20,7 +21,8 @@ import (
 type AuditEvent struct {
 
 	// action
-	Action Action `json:"action,omitempty"`
+	// Enum: [authenticated authorized unauthorized created updated deleted generated requested confirmed accepted rejected revoked issued denied granted attempted failed succeeded sent not_sent]
+	Action string `json:"action,omitempty"`
 
 	// event id
 	EventID string `json:"event_id,omitempty"`
@@ -29,7 +31,8 @@ type AuditEvent struct {
 	EventPayload interface{} `json:"event_payload,omitempty"`
 
 	// event subject
-	EventSubject AuditEventSubject `json:"event_subject,omitempty"`
+	// Enum: [request gateway_request gateway_policy policy client login consent client_consents authorization_code access_token saml_assertion scopes otp user selfuser schema pool password bruteforce dcr]
+	EventSubject string `json:"event_subject,omitempty"`
 
 	// event type
 	EventType AuditEventType `json:"event_type,omitempty"`
@@ -78,20 +81,182 @@ func (m *AuditEvent) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
+var auditEventTypeActionPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["authenticated","authorized","unauthorized","created","updated","deleted","generated","requested","confirmed","accepted","rejected","revoked","issued","denied","granted","attempted","failed","succeeded","sent","not_sent"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		auditEventTypeActionPropEnum = append(auditEventTypeActionPropEnum, v)
+	}
+}
+
+const (
+
+	// AuditEventActionAuthenticated captures enum value "authenticated"
+	AuditEventActionAuthenticated string = "authenticated"
+
+	// AuditEventActionAuthorized captures enum value "authorized"
+	AuditEventActionAuthorized string = "authorized"
+
+	// AuditEventActionUnauthorized captures enum value "unauthorized"
+	AuditEventActionUnauthorized string = "unauthorized"
+
+	// AuditEventActionCreated captures enum value "created"
+	AuditEventActionCreated string = "created"
+
+	// AuditEventActionUpdated captures enum value "updated"
+	AuditEventActionUpdated string = "updated"
+
+	// AuditEventActionDeleted captures enum value "deleted"
+	AuditEventActionDeleted string = "deleted"
+
+	// AuditEventActionGenerated captures enum value "generated"
+	AuditEventActionGenerated string = "generated"
+
+	// AuditEventActionRequested captures enum value "requested"
+	AuditEventActionRequested string = "requested"
+
+	// AuditEventActionConfirmed captures enum value "confirmed"
+	AuditEventActionConfirmed string = "confirmed"
+
+	// AuditEventActionAccepted captures enum value "accepted"
+	AuditEventActionAccepted string = "accepted"
+
+	// AuditEventActionRejected captures enum value "rejected"
+	AuditEventActionRejected string = "rejected"
+
+	// AuditEventActionRevoked captures enum value "revoked"
+	AuditEventActionRevoked string = "revoked"
+
+	// AuditEventActionIssued captures enum value "issued"
+	AuditEventActionIssued string = "issued"
+
+	// AuditEventActionDenied captures enum value "denied"
+	AuditEventActionDenied string = "denied"
+
+	// AuditEventActionGranted captures enum value "granted"
+	AuditEventActionGranted string = "granted"
+
+	// AuditEventActionAttempted captures enum value "attempted"
+	AuditEventActionAttempted string = "attempted"
+
+	// AuditEventActionFailed captures enum value "failed"
+	AuditEventActionFailed string = "failed"
+
+	// AuditEventActionSucceeded captures enum value "succeeded"
+	AuditEventActionSucceeded string = "succeeded"
+
+	// AuditEventActionSent captures enum value "sent"
+	AuditEventActionSent string = "sent"
+
+	// AuditEventActionNotSent captures enum value "not_sent"
+	AuditEventActionNotSent string = "not_sent"
+)
+
+// prop value enum
+func (m *AuditEvent) validateActionEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, auditEventTypeActionPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (m *AuditEvent) validateAction(formats strfmt.Registry) error {
 	if swag.IsZero(m.Action) { // not required
 		return nil
 	}
 
-	if err := m.Action.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("action")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("action")
-		}
+	// value enum
+	if err := m.validateActionEnum("action", "body", m.Action); err != nil {
 		return err
 	}
 
+	return nil
+}
+
+var auditEventTypeEventSubjectPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["request","gateway_request","gateway_policy","policy","client","login","consent","client_consents","authorization_code","access_token","saml_assertion","scopes","otp","user","selfuser","schema","pool","password","bruteforce","dcr"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		auditEventTypeEventSubjectPropEnum = append(auditEventTypeEventSubjectPropEnum, v)
+	}
+}
+
+const (
+
+	// AuditEventEventSubjectRequest captures enum value "request"
+	AuditEventEventSubjectRequest string = "request"
+
+	// AuditEventEventSubjectGatewayRequest captures enum value "gateway_request"
+	AuditEventEventSubjectGatewayRequest string = "gateway_request"
+
+	// AuditEventEventSubjectGatewayPolicy captures enum value "gateway_policy"
+	AuditEventEventSubjectGatewayPolicy string = "gateway_policy"
+
+	// AuditEventEventSubjectPolicy captures enum value "policy"
+	AuditEventEventSubjectPolicy string = "policy"
+
+	// AuditEventEventSubjectClient captures enum value "client"
+	AuditEventEventSubjectClient string = "client"
+
+	// AuditEventEventSubjectLogin captures enum value "login"
+	AuditEventEventSubjectLogin string = "login"
+
+	// AuditEventEventSubjectConsent captures enum value "consent"
+	AuditEventEventSubjectConsent string = "consent"
+
+	// AuditEventEventSubjectClientConsents captures enum value "client_consents"
+	AuditEventEventSubjectClientConsents string = "client_consents"
+
+	// AuditEventEventSubjectAuthorizationCode captures enum value "authorization_code"
+	AuditEventEventSubjectAuthorizationCode string = "authorization_code"
+
+	// AuditEventEventSubjectAccessToken captures enum value "access_token"
+	AuditEventEventSubjectAccessToken string = "access_token"
+
+	// AuditEventEventSubjectSamlAssertion captures enum value "saml_assertion"
+	AuditEventEventSubjectSamlAssertion string = "saml_assertion"
+
+	// AuditEventEventSubjectScopes captures enum value "scopes"
+	AuditEventEventSubjectScopes string = "scopes"
+
+	// AuditEventEventSubjectOtp captures enum value "otp"
+	AuditEventEventSubjectOtp string = "otp"
+
+	// AuditEventEventSubjectUser captures enum value "user"
+	AuditEventEventSubjectUser string = "user"
+
+	// AuditEventEventSubjectSelfuser captures enum value "selfuser"
+	AuditEventEventSubjectSelfuser string = "selfuser"
+
+	// AuditEventEventSubjectSchema captures enum value "schema"
+	AuditEventEventSubjectSchema string = "schema"
+
+	// AuditEventEventSubjectPool captures enum value "pool"
+	AuditEventEventSubjectPool string = "pool"
+
+	// AuditEventEventSubjectPassword captures enum value "password"
+	AuditEventEventSubjectPassword string = "password"
+
+	// AuditEventEventSubjectBruteforce captures enum value "bruteforce"
+	AuditEventEventSubjectBruteforce string = "bruteforce"
+
+	// AuditEventEventSubjectDcr captures enum value "dcr"
+	AuditEventEventSubjectDcr string = "dcr"
+)
+
+// prop value enum
+func (m *AuditEvent) validateEventSubjectEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, auditEventTypeEventSubjectPropEnum, true); err != nil {
+		return err
+	}
 	return nil
 }
 
@@ -100,12 +265,8 @@ func (m *AuditEvent) validateEventSubject(formats strfmt.Registry) error {
 		return nil
 	}
 
-	if err := m.EventSubject.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("event_subject")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("event_subject")
-		}
+	// value enum
+	if err := m.validateEventSubjectEnum("event_subject", "body", m.EventSubject); err != nil {
 		return err
 	}
 
@@ -164,14 +325,6 @@ func (m *AuditEvent) validateTimestamp(formats strfmt.Registry) error {
 func (m *AuditEvent) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateAction(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateEventSubject(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateEventType(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -183,34 +336,6 @@ func (m *AuditEvent) ContextValidate(ctx context.Context, formats strfmt.Registr
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *AuditEvent) contextValidateAction(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := m.Action.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("action")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("action")
-		}
-		return err
-	}
-
-	return nil
-}
-
-func (m *AuditEvent) contextValidateEventSubject(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := m.EventSubject.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("event_subject")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("event_subject")
-		}
-		return err
-	}
-
 	return nil
 }
 

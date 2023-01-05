@@ -57,7 +57,8 @@ func NewListGatewayAPIGroupsOK() *ListGatewayAPIGroupsOK {
 	return &ListGatewayAPIGroupsOK{}
 }
 
-/* ListGatewayAPIGroupsOK describes a response with status code 200, with default header values.
+/*
+ListGatewayAPIGroupsOK describes a response with status code 200, with default header values.
 
 Gateway API groups
 */
@@ -65,9 +66,39 @@ type ListGatewayAPIGroupsOK struct {
 	Payload *models.GatewayAPIGroups
 }
 
+// IsSuccess returns true when this list gateway Api groups o k response has a 2xx status code
+func (o *ListGatewayAPIGroupsOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this list gateway Api groups o k response has a 3xx status code
+func (o *ListGatewayAPIGroupsOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list gateway Api groups o k response has a 4xx status code
+func (o *ListGatewayAPIGroupsOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this list gateway Api groups o k response has a 5xx status code
+func (o *ListGatewayAPIGroupsOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list gateway Api groups o k response a status code equal to that given
+func (o *ListGatewayAPIGroupsOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *ListGatewayAPIGroupsOK) Error() string {
 	return fmt.Sprintf("[GET /gateways/{gw}/groups][%d] listGatewayApiGroupsOK  %+v", 200, o.Payload)
 }
+
+func (o *ListGatewayAPIGroupsOK) String() string {
+	return fmt.Sprintf("[GET /gateways/{gw}/groups][%d] listGatewayApiGroupsOK  %+v", 200, o.Payload)
+}
+
 func (o *ListGatewayAPIGroupsOK) GetPayload() *models.GatewayAPIGroups {
 	return o.Payload
 }
@@ -89,7 +120,8 @@ func NewListGatewayAPIGroupsUnauthorized() *ListGatewayAPIGroupsUnauthorized {
 	return &ListGatewayAPIGroupsUnauthorized{}
 }
 
-/* ListGatewayAPIGroupsUnauthorized describes a response with status code 401, with default header values.
+/*
+ListGatewayAPIGroupsUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -97,9 +129,39 @@ type ListGatewayAPIGroupsUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list gateway Api groups unauthorized response has a 2xx status code
+func (o *ListGatewayAPIGroupsUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list gateway Api groups unauthorized response has a 3xx status code
+func (o *ListGatewayAPIGroupsUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list gateway Api groups unauthorized response has a 4xx status code
+func (o *ListGatewayAPIGroupsUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list gateway Api groups unauthorized response has a 5xx status code
+func (o *ListGatewayAPIGroupsUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list gateway Api groups unauthorized response a status code equal to that given
+func (o *ListGatewayAPIGroupsUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *ListGatewayAPIGroupsUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /gateways/{gw}/groups][%d] listGatewayApiGroupsUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *ListGatewayAPIGroupsUnauthorized) String() string {
+	return fmt.Sprintf("[GET /gateways/{gw}/groups][%d] listGatewayApiGroupsUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *ListGatewayAPIGroupsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -121,7 +183,8 @@ func NewListGatewayAPIGroupsForbidden() *ListGatewayAPIGroupsForbidden {
 	return &ListGatewayAPIGroupsForbidden{}
 }
 
-/* ListGatewayAPIGroupsForbidden describes a response with status code 403, with default header values.
+/*
+ListGatewayAPIGroupsForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -129,9 +192,39 @@ type ListGatewayAPIGroupsForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list gateway Api groups forbidden response has a 2xx status code
+func (o *ListGatewayAPIGroupsForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list gateway Api groups forbidden response has a 3xx status code
+func (o *ListGatewayAPIGroupsForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list gateway Api groups forbidden response has a 4xx status code
+func (o *ListGatewayAPIGroupsForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list gateway Api groups forbidden response has a 5xx status code
+func (o *ListGatewayAPIGroupsForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list gateway Api groups forbidden response a status code equal to that given
+func (o *ListGatewayAPIGroupsForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *ListGatewayAPIGroupsForbidden) Error() string {
 	return fmt.Sprintf("[GET /gateways/{gw}/groups][%d] listGatewayApiGroupsForbidden  %+v", 403, o.Payload)
 }
+
+func (o *ListGatewayAPIGroupsForbidden) String() string {
+	return fmt.Sprintf("[GET /gateways/{gw}/groups][%d] listGatewayApiGroupsForbidden  %+v", 403, o.Payload)
+}
+
 func (o *ListGatewayAPIGroupsForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -153,7 +246,8 @@ func NewListGatewayAPIGroupsTooManyRequests() *ListGatewayAPIGroupsTooManyReques
 	return &ListGatewayAPIGroupsTooManyRequests{}
 }
 
-/* ListGatewayAPIGroupsTooManyRequests describes a response with status code 429, with default header values.
+/*
+ListGatewayAPIGroupsTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -161,9 +255,39 @@ type ListGatewayAPIGroupsTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list gateway Api groups too many requests response has a 2xx status code
+func (o *ListGatewayAPIGroupsTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list gateway Api groups too many requests response has a 3xx status code
+func (o *ListGatewayAPIGroupsTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list gateway Api groups too many requests response has a 4xx status code
+func (o *ListGatewayAPIGroupsTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list gateway Api groups too many requests response has a 5xx status code
+func (o *ListGatewayAPIGroupsTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list gateway Api groups too many requests response a status code equal to that given
+func (o *ListGatewayAPIGroupsTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *ListGatewayAPIGroupsTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /gateways/{gw}/groups][%d] listGatewayApiGroupsTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *ListGatewayAPIGroupsTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /gateways/{gw}/groups][%d] listGatewayApiGroupsTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *ListGatewayAPIGroupsTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

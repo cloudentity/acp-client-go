@@ -54,10 +54,12 @@ func NewUpdateIdentityPoolIDPParamsWithHTTPClient(client *http.Client) *UpdateId
 	}
 }
 
-/* UpdateIdentityPoolIDPParams contains all the parameters to send to the API endpoint
-   for the update identity pool ID p operation.
+/*
+UpdateIdentityPoolIDPParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update identity pool ID p operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateIdentityPoolIDPParams struct {
 

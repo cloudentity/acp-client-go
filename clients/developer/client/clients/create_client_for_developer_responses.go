@@ -75,7 +75,8 @@ func NewCreateClientForDeveloperCreated() *CreateClientForDeveloperCreated {
 	return &CreateClientForDeveloperCreated{}
 }
 
-/* CreateClientForDeveloperCreated describes a response with status code 201, with default header values.
+/*
+CreateClientForDeveloperCreated describes a response with status code 201, with default header values.
 
 Create client
 */
@@ -83,9 +84,39 @@ type CreateClientForDeveloperCreated struct {
 	Payload *models.ClientDeveloperResponse
 }
 
+// IsSuccess returns true when this create client for developer created response has a 2xx status code
+func (o *CreateClientForDeveloperCreated) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this create client for developer created response has a 3xx status code
+func (o *CreateClientForDeveloperCreated) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create client for developer created response has a 4xx status code
+func (o *CreateClientForDeveloperCreated) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create client for developer created response has a 5xx status code
+func (o *CreateClientForDeveloperCreated) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create client for developer created response a status code equal to that given
+func (o *CreateClientForDeveloperCreated) IsCode(code int) bool {
+	return code == 201
+}
+
 func (o *CreateClientForDeveloperCreated) Error() string {
 	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperCreated  %+v", 201, o.Payload)
 }
+
+func (o *CreateClientForDeveloperCreated) String() string {
+	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperCreated  %+v", 201, o.Payload)
+}
+
 func (o *CreateClientForDeveloperCreated) GetPayload() *models.ClientDeveloperResponse {
 	return o.Payload
 }
@@ -107,7 +138,8 @@ func NewCreateClientForDeveloperUnauthorized() *CreateClientForDeveloperUnauthor
 	return &CreateClientForDeveloperUnauthorized{}
 }
 
-/* CreateClientForDeveloperUnauthorized describes a response with status code 401, with default header values.
+/*
+CreateClientForDeveloperUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -115,9 +147,39 @@ type CreateClientForDeveloperUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create client for developer unauthorized response has a 2xx status code
+func (o *CreateClientForDeveloperUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create client for developer unauthorized response has a 3xx status code
+func (o *CreateClientForDeveloperUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create client for developer unauthorized response has a 4xx status code
+func (o *CreateClientForDeveloperUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create client for developer unauthorized response has a 5xx status code
+func (o *CreateClientForDeveloperUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create client for developer unauthorized response a status code equal to that given
+func (o *CreateClientForDeveloperUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *CreateClientForDeveloperUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *CreateClientForDeveloperUnauthorized) String() string {
+	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *CreateClientForDeveloperUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -139,7 +201,8 @@ func NewCreateClientForDeveloperForbidden() *CreateClientForDeveloperForbidden {
 	return &CreateClientForDeveloperForbidden{}
 }
 
-/* CreateClientForDeveloperForbidden describes a response with status code 403, with default header values.
+/*
+CreateClientForDeveloperForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -147,9 +210,39 @@ type CreateClientForDeveloperForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create client for developer forbidden response has a 2xx status code
+func (o *CreateClientForDeveloperForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create client for developer forbidden response has a 3xx status code
+func (o *CreateClientForDeveloperForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create client for developer forbidden response has a 4xx status code
+func (o *CreateClientForDeveloperForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create client for developer forbidden response has a 5xx status code
+func (o *CreateClientForDeveloperForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create client for developer forbidden response a status code equal to that given
+func (o *CreateClientForDeveloperForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *CreateClientForDeveloperForbidden) Error() string {
 	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperForbidden  %+v", 403, o.Payload)
 }
+
+func (o *CreateClientForDeveloperForbidden) String() string {
+	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperForbidden  %+v", 403, o.Payload)
+}
+
 func (o *CreateClientForDeveloperForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -171,7 +264,8 @@ func NewCreateClientForDeveloperNotFound() *CreateClientForDeveloperNotFound {
 	return &CreateClientForDeveloperNotFound{}
 }
 
-/* CreateClientForDeveloperNotFound describes a response with status code 404, with default header values.
+/*
+CreateClientForDeveloperNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -179,9 +273,39 @@ type CreateClientForDeveloperNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create client for developer not found response has a 2xx status code
+func (o *CreateClientForDeveloperNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create client for developer not found response has a 3xx status code
+func (o *CreateClientForDeveloperNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create client for developer not found response has a 4xx status code
+func (o *CreateClientForDeveloperNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create client for developer not found response has a 5xx status code
+func (o *CreateClientForDeveloperNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create client for developer not found response a status code equal to that given
+func (o *CreateClientForDeveloperNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *CreateClientForDeveloperNotFound) Error() string {
 	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperNotFound  %+v", 404, o.Payload)
 }
+
+func (o *CreateClientForDeveloperNotFound) String() string {
+	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperNotFound  %+v", 404, o.Payload)
+}
+
 func (o *CreateClientForDeveloperNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -203,7 +327,8 @@ func NewCreateClientForDeveloperConflict() *CreateClientForDeveloperConflict {
 	return &CreateClientForDeveloperConflict{}
 }
 
-/* CreateClientForDeveloperConflict describes a response with status code 409, with default header values.
+/*
+CreateClientForDeveloperConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -211,9 +336,39 @@ type CreateClientForDeveloperConflict struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create client for developer conflict response has a 2xx status code
+func (o *CreateClientForDeveloperConflict) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create client for developer conflict response has a 3xx status code
+func (o *CreateClientForDeveloperConflict) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create client for developer conflict response has a 4xx status code
+func (o *CreateClientForDeveloperConflict) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create client for developer conflict response has a 5xx status code
+func (o *CreateClientForDeveloperConflict) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create client for developer conflict response a status code equal to that given
+func (o *CreateClientForDeveloperConflict) IsCode(code int) bool {
+	return code == 409
+}
+
 func (o *CreateClientForDeveloperConflict) Error() string {
 	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperConflict  %+v", 409, o.Payload)
 }
+
+func (o *CreateClientForDeveloperConflict) String() string {
+	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperConflict  %+v", 409, o.Payload)
+}
+
 func (o *CreateClientForDeveloperConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +390,8 @@ func NewCreateClientForDeveloperUnprocessableEntity() *CreateClientForDeveloperU
 	return &CreateClientForDeveloperUnprocessableEntity{}
 }
 
-/* CreateClientForDeveloperUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+CreateClientForDeveloperUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -243,9 +399,39 @@ type CreateClientForDeveloperUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create client for developer unprocessable entity response has a 2xx status code
+func (o *CreateClientForDeveloperUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create client for developer unprocessable entity response has a 3xx status code
+func (o *CreateClientForDeveloperUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create client for developer unprocessable entity response has a 4xx status code
+func (o *CreateClientForDeveloperUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create client for developer unprocessable entity response has a 5xx status code
+func (o *CreateClientForDeveloperUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create client for developer unprocessable entity response a status code equal to that given
+func (o *CreateClientForDeveloperUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *CreateClientForDeveloperUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *CreateClientForDeveloperUnprocessableEntity) String() string {
+	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *CreateClientForDeveloperUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -267,7 +453,8 @@ func NewCreateClientForDeveloperTooManyRequests() *CreateClientForDeveloperTooMa
 	return &CreateClientForDeveloperTooManyRequests{}
 }
 
-/* CreateClientForDeveloperTooManyRequests describes a response with status code 429, with default header values.
+/*
+CreateClientForDeveloperTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -275,9 +462,39 @@ type CreateClientForDeveloperTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create client for developer too many requests response has a 2xx status code
+func (o *CreateClientForDeveloperTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create client for developer too many requests response has a 3xx status code
+func (o *CreateClientForDeveloperTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create client for developer too many requests response has a 4xx status code
+func (o *CreateClientForDeveloperTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create client for developer too many requests response has a 5xx status code
+func (o *CreateClientForDeveloperTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create client for developer too many requests response a status code equal to that given
+func (o *CreateClientForDeveloperTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *CreateClientForDeveloperTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *CreateClientForDeveloperTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *CreateClientForDeveloperTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

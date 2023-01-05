@@ -19,15 +19,15 @@ import (
 // swagger:model FDXConsents
 type FDXConsents struct {
 
-	// arrangements
-	Arrangements []*FDXConsent `json:"arrangements"`
+	// consents
+	Consents []*FDXConsent `json:"consents"`
 }
 
 // Validate validates this f d x consents
 func (m *FDXConsents) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateArrangements(formats); err != nil {
+	if err := m.validateConsents(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -37,22 +37,22 @@ func (m *FDXConsents) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *FDXConsents) validateArrangements(formats strfmt.Registry) error {
-	if swag.IsZero(m.Arrangements) { // not required
+func (m *FDXConsents) validateConsents(formats strfmt.Registry) error {
+	if swag.IsZero(m.Consents) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.Arrangements); i++ {
-		if swag.IsZero(m.Arrangements[i]) { // not required
+	for i := 0; i < len(m.Consents); i++ {
+		if swag.IsZero(m.Consents[i]) { // not required
 			continue
 		}
 
-		if m.Arrangements[i] != nil {
-			if err := m.Arrangements[i].Validate(formats); err != nil {
+		if m.Consents[i] != nil {
+			if err := m.Consents[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("arrangements" + "." + strconv.Itoa(i))
+					return ve.ValidateName("consents" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
-					return ce.ValidateName("arrangements" + "." + strconv.Itoa(i))
+					return ce.ValidateName("consents" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -67,7 +67,7 @@ func (m *FDXConsents) validateArrangements(formats strfmt.Registry) error {
 func (m *FDXConsents) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateArrangements(ctx, formats); err != nil {
+	if err := m.contextValidateConsents(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -77,16 +77,16 @@ func (m *FDXConsents) ContextValidate(ctx context.Context, formats strfmt.Regist
 	return nil
 }
 
-func (m *FDXConsents) contextValidateArrangements(ctx context.Context, formats strfmt.Registry) error {
+func (m *FDXConsents) contextValidateConsents(ctx context.Context, formats strfmt.Registry) error {
 
-	for i := 0; i < len(m.Arrangements); i++ {
+	for i := 0; i < len(m.Consents); i++ {
 
-		if m.Arrangements[i] != nil {
-			if err := m.Arrangements[i].ContextValidate(ctx, formats); err != nil {
+		if m.Consents[i] != nil {
+			if err := m.Consents[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("arrangements" + "." + strconv.Itoa(i))
+					return ve.ValidateName("consents" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
-					return ce.ValidateName("arrangements" + "." + strconv.Itoa(i))
+					return ce.ValidateName("consents" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

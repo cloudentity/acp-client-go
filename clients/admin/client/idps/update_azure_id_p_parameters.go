@@ -54,10 +54,12 @@ func NewUpdateAzureIDPParamsWithHTTPClient(client *http.Client) *UpdateAzureIDPP
 	}
 }
 
-/* UpdateAzureIDPParams contains all the parameters to send to the API endpoint
-   for the update azure ID p operation.
+/*
+UpdateAzureIDPParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update azure ID p operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateAzureIDPParams struct {
 

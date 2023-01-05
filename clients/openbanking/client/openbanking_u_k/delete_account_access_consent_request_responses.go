@@ -87,14 +87,44 @@ func NewDeleteAccountAccessConsentRequestNoContent() *DeleteAccountAccessConsent
 	return &DeleteAccountAccessConsentRequestNoContent{}
 }
 
-/* DeleteAccountAccessConsentRequestNoContent describes a response with status code 204, with default header values.
+/*
+DeleteAccountAccessConsentRequestNoContent describes a response with status code 204, with default header values.
 
-Consent has been deleted
+	Consent has been deleted
 */
 type DeleteAccountAccessConsentRequestNoContent struct {
 }
 
+// IsSuccess returns true when this delete account access consent request no content response has a 2xx status code
+func (o *DeleteAccountAccessConsentRequestNoContent) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this delete account access consent request no content response has a 3xx status code
+func (o *DeleteAccountAccessConsentRequestNoContent) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete account access consent request no content response has a 4xx status code
+func (o *DeleteAccountAccessConsentRequestNoContent) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this delete account access consent request no content response has a 5xx status code
+func (o *DeleteAccountAccessConsentRequestNoContent) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete account access consent request no content response a status code equal to that given
+func (o *DeleteAccountAccessConsentRequestNoContent) IsCode(code int) bool {
+	return code == 204
+}
+
 func (o *DeleteAccountAccessConsentRequestNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /open-banking/v3.1/aisp/account-access-consents/{consentID}][%d] deleteAccountAccessConsentRequestNoContent ", 204)
+}
+
+func (o *DeleteAccountAccessConsentRequestNoContent) String() string {
 	return fmt.Sprintf("[DELETE /open-banking/v3.1/aisp/account-access-consents/{consentID}][%d] deleteAccountAccessConsentRequestNoContent ", 204)
 }
 
@@ -108,7 +138,8 @@ func NewDeleteAccountAccessConsentRequestBadRequest() *DeleteAccountAccessConsen
 	return &DeleteAccountAccessConsentRequestBadRequest{}
 }
 
-/* DeleteAccountAccessConsentRequestBadRequest describes a response with status code 400, with default header values.
+/*
+DeleteAccountAccessConsentRequestBadRequest describes a response with status code 400, with default header values.
 
 Error
 */
@@ -116,9 +147,39 @@ type DeleteAccountAccessConsentRequestBadRequest struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this delete account access consent request bad request response has a 2xx status code
+func (o *DeleteAccountAccessConsentRequestBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete account access consent request bad request response has a 3xx status code
+func (o *DeleteAccountAccessConsentRequestBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete account access consent request bad request response has a 4xx status code
+func (o *DeleteAccountAccessConsentRequestBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete account access consent request bad request response has a 5xx status code
+func (o *DeleteAccountAccessConsentRequestBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete account access consent request bad request response a status code equal to that given
+func (o *DeleteAccountAccessConsentRequestBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *DeleteAccountAccessConsentRequestBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /open-banking/v3.1/aisp/account-access-consents/{consentID}][%d] deleteAccountAccessConsentRequestBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *DeleteAccountAccessConsentRequestBadRequest) String() string {
+	return fmt.Sprintf("[DELETE /open-banking/v3.1/aisp/account-access-consents/{consentID}][%d] deleteAccountAccessConsentRequestBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *DeleteAccountAccessConsentRequestBadRequest) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -140,7 +201,8 @@ func NewDeleteAccountAccessConsentRequestUnauthorized() *DeleteAccountAccessCons
 	return &DeleteAccountAccessConsentRequestUnauthorized{}
 }
 
-/* DeleteAccountAccessConsentRequestUnauthorized describes a response with status code 401, with default header values.
+/*
+DeleteAccountAccessConsentRequestUnauthorized describes a response with status code 401, with default header values.
 
 Error
 */
@@ -148,9 +210,39 @@ type DeleteAccountAccessConsentRequestUnauthorized struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this delete account access consent request unauthorized response has a 2xx status code
+func (o *DeleteAccountAccessConsentRequestUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete account access consent request unauthorized response has a 3xx status code
+func (o *DeleteAccountAccessConsentRequestUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete account access consent request unauthorized response has a 4xx status code
+func (o *DeleteAccountAccessConsentRequestUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete account access consent request unauthorized response has a 5xx status code
+func (o *DeleteAccountAccessConsentRequestUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete account access consent request unauthorized response a status code equal to that given
+func (o *DeleteAccountAccessConsentRequestUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *DeleteAccountAccessConsentRequestUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /open-banking/v3.1/aisp/account-access-consents/{consentID}][%d] deleteAccountAccessConsentRequestUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *DeleteAccountAccessConsentRequestUnauthorized) String() string {
+	return fmt.Sprintf("[DELETE /open-banking/v3.1/aisp/account-access-consents/{consentID}][%d] deleteAccountAccessConsentRequestUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *DeleteAccountAccessConsentRequestUnauthorized) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -172,7 +264,8 @@ func NewDeleteAccountAccessConsentRequestForbidden() *DeleteAccountAccessConsent
 	return &DeleteAccountAccessConsentRequestForbidden{}
 }
 
-/* DeleteAccountAccessConsentRequestForbidden describes a response with status code 403, with default header values.
+/*
+DeleteAccountAccessConsentRequestForbidden describes a response with status code 403, with default header values.
 
 Error
 */
@@ -180,9 +273,39 @@ type DeleteAccountAccessConsentRequestForbidden struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this delete account access consent request forbidden response has a 2xx status code
+func (o *DeleteAccountAccessConsentRequestForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete account access consent request forbidden response has a 3xx status code
+func (o *DeleteAccountAccessConsentRequestForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete account access consent request forbidden response has a 4xx status code
+func (o *DeleteAccountAccessConsentRequestForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete account access consent request forbidden response has a 5xx status code
+func (o *DeleteAccountAccessConsentRequestForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete account access consent request forbidden response a status code equal to that given
+func (o *DeleteAccountAccessConsentRequestForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *DeleteAccountAccessConsentRequestForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /open-banking/v3.1/aisp/account-access-consents/{consentID}][%d] deleteAccountAccessConsentRequestForbidden  %+v", 403, o.Payload)
 }
+
+func (o *DeleteAccountAccessConsentRequestForbidden) String() string {
+	return fmt.Sprintf("[DELETE /open-banking/v3.1/aisp/account-access-consents/{consentID}][%d] deleteAccountAccessConsentRequestForbidden  %+v", 403, o.Payload)
+}
+
 func (o *DeleteAccountAccessConsentRequestForbidden) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -204,7 +327,8 @@ func NewDeleteAccountAccessConsentRequestMethodNotAllowed() *DeleteAccountAccess
 	return &DeleteAccountAccessConsentRequestMethodNotAllowed{}
 }
 
-/* DeleteAccountAccessConsentRequestMethodNotAllowed describes a response with status code 405, with default header values.
+/*
+DeleteAccountAccessConsentRequestMethodNotAllowed describes a response with status code 405, with default header values.
 
 Error
 */
@@ -212,9 +336,39 @@ type DeleteAccountAccessConsentRequestMethodNotAllowed struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this delete account access consent request method not allowed response has a 2xx status code
+func (o *DeleteAccountAccessConsentRequestMethodNotAllowed) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete account access consent request method not allowed response has a 3xx status code
+func (o *DeleteAccountAccessConsentRequestMethodNotAllowed) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete account access consent request method not allowed response has a 4xx status code
+func (o *DeleteAccountAccessConsentRequestMethodNotAllowed) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete account access consent request method not allowed response has a 5xx status code
+func (o *DeleteAccountAccessConsentRequestMethodNotAllowed) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete account access consent request method not allowed response a status code equal to that given
+func (o *DeleteAccountAccessConsentRequestMethodNotAllowed) IsCode(code int) bool {
+	return code == 405
+}
+
 func (o *DeleteAccountAccessConsentRequestMethodNotAllowed) Error() string {
 	return fmt.Sprintf("[DELETE /open-banking/v3.1/aisp/account-access-consents/{consentID}][%d] deleteAccountAccessConsentRequestMethodNotAllowed  %+v", 405, o.Payload)
 }
+
+func (o *DeleteAccountAccessConsentRequestMethodNotAllowed) String() string {
+	return fmt.Sprintf("[DELETE /open-banking/v3.1/aisp/account-access-consents/{consentID}][%d] deleteAccountAccessConsentRequestMethodNotAllowed  %+v", 405, o.Payload)
+}
+
 func (o *DeleteAccountAccessConsentRequestMethodNotAllowed) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -236,7 +390,8 @@ func NewDeleteAccountAccessConsentRequestNotAcceptable() *DeleteAccountAccessCon
 	return &DeleteAccountAccessConsentRequestNotAcceptable{}
 }
 
-/* DeleteAccountAccessConsentRequestNotAcceptable describes a response with status code 406, with default header values.
+/*
+DeleteAccountAccessConsentRequestNotAcceptable describes a response with status code 406, with default header values.
 
 Error
 */
@@ -244,9 +399,39 @@ type DeleteAccountAccessConsentRequestNotAcceptable struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this delete account access consent request not acceptable response has a 2xx status code
+func (o *DeleteAccountAccessConsentRequestNotAcceptable) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete account access consent request not acceptable response has a 3xx status code
+func (o *DeleteAccountAccessConsentRequestNotAcceptable) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete account access consent request not acceptable response has a 4xx status code
+func (o *DeleteAccountAccessConsentRequestNotAcceptable) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete account access consent request not acceptable response has a 5xx status code
+func (o *DeleteAccountAccessConsentRequestNotAcceptable) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete account access consent request not acceptable response a status code equal to that given
+func (o *DeleteAccountAccessConsentRequestNotAcceptable) IsCode(code int) bool {
+	return code == 406
+}
+
 func (o *DeleteAccountAccessConsentRequestNotAcceptable) Error() string {
 	return fmt.Sprintf("[DELETE /open-banking/v3.1/aisp/account-access-consents/{consentID}][%d] deleteAccountAccessConsentRequestNotAcceptable  %+v", 406, o.Payload)
 }
+
+func (o *DeleteAccountAccessConsentRequestNotAcceptable) String() string {
+	return fmt.Sprintf("[DELETE /open-banking/v3.1/aisp/account-access-consents/{consentID}][%d] deleteAccountAccessConsentRequestNotAcceptable  %+v", 406, o.Payload)
+}
+
 func (o *DeleteAccountAccessConsentRequestNotAcceptable) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -268,7 +453,8 @@ func NewDeleteAccountAccessConsentRequestUnsupportedMediaType() *DeleteAccountAc
 	return &DeleteAccountAccessConsentRequestUnsupportedMediaType{}
 }
 
-/* DeleteAccountAccessConsentRequestUnsupportedMediaType describes a response with status code 415, with default header values.
+/*
+DeleteAccountAccessConsentRequestUnsupportedMediaType describes a response with status code 415, with default header values.
 
 Error
 */
@@ -276,9 +462,39 @@ type DeleteAccountAccessConsentRequestUnsupportedMediaType struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this delete account access consent request unsupported media type response has a 2xx status code
+func (o *DeleteAccountAccessConsentRequestUnsupportedMediaType) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete account access consent request unsupported media type response has a 3xx status code
+func (o *DeleteAccountAccessConsentRequestUnsupportedMediaType) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete account access consent request unsupported media type response has a 4xx status code
+func (o *DeleteAccountAccessConsentRequestUnsupportedMediaType) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete account access consent request unsupported media type response has a 5xx status code
+func (o *DeleteAccountAccessConsentRequestUnsupportedMediaType) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete account access consent request unsupported media type response a status code equal to that given
+func (o *DeleteAccountAccessConsentRequestUnsupportedMediaType) IsCode(code int) bool {
+	return code == 415
+}
+
 func (o *DeleteAccountAccessConsentRequestUnsupportedMediaType) Error() string {
 	return fmt.Sprintf("[DELETE /open-banking/v3.1/aisp/account-access-consents/{consentID}][%d] deleteAccountAccessConsentRequestUnsupportedMediaType  %+v", 415, o.Payload)
 }
+
+func (o *DeleteAccountAccessConsentRequestUnsupportedMediaType) String() string {
+	return fmt.Sprintf("[DELETE /open-banking/v3.1/aisp/account-access-consents/{consentID}][%d] deleteAccountAccessConsentRequestUnsupportedMediaType  %+v", 415, o.Payload)
+}
+
 func (o *DeleteAccountAccessConsentRequestUnsupportedMediaType) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -300,7 +516,8 @@ func NewDeleteAccountAccessConsentRequestTooManyRequests() *DeleteAccountAccessC
 	return &DeleteAccountAccessConsentRequestTooManyRequests{}
 }
 
-/* DeleteAccountAccessConsentRequestTooManyRequests describes a response with status code 429, with default header values.
+/*
+DeleteAccountAccessConsentRequestTooManyRequests describes a response with status code 429, with default header values.
 
 Error
 */
@@ -308,9 +525,39 @@ type DeleteAccountAccessConsentRequestTooManyRequests struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this delete account access consent request too many requests response has a 2xx status code
+func (o *DeleteAccountAccessConsentRequestTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete account access consent request too many requests response has a 3xx status code
+func (o *DeleteAccountAccessConsentRequestTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete account access consent request too many requests response has a 4xx status code
+func (o *DeleteAccountAccessConsentRequestTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete account access consent request too many requests response has a 5xx status code
+func (o *DeleteAccountAccessConsentRequestTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete account access consent request too many requests response a status code equal to that given
+func (o *DeleteAccountAccessConsentRequestTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *DeleteAccountAccessConsentRequestTooManyRequests) Error() string {
 	return fmt.Sprintf("[DELETE /open-banking/v3.1/aisp/account-access-consents/{consentID}][%d] deleteAccountAccessConsentRequestTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *DeleteAccountAccessConsentRequestTooManyRequests) String() string {
+	return fmt.Sprintf("[DELETE /open-banking/v3.1/aisp/account-access-consents/{consentID}][%d] deleteAccountAccessConsentRequestTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *DeleteAccountAccessConsentRequestTooManyRequests) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -332,7 +579,8 @@ func NewDeleteAccountAccessConsentRequestInternalServerError() *DeleteAccountAcc
 	return &DeleteAccountAccessConsentRequestInternalServerError{}
 }
 
-/* DeleteAccountAccessConsentRequestInternalServerError describes a response with status code 500, with default header values.
+/*
+DeleteAccountAccessConsentRequestInternalServerError describes a response with status code 500, with default header values.
 
 Error
 */
@@ -340,9 +588,39 @@ type DeleteAccountAccessConsentRequestInternalServerError struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this delete account access consent request internal server error response has a 2xx status code
+func (o *DeleteAccountAccessConsentRequestInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete account access consent request internal server error response has a 3xx status code
+func (o *DeleteAccountAccessConsentRequestInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete account access consent request internal server error response has a 4xx status code
+func (o *DeleteAccountAccessConsentRequestInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this delete account access consent request internal server error response has a 5xx status code
+func (o *DeleteAccountAccessConsentRequestInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this delete account access consent request internal server error response a status code equal to that given
+func (o *DeleteAccountAccessConsentRequestInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *DeleteAccountAccessConsentRequestInternalServerError) Error() string {
 	return fmt.Sprintf("[DELETE /open-banking/v3.1/aisp/account-access-consents/{consentID}][%d] deleteAccountAccessConsentRequestInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *DeleteAccountAccessConsentRequestInternalServerError) String() string {
+	return fmt.Sprintf("[DELETE /open-banking/v3.1/aisp/account-access-consents/{consentID}][%d] deleteAccountAccessConsentRequestInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *DeleteAccountAccessConsentRequestInternalServerError) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

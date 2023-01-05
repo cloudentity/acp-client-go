@@ -54,10 +54,12 @@ func NewAcceptInternationalPaymentConsentSystemParamsWithHTTPClient(client *http
 	}
 }
 
-/* AcceptInternationalPaymentConsentSystemParams contains all the parameters to send to the API endpoint
-   for the accept international payment consent system operation.
+/*
+AcceptInternationalPaymentConsentSystemParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the accept international payment consent system operation.
+
+	Typically these are written to a http.Request.
 */
 type AcceptInternationalPaymentConsentSystemParams struct {
 

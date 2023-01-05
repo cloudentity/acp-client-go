@@ -124,6 +124,10 @@ definitions:
     type: object
   AcceptScopeGrant:
     properties:
+      consent_id:
+        description: optional consent identifier
+        type: string
+        x-nullable: false
       granted_scopes:
         $ref: '#/definitions/GrantedScopes'
       id:
@@ -175,8 +179,73 @@ definitions:
         type: string
         x-nullable: false
     type: object
-  Action:
-    type: string
+  AdvancedConfiguration:
+    properties:
+      acr_values:
+        description: Configurable ACR values to enforce during auth flow
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      block_response_modes:
+        description: Block response modes
+        type: boolean
+        x-nullable: false
+      disable_refresh_token_cycling:
+        description: |-
+          Disable refresh token cycling
+
+          Once disabled, original refresh token can be constantly used to issue new access token.
+        type: boolean
+        x-nullable: false
+      disallow_code_response_type_without_jarm:
+        description: Disallow code response type without JARM
+        type: boolean
+        x-nullable: false
+      disallowed_response_modes:
+        $ref: '#/definitions/ResponseModes'
+      enforce_acr_values:
+        description: Enforce acr values
+        type: boolean
+        x-nullable: false
+      ignore_unknown_scopes_for_dcr:
+        description: |-
+          Ignore unknown scopes for DCR
+
+          If enabled, an attempt to register or update a client with a scope that does not exist in the server will succeed.
+        type: boolean
+        x-nullable: false
+    type: object
+  AffiliationDescriptor:
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
+      §2.5
+    properties:
+      AffiliateMembers:
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      AffiliationOwnerID:
+        type: string
+        x-nullable: false
+      CacheDuration:
+        $ref: '#/definitions/Duration'
+      ID:
+        type: string
+        x-nullable: false
+      KeyDescriptors:
+        items:
+          $ref: '#/definitions/KeyDescriptor'
+        type: array
+        x-nullable: false
+      Signature:
+        $ref: '#/definitions/Element'
+      ValidUntil:
+        format: date-time
+        type: string
+        x-nullable: false
+    title: AffiliationDescriptor represents the SAML AffiliationDescriptor object.
+    type: object
   ApigeeMetadata:
     properties:
       environment_name:
@@ -201,6 +270,16 @@ definitions:
     - organization_name
     - proxy_name
     - environment_name
+    type: object
+  Attr:
+    properties:
+      Space:
+        type: string
+        x-nullable: false
+      Value:
+        type: string
+        x-nullable: false
+    title: An Attr represents a key-value attribute of an XML element.
     type: object
   Attribute:
     description: Authentication context attribute
@@ -231,6 +310,110 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  AttributeAuthorityDescriptor:
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
+      §2.4.7
+    properties:
+      AssertionIDRequestServices:
+        items:
+          $ref: '#/definitions/Endpoint'
+        type: array
+        x-nullable: false
+      AttributeProfiles:
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      AttributeServices:
+        items:
+          $ref: '#/definitions/Endpoint'
+        type: array
+        x-nullable: false
+      Attributes:
+        items:
+          $ref: '#/definitions/Attribute'
+        type: array
+        x-nullable: false
+      CacheDuration:
+        $ref: '#/definitions/Duration'
+      ContactPeople:
+        items:
+          $ref: '#/definitions/ContactPerson'
+        type: array
+        x-nullable: false
+      ErrorURL:
+        type: string
+        x-nullable: false
+      ID:
+        type: string
+        x-nullable: false
+      KeyDescriptors:
+        items:
+          $ref: '#/definitions/KeyDescriptor'
+        type: array
+        x-nullable: false
+      NameIDFormats:
+        items:
+          $ref: '#/definitions/NameIDFormat'
+        type: array
+        x-nullable: false
+      Organization:
+        $ref: '#/definitions/Organization'
+      ProtocolSupportEnumeration:
+        type: string
+        x-nullable: false
+      Signature:
+        $ref: '#/definitions/Element'
+      ValidUntil:
+        format: date-time
+        type: string
+        x-nullable: false
+    title: AttributeAuthorityDescriptor represents the SAML AttributeAuthorityDescriptor
+      object.
+    type: object
+  AttributeConsumingService:
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
+      §2.4.4.1
+    properties:
+      Index:
+        format: int64
+        type: integer
+        x-nullable: false
+      IsDefault:
+        type: boolean
+        x-nullable: false
+      RequestedAttributes:
+        items:
+          $ref: '#/definitions/RequestedAttribute'
+        type: array
+        x-nullable: false
+      ServiceDescriptions:
+        items:
+          $ref: '#/definitions/LocalizedName'
+        type: array
+        x-nullable: false
+      ServiceNames:
+        items:
+          $ref: '#/definitions/LocalizedName'
+        type: array
+        x-nullable: false
+    title: AttributeConsumingService represents the SAML AttributeConsumingService
+      object.
+    type: object
+  AttributeValue:
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf
+      §2.7.3.1.1
+    properties:
+      NameID:
+        $ref: '#/definitions/NameID'
+      Type:
+        type: string
+        x-nullable: false
+      Value:
+        type: string
+        x-nullable: false
+    title: AttributeValue represents the SAML element AttributeValue.
+    type: object
   Attributes:
     items:
       $ref: '#/definitions/Attribute'
@@ -238,7 +421,29 @@ definitions:
   AuditEvent:
     properties:
       action:
-        $ref: '#/definitions/Action'
+        enum:
+        - authenticated
+        - authorized
+        - unauthorized
+        - created
+        - updated
+        - deleted
+        - generated
+        - requested
+        - confirmed
+        - accepted
+        - rejected
+        - revoked
+        - issued
+        - denied
+        - granted
+        - attempted
+        - failed
+        - succeeded
+        - sent
+        - not_sent
+        type: string
+        x-nullable: false
       event_id:
         format: eventID
         type: string
@@ -247,7 +452,29 @@ definitions:
         type: object
         x-nullable: false
       event_subject:
-        $ref: '#/definitions/AuditEventSubject'
+        enum:
+        - request
+        - gateway_request
+        - gateway_policy
+        - policy
+        - client
+        - login
+        - consent
+        - client_consents
+        - authorization_code
+        - access_token
+        - saml_assertion
+        - scopes
+        - otp
+        - user
+        - selfuser
+        - schema
+        - pool
+        - password
+        - bruteforce
+        - dcr
+        type: string
+        x-nullable: false
       event_type:
         $ref: '#/definitions/AuditEventType'
       metadata:
@@ -267,6 +494,15 @@ definitions:
     type: object
   AuditEventMetadata:
     properties:
+      actor_claims:
+        additionalProperties:
+          type: object
+        description: |-
+          Access request actor claims.
+
+          It's only populated if the token has been issued in token exchange delegation flow.
+        type: object
+        x-nullable: false
       client_id:
         description: |-
           Access request client ID related to an audit event.
@@ -316,8 +552,6 @@ definitions:
         type: string
         x-nullable: false
     type: object
-  AuditEventSubject:
-    type: string
   AuditEventType:
     type: string
   Auth0Credentials:
@@ -369,6 +603,56 @@ definitions:
         type: array
         x-nullable: false
     type: object
+  AuthnAuthorityDescriptor:
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
+      §2.4.5
+    properties:
+      AssertionIDRequestServices:
+        items:
+          $ref: '#/definitions/Endpoint'
+        type: array
+        x-nullable: false
+      AuthnQueryServices:
+        items:
+          $ref: '#/definitions/Endpoint'
+        type: array
+        x-nullable: false
+      CacheDuration:
+        $ref: '#/definitions/Duration'
+      ContactPeople:
+        items:
+          $ref: '#/definitions/ContactPerson'
+        type: array
+        x-nullable: false
+      ErrorURL:
+        type: string
+        x-nullable: false
+      ID:
+        type: string
+        x-nullable: false
+      KeyDescriptors:
+        items:
+          $ref: '#/definitions/KeyDescriptor'
+        type: array
+        x-nullable: false
+      NameIDFormats:
+        items:
+          $ref: '#/definitions/NameIDFormat'
+        type: array
+        x-nullable: false
+      Organization:
+        $ref: '#/definitions/Organization'
+      ProtocolSupportEnumeration:
+        type: string
+        x-nullable: false
+      Signature:
+        $ref: '#/definitions/Element'
+      ValidUntil:
+        format: date-time
+        type: string
+        x-nullable: false
+    title: AuthnAuthorityDescriptor represents the SAML AuthnAuthorityDescriptor object.
+    type: object
   AzureB2CCredentials:
     description: Azure IDP B2C specific credentials
     properties:
@@ -383,6 +667,13 @@ definitions:
       client_id:
         description: Application ID from your Microsoft Azure B2C application settings
         example: client
+        type: string
+        x-nullable: false
+      custom_domain:
+        description: |-
+          Custom domain from your Microsoft Azure application settings when using a custom
+          domain such as with Azure Front Door. This is optional.
+        example: my.customdomain.com
         type: string
         x-nullable: false
       fetch_groups:
@@ -518,9 +809,36 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  BruteForceLimit:
+    properties:
+      block_duration:
+        example: 1m0s
+        format: duration
+        type: string
+        x-nullable: false
+      max_attempts:
+        description: Max number of attempts
+        example: 5
+        format: int64
+        type: integer
+        x-nullable: false
+      protected_type:
+        $ref: '#/definitions/ProtectedType'
+      tenant_id:
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+    required:
+    - tenant_id
+    - protected_type
+    - max_attempts
+    - block_duration
+    type: object
   CDRArrangement:
     properties:
       account_ids:
+        description: List of accounts
         items:
           type: string
         type: array
@@ -528,56 +846,118 @@ definitions:
       amending_arrangement_id:
         $ref: '#/definitions/CDRArrangementID'
       authorization_server_id:
+        description: Workspace Identifier
+        example: server
         format: serverID
         type: string
         x-nullable: false
       cdr_arrangement_id:
         $ref: '#/definitions/CDRArrangementID'
+      cdr_arrangement_metadata:
+        $ref: '#/definitions/CDRArrangementMetadata'
       client_id:
+        description: Client Identifier
+        example: bugkgm23g9kregtu051g
         format: clientID
         type: string
         x-nullable: false
       created_at:
+        description: Arrangement creation date
+        example: "2022-07-01T08:52:27.127932Z"
         format: date-time
         type: string
         x-nullable: false
+      customer_id:
+        $ref: '#/definitions/CDRCustomerID'
       expiry:
+        description: Arrangement expiration date
+        example: "2022-07-01T09:02:27.127932Z"
         format: date-time
         type: string
         x-nullable: false
       scope_grants:
+        description: List of scope grants
         items:
           $ref: '#/definitions/ScopeGrant'
         type: array
         x-nullable: false
       sharing_type:
+        description: |-
+          Sharing type
+
+          One of: one_time, one_time_with_refresh_token, reusable
         enum:
         - one_time
         - one_time_with_refresh_token
         - reusable
+        example: one_time
         type: string
         x-nullable: false
       spec_version:
+        default: v1
+        description: |-
+          Arrangement version.
+          Currently, the version parameter is not used.
         enum:
         - v1
+        example: v1
         type: string
         x-nullable: false
       status:
         $ref: '#/definitions/ConsentStatus'
       subject:
+        description: |-
+          Subject identifing the authenticated user.
+          Depending on the workspace configuration the value might be hashed.
+        example: 377eb000a87a471291b5a9869930a2422c670b7b6a06f74143eb74a01ed2fbe1
         format: subject
         type: string
         x-nullable: false
       tenant_id:
+        description: Tenant Identifier
+        example: tenant
         format: tenantID
         type: string
         x-nullable: false
       updated_at:
+        description: Arrangement last update date
+        example: "2022-07-01T08:52:27.127932Z"
         format: date-time
         type: string
         x-nullable: false
     type: object
   CDRArrangementID:
+    type: string
+  CDRArrangementMetadata:
+    properties:
+      personal_details:
+        $ref: '#/definitions/PersonalDetails'
+      revocation_channel:
+        $ref: '#/definitions/RevocationChannel'
+      revocation_reason:
+        $ref: '#/definitions/RevocationReason'
+    type: object
+  CDRConfiguration:
+    properties:
+      adr_validation_enabled:
+        description: |-
+          Flag to enable / disable ADR validation
+          If enabled, register URL must be provided and point to a existing registry
+        type: boolean
+        x-nullable: false
+      brand_id:
+        type: string
+        x-nullable: false
+      industry:
+        $ref: '#/definitions/CDRIndustry'
+      register_url:
+        $ref: '#/definitions/CDRRegisterURL'
+    type: object
+  CDRCustomerID:
+    type: string
+  CDRIndustry:
+    type: string
+  CDRRegisterURL:
     type: string
   CIBAAuthenticationService:
     properties:
@@ -626,10 +1006,22 @@ definitions:
         example: email
         type: string
         x-nullable: false
+      opaque:
+        description: included in userinfo/introspect endpoints only
+        type: boolean
+        x-nullable: false
+      saml_name:
+        example: email
+        type: string
+        x-nullable: false
+      saml_name_format:
+        example: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
+        type: string
+        x-nullable: false
       scopes:
-        description: list of scopes - when at least one of listed scopes has been
-          granted to a client, then claim will be added to id / access token. In case
-          of empty array claim is always added.
+        description: |-
+          list of scopes - when at least one of listed scopes has been granted to a client, then claim will be added to id / access token.
+          In case of empty array claim is always added.
         example:
         - email
         - email_verified
@@ -671,12 +1063,12 @@ definitions:
     type: string
   ClaimType:
     description: |-
-      claim type, one of: id_token, access_token
+      claim type, one of: id_token, access_token, saml_assertion
       example: id_token
     type: string
   ClaimsRequests:
     properties:
-      Extra:
+      extra:
         additionalProperties:
           type: object
         type: object
@@ -746,11 +1138,43 @@ definitions:
           type: string
         type: array
         x-nullable: false
+      authorization_encrypted_response_alg:
+        description: |-
+          Algorithm used for encrypting authorization responses.
+          If both signing and encryption are requested, the response will be signed then encrypted,
+          with the result being a Nested JWT, as defined in JWT [RFC7519].
+          The default, if omitted, is that no encryption is performed.
+        enum:
+        - RSA-OAEP
+        - RSA-OAEP-256
+        example: RSA-OAEP-256
+        type: string
+        x-nullable: false
+      authorization_encrypted_response_enc:
+        description: |-
+          Algorithm used for encrypting authorization responses.
+          If authorization_encrypted_response_alg is specified, the default for this value is A128CBC-HS256.
+          When authorization_encrypted_response_enc is included, authorization_encrypted_response_alg
+          MUST also be provided.
+        enum:
+        - A256GCM
+        - A128CBC-HS256
+        example: A128CBC-HS256
+        type: string
+        x-nullable: false
       authorization_server_id:
         description: ID of the authorization server (workspace) to which a client
           application is tied
         example: default
         format: serverID
+        type: string
+        x-nullable: false
+      authorization_signed_response_alg:
+        description: |-
+          Algorithm used for signing authorization responses.
+          If this is specified, the response will be signed using JWS and the configured algorithm.
+          The algorithm none is not allowed.
+        example: RS256
         type: string
         x-nullable: false
       backchannel_authentication_request_signing_alg:
@@ -816,12 +1240,34 @@ definitions:
         format: int64
         type: integer
         x-nullable: false
+      client_status:
+        description: |-
+          Defines if client is active
+
+          Only clients with status Active can preform authorization, authentication and PAR requests.
+        enum:
+        - active
+        - inactive
+        type: string
+        x-nullable: false
+      client_type:
+        enum:
+        - oauth2
+        - saml
+        type: string
+        x-nullable: false
       client_uri:
         description: URI of a client application
         type: string
         x-nullable: false
       confirmation:
         $ref: '#/definitions/Confirmation'
+      created_at:
+        description: Date when the client was created
+        example: "2022-04-07T19:17:31.323187Z"
+        format: date-time
+        type: string
+        x-nullable: false
       description:
         description: Description of a client application
         type: string
@@ -862,6 +1308,7 @@ definitions:
           - urn:ietf:params:oauth:grant-type:jwt-bearer
           - urn:openid:params:grant-type:ciba
           - urn:ietf:params:oauth:grant-type:token-exchange
+          - urn:ietf:params:oauth:grant-type:device_code
           type: string
         type: array
         x-nullable: false
@@ -907,6 +1354,28 @@ definitions:
         example: ES256
         type: string
         x-nullable: false
+      introspection_endpoint_auth_method:
+        default: client_secret_basic
+        description: |-
+          Introspection endpoint authentication method configured for a client application
+          If empty, the token_endpoint_auth_method will be used
+
+          ACP supports the following client authentication methods:
+          client_secret_basic, client_secret_post, client_secret_jwt, private_key_jwt,
+          self_signed_tls_client_auth, tls_client_auth, none.
+
+          To learn more, see the [ACP client authentication documentation](https://docs.authorization.cloudentity.com/features/oauth/client_auth/)
+        enum:
+        - client_secret_basic
+        - client_secret_post
+        - client_secret_jwt
+        - private_key_jwt
+        - self_signed_tls_client_auth
+        - tls_client_auth
+        - none
+        example: client_secret_basic
+        type: string
+        x-nullable: false
       jwks:
         $ref: '#/definitions/ClientJWKs'
       jwks_uri:
@@ -936,19 +1405,28 @@ definitions:
       privacy:
         $ref: '#/definitions/ClientPrivacy'
       redirect_uris:
-        description: |-
-          An array of OAuth allowed redirect URIs
-
-          Redirect URIs are used after a user authorizes an application and ACP redirect them back to
-          the application with an authorization code or an access token included in the URL.
-        example:
-        - https://example.com/callback
-        items:
-          type: string
-        type: array
-        x-nullable: false
+        $ref: '#/definitions/RedirectURIs'
       registration_token:
         $ref: '#/definitions/RegistrationToken'
+      request_object_encryption_alg:
+        description: Optional JWE alg algorithm the client is declaring that it may
+          use for encrypting Request Objects
+        enum:
+        - RSA-OAEP
+        - RSA-OAEP-256
+        example: RSA-OAEP
+        type: string
+        x-nullable: false
+      request_object_encryption_enc:
+        description: |-
+          Optional JWE enc algorithm the client is declaring that it may use for encrypting Request Objects
+          When request_object_encryption_enc is included, request_object_encryption_alg MUST also be provided.
+        enum:
+        - A256GCM
+        - A128CBC-HS256
+        example: A256GCM
+        type: string
+        x-nullable: false
       request_object_signing_alg:
         default: any
         description: |-
@@ -978,45 +1456,28 @@ definitions:
         type: boolean
         x-nullable: false
       response_types:
-        default:
-        - code
+        $ref: '#/definitions/ResponseTypes'
+      revocation_endpoint_auth_method:
+        default: client_secret_basic
         description: |-
-          An array of OAuth client response types configured for a client application
+          Revocation endpoint authentication method configured for a client application
+          If empty, the token_endpoint_auth_method will be used
 
-          The array may consist of the following arguments:
+          ACP supports the following client authentication methods:
+          client_secret_basic, client_secret_post, client_secret_jwt, private_key_jwt,
+          self_signed_tls_client_auth, tls_client_auth, none.
 
-          `code` - when supplied as the value for the `response_type` parameter, a successful
-          response includes an authorization code
-
-          `code token` - when supplied as the value for the `response_type` parameter, a successful
-          response includes an access token, an access token type, and an authorization code
-
-          `id_token token` - when supplied as the value for the `response_type` parameter, a successful
-          response includes an access token, an access token type, and an ID token
-
-          `code id_token token` - when supplied as the value for the `response_type` parameter, a successful
-          response includes an authorization code, an ID token, an access token, and an access token
-          type.
-
-          `token` - when supplied as the value for the `response_type` parameter, a successful
-          response includes an access token and its type. This argument is used for the implicit grant
-          flow, but is not recommended. Instead, you should use either the authorization code grant
-          flow with PKCE or client authentication set to `none` and with the use of PKCE.
-        example:
-        - token
-        - id_token
-        - code
-        items:
-          enum:
-          - token
-          - id_token
-          - code
-          - code id_token
-          - token id_token
-          - token code
-          - token id_token code
-          type: string
-        type: array
+          To learn more, see the [ACP client authentication documentation](https://docs.authorization.cloudentity.com/features/oauth/client_auth/)
+        enum:
+        - client_secret_basic
+        - client_secret_post
+        - client_secret_jwt
+        - private_key_jwt
+        - self_signed_tls_client_auth
+        - tls_client_auth
+        - none
+        example: client_secret_basic
+        type: string
         x-nullable: false
       rotated_secrets:
         description: An array of rotated OAuth client secrets
@@ -1024,6 +1485,11 @@ definitions:
           type: string
         minLength: 32
         type: array
+        x-nullable: false
+      saml_metadata:
+        $ref: '#/definitions/EntityDescriptor'
+      saml_service_provider_id:
+        type: string
         x-nullable: false
       scope:
         description: Space separated scopes for compatibility with OAuth specification
@@ -1074,6 +1540,8 @@ definitions:
           authorization server as part of the client registration request.
         type: string
         x-nullable: false
+      software_statement_payload:
+        $ref: '#/definitions/Metadata'
       software_version:
         description: |-
           A version identifier string for the client software identified by
@@ -1189,6 +1657,8 @@ definitions:
         example: none
         type: string
         x-nullable: false
+      token_exchange:
+        $ref: '#/definitions/ClientTokenExchangeConfiguration'
       tos_uri:
         description: Terms of Service URL
         type: string
@@ -1199,6 +1669,12 @@ definitions:
 
           For trusted clients, consent pages are skipped during the authorization process.
         type: boolean
+        x-nullable: false
+      updated_at:
+        description: Date when the client was updated
+        example: "2022-05-08T01:11:51.1262916Z"
+        format: date-time
+        type: string
         x-nullable: false
       userinfo_signed_response_alg:
         default: none
@@ -1391,6 +1867,20 @@ definitions:
           $ref: '#/definitions/ScopePrivacyInformation'
         description: optional privacy information mapping for scopes
         type: object
+        x-nullable: false
+    type: object
+  ClientTokenExchangeConfiguration:
+    properties:
+      actor_claims:
+        description: |-
+          Additional actor token claims
+
+          Claims from the actor token that will be injected into exchanged token under `act` claim.
+
+          Applies only for token exchange delegation flow.
+        items:
+          type: string
+        type: array
         x-nullable: false
     type: object
   Clients:
@@ -2036,6 +2526,34 @@ definitions:
         type: array
         x-nullable: false
     type: object
+  ContactPerson:
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
+      §2.3.2.2
+    properties:
+      Company:
+        type: string
+        x-nullable: false
+      ContactType:
+        type: string
+        x-nullable: false
+      EmailAddresses:
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      GivenName:
+        type: string
+        x-nullable: false
+      SurName:
+        type: string
+        x-nullable: false
+      TelephoneNumbers:
+        items:
+          type: string
+        type: array
+        x-nullable: false
+    title: ContactPerson represents the SAML element ContactPerson.
+    type: object
   CrossTenantAPIPolicyBinding:
     properties:
       api_id:
@@ -2101,11 +2619,37 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  DeviceAuthorizationConfiguration:
+    properties:
+      request_ttl:
+        description: |-
+          Custom device authorization request TTL
+          If not provided, TTL is set to 30 minutes
+        format: duration
+        type: string
+        x-nullable: false
+      user_code_character_set:
+        $ref: '#/definitions/UserCodeCharacterSet'
+      user_code_length:
+        description: user code length
+        format: int64
+        type: integer
+        x-nullable: false
+    type: object
+  Duration:
+    description: |-
+      A Duration represents the elapsed time between two instants
+      as an int64 nanosecond count. The representation limits the
+      largest representable duration to approximately 290 years.
+    format: int64
+    type: integer
+  DurationType:
+    type: string
   DynamicClientRegistrationSettings:
     properties:
       cert_bound_registration_token:
-        description: This property binds registration token to the certificate used
-          to register client
+        description: Binds registration token to the certificate used to register
+          client
         type: boolean
         x-nullable: false
       default_scopes:
@@ -2117,18 +2661,42 @@ definitions:
           type: string
         type: array
         x-nullable: false
+      disable_registration_token_management:
+        description: |-
+          Disables client management using registration token
+
+          If disabled, client can manage itself using access token issued by client credentials flow.
+        type: boolean
+        x-nullable: false
       disable_registration_token_rotation:
-        description: This property disables registration_token rotation on each DCR
-          management request
+        description: Disables registration token rotation
         type: boolean
         x-nullable: false
       enabled:
+        description: Enables dynamic client registration
         type: boolean
         x-nullable: false
       initial_access_token:
         $ref: '#/definitions/InitialAccessTokenSettings'
       payload:
         $ref: '#/definitions/PayloadSettings'
+    type: object
+  Element:
+    properties:
+      Attr:
+        items:
+          $ref: '#/definitions/Attr'
+        type: array
+        x-nullable: false
+      Child:
+        items:
+          $ref: '#/definitions/Token'
+        type: array
+        x-nullable: false
+      Space:
+        type: string
+        x-nullable: false
+    title: An Element represents an XML element, its attributes, and its child tokens.
     type: object
   EmailAuth:
     properties:
@@ -2197,6 +2765,91 @@ definitions:
         example: embedded
         type: string
         x-nullable: false
+    type: object
+  EncryptionMethod:
+    description: EncryptionMethod represents the XMLSEC object of the same name
+    properties:
+      Algorithm:
+        type: string
+        x-nullable: false
+    type: object
+  Endpoint:
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
+      §2.2.2
+    properties:
+      Binding:
+        type: string
+        x-nullable: false
+      Location:
+        type: string
+        x-nullable: false
+      ResponseLocation:
+        type: string
+        x-nullable: false
+    title: Endpoint represents the SAML EndpointType object.
+    type: object
+  EntityDescriptor:
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
+      §2.3.2
+    properties:
+      AdditionalMetadataLocations:
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      AffiliationDescriptor:
+        $ref: '#/definitions/AffiliationDescriptor'
+      AttributeAuthorityDescriptors:
+        items:
+          $ref: '#/definitions/AttributeAuthorityDescriptor'
+        type: array
+        x-nullable: false
+      AuthnAuthorityDescriptors:
+        items:
+          $ref: '#/definitions/AuthnAuthorityDescriptor'
+        type: array
+        x-nullable: false
+      CacheDuration:
+        $ref: '#/definitions/Duration'
+      ContactPerson:
+        $ref: '#/definitions/ContactPerson'
+      EntityID:
+        type: string
+        x-nullable: false
+      ID:
+        type: string
+        x-nullable: false
+      IDPSSODescriptors:
+        items:
+          $ref: '#/definitions/IDPSSODescriptor'
+        type: array
+        x-nullable: false
+      Organization:
+        $ref: '#/definitions/Organization'
+      PDPDescriptors:
+        items:
+          $ref: '#/definitions/PDPDescriptor'
+        type: array
+        x-nullable: false
+      RoleDescriptors:
+        items:
+          $ref: '#/definitions/RoleDescriptor'
+        type: array
+        x-nullable: false
+      SPSSODescriptors:
+        items:
+          $ref: '#/definitions/SPSSODescriptor'
+        type: array
+        x-nullable: false
+      Signature:
+        $ref: '#/definitions/Element'
+      ValidUntil:
+        format: date-time
+        type: string
+        x-nullable: false
+      XMLName:
+        $ref: '#/definitions/Name'
+    title: EntityDescriptor represents the SAML EntityDescriptor object.
     type: object
   Error:
     description: HTTP error response
@@ -2279,9 +2932,208 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  FDXConsent:
+    properties:
+      authorization_server_id:
+        format: serverID
+        type: string
+        x-nullable: false
+      client_id:
+        format: clientID
+        type: string
+        x-nullable: false
+      createdTime:
+        description: Time of consent creation
+        format: date-time
+        type: string
+        x-nullable: false
+      durationPeriod:
+        description: Consent duration, in days, from day of original grant.
+        format: int64
+        type: integer
+        x-nullable: false
+      durationType:
+        $ref: '#/definitions/DurationType'
+      expirationTime:
+        description: Time of consent expiration
+        format: date-time
+        type: string
+        x-nullable: false
+      granted_resources:
+        description: |-
+          Enumeration of the Clusters of granted data elements permissioned by this Consent Grant.
+          Data Clusters are described in FDX RFC 0167.
+        items:
+          $ref: '#/definitions/FDXGrantedResource'
+        type: array
+        x-nullable: false
+      id:
+        $ref: '#/definitions/FDXConsentID'
+      lookbackPeriod:
+        description: Period, in days, for which historical data may be requested;
+          period is measured from request time, not grant time
+        format: int64
+        type: integer
+        x-nullable: false
+      parties:
+        description: |-
+          A collection of parameters identifying the Parties (including the legal entity operating branded products or services)
+          in the data sharing chain. Descriptive information is collected during Data Recipient registration at Data Provider,
+          and populated during issuance by DataProvider from its registry;
+        items:
+          $ref: '#/definitions/FDXConsentGrantParty'
+        type: array
+        x-nullable: false
+      resources:
+        description: |-
+          Enumeration of the Clusters of requested data elements permissioned by this Consent Grant.
+          Data Clusters are described in FDX RFC 0167.
+        items:
+          $ref: '#/definitions/FDXRequestedResource'
+        type: array
+        x-nullable: false
+      revocationReason:
+        $ref: '#/definitions/FDXConsentRevocation'
+      status:
+        $ref: '#/definitions/ConsentStatus'
+      tenant_id:
+        format: tenantID
+        type: string
+        x-nullable: false
+      updatedTime:
+        description: Time of last consent's status change
+        format: date-time
+        type: string
+        x-nullable: false
+    type: object
+  FDXConsentGrantParty:
+    description: |-
+      Consent Party entity
+      Details on the non-end user parties in the Consent Grant. Includes the legal entity operating branded products or services
+      in the data sharing chain. Descriptive information is collected during Data Recipient registration at Data Provider,
+      and populated during issuance by Data Provider from its registry
+    properties:
+      homeUri:
+        description: URL for party, where an end user could learn more about the company
+          or application involved in the data sharing chain
+        type: string
+        x-nullable: false
+      logoUri:
+        description: URL for a logo asset to be displayed to the end user
+        type: string
+        x-nullable: false
+      name:
+        description: Common name for party, as it should be displayed to the end user
+        type: string
+        x-nullable: false
+      registeredEntityIdentifier:
+        description: Registered id of party
+        type: string
+        x-nullable: false
+      registeredEntityName:
+        description: Registered name of party
+        type: string
+        x-nullable: false
+      registryName:
+        description: The registry with the party's registered name and id
+        type: string
+        x-nullable: false
+    type: object
+  FDXConsentID:
+    type: string
+  FDXConsentRevocation:
+    description: Revocation data
+    properties:
+      initiator:
+        description: Revocation initiator
+        enum:
+        - DATA_ACCESS_PLATFORM
+        - DATA_PROVIDER
+        - DATA_RECIPIENT
+        - INDIVIDUAL
+        - MERCHANT
+        - VENDOR
+        example: '"INDIVIDUAL"'
+        type: string
+        x-nullable: false
+      reason:
+        description: Revocation reason
+        enum:
+        - BUSINESS_RULE
+        - USER_ACTION
+        example: '"USER_ACTION"'
+        type: string
+        x-nullable: false
+    type: object
+  FDXGrantedResource:
+    properties:
+      dataClusters:
+        description: Name of cluster of data elements permissioned
+        example:
+        - ACCOUNT_DETAILED
+        - TRANSACTIONS
+        - STATEMENTS
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      id:
+        description: resource ID
+        example: b14e1e714693bc00
+        type: string
+        x-nullable: false
+      resourceType:
+        description: Resource for which data may be permissioned; can be extended
+          to supportadditional types of resources
+        example: ACCOUNT
+        type: string
+        x-nullable: false
+    type: object
+  FDXParty:
+    properties:
+      home_uri:
+        type: string
+        x-nullable: false
+      logo_uri:
+        type: string
+        x-nullable: false
+      name:
+        type: string
+        x-nullable: false
+      registered_entity_identifier:
+        type: string
+        x-nullable: false
+      registered_entity_name:
+        type: string
+        x-nullable: false
+      registry_name:
+        type: string
+        x-nullable: false
+    type: object
+  FDXRequestedResource:
+    properties:
+      dataClusters:
+        description: Name of cluster of data elements permissioned
+        example:
+        - ACCOUNT_DETAILED
+        - TRANSACTIONS
+        - STATEMENTS
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      resourceType:
+        description: Resource for which data may be permissioned; can be extended
+          to supportadditional types of resources
+        example: ACCOUNT
+        type: string
+        x-nullable: false
+    type: object
   FilePaymentConsentFileResource:
     properties:
       client_id:
+        description: Client identifier
+        example: '"cauqo9c9vpbs0aj2b2v0"'
         format: clientID
         type: string
         x-nullable: false
@@ -2296,10 +3148,14 @@ definitions:
         type: array
         x-nullable: false
       server_id:
+        description: Server / Workspace identifier
+        example: '"server"'
         format: serverID
         type: string
         x-nullable: false
       tenant_id:
+        description: Tenant identifier
+        example: '"tenant"'
         format: tenantID
         type: string
         x-nullable: false
@@ -2429,6 +3285,11 @@ definitions:
         format: dynamicScopeSeparator
         type: string
         x-nullable: false
+      events_per_second:
+        description: events per second limit
+        format: int64
+        type: integer
+        x-nullable: false
       issuer_apis:
         items:
           $ref: '#/definitions/API'
@@ -2503,6 +3364,15 @@ definitions:
       api_id:
         format: apiID
         type: string
+        x-nullable: false
+      duration_ms:
+        format: int64
+        type: integer
+        x-nullable: false
+      output:
+        additionalProperties:
+          type: string
+        type: object
         x-nullable: false
       result:
         $ref: '#/definitions/PolicyValidationResult'
@@ -2713,6 +3583,14 @@ definitions:
         x-nullable: false
       discovery_settings:
         $ref: '#/definitions/IDPDiscoverySettings'
+      hidden:
+        description: |-
+          If set to `true`, the IDP is not displayed on the login page.
+
+          When an IDP is hidden, it will not be displayed on the login page. It can still be used
+          and script extensions can enabled it.
+        type: boolean
+        x-nullable: false
       id:
         description: |-
           Unique ID of your identity provider
@@ -2821,6 +3699,22 @@ definitions:
       static:
         $ref: '#/definitions/StaticCredentials'
     type: object
+  IDPDiscovery:
+    properties:
+      discovery_mode:
+        enum:
+        - domain_matching
+        - script_execution
+        type: string
+        x-nullable: false
+      enabled:
+        description: |-
+          If enabled, IDP discovery automatically redirects the user to their own IDP and does not
+          display IDPs of other users while the users accesses the server/application.
+        example: false
+        type: boolean
+        x-nullable: false
+    type: object
   IDPDiscoverySettings:
     properties:
       domains:
@@ -2844,6 +3738,91 @@ definitions:
     type: object
   IDPDomain:
     type: string
+  IDPSSODescriptor:
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
+      §2.4.3
+    properties:
+      ArtifactResolutionServices:
+        items:
+          $ref: '#/definitions/Endpoint'
+        type: array
+        x-nullable: false
+      AssertionIDRequestServices:
+        items:
+          $ref: '#/definitions/Endpoint'
+        type: array
+        x-nullable: false
+      AttributeProfiles:
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      Attributes:
+        items:
+          $ref: '#/definitions/Attribute'
+        type: array
+        x-nullable: false
+      CacheDuration:
+        $ref: '#/definitions/Duration'
+      ContactPeople:
+        items:
+          $ref: '#/definitions/ContactPerson'
+        type: array
+        x-nullable: false
+      ErrorURL:
+        type: string
+        x-nullable: false
+      ID:
+        type: string
+        x-nullable: false
+      KeyDescriptors:
+        items:
+          $ref: '#/definitions/KeyDescriptor'
+        type: array
+        x-nullable: false
+      ManageNameIDServices:
+        items:
+          $ref: '#/definitions/Endpoint'
+        type: array
+        x-nullable: false
+      NameIDFormats:
+        items:
+          $ref: '#/definitions/NameIDFormat'
+        type: array
+        x-nullable: false
+      NameIDMappingServices:
+        items:
+          $ref: '#/definitions/Endpoint'
+        type: array
+        x-nullable: false
+      Organization:
+        $ref: '#/definitions/Organization'
+      ProtocolSupportEnumeration:
+        type: string
+        x-nullable: false
+      Signature:
+        $ref: '#/definitions/Element'
+      SingleLogoutServices:
+        items:
+          $ref: '#/definitions/Endpoint'
+        type: array
+        x-nullable: false
+      SingleSignOnServices:
+        items:
+          $ref: '#/definitions/Endpoint'
+        type: array
+        x-nullable: false
+      ValidUntil:
+        format: date-time
+        type: string
+        x-nullable: false
+      WantAuthnRequestsSigned:
+        type: boolean
+        x-nullable: false
+      XMLName:
+        $ref: '#/definitions/Name'
+    title: IDPSSODescriptor represents the SAML IDPSSODescriptorType object.
+    type: object
   IDPSettings:
     properties:
       auth0:
@@ -2884,9 +3863,37 @@ definitions:
     items:
       $ref: '#/definitions/IDP'
     type: array
+  IndexedEndpoint:
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
+      §2.2.3
+    properties:
+      Binding:
+        type: string
+        x-nullable: false
+      Index:
+        format: int64
+        type: integer
+        x-nullable: false
+      IsDefault:
+        type: boolean
+        x-nullable: false
+      Location:
+        type: string
+        x-nullable: false
+      ResponseLocation:
+        type: string
+        x-nullable: false
+    title: IndexedEndpoint represents the SAML IndexedEndpointType object.
+    type: object
   InitialAccessTokenSettings:
     properties:
       required:
+        description: |-
+          Enables initial access token for dynamic client registration
+
+          If enabled, the registration endpoint requires an access token with the dcr_register scope granted.
+          To issue the access token, you need a separate client with the client credentials grant type.
+          Upon successful registration, the access token is terminated.
         type: boolean
         x-nullable: false
     type: object
@@ -2946,6 +3953,12 @@ definitions:
         description: Authentication Context Class Reference
         type: string
         x-nullable: false
+      act:
+        additionalProperties:
+          type: object
+        description: actor claims used in token exchange flow
+        type: object
+        x-nullable: false
       active:
         description: |-
           Active is a boolean indicator of whether or not the presented token
@@ -3000,6 +4013,14 @@ definitions:
         format: int64
         type: integer
         x-nullable: false
+      idp:
+        description: IDP ID that user authenticated with
+        type: string
+        x-nullable: false
+      idp_sub:
+        description: Idp subject
+        type: string
+        x-nullable: false
       iss:
         description: IssuerURL is a string representing the issuer of this token
         type: string
@@ -3014,6 +4035,7 @@ definitions:
         x-nullable: false
       refresh_token_expires_at:
         description: |-
+          Deprecated and can be removed at any time.
           Refresh Token Expires at is an integer timestamp, measured in the number
           of seconds since January 1 1970 UTC, indicating when the issued refresh
           token witll expire.
@@ -3076,10 +4098,64 @@ definitions:
     type: object
   JobID:
     type: string
+  KeyDescriptor:
+    description: KeyDescriptor represents the XMLSEC object of the same name
+    properties:
+      EncryptionMethods:
+        items:
+          $ref: '#/definitions/EncryptionMethod'
+        type: array
+        x-nullable: false
+      KeyInfo:
+        $ref: '#/definitions/KeyInfo'
+      Use:
+        type: string
+        x-nullable: false
+    type: object
+  KeyInfo:
+    description: KeyInfo represents the XMLSEC object of the same name
+    properties:
+      X509Data:
+        $ref: '#/definitions/X509Data'
+      XMLName:
+        $ref: '#/definitions/Name'
+    type: object
+  LegalEntity:
+    properties:
+      party:
+        $ref: '#/definitions/FDXParty'
+    type: object
+  LocalizedName:
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
+      §2.2.4
+    properties:
+      Lang:
+        type: string
+        x-nullable: false
+      Value:
+        type: string
+        x-nullable: false
+    title: LocalizedName represents the SAML type localizedNameType.
+    type: object
+  LocalizedURI:
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
+      §2.2.5
+    properties:
+      Lang:
+        type: string
+        x-nullable: false
+      Value:
+        type: string
+        x-nullable: false
+    title: LocalizedURI represents the SAML type localizedURIType.
+    type: object
   LoginAccepted:
     properties:
       redirect_to:
-        description: url where user should be redirected
+        description: |-
+          URL pointing to Cloudentity where the user is redirected to after authenticating with their identity source.
+          Applies only for the redirect authorization flows.
+        example: https://authorization.cloudentity.com:8443/tenant/server/oauth2/authorize?client_id=bugkgm23g9kregtu051g&6consent_verified=false&login_id=cavai7d8s9nelp7k792g&login_state=cauq8fonbud6q8806bf0
         type: string
         x-nullable: false
     type: object
@@ -3117,6 +4193,14 @@ definitions:
         x-nullable: false
       authentication_context:
         $ref: '#/definitions/AuthenticationContext'
+      authorization_details:
+        description: authorization details
+        items:
+          additionalProperties:
+            type: object
+          type: object
+        type: array
+        x-nullable: false
       client_id:
         description: OAuth client identifier
         example: default
@@ -3152,6 +4236,11 @@ definitions:
       idp_id:
         description: idp identifier
         format: idpID
+        type: string
+        x-nullable: false
+      idp_subject:
+        description: idp subject
+        format: subject
         type: string
         x-nullable: false
       login_approved:
@@ -3353,6 +4442,49 @@ definitions:
     additionalProperties:
       type: object
     type: object
+  Name:
+    description: |-
+      A Name represents an XML name (Local) annotated
+      with a name space identifier (Space).
+      In tokens returned by Decoder.Token, the Space identifier
+      is given as a canonical URL, not the short prefix used
+      in the document being parsed.
+    properties:
+      Space:
+        type: string
+        x-nullable: false
+    type: object
+  NameID:
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf
+      §2.2.3
+    properties:
+      Format:
+        type: string
+        x-nullable: false
+      NameQualifier:
+        type: string
+        x-nullable: false
+      SPNameQualifier:
+        type: string
+        x-nullable: false
+      SPProvidedID:
+        type: string
+        x-nullable: false
+      Value:
+        type: string
+        x-nullable: false
+    title: NameID represents the SAML element NameID.
+    type: object
+  NameIDFormat:
+    description: NameIDFormat is the format of the id
+    type: string
+  OBBRConfiguration:
+    properties:
+      industry:
+        $ref: '#/definitions/OBBRIndustry'
+    type: object
+  OBBRIndustry:
+    type: string
   OBConsent:
     description: OBConsent this type is only meant to be used for importing and exporting
       consents for testing
@@ -3363,6 +4495,8 @@ definitions:
         type: array
         x-nullable: false
       client_id:
+        description: Client identifier
+        example: '"cauqo9c9vpbs0aj2b2v0"'
         format: clientID
         type: string
         x-nullable: false
@@ -3381,6 +4515,8 @@ definitions:
         type: string
         x-nullable: false
       server_id:
+        description: Server / Workspace identifier
+        example: '"server"'
         format: serverID
         type: string
         x-nullable: false
@@ -3388,12 +4524,13 @@ definitions:
         type: string
         x-nullable: false
       spec_version:
-        type: string
-        x-nullable: false
+        $ref: '#/definitions/SpecVersion'
       status:
         type: string
         x-nullable: false
       tenant_id:
+        description: Tenant identifier
+        example: '"tenant"'
         format: tenantID
         type: string
         x-nullable: false
@@ -3523,6 +4660,77 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  Organization:
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
+      §2.3.2.1
+    properties:
+      OrganizationDisplayNames:
+        items:
+          $ref: '#/definitions/LocalizedName'
+        type: array
+        x-nullable: false
+      OrganizationNames:
+        items:
+          $ref: '#/definitions/LocalizedName'
+        type: array
+        x-nullable: false
+      OrganizationURLs:
+        items:
+          $ref: '#/definitions/LocalizedURI'
+        type: array
+        x-nullable: false
+    title: Organization represents the SAML Organization object.
+    type: object
+  PDPDescriptor:
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
+      §2.4.6
+    properties:
+      AssertionIDRequestServices:
+        items:
+          $ref: '#/definitions/Endpoint'
+        type: array
+        x-nullable: false
+      AuthzServices:
+        items:
+          $ref: '#/definitions/Endpoint'
+        type: array
+        x-nullable: false
+      CacheDuration:
+        $ref: '#/definitions/Duration'
+      ContactPeople:
+        items:
+          $ref: '#/definitions/ContactPerson'
+        type: array
+        x-nullable: false
+      ErrorURL:
+        type: string
+        x-nullable: false
+      ID:
+        type: string
+        x-nullable: false
+      KeyDescriptors:
+        items:
+          $ref: '#/definitions/KeyDescriptor'
+        type: array
+        x-nullable: false
+      NameIDFormats:
+        items:
+          $ref: '#/definitions/NameIDFormat'
+        type: array
+        x-nullable: false
+      Organization:
+        $ref: '#/definitions/Organization'
+      ProtocolSupportEnumeration:
+        type: string
+        x-nullable: false
+      Signature:
+        $ref: '#/definitions/Element'
+      ValidUntil:
+        format: date-time
+        type: string
+        x-nullable: false
+    title: PDPDescriptor represents the SAML PDPDescriptor object.
+    type: object
   PIICategory:
     properties:
       name:
@@ -3552,6 +4760,12 @@ definitions:
         x-nullable: false
       jws_payload:
         $ref: '#/definitions/JWSPayloadSettings'
+    type: object
+  PersonalDetails:
+    properties:
+      user_id:
+        type: string
+        x-nullable: false
     type: object
   Policy:
     properties:
@@ -3750,6 +4964,8 @@ definitions:
       event_type:
         $ref: '#/definitions/PrivacyLedgerEventType'
     type: object
+  ProtectedType:
+    type: string
   Purpose:
     properties:
       name:
@@ -3767,29 +4983,6 @@ definitions:
     type: object
   QueueName:
     type: string
-  QuotaType:
-    type: string
-  QuotaUsage:
-    properties:
-      month:
-        format: int64
-        type: integer
-        x-nullable: false
-      quota_type:
-        $ref: '#/definitions/QuotaType'
-      tenant_id:
-        format: tenantID
-        type: string
-        x-nullable: false
-      usage:
-        format: int64
-        type: integer
-        x-nullable: false
-      year:
-        format: int64
-        type: integer
-        x-nullable: false
-    type: object
   RFC6749Error:
     properties:
       cause:
@@ -3849,6 +5042,18 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  RedirectURIs:
+    description: |-
+      Redirect URIs are used after a user authorizes an application and ACP redirect them back to
+      the application with an authorization code or an access token included in the URL.
+
+      For a legacy reason it's also acceptable to pass redirect_uris as string, example: "https://example.com/callback"
+
+      example: ["https://example.com/callback"]
+    items:
+      type: string
+    title: An array of OAuth allowed redirect URIs
+    type: array
   RegistrationToken:
     properties:
       client_uri:
@@ -3865,15 +5070,16 @@ definitions:
   RejectScopeGrant:
     properties:
       error:
-        description: reject error
+        description: Rejection error
+        example: rejected
         type: string
         x-nullable: false
       error_cause:
-        description: error cause
+        description: Rejection cause
         type: string
         x-nullable: false
       error_description:
-        description: reject error description
+        description: Rejection error description
         type: string
         x-nullable: false
       id:
@@ -3882,12 +5088,16 @@ definitions:
         type: string
         x-nullable: false
       login_state:
-        description: login state
+        description: |-
+          Random string generated by Cloudentity used to mitigate Cross-site request forgery (CSRF) attacks.
+          Cloudentity sends state as `login_state` query parameter when redirecting to the consent page.
+        example: cauq8fonbud6q8806bf0
         format: loginState
         type: string
         x-nullable: false
       status_code:
-        description: reject http status code
+        description: Rejection http status code
+        example: 403
         format: int64
         type: integer
         x-nullable: false
@@ -3918,6 +5128,29 @@ definitions:
         type: integer
         x-nullable: false
     type: object
+  RequestedAttribute:
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
+      §2.4.4.2
+    properties:
+      FriendlyName:
+        type: string
+        x-nullable: false
+      IsRequired:
+        type: boolean
+        x-nullable: false
+      Name:
+        type: string
+        x-nullable: false
+      NameFormat:
+        type: string
+        x-nullable: false
+      Values:
+        items:
+          $ref: '#/definitions/AttributeValue'
+        type: array
+        x-nullable: false
+    title: RequestedAttribute represents the SAML RequestedAttribute object.
+    type: object
   RequestedScope:
     properties:
       authorization_server_id:
@@ -3943,6 +5176,8 @@ definitions:
         format: scopeID
         type: string
         x-nullable: false
+      metadata:
+        $ref: '#/definitions/Metadata'
       name:
         description: scope name
         example: offline_access
@@ -3966,9 +5201,101 @@ definitions:
         format: tenantID
         type: string
         x-nullable: false
+      transient:
+        description: disable storage of scope grants
+        type: boolean
+        x-nullable: false
       with_service:
         type: boolean
         x-nullable: false
+    type: object
+  ResponseModes:
+    items:
+      enum:
+      - query
+      - fragment
+      - form_post
+      - query.jwt
+      - fragment.jwt
+      - form_post.jwt
+      - jwt
+      type: string
+    type: array
+  ResponseTypes:
+    description: |-
+      The array may consist of the following arguments:
+
+      `code` - when supplied as the value for the `response_type` parameter, a successful
+      response includes an authorization code
+
+      `code token` - when supplied as the value for the `response_type` parameter, a successful
+      response includes an access token, an access token type, and an authorization code
+
+      `id_token token` - when supplied as the value for the `response_type` parameter, a successful
+      response includes an access token, an access token type, and an ID token
+
+      `code id_token token` - when supplied as the value for the `response_type` parameter, a successful
+      response includes an authorization code, an ID token, an access token, and an access token
+      type.
+
+      `token` - when supplied as the value for the `response_type` parameter, a successful
+      response includes an access token and its type. This argument is used for the implicit grant
+      flow, but is not recommended. Instead, you should use either the authorization code grant
+      flow with PKCE or client authentication set to `none` and with the use of PKCE.
+
+      example: ["token", "id_token", "code"]
+      default: ["code"]
+    items:
+      enum:
+      - token
+      - id_token
+      - code
+      - code id_token
+      - token id_token
+      - token code
+      - token id_token code
+      - none
+      type: string
+    title: An array of OAuth client response types configured for a client application
+    type: array
+  RevocationChannel:
+    type: string
+  RevocationReason:
+    type: string
+  RoleDescriptor:
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
+      §2.4.1
+    properties:
+      CacheDuration:
+        $ref: '#/definitions/Duration'
+      ContactPeople:
+        items:
+          $ref: '#/definitions/ContactPerson'
+        type: array
+        x-nullable: false
+      ErrorURL:
+        type: string
+        x-nullable: false
+      ID:
+        type: string
+        x-nullable: false
+      KeyDescriptors:
+        items:
+          $ref: '#/definitions/KeyDescriptor'
+        type: array
+        x-nullable: false
+      Organization:
+        $ref: '#/definitions/Organization'
+      ProtocolSupportEnumeration:
+        type: string
+        x-nullable: false
+      Signature:
+        $ref: '#/definitions/Element'
+      ValidUntil:
+        format: date-time
+        type: string
+        x-nullable: false
+    title: RoleDescriptor represents the SAML element RoleDescriptor.
     type: object
   SAMLCredentials:
     description: SAML IDP specific credentials
@@ -4098,6 +5425,79 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  SPSSODescriptor:
+    description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
+      §2.4.2
+    properties:
+      ArtifactResolutionServices:
+        items:
+          $ref: '#/definitions/IndexedEndpoint'
+        type: array
+        x-nullable: false
+      AssertionConsumerServices:
+        items:
+          $ref: '#/definitions/IndexedEndpoint'
+        type: array
+        x-nullable: false
+      AttributeConsumingServices:
+        items:
+          $ref: '#/definitions/AttributeConsumingService'
+        type: array
+        x-nullable: false
+      AuthnRequestsSigned:
+        type: boolean
+        x-nullable: false
+      CacheDuration:
+        $ref: '#/definitions/Duration'
+      ContactPeople:
+        items:
+          $ref: '#/definitions/ContactPerson'
+        type: array
+        x-nullable: false
+      ErrorURL:
+        type: string
+        x-nullable: false
+      ID:
+        type: string
+        x-nullable: false
+      KeyDescriptors:
+        items:
+          $ref: '#/definitions/KeyDescriptor'
+        type: array
+        x-nullable: false
+      ManageNameIDServices:
+        items:
+          $ref: '#/definitions/Endpoint'
+        type: array
+        x-nullable: false
+      NameIDFormats:
+        items:
+          $ref: '#/definitions/NameIDFormat'
+        type: array
+        x-nullable: false
+      Organization:
+        $ref: '#/definitions/Organization'
+      ProtocolSupportEnumeration:
+        type: string
+        x-nullable: false
+      Signature:
+        $ref: '#/definitions/Element'
+      SingleLogoutServices:
+        items:
+          $ref: '#/definitions/Endpoint'
+        type: array
+        x-nullable: false
+      ValidUntil:
+        format: date-time
+        type: string
+        x-nullable: false
+      WantAssertionsSigned:
+        type: boolean
+        x-nullable: false
+      XMLName:
+        $ref: '#/definitions/Name'
+    title: SPSSODescriptor represents the SAML SPSSODescriptorType object.
+    type: object
   Scope:
     properties:
       authorization_server_id:
@@ -4123,6 +5523,8 @@ definitions:
         format: scopeID
         type: string
         x-nullable: false
+      metadata:
+        $ref: '#/definitions/Metadata'
       name:
         description: scope name
         example: offline_access
@@ -4134,6 +5536,10 @@ definitions:
         example: default
         format: tenantID
         type: string
+        x-nullable: false
+      transient:
+        description: disable storage of scope grants
+        type: boolean
         x-nullable: false
     type: object
   ScopeGrant:
@@ -4183,8 +5589,9 @@ definitions:
     properties:
       redirect_to:
         description: |-
-          url where user should be redirected
-          this aplies only for redirect flow
+          URL where user should be redirected.
+          This aplies only for redirect flow, i.e consent page.
+        example: https://authorization.cloudentity.com:8443/tenant/server/oauth2/authorize?client_id=bugkgm23g9kregtu051g&consent_verified=true&login_id=cavai7d8s9nelp7k792g&login_state=cauq8fonbud6q8806bf0
         type: string
         x-nullable: false
     type: object
@@ -4192,8 +5599,9 @@ definitions:
     properties:
       redirect_to:
         description: |-
-          url where user should be redirected
-          this aplies only for redirect flow
+          URL where user should be redirected.
+          This aplies only for redirect flow, i.e consent page.
+        example: https://authorization.cloudentity.com:8443/tenant/server/oauth2/authorize?client_id=bugkgm23g9kregtu051g&consent_verified=true&login_id=cavai7d8s9nelp7k792g&login_state=cauq8fonbud6q8806bf0
         type: string
         x-nullable: false
     type: object
@@ -4224,6 +5632,14 @@ definitions:
         x-nullable: false
       authentication_context:
         $ref: '#/definitions/AuthenticationContext'
+      authorization_details:
+        description: authorization details
+        items:
+          additionalProperties:
+            type: object
+          type: object
+        type: array
+        x-nullable: false
       client_id:
         description: OAuth client identifier
         example: default
@@ -4259,6 +5675,11 @@ definitions:
       idp_id:
         description: idp identifier
         format: idpID
+        type: string
+        x-nullable: false
+      idp_subject:
+        description: idp subject
+        format: subject
         type: string
         x-nullable: false
       login_approved:
@@ -4376,6 +5797,8 @@ definitions:
         format: scopeID
         type: string
         x-nullable: false
+      metadata:
+        $ref: '#/definitions/Metadata'
       name:
         description: scope name
         example: offline_access
@@ -4390,8 +5813,20 @@ definitions:
         format: tenantID
         type: string
         x-nullable: false
+      transient:
+        description: disable storage of scope grants
+        type: boolean
+        x-nullable: false
       with_service:
         type: boolean
+        x-nullable: false
+    type: object
+  ScopesWithServices:
+    properties:
+      scopes:
+        items:
+          $ref: '#/definitions/ScopeWithService'
+        type: array
         x-nullable: false
     type: object
   Script:
@@ -4455,7 +5890,12 @@ definitions:
         x-nullable: false
       type:
         description: String representation of the script execution point type
+        enum:
+        - post_authn_ctx
+        - allowed_idp_ids
+        - token_minting
         example: post_authn_ctx
+        type: string
         x-nullable: false
     required:
     - tenant_id
@@ -4570,6 +6010,10 @@ definitions:
         format: duration
         type: string
         x-nullable: false
+      advanced:
+        $ref: '#/definitions/AdvancedConfiguration'
+      authentication_context_settings:
+        $ref: '#/definitions/AuthenticationContextSettings'
       authorization_code_ttl:
         description: |-
           Authorization code time to live
@@ -4592,6 +6036,8 @@ definitions:
         default: false
         type: boolean
         x-nullable: false
+      cdr:
+        $ref: '#/definitions/CDRConfiguration'
       color:
         default: '#007FFF'
         description: Your server's label color in a HEX format.
@@ -4624,6 +6070,8 @@ definitions:
         example: http://example.com/default/default
         type: string
         x-nullable: false
+      device_authorization:
+        $ref: '#/definitions/DeviceAuthorizationConfiguration'
       do_not_create_default_claims:
         description: flag to skip default claims creation (applicable only if server
           does not exist)
@@ -4643,13 +6091,10 @@ definitions:
         format: dynamicScopeSeparator
         type: string
         x-nullable: false
-      enable_id_token_encryption:
-        description: When enabled, the authorization server will encrypt any id tokens
-          it issues
-        type: boolean
-        x-nullable: false
       enable_idp_discovery:
         description: |-
+          Deprecated: Use IDPDiscovery instead
+
           If enabled, IDP discovery automatically redirects the user to their own IDP and does not
           display IDPs of other users while the users accesses the server/application.
         example: false
@@ -4657,6 +6102,8 @@ definitions:
         x-nullable: false
       enable_legacy_clients_with_no_software_statement:
         description: |-
+          Deprecated
+
           If enabled, it is possible to manually register clients withouth the use of software
           statements.
 
@@ -4673,11 +6120,17 @@ definitions:
         default: false
         description: |-
           If enabled, it makes it obligatory to provide a software statement signed by a trusted certificate authority
+
           when registering a client application with the use of the Dynamic Client Registration (DCR).
 
           In public key infrastructure (PKI), trust anchors are certification authorities. They are
           represented by a certificate that is used to verify the signature of a certificate issued by
           a particular trust anchor.
+        type: boolean
+        x-nullable: false
+      enforce_id_token_encryption:
+        description: When enabled, the authorization server will enforce encrypted
+          id tokens it issues
         type: boolean
         x-nullable: false
       enforce_pkce:
@@ -4731,6 +6184,7 @@ definitions:
           - urn:ietf:params:oauth:grant-type:jwt-bearer
           - urn:openid:params:grant-type:ciba
           - urn:ietf:params:oauth:grant-type:token-exchange
+          - urn:ietf:params:oauth:grant-type:device_code
           type: string
         type: array
         x-nullable: false
@@ -4753,6 +6207,8 @@ definitions:
         format: duration
         type: string
         x-nullable: false
+      idp_discovery:
+        $ref: '#/definitions/IDPDiscovery'
       initialize:
         description: flag to initialize server default configuration (applicable only
           if server does not exist)
@@ -4782,6 +6238,8 @@ definitions:
         example: rsa
         type: string
         x-nullable: false
+      legal_entity:
+        $ref: '#/definitions/LegalEntity'
       logo_uri:
         description: Logo URI
         type: string
@@ -4791,6 +6249,8 @@ definitions:
         example: Sample authorization server
         type: string
         x-nullable: false
+      obbr:
+        $ref: '#/definitions/OBBRConfiguration'
       profile:
         default: default
         description: |-
@@ -4814,6 +6274,7 @@ definitions:
         - openbanking_br
         - cdr_australia
         - cdr_australia_fapi_rw
+        - fdx
         example: default
         type: string
         x-nullable: false
@@ -4864,6 +6325,15 @@ definitions:
 
           It must have at least 32 characters. If not provided, it is generated.
         example: hW5WhKX_7w7BLwUQ6mn7Cp70_OoKI_F1y1hLS5U8lIU
+        type: string
+        x-nullable: false
+      subject_format:
+        description: |-
+          Define the format of a subject
+          When set to hash sub value is a one way hash of idp id and idp sub
+        enum:
+        - hash
+        - legacy
         type: string
         x-nullable: false
       subject_identifier_algorithm_salt:
@@ -5169,6 +6639,27 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  ServerToTheme:
+    properties:
+      server_id:
+        description: authorization server id
+        example: developer
+        format: serverID
+        type: string
+        x-nullable: false
+      tenant_id:
+        description: tenant id
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      theme_id:
+        description: theme id
+        example: acme
+        format: themeID
+        type: string
+        x-nullable: false
+    type: object
   Service:
     properties:
       authorization_server_id:
@@ -5212,6 +6703,22 @@ definitions:
         description: tenant id
         example: default
         format: tenantID
+        type: string
+        x-nullable: false
+      type:
+        default: user
+        description: service type
+        enum:
+        - oauth2
+        - oidc
+        - system
+        - user
+        - openbanking
+        type: string
+        x-nullable: false
+      updated_at:
+        description: Updated at date
+        format: date-time
         type: string
         x-nullable: false
       with_specification:
@@ -5269,6 +6776,22 @@ definitions:
         description: tenant id
         example: default
         format: tenantID
+        type: string
+        x-nullable: false
+      type:
+        default: user
+        description: service type
+        enum:
+        - oauth2
+        - oidc
+        - system
+        - user
+        - openbanking
+        type: string
+        x-nullable: false
+      updated_at:
+        description: Updated at date
+        format: date-time
         type: string
         x-nullable: false
       with_specification:
@@ -5333,6 +6856,22 @@ definitions:
         format: tenantID
         type: string
         x-nullable: false
+      type:
+        default: user
+        description: service type
+        enum:
+        - oauth2
+        - oidc
+        - system
+        - user
+        - openbanking
+        type: string
+        x-nullable: false
+      updated_at:
+        description: Updated at date
+        format: date-time
+        type: string
+        x-nullable: false
       with_specification:
         description: true if service has openapi 3 specification
         type: boolean
@@ -5354,6 +6893,8 @@ definitions:
         type: integer
         x-nullable: false
     type: object
+  SpecVersion:
+    type: string
   StaticCredentials:
     description: Static IDP specific credentials
     properties:
@@ -5434,10 +6975,46 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  Template:
+    description: Custom Branding template
+    properties:
+      content:
+        description: content of the template
+        type: string
+        x-nullable: false
+      created_at:
+        description: timestamp when the template was created
+        format: date-time
+        type: string
+        x-nullable: false
+      fs_path:
+        description: path to the template in a filesystem zip archive
+        format: fsPath
+        type: string
+        x-nullable: false
+      tenant_id:
+        description: ID of the tenant
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      theme_id:
+        description: theme unique identifier
+        format: themeID
+        type: string
+        x-nullable: false
+      updated_at:
+        description: timestamp when the template was last updated
+        format: date-time
+        type: string
+        x-nullable: false
+    required:
+    - tenant_id
+    - theme_id
+    - fs_path
+    type: object
   Tenant:
     properties:
-      authentication_context_settings:
-        $ref: '#/definitions/AuthenticationContextSettings'
       id:
         description: |-
           tenant unique identifier
@@ -5447,6 +7024,8 @@ definitions:
         x-nullable: false
       jwks:
         $ref: '#/definitions/ServerJWKs'
+      metadata:
+        $ref: '#/definitions/TenantMetadata'
       name:
         description: tenant name
         example: Default
@@ -5471,6 +7050,11 @@ definitions:
       audit_events:
         items:
           $ref: '#/definitions/AuditEvent'
+        type: array
+        x-nullable: false
+      brute_force_limits:
+        items:
+          $ref: '#/definitions/BruteForceLimit'
         type: array
         x-nullable: false
       cdr_arrangements:
@@ -5535,6 +7119,11 @@ definitions:
           $ref: '#/definitions/OBConsent'
         type: array
         x-nullable: false
+      openbanking_fdx_consents:
+        items:
+          $ref: '#/definitions/FDXConsent'
+        type: array
+        x-nullable: false
       openbanking_file_payment_consent_file_resources:
         items:
           $ref: '#/definitions/FilePaymentConsentFileResource'
@@ -5558,11 +7147,6 @@ definitions:
       privacy_ledger_events:
         items:
           $ref: '#/definitions/PrivacyLedgerEvent'
-        type: array
-        x-nullable: false
-      quota_usage:
-        items:
-          $ref: '#/definitions/QuotaUsage'
         type: array
         x-nullable: false
       recurring_jobs:
@@ -5615,13 +7199,70 @@ definitions:
           $ref: '#/definitions/ServiceWithScopesAndAPIs'
         type: array
         x-nullable: false
+      templates:
+        items:
+          $ref: '#/definitions/Template'
+        type: array
+        x-nullable: false
       tenant:
         $ref: '#/definitions/Tenant'
+      theme_bindings:
+        items:
+          $ref: '#/definitions/ServerToTheme'
+        type: array
+        x-nullable: false
+      themes:
+        items:
+          $ref: '#/definitions/Theme'
+        type: array
+        x-nullable: false
       vanity_domains:
         items:
           $ref: '#/definitions/VanityDomain'
         type: array
         x-nullable: false
+      webhooks:
+        items:
+          $ref: '#/definitions/Webhook'
+        type: array
+        x-nullable: false
+    type: object
+  TenantMetadata:
+    additionalProperties:
+      type: object
+    type: object
+  Theme:
+    description: Custom Branding theme
+    properties:
+      id:
+        description: theme unique identifier
+        format: themeID
+        type: string
+        x-nullable: false
+      name:
+        description: Display name of the theme
+        example: acme
+        type: string
+        x-nullable: false
+      tenant_id:
+        description: ID of the tenant
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+    required:
+    - tenant_id
+    type: object
+  Token:
+    description: Comment, Directive, or ProcInst.
+    properties:
+      Index:
+        format: int64
+        type: integer
+        x-nullable: false
+      Parent:
+        $ref: '#/definitions/Element'
+    title: A Token is an empty interface that represents an Element, CharData,
     type: object
   TrustAnchorConfiguration:
     properties:
@@ -5633,6 +7274,8 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  UserCodeCharacterSet:
+    type: string
   ValidatorConfig:
     description: Depending on the type of a policy different validators are available.
     properties:
@@ -5719,6 +7362,74 @@ definitions:
     type: object
   VanityDomainType:
     type: string
+  Webhook:
+    description: Custom Branding Webhook
+    properties:
+      active:
+        description: Active
+        type: boolean
+        x-nullable: false
+      api_key:
+        description: API Key
+        type: string
+        x-nullable: false
+      events:
+        additionalProperties:
+          items:
+            type: string
+          type: array
+        description: events
+        type: object
+        x-nullable: false
+      insecure:
+        description: Insecure
+        type: boolean
+        x-nullable: false
+      server_id:
+        description: ID of the server
+        format: serverID
+        type: string
+        x-nullable: false
+      tenant_id:
+        description: ID of the tenant
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      url:
+        description: url of the Webhook
+        type: string
+        x-nullable: false
+      webhook_id:
+        description: ID to the Webhook
+        format: webhookID
+        type: string
+        x-nullable: false
+    required:
+    - tenant_id
+    - server_id
+    - webhook_id
+    type: object
+  X509Certificate:
+    description: X509Certificate represents the XMLSEC object of the same name
+    properties:
+      Data:
+        type: string
+        x-nullable: false
+      XMLName:
+        $ref: '#/definitions/Name'
+    type: object
+  X509Data:
+    description: X509Data represents the XMLSEC object of the same name
+    properties:
+      X509Certificates:
+        items:
+          $ref: '#/definitions/X509Certificate'
+        type: array
+        x-nullable: false
+      XMLName:
+        $ref: '#/definitions/Name'
+    type: object
 host: localhost:8443
 info:
   description: Cloudentity Authorization Control Plane System API
@@ -5727,7 +7438,7 @@ info:
 paths:
   /clients/{wid}:
     get:
-      description: This API lists clients by server
+      description: 'This API lists clients by server'
       operationId: listClientsSystem
       parameters:
       - default: default
@@ -5771,6 +7482,10 @@ paths:
 
         Use the `tid` path parameter to specify which tenant is to have the configuration exported.
       operationId: exportTenantConfiguration
+      parameters:
+      - in: query
+        name: with_data
+        type: boolean
       responses:
         "200":
           $ref: '#/responses/TenantDump'
@@ -6071,7 +7786,6 @@ paths:
     post:
       consumes:
       - application/x-www-form-urlencoded
-      description: Exchange token endpoint as a gateway
       operationId: gatewayExchange
       parameters:
       - in: formData
@@ -6091,13 +7805,13 @@ paths:
       security:
       - system:
         - gateway_exchange_tokens
+      summary: Exchange token endpoint as a gateway
       tags:
       - system
   /gateways/introspect:
     post:
       consumes:
       - application/x-www-form-urlencoded
-      description: Introspect access token endpoint as a gateway
       operationId: gatewayIntrospect
       parameters:
       - in: formData
@@ -6113,6 +7827,7 @@ paths:
       security:
       - system:
         - introspect_tokens
+      summary: Introspect access token endpoint as a gateway
       tags:
       - system
   /gateways/requests:
@@ -6263,8 +7978,8 @@ paths:
           $ref: '#/responses/httpError'
       security:
       - system:
-        - manage_consents
-      summary: Get consent request
+        - manage_scope_grants
+      summary: Get scope grants
       tags:
       - logins
   /scope-grants/{login}/accept:
@@ -6327,6 +8042,68 @@ paths:
       summary: Reject scope grant
       tags:
       - logins
+  /scopes/{wid}:
+    get:
+      description: 'This API lists scopes for a given authorization server'
+      operationId: listScopesSystem
+      parameters:
+      - default: default
+        description: Workspace id
+        in: path
+        name: wid
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ScopesWithServices
+          schema:
+            $ref: '#/definitions/ScopesWithServices'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - system:
+        - view_scopes
+      summary: List scopes for authorfzation server
+      tags:
+      - scopes
+  /servers/{wid}/tokens:
+    delete:
+      description: Revokes tokens issued for consent id provided in the query param.
+      operationId: revokeTokens
+      parameters:
+      - default: default
+        description: Workspace id
+        in: path
+        name: wid
+        required: true
+        type: string
+      - description: Consent ID
+        in: query
+        name: consent_id
+        type: string
+      responses:
+        "204":
+          description: ' Tokens removed'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+      security:
+      - system:
+        - revoke_tokens
+      summary: Revoke tokens
+      tags:
+      - system
 produces:
 - application/json
 responses:
@@ -6382,6 +8159,10 @@ responses:
     description: Scope grant session
     schema:
       $ref: '#/definitions/ScopeGrantSessionResponse'
+  Scopes:
+    description: Scopes
+    schema:
+      $ref: '#/definitions/ScopesWithServices'
   SetGatewayConfigurationResponse:
     description: Set gateway configuration response
     schema:

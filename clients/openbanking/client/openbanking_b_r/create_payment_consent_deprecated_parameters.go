@@ -54,10 +54,12 @@ func NewCreatePaymentConsentDeprecatedParamsWithHTTPClient(client *http.Client) 
 	}
 }
 
-/* CreatePaymentConsentDeprecatedParams contains all the parameters to send to the API endpoint
-   for the create payment consent deprecated operation.
+/*
+CreatePaymentConsentDeprecatedParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the create payment consent deprecated operation.
+
+	Typically these are written to a http.Request.
 */
 type CreatePaymentConsentDeprecatedParams struct {
 

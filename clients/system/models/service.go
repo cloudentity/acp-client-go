@@ -7,9 +7,12 @@ package models
 
 import (
 	"context"
+	"encoding/json"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // Service service
@@ -48,12 +51,96 @@ type Service struct {
 	// Example: default
 	TenantID string `json:"tenant_id,omitempty"`
 
+	// service type
+	// Enum: [oauth2 oidc system user openbanking]
+	Type string `json:"type,omitempty"`
+
+	// Updated at date
+	// Format: date-time
+	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty"`
+
 	// true if service has openapi 3 specification
 	WithSpecification bool `json:"with_specification,omitempty"`
 }
 
 // Validate validates this service
 func (m *Service) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUpdatedAt(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+var serviceTypeTypePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["oauth2","oidc","system","user","openbanking"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		serviceTypeTypePropEnum = append(serviceTypeTypePropEnum, v)
+	}
+}
+
+const (
+
+	// ServiceTypeOauth2 captures enum value "oauth2"
+	ServiceTypeOauth2 string = "oauth2"
+
+	// ServiceTypeOidc captures enum value "oidc"
+	ServiceTypeOidc string = "oidc"
+
+	// ServiceTypeSystem captures enum value "system"
+	ServiceTypeSystem string = "system"
+
+	// ServiceTypeUser captures enum value "user"
+	ServiceTypeUser string = "user"
+
+	// ServiceTypeOpenbanking captures enum value "openbanking"
+	ServiceTypeOpenbanking string = "openbanking"
+)
+
+// prop value enum
+func (m *Service) validateTypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, serviceTypeTypePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *Service) validateType(formats strfmt.Registry) error {
+	if swag.IsZero(m.Type) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateTypeEnum("type", "body", m.Type); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Service) validateUpdatedAt(formats strfmt.Registry) error {
+	if swag.IsZero(m.UpdatedAt) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("updated_at", "body", "date-time", m.UpdatedAt.String(), formats); err != nil {
+		return err
+	}
+
 	return nil
 }
 

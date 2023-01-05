@@ -69,14 +69,44 @@ func NewSendActivationMessageNoContent() *SendActivationMessageNoContent {
 	return &SendActivationMessageNoContent{}
 }
 
-/* SendActivationMessageNoContent describes a response with status code 204, with default header values.
+/*
+SendActivationMessageNoContent describes a response with status code 204, with default header values.
 
-Activation message sent
+	Activation message sent
 */
 type SendActivationMessageNoContent struct {
 }
 
+// IsSuccess returns true when this send activation message no content response has a 2xx status code
+func (o *SendActivationMessageNoContent) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this send activation message no content response has a 3xx status code
+func (o *SendActivationMessageNoContent) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this send activation message no content response has a 4xx status code
+func (o *SendActivationMessageNoContent) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this send activation message no content response has a 5xx status code
+func (o *SendActivationMessageNoContent) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this send activation message no content response a status code equal to that given
+func (o *SendActivationMessageNoContent) IsCode(code int) bool {
+	return code == 204
+}
+
 func (o *SendActivationMessageNoContent) Error() string {
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/activation/send][%d] sendActivationMessageNoContent ", 204)
+}
+
+func (o *SendActivationMessageNoContent) String() string {
 	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/activation/send][%d] sendActivationMessageNoContent ", 204)
 }
 
@@ -90,7 +120,8 @@ func NewSendActivationMessageBadRequest() *SendActivationMessageBadRequest {
 	return &SendActivationMessageBadRequest{}
 }
 
-/* SendActivationMessageBadRequest describes a response with status code 400, with default header values.
+/*
+SendActivationMessageBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -98,9 +129,39 @@ type SendActivationMessageBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this send activation message bad request response has a 2xx status code
+func (o *SendActivationMessageBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this send activation message bad request response has a 3xx status code
+func (o *SendActivationMessageBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this send activation message bad request response has a 4xx status code
+func (o *SendActivationMessageBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this send activation message bad request response has a 5xx status code
+func (o *SendActivationMessageBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this send activation message bad request response a status code equal to that given
+func (o *SendActivationMessageBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *SendActivationMessageBadRequest) Error() string {
 	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/activation/send][%d] sendActivationMessageBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *SendActivationMessageBadRequest) String() string {
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/activation/send][%d] sendActivationMessageBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *SendActivationMessageBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -122,7 +183,8 @@ func NewSendActivationMessageUnauthorized() *SendActivationMessageUnauthorized {
 	return &SendActivationMessageUnauthorized{}
 }
 
-/* SendActivationMessageUnauthorized describes a response with status code 401, with default header values.
+/*
+SendActivationMessageUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -130,9 +192,39 @@ type SendActivationMessageUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this send activation message unauthorized response has a 2xx status code
+func (o *SendActivationMessageUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this send activation message unauthorized response has a 3xx status code
+func (o *SendActivationMessageUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this send activation message unauthorized response has a 4xx status code
+func (o *SendActivationMessageUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this send activation message unauthorized response has a 5xx status code
+func (o *SendActivationMessageUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this send activation message unauthorized response a status code equal to that given
+func (o *SendActivationMessageUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *SendActivationMessageUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/activation/send][%d] sendActivationMessageUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *SendActivationMessageUnauthorized) String() string {
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/activation/send][%d] sendActivationMessageUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *SendActivationMessageUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -154,7 +246,8 @@ func NewSendActivationMessageNotFound() *SendActivationMessageNotFound {
 	return &SendActivationMessageNotFound{}
 }
 
-/* SendActivationMessageNotFound describes a response with status code 404, with default header values.
+/*
+SendActivationMessageNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -162,9 +255,39 @@ type SendActivationMessageNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this send activation message not found response has a 2xx status code
+func (o *SendActivationMessageNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this send activation message not found response has a 3xx status code
+func (o *SendActivationMessageNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this send activation message not found response has a 4xx status code
+func (o *SendActivationMessageNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this send activation message not found response has a 5xx status code
+func (o *SendActivationMessageNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this send activation message not found response a status code equal to that given
+func (o *SendActivationMessageNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *SendActivationMessageNotFound) Error() string {
 	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/activation/send][%d] sendActivationMessageNotFound  %+v", 404, o.Payload)
 }
+
+func (o *SendActivationMessageNotFound) String() string {
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/activation/send][%d] sendActivationMessageNotFound  %+v", 404, o.Payload)
+}
+
 func (o *SendActivationMessageNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -186,7 +309,8 @@ func NewSendActivationMessageUnprocessableEntity() *SendActivationMessageUnproce
 	return &SendActivationMessageUnprocessableEntity{}
 }
 
-/* SendActivationMessageUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+SendActivationMessageUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -194,9 +318,39 @@ type SendActivationMessageUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this send activation message unprocessable entity response has a 2xx status code
+func (o *SendActivationMessageUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this send activation message unprocessable entity response has a 3xx status code
+func (o *SendActivationMessageUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this send activation message unprocessable entity response has a 4xx status code
+func (o *SendActivationMessageUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this send activation message unprocessable entity response has a 5xx status code
+func (o *SendActivationMessageUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this send activation message unprocessable entity response a status code equal to that given
+func (o *SendActivationMessageUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *SendActivationMessageUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/activation/send][%d] sendActivationMessageUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *SendActivationMessageUnprocessableEntity) String() string {
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/activation/send][%d] sendActivationMessageUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *SendActivationMessageUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -218,7 +372,8 @@ func NewSendActivationMessageTooManyRequests() *SendActivationMessageTooManyRequ
 	return &SendActivationMessageTooManyRequests{}
 }
 
-/* SendActivationMessageTooManyRequests describes a response with status code 429, with default header values.
+/*
+SendActivationMessageTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -226,9 +381,39 @@ type SendActivationMessageTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this send activation message too many requests response has a 2xx status code
+func (o *SendActivationMessageTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this send activation message too many requests response has a 3xx status code
+func (o *SendActivationMessageTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this send activation message too many requests response has a 4xx status code
+func (o *SendActivationMessageTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this send activation message too many requests response has a 5xx status code
+func (o *SendActivationMessageTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this send activation message too many requests response a status code equal to that given
+func (o *SendActivationMessageTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *SendActivationMessageTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/activation/send][%d] sendActivationMessageTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *SendActivationMessageTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/activation/send][%d] sendActivationMessageTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *SendActivationMessageTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

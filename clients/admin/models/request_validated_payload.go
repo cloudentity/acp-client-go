@@ -20,6 +20,9 @@ import (
 // swagger:model RequestValidatedPayload
 type RequestValidatedPayload struct {
 
+	// Actor claims
+	ActorClaims map[string]interface{} `json:"actor_claims,omitempty"`
+
 	// anonymous
 	Anonymous bool `json:"anonymous,omitempty"`
 
@@ -38,6 +41,9 @@ type RequestValidatedPayload struct {
 	// Stores information if the owner of the client application is a developer.
 	CreatedByDeveloper bool `json:"created_by_developer,omitempty"`
 
+	// duration ms
+	DurationMs int64 `json:"duration_ms,omitempty"`
+
 	// gateway
 	Gateway *Gateway `json:"gateway,omitempty"`
 
@@ -47,6 +53,9 @@ type RequestValidatedPayload struct {
 
 	// invalid token
 	InvalidToken bool `json:"invalid_token,omitempty"`
+
+	// output
+	Output map[string]string `json:"output,omitempty"`
 
 	// Stores information if the client application is a public one.
 	Public bool `json:"public,omitempty"`

@@ -63,7 +63,8 @@ func NewBindServerOK() *BindServerOK {
 	return &BindServerOK{}
 }
 
-/* BindServerOK describes a response with status code 200, with default header values.
+/*
+BindServerOK describes a response with status code 200, with default header values.
 
 Server to server binding
 */
@@ -71,9 +72,39 @@ type BindServerOK struct {
 	Payload *models.ServerToServer
 }
 
+// IsSuccess returns true when this bind server o k response has a 2xx status code
+func (o *BindServerOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this bind server o k response has a 3xx status code
+func (o *BindServerOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this bind server o k response has a 4xx status code
+func (o *BindServerOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this bind server o k response has a 5xx status code
+func (o *BindServerOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this bind server o k response a status code equal to that given
+func (o *BindServerOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *BindServerOK) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/bind/{rid}][%d] bindServerOK  %+v", 200, o.Payload)
 }
+
+func (o *BindServerOK) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/bind/{rid}][%d] bindServerOK  %+v", 200, o.Payload)
+}
+
 func (o *BindServerOK) GetPayload() *models.ServerToServer {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewBindServerUnauthorized() *BindServerUnauthorized {
 	return &BindServerUnauthorized{}
 }
 
-/* BindServerUnauthorized describes a response with status code 401, with default header values.
+/*
+BindServerUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type BindServerUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this bind server unauthorized response has a 2xx status code
+func (o *BindServerUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this bind server unauthorized response has a 3xx status code
+func (o *BindServerUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this bind server unauthorized response has a 4xx status code
+func (o *BindServerUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this bind server unauthorized response has a 5xx status code
+func (o *BindServerUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this bind server unauthorized response a status code equal to that given
+func (o *BindServerUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *BindServerUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/bind/{rid}][%d] bindServerUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *BindServerUnauthorized) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/bind/{rid}][%d] bindServerUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *BindServerUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewBindServerForbidden() *BindServerForbidden {
 	return &BindServerForbidden{}
 }
 
-/* BindServerForbidden describes a response with status code 403, with default header values.
+/*
+BindServerForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type BindServerForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this bind server forbidden response has a 2xx status code
+func (o *BindServerForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this bind server forbidden response has a 3xx status code
+func (o *BindServerForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this bind server forbidden response has a 4xx status code
+func (o *BindServerForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this bind server forbidden response has a 5xx status code
+func (o *BindServerForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this bind server forbidden response a status code equal to that given
+func (o *BindServerForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *BindServerForbidden) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/bind/{rid}][%d] bindServerForbidden  %+v", 403, o.Payload)
 }
+
+func (o *BindServerForbidden) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/bind/{rid}][%d] bindServerForbidden  %+v", 403, o.Payload)
+}
+
 func (o *BindServerForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewBindServerNotFound() *BindServerNotFound {
 	return &BindServerNotFound{}
 }
 
-/* BindServerNotFound describes a response with status code 404, with default header values.
+/*
+BindServerNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type BindServerNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this bind server not found response has a 2xx status code
+func (o *BindServerNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this bind server not found response has a 3xx status code
+func (o *BindServerNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this bind server not found response has a 4xx status code
+func (o *BindServerNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this bind server not found response has a 5xx status code
+func (o *BindServerNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this bind server not found response a status code equal to that given
+func (o *BindServerNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *BindServerNotFound) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/bind/{rid}][%d] bindServerNotFound  %+v", 404, o.Payload)
 }
+
+func (o *BindServerNotFound) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/bind/{rid}][%d] bindServerNotFound  %+v", 404, o.Payload)
+}
+
 func (o *BindServerNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewBindServerTooManyRequests() *BindServerTooManyRequests {
 	return &BindServerTooManyRequests{}
 }
 
-/* BindServerTooManyRequests describes a response with status code 429, with default header values.
+/*
+BindServerTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type BindServerTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this bind server too many requests response has a 2xx status code
+func (o *BindServerTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this bind server too many requests response has a 3xx status code
+func (o *BindServerTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this bind server too many requests response has a 4xx status code
+func (o *BindServerTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this bind server too many requests response has a 5xx status code
+func (o *BindServerTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this bind server too many requests response a status code equal to that given
+func (o *BindServerTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *BindServerTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/bind/{rid}][%d] bindServerTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *BindServerTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/bind/{rid}][%d] bindServerTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *BindServerTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

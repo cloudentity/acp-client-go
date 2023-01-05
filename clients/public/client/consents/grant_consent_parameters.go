@@ -54,10 +54,12 @@ func NewGrantConsentParamsWithHTTPClient(client *http.Client) *GrantConsentParam
 	}
 }
 
-/* GrantConsentParams contains all the parameters to send to the API endpoint
-   for the grant consent operation.
+/*
+GrantConsentParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the grant consent operation.
+
+	Typically these are written to a http.Request.
 */
 type GrantConsentParams struct {
 

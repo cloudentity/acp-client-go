@@ -52,10 +52,12 @@ func NewRotateKeyParamsWithHTTPClient(client *http.Client) *RotateKeyParams {
 	}
 }
 
-/* RotateKeyParams contains all the parameters to send to the API endpoint
-   for the rotate key operation.
+/*
+RotateKeyParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the rotate key operation.
+
+	Typically these are written to a http.Request.
 */
 type RotateKeyParams struct {
 

@@ -63,7 +63,8 @@ func NewListAdminTenantsOK() *ListAdminTenantsOK {
 	return &ListAdminTenantsOK{}
 }
 
-/* ListAdminTenantsOK describes a response with status code 200, with default header values.
+/*
+ListAdminTenantsOK describes a response with status code 200, with default header values.
 
 List of tenants
 */
@@ -71,9 +72,39 @@ type ListAdminTenantsOK struct {
 	Payload *models.Tenants
 }
 
+// IsSuccess returns true when this list admin tenants o k response has a 2xx status code
+func (o *ListAdminTenantsOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this list admin tenants o k response has a 3xx status code
+func (o *ListAdminTenantsOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list admin tenants o k response has a 4xx status code
+func (o *ListAdminTenantsOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this list admin tenants o k response has a 5xx status code
+func (o *ListAdminTenantsOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list admin tenants o k response a status code equal to that given
+func (o *ListAdminTenantsOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *ListAdminTenantsOK) Error() string {
 	return fmt.Sprintf("[GET /api/admin/tenants][%d] listAdminTenantsOK  %+v", 200, o.Payload)
 }
+
+func (o *ListAdminTenantsOK) String() string {
+	return fmt.Sprintf("[GET /api/admin/tenants][%d] listAdminTenantsOK  %+v", 200, o.Payload)
+}
+
 func (o *ListAdminTenantsOK) GetPayload() *models.Tenants {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewListAdminTenantsUnauthorized() *ListAdminTenantsUnauthorized {
 	return &ListAdminTenantsUnauthorized{}
 }
 
-/* ListAdminTenantsUnauthorized describes a response with status code 401, with default header values.
+/*
+ListAdminTenantsUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type ListAdminTenantsUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list admin tenants unauthorized response has a 2xx status code
+func (o *ListAdminTenantsUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list admin tenants unauthorized response has a 3xx status code
+func (o *ListAdminTenantsUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list admin tenants unauthorized response has a 4xx status code
+func (o *ListAdminTenantsUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list admin tenants unauthorized response has a 5xx status code
+func (o *ListAdminTenantsUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list admin tenants unauthorized response a status code equal to that given
+func (o *ListAdminTenantsUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *ListAdminTenantsUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/admin/tenants][%d] listAdminTenantsUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *ListAdminTenantsUnauthorized) String() string {
+	return fmt.Sprintf("[GET /api/admin/tenants][%d] listAdminTenantsUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *ListAdminTenantsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewListAdminTenantsForbidden() *ListAdminTenantsForbidden {
 	return &ListAdminTenantsForbidden{}
 }
 
-/* ListAdminTenantsForbidden describes a response with status code 403, with default header values.
+/*
+ListAdminTenantsForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type ListAdminTenantsForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list admin tenants forbidden response has a 2xx status code
+func (o *ListAdminTenantsForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list admin tenants forbidden response has a 3xx status code
+func (o *ListAdminTenantsForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list admin tenants forbidden response has a 4xx status code
+func (o *ListAdminTenantsForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list admin tenants forbidden response has a 5xx status code
+func (o *ListAdminTenantsForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list admin tenants forbidden response a status code equal to that given
+func (o *ListAdminTenantsForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *ListAdminTenantsForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/admin/tenants][%d] listAdminTenantsForbidden  %+v", 403, o.Payload)
 }
+
+func (o *ListAdminTenantsForbidden) String() string {
+	return fmt.Sprintf("[GET /api/admin/tenants][%d] listAdminTenantsForbidden  %+v", 403, o.Payload)
+}
+
 func (o *ListAdminTenantsForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewListAdminTenantsNotFound() *ListAdminTenantsNotFound {
 	return &ListAdminTenantsNotFound{}
 }
 
-/* ListAdminTenantsNotFound describes a response with status code 404, with default header values.
+/*
+ListAdminTenantsNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type ListAdminTenantsNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list admin tenants not found response has a 2xx status code
+func (o *ListAdminTenantsNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list admin tenants not found response has a 3xx status code
+func (o *ListAdminTenantsNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list admin tenants not found response has a 4xx status code
+func (o *ListAdminTenantsNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list admin tenants not found response has a 5xx status code
+func (o *ListAdminTenantsNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list admin tenants not found response a status code equal to that given
+func (o *ListAdminTenantsNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *ListAdminTenantsNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/admin/tenants][%d] listAdminTenantsNotFound  %+v", 404, o.Payload)
 }
+
+func (o *ListAdminTenantsNotFound) String() string {
+	return fmt.Sprintf("[GET /api/admin/tenants][%d] listAdminTenantsNotFound  %+v", 404, o.Payload)
+}
+
 func (o *ListAdminTenantsNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewListAdminTenantsTooManyRequests() *ListAdminTenantsTooManyRequests {
 	return &ListAdminTenantsTooManyRequests{}
 }
 
-/* ListAdminTenantsTooManyRequests describes a response with status code 429, with default header values.
+/*
+ListAdminTenantsTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type ListAdminTenantsTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list admin tenants too many requests response has a 2xx status code
+func (o *ListAdminTenantsTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list admin tenants too many requests response has a 3xx status code
+func (o *ListAdminTenantsTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list admin tenants too many requests response has a 4xx status code
+func (o *ListAdminTenantsTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list admin tenants too many requests response has a 5xx status code
+func (o *ListAdminTenantsTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list admin tenants too many requests response a status code equal to that given
+func (o *ListAdminTenantsTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *ListAdminTenantsTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /api/admin/tenants][%d] listAdminTenantsTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *ListAdminTenantsTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /api/admin/tenants][%d] listAdminTenantsTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *ListAdminTenantsTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

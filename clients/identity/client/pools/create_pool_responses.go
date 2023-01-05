@@ -81,7 +81,8 @@ func NewCreatePoolCreated() *CreatePoolCreated {
 	return &CreatePoolCreated{}
 }
 
-/* CreatePoolCreated describes a response with status code 201, with default header values.
+/*
+CreatePoolCreated describes a response with status code 201, with default header values.
 
 Pool
 */
@@ -89,9 +90,39 @@ type CreatePoolCreated struct {
 	Payload *models.Pool
 }
 
+// IsSuccess returns true when this create pool created response has a 2xx status code
+func (o *CreatePoolCreated) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this create pool created response has a 3xx status code
+func (o *CreatePoolCreated) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create pool created response has a 4xx status code
+func (o *CreatePoolCreated) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create pool created response has a 5xx status code
+func (o *CreatePoolCreated) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create pool created response a status code equal to that given
+func (o *CreatePoolCreated) IsCode(code int) bool {
+	return code == 201
+}
+
 func (o *CreatePoolCreated) Error() string {
 	return fmt.Sprintf("[POST /admin/pools][%d] createPoolCreated  %+v", 201, o.Payload)
 }
+
+func (o *CreatePoolCreated) String() string {
+	return fmt.Sprintf("[POST /admin/pools][%d] createPoolCreated  %+v", 201, o.Payload)
+}
+
 func (o *CreatePoolCreated) GetPayload() *models.Pool {
 	return o.Payload
 }
@@ -113,7 +144,8 @@ func NewCreatePoolBadRequest() *CreatePoolBadRequest {
 	return &CreatePoolBadRequest{}
 }
 
-/* CreatePoolBadRequest describes a response with status code 400, with default header values.
+/*
+CreatePoolBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -121,9 +153,39 @@ type CreatePoolBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create pool bad request response has a 2xx status code
+func (o *CreatePoolBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create pool bad request response has a 3xx status code
+func (o *CreatePoolBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create pool bad request response has a 4xx status code
+func (o *CreatePoolBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create pool bad request response has a 5xx status code
+func (o *CreatePoolBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create pool bad request response a status code equal to that given
+func (o *CreatePoolBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *CreatePoolBadRequest) Error() string {
 	return fmt.Sprintf("[POST /admin/pools][%d] createPoolBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *CreatePoolBadRequest) String() string {
+	return fmt.Sprintf("[POST /admin/pools][%d] createPoolBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *CreatePoolBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -145,7 +207,8 @@ func NewCreatePoolUnauthorized() *CreatePoolUnauthorized {
 	return &CreatePoolUnauthorized{}
 }
 
-/* CreatePoolUnauthorized describes a response with status code 401, with default header values.
+/*
+CreatePoolUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -153,9 +216,39 @@ type CreatePoolUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create pool unauthorized response has a 2xx status code
+func (o *CreatePoolUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create pool unauthorized response has a 3xx status code
+func (o *CreatePoolUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create pool unauthorized response has a 4xx status code
+func (o *CreatePoolUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create pool unauthorized response has a 5xx status code
+func (o *CreatePoolUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create pool unauthorized response a status code equal to that given
+func (o *CreatePoolUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *CreatePoolUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /admin/pools][%d] createPoolUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *CreatePoolUnauthorized) String() string {
+	return fmt.Sprintf("[POST /admin/pools][%d] createPoolUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *CreatePoolUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -177,7 +270,8 @@ func NewCreatePoolForbidden() *CreatePoolForbidden {
 	return &CreatePoolForbidden{}
 }
 
-/* CreatePoolForbidden describes a response with status code 403, with default header values.
+/*
+CreatePoolForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -185,9 +279,39 @@ type CreatePoolForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create pool forbidden response has a 2xx status code
+func (o *CreatePoolForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create pool forbidden response has a 3xx status code
+func (o *CreatePoolForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create pool forbidden response has a 4xx status code
+func (o *CreatePoolForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create pool forbidden response has a 5xx status code
+func (o *CreatePoolForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create pool forbidden response a status code equal to that given
+func (o *CreatePoolForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *CreatePoolForbidden) Error() string {
 	return fmt.Sprintf("[POST /admin/pools][%d] createPoolForbidden  %+v", 403, o.Payload)
 }
+
+func (o *CreatePoolForbidden) String() string {
+	return fmt.Sprintf("[POST /admin/pools][%d] createPoolForbidden  %+v", 403, o.Payload)
+}
+
 func (o *CreatePoolForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -209,7 +333,8 @@ func NewCreatePoolNotFound() *CreatePoolNotFound {
 	return &CreatePoolNotFound{}
 }
 
-/* CreatePoolNotFound describes a response with status code 404, with default header values.
+/*
+CreatePoolNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -217,9 +342,39 @@ type CreatePoolNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create pool not found response has a 2xx status code
+func (o *CreatePoolNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create pool not found response has a 3xx status code
+func (o *CreatePoolNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create pool not found response has a 4xx status code
+func (o *CreatePoolNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create pool not found response has a 5xx status code
+func (o *CreatePoolNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create pool not found response a status code equal to that given
+func (o *CreatePoolNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *CreatePoolNotFound) Error() string {
 	return fmt.Sprintf("[POST /admin/pools][%d] createPoolNotFound  %+v", 404, o.Payload)
 }
+
+func (o *CreatePoolNotFound) String() string {
+	return fmt.Sprintf("[POST /admin/pools][%d] createPoolNotFound  %+v", 404, o.Payload)
+}
+
 func (o *CreatePoolNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -241,7 +396,8 @@ func NewCreatePoolConflict() *CreatePoolConflict {
 	return &CreatePoolConflict{}
 }
 
-/* CreatePoolConflict describes a response with status code 409, with default header values.
+/*
+CreatePoolConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -249,9 +405,39 @@ type CreatePoolConflict struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create pool conflict response has a 2xx status code
+func (o *CreatePoolConflict) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create pool conflict response has a 3xx status code
+func (o *CreatePoolConflict) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create pool conflict response has a 4xx status code
+func (o *CreatePoolConflict) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create pool conflict response has a 5xx status code
+func (o *CreatePoolConflict) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create pool conflict response a status code equal to that given
+func (o *CreatePoolConflict) IsCode(code int) bool {
+	return code == 409
+}
+
 func (o *CreatePoolConflict) Error() string {
 	return fmt.Sprintf("[POST /admin/pools][%d] createPoolConflict  %+v", 409, o.Payload)
 }
+
+func (o *CreatePoolConflict) String() string {
+	return fmt.Sprintf("[POST /admin/pools][%d] createPoolConflict  %+v", 409, o.Payload)
+}
+
 func (o *CreatePoolConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -273,7 +459,8 @@ func NewCreatePoolUnprocessableEntity() *CreatePoolUnprocessableEntity {
 	return &CreatePoolUnprocessableEntity{}
 }
 
-/* CreatePoolUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+CreatePoolUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -281,9 +468,39 @@ type CreatePoolUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create pool unprocessable entity response has a 2xx status code
+func (o *CreatePoolUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create pool unprocessable entity response has a 3xx status code
+func (o *CreatePoolUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create pool unprocessable entity response has a 4xx status code
+func (o *CreatePoolUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create pool unprocessable entity response has a 5xx status code
+func (o *CreatePoolUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create pool unprocessable entity response a status code equal to that given
+func (o *CreatePoolUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *CreatePoolUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /admin/pools][%d] createPoolUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *CreatePoolUnprocessableEntity) String() string {
+	return fmt.Sprintf("[POST /admin/pools][%d] createPoolUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *CreatePoolUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -305,7 +522,8 @@ func NewCreatePoolTooManyRequests() *CreatePoolTooManyRequests {
 	return &CreatePoolTooManyRequests{}
 }
 
-/* CreatePoolTooManyRequests describes a response with status code 429, with default header values.
+/*
+CreatePoolTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -313,9 +531,39 @@ type CreatePoolTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create pool too many requests response has a 2xx status code
+func (o *CreatePoolTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create pool too many requests response has a 3xx status code
+func (o *CreatePoolTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create pool too many requests response has a 4xx status code
+func (o *CreatePoolTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create pool too many requests response has a 5xx status code
+func (o *CreatePoolTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create pool too many requests response a status code equal to that given
+func (o *CreatePoolTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *CreatePoolTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /admin/pools][%d] createPoolTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *CreatePoolTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /admin/pools][%d] createPoolTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *CreatePoolTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

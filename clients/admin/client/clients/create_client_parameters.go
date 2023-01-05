@@ -54,10 +54,12 @@ func NewCreateClientParamsWithHTTPClient(client *http.Client) *CreateClientParam
 	}
 }
 
-/* CreateClientParams contains all the parameters to send to the API endpoint
-   for the create client operation.
+/*
+CreateClientParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the create client operation.
+
+	Typically these are written to a http.Request.
 */
 type CreateClientParams struct {
 

@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	"encoding/json"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -41,7 +42,8 @@ type ScriptExecutionPoint struct {
 	// String representation of the script execution point type
 	// Example: post_authn_ctx
 	// Required: true
-	Type interface{} `json:"type"`
+	// Enum: [post_authn_ctx allowed_idp_ids token_minting]
+	Type string `json:"type"`
 }
 
 // Validate validates this script execution point
@@ -97,10 +99,47 @@ func (m *ScriptExecutionPoint) validateTenantID(formats strfmt.Registry) error {
 	return nil
 }
 
+var scriptExecutionPointTypeTypePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["post_authn_ctx","allowed_idp_ids","token_minting"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		scriptExecutionPointTypeTypePropEnum = append(scriptExecutionPointTypeTypePropEnum, v)
+	}
+}
+
+const (
+
+	// ScriptExecutionPointTypePostAuthnCtx captures enum value "post_authn_ctx"
+	ScriptExecutionPointTypePostAuthnCtx string = "post_authn_ctx"
+
+	// ScriptExecutionPointTypeAllowedIdpIds captures enum value "allowed_idp_ids"
+	ScriptExecutionPointTypeAllowedIdpIds string = "allowed_idp_ids"
+
+	// ScriptExecutionPointTypeTokenMinting captures enum value "token_minting"
+	ScriptExecutionPointTypeTokenMinting string = "token_minting"
+)
+
+// prop value enum
+func (m *ScriptExecutionPoint) validateTypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, scriptExecutionPointTypeTypePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (m *ScriptExecutionPoint) validateType(formats strfmt.Registry) error {
 
-	if m.Type == nil {
-		return errors.Required("type", "body", nil)
+	if err := validate.RequiredString("type", "body", m.Type); err != nil {
+		return err
+	}
+
+	// value enum
+	if err := m.validateTypeEnum("type", "body", m.Type); err != nil {
+		return err
 	}
 
 	return nil

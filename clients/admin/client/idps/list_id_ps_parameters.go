@@ -52,10 +52,12 @@ func NewListIDPsParamsWithHTTPClient(client *http.Client) *ListIDPsParams {
 	}
 }
 
-/* ListIDPsParams contains all the parameters to send to the API endpoint
-   for the list ID ps operation.
+/*
+ListIDPsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the list ID ps operation.
+
+	Typically these are written to a http.Request.
 */
 type ListIDPsParams struct {
 

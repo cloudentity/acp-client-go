@@ -54,10 +54,12 @@ func NewTestPolicyParamsWithHTTPClient(client *http.Client) *TestPolicyParams {
 	}
 }
 
-/* TestPolicyParams contains all the parameters to send to the API endpoint
-   for the test policy operation.
+/*
+TestPolicyParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the test policy operation.
+
+	Typically these are written to a http.Request.
 */
 type TestPolicyParams struct {
 

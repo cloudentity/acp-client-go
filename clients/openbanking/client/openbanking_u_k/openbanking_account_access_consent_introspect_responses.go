@@ -60,7 +60,8 @@ func NewOpenbankingAccountAccessConsentIntrospectOK() *OpenbankingAccountAccessC
 	return &OpenbankingAccountAccessConsentIntrospectOK{}
 }
 
-/* OpenbankingAccountAccessConsentIntrospectOK describes a response with status code 200, with default header values.
+/*
+OpenbankingAccountAccessConsentIntrospectOK describes a response with status code 200, with default header values.
 
 Introspect Openbanking Account Access Consent Response
 */
@@ -68,9 +69,39 @@ type OpenbankingAccountAccessConsentIntrospectOK struct {
 	Payload *OpenbankingAccountAccessConsentIntrospectOKBody
 }
 
+// IsSuccess returns true when this openbanking account access consent introspect o k response has a 2xx status code
+func (o *OpenbankingAccountAccessConsentIntrospectOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this openbanking account access consent introspect o k response has a 3xx status code
+func (o *OpenbankingAccountAccessConsentIntrospectOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this openbanking account access consent introspect o k response has a 4xx status code
+func (o *OpenbankingAccountAccessConsentIntrospectOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this openbanking account access consent introspect o k response has a 5xx status code
+func (o *OpenbankingAccountAccessConsentIntrospectOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this openbanking account access consent introspect o k response a status code equal to that given
+func (o *OpenbankingAccountAccessConsentIntrospectOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *OpenbankingAccountAccessConsentIntrospectOK) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents/introspect][%d] openbankingAccountAccessConsentIntrospectOK  %+v", 200, o.Payload)
 }
+
+func (o *OpenbankingAccountAccessConsentIntrospectOK) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents/introspect][%d] openbankingAccountAccessConsentIntrospectOK  %+v", 200, o.Payload)
+}
+
 func (o *OpenbankingAccountAccessConsentIntrospectOK) GetPayload() *OpenbankingAccountAccessConsentIntrospectOKBody {
 	return o.Payload
 }
@@ -92,7 +123,8 @@ func NewOpenbankingAccountAccessConsentIntrospectUnauthorized() *OpenbankingAcco
 	return &OpenbankingAccountAccessConsentIntrospectUnauthorized{}
 }
 
-/* OpenbankingAccountAccessConsentIntrospectUnauthorized describes a response with status code 401, with default header values.
+/*
+OpenbankingAccountAccessConsentIntrospectUnauthorized describes a response with status code 401, with default header values.
 
 ErrorResponse
 */
@@ -100,9 +132,39 @@ type OpenbankingAccountAccessConsentIntrospectUnauthorized struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this openbanking account access consent introspect unauthorized response has a 2xx status code
+func (o *OpenbankingAccountAccessConsentIntrospectUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this openbanking account access consent introspect unauthorized response has a 3xx status code
+func (o *OpenbankingAccountAccessConsentIntrospectUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this openbanking account access consent introspect unauthorized response has a 4xx status code
+func (o *OpenbankingAccountAccessConsentIntrospectUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this openbanking account access consent introspect unauthorized response has a 5xx status code
+func (o *OpenbankingAccountAccessConsentIntrospectUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this openbanking account access consent introspect unauthorized response a status code equal to that given
+func (o *OpenbankingAccountAccessConsentIntrospectUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *OpenbankingAccountAccessConsentIntrospectUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents/introspect][%d] openbankingAccountAccessConsentIntrospectUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *OpenbankingAccountAccessConsentIntrospectUnauthorized) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents/introspect][%d] openbankingAccountAccessConsentIntrospectUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *OpenbankingAccountAccessConsentIntrospectUnauthorized) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -124,7 +186,8 @@ func NewOpenbankingAccountAccessConsentIntrospectNotFound() *OpenbankingAccountA
 	return &OpenbankingAccountAccessConsentIntrospectNotFound{}
 }
 
-/* OpenbankingAccountAccessConsentIntrospectNotFound describes a response with status code 404, with default header values.
+/*
+OpenbankingAccountAccessConsentIntrospectNotFound describes a response with status code 404, with default header values.
 
 ErrorResponse
 */
@@ -132,9 +195,39 @@ type OpenbankingAccountAccessConsentIntrospectNotFound struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this openbanking account access consent introspect not found response has a 2xx status code
+func (o *OpenbankingAccountAccessConsentIntrospectNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this openbanking account access consent introspect not found response has a 3xx status code
+func (o *OpenbankingAccountAccessConsentIntrospectNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this openbanking account access consent introspect not found response has a 4xx status code
+func (o *OpenbankingAccountAccessConsentIntrospectNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this openbanking account access consent introspect not found response has a 5xx status code
+func (o *OpenbankingAccountAccessConsentIntrospectNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this openbanking account access consent introspect not found response a status code equal to that given
+func (o *OpenbankingAccountAccessConsentIntrospectNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *OpenbankingAccountAccessConsentIntrospectNotFound) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents/introspect][%d] openbankingAccountAccessConsentIntrospectNotFound  %+v", 404, o.Payload)
 }
+
+func (o *OpenbankingAccountAccessConsentIntrospectNotFound) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents/introspect][%d] openbankingAccountAccessConsentIntrospectNotFound  %+v", 404, o.Payload)
+}
+
 func (o *OpenbankingAccountAccessConsentIntrospectNotFound) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -156,7 +249,8 @@ func NewOpenbankingAccountAccessConsentIntrospectTooManyRequests() *OpenbankingA
 	return &OpenbankingAccountAccessConsentIntrospectTooManyRequests{}
 }
 
-/* OpenbankingAccountAccessConsentIntrospectTooManyRequests describes a response with status code 429, with default header values.
+/*
+OpenbankingAccountAccessConsentIntrospectTooManyRequests describes a response with status code 429, with default header values.
 
 ErrorResponse
 */
@@ -164,9 +258,39 @@ type OpenbankingAccountAccessConsentIntrospectTooManyRequests struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this openbanking account access consent introspect too many requests response has a 2xx status code
+func (o *OpenbankingAccountAccessConsentIntrospectTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this openbanking account access consent introspect too many requests response has a 3xx status code
+func (o *OpenbankingAccountAccessConsentIntrospectTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this openbanking account access consent introspect too many requests response has a 4xx status code
+func (o *OpenbankingAccountAccessConsentIntrospectTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this openbanking account access consent introspect too many requests response has a 5xx status code
+func (o *OpenbankingAccountAccessConsentIntrospectTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this openbanking account access consent introspect too many requests response a status code equal to that given
+func (o *OpenbankingAccountAccessConsentIntrospectTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *OpenbankingAccountAccessConsentIntrospectTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents/introspect][%d] openbankingAccountAccessConsentIntrospectTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *OpenbankingAccountAccessConsentIntrospectTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/aisp/account-access-consents/introspect][%d] openbankingAccountAccessConsentIntrospectTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *OpenbankingAccountAccessConsentIntrospectTooManyRequests) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -183,7 +307,8 @@ func (o *OpenbankingAccountAccessConsentIntrospectTooManyRequests) readResponse(
 	return nil
 }
 
-/*OpenbankingAccountAccessConsentIntrospectOKBody openbanking account access consent introspect o k body
+/*
+OpenbankingAccountAccessConsentIntrospectOKBody openbanking account access consent introspect o k body
 swagger:model OpenbankingAccountAccessConsentIntrospectOKBody
 */
 type OpenbankingAccountAccessConsentIntrospectOKBody struct {

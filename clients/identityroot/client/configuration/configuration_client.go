@@ -40,7 +40,7 @@ type ClientService interface {
 }
 
 /*
-  ExportConfiguration export configuration API
+ExportConfiguration export configuration API
 */
 func (a *Client) ExportConfiguration(params *ExportConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ExportConfigurationOK, error) {
 	// TODO: Validate the params before sending
@@ -79,7 +79,7 @@ func (a *Client) ExportConfiguration(params *ExportConfigurationParams, authInfo
 }
 
 /*
-  ImportConfiguration import configuration API
+ImportConfiguration import configuration API
 */
 func (a *Client) ImportConfiguration(params *ImportConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportConfigurationNoContent, error) {
 	// TODO: Validate the params before sending
@@ -118,9 +118,9 @@ func (a *Client) ImportConfiguration(params *ImportConfigurationParams, authInfo
 }
 
 /*
-  PatchConfiguration patches configuration
+PatchConfiguration patches configuration
 
-  Patch tenant configuration using RFC 6902 JSON Patch.
+Patch tenant configuration using RFC 6902 JSON Patch.
 */
 func (a *Client) PatchConfiguration(params *PatchConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchConfigurationNoContent, error) {
 	// TODO: Validate the params before sending

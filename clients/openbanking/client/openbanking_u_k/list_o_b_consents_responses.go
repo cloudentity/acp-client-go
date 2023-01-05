@@ -75,7 +75,8 @@ func NewListOBConsentsOK() *ListOBConsentsOK {
 	return &ListOBConsentsOK{}
 }
 
-/* ListOBConsentsOK describes a response with status code 200, with default header values.
+/*
+ListOBConsentsOK describes a response with status code 200, with default header values.
 
 Consents
 */
@@ -83,9 +84,39 @@ type ListOBConsentsOK struct {
 	Payload *models.OBUKConsents
 }
 
+// IsSuccess returns true when this list o b consents o k response has a 2xx status code
+func (o *ListOBConsentsOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this list o b consents o k response has a 3xx status code
+func (o *ListOBConsentsOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list o b consents o k response has a 4xx status code
+func (o *ListOBConsentsOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this list o b consents o k response has a 5xx status code
+func (o *ListOBConsentsOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list o b consents o k response a status code equal to that given
+func (o *ListOBConsentsOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *ListOBConsentsOK) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents][%d] listOBConsentsOK  %+v", 200, o.Payload)
 }
+
+func (o *ListOBConsentsOK) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents][%d] listOBConsentsOK  %+v", 200, o.Payload)
+}
+
 func (o *ListOBConsentsOK) GetPayload() *models.OBUKConsents {
 	return o.Payload
 }
@@ -107,7 +138,8 @@ func NewListOBConsentsBadRequest() *ListOBConsentsBadRequest {
 	return &ListOBConsentsBadRequest{}
 }
 
-/* ListOBConsentsBadRequest describes a response with status code 400, with default header values.
+/*
+ListOBConsentsBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -115,9 +147,39 @@ type ListOBConsentsBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list o b consents bad request response has a 2xx status code
+func (o *ListOBConsentsBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list o b consents bad request response has a 3xx status code
+func (o *ListOBConsentsBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list o b consents bad request response has a 4xx status code
+func (o *ListOBConsentsBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list o b consents bad request response has a 5xx status code
+func (o *ListOBConsentsBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list o b consents bad request response a status code equal to that given
+func (o *ListOBConsentsBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *ListOBConsentsBadRequest) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents][%d] listOBConsentsBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *ListOBConsentsBadRequest) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents][%d] listOBConsentsBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *ListOBConsentsBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -139,7 +201,8 @@ func NewListOBConsentsUnauthorized() *ListOBConsentsUnauthorized {
 	return &ListOBConsentsUnauthorized{}
 }
 
-/* ListOBConsentsUnauthorized describes a response with status code 401, with default header values.
+/*
+ListOBConsentsUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,9 +210,39 @@ type ListOBConsentsUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list o b consents unauthorized response has a 2xx status code
+func (o *ListOBConsentsUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list o b consents unauthorized response has a 3xx status code
+func (o *ListOBConsentsUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list o b consents unauthorized response has a 4xx status code
+func (o *ListOBConsentsUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list o b consents unauthorized response has a 5xx status code
+func (o *ListOBConsentsUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list o b consents unauthorized response a status code equal to that given
+func (o *ListOBConsentsUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *ListOBConsentsUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents][%d] listOBConsentsUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *ListOBConsentsUnauthorized) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents][%d] listOBConsentsUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *ListOBConsentsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -171,7 +264,8 @@ func NewListOBConsentsForbidden() *ListOBConsentsForbidden {
 	return &ListOBConsentsForbidden{}
 }
 
-/* ListOBConsentsForbidden describes a response with status code 403, with default header values.
+/*
+ListOBConsentsForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -179,9 +273,39 @@ type ListOBConsentsForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list o b consents forbidden response has a 2xx status code
+func (o *ListOBConsentsForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list o b consents forbidden response has a 3xx status code
+func (o *ListOBConsentsForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list o b consents forbidden response has a 4xx status code
+func (o *ListOBConsentsForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list o b consents forbidden response has a 5xx status code
+func (o *ListOBConsentsForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list o b consents forbidden response a status code equal to that given
+func (o *ListOBConsentsForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *ListOBConsentsForbidden) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents][%d] listOBConsentsForbidden  %+v", 403, o.Payload)
 }
+
+func (o *ListOBConsentsForbidden) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents][%d] listOBConsentsForbidden  %+v", 403, o.Payload)
+}
+
 func (o *ListOBConsentsForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -203,7 +327,8 @@ func NewListOBConsentsNotFound() *ListOBConsentsNotFound {
 	return &ListOBConsentsNotFound{}
 }
 
-/* ListOBConsentsNotFound describes a response with status code 404, with default header values.
+/*
+ListOBConsentsNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -211,9 +336,39 @@ type ListOBConsentsNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list o b consents not found response has a 2xx status code
+func (o *ListOBConsentsNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list o b consents not found response has a 3xx status code
+func (o *ListOBConsentsNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list o b consents not found response has a 4xx status code
+func (o *ListOBConsentsNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list o b consents not found response has a 5xx status code
+func (o *ListOBConsentsNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list o b consents not found response a status code equal to that given
+func (o *ListOBConsentsNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *ListOBConsentsNotFound) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents][%d] listOBConsentsNotFound  %+v", 404, o.Payload)
 }
+
+func (o *ListOBConsentsNotFound) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents][%d] listOBConsentsNotFound  %+v", 404, o.Payload)
+}
+
 func (o *ListOBConsentsNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +390,8 @@ func NewListOBConsentsUnprocessableEntity() *ListOBConsentsUnprocessableEntity {
 	return &ListOBConsentsUnprocessableEntity{}
 }
 
-/* ListOBConsentsUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+ListOBConsentsUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -243,9 +399,39 @@ type ListOBConsentsUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list o b consents unprocessable entity response has a 2xx status code
+func (o *ListOBConsentsUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list o b consents unprocessable entity response has a 3xx status code
+func (o *ListOBConsentsUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list o b consents unprocessable entity response has a 4xx status code
+func (o *ListOBConsentsUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list o b consents unprocessable entity response has a 5xx status code
+func (o *ListOBConsentsUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list o b consents unprocessable entity response a status code equal to that given
+func (o *ListOBConsentsUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *ListOBConsentsUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents][%d] listOBConsentsUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *ListOBConsentsUnprocessableEntity) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents][%d] listOBConsentsUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *ListOBConsentsUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -267,7 +453,8 @@ func NewListOBConsentsTooManyRequests() *ListOBConsentsTooManyRequests {
 	return &ListOBConsentsTooManyRequests{}
 }
 
-/* ListOBConsentsTooManyRequests describes a response with status code 429, with default header values.
+/*
+ListOBConsentsTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -275,9 +462,39 @@ type ListOBConsentsTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list o b consents too many requests response has a 2xx status code
+func (o *ListOBConsentsTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list o b consents too many requests response has a 3xx status code
+func (o *ListOBConsentsTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list o b consents too many requests response has a 4xx status code
+func (o *ListOBConsentsTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list o b consents too many requests response has a 5xx status code
+func (o *ListOBConsentsTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list o b consents too many requests response a status code equal to that given
+func (o *ListOBConsentsTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *ListOBConsentsTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents][%d] listOBConsentsTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *ListOBConsentsTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/open-banking/consents][%d] listOBConsentsTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *ListOBConsentsTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

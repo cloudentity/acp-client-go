@@ -54,10 +54,12 @@ func NewUpdateVanityDomainParamsWithHTTPClient(client *http.Client) *UpdateVanit
 	}
 }
 
-/* UpdateVanityDomainParams contains all the parameters to send to the API endpoint
-   for the update vanity domain operation.
+/*
+UpdateVanityDomainParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update vanity domain operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateVanityDomainParams struct {
 

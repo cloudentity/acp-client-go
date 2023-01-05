@@ -18,6 +18,9 @@ import (
 // swagger:model ConsentPayload
 type ConsentPayload struct {
 
+	// details
+	Details *ConsentDetails `json:"details,omitempty"`
+
 	// consent id
 	ID string `json:"id,omitempty"`
 
@@ -32,6 +35,10 @@ type ConsentPayload struct {
 func (m *ConsentPayload) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateDetails(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateKind(formats); err != nil {
 		res = append(res, err)
 	}
@@ -39,6 +46,25 @@ func (m *ConsentPayload) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ConsentPayload) validateDetails(formats strfmt.Registry) error {
+	if swag.IsZero(m.Details) { // not required
+		return nil
+	}
+
+	if m.Details != nil {
+		if err := m.Details.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("details")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("details")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -63,6 +89,10 @@ func (m *ConsentPayload) validateKind(formats strfmt.Registry) error {
 func (m *ConsentPayload) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateDetails(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateKind(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -70,6 +100,22 @@ func (m *ConsentPayload) ContextValidate(ctx context.Context, formats strfmt.Reg
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ConsentPayload) contextValidateDetails(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Details != nil {
+		if err := m.Details.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("details")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("details")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

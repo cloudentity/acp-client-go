@@ -63,14 +63,44 @@ func NewDeleteTenantNoContent() *DeleteTenantNoContent {
 	return &DeleteTenantNoContent{}
 }
 
-/* DeleteTenantNoContent describes a response with status code 204, with default header values.
+/*
+DeleteTenantNoContent describes a response with status code 204, with default header values.
 
-Tenant has been deleted
+	Tenant has been deleted
 */
 type DeleteTenantNoContent struct {
 }
 
+// IsSuccess returns true when this delete tenant no content response has a 2xx status code
+func (o *DeleteTenantNoContent) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this delete tenant no content response has a 3xx status code
+func (o *DeleteTenantNoContent) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete tenant no content response has a 4xx status code
+func (o *DeleteTenantNoContent) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this delete tenant no content response has a 5xx status code
+func (o *DeleteTenantNoContent) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete tenant no content response a status code equal to that given
+func (o *DeleteTenantNoContent) IsCode(code int) bool {
+	return code == 204
+}
+
 func (o *DeleteTenantNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /api/system/tenants/{tid}][%d] deleteTenantNoContent ", 204)
+}
+
+func (o *DeleteTenantNoContent) String() string {
 	return fmt.Sprintf("[DELETE /api/system/tenants/{tid}][%d] deleteTenantNoContent ", 204)
 }
 
@@ -84,7 +114,8 @@ func NewDeleteTenantUnauthorized() *DeleteTenantUnauthorized {
 	return &DeleteTenantUnauthorized{}
 }
 
-/* DeleteTenantUnauthorized describes a response with status code 401, with default header values.
+/*
+DeleteTenantUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -92,9 +123,39 @@ type DeleteTenantUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete tenant unauthorized response has a 2xx status code
+func (o *DeleteTenantUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete tenant unauthorized response has a 3xx status code
+func (o *DeleteTenantUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete tenant unauthorized response has a 4xx status code
+func (o *DeleteTenantUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete tenant unauthorized response has a 5xx status code
+func (o *DeleteTenantUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete tenant unauthorized response a status code equal to that given
+func (o *DeleteTenantUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *DeleteTenantUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /api/system/tenants/{tid}][%d] deleteTenantUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *DeleteTenantUnauthorized) String() string {
+	return fmt.Sprintf("[DELETE /api/system/tenants/{tid}][%d] deleteTenantUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *DeleteTenantUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -116,7 +177,8 @@ func NewDeleteTenantForbidden() *DeleteTenantForbidden {
 	return &DeleteTenantForbidden{}
 }
 
-/* DeleteTenantForbidden describes a response with status code 403, with default header values.
+/*
+DeleteTenantForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -124,9 +186,39 @@ type DeleteTenantForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete tenant forbidden response has a 2xx status code
+func (o *DeleteTenantForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete tenant forbidden response has a 3xx status code
+func (o *DeleteTenantForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete tenant forbidden response has a 4xx status code
+func (o *DeleteTenantForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete tenant forbidden response has a 5xx status code
+func (o *DeleteTenantForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete tenant forbidden response a status code equal to that given
+func (o *DeleteTenantForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *DeleteTenantForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /api/system/tenants/{tid}][%d] deleteTenantForbidden  %+v", 403, o.Payload)
 }
+
+func (o *DeleteTenantForbidden) String() string {
+	return fmt.Sprintf("[DELETE /api/system/tenants/{tid}][%d] deleteTenantForbidden  %+v", 403, o.Payload)
+}
+
 func (o *DeleteTenantForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -148,7 +240,8 @@ func NewDeleteTenantNotFound() *DeleteTenantNotFound {
 	return &DeleteTenantNotFound{}
 }
 
-/* DeleteTenantNotFound describes a response with status code 404, with default header values.
+/*
+DeleteTenantNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -156,9 +249,39 @@ type DeleteTenantNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete tenant not found response has a 2xx status code
+func (o *DeleteTenantNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete tenant not found response has a 3xx status code
+func (o *DeleteTenantNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete tenant not found response has a 4xx status code
+func (o *DeleteTenantNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete tenant not found response has a 5xx status code
+func (o *DeleteTenantNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete tenant not found response a status code equal to that given
+func (o *DeleteTenantNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *DeleteTenantNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /api/system/tenants/{tid}][%d] deleteTenantNotFound  %+v", 404, o.Payload)
 }
+
+func (o *DeleteTenantNotFound) String() string {
+	return fmt.Sprintf("[DELETE /api/system/tenants/{tid}][%d] deleteTenantNotFound  %+v", 404, o.Payload)
+}
+
 func (o *DeleteTenantNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -180,7 +303,8 @@ func NewDeleteTenantTooManyRequests() *DeleteTenantTooManyRequests {
 	return &DeleteTenantTooManyRequests{}
 }
 
-/* DeleteTenantTooManyRequests describes a response with status code 429, with default header values.
+/*
+DeleteTenantTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -188,9 +312,39 @@ type DeleteTenantTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete tenant too many requests response has a 2xx status code
+func (o *DeleteTenantTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete tenant too many requests response has a 3xx status code
+func (o *DeleteTenantTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete tenant too many requests response has a 4xx status code
+func (o *DeleteTenantTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete tenant too many requests response has a 5xx status code
+func (o *DeleteTenantTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete tenant too many requests response a status code equal to that given
+func (o *DeleteTenantTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *DeleteTenantTooManyRequests) Error() string {
 	return fmt.Sprintf("[DELETE /api/system/tenants/{tid}][%d] deleteTenantTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *DeleteTenantTooManyRequests) String() string {
+	return fmt.Sprintf("[DELETE /api/system/tenants/{tid}][%d] deleteTenantTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *DeleteTenantTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

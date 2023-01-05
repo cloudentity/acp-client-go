@@ -54,10 +54,12 @@ func NewRejectFilePaymentConsentSystemParamsWithHTTPClient(client *http.Client) 
 	}
 }
 
-/* RejectFilePaymentConsentSystemParams contains all the parameters to send to the API endpoint
-   for the reject file payment consent system operation.
+/*
+RejectFilePaymentConsentSystemParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the reject file payment consent system operation.
+
+	Typically these are written to a http.Request.
 */
 type RejectFilePaymentConsentSystemParams struct {
 

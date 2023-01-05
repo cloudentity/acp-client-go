@@ -50,9 +50,10 @@ type ClientService interface {
 }
 
 /*
-  CreateScript creates script
+	CreateScript creates script
 
-  Creates a script that is used for enriching authentication context.
+	Creates a script that is used for enriching authentication context.
+
 You can, for example, define additional authentication context attributes for mock
 users defined for a static identity provider. Your script should be written in JavaScript.
 */
@@ -93,9 +94,9 @@ func (a *Client) CreateScript(params *CreateScriptParams, authInfo runtime.Clien
 }
 
 /*
-  DeleteScript deletes given script
+DeleteScript deletes given script
 
-  Deleting a script is permanent and it cannot be undone.
+Deleting a script is permanent and it cannot be undone.
 */
 func (a *Client) DeleteScript(params *DeleteScriptParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteScriptNoContent, error) {
 	// TODO: Validate the params before sending
@@ -134,9 +135,9 @@ func (a *Client) DeleteScript(params *DeleteScriptParams, authInfo runtime.Clien
 }
 
 /*
-  GetScript gets script
+GetScript gets script
 
-  Returns a script and it's content.
+Returns a script and it's content.
 */
 func (a *Client) GetScript(params *GetScriptParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScriptOK, error) {
 	// TODO: Validate the params before sending
@@ -175,9 +176,9 @@ func (a *Client) GetScript(params *GetScriptParams, authInfo runtime.ClientAuthI
 }
 
 /*
-  ListScriptExecutionPoints lists script execution points
+ListScriptExecutionPoints lists script execution points
 
-  Returns a list of script execution points for a given workspace.
+Returns a list of script execution points for a given workspace.
 */
 func (a *Client) ListScriptExecutionPoints(params *ListScriptExecutionPointsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListScriptExecutionPointsOK, error) {
 	// TODO: Validate the params before sending
@@ -216,9 +217,9 @@ func (a *Client) ListScriptExecutionPoints(params *ListScriptExecutionPointsPara
 }
 
 /*
-  ListScripts lists scripts
+ListScripts lists scripts
 
-  Lists tenant's scripts.
+Lists tenant's scripts.
 */
 func (a *Client) ListScripts(params *ListScriptsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListScriptsOK, error) {
 	// TODO: Validate the params before sending
@@ -257,9 +258,9 @@ func (a *Client) ListScripts(params *ListScriptsParams, authInfo runtime.ClientA
 }
 
 /*
-  SetScriptExecutionPoints sets script execution points
+SetScriptExecutionPoints sets script execution points
 
-  Available execution points: `post_authn_ctx`
+Available execution points: `post_authn_ctx allowed_idp_ids`
 */
 func (a *Client) SetScriptExecutionPoints(params *SetScriptExecutionPointsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetScriptExecutionPointsOK, error) {
 	// TODO: Validate the params before sending
@@ -298,9 +299,10 @@ func (a *Client) SetScriptExecutionPoints(params *SetScriptExecutionPointsParams
 }
 
 /*
-  TestScript tests script
+	TestScript tests script
 
-  You can test a script and check if it works correctly using this endpoint. Provide your mock input and
+	You can test a script and check if it works correctly using this endpoint. Provide your mock input and
+
 pass it as the value of the `input` parameter. Define your script. Then, fire a request to the
 test script endpoint. By doing so, you can test if a script would fail or pass for a given request.
 */
@@ -341,9 +343,9 @@ func (a *Client) TestScript(params *TestScriptParams, authInfo runtime.ClientAut
 }
 
 /*
-  UpdateScript updates script
+UpdateScript updates script
 
-  Update existing script.
+Update existing script.
 */
 func (a *Client) UpdateScript(params *UpdateScriptParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateScriptOK, error) {
 	// TODO: Validate the params before sending

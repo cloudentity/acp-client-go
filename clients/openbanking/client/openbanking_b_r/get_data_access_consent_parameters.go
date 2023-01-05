@@ -52,10 +52,12 @@ func NewGetDataAccessConsentParamsWithHTTPClient(client *http.Client) *GetDataAc
 	}
 }
 
-/* GetDataAccessConsentParams contains all the parameters to send to the API endpoint
-   for the get data access consent operation.
+/*
+GetDataAccessConsentParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get data access consent operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDataAccessConsentParams struct {
 

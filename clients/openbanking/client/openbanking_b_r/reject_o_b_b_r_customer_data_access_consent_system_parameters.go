@@ -54,10 +54,12 @@ func NewRejectOBBRCustomerDataAccessConsentSystemParamsWithHTTPClient(client *ht
 	}
 }
 
-/* RejectOBBRCustomerDataAccessConsentSystemParams contains all the parameters to send to the API endpoint
-   for the reject o b b r customer data access consent system operation.
+/*
+RejectOBBRCustomerDataAccessConsentSystemParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the reject o b b r customer data access consent system operation.
+
+	Typically these are written to a http.Request.
 */
 type RejectOBBRCustomerDataAccessConsentSystemParams struct {
 

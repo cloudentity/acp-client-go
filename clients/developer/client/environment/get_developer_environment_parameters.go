@@ -52,10 +52,12 @@ func NewGetDeveloperEnvironmentParamsWithHTTPClient(client *http.Client) *GetDev
 	}
 }
 
-/* GetDeveloperEnvironmentParams contains all the parameters to send to the API endpoint
-   for the get developer environment operation.
+/*
+GetDeveloperEnvironmentParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get developer environment operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDeveloperEnvironmentParams struct {
 	timeout    time.Duration

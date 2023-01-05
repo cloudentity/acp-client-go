@@ -54,10 +54,12 @@ func NewCreateInternationalScheduledPaymentConsentRequestParamsWithHTTPClient(cl
 	}
 }
 
-/* CreateInternationalScheduledPaymentConsentRequestParams contains all the parameters to send to the API endpoint
-   for the create international scheduled payment consent request operation.
+/*
+CreateInternationalScheduledPaymentConsentRequestParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the create international scheduled payment consent request operation.
+
+	Typically these are written to a http.Request.
 */
 type CreateInternationalScheduledPaymentConsentRequestParams struct {
 

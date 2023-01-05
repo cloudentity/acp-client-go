@@ -45,7 +45,8 @@ func NewJwksOK() *JwksOK {
 	return &JwksOK{}
 }
 
-/* JwksOK describes a response with status code 200, with default header values.
+/*
+JwksOK describes a response with status code 200, with default header values.
 
 JWKs
 */
@@ -53,9 +54,39 @@ type JwksOK struct {
 	Payload *models.ClientJWKs
 }
 
+// IsSuccess returns true when this jwks o k response has a 2xx status code
+func (o *JwksOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this jwks o k response has a 3xx status code
+func (o *JwksOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this jwks o k response has a 4xx status code
+func (o *JwksOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this jwks o k response has a 5xx status code
+func (o *JwksOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this jwks o k response a status code equal to that given
+func (o *JwksOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *JwksOK) Error() string {
 	return fmt.Sprintf("[GET /.well-known/jwks.json][%d] jwksOK  %+v", 200, o.Payload)
 }
+
+func (o *JwksOK) String() string {
+	return fmt.Sprintf("[GET /.well-known/jwks.json][%d] jwksOK  %+v", 200, o.Payload)
+}
+
 func (o *JwksOK) GetPayload() *models.ClientJWKs {
 	return o.Payload
 }
@@ -77,7 +108,8 @@ func NewJwksNotFound() *JwksNotFound {
 	return &JwksNotFound{}
 }
 
-/* JwksNotFound describes a response with status code 404, with default header values.
+/*
+JwksNotFound describes a response with status code 404, with default header values.
 
 ErrorResponse
 */
@@ -85,9 +117,39 @@ type JwksNotFound struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this jwks not found response has a 2xx status code
+func (o *JwksNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this jwks not found response has a 3xx status code
+func (o *JwksNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this jwks not found response has a 4xx status code
+func (o *JwksNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this jwks not found response has a 5xx status code
+func (o *JwksNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this jwks not found response a status code equal to that given
+func (o *JwksNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *JwksNotFound) Error() string {
 	return fmt.Sprintf("[GET /.well-known/jwks.json][%d] jwksNotFound  %+v", 404, o.Payload)
 }
+
+func (o *JwksNotFound) String() string {
+	return fmt.Sprintf("[GET /.well-known/jwks.json][%d] jwksNotFound  %+v", 404, o.Payload)
+}
+
 func (o *JwksNotFound) GetPayload() *models.GenericError {
 	return o.Payload
 }

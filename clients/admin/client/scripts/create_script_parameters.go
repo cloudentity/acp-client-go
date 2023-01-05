@@ -54,10 +54,12 @@ func NewCreateScriptParamsWithHTTPClient(client *http.Client) *CreateScriptParam
 	}
 }
 
-/* CreateScriptParams contains all the parameters to send to the API endpoint
-   for the create script operation.
+/*
+CreateScriptParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the create script operation.
+
+	Typically these are written to a http.Request.
 */
 type CreateScriptParams struct {
 

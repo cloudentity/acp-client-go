@@ -54,10 +54,12 @@ func NewAcceptOBBRCustomerPaymentConsentSystemParamsWithHTTPClient(client *http.
 	}
 }
 
-/* AcceptOBBRCustomerPaymentConsentSystemParams contains all the parameters to send to the API endpoint
-   for the accept o b b r customer payment consent system operation.
+/*
+AcceptOBBRCustomerPaymentConsentSystemParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the accept o b b r customer payment consent system operation.
+
+	Typically these are written to a http.Request.
 */
 type AcceptOBBRCustomerPaymentConsentSystemParams struct {
 

@@ -12,7 +12,6 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // GetCDRConsentResponse get c d r consent response
@@ -20,48 +19,30 @@ import (
 // swagger:model GetCDRConsentResponse
 type GetCDRConsentResponse struct {
 
-	// account ids
-	AccountIds []string `json:"account_ids"`
-
 	// authentication context
 	AuthenticationContext AuthenticationContext `json:"authentication_context,omitempty"`
 
 	// cdr arrangement
 	CdrArrangement *CDRArrangement `json:"cdr_arrangement,omitempty"`
 
-	// client id
-	ClientID string `json:"client_id,omitempty"`
-
 	// client info
 	ClientInfo *ClientInfo `json:"client_info,omitempty"`
-
-	// consent id
-	ConsentID string `json:"consent_id,omitempty"`
-
-	// created at
-	// Format: date-time
-	CreatedAt strfmt.DateTime `json:"created_at,omitempty"`
 
 	// previous cdr arrangement
 	PreviousCdrArrangement *CDRArrangement `json:"previous_cdr_arrangement,omitempty"`
 
-	// requested scopes
+	// List of requested scopes
 	RequestedScopes []*RequestedScope `json:"requested_scopes"`
 
-	// server id
-	ServerID string `json:"server_id,omitempty"`
-
-	// status
+	// Cloudentity internal consent status
+	// Deprecated: please use status from cdr_arrangement
+	// Example: AwaitingAuthorisation
 	Status string `json:"status,omitempty"`
 
-	// subject
+	// Subject identifing the authenticated user
+	// Depending on the workspace configuration the value might be hashed.
+	// Example: 377eb000a87a471291b5a9869930a2422c670b7b6a06f74143eb74a01ed2fbe1
 	Subject string `json:"subject,omitempty"`
-
-	// tenant id
-	TenantID string `json:"tenant_id,omitempty"`
-
-	// type
-	Type ConsentType `json:"type,omitempty"`
 }
 
 // Validate validates this get c d r consent response
@@ -80,19 +61,11 @@ func (m *GetCDRConsentResponse) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateCreatedAt(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validatePreviousCdrArrangement(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateRequestedScopes(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -159,18 +132,6 @@ func (m *GetCDRConsentResponse) validateClientInfo(formats strfmt.Registry) erro
 	return nil
 }
 
-func (m *GetCDRConsentResponse) validateCreatedAt(formats strfmt.Registry) error {
-	if swag.IsZero(m.CreatedAt) { // not required
-		return nil
-	}
-
-	if err := validate.FormatOf("created_at", "body", "date-time", m.CreatedAt.String(), formats); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *GetCDRConsentResponse) validatePreviousCdrArrangement(formats strfmt.Registry) error {
 	if swag.IsZero(m.PreviousCdrArrangement) { // not required
 		return nil
@@ -216,23 +177,6 @@ func (m *GetCDRConsentResponse) validateRequestedScopes(formats strfmt.Registry)
 	return nil
 }
 
-func (m *GetCDRConsentResponse) validateType(formats strfmt.Registry) error {
-	if swag.IsZero(m.Type) { // not required
-		return nil
-	}
-
-	if err := m.Type.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("type")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("type")
-		}
-		return err
-	}
-
-	return nil
-}
-
 // ContextValidate validate this get c d r consent response based on the context it is used
 func (m *GetCDRConsentResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
@@ -254,10 +198,6 @@ func (m *GetCDRConsentResponse) ContextValidate(ctx context.Context, formats str
 	}
 
 	if err := m.contextValidateRequestedScopes(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateType(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -344,20 +284,6 @@ func (m *GetCDRConsentResponse) contextValidateRequestedScopes(ctx context.Conte
 			}
 		}
 
-	}
-
-	return nil
-}
-
-func (m *GetCDRConsentResponse) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := m.Type.ContextValidate(ctx, formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("type")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("type")
-		}
-		return err
 	}
 
 	return nil

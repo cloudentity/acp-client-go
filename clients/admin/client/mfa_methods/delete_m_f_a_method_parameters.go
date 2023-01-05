@@ -52,10 +52,12 @@ func NewDeleteMFAMethodParamsWithHTTPClient(client *http.Client) *DeleteMFAMetho
 	}
 }
 
-/* DeleteMFAMethodParams contains all the parameters to send to the API endpoint
-   for the delete m f a method operation.
+/*
+DeleteMFAMethodParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the delete m f a method operation.
+
+	Typically these are written to a http.Request.
 */
 type DeleteMFAMethodParams struct {
 

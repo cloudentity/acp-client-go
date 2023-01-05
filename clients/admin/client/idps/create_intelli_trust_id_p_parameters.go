@@ -54,10 +54,12 @@ func NewCreateIntelliTrustIDPParamsWithHTTPClient(client *http.Client) *CreateIn
 	}
 }
 
-/* CreateIntelliTrustIDPParams contains all the parameters to send to the API endpoint
-   for the create intelli trust ID p operation.
+/*
+CreateIntelliTrustIDPParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the create intelli trust ID p operation.
+
+	Typically these are written to a http.Request.
 */
 type CreateIntelliTrustIDPParams struct {
 

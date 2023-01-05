@@ -93,7 +93,8 @@ func NewCreatePaymentConsentCreated() *CreatePaymentConsentCreated {
 	return &CreatePaymentConsentCreated{}
 }
 
-/* CreatePaymentConsentCreated describes a response with status code 201, with default header values.
+/*
+CreatePaymentConsentCreated describes a response with status code 201, with default header values.
 
 Customer payment consent
 */
@@ -101,9 +102,39 @@ type CreatePaymentConsentCreated struct {
 	Payload *models.BrazilCustomerPaymentConsentResponse
 }
 
+// IsSuccess returns true when this create payment consent created response has a 2xx status code
+func (o *CreatePaymentConsentCreated) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this create payment consent created response has a 3xx status code
+func (o *CreatePaymentConsentCreated) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create payment consent created response has a 4xx status code
+func (o *CreatePaymentConsentCreated) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create payment consent created response has a 5xx status code
+func (o *CreatePaymentConsentCreated) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create payment consent created response a status code equal to that given
+func (o *CreatePaymentConsentCreated) IsCode(code int) bool {
+	return code == 201
+}
+
 func (o *CreatePaymentConsentCreated) Error() string {
 	return fmt.Sprintf("[POST /open-banking/payments/v1/consents][%d] createPaymentConsentCreated  %+v", 201, o.Payload)
 }
+
+func (o *CreatePaymentConsentCreated) String() string {
+	return fmt.Sprintf("[POST /open-banking/payments/v1/consents][%d] createPaymentConsentCreated  %+v", 201, o.Payload)
+}
+
 func (o *CreatePaymentConsentCreated) GetPayload() *models.BrazilCustomerPaymentConsentResponse {
 	return o.Payload
 }
@@ -125,7 +156,8 @@ func NewCreatePaymentConsentBadRequest() *CreatePaymentConsentBadRequest {
 	return &CreatePaymentConsentBadRequest{}
 }
 
-/* CreatePaymentConsentBadRequest describes a response with status code 400, with default header values.
+/*
+CreatePaymentConsentBadRequest describes a response with status code 400, with default header values.
 
 Error
 */
@@ -133,9 +165,39 @@ type CreatePaymentConsentBadRequest struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this create payment consent bad request response has a 2xx status code
+func (o *CreatePaymentConsentBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create payment consent bad request response has a 3xx status code
+func (o *CreatePaymentConsentBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create payment consent bad request response has a 4xx status code
+func (o *CreatePaymentConsentBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create payment consent bad request response has a 5xx status code
+func (o *CreatePaymentConsentBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create payment consent bad request response a status code equal to that given
+func (o *CreatePaymentConsentBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *CreatePaymentConsentBadRequest) Error() string {
 	return fmt.Sprintf("[POST /open-banking/payments/v1/consents][%d] createPaymentConsentBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *CreatePaymentConsentBadRequest) String() string {
+	return fmt.Sprintf("[POST /open-banking/payments/v1/consents][%d] createPaymentConsentBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *CreatePaymentConsentBadRequest) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -157,7 +219,8 @@ func NewCreatePaymentConsentUnauthorized() *CreatePaymentConsentUnauthorized {
 	return &CreatePaymentConsentUnauthorized{}
 }
 
-/* CreatePaymentConsentUnauthorized describes a response with status code 401, with default header values.
+/*
+CreatePaymentConsentUnauthorized describes a response with status code 401, with default header values.
 
 Error
 */
@@ -165,9 +228,39 @@ type CreatePaymentConsentUnauthorized struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this create payment consent unauthorized response has a 2xx status code
+func (o *CreatePaymentConsentUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create payment consent unauthorized response has a 3xx status code
+func (o *CreatePaymentConsentUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create payment consent unauthorized response has a 4xx status code
+func (o *CreatePaymentConsentUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create payment consent unauthorized response has a 5xx status code
+func (o *CreatePaymentConsentUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create payment consent unauthorized response a status code equal to that given
+func (o *CreatePaymentConsentUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *CreatePaymentConsentUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /open-banking/payments/v1/consents][%d] createPaymentConsentUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *CreatePaymentConsentUnauthorized) String() string {
+	return fmt.Sprintf("[POST /open-banking/payments/v1/consents][%d] createPaymentConsentUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *CreatePaymentConsentUnauthorized) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -189,7 +282,8 @@ func NewCreatePaymentConsentForbidden() *CreatePaymentConsentForbidden {
 	return &CreatePaymentConsentForbidden{}
 }
 
-/* CreatePaymentConsentForbidden describes a response with status code 403, with default header values.
+/*
+CreatePaymentConsentForbidden describes a response with status code 403, with default header values.
 
 Error
 */
@@ -197,9 +291,39 @@ type CreatePaymentConsentForbidden struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this create payment consent forbidden response has a 2xx status code
+func (o *CreatePaymentConsentForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create payment consent forbidden response has a 3xx status code
+func (o *CreatePaymentConsentForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create payment consent forbidden response has a 4xx status code
+func (o *CreatePaymentConsentForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create payment consent forbidden response has a 5xx status code
+func (o *CreatePaymentConsentForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create payment consent forbidden response a status code equal to that given
+func (o *CreatePaymentConsentForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *CreatePaymentConsentForbidden) Error() string {
 	return fmt.Sprintf("[POST /open-banking/payments/v1/consents][%d] createPaymentConsentForbidden  %+v", 403, o.Payload)
 }
+
+func (o *CreatePaymentConsentForbidden) String() string {
+	return fmt.Sprintf("[POST /open-banking/payments/v1/consents][%d] createPaymentConsentForbidden  %+v", 403, o.Payload)
+}
+
 func (o *CreatePaymentConsentForbidden) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -221,7 +345,8 @@ func NewCreatePaymentConsentMethodNotAllowed() *CreatePaymentConsentMethodNotAll
 	return &CreatePaymentConsentMethodNotAllowed{}
 }
 
-/* CreatePaymentConsentMethodNotAllowed describes a response with status code 405, with default header values.
+/*
+CreatePaymentConsentMethodNotAllowed describes a response with status code 405, with default header values.
 
 Error
 */
@@ -229,9 +354,39 @@ type CreatePaymentConsentMethodNotAllowed struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this create payment consent method not allowed response has a 2xx status code
+func (o *CreatePaymentConsentMethodNotAllowed) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create payment consent method not allowed response has a 3xx status code
+func (o *CreatePaymentConsentMethodNotAllowed) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create payment consent method not allowed response has a 4xx status code
+func (o *CreatePaymentConsentMethodNotAllowed) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create payment consent method not allowed response has a 5xx status code
+func (o *CreatePaymentConsentMethodNotAllowed) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create payment consent method not allowed response a status code equal to that given
+func (o *CreatePaymentConsentMethodNotAllowed) IsCode(code int) bool {
+	return code == 405
+}
+
 func (o *CreatePaymentConsentMethodNotAllowed) Error() string {
 	return fmt.Sprintf("[POST /open-banking/payments/v1/consents][%d] createPaymentConsentMethodNotAllowed  %+v", 405, o.Payload)
 }
+
+func (o *CreatePaymentConsentMethodNotAllowed) String() string {
+	return fmt.Sprintf("[POST /open-banking/payments/v1/consents][%d] createPaymentConsentMethodNotAllowed  %+v", 405, o.Payload)
+}
+
 func (o *CreatePaymentConsentMethodNotAllowed) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -253,7 +408,8 @@ func NewCreatePaymentConsentNotAcceptable() *CreatePaymentConsentNotAcceptable {
 	return &CreatePaymentConsentNotAcceptable{}
 }
 
-/* CreatePaymentConsentNotAcceptable describes a response with status code 406, with default header values.
+/*
+CreatePaymentConsentNotAcceptable describes a response with status code 406, with default header values.
 
 Error
 */
@@ -261,9 +417,39 @@ type CreatePaymentConsentNotAcceptable struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this create payment consent not acceptable response has a 2xx status code
+func (o *CreatePaymentConsentNotAcceptable) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create payment consent not acceptable response has a 3xx status code
+func (o *CreatePaymentConsentNotAcceptable) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create payment consent not acceptable response has a 4xx status code
+func (o *CreatePaymentConsentNotAcceptable) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create payment consent not acceptable response has a 5xx status code
+func (o *CreatePaymentConsentNotAcceptable) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create payment consent not acceptable response a status code equal to that given
+func (o *CreatePaymentConsentNotAcceptable) IsCode(code int) bool {
+	return code == 406
+}
+
 func (o *CreatePaymentConsentNotAcceptable) Error() string {
 	return fmt.Sprintf("[POST /open-banking/payments/v1/consents][%d] createPaymentConsentNotAcceptable  %+v", 406, o.Payload)
 }
+
+func (o *CreatePaymentConsentNotAcceptable) String() string {
+	return fmt.Sprintf("[POST /open-banking/payments/v1/consents][%d] createPaymentConsentNotAcceptable  %+v", 406, o.Payload)
+}
+
 func (o *CreatePaymentConsentNotAcceptable) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -285,7 +471,8 @@ func NewCreatePaymentConsentUnsupportedMediaType() *CreatePaymentConsentUnsuppor
 	return &CreatePaymentConsentUnsupportedMediaType{}
 }
 
-/* CreatePaymentConsentUnsupportedMediaType describes a response with status code 415, with default header values.
+/*
+CreatePaymentConsentUnsupportedMediaType describes a response with status code 415, with default header values.
 
 Error
 */
@@ -293,9 +480,39 @@ type CreatePaymentConsentUnsupportedMediaType struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this create payment consent unsupported media type response has a 2xx status code
+func (o *CreatePaymentConsentUnsupportedMediaType) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create payment consent unsupported media type response has a 3xx status code
+func (o *CreatePaymentConsentUnsupportedMediaType) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create payment consent unsupported media type response has a 4xx status code
+func (o *CreatePaymentConsentUnsupportedMediaType) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create payment consent unsupported media type response has a 5xx status code
+func (o *CreatePaymentConsentUnsupportedMediaType) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create payment consent unsupported media type response a status code equal to that given
+func (o *CreatePaymentConsentUnsupportedMediaType) IsCode(code int) bool {
+	return code == 415
+}
+
 func (o *CreatePaymentConsentUnsupportedMediaType) Error() string {
 	return fmt.Sprintf("[POST /open-banking/payments/v1/consents][%d] createPaymentConsentUnsupportedMediaType  %+v", 415, o.Payload)
 }
+
+func (o *CreatePaymentConsentUnsupportedMediaType) String() string {
+	return fmt.Sprintf("[POST /open-banking/payments/v1/consents][%d] createPaymentConsentUnsupportedMediaType  %+v", 415, o.Payload)
+}
+
 func (o *CreatePaymentConsentUnsupportedMediaType) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -317,7 +534,8 @@ func NewCreatePaymentConsentUnprocessableEntity() *CreatePaymentConsentUnprocess
 	return &CreatePaymentConsentUnprocessableEntity{}
 }
 
-/* CreatePaymentConsentUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+CreatePaymentConsentUnprocessableEntity describes a response with status code 422, with default header values.
 
 Error
 */
@@ -325,9 +543,39 @@ type CreatePaymentConsentUnprocessableEntity struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this create payment consent unprocessable entity response has a 2xx status code
+func (o *CreatePaymentConsentUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create payment consent unprocessable entity response has a 3xx status code
+func (o *CreatePaymentConsentUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create payment consent unprocessable entity response has a 4xx status code
+func (o *CreatePaymentConsentUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create payment consent unprocessable entity response has a 5xx status code
+func (o *CreatePaymentConsentUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create payment consent unprocessable entity response a status code equal to that given
+func (o *CreatePaymentConsentUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *CreatePaymentConsentUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /open-banking/payments/v1/consents][%d] createPaymentConsentUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *CreatePaymentConsentUnprocessableEntity) String() string {
+	return fmt.Sprintf("[POST /open-banking/payments/v1/consents][%d] createPaymentConsentUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *CreatePaymentConsentUnprocessableEntity) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -349,7 +597,8 @@ func NewCreatePaymentConsentTooManyRequests() *CreatePaymentConsentTooManyReques
 	return &CreatePaymentConsentTooManyRequests{}
 }
 
-/* CreatePaymentConsentTooManyRequests describes a response with status code 429, with default header values.
+/*
+CreatePaymentConsentTooManyRequests describes a response with status code 429, with default header values.
 
 Error
 */
@@ -357,9 +606,39 @@ type CreatePaymentConsentTooManyRequests struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this create payment consent too many requests response has a 2xx status code
+func (o *CreatePaymentConsentTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create payment consent too many requests response has a 3xx status code
+func (o *CreatePaymentConsentTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create payment consent too many requests response has a 4xx status code
+func (o *CreatePaymentConsentTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create payment consent too many requests response has a 5xx status code
+func (o *CreatePaymentConsentTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create payment consent too many requests response a status code equal to that given
+func (o *CreatePaymentConsentTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *CreatePaymentConsentTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /open-banking/payments/v1/consents][%d] createPaymentConsentTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *CreatePaymentConsentTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /open-banking/payments/v1/consents][%d] createPaymentConsentTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *CreatePaymentConsentTooManyRequests) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -381,7 +660,8 @@ func NewCreatePaymentConsentInternalServerError() *CreatePaymentConsentInternalS
 	return &CreatePaymentConsentInternalServerError{}
 }
 
-/* CreatePaymentConsentInternalServerError describes a response with status code 500, with default header values.
+/*
+CreatePaymentConsentInternalServerError describes a response with status code 500, with default header values.
 
 Error
 */
@@ -389,9 +669,39 @@ type CreatePaymentConsentInternalServerError struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this create payment consent internal server error response has a 2xx status code
+func (o *CreatePaymentConsentInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create payment consent internal server error response has a 3xx status code
+func (o *CreatePaymentConsentInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create payment consent internal server error response has a 4xx status code
+func (o *CreatePaymentConsentInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create payment consent internal server error response has a 5xx status code
+func (o *CreatePaymentConsentInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this create payment consent internal server error response a status code equal to that given
+func (o *CreatePaymentConsentInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *CreatePaymentConsentInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /open-banking/payments/v1/consents][%d] createPaymentConsentInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *CreatePaymentConsentInternalServerError) String() string {
+	return fmt.Sprintf("[POST /open-banking/payments/v1/consents][%d] createPaymentConsentInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *CreatePaymentConsentInternalServerError) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }

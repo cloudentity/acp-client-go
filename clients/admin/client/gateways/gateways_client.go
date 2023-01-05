@@ -53,9 +53,9 @@ type ClientService interface {
 }
 
 /*
-  BindGroupToService binds a group to a service
+	BindGroupToService binds a group to a service
 
-  It unbinds service first, if it is already connected to an api group.
+	It unbinds service first, if it is already connected to an api group.
 
 It removes specification from a service, if it has specification imported already.
 
@@ -98,9 +98,9 @@ func (a *Client) BindGroupToService(params *BindGroupToServiceParams, authInfo r
 }
 
 /*
-  CreateGateway creates gateway
+CreateGateway creates gateway
 
-  Create gateway.
+Create gateway.
 */
 func (a *Client) CreateGateway(params *CreateGatewayParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateGatewayCreated, error) {
 	// TODO: Validate the params before sending
@@ -139,9 +139,9 @@ func (a *Client) CreateGateway(params *CreateGatewayParams, authInfo runtime.Cli
 }
 
 /*
-  DeleteGateway deletes gateway
+DeleteGateway deletes gateway
 
-  This removes configuration for all services connected to this gateway.
+This removes configuration for all services connected to this gateway.
 */
 func (a *Client) DeleteGateway(params *DeleteGatewayParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteGatewayNoContent, error) {
 	// TODO: Validate the params before sending
@@ -180,9 +180,9 @@ func (a *Client) DeleteGateway(params *DeleteGatewayParams, authInfo runtime.Cli
 }
 
 /*
-  GetGateway gets gateway
+GetGateway gets gateway
 
-  Get gateway.
+Get gateway.
 */
 func (a *Client) GetGateway(params *GetGatewayParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetGatewayOK, error) {
 	// TODO: Validate the params before sending
@@ -221,9 +221,9 @@ func (a *Client) GetGateway(params *GetGatewayParams, authInfo runtime.ClientAut
 }
 
 /*
-  GetGatewayPackage gets package for a gateway
+GetGatewayPackage gets package for a gateway
 
-  Get package for a gateway.
+Get package for a gateway.
 */
 func (a *Client) GetGatewayPackage(params *GetGatewayPackageParams, authInfo runtime.ClientAuthInfoWriter, writer io.Writer, opts ...ClientOption) (*GetGatewayPackageOK, error) {
 	// TODO: Validate the params before sending
@@ -262,9 +262,9 @@ func (a *Client) GetGatewayPackage(params *GetGatewayPackageParams, authInfo run
 }
 
 /*
-  ListGatewayAPIGroups lists gateway api groups
+ListGatewayAPIGroups lists gateway api groups
 
-  List gateway api groups.
+List gateway api groups.
 */
 func (a *Client) ListGatewayAPIGroups(params *ListGatewayAPIGroupsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListGatewayAPIGroupsOK, error) {
 	// TODO: Validate the params before sending
@@ -303,9 +303,9 @@ func (a *Client) ListGatewayAPIGroups(params *ListGatewayAPIGroupsParams, authIn
 }
 
 /*
-  ListGateways lists gateways
+ListGateways lists gateways
 
-  List gateways.
+List gateways.
 */
 func (a *Client) ListGateways(params *ListGatewaysParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListGatewaysOK, error) {
 	// TODO: Validate the params before sending
@@ -344,9 +344,9 @@ func (a *Client) ListGateways(params *ListGatewaysParams, authInfo runtime.Clien
 }
 
 /*
-  UnbindGroupFromService unbinds a group from a service
+	UnbindGroupFromService unbinds a group from a service
 
-  Remove all apis and policies.
+	Remove all apis and policies.
 
 If policy is used by another service it will not be removed.
 
@@ -391,9 +391,9 @@ func (a *Client) UnbindGroupFromService(params *UnbindGroupFromServiceParams, au
 }
 
 /*
-  UpdateGateway updates gateway
+UpdateGateway updates gateway
 
-  Update gateway.
+Update gateway.
 */
 func (a *Client) UpdateGateway(params *UpdateGatewayParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateGatewayOK, error) {
 	// TODO: Validate the params before sending

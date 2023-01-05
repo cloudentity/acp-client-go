@@ -35,6 +35,12 @@ func (o *ResetPasswordConfirmReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 		return nil, result
+	case 422:
+		result := NewResetPasswordConfirmUnprocessableEntity()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
@@ -45,14 +51,44 @@ func NewResetPasswordConfirmNoContent() *ResetPasswordConfirmNoContent {
 	return &ResetPasswordConfirmNoContent{}
 }
 
-/* ResetPasswordConfirmNoContent describes a response with status code 204, with default header values.
+/*
+ResetPasswordConfirmNoContent describes a response with status code 204, with default header values.
 
-Password reset
+	Password reset
 */
 type ResetPasswordConfirmNoContent struct {
 }
 
+// IsSuccess returns true when this reset password confirm no content response has a 2xx status code
+func (o *ResetPasswordConfirmNoContent) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this reset password confirm no content response has a 3xx status code
+func (o *ResetPasswordConfirmNoContent) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this reset password confirm no content response has a 4xx status code
+func (o *ResetPasswordConfirmNoContent) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this reset password confirm no content response has a 5xx status code
+func (o *ResetPasswordConfirmNoContent) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this reset password confirm no content response a status code equal to that given
+func (o *ResetPasswordConfirmNoContent) IsCode(code int) bool {
+	return code == 204
+}
+
 func (o *ResetPasswordConfirmNoContent) Error() string {
+	return fmt.Sprintf("[POST /public/pools/{ipID}/reset-password/confirm][%d] resetPasswordConfirmNoContent ", 204)
+}
+
+func (o *ResetPasswordConfirmNoContent) String() string {
 	return fmt.Sprintf("[POST /public/pools/{ipID}/reset-password/confirm][%d] resetPasswordConfirmNoContent ", 204)
 }
 
@@ -66,7 +102,8 @@ func NewResetPasswordConfirmUnauthorized() *ResetPasswordConfirmUnauthorized {
 	return &ResetPasswordConfirmUnauthorized{}
 }
 
-/* ResetPasswordConfirmUnauthorized describes a response with status code 401, with default header values.
+/*
+ResetPasswordConfirmUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -74,14 +111,107 @@ type ResetPasswordConfirmUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this reset password confirm unauthorized response has a 2xx status code
+func (o *ResetPasswordConfirmUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this reset password confirm unauthorized response has a 3xx status code
+func (o *ResetPasswordConfirmUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this reset password confirm unauthorized response has a 4xx status code
+func (o *ResetPasswordConfirmUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this reset password confirm unauthorized response has a 5xx status code
+func (o *ResetPasswordConfirmUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this reset password confirm unauthorized response a status code equal to that given
+func (o *ResetPasswordConfirmUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *ResetPasswordConfirmUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /public/pools/{ipID}/reset-password/confirm][%d] resetPasswordConfirmUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *ResetPasswordConfirmUnauthorized) String() string {
+	return fmt.Sprintf("[POST /public/pools/{ipID}/reset-password/confirm][%d] resetPasswordConfirmUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *ResetPasswordConfirmUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
 
 func (o *ResetPasswordConfirmUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewResetPasswordConfirmUnprocessableEntity creates a ResetPasswordConfirmUnprocessableEntity with default headers values
+func NewResetPasswordConfirmUnprocessableEntity() *ResetPasswordConfirmUnprocessableEntity {
+	return &ResetPasswordConfirmUnprocessableEntity{}
+}
+
+/*
+ResetPasswordConfirmUnprocessableEntity describes a response with status code 422, with default header values.
+
+HttpError
+*/
+type ResetPasswordConfirmUnprocessableEntity struct {
+	Payload *models.Error
+}
+
+// IsSuccess returns true when this reset password confirm unprocessable entity response has a 2xx status code
+func (o *ResetPasswordConfirmUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this reset password confirm unprocessable entity response has a 3xx status code
+func (o *ResetPasswordConfirmUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this reset password confirm unprocessable entity response has a 4xx status code
+func (o *ResetPasswordConfirmUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this reset password confirm unprocessable entity response has a 5xx status code
+func (o *ResetPasswordConfirmUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this reset password confirm unprocessable entity response a status code equal to that given
+func (o *ResetPasswordConfirmUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
+func (o *ResetPasswordConfirmUnprocessableEntity) Error() string {
+	return fmt.Sprintf("[POST /public/pools/{ipID}/reset-password/confirm][%d] resetPasswordConfirmUnprocessableEntity  %+v", 422, o.Payload)
+}
+
+func (o *ResetPasswordConfirmUnprocessableEntity) String() string {
+	return fmt.Sprintf("[POST /public/pools/{ipID}/reset-password/confirm][%d] resetPasswordConfirmUnprocessableEntity  %+v", 422, o.Payload)
+}
+
+func (o *ResetPasswordConfirmUnprocessableEntity) GetPayload() *models.Error {
+	return o.Payload
+}
+
+func (o *ResetPasswordConfirmUnprocessableEntity) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.Error)
 

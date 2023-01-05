@@ -54,10 +54,12 @@ func NewSetScriptExecutionPointsParamsWithHTTPClient(client *http.Client) *SetSc
 	}
 }
 
-/* SetScriptExecutionPointsParams contains all the parameters to send to the API endpoint
-   for the set script execution points operation.
+/*
+SetScriptExecutionPointsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the set script execution points operation.
+
+	Typically these are written to a http.Request.
 */
 type SetScriptExecutionPointsParams struct {
 

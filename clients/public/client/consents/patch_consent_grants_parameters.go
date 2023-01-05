@@ -54,10 +54,12 @@ func NewPatchConsentGrantsParamsWithHTTPClient(client *http.Client) *PatchConsen
 	}
 }
 
-/* PatchConsentGrantsParams contains all the parameters to send to the API endpoint
-   for the patch consent grants operation.
+/*
+PatchConsentGrantsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the patch consent grants operation.
+
+	Typically these are written to a http.Request.
 */
 type PatchConsentGrantsParams struct {
 

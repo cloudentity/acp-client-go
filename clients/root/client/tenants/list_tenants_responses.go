@@ -63,7 +63,8 @@ func NewListTenantsOK() *ListTenantsOK {
 	return &ListTenantsOK{}
 }
 
-/* ListTenantsOK describes a response with status code 200, with default header values.
+/*
+ListTenantsOK describes a response with status code 200, with default header values.
 
 List of tenants
 */
@@ -71,9 +72,39 @@ type ListTenantsOK struct {
 	Payload *models.Tenants
 }
 
+// IsSuccess returns true when this list tenants o k response has a 2xx status code
+func (o *ListTenantsOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this list tenants o k response has a 3xx status code
+func (o *ListTenantsOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list tenants o k response has a 4xx status code
+func (o *ListTenantsOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this list tenants o k response has a 5xx status code
+func (o *ListTenantsOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list tenants o k response a status code equal to that given
+func (o *ListTenantsOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *ListTenantsOK) Error() string {
 	return fmt.Sprintf("[GET /api/system/tenants][%d] listTenantsOK  %+v", 200, o.Payload)
 }
+
+func (o *ListTenantsOK) String() string {
+	return fmt.Sprintf("[GET /api/system/tenants][%d] listTenantsOK  %+v", 200, o.Payload)
+}
+
 func (o *ListTenantsOK) GetPayload() *models.Tenants {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewListTenantsUnauthorized() *ListTenantsUnauthorized {
 	return &ListTenantsUnauthorized{}
 }
 
-/* ListTenantsUnauthorized describes a response with status code 401, with default header values.
+/*
+ListTenantsUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type ListTenantsUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list tenants unauthorized response has a 2xx status code
+func (o *ListTenantsUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list tenants unauthorized response has a 3xx status code
+func (o *ListTenantsUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list tenants unauthorized response has a 4xx status code
+func (o *ListTenantsUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list tenants unauthorized response has a 5xx status code
+func (o *ListTenantsUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list tenants unauthorized response a status code equal to that given
+func (o *ListTenantsUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *ListTenantsUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/system/tenants][%d] listTenantsUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *ListTenantsUnauthorized) String() string {
+	return fmt.Sprintf("[GET /api/system/tenants][%d] listTenantsUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *ListTenantsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewListTenantsForbidden() *ListTenantsForbidden {
 	return &ListTenantsForbidden{}
 }
 
-/* ListTenantsForbidden describes a response with status code 403, with default header values.
+/*
+ListTenantsForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type ListTenantsForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list tenants forbidden response has a 2xx status code
+func (o *ListTenantsForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list tenants forbidden response has a 3xx status code
+func (o *ListTenantsForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list tenants forbidden response has a 4xx status code
+func (o *ListTenantsForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list tenants forbidden response has a 5xx status code
+func (o *ListTenantsForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list tenants forbidden response a status code equal to that given
+func (o *ListTenantsForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *ListTenantsForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/system/tenants][%d] listTenantsForbidden  %+v", 403, o.Payload)
 }
+
+func (o *ListTenantsForbidden) String() string {
+	return fmt.Sprintf("[GET /api/system/tenants][%d] listTenantsForbidden  %+v", 403, o.Payload)
+}
+
 func (o *ListTenantsForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewListTenantsNotFound() *ListTenantsNotFound {
 	return &ListTenantsNotFound{}
 }
 
-/* ListTenantsNotFound describes a response with status code 404, with default header values.
+/*
+ListTenantsNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type ListTenantsNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list tenants not found response has a 2xx status code
+func (o *ListTenantsNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list tenants not found response has a 3xx status code
+func (o *ListTenantsNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list tenants not found response has a 4xx status code
+func (o *ListTenantsNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list tenants not found response has a 5xx status code
+func (o *ListTenantsNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list tenants not found response a status code equal to that given
+func (o *ListTenantsNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *ListTenantsNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/system/tenants][%d] listTenantsNotFound  %+v", 404, o.Payload)
 }
+
+func (o *ListTenantsNotFound) String() string {
+	return fmt.Sprintf("[GET /api/system/tenants][%d] listTenantsNotFound  %+v", 404, o.Payload)
+}
+
 func (o *ListTenantsNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewListTenantsTooManyRequests() *ListTenantsTooManyRequests {
 	return &ListTenantsTooManyRequests{}
 }
 
-/* ListTenantsTooManyRequests describes a response with status code 429, with default header values.
+/*
+ListTenantsTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type ListTenantsTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list tenants too many requests response has a 2xx status code
+func (o *ListTenantsTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list tenants too many requests response has a 3xx status code
+func (o *ListTenantsTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list tenants too many requests response has a 4xx status code
+func (o *ListTenantsTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list tenants too many requests response has a 5xx status code
+func (o *ListTenantsTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list tenants too many requests response a status code equal to that given
+func (o *ListTenantsTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *ListTenantsTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /api/system/tenants][%d] listTenantsTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *ListTenantsTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /api/system/tenants][%d] listTenantsTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *ListTenantsTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

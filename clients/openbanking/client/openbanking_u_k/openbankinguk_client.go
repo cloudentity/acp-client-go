@@ -154,9 +154,9 @@ type ClientService interface {
 }
 
 /*
-  AcceptAccountAccessConsentSystem accepts account access consent
+AcceptAccountAccessConsentSystem accepts account access consent
 
-  This API can be used to notify ACP that user granted consent to a account-access.
+This API can be used to notify ACP that user granted consent to a account-access.
 */
 func (a *Client) AcceptAccountAccessConsentSystem(params *AcceptAccountAccessConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptAccountAccessConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -195,9 +195,9 @@ func (a *Client) AcceptAccountAccessConsentSystem(params *AcceptAccountAccessCon
 }
 
 /*
-  AcceptDomesticPaymentConsentSystem accepts domestic payment consent
+AcceptDomesticPaymentConsentSystem accepts domestic payment consent
 
-  This API can be used to notify ACP that user granted consent to a domestic-payment.
+This API can be used to notify ACP that user granted consent to a domestic-payment.
 */
 func (a *Client) AcceptDomesticPaymentConsentSystem(params *AcceptDomesticPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptDomesticPaymentConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -236,9 +236,9 @@ func (a *Client) AcceptDomesticPaymentConsentSystem(params *AcceptDomesticPaymen
 }
 
 /*
-  AcceptDomesticScheduledPaymentConsentSystem accepts domestic scheduled payment consent
+AcceptDomesticScheduledPaymentConsentSystem accepts domestic scheduled payment consent
 
-  This API can be used to notify ACP that user granted consent to a domestic-scheduled-payment.
+This API can be used to notify ACP that user granted consent to a domestic-scheduled-payment.
 */
 func (a *Client) AcceptDomesticScheduledPaymentConsentSystem(params *AcceptDomesticScheduledPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptDomesticScheduledPaymentConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -277,9 +277,9 @@ func (a *Client) AcceptDomesticScheduledPaymentConsentSystem(params *AcceptDomes
 }
 
 /*
-  AcceptDomesticStandingOrderConsentSystem accepts domestic standing order consent
+AcceptDomesticStandingOrderConsentSystem accepts domestic standing order consent
 
-  This API can be used to notify ACP that user granted consent to a domestic-standing-order.
+This API can be used to notify ACP that user granted consent to a domestic-standing-order.
 */
 func (a *Client) AcceptDomesticStandingOrderConsentSystem(params *AcceptDomesticStandingOrderConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptDomesticStandingOrderConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -318,9 +318,9 @@ func (a *Client) AcceptDomesticStandingOrderConsentSystem(params *AcceptDomestic
 }
 
 /*
-  AcceptFilePaymentConsentSystem accepts file payment consent
+AcceptFilePaymentConsentSystem accepts file payment consent
 
-  This API can be used to notify ACP that user granted consent to a file-payment.
+This API can be used to notify ACP that user granted consent to a file-payment.
 */
 func (a *Client) AcceptFilePaymentConsentSystem(params *AcceptFilePaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptFilePaymentConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -359,9 +359,9 @@ func (a *Client) AcceptFilePaymentConsentSystem(params *AcceptFilePaymentConsent
 }
 
 /*
-  AcceptInternationalPaymentConsentSystem accepts international payment consent
+AcceptInternationalPaymentConsentSystem accepts international payment consent
 
-  This API can be used to notify ACP that user granted consent to a international-payment.
+This API can be used to notify ACP that user granted consent to a international-payment.
 */
 func (a *Client) AcceptInternationalPaymentConsentSystem(params *AcceptInternationalPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptInternationalPaymentConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -400,9 +400,9 @@ func (a *Client) AcceptInternationalPaymentConsentSystem(params *AcceptInternati
 }
 
 /*
-  AcceptInternationalScheduledPaymentConsentSystem accepts international scheduled payment consent
+AcceptInternationalScheduledPaymentConsentSystem accepts international scheduled payment consent
 
-  This API can be used to notify ACP that user granted consent to a international-scheduled-payment.
+This API can be used to notify ACP that user granted consent to a international-scheduled-payment.
 */
 func (a *Client) AcceptInternationalScheduledPaymentConsentSystem(params *AcceptInternationalScheduledPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptInternationalScheduledPaymentConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -441,9 +441,9 @@ func (a *Client) AcceptInternationalScheduledPaymentConsentSystem(params *Accept
 }
 
 /*
-  AcceptInternationalStandingOrderConsentSystem accepts international standing order consent
+AcceptInternationalStandingOrderConsentSystem accepts international standing order consent
 
-  This API can be used to notify ACP that user granted consent to a international-standing-order.
+This API can be used to notify ACP that user granted consent to a international-standing-order.
 */
 func (a *Client) AcceptInternationalStandingOrderConsentSystem(params *AcceptInternationalStandingOrderConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptInternationalStandingOrderConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -482,9 +482,9 @@ func (a *Client) AcceptInternationalStandingOrderConsentSystem(params *AcceptInt
 }
 
 /*
-  ConsumeOpenbankingConsent consumes openbanking consent by ID
+	ConsumeOpenbankingConsent consumes openbanking consent by ID
 
-  This API consumes openbanking consent by consent id.
+	This API consumes openbanking consent by consent id.
 
 For backwards compatibility it can also be used to consume OBBR consents and in that case returns BrazilConsent (deprecated)
 */
@@ -525,9 +525,9 @@ func (a *Client) ConsumeOpenbankingConsent(params *ConsumeOpenbankingConsentPara
 }
 
 /*
-  CreateAccountAccessConsentRequest creates account access consent
+	CreateAccountAccessConsentRequest creates account access consent
 
-  The API allows the AISP to ask an ASPSP to create a new account-access-consent resource.
+	The API allows the AISP to ask an ASPSP to create a new account-access-consent resource.
 
 This API effectively allows the AISP to send a copy of the consent to the ASPSP to authorize
 access to account and transaction information.
@@ -575,9 +575,10 @@ func (a *Client) CreateAccountAccessConsentRequest(params *CreateAccountAccessCo
 }
 
 /*
-  CreateDomesticPaymentConsent creates domestic payment consent
+	CreateDomesticPaymentConsent creates domestic payment consent
 
-  The API endpoint allows the PISP to ask an ASPSP to create a new domestic-payment-consent resource.
+	The API endpoint allows the PISP to ask an ASPSP to create a new domestic-payment-consent resource.
+
 The POST action indicates to the ASPSP that a domestic payment consent has been staged. At this point, the PSU may not have been identified by the ASPSP, and the request payload may not contain any information of the account that should be debited.
 The endpoint allows the PISP to send a copy of the consent (between PSU and PISP) to the ASPSP for the PSU to authorize.
 The ASPSP creates the domestic-payment-consent resource and responds with a unique ConsentId to refer to the resource.
@@ -621,9 +622,10 @@ func (a *Client) CreateDomesticPaymentConsent(params *CreateDomesticPaymentConse
 }
 
 /*
-  CreateDomesticScheduledPaymentConsentRequest creates domestic scheduled payment consent
+	CreateDomesticScheduledPaymentConsentRequest creates domestic scheduled payment consent
 
-  The API endpoint allows the PISP to ask an ASPSP to create a new domestic-scheduled-payment-consent resource.
+	The API endpoint allows the PISP to ask an ASPSP to create a new domestic-scheduled-payment-consent resource.
+
 The POST action indicates to the ASPSP that a domestic scheduled payment consent has been staged. At this point, the PSU may not have been identified by the ASPSP, and the request payload may not contain any information of the account that should be debited.
 The endpoint allows the PISP to send a copy of the consent (between PSU and PISP) to the ASPSP for the PSU to authorize.
 The ASPSP creates the domestic-scheduled-payment-consent resource and responds with a unique ConsentId to refer to the resource.
@@ -667,9 +669,10 @@ func (a *Client) CreateDomesticScheduledPaymentConsentRequest(params *CreateDome
 }
 
 /*
-  CreateDomesticStandingOrderConsent creates standing order consent
+	CreateDomesticStandingOrderConsent creates standing order consent
 
-  The API endpoint allows the PISP to ask an ASPSP to create a new domestic-standing-order-consent resource.
+	The API endpoint allows the PISP to ask an ASPSP to create a new domestic-standing-order-consent resource.
+
 The POST action indicates to the ASPSP that a domestic standing order consent has been staged. At this point, the PSU may not have been identified by the ASPSP, and the request payload may not contain any information of the account that should be debited.
 The endpoint allows the PISP to send a copy of the consent (between PSU and PISP) to the ASPSP for the PSU to authorize.
 The ASPSP creates the domestic-standing-order-consent resource and responds with a unique ConsentId to refer to the resource.
@@ -713,9 +716,10 @@ func (a *Client) CreateDomesticStandingOrderConsent(params *CreateDomesticStandi
 }
 
 /*
-  CreateFilePaymentConsent creates standing order consent
+	CreateFilePaymentConsent creates standing order consent
 
-  The API endpoint allows the PISP to ask an ASPSP to create a new file-payment-consent resource.
+	The API endpoint allows the PISP to ask an ASPSP to create a new file-payment-consent resource.
+
 The POST action indicates to the ASPSP that a domestic standing order consent has been staged. At this point, the PSU may not have been identified by the ASPSP, and the request payload may not contain any information of the account that should be debited.
 The endpoint allows the PISP to send a copy of the consent (between PSU and PISP) to the ASPSP for the PSU to authorize.
 The ASPSP creates the file-payment-consent resource and responds with a unique ConsentId to refer to the resource.
@@ -759,9 +763,10 @@ func (a *Client) CreateFilePaymentConsent(params *CreateFilePaymentConsentParams
 }
 
 /*
-  CreateFilePaymentConsentFile uploads file for file payment consent
+	CreateFilePaymentConsentFile uploads file for file payment consent
 
-  The endpoint allows the PISP to send a copy of the consent (between PSU and PISP) to the ASPSP for the PSU to authorize. The PISP must upload the file against the ConsentId before redirecting the PSU to authorize the consent.
+	The endpoint allows the PISP to send a copy of the consent (between PSU and PISP) to the ASPSP for the PSU to authorize. The PISP must upload the file against the ConsentId before redirecting the PSU to authorize the consent.
+
 The file structure must match the FileType in the file-payment-consent request.
 An ASPSP must confirm the hash of the file matches with the FileHash provided in the file-payment-consent Metadata.
 The metadata for the file-payment-consent must match the contents of the uploaded file:
@@ -808,9 +813,10 @@ func (a *Client) CreateFilePaymentConsentFile(params *CreateFilePaymentConsentFi
 }
 
 /*
-  CreateInternationalPaymentConsent creates international payment consent
+	CreateInternationalPaymentConsent creates international payment consent
 
-  The API endpoint allows the PISP to ask an ASPSP to create a new international-payment-consent resource.
+	The API endpoint allows the PISP to ask an ASPSP to create a new international-payment-consent resource.
+
 The POST action indicates to the ASPSP that a international payment consent has been staged. At this point, the PSU may not have been identified by the ASPSP, and the request payload may not contain any information of the account that should be debited.
 The endpoint allows the PISP to send a copy of the consent (between PSU and PISP) to the ASPSP for the PSU to authorize.
 The ASPSP creates the international-payment-consent resource and responds with a unique ConsentId to refer to the resource.
@@ -854,9 +860,10 @@ func (a *Client) CreateInternationalPaymentConsent(params *CreateInternationalPa
 }
 
 /*
-  CreateInternationalScheduledPaymentConsentRequest creates international scheduled payment consent
+	CreateInternationalScheduledPaymentConsentRequest creates international scheduled payment consent
 
-  The API endpoint allows the PISP to ask an ASPSP to create a new international-scheduled-payment-consent resource.
+	The API endpoint allows the PISP to ask an ASPSP to create a new international-scheduled-payment-consent resource.
+
 The POST action indicates to the ASPSP that a international scheduled payment consent has been staged. At this point, the PSU may not have been identified by the ASPSP, and the request payload may not contain any information of the account that should be debited.
 The endpoint allows the PISP to send a copy of the consent (between PSU and PISP) to the ASPSP for the PSU to authorize.
 The ASPSP creates the international-scheduled-payment-consent resource and responds with a unique ConsentId to refer to the resource.
@@ -900,9 +907,10 @@ func (a *Client) CreateInternationalScheduledPaymentConsentRequest(params *Creat
 }
 
 /*
-  CreateInternationalStandingOrderConsent creates standing order consent
+	CreateInternationalStandingOrderConsent creates standing order consent
 
-  The API endpoint allows the PISP to ask an ASPSP to create a new international-standing-order-consent resource.
+	The API endpoint allows the PISP to ask an ASPSP to create a new international-standing-order-consent resource.
+
 The POST action indicates to the ASPSP that a international standing order consent has been staged. At this point, the PSU may not have been identified by the ASPSP, and the request payload may not contain any information of the account that should be debited.
 The endpoint allows the PISP to send a copy of the consent (between PSU and PISP) to the ASPSP for the PSU to authorize.
 The ASPSP creates the international-standing-order-consent resource and responds with a unique ConsentId to refer to the resource.
@@ -946,9 +954,9 @@ func (a *Client) CreateInternationalStandingOrderConsent(params *CreateInternati
 }
 
 /*
-  DeleteAccountAccessConsentRequest deletes account access consent
+DeleteAccountAccessConsentRequest deletes account access consent
 
-  Delete account access consent.
+Delete account access consent.
 */
 func (a *Client) DeleteAccountAccessConsentRequest(params *DeleteAccountAccessConsentRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteAccountAccessConsentRequestNoContent, error) {
 	// TODO: Validate the params before sending
@@ -987,9 +995,10 @@ func (a *Client) DeleteAccountAccessConsentRequest(params *DeleteAccountAccessCo
 }
 
 /*
-  DynamicClientRegistrationOpenbankingUK openbankings u k compliant dynamic client registration endpoint
+	DynamicClientRegistrationOpenbankingUK openbankings u k compliant dynamic client registration endpoint
 
-  This endpoint can be used to dynamically register new clients.
+	This endpoint can be used to dynamically register new clients.
+
 Request body must be signed.
 Please take a look at reference to see what fields are required:
 https://openbankinguk.github.io/dcr-docs-pub/v3.2/dynamic-client-registration.html
@@ -1032,9 +1041,10 @@ func (a *Client) DynamicClientRegistrationOpenbankingUK(params *DynamicClientReg
 }
 
 /*
-  DynamicClientRegistrationOpenbankingUKDeleteClient openbankings u k compliant dynamic delete client endpoint
+	DynamicClientRegistrationOpenbankingUKDeleteClient openbankings u k compliant dynamic delete client endpoint
 
-  This endpoint can be used to delete registered client details.
+	This endpoint can be used to delete registered client details.
+
 Use client credentials flow to authorize to this api.
 */
 func (a *Client) DynamicClientRegistrationOpenbankingUKDeleteClient(params *DynamicClientRegistrationOpenbankingUKDeleteClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationOpenbankingUKDeleteClientNoContent, error) {
@@ -1074,9 +1084,10 @@ func (a *Client) DynamicClientRegistrationOpenbankingUKDeleteClient(params *Dyna
 }
 
 /*
-  DynamicClientRegistrationOpenbankingUKGetClient openbankings u k compliant dynamic get client endpoint
+	DynamicClientRegistrationOpenbankingUKGetClient openbankings u k compliant dynamic get client endpoint
 
-  This endpoint can be used to get registered client details.
+	This endpoint can be used to get registered client details.
+
 Use client credentials flow to authorize to this api.
 */
 func (a *Client) DynamicClientRegistrationOpenbankingUKGetClient(params *DynamicClientRegistrationOpenbankingUKGetClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationOpenbankingUKGetClientOK, error) {
@@ -1116,9 +1127,10 @@ func (a *Client) DynamicClientRegistrationOpenbankingUKGetClient(params *Dynamic
 }
 
 /*
-  DynamicClientRegistrationOpenbankingUKUpdateClient openbankings u k compliant dynamic update client endpoint
+	DynamicClientRegistrationOpenbankingUKUpdateClient openbankings u k compliant dynamic update client endpoint
 
-  This endpoint can be used to update registered client details.
+	This endpoint can be used to update registered client details.
+
 Use client credentials flow to authorize to this api.
 */
 func (a *Client) DynamicClientRegistrationOpenbankingUKUpdateClient(params *DynamicClientRegistrationOpenbankingUKUpdateClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationOpenbankingUKUpdateClientOK, error) {
@@ -1158,9 +1170,9 @@ func (a *Client) DynamicClientRegistrationOpenbankingUKUpdateClient(params *Dyna
 }
 
 /*
-  GetAccountAccessConsentRequest gets account access consent
+	GetAccountAccessConsentRequest gets account access consent
 
-  An AISP may optionally retrieve an account-access-consent resource that they have created to check its status.
+	An AISP may optionally retrieve an account-access-consent resource that they have created to check its status.
 
 Prior to calling the API, the AISP must have an access token issued by the ASPSP using a client credentials grant.
 
@@ -1203,9 +1215,10 @@ func (a *Client) GetAccountAccessConsentRequest(params *GetAccountAccessConsentR
 }
 
 /*
-  GetAccountAccessConsentSystem gets account access consent
+	GetAccountAccessConsentSystem gets account access consent
 
-  This API can be used by a custom openbanking consent page.
+	This API can be used by a custom openbanking consent page.
+
 The consent page must first use client credentials flow to create consent.
 */
 func (a *Client) GetAccountAccessConsentSystem(params *GetAccountAccessConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountAccessConsentSystemOK, error) {
@@ -1245,9 +1258,9 @@ func (a *Client) GetAccountAccessConsentSystem(params *GetAccountAccessConsentSy
 }
 
 /*
-  GetDomesticPaymentConsentRequest gets domestic payment consent
+GetDomesticPaymentConsentRequest gets domestic payment consent
 
-  A PISP can optionally retrieve a payment consent resource that they have created to check its status.
+A PISP can optionally retrieve a payment consent resource that they have created to check its status.
 */
 func (a *Client) GetDomesticPaymentConsentRequest(params *GetDomesticPaymentConsentRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDomesticPaymentConsentRequestOK, error) {
 	// TODO: Validate the params before sending
@@ -1286,9 +1299,10 @@ func (a *Client) GetDomesticPaymentConsentRequest(params *GetDomesticPaymentCons
 }
 
 /*
-  GetDomesticPaymentConsentSystem gets domestic payment consent
+	GetDomesticPaymentConsentSystem gets domestic payment consent
 
-  This API can be used by a custom openbanking consent page.
+	This API can be used by a custom openbanking consent page.
+
 The consent page must first use client credentials flow to create consent.
 */
 func (a *Client) GetDomesticPaymentConsentSystem(params *GetDomesticPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDomesticPaymentConsentSystemOK, error) {
@@ -1328,9 +1342,10 @@ func (a *Client) GetDomesticPaymentConsentSystem(params *GetDomesticPaymentConse
 }
 
 /*
-  GetDomesticScheduledPaymentConsentRequest gets domestic scheduled payment consent
+	GetDomesticScheduledPaymentConsentRequest gets domestic scheduled payment consent
 
-  A PISP can optionally retrieve a payment consent resource that they have created to check its status.
+	A PISP can optionally retrieve a payment consent resource that they have created to check its status.
+
 Once the PSU authorizes the payment-consent resource, the Status of the payment-consent resource will be updated with "Authorised".
 If the PSU rejects the consent or the domestic-scheduled-payment-consent has failed some other ASPSP validation, the Status will be set to "Rejected".
 Once a domestic-scheduled-payment has been successfully created using the domestic-scheduled-payment-consent, the Status of the domestic-scheduled-payment-consent will be set to "Consumed".
@@ -1372,9 +1387,10 @@ func (a *Client) GetDomesticScheduledPaymentConsentRequest(params *GetDomesticSc
 }
 
 /*
-  GetDomesticScheduledPaymentConsentSystem gets domestic scheduled payment consent
+	GetDomesticScheduledPaymentConsentSystem gets domestic scheduled payment consent
 
-  This API can be used by a custom openbanking consent page.
+	This API can be used by a custom openbanking consent page.
+
 The consent page must first use client credentials flow to create consent.
 */
 func (a *Client) GetDomesticScheduledPaymentConsentSystem(params *GetDomesticScheduledPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDomesticScheduledPaymentConsentSystemOK, error) {
@@ -1414,9 +1430,9 @@ func (a *Client) GetDomesticScheduledPaymentConsentSystem(params *GetDomesticSch
 }
 
 /*
-  GetDomesticStandingOrderConsentRequest gets domestic payment consent
+GetDomesticStandingOrderConsentRequest gets domestic payment consent
 
-  A PISP can optionally retrieve a payment consent resource that they have created to check its status.
+A PISP can optionally retrieve a payment consent resource that they have created to check its status.
 */
 func (a *Client) GetDomesticStandingOrderConsentRequest(params *GetDomesticStandingOrderConsentRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDomesticStandingOrderConsentRequestOK, error) {
 	// TODO: Validate the params before sending
@@ -1455,9 +1471,10 @@ func (a *Client) GetDomesticStandingOrderConsentRequest(params *GetDomesticStand
 }
 
 /*
-  GetDomesticStandingOrderConsentSystem gets domestic standing order consent
+	GetDomesticStandingOrderConsentSystem gets domestic standing order consent
 
-  This API can be used by a custom openbanking consent page.
+	This API can be used by a custom openbanking consent page.
+
 The consent page must first use client credentials flow to create consent.
 */
 func (a *Client) GetDomesticStandingOrderConsentSystem(params *GetDomesticStandingOrderConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDomesticStandingOrderConsentSystemOK, error) {
@@ -1497,9 +1514,9 @@ func (a *Client) GetDomesticStandingOrderConsentSystem(params *GetDomesticStandi
 }
 
 /*
-  GetFilePaymentConsentFileRequest gets uploaded file for file payment consent
+GetFilePaymentConsentFileRequest gets uploaded file for file payment consent
 
-  The API endpoint allows the PISP to download a file (that had been uploaded against a file-payment-consent resource) from an ASPSP.
+The API endpoint allows the PISP to download a file (that had been uploaded against a file-payment-consent resource) from an ASPSP.
 */
 func (a *Client) GetFilePaymentConsentFileRequest(params *GetFilePaymentConsentFileRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetFilePaymentConsentFileRequestOK, error) {
 	// TODO: Validate the params before sending
@@ -1538,9 +1555,9 @@ func (a *Client) GetFilePaymentConsentFileRequest(params *GetFilePaymentConsentF
 }
 
 /*
-  GetFilePaymentConsentRequest gets file payment consent
+GetFilePaymentConsentRequest gets file payment consent
 
-  A PISP can optionally retrieve a payment consent resource that they have created to check its status.
+A PISP can optionally retrieve a payment consent resource that they have created to check its status.
 */
 func (a *Client) GetFilePaymentConsentRequest(params *GetFilePaymentConsentRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetFilePaymentConsentRequestOK, error) {
 	// TODO: Validate the params before sending
@@ -1579,9 +1596,10 @@ func (a *Client) GetFilePaymentConsentRequest(params *GetFilePaymentConsentReque
 }
 
 /*
-  GetFilePaymentConsentSystem gets file payment consent
+	GetFilePaymentConsentSystem gets file payment consent
 
-  This API can be used by a custom openbanking consent page.
+	This API can be used by a custom openbanking consent page.
+
 The consent page must first use client credentials flow to create consent.
 */
 func (a *Client) GetFilePaymentConsentSystem(params *GetFilePaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetFilePaymentConsentSystemOK, error) {
@@ -1621,9 +1639,9 @@ func (a *Client) GetFilePaymentConsentSystem(params *GetFilePaymentConsentSystem
 }
 
 /*
-  GetInternationalPaymentConsentRequest gets international payment consent
+GetInternationalPaymentConsentRequest gets international payment consent
 
-  A PISP can optionally retrieve a payment consent resource that they have created to check its status.
+A PISP can optionally retrieve a payment consent resource that they have created to check its status.
 */
 func (a *Client) GetInternationalPaymentConsentRequest(params *GetInternationalPaymentConsentRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInternationalPaymentConsentRequestOK, error) {
 	// TODO: Validate the params before sending
@@ -1662,9 +1680,10 @@ func (a *Client) GetInternationalPaymentConsentRequest(params *GetInternationalP
 }
 
 /*
-  GetInternationalPaymentConsentSystem gets international payment consent
+	GetInternationalPaymentConsentSystem gets international payment consent
 
-  This API can be used by a custom openbanking consent page.
+	This API can be used by a custom openbanking consent page.
+
 The consent page must first use client credentials flow to create consent.
 */
 func (a *Client) GetInternationalPaymentConsentSystem(params *GetInternationalPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInternationalPaymentConsentSystemOK, error) {
@@ -1704,9 +1723,10 @@ func (a *Client) GetInternationalPaymentConsentSystem(params *GetInternationalPa
 }
 
 /*
-  GetInternationalScheduledPaymentConsentRequest gets international scheduled payment consent
+	GetInternationalScheduledPaymentConsentRequest gets international scheduled payment consent
 
-  A PISP can optionally retrieve a payment consent resource that they have created to check its status.
+	A PISP can optionally retrieve a payment consent resource that they have created to check its status.
+
 Once the PSU authorizes the payment-consent resource, the Status of the payment-consent resource will be updated with "Authorised".
 If the PSU rejects the consent or the international-scheduled-payment-consent has failed some other ASPSP validation, the Status will be set to "Rejected".
 Once a international-scheduled-payment has been successfully created using the international-scheduled-payment-consent, the Status of the international-scheduled-payment-consent will be set to "Consumed".
@@ -1748,9 +1768,10 @@ func (a *Client) GetInternationalScheduledPaymentConsentRequest(params *GetInter
 }
 
 /*
-  GetInternationalScheduledPaymentConsentSystem gets international scheduled payment consent
+	GetInternationalScheduledPaymentConsentSystem gets international scheduled payment consent
 
-  This API can be used by a custom openbanking consent page.
+	This API can be used by a custom openbanking consent page.
+
 The consent page must first use client credentials flow to create consent.
 */
 func (a *Client) GetInternationalScheduledPaymentConsentSystem(params *GetInternationalScheduledPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInternationalScheduledPaymentConsentSystemOK, error) {
@@ -1790,9 +1811,9 @@ func (a *Client) GetInternationalScheduledPaymentConsentSystem(params *GetIntern
 }
 
 /*
-  GetInternationalStandingOrderConsentRequest gets international payment consent
+GetInternationalStandingOrderConsentRequest gets international payment consent
 
-  A PISP can optionally retrieve a payment consent resource that they have created to check its status.
+A PISP can optionally retrieve a payment consent resource that they have created to check its status.
 */
 func (a *Client) GetInternationalStandingOrderConsentRequest(params *GetInternationalStandingOrderConsentRequestParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInternationalStandingOrderConsentRequestOK, error) {
 	// TODO: Validate the params before sending
@@ -1831,9 +1852,10 @@ func (a *Client) GetInternationalStandingOrderConsentRequest(params *GetInternat
 }
 
 /*
-  GetInternationalStandingOrderConsentSystem gets international standing order consent
+	GetInternationalStandingOrderConsentSystem gets international standing order consent
 
-  This API can be used by a custom openbanking consent page.
+	This API can be used by a custom openbanking consent page.
+
 The consent page must first use client credentials flow to create consent.
 */
 func (a *Client) GetInternationalStandingOrderConsentSystem(params *GetInternationalStandingOrderConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInternationalStandingOrderConsentSystemOK, error) {
@@ -1873,9 +1895,10 @@ func (a *Client) GetInternationalStandingOrderConsentSystem(params *GetInternati
 }
 
 /*
-  GetOBConsents gets openbanking consents
+	GetOBConsents gets openbanking consents
 
-  This API returns the list of openbanking consents.
+	This API returns the list of openbanking consents.
+
 You can narrow the list of returned consents using filters defined in query parameters.
 See GetConsentsParams for details.
 */
@@ -1916,9 +1939,10 @@ func (a *Client) GetOBConsents(params *GetOBConsentsParams, authInfo runtime.Cli
 }
 
 /*
-  ListOBConsents lists openbanking consents
+	ListOBConsents lists openbanking consents
 
-  This API returns the list of openbanking consents.
+	This API returns the list of openbanking consents.
+
 You can narrow the list of returned consents using filters defined in request body.
 See ListConsentsParams for details.
 */
@@ -1959,9 +1983,9 @@ func (a *Client) ListOBConsents(params *ListOBConsentsParams, authInfo runtime.C
 }
 
 /*
-  OpenbankingAccountAccessConsentIntrospect introspects openbanking account access consent
+OpenbankingAccountAccessConsentIntrospect introspects openbanking account access consent
 
-  Introspect openbanking account access consent.
+Introspect openbanking account access consent.
 */
 func (a *Client) OpenbankingAccountAccessConsentIntrospect(params *OpenbankingAccountAccessConsentIntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*OpenbankingAccountAccessConsentIntrospectOK, error) {
 	// TODO: Validate the params before sending
@@ -2000,9 +2024,9 @@ func (a *Client) OpenbankingAccountAccessConsentIntrospect(params *OpenbankingAc
 }
 
 /*
-  OpenbankingDomesticPaymentConsentIntrospect introspects openbanking domestic payment consent
+OpenbankingDomesticPaymentConsentIntrospect introspects openbanking domestic payment consent
 
-  Introspect openbanking domestic payment consent.
+Introspect openbanking domestic payment consent.
 */
 func (a *Client) OpenbankingDomesticPaymentConsentIntrospect(params *OpenbankingDomesticPaymentConsentIntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*OpenbankingDomesticPaymentConsentIntrospectOK, error) {
 	// TODO: Validate the params before sending
@@ -2041,9 +2065,9 @@ func (a *Client) OpenbankingDomesticPaymentConsentIntrospect(params *Openbanking
 }
 
 /*
-  OpenbankingDomesticScheduledPaymentConsentIntrospect introspects openbanking domestic scheduled payment consent
+OpenbankingDomesticScheduledPaymentConsentIntrospect introspects openbanking domestic scheduled payment consent
 
-  Introspect openbanking domestic scheduled payment consent.
+Introspect openbanking domestic scheduled payment consent.
 */
 func (a *Client) OpenbankingDomesticScheduledPaymentConsentIntrospect(params *OpenbankingDomesticScheduledPaymentConsentIntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*OpenbankingDomesticScheduledPaymentConsentIntrospectOK, error) {
 	// TODO: Validate the params before sending
@@ -2082,7 +2106,7 @@ func (a *Client) OpenbankingDomesticScheduledPaymentConsentIntrospect(params *Op
 }
 
 /*
-  OpenbankingDomesticStandingOrderConsentIntrospect Introspect openbanking domestic standing order consent
+OpenbankingDomesticStandingOrderConsentIntrospect introspects openbanking domestic standing order consent
 */
 func (a *Client) OpenbankingDomesticStandingOrderConsentIntrospect(params *OpenbankingDomesticStandingOrderConsentIntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*OpenbankingDomesticStandingOrderConsentIntrospectOK, error) {
 	// TODO: Validate the params before sending
@@ -2121,7 +2145,7 @@ func (a *Client) OpenbankingDomesticStandingOrderConsentIntrospect(params *Openb
 }
 
 /*
-  OpenbankingFilePaymentConsentIntrospect Introspect openbanking file payment consent
+OpenbankingFilePaymentConsentIntrospect introspects openbanking file payment consent
 */
 func (a *Client) OpenbankingFilePaymentConsentIntrospect(params *OpenbankingFilePaymentConsentIntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*OpenbankingFilePaymentConsentIntrospectOK, error) {
 	// TODO: Validate the params before sending
@@ -2160,9 +2184,9 @@ func (a *Client) OpenbankingFilePaymentConsentIntrospect(params *OpenbankingFile
 }
 
 /*
-  OpenbankingInternationalPaymentConsentIntrospect introspects openbanking international payment consent
+OpenbankingInternationalPaymentConsentIntrospect introspects openbanking international payment consent
 
-  Introspect openbanking international payment consent.
+Introspect openbanking international payment consent.
 */
 func (a *Client) OpenbankingInternationalPaymentConsentIntrospect(params *OpenbankingInternationalPaymentConsentIntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*OpenbankingInternationalPaymentConsentIntrospectOK, error) {
 	// TODO: Validate the params before sending
@@ -2201,7 +2225,7 @@ func (a *Client) OpenbankingInternationalPaymentConsentIntrospect(params *Openba
 }
 
 /*
-  OpenbankingInternationalScheduledPaymentConsentIntrospect Introspect openbanking international scheduled payment consent
+OpenbankingInternationalScheduledPaymentConsentIntrospect introspects openbanking international scheduled payment consent
 */
 func (a *Client) OpenbankingInternationalScheduledPaymentConsentIntrospect(params *OpenbankingInternationalScheduledPaymentConsentIntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*OpenbankingInternationalScheduledPaymentConsentIntrospectOK, error) {
 	// TODO: Validate the params before sending
@@ -2240,7 +2264,7 @@ func (a *Client) OpenbankingInternationalScheduledPaymentConsentIntrospect(param
 }
 
 /*
-  OpenbankingInternationalStandingOrderConsentIntrospect Introspect openbanking international standing order consent
+OpenbankingInternationalStandingOrderConsentIntrospect introspects openbanking international standing order consent
 */
 func (a *Client) OpenbankingInternationalStandingOrderConsentIntrospect(params *OpenbankingInternationalStandingOrderConsentIntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*OpenbankingInternationalStandingOrderConsentIntrospectOK, error) {
 	// TODO: Validate the params before sending
@@ -2279,9 +2303,9 @@ func (a *Client) OpenbankingInternationalStandingOrderConsentIntrospect(params *
 }
 
 /*
-  RejectAccountAccessConsentSystem rejects account access consent
+RejectAccountAccessConsentSystem rejects account access consent
 
-  This API can be used to notify ACP that user rejected access.
+This API can be used to notify ACP that user rejected access.
 */
 func (a *Client) RejectAccountAccessConsentSystem(params *RejectAccountAccessConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectAccountAccessConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -2320,9 +2344,9 @@ func (a *Client) RejectAccountAccessConsentSystem(params *RejectAccountAccessCon
 }
 
 /*
-  RejectDomesticPaymentConsentSystem rejects domestic payment consent
+RejectDomesticPaymentConsentSystem rejects domestic payment consent
 
-  This API can be used to notify ACP that user rejected access.
+This API can be used to notify ACP that user rejected access.
 */
 func (a *Client) RejectDomesticPaymentConsentSystem(params *RejectDomesticPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectDomesticPaymentConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -2361,9 +2385,9 @@ func (a *Client) RejectDomesticPaymentConsentSystem(params *RejectDomesticPaymen
 }
 
 /*
-  RejectDomesticScheduledPaymentConsentSystem rejects domestic scheduled payment consent
+RejectDomesticScheduledPaymentConsentSystem rejects domestic scheduled payment consent
 
-  This API can be used to notify ACP that user rejected access.
+This API can be used to notify ACP that user rejected access.
 */
 func (a *Client) RejectDomesticScheduledPaymentConsentSystem(params *RejectDomesticScheduledPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectDomesticScheduledPaymentConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -2402,9 +2426,9 @@ func (a *Client) RejectDomesticScheduledPaymentConsentSystem(params *RejectDomes
 }
 
 /*
-  RejectDomesticStandingOrderConsentSystem rejects domestic standing order consent
+RejectDomesticStandingOrderConsentSystem rejects domestic standing order consent
 
-  This API can be used to notify ACP that user rejected access.
+This API can be used to notify ACP that user rejected access.
 */
 func (a *Client) RejectDomesticStandingOrderConsentSystem(params *RejectDomesticStandingOrderConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectDomesticStandingOrderConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -2443,9 +2467,9 @@ func (a *Client) RejectDomesticStandingOrderConsentSystem(params *RejectDomestic
 }
 
 /*
-  RejectFilePaymentConsentSystem rejects file payment consent
+RejectFilePaymentConsentSystem rejects file payment consent
 
-  This API can be used to notify ACP that user rejected access.
+This API can be used to notify ACP that user rejected access.
 */
 func (a *Client) RejectFilePaymentConsentSystem(params *RejectFilePaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectFilePaymentConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -2484,9 +2508,9 @@ func (a *Client) RejectFilePaymentConsentSystem(params *RejectFilePaymentConsent
 }
 
 /*
-  RejectInternationalPaymentConsentSystem rejects international payment consent
+RejectInternationalPaymentConsentSystem rejects international payment consent
 
-  This API can be used to notify ACP that user rejected access.
+This API can be used to notify ACP that user rejected access.
 */
 func (a *Client) RejectInternationalPaymentConsentSystem(params *RejectInternationalPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectInternationalPaymentConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -2525,9 +2549,9 @@ func (a *Client) RejectInternationalPaymentConsentSystem(params *RejectInternati
 }
 
 /*
-  RejectInternationalScheduledPaymentConsentSystem rejects international scheduled payment consent
+RejectInternationalScheduledPaymentConsentSystem rejects international scheduled payment consent
 
-  This API can be used to notify ACP that user rejected access.
+This API can be used to notify ACP that user rejected access.
 */
 func (a *Client) RejectInternationalScheduledPaymentConsentSystem(params *RejectInternationalScheduledPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectInternationalScheduledPaymentConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -2566,9 +2590,9 @@ func (a *Client) RejectInternationalScheduledPaymentConsentSystem(params *Reject
 }
 
 /*
-  RejectInternationalStandingOrderConsentSystem rejects international standing order consent
+RejectInternationalStandingOrderConsentSystem rejects international standing order consent
 
-  This API can be used to notify ACP that user rejected access.
+This API can be used to notify ACP that user rejected access.
 */
 func (a *Client) RejectInternationalStandingOrderConsentSystem(params *RejectInternationalStandingOrderConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectInternationalStandingOrderConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -2607,9 +2631,9 @@ func (a *Client) RejectInternationalStandingOrderConsentSystem(params *RejectInt
 }
 
 /*
-  RevokeOpenbankingConsent revokes openbanking consent by ID
+	RevokeOpenbankingConsent revokes openbanking consent by ID
 
-  This API revokes openbanking consent by consent id.
+	This API revokes openbanking consent by consent id.
 
 For backwards compatibility it can also be used to revoke OBBR consents (deprecated)
 */
@@ -2650,9 +2674,9 @@ func (a *Client) RevokeOpenbankingConsent(params *RevokeOpenbankingConsentParams
 }
 
 /*
-  RevokeOpenbankingConsents revokes openbanking consents
+	RevokeOpenbankingConsents revokes openbanking consents
 
-  This API revokes openbanking consents matching provided parameters.
+	This API revokes openbanking consents matching provided parameters.
 
 Currently supporting removal by client id.
 Use ?client_id={clientID} to remove all consents by a given client.

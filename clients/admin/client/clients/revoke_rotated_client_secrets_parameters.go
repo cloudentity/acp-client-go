@@ -52,10 +52,12 @@ func NewRevokeRotatedClientSecretsParamsWithHTTPClient(client *http.Client) *Rev
 	}
 }
 
-/* RevokeRotatedClientSecretsParams contains all the parameters to send to the API endpoint
-   for the revoke rotated client secrets operation.
+/*
+RevokeRotatedClientSecretsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the revoke rotated client secrets operation.
+
+	Typically these are written to a http.Request.
 */
 type RevokeRotatedClientSecretsParams struct {
 

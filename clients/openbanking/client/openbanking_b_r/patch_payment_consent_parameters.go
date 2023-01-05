@@ -54,10 +54,12 @@ func NewPatchPaymentConsentParamsWithHTTPClient(client *http.Client) *PatchPayme
 	}
 }
 
-/* PatchPaymentConsentParams contains all the parameters to send to the API endpoint
-   for the patch payment consent operation.
+/*
+PatchPaymentConsentParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the patch payment consent operation.
+
+	Typically these are written to a http.Request.
 */
 type PatchPaymentConsentParams struct {
 

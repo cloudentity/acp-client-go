@@ -20,34 +20,37 @@ import (
 // swagger:model GetFDXConsent
 type GetFDXConsent struct {
 
-	// created time
+	// Time of consent creation
 	// Format: date-time
 	CreatedTime strfmt.DateTime `json:"createdTime,omitempty"`
 
-	// duration period
+	// Consent duration, in days, from day of original grant.
 	DurationPeriod int64 `json:"durationPeriod,omitempty"`
 
 	// duration type
 	DurationType DurationType `json:"durationType,omitempty"`
 
-	// expiration time
+	// Time of consent expiration
 	// Format: date-time
 	ExpirationTime strfmt.DateTime `json:"expirationTime,omitempty"`
 
 	// id
 	ID FDXConsentID `json:"id,omitempty"`
 
-	// lookback period
+	// Period, in days, for which historical data may be requested; period is measured from request time, not grant time
 	LookbackPeriod int64 `json:"lookbackPeriod,omitempty"`
 
-	// parties
+	// A collection of parameters identifying the Parties (including the legal entity operating branded products or services)
+	// in the data sharing chain. Descriptive information is collected during Data Recipient registration at Data Provider,
+	// and populated during issuance by DataProvider from its registry;
 	Parties []*FDXConsentGrantParty `json:"parties"`
 
-	// resources
+	// Enumeration of the Clusters of granted data elements permissioned by this Consent Grant.
+	// Data Clusters are described in FDX RFC 0167.
 	Resources []*FDXGrantedResource `json:"resources"`
 
 	// status
-	Status string `json:"status,omitempty"`
+	Status FDXConsentGrantStatus `json:"status,omitempty"`
 }
 
 // Validate validates this get f d x consent
@@ -75,6 +78,10 @@ func (m *GetFDXConsent) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateResources(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStatus(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -194,6 +201,23 @@ func (m *GetFDXConsent) validateResources(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *GetFDXConsent) validateStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.Status) { // not required
+		return nil
+	}
+
+	if err := m.Status.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("status")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("status")
+		}
+		return err
+	}
+
+	return nil
+}
+
 // ContextValidate validate this get f d x consent based on the context it is used
 func (m *GetFDXConsent) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
@@ -211,6 +235,10 @@ func (m *GetFDXConsent) ContextValidate(ctx context.Context, formats strfmt.Regi
 	}
 
 	if err := m.contextValidateResources(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStatus(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -283,6 +311,20 @@ func (m *GetFDXConsent) contextValidateResources(ctx context.Context, formats st
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *GetFDXConsent) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.Status.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("status")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("status")
+		}
+		return err
 	}
 
 	return nil

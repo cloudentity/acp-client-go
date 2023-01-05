@@ -54,10 +54,12 @@ func NewSystemGenerateCodeParamsWithHTTPClient(client *http.Client) *SystemGener
 	}
 }
 
-/* SystemGenerateCodeParams contains all the parameters to send to the API endpoint
-   for the system generate code operation.
+/*
+SystemGenerateCodeParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the system generate code operation.
+
+	Typically these are written to a http.Request.
 */
 type SystemGenerateCodeParams struct {
 

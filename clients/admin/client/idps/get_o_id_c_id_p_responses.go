@@ -63,7 +63,8 @@ func NewGetOIDCIDPOK() *GetOIDCIDPOK {
 	return &GetOIDCIDPOK{}
 }
 
-/* GetOIDCIDPOK describes a response with status code 200, with default header values.
+/*
+GetOIDCIDPOK describes a response with status code 200, with default header values.
 
 OIDCIDP
 */
@@ -71,9 +72,39 @@ type GetOIDCIDPOK struct {
 	Payload *models.OIDCIDP
 }
 
+// IsSuccess returns true when this get o Id c Id p o k response has a 2xx status code
+func (o *GetOIDCIDPOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get o Id c Id p o k response has a 3xx status code
+func (o *GetOIDCIDPOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get o Id c Id p o k response has a 4xx status code
+func (o *GetOIDCIDPOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get o Id c Id p o k response has a 5xx status code
+func (o *GetOIDCIDPOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get o Id c Id p o k response a status code equal to that given
+func (o *GetOIDCIDPOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetOIDCIDPOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/idps/oidc/{iid}][%d] getOIdCIdPOK  %+v", 200, o.Payload)
 }
+
+func (o *GetOIDCIDPOK) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/idps/oidc/{iid}][%d] getOIdCIdPOK  %+v", 200, o.Payload)
+}
+
 func (o *GetOIDCIDPOK) GetPayload() *models.OIDCIDP {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewGetOIDCIDPUnauthorized() *GetOIDCIDPUnauthorized {
 	return &GetOIDCIDPUnauthorized{}
 }
 
-/* GetOIDCIDPUnauthorized describes a response with status code 401, with default header values.
+/*
+GetOIDCIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type GetOIDCIDPUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get o Id c Id p unauthorized response has a 2xx status code
+func (o *GetOIDCIDPUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get o Id c Id p unauthorized response has a 3xx status code
+func (o *GetOIDCIDPUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get o Id c Id p unauthorized response has a 4xx status code
+func (o *GetOIDCIDPUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get o Id c Id p unauthorized response has a 5xx status code
+func (o *GetOIDCIDPUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get o Id c Id p unauthorized response a status code equal to that given
+func (o *GetOIDCIDPUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *GetOIDCIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/idps/oidc/{iid}][%d] getOIdCIdPUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *GetOIDCIDPUnauthorized) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/idps/oidc/{iid}][%d] getOIdCIdPUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *GetOIDCIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewGetOIDCIDPForbidden() *GetOIDCIDPForbidden {
 	return &GetOIDCIDPForbidden{}
 }
 
-/* GetOIDCIDPForbidden describes a response with status code 403, with default header values.
+/*
+GetOIDCIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type GetOIDCIDPForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get o Id c Id p forbidden response has a 2xx status code
+func (o *GetOIDCIDPForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get o Id c Id p forbidden response has a 3xx status code
+func (o *GetOIDCIDPForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get o Id c Id p forbidden response has a 4xx status code
+func (o *GetOIDCIDPForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get o Id c Id p forbidden response has a 5xx status code
+func (o *GetOIDCIDPForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get o Id c Id p forbidden response a status code equal to that given
+func (o *GetOIDCIDPForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetOIDCIDPForbidden) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/idps/oidc/{iid}][%d] getOIdCIdPForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetOIDCIDPForbidden) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/idps/oidc/{iid}][%d] getOIdCIdPForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetOIDCIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewGetOIDCIDPNotFound() *GetOIDCIDPNotFound {
 	return &GetOIDCIDPNotFound{}
 }
 
-/* GetOIDCIDPNotFound describes a response with status code 404, with default header values.
+/*
+GetOIDCIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type GetOIDCIDPNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get o Id c Id p not found response has a 2xx status code
+func (o *GetOIDCIDPNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get o Id c Id p not found response has a 3xx status code
+func (o *GetOIDCIDPNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get o Id c Id p not found response has a 4xx status code
+func (o *GetOIDCIDPNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get o Id c Id p not found response has a 5xx status code
+func (o *GetOIDCIDPNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get o Id c Id p not found response a status code equal to that given
+func (o *GetOIDCIDPNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *GetOIDCIDPNotFound) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/idps/oidc/{iid}][%d] getOIdCIdPNotFound  %+v", 404, o.Payload)
 }
+
+func (o *GetOIDCIDPNotFound) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/idps/oidc/{iid}][%d] getOIdCIdPNotFound  %+v", 404, o.Payload)
+}
+
 func (o *GetOIDCIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewGetOIDCIDPTooManyRequests() *GetOIDCIDPTooManyRequests {
 	return &GetOIDCIDPTooManyRequests{}
 }
 
-/* GetOIDCIDPTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetOIDCIDPTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type GetOIDCIDPTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get o Id c Id p too many requests response has a 2xx status code
+func (o *GetOIDCIDPTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get o Id c Id p too many requests response has a 3xx status code
+func (o *GetOIDCIDPTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get o Id c Id p too many requests response has a 4xx status code
+func (o *GetOIDCIDPTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get o Id c Id p too many requests response has a 5xx status code
+func (o *GetOIDCIDPTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get o Id c Id p too many requests response a status code equal to that given
+func (o *GetOIDCIDPTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *GetOIDCIDPTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/idps/oidc/{iid}][%d] getOIdCIdPTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *GetOIDCIDPTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/idps/oidc/{iid}][%d] getOIdCIdPTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *GetOIDCIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

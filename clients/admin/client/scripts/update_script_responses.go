@@ -69,7 +69,8 @@ func NewUpdateScriptOK() *UpdateScriptOK {
 	return &UpdateScriptOK{}
 }
 
-/* UpdateScriptOK describes a response with status code 200, with default header values.
+/*
+UpdateScriptOK describes a response with status code 200, with default header values.
 
 Script
 */
@@ -77,9 +78,39 @@ type UpdateScriptOK struct {
 	Payload *models.Script
 }
 
+// IsSuccess returns true when this update script o k response has a 2xx status code
+func (o *UpdateScriptOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this update script o k response has a 3xx status code
+func (o *UpdateScriptOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update script o k response has a 4xx status code
+func (o *UpdateScriptOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this update script o k response has a 5xx status code
+func (o *UpdateScriptOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update script o k response a status code equal to that given
+func (o *UpdateScriptOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *UpdateScriptOK) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}][%d] updateScriptOK  %+v", 200, o.Payload)
 }
+
+func (o *UpdateScriptOK) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}][%d] updateScriptOK  %+v", 200, o.Payload)
+}
+
 func (o *UpdateScriptOK) GetPayload() *models.Script {
 	return o.Payload
 }
@@ -101,7 +132,8 @@ func NewUpdateScriptBadRequest() *UpdateScriptBadRequest {
 	return &UpdateScriptBadRequest{}
 }
 
-/* UpdateScriptBadRequest describes a response with status code 400, with default header values.
+/*
+UpdateScriptBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -109,9 +141,39 @@ type UpdateScriptBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update script bad request response has a 2xx status code
+func (o *UpdateScriptBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update script bad request response has a 3xx status code
+func (o *UpdateScriptBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update script bad request response has a 4xx status code
+func (o *UpdateScriptBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update script bad request response has a 5xx status code
+func (o *UpdateScriptBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update script bad request response a status code equal to that given
+func (o *UpdateScriptBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *UpdateScriptBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}][%d] updateScriptBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *UpdateScriptBadRequest) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}][%d] updateScriptBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *UpdateScriptBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -133,7 +195,8 @@ func NewUpdateScriptUnauthorized() *UpdateScriptUnauthorized {
 	return &UpdateScriptUnauthorized{}
 }
 
-/* UpdateScriptUnauthorized describes a response with status code 401, with default header values.
+/*
+UpdateScriptUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -141,9 +204,39 @@ type UpdateScriptUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update script unauthorized response has a 2xx status code
+func (o *UpdateScriptUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update script unauthorized response has a 3xx status code
+func (o *UpdateScriptUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update script unauthorized response has a 4xx status code
+func (o *UpdateScriptUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update script unauthorized response has a 5xx status code
+func (o *UpdateScriptUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update script unauthorized response a status code equal to that given
+func (o *UpdateScriptUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *UpdateScriptUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}][%d] updateScriptUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *UpdateScriptUnauthorized) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}][%d] updateScriptUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *UpdateScriptUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -165,7 +258,8 @@ func NewUpdateScriptForbidden() *UpdateScriptForbidden {
 	return &UpdateScriptForbidden{}
 }
 
-/* UpdateScriptForbidden describes a response with status code 403, with default header values.
+/*
+UpdateScriptForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -173,9 +267,39 @@ type UpdateScriptForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update script forbidden response has a 2xx status code
+func (o *UpdateScriptForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update script forbidden response has a 3xx status code
+func (o *UpdateScriptForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update script forbidden response has a 4xx status code
+func (o *UpdateScriptForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update script forbidden response has a 5xx status code
+func (o *UpdateScriptForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update script forbidden response a status code equal to that given
+func (o *UpdateScriptForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *UpdateScriptForbidden) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}][%d] updateScriptForbidden  %+v", 403, o.Payload)
 }
+
+func (o *UpdateScriptForbidden) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}][%d] updateScriptForbidden  %+v", 403, o.Payload)
+}
+
 func (o *UpdateScriptForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -197,7 +321,8 @@ func NewUpdateScriptNotFound() *UpdateScriptNotFound {
 	return &UpdateScriptNotFound{}
 }
 
-/* UpdateScriptNotFound describes a response with status code 404, with default header values.
+/*
+UpdateScriptNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -205,9 +330,39 @@ type UpdateScriptNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update script not found response has a 2xx status code
+func (o *UpdateScriptNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update script not found response has a 3xx status code
+func (o *UpdateScriptNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update script not found response has a 4xx status code
+func (o *UpdateScriptNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update script not found response has a 5xx status code
+func (o *UpdateScriptNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update script not found response a status code equal to that given
+func (o *UpdateScriptNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *UpdateScriptNotFound) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}][%d] updateScriptNotFound  %+v", 404, o.Payload)
 }
+
+func (o *UpdateScriptNotFound) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}][%d] updateScriptNotFound  %+v", 404, o.Payload)
+}
+
 func (o *UpdateScriptNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -229,7 +384,8 @@ func NewUpdateScriptTooManyRequests() *UpdateScriptTooManyRequests {
 	return &UpdateScriptTooManyRequests{}
 }
 
-/* UpdateScriptTooManyRequests describes a response with status code 429, with default header values.
+/*
+UpdateScriptTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -237,9 +393,39 @@ type UpdateScriptTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update script too many requests response has a 2xx status code
+func (o *UpdateScriptTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update script too many requests response has a 3xx status code
+func (o *UpdateScriptTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update script too many requests response has a 4xx status code
+func (o *UpdateScriptTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update script too many requests response has a 5xx status code
+func (o *UpdateScriptTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update script too many requests response a status code equal to that given
+func (o *UpdateScriptTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *UpdateScriptTooManyRequests) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}][%d] updateScriptTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *UpdateScriptTooManyRequests) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}][%d] updateScriptTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *UpdateScriptTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

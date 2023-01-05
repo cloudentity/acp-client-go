@@ -54,10 +54,12 @@ func NewCreateCognitoIDPParamsWithHTTPClient(client *http.Client) *CreateCognito
 	}
 }
 
-/* CreateCognitoIDPParams contains all the parameters to send to the API endpoint
-   for the create cognito ID p operation.
+/*
+CreateCognitoIDPParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the create cognito ID p operation.
+
+	Typically these are written to a http.Request.
 */
 type CreateCognitoIDPParams struct {
 

@@ -52,10 +52,12 @@ func NewOpenbankingDomesticScheduledPaymentConsentIntrospectParamsWithHTTPClient
 	}
 }
 
-/* OpenbankingDomesticScheduledPaymentConsentIntrospectParams contains all the parameters to send to the API endpoint
-   for the openbanking domestic scheduled payment consent introspect operation.
+/*
+OpenbankingDomesticScheduledPaymentConsentIntrospectParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the openbanking domestic scheduled payment consent introspect operation.
+
+	Typically these are written to a http.Request.
 */
 type OpenbankingDomesticScheduledPaymentConsentIntrospectParams struct {
 

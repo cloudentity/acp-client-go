@@ -40,9 +40,9 @@ type ClientService interface {
 }
 
 /*
-  GetGatewayConfiguration gets configuration for a gateway
+GetGatewayConfiguration gets configuration for a gateway
 
-  This endpoint is used by api authorizers to fetch rules, policies and services to protect.
+This endpoint is used by api authorizers to fetch rules, policies and services to protect.
 */
 func (a *Client) GetGatewayConfiguration(params *GetGatewayConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetGatewayConfigurationOK, error) {
 	// TODO: Validate the params before sending
@@ -81,9 +81,9 @@ func (a *Client) GetGatewayConfiguration(params *GetGatewayConfigurationParams, 
 }
 
 /*
-  PushGatewayRequests pushes gateway request
+PushGatewayRequests pushes gateway request
 
-  Push gateway request.
+Push gateway request.
 */
 func (a *Client) PushGatewayRequests(params *PushGatewayRequestsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PushGatewayRequestsOK, error) {
 	// TODO: Validate the params before sending
@@ -122,9 +122,9 @@ func (a *Client) PushGatewayRequests(params *PushGatewayRequestsParams, authInfo
 }
 
 /*
-  SetGatewayConfiguration sets configuration for a gateway
+SetGatewayConfiguration sets configuration for a gateway
 
-  This endpoint is used to push apis protected by api gateway to acp.
+This endpoint is used to push apis protected by api gateway to acp.
 */
 func (a *Client) SetGatewayConfiguration(params *SetGatewayConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetGatewayConfigurationOK, error) {
 	// TODO: Validate the params before sending

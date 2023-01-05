@@ -52,10 +52,12 @@ func NewGetPaymentConsentParamsWithHTTPClient(client *http.Client) *GetPaymentCo
 	}
 }
 
-/* GetPaymentConsentParams contains all the parameters to send to the API endpoint
-   for the get payment consent operation.
+/*
+GetPaymentConsentParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get payment consent operation.
+
+	Typically these are written to a http.Request.
 */
 type GetPaymentConsentParams struct {
 

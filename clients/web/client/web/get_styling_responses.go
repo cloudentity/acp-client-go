@@ -45,7 +45,8 @@ func NewGetStylingOK() *GetStylingOK {
 	return &GetStylingOK{}
 }
 
-/* GetStylingOK describes a response with status code 200, with default header values.
+/*
+GetStylingOK describes a response with status code 200, with default header values.
 
 Styling
 */
@@ -53,9 +54,39 @@ type GetStylingOK struct {
 	Payload *models.Styling
 }
 
+// IsSuccess returns true when this get styling o k response has a 2xx status code
+func (o *GetStylingOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get styling o k response has a 3xx status code
+func (o *GetStylingOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get styling o k response has a 4xx status code
+func (o *GetStylingOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get styling o k response has a 5xx status code
+func (o *GetStylingOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get styling o k response a status code equal to that given
+func (o *GetStylingOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetStylingOK) Error() string {
 	return fmt.Sprintf("[GET /styling][%d] getStylingOK  %+v", 200, o.Payload)
 }
+
+func (o *GetStylingOK) String() string {
+	return fmt.Sprintf("[GET /styling][%d] getStylingOK  %+v", 200, o.Payload)
+}
+
 func (o *GetStylingOK) GetPayload() *models.Styling {
 	return o.Payload
 }
@@ -77,7 +108,8 @@ func NewGetStylingNotFound() *GetStylingNotFound {
 	return &GetStylingNotFound{}
 }
 
-/* GetStylingNotFound describes a response with status code 404, with default header values.
+/*
+GetStylingNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -85,9 +117,39 @@ type GetStylingNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get styling not found response has a 2xx status code
+func (o *GetStylingNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get styling not found response has a 3xx status code
+func (o *GetStylingNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get styling not found response has a 4xx status code
+func (o *GetStylingNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get styling not found response has a 5xx status code
+func (o *GetStylingNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get styling not found response a status code equal to that given
+func (o *GetStylingNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *GetStylingNotFound) Error() string {
 	return fmt.Sprintf("[GET /styling][%d] getStylingNotFound  %+v", 404, o.Payload)
 }
+
+func (o *GetStylingNotFound) String() string {
+	return fmt.Sprintf("[GET /styling][%d] getStylingNotFound  %+v", 404, o.Payload)
+}
+
 func (o *GetStylingNotFound) GetPayload() *models.Error {
 	return o.Payload
 }

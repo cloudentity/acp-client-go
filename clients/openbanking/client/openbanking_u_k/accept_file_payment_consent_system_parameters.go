@@ -54,10 +54,12 @@ func NewAcceptFilePaymentConsentSystemParamsWithHTTPClient(client *http.Client) 
 	}
 }
 
-/* AcceptFilePaymentConsentSystemParams contains all the parameters to send to the API endpoint
-   for the accept file payment consent system operation.
+/*
+AcceptFilePaymentConsentSystemParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the accept file payment consent system operation.
+
+	Typically these are written to a http.Request.
 */
 type AcceptFilePaymentConsentSystemParams struct {
 

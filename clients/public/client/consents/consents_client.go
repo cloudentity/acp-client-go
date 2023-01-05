@@ -46,9 +46,9 @@ type ClientService interface {
 }
 
 /*
-  GrantConsent grants privacy consent
+	GrantConsent grants privacy consent
 
-  Consent id must be provided in the request body.
+	Consent id must be provided in the request body.
 
 When a user grants consent which was already granted, it does not result in an error but it silently skipped instead.
 */
@@ -89,9 +89,9 @@ func (a *Client) GrantConsent(params *GrantConsentParams, authInfo runtime.Clien
 }
 
 /*
-  ListPrivacyLedgerEvents lists privacy ledger events
+ListPrivacyLedgerEvents lists privacy ledger events
 
-  It is possible to provide time constraints using from and to query params.
+It is possible to provide time constraints using from and to query params.
 */
 func (a *Client) ListPrivacyLedgerEvents(params *ListPrivacyLedgerEventsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListPrivacyLedgerEventsOK, error) {
 	// TODO: Validate the params before sending
@@ -130,9 +130,9 @@ func (a *Client) ListPrivacyLedgerEvents(params *ListPrivacyLedgerEventsParams, 
 }
 
 /*
-  ListUserConsents lists consents
+ListUserConsents lists consents
 
-  If you want to list only specific consents, provide consent identifiers in query params.
+If you want to list only specific consents, provide consent identifiers in query params.
 */
 func (a *Client) ListUserConsents(params *ListUserConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListUserConsentsOK, error) {
 	// TODO: Validate the params before sending
@@ -171,9 +171,9 @@ func (a *Client) ListUserConsents(params *ListUserConsentsParams, authInfo runti
 }
 
 /*
-  ListUserConsentsByAction lists consents by action
+	ListUserConsentsByAction lists consents by action
 
-  Returns any possible required consents that the app should ask the User about.
+	Returns any possible required consents that the app should ask the User about.
 
 The response includes a list of consents (including the ones user already agreed to).
 Inclusion of the consents which the user already agreed to can be used to inform the user what he already agreed to.
@@ -215,9 +215,9 @@ func (a *Client) ListUserConsentsByAction(params *ListUserConsentsByActionParams
 }
 
 /*
-  PatchConsentGrants patches consent grants
+	PatchConsentGrants patches consent grants
 
-  This is a non-standardized PATCH request.
+	This is a non-standardized PATCH request.
 
 Allows to update multiple consents approval in one API call.
 
@@ -260,9 +260,9 @@ func (a *Client) PatchConsentGrants(params *PatchConsentGrantsParams, authInfo r
 }
 
 /*
-  RevokeConsent revokes privacy consent
+	RevokeConsent revokes privacy consent
 
-  This API can be used to withdraw a consent which user previously gave.
+	This API can be used to withdraw a consent which user previously gave.
 
 Consent id must be provided in the request body.
 

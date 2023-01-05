@@ -63,7 +63,8 @@ func NewGetUserProfileOK() *GetUserProfileOK {
 	return &GetUserProfileOK{}
 }
 
-/* GetUserProfileOK describes a response with status code 200, with default header values.
+/*
+GetUserProfileOK describes a response with status code 200, with default header values.
 
 Self
 */
@@ -71,9 +72,39 @@ type GetUserProfileOK struct {
 	Payload *models.SelfUserWithData
 }
 
+// IsSuccess returns true when this get user profile o k response has a 2xx status code
+func (o *GetUserProfileOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get user profile o k response has a 3xx status code
+func (o *GetUserProfileOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get user profile o k response has a 4xx status code
+func (o *GetUserProfileOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get user profile o k response has a 5xx status code
+func (o *GetUserProfileOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get user profile o k response a status code equal to that given
+func (o *GetUserProfileOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetUserProfileOK) Error() string {
 	return fmt.Sprintf("[GET /self/me][%d] getUserProfileOK  %+v", 200, o.Payload)
 }
+
+func (o *GetUserProfileOK) String() string {
+	return fmt.Sprintf("[GET /self/me][%d] getUserProfileOK  %+v", 200, o.Payload)
+}
+
 func (o *GetUserProfileOK) GetPayload() *models.SelfUserWithData {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewGetUserProfileUnauthorized() *GetUserProfileUnauthorized {
 	return &GetUserProfileUnauthorized{}
 }
 
-/* GetUserProfileUnauthorized describes a response with status code 401, with default header values.
+/*
+GetUserProfileUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type GetUserProfileUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get user profile unauthorized response has a 2xx status code
+func (o *GetUserProfileUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get user profile unauthorized response has a 3xx status code
+func (o *GetUserProfileUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get user profile unauthorized response has a 4xx status code
+func (o *GetUserProfileUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get user profile unauthorized response has a 5xx status code
+func (o *GetUserProfileUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get user profile unauthorized response a status code equal to that given
+func (o *GetUserProfileUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *GetUserProfileUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /self/me][%d] getUserProfileUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *GetUserProfileUnauthorized) String() string {
+	return fmt.Sprintf("[GET /self/me][%d] getUserProfileUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *GetUserProfileUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewGetUserProfileForbidden() *GetUserProfileForbidden {
 	return &GetUserProfileForbidden{}
 }
 
-/* GetUserProfileForbidden describes a response with status code 403, with default header values.
+/*
+GetUserProfileForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type GetUserProfileForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get user profile forbidden response has a 2xx status code
+func (o *GetUserProfileForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get user profile forbidden response has a 3xx status code
+func (o *GetUserProfileForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get user profile forbidden response has a 4xx status code
+func (o *GetUserProfileForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get user profile forbidden response has a 5xx status code
+func (o *GetUserProfileForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get user profile forbidden response a status code equal to that given
+func (o *GetUserProfileForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetUserProfileForbidden) Error() string {
 	return fmt.Sprintf("[GET /self/me][%d] getUserProfileForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetUserProfileForbidden) String() string {
+	return fmt.Sprintf("[GET /self/me][%d] getUserProfileForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetUserProfileForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewGetUserProfileNotFound() *GetUserProfileNotFound {
 	return &GetUserProfileNotFound{}
 }
 
-/* GetUserProfileNotFound describes a response with status code 404, with default header values.
+/*
+GetUserProfileNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type GetUserProfileNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get user profile not found response has a 2xx status code
+func (o *GetUserProfileNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get user profile not found response has a 3xx status code
+func (o *GetUserProfileNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get user profile not found response has a 4xx status code
+func (o *GetUserProfileNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get user profile not found response has a 5xx status code
+func (o *GetUserProfileNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get user profile not found response a status code equal to that given
+func (o *GetUserProfileNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *GetUserProfileNotFound) Error() string {
 	return fmt.Sprintf("[GET /self/me][%d] getUserProfileNotFound  %+v", 404, o.Payload)
 }
+
+func (o *GetUserProfileNotFound) String() string {
+	return fmt.Sprintf("[GET /self/me][%d] getUserProfileNotFound  %+v", 404, o.Payload)
+}
+
 func (o *GetUserProfileNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewGetUserProfileTooManyRequests() *GetUserProfileTooManyRequests {
 	return &GetUserProfileTooManyRequests{}
 }
 
-/* GetUserProfileTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetUserProfileTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type GetUserProfileTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get user profile too many requests response has a 2xx status code
+func (o *GetUserProfileTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get user profile too many requests response has a 3xx status code
+func (o *GetUserProfileTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get user profile too many requests response has a 4xx status code
+func (o *GetUserProfileTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get user profile too many requests response has a 5xx status code
+func (o *GetUserProfileTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get user profile too many requests response a status code equal to that given
+func (o *GetUserProfileTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *GetUserProfileTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /self/me][%d] getUserProfileTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *GetUserProfileTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /self/me][%d] getUserProfileTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *GetUserProfileTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

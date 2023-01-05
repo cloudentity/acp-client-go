@@ -60,7 +60,8 @@ func NewOpenbankingDomesticStandingOrderConsentIntrospectOK() *OpenbankingDomest
 	return &OpenbankingDomesticStandingOrderConsentIntrospectOK{}
 }
 
-/* OpenbankingDomesticStandingOrderConsentIntrospectOK describes a response with status code 200, with default header values.
+/*
+OpenbankingDomesticStandingOrderConsentIntrospectOK describes a response with status code 200, with default header values.
 
 Introspect Openbanking Domestic Standing Order Consent Response
 */
@@ -68,9 +69,39 @@ type OpenbankingDomesticStandingOrderConsentIntrospectOK struct {
 	Payload *OpenbankingDomesticStandingOrderConsentIntrospectOKBody
 }
 
+// IsSuccess returns true when this openbanking domestic standing order consent introspect o k response has a 2xx status code
+func (o *OpenbankingDomesticStandingOrderConsentIntrospectOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this openbanking domestic standing order consent introspect o k response has a 3xx status code
+func (o *OpenbankingDomesticStandingOrderConsentIntrospectOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this openbanking domestic standing order consent introspect o k response has a 4xx status code
+func (o *OpenbankingDomesticStandingOrderConsentIntrospectOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this openbanking domestic standing order consent introspect o k response has a 5xx status code
+func (o *OpenbankingDomesticStandingOrderConsentIntrospectOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this openbanking domestic standing order consent introspect o k response a status code equal to that given
+func (o *OpenbankingDomesticStandingOrderConsentIntrospectOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *OpenbankingDomesticStandingOrderConsentIntrospectOK) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-standing-order-consents/introspect][%d] openbankingDomesticStandingOrderConsentIntrospectOK  %+v", 200, o.Payload)
 }
+
+func (o *OpenbankingDomesticStandingOrderConsentIntrospectOK) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-standing-order-consents/introspect][%d] openbankingDomesticStandingOrderConsentIntrospectOK  %+v", 200, o.Payload)
+}
+
 func (o *OpenbankingDomesticStandingOrderConsentIntrospectOK) GetPayload() *OpenbankingDomesticStandingOrderConsentIntrospectOKBody {
 	return o.Payload
 }
@@ -92,7 +123,8 @@ func NewOpenbankingDomesticStandingOrderConsentIntrospectUnauthorized() *Openban
 	return &OpenbankingDomesticStandingOrderConsentIntrospectUnauthorized{}
 }
 
-/* OpenbankingDomesticStandingOrderConsentIntrospectUnauthorized describes a response with status code 401, with default header values.
+/*
+OpenbankingDomesticStandingOrderConsentIntrospectUnauthorized describes a response with status code 401, with default header values.
 
 ErrorResponse
 */
@@ -100,9 +132,39 @@ type OpenbankingDomesticStandingOrderConsentIntrospectUnauthorized struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this openbanking domestic standing order consent introspect unauthorized response has a 2xx status code
+func (o *OpenbankingDomesticStandingOrderConsentIntrospectUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this openbanking domestic standing order consent introspect unauthorized response has a 3xx status code
+func (o *OpenbankingDomesticStandingOrderConsentIntrospectUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this openbanking domestic standing order consent introspect unauthorized response has a 4xx status code
+func (o *OpenbankingDomesticStandingOrderConsentIntrospectUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this openbanking domestic standing order consent introspect unauthorized response has a 5xx status code
+func (o *OpenbankingDomesticStandingOrderConsentIntrospectUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this openbanking domestic standing order consent introspect unauthorized response a status code equal to that given
+func (o *OpenbankingDomesticStandingOrderConsentIntrospectUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *OpenbankingDomesticStandingOrderConsentIntrospectUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-standing-order-consents/introspect][%d] openbankingDomesticStandingOrderConsentIntrospectUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *OpenbankingDomesticStandingOrderConsentIntrospectUnauthorized) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-standing-order-consents/introspect][%d] openbankingDomesticStandingOrderConsentIntrospectUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *OpenbankingDomesticStandingOrderConsentIntrospectUnauthorized) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -124,7 +186,8 @@ func NewOpenbankingDomesticStandingOrderConsentIntrospectNotFound() *Openbanking
 	return &OpenbankingDomesticStandingOrderConsentIntrospectNotFound{}
 }
 
-/* OpenbankingDomesticStandingOrderConsentIntrospectNotFound describes a response with status code 404, with default header values.
+/*
+OpenbankingDomesticStandingOrderConsentIntrospectNotFound describes a response with status code 404, with default header values.
 
 ErrorResponse
 */
@@ -132,9 +195,39 @@ type OpenbankingDomesticStandingOrderConsentIntrospectNotFound struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this openbanking domestic standing order consent introspect not found response has a 2xx status code
+func (o *OpenbankingDomesticStandingOrderConsentIntrospectNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this openbanking domestic standing order consent introspect not found response has a 3xx status code
+func (o *OpenbankingDomesticStandingOrderConsentIntrospectNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this openbanking domestic standing order consent introspect not found response has a 4xx status code
+func (o *OpenbankingDomesticStandingOrderConsentIntrospectNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this openbanking domestic standing order consent introspect not found response has a 5xx status code
+func (o *OpenbankingDomesticStandingOrderConsentIntrospectNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this openbanking domestic standing order consent introspect not found response a status code equal to that given
+func (o *OpenbankingDomesticStandingOrderConsentIntrospectNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *OpenbankingDomesticStandingOrderConsentIntrospectNotFound) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-standing-order-consents/introspect][%d] openbankingDomesticStandingOrderConsentIntrospectNotFound  %+v", 404, o.Payload)
 }
+
+func (o *OpenbankingDomesticStandingOrderConsentIntrospectNotFound) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-standing-order-consents/introspect][%d] openbankingDomesticStandingOrderConsentIntrospectNotFound  %+v", 404, o.Payload)
+}
+
 func (o *OpenbankingDomesticStandingOrderConsentIntrospectNotFound) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -156,7 +249,8 @@ func NewOpenbankingDomesticStandingOrderConsentIntrospectTooManyRequests() *Open
 	return &OpenbankingDomesticStandingOrderConsentIntrospectTooManyRequests{}
 }
 
-/* OpenbankingDomesticStandingOrderConsentIntrospectTooManyRequests describes a response with status code 429, with default header values.
+/*
+OpenbankingDomesticStandingOrderConsentIntrospectTooManyRequests describes a response with status code 429, with default header values.
 
 ErrorResponse
 */
@@ -164,9 +258,39 @@ type OpenbankingDomesticStandingOrderConsentIntrospectTooManyRequests struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this openbanking domestic standing order consent introspect too many requests response has a 2xx status code
+func (o *OpenbankingDomesticStandingOrderConsentIntrospectTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this openbanking domestic standing order consent introspect too many requests response has a 3xx status code
+func (o *OpenbankingDomesticStandingOrderConsentIntrospectTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this openbanking domestic standing order consent introspect too many requests response has a 4xx status code
+func (o *OpenbankingDomesticStandingOrderConsentIntrospectTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this openbanking domestic standing order consent introspect too many requests response has a 5xx status code
+func (o *OpenbankingDomesticStandingOrderConsentIntrospectTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this openbanking domestic standing order consent introspect too many requests response a status code equal to that given
+func (o *OpenbankingDomesticStandingOrderConsentIntrospectTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *OpenbankingDomesticStandingOrderConsentIntrospectTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-standing-order-consents/introspect][%d] openbankingDomesticStandingOrderConsentIntrospectTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *OpenbankingDomesticStandingOrderConsentIntrospectTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-standing-order-consents/introspect][%d] openbankingDomesticStandingOrderConsentIntrospectTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *OpenbankingDomesticStandingOrderConsentIntrospectTooManyRequests) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -183,7 +307,8 @@ func (o *OpenbankingDomesticStandingOrderConsentIntrospectTooManyRequests) readR
 	return nil
 }
 
-/*OpenbankingDomesticStandingOrderConsentIntrospectOKBody openbanking domestic standing order consent introspect o k body
+/*
+OpenbankingDomesticStandingOrderConsentIntrospectOKBody openbanking domestic standing order consent introspect o k body
 swagger:model OpenbankingDomesticStandingOrderConsentIntrospectOKBody
 */
 type OpenbankingDomesticStandingOrderConsentIntrospectOKBody struct {

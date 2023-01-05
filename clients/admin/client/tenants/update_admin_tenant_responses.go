@@ -75,7 +75,8 @@ func NewUpdateAdminTenantOK() *UpdateAdminTenantOK {
 	return &UpdateAdminTenantOK{}
 }
 
-/* UpdateAdminTenantOK describes a response with status code 200, with default header values.
+/*
+UpdateAdminTenantOK describes a response with status code 200, with default header values.
 
 Tenant
 */
@@ -83,9 +84,39 @@ type UpdateAdminTenantOK struct {
 	Payload *models.Tenant
 }
 
+// IsSuccess returns true when this update admin tenant o k response has a 2xx status code
+func (o *UpdateAdminTenantOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this update admin tenant o k response has a 3xx status code
+func (o *UpdateAdminTenantOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update admin tenant o k response has a 4xx status code
+func (o *UpdateAdminTenantOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this update admin tenant o k response has a 5xx status code
+func (o *UpdateAdminTenantOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update admin tenant o k response a status code equal to that given
+func (o *UpdateAdminTenantOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *UpdateAdminTenantOK) Error() string {
 	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantOK  %+v", 200, o.Payload)
 }
+
+func (o *UpdateAdminTenantOK) String() string {
+	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantOK  %+v", 200, o.Payload)
+}
+
 func (o *UpdateAdminTenantOK) GetPayload() *models.Tenant {
 	return o.Payload
 }
@@ -107,7 +138,8 @@ func NewUpdateAdminTenantBadRequest() *UpdateAdminTenantBadRequest {
 	return &UpdateAdminTenantBadRequest{}
 }
 
-/* UpdateAdminTenantBadRequest describes a response with status code 400, with default header values.
+/*
+UpdateAdminTenantBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -115,9 +147,39 @@ type UpdateAdminTenantBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update admin tenant bad request response has a 2xx status code
+func (o *UpdateAdminTenantBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update admin tenant bad request response has a 3xx status code
+func (o *UpdateAdminTenantBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update admin tenant bad request response has a 4xx status code
+func (o *UpdateAdminTenantBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update admin tenant bad request response has a 5xx status code
+func (o *UpdateAdminTenantBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update admin tenant bad request response a status code equal to that given
+func (o *UpdateAdminTenantBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *UpdateAdminTenantBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *UpdateAdminTenantBadRequest) String() string {
+	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *UpdateAdminTenantBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -139,7 +201,8 @@ func NewUpdateAdminTenantUnauthorized() *UpdateAdminTenantUnauthorized {
 	return &UpdateAdminTenantUnauthorized{}
 }
 
-/* UpdateAdminTenantUnauthorized describes a response with status code 401, with default header values.
+/*
+UpdateAdminTenantUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,9 +210,39 @@ type UpdateAdminTenantUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update admin tenant unauthorized response has a 2xx status code
+func (o *UpdateAdminTenantUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update admin tenant unauthorized response has a 3xx status code
+func (o *UpdateAdminTenantUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update admin tenant unauthorized response has a 4xx status code
+func (o *UpdateAdminTenantUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update admin tenant unauthorized response has a 5xx status code
+func (o *UpdateAdminTenantUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update admin tenant unauthorized response a status code equal to that given
+func (o *UpdateAdminTenantUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *UpdateAdminTenantUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *UpdateAdminTenantUnauthorized) String() string {
+	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *UpdateAdminTenantUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -171,7 +264,8 @@ func NewUpdateAdminTenantForbidden() *UpdateAdminTenantForbidden {
 	return &UpdateAdminTenantForbidden{}
 }
 
-/* UpdateAdminTenantForbidden describes a response with status code 403, with default header values.
+/*
+UpdateAdminTenantForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -179,9 +273,39 @@ type UpdateAdminTenantForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update admin tenant forbidden response has a 2xx status code
+func (o *UpdateAdminTenantForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update admin tenant forbidden response has a 3xx status code
+func (o *UpdateAdminTenantForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update admin tenant forbidden response has a 4xx status code
+func (o *UpdateAdminTenantForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update admin tenant forbidden response has a 5xx status code
+func (o *UpdateAdminTenantForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update admin tenant forbidden response a status code equal to that given
+func (o *UpdateAdminTenantForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *UpdateAdminTenantForbidden) Error() string {
 	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantForbidden  %+v", 403, o.Payload)
 }
+
+func (o *UpdateAdminTenantForbidden) String() string {
+	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantForbidden  %+v", 403, o.Payload)
+}
+
 func (o *UpdateAdminTenantForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -203,7 +327,8 @@ func NewUpdateAdminTenantNotFound() *UpdateAdminTenantNotFound {
 	return &UpdateAdminTenantNotFound{}
 }
 
-/* UpdateAdminTenantNotFound describes a response with status code 404, with default header values.
+/*
+UpdateAdminTenantNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -211,9 +336,39 @@ type UpdateAdminTenantNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update admin tenant not found response has a 2xx status code
+func (o *UpdateAdminTenantNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update admin tenant not found response has a 3xx status code
+func (o *UpdateAdminTenantNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update admin tenant not found response has a 4xx status code
+func (o *UpdateAdminTenantNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update admin tenant not found response has a 5xx status code
+func (o *UpdateAdminTenantNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update admin tenant not found response a status code equal to that given
+func (o *UpdateAdminTenantNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *UpdateAdminTenantNotFound) Error() string {
 	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantNotFound  %+v", 404, o.Payload)
 }
+
+func (o *UpdateAdminTenantNotFound) String() string {
+	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantNotFound  %+v", 404, o.Payload)
+}
+
 func (o *UpdateAdminTenantNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +390,8 @@ func NewUpdateAdminTenantUnprocessableEntity() *UpdateAdminTenantUnprocessableEn
 	return &UpdateAdminTenantUnprocessableEntity{}
 }
 
-/* UpdateAdminTenantUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+UpdateAdminTenantUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -243,9 +399,39 @@ type UpdateAdminTenantUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update admin tenant unprocessable entity response has a 2xx status code
+func (o *UpdateAdminTenantUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update admin tenant unprocessable entity response has a 3xx status code
+func (o *UpdateAdminTenantUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update admin tenant unprocessable entity response has a 4xx status code
+func (o *UpdateAdminTenantUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update admin tenant unprocessable entity response has a 5xx status code
+func (o *UpdateAdminTenantUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update admin tenant unprocessable entity response a status code equal to that given
+func (o *UpdateAdminTenantUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *UpdateAdminTenantUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *UpdateAdminTenantUnprocessableEntity) String() string {
+	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *UpdateAdminTenantUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -267,7 +453,8 @@ func NewUpdateAdminTenantTooManyRequests() *UpdateAdminTenantTooManyRequests {
 	return &UpdateAdminTenantTooManyRequests{}
 }
 
-/* UpdateAdminTenantTooManyRequests describes a response with status code 429, with default header values.
+/*
+UpdateAdminTenantTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -275,9 +462,39 @@ type UpdateAdminTenantTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update admin tenant too many requests response has a 2xx status code
+func (o *UpdateAdminTenantTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update admin tenant too many requests response has a 3xx status code
+func (o *UpdateAdminTenantTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update admin tenant too many requests response has a 4xx status code
+func (o *UpdateAdminTenantTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update admin tenant too many requests response has a 5xx status code
+func (o *UpdateAdminTenantTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update admin tenant too many requests response a status code equal to that given
+func (o *UpdateAdminTenantTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *UpdateAdminTenantTooManyRequests) Error() string {
 	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *UpdateAdminTenantTooManyRequests) String() string {
+	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *UpdateAdminTenantTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

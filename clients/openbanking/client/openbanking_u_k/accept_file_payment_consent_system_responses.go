@@ -63,7 +63,8 @@ func NewAcceptFilePaymentConsentSystemOK() *AcceptFilePaymentConsentSystemOK {
 	return &AcceptFilePaymentConsentSystemOK{}
 }
 
-/* AcceptFilePaymentConsentSystemOK describes a response with status code 200, with default header values.
+/*
+AcceptFilePaymentConsentSystemOK describes a response with status code 200, with default header values.
 
 Consent accepted
 */
@@ -71,9 +72,39 @@ type AcceptFilePaymentConsentSystemOK struct {
 	Payload *models.ConsentAccepted
 }
 
+// IsSuccess returns true when this accept file payment consent system o k response has a 2xx status code
+func (o *AcceptFilePaymentConsentSystemOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this accept file payment consent system o k response has a 3xx status code
+func (o *AcceptFilePaymentConsentSystemOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this accept file payment consent system o k response has a 4xx status code
+func (o *AcceptFilePaymentConsentSystemOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this accept file payment consent system o k response has a 5xx status code
+func (o *AcceptFilePaymentConsentSystemOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this accept file payment consent system o k response a status code equal to that given
+func (o *AcceptFilePaymentConsentSystemOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *AcceptFilePaymentConsentSystemOK) Error() string {
 	return fmt.Sprintf("[POST /open-banking/file-payment-consent/{login}/accept][%d] acceptFilePaymentConsentSystemOK  %+v", 200, o.Payload)
 }
+
+func (o *AcceptFilePaymentConsentSystemOK) String() string {
+	return fmt.Sprintf("[POST /open-banking/file-payment-consent/{login}/accept][%d] acceptFilePaymentConsentSystemOK  %+v", 200, o.Payload)
+}
+
 func (o *AcceptFilePaymentConsentSystemOK) GetPayload() *models.ConsentAccepted {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewAcceptFilePaymentConsentSystemUnauthorized() *AcceptFilePaymentConsentSy
 	return &AcceptFilePaymentConsentSystemUnauthorized{}
 }
 
-/* AcceptFilePaymentConsentSystemUnauthorized describes a response with status code 401, with default header values.
+/*
+AcceptFilePaymentConsentSystemUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type AcceptFilePaymentConsentSystemUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this accept file payment consent system unauthorized response has a 2xx status code
+func (o *AcceptFilePaymentConsentSystemUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this accept file payment consent system unauthorized response has a 3xx status code
+func (o *AcceptFilePaymentConsentSystemUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this accept file payment consent system unauthorized response has a 4xx status code
+func (o *AcceptFilePaymentConsentSystemUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this accept file payment consent system unauthorized response has a 5xx status code
+func (o *AcceptFilePaymentConsentSystemUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this accept file payment consent system unauthorized response a status code equal to that given
+func (o *AcceptFilePaymentConsentSystemUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *AcceptFilePaymentConsentSystemUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /open-banking/file-payment-consent/{login}/accept][%d] acceptFilePaymentConsentSystemUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *AcceptFilePaymentConsentSystemUnauthorized) String() string {
+	return fmt.Sprintf("[POST /open-banking/file-payment-consent/{login}/accept][%d] acceptFilePaymentConsentSystemUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *AcceptFilePaymentConsentSystemUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewAcceptFilePaymentConsentSystemForbidden() *AcceptFilePaymentConsentSyste
 	return &AcceptFilePaymentConsentSystemForbidden{}
 }
 
-/* AcceptFilePaymentConsentSystemForbidden describes a response with status code 403, with default header values.
+/*
+AcceptFilePaymentConsentSystemForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type AcceptFilePaymentConsentSystemForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this accept file payment consent system forbidden response has a 2xx status code
+func (o *AcceptFilePaymentConsentSystemForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this accept file payment consent system forbidden response has a 3xx status code
+func (o *AcceptFilePaymentConsentSystemForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this accept file payment consent system forbidden response has a 4xx status code
+func (o *AcceptFilePaymentConsentSystemForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this accept file payment consent system forbidden response has a 5xx status code
+func (o *AcceptFilePaymentConsentSystemForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this accept file payment consent system forbidden response a status code equal to that given
+func (o *AcceptFilePaymentConsentSystemForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *AcceptFilePaymentConsentSystemForbidden) Error() string {
 	return fmt.Sprintf("[POST /open-banking/file-payment-consent/{login}/accept][%d] acceptFilePaymentConsentSystemForbidden  %+v", 403, o.Payload)
 }
+
+func (o *AcceptFilePaymentConsentSystemForbidden) String() string {
+	return fmt.Sprintf("[POST /open-banking/file-payment-consent/{login}/accept][%d] acceptFilePaymentConsentSystemForbidden  %+v", 403, o.Payload)
+}
+
 func (o *AcceptFilePaymentConsentSystemForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewAcceptFilePaymentConsentSystemNotFound() *AcceptFilePaymentConsentSystem
 	return &AcceptFilePaymentConsentSystemNotFound{}
 }
 
-/* AcceptFilePaymentConsentSystemNotFound describes a response with status code 404, with default header values.
+/*
+AcceptFilePaymentConsentSystemNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type AcceptFilePaymentConsentSystemNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this accept file payment consent system not found response has a 2xx status code
+func (o *AcceptFilePaymentConsentSystemNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this accept file payment consent system not found response has a 3xx status code
+func (o *AcceptFilePaymentConsentSystemNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this accept file payment consent system not found response has a 4xx status code
+func (o *AcceptFilePaymentConsentSystemNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this accept file payment consent system not found response has a 5xx status code
+func (o *AcceptFilePaymentConsentSystemNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this accept file payment consent system not found response a status code equal to that given
+func (o *AcceptFilePaymentConsentSystemNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *AcceptFilePaymentConsentSystemNotFound) Error() string {
 	return fmt.Sprintf("[POST /open-banking/file-payment-consent/{login}/accept][%d] acceptFilePaymentConsentSystemNotFound  %+v", 404, o.Payload)
 }
+
+func (o *AcceptFilePaymentConsentSystemNotFound) String() string {
+	return fmt.Sprintf("[POST /open-banking/file-payment-consent/{login}/accept][%d] acceptFilePaymentConsentSystemNotFound  %+v", 404, o.Payload)
+}
+
 func (o *AcceptFilePaymentConsentSystemNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewAcceptFilePaymentConsentSystemTooManyRequests() *AcceptFilePaymentConsen
 	return &AcceptFilePaymentConsentSystemTooManyRequests{}
 }
 
-/* AcceptFilePaymentConsentSystemTooManyRequests describes a response with status code 429, with default header values.
+/*
+AcceptFilePaymentConsentSystemTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type AcceptFilePaymentConsentSystemTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this accept file payment consent system too many requests response has a 2xx status code
+func (o *AcceptFilePaymentConsentSystemTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this accept file payment consent system too many requests response has a 3xx status code
+func (o *AcceptFilePaymentConsentSystemTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this accept file payment consent system too many requests response has a 4xx status code
+func (o *AcceptFilePaymentConsentSystemTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this accept file payment consent system too many requests response has a 5xx status code
+func (o *AcceptFilePaymentConsentSystemTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this accept file payment consent system too many requests response a status code equal to that given
+func (o *AcceptFilePaymentConsentSystemTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *AcceptFilePaymentConsentSystemTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /open-banking/file-payment-consent/{login}/accept][%d] acceptFilePaymentConsentSystemTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *AcceptFilePaymentConsentSystemTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /open-banking/file-payment-consent/{login}/accept][%d] acceptFilePaymentConsentSystemTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *AcceptFilePaymentConsentSystemTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

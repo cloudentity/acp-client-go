@@ -52,10 +52,12 @@ func NewListClientsWithAccessParamsWithHTTPClient(client *http.Client) *ListClie
 	}
 }
 
-/* ListClientsWithAccessParams contains all the parameters to send to the API endpoint
-   for the list clients with access operation.
+/*
+ListClientsWithAccessParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the list clients with access operation.
+
+	Typically these are written to a http.Request.
 */
 type ListClientsWithAccessParams struct {
 	timeout    time.Duration

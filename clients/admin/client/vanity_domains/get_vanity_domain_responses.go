@@ -63,7 +63,8 @@ func NewGetVanityDomainOK() *GetVanityDomainOK {
 	return &GetVanityDomainOK{}
 }
 
-/* GetVanityDomainOK describes a response with status code 200, with default header values.
+/*
+GetVanityDomainOK describes a response with status code 200, with default header values.
 
 Vanity domain
 */
@@ -71,9 +72,39 @@ type GetVanityDomainOK struct {
 	Payload *models.VanityDomain
 }
 
+// IsSuccess returns true when this get vanity domain o k response has a 2xx status code
+func (o *GetVanityDomainOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get vanity domain o k response has a 3xx status code
+func (o *GetVanityDomainOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get vanity domain o k response has a 4xx status code
+func (o *GetVanityDomainOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get vanity domain o k response has a 5xx status code
+func (o *GetVanityDomainOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get vanity domain o k response a status code equal to that given
+func (o *GetVanityDomainOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetVanityDomainOK) Error() string {
 	return fmt.Sprintf("[GET /vanity-domains][%d] getVanityDomainOK  %+v", 200, o.Payload)
 }
+
+func (o *GetVanityDomainOK) String() string {
+	return fmt.Sprintf("[GET /vanity-domains][%d] getVanityDomainOK  %+v", 200, o.Payload)
+}
+
 func (o *GetVanityDomainOK) GetPayload() *models.VanityDomain {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewGetVanityDomainUnauthorized() *GetVanityDomainUnauthorized {
 	return &GetVanityDomainUnauthorized{}
 }
 
-/* GetVanityDomainUnauthorized describes a response with status code 401, with default header values.
+/*
+GetVanityDomainUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type GetVanityDomainUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get vanity domain unauthorized response has a 2xx status code
+func (o *GetVanityDomainUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get vanity domain unauthorized response has a 3xx status code
+func (o *GetVanityDomainUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get vanity domain unauthorized response has a 4xx status code
+func (o *GetVanityDomainUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get vanity domain unauthorized response has a 5xx status code
+func (o *GetVanityDomainUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get vanity domain unauthorized response a status code equal to that given
+func (o *GetVanityDomainUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *GetVanityDomainUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /vanity-domains][%d] getVanityDomainUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *GetVanityDomainUnauthorized) String() string {
+	return fmt.Sprintf("[GET /vanity-domains][%d] getVanityDomainUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *GetVanityDomainUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewGetVanityDomainForbidden() *GetVanityDomainForbidden {
 	return &GetVanityDomainForbidden{}
 }
 
-/* GetVanityDomainForbidden describes a response with status code 403, with default header values.
+/*
+GetVanityDomainForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type GetVanityDomainForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get vanity domain forbidden response has a 2xx status code
+func (o *GetVanityDomainForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get vanity domain forbidden response has a 3xx status code
+func (o *GetVanityDomainForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get vanity domain forbidden response has a 4xx status code
+func (o *GetVanityDomainForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get vanity domain forbidden response has a 5xx status code
+func (o *GetVanityDomainForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get vanity domain forbidden response a status code equal to that given
+func (o *GetVanityDomainForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetVanityDomainForbidden) Error() string {
 	return fmt.Sprintf("[GET /vanity-domains][%d] getVanityDomainForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetVanityDomainForbidden) String() string {
+	return fmt.Sprintf("[GET /vanity-domains][%d] getVanityDomainForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetVanityDomainForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewGetVanityDomainNotFound() *GetVanityDomainNotFound {
 	return &GetVanityDomainNotFound{}
 }
 
-/* GetVanityDomainNotFound describes a response with status code 404, with default header values.
+/*
+GetVanityDomainNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type GetVanityDomainNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get vanity domain not found response has a 2xx status code
+func (o *GetVanityDomainNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get vanity domain not found response has a 3xx status code
+func (o *GetVanityDomainNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get vanity domain not found response has a 4xx status code
+func (o *GetVanityDomainNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get vanity domain not found response has a 5xx status code
+func (o *GetVanityDomainNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get vanity domain not found response a status code equal to that given
+func (o *GetVanityDomainNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *GetVanityDomainNotFound) Error() string {
 	return fmt.Sprintf("[GET /vanity-domains][%d] getVanityDomainNotFound  %+v", 404, o.Payload)
 }
+
+func (o *GetVanityDomainNotFound) String() string {
+	return fmt.Sprintf("[GET /vanity-domains][%d] getVanityDomainNotFound  %+v", 404, o.Payload)
+}
+
 func (o *GetVanityDomainNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewGetVanityDomainTooManyRequests() *GetVanityDomainTooManyRequests {
 	return &GetVanityDomainTooManyRequests{}
 }
 
-/* GetVanityDomainTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetVanityDomainTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type GetVanityDomainTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get vanity domain too many requests response has a 2xx status code
+func (o *GetVanityDomainTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get vanity domain too many requests response has a 3xx status code
+func (o *GetVanityDomainTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get vanity domain too many requests response has a 4xx status code
+func (o *GetVanityDomainTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get vanity domain too many requests response has a 5xx status code
+func (o *GetVanityDomainTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get vanity domain too many requests response a status code equal to that given
+func (o *GetVanityDomainTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *GetVanityDomainTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /vanity-domains][%d] getVanityDomainTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *GetVanityDomainTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /vanity-domains][%d] getVanityDomainTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *GetVanityDomainTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

@@ -46,9 +46,9 @@ type ClientService interface {
 }
 
 /*
-  GetAutomaticKeyRotation gets automatic key rotation
+GetAutomaticKeyRotation gets automatic key rotation
 
-  Get automatic key rotation configuration.
+Get automatic key rotation configuration.
 */
 func (a *Client) GetAutomaticKeyRotation(params *GetAutomaticKeyRotationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAutomaticKeyRotationOK, error) {
 	// TODO: Validate the params before sending
@@ -87,9 +87,9 @@ func (a *Client) GetAutomaticKeyRotation(params *GetAutomaticKeyRotationParams, 
 }
 
 /*
-  GetKey gets server key by kid
+GetKey gets server key by kid
 
-  Get next, current or rotated server key by kid and return as raw jwk without metadata.
+Get next, current or rotated server key by kid and return as raw jwk without metadata.
 */
 func (a *Client) GetKey(params *GetKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetKeyOK, error) {
 	// TODO: Validate the params before sending
@@ -128,9 +128,9 @@ func (a *Client) GetKey(params *GetKeyParams, authInfo runtime.ClientAuthInfoWri
 }
 
 /*
-  GetKeys gets server keys
+GetKeys gets server keys
 
-  Get server encryption or signing keys.
+Get server encryption or signing keys.
 */
 func (a *Client) GetKeys(params *GetKeysParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetKeysOK, error) {
 	// TODO: Validate the params before sending
@@ -169,9 +169,9 @@ func (a *Client) GetKeys(params *GetKeysParams, authInfo runtime.ClientAuthInfoW
 }
 
 /*
-  RevokeKey revokes key
+RevokeKey revokes key
 
-  Revoke rotated key
+Revoke rotated key
 */
 func (a *Client) RevokeKey(params *RevokeKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeKeyOK, error) {
 	// TODO: Validate the params before sending
@@ -210,9 +210,9 @@ func (a *Client) RevokeKey(params *RevokeKeyParams, authInfo runtime.ClientAuthI
 }
 
 /*
-  RotateKey rotates key
+RotateKey rotates key
 
-  Rotate encryption or signing key.
+Rotate encryption or signing key.
 */
 func (a *Client) RotateKey(params *RotateKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RotateKeyOK, error) {
 	// TODO: Validate the params before sending
@@ -251,9 +251,9 @@ func (a *Client) RotateKey(params *RotateKeyParams, authInfo runtime.ClientAuthI
 }
 
 /*
-  SetAutomaticKeyRotation sets automatic key rotation
+SetAutomaticKeyRotation sets automatic key rotation
 
-  Set automatic key rotation configuration.
+Set automatic key rotation configuration.
 */
 func (a *Client) SetAutomaticKeyRotation(params *SetAutomaticKeyRotationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetAutomaticKeyRotationOK, error) {
 	// TODO: Validate the params before sending

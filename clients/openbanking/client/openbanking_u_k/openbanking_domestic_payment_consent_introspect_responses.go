@@ -60,7 +60,8 @@ func NewOpenbankingDomesticPaymentConsentIntrospectOK() *OpenbankingDomesticPaym
 	return &OpenbankingDomesticPaymentConsentIntrospectOK{}
 }
 
-/* OpenbankingDomesticPaymentConsentIntrospectOK describes a response with status code 200, with default header values.
+/*
+OpenbankingDomesticPaymentConsentIntrospectOK describes a response with status code 200, with default header values.
 
 IntrospectOpenbankingDomesticPaymentConsentResponse
 */
@@ -68,9 +69,39 @@ type OpenbankingDomesticPaymentConsentIntrospectOK struct {
 	Payload *OpenbankingDomesticPaymentConsentIntrospectOKBody
 }
 
+// IsSuccess returns true when this openbanking domestic payment consent introspect o k response has a 2xx status code
+func (o *OpenbankingDomesticPaymentConsentIntrospectOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this openbanking domestic payment consent introspect o k response has a 3xx status code
+func (o *OpenbankingDomesticPaymentConsentIntrospectOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this openbanking domestic payment consent introspect o k response has a 4xx status code
+func (o *OpenbankingDomesticPaymentConsentIntrospectOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this openbanking domestic payment consent introspect o k response has a 5xx status code
+func (o *OpenbankingDomesticPaymentConsentIntrospectOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this openbanking domestic payment consent introspect o k response a status code equal to that given
+func (o *OpenbankingDomesticPaymentConsentIntrospectOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *OpenbankingDomesticPaymentConsentIntrospectOK) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-payment-consents/introspect][%d] openbankingDomesticPaymentConsentIntrospectOK  %+v", 200, o.Payload)
 }
+
+func (o *OpenbankingDomesticPaymentConsentIntrospectOK) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-payment-consents/introspect][%d] openbankingDomesticPaymentConsentIntrospectOK  %+v", 200, o.Payload)
+}
+
 func (o *OpenbankingDomesticPaymentConsentIntrospectOK) GetPayload() *OpenbankingDomesticPaymentConsentIntrospectOKBody {
 	return o.Payload
 }
@@ -92,7 +123,8 @@ func NewOpenbankingDomesticPaymentConsentIntrospectUnauthorized() *OpenbankingDo
 	return &OpenbankingDomesticPaymentConsentIntrospectUnauthorized{}
 }
 
-/* OpenbankingDomesticPaymentConsentIntrospectUnauthorized describes a response with status code 401, with default header values.
+/*
+OpenbankingDomesticPaymentConsentIntrospectUnauthorized describes a response with status code 401, with default header values.
 
 ErrorResponse
 */
@@ -100,9 +132,39 @@ type OpenbankingDomesticPaymentConsentIntrospectUnauthorized struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this openbanking domestic payment consent introspect unauthorized response has a 2xx status code
+func (o *OpenbankingDomesticPaymentConsentIntrospectUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this openbanking domestic payment consent introspect unauthorized response has a 3xx status code
+func (o *OpenbankingDomesticPaymentConsentIntrospectUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this openbanking domestic payment consent introspect unauthorized response has a 4xx status code
+func (o *OpenbankingDomesticPaymentConsentIntrospectUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this openbanking domestic payment consent introspect unauthorized response has a 5xx status code
+func (o *OpenbankingDomesticPaymentConsentIntrospectUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this openbanking domestic payment consent introspect unauthorized response a status code equal to that given
+func (o *OpenbankingDomesticPaymentConsentIntrospectUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *OpenbankingDomesticPaymentConsentIntrospectUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-payment-consents/introspect][%d] openbankingDomesticPaymentConsentIntrospectUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *OpenbankingDomesticPaymentConsentIntrospectUnauthorized) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-payment-consents/introspect][%d] openbankingDomesticPaymentConsentIntrospectUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *OpenbankingDomesticPaymentConsentIntrospectUnauthorized) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -124,7 +186,8 @@ func NewOpenbankingDomesticPaymentConsentIntrospectNotFound() *OpenbankingDomest
 	return &OpenbankingDomesticPaymentConsentIntrospectNotFound{}
 }
 
-/* OpenbankingDomesticPaymentConsentIntrospectNotFound describes a response with status code 404, with default header values.
+/*
+OpenbankingDomesticPaymentConsentIntrospectNotFound describes a response with status code 404, with default header values.
 
 ErrorResponse
 */
@@ -132,9 +195,39 @@ type OpenbankingDomesticPaymentConsentIntrospectNotFound struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this openbanking domestic payment consent introspect not found response has a 2xx status code
+func (o *OpenbankingDomesticPaymentConsentIntrospectNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this openbanking domestic payment consent introspect not found response has a 3xx status code
+func (o *OpenbankingDomesticPaymentConsentIntrospectNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this openbanking domestic payment consent introspect not found response has a 4xx status code
+func (o *OpenbankingDomesticPaymentConsentIntrospectNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this openbanking domestic payment consent introspect not found response has a 5xx status code
+func (o *OpenbankingDomesticPaymentConsentIntrospectNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this openbanking domestic payment consent introspect not found response a status code equal to that given
+func (o *OpenbankingDomesticPaymentConsentIntrospectNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *OpenbankingDomesticPaymentConsentIntrospectNotFound) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-payment-consents/introspect][%d] openbankingDomesticPaymentConsentIntrospectNotFound  %+v", 404, o.Payload)
 }
+
+func (o *OpenbankingDomesticPaymentConsentIntrospectNotFound) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-payment-consents/introspect][%d] openbankingDomesticPaymentConsentIntrospectNotFound  %+v", 404, o.Payload)
+}
+
 func (o *OpenbankingDomesticPaymentConsentIntrospectNotFound) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -156,7 +249,8 @@ func NewOpenbankingDomesticPaymentConsentIntrospectTooManyRequests() *Openbankin
 	return &OpenbankingDomesticPaymentConsentIntrospectTooManyRequests{}
 }
 
-/* OpenbankingDomesticPaymentConsentIntrospectTooManyRequests describes a response with status code 429, with default header values.
+/*
+OpenbankingDomesticPaymentConsentIntrospectTooManyRequests describes a response with status code 429, with default header values.
 
 ErrorResponse
 */
@@ -164,9 +258,39 @@ type OpenbankingDomesticPaymentConsentIntrospectTooManyRequests struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this openbanking domestic payment consent introspect too many requests response has a 2xx status code
+func (o *OpenbankingDomesticPaymentConsentIntrospectTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this openbanking domestic payment consent introspect too many requests response has a 3xx status code
+func (o *OpenbankingDomesticPaymentConsentIntrospectTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this openbanking domestic payment consent introspect too many requests response has a 4xx status code
+func (o *OpenbankingDomesticPaymentConsentIntrospectTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this openbanking domestic payment consent introspect too many requests response has a 5xx status code
+func (o *OpenbankingDomesticPaymentConsentIntrospectTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this openbanking domestic payment consent introspect too many requests response a status code equal to that given
+func (o *OpenbankingDomesticPaymentConsentIntrospectTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *OpenbankingDomesticPaymentConsentIntrospectTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-payment-consents/introspect][%d] openbankingDomesticPaymentConsentIntrospectTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *OpenbankingDomesticPaymentConsentIntrospectTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /open-banking/v3.1/pisp/domestic-payment-consents/introspect][%d] openbankingDomesticPaymentConsentIntrospectTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *OpenbankingDomesticPaymentConsentIntrospectTooManyRequests) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -183,7 +307,8 @@ func (o *OpenbankingDomesticPaymentConsentIntrospectTooManyRequests) readRespons
 	return nil
 }
 
-/*OpenbankingDomesticPaymentConsentIntrospectOKBody openbanking domestic payment consent introspect o k body
+/*
+OpenbankingDomesticPaymentConsentIntrospectOKBody openbanking domestic payment consent introspect o k body
 swagger:model OpenbankingDomesticPaymentConsentIntrospectOKBody
 */
 type OpenbankingDomesticPaymentConsentIntrospectOKBody struct {

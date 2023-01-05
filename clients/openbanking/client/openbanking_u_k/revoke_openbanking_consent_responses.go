@@ -69,14 +69,44 @@ func NewRevokeOpenbankingConsentNoContent() *RevokeOpenbankingConsentNoContent {
 	return &RevokeOpenbankingConsentNoContent{}
 }
 
-/* RevokeOpenbankingConsentNoContent describes a response with status code 204, with default header values.
+/*
+RevokeOpenbankingConsentNoContent describes a response with status code 204, with default header values.
 
-Consent has been revoked
+	Consent has been revoked
 */
 type RevokeOpenbankingConsentNoContent struct {
 }
 
+// IsSuccess returns true when this revoke openbanking consent no content response has a 2xx status code
+func (o *RevokeOpenbankingConsentNoContent) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this revoke openbanking consent no content response has a 3xx status code
+func (o *RevokeOpenbankingConsentNoContent) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke openbanking consent no content response has a 4xx status code
+func (o *RevokeOpenbankingConsentNoContent) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this revoke openbanking consent no content response has a 5xx status code
+func (o *RevokeOpenbankingConsentNoContent) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke openbanking consent no content response a status code equal to that given
+func (o *RevokeOpenbankingConsentNoContent) IsCode(code int) bool {
+	return code == 204
+}
+
 func (o *RevokeOpenbankingConsentNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking/consents/{consentID}][%d] revokeOpenbankingConsentNoContent ", 204)
+}
+
+func (o *RevokeOpenbankingConsentNoContent) String() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking/consents/{consentID}][%d] revokeOpenbankingConsentNoContent ", 204)
 }
 
@@ -90,7 +120,8 @@ func NewRevokeOpenbankingConsentBadRequest() *RevokeOpenbankingConsentBadRequest
 	return &RevokeOpenbankingConsentBadRequest{}
 }
 
-/* RevokeOpenbankingConsentBadRequest describes a response with status code 400, with default header values.
+/*
+RevokeOpenbankingConsentBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -98,9 +129,39 @@ type RevokeOpenbankingConsentBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this revoke openbanking consent bad request response has a 2xx status code
+func (o *RevokeOpenbankingConsentBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this revoke openbanking consent bad request response has a 3xx status code
+func (o *RevokeOpenbankingConsentBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke openbanking consent bad request response has a 4xx status code
+func (o *RevokeOpenbankingConsentBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this revoke openbanking consent bad request response has a 5xx status code
+func (o *RevokeOpenbankingConsentBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke openbanking consent bad request response a status code equal to that given
+func (o *RevokeOpenbankingConsentBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *RevokeOpenbankingConsentBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking/consents/{consentID}][%d] revokeOpenbankingConsentBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *RevokeOpenbankingConsentBadRequest) String() string {
+	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking/consents/{consentID}][%d] revokeOpenbankingConsentBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *RevokeOpenbankingConsentBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -122,7 +183,8 @@ func NewRevokeOpenbankingConsentUnauthorized() *RevokeOpenbankingConsentUnauthor
 	return &RevokeOpenbankingConsentUnauthorized{}
 }
 
-/* RevokeOpenbankingConsentUnauthorized describes a response with status code 401, with default header values.
+/*
+RevokeOpenbankingConsentUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -130,9 +192,39 @@ type RevokeOpenbankingConsentUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this revoke openbanking consent unauthorized response has a 2xx status code
+func (o *RevokeOpenbankingConsentUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this revoke openbanking consent unauthorized response has a 3xx status code
+func (o *RevokeOpenbankingConsentUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke openbanking consent unauthorized response has a 4xx status code
+func (o *RevokeOpenbankingConsentUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this revoke openbanking consent unauthorized response has a 5xx status code
+func (o *RevokeOpenbankingConsentUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke openbanking consent unauthorized response a status code equal to that given
+func (o *RevokeOpenbankingConsentUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *RevokeOpenbankingConsentUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking/consents/{consentID}][%d] revokeOpenbankingConsentUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *RevokeOpenbankingConsentUnauthorized) String() string {
+	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking/consents/{consentID}][%d] revokeOpenbankingConsentUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *RevokeOpenbankingConsentUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -154,7 +246,8 @@ func NewRevokeOpenbankingConsentForbidden() *RevokeOpenbankingConsentForbidden {
 	return &RevokeOpenbankingConsentForbidden{}
 }
 
-/* RevokeOpenbankingConsentForbidden describes a response with status code 403, with default header values.
+/*
+RevokeOpenbankingConsentForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -162,9 +255,39 @@ type RevokeOpenbankingConsentForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this revoke openbanking consent forbidden response has a 2xx status code
+func (o *RevokeOpenbankingConsentForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this revoke openbanking consent forbidden response has a 3xx status code
+func (o *RevokeOpenbankingConsentForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke openbanking consent forbidden response has a 4xx status code
+func (o *RevokeOpenbankingConsentForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this revoke openbanking consent forbidden response has a 5xx status code
+func (o *RevokeOpenbankingConsentForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke openbanking consent forbidden response a status code equal to that given
+func (o *RevokeOpenbankingConsentForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *RevokeOpenbankingConsentForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking/consents/{consentID}][%d] revokeOpenbankingConsentForbidden  %+v", 403, o.Payload)
 }
+
+func (o *RevokeOpenbankingConsentForbidden) String() string {
+	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking/consents/{consentID}][%d] revokeOpenbankingConsentForbidden  %+v", 403, o.Payload)
+}
+
 func (o *RevokeOpenbankingConsentForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -186,7 +309,8 @@ func NewRevokeOpenbankingConsentNotFound() *RevokeOpenbankingConsentNotFound {
 	return &RevokeOpenbankingConsentNotFound{}
 }
 
-/* RevokeOpenbankingConsentNotFound describes a response with status code 404, with default header values.
+/*
+RevokeOpenbankingConsentNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -194,9 +318,39 @@ type RevokeOpenbankingConsentNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this revoke openbanking consent not found response has a 2xx status code
+func (o *RevokeOpenbankingConsentNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this revoke openbanking consent not found response has a 3xx status code
+func (o *RevokeOpenbankingConsentNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke openbanking consent not found response has a 4xx status code
+func (o *RevokeOpenbankingConsentNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this revoke openbanking consent not found response has a 5xx status code
+func (o *RevokeOpenbankingConsentNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke openbanking consent not found response a status code equal to that given
+func (o *RevokeOpenbankingConsentNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *RevokeOpenbankingConsentNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking/consents/{consentID}][%d] revokeOpenbankingConsentNotFound  %+v", 404, o.Payload)
 }
+
+func (o *RevokeOpenbankingConsentNotFound) String() string {
+	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking/consents/{consentID}][%d] revokeOpenbankingConsentNotFound  %+v", 404, o.Payload)
+}
+
 func (o *RevokeOpenbankingConsentNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -218,7 +372,8 @@ func NewRevokeOpenbankingConsentTooManyRequests() *RevokeOpenbankingConsentTooMa
 	return &RevokeOpenbankingConsentTooManyRequests{}
 }
 
-/* RevokeOpenbankingConsentTooManyRequests describes a response with status code 429, with default header values.
+/*
+RevokeOpenbankingConsentTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -226,9 +381,39 @@ type RevokeOpenbankingConsentTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this revoke openbanking consent too many requests response has a 2xx status code
+func (o *RevokeOpenbankingConsentTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this revoke openbanking consent too many requests response has a 3xx status code
+func (o *RevokeOpenbankingConsentTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke openbanking consent too many requests response has a 4xx status code
+func (o *RevokeOpenbankingConsentTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this revoke openbanking consent too many requests response has a 5xx status code
+func (o *RevokeOpenbankingConsentTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke openbanking consent too many requests response a status code equal to that given
+func (o *RevokeOpenbankingConsentTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *RevokeOpenbankingConsentTooManyRequests) Error() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking/consents/{consentID}][%d] revokeOpenbankingConsentTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *RevokeOpenbankingConsentTooManyRequests) String() string {
+	return fmt.Sprintf("[DELETE /servers/{wid}/open-banking/consents/{consentID}][%d] revokeOpenbankingConsentTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *RevokeOpenbankingConsentTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

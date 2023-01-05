@@ -52,10 +52,12 @@ func NewGetTransientOTPParamsWithHTTPClient(client *http.Client) *GetTransientOT
 	}
 }
 
-/* GetTransientOTPParams contains all the parameters to send to the API endpoint
-   for the get transient o t p operation.
+/*
+GetTransientOTPParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get transient o t p operation.
+
+	Typically these are written to a http.Request.
 */
 type GetTransientOTPParams struct {
 

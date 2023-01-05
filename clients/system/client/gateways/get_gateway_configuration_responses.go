@@ -63,7 +63,8 @@ func NewGetGatewayConfigurationOK() *GetGatewayConfigurationOK {
 	return &GetGatewayConfigurationOK{}
 }
 
-/* GetGatewayConfigurationOK describes a response with status code 200, with default header values.
+/*
+GetGatewayConfigurationOK describes a response with status code 200, with default header values.
 
 Gateway configuration
 */
@@ -71,9 +72,39 @@ type GetGatewayConfigurationOK struct {
 	Payload *models.GatewayConfiguration
 }
 
+// IsSuccess returns true when this get gateway configuration o k response has a 2xx status code
+func (o *GetGatewayConfigurationOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get gateway configuration o k response has a 3xx status code
+func (o *GetGatewayConfigurationOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get gateway configuration o k response has a 4xx status code
+func (o *GetGatewayConfigurationOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get gateway configuration o k response has a 5xx status code
+func (o *GetGatewayConfigurationOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get gateway configuration o k response a status code equal to that given
+func (o *GetGatewayConfigurationOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetGatewayConfigurationOK) Error() string {
 	return fmt.Sprintf("[GET /gateways/configuration][%d] getGatewayConfigurationOK  %+v", 200, o.Payload)
 }
+
+func (o *GetGatewayConfigurationOK) String() string {
+	return fmt.Sprintf("[GET /gateways/configuration][%d] getGatewayConfigurationOK  %+v", 200, o.Payload)
+}
+
 func (o *GetGatewayConfigurationOK) GetPayload() *models.GatewayConfiguration {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewGetGatewayConfigurationUnauthorized() *GetGatewayConfigurationUnauthoriz
 	return &GetGatewayConfigurationUnauthorized{}
 }
 
-/* GetGatewayConfigurationUnauthorized describes a response with status code 401, with default header values.
+/*
+GetGatewayConfigurationUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type GetGatewayConfigurationUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get gateway configuration unauthorized response has a 2xx status code
+func (o *GetGatewayConfigurationUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get gateway configuration unauthorized response has a 3xx status code
+func (o *GetGatewayConfigurationUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get gateway configuration unauthorized response has a 4xx status code
+func (o *GetGatewayConfigurationUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get gateway configuration unauthorized response has a 5xx status code
+func (o *GetGatewayConfigurationUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get gateway configuration unauthorized response a status code equal to that given
+func (o *GetGatewayConfigurationUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *GetGatewayConfigurationUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /gateways/configuration][%d] getGatewayConfigurationUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *GetGatewayConfigurationUnauthorized) String() string {
+	return fmt.Sprintf("[GET /gateways/configuration][%d] getGatewayConfigurationUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *GetGatewayConfigurationUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewGetGatewayConfigurationForbidden() *GetGatewayConfigurationForbidden {
 	return &GetGatewayConfigurationForbidden{}
 }
 
-/* GetGatewayConfigurationForbidden describes a response with status code 403, with default header values.
+/*
+GetGatewayConfigurationForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type GetGatewayConfigurationForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get gateway configuration forbidden response has a 2xx status code
+func (o *GetGatewayConfigurationForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get gateway configuration forbidden response has a 3xx status code
+func (o *GetGatewayConfigurationForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get gateway configuration forbidden response has a 4xx status code
+func (o *GetGatewayConfigurationForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get gateway configuration forbidden response has a 5xx status code
+func (o *GetGatewayConfigurationForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get gateway configuration forbidden response a status code equal to that given
+func (o *GetGatewayConfigurationForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetGatewayConfigurationForbidden) Error() string {
 	return fmt.Sprintf("[GET /gateways/configuration][%d] getGatewayConfigurationForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetGatewayConfigurationForbidden) String() string {
+	return fmt.Sprintf("[GET /gateways/configuration][%d] getGatewayConfigurationForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetGatewayConfigurationForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewGetGatewayConfigurationNotFound() *GetGatewayConfigurationNotFound {
 	return &GetGatewayConfigurationNotFound{}
 }
 
-/* GetGatewayConfigurationNotFound describes a response with status code 404, with default header values.
+/*
+GetGatewayConfigurationNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type GetGatewayConfigurationNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get gateway configuration not found response has a 2xx status code
+func (o *GetGatewayConfigurationNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get gateway configuration not found response has a 3xx status code
+func (o *GetGatewayConfigurationNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get gateway configuration not found response has a 4xx status code
+func (o *GetGatewayConfigurationNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get gateway configuration not found response has a 5xx status code
+func (o *GetGatewayConfigurationNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get gateway configuration not found response a status code equal to that given
+func (o *GetGatewayConfigurationNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *GetGatewayConfigurationNotFound) Error() string {
 	return fmt.Sprintf("[GET /gateways/configuration][%d] getGatewayConfigurationNotFound  %+v", 404, o.Payload)
 }
+
+func (o *GetGatewayConfigurationNotFound) String() string {
+	return fmt.Sprintf("[GET /gateways/configuration][%d] getGatewayConfigurationNotFound  %+v", 404, o.Payload)
+}
+
 func (o *GetGatewayConfigurationNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewGetGatewayConfigurationTooManyRequests() *GetGatewayConfigurationTooMany
 	return &GetGatewayConfigurationTooManyRequests{}
 }
 
-/* GetGatewayConfigurationTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetGatewayConfigurationTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type GetGatewayConfigurationTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get gateway configuration too many requests response has a 2xx status code
+func (o *GetGatewayConfigurationTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get gateway configuration too many requests response has a 3xx status code
+func (o *GetGatewayConfigurationTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get gateway configuration too many requests response has a 4xx status code
+func (o *GetGatewayConfigurationTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get gateway configuration too many requests response has a 5xx status code
+func (o *GetGatewayConfigurationTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get gateway configuration too many requests response a status code equal to that given
+func (o *GetGatewayConfigurationTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *GetGatewayConfigurationTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /gateways/configuration][%d] getGatewayConfigurationTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *GetGatewayConfigurationTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /gateways/configuration][%d] getGatewayConfigurationTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *GetGatewayConfigurationTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

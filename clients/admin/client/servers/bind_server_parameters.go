@@ -52,10 +52,12 @@ func NewBindServerParamsWithHTTPClient(client *http.Client) *BindServerParams {
 	}
 }
 
-/* BindServerParams contains all the parameters to send to the API endpoint
-   for the bind server operation.
+/*
+BindServerParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the bind server operation.
+
+	Typically these are written to a http.Request.
 */
 type BindServerParams struct {
 

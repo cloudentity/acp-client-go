@@ -75,7 +75,8 @@ func NewPatchConsentGrantsCreated() *PatchConsentGrantsCreated {
 	return &PatchConsentGrantsCreated{}
 }
 
-/* PatchConsentGrantsCreated describes a response with status code 201, with default header values.
+/*
+PatchConsentGrantsCreated describes a response with status code 201, with default header values.
 
 Consent grant patch
 */
@@ -83,9 +84,39 @@ type PatchConsentGrantsCreated struct {
 	Payload *models.ConsentGrantPatchResponse
 }
 
+// IsSuccess returns true when this patch consent grants created response has a 2xx status code
+func (o *PatchConsentGrantsCreated) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this patch consent grants created response has a 3xx status code
+func (o *PatchConsentGrantsCreated) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch consent grants created response has a 4xx status code
+func (o *PatchConsentGrantsCreated) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this patch consent grants created response has a 5xx status code
+func (o *PatchConsentGrantsCreated) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch consent grants created response a status code equal to that given
+func (o *PatchConsentGrantsCreated) IsCode(code int) bool {
+	return code == 201
+}
+
 func (o *PatchConsentGrantsCreated) Error() string {
 	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsCreated  %+v", 201, o.Payload)
 }
+
+func (o *PatchConsentGrantsCreated) String() string {
+	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsCreated  %+v", 201, o.Payload)
+}
+
 func (o *PatchConsentGrantsCreated) GetPayload() *models.ConsentGrantPatchResponse {
 	return o.Payload
 }
@@ -107,7 +138,8 @@ func NewPatchConsentGrantsUnauthorized() *PatchConsentGrantsUnauthorized {
 	return &PatchConsentGrantsUnauthorized{}
 }
 
-/* PatchConsentGrantsUnauthorized describes a response with status code 401, with default header values.
+/*
+PatchConsentGrantsUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -115,9 +147,39 @@ type PatchConsentGrantsUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this patch consent grants unauthorized response has a 2xx status code
+func (o *PatchConsentGrantsUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this patch consent grants unauthorized response has a 3xx status code
+func (o *PatchConsentGrantsUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch consent grants unauthorized response has a 4xx status code
+func (o *PatchConsentGrantsUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this patch consent grants unauthorized response has a 5xx status code
+func (o *PatchConsentGrantsUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch consent grants unauthorized response a status code equal to that given
+func (o *PatchConsentGrantsUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *PatchConsentGrantsUnauthorized) Error() string {
 	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *PatchConsentGrantsUnauthorized) String() string {
+	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *PatchConsentGrantsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -139,7 +201,8 @@ func NewPatchConsentGrantsForbidden() *PatchConsentGrantsForbidden {
 	return &PatchConsentGrantsForbidden{}
 }
 
-/* PatchConsentGrantsForbidden describes a response with status code 403, with default header values.
+/*
+PatchConsentGrantsForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -147,9 +210,39 @@ type PatchConsentGrantsForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this patch consent grants forbidden response has a 2xx status code
+func (o *PatchConsentGrantsForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this patch consent grants forbidden response has a 3xx status code
+func (o *PatchConsentGrantsForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch consent grants forbidden response has a 4xx status code
+func (o *PatchConsentGrantsForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this patch consent grants forbidden response has a 5xx status code
+func (o *PatchConsentGrantsForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch consent grants forbidden response a status code equal to that given
+func (o *PatchConsentGrantsForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *PatchConsentGrantsForbidden) Error() string {
 	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsForbidden  %+v", 403, o.Payload)
 }
+
+func (o *PatchConsentGrantsForbidden) String() string {
+	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsForbidden  %+v", 403, o.Payload)
+}
+
 func (o *PatchConsentGrantsForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -171,7 +264,8 @@ func NewPatchConsentGrantsNotFound() *PatchConsentGrantsNotFound {
 	return &PatchConsentGrantsNotFound{}
 }
 
-/* PatchConsentGrantsNotFound describes a response with status code 404, with default header values.
+/*
+PatchConsentGrantsNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -179,9 +273,39 @@ type PatchConsentGrantsNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this patch consent grants not found response has a 2xx status code
+func (o *PatchConsentGrantsNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this patch consent grants not found response has a 3xx status code
+func (o *PatchConsentGrantsNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch consent grants not found response has a 4xx status code
+func (o *PatchConsentGrantsNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this patch consent grants not found response has a 5xx status code
+func (o *PatchConsentGrantsNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch consent grants not found response a status code equal to that given
+func (o *PatchConsentGrantsNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *PatchConsentGrantsNotFound) Error() string {
 	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsNotFound  %+v", 404, o.Payload)
 }
+
+func (o *PatchConsentGrantsNotFound) String() string {
+	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsNotFound  %+v", 404, o.Payload)
+}
+
 func (o *PatchConsentGrantsNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -203,7 +327,8 @@ func NewPatchConsentGrantsConflict() *PatchConsentGrantsConflict {
 	return &PatchConsentGrantsConflict{}
 }
 
-/* PatchConsentGrantsConflict describes a response with status code 409, with default header values.
+/*
+PatchConsentGrantsConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -211,9 +336,39 @@ type PatchConsentGrantsConflict struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this patch consent grants conflict response has a 2xx status code
+func (o *PatchConsentGrantsConflict) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this patch consent grants conflict response has a 3xx status code
+func (o *PatchConsentGrantsConflict) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch consent grants conflict response has a 4xx status code
+func (o *PatchConsentGrantsConflict) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this patch consent grants conflict response has a 5xx status code
+func (o *PatchConsentGrantsConflict) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch consent grants conflict response a status code equal to that given
+func (o *PatchConsentGrantsConflict) IsCode(code int) bool {
+	return code == 409
+}
+
 func (o *PatchConsentGrantsConflict) Error() string {
 	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsConflict  %+v", 409, o.Payload)
 }
+
+func (o *PatchConsentGrantsConflict) String() string {
+	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsConflict  %+v", 409, o.Payload)
+}
+
 func (o *PatchConsentGrantsConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +390,8 @@ func NewPatchConsentGrantsUnprocessableEntity() *PatchConsentGrantsUnprocessable
 	return &PatchConsentGrantsUnprocessableEntity{}
 }
 
-/* PatchConsentGrantsUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+PatchConsentGrantsUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -243,9 +399,39 @@ type PatchConsentGrantsUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this patch consent grants unprocessable entity response has a 2xx status code
+func (o *PatchConsentGrantsUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this patch consent grants unprocessable entity response has a 3xx status code
+func (o *PatchConsentGrantsUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch consent grants unprocessable entity response has a 4xx status code
+func (o *PatchConsentGrantsUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this patch consent grants unprocessable entity response has a 5xx status code
+func (o *PatchConsentGrantsUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch consent grants unprocessable entity response a status code equal to that given
+func (o *PatchConsentGrantsUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *PatchConsentGrantsUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *PatchConsentGrantsUnprocessableEntity) String() string {
+	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *PatchConsentGrantsUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -267,7 +453,8 @@ func NewPatchConsentGrantsTooManyRequests() *PatchConsentGrantsTooManyRequests {
 	return &PatchConsentGrantsTooManyRequests{}
 }
 
-/* PatchConsentGrantsTooManyRequests describes a response with status code 429, with default header values.
+/*
+PatchConsentGrantsTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -275,9 +462,39 @@ type PatchConsentGrantsTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this patch consent grants too many requests response has a 2xx status code
+func (o *PatchConsentGrantsTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this patch consent grants too many requests response has a 3xx status code
+func (o *PatchConsentGrantsTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch consent grants too many requests response has a 4xx status code
+func (o *PatchConsentGrantsTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this patch consent grants too many requests response has a 5xx status code
+func (o *PatchConsentGrantsTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch consent grants too many requests response a status code equal to that given
+func (o *PatchConsentGrantsTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *PatchConsentGrantsTooManyRequests) Error() string {
 	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *PatchConsentGrantsTooManyRequests) String() string {
+	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *PatchConsentGrantsTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

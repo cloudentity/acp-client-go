@@ -10,7 +10,6 @@ import (
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/cloudentity/acp-client-go/clients/identity/client/o_t_p"
 	"github.com/cloudentity/acp-client-go/clients/identity/client/pools"
 	"github.com/cloudentity/acp-client-go/clients/identity/client/schemas"
 	"github.com/cloudentity/acp-client-go/clients/identity/client/users"
@@ -58,7 +57,6 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *Acp {
 
 	cli := new(Acp)
 	cli.Transport = transport
-	cli.Otp = o_t_p.New(transport, formats)
 	cli.Pools = pools.New(transport, formats)
 	cli.Schemas = schemas.New(transport, formats)
 	cli.Users = users.New(transport, formats)
@@ -106,8 +104,6 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 
 // Acp is a client for acp
 type Acp struct {
-	Otp o_t_p.ClientService
-
 	Pools pools.ClientService
 
 	Schemas schemas.ClientService
@@ -120,7 +116,6 @@ type Acp struct {
 // SetTransport changes the transport on the client and all its subresources
 func (c *Acp) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
-	c.Otp.SetTransport(transport)
 	c.Pools.SetTransport(transport)
 	c.Schemas.SetTransport(transport)
 	c.Users.SetTransport(transport)

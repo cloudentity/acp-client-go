@@ -44,9 +44,10 @@ type ClientService interface {
 }
 
 /*
-  CreateScope creates scope
+	CreateScope creates scope
 
-  Scope name is required. If scope id is not provided, will be generated.
+	Scope name is required. If scope id is not provided, will be generated.
+
 If you want to assign scope to a service, provide service id.
 */
 func (a *Client) CreateScope(params *CreateScopeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateScopeCreated, error) {
@@ -86,9 +87,9 @@ func (a *Client) CreateScope(params *CreateScopeParams, authInfo runtime.ClientA
 }
 
 /*
-  DeleteScope deletes scope
+DeleteScope deletes scope
 
-  Delete scope.
+Delete scope.
 */
 func (a *Client) DeleteScope(params *DeleteScopeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteScopeNoContent, error) {
 	// TODO: Validate the params before sending
@@ -127,9 +128,9 @@ func (a *Client) DeleteScope(params *DeleteScopeParams, authInfo runtime.ClientA
 }
 
 /*
-  GetScope gets scope
+GetScope gets scope
 
-  Get scope.
+Get scope.
 */
 func (a *Client) GetScope(params *GetScopeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScopeOK, error) {
 	// TODO: Validate the params before sending
@@ -168,9 +169,9 @@ func (a *Client) GetScope(params *GetScopeParams, authInfo runtime.ClientAuthInf
 }
 
 /*
-  ListScopes lists scopes
+ListScopes lists scopes
 
-  List scopes.
+List scopes.
 */
 func (a *Client) ListScopes(params *ListScopesParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListScopesOK, error) {
 	// TODO: Validate the params before sending
@@ -209,9 +210,9 @@ func (a *Client) ListScopes(params *ListScopesParams, authInfo runtime.ClientAut
 }
 
 /*
-  UpdateScope updates scope
+UpdateScope updates scope
 
-  Update scope.
+Update scope.
 */
 func (a *Client) UpdateScope(params *UpdateScopeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateScopeOK, error) {
 	// TODO: Validate the params before sending

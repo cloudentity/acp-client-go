@@ -81,7 +81,8 @@ func NewTestScriptOK() *TestScriptOK {
 	return &TestScriptOK{}
 }
 
-/* TestScriptOK describes a response with status code 200, with default header values.
+/*
+TestScriptOK describes a response with status code 200, with default header values.
 
 Script execution result
 */
@@ -89,9 +90,39 @@ type TestScriptOK struct {
 	Payload *models.ScriptExecutionResult
 }
 
+// IsSuccess returns true when this test script o k response has a 2xx status code
+func (o *TestScriptOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this test script o k response has a 3xx status code
+func (o *TestScriptOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this test script o k response has a 4xx status code
+func (o *TestScriptOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this test script o k response has a 5xx status code
+func (o *TestScriptOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this test script o k response a status code equal to that given
+func (o *TestScriptOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *TestScriptOK) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptOK  %+v", 200, o.Payload)
 }
+
+func (o *TestScriptOK) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptOK  %+v", 200, o.Payload)
+}
+
 func (o *TestScriptOK) GetPayload() *models.ScriptExecutionResult {
 	return o.Payload
 }
@@ -113,7 +144,8 @@ func NewTestScriptBadRequest() *TestScriptBadRequest {
 	return &TestScriptBadRequest{}
 }
 
-/* TestScriptBadRequest describes a response with status code 400, with default header values.
+/*
+TestScriptBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -121,9 +153,39 @@ type TestScriptBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this test script bad request response has a 2xx status code
+func (o *TestScriptBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this test script bad request response has a 3xx status code
+func (o *TestScriptBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this test script bad request response has a 4xx status code
+func (o *TestScriptBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this test script bad request response has a 5xx status code
+func (o *TestScriptBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this test script bad request response a status code equal to that given
+func (o *TestScriptBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *TestScriptBadRequest) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *TestScriptBadRequest) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *TestScriptBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -145,7 +207,8 @@ func NewTestScriptUnauthorized() *TestScriptUnauthorized {
 	return &TestScriptUnauthorized{}
 }
 
-/* TestScriptUnauthorized describes a response with status code 401, with default header values.
+/*
+TestScriptUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -153,9 +216,39 @@ type TestScriptUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this test script unauthorized response has a 2xx status code
+func (o *TestScriptUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this test script unauthorized response has a 3xx status code
+func (o *TestScriptUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this test script unauthorized response has a 4xx status code
+func (o *TestScriptUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this test script unauthorized response has a 5xx status code
+func (o *TestScriptUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this test script unauthorized response a status code equal to that given
+func (o *TestScriptUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *TestScriptUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *TestScriptUnauthorized) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *TestScriptUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -177,7 +270,8 @@ func NewTestScriptForbidden() *TestScriptForbidden {
 	return &TestScriptForbidden{}
 }
 
-/* TestScriptForbidden describes a response with status code 403, with default header values.
+/*
+TestScriptForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -185,9 +279,39 @@ type TestScriptForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this test script forbidden response has a 2xx status code
+func (o *TestScriptForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this test script forbidden response has a 3xx status code
+func (o *TestScriptForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this test script forbidden response has a 4xx status code
+func (o *TestScriptForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this test script forbidden response has a 5xx status code
+func (o *TestScriptForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this test script forbidden response a status code equal to that given
+func (o *TestScriptForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *TestScriptForbidden) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptForbidden  %+v", 403, o.Payload)
 }
+
+func (o *TestScriptForbidden) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptForbidden  %+v", 403, o.Payload)
+}
+
 func (o *TestScriptForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -209,7 +333,8 @@ func NewTestScriptNotFound() *TestScriptNotFound {
 	return &TestScriptNotFound{}
 }
 
-/* TestScriptNotFound describes a response with status code 404, with default header values.
+/*
+TestScriptNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -217,9 +342,39 @@ type TestScriptNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this test script not found response has a 2xx status code
+func (o *TestScriptNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this test script not found response has a 3xx status code
+func (o *TestScriptNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this test script not found response has a 4xx status code
+func (o *TestScriptNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this test script not found response has a 5xx status code
+func (o *TestScriptNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this test script not found response a status code equal to that given
+func (o *TestScriptNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *TestScriptNotFound) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptNotFound  %+v", 404, o.Payload)
 }
+
+func (o *TestScriptNotFound) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptNotFound  %+v", 404, o.Payload)
+}
+
 func (o *TestScriptNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -241,7 +396,8 @@ func NewTestScriptConflict() *TestScriptConflict {
 	return &TestScriptConflict{}
 }
 
-/* TestScriptConflict describes a response with status code 409, with default header values.
+/*
+TestScriptConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -249,9 +405,39 @@ type TestScriptConflict struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this test script conflict response has a 2xx status code
+func (o *TestScriptConflict) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this test script conflict response has a 3xx status code
+func (o *TestScriptConflict) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this test script conflict response has a 4xx status code
+func (o *TestScriptConflict) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this test script conflict response has a 5xx status code
+func (o *TestScriptConflict) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this test script conflict response a status code equal to that given
+func (o *TestScriptConflict) IsCode(code int) bool {
+	return code == 409
+}
+
 func (o *TestScriptConflict) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptConflict  %+v", 409, o.Payload)
 }
+
+func (o *TestScriptConflict) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptConflict  %+v", 409, o.Payload)
+}
+
 func (o *TestScriptConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -273,7 +459,8 @@ func NewTestScriptUnprocessableEntity() *TestScriptUnprocessableEntity {
 	return &TestScriptUnprocessableEntity{}
 }
 
-/* TestScriptUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+TestScriptUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -281,9 +468,39 @@ type TestScriptUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this test script unprocessable entity response has a 2xx status code
+func (o *TestScriptUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this test script unprocessable entity response has a 3xx status code
+func (o *TestScriptUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this test script unprocessable entity response has a 4xx status code
+func (o *TestScriptUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this test script unprocessable entity response has a 5xx status code
+func (o *TestScriptUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this test script unprocessable entity response a status code equal to that given
+func (o *TestScriptUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *TestScriptUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *TestScriptUnprocessableEntity) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *TestScriptUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -305,7 +522,8 @@ func NewTestScriptTooManyRequests() *TestScriptTooManyRequests {
 	return &TestScriptTooManyRequests{}
 }
 
-/* TestScriptTooManyRequests describes a response with status code 429, with default header values.
+/*
+TestScriptTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -313,9 +531,39 @@ type TestScriptTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this test script too many requests response has a 2xx status code
+func (o *TestScriptTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this test script too many requests response has a 3xx status code
+func (o *TestScriptTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this test script too many requests response has a 4xx status code
+func (o *TestScriptTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this test script too many requests response has a 5xx status code
+func (o *TestScriptTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this test script too many requests response a status code equal to that given
+func (o *TestScriptTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *TestScriptTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *TestScriptTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *TestScriptTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

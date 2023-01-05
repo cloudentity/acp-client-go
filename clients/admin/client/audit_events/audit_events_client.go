@@ -36,9 +36,9 @@ type ClientService interface {
 }
 
 /*
-  ListAuditEvents lists audit events
+ListAuditEvents lists audit events
 
-  Returns list of autit events.
+Returns list of autit events.
 */
 func (a *Client) ListAuditEvents(params *ListAuditEventsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListAuditEventsOK, error) {
 	// TODO: Validate the params before sending

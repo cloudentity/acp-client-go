@@ -8,6 +8,7 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -33,6 +34,9 @@ type ScopeWithServiceID struct {
 	// Example: 1
 	ID string `json:"id,omitempty"`
 
+	// metadata
+	Metadata Metadata `json:"metadata,omitempty"`
+
 	// scope name
 	// Example: offline_access
 	Name string `json:"name,omitempty"`
@@ -44,15 +48,69 @@ type ScopeWithServiceID struct {
 	// tenant id
 	// Example: default
 	TenantID string `json:"tenant_id,omitempty"`
+
+	// disable storage of scope grants
+	Transient bool `json:"transient,omitempty"`
 }
 
 // Validate validates this scope with service ID
 func (m *ScopeWithServiceID) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateMetadata(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 
-// ContextValidate validates this scope with service ID based on context it is used
+func (m *ScopeWithServiceID) validateMetadata(formats strfmt.Registry) error {
+	if swag.IsZero(m.Metadata) { // not required
+		return nil
+	}
+
+	if m.Metadata != nil {
+		if err := m.Metadata.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("metadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("metadata")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this scope with service ID based on the context it is used
 func (m *ScopeWithServiceID) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateMetadata(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *ScopeWithServiceID) contextValidateMetadata(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.Metadata.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("metadata")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("metadata")
+		}
+		return err
+	}
+
 	return nil
 }
 

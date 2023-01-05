@@ -63,7 +63,8 @@ func NewListUserConsentsSystemOK() *ListUserConsentsSystemOK {
 	return &ListUserConsentsSystemOK{}
 }
 
-/* ListUserConsentsSystemOK describes a response with status code 200, with default header values.
+/*
+ListUserConsentsSystemOK describes a response with status code 200, with default header values.
 
 Consents with grants
 */
@@ -71,9 +72,39 @@ type ListUserConsentsSystemOK struct {
 	Payload *models.ConsentsWithGrants
 }
 
+// IsSuccess returns true when this list user consents system o k response has a 2xx status code
+func (o *ListUserConsentsSystemOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this list user consents system o k response has a 3xx status code
+func (o *ListUserConsentsSystemOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list user consents system o k response has a 4xx status code
+func (o *ListUserConsentsSystemOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this list user consents system o k response has a 5xx status code
+func (o *ListUserConsentsSystemOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list user consents system o k response a status code equal to that given
+func (o *ListUserConsentsSystemOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *ListUserConsentsSystemOK) Error() string {
 	return fmt.Sprintf("[GET /consents][%d] listUserConsentsSystemOK  %+v", 200, o.Payload)
 }
+
+func (o *ListUserConsentsSystemOK) String() string {
+	return fmt.Sprintf("[GET /consents][%d] listUserConsentsSystemOK  %+v", 200, o.Payload)
+}
+
 func (o *ListUserConsentsSystemOK) GetPayload() *models.ConsentsWithGrants {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewListUserConsentsSystemUnauthorized() *ListUserConsentsSystemUnauthorized
 	return &ListUserConsentsSystemUnauthorized{}
 }
 
-/* ListUserConsentsSystemUnauthorized describes a response with status code 401, with default header values.
+/*
+ListUserConsentsSystemUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type ListUserConsentsSystemUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list user consents system unauthorized response has a 2xx status code
+func (o *ListUserConsentsSystemUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list user consents system unauthorized response has a 3xx status code
+func (o *ListUserConsentsSystemUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list user consents system unauthorized response has a 4xx status code
+func (o *ListUserConsentsSystemUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list user consents system unauthorized response has a 5xx status code
+func (o *ListUserConsentsSystemUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list user consents system unauthorized response a status code equal to that given
+func (o *ListUserConsentsSystemUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *ListUserConsentsSystemUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /consents][%d] listUserConsentsSystemUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *ListUserConsentsSystemUnauthorized) String() string {
+	return fmt.Sprintf("[GET /consents][%d] listUserConsentsSystemUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *ListUserConsentsSystemUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewListUserConsentsSystemForbidden() *ListUserConsentsSystemForbidden {
 	return &ListUserConsentsSystemForbidden{}
 }
 
-/* ListUserConsentsSystemForbidden describes a response with status code 403, with default header values.
+/*
+ListUserConsentsSystemForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type ListUserConsentsSystemForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list user consents system forbidden response has a 2xx status code
+func (o *ListUserConsentsSystemForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list user consents system forbidden response has a 3xx status code
+func (o *ListUserConsentsSystemForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list user consents system forbidden response has a 4xx status code
+func (o *ListUserConsentsSystemForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list user consents system forbidden response has a 5xx status code
+func (o *ListUserConsentsSystemForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list user consents system forbidden response a status code equal to that given
+func (o *ListUserConsentsSystemForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *ListUserConsentsSystemForbidden) Error() string {
 	return fmt.Sprintf("[GET /consents][%d] listUserConsentsSystemForbidden  %+v", 403, o.Payload)
 }
+
+func (o *ListUserConsentsSystemForbidden) String() string {
+	return fmt.Sprintf("[GET /consents][%d] listUserConsentsSystemForbidden  %+v", 403, o.Payload)
+}
+
 func (o *ListUserConsentsSystemForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewListUserConsentsSystemNotFound() *ListUserConsentsSystemNotFound {
 	return &ListUserConsentsSystemNotFound{}
 }
 
-/* ListUserConsentsSystemNotFound describes a response with status code 404, with default header values.
+/*
+ListUserConsentsSystemNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type ListUserConsentsSystemNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list user consents system not found response has a 2xx status code
+func (o *ListUserConsentsSystemNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list user consents system not found response has a 3xx status code
+func (o *ListUserConsentsSystemNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list user consents system not found response has a 4xx status code
+func (o *ListUserConsentsSystemNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list user consents system not found response has a 5xx status code
+func (o *ListUserConsentsSystemNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list user consents system not found response a status code equal to that given
+func (o *ListUserConsentsSystemNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *ListUserConsentsSystemNotFound) Error() string {
 	return fmt.Sprintf("[GET /consents][%d] listUserConsentsSystemNotFound  %+v", 404, o.Payload)
 }
+
+func (o *ListUserConsentsSystemNotFound) String() string {
+	return fmt.Sprintf("[GET /consents][%d] listUserConsentsSystemNotFound  %+v", 404, o.Payload)
+}
+
 func (o *ListUserConsentsSystemNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewListUserConsentsSystemTooManyRequests() *ListUserConsentsSystemTooManyRe
 	return &ListUserConsentsSystemTooManyRequests{}
 }
 
-/* ListUserConsentsSystemTooManyRequests describes a response with status code 429, with default header values.
+/*
+ListUserConsentsSystemTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type ListUserConsentsSystemTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list user consents system too many requests response has a 2xx status code
+func (o *ListUserConsentsSystemTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list user consents system too many requests response has a 3xx status code
+func (o *ListUserConsentsSystemTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list user consents system too many requests response has a 4xx status code
+func (o *ListUserConsentsSystemTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list user consents system too many requests response has a 5xx status code
+func (o *ListUserConsentsSystemTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list user consents system too many requests response a status code equal to that given
+func (o *ListUserConsentsSystemTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *ListUserConsentsSystemTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /consents][%d] listUserConsentsSystemTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *ListUserConsentsSystemTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /consents][%d] listUserConsentsSystemTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *ListUserConsentsSystemTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

@@ -81,14 +81,44 @@ func NewImportTenantConfigurationNoContent() *ImportTenantConfigurationNoContent
 	return &ImportTenantConfigurationNoContent{}
 }
 
-/* ImportTenantConfigurationNoContent describes a response with status code 204, with default header values.
+/*
+ImportTenantConfigurationNoContent describes a response with status code 204, with default header values.
 
-configuration has been imported
+	configuration has been imported
 */
 type ImportTenantConfigurationNoContent struct {
 }
 
+// IsSuccess returns true when this import tenant configuration no content response has a 2xx status code
+func (o *ImportTenantConfigurationNoContent) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this import tenant configuration no content response has a 3xx status code
+func (o *ImportTenantConfigurationNoContent) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this import tenant configuration no content response has a 4xx status code
+func (o *ImportTenantConfigurationNoContent) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this import tenant configuration no content response has a 5xx status code
+func (o *ImportTenantConfigurationNoContent) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this import tenant configuration no content response a status code equal to that given
+func (o *ImportTenantConfigurationNoContent) IsCode(code int) bool {
+	return code == 204
+}
+
 func (o *ImportTenantConfigurationNoContent) Error() string {
+	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationNoContent ", 204)
+}
+
+func (o *ImportTenantConfigurationNoContent) String() string {
 	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationNoContent ", 204)
 }
 
@@ -102,7 +132,8 @@ func NewImportTenantConfigurationBadRequest() *ImportTenantConfigurationBadReque
 	return &ImportTenantConfigurationBadRequest{}
 }
 
-/* ImportTenantConfigurationBadRequest describes a response with status code 400, with default header values.
+/*
+ImportTenantConfigurationBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -110,9 +141,39 @@ type ImportTenantConfigurationBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this import tenant configuration bad request response has a 2xx status code
+func (o *ImportTenantConfigurationBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this import tenant configuration bad request response has a 3xx status code
+func (o *ImportTenantConfigurationBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this import tenant configuration bad request response has a 4xx status code
+func (o *ImportTenantConfigurationBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this import tenant configuration bad request response has a 5xx status code
+func (o *ImportTenantConfigurationBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this import tenant configuration bad request response a status code equal to that given
+func (o *ImportTenantConfigurationBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *ImportTenantConfigurationBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *ImportTenantConfigurationBadRequest) String() string {
+	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *ImportTenantConfigurationBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -134,7 +195,8 @@ func NewImportTenantConfigurationUnauthorized() *ImportTenantConfigurationUnauth
 	return &ImportTenantConfigurationUnauthorized{}
 }
 
-/* ImportTenantConfigurationUnauthorized describes a response with status code 401, with default header values.
+/*
+ImportTenantConfigurationUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -142,9 +204,39 @@ type ImportTenantConfigurationUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this import tenant configuration unauthorized response has a 2xx status code
+func (o *ImportTenantConfigurationUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this import tenant configuration unauthorized response has a 3xx status code
+func (o *ImportTenantConfigurationUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this import tenant configuration unauthorized response has a 4xx status code
+func (o *ImportTenantConfigurationUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this import tenant configuration unauthorized response has a 5xx status code
+func (o *ImportTenantConfigurationUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this import tenant configuration unauthorized response a status code equal to that given
+func (o *ImportTenantConfigurationUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *ImportTenantConfigurationUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *ImportTenantConfigurationUnauthorized) String() string {
+	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *ImportTenantConfigurationUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -166,7 +258,8 @@ func NewImportTenantConfigurationForbidden() *ImportTenantConfigurationForbidden
 	return &ImportTenantConfigurationForbidden{}
 }
 
-/* ImportTenantConfigurationForbidden describes a response with status code 403, with default header values.
+/*
+ImportTenantConfigurationForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -174,9 +267,39 @@ type ImportTenantConfigurationForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this import tenant configuration forbidden response has a 2xx status code
+func (o *ImportTenantConfigurationForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this import tenant configuration forbidden response has a 3xx status code
+func (o *ImportTenantConfigurationForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this import tenant configuration forbidden response has a 4xx status code
+func (o *ImportTenantConfigurationForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this import tenant configuration forbidden response has a 5xx status code
+func (o *ImportTenantConfigurationForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this import tenant configuration forbidden response a status code equal to that given
+func (o *ImportTenantConfigurationForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *ImportTenantConfigurationForbidden) Error() string {
 	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationForbidden  %+v", 403, o.Payload)
 }
+
+func (o *ImportTenantConfigurationForbidden) String() string {
+	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationForbidden  %+v", 403, o.Payload)
+}
+
 func (o *ImportTenantConfigurationForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -198,7 +321,8 @@ func NewImportTenantConfigurationNotFound() *ImportTenantConfigurationNotFound {
 	return &ImportTenantConfigurationNotFound{}
 }
 
-/* ImportTenantConfigurationNotFound describes a response with status code 404, with default header values.
+/*
+ImportTenantConfigurationNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -206,9 +330,39 @@ type ImportTenantConfigurationNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this import tenant configuration not found response has a 2xx status code
+func (o *ImportTenantConfigurationNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this import tenant configuration not found response has a 3xx status code
+func (o *ImportTenantConfigurationNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this import tenant configuration not found response has a 4xx status code
+func (o *ImportTenantConfigurationNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this import tenant configuration not found response has a 5xx status code
+func (o *ImportTenantConfigurationNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this import tenant configuration not found response a status code equal to that given
+func (o *ImportTenantConfigurationNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *ImportTenantConfigurationNotFound) Error() string {
 	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationNotFound  %+v", 404, o.Payload)
 }
+
+func (o *ImportTenantConfigurationNotFound) String() string {
+	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationNotFound  %+v", 404, o.Payload)
+}
+
 func (o *ImportTenantConfigurationNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -230,7 +384,8 @@ func NewImportTenantConfigurationConflict() *ImportTenantConfigurationConflict {
 	return &ImportTenantConfigurationConflict{}
 }
 
-/* ImportTenantConfigurationConflict describes a response with status code 409, with default header values.
+/*
+ImportTenantConfigurationConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -238,9 +393,39 @@ type ImportTenantConfigurationConflict struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this import tenant configuration conflict response has a 2xx status code
+func (o *ImportTenantConfigurationConflict) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this import tenant configuration conflict response has a 3xx status code
+func (o *ImportTenantConfigurationConflict) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this import tenant configuration conflict response has a 4xx status code
+func (o *ImportTenantConfigurationConflict) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this import tenant configuration conflict response has a 5xx status code
+func (o *ImportTenantConfigurationConflict) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this import tenant configuration conflict response a status code equal to that given
+func (o *ImportTenantConfigurationConflict) IsCode(code int) bool {
+	return code == 409
+}
+
 func (o *ImportTenantConfigurationConflict) Error() string {
 	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationConflict  %+v", 409, o.Payload)
 }
+
+func (o *ImportTenantConfigurationConflict) String() string {
+	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationConflict  %+v", 409, o.Payload)
+}
+
 func (o *ImportTenantConfigurationConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -262,7 +447,8 @@ func NewImportTenantConfigurationUnprocessableEntity() *ImportTenantConfiguratio
 	return &ImportTenantConfigurationUnprocessableEntity{}
 }
 
-/* ImportTenantConfigurationUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+ImportTenantConfigurationUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -270,9 +456,39 @@ type ImportTenantConfigurationUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this import tenant configuration unprocessable entity response has a 2xx status code
+func (o *ImportTenantConfigurationUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this import tenant configuration unprocessable entity response has a 3xx status code
+func (o *ImportTenantConfigurationUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this import tenant configuration unprocessable entity response has a 4xx status code
+func (o *ImportTenantConfigurationUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this import tenant configuration unprocessable entity response has a 5xx status code
+func (o *ImportTenantConfigurationUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this import tenant configuration unprocessable entity response a status code equal to that given
+func (o *ImportTenantConfigurationUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *ImportTenantConfigurationUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *ImportTenantConfigurationUnprocessableEntity) String() string {
+	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *ImportTenantConfigurationUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -294,7 +510,8 @@ func NewImportTenantConfigurationTooManyRequests() *ImportTenantConfigurationToo
 	return &ImportTenantConfigurationTooManyRequests{}
 }
 
-/* ImportTenantConfigurationTooManyRequests describes a response with status code 429, with default header values.
+/*
+ImportTenantConfigurationTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -302,9 +519,39 @@ type ImportTenantConfigurationTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this import tenant configuration too many requests response has a 2xx status code
+func (o *ImportTenantConfigurationTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this import tenant configuration too many requests response has a 3xx status code
+func (o *ImportTenantConfigurationTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this import tenant configuration too many requests response has a 4xx status code
+func (o *ImportTenantConfigurationTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this import tenant configuration too many requests response has a 5xx status code
+func (o *ImportTenantConfigurationTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this import tenant configuration too many requests response a status code equal to that given
+func (o *ImportTenantConfigurationTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *ImportTenantConfigurationTooManyRequests) Error() string {
 	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *ImportTenantConfigurationTooManyRequests) String() string {
+	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *ImportTenantConfigurationTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

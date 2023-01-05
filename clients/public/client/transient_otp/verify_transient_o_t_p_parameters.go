@@ -54,10 +54,12 @@ func NewVerifyTransientOTPParamsWithHTTPClient(client *http.Client) *VerifyTrans
 	}
 }
 
-/* VerifyTransientOTPParams contains all the parameters to send to the API endpoint
-   for the verify transient o t p operation.
+/*
+VerifyTransientOTPParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the verify transient o t p operation.
+
+	Typically these are written to a http.Request.
 */
 type VerifyTransientOTPParams struct {
 

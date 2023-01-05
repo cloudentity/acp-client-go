@@ -57,7 +57,8 @@ func NewListGatewaysOK() *ListGatewaysOK {
 	return &ListGatewaysOK{}
 }
 
-/* ListGatewaysOK describes a response with status code 200, with default header values.
+/*
+ListGatewaysOK describes a response with status code 200, with default header values.
 
 Gateways
 */
@@ -65,9 +66,39 @@ type ListGatewaysOK struct {
 	Payload *models.Gateways
 }
 
+// IsSuccess returns true when this list gateways o k response has a 2xx status code
+func (o *ListGatewaysOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this list gateways o k response has a 3xx status code
+func (o *ListGatewaysOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list gateways o k response has a 4xx status code
+func (o *ListGatewaysOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this list gateways o k response has a 5xx status code
+func (o *ListGatewaysOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list gateways o k response a status code equal to that given
+func (o *ListGatewaysOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *ListGatewaysOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/gateways][%d] listGatewaysOK  %+v", 200, o.Payload)
 }
+
+func (o *ListGatewaysOK) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/gateways][%d] listGatewaysOK  %+v", 200, o.Payload)
+}
+
 func (o *ListGatewaysOK) GetPayload() *models.Gateways {
 	return o.Payload
 }
@@ -89,7 +120,8 @@ func NewListGatewaysUnauthorized() *ListGatewaysUnauthorized {
 	return &ListGatewaysUnauthorized{}
 }
 
-/* ListGatewaysUnauthorized describes a response with status code 401, with default header values.
+/*
+ListGatewaysUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -97,9 +129,39 @@ type ListGatewaysUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list gateways unauthorized response has a 2xx status code
+func (o *ListGatewaysUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list gateways unauthorized response has a 3xx status code
+func (o *ListGatewaysUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list gateways unauthorized response has a 4xx status code
+func (o *ListGatewaysUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list gateways unauthorized response has a 5xx status code
+func (o *ListGatewaysUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list gateways unauthorized response a status code equal to that given
+func (o *ListGatewaysUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *ListGatewaysUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/gateways][%d] listGatewaysUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *ListGatewaysUnauthorized) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/gateways][%d] listGatewaysUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *ListGatewaysUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -121,7 +183,8 @@ func NewListGatewaysForbidden() *ListGatewaysForbidden {
 	return &ListGatewaysForbidden{}
 }
 
-/* ListGatewaysForbidden describes a response with status code 403, with default header values.
+/*
+ListGatewaysForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -129,9 +192,39 @@ type ListGatewaysForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list gateways forbidden response has a 2xx status code
+func (o *ListGatewaysForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list gateways forbidden response has a 3xx status code
+func (o *ListGatewaysForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list gateways forbidden response has a 4xx status code
+func (o *ListGatewaysForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list gateways forbidden response has a 5xx status code
+func (o *ListGatewaysForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list gateways forbidden response a status code equal to that given
+func (o *ListGatewaysForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *ListGatewaysForbidden) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/gateways][%d] listGatewaysForbidden  %+v", 403, o.Payload)
 }
+
+func (o *ListGatewaysForbidden) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/gateways][%d] listGatewaysForbidden  %+v", 403, o.Payload)
+}
+
 func (o *ListGatewaysForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -153,7 +246,8 @@ func NewListGatewaysTooManyRequests() *ListGatewaysTooManyRequests {
 	return &ListGatewaysTooManyRequests{}
 }
 
-/* ListGatewaysTooManyRequests describes a response with status code 429, with default header values.
+/*
+ListGatewaysTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -161,9 +255,39 @@ type ListGatewaysTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list gateways too many requests response has a 2xx status code
+func (o *ListGatewaysTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list gateways too many requests response has a 3xx status code
+func (o *ListGatewaysTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list gateways too many requests response has a 4xx status code
+func (o *ListGatewaysTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list gateways too many requests response has a 5xx status code
+func (o *ListGatewaysTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list gateways too many requests response a status code equal to that given
+func (o *ListGatewaysTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *ListGatewaysTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/gateways][%d] listGatewaysTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *ListGatewaysTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /servers/{wid}/gateways][%d] listGatewaysTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *ListGatewaysTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

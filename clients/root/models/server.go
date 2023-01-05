@@ -104,9 +104,6 @@ type Server struct {
 	// For Open Banking Brazil compliant servers, the `:` separator should be used.
 	DynamicScopeSeparator string `json:"dynamic_scope_separator,omitempty"`
 
-	// When enabled, the authorization server will encrypt any id tokens it issues
-	EnableIDTokenEncryption bool `json:"enable_id_token_encryption,omitempty"`
-
 	// Deprecated: Use IDPDiscovery instead
 	//
 	// If enabled, IDP discovery automatically redirects the user to their own IDP and does not
@@ -134,6 +131,9 @@ type Server struct {
 	// represented by a certificate that is used to verify the signature of a certificate issued by
 	// a particular trust anchor.
 	EnableTrustAnchor bool `json:"enable_trust_anchor,omitempty"`
+
+	// When enabled, the authorization server will enforce encrypted id tokens it issues
+	EnforceIDTokenEncryption bool `json:"enforce_id_token_encryption,omitempty"`
 
 	// Define whether you want to enforce using the Proof Key of Code Exchange (PKCE) for both
 	// private and public clients.
@@ -204,6 +204,9 @@ type Server struct {
 	// Display name of your authorization server
 	// Example: Sample authorization server
 	Name string `json:"name,omitempty"`
+
+	// obbr
+	Obbr *OBBRConfiguration `json:"obbr,omitempty"`
 
 	// The profile of a server
 	//
@@ -362,6 +365,10 @@ func (m *Server) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateLegalEntity(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateObbr(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -726,6 +733,25 @@ func (m *Server) validateLegalEntity(formats strfmt.Registry) error {
 				return ve.ValidateName("legal_entity")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("legal_entity")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *Server) validateObbr(formats strfmt.Registry) error {
+	if swag.IsZero(m.Obbr) { // not required
+		return nil
+	}
+
+	if m.Obbr != nil {
+		if err := m.Obbr.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("obbr")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("obbr")
 			}
 			return err
 		}
@@ -1101,6 +1127,10 @@ func (m *Server) ContextValidate(ctx context.Context, formats strfmt.Registry) e
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateObbr(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateTrustAnchorConfiguration(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -1231,6 +1261,22 @@ func (m *Server) contextValidateLegalEntity(ctx context.Context, formats strfmt.
 				return ve.ValidateName("legal_entity")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("legal_entity")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *Server) contextValidateObbr(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Obbr != nil {
+		if err := m.Obbr.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("obbr")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("obbr")
 			}
 			return err
 		}

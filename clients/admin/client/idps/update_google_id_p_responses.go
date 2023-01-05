@@ -75,7 +75,8 @@ func NewUpdateGoogleIDPOK() *UpdateGoogleIDPOK {
 	return &UpdateGoogleIDPOK{}
 }
 
-/* UpdateGoogleIDPOK describes a response with status code 200, with default header values.
+/*
+UpdateGoogleIDPOK describes a response with status code 200, with default header values.
 
 GoogleIDP
 */
@@ -83,9 +84,39 @@ type UpdateGoogleIDPOK struct {
 	Payload *models.GoogleIDP
 }
 
+// IsSuccess returns true when this update google Id p o k response has a 2xx status code
+func (o *UpdateGoogleIDPOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this update google Id p o k response has a 3xx status code
+func (o *UpdateGoogleIDPOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update google Id p o k response has a 4xx status code
+func (o *UpdateGoogleIDPOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this update google Id p o k response has a 5xx status code
+func (o *UpdateGoogleIDPOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update google Id p o k response a status code equal to that given
+func (o *UpdateGoogleIDPOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *UpdateGoogleIDPOK) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPOK  %+v", 200, o.Payload)
 }
+
+func (o *UpdateGoogleIDPOK) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPOK  %+v", 200, o.Payload)
+}
+
 func (o *UpdateGoogleIDPOK) GetPayload() *models.GoogleIDP {
 	return o.Payload
 }
@@ -107,7 +138,8 @@ func NewUpdateGoogleIDPBadRequest() *UpdateGoogleIDPBadRequest {
 	return &UpdateGoogleIDPBadRequest{}
 }
 
-/* UpdateGoogleIDPBadRequest describes a response with status code 400, with default header values.
+/*
+UpdateGoogleIDPBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -115,9 +147,39 @@ type UpdateGoogleIDPBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update google Id p bad request response has a 2xx status code
+func (o *UpdateGoogleIDPBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update google Id p bad request response has a 3xx status code
+func (o *UpdateGoogleIDPBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update google Id p bad request response has a 4xx status code
+func (o *UpdateGoogleIDPBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update google Id p bad request response has a 5xx status code
+func (o *UpdateGoogleIDPBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update google Id p bad request response a status code equal to that given
+func (o *UpdateGoogleIDPBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *UpdateGoogleIDPBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *UpdateGoogleIDPBadRequest) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *UpdateGoogleIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -139,7 +201,8 @@ func NewUpdateGoogleIDPUnauthorized() *UpdateGoogleIDPUnauthorized {
 	return &UpdateGoogleIDPUnauthorized{}
 }
 
-/* UpdateGoogleIDPUnauthorized describes a response with status code 401, with default header values.
+/*
+UpdateGoogleIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,9 +210,39 @@ type UpdateGoogleIDPUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update google Id p unauthorized response has a 2xx status code
+func (o *UpdateGoogleIDPUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update google Id p unauthorized response has a 3xx status code
+func (o *UpdateGoogleIDPUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update google Id p unauthorized response has a 4xx status code
+func (o *UpdateGoogleIDPUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update google Id p unauthorized response has a 5xx status code
+func (o *UpdateGoogleIDPUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update google Id p unauthorized response a status code equal to that given
+func (o *UpdateGoogleIDPUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *UpdateGoogleIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *UpdateGoogleIDPUnauthorized) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *UpdateGoogleIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -171,7 +264,8 @@ func NewUpdateGoogleIDPForbidden() *UpdateGoogleIDPForbidden {
 	return &UpdateGoogleIDPForbidden{}
 }
 
-/* UpdateGoogleIDPForbidden describes a response with status code 403, with default header values.
+/*
+UpdateGoogleIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -179,9 +273,39 @@ type UpdateGoogleIDPForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update google Id p forbidden response has a 2xx status code
+func (o *UpdateGoogleIDPForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update google Id p forbidden response has a 3xx status code
+func (o *UpdateGoogleIDPForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update google Id p forbidden response has a 4xx status code
+func (o *UpdateGoogleIDPForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update google Id p forbidden response has a 5xx status code
+func (o *UpdateGoogleIDPForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update google Id p forbidden response a status code equal to that given
+func (o *UpdateGoogleIDPForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *UpdateGoogleIDPForbidden) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPForbidden  %+v", 403, o.Payload)
 }
+
+func (o *UpdateGoogleIDPForbidden) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPForbidden  %+v", 403, o.Payload)
+}
+
 func (o *UpdateGoogleIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -203,7 +327,8 @@ func NewUpdateGoogleIDPNotFound() *UpdateGoogleIDPNotFound {
 	return &UpdateGoogleIDPNotFound{}
 }
 
-/* UpdateGoogleIDPNotFound describes a response with status code 404, with default header values.
+/*
+UpdateGoogleIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -211,9 +336,39 @@ type UpdateGoogleIDPNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update google Id p not found response has a 2xx status code
+func (o *UpdateGoogleIDPNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update google Id p not found response has a 3xx status code
+func (o *UpdateGoogleIDPNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update google Id p not found response has a 4xx status code
+func (o *UpdateGoogleIDPNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update google Id p not found response has a 5xx status code
+func (o *UpdateGoogleIDPNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update google Id p not found response a status code equal to that given
+func (o *UpdateGoogleIDPNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *UpdateGoogleIDPNotFound) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPNotFound  %+v", 404, o.Payload)
 }
+
+func (o *UpdateGoogleIDPNotFound) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPNotFound  %+v", 404, o.Payload)
+}
+
 func (o *UpdateGoogleIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +390,8 @@ func NewUpdateGoogleIDPUnprocessableEntity() *UpdateGoogleIDPUnprocessableEntity
 	return &UpdateGoogleIDPUnprocessableEntity{}
 }
 
-/* UpdateGoogleIDPUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+UpdateGoogleIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -243,9 +399,39 @@ type UpdateGoogleIDPUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update google Id p unprocessable entity response has a 2xx status code
+func (o *UpdateGoogleIDPUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update google Id p unprocessable entity response has a 3xx status code
+func (o *UpdateGoogleIDPUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update google Id p unprocessable entity response has a 4xx status code
+func (o *UpdateGoogleIDPUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update google Id p unprocessable entity response has a 5xx status code
+func (o *UpdateGoogleIDPUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update google Id p unprocessable entity response a status code equal to that given
+func (o *UpdateGoogleIDPUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *UpdateGoogleIDPUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *UpdateGoogleIDPUnprocessableEntity) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *UpdateGoogleIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -267,7 +453,8 @@ func NewUpdateGoogleIDPTooManyRequests() *UpdateGoogleIDPTooManyRequests {
 	return &UpdateGoogleIDPTooManyRequests{}
 }
 
-/* UpdateGoogleIDPTooManyRequests describes a response with status code 429, with default header values.
+/*
+UpdateGoogleIDPTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -275,9 +462,39 @@ type UpdateGoogleIDPTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update google Id p too many requests response has a 2xx status code
+func (o *UpdateGoogleIDPTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update google Id p too many requests response has a 3xx status code
+func (o *UpdateGoogleIDPTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update google Id p too many requests response has a 4xx status code
+func (o *UpdateGoogleIDPTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update google Id p too many requests response has a 5xx status code
+func (o *UpdateGoogleIDPTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update google Id p too many requests response a status code equal to that given
+func (o *UpdateGoogleIDPTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *UpdateGoogleIDPTooManyRequests) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *UpdateGoogleIDPTooManyRequests) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/google/{iid}][%d] updateGoogleIdPTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *UpdateGoogleIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

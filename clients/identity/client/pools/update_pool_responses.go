@@ -81,7 +81,8 @@ func NewUpdatePoolOK() *UpdatePoolOK {
 	return &UpdatePoolOK{}
 }
 
-/* UpdatePoolOK describes a response with status code 200, with default header values.
+/*
+UpdatePoolOK describes a response with status code 200, with default header values.
 
 Pool
 */
@@ -89,9 +90,39 @@ type UpdatePoolOK struct {
 	Payload *models.Pool
 }
 
+// IsSuccess returns true when this update pool o k response has a 2xx status code
+func (o *UpdatePoolOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this update pool o k response has a 3xx status code
+func (o *UpdatePoolOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update pool o k response has a 4xx status code
+func (o *UpdatePoolOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this update pool o k response has a 5xx status code
+func (o *UpdatePoolOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update pool o k response a status code equal to that given
+func (o *UpdatePoolOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *UpdatePoolOK) Error() string {
 	return fmt.Sprintf("[PUT /admin/pools/{ipID}][%d] updatePoolOK  %+v", 200, o.Payload)
 }
+
+func (o *UpdatePoolOK) String() string {
+	return fmt.Sprintf("[PUT /admin/pools/{ipID}][%d] updatePoolOK  %+v", 200, o.Payload)
+}
+
 func (o *UpdatePoolOK) GetPayload() *models.Pool {
 	return o.Payload
 }
@@ -113,7 +144,8 @@ func NewUpdatePoolBadRequest() *UpdatePoolBadRequest {
 	return &UpdatePoolBadRequest{}
 }
 
-/* UpdatePoolBadRequest describes a response with status code 400, with default header values.
+/*
+UpdatePoolBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -121,9 +153,39 @@ type UpdatePoolBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update pool bad request response has a 2xx status code
+func (o *UpdatePoolBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update pool bad request response has a 3xx status code
+func (o *UpdatePoolBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update pool bad request response has a 4xx status code
+func (o *UpdatePoolBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update pool bad request response has a 5xx status code
+func (o *UpdatePoolBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update pool bad request response a status code equal to that given
+func (o *UpdatePoolBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *UpdatePoolBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /admin/pools/{ipID}][%d] updatePoolBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *UpdatePoolBadRequest) String() string {
+	return fmt.Sprintf("[PUT /admin/pools/{ipID}][%d] updatePoolBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *UpdatePoolBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -145,7 +207,8 @@ func NewUpdatePoolUnauthorized() *UpdatePoolUnauthorized {
 	return &UpdatePoolUnauthorized{}
 }
 
-/* UpdatePoolUnauthorized describes a response with status code 401, with default header values.
+/*
+UpdatePoolUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -153,9 +216,39 @@ type UpdatePoolUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update pool unauthorized response has a 2xx status code
+func (o *UpdatePoolUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update pool unauthorized response has a 3xx status code
+func (o *UpdatePoolUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update pool unauthorized response has a 4xx status code
+func (o *UpdatePoolUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update pool unauthorized response has a 5xx status code
+func (o *UpdatePoolUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update pool unauthorized response a status code equal to that given
+func (o *UpdatePoolUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *UpdatePoolUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /admin/pools/{ipID}][%d] updatePoolUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *UpdatePoolUnauthorized) String() string {
+	return fmt.Sprintf("[PUT /admin/pools/{ipID}][%d] updatePoolUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *UpdatePoolUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -177,7 +270,8 @@ func NewUpdatePoolForbidden() *UpdatePoolForbidden {
 	return &UpdatePoolForbidden{}
 }
 
-/* UpdatePoolForbidden describes a response with status code 403, with default header values.
+/*
+UpdatePoolForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -185,9 +279,39 @@ type UpdatePoolForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update pool forbidden response has a 2xx status code
+func (o *UpdatePoolForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update pool forbidden response has a 3xx status code
+func (o *UpdatePoolForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update pool forbidden response has a 4xx status code
+func (o *UpdatePoolForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update pool forbidden response has a 5xx status code
+func (o *UpdatePoolForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update pool forbidden response a status code equal to that given
+func (o *UpdatePoolForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *UpdatePoolForbidden) Error() string {
 	return fmt.Sprintf("[PUT /admin/pools/{ipID}][%d] updatePoolForbidden  %+v", 403, o.Payload)
 }
+
+func (o *UpdatePoolForbidden) String() string {
+	return fmt.Sprintf("[PUT /admin/pools/{ipID}][%d] updatePoolForbidden  %+v", 403, o.Payload)
+}
+
 func (o *UpdatePoolForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -209,7 +333,8 @@ func NewUpdatePoolNotFound() *UpdatePoolNotFound {
 	return &UpdatePoolNotFound{}
 }
 
-/* UpdatePoolNotFound describes a response with status code 404, with default header values.
+/*
+UpdatePoolNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -217,9 +342,39 @@ type UpdatePoolNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update pool not found response has a 2xx status code
+func (o *UpdatePoolNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update pool not found response has a 3xx status code
+func (o *UpdatePoolNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update pool not found response has a 4xx status code
+func (o *UpdatePoolNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update pool not found response has a 5xx status code
+func (o *UpdatePoolNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update pool not found response a status code equal to that given
+func (o *UpdatePoolNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *UpdatePoolNotFound) Error() string {
 	return fmt.Sprintf("[PUT /admin/pools/{ipID}][%d] updatePoolNotFound  %+v", 404, o.Payload)
 }
+
+func (o *UpdatePoolNotFound) String() string {
+	return fmt.Sprintf("[PUT /admin/pools/{ipID}][%d] updatePoolNotFound  %+v", 404, o.Payload)
+}
+
 func (o *UpdatePoolNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -241,7 +396,8 @@ func NewUpdatePoolConflict() *UpdatePoolConflict {
 	return &UpdatePoolConflict{}
 }
 
-/* UpdatePoolConflict describes a response with status code 409, with default header values.
+/*
+UpdatePoolConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -249,9 +405,39 @@ type UpdatePoolConflict struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update pool conflict response has a 2xx status code
+func (o *UpdatePoolConflict) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update pool conflict response has a 3xx status code
+func (o *UpdatePoolConflict) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update pool conflict response has a 4xx status code
+func (o *UpdatePoolConflict) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update pool conflict response has a 5xx status code
+func (o *UpdatePoolConflict) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update pool conflict response a status code equal to that given
+func (o *UpdatePoolConflict) IsCode(code int) bool {
+	return code == 409
+}
+
 func (o *UpdatePoolConflict) Error() string {
 	return fmt.Sprintf("[PUT /admin/pools/{ipID}][%d] updatePoolConflict  %+v", 409, o.Payload)
 }
+
+func (o *UpdatePoolConflict) String() string {
+	return fmt.Sprintf("[PUT /admin/pools/{ipID}][%d] updatePoolConflict  %+v", 409, o.Payload)
+}
+
 func (o *UpdatePoolConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -273,7 +459,8 @@ func NewUpdatePoolUnprocessableEntity() *UpdatePoolUnprocessableEntity {
 	return &UpdatePoolUnprocessableEntity{}
 }
 
-/* UpdatePoolUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+UpdatePoolUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -281,9 +468,39 @@ type UpdatePoolUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update pool unprocessable entity response has a 2xx status code
+func (o *UpdatePoolUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update pool unprocessable entity response has a 3xx status code
+func (o *UpdatePoolUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update pool unprocessable entity response has a 4xx status code
+func (o *UpdatePoolUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update pool unprocessable entity response has a 5xx status code
+func (o *UpdatePoolUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update pool unprocessable entity response a status code equal to that given
+func (o *UpdatePoolUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *UpdatePoolUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /admin/pools/{ipID}][%d] updatePoolUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *UpdatePoolUnprocessableEntity) String() string {
+	return fmt.Sprintf("[PUT /admin/pools/{ipID}][%d] updatePoolUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *UpdatePoolUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -305,7 +522,8 @@ func NewUpdatePoolTooManyRequests() *UpdatePoolTooManyRequests {
 	return &UpdatePoolTooManyRequests{}
 }
 
-/* UpdatePoolTooManyRequests describes a response with status code 429, with default header values.
+/*
+UpdatePoolTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -313,9 +531,39 @@ type UpdatePoolTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update pool too many requests response has a 2xx status code
+func (o *UpdatePoolTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update pool too many requests response has a 3xx status code
+func (o *UpdatePoolTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update pool too many requests response has a 4xx status code
+func (o *UpdatePoolTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update pool too many requests response has a 5xx status code
+func (o *UpdatePoolTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update pool too many requests response a status code equal to that given
+func (o *UpdatePoolTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *UpdatePoolTooManyRequests) Error() string {
 	return fmt.Sprintf("[PUT /admin/pools/{ipID}][%d] updatePoolTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *UpdatePoolTooManyRequests) String() string {
+	return fmt.Sprintf("[PUT /admin/pools/{ipID}][%d] updatePoolTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *UpdatePoolTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

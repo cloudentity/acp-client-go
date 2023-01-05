@@ -52,10 +52,12 @@ func NewGetServerForDeveloperParamsWithHTTPClient(client *http.Client) *GetServe
 	}
 }
 
-/* GetServerForDeveloperParams contains all the parameters to send to the API endpoint
-   for the get server for developer operation.
+/*
+GetServerForDeveloperParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get server for developer operation.
+
+	Typically these are written to a http.Request.
 */
 type GetServerForDeveloperParams struct {
 

@@ -54,10 +54,12 @@ func NewUpdateTenantParamsWithHTTPClient(client *http.Client) *UpdateTenantParam
 	}
 }
 
-/* UpdateTenantParams contains all the parameters to send to the API endpoint
-   for the update tenant operation.
+/*
+UpdateTenantParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update tenant operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateTenantParams struct {
 

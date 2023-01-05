@@ -54,10 +54,12 @@ func NewCreateStaticIDPParamsWithHTTPClient(client *http.Client) *CreateStaticID
 	}
 }
 
-/* CreateStaticIDPParams contains all the parameters to send to the API endpoint
-   for the create static ID p operation.
+/*
+CreateStaticIDPParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the create static ID p operation.
+
+	Typically these are written to a http.Request.
 */
 type CreateStaticIDPParams struct {
 

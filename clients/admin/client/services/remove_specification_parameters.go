@@ -52,10 +52,12 @@ func NewRemoveSpecificationParamsWithHTTPClient(client *http.Client) *RemoveSpec
 	}
 }
 
-/* RemoveSpecificationParams contains all the parameters to send to the API endpoint
-   for the remove specification operation.
+/*
+RemoveSpecificationParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the remove specification operation.
+
+	Typically these are written to a http.Request.
 */
 type RemoveSpecificationParams struct {
 

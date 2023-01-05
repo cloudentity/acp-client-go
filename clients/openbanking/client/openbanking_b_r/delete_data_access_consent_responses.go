@@ -93,7 +93,8 @@ func NewDeleteDataAccessConsentNoContent() *DeleteDataAccessConsentNoContent {
 	return &DeleteDataAccessConsentNoContent{}
 }
 
-/* DeleteDataAccessConsentNoContent describes a response with status code 204, with default header values.
+/*
+DeleteDataAccessConsentNoContent describes a response with status code 204, with default header values.
 
 Customer data access consent
 */
@@ -101,9 +102,39 @@ type DeleteDataAccessConsentNoContent struct {
 	Payload *models.BrazilCustomerDataAccessConsentResponse
 }
 
+// IsSuccess returns true when this delete data access consent no content response has a 2xx status code
+func (o *DeleteDataAccessConsentNoContent) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this delete data access consent no content response has a 3xx status code
+func (o *DeleteDataAccessConsentNoContent) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete data access consent no content response has a 4xx status code
+func (o *DeleteDataAccessConsentNoContent) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this delete data access consent no content response has a 5xx status code
+func (o *DeleteDataAccessConsentNoContent) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete data access consent no content response a status code equal to that given
+func (o *DeleteDataAccessConsentNoContent) IsCode(code int) bool {
+	return code == 204
+}
+
 func (o *DeleteDataAccessConsentNoContent) Error() string {
 	return fmt.Sprintf("[DELETE /open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentNoContent  %+v", 204, o.Payload)
 }
+
+func (o *DeleteDataAccessConsentNoContent) String() string {
+	return fmt.Sprintf("[DELETE /open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentNoContent  %+v", 204, o.Payload)
+}
+
 func (o *DeleteDataAccessConsentNoContent) GetPayload() *models.BrazilCustomerDataAccessConsentResponse {
 	return o.Payload
 }
@@ -125,7 +156,8 @@ func NewDeleteDataAccessConsentBadRequest() *DeleteDataAccessConsentBadRequest {
 	return &DeleteDataAccessConsentBadRequest{}
 }
 
-/* DeleteDataAccessConsentBadRequest describes a response with status code 400, with default header values.
+/*
+DeleteDataAccessConsentBadRequest describes a response with status code 400, with default header values.
 
 Error
 */
@@ -133,9 +165,39 @@ type DeleteDataAccessConsentBadRequest struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this delete data access consent bad request response has a 2xx status code
+func (o *DeleteDataAccessConsentBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete data access consent bad request response has a 3xx status code
+func (o *DeleteDataAccessConsentBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete data access consent bad request response has a 4xx status code
+func (o *DeleteDataAccessConsentBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete data access consent bad request response has a 5xx status code
+func (o *DeleteDataAccessConsentBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete data access consent bad request response a status code equal to that given
+func (o *DeleteDataAccessConsentBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *DeleteDataAccessConsentBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *DeleteDataAccessConsentBadRequest) String() string {
+	return fmt.Sprintf("[DELETE /open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *DeleteDataAccessConsentBadRequest) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -157,7 +219,8 @@ func NewDeleteDataAccessConsentUnauthorized() *DeleteDataAccessConsentUnauthoriz
 	return &DeleteDataAccessConsentUnauthorized{}
 }
 
-/* DeleteDataAccessConsentUnauthorized describes a response with status code 401, with default header values.
+/*
+DeleteDataAccessConsentUnauthorized describes a response with status code 401, with default header values.
 
 Error
 */
@@ -165,9 +228,39 @@ type DeleteDataAccessConsentUnauthorized struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this delete data access consent unauthorized response has a 2xx status code
+func (o *DeleteDataAccessConsentUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete data access consent unauthorized response has a 3xx status code
+func (o *DeleteDataAccessConsentUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete data access consent unauthorized response has a 4xx status code
+func (o *DeleteDataAccessConsentUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete data access consent unauthorized response has a 5xx status code
+func (o *DeleteDataAccessConsentUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete data access consent unauthorized response a status code equal to that given
+func (o *DeleteDataAccessConsentUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *DeleteDataAccessConsentUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *DeleteDataAccessConsentUnauthorized) String() string {
+	return fmt.Sprintf("[DELETE /open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *DeleteDataAccessConsentUnauthorized) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -189,7 +282,8 @@ func NewDeleteDataAccessConsentForbidden() *DeleteDataAccessConsentForbidden {
 	return &DeleteDataAccessConsentForbidden{}
 }
 
-/* DeleteDataAccessConsentForbidden describes a response with status code 403, with default header values.
+/*
+DeleteDataAccessConsentForbidden describes a response with status code 403, with default header values.
 
 Error
 */
@@ -197,9 +291,39 @@ type DeleteDataAccessConsentForbidden struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this delete data access consent forbidden response has a 2xx status code
+func (o *DeleteDataAccessConsentForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete data access consent forbidden response has a 3xx status code
+func (o *DeleteDataAccessConsentForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete data access consent forbidden response has a 4xx status code
+func (o *DeleteDataAccessConsentForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete data access consent forbidden response has a 5xx status code
+func (o *DeleteDataAccessConsentForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete data access consent forbidden response a status code equal to that given
+func (o *DeleteDataAccessConsentForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *DeleteDataAccessConsentForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentForbidden  %+v", 403, o.Payload)
 }
+
+func (o *DeleteDataAccessConsentForbidden) String() string {
+	return fmt.Sprintf("[DELETE /open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentForbidden  %+v", 403, o.Payload)
+}
+
 func (o *DeleteDataAccessConsentForbidden) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -221,7 +345,8 @@ func NewDeleteDataAccessConsentMethodNotAllowed() *DeleteDataAccessConsentMethod
 	return &DeleteDataAccessConsentMethodNotAllowed{}
 }
 
-/* DeleteDataAccessConsentMethodNotAllowed describes a response with status code 405, with default header values.
+/*
+DeleteDataAccessConsentMethodNotAllowed describes a response with status code 405, with default header values.
 
 Error
 */
@@ -229,9 +354,39 @@ type DeleteDataAccessConsentMethodNotAllowed struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this delete data access consent method not allowed response has a 2xx status code
+func (o *DeleteDataAccessConsentMethodNotAllowed) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete data access consent method not allowed response has a 3xx status code
+func (o *DeleteDataAccessConsentMethodNotAllowed) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete data access consent method not allowed response has a 4xx status code
+func (o *DeleteDataAccessConsentMethodNotAllowed) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete data access consent method not allowed response has a 5xx status code
+func (o *DeleteDataAccessConsentMethodNotAllowed) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete data access consent method not allowed response a status code equal to that given
+func (o *DeleteDataAccessConsentMethodNotAllowed) IsCode(code int) bool {
+	return code == 405
+}
+
 func (o *DeleteDataAccessConsentMethodNotAllowed) Error() string {
 	return fmt.Sprintf("[DELETE /open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentMethodNotAllowed  %+v", 405, o.Payload)
 }
+
+func (o *DeleteDataAccessConsentMethodNotAllowed) String() string {
+	return fmt.Sprintf("[DELETE /open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentMethodNotAllowed  %+v", 405, o.Payload)
+}
+
 func (o *DeleteDataAccessConsentMethodNotAllowed) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -253,7 +408,8 @@ func NewDeleteDataAccessConsentNotAcceptable() *DeleteDataAccessConsentNotAccept
 	return &DeleteDataAccessConsentNotAcceptable{}
 }
 
-/* DeleteDataAccessConsentNotAcceptable describes a response with status code 406, with default header values.
+/*
+DeleteDataAccessConsentNotAcceptable describes a response with status code 406, with default header values.
 
 Error
 */
@@ -261,9 +417,39 @@ type DeleteDataAccessConsentNotAcceptable struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this delete data access consent not acceptable response has a 2xx status code
+func (o *DeleteDataAccessConsentNotAcceptable) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete data access consent not acceptable response has a 3xx status code
+func (o *DeleteDataAccessConsentNotAcceptable) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete data access consent not acceptable response has a 4xx status code
+func (o *DeleteDataAccessConsentNotAcceptable) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete data access consent not acceptable response has a 5xx status code
+func (o *DeleteDataAccessConsentNotAcceptable) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete data access consent not acceptable response a status code equal to that given
+func (o *DeleteDataAccessConsentNotAcceptable) IsCode(code int) bool {
+	return code == 406
+}
+
 func (o *DeleteDataAccessConsentNotAcceptable) Error() string {
 	return fmt.Sprintf("[DELETE /open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentNotAcceptable  %+v", 406, o.Payload)
 }
+
+func (o *DeleteDataAccessConsentNotAcceptable) String() string {
+	return fmt.Sprintf("[DELETE /open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentNotAcceptable  %+v", 406, o.Payload)
+}
+
 func (o *DeleteDataAccessConsentNotAcceptable) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -285,7 +471,8 @@ func NewDeleteDataAccessConsentUnsupportedMediaType() *DeleteDataAccessConsentUn
 	return &DeleteDataAccessConsentUnsupportedMediaType{}
 }
 
-/* DeleteDataAccessConsentUnsupportedMediaType describes a response with status code 415, with default header values.
+/*
+DeleteDataAccessConsentUnsupportedMediaType describes a response with status code 415, with default header values.
 
 Error
 */
@@ -293,9 +480,39 @@ type DeleteDataAccessConsentUnsupportedMediaType struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this delete data access consent unsupported media type response has a 2xx status code
+func (o *DeleteDataAccessConsentUnsupportedMediaType) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete data access consent unsupported media type response has a 3xx status code
+func (o *DeleteDataAccessConsentUnsupportedMediaType) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete data access consent unsupported media type response has a 4xx status code
+func (o *DeleteDataAccessConsentUnsupportedMediaType) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete data access consent unsupported media type response has a 5xx status code
+func (o *DeleteDataAccessConsentUnsupportedMediaType) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete data access consent unsupported media type response a status code equal to that given
+func (o *DeleteDataAccessConsentUnsupportedMediaType) IsCode(code int) bool {
+	return code == 415
+}
+
 func (o *DeleteDataAccessConsentUnsupportedMediaType) Error() string {
 	return fmt.Sprintf("[DELETE /open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentUnsupportedMediaType  %+v", 415, o.Payload)
 }
+
+func (o *DeleteDataAccessConsentUnsupportedMediaType) String() string {
+	return fmt.Sprintf("[DELETE /open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentUnsupportedMediaType  %+v", 415, o.Payload)
+}
+
 func (o *DeleteDataAccessConsentUnsupportedMediaType) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -317,7 +534,8 @@ func NewDeleteDataAccessConsentUnprocessableEntity() *DeleteDataAccessConsentUnp
 	return &DeleteDataAccessConsentUnprocessableEntity{}
 }
 
-/* DeleteDataAccessConsentUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+DeleteDataAccessConsentUnprocessableEntity describes a response with status code 422, with default header values.
 
 Error
 */
@@ -325,9 +543,39 @@ type DeleteDataAccessConsentUnprocessableEntity struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this delete data access consent unprocessable entity response has a 2xx status code
+func (o *DeleteDataAccessConsentUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete data access consent unprocessable entity response has a 3xx status code
+func (o *DeleteDataAccessConsentUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete data access consent unprocessable entity response has a 4xx status code
+func (o *DeleteDataAccessConsentUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete data access consent unprocessable entity response has a 5xx status code
+func (o *DeleteDataAccessConsentUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete data access consent unprocessable entity response a status code equal to that given
+func (o *DeleteDataAccessConsentUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *DeleteDataAccessConsentUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[DELETE /open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *DeleteDataAccessConsentUnprocessableEntity) String() string {
+	return fmt.Sprintf("[DELETE /open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *DeleteDataAccessConsentUnprocessableEntity) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -349,7 +597,8 @@ func NewDeleteDataAccessConsentTooManyRequests() *DeleteDataAccessConsentTooMany
 	return &DeleteDataAccessConsentTooManyRequests{}
 }
 
-/* DeleteDataAccessConsentTooManyRequests describes a response with status code 429, with default header values.
+/*
+DeleteDataAccessConsentTooManyRequests describes a response with status code 429, with default header values.
 
 Error
 */
@@ -357,9 +606,39 @@ type DeleteDataAccessConsentTooManyRequests struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this delete data access consent too many requests response has a 2xx status code
+func (o *DeleteDataAccessConsentTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete data access consent too many requests response has a 3xx status code
+func (o *DeleteDataAccessConsentTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete data access consent too many requests response has a 4xx status code
+func (o *DeleteDataAccessConsentTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete data access consent too many requests response has a 5xx status code
+func (o *DeleteDataAccessConsentTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete data access consent too many requests response a status code equal to that given
+func (o *DeleteDataAccessConsentTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *DeleteDataAccessConsentTooManyRequests) Error() string {
 	return fmt.Sprintf("[DELETE /open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *DeleteDataAccessConsentTooManyRequests) String() string {
+	return fmt.Sprintf("[DELETE /open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *DeleteDataAccessConsentTooManyRequests) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }
@@ -381,7 +660,8 @@ func NewDeleteDataAccessConsentInternalServerError() *DeleteDataAccessConsentInt
 	return &DeleteDataAccessConsentInternalServerError{}
 }
 
-/* DeleteDataAccessConsentInternalServerError describes a response with status code 500, with default header values.
+/*
+DeleteDataAccessConsentInternalServerError describes a response with status code 500, with default header values.
 
 Error
 */
@@ -389,9 +669,39 @@ type DeleteDataAccessConsentInternalServerError struct {
 	Payload *models.OBBRErrorResponse
 }
 
+// IsSuccess returns true when this delete data access consent internal server error response has a 2xx status code
+func (o *DeleteDataAccessConsentInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete data access consent internal server error response has a 3xx status code
+func (o *DeleteDataAccessConsentInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete data access consent internal server error response has a 4xx status code
+func (o *DeleteDataAccessConsentInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this delete data access consent internal server error response has a 5xx status code
+func (o *DeleteDataAccessConsentInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this delete data access consent internal server error response a status code equal to that given
+func (o *DeleteDataAccessConsentInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *DeleteDataAccessConsentInternalServerError) Error() string {
 	return fmt.Sprintf("[DELETE /open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *DeleteDataAccessConsentInternalServerError) String() string {
+	return fmt.Sprintf("[DELETE /open-banking/consents/v1/consents/{consentID}][%d] deleteDataAccessConsentInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *DeleteDataAccessConsentInternalServerError) GetPayload() *models.OBBRErrorResponse {
 	return o.Payload
 }

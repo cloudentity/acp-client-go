@@ -20,6 +20,9 @@ import (
 // swagger:model AccessRequestData
 type AccessRequestData struct {
 
+	// Actor claims
+	ActorClaims map[string]interface{} `json:"actor_claims,omitempty"`
+
 	// OAuth client application identifier.
 	ClientID string `json:"client_id,omitempty"`
 

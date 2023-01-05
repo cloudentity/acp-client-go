@@ -75,7 +75,8 @@ func NewUpdateCognitoIDPOK() *UpdateCognitoIDPOK {
 	return &UpdateCognitoIDPOK{}
 }
 
-/* UpdateCognitoIDPOK describes a response with status code 200, with default header values.
+/*
+UpdateCognitoIDPOK describes a response with status code 200, with default header values.
 
 CognitoIDP
 */
@@ -83,9 +84,39 @@ type UpdateCognitoIDPOK struct {
 	Payload *models.CognitoIDP
 }
 
+// IsSuccess returns true when this update cognito Id p o k response has a 2xx status code
+func (o *UpdateCognitoIDPOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this update cognito Id p o k response has a 3xx status code
+func (o *UpdateCognitoIDPOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update cognito Id p o k response has a 4xx status code
+func (o *UpdateCognitoIDPOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this update cognito Id p o k response has a 5xx status code
+func (o *UpdateCognitoIDPOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update cognito Id p o k response a status code equal to that given
+func (o *UpdateCognitoIDPOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *UpdateCognitoIDPOK) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPOK  %+v", 200, o.Payload)
 }
+
+func (o *UpdateCognitoIDPOK) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPOK  %+v", 200, o.Payload)
+}
+
 func (o *UpdateCognitoIDPOK) GetPayload() *models.CognitoIDP {
 	return o.Payload
 }
@@ -107,7 +138,8 @@ func NewUpdateCognitoIDPBadRequest() *UpdateCognitoIDPBadRequest {
 	return &UpdateCognitoIDPBadRequest{}
 }
 
-/* UpdateCognitoIDPBadRequest describes a response with status code 400, with default header values.
+/*
+UpdateCognitoIDPBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -115,9 +147,39 @@ type UpdateCognitoIDPBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update cognito Id p bad request response has a 2xx status code
+func (o *UpdateCognitoIDPBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update cognito Id p bad request response has a 3xx status code
+func (o *UpdateCognitoIDPBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update cognito Id p bad request response has a 4xx status code
+func (o *UpdateCognitoIDPBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update cognito Id p bad request response has a 5xx status code
+func (o *UpdateCognitoIDPBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update cognito Id p bad request response a status code equal to that given
+func (o *UpdateCognitoIDPBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *UpdateCognitoIDPBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *UpdateCognitoIDPBadRequest) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *UpdateCognitoIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -139,7 +201,8 @@ func NewUpdateCognitoIDPUnauthorized() *UpdateCognitoIDPUnauthorized {
 	return &UpdateCognitoIDPUnauthorized{}
 }
 
-/* UpdateCognitoIDPUnauthorized describes a response with status code 401, with default header values.
+/*
+UpdateCognitoIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,9 +210,39 @@ type UpdateCognitoIDPUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update cognito Id p unauthorized response has a 2xx status code
+func (o *UpdateCognitoIDPUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update cognito Id p unauthorized response has a 3xx status code
+func (o *UpdateCognitoIDPUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update cognito Id p unauthorized response has a 4xx status code
+func (o *UpdateCognitoIDPUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update cognito Id p unauthorized response has a 5xx status code
+func (o *UpdateCognitoIDPUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update cognito Id p unauthorized response a status code equal to that given
+func (o *UpdateCognitoIDPUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *UpdateCognitoIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *UpdateCognitoIDPUnauthorized) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *UpdateCognitoIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -171,7 +264,8 @@ func NewUpdateCognitoIDPForbidden() *UpdateCognitoIDPForbidden {
 	return &UpdateCognitoIDPForbidden{}
 }
 
-/* UpdateCognitoIDPForbidden describes a response with status code 403, with default header values.
+/*
+UpdateCognitoIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -179,9 +273,39 @@ type UpdateCognitoIDPForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update cognito Id p forbidden response has a 2xx status code
+func (o *UpdateCognitoIDPForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update cognito Id p forbidden response has a 3xx status code
+func (o *UpdateCognitoIDPForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update cognito Id p forbidden response has a 4xx status code
+func (o *UpdateCognitoIDPForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update cognito Id p forbidden response has a 5xx status code
+func (o *UpdateCognitoIDPForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update cognito Id p forbidden response a status code equal to that given
+func (o *UpdateCognitoIDPForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *UpdateCognitoIDPForbidden) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPForbidden  %+v", 403, o.Payload)
 }
+
+func (o *UpdateCognitoIDPForbidden) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPForbidden  %+v", 403, o.Payload)
+}
+
 func (o *UpdateCognitoIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -203,7 +327,8 @@ func NewUpdateCognitoIDPNotFound() *UpdateCognitoIDPNotFound {
 	return &UpdateCognitoIDPNotFound{}
 }
 
-/* UpdateCognitoIDPNotFound describes a response with status code 404, with default header values.
+/*
+UpdateCognitoIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -211,9 +336,39 @@ type UpdateCognitoIDPNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update cognito Id p not found response has a 2xx status code
+func (o *UpdateCognitoIDPNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update cognito Id p not found response has a 3xx status code
+func (o *UpdateCognitoIDPNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update cognito Id p not found response has a 4xx status code
+func (o *UpdateCognitoIDPNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update cognito Id p not found response has a 5xx status code
+func (o *UpdateCognitoIDPNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update cognito Id p not found response a status code equal to that given
+func (o *UpdateCognitoIDPNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *UpdateCognitoIDPNotFound) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPNotFound  %+v", 404, o.Payload)
 }
+
+func (o *UpdateCognitoIDPNotFound) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPNotFound  %+v", 404, o.Payload)
+}
+
 func (o *UpdateCognitoIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +390,8 @@ func NewUpdateCognitoIDPUnprocessableEntity() *UpdateCognitoIDPUnprocessableEnti
 	return &UpdateCognitoIDPUnprocessableEntity{}
 }
 
-/* UpdateCognitoIDPUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+UpdateCognitoIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -243,9 +399,39 @@ type UpdateCognitoIDPUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update cognito Id p unprocessable entity response has a 2xx status code
+func (o *UpdateCognitoIDPUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update cognito Id p unprocessable entity response has a 3xx status code
+func (o *UpdateCognitoIDPUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update cognito Id p unprocessable entity response has a 4xx status code
+func (o *UpdateCognitoIDPUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update cognito Id p unprocessable entity response has a 5xx status code
+func (o *UpdateCognitoIDPUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update cognito Id p unprocessable entity response a status code equal to that given
+func (o *UpdateCognitoIDPUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *UpdateCognitoIDPUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *UpdateCognitoIDPUnprocessableEntity) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *UpdateCognitoIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -267,7 +453,8 @@ func NewUpdateCognitoIDPTooManyRequests() *UpdateCognitoIDPTooManyRequests {
 	return &UpdateCognitoIDPTooManyRequests{}
 }
 
-/* UpdateCognitoIDPTooManyRequests describes a response with status code 429, with default header values.
+/*
+UpdateCognitoIDPTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -275,9 +462,39 @@ type UpdateCognitoIDPTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this update cognito Id p too many requests response has a 2xx status code
+func (o *UpdateCognitoIDPTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update cognito Id p too many requests response has a 3xx status code
+func (o *UpdateCognitoIDPTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update cognito Id p too many requests response has a 4xx status code
+func (o *UpdateCognitoIDPTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update cognito Id p too many requests response has a 5xx status code
+func (o *UpdateCognitoIDPTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update cognito Id p too many requests response a status code equal to that given
+func (o *UpdateCognitoIDPTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *UpdateCognitoIDPTooManyRequests) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *UpdateCognitoIDPTooManyRequests) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *UpdateCognitoIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

@@ -42,9 +42,9 @@ type ClientService interface {
 }
 
 /*
-  CreateClaim creates claim
+	CreateClaim creates claim
 
-  Claim allows to add custom attribute to outgoing id / access token.
+	Claim allows to add custom attribute to outgoing id / access token.
 
 Authorization Server, Name, Mapping and Type are required fields.
 
@@ -87,9 +87,9 @@ func (a *Client) CreateClaim(params *CreateClaimParams, authInfo runtime.ClientA
 }
 
 /*
-  DeleteClaim deletes claim
+DeleteClaim deletes claim
 
-  Delete claim.
+Delete claim.
 */
 func (a *Client) DeleteClaim(params *DeleteClaimParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteClaimNoContent, error) {
 	// TODO: Validate the params before sending
@@ -128,9 +128,9 @@ func (a *Client) DeleteClaim(params *DeleteClaimParams, authInfo runtime.ClientA
 }
 
 /*
-  ListClaims lists claims
+ListClaims lists claims
 
-  List claims.
+List claims.
 */
 func (a *Client) ListClaims(params *ListClaimsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListClaimsOK, error) {
 	// TODO: Validate the params before sending
@@ -169,9 +169,9 @@ func (a *Client) ListClaims(params *ListClaimsParams, authInfo runtime.ClientAut
 }
 
 /*
-  UpdateClaim updates claim
+UpdateClaim updates claim
 
-  Update claim.
+Update claim.
 */
 func (a *Client) UpdateClaim(params *UpdateClaimParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateClaimOK, error) {
 	// TODO: Validate the params before sending

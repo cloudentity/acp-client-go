@@ -54,10 +54,12 @@ func NewCreateExternalIDPParamsWithHTTPClient(client *http.Client) *CreateExtern
 	}
 }
 
-/* CreateExternalIDPParams contains all the parameters to send to the API endpoint
-   for the create external ID p operation.
+/*
+CreateExternalIDPParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the create external ID p operation.
+
+	Typically these are written to a http.Request.
 */
 type CreateExternalIDPParams struct {
 

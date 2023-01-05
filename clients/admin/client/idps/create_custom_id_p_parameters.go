@@ -54,10 +54,12 @@ func NewCreateCustomIDPParamsWithHTTPClient(client *http.Client) *CreateCustomID
 	}
 }
 
-/* CreateCustomIDPParams contains all the parameters to send to the API endpoint
-   for the create custom ID p operation.
+/*
+CreateCustomIDPParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the create custom ID p operation.
+
+	Typically these are written to a http.Request.
 */
 type CreateCustomIDPParams struct {
 

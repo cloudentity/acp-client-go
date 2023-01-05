@@ -52,10 +52,12 @@ func NewOpenbankingAccountAccessConsentIntrospectParamsWithHTTPClient(client *ht
 	}
 }
 
-/* OpenbankingAccountAccessConsentIntrospectParams contains all the parameters to send to the API endpoint
-   for the openbanking account access consent introspect operation.
+/*
+OpenbankingAccountAccessConsentIntrospectParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the openbanking account access consent introspect operation.
+
+	Typically these are written to a http.Request.
 */
 type OpenbankingAccountAccessConsentIntrospectParams struct {
 

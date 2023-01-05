@@ -57,14 +57,44 @@ func NewRevokeOK() *RevokeOK {
 	return &RevokeOK{}
 }
 
-/* RevokeOK describes a response with status code 200, with default header values.
+/*
+RevokeOK describes a response with status code 200, with default header values.
 
 Empty response
 */
 type RevokeOK struct {
 }
 
+// IsSuccess returns true when this revoke o k response has a 2xx status code
+func (o *RevokeOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this revoke o k response has a 3xx status code
+func (o *RevokeOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke o k response has a 4xx status code
+func (o *RevokeOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this revoke o k response has a 5xx status code
+func (o *RevokeOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke o k response a status code equal to that given
+func (o *RevokeOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *RevokeOK) Error() string {
+	return fmt.Sprintf("[POST /oauth2/revoke][%d] revokeOK ", 200)
+}
+
+func (o *RevokeOK) String() string {
 	return fmt.Sprintf("[POST /oauth2/revoke][%d] revokeOK ", 200)
 }
 
@@ -78,7 +108,8 @@ func NewRevokeUnauthorized() *RevokeUnauthorized {
 	return &RevokeUnauthorized{}
 }
 
-/* RevokeUnauthorized describes a response with status code 401, with default header values.
+/*
+RevokeUnauthorized describes a response with status code 401, with default header values.
 
 ErrorResponse
 */
@@ -86,9 +117,39 @@ type RevokeUnauthorized struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this revoke unauthorized response has a 2xx status code
+func (o *RevokeUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this revoke unauthorized response has a 3xx status code
+func (o *RevokeUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke unauthorized response has a 4xx status code
+func (o *RevokeUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this revoke unauthorized response has a 5xx status code
+func (o *RevokeUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke unauthorized response a status code equal to that given
+func (o *RevokeUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *RevokeUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /oauth2/revoke][%d] revokeUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *RevokeUnauthorized) String() string {
+	return fmt.Sprintf("[POST /oauth2/revoke][%d] revokeUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *RevokeUnauthorized) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -110,7 +171,8 @@ func NewRevokeNotFound() *RevokeNotFound {
 	return &RevokeNotFound{}
 }
 
-/* RevokeNotFound describes a response with status code 404, with default header values.
+/*
+RevokeNotFound describes a response with status code 404, with default header values.
 
 ErrorResponse
 */
@@ -118,9 +180,39 @@ type RevokeNotFound struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this revoke not found response has a 2xx status code
+func (o *RevokeNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this revoke not found response has a 3xx status code
+func (o *RevokeNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke not found response has a 4xx status code
+func (o *RevokeNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this revoke not found response has a 5xx status code
+func (o *RevokeNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke not found response a status code equal to that given
+func (o *RevokeNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *RevokeNotFound) Error() string {
 	return fmt.Sprintf("[POST /oauth2/revoke][%d] revokeNotFound  %+v", 404, o.Payload)
 }
+
+func (o *RevokeNotFound) String() string {
+	return fmt.Sprintf("[POST /oauth2/revoke][%d] revokeNotFound  %+v", 404, o.Payload)
+}
+
 func (o *RevokeNotFound) GetPayload() *models.GenericError {
 	return o.Payload
 }
@@ -142,7 +234,8 @@ func NewRevokeTooManyRequests() *RevokeTooManyRequests {
 	return &RevokeTooManyRequests{}
 }
 
-/* RevokeTooManyRequests describes a response with status code 429, with default header values.
+/*
+RevokeTooManyRequests describes a response with status code 429, with default header values.
 
 ErrorResponse
 */
@@ -150,9 +243,39 @@ type RevokeTooManyRequests struct {
 	Payload *models.GenericError
 }
 
+// IsSuccess returns true when this revoke too many requests response has a 2xx status code
+func (o *RevokeTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this revoke too many requests response has a 3xx status code
+func (o *RevokeTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this revoke too many requests response has a 4xx status code
+func (o *RevokeTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this revoke too many requests response has a 5xx status code
+func (o *RevokeTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this revoke too many requests response a status code equal to that given
+func (o *RevokeTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *RevokeTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /oauth2/revoke][%d] revokeTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *RevokeTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /oauth2/revoke][%d] revokeTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *RevokeTooManyRequests) GetPayload() *models.GenericError {
 	return o.Payload
 }

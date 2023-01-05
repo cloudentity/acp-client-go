@@ -44,7 +44,7 @@ import (
 	systemClient "github.com/cloudentity/acp-client-go/clients/system/client"
 	webClient "github.com/cloudentity/acp-client-go/clients/web/client"
 
-	"github.com/dgrijalva/jwt-go"
+	"github.com/golang-jwt/jwt/v4"
 	"github.com/google/uuid"
 
 	httptransport "github.com/go-openapi/runtime/client"
@@ -1063,7 +1063,7 @@ func (c *Client) DoPAR(options ...AuthorizeOption) (pr PARResponse, csrf CSRF, e
 		return pr, csrf, fmt.Errorf("failed to prepare values for PAR request: %w", err)
 	}
 
-	if request, err = c.prepareRequest(c.Config.GetPARURL(), values, csrf, options...); err != nil {
+	if request, err = c.prepareRequest(c.Config.GetPARURL(), values, &csrf, options...); err != nil {
 		return pr, csrf, fmt.Errorf("failed to prepare PAR request: %w", err)
 	}
 
@@ -1089,7 +1089,7 @@ func (c *Client) Exchange(code string, state string, csrf CSRF) (token Token, er
 		values.Set("code_verifier", csrf.Verifier)
 	}
 
-	if request, err = c.prepareRequest(c.Config.GetTokenURL(), values, csrf); err != nil {
+	if request, err = c.prepareRequest(c.Config.GetTokenURL(), values, &csrf); err != nil {
 		return token, fmt.Errorf("failed to prepare exchange token request: %w", err)
 	}
 
@@ -1144,7 +1144,7 @@ func (c *Client) preapreValues() (values url.Values, csrf CSRF, err error) {
 	return values, csrf, err
 }
 
-func (c *Client) prepareRequest(requestURL string, values url.Values, csrf CSRF, options ...AuthorizeOption) (request *http.Request, err error) {
+func (c *Client) prepareRequest(requestURL string, values url.Values, csrf *CSRF, options ...AuthorizeOption) (request *http.Request, err error) {
 	if c.Config.AuthMethod == ClientSecretPostAuthnMethod {
 		values.Add("client_secret", c.Config.ClientSecret)
 	}
@@ -1161,7 +1161,7 @@ func (c *Client) prepareRequest(requestURL string, values url.Values, csrf CSRF,
 	}
 
 	for _, o := range options {
-		if err = o.apply(c, values, &csrf); err != nil {
+		if err = o.apply(c, values, csrf); err != nil {
 			return request, err
 		}
 	}

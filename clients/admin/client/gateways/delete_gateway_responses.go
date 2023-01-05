@@ -63,14 +63,44 @@ func NewDeleteGatewayNoContent() *DeleteGatewayNoContent {
 	return &DeleteGatewayNoContent{}
 }
 
-/* DeleteGatewayNoContent describes a response with status code 204, with default header values.
+/*
+DeleteGatewayNoContent describes a response with status code 204, with default header values.
 
-Gateway has been deleted
+	Gateway has been deleted
 */
 type DeleteGatewayNoContent struct {
 }
 
+// IsSuccess returns true when this delete gateway no content response has a 2xx status code
+func (o *DeleteGatewayNoContent) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this delete gateway no content response has a 3xx status code
+func (o *DeleteGatewayNoContent) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete gateway no content response has a 4xx status code
+func (o *DeleteGatewayNoContent) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this delete gateway no content response has a 5xx status code
+func (o *DeleteGatewayNoContent) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete gateway no content response a status code equal to that given
+func (o *DeleteGatewayNoContent) IsCode(code int) bool {
+	return code == 204
+}
+
 func (o *DeleteGatewayNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /gateways/{gw}][%d] deleteGatewayNoContent ", 204)
+}
+
+func (o *DeleteGatewayNoContent) String() string {
 	return fmt.Sprintf("[DELETE /gateways/{gw}][%d] deleteGatewayNoContent ", 204)
 }
 
@@ -84,7 +114,8 @@ func NewDeleteGatewayUnauthorized() *DeleteGatewayUnauthorized {
 	return &DeleteGatewayUnauthorized{}
 }
 
-/* DeleteGatewayUnauthorized describes a response with status code 401, with default header values.
+/*
+DeleteGatewayUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -92,9 +123,39 @@ type DeleteGatewayUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete gateway unauthorized response has a 2xx status code
+func (o *DeleteGatewayUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete gateway unauthorized response has a 3xx status code
+func (o *DeleteGatewayUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete gateway unauthorized response has a 4xx status code
+func (o *DeleteGatewayUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete gateway unauthorized response has a 5xx status code
+func (o *DeleteGatewayUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete gateway unauthorized response a status code equal to that given
+func (o *DeleteGatewayUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *DeleteGatewayUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /gateways/{gw}][%d] deleteGatewayUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *DeleteGatewayUnauthorized) String() string {
+	return fmt.Sprintf("[DELETE /gateways/{gw}][%d] deleteGatewayUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *DeleteGatewayUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -116,7 +177,8 @@ func NewDeleteGatewayForbidden() *DeleteGatewayForbidden {
 	return &DeleteGatewayForbidden{}
 }
 
-/* DeleteGatewayForbidden describes a response with status code 403, with default header values.
+/*
+DeleteGatewayForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -124,9 +186,39 @@ type DeleteGatewayForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete gateway forbidden response has a 2xx status code
+func (o *DeleteGatewayForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete gateway forbidden response has a 3xx status code
+func (o *DeleteGatewayForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete gateway forbidden response has a 4xx status code
+func (o *DeleteGatewayForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete gateway forbidden response has a 5xx status code
+func (o *DeleteGatewayForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete gateway forbidden response a status code equal to that given
+func (o *DeleteGatewayForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *DeleteGatewayForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /gateways/{gw}][%d] deleteGatewayForbidden  %+v", 403, o.Payload)
 }
+
+func (o *DeleteGatewayForbidden) String() string {
+	return fmt.Sprintf("[DELETE /gateways/{gw}][%d] deleteGatewayForbidden  %+v", 403, o.Payload)
+}
+
 func (o *DeleteGatewayForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -148,7 +240,8 @@ func NewDeleteGatewayNotFound() *DeleteGatewayNotFound {
 	return &DeleteGatewayNotFound{}
 }
 
-/* DeleteGatewayNotFound describes a response with status code 404, with default header values.
+/*
+DeleteGatewayNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -156,9 +249,39 @@ type DeleteGatewayNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete gateway not found response has a 2xx status code
+func (o *DeleteGatewayNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete gateway not found response has a 3xx status code
+func (o *DeleteGatewayNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete gateway not found response has a 4xx status code
+func (o *DeleteGatewayNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete gateway not found response has a 5xx status code
+func (o *DeleteGatewayNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete gateway not found response a status code equal to that given
+func (o *DeleteGatewayNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *DeleteGatewayNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /gateways/{gw}][%d] deleteGatewayNotFound  %+v", 404, o.Payload)
 }
+
+func (o *DeleteGatewayNotFound) String() string {
+	return fmt.Sprintf("[DELETE /gateways/{gw}][%d] deleteGatewayNotFound  %+v", 404, o.Payload)
+}
+
 func (o *DeleteGatewayNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -180,7 +303,8 @@ func NewDeleteGatewayTooManyRequests() *DeleteGatewayTooManyRequests {
 	return &DeleteGatewayTooManyRequests{}
 }
 
-/* DeleteGatewayTooManyRequests describes a response with status code 429, with default header values.
+/*
+DeleteGatewayTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -188,9 +312,39 @@ type DeleteGatewayTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this delete gateway too many requests response has a 2xx status code
+func (o *DeleteGatewayTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete gateway too many requests response has a 3xx status code
+func (o *DeleteGatewayTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete gateway too many requests response has a 4xx status code
+func (o *DeleteGatewayTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete gateway too many requests response has a 5xx status code
+func (o *DeleteGatewayTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete gateway too many requests response a status code equal to that given
+func (o *DeleteGatewayTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *DeleteGatewayTooManyRequests) Error() string {
 	return fmt.Sprintf("[DELETE /gateways/{gw}][%d] deleteGatewayTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *DeleteGatewayTooManyRequests) String() string {
+	return fmt.Sprintf("[DELETE /gateways/{gw}][%d] deleteGatewayTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *DeleteGatewayTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

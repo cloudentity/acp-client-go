@@ -52,10 +52,12 @@ func NewFdxConsentIntrospectParamsWithHTTPClient(client *http.Client) *FdxConsen
 	}
 }
 
-/* FdxConsentIntrospectParams contains all the parameters to send to the API endpoint
-   for the fdx consent introspect operation.
+/*
+FdxConsentIntrospectParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the fdx consent introspect operation.
+
+	Typically these are written to a http.Request.
 */
 type FdxConsentIntrospectParams struct {
 

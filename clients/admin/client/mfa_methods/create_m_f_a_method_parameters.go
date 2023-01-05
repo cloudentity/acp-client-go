@@ -54,10 +54,12 @@ func NewCreateMFAMethodParamsWithHTTPClient(client *http.Client) *CreateMFAMetho
 	}
 }
 
-/* CreateMFAMethodParams contains all the parameters to send to the API endpoint
-   for the create m f a method operation.
+/*
+CreateMFAMethodParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the create m f a method operation.
+
+	Typically these are written to a http.Request.
 */
 type CreateMFAMethodParams struct {
 

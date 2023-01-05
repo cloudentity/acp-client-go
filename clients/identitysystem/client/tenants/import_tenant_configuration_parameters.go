@@ -54,10 +54,12 @@ func NewImportTenantConfigurationParamsWithHTTPClient(client *http.Client) *Impo
 	}
 }
 
-/* ImportTenantConfigurationParams contains all the parameters to send to the API endpoint
-   for the import tenant configuration operation.
+/*
+ImportTenantConfigurationParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the import tenant configuration operation.
+
+	Typically these are written to a http.Request.
 */
 type ImportTenantConfigurationParams struct {
 

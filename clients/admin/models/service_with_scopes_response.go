@@ -7,11 +7,13 @@ package models
 
 import (
 	"context"
+	"encoding/json"
 	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // ServiceWithScopesResponse service with scopes response
@@ -56,6 +58,14 @@ type ServiceWithScopesResponse struct {
 	// Example: default
 	TenantID string `json:"tenant_id,omitempty"`
 
+	// service type
+	// Enum: [oauth2 oidc system user openbanking]
+	Type string `json:"type,omitempty"`
+
+	// Updated at date
+	// Format: date-time
+	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty"`
+
 	// true if service has openapi 3 specification
 	WithSpecification bool `json:"with_specification,omitempty"`
 }
@@ -65,6 +75,14 @@ func (m *ServiceWithScopesResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateScopes(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUpdatedAt(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -95,6 +113,69 @@ func (m *ServiceWithScopesResponse) validateScopes(formats strfmt.Registry) erro
 			}
 		}
 
+	}
+
+	return nil
+}
+
+var serviceWithScopesResponseTypeTypePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["oauth2","oidc","system","user","openbanking"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		serviceWithScopesResponseTypeTypePropEnum = append(serviceWithScopesResponseTypeTypePropEnum, v)
+	}
+}
+
+const (
+
+	// ServiceWithScopesResponseTypeOauth2 captures enum value "oauth2"
+	ServiceWithScopesResponseTypeOauth2 string = "oauth2"
+
+	// ServiceWithScopesResponseTypeOidc captures enum value "oidc"
+	ServiceWithScopesResponseTypeOidc string = "oidc"
+
+	// ServiceWithScopesResponseTypeSystem captures enum value "system"
+	ServiceWithScopesResponseTypeSystem string = "system"
+
+	// ServiceWithScopesResponseTypeUser captures enum value "user"
+	ServiceWithScopesResponseTypeUser string = "user"
+
+	// ServiceWithScopesResponseTypeOpenbanking captures enum value "openbanking"
+	ServiceWithScopesResponseTypeOpenbanking string = "openbanking"
+)
+
+// prop value enum
+func (m *ServiceWithScopesResponse) validateTypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, serviceWithScopesResponseTypeTypePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *ServiceWithScopesResponse) validateType(formats strfmt.Registry) error {
+	if swag.IsZero(m.Type) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateTypeEnum("type", "body", m.Type); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ServiceWithScopesResponse) validateUpdatedAt(formats strfmt.Registry) error {
+	if swag.IsZero(m.UpdatedAt) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("updated_at", "body", "date-time", m.UpdatedAt.String(), formats); err != nil {
+		return err
 	}
 
 	return nil

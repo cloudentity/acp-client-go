@@ -21,50 +21,69 @@ import (
 // swagger:model CDRArrangement
 type CDRArrangement struct {
 
-	// account ids
+	// List of accounts
 	AccountIds []string `json:"account_ids"`
 
 	// amending arrangement id
 	AmendingArrangementID CDRArrangementID `json:"amending_arrangement_id,omitempty"`
 
-	// authorization server id
+	// Workspace Identifier
+	// Example: server
 	AuthorizationServerID string `json:"authorization_server_id,omitempty"`
 
 	// cdr arrangement id
 	CdrArrangementID CDRArrangementID `json:"cdr_arrangement_id,omitempty"`
 
-	// client id
+	// cdr arrangement metadata
+	CdrArrangementMetadata *CDRArrangementMetadata `json:"cdr_arrangement_metadata,omitempty"`
+
+	// Client Identifier
+	// Example: bugkgm23g9kregtu051g
 	ClientID string `json:"client_id,omitempty"`
 
-	// created at
+	// Arrangement creation date
+	// Example: 2022-07-01T08:52:27.127932Z
 	// Format: date-time
 	CreatedAt strfmt.DateTime `json:"created_at,omitempty"`
 
-	// expiry
+	// customer id
+	CustomerID CDRCustomerID `json:"customer_id,omitempty"`
+
+	// Arrangement expiration date
+	// Example: 2022-07-01T09:02:27.127932Z
 	// Format: date-time
 	Expiry strfmt.DateTime `json:"expiry,omitempty"`
 
-	// scope grants
+	// List of scope grants
 	ScopeGrants []*ScopeGrant `json:"scope_grants"`
 
-	// sharing type
+	// Sharing type
+	//
+	// One of: one_time, one_time_with_refresh_token, reusable
+	// Example: one_time
 	// Enum: [one_time one_time_with_refresh_token reusable]
 	SharingType string `json:"sharing_type,omitempty"`
 
-	// spec version
+	// Arrangement version.
+	// Currently, the version parameter is not used.
+	// Example: v1
 	// Enum: [v1]
 	SpecVersion string `json:"spec_version,omitempty"`
 
 	// status
 	Status ConsentStatus `json:"status,omitempty"`
 
-	// subject
+	// Subject identifing the authenticated user.
+	// Depending on the workspace configuration the value might be hashed.
+	// Example: 377eb000a87a471291b5a9869930a2422c670b7b6a06f74143eb74a01ed2fbe1
 	Subject string `json:"subject,omitempty"`
 
-	// tenant id
+	// Tenant Identifier
+	// Example: tenant
 	TenantID string `json:"tenant_id,omitempty"`
 
-	// updated at
+	// Arrangement last update date
+	// Example: 2022-07-01T08:52:27.127932Z
 	// Format: date-time
 	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty"`
 }
@@ -81,7 +100,15 @@ func (m *CDRArrangement) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateCdrArrangementMetadata(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateCreatedAt(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCustomerID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -149,12 +176,48 @@ func (m *CDRArrangement) validateCdrArrangementID(formats strfmt.Registry) error
 	return nil
 }
 
+func (m *CDRArrangement) validateCdrArrangementMetadata(formats strfmt.Registry) error {
+	if swag.IsZero(m.CdrArrangementMetadata) { // not required
+		return nil
+	}
+
+	if m.CdrArrangementMetadata != nil {
+		if err := m.CdrArrangementMetadata.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cdr_arrangement_metadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cdr_arrangement_metadata")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *CDRArrangement) validateCreatedAt(formats strfmt.Registry) error {
 	if swag.IsZero(m.CreatedAt) { // not required
 		return nil
 	}
 
 	if err := validate.FormatOf("created_at", "body", "date-time", m.CreatedAt.String(), formats); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *CDRArrangement) validateCustomerID(formats strfmt.Registry) error {
+	if swag.IsZero(m.CustomerID) { // not required
+		return nil
+	}
+
+	if err := m.CustomerID.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("customer_id")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("customer_id")
+		}
 		return err
 	}
 
@@ -324,6 +387,14 @@ func (m *CDRArrangement) ContextValidate(ctx context.Context, formats strfmt.Reg
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateCdrArrangementMetadata(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCustomerID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateScopeGrants(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -359,6 +430,36 @@ func (m *CDRArrangement) contextValidateCdrArrangementID(ctx context.Context, fo
 			return ve.ValidateName("cdr_arrangement_id")
 		} else if ce, ok := err.(*errors.CompositeError); ok {
 			return ce.ValidateName("cdr_arrangement_id")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *CDRArrangement) contextValidateCdrArrangementMetadata(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.CdrArrangementMetadata != nil {
+		if err := m.CdrArrangementMetadata.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("cdr_arrangement_metadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("cdr_arrangement_metadata")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *CDRArrangement) contextValidateCustomerID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.CustomerID.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("customer_id")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("customer_id")
 		}
 		return err
 	}

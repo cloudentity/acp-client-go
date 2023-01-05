@@ -1,0 +1,438 @@
+basePath: /api/permissions/default
+consumes:
+- application/json
+definitions:
+  Error:
+    description: HTTP error response
+    properties:
+      details:
+        type: object
+        x-nullable: false
+      error:
+        type: string
+        x-nullable: false
+      status_code:
+        format: int64
+        type: integer
+        x-nullable: false
+    type: object
+  System:
+    properties:
+      created_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      description:
+        type: string
+        x-nullable: false
+      id:
+        example: default
+        format: systemID
+        type: string
+        x-nullable: false
+      name:
+        type: string
+        x-nullable: false
+      prefix:
+        description: Globally unique prefix applied to all objects in this permissions
+          system.
+        readOnly: true
+        type: string
+        x-nullable: false
+      schema:
+        description: Object definitions
+        format: schema
+        type: string
+        x-nullable: false
+      tenant_id:
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+    required:
+    - name
+    type: object
+  Systems:
+    properties:
+      systems:
+        items:
+          $ref: '#/definitions/System'
+        type: array
+        x-nullable: false
+    type: object
+  Token:
+    properties:
+      created_at:
+        format: date-time
+        type: string
+        x-nullable: false
+      description:
+        type: string
+        x-nullable: false
+      hashed_key:
+        readOnly: true
+        type: string
+        x-nullable: false
+      id:
+        example: default
+        format: tokenID
+        type: string
+        x-nullable: false
+      key:
+        type: string
+        x-nullable: false
+      name:
+        type: string
+        x-nullable: false
+      system_id:
+        example: default
+        format: systemID
+        type: string
+        x-nullable: false
+      tenant_id:
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      updated_at:
+        format: date-time
+        type: string
+        x-nullable: false
+    required:
+    - system_id
+    - name
+    type: object
+  Tokens:
+    properties:
+      tokens:
+        items:
+          $ref: '#/definitions/Token'
+        type: array
+        x-nullable: false
+    type: object
+host: localhost:8443
+info:
+  description: Cloudentity Authorization Control Plane Permissions API
+  title: Cloudentity Authorization Control Plane API
+  version: latest
+paths:
+  /admin/systems:
+    get:
+      description: Lists permission systems.
+      operationId: listSystems
+      responses:
+        "200":
+          $ref: '#/responses/SystemsResponse'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: List permission systems
+      tags:
+      - Systems
+    post:
+      description: Creates a permission system.
+      operationId: createSystem
+      parameters:
+      - in: body
+        name: System
+        schema:
+          $ref: '#/definitions/System'
+      responses:
+        "201":
+          $ref: '#/responses/SystemResponse'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "409":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Create permission system
+      tags:
+      - Systems
+  /admin/systems/{psID}:
+    delete:
+      description: Deletes permission system.
+      operationId: deleteSystem
+      parameters:
+      - in: path
+        name: psID
+        required: true
+        type: string
+      responses:
+        "204":
+          description: ' Permission system has been deleted'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Delete permission system
+      tags:
+      - Systems
+    get:
+      description: Gets permission system.
+      operationId: getSystem
+      parameters:
+      - in: path
+        name: psID
+        required: true
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/SystemResponse'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Get permission system
+      tags:
+      - Systems
+    put:
+      description: Updates permission system.
+      operationId: updateSystem
+      parameters:
+      - in: path
+        name: psID
+        required: true
+        type: string
+      - in: body
+        name: System
+        schema:
+          $ref: '#/definitions/System'
+      responses:
+        "200":
+          $ref: '#/responses/SystemResponse'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "409":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Update permission system
+      tags:
+      - Systems
+  /admin/systems/{psID}/tokens:
+    get:
+      description: Lists permission system tokens.
+      operationId: listTokens
+      parameters:
+      - in: path
+        name: psID
+        required: true
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/TokensResponse'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: List permission system tokens
+      tags:
+      - Tokens
+    post:
+      description: Creates a permission system token.
+      operationId: createToken
+      parameters:
+      - in: path
+        name: psID
+        required: true
+        type: string
+      - in: body
+        name: Token
+        schema:
+          $ref: '#/definitions/Token'
+      responses:
+        "201":
+          $ref: '#/responses/TokenResponse'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "409":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Create permission system token
+      tags:
+      - Tokens
+  /admin/systems/{psID}/tokens/{tokenID}:
+    delete:
+      description: Deletes permission system token.
+      operationId: deleteToken
+      parameters:
+      - in: path
+        name: psID
+        required: true
+        type: string
+      - in: path
+        name: tokenID
+        required: true
+        type: string
+      responses:
+        "204":
+          description: ' Permission system token has been deleted'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Delete permission system token
+      tags:
+      - Tokens
+    get:
+      description: Gets permission system token.
+      operationId: getToken
+      parameters:
+      - in: path
+        name: psID
+        required: true
+        type: string
+      - in: path
+        name: tokenID
+        required: true
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/TokenResponse'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Get permission system token
+      tags:
+      - Tokens
+    put:
+      description: Updates permission system token.
+      operationId: updateToken
+      parameters:
+      - in: path
+        name: psID
+        required: true
+        type: string
+      - in: path
+        name: tokenID
+        required: true
+        type: string
+      - in: body
+        name: Token
+        schema:
+          $ref: '#/definitions/Token'
+      responses:
+        "200":
+          $ref: '#/responses/TokenResponse'
+        "400":
+          $ref: '#/responses/httpError'
+        "401":
+          $ref: '#/responses/httpError'
+        "403":
+          $ref: '#/responses/httpError'
+        "404":
+          $ref: '#/responses/httpError'
+        "409":
+          $ref: '#/responses/httpError'
+        "422":
+          $ref: '#/responses/httpError'
+        "429":
+          $ref: '#/responses/httpError'
+      security:
+      - admin: []
+      summary: Update permission system token
+      tags:
+      - Tokens
+produces:
+- application/json
+- text/csv
+responses:
+  SystemResponse:
+    description: Permission system
+    schema:
+      $ref: '#/definitions/System'
+  SystemsResponse:
+    description: Permission systems
+    schema:
+      $ref: '#/definitions/Systems'
+  TokenResponse:
+    description: Permission system token
+    schema:
+      $ref: '#/definitions/Token'
+  TokensResponse:
+    description: Permission system tokens
+    schema:
+      $ref: '#/definitions/Tokens'
+  httpError:
+    description: HttpError
+    schema:
+      $ref: '#/definitions/Error'
+schemes:
+- https
+securityDefinitions:
+  admin:
+    authorizationUrl: /default/admin/oauth2/authorize
+    flow: application
+    tokenUrl: /default/admin/oauth2/token
+    type: oauth2
+swagger: "2.0"

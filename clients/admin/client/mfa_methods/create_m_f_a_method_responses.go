@@ -81,7 +81,8 @@ func NewCreateMFAMethodCreated() *CreateMFAMethodCreated {
 	return &CreateMFAMethodCreated{}
 }
 
-/* CreateMFAMethodCreated describes a response with status code 201, with default header values.
+/*
+CreateMFAMethodCreated describes a response with status code 201, with default header values.
 
 MFAMethod
 */
@@ -89,9 +90,39 @@ type CreateMFAMethodCreated struct {
 	Payload *models.MFAMethod
 }
 
+// IsSuccess returns true when this create m f a method created response has a 2xx status code
+func (o *CreateMFAMethodCreated) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this create m f a method created response has a 3xx status code
+func (o *CreateMFAMethodCreated) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create m f a method created response has a 4xx status code
+func (o *CreateMFAMethodCreated) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create m f a method created response has a 5xx status code
+func (o *CreateMFAMethodCreated) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create m f a method created response a status code equal to that given
+func (o *CreateMFAMethodCreated) IsCode(code int) bool {
+	return code == 201
+}
+
 func (o *CreateMFAMethodCreated) Error() string {
 	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodCreated  %+v", 201, o.Payload)
 }
+
+func (o *CreateMFAMethodCreated) String() string {
+	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodCreated  %+v", 201, o.Payload)
+}
+
 func (o *CreateMFAMethodCreated) GetPayload() *models.MFAMethod {
 	return o.Payload
 }
@@ -113,7 +144,8 @@ func NewCreateMFAMethodBadRequest() *CreateMFAMethodBadRequest {
 	return &CreateMFAMethodBadRequest{}
 }
 
-/* CreateMFAMethodBadRequest describes a response with status code 400, with default header values.
+/*
+CreateMFAMethodBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -121,9 +153,39 @@ type CreateMFAMethodBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create m f a method bad request response has a 2xx status code
+func (o *CreateMFAMethodBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create m f a method bad request response has a 3xx status code
+func (o *CreateMFAMethodBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create m f a method bad request response has a 4xx status code
+func (o *CreateMFAMethodBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create m f a method bad request response has a 5xx status code
+func (o *CreateMFAMethodBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create m f a method bad request response a status code equal to that given
+func (o *CreateMFAMethodBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *CreateMFAMethodBadRequest) Error() string {
 	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *CreateMFAMethodBadRequest) String() string {
+	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *CreateMFAMethodBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -145,7 +207,8 @@ func NewCreateMFAMethodUnauthorized() *CreateMFAMethodUnauthorized {
 	return &CreateMFAMethodUnauthorized{}
 }
 
-/* CreateMFAMethodUnauthorized describes a response with status code 401, with default header values.
+/*
+CreateMFAMethodUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -153,9 +216,39 @@ type CreateMFAMethodUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create m f a method unauthorized response has a 2xx status code
+func (o *CreateMFAMethodUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create m f a method unauthorized response has a 3xx status code
+func (o *CreateMFAMethodUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create m f a method unauthorized response has a 4xx status code
+func (o *CreateMFAMethodUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create m f a method unauthorized response has a 5xx status code
+func (o *CreateMFAMethodUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create m f a method unauthorized response a status code equal to that given
+func (o *CreateMFAMethodUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *CreateMFAMethodUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *CreateMFAMethodUnauthorized) String() string {
+	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *CreateMFAMethodUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -177,7 +270,8 @@ func NewCreateMFAMethodForbidden() *CreateMFAMethodForbidden {
 	return &CreateMFAMethodForbidden{}
 }
 
-/* CreateMFAMethodForbidden describes a response with status code 403, with default header values.
+/*
+CreateMFAMethodForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -185,9 +279,39 @@ type CreateMFAMethodForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create m f a method forbidden response has a 2xx status code
+func (o *CreateMFAMethodForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create m f a method forbidden response has a 3xx status code
+func (o *CreateMFAMethodForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create m f a method forbidden response has a 4xx status code
+func (o *CreateMFAMethodForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create m f a method forbidden response has a 5xx status code
+func (o *CreateMFAMethodForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create m f a method forbidden response a status code equal to that given
+func (o *CreateMFAMethodForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *CreateMFAMethodForbidden) Error() string {
 	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodForbidden  %+v", 403, o.Payload)
 }
+
+func (o *CreateMFAMethodForbidden) String() string {
+	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodForbidden  %+v", 403, o.Payload)
+}
+
 func (o *CreateMFAMethodForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -209,7 +333,8 @@ func NewCreateMFAMethodNotFound() *CreateMFAMethodNotFound {
 	return &CreateMFAMethodNotFound{}
 }
 
-/* CreateMFAMethodNotFound describes a response with status code 404, with default header values.
+/*
+CreateMFAMethodNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -217,9 +342,39 @@ type CreateMFAMethodNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create m f a method not found response has a 2xx status code
+func (o *CreateMFAMethodNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create m f a method not found response has a 3xx status code
+func (o *CreateMFAMethodNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create m f a method not found response has a 4xx status code
+func (o *CreateMFAMethodNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create m f a method not found response has a 5xx status code
+func (o *CreateMFAMethodNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create m f a method not found response a status code equal to that given
+func (o *CreateMFAMethodNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *CreateMFAMethodNotFound) Error() string {
 	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodNotFound  %+v", 404, o.Payload)
 }
+
+func (o *CreateMFAMethodNotFound) String() string {
+	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodNotFound  %+v", 404, o.Payload)
+}
+
 func (o *CreateMFAMethodNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -241,7 +396,8 @@ func NewCreateMFAMethodConflict() *CreateMFAMethodConflict {
 	return &CreateMFAMethodConflict{}
 }
 
-/* CreateMFAMethodConflict describes a response with status code 409, with default header values.
+/*
+CreateMFAMethodConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -249,9 +405,39 @@ type CreateMFAMethodConflict struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create m f a method conflict response has a 2xx status code
+func (o *CreateMFAMethodConflict) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create m f a method conflict response has a 3xx status code
+func (o *CreateMFAMethodConflict) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create m f a method conflict response has a 4xx status code
+func (o *CreateMFAMethodConflict) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create m f a method conflict response has a 5xx status code
+func (o *CreateMFAMethodConflict) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create m f a method conflict response a status code equal to that given
+func (o *CreateMFAMethodConflict) IsCode(code int) bool {
+	return code == 409
+}
+
 func (o *CreateMFAMethodConflict) Error() string {
 	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodConflict  %+v", 409, o.Payload)
 }
+
+func (o *CreateMFAMethodConflict) String() string {
+	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodConflict  %+v", 409, o.Payload)
+}
+
 func (o *CreateMFAMethodConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -273,7 +459,8 @@ func NewCreateMFAMethodUnprocessableEntity() *CreateMFAMethodUnprocessableEntity
 	return &CreateMFAMethodUnprocessableEntity{}
 }
 
-/* CreateMFAMethodUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+CreateMFAMethodUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -281,9 +468,39 @@ type CreateMFAMethodUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create m f a method unprocessable entity response has a 2xx status code
+func (o *CreateMFAMethodUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create m f a method unprocessable entity response has a 3xx status code
+func (o *CreateMFAMethodUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create m f a method unprocessable entity response has a 4xx status code
+func (o *CreateMFAMethodUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create m f a method unprocessable entity response has a 5xx status code
+func (o *CreateMFAMethodUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create m f a method unprocessable entity response a status code equal to that given
+func (o *CreateMFAMethodUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *CreateMFAMethodUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *CreateMFAMethodUnprocessableEntity) String() string {
+	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *CreateMFAMethodUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -305,7 +522,8 @@ func NewCreateMFAMethodTooManyRequests() *CreateMFAMethodTooManyRequests {
 	return &CreateMFAMethodTooManyRequests{}
 }
 
-/* CreateMFAMethodTooManyRequests describes a response with status code 429, with default header values.
+/*
+CreateMFAMethodTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -313,9 +531,39 @@ type CreateMFAMethodTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create m f a method too many requests response has a 2xx status code
+func (o *CreateMFAMethodTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create m f a method too many requests response has a 3xx status code
+func (o *CreateMFAMethodTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create m f a method too many requests response has a 4xx status code
+func (o *CreateMFAMethodTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create m f a method too many requests response has a 5xx status code
+func (o *CreateMFAMethodTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create m f a method too many requests response a status code equal to that given
+func (o *CreateMFAMethodTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *CreateMFAMethodTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *CreateMFAMethodTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *CreateMFAMethodTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

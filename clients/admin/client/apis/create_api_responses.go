@@ -75,7 +75,8 @@ func NewCreateAPICreated() *CreateAPICreated {
 	return &CreateAPICreated{}
 }
 
-/* CreateAPICreated describes a response with status code 201, with default header values.
+/*
+CreateAPICreated describes a response with status code 201, with default header values.
 
 API
 */
@@ -83,9 +84,39 @@ type CreateAPICreated struct {
 	Payload *models.API
 }
 
+// IsSuccess returns true when this create Api created response has a 2xx status code
+func (o *CreateAPICreated) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this create Api created response has a 3xx status code
+func (o *CreateAPICreated) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create Api created response has a 4xx status code
+func (o *CreateAPICreated) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create Api created response has a 5xx status code
+func (o *CreateAPICreated) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create Api created response a status code equal to that given
+func (o *CreateAPICreated) IsCode(code int) bool {
+	return code == 201
+}
+
 func (o *CreateAPICreated) Error() string {
 	return fmt.Sprintf("[POST /apis][%d] createApiCreated  %+v", 201, o.Payload)
 }
+
+func (o *CreateAPICreated) String() string {
+	return fmt.Sprintf("[POST /apis][%d] createApiCreated  %+v", 201, o.Payload)
+}
+
 func (o *CreateAPICreated) GetPayload() *models.API {
 	return o.Payload
 }
@@ -107,7 +138,8 @@ func NewCreateAPIBadRequest() *CreateAPIBadRequest {
 	return &CreateAPIBadRequest{}
 }
 
-/* CreateAPIBadRequest describes a response with status code 400, with default header values.
+/*
+CreateAPIBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -115,9 +147,39 @@ type CreateAPIBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create Api bad request response has a 2xx status code
+func (o *CreateAPIBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create Api bad request response has a 3xx status code
+func (o *CreateAPIBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create Api bad request response has a 4xx status code
+func (o *CreateAPIBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create Api bad request response has a 5xx status code
+func (o *CreateAPIBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create Api bad request response a status code equal to that given
+func (o *CreateAPIBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *CreateAPIBadRequest) Error() string {
 	return fmt.Sprintf("[POST /apis][%d] createApiBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *CreateAPIBadRequest) String() string {
+	return fmt.Sprintf("[POST /apis][%d] createApiBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *CreateAPIBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -139,7 +201,8 @@ func NewCreateAPIUnauthorized() *CreateAPIUnauthorized {
 	return &CreateAPIUnauthorized{}
 }
 
-/* CreateAPIUnauthorized describes a response with status code 401, with default header values.
+/*
+CreateAPIUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,9 +210,39 @@ type CreateAPIUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create Api unauthorized response has a 2xx status code
+func (o *CreateAPIUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create Api unauthorized response has a 3xx status code
+func (o *CreateAPIUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create Api unauthorized response has a 4xx status code
+func (o *CreateAPIUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create Api unauthorized response has a 5xx status code
+func (o *CreateAPIUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create Api unauthorized response a status code equal to that given
+func (o *CreateAPIUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *CreateAPIUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /apis][%d] createApiUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *CreateAPIUnauthorized) String() string {
+	return fmt.Sprintf("[POST /apis][%d] createApiUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *CreateAPIUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -171,7 +264,8 @@ func NewCreateAPIForbidden() *CreateAPIForbidden {
 	return &CreateAPIForbidden{}
 }
 
-/* CreateAPIForbidden describes a response with status code 403, with default header values.
+/*
+CreateAPIForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -179,9 +273,39 @@ type CreateAPIForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create Api forbidden response has a 2xx status code
+func (o *CreateAPIForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create Api forbidden response has a 3xx status code
+func (o *CreateAPIForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create Api forbidden response has a 4xx status code
+func (o *CreateAPIForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create Api forbidden response has a 5xx status code
+func (o *CreateAPIForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create Api forbidden response a status code equal to that given
+func (o *CreateAPIForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *CreateAPIForbidden) Error() string {
 	return fmt.Sprintf("[POST /apis][%d] createApiForbidden  %+v", 403, o.Payload)
 }
+
+func (o *CreateAPIForbidden) String() string {
+	return fmt.Sprintf("[POST /apis][%d] createApiForbidden  %+v", 403, o.Payload)
+}
+
 func (o *CreateAPIForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -203,7 +327,8 @@ func NewCreateAPINotFound() *CreateAPINotFound {
 	return &CreateAPINotFound{}
 }
 
-/* CreateAPINotFound describes a response with status code 404, with default header values.
+/*
+CreateAPINotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -211,9 +336,39 @@ type CreateAPINotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create Api not found response has a 2xx status code
+func (o *CreateAPINotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create Api not found response has a 3xx status code
+func (o *CreateAPINotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create Api not found response has a 4xx status code
+func (o *CreateAPINotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create Api not found response has a 5xx status code
+func (o *CreateAPINotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create Api not found response a status code equal to that given
+func (o *CreateAPINotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *CreateAPINotFound) Error() string {
 	return fmt.Sprintf("[POST /apis][%d] createApiNotFound  %+v", 404, o.Payload)
 }
+
+func (o *CreateAPINotFound) String() string {
+	return fmt.Sprintf("[POST /apis][%d] createApiNotFound  %+v", 404, o.Payload)
+}
+
 func (o *CreateAPINotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +390,8 @@ func NewCreateAPIUnprocessableEntity() *CreateAPIUnprocessableEntity {
 	return &CreateAPIUnprocessableEntity{}
 }
 
-/* CreateAPIUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+CreateAPIUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -243,9 +399,39 @@ type CreateAPIUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create Api unprocessable entity response has a 2xx status code
+func (o *CreateAPIUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create Api unprocessable entity response has a 3xx status code
+func (o *CreateAPIUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create Api unprocessable entity response has a 4xx status code
+func (o *CreateAPIUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create Api unprocessable entity response has a 5xx status code
+func (o *CreateAPIUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create Api unprocessable entity response a status code equal to that given
+func (o *CreateAPIUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *CreateAPIUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /apis][%d] createApiUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *CreateAPIUnprocessableEntity) String() string {
+	return fmt.Sprintf("[POST /apis][%d] createApiUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *CreateAPIUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -267,7 +453,8 @@ func NewCreateAPITooManyRequests() *CreateAPITooManyRequests {
 	return &CreateAPITooManyRequests{}
 }
 
-/* CreateAPITooManyRequests describes a response with status code 429, with default header values.
+/*
+CreateAPITooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -275,9 +462,39 @@ type CreateAPITooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create Api too many requests response has a 2xx status code
+func (o *CreateAPITooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create Api too many requests response has a 3xx status code
+func (o *CreateAPITooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create Api too many requests response has a 4xx status code
+func (o *CreateAPITooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create Api too many requests response has a 5xx status code
+func (o *CreateAPITooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create Api too many requests response a status code equal to that given
+func (o *CreateAPITooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *CreateAPITooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /apis][%d] createApiTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *CreateAPITooManyRequests) String() string {
+	return fmt.Sprintf("[POST /apis][%d] createApiTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *CreateAPITooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

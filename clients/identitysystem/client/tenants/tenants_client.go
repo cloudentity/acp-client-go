@@ -40,7 +40,7 @@ type ClientService interface {
 }
 
 /*
-  ExportTenantConfiguration export tenant configuration API
+ExportTenantConfiguration export tenant configuration API
 */
 func (a *Client) ExportTenantConfiguration(params *ExportTenantConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ExportTenantConfigurationOK, error) {
 	// TODO: Validate the params before sending
@@ -79,7 +79,7 @@ func (a *Client) ExportTenantConfiguration(params *ExportTenantConfigurationPara
 }
 
 /*
-  ImportTenantConfiguration import tenant configuration API
+ImportTenantConfiguration import tenant configuration API
 */
 func (a *Client) ImportTenantConfiguration(params *ImportTenantConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportTenantConfigurationNoContent, error) {
 	// TODO: Validate the params before sending
@@ -118,7 +118,7 @@ func (a *Client) ImportTenantConfiguration(params *ImportTenantConfigurationPara
 }
 
 /*
-  PatchTenantConfiguration patch tenant configuration API
+PatchTenantConfiguration patch tenant configuration API
 */
 func (a *Client) PatchTenantConfiguration(params *PatchTenantConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchTenantConfigurationNoContent, error) {
 	// TODO: Validate the params before sending

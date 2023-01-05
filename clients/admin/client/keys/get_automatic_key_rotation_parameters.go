@@ -52,10 +52,12 @@ func NewGetAutomaticKeyRotationParamsWithHTTPClient(client *http.Client) *GetAut
 	}
 }
 
-/* GetAutomaticKeyRotationParams contains all the parameters to send to the API endpoint
-   for the get automatic key rotation operation.
+/*
+GetAutomaticKeyRotationParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get automatic key rotation operation.
+
+	Typically these are written to a http.Request.
 */
 type GetAutomaticKeyRotationParams struct {
 

@@ -52,10 +52,12 @@ func NewCdrConsentIntrospectParamsWithHTTPClient(client *http.Client) *CdrConsen
 	}
 }
 
-/* CdrConsentIntrospectParams contains all the parameters to send to the API endpoint
-   for the cdr consent introspect operation.
+/*
+CdrConsentIntrospectParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the cdr consent introspect operation.
+
+	Typically these are written to a http.Request.
 */
 type CdrConsentIntrospectParams struct {
 

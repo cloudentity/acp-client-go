@@ -52,12 +52,23 @@ func NewTokenParamsWithHTTPClient(client *http.Client) *TokenParams {
 	}
 }
 
-/* TokenParams contains all the parameters to send to the API endpoint
-   for the token operation.
+/*
+TokenParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the token operation.
+
+	Typically these are written to a http.Request.
 */
 type TokenParams struct {
+
+	// ActorToken.
+	ActorToken *string
+
+	/* ActorTokenType.
+
+	   in: `json:""` formData
+	*/
+	ActorTokenType *string
 
 	// ClientID.
 	ClientID *string
@@ -73,6 +84,14 @@ type TokenParams struct {
 
 	// GrantType.
 	GrantType string
+
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
 
 	// Password.
 	Password *string
@@ -151,6 +170,28 @@ func (o *TokenParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithActorToken adds the actorToken to the token params
+func (o *TokenParams) WithActorToken(actorToken *string) *TokenParams {
+	o.SetActorToken(actorToken)
+	return o
+}
+
+// SetActorToken adds the actorToken to the token params
+func (o *TokenParams) SetActorToken(actorToken *string) {
+	o.ActorToken = actorToken
+}
+
+// WithActorTokenType adds the actorTokenType to the token params
+func (o *TokenParams) WithActorTokenType(actorTokenType *string) *TokenParams {
+	o.SetActorTokenType(actorTokenType)
+	return o
+}
+
+// SetActorTokenType adds the actorTokenType to the token params
+func (o *TokenParams) SetActorTokenType(actorTokenType *string) {
+	o.ActorTokenType = actorTokenType
+}
+
 // WithClientID adds the clientID to the token params
 func (o *TokenParams) WithClientID(clientID *string) *TokenParams {
 	o.SetClientID(clientID)
@@ -204,6 +245,17 @@ func (o *TokenParams) WithGrantType(grantType string) *TokenParams {
 // SetGrantType adds the grantType to the token params
 func (o *TokenParams) SetGrantType(grantType string) {
 	o.GrantType = grantType
+}
+
+// WithIfMatch adds the ifMatch to the token params
+func (o *TokenParams) WithIfMatch(ifMatch *string) *TokenParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the token params
+func (o *TokenParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
 }
 
 // WithPassword adds the password to the token params
@@ -302,6 +354,38 @@ func (o *TokenParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registr
 	}
 	var res []error
 
+	if o.ActorToken != nil {
+
+		// form param actor_token
+		var frActorToken string
+		if o.ActorToken != nil {
+			frActorToken = *o.ActorToken
+		}
+		fActorToken := frActorToken
+		if fActorToken != "" {
+			if err := r.SetFormParam("actor_token", fActorToken); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.ActorTokenType != nil {
+
+		// query param actor_token_type
+		var qrActorTokenType string
+
+		if o.ActorTokenType != nil {
+			qrActorTokenType = *o.ActorTokenType
+		}
+		qActorTokenType := qrActorTokenType
+		if qActorTokenType != "" {
+
+			if err := r.SetQueryParam("actor_token_type", qActorTokenType); err != nil {
+				return err
+			}
+		}
+	}
+
 	if o.ClientID != nil {
 
 		// form param client_id
@@ -367,6 +451,14 @@ func (o *TokenParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registr
 	fGrantType := frGrantType
 	if fGrantType != "" {
 		if err := r.SetFormParam("grant_type", fGrantType); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

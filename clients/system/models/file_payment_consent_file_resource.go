@@ -17,7 +17,8 @@ import (
 // swagger:model FilePaymentConsentFileResource
 type FilePaymentConsentFileResource struct {
 
-	// client id
+	// Client identifier
+	// Example: \"cauqo9c9vpbs0aj2b2v0\
 	ClientID string `json:"client_id,omitempty"`
 
 	// consent id
@@ -26,10 +27,12 @@ type FilePaymentConsentFileResource struct {
 	// file
 	File []uint8 `json:"file"`
 
-	// server id
+	// Server / Workspace identifier
+	// Example: \"server\
 	ServerID string `json:"server_id,omitempty"`
 
-	// tenant id
+	// Tenant identifier
+	// Example: \"tenant\
 	TenantID string `json:"tenant_id,omitempty"`
 }
 

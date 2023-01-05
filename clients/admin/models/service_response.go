@@ -7,9 +7,12 @@ package models
 
 import (
 	"context"
+	"encoding/json"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // ServiceResponse service response
@@ -43,8 +46,14 @@ type ServiceResponse struct {
 	// Example: Sample service
 	Name string `json:"name,omitempty"`
 
+	// number of apis
+	NumberOfApis int64 `json:"number_of_apis,omitempty"`
+
 	// number of scopes
 	NumberOfScopes int64 `json:"number_of_scopes,omitempty"`
+
+	// number of subscribers
+	NumberOfSubscribers int64 `json:"number_of_subscribers,omitempty"`
 
 	// Is service a system service
 	// Example: false
@@ -54,12 +63,96 @@ type ServiceResponse struct {
 	// Example: default
 	TenantID string `json:"tenant_id,omitempty"`
 
+	// service type
+	// Enum: [oauth2 oidc system user openbanking]
+	Type string `json:"type,omitempty"`
+
+	// Updated at date
+	// Format: date-time
+	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty"`
+
 	// true if service has openapi 3 specification
 	WithSpecification bool `json:"with_specification,omitempty"`
 }
 
 // Validate validates this service response
 func (m *ServiceResponse) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUpdatedAt(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+var serviceResponseTypeTypePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["oauth2","oidc","system","user","openbanking"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		serviceResponseTypeTypePropEnum = append(serviceResponseTypeTypePropEnum, v)
+	}
+}
+
+const (
+
+	// ServiceResponseTypeOauth2 captures enum value "oauth2"
+	ServiceResponseTypeOauth2 string = "oauth2"
+
+	// ServiceResponseTypeOidc captures enum value "oidc"
+	ServiceResponseTypeOidc string = "oidc"
+
+	// ServiceResponseTypeSystem captures enum value "system"
+	ServiceResponseTypeSystem string = "system"
+
+	// ServiceResponseTypeUser captures enum value "user"
+	ServiceResponseTypeUser string = "user"
+
+	// ServiceResponseTypeOpenbanking captures enum value "openbanking"
+	ServiceResponseTypeOpenbanking string = "openbanking"
+)
+
+// prop value enum
+func (m *ServiceResponse) validateTypeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, serviceResponseTypeTypePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *ServiceResponse) validateType(formats strfmt.Registry) error {
+	if swag.IsZero(m.Type) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateTypeEnum("type", "body", m.Type); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ServiceResponse) validateUpdatedAt(formats strfmt.Registry) error {
+	if swag.IsZero(m.UpdatedAt) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("updated_at", "body", "date-time", m.UpdatedAt.String(), formats); err != nil {
+		return err
+	}
+
 	return nil
 }
 

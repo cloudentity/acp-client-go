@@ -63,7 +63,8 @@ func NewListRateLimitsOK() *ListRateLimitsOK {
 	return &ListRateLimitsOK{}
 }
 
-/* ListRateLimitsOK describes a response with status code 200, with default header values.
+/*
+ListRateLimitsOK describes a response with status code 200, with default header values.
 
 Tenant rate limits
 */
@@ -71,9 +72,39 @@ type ListRateLimitsOK struct {
 	Payload *models.ListRateLimitsResponse
 }
 
+// IsSuccess returns true when this list rate limits o k response has a 2xx status code
+func (o *ListRateLimitsOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this list rate limits o k response has a 3xx status code
+func (o *ListRateLimitsOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list rate limits o k response has a 4xx status code
+func (o *ListRateLimitsOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this list rate limits o k response has a 5xx status code
+func (o *ListRateLimitsOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list rate limits o k response a status code equal to that given
+func (o *ListRateLimitsOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *ListRateLimitsOK) Error() string {
 	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/rate-limits][%d] listRateLimitsOK  %+v", 200, o.Payload)
 }
+
+func (o *ListRateLimitsOK) String() string {
+	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/rate-limits][%d] listRateLimitsOK  %+v", 200, o.Payload)
+}
+
 func (o *ListRateLimitsOK) GetPayload() *models.ListRateLimitsResponse {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewListRateLimitsUnauthorized() *ListRateLimitsUnauthorized {
 	return &ListRateLimitsUnauthorized{}
 }
 
-/* ListRateLimitsUnauthorized describes a response with status code 401, with default header values.
+/*
+ListRateLimitsUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type ListRateLimitsUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list rate limits unauthorized response has a 2xx status code
+func (o *ListRateLimitsUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list rate limits unauthorized response has a 3xx status code
+func (o *ListRateLimitsUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list rate limits unauthorized response has a 4xx status code
+func (o *ListRateLimitsUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list rate limits unauthorized response has a 5xx status code
+func (o *ListRateLimitsUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list rate limits unauthorized response a status code equal to that given
+func (o *ListRateLimitsUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *ListRateLimitsUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/rate-limits][%d] listRateLimitsUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *ListRateLimitsUnauthorized) String() string {
+	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/rate-limits][%d] listRateLimitsUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *ListRateLimitsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewListRateLimitsForbidden() *ListRateLimitsForbidden {
 	return &ListRateLimitsForbidden{}
 }
 
-/* ListRateLimitsForbidden describes a response with status code 403, with default header values.
+/*
+ListRateLimitsForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type ListRateLimitsForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list rate limits forbidden response has a 2xx status code
+func (o *ListRateLimitsForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list rate limits forbidden response has a 3xx status code
+func (o *ListRateLimitsForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list rate limits forbidden response has a 4xx status code
+func (o *ListRateLimitsForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list rate limits forbidden response has a 5xx status code
+func (o *ListRateLimitsForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list rate limits forbidden response a status code equal to that given
+func (o *ListRateLimitsForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *ListRateLimitsForbidden) Error() string {
 	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/rate-limits][%d] listRateLimitsForbidden  %+v", 403, o.Payload)
 }
+
+func (o *ListRateLimitsForbidden) String() string {
+	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/rate-limits][%d] listRateLimitsForbidden  %+v", 403, o.Payload)
+}
+
 func (o *ListRateLimitsForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewListRateLimitsNotFound() *ListRateLimitsNotFound {
 	return &ListRateLimitsNotFound{}
 }
 
-/* ListRateLimitsNotFound describes a response with status code 404, with default header values.
+/*
+ListRateLimitsNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type ListRateLimitsNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list rate limits not found response has a 2xx status code
+func (o *ListRateLimitsNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list rate limits not found response has a 3xx status code
+func (o *ListRateLimitsNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list rate limits not found response has a 4xx status code
+func (o *ListRateLimitsNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list rate limits not found response has a 5xx status code
+func (o *ListRateLimitsNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list rate limits not found response a status code equal to that given
+func (o *ListRateLimitsNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *ListRateLimitsNotFound) Error() string {
 	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/rate-limits][%d] listRateLimitsNotFound  %+v", 404, o.Payload)
 }
+
+func (o *ListRateLimitsNotFound) String() string {
+	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/rate-limits][%d] listRateLimitsNotFound  %+v", 404, o.Payload)
+}
+
 func (o *ListRateLimitsNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewListRateLimitsTooManyRequests() *ListRateLimitsTooManyRequests {
 	return &ListRateLimitsTooManyRequests{}
 }
 
-/* ListRateLimitsTooManyRequests describes a response with status code 429, with default header values.
+/*
+ListRateLimitsTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type ListRateLimitsTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this list rate limits too many requests response has a 2xx status code
+func (o *ListRateLimitsTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this list rate limits too many requests response has a 3xx status code
+func (o *ListRateLimitsTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this list rate limits too many requests response has a 4xx status code
+func (o *ListRateLimitsTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this list rate limits too many requests response has a 5xx status code
+func (o *ListRateLimitsTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this list rate limits too many requests response a status code equal to that given
+func (o *ListRateLimitsTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *ListRateLimitsTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/rate-limits][%d] listRateLimitsTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *ListRateLimitsTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/rate-limits][%d] listRateLimitsTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *ListRateLimitsTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

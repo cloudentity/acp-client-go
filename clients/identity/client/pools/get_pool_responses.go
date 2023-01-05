@@ -63,7 +63,8 @@ func NewGetPoolOK() *GetPoolOK {
 	return &GetPoolOK{}
 }
 
-/* GetPoolOK describes a response with status code 200, with default header values.
+/*
+GetPoolOK describes a response with status code 200, with default header values.
 
 Identity Pool
 */
@@ -71,9 +72,39 @@ type GetPoolOK struct {
 	Payload *models.Pool
 }
 
+// IsSuccess returns true when this get pool o k response has a 2xx status code
+func (o *GetPoolOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get pool o k response has a 3xx status code
+func (o *GetPoolOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get pool o k response has a 4xx status code
+func (o *GetPoolOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get pool o k response has a 5xx status code
+func (o *GetPoolOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get pool o k response a status code equal to that given
+func (o *GetPoolOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetPoolOK) Error() string {
 	return fmt.Sprintf("[GET /admin/pools/{ipID}][%d] getPoolOK  %+v", 200, o.Payload)
 }
+
+func (o *GetPoolOK) String() string {
+	return fmt.Sprintf("[GET /admin/pools/{ipID}][%d] getPoolOK  %+v", 200, o.Payload)
+}
+
 func (o *GetPoolOK) GetPayload() *models.Pool {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewGetPoolUnauthorized() *GetPoolUnauthorized {
 	return &GetPoolUnauthorized{}
 }
 
-/* GetPoolUnauthorized describes a response with status code 401, with default header values.
+/*
+GetPoolUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type GetPoolUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get pool unauthorized response has a 2xx status code
+func (o *GetPoolUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get pool unauthorized response has a 3xx status code
+func (o *GetPoolUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get pool unauthorized response has a 4xx status code
+func (o *GetPoolUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get pool unauthorized response has a 5xx status code
+func (o *GetPoolUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get pool unauthorized response a status code equal to that given
+func (o *GetPoolUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *GetPoolUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /admin/pools/{ipID}][%d] getPoolUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *GetPoolUnauthorized) String() string {
+	return fmt.Sprintf("[GET /admin/pools/{ipID}][%d] getPoolUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *GetPoolUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewGetPoolForbidden() *GetPoolForbidden {
 	return &GetPoolForbidden{}
 }
 
-/* GetPoolForbidden describes a response with status code 403, with default header values.
+/*
+GetPoolForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type GetPoolForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get pool forbidden response has a 2xx status code
+func (o *GetPoolForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get pool forbidden response has a 3xx status code
+func (o *GetPoolForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get pool forbidden response has a 4xx status code
+func (o *GetPoolForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get pool forbidden response has a 5xx status code
+func (o *GetPoolForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get pool forbidden response a status code equal to that given
+func (o *GetPoolForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetPoolForbidden) Error() string {
 	return fmt.Sprintf("[GET /admin/pools/{ipID}][%d] getPoolForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetPoolForbidden) String() string {
+	return fmt.Sprintf("[GET /admin/pools/{ipID}][%d] getPoolForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetPoolForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewGetPoolNotFound() *GetPoolNotFound {
 	return &GetPoolNotFound{}
 }
 
-/* GetPoolNotFound describes a response with status code 404, with default header values.
+/*
+GetPoolNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type GetPoolNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get pool not found response has a 2xx status code
+func (o *GetPoolNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get pool not found response has a 3xx status code
+func (o *GetPoolNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get pool not found response has a 4xx status code
+func (o *GetPoolNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get pool not found response has a 5xx status code
+func (o *GetPoolNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get pool not found response a status code equal to that given
+func (o *GetPoolNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *GetPoolNotFound) Error() string {
 	return fmt.Sprintf("[GET /admin/pools/{ipID}][%d] getPoolNotFound  %+v", 404, o.Payload)
 }
+
+func (o *GetPoolNotFound) String() string {
+	return fmt.Sprintf("[GET /admin/pools/{ipID}][%d] getPoolNotFound  %+v", 404, o.Payload)
+}
+
 func (o *GetPoolNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewGetPoolTooManyRequests() *GetPoolTooManyRequests {
 	return &GetPoolTooManyRequests{}
 }
 
-/* GetPoolTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetPoolTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type GetPoolTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this get pool too many requests response has a 2xx status code
+func (o *GetPoolTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get pool too many requests response has a 3xx status code
+func (o *GetPoolTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get pool too many requests response has a 4xx status code
+func (o *GetPoolTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get pool too many requests response has a 5xx status code
+func (o *GetPoolTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get pool too many requests response a status code equal to that given
+func (o *GetPoolTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *GetPoolTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /admin/pools/{ipID}][%d] getPoolTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *GetPoolTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /admin/pools/{ipID}][%d] getPoolTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *GetPoolTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

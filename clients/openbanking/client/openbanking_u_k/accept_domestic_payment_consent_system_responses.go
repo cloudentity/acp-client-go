@@ -63,7 +63,8 @@ func NewAcceptDomesticPaymentConsentSystemOK() *AcceptDomesticPaymentConsentSyst
 	return &AcceptDomesticPaymentConsentSystemOK{}
 }
 
-/* AcceptDomesticPaymentConsentSystemOK describes a response with status code 200, with default header values.
+/*
+AcceptDomesticPaymentConsentSystemOK describes a response with status code 200, with default header values.
 
 Consent accepted
 */
@@ -71,9 +72,39 @@ type AcceptDomesticPaymentConsentSystemOK struct {
 	Payload *models.ConsentAccepted
 }
 
+// IsSuccess returns true when this accept domestic payment consent system o k response has a 2xx status code
+func (o *AcceptDomesticPaymentConsentSystemOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this accept domestic payment consent system o k response has a 3xx status code
+func (o *AcceptDomesticPaymentConsentSystemOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this accept domestic payment consent system o k response has a 4xx status code
+func (o *AcceptDomesticPaymentConsentSystemOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this accept domestic payment consent system o k response has a 5xx status code
+func (o *AcceptDomesticPaymentConsentSystemOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this accept domestic payment consent system o k response a status code equal to that given
+func (o *AcceptDomesticPaymentConsentSystemOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *AcceptDomesticPaymentConsentSystemOK) Error() string {
 	return fmt.Sprintf("[POST /open-banking/domestic-payment-consent/{login}/accept][%d] acceptDomesticPaymentConsentSystemOK  %+v", 200, o.Payload)
 }
+
+func (o *AcceptDomesticPaymentConsentSystemOK) String() string {
+	return fmt.Sprintf("[POST /open-banking/domestic-payment-consent/{login}/accept][%d] acceptDomesticPaymentConsentSystemOK  %+v", 200, o.Payload)
+}
+
 func (o *AcceptDomesticPaymentConsentSystemOK) GetPayload() *models.ConsentAccepted {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewAcceptDomesticPaymentConsentSystemUnauthorized() *AcceptDomesticPaymentC
 	return &AcceptDomesticPaymentConsentSystemUnauthorized{}
 }
 
-/* AcceptDomesticPaymentConsentSystemUnauthorized describes a response with status code 401, with default header values.
+/*
+AcceptDomesticPaymentConsentSystemUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type AcceptDomesticPaymentConsentSystemUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this accept domestic payment consent system unauthorized response has a 2xx status code
+func (o *AcceptDomesticPaymentConsentSystemUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this accept domestic payment consent system unauthorized response has a 3xx status code
+func (o *AcceptDomesticPaymentConsentSystemUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this accept domestic payment consent system unauthorized response has a 4xx status code
+func (o *AcceptDomesticPaymentConsentSystemUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this accept domestic payment consent system unauthorized response has a 5xx status code
+func (o *AcceptDomesticPaymentConsentSystemUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this accept domestic payment consent system unauthorized response a status code equal to that given
+func (o *AcceptDomesticPaymentConsentSystemUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *AcceptDomesticPaymentConsentSystemUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /open-banking/domestic-payment-consent/{login}/accept][%d] acceptDomesticPaymentConsentSystemUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *AcceptDomesticPaymentConsentSystemUnauthorized) String() string {
+	return fmt.Sprintf("[POST /open-banking/domestic-payment-consent/{login}/accept][%d] acceptDomesticPaymentConsentSystemUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *AcceptDomesticPaymentConsentSystemUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewAcceptDomesticPaymentConsentSystemForbidden() *AcceptDomesticPaymentCons
 	return &AcceptDomesticPaymentConsentSystemForbidden{}
 }
 
-/* AcceptDomesticPaymentConsentSystemForbidden describes a response with status code 403, with default header values.
+/*
+AcceptDomesticPaymentConsentSystemForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type AcceptDomesticPaymentConsentSystemForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this accept domestic payment consent system forbidden response has a 2xx status code
+func (o *AcceptDomesticPaymentConsentSystemForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this accept domestic payment consent system forbidden response has a 3xx status code
+func (o *AcceptDomesticPaymentConsentSystemForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this accept domestic payment consent system forbidden response has a 4xx status code
+func (o *AcceptDomesticPaymentConsentSystemForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this accept domestic payment consent system forbidden response has a 5xx status code
+func (o *AcceptDomesticPaymentConsentSystemForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this accept domestic payment consent system forbidden response a status code equal to that given
+func (o *AcceptDomesticPaymentConsentSystemForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *AcceptDomesticPaymentConsentSystemForbidden) Error() string {
 	return fmt.Sprintf("[POST /open-banking/domestic-payment-consent/{login}/accept][%d] acceptDomesticPaymentConsentSystemForbidden  %+v", 403, o.Payload)
 }
+
+func (o *AcceptDomesticPaymentConsentSystemForbidden) String() string {
+	return fmt.Sprintf("[POST /open-banking/domestic-payment-consent/{login}/accept][%d] acceptDomesticPaymentConsentSystemForbidden  %+v", 403, o.Payload)
+}
+
 func (o *AcceptDomesticPaymentConsentSystemForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewAcceptDomesticPaymentConsentSystemNotFound() *AcceptDomesticPaymentConse
 	return &AcceptDomesticPaymentConsentSystemNotFound{}
 }
 
-/* AcceptDomesticPaymentConsentSystemNotFound describes a response with status code 404, with default header values.
+/*
+AcceptDomesticPaymentConsentSystemNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type AcceptDomesticPaymentConsentSystemNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this accept domestic payment consent system not found response has a 2xx status code
+func (o *AcceptDomesticPaymentConsentSystemNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this accept domestic payment consent system not found response has a 3xx status code
+func (o *AcceptDomesticPaymentConsentSystemNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this accept domestic payment consent system not found response has a 4xx status code
+func (o *AcceptDomesticPaymentConsentSystemNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this accept domestic payment consent system not found response has a 5xx status code
+func (o *AcceptDomesticPaymentConsentSystemNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this accept domestic payment consent system not found response a status code equal to that given
+func (o *AcceptDomesticPaymentConsentSystemNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *AcceptDomesticPaymentConsentSystemNotFound) Error() string {
 	return fmt.Sprintf("[POST /open-banking/domestic-payment-consent/{login}/accept][%d] acceptDomesticPaymentConsentSystemNotFound  %+v", 404, o.Payload)
 }
+
+func (o *AcceptDomesticPaymentConsentSystemNotFound) String() string {
+	return fmt.Sprintf("[POST /open-banking/domestic-payment-consent/{login}/accept][%d] acceptDomesticPaymentConsentSystemNotFound  %+v", 404, o.Payload)
+}
+
 func (o *AcceptDomesticPaymentConsentSystemNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewAcceptDomesticPaymentConsentSystemTooManyRequests() *AcceptDomesticPayme
 	return &AcceptDomesticPaymentConsentSystemTooManyRequests{}
 }
 
-/* AcceptDomesticPaymentConsentSystemTooManyRequests describes a response with status code 429, with default header values.
+/*
+AcceptDomesticPaymentConsentSystemTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type AcceptDomesticPaymentConsentSystemTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this accept domestic payment consent system too many requests response has a 2xx status code
+func (o *AcceptDomesticPaymentConsentSystemTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this accept domestic payment consent system too many requests response has a 3xx status code
+func (o *AcceptDomesticPaymentConsentSystemTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this accept domestic payment consent system too many requests response has a 4xx status code
+func (o *AcceptDomesticPaymentConsentSystemTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this accept domestic payment consent system too many requests response has a 5xx status code
+func (o *AcceptDomesticPaymentConsentSystemTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this accept domestic payment consent system too many requests response a status code equal to that given
+func (o *AcceptDomesticPaymentConsentSystemTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *AcceptDomesticPaymentConsentSystemTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /open-banking/domestic-payment-consent/{login}/accept][%d] acceptDomesticPaymentConsentSystemTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *AcceptDomesticPaymentConsentSystemTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /open-banking/domestic-payment-consent/{login}/accept][%d] acceptDomesticPaymentConsentSystemTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *AcceptDomesticPaymentConsentSystemTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

@@ -81,7 +81,8 @@ func NewSetScriptExecutionPointsOK() *SetScriptExecutionPointsOK {
 	return &SetScriptExecutionPointsOK{}
 }
 
-/* SetScriptExecutionPointsOK describes a response with status code 200, with default header values.
+/*
+SetScriptExecutionPointsOK describes a response with status code 200, with default header values.
 
 Script execution points
 */
@@ -89,9 +90,39 @@ type SetScriptExecutionPointsOK struct {
 	Payload *models.ScriptExecutionPoints
 }
 
+// IsSuccess returns true when this set script execution points o k response has a 2xx status code
+func (o *SetScriptExecutionPointsOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this set script execution points o k response has a 3xx status code
+func (o *SetScriptExecutionPointsOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set script execution points o k response has a 4xx status code
+func (o *SetScriptExecutionPointsOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this set script execution points o k response has a 5xx status code
+func (o *SetScriptExecutionPointsOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set script execution points o k response a status code equal to that given
+func (o *SetScriptExecutionPointsOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *SetScriptExecutionPointsOK) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsOK  %+v", 200, o.Payload)
 }
+
+func (o *SetScriptExecutionPointsOK) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsOK  %+v", 200, o.Payload)
+}
+
 func (o *SetScriptExecutionPointsOK) GetPayload() *models.ScriptExecutionPoints {
 	return o.Payload
 }
@@ -113,7 +144,8 @@ func NewSetScriptExecutionPointsBadRequest() *SetScriptExecutionPointsBadRequest
 	return &SetScriptExecutionPointsBadRequest{}
 }
 
-/* SetScriptExecutionPointsBadRequest describes a response with status code 400, with default header values.
+/*
+SetScriptExecutionPointsBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -121,9 +153,39 @@ type SetScriptExecutionPointsBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this set script execution points bad request response has a 2xx status code
+func (o *SetScriptExecutionPointsBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this set script execution points bad request response has a 3xx status code
+func (o *SetScriptExecutionPointsBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set script execution points bad request response has a 4xx status code
+func (o *SetScriptExecutionPointsBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this set script execution points bad request response has a 5xx status code
+func (o *SetScriptExecutionPointsBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set script execution points bad request response a status code equal to that given
+func (o *SetScriptExecutionPointsBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *SetScriptExecutionPointsBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *SetScriptExecutionPointsBadRequest) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *SetScriptExecutionPointsBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -145,7 +207,8 @@ func NewSetScriptExecutionPointsUnauthorized() *SetScriptExecutionPointsUnauthor
 	return &SetScriptExecutionPointsUnauthorized{}
 }
 
-/* SetScriptExecutionPointsUnauthorized describes a response with status code 401, with default header values.
+/*
+SetScriptExecutionPointsUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -153,9 +216,39 @@ type SetScriptExecutionPointsUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this set script execution points unauthorized response has a 2xx status code
+func (o *SetScriptExecutionPointsUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this set script execution points unauthorized response has a 3xx status code
+func (o *SetScriptExecutionPointsUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set script execution points unauthorized response has a 4xx status code
+func (o *SetScriptExecutionPointsUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this set script execution points unauthorized response has a 5xx status code
+func (o *SetScriptExecutionPointsUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set script execution points unauthorized response a status code equal to that given
+func (o *SetScriptExecutionPointsUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *SetScriptExecutionPointsUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *SetScriptExecutionPointsUnauthorized) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *SetScriptExecutionPointsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -177,7 +270,8 @@ func NewSetScriptExecutionPointsForbidden() *SetScriptExecutionPointsForbidden {
 	return &SetScriptExecutionPointsForbidden{}
 }
 
-/* SetScriptExecutionPointsForbidden describes a response with status code 403, with default header values.
+/*
+SetScriptExecutionPointsForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -185,9 +279,39 @@ type SetScriptExecutionPointsForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this set script execution points forbidden response has a 2xx status code
+func (o *SetScriptExecutionPointsForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this set script execution points forbidden response has a 3xx status code
+func (o *SetScriptExecutionPointsForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set script execution points forbidden response has a 4xx status code
+func (o *SetScriptExecutionPointsForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this set script execution points forbidden response has a 5xx status code
+func (o *SetScriptExecutionPointsForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set script execution points forbidden response a status code equal to that given
+func (o *SetScriptExecutionPointsForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *SetScriptExecutionPointsForbidden) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsForbidden  %+v", 403, o.Payload)
 }
+
+func (o *SetScriptExecutionPointsForbidden) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsForbidden  %+v", 403, o.Payload)
+}
+
 func (o *SetScriptExecutionPointsForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -209,7 +333,8 @@ func NewSetScriptExecutionPointsNotFound() *SetScriptExecutionPointsNotFound {
 	return &SetScriptExecutionPointsNotFound{}
 }
 
-/* SetScriptExecutionPointsNotFound describes a response with status code 404, with default header values.
+/*
+SetScriptExecutionPointsNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -217,9 +342,39 @@ type SetScriptExecutionPointsNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this set script execution points not found response has a 2xx status code
+func (o *SetScriptExecutionPointsNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this set script execution points not found response has a 3xx status code
+func (o *SetScriptExecutionPointsNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set script execution points not found response has a 4xx status code
+func (o *SetScriptExecutionPointsNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this set script execution points not found response has a 5xx status code
+func (o *SetScriptExecutionPointsNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set script execution points not found response a status code equal to that given
+func (o *SetScriptExecutionPointsNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *SetScriptExecutionPointsNotFound) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsNotFound  %+v", 404, o.Payload)
 }
+
+func (o *SetScriptExecutionPointsNotFound) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsNotFound  %+v", 404, o.Payload)
+}
+
 func (o *SetScriptExecutionPointsNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -241,7 +396,8 @@ func NewSetScriptExecutionPointsConflict() *SetScriptExecutionPointsConflict {
 	return &SetScriptExecutionPointsConflict{}
 }
 
-/* SetScriptExecutionPointsConflict describes a response with status code 409, with default header values.
+/*
+SetScriptExecutionPointsConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -249,9 +405,39 @@ type SetScriptExecutionPointsConflict struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this set script execution points conflict response has a 2xx status code
+func (o *SetScriptExecutionPointsConflict) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this set script execution points conflict response has a 3xx status code
+func (o *SetScriptExecutionPointsConflict) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set script execution points conflict response has a 4xx status code
+func (o *SetScriptExecutionPointsConflict) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this set script execution points conflict response has a 5xx status code
+func (o *SetScriptExecutionPointsConflict) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set script execution points conflict response a status code equal to that given
+func (o *SetScriptExecutionPointsConflict) IsCode(code int) bool {
+	return code == 409
+}
+
 func (o *SetScriptExecutionPointsConflict) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsConflict  %+v", 409, o.Payload)
 }
+
+func (o *SetScriptExecutionPointsConflict) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsConflict  %+v", 409, o.Payload)
+}
+
 func (o *SetScriptExecutionPointsConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -273,7 +459,8 @@ func NewSetScriptExecutionPointsUnprocessableEntity() *SetScriptExecutionPointsU
 	return &SetScriptExecutionPointsUnprocessableEntity{}
 }
 
-/* SetScriptExecutionPointsUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+SetScriptExecutionPointsUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -281,9 +468,39 @@ type SetScriptExecutionPointsUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this set script execution points unprocessable entity response has a 2xx status code
+func (o *SetScriptExecutionPointsUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this set script execution points unprocessable entity response has a 3xx status code
+func (o *SetScriptExecutionPointsUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set script execution points unprocessable entity response has a 4xx status code
+func (o *SetScriptExecutionPointsUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this set script execution points unprocessable entity response has a 5xx status code
+func (o *SetScriptExecutionPointsUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set script execution points unprocessable entity response a status code equal to that given
+func (o *SetScriptExecutionPointsUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *SetScriptExecutionPointsUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *SetScriptExecutionPointsUnprocessableEntity) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *SetScriptExecutionPointsUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -305,7 +522,8 @@ func NewSetScriptExecutionPointsTooManyRequests() *SetScriptExecutionPointsTooMa
 	return &SetScriptExecutionPointsTooManyRequests{}
 }
 
-/* SetScriptExecutionPointsTooManyRequests describes a response with status code 429, with default header values.
+/*
+SetScriptExecutionPointsTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -313,9 +531,39 @@ type SetScriptExecutionPointsTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this set script execution points too many requests response has a 2xx status code
+func (o *SetScriptExecutionPointsTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this set script execution points too many requests response has a 3xx status code
+func (o *SetScriptExecutionPointsTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set script execution points too many requests response has a 4xx status code
+func (o *SetScriptExecutionPointsTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this set script execution points too many requests response has a 5xx status code
+func (o *SetScriptExecutionPointsTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set script execution points too many requests response a status code equal to that given
+func (o *SetScriptExecutionPointsTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *SetScriptExecutionPointsTooManyRequests) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *SetScriptExecutionPointsTooManyRequests) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/script-execution-points][%d] setScriptExecutionPointsTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *SetScriptExecutionPointsTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

@@ -21,6 +21,12 @@ type GatewayRequestEvent struct {
 	// api id
 	APIID string `json:"api_id,omitempty"`
 
+	// duration ms
+	DurationMs int64 `json:"duration_ms,omitempty"`
+
+	// output
+	Output map[string]string `json:"output,omitempty"`
+
 	// result
 	Result *PolicyValidationResult `json:"result,omitempty"`
 

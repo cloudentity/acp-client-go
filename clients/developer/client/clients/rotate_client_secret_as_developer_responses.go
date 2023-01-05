@@ -63,7 +63,8 @@ func NewRotateClientSecretAsDeveloperOK() *RotateClientSecretAsDeveloperOK {
 	return &RotateClientSecretAsDeveloperOK{}
 }
 
-/* RotateClientSecretAsDeveloperOK describes a response with status code 200, with default header values.
+/*
+RotateClientSecretAsDeveloperOK describes a response with status code 200, with default header values.
 
 Rotate client secret
 */
@@ -71,9 +72,39 @@ type RotateClientSecretAsDeveloperOK struct {
 	Payload *models.RotateClientSecretDeveloperResponse
 }
 
+// IsSuccess returns true when this rotate client secret as developer o k response has a 2xx status code
+func (o *RotateClientSecretAsDeveloperOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this rotate client secret as developer o k response has a 3xx status code
+func (o *RotateClientSecretAsDeveloperOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this rotate client secret as developer o k response has a 4xx status code
+func (o *RotateClientSecretAsDeveloperOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this rotate client secret as developer o k response has a 5xx status code
+func (o *RotateClientSecretAsDeveloperOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this rotate client secret as developer o k response a status code equal to that given
+func (o *RotateClientSecretAsDeveloperOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *RotateClientSecretAsDeveloperOK) Error() string {
 	return fmt.Sprintf("[POST /clients/{cid}/rotateSecret][%d] rotateClientSecretAsDeveloperOK  %+v", 200, o.Payload)
 }
+
+func (o *RotateClientSecretAsDeveloperOK) String() string {
+	return fmt.Sprintf("[POST /clients/{cid}/rotateSecret][%d] rotateClientSecretAsDeveloperOK  %+v", 200, o.Payload)
+}
+
 func (o *RotateClientSecretAsDeveloperOK) GetPayload() *models.RotateClientSecretDeveloperResponse {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewRotateClientSecretAsDeveloperUnauthorized() *RotateClientSecretAsDevelop
 	return &RotateClientSecretAsDeveloperUnauthorized{}
 }
 
-/* RotateClientSecretAsDeveloperUnauthorized describes a response with status code 401, with default header values.
+/*
+RotateClientSecretAsDeveloperUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type RotateClientSecretAsDeveloperUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this rotate client secret as developer unauthorized response has a 2xx status code
+func (o *RotateClientSecretAsDeveloperUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this rotate client secret as developer unauthorized response has a 3xx status code
+func (o *RotateClientSecretAsDeveloperUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this rotate client secret as developer unauthorized response has a 4xx status code
+func (o *RotateClientSecretAsDeveloperUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this rotate client secret as developer unauthorized response has a 5xx status code
+func (o *RotateClientSecretAsDeveloperUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this rotate client secret as developer unauthorized response a status code equal to that given
+func (o *RotateClientSecretAsDeveloperUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *RotateClientSecretAsDeveloperUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /clients/{cid}/rotateSecret][%d] rotateClientSecretAsDeveloperUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *RotateClientSecretAsDeveloperUnauthorized) String() string {
+	return fmt.Sprintf("[POST /clients/{cid}/rotateSecret][%d] rotateClientSecretAsDeveloperUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *RotateClientSecretAsDeveloperUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewRotateClientSecretAsDeveloperForbidden() *RotateClientSecretAsDeveloperF
 	return &RotateClientSecretAsDeveloperForbidden{}
 }
 
-/* RotateClientSecretAsDeveloperForbidden describes a response with status code 403, with default header values.
+/*
+RotateClientSecretAsDeveloperForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type RotateClientSecretAsDeveloperForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this rotate client secret as developer forbidden response has a 2xx status code
+func (o *RotateClientSecretAsDeveloperForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this rotate client secret as developer forbidden response has a 3xx status code
+func (o *RotateClientSecretAsDeveloperForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this rotate client secret as developer forbidden response has a 4xx status code
+func (o *RotateClientSecretAsDeveloperForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this rotate client secret as developer forbidden response has a 5xx status code
+func (o *RotateClientSecretAsDeveloperForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this rotate client secret as developer forbidden response a status code equal to that given
+func (o *RotateClientSecretAsDeveloperForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *RotateClientSecretAsDeveloperForbidden) Error() string {
 	return fmt.Sprintf("[POST /clients/{cid}/rotateSecret][%d] rotateClientSecretAsDeveloperForbidden  %+v", 403, o.Payload)
 }
+
+func (o *RotateClientSecretAsDeveloperForbidden) String() string {
+	return fmt.Sprintf("[POST /clients/{cid}/rotateSecret][%d] rotateClientSecretAsDeveloperForbidden  %+v", 403, o.Payload)
+}
+
 func (o *RotateClientSecretAsDeveloperForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewRotateClientSecretAsDeveloperNotFound() *RotateClientSecretAsDeveloperNo
 	return &RotateClientSecretAsDeveloperNotFound{}
 }
 
-/* RotateClientSecretAsDeveloperNotFound describes a response with status code 404, with default header values.
+/*
+RotateClientSecretAsDeveloperNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type RotateClientSecretAsDeveloperNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this rotate client secret as developer not found response has a 2xx status code
+func (o *RotateClientSecretAsDeveloperNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this rotate client secret as developer not found response has a 3xx status code
+func (o *RotateClientSecretAsDeveloperNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this rotate client secret as developer not found response has a 4xx status code
+func (o *RotateClientSecretAsDeveloperNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this rotate client secret as developer not found response has a 5xx status code
+func (o *RotateClientSecretAsDeveloperNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this rotate client secret as developer not found response a status code equal to that given
+func (o *RotateClientSecretAsDeveloperNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *RotateClientSecretAsDeveloperNotFound) Error() string {
 	return fmt.Sprintf("[POST /clients/{cid}/rotateSecret][%d] rotateClientSecretAsDeveloperNotFound  %+v", 404, o.Payload)
 }
+
+func (o *RotateClientSecretAsDeveloperNotFound) String() string {
+	return fmt.Sprintf("[POST /clients/{cid}/rotateSecret][%d] rotateClientSecretAsDeveloperNotFound  %+v", 404, o.Payload)
+}
+
 func (o *RotateClientSecretAsDeveloperNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewRotateClientSecretAsDeveloperTooManyRequests() *RotateClientSecretAsDeve
 	return &RotateClientSecretAsDeveloperTooManyRequests{}
 }
 
-/* RotateClientSecretAsDeveloperTooManyRequests describes a response with status code 429, with default header values.
+/*
+RotateClientSecretAsDeveloperTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type RotateClientSecretAsDeveloperTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this rotate client secret as developer too many requests response has a 2xx status code
+func (o *RotateClientSecretAsDeveloperTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this rotate client secret as developer too many requests response has a 3xx status code
+func (o *RotateClientSecretAsDeveloperTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this rotate client secret as developer too many requests response has a 4xx status code
+func (o *RotateClientSecretAsDeveloperTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this rotate client secret as developer too many requests response has a 5xx status code
+func (o *RotateClientSecretAsDeveloperTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this rotate client secret as developer too many requests response a status code equal to that given
+func (o *RotateClientSecretAsDeveloperTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *RotateClientSecretAsDeveloperTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /clients/{cid}/rotateSecret][%d] rotateClientSecretAsDeveloperTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *RotateClientSecretAsDeveloperTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /clients/{cid}/rotateSecret][%d] rotateClientSecretAsDeveloperTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *RotateClientSecretAsDeveloperTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

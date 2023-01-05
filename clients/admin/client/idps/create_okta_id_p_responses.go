@@ -75,7 +75,8 @@ func NewCreateOktaIDPCreated() *CreateOktaIDPCreated {
 	return &CreateOktaIDPCreated{}
 }
 
-/* CreateOktaIDPCreated describes a response with status code 201, with default header values.
+/*
+CreateOktaIDPCreated describes a response with status code 201, with default header values.
 
 OktaIDP
 */
@@ -83,9 +84,39 @@ type CreateOktaIDPCreated struct {
 	Payload *models.OktaIDP
 }
 
+// IsSuccess returns true when this create okta Id p created response has a 2xx status code
+func (o *CreateOktaIDPCreated) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this create okta Id p created response has a 3xx status code
+func (o *CreateOktaIDPCreated) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create okta Id p created response has a 4xx status code
+func (o *CreateOktaIDPCreated) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create okta Id p created response has a 5xx status code
+func (o *CreateOktaIDPCreated) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create okta Id p created response a status code equal to that given
+func (o *CreateOktaIDPCreated) IsCode(code int) bool {
+	return code == 201
+}
+
 func (o *CreateOktaIDPCreated) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPCreated  %+v", 201, o.Payload)
 }
+
+func (o *CreateOktaIDPCreated) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPCreated  %+v", 201, o.Payload)
+}
+
 func (o *CreateOktaIDPCreated) GetPayload() *models.OktaIDP {
 	return o.Payload
 }
@@ -107,7 +138,8 @@ func NewCreateOktaIDPBadRequest() *CreateOktaIDPBadRequest {
 	return &CreateOktaIDPBadRequest{}
 }
 
-/* CreateOktaIDPBadRequest describes a response with status code 400, with default header values.
+/*
+CreateOktaIDPBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -115,9 +147,39 @@ type CreateOktaIDPBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create okta Id p bad request response has a 2xx status code
+func (o *CreateOktaIDPBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create okta Id p bad request response has a 3xx status code
+func (o *CreateOktaIDPBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create okta Id p bad request response has a 4xx status code
+func (o *CreateOktaIDPBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create okta Id p bad request response has a 5xx status code
+func (o *CreateOktaIDPBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create okta Id p bad request response a status code equal to that given
+func (o *CreateOktaIDPBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *CreateOktaIDPBadRequest) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *CreateOktaIDPBadRequest) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *CreateOktaIDPBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -139,7 +201,8 @@ func NewCreateOktaIDPUnauthorized() *CreateOktaIDPUnauthorized {
 	return &CreateOktaIDPUnauthorized{}
 }
 
-/* CreateOktaIDPUnauthorized describes a response with status code 401, with default header values.
+/*
+CreateOktaIDPUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -147,9 +210,39 @@ type CreateOktaIDPUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create okta Id p unauthorized response has a 2xx status code
+func (o *CreateOktaIDPUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create okta Id p unauthorized response has a 3xx status code
+func (o *CreateOktaIDPUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create okta Id p unauthorized response has a 4xx status code
+func (o *CreateOktaIDPUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create okta Id p unauthorized response has a 5xx status code
+func (o *CreateOktaIDPUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create okta Id p unauthorized response a status code equal to that given
+func (o *CreateOktaIDPUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *CreateOktaIDPUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *CreateOktaIDPUnauthorized) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *CreateOktaIDPUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -171,7 +264,8 @@ func NewCreateOktaIDPForbidden() *CreateOktaIDPForbidden {
 	return &CreateOktaIDPForbidden{}
 }
 
-/* CreateOktaIDPForbidden describes a response with status code 403, with default header values.
+/*
+CreateOktaIDPForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -179,9 +273,39 @@ type CreateOktaIDPForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create okta Id p forbidden response has a 2xx status code
+func (o *CreateOktaIDPForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create okta Id p forbidden response has a 3xx status code
+func (o *CreateOktaIDPForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create okta Id p forbidden response has a 4xx status code
+func (o *CreateOktaIDPForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create okta Id p forbidden response has a 5xx status code
+func (o *CreateOktaIDPForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create okta Id p forbidden response a status code equal to that given
+func (o *CreateOktaIDPForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *CreateOktaIDPForbidden) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPForbidden  %+v", 403, o.Payload)
 }
+
+func (o *CreateOktaIDPForbidden) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPForbidden  %+v", 403, o.Payload)
+}
+
 func (o *CreateOktaIDPForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -203,7 +327,8 @@ func NewCreateOktaIDPNotFound() *CreateOktaIDPNotFound {
 	return &CreateOktaIDPNotFound{}
 }
 
-/* CreateOktaIDPNotFound describes a response with status code 404, with default header values.
+/*
+CreateOktaIDPNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -211,9 +336,39 @@ type CreateOktaIDPNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create okta Id p not found response has a 2xx status code
+func (o *CreateOktaIDPNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create okta Id p not found response has a 3xx status code
+func (o *CreateOktaIDPNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create okta Id p not found response has a 4xx status code
+func (o *CreateOktaIDPNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create okta Id p not found response has a 5xx status code
+func (o *CreateOktaIDPNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create okta Id p not found response a status code equal to that given
+func (o *CreateOktaIDPNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *CreateOktaIDPNotFound) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPNotFound  %+v", 404, o.Payload)
 }
+
+func (o *CreateOktaIDPNotFound) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPNotFound  %+v", 404, o.Payload)
+}
+
 func (o *CreateOktaIDPNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -235,7 +390,8 @@ func NewCreateOktaIDPUnprocessableEntity() *CreateOktaIDPUnprocessableEntity {
 	return &CreateOktaIDPUnprocessableEntity{}
 }
 
-/* CreateOktaIDPUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+CreateOktaIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -243,9 +399,39 @@ type CreateOktaIDPUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create okta Id p unprocessable entity response has a 2xx status code
+func (o *CreateOktaIDPUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create okta Id p unprocessable entity response has a 3xx status code
+func (o *CreateOktaIDPUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create okta Id p unprocessable entity response has a 4xx status code
+func (o *CreateOktaIDPUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create okta Id p unprocessable entity response has a 5xx status code
+func (o *CreateOktaIDPUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create okta Id p unprocessable entity response a status code equal to that given
+func (o *CreateOktaIDPUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *CreateOktaIDPUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *CreateOktaIDPUnprocessableEntity) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *CreateOktaIDPUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -267,7 +453,8 @@ func NewCreateOktaIDPTooManyRequests() *CreateOktaIDPTooManyRequests {
 	return &CreateOktaIDPTooManyRequests{}
 }
 
-/* CreateOktaIDPTooManyRequests describes a response with status code 429, with default header values.
+/*
+CreateOktaIDPTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -275,9 +462,39 @@ type CreateOktaIDPTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this create okta Id p too many requests response has a 2xx status code
+func (o *CreateOktaIDPTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create okta Id p too many requests response has a 3xx status code
+func (o *CreateOktaIDPTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create okta Id p too many requests response has a 4xx status code
+func (o *CreateOktaIDPTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create okta Id p too many requests response has a 5xx status code
+func (o *CreateOktaIDPTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create okta Id p too many requests response a status code equal to that given
+func (o *CreateOktaIDPTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *CreateOktaIDPTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *CreateOktaIDPTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /servers/{wid}/idps/okta][%d] createOktaIdPTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *CreateOktaIDPTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

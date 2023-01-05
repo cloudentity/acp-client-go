@@ -81,7 +81,8 @@ func NewSetPolicyExecutionPointsOK() *SetPolicyExecutionPointsOK {
 	return &SetPolicyExecutionPointsOK{}
 }
 
-/* SetPolicyExecutionPointsOK describes a response with status code 200, with default header values.
+/*
+SetPolicyExecutionPointsOK describes a response with status code 200, with default header values.
 
 Policy execution points
 */
@@ -89,9 +90,39 @@ type SetPolicyExecutionPointsOK struct {
 	Payload *models.PolicyExecutionPoints
 }
 
+// IsSuccess returns true when this set policy execution points o k response has a 2xx status code
+func (o *SetPolicyExecutionPointsOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this set policy execution points o k response has a 3xx status code
+func (o *SetPolicyExecutionPointsOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set policy execution points o k response has a 4xx status code
+func (o *SetPolicyExecutionPointsOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this set policy execution points o k response has a 5xx status code
+func (o *SetPolicyExecutionPointsOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set policy execution points o k response a status code equal to that given
+func (o *SetPolicyExecutionPointsOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *SetPolicyExecutionPointsOK) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/policy-execution-points][%d] setPolicyExecutionPointsOK  %+v", 200, o.Payload)
 }
+
+func (o *SetPolicyExecutionPointsOK) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/policy-execution-points][%d] setPolicyExecutionPointsOK  %+v", 200, o.Payload)
+}
+
 func (o *SetPolicyExecutionPointsOK) GetPayload() *models.PolicyExecutionPoints {
 	return o.Payload
 }
@@ -113,7 +144,8 @@ func NewSetPolicyExecutionPointsBadRequest() *SetPolicyExecutionPointsBadRequest
 	return &SetPolicyExecutionPointsBadRequest{}
 }
 
-/* SetPolicyExecutionPointsBadRequest describes a response with status code 400, with default header values.
+/*
+SetPolicyExecutionPointsBadRequest describes a response with status code 400, with default header values.
 
 HttpError
 */
@@ -121,9 +153,39 @@ type SetPolicyExecutionPointsBadRequest struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this set policy execution points bad request response has a 2xx status code
+func (o *SetPolicyExecutionPointsBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this set policy execution points bad request response has a 3xx status code
+func (o *SetPolicyExecutionPointsBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set policy execution points bad request response has a 4xx status code
+func (o *SetPolicyExecutionPointsBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this set policy execution points bad request response has a 5xx status code
+func (o *SetPolicyExecutionPointsBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set policy execution points bad request response a status code equal to that given
+func (o *SetPolicyExecutionPointsBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *SetPolicyExecutionPointsBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/policy-execution-points][%d] setPolicyExecutionPointsBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *SetPolicyExecutionPointsBadRequest) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/policy-execution-points][%d] setPolicyExecutionPointsBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *SetPolicyExecutionPointsBadRequest) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -145,7 +207,8 @@ func NewSetPolicyExecutionPointsUnauthorized() *SetPolicyExecutionPointsUnauthor
 	return &SetPolicyExecutionPointsUnauthorized{}
 }
 
-/* SetPolicyExecutionPointsUnauthorized describes a response with status code 401, with default header values.
+/*
+SetPolicyExecutionPointsUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -153,9 +216,39 @@ type SetPolicyExecutionPointsUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this set policy execution points unauthorized response has a 2xx status code
+func (o *SetPolicyExecutionPointsUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this set policy execution points unauthorized response has a 3xx status code
+func (o *SetPolicyExecutionPointsUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set policy execution points unauthorized response has a 4xx status code
+func (o *SetPolicyExecutionPointsUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this set policy execution points unauthorized response has a 5xx status code
+func (o *SetPolicyExecutionPointsUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set policy execution points unauthorized response a status code equal to that given
+func (o *SetPolicyExecutionPointsUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *SetPolicyExecutionPointsUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/policy-execution-points][%d] setPolicyExecutionPointsUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *SetPolicyExecutionPointsUnauthorized) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/policy-execution-points][%d] setPolicyExecutionPointsUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *SetPolicyExecutionPointsUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -177,7 +270,8 @@ func NewSetPolicyExecutionPointsForbidden() *SetPolicyExecutionPointsForbidden {
 	return &SetPolicyExecutionPointsForbidden{}
 }
 
-/* SetPolicyExecutionPointsForbidden describes a response with status code 403, with default header values.
+/*
+SetPolicyExecutionPointsForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -185,9 +279,39 @@ type SetPolicyExecutionPointsForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this set policy execution points forbidden response has a 2xx status code
+func (o *SetPolicyExecutionPointsForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this set policy execution points forbidden response has a 3xx status code
+func (o *SetPolicyExecutionPointsForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set policy execution points forbidden response has a 4xx status code
+func (o *SetPolicyExecutionPointsForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this set policy execution points forbidden response has a 5xx status code
+func (o *SetPolicyExecutionPointsForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set policy execution points forbidden response a status code equal to that given
+func (o *SetPolicyExecutionPointsForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *SetPolicyExecutionPointsForbidden) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/policy-execution-points][%d] setPolicyExecutionPointsForbidden  %+v", 403, o.Payload)
 }
+
+func (o *SetPolicyExecutionPointsForbidden) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/policy-execution-points][%d] setPolicyExecutionPointsForbidden  %+v", 403, o.Payload)
+}
+
 func (o *SetPolicyExecutionPointsForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -209,7 +333,8 @@ func NewSetPolicyExecutionPointsNotFound() *SetPolicyExecutionPointsNotFound {
 	return &SetPolicyExecutionPointsNotFound{}
 }
 
-/* SetPolicyExecutionPointsNotFound describes a response with status code 404, with default header values.
+/*
+SetPolicyExecutionPointsNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -217,9 +342,39 @@ type SetPolicyExecutionPointsNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this set policy execution points not found response has a 2xx status code
+func (o *SetPolicyExecutionPointsNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this set policy execution points not found response has a 3xx status code
+func (o *SetPolicyExecutionPointsNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set policy execution points not found response has a 4xx status code
+func (o *SetPolicyExecutionPointsNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this set policy execution points not found response has a 5xx status code
+func (o *SetPolicyExecutionPointsNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set policy execution points not found response a status code equal to that given
+func (o *SetPolicyExecutionPointsNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *SetPolicyExecutionPointsNotFound) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/policy-execution-points][%d] setPolicyExecutionPointsNotFound  %+v", 404, o.Payload)
 }
+
+func (o *SetPolicyExecutionPointsNotFound) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/policy-execution-points][%d] setPolicyExecutionPointsNotFound  %+v", 404, o.Payload)
+}
+
 func (o *SetPolicyExecutionPointsNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -241,7 +396,8 @@ func NewSetPolicyExecutionPointsConflict() *SetPolicyExecutionPointsConflict {
 	return &SetPolicyExecutionPointsConflict{}
 }
 
-/* SetPolicyExecutionPointsConflict describes a response with status code 409, with default header values.
+/*
+SetPolicyExecutionPointsConflict describes a response with status code 409, with default header values.
 
 HttpError
 */
@@ -249,9 +405,39 @@ type SetPolicyExecutionPointsConflict struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this set policy execution points conflict response has a 2xx status code
+func (o *SetPolicyExecutionPointsConflict) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this set policy execution points conflict response has a 3xx status code
+func (o *SetPolicyExecutionPointsConflict) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set policy execution points conflict response has a 4xx status code
+func (o *SetPolicyExecutionPointsConflict) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this set policy execution points conflict response has a 5xx status code
+func (o *SetPolicyExecutionPointsConflict) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set policy execution points conflict response a status code equal to that given
+func (o *SetPolicyExecutionPointsConflict) IsCode(code int) bool {
+	return code == 409
+}
+
 func (o *SetPolicyExecutionPointsConflict) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/policy-execution-points][%d] setPolicyExecutionPointsConflict  %+v", 409, o.Payload)
 }
+
+func (o *SetPolicyExecutionPointsConflict) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/policy-execution-points][%d] setPolicyExecutionPointsConflict  %+v", 409, o.Payload)
+}
+
 func (o *SetPolicyExecutionPointsConflict) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -273,7 +459,8 @@ func NewSetPolicyExecutionPointsUnprocessableEntity() *SetPolicyExecutionPointsU
 	return &SetPolicyExecutionPointsUnprocessableEntity{}
 }
 
-/* SetPolicyExecutionPointsUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+SetPolicyExecutionPointsUnprocessableEntity describes a response with status code 422, with default header values.
 
 HttpError
 */
@@ -281,9 +468,39 @@ type SetPolicyExecutionPointsUnprocessableEntity struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this set policy execution points unprocessable entity response has a 2xx status code
+func (o *SetPolicyExecutionPointsUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this set policy execution points unprocessable entity response has a 3xx status code
+func (o *SetPolicyExecutionPointsUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set policy execution points unprocessable entity response has a 4xx status code
+func (o *SetPolicyExecutionPointsUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this set policy execution points unprocessable entity response has a 5xx status code
+func (o *SetPolicyExecutionPointsUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set policy execution points unprocessable entity response a status code equal to that given
+func (o *SetPolicyExecutionPointsUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *SetPolicyExecutionPointsUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/policy-execution-points][%d] setPolicyExecutionPointsUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *SetPolicyExecutionPointsUnprocessableEntity) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/policy-execution-points][%d] setPolicyExecutionPointsUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *SetPolicyExecutionPointsUnprocessableEntity) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -305,7 +522,8 @@ func NewSetPolicyExecutionPointsTooManyRequests() *SetPolicyExecutionPointsTooMa
 	return &SetPolicyExecutionPointsTooManyRequests{}
 }
 
-/* SetPolicyExecutionPointsTooManyRequests describes a response with status code 429, with default header values.
+/*
+SetPolicyExecutionPointsTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -313,9 +531,39 @@ type SetPolicyExecutionPointsTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this set policy execution points too many requests response has a 2xx status code
+func (o *SetPolicyExecutionPointsTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this set policy execution points too many requests response has a 3xx status code
+func (o *SetPolicyExecutionPointsTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this set policy execution points too many requests response has a 4xx status code
+func (o *SetPolicyExecutionPointsTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this set policy execution points too many requests response has a 5xx status code
+func (o *SetPolicyExecutionPointsTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this set policy execution points too many requests response a status code equal to that given
+func (o *SetPolicyExecutionPointsTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *SetPolicyExecutionPointsTooManyRequests) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/policy-execution-points][%d] setPolicyExecutionPointsTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *SetPolicyExecutionPointsTooManyRequests) String() string {
+	return fmt.Sprintf("[PUT /servers/{wid}/policy-execution-points][%d] setPolicyExecutionPointsTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *SetPolicyExecutionPointsTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

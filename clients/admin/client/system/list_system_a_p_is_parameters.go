@@ -53,10 +53,12 @@ func NewListSystemAPIsParamsWithHTTPClient(client *http.Client) *ListSystemAPIsP
 	}
 }
 
-/* ListSystemAPIsParams contains all the parameters to send to the API endpoint
-   for the list system a p is operation.
+/*
+ListSystemAPIsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the list system a p is operation.
+
+	Typically these are written to a http.Request.
 */
 type ListSystemAPIsParams struct {
 

@@ -63,7 +63,8 @@ func NewAcceptDomesticScheduledPaymentConsentSystemOK() *AcceptDomesticScheduled
 	return &AcceptDomesticScheduledPaymentConsentSystemOK{}
 }
 
-/* AcceptDomesticScheduledPaymentConsentSystemOK describes a response with status code 200, with default header values.
+/*
+AcceptDomesticScheduledPaymentConsentSystemOK describes a response with status code 200, with default header values.
 
 Consent accepted
 */
@@ -71,9 +72,39 @@ type AcceptDomesticScheduledPaymentConsentSystemOK struct {
 	Payload *models.ConsentAccepted
 }
 
+// IsSuccess returns true when this accept domestic scheduled payment consent system o k response has a 2xx status code
+func (o *AcceptDomesticScheduledPaymentConsentSystemOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this accept domestic scheduled payment consent system o k response has a 3xx status code
+func (o *AcceptDomesticScheduledPaymentConsentSystemOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this accept domestic scheduled payment consent system o k response has a 4xx status code
+func (o *AcceptDomesticScheduledPaymentConsentSystemOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this accept domestic scheduled payment consent system o k response has a 5xx status code
+func (o *AcceptDomesticScheduledPaymentConsentSystemOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this accept domestic scheduled payment consent system o k response a status code equal to that given
+func (o *AcceptDomesticScheduledPaymentConsentSystemOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *AcceptDomesticScheduledPaymentConsentSystemOK) Error() string {
 	return fmt.Sprintf("[POST /open-banking/domestic-scheduled-payment-consent/{login}/accept][%d] acceptDomesticScheduledPaymentConsentSystemOK  %+v", 200, o.Payload)
 }
+
+func (o *AcceptDomesticScheduledPaymentConsentSystemOK) String() string {
+	return fmt.Sprintf("[POST /open-banking/domestic-scheduled-payment-consent/{login}/accept][%d] acceptDomesticScheduledPaymentConsentSystemOK  %+v", 200, o.Payload)
+}
+
 func (o *AcceptDomesticScheduledPaymentConsentSystemOK) GetPayload() *models.ConsentAccepted {
 	return o.Payload
 }
@@ -95,7 +126,8 @@ func NewAcceptDomesticScheduledPaymentConsentSystemUnauthorized() *AcceptDomesti
 	return &AcceptDomesticScheduledPaymentConsentSystemUnauthorized{}
 }
 
-/* AcceptDomesticScheduledPaymentConsentSystemUnauthorized describes a response with status code 401, with default header values.
+/*
+AcceptDomesticScheduledPaymentConsentSystemUnauthorized describes a response with status code 401, with default header values.
 
 HttpError
 */
@@ -103,9 +135,39 @@ type AcceptDomesticScheduledPaymentConsentSystemUnauthorized struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this accept domestic scheduled payment consent system unauthorized response has a 2xx status code
+func (o *AcceptDomesticScheduledPaymentConsentSystemUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this accept domestic scheduled payment consent system unauthorized response has a 3xx status code
+func (o *AcceptDomesticScheduledPaymentConsentSystemUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this accept domestic scheduled payment consent system unauthorized response has a 4xx status code
+func (o *AcceptDomesticScheduledPaymentConsentSystemUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this accept domestic scheduled payment consent system unauthorized response has a 5xx status code
+func (o *AcceptDomesticScheduledPaymentConsentSystemUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this accept domestic scheduled payment consent system unauthorized response a status code equal to that given
+func (o *AcceptDomesticScheduledPaymentConsentSystemUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *AcceptDomesticScheduledPaymentConsentSystemUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /open-banking/domestic-scheduled-payment-consent/{login}/accept][%d] acceptDomesticScheduledPaymentConsentSystemUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *AcceptDomesticScheduledPaymentConsentSystemUnauthorized) String() string {
+	return fmt.Sprintf("[POST /open-banking/domestic-scheduled-payment-consent/{login}/accept][%d] acceptDomesticScheduledPaymentConsentSystemUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *AcceptDomesticScheduledPaymentConsentSystemUnauthorized) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -127,7 +189,8 @@ func NewAcceptDomesticScheduledPaymentConsentSystemForbidden() *AcceptDomesticSc
 	return &AcceptDomesticScheduledPaymentConsentSystemForbidden{}
 }
 
-/* AcceptDomesticScheduledPaymentConsentSystemForbidden describes a response with status code 403, with default header values.
+/*
+AcceptDomesticScheduledPaymentConsentSystemForbidden describes a response with status code 403, with default header values.
 
 HttpError
 */
@@ -135,9 +198,39 @@ type AcceptDomesticScheduledPaymentConsentSystemForbidden struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this accept domestic scheduled payment consent system forbidden response has a 2xx status code
+func (o *AcceptDomesticScheduledPaymentConsentSystemForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this accept domestic scheduled payment consent system forbidden response has a 3xx status code
+func (o *AcceptDomesticScheduledPaymentConsentSystemForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this accept domestic scheduled payment consent system forbidden response has a 4xx status code
+func (o *AcceptDomesticScheduledPaymentConsentSystemForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this accept domestic scheduled payment consent system forbidden response has a 5xx status code
+func (o *AcceptDomesticScheduledPaymentConsentSystemForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this accept domestic scheduled payment consent system forbidden response a status code equal to that given
+func (o *AcceptDomesticScheduledPaymentConsentSystemForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *AcceptDomesticScheduledPaymentConsentSystemForbidden) Error() string {
 	return fmt.Sprintf("[POST /open-banking/domestic-scheduled-payment-consent/{login}/accept][%d] acceptDomesticScheduledPaymentConsentSystemForbidden  %+v", 403, o.Payload)
 }
+
+func (o *AcceptDomesticScheduledPaymentConsentSystemForbidden) String() string {
+	return fmt.Sprintf("[POST /open-banking/domestic-scheduled-payment-consent/{login}/accept][%d] acceptDomesticScheduledPaymentConsentSystemForbidden  %+v", 403, o.Payload)
+}
+
 func (o *AcceptDomesticScheduledPaymentConsentSystemForbidden) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -159,7 +252,8 @@ func NewAcceptDomesticScheduledPaymentConsentSystemNotFound() *AcceptDomesticSch
 	return &AcceptDomesticScheduledPaymentConsentSystemNotFound{}
 }
 
-/* AcceptDomesticScheduledPaymentConsentSystemNotFound describes a response with status code 404, with default header values.
+/*
+AcceptDomesticScheduledPaymentConsentSystemNotFound describes a response with status code 404, with default header values.
 
 HttpError
 */
@@ -167,9 +261,39 @@ type AcceptDomesticScheduledPaymentConsentSystemNotFound struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this accept domestic scheduled payment consent system not found response has a 2xx status code
+func (o *AcceptDomesticScheduledPaymentConsentSystemNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this accept domestic scheduled payment consent system not found response has a 3xx status code
+func (o *AcceptDomesticScheduledPaymentConsentSystemNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this accept domestic scheduled payment consent system not found response has a 4xx status code
+func (o *AcceptDomesticScheduledPaymentConsentSystemNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this accept domestic scheduled payment consent system not found response has a 5xx status code
+func (o *AcceptDomesticScheduledPaymentConsentSystemNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this accept domestic scheduled payment consent system not found response a status code equal to that given
+func (o *AcceptDomesticScheduledPaymentConsentSystemNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *AcceptDomesticScheduledPaymentConsentSystemNotFound) Error() string {
 	return fmt.Sprintf("[POST /open-banking/domestic-scheduled-payment-consent/{login}/accept][%d] acceptDomesticScheduledPaymentConsentSystemNotFound  %+v", 404, o.Payload)
 }
+
+func (o *AcceptDomesticScheduledPaymentConsentSystemNotFound) String() string {
+	return fmt.Sprintf("[POST /open-banking/domestic-scheduled-payment-consent/{login}/accept][%d] acceptDomesticScheduledPaymentConsentSystemNotFound  %+v", 404, o.Payload)
+}
+
 func (o *AcceptDomesticScheduledPaymentConsentSystemNotFound) GetPayload() *models.Error {
 	return o.Payload
 }
@@ -191,7 +315,8 @@ func NewAcceptDomesticScheduledPaymentConsentSystemTooManyRequests() *AcceptDome
 	return &AcceptDomesticScheduledPaymentConsentSystemTooManyRequests{}
 }
 
-/* AcceptDomesticScheduledPaymentConsentSystemTooManyRequests describes a response with status code 429, with default header values.
+/*
+AcceptDomesticScheduledPaymentConsentSystemTooManyRequests describes a response with status code 429, with default header values.
 
 HttpError
 */
@@ -199,9 +324,39 @@ type AcceptDomesticScheduledPaymentConsentSystemTooManyRequests struct {
 	Payload *models.Error
 }
 
+// IsSuccess returns true when this accept domestic scheduled payment consent system too many requests response has a 2xx status code
+func (o *AcceptDomesticScheduledPaymentConsentSystemTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this accept domestic scheduled payment consent system too many requests response has a 3xx status code
+func (o *AcceptDomesticScheduledPaymentConsentSystemTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this accept domestic scheduled payment consent system too many requests response has a 4xx status code
+func (o *AcceptDomesticScheduledPaymentConsentSystemTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this accept domestic scheduled payment consent system too many requests response has a 5xx status code
+func (o *AcceptDomesticScheduledPaymentConsentSystemTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this accept domestic scheduled payment consent system too many requests response a status code equal to that given
+func (o *AcceptDomesticScheduledPaymentConsentSystemTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *AcceptDomesticScheduledPaymentConsentSystemTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /open-banking/domestic-scheduled-payment-consent/{login}/accept][%d] acceptDomesticScheduledPaymentConsentSystemTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *AcceptDomesticScheduledPaymentConsentSystemTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /open-banking/domestic-scheduled-payment-consent/{login}/accept][%d] acceptDomesticScheduledPaymentConsentSystemTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *AcceptDomesticScheduledPaymentConsentSystemTooManyRequests) GetPayload() *models.Error {
 	return o.Payload
 }

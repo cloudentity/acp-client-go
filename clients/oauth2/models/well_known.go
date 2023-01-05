@@ -29,10 +29,19 @@ type WellKnown struct {
 	// acr values supported
 	AcrValuesSupported []string `json:"acr_values_supported"`
 
+	// optional JSON array containing a list of the encryption algorithms (alg values) supported by the authorization endpoint to encrypt the response.
+	AuthorizationEncryptionAlgValuesSupported []string `json:"authorization_encryption_alg_values_supported"`
+
+	// optional JSON array containing a list of the encryption algorithms (enc values) supported by the authorization endpoint to encrypt the response.
+	AuthorizationEncryptionEncValuesSupported []string `json:"authorization_encryption_enc_values_supported"`
+
 	// URL of the OP's OAuth 2.0 Authorization Endpoint.
 	// Example: https://example.com/oauth2/auth
 	// Required: true
 	AuthorizationEndpoint string `json:"authorization_endpoint"`
+
+	// optional JSON array containing a list of the signing algorithms supported by the authorization endpoint to sign the response.
+	AuthorizationSigningAlgValuesSupported []string `json:"authorization_signing_alg_values_supported"`
 
 	// URL of the OP's Backchannel Authentication Endpoint
 	BackchannelAuthenticationEndpoint string `json:"backchannel_authentication_endpoint,omitempty"`
@@ -69,6 +78,9 @@ type WellKnown struct {
 	// List of supported Proof Key for Code Exchange (PKCE) code challenge methods
 	CodeChallengeMethodsSupported []string `json:"code_challenge_methods_supported"`
 
+	// URL of the authorization server's device authorization endpoint
+	DeviceAuthorizationEndpoint string `json:"device_authorization_endpoint,omitempty"`
+
 	// Boolean value specifying whether the OP can pass iss (issuer) and sid (session ID) query parameters to identify
 	// the RP session with the OP when the frontchannel_logout_uri is used. If supported, the sid Claim is also
 	// included in ID Tokens issued by the OP.
@@ -93,6 +105,10 @@ type WellKnown struct {
 
 	// OAuth 2.0 Introspection Endpoint.
 	IntrospectionEndpoint string `json:"introspection_endpoint,omitempty"`
+
+	// JSON array containing a list of Client Authentication methods supported by Introspection Endpoint. The options are
+	// client_secret_post, client_secret_basic, client_secret_jwt, and private_key_jwt, as described in Section 9 of OpenID Connect Core 1.0
+	IntrospectionEndpointAuthMethodsSupported []string `json:"introspection_endpoint_auth_methods_supported"`
 
 	// URL using the https scheme with no query or fragment component that the OP asserts as its IssuerURL Identifier.
 	// If IssuerURL discovery is supported , this value MUST be identical to the issuer value returned
@@ -160,6 +176,10 @@ type WellKnown struct {
 	// URL of the authorization server's OAuth 2.0 revocation endpoint.
 	RevocationEndpoint string `json:"revocation_endpoint,omitempty"`
 
+	// JSON array containing a list of Client Authentication methods supported by Revocation Endpoint. The options are
+	// client_secret_post, client_secret_basic, client_secret_jwt, and private_key_jwt, as described in Section 9 of OpenID Connect Core 1.0
+	RevocationEndpointAuthMethodsSupported []string `json:"revocation_endpoint_auth_methods_supported"`
+
 	// SON array containing a list of the OAuth 2.0 [RFC6749] scope values that this server supports. The server MUST
 	// support the openid scope value. Servers MAY choose not to advertise some supported scope values even when this parameter is used
 	ScopesSupported []string `json:"scopes_supported"`
@@ -178,7 +198,7 @@ type WellKnown struct {
 	// Required: true
 	TokenEndpoint string `json:"token_endpoint"`
 
-	// JSON array containing a list of Client Authentication methods supported by this Token Endpoint. The options are
+	// JSON array containing a list of Client Authentication methods supported by Token Endpoint. The options are
 	// client_secret_post, client_secret_basic, client_secret_jwt, and private_key_jwt, as described in Section 9 of OpenID Connect Core 1.0
 	TokenEndpointAuthMethodsSupported []string `json:"token_endpoint_auth_methods_supported"`
 
@@ -198,6 +218,14 @@ type WellKnown struct {
 // Validate validates this well known
 func (m *WellKnown) Validate(formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.validateAuthorizationEncryptionAlgValuesSupported(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateAuthorizationEncryptionEncValuesSupported(formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.validateAuthorizationEndpoint(formats); err != nil {
 		res = append(res, err)
@@ -219,6 +247,10 @@ func (m *WellKnown) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateIntrospectionEndpointAuthMethodsSupported(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateIssuer(formats); err != nil {
 		res = append(res, err)
 	}
@@ -231,7 +263,15 @@ func (m *WellKnown) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateResponseModesSupported(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateResponseTypesSupported(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRevocationEndpointAuthMethodsSupported(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -253,6 +293,78 @@ func (m *WellKnown) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
+var wellKnownAuthorizationEncryptionAlgValuesSupportedItemsEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["RSA-OAEP","RSA-OAEP-256"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		wellKnownAuthorizationEncryptionAlgValuesSupportedItemsEnum = append(wellKnownAuthorizationEncryptionAlgValuesSupportedItemsEnum, v)
+	}
+}
+
+func (m *WellKnown) validateAuthorizationEncryptionAlgValuesSupportedItemsEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, wellKnownAuthorizationEncryptionAlgValuesSupportedItemsEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *WellKnown) validateAuthorizationEncryptionAlgValuesSupported(formats strfmt.Registry) error {
+	if swag.IsZero(m.AuthorizationEncryptionAlgValuesSupported) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.AuthorizationEncryptionAlgValuesSupported); i++ {
+
+		// value enum
+		if err := m.validateAuthorizationEncryptionAlgValuesSupportedItemsEnum("authorization_encryption_alg_values_supported"+"."+strconv.Itoa(i), "body", m.AuthorizationEncryptionAlgValuesSupported[i]); err != nil {
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+var wellKnownAuthorizationEncryptionEncValuesSupportedItemsEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["A256GCM","A128CBC-HS256"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		wellKnownAuthorizationEncryptionEncValuesSupportedItemsEnum = append(wellKnownAuthorizationEncryptionEncValuesSupportedItemsEnum, v)
+	}
+}
+
+func (m *WellKnown) validateAuthorizationEncryptionEncValuesSupportedItemsEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, wellKnownAuthorizationEncryptionEncValuesSupportedItemsEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *WellKnown) validateAuthorizationEncryptionEncValuesSupported(formats strfmt.Registry) error {
+	if swag.IsZero(m.AuthorizationEncryptionEncValuesSupported) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.AuthorizationEncryptionEncValuesSupported); i++ {
+
+		// value enum
+		if err := m.validateAuthorizationEncryptionEncValuesSupportedItemsEnum("authorization_encryption_enc_values_supported"+"."+strconv.Itoa(i), "body", m.AuthorizationEncryptionEncValuesSupported[i]); err != nil {
+			return err
+		}
+
+	}
+
+	return nil
+}
+
 func (m *WellKnown) validateAuthorizationEndpoint(formats strfmt.Registry) error {
 
 	if err := validate.RequiredString("authorization_endpoint", "body", m.AuthorizationEndpoint); err != nil {
@@ -266,7 +378,7 @@ var wellKnownGrantTypesSupportedItemsEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["authorization_code","implicit","client_credentials","refresh_token","password","urn:ietf:params:oauth:grant-type:jwt-bearer","urn:openid:params:grant-type:ciba","urn:ietf:params:oauth:grant-type:token-exchange"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["authorization_code","implicit","client_credentials","refresh_token","password","urn:ietf:params:oauth:grant-type:jwt-bearer","urn:openid:params:grant-type:ciba","urn:ietf:params:oauth:grant-type:token-exchange","urn:ietf:params:oauth:grant-type:device_code"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -379,6 +491,42 @@ func (m *WellKnown) validateIDTokenSigningAlgValuesSupported(formats strfmt.Regi
 	return nil
 }
 
+var wellKnownIntrospectionEndpointAuthMethodsSupportedItemsEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["client_secret_basic","client_secret_post","client_secret_jwt","private_key_jwt","self_signed_tls_client_auth","tls_client_auth","none"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		wellKnownIntrospectionEndpointAuthMethodsSupportedItemsEnum = append(wellKnownIntrospectionEndpointAuthMethodsSupportedItemsEnum, v)
+	}
+}
+
+func (m *WellKnown) validateIntrospectionEndpointAuthMethodsSupportedItemsEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, wellKnownIntrospectionEndpointAuthMethodsSupportedItemsEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *WellKnown) validateIntrospectionEndpointAuthMethodsSupported(formats strfmt.Registry) error {
+	if swag.IsZero(m.IntrospectionEndpointAuthMethodsSupported) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.IntrospectionEndpointAuthMethodsSupported); i++ {
+
+		// value enum
+		if err := m.validateIntrospectionEndpointAuthMethodsSupportedItemsEnum("introspection_endpoint_auth_methods_supported"+"."+strconv.Itoa(i), "body", m.IntrospectionEndpointAuthMethodsSupported[i]); err != nil {
+			return err
+		}
+
+	}
+
+	return nil
+}
+
 func (m *WellKnown) validateIssuer(formats strfmt.Registry) error {
 
 	if err := validate.RequiredString("issuer", "body", m.Issuer); err != nil {
@@ -416,11 +564,47 @@ func (m *WellKnown) validateMtlsEndpointAliases(formats strfmt.Registry) error {
 	return nil
 }
 
+var wellKnownResponseModesSupportedItemsEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["query","fragment","form_post","query.jwt","fragment.jwt","form_post.jwt","jwt"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		wellKnownResponseModesSupportedItemsEnum = append(wellKnownResponseModesSupportedItemsEnum, v)
+	}
+}
+
+func (m *WellKnown) validateResponseModesSupportedItemsEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, wellKnownResponseModesSupportedItemsEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *WellKnown) validateResponseModesSupported(formats strfmt.Registry) error {
+	if swag.IsZero(m.ResponseModesSupported) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.ResponseModesSupported); i++ {
+
+		// value enum
+		if err := m.validateResponseModesSupportedItemsEnum("response_modes_supported"+"."+strconv.Itoa(i), "body", m.ResponseModesSupported[i]); err != nil {
+			return err
+		}
+
+	}
+
+	return nil
+}
+
 var wellKnownResponseTypesSupportedItemsEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["token","id_token","code","code id_token","token id_token","token code","token id_token code"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["token","id_token","code","code id_token","token id_token","token code","token id_token code","none"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -445,6 +629,42 @@ func (m *WellKnown) validateResponseTypesSupported(formats strfmt.Registry) erro
 
 		// value enum
 		if err := m.validateResponseTypesSupportedItemsEnum("response_types_supported"+"."+strconv.Itoa(i), "body", m.ResponseTypesSupported[i]); err != nil {
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+var wellKnownRevocationEndpointAuthMethodsSupportedItemsEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["client_secret_basic","client_secret_post","client_secret_jwt","private_key_jwt","self_signed_tls_client_auth","tls_client_auth","none"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		wellKnownRevocationEndpointAuthMethodsSupportedItemsEnum = append(wellKnownRevocationEndpointAuthMethodsSupportedItemsEnum, v)
+	}
+}
+
+func (m *WellKnown) validateRevocationEndpointAuthMethodsSupportedItemsEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, wellKnownRevocationEndpointAuthMethodsSupportedItemsEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *WellKnown) validateRevocationEndpointAuthMethodsSupported(formats strfmt.Registry) error {
+	if swag.IsZero(m.RevocationEndpointAuthMethodsSupported) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.RevocationEndpointAuthMethodsSupported); i++ {
+
+		// value enum
+		if err := m.validateRevocationEndpointAuthMethodsSupportedItemsEnum("revocation_endpoint_auth_methods_supported"+"."+strconv.Itoa(i), "body", m.RevocationEndpointAuthMethodsSupported[i]); err != nil {
 			return err
 		}
 
