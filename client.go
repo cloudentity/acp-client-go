@@ -143,12 +143,9 @@ type Client struct {
 
 	c                          *http.Client
 	requestObjectSigningKey    interface{}
-	requestObjectSigningAlg    string
 	requestObjectEncryptionKey jose.JSONWebKey
 
 	clientAssertionSigningKey interface{}
-
-	clientAssertionSigningAlg string
 
 	// Client configuration
 	Config Config
@@ -216,8 +213,16 @@ type Config struct {
 	// Path to the file with private key for signing request object.
 	RequestObjectSigningKeyFile string `json:"request_object_signing_key_file"`
 
+	// Request object signing algorithm
+	// If empty RS256 will be used
+	RequestObjectSigningAlg string `json:"request_object_signing_alg"`
+
 	// Path to the file with private key for private_key_jwt token authentication
 	ClientAssertionSigningKeyFile string `json:"client_assertion_signing_key_file"`
+
+	// Client assertion signing algorithm
+	// If empty RS256 will be used
+	ClientAssertionSigningAlg string `json:"client_assertion_signing_alg"`
 
 	// Path to the file with private key for encrypting request object.
 	RequestObjectEncryptionKeyFile string `json:"request_object_encryption_key_file"`
@@ -462,6 +467,14 @@ func New(cfg Config) (c Client, err error) {
 		return c, errors.New("client_secret is missing")
 	}
 
+	if cfg.ClientAssertionSigningAlg == "" {
+		cfg.ClientAssertionSigningAlg = "RS256"
+	}
+
+	if cfg.RequestObjectSigningAlg == "" {
+		cfg.RequestObjectSigningAlg = "RS256"
+	}
+
 	// Configure BasePath, TenantID and ServerID from the Config.
 	if err = c.configureBasePath(cfg); err != nil {
 		return c, err
@@ -483,19 +496,11 @@ func New(cfg Config) (c Client, err error) {
 		if c.requestObjectSigningKey, err = loadSigningKeyFromFile(cfg.RequestObjectSigningKeyFile); err != nil {
 			return c, errors.Wrapf(err, "failed to load request object signing key file")
 		}
-
-		if c.requestObjectSigningKey == "" {
-			c.requestObjectSigningKey = "RS256"
-		}
 	}
 
 	if cfg.ClientAssertionSigningKeyFile != "" {
 		if c.clientAssertionSigningKey, err = loadSigningKeyFromFile(cfg.ClientAssertionSigningKeyFile); err != nil {
 			return c, errors.Wrapf(err, "failed to load client assertion signing key file")
-		}
-
-		if c.clientAssertionSigningAlg == "" {
-			c.clientAssertionSigningAlg = "RS256"
 		}
 	}
 
@@ -989,7 +994,7 @@ func WithSignedRequestObject(claims jwt.MapClaims) AuthorizeOption {
 			err         error
 		)
 
-		if method, err = getSigningMethod(c.clientAssertionSigningAlg); err != nil {
+		if method, err = getSigningMethod(c.Config.ClientAssertionSigningAlg); err != nil {
 			return errors.Wrapf(err, "failed to get signing method for request object")
 		}
 
@@ -1033,7 +1038,7 @@ func (c *Client) AuthorizeURL(options ...AuthorizeOption) (authorizeURL string, 
 func (c *Client) GenerateClientAssertion() (assertion string, err error) {
 	var method jwt.SigningMethod
 
-	if method, err = getSigningMethod(c.clientAssertionSigningAlg); err != nil {
+	if method, err = getSigningMethod(c.Config.ClientAssertionSigningAlg); err != nil {
 		return "", errors.Wrapf(err, "failed to get signing method for client assertion")
 	}
 
