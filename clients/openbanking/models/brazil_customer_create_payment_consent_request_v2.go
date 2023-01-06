@@ -14,17 +14,17 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// BrazilCustomerCreatePaymentConsentRequest brazil customer create payment consent request
+// BrazilCustomerCreatePaymentConsentRequestV2 brazil customer create payment consent request v2
 //
-// swagger:model BrazilCustomerCreatePaymentConsentRequest
-type BrazilCustomerCreatePaymentConsentRequest struct {
+// swagger:model BrazilCustomerCreatePaymentConsentRequestV2
+type BrazilCustomerCreatePaymentConsentRequestV2 struct {
 
 	// aud
 	Aud string `json:"aud,omitempty"`
 
 	// data
 	// Required: true
-	Data *OpenbankingBrasilPaymentData `json:"data"`
+	Data *OpenbankingBrasilPaymentV2Data `json:"data"`
 
 	// iat
 	Iat int64 `json:"iat,omitempty"`
@@ -36,8 +36,8 @@ type BrazilCustomerCreatePaymentConsentRequest struct {
 	Jti string `json:"jti,omitempty"`
 }
 
-// Validate validates this brazil customer create payment consent request
-func (m *BrazilCustomerCreatePaymentConsentRequest) Validate(formats strfmt.Registry) error {
+// Validate validates this brazil customer create payment consent request v2
+func (m *BrazilCustomerCreatePaymentConsentRequestV2) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateData(formats); err != nil {
@@ -50,7 +50,7 @@ func (m *BrazilCustomerCreatePaymentConsentRequest) Validate(formats strfmt.Regi
 	return nil
 }
 
-func (m *BrazilCustomerCreatePaymentConsentRequest) validateData(formats strfmt.Registry) error {
+func (m *BrazilCustomerCreatePaymentConsentRequestV2) validateData(formats strfmt.Registry) error {
 
 	if err := validate.Required("data", "body", m.Data); err != nil {
 		return err
@@ -70,8 +70,8 @@ func (m *BrazilCustomerCreatePaymentConsentRequest) validateData(formats strfmt.
 	return nil
 }
 
-// ContextValidate validate this brazil customer create payment consent request based on the context it is used
-func (m *BrazilCustomerCreatePaymentConsentRequest) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validate this brazil customer create payment consent request v2 based on the context it is used
+func (m *BrazilCustomerCreatePaymentConsentRequestV2) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateData(ctx, formats); err != nil {
@@ -84,7 +84,7 @@ func (m *BrazilCustomerCreatePaymentConsentRequest) ContextValidate(ctx context.
 	return nil
 }
 
-func (m *BrazilCustomerCreatePaymentConsentRequest) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
+func (m *BrazilCustomerCreatePaymentConsentRequestV2) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Data != nil {
 		if err := m.Data.ContextValidate(ctx, formats); err != nil {
@@ -101,7 +101,7 @@ func (m *BrazilCustomerCreatePaymentConsentRequest) contextValidateData(ctx cont
 }
 
 // MarshalBinary interface implementation
-func (m *BrazilCustomerCreatePaymentConsentRequest) MarshalBinary() ([]byte, error) {
+func (m *BrazilCustomerCreatePaymentConsentRequestV2) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -109,8 +109,8 @@ func (m *BrazilCustomerCreatePaymentConsentRequest) MarshalBinary() ([]byte, err
 }
 
 // UnmarshalBinary interface implementation
-func (m *BrazilCustomerCreatePaymentConsentRequest) UnmarshalBinary(b []byte) error {
-	var res BrazilCustomerCreatePaymentConsentRequest
+func (m *BrazilCustomerCreatePaymentConsentRequestV2) UnmarshalBinary(b []byte) error {
+	var res BrazilCustomerCreatePaymentConsentRequestV2
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

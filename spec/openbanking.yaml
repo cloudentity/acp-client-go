@@ -461,6 +461,26 @@ definitions:
         type: string
         x-nullable: false
       data:
+        $ref: '#/definitions/OpenbankingBrasilPaymentData'
+      iat:
+        format: int64
+        type: integer
+        x-nullable: false
+      iss:
+        type: string
+        x-nullable: false
+      jti:
+        type: string
+        x-nullable: false
+    required:
+    - data
+    type: object
+  BrazilCustomerCreatePaymentConsentRequestV2:
+    properties:
+      aud:
+        type: string
+        x-nullable: false
+      data:
         $ref: '#/definitions/OpenbankingBrasilPaymentV2Data'
       iat:
         format: int64
@@ -16881,7 +16901,7 @@ paths:
         in: body
         name: Request
         schema:
-          $ref: '#/definitions/BrazilCustomerCreatePaymentConsentRequest'
+          $ref: '#/definitions/BrazilCustomerCreatePaymentConsentRequestV2'
       produces:
       - application/jwt
       responses:
