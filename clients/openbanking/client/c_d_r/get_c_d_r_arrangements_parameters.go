@@ -123,7 +123,7 @@ type GetCDRArrangementsParams struct {
 
 	/* Status.
 
-	     Optional status
+	     Optional list of statuses
 	Status
 	*/
 	Status []string

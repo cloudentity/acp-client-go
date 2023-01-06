@@ -12,7 +12,6 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // OBBRErrorResponse o b b r error response
@@ -21,10 +20,7 @@ import (
 type OBBRErrorResponse struct {
 
 	// errors
-	// Required: true
-	// Max Items: 13
-	// Min Items: 1
-	Errors []*OpenbankingBrasilPaymentError2 `json:"errors"`
+	Errors []*Error `json:"errors"`
 
 	// meta
 	Meta *OpenbankingBrasilPaymentMeta `json:"meta,omitempty"`
@@ -49,19 +45,8 @@ func (m *OBBRErrorResponse) Validate(formats strfmt.Registry) error {
 }
 
 func (m *OBBRErrorResponse) validateErrors(formats strfmt.Registry) error {
-
-	if err := validate.Required("errors", "body", m.Errors); err != nil {
-		return err
-	}
-
-	iErrorsSize := int64(len(m.Errors))
-
-	if err := validate.MinItems("errors", "body", iErrorsSize, 1); err != nil {
-		return err
-	}
-
-	if err := validate.MaxItems("errors", "body", iErrorsSize, 13); err != nil {
-		return err
+	if swag.IsZero(m.Errors) { // not required
+		return nil
 	}
 
 	for i := 0; i < len(m.Errors); i++ {

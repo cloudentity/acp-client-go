@@ -54,7 +54,6 @@ type BrazilInsuranceCustomerDataAccessConsent struct {
 	// Especifica os tipos de permisses de acesso  s APIs no escopo do Open Insurance Brasil - Fase 2, de acordo com os blocos de consentimento fornecidos pelo usurio e necessrios ao acesso a cada endpoint das APIs.
 	// Example: ["PENSION_RISK_READ","CAPITALIZATION_TITLES_READ","RESOURCES_READ"]
 	// Required: true
-	// Max Items: 30
 	// Min Items: 1
 	Permissions []OPINPermission1 `json:"permissions"`
 
@@ -197,10 +196,6 @@ func (m *BrazilInsuranceCustomerDataAccessConsent) validatePermissions(formats s
 	iPermissionsSize := int64(len(m.Permissions))
 
 	if err := validate.MinItems("permissions", "body", iPermissionsSize, 1); err != nil {
-		return err
-	}
-
-	if err := validate.MaxItems("permissions", "body", iPermissionsSize, 30); err != nil {
 		return err
 	}
 

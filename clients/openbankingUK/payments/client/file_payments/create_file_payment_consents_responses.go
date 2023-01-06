@@ -95,7 +95,8 @@ func NewCreateFilePaymentConsentsCreated() *CreateFilePaymentConsentsCreated {
 	return &CreateFilePaymentConsentsCreated{}
 }
 
-/* CreateFilePaymentConsentsCreated describes a response with status code 201, with default header values.
+/*
+CreateFilePaymentConsentsCreated describes a response with status code 201, with default header values.
 
 File Payment Consents Created
 */
@@ -113,9 +114,39 @@ type CreateFilePaymentConsentsCreated struct {
 	Payload *models.OBWriteFileConsentResponse4
 }
 
+// IsSuccess returns true when this create file payment consents created response has a 2xx status code
+func (o *CreateFilePaymentConsentsCreated) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this create file payment consents created response has a 3xx status code
+func (o *CreateFilePaymentConsentsCreated) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create file payment consents created response has a 4xx status code
+func (o *CreateFilePaymentConsentsCreated) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create file payment consents created response has a 5xx status code
+func (o *CreateFilePaymentConsentsCreated) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create file payment consents created response a status code equal to that given
+func (o *CreateFilePaymentConsentsCreated) IsCode(code int) bool {
+	return code == 201
+}
+
 func (o *CreateFilePaymentConsentsCreated) Error() string {
 	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsCreated  %+v", 201, o.Payload)
 }
+
+func (o *CreateFilePaymentConsentsCreated) String() string {
+	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsCreated  %+v", 201, o.Payload)
+}
+
 func (o *CreateFilePaymentConsentsCreated) GetPayload() *models.OBWriteFileConsentResponse4 {
 	return o.Payload
 }
@@ -151,7 +182,8 @@ func NewCreateFilePaymentConsentsBadRequest() *CreateFilePaymentConsentsBadReque
 	return &CreateFilePaymentConsentsBadRequest{}
 }
 
-/* CreateFilePaymentConsentsBadRequest describes a response with status code 400, with default header values.
+/*
+CreateFilePaymentConsentsBadRequest describes a response with status code 400, with default header values.
 
 Bad request
 */
@@ -169,9 +201,39 @@ type CreateFilePaymentConsentsBadRequest struct {
 	Payload *models.OBErrorResponse1
 }
 
+// IsSuccess returns true when this create file payment consents bad request response has a 2xx status code
+func (o *CreateFilePaymentConsentsBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create file payment consents bad request response has a 3xx status code
+func (o *CreateFilePaymentConsentsBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create file payment consents bad request response has a 4xx status code
+func (o *CreateFilePaymentConsentsBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create file payment consents bad request response has a 5xx status code
+func (o *CreateFilePaymentConsentsBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create file payment consents bad request response a status code equal to that given
+func (o *CreateFilePaymentConsentsBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *CreateFilePaymentConsentsBadRequest) Error() string {
 	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *CreateFilePaymentConsentsBadRequest) String() string {
+	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *CreateFilePaymentConsentsBadRequest) GetPayload() *models.OBErrorResponse1 {
 	return o.Payload
 }
@@ -207,7 +269,8 @@ func NewCreateFilePaymentConsentsUnauthorized() *CreateFilePaymentConsentsUnauth
 	return &CreateFilePaymentConsentsUnauthorized{}
 }
 
-/* CreateFilePaymentConsentsUnauthorized describes a response with status code 401, with default header values.
+/*
+CreateFilePaymentConsentsUnauthorized describes a response with status code 401, with default header values.
 
 Unauthorized
 */
@@ -218,7 +281,36 @@ type CreateFilePaymentConsentsUnauthorized struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this create file payment consents unauthorized response has a 2xx status code
+func (o *CreateFilePaymentConsentsUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create file payment consents unauthorized response has a 3xx status code
+func (o *CreateFilePaymentConsentsUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create file payment consents unauthorized response has a 4xx status code
+func (o *CreateFilePaymentConsentsUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create file payment consents unauthorized response has a 5xx status code
+func (o *CreateFilePaymentConsentsUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create file payment consents unauthorized response a status code equal to that given
+func (o *CreateFilePaymentConsentsUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *CreateFilePaymentConsentsUnauthorized) Error() string {
+	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsUnauthorized ", 401)
+}
+
+func (o *CreateFilePaymentConsentsUnauthorized) String() string {
 	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsUnauthorized ", 401)
 }
 
@@ -239,7 +331,8 @@ func NewCreateFilePaymentConsentsForbidden() *CreateFilePaymentConsentsForbidden
 	return &CreateFilePaymentConsentsForbidden{}
 }
 
-/* CreateFilePaymentConsentsForbidden describes a response with status code 403, with default header values.
+/*
+CreateFilePaymentConsentsForbidden describes a response with status code 403, with default header values.
 
 Forbidden
 */
@@ -257,9 +350,39 @@ type CreateFilePaymentConsentsForbidden struct {
 	Payload *models.OBErrorResponse1
 }
 
+// IsSuccess returns true when this create file payment consents forbidden response has a 2xx status code
+func (o *CreateFilePaymentConsentsForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create file payment consents forbidden response has a 3xx status code
+func (o *CreateFilePaymentConsentsForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create file payment consents forbidden response has a 4xx status code
+func (o *CreateFilePaymentConsentsForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create file payment consents forbidden response has a 5xx status code
+func (o *CreateFilePaymentConsentsForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create file payment consents forbidden response a status code equal to that given
+func (o *CreateFilePaymentConsentsForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *CreateFilePaymentConsentsForbidden) Error() string {
 	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsForbidden  %+v", 403, o.Payload)
 }
+
+func (o *CreateFilePaymentConsentsForbidden) String() string {
+	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsForbidden  %+v", 403, o.Payload)
+}
+
 func (o *CreateFilePaymentConsentsForbidden) GetPayload() *models.OBErrorResponse1 {
 	return o.Payload
 }
@@ -295,7 +418,8 @@ func NewCreateFilePaymentConsentsNotFound() *CreateFilePaymentConsentsNotFound {
 	return &CreateFilePaymentConsentsNotFound{}
 }
 
-/* CreateFilePaymentConsentsNotFound describes a response with status code 404, with default header values.
+/*
+CreateFilePaymentConsentsNotFound describes a response with status code 404, with default header values.
 
 Not found
 */
@@ -306,7 +430,36 @@ type CreateFilePaymentConsentsNotFound struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this create file payment consents not found response has a 2xx status code
+func (o *CreateFilePaymentConsentsNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create file payment consents not found response has a 3xx status code
+func (o *CreateFilePaymentConsentsNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create file payment consents not found response has a 4xx status code
+func (o *CreateFilePaymentConsentsNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create file payment consents not found response has a 5xx status code
+func (o *CreateFilePaymentConsentsNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create file payment consents not found response a status code equal to that given
+func (o *CreateFilePaymentConsentsNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *CreateFilePaymentConsentsNotFound) Error() string {
+	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsNotFound ", 404)
+}
+
+func (o *CreateFilePaymentConsentsNotFound) String() string {
 	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsNotFound ", 404)
 }
 
@@ -327,7 +480,8 @@ func NewCreateFilePaymentConsentsMethodNotAllowed() *CreateFilePaymentConsentsMe
 	return &CreateFilePaymentConsentsMethodNotAllowed{}
 }
 
-/* CreateFilePaymentConsentsMethodNotAllowed describes a response with status code 405, with default header values.
+/*
+CreateFilePaymentConsentsMethodNotAllowed describes a response with status code 405, with default header values.
 
 Method Not Allowed
 */
@@ -338,7 +492,36 @@ type CreateFilePaymentConsentsMethodNotAllowed struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this create file payment consents method not allowed response has a 2xx status code
+func (o *CreateFilePaymentConsentsMethodNotAllowed) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create file payment consents method not allowed response has a 3xx status code
+func (o *CreateFilePaymentConsentsMethodNotAllowed) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create file payment consents method not allowed response has a 4xx status code
+func (o *CreateFilePaymentConsentsMethodNotAllowed) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create file payment consents method not allowed response has a 5xx status code
+func (o *CreateFilePaymentConsentsMethodNotAllowed) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create file payment consents method not allowed response a status code equal to that given
+func (o *CreateFilePaymentConsentsMethodNotAllowed) IsCode(code int) bool {
+	return code == 405
+}
+
 func (o *CreateFilePaymentConsentsMethodNotAllowed) Error() string {
+	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsMethodNotAllowed ", 405)
+}
+
+func (o *CreateFilePaymentConsentsMethodNotAllowed) String() string {
 	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsMethodNotAllowed ", 405)
 }
 
@@ -359,7 +542,8 @@ func NewCreateFilePaymentConsentsNotAcceptable() *CreateFilePaymentConsentsNotAc
 	return &CreateFilePaymentConsentsNotAcceptable{}
 }
 
-/* CreateFilePaymentConsentsNotAcceptable describes a response with status code 406, with default header values.
+/*
+CreateFilePaymentConsentsNotAcceptable describes a response with status code 406, with default header values.
 
 Not Acceptable
 */
@@ -370,7 +554,36 @@ type CreateFilePaymentConsentsNotAcceptable struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this create file payment consents not acceptable response has a 2xx status code
+func (o *CreateFilePaymentConsentsNotAcceptable) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create file payment consents not acceptable response has a 3xx status code
+func (o *CreateFilePaymentConsentsNotAcceptable) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create file payment consents not acceptable response has a 4xx status code
+func (o *CreateFilePaymentConsentsNotAcceptable) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create file payment consents not acceptable response has a 5xx status code
+func (o *CreateFilePaymentConsentsNotAcceptable) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create file payment consents not acceptable response a status code equal to that given
+func (o *CreateFilePaymentConsentsNotAcceptable) IsCode(code int) bool {
+	return code == 406
+}
+
 func (o *CreateFilePaymentConsentsNotAcceptable) Error() string {
+	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsNotAcceptable ", 406)
+}
+
+func (o *CreateFilePaymentConsentsNotAcceptable) String() string {
 	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsNotAcceptable ", 406)
 }
 
@@ -391,7 +604,8 @@ func NewCreateFilePaymentConsentsUnsupportedMediaType() *CreateFilePaymentConsen
 	return &CreateFilePaymentConsentsUnsupportedMediaType{}
 }
 
-/* CreateFilePaymentConsentsUnsupportedMediaType describes a response with status code 415, with default header values.
+/*
+CreateFilePaymentConsentsUnsupportedMediaType describes a response with status code 415, with default header values.
 
 Unsupported Media Type
 */
@@ -402,7 +616,36 @@ type CreateFilePaymentConsentsUnsupportedMediaType struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this create file payment consents unsupported media type response has a 2xx status code
+func (o *CreateFilePaymentConsentsUnsupportedMediaType) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create file payment consents unsupported media type response has a 3xx status code
+func (o *CreateFilePaymentConsentsUnsupportedMediaType) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create file payment consents unsupported media type response has a 4xx status code
+func (o *CreateFilePaymentConsentsUnsupportedMediaType) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create file payment consents unsupported media type response has a 5xx status code
+func (o *CreateFilePaymentConsentsUnsupportedMediaType) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create file payment consents unsupported media type response a status code equal to that given
+func (o *CreateFilePaymentConsentsUnsupportedMediaType) IsCode(code int) bool {
+	return code == 415
+}
+
 func (o *CreateFilePaymentConsentsUnsupportedMediaType) Error() string {
+	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsUnsupportedMediaType ", 415)
+}
+
+func (o *CreateFilePaymentConsentsUnsupportedMediaType) String() string {
 	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsUnsupportedMediaType ", 415)
 }
 
@@ -423,7 +666,8 @@ func NewCreateFilePaymentConsentsTooManyRequests() *CreateFilePaymentConsentsToo
 	return &CreateFilePaymentConsentsTooManyRequests{}
 }
 
-/* CreateFilePaymentConsentsTooManyRequests describes a response with status code 429, with default header values.
+/*
+CreateFilePaymentConsentsTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -438,7 +682,36 @@ type CreateFilePaymentConsentsTooManyRequests struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this create file payment consents too many requests response has a 2xx status code
+func (o *CreateFilePaymentConsentsTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create file payment consents too many requests response has a 3xx status code
+func (o *CreateFilePaymentConsentsTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create file payment consents too many requests response has a 4xx status code
+func (o *CreateFilePaymentConsentsTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create file payment consents too many requests response has a 5xx status code
+func (o *CreateFilePaymentConsentsTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create file payment consents too many requests response a status code equal to that given
+func (o *CreateFilePaymentConsentsTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *CreateFilePaymentConsentsTooManyRequests) Error() string {
+	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsTooManyRequests ", 429)
+}
+
+func (o *CreateFilePaymentConsentsTooManyRequests) String() string {
 	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsTooManyRequests ", 429)
 }
 
@@ -470,7 +743,8 @@ func NewCreateFilePaymentConsentsInternalServerError() *CreateFilePaymentConsent
 	return &CreateFilePaymentConsentsInternalServerError{}
 }
 
-/* CreateFilePaymentConsentsInternalServerError describes a response with status code 500, with default header values.
+/*
+CreateFilePaymentConsentsInternalServerError describes a response with status code 500, with default header values.
 
 Internal Server Error
 */
@@ -488,9 +762,39 @@ type CreateFilePaymentConsentsInternalServerError struct {
 	Payload *models.OBErrorResponse1
 }
 
+// IsSuccess returns true when this create file payment consents internal server error response has a 2xx status code
+func (o *CreateFilePaymentConsentsInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create file payment consents internal server error response has a 3xx status code
+func (o *CreateFilePaymentConsentsInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create file payment consents internal server error response has a 4xx status code
+func (o *CreateFilePaymentConsentsInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create file payment consents internal server error response has a 5xx status code
+func (o *CreateFilePaymentConsentsInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this create file payment consents internal server error response a status code equal to that given
+func (o *CreateFilePaymentConsentsInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *CreateFilePaymentConsentsInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *CreateFilePaymentConsentsInternalServerError) String() string {
+	return fmt.Sprintf("[POST /file-payment-consents][%d] createFilePaymentConsentsInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *CreateFilePaymentConsentsInternalServerError) GetPayload() *models.OBErrorResponse1 {
 	return o.Payload
 }

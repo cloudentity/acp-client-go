@@ -20,8 +20,12 @@ import (
 type OBInterestFixedVariableType1Code string
 
 func NewOBInterestFixedVariableType1Code(value OBInterestFixedVariableType1Code) *OBInterestFixedVariableType1Code {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated OBInterestFixedVariableType1Code.
+func (m OBInterestFixedVariableType1Code) Pointer() *OBInterestFixedVariableType1Code {
+	return &m
 }
 
 const (

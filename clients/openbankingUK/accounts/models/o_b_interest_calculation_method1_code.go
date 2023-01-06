@@ -20,8 +20,12 @@ import (
 type OBInterestCalculationMethod1Code string
 
 func NewOBInterestCalculationMethod1Code(value OBInterestCalculationMethod1Code) *OBInterestCalculationMethod1Code {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated OBInterestCalculationMethod1Code.
+func (m OBInterestCalculationMethod1Code) Pointer() *OBInterestCalculationMethod1Code {
+	return &m
 }
 
 const (

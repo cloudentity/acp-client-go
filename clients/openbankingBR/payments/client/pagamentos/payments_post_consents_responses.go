@@ -106,7 +106,8 @@ func NewPaymentsPostConsentsCreated() *PaymentsPostConsentsCreated {
 	return &PaymentsPostConsentsCreated{}
 }
 
-/* PaymentsPostConsentsCreated describes a response with status code 201, with default header values.
+/*
+PaymentsPostConsentsCreated describes a response with status code 201, with default header values.
 
 Consentimento de pagamento criado com sucesso.
 */
@@ -120,9 +121,39 @@ type PaymentsPostConsentsCreated struct {
 	Payload interface{}
 }
 
+// IsSuccess returns true when this payments post consents created response has a 2xx status code
+func (o *PaymentsPostConsentsCreated) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this payments post consents created response has a 3xx status code
+func (o *PaymentsPostConsentsCreated) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this payments post consents created response has a 4xx status code
+func (o *PaymentsPostConsentsCreated) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this payments post consents created response has a 5xx status code
+func (o *PaymentsPostConsentsCreated) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this payments post consents created response a status code equal to that given
+func (o *PaymentsPostConsentsCreated) IsCode(code int) bool {
+	return code == 201
+}
+
 func (o *PaymentsPostConsentsCreated) Error() string {
 	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsCreated  %+v", 201, o.Payload)
 }
+
+func (o *PaymentsPostConsentsCreated) String() string {
+	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsCreated  %+v", 201, o.Payload)
+}
+
 func (o *PaymentsPostConsentsCreated) GetPayload() interface{} {
 	return o.Payload
 }
@@ -149,7 +180,8 @@ func NewPaymentsPostConsentsBadRequest() *PaymentsPostConsentsBadRequest {
 	return &PaymentsPostConsentsBadRequest{}
 }
 
-/* PaymentsPostConsentsBadRequest describes a response with status code 400, with default header values.
+/*
+PaymentsPostConsentsBadRequest describes a response with status code 400, with default header values.
 
 A requisio foi malformada, omitindo atributos obrigatrios, seja no payload ou atravs de atributos na URL.
 */
@@ -163,9 +195,39 @@ type PaymentsPostConsentsBadRequest struct {
 	Payload *models.ResponseError
 }
 
+// IsSuccess returns true when this payments post consents bad request response has a 2xx status code
+func (o *PaymentsPostConsentsBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this payments post consents bad request response has a 3xx status code
+func (o *PaymentsPostConsentsBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this payments post consents bad request response has a 4xx status code
+func (o *PaymentsPostConsentsBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this payments post consents bad request response has a 5xx status code
+func (o *PaymentsPostConsentsBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this payments post consents bad request response a status code equal to that given
+func (o *PaymentsPostConsentsBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *PaymentsPostConsentsBadRequest) Error() string {
 	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *PaymentsPostConsentsBadRequest) String() string {
+	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *PaymentsPostConsentsBadRequest) GetPayload() *models.ResponseError {
 	return o.Payload
 }
@@ -194,7 +256,8 @@ func NewPaymentsPostConsentsUnauthorized() *PaymentsPostConsentsUnauthorized {
 	return &PaymentsPostConsentsUnauthorized{}
 }
 
-/* PaymentsPostConsentsUnauthorized describes a response with status code 401, with default header values.
+/*
+PaymentsPostConsentsUnauthorized describes a response with status code 401, with default header values.
 
 Cabealho de autenticao ausente/invlido ou token invlido
 */
@@ -208,9 +271,39 @@ type PaymentsPostConsentsUnauthorized struct {
 	Payload *models.ResponseError
 }
 
+// IsSuccess returns true when this payments post consents unauthorized response has a 2xx status code
+func (o *PaymentsPostConsentsUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this payments post consents unauthorized response has a 3xx status code
+func (o *PaymentsPostConsentsUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this payments post consents unauthorized response has a 4xx status code
+func (o *PaymentsPostConsentsUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this payments post consents unauthorized response has a 5xx status code
+func (o *PaymentsPostConsentsUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this payments post consents unauthorized response a status code equal to that given
+func (o *PaymentsPostConsentsUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *PaymentsPostConsentsUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *PaymentsPostConsentsUnauthorized) String() string {
+	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *PaymentsPostConsentsUnauthorized) GetPayload() *models.ResponseError {
 	return o.Payload
 }
@@ -239,7 +332,8 @@ func NewPaymentsPostConsentsForbidden() *PaymentsPostConsentsForbidden {
 	return &PaymentsPostConsentsForbidden{}
 }
 
-/* PaymentsPostConsentsForbidden describes a response with status code 403, with default header values.
+/*
+PaymentsPostConsentsForbidden describes a response with status code 403, with default header values.
 
 O token tem escopo incorreto ou uma poltica de segurana foi violada
 */
@@ -253,9 +347,39 @@ type PaymentsPostConsentsForbidden struct {
 	Payload *models.ResponseError
 }
 
+// IsSuccess returns true when this payments post consents forbidden response has a 2xx status code
+func (o *PaymentsPostConsentsForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this payments post consents forbidden response has a 3xx status code
+func (o *PaymentsPostConsentsForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this payments post consents forbidden response has a 4xx status code
+func (o *PaymentsPostConsentsForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this payments post consents forbidden response has a 5xx status code
+func (o *PaymentsPostConsentsForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this payments post consents forbidden response a status code equal to that given
+func (o *PaymentsPostConsentsForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *PaymentsPostConsentsForbidden) Error() string {
 	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsForbidden  %+v", 403, o.Payload)
 }
+
+func (o *PaymentsPostConsentsForbidden) String() string {
+	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsForbidden  %+v", 403, o.Payload)
+}
+
 func (o *PaymentsPostConsentsForbidden) GetPayload() *models.ResponseError {
 	return o.Payload
 }
@@ -284,7 +408,8 @@ func NewPaymentsPostConsentsNotFound() *PaymentsPostConsentsNotFound {
 	return &PaymentsPostConsentsNotFound{}
 }
 
-/* PaymentsPostConsentsNotFound describes a response with status code 404, with default header values.
+/*
+PaymentsPostConsentsNotFound describes a response with status code 404, with default header values.
 
 O recurso solicitado no existe ou no foi implementado
 */
@@ -298,9 +423,39 @@ type PaymentsPostConsentsNotFound struct {
 	Payload *models.ResponseError
 }
 
+// IsSuccess returns true when this payments post consents not found response has a 2xx status code
+func (o *PaymentsPostConsentsNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this payments post consents not found response has a 3xx status code
+func (o *PaymentsPostConsentsNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this payments post consents not found response has a 4xx status code
+func (o *PaymentsPostConsentsNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this payments post consents not found response has a 5xx status code
+func (o *PaymentsPostConsentsNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this payments post consents not found response a status code equal to that given
+func (o *PaymentsPostConsentsNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *PaymentsPostConsentsNotFound) Error() string {
 	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsNotFound  %+v", 404, o.Payload)
 }
+
+func (o *PaymentsPostConsentsNotFound) String() string {
+	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsNotFound  %+v", 404, o.Payload)
+}
+
 func (o *PaymentsPostConsentsNotFound) GetPayload() *models.ResponseError {
 	return o.Payload
 }
@@ -329,7 +484,8 @@ func NewPaymentsPostConsentsMethodNotAllowed() *PaymentsPostConsentsMethodNotAll
 	return &PaymentsPostConsentsMethodNotAllowed{}
 }
 
-/* PaymentsPostConsentsMethodNotAllowed describes a response with status code 405, with default header values.
+/*
+PaymentsPostConsentsMethodNotAllowed describes a response with status code 405, with default header values.
 
 O consumidor tentou acessar o recurso com um mtodo no suportado
 */
@@ -343,9 +499,39 @@ type PaymentsPostConsentsMethodNotAllowed struct {
 	Payload *models.ResponseError
 }
 
+// IsSuccess returns true when this payments post consents method not allowed response has a 2xx status code
+func (o *PaymentsPostConsentsMethodNotAllowed) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this payments post consents method not allowed response has a 3xx status code
+func (o *PaymentsPostConsentsMethodNotAllowed) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this payments post consents method not allowed response has a 4xx status code
+func (o *PaymentsPostConsentsMethodNotAllowed) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this payments post consents method not allowed response has a 5xx status code
+func (o *PaymentsPostConsentsMethodNotAllowed) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this payments post consents method not allowed response a status code equal to that given
+func (o *PaymentsPostConsentsMethodNotAllowed) IsCode(code int) bool {
+	return code == 405
+}
+
 func (o *PaymentsPostConsentsMethodNotAllowed) Error() string {
 	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsMethodNotAllowed  %+v", 405, o.Payload)
 }
+
+func (o *PaymentsPostConsentsMethodNotAllowed) String() string {
+	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsMethodNotAllowed  %+v", 405, o.Payload)
+}
+
 func (o *PaymentsPostConsentsMethodNotAllowed) GetPayload() *models.ResponseError {
 	return o.Payload
 }
@@ -374,7 +560,8 @@ func NewPaymentsPostConsentsNotAcceptable() *PaymentsPostConsentsNotAcceptable {
 	return &PaymentsPostConsentsNotAcceptable{}
 }
 
-/* PaymentsPostConsentsNotAcceptable describes a response with status code 406, with default header values.
+/*
+PaymentsPostConsentsNotAcceptable describes a response with status code 406, with default header values.
 
 A solicitao continha um cabealho Accept diferente dos tipos de mdia permitidos ou um conjunto de caracteres diferente de UTF-8
 */
@@ -388,9 +575,39 @@ type PaymentsPostConsentsNotAcceptable struct {
 	Payload *models.ResponseError
 }
 
+// IsSuccess returns true when this payments post consents not acceptable response has a 2xx status code
+func (o *PaymentsPostConsentsNotAcceptable) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this payments post consents not acceptable response has a 3xx status code
+func (o *PaymentsPostConsentsNotAcceptable) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this payments post consents not acceptable response has a 4xx status code
+func (o *PaymentsPostConsentsNotAcceptable) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this payments post consents not acceptable response has a 5xx status code
+func (o *PaymentsPostConsentsNotAcceptable) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this payments post consents not acceptable response a status code equal to that given
+func (o *PaymentsPostConsentsNotAcceptable) IsCode(code int) bool {
+	return code == 406
+}
+
 func (o *PaymentsPostConsentsNotAcceptable) Error() string {
 	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsNotAcceptable  %+v", 406, o.Payload)
 }
+
+func (o *PaymentsPostConsentsNotAcceptable) String() string {
+	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsNotAcceptable  %+v", 406, o.Payload)
+}
+
 func (o *PaymentsPostConsentsNotAcceptable) GetPayload() *models.ResponseError {
 	return o.Payload
 }
@@ -419,7 +636,8 @@ func NewPaymentsPostConsentsUnsupportedMediaType() *PaymentsPostConsentsUnsuppor
 	return &PaymentsPostConsentsUnsupportedMediaType{}
 }
 
-/* PaymentsPostConsentsUnsupportedMediaType describes a response with status code 415, with default header values.
+/*
+PaymentsPostConsentsUnsupportedMediaType describes a response with status code 415, with default header values.
 
 O formato do payload no  um formato suportado.
 */
@@ -433,9 +651,39 @@ type PaymentsPostConsentsUnsupportedMediaType struct {
 	Payload *models.ResponseError
 }
 
+// IsSuccess returns true when this payments post consents unsupported media type response has a 2xx status code
+func (o *PaymentsPostConsentsUnsupportedMediaType) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this payments post consents unsupported media type response has a 3xx status code
+func (o *PaymentsPostConsentsUnsupportedMediaType) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this payments post consents unsupported media type response has a 4xx status code
+func (o *PaymentsPostConsentsUnsupportedMediaType) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this payments post consents unsupported media type response has a 5xx status code
+func (o *PaymentsPostConsentsUnsupportedMediaType) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this payments post consents unsupported media type response a status code equal to that given
+func (o *PaymentsPostConsentsUnsupportedMediaType) IsCode(code int) bool {
+	return code == 415
+}
+
 func (o *PaymentsPostConsentsUnsupportedMediaType) Error() string {
 	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsUnsupportedMediaType  %+v", 415, o.Payload)
 }
+
+func (o *PaymentsPostConsentsUnsupportedMediaType) String() string {
+	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsUnsupportedMediaType  %+v", 415, o.Payload)
+}
+
 func (o *PaymentsPostConsentsUnsupportedMediaType) GetPayload() *models.ResponseError {
 	return o.Payload
 }
@@ -464,7 +712,8 @@ func NewPaymentsPostConsentsUnprocessableEntity() *PaymentsPostConsentsUnprocess
 	return &PaymentsPostConsentsUnprocessableEntity{}
 }
 
-/* PaymentsPostConsentsUnprocessableEntity describes a response with status code 422, with default header values.
+/*
+PaymentsPostConsentsUnprocessableEntity describes a response with status code 422, with default header values.
 
 A solicitao foi bem formada, mas no pde ser processada devido  lgica de negcios especfica da solicitao.
 */
@@ -478,9 +727,39 @@ type PaymentsPostConsentsUnprocessableEntity struct {
 	Payload interface{}
 }
 
+// IsSuccess returns true when this payments post consents unprocessable entity response has a 2xx status code
+func (o *PaymentsPostConsentsUnprocessableEntity) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this payments post consents unprocessable entity response has a 3xx status code
+func (o *PaymentsPostConsentsUnprocessableEntity) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this payments post consents unprocessable entity response has a 4xx status code
+func (o *PaymentsPostConsentsUnprocessableEntity) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this payments post consents unprocessable entity response has a 5xx status code
+func (o *PaymentsPostConsentsUnprocessableEntity) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this payments post consents unprocessable entity response a status code equal to that given
+func (o *PaymentsPostConsentsUnprocessableEntity) IsCode(code int) bool {
+	return code == 422
+}
+
 func (o *PaymentsPostConsentsUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsUnprocessableEntity  %+v", 422, o.Payload)
 }
+
+func (o *PaymentsPostConsentsUnprocessableEntity) String() string {
+	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsUnprocessableEntity  %+v", 422, o.Payload)
+}
+
 func (o *PaymentsPostConsentsUnprocessableEntity) GetPayload() interface{} {
 	return o.Payload
 }
@@ -507,7 +786,8 @@ func NewPaymentsPostConsentsTooManyRequests() *PaymentsPostConsentsTooManyReques
 	return &PaymentsPostConsentsTooManyRequests{}
 }
 
-/* PaymentsPostConsentsTooManyRequests describes a response with status code 429, with default header values.
+/*
+PaymentsPostConsentsTooManyRequests describes a response with status code 429, with default header values.
 
 A operao foi recusada, pois muitas solicitaes foram feitas dentro de um determinado perodo ou o limite global de requisies concorrentes foi atingido
 */
@@ -526,9 +806,39 @@ type PaymentsPostConsentsTooManyRequests struct {
 	Payload *models.ResponseError
 }
 
+// IsSuccess returns true when this payments post consents too many requests response has a 2xx status code
+func (o *PaymentsPostConsentsTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this payments post consents too many requests response has a 3xx status code
+func (o *PaymentsPostConsentsTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this payments post consents too many requests response has a 4xx status code
+func (o *PaymentsPostConsentsTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this payments post consents too many requests response has a 5xx status code
+func (o *PaymentsPostConsentsTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this payments post consents too many requests response a status code equal to that given
+func (o *PaymentsPostConsentsTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *PaymentsPostConsentsTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *PaymentsPostConsentsTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *PaymentsPostConsentsTooManyRequests) GetPayload() *models.ResponseError {
 	return o.Payload
 }
@@ -564,7 +874,8 @@ func NewPaymentsPostConsentsInternalServerError() *PaymentsPostConsentsInternalS
 	return &PaymentsPostConsentsInternalServerError{}
 }
 
-/* PaymentsPostConsentsInternalServerError describes a response with status code 500, with default header values.
+/*
+PaymentsPostConsentsInternalServerError describes a response with status code 500, with default header values.
 
 Ocorreu um erro no gateway da API ou no microsservio
 */
@@ -578,9 +889,39 @@ type PaymentsPostConsentsInternalServerError struct {
 	Payload *models.ResponseError
 }
 
+// IsSuccess returns true when this payments post consents internal server error response has a 2xx status code
+func (o *PaymentsPostConsentsInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this payments post consents internal server error response has a 3xx status code
+func (o *PaymentsPostConsentsInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this payments post consents internal server error response has a 4xx status code
+func (o *PaymentsPostConsentsInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this payments post consents internal server error response has a 5xx status code
+func (o *PaymentsPostConsentsInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this payments post consents internal server error response a status code equal to that given
+func (o *PaymentsPostConsentsInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *PaymentsPostConsentsInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *PaymentsPostConsentsInternalServerError) String() string {
+	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *PaymentsPostConsentsInternalServerError) GetPayload() *models.ResponseError {
 	return o.Payload
 }
@@ -611,7 +952,8 @@ func NewPaymentsPostConsentsDefault(code int) *PaymentsPostConsentsDefault {
 	}
 }
 
-/* PaymentsPostConsentsDefault describes a response with status code -1, with default header values.
+/*
+PaymentsPostConsentsDefault describes a response with status code -1, with default header values.
 
 Erro inesperado.
 */
@@ -626,9 +968,39 @@ func (o *PaymentsPostConsentsDefault) Code() int {
 	return o._statusCode
 }
 
+// IsSuccess returns true when this payments post consents default response has a 2xx status code
+func (o *PaymentsPostConsentsDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this payments post consents default response has a 3xx status code
+func (o *PaymentsPostConsentsDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this payments post consents default response has a 4xx status code
+func (o *PaymentsPostConsentsDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this payments post consents default response has a 5xx status code
+func (o *PaymentsPostConsentsDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this payments post consents default response a status code equal to that given
+func (o *PaymentsPostConsentsDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 func (o *PaymentsPostConsentsDefault) Error() string {
 	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsents default  %+v", o._statusCode, o.Payload)
 }
+
+func (o *PaymentsPostConsentsDefault) String() string {
+	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsents default  %+v", o._statusCode, o.Payload)
+}
+
 func (o *PaymentsPostConsentsDefault) GetPayload() *models.ResponseError {
 	return o.Payload
 }

@@ -89,7 +89,8 @@ func NewGetInternationalStandingOrderConsentsConsentIDOK() *GetInternationalStan
 	return &GetInternationalStandingOrderConsentsConsentIDOK{}
 }
 
-/* GetInternationalStandingOrderConsentsConsentIDOK describes a response with status code 200, with default header values.
+/*
+GetInternationalStandingOrderConsentsConsentIDOK describes a response with status code 200, with default header values.
 
 International Standing Order Consents Read
 */
@@ -107,9 +108,39 @@ type GetInternationalStandingOrderConsentsConsentIDOK struct {
 	Payload *models.OBWriteInternationalStandingOrderConsentResponse7
 }
 
+// IsSuccess returns true when this get international standing order consents consent Id o k response has a 2xx status code
+func (o *GetInternationalStandingOrderConsentsConsentIDOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get international standing order consents consent Id o k response has a 3xx status code
+func (o *GetInternationalStandingOrderConsentsConsentIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get international standing order consents consent Id o k response has a 4xx status code
+func (o *GetInternationalStandingOrderConsentsConsentIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get international standing order consents consent Id o k response has a 5xx status code
+func (o *GetInternationalStandingOrderConsentsConsentIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get international standing order consents consent Id o k response a status code equal to that given
+func (o *GetInternationalStandingOrderConsentsConsentIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetInternationalStandingOrderConsentsConsentIDOK) Error() string {
 	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdOK  %+v", 200, o.Payload)
 }
+
+func (o *GetInternationalStandingOrderConsentsConsentIDOK) String() string {
+	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdOK  %+v", 200, o.Payload)
+}
+
 func (o *GetInternationalStandingOrderConsentsConsentIDOK) GetPayload() *models.OBWriteInternationalStandingOrderConsentResponse7 {
 	return o.Payload
 }
@@ -145,7 +176,8 @@ func NewGetInternationalStandingOrderConsentsConsentIDBadRequest() *GetInternati
 	return &GetInternationalStandingOrderConsentsConsentIDBadRequest{}
 }
 
-/* GetInternationalStandingOrderConsentsConsentIDBadRequest describes a response with status code 400, with default header values.
+/*
+GetInternationalStandingOrderConsentsConsentIDBadRequest describes a response with status code 400, with default header values.
 
 Bad request
 */
@@ -163,9 +195,39 @@ type GetInternationalStandingOrderConsentsConsentIDBadRequest struct {
 	Payload *models.OBErrorResponse1
 }
 
+// IsSuccess returns true when this get international standing order consents consent Id bad request response has a 2xx status code
+func (o *GetInternationalStandingOrderConsentsConsentIDBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get international standing order consents consent Id bad request response has a 3xx status code
+func (o *GetInternationalStandingOrderConsentsConsentIDBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get international standing order consents consent Id bad request response has a 4xx status code
+func (o *GetInternationalStandingOrderConsentsConsentIDBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get international standing order consents consent Id bad request response has a 5xx status code
+func (o *GetInternationalStandingOrderConsentsConsentIDBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get international standing order consents consent Id bad request response a status code equal to that given
+func (o *GetInternationalStandingOrderConsentsConsentIDBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *GetInternationalStandingOrderConsentsConsentIDBadRequest) Error() string {
 	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *GetInternationalStandingOrderConsentsConsentIDBadRequest) String() string {
+	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *GetInternationalStandingOrderConsentsConsentIDBadRequest) GetPayload() *models.OBErrorResponse1 {
 	return o.Payload
 }
@@ -201,7 +263,8 @@ func NewGetInternationalStandingOrderConsentsConsentIDUnauthorized() *GetInterna
 	return &GetInternationalStandingOrderConsentsConsentIDUnauthorized{}
 }
 
-/* GetInternationalStandingOrderConsentsConsentIDUnauthorized describes a response with status code 401, with default header values.
+/*
+GetInternationalStandingOrderConsentsConsentIDUnauthorized describes a response with status code 401, with default header values.
 
 Unauthorized
 */
@@ -212,7 +275,36 @@ type GetInternationalStandingOrderConsentsConsentIDUnauthorized struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this get international standing order consents consent Id unauthorized response has a 2xx status code
+func (o *GetInternationalStandingOrderConsentsConsentIDUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get international standing order consents consent Id unauthorized response has a 3xx status code
+func (o *GetInternationalStandingOrderConsentsConsentIDUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get international standing order consents consent Id unauthorized response has a 4xx status code
+func (o *GetInternationalStandingOrderConsentsConsentIDUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get international standing order consents consent Id unauthorized response has a 5xx status code
+func (o *GetInternationalStandingOrderConsentsConsentIDUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get international standing order consents consent Id unauthorized response a status code equal to that given
+func (o *GetInternationalStandingOrderConsentsConsentIDUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *GetInternationalStandingOrderConsentsConsentIDUnauthorized) Error() string {
+	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdUnauthorized ", 401)
+}
+
+func (o *GetInternationalStandingOrderConsentsConsentIDUnauthorized) String() string {
 	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdUnauthorized ", 401)
 }
 
@@ -233,7 +325,8 @@ func NewGetInternationalStandingOrderConsentsConsentIDForbidden() *GetInternatio
 	return &GetInternationalStandingOrderConsentsConsentIDForbidden{}
 }
 
-/* GetInternationalStandingOrderConsentsConsentIDForbidden describes a response with status code 403, with default header values.
+/*
+GetInternationalStandingOrderConsentsConsentIDForbidden describes a response with status code 403, with default header values.
 
 Forbidden
 */
@@ -251,9 +344,39 @@ type GetInternationalStandingOrderConsentsConsentIDForbidden struct {
 	Payload *models.OBErrorResponse1
 }
 
+// IsSuccess returns true when this get international standing order consents consent Id forbidden response has a 2xx status code
+func (o *GetInternationalStandingOrderConsentsConsentIDForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get international standing order consents consent Id forbidden response has a 3xx status code
+func (o *GetInternationalStandingOrderConsentsConsentIDForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get international standing order consents consent Id forbidden response has a 4xx status code
+func (o *GetInternationalStandingOrderConsentsConsentIDForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get international standing order consents consent Id forbidden response has a 5xx status code
+func (o *GetInternationalStandingOrderConsentsConsentIDForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get international standing order consents consent Id forbidden response a status code equal to that given
+func (o *GetInternationalStandingOrderConsentsConsentIDForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetInternationalStandingOrderConsentsConsentIDForbidden) Error() string {
 	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetInternationalStandingOrderConsentsConsentIDForbidden) String() string {
+	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetInternationalStandingOrderConsentsConsentIDForbidden) GetPayload() *models.OBErrorResponse1 {
 	return o.Payload
 }
@@ -289,7 +412,8 @@ func NewGetInternationalStandingOrderConsentsConsentIDNotFound() *GetInternation
 	return &GetInternationalStandingOrderConsentsConsentIDNotFound{}
 }
 
-/* GetInternationalStandingOrderConsentsConsentIDNotFound describes a response with status code 404, with default header values.
+/*
+GetInternationalStandingOrderConsentsConsentIDNotFound describes a response with status code 404, with default header values.
 
 Not found
 */
@@ -300,7 +424,36 @@ type GetInternationalStandingOrderConsentsConsentIDNotFound struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this get international standing order consents consent Id not found response has a 2xx status code
+func (o *GetInternationalStandingOrderConsentsConsentIDNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get international standing order consents consent Id not found response has a 3xx status code
+func (o *GetInternationalStandingOrderConsentsConsentIDNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get international standing order consents consent Id not found response has a 4xx status code
+func (o *GetInternationalStandingOrderConsentsConsentIDNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get international standing order consents consent Id not found response has a 5xx status code
+func (o *GetInternationalStandingOrderConsentsConsentIDNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get international standing order consents consent Id not found response a status code equal to that given
+func (o *GetInternationalStandingOrderConsentsConsentIDNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *GetInternationalStandingOrderConsentsConsentIDNotFound) Error() string {
+	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdNotFound ", 404)
+}
+
+func (o *GetInternationalStandingOrderConsentsConsentIDNotFound) String() string {
 	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdNotFound ", 404)
 }
 
@@ -321,7 +474,8 @@ func NewGetInternationalStandingOrderConsentsConsentIDMethodNotAllowed() *GetInt
 	return &GetInternationalStandingOrderConsentsConsentIDMethodNotAllowed{}
 }
 
-/* GetInternationalStandingOrderConsentsConsentIDMethodNotAllowed describes a response with status code 405, with default header values.
+/*
+GetInternationalStandingOrderConsentsConsentIDMethodNotAllowed describes a response with status code 405, with default header values.
 
 Method Not Allowed
 */
@@ -332,7 +486,36 @@ type GetInternationalStandingOrderConsentsConsentIDMethodNotAllowed struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this get international standing order consents consent Id method not allowed response has a 2xx status code
+func (o *GetInternationalStandingOrderConsentsConsentIDMethodNotAllowed) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get international standing order consents consent Id method not allowed response has a 3xx status code
+func (o *GetInternationalStandingOrderConsentsConsentIDMethodNotAllowed) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get international standing order consents consent Id method not allowed response has a 4xx status code
+func (o *GetInternationalStandingOrderConsentsConsentIDMethodNotAllowed) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get international standing order consents consent Id method not allowed response has a 5xx status code
+func (o *GetInternationalStandingOrderConsentsConsentIDMethodNotAllowed) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get international standing order consents consent Id method not allowed response a status code equal to that given
+func (o *GetInternationalStandingOrderConsentsConsentIDMethodNotAllowed) IsCode(code int) bool {
+	return code == 405
+}
+
 func (o *GetInternationalStandingOrderConsentsConsentIDMethodNotAllowed) Error() string {
+	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdMethodNotAllowed ", 405)
+}
+
+func (o *GetInternationalStandingOrderConsentsConsentIDMethodNotAllowed) String() string {
 	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdMethodNotAllowed ", 405)
 }
 
@@ -353,7 +536,8 @@ func NewGetInternationalStandingOrderConsentsConsentIDNotAcceptable() *GetIntern
 	return &GetInternationalStandingOrderConsentsConsentIDNotAcceptable{}
 }
 
-/* GetInternationalStandingOrderConsentsConsentIDNotAcceptable describes a response with status code 406, with default header values.
+/*
+GetInternationalStandingOrderConsentsConsentIDNotAcceptable describes a response with status code 406, with default header values.
 
 Not Acceptable
 */
@@ -364,7 +548,36 @@ type GetInternationalStandingOrderConsentsConsentIDNotAcceptable struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this get international standing order consents consent Id not acceptable response has a 2xx status code
+func (o *GetInternationalStandingOrderConsentsConsentIDNotAcceptable) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get international standing order consents consent Id not acceptable response has a 3xx status code
+func (o *GetInternationalStandingOrderConsentsConsentIDNotAcceptable) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get international standing order consents consent Id not acceptable response has a 4xx status code
+func (o *GetInternationalStandingOrderConsentsConsentIDNotAcceptable) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get international standing order consents consent Id not acceptable response has a 5xx status code
+func (o *GetInternationalStandingOrderConsentsConsentIDNotAcceptable) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get international standing order consents consent Id not acceptable response a status code equal to that given
+func (o *GetInternationalStandingOrderConsentsConsentIDNotAcceptable) IsCode(code int) bool {
+	return code == 406
+}
+
 func (o *GetInternationalStandingOrderConsentsConsentIDNotAcceptable) Error() string {
+	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdNotAcceptable ", 406)
+}
+
+func (o *GetInternationalStandingOrderConsentsConsentIDNotAcceptable) String() string {
 	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdNotAcceptable ", 406)
 }
 
@@ -385,7 +598,8 @@ func NewGetInternationalStandingOrderConsentsConsentIDTooManyRequests() *GetInte
 	return &GetInternationalStandingOrderConsentsConsentIDTooManyRequests{}
 }
 
-/* GetInternationalStandingOrderConsentsConsentIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetInternationalStandingOrderConsentsConsentIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -400,7 +614,36 @@ type GetInternationalStandingOrderConsentsConsentIDTooManyRequests struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this get international standing order consents consent Id too many requests response has a 2xx status code
+func (o *GetInternationalStandingOrderConsentsConsentIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get international standing order consents consent Id too many requests response has a 3xx status code
+func (o *GetInternationalStandingOrderConsentsConsentIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get international standing order consents consent Id too many requests response has a 4xx status code
+func (o *GetInternationalStandingOrderConsentsConsentIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get international standing order consents consent Id too many requests response has a 5xx status code
+func (o *GetInternationalStandingOrderConsentsConsentIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get international standing order consents consent Id too many requests response a status code equal to that given
+func (o *GetInternationalStandingOrderConsentsConsentIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *GetInternationalStandingOrderConsentsConsentIDTooManyRequests) Error() string {
+	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdTooManyRequests ", 429)
+}
+
+func (o *GetInternationalStandingOrderConsentsConsentIDTooManyRequests) String() string {
 	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdTooManyRequests ", 429)
 }
 
@@ -432,7 +675,8 @@ func NewGetInternationalStandingOrderConsentsConsentIDInternalServerError() *Get
 	return &GetInternationalStandingOrderConsentsConsentIDInternalServerError{}
 }
 
-/* GetInternationalStandingOrderConsentsConsentIDInternalServerError describes a response with status code 500, with default header values.
+/*
+GetInternationalStandingOrderConsentsConsentIDInternalServerError describes a response with status code 500, with default header values.
 
 Internal Server Error
 */
@@ -450,9 +694,39 @@ type GetInternationalStandingOrderConsentsConsentIDInternalServerError struct {
 	Payload *models.OBErrorResponse1
 }
 
+// IsSuccess returns true when this get international standing order consents consent Id internal server error response has a 2xx status code
+func (o *GetInternationalStandingOrderConsentsConsentIDInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get international standing order consents consent Id internal server error response has a 3xx status code
+func (o *GetInternationalStandingOrderConsentsConsentIDInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get international standing order consents consent Id internal server error response has a 4xx status code
+func (o *GetInternationalStandingOrderConsentsConsentIDInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get international standing order consents consent Id internal server error response has a 5xx status code
+func (o *GetInternationalStandingOrderConsentsConsentIDInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this get international standing order consents consent Id internal server error response a status code equal to that given
+func (o *GetInternationalStandingOrderConsentsConsentIDInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *GetInternationalStandingOrderConsentsConsentIDInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *GetInternationalStandingOrderConsentsConsentIDInternalServerError) String() string {
+	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *GetInternationalStandingOrderConsentsConsentIDInternalServerError) GetPayload() *models.OBErrorResponse1 {
 	return o.Payload
 }

@@ -38,7 +38,7 @@ type ClientService interface {
 }
 
 /*
-  CreateDomesticStandingOrderConsents creates domestic standing order consents
+CreateDomesticStandingOrderConsents creates domestic standing order consents
 */
 func (a *Client) CreateDomesticStandingOrderConsents(params *CreateDomesticStandingOrderConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateDomesticStandingOrderConsentsCreated, error) {
 	// TODO: Validate the params before sending
@@ -77,7 +77,7 @@ func (a *Client) CreateDomesticStandingOrderConsents(params *CreateDomesticStand
 }
 
 /*
-  GetDomesticStandingOrderConsentsConsentID gets domestic standing order consents
+GetDomesticStandingOrderConsentsConsentID gets domestic standing order consents
 */
 func (a *Client) GetDomesticStandingOrderConsentsConsentID(params *GetDomesticStandingOrderConsentsConsentIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDomesticStandingOrderConsentsConsentIDOK, error) {
 	// TODO: Validate the params before sending

@@ -18,32 +18,36 @@ import (
 //
 // Cdigos de erros previstos na criao da iniciao de pagamento:
 //
-//  SALDO_INSUFICIENTE  Esta conta no possui saldo suficiente para realizar o pagamento.
+//	SALDO_INSUFICIENTE  Esta conta no possui saldo suficiente para realizar o pagamento.
 //
-//  BENEFICIARIO_INCOMPATIVEL  O beneficirio informado no consentimento no  o mesmo do esperado pelo DICT.
+//	BENEFICIARIO_INCOMPATIVEL  O beneficirio informado no consentimento no  o mesmo do esperado pelo DICT.
 //
-//  VALOR_INCOMPATIVEL  O valor informado no consentimento no  o mesmo valor do informado no payload de pagamento.
+//	VALOR_INCOMPATIVEL  O valor informado no consentimento no  o mesmo valor do informado no payload de pagamento.
 //
-//  VALOR_ACIMA_LIMITE  O valor (ou quantidade de transaes) ultrapassa a faixa de limite parametrizada na detentora para permitir a realizao de transaes pelo cliente.
+//	VALOR_ACIMA_LIMITE  O valor (ou quantidade de transaes) ultrapassa a faixa de limite parametrizada na detentora para permitir a realizao de transaes pelo cliente.
 //
-//  VALOR_INVALIDO  O valor enviado no  vlido para o QR Code informado.
+//	VALOR_INVALIDO  O valor enviado no  vlido para o QR Code informado.
 //
-//  COBRANCA_INVALIDA  Validao de expirao, validao de vencimento, Status Vlido.
+//	COBRANCA_INVALIDA  Validao de expirao, validao de vencimento, Status Vlido.
 //
-//  CONSENTIMENTO_INVALIDO  Consentimento invlido (status no  "authorised" ou est expirado).
+//	CONSENTIMENTO_INVALIDO  Consentimento invlido (status no  "authorised" ou est expirado).
 //
-//  JANELA_OPER_INVALIDA  Requisio est fora da janela de funcionamento.
+//	JANELA_OPER_INVALIDA  Requisio est fora da janela de funcionamento.
 //
-//  NAO_INFORMADO  No informada pela detentora de conta.
+//	NAO_INFORMADO  No informada pela detentora de conta.
 //
-//  PAGAMENTO_DIVERGENTE_DO_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento.
+//	PAGAMENTO_DIVERGENTE_DO_CONSENTIMENTO: Dados do pagamento divergentes dos dados do consentimento.
 //
 // swagger:model EnumErrorsCreatePayment
 type EnumErrorsCreatePayment string
 
 func NewEnumErrorsCreatePayment(value EnumErrorsCreatePayment) *EnumErrorsCreatePayment {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated EnumErrorsCreatePayment.
+func (m EnumErrorsCreatePayment) Pointer() *EnumErrorsCreatePayment {
+	return &m
 }
 
 const (

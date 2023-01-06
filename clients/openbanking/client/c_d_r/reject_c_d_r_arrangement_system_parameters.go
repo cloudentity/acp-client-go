@@ -67,7 +67,7 @@ type RejectCDRArrangementSystemParams struct {
 
 	     Reject Consent Request
 
-	Contains details why the request was rejected by the user.
+	To give more context on why the user rejected the request.
 	*/
 	RejectConsent *models.RejectCDRConsentRequest
 
@@ -75,7 +75,7 @@ type RejectCDRArrangementSystemParams struct {
 
 	     Login session identifier.
 
-	Cloudentity sends this identifier as the `login_id` query parameter when redirecting the user to the consent page.
+	Cloudentity passes the login session identifier with the `login_id` query parameter when redirecting a user to the consent page.
 	*/
 	Login string
 

@@ -20,8 +20,12 @@ import (
 type OBAddressTypeCode string
 
 func NewOBAddressTypeCode(value OBAddressTypeCode) *OBAddressTypeCode {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated OBAddressTypeCode.
+func (m OBAddressTypeCode) Pointer() *OBAddressTypeCode {
+	return &m
 }
 
 const (

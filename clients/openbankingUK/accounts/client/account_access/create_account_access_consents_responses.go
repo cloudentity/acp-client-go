@@ -89,7 +89,8 @@ func NewCreateAccountAccessConsentsCreated() *CreateAccountAccessConsentsCreated
 	return &CreateAccountAccessConsentsCreated{}
 }
 
-/* CreateAccountAccessConsentsCreated describes a response with status code 201, with default header values.
+/*
+CreateAccountAccessConsentsCreated describes a response with status code 201, with default header values.
 
 Account Access Consents Created
 */
@@ -102,9 +103,39 @@ type CreateAccountAccessConsentsCreated struct {
 	Payload *models.OBReadConsentResponse1
 }
 
+// IsSuccess returns true when this create account access consents created response has a 2xx status code
+func (o *CreateAccountAccessConsentsCreated) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this create account access consents created response has a 3xx status code
+func (o *CreateAccountAccessConsentsCreated) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create account access consents created response has a 4xx status code
+func (o *CreateAccountAccessConsentsCreated) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create account access consents created response has a 5xx status code
+func (o *CreateAccountAccessConsentsCreated) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create account access consents created response a status code equal to that given
+func (o *CreateAccountAccessConsentsCreated) IsCode(code int) bool {
+	return code == 201
+}
+
 func (o *CreateAccountAccessConsentsCreated) Error() string {
 	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsCreated  %+v", 201, o.Payload)
 }
+
+func (o *CreateAccountAccessConsentsCreated) String() string {
+	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsCreated  %+v", 201, o.Payload)
+}
+
 func (o *CreateAccountAccessConsentsCreated) GetPayload() *models.OBReadConsentResponse1 {
 	return o.Payload
 }
@@ -133,7 +164,8 @@ func NewCreateAccountAccessConsentsBadRequest() *CreateAccountAccessConsentsBadR
 	return &CreateAccountAccessConsentsBadRequest{}
 }
 
-/* CreateAccountAccessConsentsBadRequest describes a response with status code 400, with default header values.
+/*
+CreateAccountAccessConsentsBadRequest describes a response with status code 400, with default header values.
 
 Bad request
 */
@@ -146,9 +178,39 @@ type CreateAccountAccessConsentsBadRequest struct {
 	Payload *models.OBErrorResponse1
 }
 
+// IsSuccess returns true when this create account access consents bad request response has a 2xx status code
+func (o *CreateAccountAccessConsentsBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create account access consents bad request response has a 3xx status code
+func (o *CreateAccountAccessConsentsBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create account access consents bad request response has a 4xx status code
+func (o *CreateAccountAccessConsentsBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create account access consents bad request response has a 5xx status code
+func (o *CreateAccountAccessConsentsBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create account access consents bad request response a status code equal to that given
+func (o *CreateAccountAccessConsentsBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *CreateAccountAccessConsentsBadRequest) Error() string {
 	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *CreateAccountAccessConsentsBadRequest) String() string {
+	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *CreateAccountAccessConsentsBadRequest) GetPayload() *models.OBErrorResponse1 {
 	return o.Payload
 }
@@ -177,7 +239,8 @@ func NewCreateAccountAccessConsentsUnauthorized() *CreateAccountAccessConsentsUn
 	return &CreateAccountAccessConsentsUnauthorized{}
 }
 
-/* CreateAccountAccessConsentsUnauthorized describes a response with status code 401, with default header values.
+/*
+CreateAccountAccessConsentsUnauthorized describes a response with status code 401, with default header values.
 
 Unauthorized
 */
@@ -188,7 +251,36 @@ type CreateAccountAccessConsentsUnauthorized struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this create account access consents unauthorized response has a 2xx status code
+func (o *CreateAccountAccessConsentsUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create account access consents unauthorized response has a 3xx status code
+func (o *CreateAccountAccessConsentsUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create account access consents unauthorized response has a 4xx status code
+func (o *CreateAccountAccessConsentsUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create account access consents unauthorized response has a 5xx status code
+func (o *CreateAccountAccessConsentsUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create account access consents unauthorized response a status code equal to that given
+func (o *CreateAccountAccessConsentsUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *CreateAccountAccessConsentsUnauthorized) Error() string {
+	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsUnauthorized ", 401)
+}
+
+func (o *CreateAccountAccessConsentsUnauthorized) String() string {
 	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsUnauthorized ", 401)
 }
 
@@ -209,7 +301,8 @@ func NewCreateAccountAccessConsentsForbidden() *CreateAccountAccessConsentsForbi
 	return &CreateAccountAccessConsentsForbidden{}
 }
 
-/* CreateAccountAccessConsentsForbidden describes a response with status code 403, with default header values.
+/*
+CreateAccountAccessConsentsForbidden describes a response with status code 403, with default header values.
 
 Forbidden
 */
@@ -222,9 +315,39 @@ type CreateAccountAccessConsentsForbidden struct {
 	Payload *models.OBErrorResponse1
 }
 
+// IsSuccess returns true when this create account access consents forbidden response has a 2xx status code
+func (o *CreateAccountAccessConsentsForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create account access consents forbidden response has a 3xx status code
+func (o *CreateAccountAccessConsentsForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create account access consents forbidden response has a 4xx status code
+func (o *CreateAccountAccessConsentsForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create account access consents forbidden response has a 5xx status code
+func (o *CreateAccountAccessConsentsForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create account access consents forbidden response a status code equal to that given
+func (o *CreateAccountAccessConsentsForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *CreateAccountAccessConsentsForbidden) Error() string {
 	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsForbidden  %+v", 403, o.Payload)
 }
+
+func (o *CreateAccountAccessConsentsForbidden) String() string {
+	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsForbidden  %+v", 403, o.Payload)
+}
+
 func (o *CreateAccountAccessConsentsForbidden) GetPayload() *models.OBErrorResponse1 {
 	return o.Payload
 }
@@ -253,7 +376,8 @@ func NewCreateAccountAccessConsentsMethodNotAllowed() *CreateAccountAccessConsen
 	return &CreateAccountAccessConsentsMethodNotAllowed{}
 }
 
-/* CreateAccountAccessConsentsMethodNotAllowed describes a response with status code 405, with default header values.
+/*
+CreateAccountAccessConsentsMethodNotAllowed describes a response with status code 405, with default header values.
 
 Method Not Allowed
 */
@@ -264,7 +388,36 @@ type CreateAccountAccessConsentsMethodNotAllowed struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this create account access consents method not allowed response has a 2xx status code
+func (o *CreateAccountAccessConsentsMethodNotAllowed) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create account access consents method not allowed response has a 3xx status code
+func (o *CreateAccountAccessConsentsMethodNotAllowed) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create account access consents method not allowed response has a 4xx status code
+func (o *CreateAccountAccessConsentsMethodNotAllowed) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create account access consents method not allowed response has a 5xx status code
+func (o *CreateAccountAccessConsentsMethodNotAllowed) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create account access consents method not allowed response a status code equal to that given
+func (o *CreateAccountAccessConsentsMethodNotAllowed) IsCode(code int) bool {
+	return code == 405
+}
+
 func (o *CreateAccountAccessConsentsMethodNotAllowed) Error() string {
+	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsMethodNotAllowed ", 405)
+}
+
+func (o *CreateAccountAccessConsentsMethodNotAllowed) String() string {
 	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsMethodNotAllowed ", 405)
 }
 
@@ -285,7 +438,8 @@ func NewCreateAccountAccessConsentsNotAcceptable() *CreateAccountAccessConsentsN
 	return &CreateAccountAccessConsentsNotAcceptable{}
 }
 
-/* CreateAccountAccessConsentsNotAcceptable describes a response with status code 406, with default header values.
+/*
+CreateAccountAccessConsentsNotAcceptable describes a response with status code 406, with default header values.
 
 Not Acceptable
 */
@@ -296,7 +450,36 @@ type CreateAccountAccessConsentsNotAcceptable struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this create account access consents not acceptable response has a 2xx status code
+func (o *CreateAccountAccessConsentsNotAcceptable) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create account access consents not acceptable response has a 3xx status code
+func (o *CreateAccountAccessConsentsNotAcceptable) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create account access consents not acceptable response has a 4xx status code
+func (o *CreateAccountAccessConsentsNotAcceptable) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create account access consents not acceptable response has a 5xx status code
+func (o *CreateAccountAccessConsentsNotAcceptable) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create account access consents not acceptable response a status code equal to that given
+func (o *CreateAccountAccessConsentsNotAcceptable) IsCode(code int) bool {
+	return code == 406
+}
+
 func (o *CreateAccountAccessConsentsNotAcceptable) Error() string {
+	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsNotAcceptable ", 406)
+}
+
+func (o *CreateAccountAccessConsentsNotAcceptable) String() string {
 	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsNotAcceptable ", 406)
 }
 
@@ -317,7 +500,8 @@ func NewCreateAccountAccessConsentsUnsupportedMediaType() *CreateAccountAccessCo
 	return &CreateAccountAccessConsentsUnsupportedMediaType{}
 }
 
-/* CreateAccountAccessConsentsUnsupportedMediaType describes a response with status code 415, with default header values.
+/*
+CreateAccountAccessConsentsUnsupportedMediaType describes a response with status code 415, with default header values.
 
 Unsupported Media Type
 */
@@ -328,7 +512,36 @@ type CreateAccountAccessConsentsUnsupportedMediaType struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this create account access consents unsupported media type response has a 2xx status code
+func (o *CreateAccountAccessConsentsUnsupportedMediaType) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create account access consents unsupported media type response has a 3xx status code
+func (o *CreateAccountAccessConsentsUnsupportedMediaType) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create account access consents unsupported media type response has a 4xx status code
+func (o *CreateAccountAccessConsentsUnsupportedMediaType) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create account access consents unsupported media type response has a 5xx status code
+func (o *CreateAccountAccessConsentsUnsupportedMediaType) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create account access consents unsupported media type response a status code equal to that given
+func (o *CreateAccountAccessConsentsUnsupportedMediaType) IsCode(code int) bool {
+	return code == 415
+}
+
 func (o *CreateAccountAccessConsentsUnsupportedMediaType) Error() string {
+	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsUnsupportedMediaType ", 415)
+}
+
+func (o *CreateAccountAccessConsentsUnsupportedMediaType) String() string {
 	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsUnsupportedMediaType ", 415)
 }
 
@@ -349,7 +562,8 @@ func NewCreateAccountAccessConsentsTooManyRequests() *CreateAccountAccessConsent
 	return &CreateAccountAccessConsentsTooManyRequests{}
 }
 
-/* CreateAccountAccessConsentsTooManyRequests describes a response with status code 429, with default header values.
+/*
+CreateAccountAccessConsentsTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -364,7 +578,36 @@ type CreateAccountAccessConsentsTooManyRequests struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this create account access consents too many requests response has a 2xx status code
+func (o *CreateAccountAccessConsentsTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create account access consents too many requests response has a 3xx status code
+func (o *CreateAccountAccessConsentsTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create account access consents too many requests response has a 4xx status code
+func (o *CreateAccountAccessConsentsTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create account access consents too many requests response has a 5xx status code
+func (o *CreateAccountAccessConsentsTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create account access consents too many requests response a status code equal to that given
+func (o *CreateAccountAccessConsentsTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *CreateAccountAccessConsentsTooManyRequests) Error() string {
+	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsTooManyRequests ", 429)
+}
+
+func (o *CreateAccountAccessConsentsTooManyRequests) String() string {
 	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsTooManyRequests ", 429)
 }
 
@@ -396,7 +639,8 @@ func NewCreateAccountAccessConsentsInternalServerError() *CreateAccountAccessCon
 	return &CreateAccountAccessConsentsInternalServerError{}
 }
 
-/* CreateAccountAccessConsentsInternalServerError describes a response with status code 500, with default header values.
+/*
+CreateAccountAccessConsentsInternalServerError describes a response with status code 500, with default header values.
 
 Internal Server Error
 */
@@ -409,9 +653,39 @@ type CreateAccountAccessConsentsInternalServerError struct {
 	Payload *models.OBErrorResponse1
 }
 
+// IsSuccess returns true when this create account access consents internal server error response has a 2xx status code
+func (o *CreateAccountAccessConsentsInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create account access consents internal server error response has a 3xx status code
+func (o *CreateAccountAccessConsentsInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create account access consents internal server error response has a 4xx status code
+func (o *CreateAccountAccessConsentsInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create account access consents internal server error response has a 5xx status code
+func (o *CreateAccountAccessConsentsInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this create account access consents internal server error response a status code equal to that given
+func (o *CreateAccountAccessConsentsInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *CreateAccountAccessConsentsInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *CreateAccountAccessConsentsInternalServerError) String() string {
+	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *CreateAccountAccessConsentsInternalServerError) GetPayload() *models.OBErrorResponse1 {
 	return o.Payload
 }

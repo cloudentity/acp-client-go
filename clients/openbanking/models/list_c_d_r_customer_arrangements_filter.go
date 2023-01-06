@@ -49,7 +49,7 @@ type ListCDRCustomerArrangementsFilter struct {
 	// Sort
 	Sort string `json:"sort,omitempty"`
 
-	// Optional status
+	// Optional list of statuses
 	// Status
 	Status []string `json:"status"`
 

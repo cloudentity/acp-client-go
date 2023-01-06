@@ -20,8 +20,12 @@ import (
 type Permission1 string
 
 func NewPermission1(value Permission1) *Permission1 {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated Permission1.
+func (m Permission1) Pointer() *Permission1 {
+	return &m
 }
 
 const (

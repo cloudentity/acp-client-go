@@ -54,10 +54,12 @@ func NewCreateInternationalPaymentConsentsParamsWithHTTPClient(client *http.Clie
 	}
 }
 
-/* CreateInternationalPaymentConsentsParams contains all the parameters to send to the API endpoint
-   for the create international payment consents operation.
+/*
+CreateInternationalPaymentConsentsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the create international payment consents operation.
+
+	Typically these are written to a http.Request.
 */
 type CreateInternationalPaymentConsentsParams struct {
 

@@ -89,7 +89,8 @@ func NewGetFilePaymentConsentsConsentIDOK() *GetFilePaymentConsentsConsentIDOK {
 	return &GetFilePaymentConsentsConsentIDOK{}
 }
 
-/* GetFilePaymentConsentsConsentIDOK describes a response with status code 200, with default header values.
+/*
+GetFilePaymentConsentsConsentIDOK describes a response with status code 200, with default header values.
 
 File Payment Consents Read
 */
@@ -107,9 +108,39 @@ type GetFilePaymentConsentsConsentIDOK struct {
 	Payload *models.OBWriteFileConsentResponse4
 }
 
+// IsSuccess returns true when this get file payment consents consent Id o k response has a 2xx status code
+func (o *GetFilePaymentConsentsConsentIDOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get file payment consents consent Id o k response has a 3xx status code
+func (o *GetFilePaymentConsentsConsentIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get file payment consents consent Id o k response has a 4xx status code
+func (o *GetFilePaymentConsentsConsentIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get file payment consents consent Id o k response has a 5xx status code
+func (o *GetFilePaymentConsentsConsentIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get file payment consents consent Id o k response a status code equal to that given
+func (o *GetFilePaymentConsentsConsentIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetFilePaymentConsentsConsentIDOK) Error() string {
 	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdOK  %+v", 200, o.Payload)
 }
+
+func (o *GetFilePaymentConsentsConsentIDOK) String() string {
+	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdOK  %+v", 200, o.Payload)
+}
+
 func (o *GetFilePaymentConsentsConsentIDOK) GetPayload() *models.OBWriteFileConsentResponse4 {
 	return o.Payload
 }
@@ -145,7 +176,8 @@ func NewGetFilePaymentConsentsConsentIDBadRequest() *GetFilePaymentConsentsConse
 	return &GetFilePaymentConsentsConsentIDBadRequest{}
 }
 
-/* GetFilePaymentConsentsConsentIDBadRequest describes a response with status code 400, with default header values.
+/*
+GetFilePaymentConsentsConsentIDBadRequest describes a response with status code 400, with default header values.
 
 Bad request
 */
@@ -163,9 +195,39 @@ type GetFilePaymentConsentsConsentIDBadRequest struct {
 	Payload *models.OBErrorResponse1
 }
 
+// IsSuccess returns true when this get file payment consents consent Id bad request response has a 2xx status code
+func (o *GetFilePaymentConsentsConsentIDBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get file payment consents consent Id bad request response has a 3xx status code
+func (o *GetFilePaymentConsentsConsentIDBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get file payment consents consent Id bad request response has a 4xx status code
+func (o *GetFilePaymentConsentsConsentIDBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get file payment consents consent Id bad request response has a 5xx status code
+func (o *GetFilePaymentConsentsConsentIDBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get file payment consents consent Id bad request response a status code equal to that given
+func (o *GetFilePaymentConsentsConsentIDBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *GetFilePaymentConsentsConsentIDBadRequest) Error() string {
 	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *GetFilePaymentConsentsConsentIDBadRequest) String() string {
+	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *GetFilePaymentConsentsConsentIDBadRequest) GetPayload() *models.OBErrorResponse1 {
 	return o.Payload
 }
@@ -201,7 +263,8 @@ func NewGetFilePaymentConsentsConsentIDUnauthorized() *GetFilePaymentConsentsCon
 	return &GetFilePaymentConsentsConsentIDUnauthorized{}
 }
 
-/* GetFilePaymentConsentsConsentIDUnauthorized describes a response with status code 401, with default header values.
+/*
+GetFilePaymentConsentsConsentIDUnauthorized describes a response with status code 401, with default header values.
 
 Unauthorized
 */
@@ -212,7 +275,36 @@ type GetFilePaymentConsentsConsentIDUnauthorized struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this get file payment consents consent Id unauthorized response has a 2xx status code
+func (o *GetFilePaymentConsentsConsentIDUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get file payment consents consent Id unauthorized response has a 3xx status code
+func (o *GetFilePaymentConsentsConsentIDUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get file payment consents consent Id unauthorized response has a 4xx status code
+func (o *GetFilePaymentConsentsConsentIDUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get file payment consents consent Id unauthorized response has a 5xx status code
+func (o *GetFilePaymentConsentsConsentIDUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get file payment consents consent Id unauthorized response a status code equal to that given
+func (o *GetFilePaymentConsentsConsentIDUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *GetFilePaymentConsentsConsentIDUnauthorized) Error() string {
+	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdUnauthorized ", 401)
+}
+
+func (o *GetFilePaymentConsentsConsentIDUnauthorized) String() string {
 	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdUnauthorized ", 401)
 }
 
@@ -233,7 +325,8 @@ func NewGetFilePaymentConsentsConsentIDForbidden() *GetFilePaymentConsentsConsen
 	return &GetFilePaymentConsentsConsentIDForbidden{}
 }
 
-/* GetFilePaymentConsentsConsentIDForbidden describes a response with status code 403, with default header values.
+/*
+GetFilePaymentConsentsConsentIDForbidden describes a response with status code 403, with default header values.
 
 Forbidden
 */
@@ -251,9 +344,39 @@ type GetFilePaymentConsentsConsentIDForbidden struct {
 	Payload *models.OBErrorResponse1
 }
 
+// IsSuccess returns true when this get file payment consents consent Id forbidden response has a 2xx status code
+func (o *GetFilePaymentConsentsConsentIDForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get file payment consents consent Id forbidden response has a 3xx status code
+func (o *GetFilePaymentConsentsConsentIDForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get file payment consents consent Id forbidden response has a 4xx status code
+func (o *GetFilePaymentConsentsConsentIDForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get file payment consents consent Id forbidden response has a 5xx status code
+func (o *GetFilePaymentConsentsConsentIDForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get file payment consents consent Id forbidden response a status code equal to that given
+func (o *GetFilePaymentConsentsConsentIDForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetFilePaymentConsentsConsentIDForbidden) Error() string {
 	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetFilePaymentConsentsConsentIDForbidden) String() string {
+	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetFilePaymentConsentsConsentIDForbidden) GetPayload() *models.OBErrorResponse1 {
 	return o.Payload
 }
@@ -289,7 +412,8 @@ func NewGetFilePaymentConsentsConsentIDNotFound() *GetFilePaymentConsentsConsent
 	return &GetFilePaymentConsentsConsentIDNotFound{}
 }
 
-/* GetFilePaymentConsentsConsentIDNotFound describes a response with status code 404, with default header values.
+/*
+GetFilePaymentConsentsConsentIDNotFound describes a response with status code 404, with default header values.
 
 Not found
 */
@@ -300,7 +424,36 @@ type GetFilePaymentConsentsConsentIDNotFound struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this get file payment consents consent Id not found response has a 2xx status code
+func (o *GetFilePaymentConsentsConsentIDNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get file payment consents consent Id not found response has a 3xx status code
+func (o *GetFilePaymentConsentsConsentIDNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get file payment consents consent Id not found response has a 4xx status code
+func (o *GetFilePaymentConsentsConsentIDNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get file payment consents consent Id not found response has a 5xx status code
+func (o *GetFilePaymentConsentsConsentIDNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get file payment consents consent Id not found response a status code equal to that given
+func (o *GetFilePaymentConsentsConsentIDNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *GetFilePaymentConsentsConsentIDNotFound) Error() string {
+	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdNotFound ", 404)
+}
+
+func (o *GetFilePaymentConsentsConsentIDNotFound) String() string {
 	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdNotFound ", 404)
 }
 
@@ -321,7 +474,8 @@ func NewGetFilePaymentConsentsConsentIDMethodNotAllowed() *GetFilePaymentConsent
 	return &GetFilePaymentConsentsConsentIDMethodNotAllowed{}
 }
 
-/* GetFilePaymentConsentsConsentIDMethodNotAllowed describes a response with status code 405, with default header values.
+/*
+GetFilePaymentConsentsConsentIDMethodNotAllowed describes a response with status code 405, with default header values.
 
 Method Not Allowed
 */
@@ -332,7 +486,36 @@ type GetFilePaymentConsentsConsentIDMethodNotAllowed struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this get file payment consents consent Id method not allowed response has a 2xx status code
+func (o *GetFilePaymentConsentsConsentIDMethodNotAllowed) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get file payment consents consent Id method not allowed response has a 3xx status code
+func (o *GetFilePaymentConsentsConsentIDMethodNotAllowed) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get file payment consents consent Id method not allowed response has a 4xx status code
+func (o *GetFilePaymentConsentsConsentIDMethodNotAllowed) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get file payment consents consent Id method not allowed response has a 5xx status code
+func (o *GetFilePaymentConsentsConsentIDMethodNotAllowed) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get file payment consents consent Id method not allowed response a status code equal to that given
+func (o *GetFilePaymentConsentsConsentIDMethodNotAllowed) IsCode(code int) bool {
+	return code == 405
+}
+
 func (o *GetFilePaymentConsentsConsentIDMethodNotAllowed) Error() string {
+	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdMethodNotAllowed ", 405)
+}
+
+func (o *GetFilePaymentConsentsConsentIDMethodNotAllowed) String() string {
 	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdMethodNotAllowed ", 405)
 }
 
@@ -353,7 +536,8 @@ func NewGetFilePaymentConsentsConsentIDNotAcceptable() *GetFilePaymentConsentsCo
 	return &GetFilePaymentConsentsConsentIDNotAcceptable{}
 }
 
-/* GetFilePaymentConsentsConsentIDNotAcceptable describes a response with status code 406, with default header values.
+/*
+GetFilePaymentConsentsConsentIDNotAcceptable describes a response with status code 406, with default header values.
 
 Not Acceptable
 */
@@ -364,7 +548,36 @@ type GetFilePaymentConsentsConsentIDNotAcceptable struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this get file payment consents consent Id not acceptable response has a 2xx status code
+func (o *GetFilePaymentConsentsConsentIDNotAcceptable) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get file payment consents consent Id not acceptable response has a 3xx status code
+func (o *GetFilePaymentConsentsConsentIDNotAcceptable) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get file payment consents consent Id not acceptable response has a 4xx status code
+func (o *GetFilePaymentConsentsConsentIDNotAcceptable) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get file payment consents consent Id not acceptable response has a 5xx status code
+func (o *GetFilePaymentConsentsConsentIDNotAcceptable) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get file payment consents consent Id not acceptable response a status code equal to that given
+func (o *GetFilePaymentConsentsConsentIDNotAcceptable) IsCode(code int) bool {
+	return code == 406
+}
+
 func (o *GetFilePaymentConsentsConsentIDNotAcceptable) Error() string {
+	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdNotAcceptable ", 406)
+}
+
+func (o *GetFilePaymentConsentsConsentIDNotAcceptable) String() string {
 	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdNotAcceptable ", 406)
 }
 
@@ -385,7 +598,8 @@ func NewGetFilePaymentConsentsConsentIDTooManyRequests() *GetFilePaymentConsents
 	return &GetFilePaymentConsentsConsentIDTooManyRequests{}
 }
 
-/* GetFilePaymentConsentsConsentIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetFilePaymentConsentsConsentIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -400,7 +614,36 @@ type GetFilePaymentConsentsConsentIDTooManyRequests struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this get file payment consents consent Id too many requests response has a 2xx status code
+func (o *GetFilePaymentConsentsConsentIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get file payment consents consent Id too many requests response has a 3xx status code
+func (o *GetFilePaymentConsentsConsentIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get file payment consents consent Id too many requests response has a 4xx status code
+func (o *GetFilePaymentConsentsConsentIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get file payment consents consent Id too many requests response has a 5xx status code
+func (o *GetFilePaymentConsentsConsentIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get file payment consents consent Id too many requests response a status code equal to that given
+func (o *GetFilePaymentConsentsConsentIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *GetFilePaymentConsentsConsentIDTooManyRequests) Error() string {
+	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdTooManyRequests ", 429)
+}
+
+func (o *GetFilePaymentConsentsConsentIDTooManyRequests) String() string {
 	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdTooManyRequests ", 429)
 }
 
@@ -432,7 +675,8 @@ func NewGetFilePaymentConsentsConsentIDInternalServerError() *GetFilePaymentCons
 	return &GetFilePaymentConsentsConsentIDInternalServerError{}
 }
 
-/* GetFilePaymentConsentsConsentIDInternalServerError describes a response with status code 500, with default header values.
+/*
+GetFilePaymentConsentsConsentIDInternalServerError describes a response with status code 500, with default header values.
 
 Internal Server Error
 */
@@ -450,9 +694,39 @@ type GetFilePaymentConsentsConsentIDInternalServerError struct {
 	Payload *models.OBErrorResponse1
 }
 
+// IsSuccess returns true when this get file payment consents consent Id internal server error response has a 2xx status code
+func (o *GetFilePaymentConsentsConsentIDInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get file payment consents consent Id internal server error response has a 3xx status code
+func (o *GetFilePaymentConsentsConsentIDInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get file payment consents consent Id internal server error response has a 4xx status code
+func (o *GetFilePaymentConsentsConsentIDInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get file payment consents consent Id internal server error response has a 5xx status code
+func (o *GetFilePaymentConsentsConsentIDInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this get file payment consents consent Id internal server error response a status code equal to that given
+func (o *GetFilePaymentConsentsConsentIDInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *GetFilePaymentConsentsConsentIDInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *GetFilePaymentConsentsConsentIDInternalServerError) String() string {
+	return fmt.Sprintf("[GET /file-payment-consents/{ConsentId}][%d] getFilePaymentConsentsConsentIdInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *GetFilePaymentConsentsConsentIDInternalServerError) GetPayload() *models.OBErrorResponse1 {
 	return o.Payload
 }

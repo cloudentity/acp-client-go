@@ -38,7 +38,7 @@ type ClientService interface {
 }
 
 /*
-  CreateDomesticPaymentConsents creates domestic payment consents
+CreateDomesticPaymentConsents creates domestic payment consents
 */
 func (a *Client) CreateDomesticPaymentConsents(params *CreateDomesticPaymentConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateDomesticPaymentConsentsCreated, error) {
 	// TODO: Validate the params before sending
@@ -77,7 +77,7 @@ func (a *Client) CreateDomesticPaymentConsents(params *CreateDomesticPaymentCons
 }
 
 /*
-  GetDomesticPaymentConsentsConsentID gets domestic payment consents
+GetDomesticPaymentConsentsConsentID gets domestic payment consents
 */
 func (a *Client) GetDomesticPaymentConsentsConsentID(params *GetDomesticPaymentConsentsConsentIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDomesticPaymentConsentsConsentIDOK, error) {
 	// TODO: Validate the params before sending

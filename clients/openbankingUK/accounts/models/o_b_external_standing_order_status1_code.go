@@ -20,8 +20,12 @@ import (
 type OBExternalStandingOrderStatus1Code string
 
 func NewOBExternalStandingOrderStatus1Code(value OBExternalStandingOrderStatus1Code) *OBExternalStandingOrderStatus1Code {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated OBExternalStandingOrderStatus1Code.
+func (m OBExternalStandingOrderStatus1Code) Pointer() *OBExternalStandingOrderStatus1Code {
+	return &m
 }
 
 const (

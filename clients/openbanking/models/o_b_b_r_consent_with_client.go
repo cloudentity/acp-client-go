@@ -54,6 +54,9 @@ type OBBRConsentWithClient struct {
 	// customer payment consent
 	CustomerPaymentConsent *BrazilCustomerPaymentConsent `json:"customer_payment_consent,omitempty"`
 
+	// customer payment consent v2
+	CustomerPaymentConsentV2 *BrazilCustomerPaymentConsentV2 `json:"customer_payment_consent_v2,omitempty"`
+
 	// idempotency key
 	IdempotencyKey string `json:"idempotency_key,omitempty"`
 
@@ -106,6 +109,10 @@ func (m *OBBRConsentWithClient) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateCustomerPaymentConsent(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCustomerPaymentConsentV2(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -230,6 +237,25 @@ func (m *OBBRConsentWithClient) validateCustomerPaymentConsent(formats strfmt.Re
 	return nil
 }
 
+func (m *OBBRConsentWithClient) validateCustomerPaymentConsentV2(formats strfmt.Registry) error {
+	if swag.IsZero(m.CustomerPaymentConsentV2) { // not required
+		return nil
+	}
+
+	if m.CustomerPaymentConsentV2 != nil {
+		if err := m.CustomerPaymentConsentV2.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("customer_payment_consent_v2")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("customer_payment_consent_v2")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *OBBRConsentWithClient) validateSpecVersion(formats strfmt.Registry) error {
 	if swag.IsZero(m.SpecVersion) { // not required
 		return nil
@@ -285,6 +311,10 @@ func (m *OBBRConsentWithClient) ContextValidate(ctx context.Context, formats str
 	}
 
 	if err := m.contextValidateCustomerPaymentConsent(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCustomerPaymentConsentV2(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -374,6 +404,22 @@ func (m *OBBRConsentWithClient) contextValidateCustomerPaymentConsent(ctx contex
 				return ve.ValidateName("customer_payment_consent")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("customer_payment_consent")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *OBBRConsentWithClient) contextValidateCustomerPaymentConsentV2(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.CustomerPaymentConsentV2 != nil {
+		if err := m.CustomerPaymentConsentV2.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("customer_payment_consent_v2")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("customer_payment_consent_v2")
 			}
 			return err
 		}

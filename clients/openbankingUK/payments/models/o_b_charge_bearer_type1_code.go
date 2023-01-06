@@ -20,8 +20,12 @@ import (
 type OBChargeBearerType1Code string
 
 func NewOBChargeBearerType1Code(value OBChargeBearerType1Code) *OBChargeBearerType1Code {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated OBChargeBearerType1Code.
+func (m OBChargeBearerType1Code) Pointer() *OBChargeBearerType1Code {
+	return &m
 }
 
 const (

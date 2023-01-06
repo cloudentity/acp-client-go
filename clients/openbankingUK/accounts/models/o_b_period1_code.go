@@ -20,8 +20,12 @@ import (
 type OBPeriod1Code string
 
 func NewOBPeriod1Code(value OBPeriod1Code) *OBPeriod1Code {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated OBPeriod1Code.
+func (m OBPeriod1Code) Pointer() *OBPeriod1Code {
+	return &m
 }
 
 const (

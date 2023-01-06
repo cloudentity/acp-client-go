@@ -20,8 +20,12 @@ import (
 type OBTransactionMutability1Code string
 
 func NewOBTransactionMutability1Code(value OBTransactionMutability1Code) *OBTransactionMutability1Code {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated OBTransactionMutability1Code.
+func (m OBTransactionMutability1Code) Pointer() *OBTransactionMutability1Code {
+	return &m
 }
 
 const (

@@ -42,7 +42,7 @@ type ClientService interface {
 }
 
 /*
-  CreateFilePaymentConsents creates file payment consents
+CreateFilePaymentConsents creates file payment consents
 */
 func (a *Client) CreateFilePaymentConsents(params *CreateFilePaymentConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateFilePaymentConsentsCreated, error) {
 	// TODO: Validate the params before sending
@@ -81,7 +81,7 @@ func (a *Client) CreateFilePaymentConsents(params *CreateFilePaymentConsentsPara
 }
 
 /*
-  CreateFilePaymentConsentsConsentIDFile creates file payment consents
+CreateFilePaymentConsentsConsentIDFile creates file payment consents
 */
 func (a *Client) CreateFilePaymentConsentsConsentIDFile(params *CreateFilePaymentConsentsConsentIDFileParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateFilePaymentConsentsConsentIDFileOK, error) {
 	// TODO: Validate the params before sending
@@ -120,7 +120,7 @@ func (a *Client) CreateFilePaymentConsentsConsentIDFile(params *CreateFilePaymen
 }
 
 /*
-  GetFilePaymentConsentsConsentID gets file payment consents
+GetFilePaymentConsentsConsentID gets file payment consents
 */
 func (a *Client) GetFilePaymentConsentsConsentID(params *GetFilePaymentConsentsConsentIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetFilePaymentConsentsConsentIDOK, error) {
 	// TODO: Validate the params before sending
@@ -159,7 +159,7 @@ func (a *Client) GetFilePaymentConsentsConsentID(params *GetFilePaymentConsentsC
 }
 
 /*
-  GetFilePaymentConsentsConsentIDFile gets file payment consents
+GetFilePaymentConsentsConsentIDFile gets file payment consents
 */
 func (a *Client) GetFilePaymentConsentsConsentIDFile(params *GetFilePaymentConsentsConsentIDFileParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetFilePaymentConsentsConsentIDFileOK, error) {
 	// TODO: Validate the params before sending

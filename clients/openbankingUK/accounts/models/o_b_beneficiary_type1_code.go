@@ -20,8 +20,12 @@ import (
 type OBBeneficiaryType1Code string
 
 func NewOBBeneficiaryType1Code(value OBBeneficiaryType1Code) *OBBeneficiaryType1Code {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated OBBeneficiaryType1Code.
+func (m OBBeneficiaryType1Code) Pointer() *OBBeneficiaryType1Code {
+	return &m
 }
 
 const (

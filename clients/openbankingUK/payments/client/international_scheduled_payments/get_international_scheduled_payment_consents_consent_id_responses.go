@@ -89,7 +89,8 @@ func NewGetInternationalScheduledPaymentConsentsConsentIDOK() *GetInternationalS
 	return &GetInternationalScheduledPaymentConsentsConsentIDOK{}
 }
 
-/* GetInternationalScheduledPaymentConsentsConsentIDOK describes a response with status code 200, with default header values.
+/*
+GetInternationalScheduledPaymentConsentsConsentIDOK describes a response with status code 200, with default header values.
 
 International Scheduled Payment Consents Read
 */
@@ -107,9 +108,39 @@ type GetInternationalScheduledPaymentConsentsConsentIDOK struct {
 	Payload *models.OBWriteInternationalScheduledConsentResponse6
 }
 
+// IsSuccess returns true when this get international scheduled payment consents consent Id o k response has a 2xx status code
+func (o *GetInternationalScheduledPaymentConsentsConsentIDOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get international scheduled payment consents consent Id o k response has a 3xx status code
+func (o *GetInternationalScheduledPaymentConsentsConsentIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get international scheduled payment consents consent Id o k response has a 4xx status code
+func (o *GetInternationalScheduledPaymentConsentsConsentIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get international scheduled payment consents consent Id o k response has a 5xx status code
+func (o *GetInternationalScheduledPaymentConsentsConsentIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get international scheduled payment consents consent Id o k response a status code equal to that given
+func (o *GetInternationalScheduledPaymentConsentsConsentIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetInternationalScheduledPaymentConsentsConsentIDOK) Error() string {
 	return fmt.Sprintf("[GET /international-scheduled-payment-consents/{ConsentId}][%d] getInternationalScheduledPaymentConsentsConsentIdOK  %+v", 200, o.Payload)
 }
+
+func (o *GetInternationalScheduledPaymentConsentsConsentIDOK) String() string {
+	return fmt.Sprintf("[GET /international-scheduled-payment-consents/{ConsentId}][%d] getInternationalScheduledPaymentConsentsConsentIdOK  %+v", 200, o.Payload)
+}
+
 func (o *GetInternationalScheduledPaymentConsentsConsentIDOK) GetPayload() *models.OBWriteInternationalScheduledConsentResponse6 {
 	return o.Payload
 }
@@ -145,7 +176,8 @@ func NewGetInternationalScheduledPaymentConsentsConsentIDBadRequest() *GetIntern
 	return &GetInternationalScheduledPaymentConsentsConsentIDBadRequest{}
 }
 
-/* GetInternationalScheduledPaymentConsentsConsentIDBadRequest describes a response with status code 400, with default header values.
+/*
+GetInternationalScheduledPaymentConsentsConsentIDBadRequest describes a response with status code 400, with default header values.
 
 Bad request
 */
@@ -163,9 +195,39 @@ type GetInternationalScheduledPaymentConsentsConsentIDBadRequest struct {
 	Payload *models.OBErrorResponse1
 }
 
+// IsSuccess returns true when this get international scheduled payment consents consent Id bad request response has a 2xx status code
+func (o *GetInternationalScheduledPaymentConsentsConsentIDBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get international scheduled payment consents consent Id bad request response has a 3xx status code
+func (o *GetInternationalScheduledPaymentConsentsConsentIDBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get international scheduled payment consents consent Id bad request response has a 4xx status code
+func (o *GetInternationalScheduledPaymentConsentsConsentIDBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get international scheduled payment consents consent Id bad request response has a 5xx status code
+func (o *GetInternationalScheduledPaymentConsentsConsentIDBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get international scheduled payment consents consent Id bad request response a status code equal to that given
+func (o *GetInternationalScheduledPaymentConsentsConsentIDBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *GetInternationalScheduledPaymentConsentsConsentIDBadRequest) Error() string {
 	return fmt.Sprintf("[GET /international-scheduled-payment-consents/{ConsentId}][%d] getInternationalScheduledPaymentConsentsConsentIdBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *GetInternationalScheduledPaymentConsentsConsentIDBadRequest) String() string {
+	return fmt.Sprintf("[GET /international-scheduled-payment-consents/{ConsentId}][%d] getInternationalScheduledPaymentConsentsConsentIdBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *GetInternationalScheduledPaymentConsentsConsentIDBadRequest) GetPayload() *models.OBErrorResponse1 {
 	return o.Payload
 }
@@ -201,7 +263,8 @@ func NewGetInternationalScheduledPaymentConsentsConsentIDUnauthorized() *GetInte
 	return &GetInternationalScheduledPaymentConsentsConsentIDUnauthorized{}
 }
 
-/* GetInternationalScheduledPaymentConsentsConsentIDUnauthorized describes a response with status code 401, with default header values.
+/*
+GetInternationalScheduledPaymentConsentsConsentIDUnauthorized describes a response with status code 401, with default header values.
 
 Unauthorized
 */
@@ -212,7 +275,36 @@ type GetInternationalScheduledPaymentConsentsConsentIDUnauthorized struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this get international scheduled payment consents consent Id unauthorized response has a 2xx status code
+func (o *GetInternationalScheduledPaymentConsentsConsentIDUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get international scheduled payment consents consent Id unauthorized response has a 3xx status code
+func (o *GetInternationalScheduledPaymentConsentsConsentIDUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get international scheduled payment consents consent Id unauthorized response has a 4xx status code
+func (o *GetInternationalScheduledPaymentConsentsConsentIDUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get international scheduled payment consents consent Id unauthorized response has a 5xx status code
+func (o *GetInternationalScheduledPaymentConsentsConsentIDUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get international scheduled payment consents consent Id unauthorized response a status code equal to that given
+func (o *GetInternationalScheduledPaymentConsentsConsentIDUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *GetInternationalScheduledPaymentConsentsConsentIDUnauthorized) Error() string {
+	return fmt.Sprintf("[GET /international-scheduled-payment-consents/{ConsentId}][%d] getInternationalScheduledPaymentConsentsConsentIdUnauthorized ", 401)
+}
+
+func (o *GetInternationalScheduledPaymentConsentsConsentIDUnauthorized) String() string {
 	return fmt.Sprintf("[GET /international-scheduled-payment-consents/{ConsentId}][%d] getInternationalScheduledPaymentConsentsConsentIdUnauthorized ", 401)
 }
 
@@ -233,7 +325,8 @@ func NewGetInternationalScheduledPaymentConsentsConsentIDForbidden() *GetInterna
 	return &GetInternationalScheduledPaymentConsentsConsentIDForbidden{}
 }
 
-/* GetInternationalScheduledPaymentConsentsConsentIDForbidden describes a response with status code 403, with default header values.
+/*
+GetInternationalScheduledPaymentConsentsConsentIDForbidden describes a response with status code 403, with default header values.
 
 Forbidden
 */
@@ -251,9 +344,39 @@ type GetInternationalScheduledPaymentConsentsConsentIDForbidden struct {
 	Payload *models.OBErrorResponse1
 }
 
+// IsSuccess returns true when this get international scheduled payment consents consent Id forbidden response has a 2xx status code
+func (o *GetInternationalScheduledPaymentConsentsConsentIDForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get international scheduled payment consents consent Id forbidden response has a 3xx status code
+func (o *GetInternationalScheduledPaymentConsentsConsentIDForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get international scheduled payment consents consent Id forbidden response has a 4xx status code
+func (o *GetInternationalScheduledPaymentConsentsConsentIDForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get international scheduled payment consents consent Id forbidden response has a 5xx status code
+func (o *GetInternationalScheduledPaymentConsentsConsentIDForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get international scheduled payment consents consent Id forbidden response a status code equal to that given
+func (o *GetInternationalScheduledPaymentConsentsConsentIDForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetInternationalScheduledPaymentConsentsConsentIDForbidden) Error() string {
 	return fmt.Sprintf("[GET /international-scheduled-payment-consents/{ConsentId}][%d] getInternationalScheduledPaymentConsentsConsentIdForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetInternationalScheduledPaymentConsentsConsentIDForbidden) String() string {
+	return fmt.Sprintf("[GET /international-scheduled-payment-consents/{ConsentId}][%d] getInternationalScheduledPaymentConsentsConsentIdForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetInternationalScheduledPaymentConsentsConsentIDForbidden) GetPayload() *models.OBErrorResponse1 {
 	return o.Payload
 }
@@ -289,7 +412,8 @@ func NewGetInternationalScheduledPaymentConsentsConsentIDNotFound() *GetInternat
 	return &GetInternationalScheduledPaymentConsentsConsentIDNotFound{}
 }
 
-/* GetInternationalScheduledPaymentConsentsConsentIDNotFound describes a response with status code 404, with default header values.
+/*
+GetInternationalScheduledPaymentConsentsConsentIDNotFound describes a response with status code 404, with default header values.
 
 Not found
 */
@@ -300,7 +424,36 @@ type GetInternationalScheduledPaymentConsentsConsentIDNotFound struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this get international scheduled payment consents consent Id not found response has a 2xx status code
+func (o *GetInternationalScheduledPaymentConsentsConsentIDNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get international scheduled payment consents consent Id not found response has a 3xx status code
+func (o *GetInternationalScheduledPaymentConsentsConsentIDNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get international scheduled payment consents consent Id not found response has a 4xx status code
+func (o *GetInternationalScheduledPaymentConsentsConsentIDNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get international scheduled payment consents consent Id not found response has a 5xx status code
+func (o *GetInternationalScheduledPaymentConsentsConsentIDNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get international scheduled payment consents consent Id not found response a status code equal to that given
+func (o *GetInternationalScheduledPaymentConsentsConsentIDNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *GetInternationalScheduledPaymentConsentsConsentIDNotFound) Error() string {
+	return fmt.Sprintf("[GET /international-scheduled-payment-consents/{ConsentId}][%d] getInternationalScheduledPaymentConsentsConsentIdNotFound ", 404)
+}
+
+func (o *GetInternationalScheduledPaymentConsentsConsentIDNotFound) String() string {
 	return fmt.Sprintf("[GET /international-scheduled-payment-consents/{ConsentId}][%d] getInternationalScheduledPaymentConsentsConsentIdNotFound ", 404)
 }
 
@@ -321,7 +474,8 @@ func NewGetInternationalScheduledPaymentConsentsConsentIDMethodNotAllowed() *Get
 	return &GetInternationalScheduledPaymentConsentsConsentIDMethodNotAllowed{}
 }
 
-/* GetInternationalScheduledPaymentConsentsConsentIDMethodNotAllowed describes a response with status code 405, with default header values.
+/*
+GetInternationalScheduledPaymentConsentsConsentIDMethodNotAllowed describes a response with status code 405, with default header values.
 
 Method Not Allowed
 */
@@ -332,7 +486,36 @@ type GetInternationalScheduledPaymentConsentsConsentIDMethodNotAllowed struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this get international scheduled payment consents consent Id method not allowed response has a 2xx status code
+func (o *GetInternationalScheduledPaymentConsentsConsentIDMethodNotAllowed) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get international scheduled payment consents consent Id method not allowed response has a 3xx status code
+func (o *GetInternationalScheduledPaymentConsentsConsentIDMethodNotAllowed) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get international scheduled payment consents consent Id method not allowed response has a 4xx status code
+func (o *GetInternationalScheduledPaymentConsentsConsentIDMethodNotAllowed) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get international scheduled payment consents consent Id method not allowed response has a 5xx status code
+func (o *GetInternationalScheduledPaymentConsentsConsentIDMethodNotAllowed) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get international scheduled payment consents consent Id method not allowed response a status code equal to that given
+func (o *GetInternationalScheduledPaymentConsentsConsentIDMethodNotAllowed) IsCode(code int) bool {
+	return code == 405
+}
+
 func (o *GetInternationalScheduledPaymentConsentsConsentIDMethodNotAllowed) Error() string {
+	return fmt.Sprintf("[GET /international-scheduled-payment-consents/{ConsentId}][%d] getInternationalScheduledPaymentConsentsConsentIdMethodNotAllowed ", 405)
+}
+
+func (o *GetInternationalScheduledPaymentConsentsConsentIDMethodNotAllowed) String() string {
 	return fmt.Sprintf("[GET /international-scheduled-payment-consents/{ConsentId}][%d] getInternationalScheduledPaymentConsentsConsentIdMethodNotAllowed ", 405)
 }
 
@@ -353,7 +536,8 @@ func NewGetInternationalScheduledPaymentConsentsConsentIDNotAcceptable() *GetInt
 	return &GetInternationalScheduledPaymentConsentsConsentIDNotAcceptable{}
 }
 
-/* GetInternationalScheduledPaymentConsentsConsentIDNotAcceptable describes a response with status code 406, with default header values.
+/*
+GetInternationalScheduledPaymentConsentsConsentIDNotAcceptable describes a response with status code 406, with default header values.
 
 Not Acceptable
 */
@@ -364,7 +548,36 @@ type GetInternationalScheduledPaymentConsentsConsentIDNotAcceptable struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this get international scheduled payment consents consent Id not acceptable response has a 2xx status code
+func (o *GetInternationalScheduledPaymentConsentsConsentIDNotAcceptable) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get international scheduled payment consents consent Id not acceptable response has a 3xx status code
+func (o *GetInternationalScheduledPaymentConsentsConsentIDNotAcceptable) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get international scheduled payment consents consent Id not acceptable response has a 4xx status code
+func (o *GetInternationalScheduledPaymentConsentsConsentIDNotAcceptable) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get international scheduled payment consents consent Id not acceptable response has a 5xx status code
+func (o *GetInternationalScheduledPaymentConsentsConsentIDNotAcceptable) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get international scheduled payment consents consent Id not acceptable response a status code equal to that given
+func (o *GetInternationalScheduledPaymentConsentsConsentIDNotAcceptable) IsCode(code int) bool {
+	return code == 406
+}
+
 func (o *GetInternationalScheduledPaymentConsentsConsentIDNotAcceptable) Error() string {
+	return fmt.Sprintf("[GET /international-scheduled-payment-consents/{ConsentId}][%d] getInternationalScheduledPaymentConsentsConsentIdNotAcceptable ", 406)
+}
+
+func (o *GetInternationalScheduledPaymentConsentsConsentIDNotAcceptable) String() string {
 	return fmt.Sprintf("[GET /international-scheduled-payment-consents/{ConsentId}][%d] getInternationalScheduledPaymentConsentsConsentIdNotAcceptable ", 406)
 }
 
@@ -385,7 +598,8 @@ func NewGetInternationalScheduledPaymentConsentsConsentIDTooManyRequests() *GetI
 	return &GetInternationalScheduledPaymentConsentsConsentIDTooManyRequests{}
 }
 
-/* GetInternationalScheduledPaymentConsentsConsentIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetInternationalScheduledPaymentConsentsConsentIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -400,7 +614,36 @@ type GetInternationalScheduledPaymentConsentsConsentIDTooManyRequests struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this get international scheduled payment consents consent Id too many requests response has a 2xx status code
+func (o *GetInternationalScheduledPaymentConsentsConsentIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get international scheduled payment consents consent Id too many requests response has a 3xx status code
+func (o *GetInternationalScheduledPaymentConsentsConsentIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get international scheduled payment consents consent Id too many requests response has a 4xx status code
+func (o *GetInternationalScheduledPaymentConsentsConsentIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get international scheduled payment consents consent Id too many requests response has a 5xx status code
+func (o *GetInternationalScheduledPaymentConsentsConsentIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get international scheduled payment consents consent Id too many requests response a status code equal to that given
+func (o *GetInternationalScheduledPaymentConsentsConsentIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *GetInternationalScheduledPaymentConsentsConsentIDTooManyRequests) Error() string {
+	return fmt.Sprintf("[GET /international-scheduled-payment-consents/{ConsentId}][%d] getInternationalScheduledPaymentConsentsConsentIdTooManyRequests ", 429)
+}
+
+func (o *GetInternationalScheduledPaymentConsentsConsentIDTooManyRequests) String() string {
 	return fmt.Sprintf("[GET /international-scheduled-payment-consents/{ConsentId}][%d] getInternationalScheduledPaymentConsentsConsentIdTooManyRequests ", 429)
 }
 
@@ -432,7 +675,8 @@ func NewGetInternationalScheduledPaymentConsentsConsentIDInternalServerError() *
 	return &GetInternationalScheduledPaymentConsentsConsentIDInternalServerError{}
 }
 
-/* GetInternationalScheduledPaymentConsentsConsentIDInternalServerError describes a response with status code 500, with default header values.
+/*
+GetInternationalScheduledPaymentConsentsConsentIDInternalServerError describes a response with status code 500, with default header values.
 
 Internal Server Error
 */
@@ -450,9 +694,39 @@ type GetInternationalScheduledPaymentConsentsConsentIDInternalServerError struct
 	Payload *models.OBErrorResponse1
 }
 
+// IsSuccess returns true when this get international scheduled payment consents consent Id internal server error response has a 2xx status code
+func (o *GetInternationalScheduledPaymentConsentsConsentIDInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get international scheduled payment consents consent Id internal server error response has a 3xx status code
+func (o *GetInternationalScheduledPaymentConsentsConsentIDInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get international scheduled payment consents consent Id internal server error response has a 4xx status code
+func (o *GetInternationalScheduledPaymentConsentsConsentIDInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get international scheduled payment consents consent Id internal server error response has a 5xx status code
+func (o *GetInternationalScheduledPaymentConsentsConsentIDInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this get international scheduled payment consents consent Id internal server error response a status code equal to that given
+func (o *GetInternationalScheduledPaymentConsentsConsentIDInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *GetInternationalScheduledPaymentConsentsConsentIDInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /international-scheduled-payment-consents/{ConsentId}][%d] getInternationalScheduledPaymentConsentsConsentIdInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *GetInternationalScheduledPaymentConsentsConsentIDInternalServerError) String() string {
+	return fmt.Sprintf("[GET /international-scheduled-payment-consents/{ConsentId}][%d] getInternationalScheduledPaymentConsentsConsentIdInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *GetInternationalScheduledPaymentConsentsConsentIDInternalServerError) GetPayload() *models.OBErrorResponse1 {
 	return o.Payload
 }

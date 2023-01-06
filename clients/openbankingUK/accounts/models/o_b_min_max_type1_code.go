@@ -20,8 +20,12 @@ import (
 type OBMinMaxType1Code string
 
 func NewOBMinMaxType1Code(value OBMinMaxType1Code) *OBMinMaxType1Code {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated OBMinMaxType1Code.
+func (m OBMinMaxType1Code) Pointer() *OBMinMaxType1Code {
+	return &m
 }
 
 const (

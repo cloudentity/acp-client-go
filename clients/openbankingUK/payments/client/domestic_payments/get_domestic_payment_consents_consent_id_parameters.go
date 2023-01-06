@@ -52,10 +52,12 @@ func NewGetDomesticPaymentConsentsConsentIDParamsWithHTTPClient(client *http.Cli
 	}
 }
 
-/* GetDomesticPaymentConsentsConsentIDParams contains all the parameters to send to the API endpoint
-   for the get domestic payment consents consent Id operation.
+/*
+GetDomesticPaymentConsentsConsentIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get domestic payment consents consent Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDomesticPaymentConsentsConsentIDParams struct {
 

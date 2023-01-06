@@ -38,7 +38,7 @@ type ClientService interface {
 }
 
 /*
-  CreateInternationalPaymentConsents creates international payment consents
+CreateInternationalPaymentConsents creates international payment consents
 */
 func (a *Client) CreateInternationalPaymentConsents(params *CreateInternationalPaymentConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateInternationalPaymentConsentsCreated, error) {
 	// TODO: Validate the params before sending
@@ -77,7 +77,7 @@ func (a *Client) CreateInternationalPaymentConsents(params *CreateInternationalP
 }
 
 /*
-  GetInternationalPaymentConsentsConsentID gets international payment consents
+GetInternationalPaymentConsentsConsentID gets international payment consents
 */
 func (a *Client) GetInternationalPaymentConsentsConsentID(params *GetInternationalPaymentConsentsConsentIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInternationalPaymentConsentsConsentIDOK, error) {
 	// TODO: Validate the params before sending

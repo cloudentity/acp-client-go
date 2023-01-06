@@ -40,6 +40,8 @@ type ClientService interface {
 
 	CreatePaymentConsentDeprecated(params *CreatePaymentConsentDeprecatedParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreatePaymentConsentDeprecatedCreated, error)
 
+	CreatePaymentConsentV2(params *CreatePaymentConsentV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreatePaymentConsentV2Created, error)
+
 	DeleteDataAccessConsent(params *DeleteDataAccessConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteDataAccessConsentNoContent, error)
 
 	DeleteDataAccessConsentDeprecated(params *DeleteDataAccessConsentDeprecatedParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteDataAccessConsentDeprecatedNoContent, error)
@@ -56,6 +58,8 @@ type ClientService interface {
 
 	GetPaymentConsentDeprecated(params *GetPaymentConsentDeprecatedParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPaymentConsentDeprecatedOK, error)
 
+	GetPaymentConsentV2(params *GetPaymentConsentV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPaymentConsentV2OK, error)
+
 	PatchPaymentConsent(params *PatchPaymentConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchPaymentConsentOK, error)
 
 	AcceptOBBRCustomerDataAccessConsentSystem(params *AcceptOBBRCustomerDataAccessConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptOBBRCustomerDataAccessConsentSystemOK, error)
@@ -70,6 +74,8 @@ type ClientService interface {
 
 	GetOBBRCustomerPaymentConsentSystem(params *GetOBBRCustomerPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOBBRCustomerPaymentConsentSystemOK, error)
 
+	GetOBBRCustomerPaymentConsentSystemV2(params *GetOBBRCustomerPaymentConsentSystemV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOBBRCustomerPaymentConsentSystemV2OK, error)
+
 	ListOBBRConsents(params *ListOBBRConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListOBBRConsentsOK, error)
 
 	ObbrDataAccessConsentIntrospect(params *ObbrDataAccessConsentIntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ObbrDataAccessConsentIntrospectOK, error)
@@ -77,6 +83,8 @@ type ClientService interface {
 	ObbrDataAccessConsentV2Introspect(params *ObbrDataAccessConsentV2IntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ObbrDataAccessConsentV2IntrospectOK, error)
 
 	ObbrPaymentConsentIntrospect(params *ObbrPaymentConsentIntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ObbrPaymentConsentIntrospectOK, error)
+
+	ObbrPaymentConsentIntrospectV2(params *ObbrPaymentConsentIntrospectV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ObbrPaymentConsentIntrospectV2OK, error)
 
 	RejectOBBRCustomerDataAccessConsentSystem(params *RejectOBBRCustomerDataAccessConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectOBBRCustomerDataAccessConsentSystemOK, error)
 
@@ -291,6 +299,47 @@ func (a *Client) CreatePaymentConsentDeprecated(params *CreatePaymentConsentDepr
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for CreatePaymentConsentDeprecated: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+CreatePaymentConsentV2 creates payment consent
+
+This API allows AISP to create consent to initiate payments between banks and financial institutions
+*/
+func (a *Client) CreatePaymentConsentV2(params *CreatePaymentConsentV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreatePaymentConsentV2Created, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreatePaymentConsentV2Params()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "CreatePaymentConsentV2",
+		Method:             "POST",
+		PathPattern:        "/open-banking/payments/v2/consents",
+		ProducesMediaTypes: []string{"application/jwt"},
+		ConsumesMediaTypes: []string{"application/jwt"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreatePaymentConsentV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CreatePaymentConsentV2Created)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for CreatePaymentConsentV2: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -623,6 +672,47 @@ func (a *Client) GetPaymentConsentDeprecated(params *GetPaymentConsentDeprecated
 }
 
 /*
+GetPaymentConsentV2 gets payment consent
+
+This API allows PISP to retrieve previously created payment consent
+*/
+func (a *Client) GetPaymentConsentV2(params *GetPaymentConsentV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPaymentConsentV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetPaymentConsentV2Params()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetPaymentConsentV2",
+		Method:             "GET",
+		PathPattern:        "/open-banking/payments/v2/consents/{consentID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetPaymentConsentV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetPaymentConsentV2OK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetPaymentConsentV2: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
 PatchPaymentConsent revokes payment consent
 
 This API allows PISP to revoke a payment consent
@@ -918,6 +1008,49 @@ func (a *Client) GetOBBRCustomerPaymentConsentSystem(params *GetOBBRCustomerPaym
 }
 
 /*
+	GetOBBRCustomerPaymentConsentSystemV2 gets customer payment initiation consent v2
+
+	This API can be used by a custom openbanking consent page.
+
+The consent page must first use client credentials flow to create consent.
+*/
+func (a *Client) GetOBBRCustomerPaymentConsentSystemV2(params *GetOBBRCustomerPaymentConsentSystemV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOBBRCustomerPaymentConsentSystemV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetOBBRCustomerPaymentConsentSystemV2Params()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getOBBRCustomerPaymentConsentSystemV2",
+		Method:             "GET",
+		PathPattern:        "/open-banking-brasil/payment/v2/{login}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetOBBRCustomerPaymentConsentSystemV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetOBBRCustomerPaymentConsentSystemV2OK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getOBBRCustomerPaymentConsentSystemV2: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
 	ListOBBRConsents lists openbanking brasil consents
 
 	This API returns the list of openbanking brasil consents.
@@ -1085,6 +1218,47 @@ func (a *Client) ObbrPaymentConsentIntrospect(params *ObbrPaymentConsentIntrospe
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for obbrPaymentConsentIntrospect: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+ObbrPaymentConsentIntrospectV2 introspects openbanking brasil payment consent
+
+This API allows introspection of tokens bound to v2 payment consents. It is also backwards compatible with v1 payment consent tokens.
+*/
+func (a *Client) ObbrPaymentConsentIntrospectV2(params *ObbrPaymentConsentIntrospectV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ObbrPaymentConsentIntrospectV2OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewObbrPaymentConsentIntrospectV2Params()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "obbrPaymentConsentIntrospectV2",
+		Method:             "POST",
+		PathPattern:        "/open-banking-brasil/open-banking/payments/v2/consents/introspect",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ObbrPaymentConsentIntrospectV2Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ObbrPaymentConsentIntrospectV2OK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for obbrPaymentConsentIntrospectV2: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

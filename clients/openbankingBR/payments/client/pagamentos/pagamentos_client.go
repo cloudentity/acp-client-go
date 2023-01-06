@@ -36,9 +36,9 @@ type ClientService interface {
 }
 
 /*
-  PaymentsGetConsentsConsentID payments get consents consent Id
+PaymentsGetConsentsConsentID payments get consents consent Id
 
-  Mtodo para consulta do consentimento para a iniciao de pagamento.
+Mtodo para consulta do consentimento para a iniciao de pagamento.
 */
 func (a *Client) PaymentsGetConsentsConsentID(params *PaymentsGetConsentsConsentIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PaymentsGetConsentsConsentIDOK, error) {
 	// TODO: Validate the params before sending
@@ -76,9 +76,9 @@ func (a *Client) PaymentsGetConsentsConsentID(params *PaymentsGetConsentsConsent
 }
 
 /*
-  PaymentsPostConsents payments post consents
+PaymentsPostConsents payments post consents
 
-  Mtodo de criao do consentimento para a iniciao de pagamento.
+Mtodo de criao do consentimento para a iniciao de pagamento.
 */
 func (a *Client) PaymentsPostConsents(params *PaymentsPostConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PaymentsPostConsentsCreated, error) {
 	// TODO: Validate the params before sending

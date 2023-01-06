@@ -62,9 +62,14 @@ type ClientService interface {
 }
 
 /*
-AcceptCDRArrangementSystem accepts c d r arrangement
+	AcceptCDRArrangementSystem accepts c d r arrangement
 
-Notifies Cloudentity that the user accepted the consent.
+	Notify Cloudentity that the user has authorized the client application to access their resources on their own behalf.
+
+It's sent once the user gives consent on the consent page.
+
+This request includes a list of the permitted accounts along with the access scopes granted, user identifier,
+and the additional parameter to prevent CSRF.
 */
 func (a *Client) AcceptCDRArrangementSystem(params *AcceptCDRArrangementSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptCDRArrangementSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -421,7 +426,8 @@ func (a *Client) ListCustomerClients(params *ListCustomerClientsParams, authInfo
 
 	This API is used by the CDR registry to indicate that a critical update to the metadata
 
-for Accredited Data Recipients has been made and should be obtained
+for Accredited Data Recipients has been made and should be obtained.'
+Supported version(s) of this endpoint: [1]
 */
 func (a *Client) RefreshMetadata(params *RefreshMetadataParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RefreshMetadataOK, error) {
 	// TODO: Validate the params before sending
@@ -460,9 +466,14 @@ func (a *Client) RefreshMetadata(params *RefreshMetadataParams, authInfo runtime
 }
 
 /*
-RejectCDRArrangementSystem rejects c d r arrangement
+	RejectCDRArrangementSystem rejects c d r arrangement
 
-Notifies Cloudentity that the user rejected the consent.
+	Notify Cloudentity that the client application isn't authorized to access user resources. It's sent when the user
+
+hasn't provided consent on the consent page.
+
+The request includes the error message along with the rejection reasons, HTTP status code, and the additional
+parameter to prevent CSRF.
 */
 func (a *Client) RejectCDRArrangementSystem(params *RejectCDRArrangementSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectCDRArrangementSystemOK, error) {
 	// TODO: Validate the params before sending

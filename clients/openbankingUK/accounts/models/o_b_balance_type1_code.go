@@ -20,8 +20,12 @@ import (
 type OBBalanceType1Code string
 
 func NewOBBalanceType1Code(value OBBalanceType1Code) *OBBalanceType1Code {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated OBBalanceType1Code.
+func (m OBBalanceType1Code) Pointer() *OBBalanceType1Code {
+	return &m
 }
 
 const (

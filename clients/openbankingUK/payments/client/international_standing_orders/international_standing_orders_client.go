@@ -38,7 +38,7 @@ type ClientService interface {
 }
 
 /*
-  CreateInternationalStandingOrderConsents creates international standing order consents
+CreateInternationalStandingOrderConsents creates international standing order consents
 */
 func (a *Client) CreateInternationalStandingOrderConsents(params *CreateInternationalStandingOrderConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateInternationalStandingOrderConsentsCreated, error) {
 	// TODO: Validate the params before sending
@@ -77,7 +77,7 @@ func (a *Client) CreateInternationalStandingOrderConsents(params *CreateInternat
 }
 
 /*
-  GetInternationalStandingOrderConsentsConsentID gets international standing order consents
+GetInternationalStandingOrderConsentsConsentID gets international standing order consents
 */
 func (a *Client) GetInternationalStandingOrderConsentsConsentID(params *GetInternationalStandingOrderConsentsConsentIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInternationalStandingOrderConsentsConsentIDOK, error) {
 	// TODO: Validate the params before sending

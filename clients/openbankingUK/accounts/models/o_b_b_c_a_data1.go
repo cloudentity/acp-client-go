@@ -247,7 +247,7 @@ func (m *OBBCAData1) UnmarshalBinary(b []byte) error {
 
 // OBBCAData1CreditInterest CreditInterest
 //
-// Details about the interest that may be payable to the BCA account holders
+// # Details about the interest that may be payable to the BCA account holders
 //
 // swagger:model OBBCAData1CreditInterest
 type OBBCAData1CreditInterest struct {
@@ -1309,7 +1309,7 @@ func (m *OBBCAData1CreditInterestTierBandSetItems0TierBandItems0) UnmarshalBinar
 
 // OBBCAData1CreditInterestTierBandSetItems0TierBandItems0OtherApplicationFrequency OtherApplicationFrequency
 //
-// Other application frequencies that are not available in the standard code list
+// # Other application frequencies that are not available in the standard code list
 //
 // swagger:model OBBCAData1CreditInterestTierBandSetItems0TierBandItems0OtherApplicationFrequency
 type OBBCAData1CreditInterestTierBandSetItems0TierBandItems0OtherApplicationFrequency struct {
@@ -1435,7 +1435,7 @@ func (m *OBBCAData1CreditInterestTierBandSetItems0TierBandItems0OtherApplication
 
 // OBBCAData1CreditInterestTierBandSetItems0TierBandItems0OtherBankInterestType OtherBankInterestType
 //
-// Other interest rate types which are not available in the standard code list
+// # Other interest rate types which are not available in the standard code list
 //
 // swagger:model OBBCAData1CreditInterestTierBandSetItems0TierBandItems0OtherBankInterestType
 type OBBCAData1CreditInterestTierBandSetItems0TierBandItems0OtherBankInterestType struct {
@@ -3874,7 +3874,7 @@ func (m *OBBCAData1OtherFeesChargesItems0FeeChargeDetailItems0FeeChargeCapItems0
 
 // OBBCAData1OtherFeesChargesItems0FeeChargeDetailItems0OtherApplicationFrequency OtherApplicationFrequency
 //
-// Other application frequencies not covered in the standard code list
+// # Other application frequencies not covered in the standard code list
 //
 // swagger:model OBBCAData1OtherFeesChargesItems0FeeChargeDetailItems0OtherApplicationFrequency
 type OBBCAData1OtherFeesChargesItems0FeeChargeDetailItems0OtherApplicationFrequency struct {
@@ -4250,7 +4250,7 @@ func (m *OBBCAData1OtherFeesChargesItems0FeeChargeDetailItems0OtherFeeCategoryTy
 
 // OBBCAData1OtherFeesChargesItems0FeeChargeDetailItems0OtherFeeRateType OtherFeeRateType
 //
-// Other fee rate type which is not available in the standard code set
+// # Other fee rate type which is not available in the standard code set
 //
 // swagger:model OBBCAData1OtherFeesChargesItems0FeeChargeDetailItems0OtherFeeRateType
 type OBBCAData1OtherFeesChargesItems0FeeChargeDetailItems0OtherFeeRateType struct {
@@ -4682,7 +4682,7 @@ func (m *OBBCAData1OtherFeesChargesItems0OtherTariffType) UnmarshalBinary(b []by
 
 // OBBCAData1Overdraft Overdraft
 //
-// Borrowing details
+// # Borrowing details
 //
 // swagger:model OBBCAData1Overdraft
 type OBBCAData1Overdraft struct {
@@ -6559,7 +6559,7 @@ func (m *OBBCAData1OverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0
 
 // OBBCAData1OverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0OtherApplicationFrequency OtherApplicationFrequency
 //
-// Other application frequencies that are not available in the standard code list
+// # Other application frequencies that are not available in the standard code list
 //
 // swagger:model OBBCAData1OverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0OtherApplicationFrequency
 type OBBCAData1OverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0OtherApplicationFrequency struct {
@@ -6811,7 +6811,7 @@ func (m *OBBCAData1OverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0
 
 // OBBCAData1OverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0OtherFeeRateType OtherFeeRateType
 //
-// Other fee rate type code which is not available in the standard code set
+// # Other fee rate type code which is not available in the standard code set
 //
 // swagger:model OBBCAData1OverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0OtherFeeRateType
 type OBBCAData1OverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0OtherFeeRateType struct {
@@ -6937,7 +6937,7 @@ func (m *OBBCAData1OverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0
 
 // OBBCAData1OverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0OtherFeeType OtherFeeType
 //
-// Other Fee type which is not available in the standard code set
+// # Other Fee type which is not available in the standard code set
 //
 // swagger:model OBBCAData1OverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0OtherFeeType
 type OBBCAData1OverdraftOverdraftTierBandSetItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0OtherFeeType struct {
@@ -9270,7 +9270,7 @@ func (m *OBBCAData1OverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0Ove
 
 // OBBCAData1OverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0OtherApplicationFrequency OtherApplicationFrequency
 //
-// Other application frequencies that are not available in the standard code list
+// # Other application frequencies that are not available in the standard code list
 //
 // swagger:model OBBCAData1OverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0OtherApplicationFrequency
 type OBBCAData1OverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0OtherApplicationFrequency struct {
@@ -9522,7 +9522,7 @@ func (m *OBBCAData1OverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0Ove
 
 // OBBCAData1OverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0OtherFeeRateType OtherFeeRateType
 //
-// Other fee rate type code which is not available in the standard code set
+// # Other fee rate type code which is not available in the standard code set
 //
 // swagger:model OBBCAData1OverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0OtherFeeRateType
 type OBBCAData1OverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0OtherFeeRateType struct {
@@ -9648,7 +9648,7 @@ func (m *OBBCAData1OverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0Ove
 
 // OBBCAData1OverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0OtherFeeType OtherFeeType
 //
-// Other Fee type which is not available in the standard code set
+// # Other Fee type which is not available in the standard code set
 //
 // swagger:model OBBCAData1OverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0OtherFeeType
 type OBBCAData1OverdraftOverdraftTierBandSetItems0OverdraftTierBandItems0OverdraftFeesChargesItems0OverdraftFeeChargeDetailItems0OtherFeeType struct {

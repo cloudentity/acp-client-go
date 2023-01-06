@@ -67,8 +67,12 @@ import (
 type EnumRejectionReasonType string
 
 func NewEnumRejectionReasonType(value EnumRejectionReasonType) *EnumRejectionReasonType {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated EnumRejectionReasonType.
+func (m EnumRejectionReasonType) Pointer() *EnumRejectionReasonType {
+	return &m
 }
 
 const (

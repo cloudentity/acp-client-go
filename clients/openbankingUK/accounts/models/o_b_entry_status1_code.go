@@ -20,8 +20,12 @@ import (
 type OBEntryStatus1Code string
 
 func NewOBEntryStatus1Code(value OBEntryStatus1Code) *OBEntryStatus1Code {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated OBEntryStatus1Code.
+func (m OBEntryStatus1Code) Pointer() *OBEntryStatus1Code {
+	return &m
 }
 
 const (

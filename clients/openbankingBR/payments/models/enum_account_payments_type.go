@@ -29,8 +29,12 @@ import (
 type EnumAccountPaymentsType string
 
 func NewEnumAccountPaymentsType(value EnumAccountPaymentsType) *EnumAccountPaymentsType {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated EnumAccountPaymentsType.
+func (m EnumAccountPaymentsType) Pointer() *EnumAccountPaymentsType {
+	return &m
 }
 
 const (

@@ -27,8 +27,12 @@ import (
 type EnumLocalInstrument string
 
 func NewEnumLocalInstrument(value EnumLocalInstrument) *EnumLocalInstrument {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated EnumLocalInstrument.
+func (m EnumLocalInstrument) Pointer() *EnumLocalInstrument {
+	return &m
 }
 
 const (

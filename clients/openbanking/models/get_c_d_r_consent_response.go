@@ -34,13 +34,15 @@ type GetCDRConsentResponse struct {
 	// List of requested scopes
 	RequestedScopes []*RequestedScope `json:"requested_scopes"`
 
-	// Cloudentity internal consent status
-	// Deprecated: please use status from cdr_arrangement
+	// Cloudentity internal consent status.
+	//
+	// This parameter is deprecated. The `status` value is available in the `cdr_arrangement` >
+	// `status` parameter received with the current response.
 	// Example: AwaitingAuthorisation
 	Status string `json:"status,omitempty"`
 
-	// Subject identifing the authenticated user
-	// Depending on the workspace configuration the value might be hashed.
+	// Subject identifying the authenticated user.
+	// Depending on the workspace configuration, the value can be hashed.
 	// Example: 377eb000a87a471291b5a9869930a2422c670b7b6a06f74143eb74a01ed2fbe1
 	Subject string `json:"subject,omitempty"`
 }

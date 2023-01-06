@@ -20,8 +20,12 @@ import (
 type OBOverdraftFeeType1Code string
 
 func NewOBOverdraftFeeType1Code(value OBOverdraftFeeType1Code) *OBOverdraftFeeType1Code {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated OBOverdraftFeeType1Code.
+func (m OBOverdraftFeeType1Code) Pointer() *OBOverdraftFeeType1Code {
+	return &m
 }
 
 const (

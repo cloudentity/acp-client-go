@@ -52,10 +52,12 @@ func NewGetInternationalScheduledPaymentConsentsConsentIDParamsWithHTTPClient(cl
 	}
 }
 
-/* GetInternationalScheduledPaymentConsentsConsentIDParams contains all the parameters to send to the API endpoint
-   for the get international scheduled payment consents consent Id operation.
+/*
+GetInternationalScheduledPaymentConsentsConsentIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get international scheduled payment consents consent Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetInternationalScheduledPaymentConsentsConsentIDParams struct {
 
