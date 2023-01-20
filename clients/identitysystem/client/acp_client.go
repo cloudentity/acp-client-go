@@ -11,9 +11,6 @@ import (
 	"github.com/go-openapi/strfmt"
 
 	"github.com/cloudentity/acp-client-go/clients/identitysystem/client/o_t_p"
-	"github.com/cloudentity/acp-client-go/clients/identitysystem/client/pools"
-	"github.com/cloudentity/acp-client-go/clients/identitysystem/client/schemas"
-	"github.com/cloudentity/acp-client-go/clients/identitysystem/client/tenants"
 	"github.com/cloudentity/acp-client-go/clients/identitysystem/client/users"
 )
 
@@ -26,7 +23,7 @@ const (
 	DefaultHost string = "localhost:8443"
 	// DefaultBasePath is the default BasePath
 	// found in Meta (info) section of spec file
-	DefaultBasePath string = "/api/identity/default"
+	DefaultBasePath string = "/default/default/identity"
 )
 
 // DefaultSchemes are the default schemes found in Meta (info) section of spec file
@@ -60,9 +57,6 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *Acp {
 	cli := new(Acp)
 	cli.Transport = transport
 	cli.Otp = o_t_p.New(transport, formats)
-	cli.Pools = pools.New(transport, formats)
-	cli.Schemas = schemas.New(transport, formats)
-	cli.Tenants = tenants.New(transport, formats)
 	cli.Users = users.New(transport, formats)
 	return cli
 }
@@ -110,12 +104,6 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 type Acp struct {
 	Otp o_t_p.ClientService
 
-	Pools pools.ClientService
-
-	Schemas schemas.ClientService
-
-	Tenants tenants.ClientService
-
 	Users users.ClientService
 
 	Transport runtime.ClientTransport
@@ -125,8 +113,5 @@ type Acp struct {
 func (c *Acp) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 	c.Otp.SetTransport(transport)
-	c.Pools.SetTransport(transport)
-	c.Schemas.SetTransport(transport)
-	c.Tenants.SetTransport(transport)
 	c.Users.SetTransport(transport)
 }

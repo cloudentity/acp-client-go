@@ -123,11 +123,11 @@ func (o *ChangePasswordNoContent) IsCode(code int) bool {
 }
 
 func (o *ChangePasswordNoContent) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] changePasswordNoContent ", 204)
+	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordNoContent ", 204)
 }
 
 func (o *ChangePasswordNoContent) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] changePasswordNoContent ", 204)
+	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordNoContent ", 204)
 }
 
 func (o *ChangePasswordNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -150,7 +150,7 @@ func NewChangePasswordBadRequest() *ChangePasswordBadRequest {
 /*
 ChangePasswordBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type ChangePasswordBadRequest struct {
 	Payload *models.Error
@@ -182,11 +182,11 @@ func (o *ChangePasswordBadRequest) IsCode(code int) bool {
 }
 
 func (o *ChangePasswordBadRequest) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] changePasswordBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ChangePasswordBadRequest) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] changePasswordBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ChangePasswordBadRequest) GetPayload() *models.Error {
@@ -213,7 +213,7 @@ func NewChangePasswordUnauthorized() *ChangePasswordUnauthorized {
 /*
 ChangePasswordUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ChangePasswordUnauthorized struct {
 	Payload *models.Error
@@ -245,11 +245,11 @@ func (o *ChangePasswordUnauthorized) IsCode(code int) bool {
 }
 
 func (o *ChangePasswordUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] changePasswordUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ChangePasswordUnauthorized) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] changePasswordUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ChangePasswordUnauthorized) GetPayload() *models.Error {
@@ -276,7 +276,7 @@ func NewChangePasswordForbidden() *ChangePasswordForbidden {
 /*
 ChangePasswordForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ChangePasswordForbidden struct {
 	Payload *models.Error
@@ -308,11 +308,11 @@ func (o *ChangePasswordForbidden) IsCode(code int) bool {
 }
 
 func (o *ChangePasswordForbidden) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] changePasswordForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ChangePasswordForbidden) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] changePasswordForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ChangePasswordForbidden) GetPayload() *models.Error {
@@ -339,7 +339,7 @@ func NewChangePasswordNotFound() *ChangePasswordNotFound {
 /*
 ChangePasswordNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type ChangePasswordNotFound struct {
 	Payload *models.Error
@@ -371,11 +371,11 @@ func (o *ChangePasswordNotFound) IsCode(code int) bool {
 }
 
 func (o *ChangePasswordNotFound) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] changePasswordNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ChangePasswordNotFound) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] changePasswordNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ChangePasswordNotFound) GetPayload() *models.Error {
@@ -402,7 +402,7 @@ func NewChangePasswordPreconditionFailed() *ChangePasswordPreconditionFailed {
 /*
 ChangePasswordPreconditionFailed describes a response with status code 412, with default header values.
 
-HttpError
+Payload too large
 */
 type ChangePasswordPreconditionFailed struct {
 	Payload *models.Error
@@ -434,11 +434,11 @@ func (o *ChangePasswordPreconditionFailed) IsCode(code int) bool {
 }
 
 func (o *ChangePasswordPreconditionFailed) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] changePasswordPreconditionFailed  %+v", 412, o.Payload)
+	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordPreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *ChangePasswordPreconditionFailed) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] changePasswordPreconditionFailed  %+v", 412, o.Payload)
+	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordPreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *ChangePasswordPreconditionFailed) GetPayload() *models.Error {
@@ -465,7 +465,7 @@ func NewChangePasswordUnprocessableEntity() *ChangePasswordUnprocessableEntity {
 /*
 ChangePasswordUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type ChangePasswordUnprocessableEntity struct {
 	Payload *models.Error
@@ -497,11 +497,11 @@ func (o *ChangePasswordUnprocessableEntity) IsCode(code int) bool {
 }
 
 func (o *ChangePasswordUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] changePasswordUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *ChangePasswordUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] changePasswordUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *ChangePasswordUnprocessableEntity) GetPayload() *models.Error {
@@ -528,7 +528,7 @@ func NewChangePasswordTooManyRequests() *ChangePasswordTooManyRequests {
 /*
 ChangePasswordTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ChangePasswordTooManyRequests struct {
 	Payload *models.Error
@@ -560,11 +560,11 @@ func (o *ChangePasswordTooManyRequests) IsCode(code int) bool {
 }
 
 func (o *ChangePasswordTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] changePasswordTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ChangePasswordTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] changePasswordTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ChangePasswordTooManyRequests) GetPayload() *models.Error {

@@ -84,10 +84,10 @@ func NewCreatePoolCreated() *CreatePoolCreated {
 /*
 CreatePoolCreated describes a response with status code 201, with default header values.
 
-Pool
+Identity Pool
 */
 type CreatePoolCreated struct {
-	Payload *models.Pool
+	Payload *models.PoolResponse
 }
 
 // IsSuccess returns true when this create pool created response has a 2xx status code
@@ -123,13 +123,13 @@ func (o *CreatePoolCreated) String() string {
 	return fmt.Sprintf("[POST /admin/pools][%d] createPoolCreated  %+v", 201, o.Payload)
 }
 
-func (o *CreatePoolCreated) GetPayload() *models.Pool {
+func (o *CreatePoolCreated) GetPayload() *models.PoolResponse {
 	return o.Payload
 }
 
 func (o *CreatePoolCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Pool)
+	o.Payload = new(models.PoolResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -147,7 +147,7 @@ func NewCreatePoolBadRequest() *CreatePoolBadRequest {
 /*
 CreatePoolBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type CreatePoolBadRequest struct {
 	Payload *models.Error
@@ -210,7 +210,7 @@ func NewCreatePoolUnauthorized() *CreatePoolUnauthorized {
 /*
 CreatePoolUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type CreatePoolUnauthorized struct {
 	Payload *models.Error
@@ -273,7 +273,7 @@ func NewCreatePoolForbidden() *CreatePoolForbidden {
 /*
 CreatePoolForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type CreatePoolForbidden struct {
 	Payload *models.Error
@@ -336,7 +336,7 @@ func NewCreatePoolNotFound() *CreatePoolNotFound {
 /*
 CreatePoolNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type CreatePoolNotFound struct {
 	Payload *models.Error
@@ -399,7 +399,7 @@ func NewCreatePoolConflict() *CreatePoolConflict {
 /*
 CreatePoolConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type CreatePoolConflict struct {
 	Payload *models.Error
@@ -462,7 +462,7 @@ func NewCreatePoolUnprocessableEntity() *CreatePoolUnprocessableEntity {
 /*
 CreatePoolUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type CreatePoolUnprocessableEntity struct {
 	Payload *models.Error
@@ -525,7 +525,7 @@ func NewCreatePoolTooManyRequests() *CreatePoolTooManyRequests {
 /*
 CreatePoolTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type CreatePoolTooManyRequests struct {
 	Payload *models.Error

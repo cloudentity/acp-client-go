@@ -74,12 +74,6 @@ type CompleteAddressVerificationParams struct {
 	*/
 	IfMatch *string
 
-	// IPID.
-	IPID string
-
-	// UserID.
-	UserID string
-
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -155,28 +149,6 @@ func (o *CompleteAddressVerificationParams) SetIfMatch(ifMatch *string) {
 	o.IfMatch = ifMatch
 }
 
-// WithIPID adds the iPID to the complete address verification params
-func (o *CompleteAddressVerificationParams) WithIPID(iPID string) *CompleteAddressVerificationParams {
-	o.SetIPID(iPID)
-	return o
-}
-
-// SetIPID adds the ipId to the complete address verification params
-func (o *CompleteAddressVerificationParams) SetIPID(iPID string) {
-	o.IPID = iPID
-}
-
-// WithUserID adds the userID to the complete address verification params
-func (o *CompleteAddressVerificationParams) WithUserID(userID string) *CompleteAddressVerificationParams {
-	o.SetUserID(userID)
-	return o
-}
-
-// SetUserID adds the userId to the complete address verification params
-func (o *CompleteAddressVerificationParams) SetUserID(userID string) {
-	o.UserID = userID
-}
-
 // WriteToRequest writes these params to a swagger request
 func (o *CompleteAddressVerificationParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -196,16 +168,6 @@ func (o *CompleteAddressVerificationParams) WriteToRequest(r runtime.ClientReque
 		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
-	}
-
-	// path param ipID
-	if err := r.SetPathParam("ipID", o.IPID); err != nil {
-		return err
-	}
-
-	// path param userID
-	if err := r.SetPathParam("userID", o.UserID); err != nil {
-		return err
 	}
 
 	if len(res) > 0 {

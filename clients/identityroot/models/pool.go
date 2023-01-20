@@ -23,6 +23,12 @@ type Pool struct {
 	// authentication mechanisms
 	AuthenticationMechanisms AuthenticationMechanisms `json:"authentication_mechanisms,omitempty"`
 
+	// badge color
+	BadgeColor string `json:"badge_color,omitempty"`
+
+	// deleted
+	Deleted bool `json:"deleted,omitempty"`
+
 	// description
 	Description string `json:"description,omitempty"`
 
@@ -53,11 +59,14 @@ type Pool struct {
 
 	// preferred authentication mechanism
 	// Example: password
-	// Enum: [password otp]
+	// Enum: [password otp webauthn]
 	PreferredAuthenticationMechanism string `json:"preferred_authentication_mechanism,omitempty"`
 
 	// public registration allowed
 	PublicRegistrationAllowed bool `json:"public_registration_allowed,omitempty"`
+
+	// system
+	System bool `json:"system,omitempty"`
 
 	// tenant id
 	// Example: default
@@ -190,7 +199,7 @@ var poolTypePreferredAuthenticationMechanismPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["password","otp"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["password","otp","webauthn"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -205,6 +214,9 @@ const (
 
 	// PoolPreferredAuthenticationMechanismOtp captures enum value "otp"
 	PoolPreferredAuthenticationMechanismOtp string = "otp"
+
+	// PoolPreferredAuthenticationMechanismWebauthn captures enum value "webauthn"
+	PoolPreferredAuthenticationMechanismWebauthn string = "webauthn"
 )
 
 // prop value enum

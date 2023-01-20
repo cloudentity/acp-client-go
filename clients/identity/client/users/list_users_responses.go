@@ -78,7 +78,7 @@ func NewListUsersOK() *ListUsersOK {
 /*
 ListUsersOK describes a response with status code 200, with default header values.
 
-Users
+Identity Users
 */
 type ListUsersOK struct {
 	Payload *models.Users
@@ -141,7 +141,7 @@ func NewListUsersBadRequest() *ListUsersBadRequest {
 /*
 ListUsersBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type ListUsersBadRequest struct {
 	Payload *models.Error
@@ -204,7 +204,7 @@ func NewListUsersUnauthorized() *ListUsersUnauthorized {
 /*
 ListUsersUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ListUsersUnauthorized struct {
 	Payload *models.Error
@@ -267,7 +267,7 @@ func NewListUsersForbidden() *ListUsersForbidden {
 /*
 ListUsersForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ListUsersForbidden struct {
 	Payload *models.Error
@@ -330,7 +330,7 @@ func NewListUsersNotFound() *ListUsersNotFound {
 /*
 ListUsersNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type ListUsersNotFound struct {
 	Payload *models.Error
@@ -393,7 +393,7 @@ func NewListUsersUnprocessableEntity() *ListUsersUnprocessableEntity {
 /*
 ListUsersUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type ListUsersUnprocessableEntity struct {
 	Payload *models.Error
@@ -456,7 +456,7 @@ func NewListUsersTooManyRequests() *ListUsersTooManyRequests {
 /*
 ListUsersTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ListUsersTooManyRequests struct {
 	Payload *models.Error

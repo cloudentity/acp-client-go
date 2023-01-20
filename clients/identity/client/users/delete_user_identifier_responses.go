@@ -47,12 +47,6 @@ func (o *DeleteUserIdentifierReader) ReadResponse(response runtime.ClientRespons
 			return nil, err
 		}
 		return nil, result
-	case 412:
-		result := NewDeleteUserIdentifierPreconditionFailed()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return nil, result
 	case 429:
 		result := NewDeleteUserIdentifierTooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -72,17 +66,9 @@ func NewDeleteUserIdentifierNoContent() *DeleteUserIdentifierNoContent {
 /*
 DeleteUserIdentifierNoContent describes a response with status code 204, with default header values.
 
-Deletes an identifier from the user account
+	Identifier has been deleted
 */
 type DeleteUserIdentifierNoContent struct {
-
-	/* The ETag HTTP header is an identifier for a specific version of a resource
-
-	in:header
-
-	     Format: etag
-	*/
-	Etag string
 }
 
 // IsSuccess returns true when this delete user identifier no content response has a 2xx status code
@@ -120,13 +106,6 @@ func (o *DeleteUserIdentifierNoContent) String() string {
 
 func (o *DeleteUserIdentifierNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header etag
-	hdrEtag := response.GetHeader("etag")
-
-	if hdrEtag != "" {
-		o.Etag = hdrEtag
-	}
-
 	return nil
 }
 
@@ -138,7 +117,7 @@ func NewDeleteUserIdentifierUnauthorized() *DeleteUserIdentifierUnauthorized {
 /*
 DeleteUserIdentifierUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type DeleteUserIdentifierUnauthorized struct {
 	Payload *models.Error
@@ -201,7 +180,7 @@ func NewDeleteUserIdentifierForbidden() *DeleteUserIdentifierForbidden {
 /*
 DeleteUserIdentifierForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type DeleteUserIdentifierForbidden struct {
 	Payload *models.Error
@@ -264,7 +243,7 @@ func NewDeleteUserIdentifierNotFound() *DeleteUserIdentifierNotFound {
 /*
 DeleteUserIdentifierNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type DeleteUserIdentifierNotFound struct {
 	Payload *models.Error
@@ -319,69 +298,6 @@ func (o *DeleteUserIdentifierNotFound) readResponse(response runtime.ClientRespo
 	return nil
 }
 
-// NewDeleteUserIdentifierPreconditionFailed creates a DeleteUserIdentifierPreconditionFailed with default headers values
-func NewDeleteUserIdentifierPreconditionFailed() *DeleteUserIdentifierPreconditionFailed {
-	return &DeleteUserIdentifierPreconditionFailed{}
-}
-
-/*
-DeleteUserIdentifierPreconditionFailed describes a response with status code 412, with default header values.
-
-HttpError
-*/
-type DeleteUserIdentifierPreconditionFailed struct {
-	Payload *models.Error
-}
-
-// IsSuccess returns true when this delete user identifier precondition failed response has a 2xx status code
-func (o *DeleteUserIdentifierPreconditionFailed) IsSuccess() bool {
-	return false
-}
-
-// IsRedirect returns true when this delete user identifier precondition failed response has a 3xx status code
-func (o *DeleteUserIdentifierPreconditionFailed) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this delete user identifier precondition failed response has a 4xx status code
-func (o *DeleteUserIdentifierPreconditionFailed) IsClientError() bool {
-	return true
-}
-
-// IsServerError returns true when this delete user identifier precondition failed response has a 5xx status code
-func (o *DeleteUserIdentifierPreconditionFailed) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this delete user identifier precondition failed response a status code equal to that given
-func (o *DeleteUserIdentifierPreconditionFailed) IsCode(code int) bool {
-	return code == 412
-}
-
-func (o *DeleteUserIdentifierPreconditionFailed) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/identifiers/remove][%d] deleteUserIdentifierPreconditionFailed  %+v", 412, o.Payload)
-}
-
-func (o *DeleteUserIdentifierPreconditionFailed) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/identifiers/remove][%d] deleteUserIdentifierPreconditionFailed  %+v", 412, o.Payload)
-}
-
-func (o *DeleteUserIdentifierPreconditionFailed) GetPayload() *models.Error {
-	return o.Payload
-}
-
-func (o *DeleteUserIdentifierPreconditionFailed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	o.Payload = new(models.Error)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
 // NewDeleteUserIdentifierTooManyRequests creates a DeleteUserIdentifierTooManyRequests with default headers values
 func NewDeleteUserIdentifierTooManyRequests() *DeleteUserIdentifierTooManyRequests {
 	return &DeleteUserIdentifierTooManyRequests{}
@@ -390,7 +306,7 @@ func NewDeleteUserIdentifierTooManyRequests() *DeleteUserIdentifierTooManyReques
 /*
 DeleteUserIdentifierTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type DeleteUserIdentifierTooManyRequests struct {
 	Payload *models.Error

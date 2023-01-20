@@ -123,7 +123,7 @@ func NewListSchemasUnauthorized() *ListSchemasUnauthorized {
 /*
 ListSchemasUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ListSchemasUnauthorized struct {
 	Payload *models.Error
@@ -186,7 +186,7 @@ func NewListSchemasForbidden() *ListSchemasForbidden {
 /*
 ListSchemasForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ListSchemasForbidden struct {
 	Payload *models.Error
@@ -249,7 +249,7 @@ func NewListSchemasTooManyRequests() *ListSchemasTooManyRequests {
 /*
 ListSchemasTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ListSchemasTooManyRequests struct {
 	Payload *models.Error

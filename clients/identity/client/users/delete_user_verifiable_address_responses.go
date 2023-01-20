@@ -47,12 +47,6 @@ func (o *DeleteUserVerifiableAddressReader) ReadResponse(response runtime.Client
 			return nil, err
 		}
 		return nil, result
-	case 412:
-		result := NewDeleteUserVerifiableAddressPreconditionFailed()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return nil, result
 	case 429:
 		result := NewDeleteUserVerifiableAddressTooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -72,17 +66,9 @@ func NewDeleteUserVerifiableAddressNoContent() *DeleteUserVerifiableAddressNoCon
 /*
 DeleteUserVerifiableAddressNoContent describes a response with status code 204, with default header values.
 
-Deletes a verifiable address from the user account
+	Address has been deleted
 */
 type DeleteUserVerifiableAddressNoContent struct {
-
-	/* The ETag HTTP header is an identifier for a specific version of a resource
-
-	in:header
-
-	     Format: etag
-	*/
-	Etag string
 }
 
 // IsSuccess returns true when this delete user verifiable address no content response has a 2xx status code
@@ -120,13 +106,6 @@ func (o *DeleteUserVerifiableAddressNoContent) String() string {
 
 func (o *DeleteUserVerifiableAddressNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header etag
-	hdrEtag := response.GetHeader("etag")
-
-	if hdrEtag != "" {
-		o.Etag = hdrEtag
-	}
-
 	return nil
 }
 
@@ -138,7 +117,7 @@ func NewDeleteUserVerifiableAddressUnauthorized() *DeleteUserVerifiableAddressUn
 /*
 DeleteUserVerifiableAddressUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type DeleteUserVerifiableAddressUnauthorized struct {
 	Payload *models.Error
@@ -201,7 +180,7 @@ func NewDeleteUserVerifiableAddressForbidden() *DeleteUserVerifiableAddressForbi
 /*
 DeleteUserVerifiableAddressForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type DeleteUserVerifiableAddressForbidden struct {
 	Payload *models.Error
@@ -264,7 +243,7 @@ func NewDeleteUserVerifiableAddressNotFound() *DeleteUserVerifiableAddressNotFou
 /*
 DeleteUserVerifiableAddressNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type DeleteUserVerifiableAddressNotFound struct {
 	Payload *models.Error
@@ -319,69 +298,6 @@ func (o *DeleteUserVerifiableAddressNotFound) readResponse(response runtime.Clie
 	return nil
 }
 
-// NewDeleteUserVerifiableAddressPreconditionFailed creates a DeleteUserVerifiableAddressPreconditionFailed with default headers values
-func NewDeleteUserVerifiableAddressPreconditionFailed() *DeleteUserVerifiableAddressPreconditionFailed {
-	return &DeleteUserVerifiableAddressPreconditionFailed{}
-}
-
-/*
-DeleteUserVerifiableAddressPreconditionFailed describes a response with status code 412, with default header values.
-
-HttpError
-*/
-type DeleteUserVerifiableAddressPreconditionFailed struct {
-	Payload *models.Error
-}
-
-// IsSuccess returns true when this delete user verifiable address precondition failed response has a 2xx status code
-func (o *DeleteUserVerifiableAddressPreconditionFailed) IsSuccess() bool {
-	return false
-}
-
-// IsRedirect returns true when this delete user verifiable address precondition failed response has a 3xx status code
-func (o *DeleteUserVerifiableAddressPreconditionFailed) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this delete user verifiable address precondition failed response has a 4xx status code
-func (o *DeleteUserVerifiableAddressPreconditionFailed) IsClientError() bool {
-	return true
-}
-
-// IsServerError returns true when this delete user verifiable address precondition failed response has a 5xx status code
-func (o *DeleteUserVerifiableAddressPreconditionFailed) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this delete user verifiable address precondition failed response a status code equal to that given
-func (o *DeleteUserVerifiableAddressPreconditionFailed) IsCode(code int) bool {
-	return code == 412
-}
-
-func (o *DeleteUserVerifiableAddressPreconditionFailed) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/remove][%d] deleteUserVerifiableAddressPreconditionFailed  %+v", 412, o.Payload)
-}
-
-func (o *DeleteUserVerifiableAddressPreconditionFailed) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/remove][%d] deleteUserVerifiableAddressPreconditionFailed  %+v", 412, o.Payload)
-}
-
-func (o *DeleteUserVerifiableAddressPreconditionFailed) GetPayload() *models.Error {
-	return o.Payload
-}
-
-func (o *DeleteUserVerifiableAddressPreconditionFailed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	o.Payload = new(models.Error)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
 // NewDeleteUserVerifiableAddressTooManyRequests creates a DeleteUserVerifiableAddressTooManyRequests with default headers values
 func NewDeleteUserVerifiableAddressTooManyRequests() *DeleteUserVerifiableAddressTooManyRequests {
 	return &DeleteUserVerifiableAddressTooManyRequests{}
@@ -390,7 +306,7 @@ func NewDeleteUserVerifiableAddressTooManyRequests() *DeleteUserVerifiableAddres
 /*
 DeleteUserVerifiableAddressTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type DeleteUserVerifiableAddressTooManyRequests struct {
 	Payload *models.Error

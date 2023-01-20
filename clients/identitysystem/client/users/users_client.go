@@ -30,162 +30,21 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	ActivateSelfRegisteredUser(params *ActivateSelfRegisteredUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ActivateSelfRegisteredUserCreated, error)
-
-	ActivateSelfRegisteredUserUsingExtendedCode(params *ActivateSelfRegisteredUserUsingExtendedCodeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ActivateSelfRegisteredUserUsingExtendedCodeCreated, error)
-
 	ChangePassword(params *ChangePasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ChangePasswordNoContent, error)
 
-	CompleteResetPassword(params *CompleteResetPasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CompleteResetPasswordNoContent, error)
+	GetUserProfile(params *GetUserProfileParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserProfileOK, error)
 
-	ConfirmResetPassword(params *ConfirmResetPasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ConfirmResetPasswordNoContent, error)
+	ResetPasswordConfirm(params *ResetPasswordConfirmParams, opts ...ClientOption) (*ResetPasswordConfirmNoContent, error)
 
-	GenerateActivationCode(params *GenerateActivationCodeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GenerateActivationCodeCreated, error)
-
-	GenerateCode(params *GenerateCodeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GenerateCodeCreated, error)
-
-	GenerateCodeForUser(params *GenerateCodeForUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GenerateCodeForUserCreated, error)
-
-	RequestResetPassword(params *RequestResetPasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RequestResetPasswordNoContent, error)
-
-	SelfRegisterUser(params *SelfRegisterUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SelfRegisterUserCreated, error)
-
-	SelfSendActivationMessage(params *SelfSendActivationMessageParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SelfSendActivationMessageNoContent, error)
-
-	SystemAddIdentifier(params *SystemAddIdentifierParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemAddIdentifierOK, error)
-
-	SystemAddVerifiableAddress(params *SystemAddVerifiableAddressParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemAddVerifiableAddressOK, error)
-
-	SystemCreateUser(params *SystemCreateUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemCreateUserCreated, error)
-
-	SystemDeleteIdentifier(params *SystemDeleteIdentifierParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemDeleteIdentifierNoContent, error)
-
-	SystemDeleteUser(params *SystemDeleteUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemDeleteUserNoContent, error)
-
-	SystemDeleteVerifiableAddress(params *SystemDeleteVerifiableAddressParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemDeleteVerifiableAddressNoContent, error)
-
-	SystemGetUser(params *SystemGetUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemGetUserOK, error)
-
-	SystemListUsers(params *SystemListUsersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemListUsersOK, error)
-
-	SystemUpdateUser(params *SystemUpdateUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemUpdateUserOK, error)
-
-	SystemUpdateVerifiableAddress(params *SystemUpdateVerifiableAddressParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemUpdateVerifiableAddressOK, error)
-
-	VerifyPassword(params *VerifyPasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*VerifyPasswordOK, error)
+	UpdateUserProfile(params *UpdateUserProfileParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateUserProfileOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
 
 /*
-	ActivateSelfRegisteredUser activates user with code
+ChangePassword changes password
 
-	Activates (changes status to Active) user if provided code is valid.
-
-Password is optional.
-Marks address as verified if not already this user's verified address.
-Adds address as identifier if not already this user's identifier.
-Invalidates used OTP for account activation.
-Fails if address where OTP was sent still belongs to this user.
-Fails if user status is not New.
-Fails if user has password set and password was provided.
-Returns an extended view on user entry (see Get User endpoint).
-Endpoint is protected by Brute Force mechanism.
-*/
-func (a *Client) ActivateSelfRegisteredUser(params *ActivateSelfRegisteredUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ActivateSelfRegisteredUserCreated, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewActivateSelfRegisteredUserParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "activateSelfRegisteredUser",
-		Method:             "POST",
-		PathPattern:        "/system/pools/{ipID}/users/{userID}/activate",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &ActivateSelfRegisteredUserReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*ActivateSelfRegisteredUserCreated)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for activateSelfRegisteredUser: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-	ActivateSelfRegisteredUserUsingExtendedCode activates user using extended code
-
-	Activates (changes status to Active) user using extended OTP if the provided code is valid.
-
-Password is optional.
-Marks address as verified if it's not yet a verified address of this user.
-Adds address as identifier if it's not yet an identifier of this user.
-Invalidates used OTP for account activation.
-Fails if address where OTP was sent still belongs to this user.
-Fails if user status is not New.
-Fails if user has password set already and password was provided.
-Returns an extended view on user entry (see Get User endpoint).
-Endpoint is protected by Brute Force mechanism.
-*/
-func (a *Client) ActivateSelfRegisteredUserUsingExtendedCode(params *ActivateSelfRegisteredUserUsingExtendedCodeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ActivateSelfRegisteredUserUsingExtendedCodeCreated, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewActivateSelfRegisteredUserUsingExtendedCodeParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "activateSelfRegisteredUserUsingExtendedCode",
-		Method:             "POST",
-		PathPattern:        "/system/pools/{ipID}/user/activate",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &ActivateSelfRegisteredUserUsingExtendedCodeReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*ActivateSelfRegisteredUserUsingExtendedCodeCreated)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for activateSelfRegisteredUserUsingExtendedCode: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-	ChangePassword changes password
-
-	Changes user password if the provided password matches the current user password.
-
-Fails if the current password is not set. For setting a password for user use the reset password flow.
-Endpoint is protected by Brute Force mechanism.
+Changes user password if provided password matches current user password.
 */
 func (a *Client) ChangePassword(params *ChangePasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ChangePasswordNoContent, error) {
 	// TODO: Validate the params before sending
@@ -195,7 +54,7 @@ func (a *Client) ChangePassword(params *ChangePasswordParams, authInfo runtime.C
 	op := &runtime.ClientOperation{
 		ID:                 "changePassword",
 		Method:             "POST",
-		PathPattern:        "/system/pools/{ipID}/users/{userID}/change_password",
+		PathPattern:        "/self/change-password",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -224,31 +83,73 @@ func (a *Client) ChangePassword(params *ChangePasswordParams, authInfo runtime.C
 }
 
 /*
-	CompleteResetPassword completes reset password
+	GetUserProfile selves get user profile
+
+	Returns base view on user entry. Besides basic user entry it returns all user identifiers and addresses.
+
+Also returns user metadata (only fields not marked as hidden) and payload.
+*/
+func (a *Client) GetUserProfile(params *GetUserProfileParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserProfileOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUserProfileParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getUserProfile",
+		Method:             "GET",
+		PathPattern:        "/self/me",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUserProfileReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetUserProfileOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getUserProfile: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	ResetPasswordConfirm confirms reset password
 
 	Resets password for user if the provided OTP is valid. It's the second and final step of the
 
 flow to reset the password.
-Either address (must be a valid email or mobile which is marked as verified address for the user), user id, identifier (must be user's identifier) or extended code must be provided.
+Either user identifier or extended code must be provided.
 Endpoint returns generic `401` regardless of the reason of failure to prevent email/mobile enumeration.
 After a successful password reset, OTP gets invalidated, so it cannot be reused.
 Endpoint is protected by Brute Force mechanism.
 */
-func (a *Client) CompleteResetPassword(params *CompleteResetPasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CompleteResetPasswordNoContent, error) {
+func (a *Client) ResetPasswordConfirm(params *ResetPasswordConfirmParams, opts ...ClientOption) (*ResetPasswordConfirmNoContent, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewCompleteResetPasswordParams()
+		params = NewResetPasswordConfirmParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "completeResetPassword",
+		ID:                 "resetPasswordConfirm",
 		Method:             "POST",
-		PathPattern:        "/system/pools/{ipID}/user/password/reset/complete",
+		PathPattern:        "/public/pools/{ipID}/reset-password/confirm",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &CompleteResetPasswordReader{formats: a.formats},
-		AuthInfo:           authInfo,
+		Reader:             &ResetPasswordConfirmReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -260,738 +161,39 @@ func (a *Client) CompleteResetPassword(params *CompleteResetPasswordParams, auth
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*CompleteResetPasswordNoContent)
+	success, ok := result.(*ResetPasswordConfirmNoContent)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for completeResetPassword: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for resetPasswordConfirm: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
 /*
-	ConfirmResetPassword confirms reset password
+	UpdateUserProfile selves update user profile
 
-	Resets password for user if the provided OTP is valid. It's the second and final step of the
+	Updates user payload.
 
-flow to reset the password.
-Either identifier (must be a valid email or mobile which is marked as verified address for the user), user id or extended code must be provided.
-Endpoint returns generic `401` regardless of the reason of failure to prevent email/mobile enumeration.
-After a successful password reset, OTP gets invalidated, so it cannot be reused.
-Endpoint is protected by Brute Force mechanism.
+Payload must be valid against schema defined in user entry.
+
+Returns base view on user entry (see Self Get User Profile endpoint).
 */
-func (a *Client) ConfirmResetPassword(params *ConfirmResetPasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ConfirmResetPasswordNoContent, error) {
+func (a *Client) UpdateUserProfile(params *UpdateUserProfileParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateUserProfileOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewConfirmResetPasswordParams()
+		params = NewUpdateUserProfileParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "confirmResetPassword",
-		Method:             "POST",
-		PathPattern:        "/system/pools/{ipID}/user/password/reset/confirm",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &ConfirmResetPasswordReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*ConfirmResetPasswordNoContent)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for confirmResetPassword: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-	GenerateActivationCode generates activation code
-
-	Generate an activation code for provided address
-
-Invalidates previously generated OTPs for user activation.
-Activation code is valid for specific period of time configured in Identity Pool.
-
-NOTE: this API is deprecated, please use the one for generating code of a specific type with type `activation`
-REFACTORED: input field name has been changed from `identifier` to `address`; field `identifier` stays for backward compatibility and overrides `address` if not empty
-*/
-func (a *Client) GenerateActivationCode(params *GenerateActivationCodeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GenerateActivationCodeCreated, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGenerateActivationCodeParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "generateActivationCode",
-		Method:             "POST",
-		PathPattern:        "/system/pools/{ipID}/users/{userID}/activation/generate",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GenerateActivationCodeReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GenerateActivationCodeCreated)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for generateActivationCode: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-	GenerateCode generates code of a specific type
-
-	Generate code of a specific type for provided address
-
-Invalidates previously generated OTPs for action associated with the type.
-Code is valid for specific period of time configured in Identity Pool.
-
-Keep in mind that `address` attribute for different code types does not mean the same:
-for `reset_password` and `challenge` it must be user's address (verified or unverified)
-for `activation` it is not mandatory (system will pick up address itself if there is only one in user entry) but if provided it must be one of the user's addresses (can be not verified)
-for `verify_address` it must be user's unverified address and that address cannot be someone's else verified address
-
-For `activation`, `reset_password` and `challenge` there is only one active code for a user (generating new one invalidates previous)
-For `verify_address` there might be many codes for a user. During verification latest for an address is being compared.
-*/
-func (a *Client) GenerateCode(params *GenerateCodeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GenerateCodeCreated, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGenerateCodeParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "generateCode",
-		Method:             "POST",
-		PathPattern:        "/system/pools/{ipID}/users/{userID}/code/generate",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GenerateCodeReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GenerateCodeCreated)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for generateCode: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-	GenerateCodeForUser generates code of a specific type
-
-	Generate code of a specific type for provided address
-
-Invalidates previously generated OTPs for action associated with the type.
-Code is valid for specific period of time configured in Identity Pool.
-
-Either userID or identifier (must be user's identifier) must be provided for most types.
-Exceptions are: reset password and challenge if address is user's verified address
-
-Keep in mind that `address` attribute for different code types does not mean the same:
-for `reset_password` and `challenge` it must be user's address (verified or unverified)
-for `activation` it is not mandatory (system will pick up address itself if there is only one in user entry) but if provided it must be one of the user's addresses (can be not verified)
-for `verify_address` it must be user's unverified address and that address cannot be someone's else verified address
-
-For `activation`, `reset_password` and `challenge` there is only one active code for a user (generating new one invalidates previous)
-For `verify_address` there might be many codes for a user. During verification latest for an address is being compared.
-*/
-func (a *Client) GenerateCodeForUser(params *GenerateCodeForUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GenerateCodeForUserCreated, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGenerateCodeForUserParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "generateCodeForUser",
-		Method:             "POST",
-		PathPattern:        "/system/pools/{ipID}/user/code/generate",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GenerateCodeForUserReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*GenerateCodeForUserCreated)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for generateCodeForUser: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-	RequestResetPassword requests reset password
-
-	Sends OTP for password reset. It's first out of two steps of the reset password flow.
-
-Address must be a valid email or mobile which is marked as verified address for the user.
-For validating unverified address userID or identifier must be provided.
-If userID is provided then identifier must not be set.
-When both userID or identifier and address are provided then address is taken from user pointed by either userID or identifier.
-Regardless if the address points to some user or not, the request ends successfully to
-prevent email/mobile enumeration.
-Invalidates previously generated OTPs for password reset.
-Reset password OTP is valid for a specific period of time configured in Identity Pool.
-
-REFACTORED: input field name has been renamed from `identifier` to `address`; new field `identifier` has been added and described in documentation
-*/
-func (a *Client) RequestResetPassword(params *RequestResetPasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RequestResetPasswordNoContent, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewRequestResetPasswordParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "requestResetPassword",
-		Method:             "POST",
-		PathPattern:        "/system/pools/{ipID}/user/password/reset/request",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &RequestResetPasswordReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*RequestResetPasswordNoContent)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for requestResetPassword: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-	SelfRegisterUser selves register user
-
-	Creates user using a very basic set of data provided by the user.
-
-Payload and password are optional.
-Sets payload and metadata schemas to ones from Identity Pool.
-Sets user status to New
-If payload is provided it must be valid against payload schema.
-Request fails if self registration for Identity Pool is not allowed.
-If identifier is someone's verified address or identifier endpoint returns that user ID and end successfully
-to prevent email/mobile enumeration. In the same time user whose email/mobile was provided will get notification that
-identifier is already used.
-If `send_activation_message` query parameter was set to `true`, activation message is sent to provided identifier.
-If `code_type_in_message` query parameter was set to link or not provided, link is generated for activation.
-Activation message is valid for specific period of time configured in Identity Pool.
-If the request succeeds, a new user ID is returned.
-Endpoint is protected by Brute Force mechanism.
-*/
-func (a *Client) SelfRegisterUser(params *SelfRegisterUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SelfRegisterUserCreated, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewSelfRegisterUserParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "selfRegisterUser",
-		Method:             "POST",
-		PathPattern:        "/system/pools/{ipID}/user/register",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &SelfRegisterUserReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*SelfRegisterUserCreated)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for selfRegisterUser: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-	SelfSendActivationMessage sends activation message
-
-	Sends activation message to user to provided address.
-
-If address is not provided then it takes user address as destination if there is only one
-Endpoint does not fail to prevent email/mobile enumeration.
-It does not send message if:
-address is not provided and user has no addresses or more than one
-address is someone's else verified address or identifier
-user status is not New.
-If address is someone's else verified address or identifier user whose email/mobile was provided
-will get notification that identifier is already used.
-Invalidates previously generated OTPs for user activation.
-If `code_type_in_message` query parameter was set to link or not provided then link will be generated for activation.
-Activation message is valid for specific period of time configured in Identity Pool.
-
-REFACTORED: input field name has been changed from `identifier` to `address`; field `identifier` stays for backward compatibility and overrides `address` if not empty
-*/
-func (a *Client) SelfSendActivationMessage(params *SelfSendActivationMessageParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SelfSendActivationMessageNoContent, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewSelfSendActivationMessageParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "selfSendActivationMessage",
-		Method:             "POST",
-		PathPattern:        "/system/pools/{ipID}/users/{userID}/activation/send",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &SelfSendActivationMessageReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*SelfSendActivationMessageNoContent)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for selfSendActivationMessage: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-SystemAddIdentifier adds identifier
-
-Adds an identifier to the user account
-*/
-func (a *Client) SystemAddIdentifier(params *SystemAddIdentifierParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemAddIdentifierOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewSystemAddIdentifierParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "systemAddIdentifier",
-		Method:             "POST",
-		PathPattern:        "/system/pools/{ipID}/users/{userID}/identifiers/add",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &SystemAddIdentifierReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*SystemAddIdentifierOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for systemAddIdentifier: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-SystemAddVerifiableAddress adds verifiable address
-
-Adds a verifiable address to the user account
-*/
-func (a *Client) SystemAddVerifiableAddress(params *SystemAddVerifiableAddressParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemAddVerifiableAddressOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewSystemAddVerifiableAddressParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "systemAddVerifiableAddress",
-		Method:             "POST",
-		PathPattern:        "/system/pools/{ipID}/users/{userID}/addresses/add",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &SystemAddVerifiableAddressReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*SystemAddVerifiableAddressOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for systemAddVerifiableAddress: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-	SystemCreateUser creates user
-
-	Creates a user with extended data. User can be created with any status and set of identifiers, addresses and credentials.
-
-If payload schema ID or metadata schema ID is not provided, they default to the value from Identity Pool.
-Payload and metadata must be valid against a proper schema.
-Returns an extended view on user entry (see Get User endpoint).
-*/
-func (a *Client) SystemCreateUser(params *SystemCreateUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemCreateUserCreated, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewSystemCreateUserParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "systemCreateUser",
-		Method:             "POST",
-		PathPattern:        "/system/pools/{ipID}/users",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &SystemCreateUserReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*SystemCreateUserCreated)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for systemCreateUser: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-SystemDeleteIdentifier deletes identifier
-
-Deletes an identifier from the user account
-*/
-func (a *Client) SystemDeleteIdentifier(params *SystemDeleteIdentifierParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemDeleteIdentifierNoContent, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewSystemDeleteIdentifierParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "systemDeleteIdentifier",
-		Method:             "POST",
-		PathPattern:        "/system/pools/{ipID}/users/{userID}/identifiers/remove",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &SystemDeleteIdentifierReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*SystemDeleteIdentifierNoContent)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for systemDeleteIdentifier: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-SystemDeleteUser deletes user
-
-Deletes user.
-*/
-func (a *Client) SystemDeleteUser(params *SystemDeleteUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemDeleteUserNoContent, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewSystemDeleteUserParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "systemDeleteUser",
-		Method:             "DELETE",
-		PathPattern:        "/system/pools/{ipID}/users/{userID}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &SystemDeleteUserReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*SystemDeleteUserNoContent)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for systemDeleteUser: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-SystemDeleteVerifiableAddress deletes verifiable address
-
-Deletes a verifiable address from the user account
-*/
-func (a *Client) SystemDeleteVerifiableAddress(params *SystemDeleteVerifiableAddressParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemDeleteVerifiableAddressNoContent, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewSystemDeleteVerifiableAddressParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "systemDeleteVerifiableAddress",
-		Method:             "POST",
-		PathPattern:        "/system/pools/{ipID}/users/{userID}/addresses/remove",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &SystemDeleteVerifiableAddressReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*SystemDeleteVerifiableAddressNoContent)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for systemDeleteVerifiableAddress: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-	SystemGetUser gets user
-
-	Returns an extended view on user entry.
-
-Besides the basic user entry, it returns all user identifiers, addresses, and credentials (blurred).
-User payload and metadata are also returned.
-*/
-func (a *Client) SystemGetUser(params *SystemGetUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemGetUserOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewSystemGetUserParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "systemGetUser",
-		Method:             "GET",
-		PathPattern:        "/system/pools/{ipID}/users/{userID}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &SystemGetUserReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*SystemGetUserOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for systemGetUser: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-SystemListUsers lists users
-
-Lists users.
-*/
-func (a *Client) SystemListUsers(params *SystemListUsersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemListUsersOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewSystemListUsersParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "systemListUsers",
-		Method:             "GET",
-		PathPattern:        "/system/pools/{ipID}/users",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &SystemListUsersReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*SystemListUsersOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for systemListUsers: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-	SystemUpdateUser updates user
-
-	Updates base set of user data like payload, metadata, schemas and status.
-
-Updates only provided fields - overrides them. Not provided fields are not removed/cleared.
-If payload or metadata is provided it must be valid against proper schema.
-If any schema is provided then the corresponding entry (payload or metadata) must be valid against it.
-Returns an extended view on user entry (see Get User endpoint).
-*/
-func (a *Client) SystemUpdateUser(params *SystemUpdateUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemUpdateUserOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewSystemUpdateUserParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "systemUpdateUser",
+		ID:                 "updateUserProfile",
 		Method:             "PUT",
-		PathPattern:        "/system/pools/{ipID}/users/{userID}",
+		PathPattern:        "/self/me",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &SystemUpdateUserReader{formats: a.formats},
+		Reader:             &UpdateUserProfileReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -1004,99 +206,13 @@ func (a *Client) SystemUpdateUser(params *SystemUpdateUserParams, authInfo runti
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*SystemUpdateUserOK)
+	success, ok := result.(*UpdateUserProfileOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for systemUpdateUser: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-SystemUpdateVerifiableAddress updates verifiable address
-
-Updates a verifiable address of the user account
-*/
-func (a *Client) SystemUpdateVerifiableAddress(params *SystemUpdateVerifiableAddressParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemUpdateVerifiableAddressOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewSystemUpdateVerifiableAddressParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "systemUpdateVerifiableAddress",
-		Method:             "POST",
-		PathPattern:        "/system/pools/{ipID}/users/{userID}/addresses/update",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &SystemUpdateVerifiableAddressReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*SystemUpdateVerifiableAddressOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for systemUpdateVerifiableAddress: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
-}
-
-/*
-	VerifyPassword verifies user s password
-
-	Verifies user's password.
-
-Either identifier (must be user's identifier) or user ID must be provided.
-Endpoint is protected by Brute Force mechanism.
-This endpoint is meant for integration when external system verifies user's password.
-*/
-func (a *Client) VerifyPassword(params *VerifyPasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*VerifyPasswordOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewVerifyPasswordParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "verifyPassword",
-		Method:             "POST",
-		PathPattern:        "/system/pools/{ipID}/user/password/verify",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &VerifyPasswordReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*VerifyPasswordOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for verifyPassword: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for updateUserProfile: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

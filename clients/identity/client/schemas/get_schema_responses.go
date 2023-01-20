@@ -69,15 +69,6 @@ GetSchemaOK describes a response with status code 200, with default header value
 Identity Schema
 */
 type GetSchemaOK struct {
-
-	/* The ETag HTTP header is an identifier for a specific version of a resource
-
-	in:header
-
-	     Format: etag
-	*/
-	Etag string
-
 	Payload *models.Schema
 }
 
@@ -120,13 +111,6 @@ func (o *GetSchemaOK) GetPayload() *models.Schema {
 
 func (o *GetSchemaOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header etag
-	hdrEtag := response.GetHeader("etag")
-
-	if hdrEtag != "" {
-		o.Etag = hdrEtag
-	}
-
 	o.Payload = new(models.Schema)
 
 	// response payload
@@ -145,7 +129,7 @@ func NewGetSchemaUnauthorized() *GetSchemaUnauthorized {
 /*
 GetSchemaUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetSchemaUnauthorized struct {
 	Payload *models.Error
@@ -208,7 +192,7 @@ func NewGetSchemaForbidden() *GetSchemaForbidden {
 /*
 GetSchemaForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetSchemaForbidden struct {
 	Payload *models.Error
@@ -271,7 +255,7 @@ func NewGetSchemaNotFound() *GetSchemaNotFound {
 /*
 GetSchemaNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetSchemaNotFound struct {
 	Payload *models.Error
@@ -334,7 +318,7 @@ func NewGetSchemaTooManyRequests() *GetSchemaTooManyRequests {
 /*
 GetSchemaTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetSchemaTooManyRequests struct {
 	Payload *models.Error

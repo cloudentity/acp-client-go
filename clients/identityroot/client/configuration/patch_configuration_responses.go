@@ -129,7 +129,7 @@ func NewPatchConfigurationBadRequest() *PatchConfigurationBadRequest {
 /*
 PatchConfigurationBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type PatchConfigurationBadRequest struct {
 	Payload *models.Error
@@ -192,7 +192,7 @@ func NewPatchConfigurationUnauthorized() *PatchConfigurationUnauthorized {
 /*
 PatchConfigurationUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type PatchConfigurationUnauthorized struct {
 	Payload *models.Error
@@ -255,7 +255,7 @@ func NewPatchConfigurationForbidden() *PatchConfigurationForbidden {
 /*
 PatchConfigurationForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type PatchConfigurationForbidden struct {
 	Payload *models.Error
@@ -318,7 +318,7 @@ func NewPatchConfigurationNotFound() *PatchConfigurationNotFound {
 /*
 PatchConfigurationNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type PatchConfigurationNotFound struct {
 	Payload *models.Error
@@ -381,7 +381,7 @@ func NewPatchConfigurationUnprocessableEntity() *PatchConfigurationUnprocessable
 /*
 PatchConfigurationUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type PatchConfigurationUnprocessableEntity struct {
 	Payload *models.Error
@@ -444,7 +444,7 @@ func NewPatchConfigurationTooManyRequests() *PatchConfigurationTooManyRequests {
 /*
 PatchConfigurationTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type PatchConfigurationTooManyRequests struct {
 	Payload *models.Error

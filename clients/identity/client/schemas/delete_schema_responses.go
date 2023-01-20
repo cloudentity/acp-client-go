@@ -29,6 +29,12 @@ func (o *DeleteSchemaReader) ReadResponse(response runtime.ClientResponse, consu
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewDeleteSchemaBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewDeleteSchemaUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -115,6 +121,69 @@ func (o *DeleteSchemaNoContent) readResponse(response runtime.ClientResponse, co
 	return nil
 }
 
+// NewDeleteSchemaBadRequest creates a DeleteSchemaBadRequest with default headers values
+func NewDeleteSchemaBadRequest() *DeleteSchemaBadRequest {
+	return &DeleteSchemaBadRequest{}
+}
+
+/*
+DeleteSchemaBadRequest describes a response with status code 400, with default header values.
+
+Bad request
+*/
+type DeleteSchemaBadRequest struct {
+	Payload *models.Error
+}
+
+// IsSuccess returns true when this delete schema bad request response has a 2xx status code
+func (o *DeleteSchemaBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete schema bad request response has a 3xx status code
+func (o *DeleteSchemaBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete schema bad request response has a 4xx status code
+func (o *DeleteSchemaBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete schema bad request response has a 5xx status code
+func (o *DeleteSchemaBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete schema bad request response a status code equal to that given
+func (o *DeleteSchemaBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
+func (o *DeleteSchemaBadRequest) Error() string {
+	return fmt.Sprintf("[DELETE /admin/schemas/{schID}][%d] deleteSchemaBadRequest  %+v", 400, o.Payload)
+}
+
+func (o *DeleteSchemaBadRequest) String() string {
+	return fmt.Sprintf("[DELETE /admin/schemas/{schID}][%d] deleteSchemaBadRequest  %+v", 400, o.Payload)
+}
+
+func (o *DeleteSchemaBadRequest) GetPayload() *models.Error {
+	return o.Payload
+}
+
+func (o *DeleteSchemaBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewDeleteSchemaUnauthorized creates a DeleteSchemaUnauthorized with default headers values
 func NewDeleteSchemaUnauthorized() *DeleteSchemaUnauthorized {
 	return &DeleteSchemaUnauthorized{}
@@ -123,7 +192,7 @@ func NewDeleteSchemaUnauthorized() *DeleteSchemaUnauthorized {
 /*
 DeleteSchemaUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type DeleteSchemaUnauthorized struct {
 	Payload *models.Error
@@ -186,7 +255,7 @@ func NewDeleteSchemaForbidden() *DeleteSchemaForbidden {
 /*
 DeleteSchemaForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type DeleteSchemaForbidden struct {
 	Payload *models.Error
@@ -249,7 +318,7 @@ func NewDeleteSchemaNotFound() *DeleteSchemaNotFound {
 /*
 DeleteSchemaNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type DeleteSchemaNotFound struct {
 	Payload *models.Error
@@ -312,7 +381,7 @@ func NewDeleteSchemaConflict() *DeleteSchemaConflict {
 /*
 DeleteSchemaConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type DeleteSchemaConflict struct {
 	Payload *models.Error
@@ -375,7 +444,7 @@ func NewDeleteSchemaTooManyRequests() *DeleteSchemaTooManyRequests {
 /*
 DeleteSchemaTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type DeleteSchemaTooManyRequests struct {
 	Payload *models.Error

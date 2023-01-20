@@ -72,18 +72,9 @@ func NewSystemGenerateCodeCreated() *SystemGenerateCodeCreated {
 /*
 SystemGenerateCodeCreated describes a response with status code 201, with default header values.
 
-User
+Code
 */
 type SystemGenerateCodeCreated struct {
-
-	/* The ETag HTTP header is an identifier for a specific version of a resource
-
-	in:header
-
-	     Format: etag
-	*/
-	Etag string
-
 	Payload *models.Codes
 }
 
@@ -126,13 +117,6 @@ func (o *SystemGenerateCodeCreated) GetPayload() *models.Codes {
 
 func (o *SystemGenerateCodeCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header etag
-	hdrEtag := response.GetHeader("etag")
-
-	if hdrEtag != "" {
-		o.Etag = hdrEtag
-	}
-
 	o.Payload = new(models.Codes)
 
 	// response payload
@@ -151,7 +135,7 @@ func NewSystemGenerateCodeBadRequest() *SystemGenerateCodeBadRequest {
 /*
 SystemGenerateCodeBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type SystemGenerateCodeBadRequest struct {
 	Payload *models.Error
@@ -214,7 +198,7 @@ func NewSystemGenerateCodeUnauthorized() *SystemGenerateCodeUnauthorized {
 /*
 SystemGenerateCodeUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type SystemGenerateCodeUnauthorized struct {
 	Payload *models.Error
@@ -277,7 +261,7 @@ func NewSystemGenerateCodeNotFound() *SystemGenerateCodeNotFound {
 /*
 SystemGenerateCodeNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type SystemGenerateCodeNotFound struct {
 	Payload *models.Error
@@ -340,7 +324,7 @@ func NewSystemGenerateCodeUnprocessableEntity() *SystemGenerateCodeUnprocessable
 /*
 SystemGenerateCodeUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type SystemGenerateCodeUnprocessableEntity struct {
 	Payload *models.Error
@@ -403,7 +387,7 @@ func NewSystemGenerateCodeTooManyRequests() *SystemGenerateCodeTooManyRequests {
 /*
 SystemGenerateCodeTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type SystemGenerateCodeTooManyRequests struct {
 	Payload *models.Error

@@ -15,10 +15,10 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// Pool pool
+// PoolResponse pool response
 //
-// swagger:model Pool
-type Pool struct {
+// swagger:model PoolResponse
+type PoolResponse struct {
 
 	// authentication mechanisms
 	AuthenticationMechanisms AuthenticationMechanisms `json:"authentication_mechanisms,omitempty"`
@@ -44,6 +44,9 @@ type Pool struct {
 	// name
 	// Required: true
 	Name string `json:"name"`
+
+	// number of users
+	NumberOfUsers int64 `json:"number_of_users,omitempty"`
 
 	// otp settings
 	OtpSettings *OtpSettings `json:"otp_settings,omitempty"`
@@ -74,8 +77,8 @@ type Pool struct {
 	TenantID string `json:"tenant_id"`
 }
 
-// Validate validates this pool
-func (m *Pool) Validate(formats strfmt.Registry) error {
+// Validate validates this pool response
+func (m *PoolResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAuthenticationMechanisms(formats); err != nil {
@@ -112,7 +115,7 @@ func (m *Pool) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Pool) validateAuthenticationMechanisms(formats strfmt.Registry) error {
+func (m *PoolResponse) validateAuthenticationMechanisms(formats strfmt.Registry) error {
 	if swag.IsZero(m.AuthenticationMechanisms) { // not required
 		return nil
 	}
@@ -129,7 +132,7 @@ func (m *Pool) validateAuthenticationMechanisms(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Pool) validateName(formats strfmt.Registry) error {
+func (m *PoolResponse) validateName(formats strfmt.Registry) error {
 
 	if err := validate.RequiredString("name", "body", m.Name); err != nil {
 		return err
@@ -138,7 +141,7 @@ func (m *Pool) validateName(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Pool) validateOtpSettings(formats strfmt.Registry) error {
+func (m *PoolResponse) validateOtpSettings(formats strfmt.Registry) error {
 	if swag.IsZero(m.OtpSettings) { // not required
 		return nil
 	}
@@ -157,7 +160,7 @@ func (m *Pool) validateOtpSettings(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Pool) validatePasswordPolicy(formats strfmt.Registry) error {
+func (m *PoolResponse) validatePasswordPolicy(formats strfmt.Registry) error {
 	if swag.IsZero(m.PasswordPolicy) { // not required
 		return nil
 	}
@@ -176,7 +179,7 @@ func (m *Pool) validatePasswordPolicy(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Pool) validatePasswordSettings(formats strfmt.Registry) error {
+func (m *PoolResponse) validatePasswordSettings(formats strfmt.Registry) error {
 	if swag.IsZero(m.PasswordSettings) { // not required
 		return nil
 	}
@@ -195,7 +198,7 @@ func (m *Pool) validatePasswordSettings(formats strfmt.Registry) error {
 	return nil
 }
 
-var poolTypePreferredAuthenticationMechanismPropEnum []interface{}
+var poolResponseTypePreferredAuthenticationMechanismPropEnum []interface{}
 
 func init() {
 	var res []string
@@ -203,31 +206,31 @@ func init() {
 		panic(err)
 	}
 	for _, v := range res {
-		poolTypePreferredAuthenticationMechanismPropEnum = append(poolTypePreferredAuthenticationMechanismPropEnum, v)
+		poolResponseTypePreferredAuthenticationMechanismPropEnum = append(poolResponseTypePreferredAuthenticationMechanismPropEnum, v)
 	}
 }
 
 const (
 
-	// PoolPreferredAuthenticationMechanismPassword captures enum value "password"
-	PoolPreferredAuthenticationMechanismPassword string = "password"
+	// PoolResponsePreferredAuthenticationMechanismPassword captures enum value "password"
+	PoolResponsePreferredAuthenticationMechanismPassword string = "password"
 
-	// PoolPreferredAuthenticationMechanismOtp captures enum value "otp"
-	PoolPreferredAuthenticationMechanismOtp string = "otp"
+	// PoolResponsePreferredAuthenticationMechanismOtp captures enum value "otp"
+	PoolResponsePreferredAuthenticationMechanismOtp string = "otp"
 
-	// PoolPreferredAuthenticationMechanismWebauthn captures enum value "webauthn"
-	PoolPreferredAuthenticationMechanismWebauthn string = "webauthn"
+	// PoolResponsePreferredAuthenticationMechanismWebauthn captures enum value "webauthn"
+	PoolResponsePreferredAuthenticationMechanismWebauthn string = "webauthn"
 )
 
 // prop value enum
-func (m *Pool) validatePreferredAuthenticationMechanismEnum(path, location string, value string) error {
-	if err := validate.EnumCase(path, location, value, poolTypePreferredAuthenticationMechanismPropEnum, true); err != nil {
+func (m *PoolResponse) validatePreferredAuthenticationMechanismEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, poolResponseTypePreferredAuthenticationMechanismPropEnum, true); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *Pool) validatePreferredAuthenticationMechanism(formats strfmt.Registry) error {
+func (m *PoolResponse) validatePreferredAuthenticationMechanism(formats strfmt.Registry) error {
 	if swag.IsZero(m.PreferredAuthenticationMechanism) { // not required
 		return nil
 	}
@@ -240,7 +243,7 @@ func (m *Pool) validatePreferredAuthenticationMechanism(formats strfmt.Registry)
 	return nil
 }
 
-func (m *Pool) validateTenantID(formats strfmt.Registry) error {
+func (m *PoolResponse) validateTenantID(formats strfmt.Registry) error {
 
 	if err := validate.RequiredString("tenant_id", "body", m.TenantID); err != nil {
 		return err
@@ -249,8 +252,8 @@ func (m *Pool) validateTenantID(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validate this pool based on the context it is used
-func (m *Pool) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validate this pool response based on the context it is used
+func (m *PoolResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateAuthenticationMechanisms(ctx, formats); err != nil {
@@ -275,7 +278,7 @@ func (m *Pool) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 	return nil
 }
 
-func (m *Pool) contextValidateAuthenticationMechanisms(ctx context.Context, formats strfmt.Registry) error {
+func (m *PoolResponse) contextValidateAuthenticationMechanisms(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := m.AuthenticationMechanisms.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -289,7 +292,7 @@ func (m *Pool) contextValidateAuthenticationMechanisms(ctx context.Context, form
 	return nil
 }
 
-func (m *Pool) contextValidateOtpSettings(ctx context.Context, formats strfmt.Registry) error {
+func (m *PoolResponse) contextValidateOtpSettings(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtpSettings != nil {
 		if err := m.OtpSettings.ContextValidate(ctx, formats); err != nil {
@@ -305,7 +308,7 @@ func (m *Pool) contextValidateOtpSettings(ctx context.Context, formats strfmt.Re
 	return nil
 }
 
-func (m *Pool) contextValidatePasswordPolicy(ctx context.Context, formats strfmt.Registry) error {
+func (m *PoolResponse) contextValidatePasswordPolicy(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.PasswordPolicy != nil {
 		if err := m.PasswordPolicy.ContextValidate(ctx, formats); err != nil {
@@ -321,7 +324,7 @@ func (m *Pool) contextValidatePasswordPolicy(ctx context.Context, formats strfmt
 	return nil
 }
 
-func (m *Pool) contextValidatePasswordSettings(ctx context.Context, formats strfmt.Registry) error {
+func (m *PoolResponse) contextValidatePasswordSettings(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.PasswordSettings != nil {
 		if err := m.PasswordSettings.ContextValidate(ctx, formats); err != nil {
@@ -338,7 +341,7 @@ func (m *Pool) contextValidatePasswordSettings(ctx context.Context, formats strf
 }
 
 // MarshalBinary interface implementation
-func (m *Pool) MarshalBinary() ([]byte, error) {
+func (m *PoolResponse) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -346,8 +349,8 @@ func (m *Pool) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *Pool) UnmarshalBinary(b []byte) error {
-	var res Pool
+func (m *PoolResponse) UnmarshalBinary(b []byte) error {
+	var res PoolResponse
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

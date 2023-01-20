@@ -117,7 +117,7 @@ func NewDeleteUserUnauthorized() *DeleteUserUnauthorized {
 /*
 DeleteUserUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type DeleteUserUnauthorized struct {
 	Payload *models.Error
@@ -180,7 +180,7 @@ func NewDeleteUserForbidden() *DeleteUserForbidden {
 /*
 DeleteUserForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type DeleteUserForbidden struct {
 	Payload *models.Error
@@ -243,7 +243,7 @@ func NewDeleteUserNotFound() *DeleteUserNotFound {
 /*
 DeleteUserNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type DeleteUserNotFound struct {
 	Payload *models.Error
@@ -306,7 +306,7 @@ func NewDeleteUserTooManyRequests() *DeleteUserTooManyRequests {
 /*
 DeleteUserTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type DeleteUserTooManyRequests struct {
 	Payload *models.Error

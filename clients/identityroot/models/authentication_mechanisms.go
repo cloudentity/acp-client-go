@@ -24,7 +24,7 @@ var authenticationMechanismsItemsEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["password","otp"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["password","otp","webauthn"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {

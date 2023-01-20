@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// Users users
+// Users Identity Users
 //
 // swagger:model Users
 type Users struct {
