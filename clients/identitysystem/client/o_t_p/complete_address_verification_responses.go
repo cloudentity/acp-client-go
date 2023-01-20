@@ -78,7 +78,7 @@ func NewCompleteAddressVerificationNoContent() *CompleteAddressVerificationNoCon
 /*
 CompleteAddressVerificationNoContent describes a response with status code 204, with default header values.
 
-Address verification completed
+Complete address veritifaction response
 */
 type CompleteAddressVerificationNoContent struct {
 
@@ -117,11 +117,11 @@ func (o *CompleteAddressVerificationNoContent) IsCode(code int) bool {
 }
 
 func (o *CompleteAddressVerificationNoContent) Error() string {
-	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationNoContent ", 204)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/complete][%d] completeAddressVerificationNoContent ", 204)
 }
 
 func (o *CompleteAddressVerificationNoContent) String() string {
-	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationNoContent ", 204)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/complete][%d] completeAddressVerificationNoContent ", 204)
 }
 
 func (o *CompleteAddressVerificationNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -176,11 +176,11 @@ func (o *CompleteAddressVerificationBadRequest) IsCode(code int) bool {
 }
 
 func (o *CompleteAddressVerificationBadRequest) Error() string {
-	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/complete][%d] completeAddressVerificationBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CompleteAddressVerificationBadRequest) String() string {
-	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/complete][%d] completeAddressVerificationBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *CompleteAddressVerificationBadRequest) GetPayload() *models.Error {
@@ -239,11 +239,11 @@ func (o *CompleteAddressVerificationUnauthorized) IsCode(code int) bool {
 }
 
 func (o *CompleteAddressVerificationUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/complete][%d] completeAddressVerificationUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CompleteAddressVerificationUnauthorized) String() string {
-	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/complete][%d] completeAddressVerificationUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *CompleteAddressVerificationUnauthorized) GetPayload() *models.Error {
@@ -302,11 +302,11 @@ func (o *CompleteAddressVerificationNotFound) IsCode(code int) bool {
 }
 
 func (o *CompleteAddressVerificationNotFound) Error() string {
-	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/complete][%d] completeAddressVerificationNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CompleteAddressVerificationNotFound) String() string {
-	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/complete][%d] completeAddressVerificationNotFound  %+v", 404, o.Payload)
 }
 
 func (o *CompleteAddressVerificationNotFound) GetPayload() *models.Error {
@@ -365,11 +365,11 @@ func (o *CompleteAddressVerificationConflict) IsCode(code int) bool {
 }
 
 func (o *CompleteAddressVerificationConflict) Error() string {
-	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/complete][%d] completeAddressVerificationConflict  %+v", 409, o.Payload)
 }
 
 func (o *CompleteAddressVerificationConflict) String() string {
-	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationConflict  %+v", 409, o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/complete][%d] completeAddressVerificationConflict  %+v", 409, o.Payload)
 }
 
 func (o *CompleteAddressVerificationConflict) GetPayload() *models.Error {
@@ -428,11 +428,11 @@ func (o *CompleteAddressVerificationPreconditionFailed) IsCode(code int) bool {
 }
 
 func (o *CompleteAddressVerificationPreconditionFailed) Error() string {
-	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationPreconditionFailed  %+v", 412, o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/complete][%d] completeAddressVerificationPreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *CompleteAddressVerificationPreconditionFailed) String() string {
-	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationPreconditionFailed  %+v", 412, o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/complete][%d] completeAddressVerificationPreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *CompleteAddressVerificationPreconditionFailed) GetPayload() *models.Error {
@@ -491,11 +491,11 @@ func (o *CompleteAddressVerificationUnprocessableEntity) IsCode(code int) bool {
 }
 
 func (o *CompleteAddressVerificationUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/complete][%d] completeAddressVerificationUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CompleteAddressVerificationUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/complete][%d] completeAddressVerificationUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *CompleteAddressVerificationUnprocessableEntity) GetPayload() *models.Error {

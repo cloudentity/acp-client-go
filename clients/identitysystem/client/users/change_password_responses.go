@@ -123,11 +123,11 @@ func (o *ChangePasswordNoContent) IsCode(code int) bool {
 }
 
 func (o *ChangePasswordNoContent) Error() string {
-	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordNoContent ", 204)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] changePasswordNoContent ", 204)
 }
 
 func (o *ChangePasswordNoContent) String() string {
-	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordNoContent ", 204)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] changePasswordNoContent ", 204)
 }
 
 func (o *ChangePasswordNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -182,11 +182,11 @@ func (o *ChangePasswordBadRequest) IsCode(code int) bool {
 }
 
 func (o *ChangePasswordBadRequest) Error() string {
-	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] changePasswordBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ChangePasswordBadRequest) String() string {
-	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordBadRequest  %+v", 400, o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] changePasswordBadRequest  %+v", 400, o.Payload)
 }
 
 func (o *ChangePasswordBadRequest) GetPayload() *models.Error {
@@ -245,11 +245,11 @@ func (o *ChangePasswordUnauthorized) IsCode(code int) bool {
 }
 
 func (o *ChangePasswordUnauthorized) Error() string {
-	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] changePasswordUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ChangePasswordUnauthorized) String() string {
-	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordUnauthorized  %+v", 401, o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] changePasswordUnauthorized  %+v", 401, o.Payload)
 }
 
 func (o *ChangePasswordUnauthorized) GetPayload() *models.Error {
@@ -308,11 +308,11 @@ func (o *ChangePasswordForbidden) IsCode(code int) bool {
 }
 
 func (o *ChangePasswordForbidden) Error() string {
-	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] changePasswordForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ChangePasswordForbidden) String() string {
-	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordForbidden  %+v", 403, o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] changePasswordForbidden  %+v", 403, o.Payload)
 }
 
 func (o *ChangePasswordForbidden) GetPayload() *models.Error {
@@ -371,11 +371,11 @@ func (o *ChangePasswordNotFound) IsCode(code int) bool {
 }
 
 func (o *ChangePasswordNotFound) Error() string {
-	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] changePasswordNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ChangePasswordNotFound) String() string {
-	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] changePasswordNotFound  %+v", 404, o.Payload)
 }
 
 func (o *ChangePasswordNotFound) GetPayload() *models.Error {
@@ -434,11 +434,11 @@ func (o *ChangePasswordPreconditionFailed) IsCode(code int) bool {
 }
 
 func (o *ChangePasswordPreconditionFailed) Error() string {
-	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordPreconditionFailed  %+v", 412, o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] changePasswordPreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *ChangePasswordPreconditionFailed) String() string {
-	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordPreconditionFailed  %+v", 412, o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] changePasswordPreconditionFailed  %+v", 412, o.Payload)
 }
 
 func (o *ChangePasswordPreconditionFailed) GetPayload() *models.Error {
@@ -497,11 +497,11 @@ func (o *ChangePasswordUnprocessableEntity) IsCode(code int) bool {
 }
 
 func (o *ChangePasswordUnprocessableEntity) Error() string {
-	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] changePasswordUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *ChangePasswordUnprocessableEntity) String() string {
-	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordUnprocessableEntity  %+v", 422, o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] changePasswordUnprocessableEntity  %+v", 422, o.Payload)
 }
 
 func (o *ChangePasswordUnprocessableEntity) GetPayload() *models.Error {
@@ -560,11 +560,11 @@ func (o *ChangePasswordTooManyRequests) IsCode(code int) bool {
 }
 
 func (o *ChangePasswordTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] changePasswordTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ChangePasswordTooManyRequests) String() string {
-	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordTooManyRequests  %+v", 429, o.Payload)
+	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] changePasswordTooManyRequests  %+v", 429, o.Payload)
 }
 
 func (o *ChangePasswordTooManyRequests) GetPayload() *models.Error {
