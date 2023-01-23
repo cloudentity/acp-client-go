@@ -139,7 +139,7 @@ func NewVerifyPasswordUnauthorized() *VerifyPasswordUnauthorized {
 /*
 VerifyPasswordUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type VerifyPasswordUnauthorized struct {
 	Payload *models.Error
@@ -202,7 +202,7 @@ func NewVerifyPasswordPreconditionFailed() *VerifyPasswordPreconditionFailed {
 /*
 VerifyPasswordPreconditionFailed describes a response with status code 412, with default header values.
 
-HttpError
+Payload too large
 */
 type VerifyPasswordPreconditionFailed struct {
 	Payload *models.Error
@@ -265,7 +265,7 @@ func NewVerifyPasswordUnprocessableEntity() *VerifyPasswordUnprocessableEntity {
 /*
 VerifyPasswordUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type VerifyPasswordUnprocessableEntity struct {
 	Payload *models.Error

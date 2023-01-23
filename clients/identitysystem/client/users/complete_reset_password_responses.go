@@ -126,7 +126,7 @@ func NewCompleteResetPasswordUnauthorized() *CompleteResetPasswordUnauthorized {
 /*
 CompleteResetPasswordUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type CompleteResetPasswordUnauthorized struct {
 	Payload *models.Error
@@ -189,7 +189,7 @@ func NewCompleteResetPasswordPreconditionFailed() *CompleteResetPasswordPrecondi
 /*
 CompleteResetPasswordPreconditionFailed describes a response with status code 412, with default header values.
 
-HttpError
+Payload too large
 */
 type CompleteResetPasswordPreconditionFailed struct {
 	Payload *models.Error
@@ -252,7 +252,7 @@ func NewCompleteResetPasswordUnprocessableEntity() *CompleteResetPasswordUnproce
 /*
 CompleteResetPasswordUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type CompleteResetPasswordUnprocessableEntity struct {
 	Payload *models.Error

@@ -135,7 +135,7 @@ func NewImportConfigurationBadRequest() *ImportConfigurationBadRequest {
 /*
 ImportConfigurationBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type ImportConfigurationBadRequest struct {
 	Payload *models.Error
@@ -198,7 +198,7 @@ func NewImportConfigurationUnauthorized() *ImportConfigurationUnauthorized {
 /*
 ImportConfigurationUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ImportConfigurationUnauthorized struct {
 	Payload *models.Error
@@ -261,7 +261,7 @@ func NewImportConfigurationForbidden() *ImportConfigurationForbidden {
 /*
 ImportConfigurationForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ImportConfigurationForbidden struct {
 	Payload *models.Error
@@ -324,7 +324,7 @@ func NewImportConfigurationNotFound() *ImportConfigurationNotFound {
 /*
 ImportConfigurationNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type ImportConfigurationNotFound struct {
 	Payload *models.Error
@@ -387,7 +387,7 @@ func NewImportConfigurationConflict() *ImportConfigurationConflict {
 /*
 ImportConfigurationConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type ImportConfigurationConflict struct {
 	Payload *models.Error
@@ -450,7 +450,7 @@ func NewImportConfigurationUnprocessableEntity() *ImportConfigurationUnprocessab
 /*
 ImportConfigurationUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type ImportConfigurationUnprocessableEntity struct {
 	Payload *models.Error
@@ -513,7 +513,7 @@ func NewImportConfigurationTooManyRequests() *ImportConfigurationTooManyRequests
 /*
 ImportConfigurationTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ImportConfigurationTooManyRequests struct {
 	Payload *models.Error

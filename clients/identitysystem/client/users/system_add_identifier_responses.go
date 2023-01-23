@@ -78,7 +78,7 @@ func NewSystemAddIdentifierOK() *SystemAddIdentifierOK {
 /*
 SystemAddIdentifierOK describes a response with status code 200, with default header values.
 
-User
+Identifier
 */
 type SystemAddIdentifierOK struct {
 
@@ -157,7 +157,7 @@ func NewSystemAddIdentifierUnauthorized() *SystemAddIdentifierUnauthorized {
 /*
 SystemAddIdentifierUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type SystemAddIdentifierUnauthorized struct {
 	Payload *models.Error
@@ -220,7 +220,7 @@ func NewSystemAddIdentifierForbidden() *SystemAddIdentifierForbidden {
 /*
 SystemAddIdentifierForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type SystemAddIdentifierForbidden struct {
 	Payload *models.Error
@@ -283,7 +283,7 @@ func NewSystemAddIdentifierNotFound() *SystemAddIdentifierNotFound {
 /*
 SystemAddIdentifierNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type SystemAddIdentifierNotFound struct {
 	Payload *models.Error
@@ -346,7 +346,7 @@ func NewSystemAddIdentifierConflict() *SystemAddIdentifierConflict {
 /*
 SystemAddIdentifierConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type SystemAddIdentifierConflict struct {
 	Payload *models.Error
@@ -409,7 +409,7 @@ func NewSystemAddIdentifierPreconditionFailed() *SystemAddIdentifierPrecondition
 /*
 SystemAddIdentifierPreconditionFailed describes a response with status code 412, with default header values.
 
-HttpError
+Payload too large
 */
 type SystemAddIdentifierPreconditionFailed struct {
 	Payload *models.Error
@@ -472,7 +472,7 @@ func NewSystemAddIdentifierUnprocessableEntity() *SystemAddIdentifierUnprocessab
 /*
 SystemAddIdentifierUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type SystemAddIdentifierUnprocessableEntity struct {
 	Payload *models.Error

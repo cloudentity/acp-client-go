@@ -147,7 +147,7 @@ func NewUpdateSchemaBadRequest() *UpdateSchemaBadRequest {
 /*
 UpdateSchemaBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type UpdateSchemaBadRequest struct {
 	Payload *models.Error
@@ -210,7 +210,7 @@ func NewUpdateSchemaUnauthorized() *UpdateSchemaUnauthorized {
 /*
 UpdateSchemaUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type UpdateSchemaUnauthorized struct {
 	Payload *models.Error
@@ -273,7 +273,7 @@ func NewUpdateSchemaForbidden() *UpdateSchemaForbidden {
 /*
 UpdateSchemaForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type UpdateSchemaForbidden struct {
 	Payload *models.Error
@@ -336,7 +336,7 @@ func NewUpdateSchemaNotFound() *UpdateSchemaNotFound {
 /*
 UpdateSchemaNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type UpdateSchemaNotFound struct {
 	Payload *models.Error
@@ -399,7 +399,7 @@ func NewUpdateSchemaConflict() *UpdateSchemaConflict {
 /*
 UpdateSchemaConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type UpdateSchemaConflict struct {
 	Payload *models.Error
@@ -462,7 +462,7 @@ func NewUpdateSchemaUnprocessableEntity() *UpdateSchemaUnprocessableEntity {
 /*
 UpdateSchemaUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type UpdateSchemaUnprocessableEntity struct {
 	Payload *models.Error
@@ -525,7 +525,7 @@ func NewUpdateSchemaTooManyRequests() *UpdateSchemaTooManyRequests {
 /*
 UpdateSchemaTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type UpdateSchemaTooManyRequests struct {
 	Payload *models.Error

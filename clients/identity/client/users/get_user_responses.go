@@ -69,15 +69,6 @@ GetUserOK describes a response with status code 200, with default header values.
 User
 */
 type GetUserOK struct {
-
-	/* The ETag HTTP header is an identifier for a specific version of a resource
-
-	in:header
-
-	     Format: etag
-	*/
-	Etag string
-
 	Payload *models.UserWithData
 }
 
@@ -120,13 +111,6 @@ func (o *GetUserOK) GetPayload() *models.UserWithData {
 
 func (o *GetUserOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header etag
-	hdrEtag := response.GetHeader("etag")
-
-	if hdrEtag != "" {
-		o.Etag = hdrEtag
-	}
-
 	o.Payload = new(models.UserWithData)
 
 	// response payload
@@ -145,7 +129,7 @@ func NewGetUserUnauthorized() *GetUserUnauthorized {
 /*
 GetUserUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetUserUnauthorized struct {
 	Payload *models.Error
@@ -208,7 +192,7 @@ func NewGetUserForbidden() *GetUserForbidden {
 /*
 GetUserForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetUserForbidden struct {
 	Payload *models.Error
@@ -271,7 +255,7 @@ func NewGetUserNotFound() *GetUserNotFound {
 /*
 GetUserNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetUserNotFound struct {
 	Payload *models.Error
@@ -334,7 +318,7 @@ func NewGetUserTooManyRequests() *GetUserTooManyRequests {
 /*
 GetUserTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetUserTooManyRequests struct {
 	Payload *models.Error

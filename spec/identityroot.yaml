@@ -33,6 +33,7 @@ definitions:
       enum:
       - password
       - otp
+      - webauthn
       type: string
     type: array
   BcryptConfig:
@@ -95,15 +96,6 @@ definitions:
     - user_id
     - type
     - code
-    type: object
-  CodeID:
-    properties:
-      code_id:
-        format: codeID
-        type: string
-        x-nullable: false
-    required:
-    - code_id
     type: object
   CodeValue:
     properties:
@@ -174,76 +166,6 @@ definitions:
         format: int64
         type: integer
         x-nullable: false
-    type: object
-  ExtendedUser:
-    properties:
-      created_at:
-        format: date-time
-        type: string
-        x-nullable: false
-      id:
-        format: userID
-        type: string
-        x-nullable: false
-      identifiers:
-        items:
-          type: string
-        type: array
-        x-nullable: false
-      metadata:
-        additionalProperties:
-          type: object
-        type: object
-        x-nullable: false
-      metadata_schema_id:
-        format: schemaID
-        type: string
-        x-nullable: false
-      payload:
-        additionalProperties:
-          type: object
-        type: object
-        x-nullable: false
-      payload_schema_id:
-        format: schemaID
-        type: string
-        x-nullable: false
-      status:
-        enum:
-        - active
-        - inactive
-        - deleted
-        - new
-        example: active
-        type: string
-        x-nullable: false
-      status_updated_at:
-        format: date-time
-        type: string
-        x-nullable: false
-      tenant_id:
-        example: default
-        format: tenantID
-        type: string
-        x-nullable: false
-      updated_at:
-        format: date-time
-        type: string
-        x-nullable: false
-      user_pool_id:
-        example: default
-        format: poolID
-        type: string
-        x-nullable: false
-      verified addresses:
-        items:
-          type: string
-        type: array
-        x-nullable: false
-    required:
-    - tenant_id
-    - user_pool_id
-    - status
     type: object
   Hash:
     properties:
@@ -370,6 +292,12 @@ definitions:
     properties:
       authentication_mechanisms:
         $ref: '#/definitions/AuthenticationMechanisms'
+      badge_color:
+        type: string
+        x-nullable: false
+      deleted:
+        type: boolean
+        x-nullable: false
       description:
         type: string
         x-nullable: false
@@ -403,10 +331,14 @@ definitions:
         enum:
         - password
         - otp
+        - webauthn
         example: password
         type: string
         x-nullable: false
       public_registration_allowed:
+        type: boolean
+        x-nullable: false
+      system:
         type: boolean
         x-nullable: false
       tenant_id:
@@ -714,6 +646,7 @@ definitions:
       type:
         enum:
         - password
+        - webauthn
         example: password
         type: string
         x-nullable: false
@@ -738,15 +671,6 @@ definitions:
     - payload
     - created_at
     - updated_at
-    type: object
-  UserID:
-    properties:
-      id:
-        format: userID
-        type: string
-        x-nullable: false
-    required:
-    - id
     type: object
   UserIdentifier:
     properties:
@@ -869,92 +793,10 @@ definitions:
     - created_at
     - updated_at
     type: object
-  UserWithData:
-    properties:
-      created_at:
-        format: date-time
-        type: string
-        x-nullable: false
-      credentials:
-        items:
-          $ref: '#/definitions/UserCredential'
-        type: array
-        x-nullable: false
-      id:
-        format: userID
-        type: string
-        x-nullable: false
-      identifiers:
-        items:
-          $ref: '#/definitions/UserIdentifier'
-        type: array
-        x-nullable: false
-      metadata:
-        additionalProperties:
-          type: object
-        type: object
-        x-nullable: false
-      metadata_schema_id:
-        format: schemaID
-        type: string
-        x-nullable: false
-      payload:
-        additionalProperties:
-          type: object
-        type: object
-        x-nullable: false
-      payload_schema_id:
-        format: schemaID
-        type: string
-        x-nullable: false
-      status:
-        enum:
-        - active
-        - inactive
-        - deleted
-        - new
-        type: string
-        x-nullable: false
-      status_updated_at:
-        format: date-time
-        type: string
-        x-nullable: false
-      tenant_id:
-        example: default
-        format: tenantID
-        type: string
-        x-nullable: false
-      updated_at:
-        format: date-time
-        type: string
-        x-nullable: false
-      user_pool_id:
-        example: default
-        format: poolID
-        type: string
-        x-nullable: false
-      verifiable_addresses:
-        items:
-          $ref: '#/definitions/UserVerifiableAddress'
-        type: array
-        x-nullable: false
-    required:
-    - tenant_id
-    - user_pool_id
-    - status
-    type: object
-  Users:
-    properties:
-      users:
-        items:
-          $ref: '#/definitions/ExtendedUser'
-        type: array
-        x-nullable: false
-    type: object
 host: localhost:8443
 info:
-  description: Cloudentity Authorization Control Plane Root API
-  title: Cloudentity Authorization Control Plane API
+  description: Cloudentity Root API
+  title: Cloudentity API
   version: latest
 paths:
   /code/generate:
@@ -990,17 +832,17 @@ paths:
           $ref: '#/definitions/RequestCode'
       responses:
         "201":
-          $ref: '#/responses/GenerateCodeResponse'
+          $ref: '#/responses/RootGenerateCodeResponse'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
         "422":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unprocessableEntityHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - setup: []
       summary: Generate code of a specific type
@@ -1021,17 +863,17 @@ paths:
           schema:
             $ref: '#/definitions/Dump'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
         "422":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unprocessableEntityHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - setup: []
       tags:
@@ -1057,17 +899,17 @@ paths:
         "204":
           description: ' patch applied'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
         "422":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unprocessableEntityHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - setup: []
       summary: Patch configuration
@@ -1105,19 +947,19 @@ paths:
         "204":
           description: ' configuration has been imported'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
         "409":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/conflictHTTPError'
         "422":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unprocessableEntityHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - setup: []
       tags:
@@ -1125,176 +967,52 @@ paths:
 produces:
 - application/json
 responses:
-  AddressResponse:
-    description: User
-    headers:
-      etag:
-        description: |-
-          The ETag HTTP header is an identifier for a specific version of a resource
-
-          in:header
-        format: etag
-        type: string
-    schema:
-      $ref: '#/definitions/UserVerifiableAddress'
-  ChangePasswordResponse:
-    description: Password has been changed
-    headers:
-      etag:
-        description: |-
-          The ETag HTTP header is an identifier for a specific version of a resource
-
-          in:header
-        format: etag
-        type: string
-  CodeIDResponse:
-    description: User
-    headers:
-      etag:
-        description: |-
-          The ETag HTTP header is an identifier for a specific version of a resource
-
-          in:header
-        format: etag
-        type: string
-    schema:
-      $ref: '#/definitions/CodeID'
-  CompleteResetPasswordResponse:
-    description: Password reset
-    headers:
-      etag:
-        description: |-
-          The ETag HTTP header is an identifier for a specific version of a resource
-
-          in:header
-        format: etag
-        type: string
-  ConfirmResetPasswordResponse:
-    description: Password reset
-    headers:
-      etag:
-        description: |-
-          The ETag HTTP header is an identifier for a specific version of a resource
-
-          in:header
-        format: etag
-        type: string
-  DeleteAddressResponse:
-    description: Deletes a verifiable address from the user account
-    headers:
-      etag:
-        description: |-
-          The ETag HTTP header is an identifier for a specific version of a resource
-
-          in:header
-        format: etag
-        type: string
-  DeleteIdentifierResponse:
-    description: Deletes an identifier from the user account
-    headers:
-      etag:
-        description: |-
-          The ETag HTTP header is an identifier for a specific version of a resource
-
-          in:header
-        format: etag
-        type: string
-  GenerateCodeResponse:
-    description: User
-    headers:
-      etag:
-        description: |-
-          The ETag HTTP header is an identifier for a specific version of a resource
-
-          in:header
-        format: etag
-        type: string
+  RootGenerateCodeResponse:
+    description: Code
     schema:
       $ref: '#/definitions/Codes'
-  IdentifierResponse:
-    description: User
-    headers:
-      etag:
-        description: |-
-          The ETag HTTP header is an identifier for a specific version of a resource
-
-          in:header
-        format: etag
-        type: string
+  badRequestHTTPError:
+    description: Bad request
     schema:
-      $ref: '#/definitions/UserIdentifier'
-  RequestResetPasswordResponse:
-    description: Request accepted
-    headers:
-      etag:
-        description: |-
-          The ETag HTTP header is an identifier for a specific version of a resource
-
-          in:header
-        format: etag
-        type: string
-  SelfSendActivationMessageResponse:
-    description: Activation message sent
-    headers:
-      etag:
-        description: |-
-          The ETag HTTP header is an identifier for a specific version of a resource
-
-          in:header
-        format: etag
-        type: string
-  SystemDeleteUserResponse:
-    description: User has been deleted
-    headers:
-      etag:
-        description: |-
-          The ETag HTTP header is an identifier for a specific version of a resource
-
-          in:header
-        format: etag
-        type: string
-  SystemUsersResponse:
-    description: Identity Users
-    headers:
-      etag:
-        description: |-
-          The ETag HTTP header is an identifier for a specific version of a resource
-
-          in:header
-        format: etag
-        type: string
+      $ref: '#/definitions/Error'
+  conflictHTTPError:
+    description: Conflict
     schema:
-      $ref: '#/definitions/Users'
-  UserIDResponse:
-    description: User
-    headers:
-      etag:
-        description: |-
-          The ETag HTTP header is an identifier for a specific version of a resource
-
-          in:header
-        format: etag
-        type: string
+      $ref: '#/definitions/Error'
+  forbiddenHTTPError:
+    description: Forbidden
     schema:
-      $ref: '#/definitions/UserID'
-  UserResponse:
-    description: User
-    headers:
-      etag:
-        description: |-
-          The ETag HTTP header is an identifier for a specific version of a resource
-
-          in:header
-        format: etag
-        type: string
+      $ref: '#/definitions/Error'
+  internalServerErrorHTTPError:
+    description: Internal server error
     schema:
-      $ref: '#/definitions/UserWithData'
-  UsersResponse:
-    description: Identity Users
+      $ref: '#/definitions/Error'
+  methodNotAllowedHTTPError:
+    description: Method not allowed
     schema:
-      $ref: '#/definitions/Users'
-  httpError:
-    description: HttpError
+      $ref: '#/definitions/Error'
+  notFoundHTTPError:
+    description: Not found
+    schema:
+      $ref: '#/definitions/Error'
+  payloadTooLargeHTTPError:
+    description: Payload too large
+    schema:
+      $ref: '#/definitions/Error'
+  preconditionFailedHTTPError:
+    description: Precondition failed
+    schema:
+      $ref: '#/definitions/Error'
+  tooManyRequestsHTTPError:
+    description: Too many requests
+    schema:
+      $ref: '#/definitions/Error'
+  unauthorizedHTTPError:
+    description: Unauthorized
+    schema:
+      $ref: '#/definitions/Error'
+  unprocessableEntityHTTPError:
+    description: Unprocessable entity
     schema:
       $ref: '#/definitions/Error'
 schemes:

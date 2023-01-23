@@ -157,7 +157,7 @@ func NewActivateSelfRegisteredUserUsingExtendedCodeBadRequest() *ActivateSelfReg
 /*
 ActivateSelfRegisteredUserUsingExtendedCodeBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type ActivateSelfRegisteredUserUsingExtendedCodeBadRequest struct {
 	Payload *models.Error
@@ -220,7 +220,7 @@ func NewActivateSelfRegisteredUserUsingExtendedCodeUnauthorized() *ActivateSelfR
 /*
 ActivateSelfRegisteredUserUsingExtendedCodeUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ActivateSelfRegisteredUserUsingExtendedCodeUnauthorized struct {
 	Payload *models.Error
@@ -283,7 +283,7 @@ func NewActivateSelfRegisteredUserUsingExtendedCodeNotFound() *ActivateSelfRegis
 /*
 ActivateSelfRegisteredUserUsingExtendedCodeNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type ActivateSelfRegisteredUserUsingExtendedCodeNotFound struct {
 	Payload *models.Error
@@ -346,7 +346,7 @@ func NewActivateSelfRegisteredUserUsingExtendedCodePreconditionFailed() *Activat
 /*
 ActivateSelfRegisteredUserUsingExtendedCodePreconditionFailed describes a response with status code 412, with default header values.
 
-HttpError
+Payload too large
 */
 type ActivateSelfRegisteredUserUsingExtendedCodePreconditionFailed struct {
 	Payload *models.Error
@@ -409,7 +409,7 @@ func NewActivateSelfRegisteredUserUsingExtendedCodeUnprocessableEntity() *Activa
 /*
 ActivateSelfRegisteredUserUsingExtendedCodeUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type ActivateSelfRegisteredUserUsingExtendedCodeUnprocessableEntity struct {
 	Payload *models.Error
@@ -472,7 +472,7 @@ func NewActivateSelfRegisteredUserUsingExtendedCodeTooManyRequests() *ActivateSe
 /*
 ActivateSelfRegisteredUserUsingExtendedCodeTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ActivateSelfRegisteredUserUsingExtendedCodeTooManyRequests struct {
 	Payload *models.Error

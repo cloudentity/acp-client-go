@@ -20,7 +20,7 @@ import (
 type Pools struct {
 
 	// pools
-	Pools []*Pool `json:"pools"`
+	Pools []*PoolResponse `json:"pools"`
 }
 
 // Validate validates this pools

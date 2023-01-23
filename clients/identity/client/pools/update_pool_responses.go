@@ -84,10 +84,10 @@ func NewUpdatePoolOK() *UpdatePoolOK {
 /*
 UpdatePoolOK describes a response with status code 200, with default header values.
 
-Pool
+Identity Pool
 */
 type UpdatePoolOK struct {
-	Payload *models.Pool
+	Payload *models.PoolResponse
 }
 
 // IsSuccess returns true when this update pool o k response has a 2xx status code
@@ -123,13 +123,13 @@ func (o *UpdatePoolOK) String() string {
 	return fmt.Sprintf("[PUT /admin/pools/{ipID}][%d] updatePoolOK  %+v", 200, o.Payload)
 }
 
-func (o *UpdatePoolOK) GetPayload() *models.Pool {
+func (o *UpdatePoolOK) GetPayload() *models.PoolResponse {
 	return o.Payload
 }
 
 func (o *UpdatePoolOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Pool)
+	o.Payload = new(models.PoolResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -147,7 +147,7 @@ func NewUpdatePoolBadRequest() *UpdatePoolBadRequest {
 /*
 UpdatePoolBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type UpdatePoolBadRequest struct {
 	Payload *models.Error
@@ -210,7 +210,7 @@ func NewUpdatePoolUnauthorized() *UpdatePoolUnauthorized {
 /*
 UpdatePoolUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type UpdatePoolUnauthorized struct {
 	Payload *models.Error
@@ -273,7 +273,7 @@ func NewUpdatePoolForbidden() *UpdatePoolForbidden {
 /*
 UpdatePoolForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type UpdatePoolForbidden struct {
 	Payload *models.Error
@@ -336,7 +336,7 @@ func NewUpdatePoolNotFound() *UpdatePoolNotFound {
 /*
 UpdatePoolNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type UpdatePoolNotFound struct {
 	Payload *models.Error
@@ -399,7 +399,7 @@ func NewUpdatePoolConflict() *UpdatePoolConflict {
 /*
 UpdatePoolConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type UpdatePoolConflict struct {
 	Payload *models.Error
@@ -462,7 +462,7 @@ func NewUpdatePoolUnprocessableEntity() *UpdatePoolUnprocessableEntity {
 /*
 UpdatePoolUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type UpdatePoolUnprocessableEntity struct {
 	Payload *models.Error
@@ -525,7 +525,7 @@ func NewUpdatePoolTooManyRequests() *UpdatePoolTooManyRequests {
 /*
 UpdatePoolTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type UpdatePoolTooManyRequests struct {
 	Payload *models.Error

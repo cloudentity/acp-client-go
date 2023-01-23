@@ -157,7 +157,7 @@ func NewSelfRegisterUserBadRequest() *SelfRegisterUserBadRequest {
 /*
 SelfRegisterUserBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type SelfRegisterUserBadRequest struct {
 	Payload *models.Error
@@ -220,7 +220,7 @@ func NewSelfRegisterUserUnauthorized() *SelfRegisterUserUnauthorized {
 /*
 SelfRegisterUserUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type SelfRegisterUserUnauthorized struct {
 	Payload *models.Error
@@ -283,7 +283,7 @@ func NewSelfRegisterUserNotFound() *SelfRegisterUserNotFound {
 /*
 SelfRegisterUserNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type SelfRegisterUserNotFound struct {
 	Payload *models.Error
@@ -346,7 +346,7 @@ func NewSelfRegisterUserPreconditionFailed() *SelfRegisterUserPreconditionFailed
 /*
 SelfRegisterUserPreconditionFailed describes a response with status code 412, with default header values.
 
-HttpError
+Payload too large
 */
 type SelfRegisterUserPreconditionFailed struct {
 	Payload *models.Error
@@ -409,7 +409,7 @@ func NewSelfRegisterUserUnprocessableEntity() *SelfRegisterUserUnprocessableEnti
 /*
 SelfRegisterUserUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type SelfRegisterUserUnprocessableEntity struct {
 	Payload *models.Error
@@ -472,7 +472,7 @@ func NewSelfRegisterUserTooManyRequests() *SelfRegisterUserTooManyRequests {
 /*
 SelfRegisterUserTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type SelfRegisterUserTooManyRequests struct {
 	Payload *models.Error

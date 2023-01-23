@@ -123,7 +123,7 @@ func NewSendActivationMessageBadRequest() *SendActivationMessageBadRequest {
 /*
 SendActivationMessageBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type SendActivationMessageBadRequest struct {
 	Payload *models.Error
@@ -186,7 +186,7 @@ func NewSendActivationMessageUnauthorized() *SendActivationMessageUnauthorized {
 /*
 SendActivationMessageUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type SendActivationMessageUnauthorized struct {
 	Payload *models.Error
@@ -249,7 +249,7 @@ func NewSendActivationMessageNotFound() *SendActivationMessageNotFound {
 /*
 SendActivationMessageNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type SendActivationMessageNotFound struct {
 	Payload *models.Error
@@ -312,7 +312,7 @@ func NewSendActivationMessageUnprocessableEntity() *SendActivationMessageUnproce
 /*
 SendActivationMessageUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type SendActivationMessageUnprocessableEntity struct {
 	Payload *models.Error
@@ -375,7 +375,7 @@ func NewSendActivationMessageTooManyRequests() *SendActivationMessageTooManyRequ
 /*
 SendActivationMessageTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type SendActivationMessageTooManyRequests struct {
 	Payload *models.Error

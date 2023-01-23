@@ -53,12 +53,6 @@ func (o *SystemListUsersReader) ReadResponse(response runtime.ClientResponse, co
 			return nil, err
 		}
 		return nil, result
-	case 412:
-		result := NewSystemListUsersPreconditionFailed()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return nil, result
 	case 422:
 		result := NewSystemListUsersUnprocessableEntity()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -87,15 +81,6 @@ SystemListUsersOK describes a response with status code 200, with default header
 Identity Users
 */
 type SystemListUsersOK struct {
-
-	/* The ETag HTTP header is an identifier for a specific version of a resource
-
-	in:header
-
-	     Format: etag
-	*/
-	Etag string
-
 	Payload *models.Users
 }
 
@@ -138,13 +123,6 @@ func (o *SystemListUsersOK) GetPayload() *models.Users {
 
 func (o *SystemListUsersOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header etag
-	hdrEtag := response.GetHeader("etag")
-
-	if hdrEtag != "" {
-		o.Etag = hdrEtag
-	}
-
 	o.Payload = new(models.Users)
 
 	// response payload
@@ -163,7 +141,7 @@ func NewSystemListUsersBadRequest() *SystemListUsersBadRequest {
 /*
 SystemListUsersBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type SystemListUsersBadRequest struct {
 	Payload *models.Error
@@ -226,7 +204,7 @@ func NewSystemListUsersUnauthorized() *SystemListUsersUnauthorized {
 /*
 SystemListUsersUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type SystemListUsersUnauthorized struct {
 	Payload *models.Error
@@ -289,7 +267,7 @@ func NewSystemListUsersForbidden() *SystemListUsersForbidden {
 /*
 SystemListUsersForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type SystemListUsersForbidden struct {
 	Payload *models.Error
@@ -352,7 +330,7 @@ func NewSystemListUsersNotFound() *SystemListUsersNotFound {
 /*
 SystemListUsersNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type SystemListUsersNotFound struct {
 	Payload *models.Error
@@ -407,69 +385,6 @@ func (o *SystemListUsersNotFound) readResponse(response runtime.ClientResponse, 
 	return nil
 }
 
-// NewSystemListUsersPreconditionFailed creates a SystemListUsersPreconditionFailed with default headers values
-func NewSystemListUsersPreconditionFailed() *SystemListUsersPreconditionFailed {
-	return &SystemListUsersPreconditionFailed{}
-}
-
-/*
-SystemListUsersPreconditionFailed describes a response with status code 412, with default header values.
-
-HttpError
-*/
-type SystemListUsersPreconditionFailed struct {
-	Payload *models.Error
-}
-
-// IsSuccess returns true when this system list users precondition failed response has a 2xx status code
-func (o *SystemListUsersPreconditionFailed) IsSuccess() bool {
-	return false
-}
-
-// IsRedirect returns true when this system list users precondition failed response has a 3xx status code
-func (o *SystemListUsersPreconditionFailed) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this system list users precondition failed response has a 4xx status code
-func (o *SystemListUsersPreconditionFailed) IsClientError() bool {
-	return true
-}
-
-// IsServerError returns true when this system list users precondition failed response has a 5xx status code
-func (o *SystemListUsersPreconditionFailed) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this system list users precondition failed response a status code equal to that given
-func (o *SystemListUsersPreconditionFailed) IsCode(code int) bool {
-	return code == 412
-}
-
-func (o *SystemListUsersPreconditionFailed) Error() string {
-	return fmt.Sprintf("[GET /system/pools/{ipID}/users][%d] systemListUsersPreconditionFailed  %+v", 412, o.Payload)
-}
-
-func (o *SystemListUsersPreconditionFailed) String() string {
-	return fmt.Sprintf("[GET /system/pools/{ipID}/users][%d] systemListUsersPreconditionFailed  %+v", 412, o.Payload)
-}
-
-func (o *SystemListUsersPreconditionFailed) GetPayload() *models.Error {
-	return o.Payload
-}
-
-func (o *SystemListUsersPreconditionFailed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	o.Payload = new(models.Error)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
 // NewSystemListUsersUnprocessableEntity creates a SystemListUsersUnprocessableEntity with default headers values
 func NewSystemListUsersUnprocessableEntity() *SystemListUsersUnprocessableEntity {
 	return &SystemListUsersUnprocessableEntity{}
@@ -478,7 +393,7 @@ func NewSystemListUsersUnprocessableEntity() *SystemListUsersUnprocessableEntity
 /*
 SystemListUsersUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type SystemListUsersUnprocessableEntity struct {
 	Payload *models.Error
@@ -541,7 +456,7 @@ func NewSystemListUsersTooManyRequests() *SystemListUsersTooManyRequests {
 /*
 SystemListUsersTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type SystemListUsersTooManyRequests struct {
 	Payload *models.Error

@@ -78,7 +78,7 @@ func NewSystemAddVerifiableAddressOK() *SystemAddVerifiableAddressOK {
 /*
 SystemAddVerifiableAddressOK describes a response with status code 200, with default header values.
 
-User
+Address
 */
 type SystemAddVerifiableAddressOK struct {
 
@@ -157,7 +157,7 @@ func NewSystemAddVerifiableAddressUnauthorized() *SystemAddVerifiableAddressUnau
 /*
 SystemAddVerifiableAddressUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type SystemAddVerifiableAddressUnauthorized struct {
 	Payload *models.Error
@@ -220,7 +220,7 @@ func NewSystemAddVerifiableAddressForbidden() *SystemAddVerifiableAddressForbidd
 /*
 SystemAddVerifiableAddressForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type SystemAddVerifiableAddressForbidden struct {
 	Payload *models.Error
@@ -283,7 +283,7 @@ func NewSystemAddVerifiableAddressNotFound() *SystemAddVerifiableAddressNotFound
 /*
 SystemAddVerifiableAddressNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type SystemAddVerifiableAddressNotFound struct {
 	Payload *models.Error
@@ -346,7 +346,7 @@ func NewSystemAddVerifiableAddressConflict() *SystemAddVerifiableAddressConflict
 /*
 SystemAddVerifiableAddressConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type SystemAddVerifiableAddressConflict struct {
 	Payload *models.Error
@@ -409,7 +409,7 @@ func NewSystemAddVerifiableAddressPreconditionFailed() *SystemAddVerifiableAddre
 /*
 SystemAddVerifiableAddressPreconditionFailed describes a response with status code 412, with default header values.
 
-HttpError
+Payload too large
 */
 type SystemAddVerifiableAddressPreconditionFailed struct {
 	Payload *models.Error
@@ -472,7 +472,7 @@ func NewSystemAddVerifiableAddressUnprocessableEntity() *SystemAddVerifiableAddr
 /*
 SystemAddVerifiableAddressUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type SystemAddVerifiableAddressUnprocessableEntity struct {
 	Payload *models.Error

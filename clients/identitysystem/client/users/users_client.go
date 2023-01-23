@@ -928,9 +928,14 @@ func (a *Client) SystemGetUser(params *SystemGetUserParams, authInfo runtime.Cli
 }
 
 /*
-SystemListUsers lists users
+	SystemListUsers lists users
 
-Lists users.
+	Lists users.
+
+Results are sorted by user ID. No other sorting is supported.
+
+This API does not use ETags. Data returned from this API is eventually consistent.
+It's not possible to enforce full consistency for this API.
 */
 func (a *Client) SystemListUsers(params *SystemListUsersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemListUsersOK, error) {
 	// TODO: Validate the params before sending

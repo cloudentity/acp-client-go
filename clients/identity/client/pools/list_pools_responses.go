@@ -123,7 +123,7 @@ func NewListPoolsUnauthorized() *ListPoolsUnauthorized {
 /*
 ListPoolsUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ListPoolsUnauthorized struct {
 	Payload *models.Error
@@ -186,7 +186,7 @@ func NewListPoolsForbidden() *ListPoolsForbidden {
 /*
 ListPoolsForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ListPoolsForbidden struct {
 	Payload *models.Error
@@ -249,7 +249,7 @@ func NewListPoolsTooManyRequests() *ListPoolsTooManyRequests {
 /*
 ListPoolsTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ListPoolsTooManyRequests struct {
 	Payload *models.Error

@@ -147,7 +147,7 @@ func NewCreateSchemaBadRequest() *CreateSchemaBadRequest {
 /*
 CreateSchemaBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type CreateSchemaBadRequest struct {
 	Payload *models.Error
@@ -210,7 +210,7 @@ func NewCreateSchemaUnauthorized() *CreateSchemaUnauthorized {
 /*
 CreateSchemaUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type CreateSchemaUnauthorized struct {
 	Payload *models.Error
@@ -273,7 +273,7 @@ func NewCreateSchemaForbidden() *CreateSchemaForbidden {
 /*
 CreateSchemaForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type CreateSchemaForbidden struct {
 	Payload *models.Error
@@ -336,7 +336,7 @@ func NewCreateSchemaNotFound() *CreateSchemaNotFound {
 /*
 CreateSchemaNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type CreateSchemaNotFound struct {
 	Payload *models.Error
@@ -399,7 +399,7 @@ func NewCreateSchemaConflict() *CreateSchemaConflict {
 /*
 CreateSchemaConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type CreateSchemaConflict struct {
 	Payload *models.Error
@@ -462,7 +462,7 @@ func NewCreateSchemaUnprocessableEntity() *CreateSchemaUnprocessableEntity {
 /*
 CreateSchemaUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type CreateSchemaUnprocessableEntity struct {
 	Payload *models.Error
@@ -525,7 +525,7 @@ func NewCreateSchemaTooManyRequests() *CreateSchemaTooManyRequests {
 /*
 CreateSchemaTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type CreateSchemaTooManyRequests struct {
 	Payload *models.Error

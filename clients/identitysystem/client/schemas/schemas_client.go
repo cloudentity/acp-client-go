@@ -36,9 +36,11 @@ type ClientService interface {
 }
 
 /*
-SystemGetSchema gets schema
+	SystemGetSchema gets schema
 
-Gets schema.
+	Gets schema.
+
+This API does not use ETags but data is always consistent.
 */
 func (a *Client) SystemGetSchema(params *SystemGetSchemaParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemGetSchemaOK, error) {
 	// TODO: Validate the params before sending

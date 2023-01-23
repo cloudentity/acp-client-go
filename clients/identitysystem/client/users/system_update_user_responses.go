@@ -169,7 +169,7 @@ func NewSystemUpdateUserBadRequest() *SystemUpdateUserBadRequest {
 /*
 SystemUpdateUserBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type SystemUpdateUserBadRequest struct {
 	Payload *models.Error
@@ -232,7 +232,7 @@ func NewSystemUpdateUserUnauthorized() *SystemUpdateUserUnauthorized {
 /*
 SystemUpdateUserUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type SystemUpdateUserUnauthorized struct {
 	Payload *models.Error
@@ -295,7 +295,7 @@ func NewSystemUpdateUserForbidden() *SystemUpdateUserForbidden {
 /*
 SystemUpdateUserForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type SystemUpdateUserForbidden struct {
 	Payload *models.Error
@@ -358,7 +358,7 @@ func NewSystemUpdateUserNotFound() *SystemUpdateUserNotFound {
 /*
 SystemUpdateUserNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type SystemUpdateUserNotFound struct {
 	Payload *models.Error
@@ -421,7 +421,7 @@ func NewSystemUpdateUserConflict() *SystemUpdateUserConflict {
 /*
 SystemUpdateUserConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type SystemUpdateUserConflict struct {
 	Payload *models.Error
@@ -484,7 +484,7 @@ func NewSystemUpdateUserPreconditionFailed() *SystemUpdateUserPreconditionFailed
 /*
 SystemUpdateUserPreconditionFailed describes a response with status code 412, with default header values.
 
-HttpError
+Payload too large
 */
 type SystemUpdateUserPreconditionFailed struct {
 	Payload *models.Error
@@ -547,7 +547,7 @@ func NewSystemUpdateUserUnprocessableEntity() *SystemUpdateUserUnprocessableEnti
 /*
 SystemUpdateUserUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type SystemUpdateUserUnprocessableEntity struct {
 	Payload *models.Error
@@ -610,7 +610,7 @@ func NewSystemUpdateUserTooManyRequests() *SystemUpdateUserTooManyRequests {
 /*
 SystemUpdateUserTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type SystemUpdateUserTooManyRequests struct {
 	Payload *models.Error

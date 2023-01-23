@@ -87,15 +87,6 @@ CreateUserCreated describes a response with status code 201, with default header
 User
 */
 type CreateUserCreated struct {
-
-	/* The ETag HTTP header is an identifier for a specific version of a resource
-
-	in:header
-
-	     Format: etag
-	*/
-	Etag string
-
 	Payload *models.UserWithData
 }
 
@@ -138,13 +129,6 @@ func (o *CreateUserCreated) GetPayload() *models.UserWithData {
 
 func (o *CreateUserCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header etag
-	hdrEtag := response.GetHeader("etag")
-
-	if hdrEtag != "" {
-		o.Etag = hdrEtag
-	}
-
 	o.Payload = new(models.UserWithData)
 
 	// response payload
@@ -163,7 +147,7 @@ func NewCreateUserBadRequest() *CreateUserBadRequest {
 /*
 CreateUserBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type CreateUserBadRequest struct {
 	Payload *models.Error
@@ -226,7 +210,7 @@ func NewCreateUserUnauthorized() *CreateUserUnauthorized {
 /*
 CreateUserUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type CreateUserUnauthorized struct {
 	Payload *models.Error
@@ -289,7 +273,7 @@ func NewCreateUserForbidden() *CreateUserForbidden {
 /*
 CreateUserForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type CreateUserForbidden struct {
 	Payload *models.Error
@@ -352,7 +336,7 @@ func NewCreateUserNotFound() *CreateUserNotFound {
 /*
 CreateUserNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type CreateUserNotFound struct {
 	Payload *models.Error
@@ -415,7 +399,7 @@ func NewCreateUserConflict() *CreateUserConflict {
 /*
 CreateUserConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type CreateUserConflict struct {
 	Payload *models.Error
@@ -478,7 +462,7 @@ func NewCreateUserUnprocessableEntity() *CreateUserUnprocessableEntity {
 /*
 CreateUserUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type CreateUserUnprocessableEntity struct {
 	Payload *models.Error
@@ -541,7 +525,7 @@ func NewCreateUserTooManyRequests() *CreateUserTooManyRequests {
 /*
 CreateUserTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type CreateUserTooManyRequests struct {
 	Payload *models.Error

@@ -129,7 +129,7 @@ func NewPatchTenantConfigurationBadRequest() *PatchTenantConfigurationBadRequest
 /*
 PatchTenantConfigurationBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type PatchTenantConfigurationBadRequest struct {
 	Payload *models.Error
@@ -192,7 +192,7 @@ func NewPatchTenantConfigurationUnauthorized() *PatchTenantConfigurationUnauthor
 /*
 PatchTenantConfigurationUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type PatchTenantConfigurationUnauthorized struct {
 	Payload *models.Error
@@ -255,7 +255,7 @@ func NewPatchTenantConfigurationForbidden() *PatchTenantConfigurationForbidden {
 /*
 PatchTenantConfigurationForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type PatchTenantConfigurationForbidden struct {
 	Payload *models.Error
@@ -318,7 +318,7 @@ func NewPatchTenantConfigurationNotFound() *PatchTenantConfigurationNotFound {
 /*
 PatchTenantConfigurationNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type PatchTenantConfigurationNotFound struct {
 	Payload *models.Error
@@ -381,7 +381,7 @@ func NewPatchTenantConfigurationUnprocessableEntity() *PatchTenantConfigurationU
 /*
 PatchTenantConfigurationUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type PatchTenantConfigurationUnprocessableEntity struct {
 	Payload *models.Error
@@ -444,7 +444,7 @@ func NewPatchTenantConfigurationTooManyRequests() *PatchTenantConfigurationTooMa
 /*
 PatchTenantConfigurationTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type PatchTenantConfigurationTooManyRequests struct {
 	Payload *models.Error

@@ -138,7 +138,7 @@ func NewSystemDeleteIdentifierUnauthorized() *SystemDeleteIdentifierUnauthorized
 /*
 SystemDeleteIdentifierUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type SystemDeleteIdentifierUnauthorized struct {
 	Payload *models.Error
@@ -201,7 +201,7 @@ func NewSystemDeleteIdentifierForbidden() *SystemDeleteIdentifierForbidden {
 /*
 SystemDeleteIdentifierForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type SystemDeleteIdentifierForbidden struct {
 	Payload *models.Error
@@ -264,7 +264,7 @@ func NewSystemDeleteIdentifierNotFound() *SystemDeleteIdentifierNotFound {
 /*
 SystemDeleteIdentifierNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type SystemDeleteIdentifierNotFound struct {
 	Payload *models.Error
@@ -327,7 +327,7 @@ func NewSystemDeleteIdentifierPreconditionFailed() *SystemDeleteIdentifierPrecon
 /*
 SystemDeleteIdentifierPreconditionFailed describes a response with status code 412, with default header values.
 
-HttpError
+Payload too large
 */
 type SystemDeleteIdentifierPreconditionFailed struct {
 	Payload *models.Error
@@ -390,7 +390,7 @@ func NewSystemDeleteIdentifierTooManyRequests() *SystemDeleteIdentifierTooManyRe
 /*
 SystemDeleteIdentifierTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type SystemDeleteIdentifierTooManyRequests struct {
 	Payload *models.Error

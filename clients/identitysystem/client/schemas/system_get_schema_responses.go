@@ -47,12 +47,6 @@ func (o *SystemGetSchemaReader) ReadResponse(response runtime.ClientResponse, co
 			return nil, err
 		}
 		return nil, result
-	case 412:
-		result := NewSystemGetSchemaPreconditionFailed()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return nil, result
 	case 429:
 		result := NewSystemGetSchemaTooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -75,15 +69,6 @@ SystemGetSchemaOK describes a response with status code 200, with default header
 Identity Schema
 */
 type SystemGetSchemaOK struct {
-
-	/* The ETag HTTP header is an identifier for a specific version of a resource
-
-	in:header
-
-	     Format: etag
-	*/
-	Etag string
-
 	Payload *models.Schema
 }
 
@@ -126,13 +111,6 @@ func (o *SystemGetSchemaOK) GetPayload() *models.Schema {
 
 func (o *SystemGetSchemaOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header etag
-	hdrEtag := response.GetHeader("etag")
-
-	if hdrEtag != "" {
-		o.Etag = hdrEtag
-	}
-
 	o.Payload = new(models.Schema)
 
 	// response payload
@@ -151,7 +129,7 @@ func NewSystemGetSchemaUnauthorized() *SystemGetSchemaUnauthorized {
 /*
 SystemGetSchemaUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type SystemGetSchemaUnauthorized struct {
 	Payload *models.Error
@@ -214,7 +192,7 @@ func NewSystemGetSchemaForbidden() *SystemGetSchemaForbidden {
 /*
 SystemGetSchemaForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type SystemGetSchemaForbidden struct {
 	Payload *models.Error
@@ -277,7 +255,7 @@ func NewSystemGetSchemaNotFound() *SystemGetSchemaNotFound {
 /*
 SystemGetSchemaNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type SystemGetSchemaNotFound struct {
 	Payload *models.Error
@@ -332,69 +310,6 @@ func (o *SystemGetSchemaNotFound) readResponse(response runtime.ClientResponse, 
 	return nil
 }
 
-// NewSystemGetSchemaPreconditionFailed creates a SystemGetSchemaPreconditionFailed with default headers values
-func NewSystemGetSchemaPreconditionFailed() *SystemGetSchemaPreconditionFailed {
-	return &SystemGetSchemaPreconditionFailed{}
-}
-
-/*
-SystemGetSchemaPreconditionFailed describes a response with status code 412, with default header values.
-
-HttpError
-*/
-type SystemGetSchemaPreconditionFailed struct {
-	Payload *models.Error
-}
-
-// IsSuccess returns true when this system get schema precondition failed response has a 2xx status code
-func (o *SystemGetSchemaPreconditionFailed) IsSuccess() bool {
-	return false
-}
-
-// IsRedirect returns true when this system get schema precondition failed response has a 3xx status code
-func (o *SystemGetSchemaPreconditionFailed) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this system get schema precondition failed response has a 4xx status code
-func (o *SystemGetSchemaPreconditionFailed) IsClientError() bool {
-	return true
-}
-
-// IsServerError returns true when this system get schema precondition failed response has a 5xx status code
-func (o *SystemGetSchemaPreconditionFailed) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this system get schema precondition failed response a status code equal to that given
-func (o *SystemGetSchemaPreconditionFailed) IsCode(code int) bool {
-	return code == 412
-}
-
-func (o *SystemGetSchemaPreconditionFailed) Error() string {
-	return fmt.Sprintf("[GET /system/schemas/{schID}][%d] systemGetSchemaPreconditionFailed  %+v", 412, o.Payload)
-}
-
-func (o *SystemGetSchemaPreconditionFailed) String() string {
-	return fmt.Sprintf("[GET /system/schemas/{schID}][%d] systemGetSchemaPreconditionFailed  %+v", 412, o.Payload)
-}
-
-func (o *SystemGetSchemaPreconditionFailed) GetPayload() *models.Error {
-	return o.Payload
-}
-
-func (o *SystemGetSchemaPreconditionFailed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	o.Payload = new(models.Error)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
 // NewSystemGetSchemaTooManyRequests creates a SystemGetSchemaTooManyRequests with default headers values
 func NewSystemGetSchemaTooManyRequests() *SystemGetSchemaTooManyRequests {
 	return &SystemGetSchemaTooManyRequests{}
@@ -403,7 +318,7 @@ func NewSystemGetSchemaTooManyRequests() *SystemGetSchemaTooManyRequests {
 /*
 SystemGetSchemaTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type SystemGetSchemaTooManyRequests struct {
 	Payload *models.Error

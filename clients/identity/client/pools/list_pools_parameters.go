@@ -14,6 +14,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewListPoolsParams creates a new ListPoolsParams object,
@@ -60,6 +61,52 @@ ListPoolsParams contains all the parameters to send to the API endpoint
 	Typically these are written to a http.Request.
 */
 type ListPoolsParams struct {
+
+	/* AfterPoolID.
+
+	     optional list pools after given id
+	AfterPoolID
+	*/
+	AfterPoolID *string
+
+	/* BeforePoolID.
+
+	     optional list pools before given id
+	BeforePoolID
+	*/
+	BeforePoolID *string
+
+	/* Limit.
+
+	     optional limit results
+	Limit
+
+	     Format: int64
+	     Default: 20
+	*/
+	Limit *int64
+
+	/* Order.
+
+	     optional order pools by given direction
+	Order
+	*/
+	Order *string
+
+	/* SearchPhrase.
+
+	     Optional search phrase: pool id OR pool name substring
+	SearchPhrase
+	*/
+	SearchPhrase *string
+
+	/* Sort.
+
+	     optional sort pools by given field, one of: name, id
+	Sort
+	*/
+	Sort *string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -77,7 +124,18 @@ func (o *ListPoolsParams) WithDefaults() *ListPoolsParams {
 //
 // All values with no default are reset to their zero value.
 func (o *ListPoolsParams) SetDefaults() {
-	// no default values defined for this parameter
+	var (
+		limitDefault = int64(20)
+	)
+
+	val := ListPoolsParams{
+		Limit: &limitDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the list pools params
@@ -113,6 +171,72 @@ func (o *ListPoolsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAfterPoolID adds the afterPoolID to the list pools params
+func (o *ListPoolsParams) WithAfterPoolID(afterPoolID *string) *ListPoolsParams {
+	o.SetAfterPoolID(afterPoolID)
+	return o
+}
+
+// SetAfterPoolID adds the afterPoolId to the list pools params
+func (o *ListPoolsParams) SetAfterPoolID(afterPoolID *string) {
+	o.AfterPoolID = afterPoolID
+}
+
+// WithBeforePoolID adds the beforePoolID to the list pools params
+func (o *ListPoolsParams) WithBeforePoolID(beforePoolID *string) *ListPoolsParams {
+	o.SetBeforePoolID(beforePoolID)
+	return o
+}
+
+// SetBeforePoolID adds the beforePoolId to the list pools params
+func (o *ListPoolsParams) SetBeforePoolID(beforePoolID *string) {
+	o.BeforePoolID = beforePoolID
+}
+
+// WithLimit adds the limit to the list pools params
+func (o *ListPoolsParams) WithLimit(limit *int64) *ListPoolsParams {
+	o.SetLimit(limit)
+	return o
+}
+
+// SetLimit adds the limit to the list pools params
+func (o *ListPoolsParams) SetLimit(limit *int64) {
+	o.Limit = limit
+}
+
+// WithOrder adds the order to the list pools params
+func (o *ListPoolsParams) WithOrder(order *string) *ListPoolsParams {
+	o.SetOrder(order)
+	return o
+}
+
+// SetOrder adds the order to the list pools params
+func (o *ListPoolsParams) SetOrder(order *string) {
+	o.Order = order
+}
+
+// WithSearchPhrase adds the searchPhrase to the list pools params
+func (o *ListPoolsParams) WithSearchPhrase(searchPhrase *string) *ListPoolsParams {
+	o.SetSearchPhrase(searchPhrase)
+	return o
+}
+
+// SetSearchPhrase adds the searchPhrase to the list pools params
+func (o *ListPoolsParams) SetSearchPhrase(searchPhrase *string) {
+	o.SearchPhrase = searchPhrase
+}
+
+// WithSort adds the sort to the list pools params
+func (o *ListPoolsParams) WithSort(sort *string) *ListPoolsParams {
+	o.SetSort(sort)
+	return o
+}
+
+// SetSort adds the sort to the list pools params
+func (o *ListPoolsParams) SetSort(sort *string) {
+	o.Sort = sort
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *ListPoolsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -120,6 +244,108 @@ func (o *ListPoolsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 		return err
 	}
 	var res []error
+
+	if o.AfterPoolID != nil {
+
+		// query param after_pool_id
+		var qrAfterPoolID string
+
+		if o.AfterPoolID != nil {
+			qrAfterPoolID = *o.AfterPoolID
+		}
+		qAfterPoolID := qrAfterPoolID
+		if qAfterPoolID != "" {
+
+			if err := r.SetQueryParam("after_pool_id", qAfterPoolID); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.BeforePoolID != nil {
+
+		// query param before_pool_id
+		var qrBeforePoolID string
+
+		if o.BeforePoolID != nil {
+			qrBeforePoolID = *o.BeforePoolID
+		}
+		qBeforePoolID := qrBeforePoolID
+		if qBeforePoolID != "" {
+
+			if err := r.SetQueryParam("before_pool_id", qBeforePoolID); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Limit != nil {
+
+		// query param limit
+		var qrLimit int64
+
+		if o.Limit != nil {
+			qrLimit = *o.Limit
+		}
+		qLimit := swag.FormatInt64(qrLimit)
+		if qLimit != "" {
+
+			if err := r.SetQueryParam("limit", qLimit); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Order != nil {
+
+		// query param order
+		var qrOrder string
+
+		if o.Order != nil {
+			qrOrder = *o.Order
+		}
+		qOrder := qrOrder
+		if qOrder != "" {
+
+			if err := r.SetQueryParam("order", qOrder); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.SearchPhrase != nil {
+
+		// query param search_phrase
+		var qrSearchPhrase string
+
+		if o.SearchPhrase != nil {
+			qrSearchPhrase = *o.SearchPhrase
+		}
+		qSearchPhrase := qrSearchPhrase
+		if qSearchPhrase != "" {
+
+			if err := r.SetQueryParam("search_phrase", qSearchPhrase); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Sort != nil {
+
+		// query param sort
+		var qrSort string
+
+		if o.Sort != nil {
+			qrSort = *o.Sort
+		}
+		qSort := qrSort
+		if qSort != "" {
+
+			if err := r.SetQueryParam("sort", qSort); err != nil {
+				return err
+			}
+		}
+	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)

@@ -66,14 +66,6 @@ type DeleteUserVerifiableAddressParams struct {
 	// Address.
 	Address *models.DeleteUserVerifiableAddress
 
-	/* IfMatch.
-
-	   A server will only return requested resources if the resource matches one of the listed ETag value
-
-	   Format: etag
-	*/
-	IfMatch *string
-
 	// IPID.
 	IPID string
 
@@ -144,17 +136,6 @@ func (o *DeleteUserVerifiableAddressParams) SetAddress(address *models.DeleteUse
 	o.Address = address
 }
 
-// WithIfMatch adds the ifMatch to the delete user verifiable address params
-func (o *DeleteUserVerifiableAddressParams) WithIfMatch(ifMatch *string) *DeleteUserVerifiableAddressParams {
-	o.SetIfMatch(ifMatch)
-	return o
-}
-
-// SetIfMatch adds the ifMatch to the delete user verifiable address params
-func (o *DeleteUserVerifiableAddressParams) SetIfMatch(ifMatch *string) {
-	o.IfMatch = ifMatch
-}
-
 // WithIPID adds the iPID to the delete user verifiable address params
 func (o *DeleteUserVerifiableAddressParams) WithIPID(iPID string) *DeleteUserVerifiableAddressParams {
 	o.SetIPID(iPID)
@@ -186,14 +167,6 @@ func (o *DeleteUserVerifiableAddressParams) WriteToRequest(r runtime.ClientReque
 	var res []error
 	if o.Address != nil {
 		if err := r.SetBodyParam(o.Address); err != nil {
-			return err
-		}
-	}
-
-	if o.IfMatch != nil {
-
-		// header param if-match
-		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

@@ -141,7 +141,7 @@ func NewExportTenantConfigurationBadRequest() *ExportTenantConfigurationBadReque
 /*
 ExportTenantConfigurationBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type ExportTenantConfigurationBadRequest struct {
 	Payload *models.Error
@@ -204,7 +204,7 @@ func NewExportTenantConfigurationUnauthorized() *ExportTenantConfigurationUnauth
 /*
 ExportTenantConfigurationUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ExportTenantConfigurationUnauthorized struct {
 	Payload *models.Error
@@ -267,7 +267,7 @@ func NewExportTenantConfigurationForbidden() *ExportTenantConfigurationForbidden
 /*
 ExportTenantConfigurationForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ExportTenantConfigurationForbidden struct {
 	Payload *models.Error
@@ -330,7 +330,7 @@ func NewExportTenantConfigurationNotFound() *ExportTenantConfigurationNotFound {
 /*
 ExportTenantConfigurationNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type ExportTenantConfigurationNotFound struct {
 	Payload *models.Error
@@ -393,7 +393,7 @@ func NewExportTenantConfigurationUnprocessableEntity() *ExportTenantConfiguratio
 /*
 ExportTenantConfigurationUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type ExportTenantConfigurationUnprocessableEntity struct {
 	Payload *models.Error
@@ -456,7 +456,7 @@ func NewExportTenantConfigurationTooManyRequests() *ExportTenantConfigurationToo
 /*
 ExportTenantConfigurationTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ExportTenantConfigurationTooManyRequests struct {
 	Payload *models.Error

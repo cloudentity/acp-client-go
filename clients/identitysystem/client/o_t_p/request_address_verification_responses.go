@@ -150,7 +150,7 @@ func NewRequestAddressVerificationBadRequest() *RequestAddressVerificationBadReq
 /*
 RequestAddressVerificationBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type RequestAddressVerificationBadRequest struct {
 	Payload *models.Error
@@ -213,7 +213,7 @@ func NewRequestAddressVerificationUnauthorized() *RequestAddressVerificationUnau
 /*
 RequestAddressVerificationUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type RequestAddressVerificationUnauthorized struct {
 	Payload *models.Error
@@ -276,7 +276,7 @@ func NewRequestAddressVerificationNotFound() *RequestAddressVerificationNotFound
 /*
 RequestAddressVerificationNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type RequestAddressVerificationNotFound struct {
 	Payload *models.Error
@@ -339,7 +339,7 @@ func NewRequestAddressVerificationConflict() *RequestAddressVerificationConflict
 /*
 RequestAddressVerificationConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type RequestAddressVerificationConflict struct {
 	Payload *models.Error
@@ -402,7 +402,7 @@ func NewRequestAddressVerificationPreconditionFailed() *RequestAddressVerificati
 /*
 RequestAddressVerificationPreconditionFailed describes a response with status code 412, with default header values.
 
-HttpError
+Payload too large
 */
 type RequestAddressVerificationPreconditionFailed struct {
 	Payload *models.Error
@@ -465,7 +465,7 @@ func NewRequestAddressVerificationUnprocessableEntity() *RequestAddressVerificat
 /*
 RequestAddressVerificationUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type RequestAddressVerificationUnprocessableEntity struct {
 	Payload *models.Error
@@ -528,7 +528,7 @@ func NewRequestAddressVerificationTooManyRequests() *RequestAddressVerificationT
 /*
 RequestAddressVerificationTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type RequestAddressVerificationTooManyRequests struct {
 	Payload *models.Error

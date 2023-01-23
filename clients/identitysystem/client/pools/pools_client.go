@@ -36,9 +36,11 @@ type ClientService interface {
 }
 
 /*
-SystemGetPool gets pool
+	SystemGetPool gets pool
 
-Gets pool.
+	Gets pool.
+
+This API does not use ETags but data is always consistent.
 */
 func (a *Client) SystemGetPool(params *SystemGetPoolParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemGetPoolOK, error) {
 	// TODO: Validate the params before sending

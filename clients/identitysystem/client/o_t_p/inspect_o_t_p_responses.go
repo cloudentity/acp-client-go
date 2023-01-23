@@ -139,7 +139,7 @@ func NewInspectOTPUnauthorized() *InspectOTPUnauthorized {
 /*
 InspectOTPUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type InspectOTPUnauthorized struct {
 	Payload *models.Error
@@ -202,7 +202,7 @@ func NewInspectOTPPreconditionFailed() *InspectOTPPreconditionFailed {
 /*
 InspectOTPPreconditionFailed describes a response with status code 412, with default header values.
 
-HttpError
+Payload too large
 */
 type InspectOTPPreconditionFailed struct {
 	Payload *models.Error
@@ -265,7 +265,7 @@ func NewInspectOTPUnprocessableEntity() *InspectOTPUnprocessableEntity {
 /*
 InspectOTPUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type InspectOTPUnprocessableEntity struct {
 	Payload *models.Error

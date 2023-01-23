@@ -53,12 +53,6 @@ func (o *AddUserIdentifierReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 		return nil, result
-	case 412:
-		result := NewAddUserIdentifierPreconditionFailed()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return nil, result
 	case 422:
 		result := NewAddUserIdentifierUnprocessableEntity()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -78,18 +72,9 @@ func NewAddUserIdentifierOK() *AddUserIdentifierOK {
 /*
 AddUserIdentifierOK describes a response with status code 200, with default header values.
 
-User
+Identifier
 */
 type AddUserIdentifierOK struct {
-
-	/* The ETag HTTP header is an identifier for a specific version of a resource
-
-	in:header
-
-	     Format: etag
-	*/
-	Etag string
-
 	Payload *models.UserIdentifier
 }
 
@@ -132,13 +117,6 @@ func (o *AddUserIdentifierOK) GetPayload() *models.UserIdentifier {
 
 func (o *AddUserIdentifierOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header etag
-	hdrEtag := response.GetHeader("etag")
-
-	if hdrEtag != "" {
-		o.Etag = hdrEtag
-	}
-
 	o.Payload = new(models.UserIdentifier)
 
 	// response payload
@@ -157,7 +135,7 @@ func NewAddUserIdentifierUnauthorized() *AddUserIdentifierUnauthorized {
 /*
 AddUserIdentifierUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type AddUserIdentifierUnauthorized struct {
 	Payload *models.Error
@@ -220,7 +198,7 @@ func NewAddUserIdentifierForbidden() *AddUserIdentifierForbidden {
 /*
 AddUserIdentifierForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type AddUserIdentifierForbidden struct {
 	Payload *models.Error
@@ -283,7 +261,7 @@ func NewAddUserIdentifierNotFound() *AddUserIdentifierNotFound {
 /*
 AddUserIdentifierNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type AddUserIdentifierNotFound struct {
 	Payload *models.Error
@@ -346,7 +324,7 @@ func NewAddUserIdentifierConflict() *AddUserIdentifierConflict {
 /*
 AddUserIdentifierConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type AddUserIdentifierConflict struct {
 	Payload *models.Error
@@ -401,69 +379,6 @@ func (o *AddUserIdentifierConflict) readResponse(response runtime.ClientResponse
 	return nil
 }
 
-// NewAddUserIdentifierPreconditionFailed creates a AddUserIdentifierPreconditionFailed with default headers values
-func NewAddUserIdentifierPreconditionFailed() *AddUserIdentifierPreconditionFailed {
-	return &AddUserIdentifierPreconditionFailed{}
-}
-
-/*
-AddUserIdentifierPreconditionFailed describes a response with status code 412, with default header values.
-
-HttpError
-*/
-type AddUserIdentifierPreconditionFailed struct {
-	Payload *models.Error
-}
-
-// IsSuccess returns true when this add user identifier precondition failed response has a 2xx status code
-func (o *AddUserIdentifierPreconditionFailed) IsSuccess() bool {
-	return false
-}
-
-// IsRedirect returns true when this add user identifier precondition failed response has a 3xx status code
-func (o *AddUserIdentifierPreconditionFailed) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this add user identifier precondition failed response has a 4xx status code
-func (o *AddUserIdentifierPreconditionFailed) IsClientError() bool {
-	return true
-}
-
-// IsServerError returns true when this add user identifier precondition failed response has a 5xx status code
-func (o *AddUserIdentifierPreconditionFailed) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this add user identifier precondition failed response a status code equal to that given
-func (o *AddUserIdentifierPreconditionFailed) IsCode(code int) bool {
-	return code == 412
-}
-
-func (o *AddUserIdentifierPreconditionFailed) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/identifiers/add][%d] addUserIdentifierPreconditionFailed  %+v", 412, o.Payload)
-}
-
-func (o *AddUserIdentifierPreconditionFailed) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/identifiers/add][%d] addUserIdentifierPreconditionFailed  %+v", 412, o.Payload)
-}
-
-func (o *AddUserIdentifierPreconditionFailed) GetPayload() *models.Error {
-	return o.Payload
-}
-
-func (o *AddUserIdentifierPreconditionFailed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	o.Payload = new(models.Error)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
 // NewAddUserIdentifierUnprocessableEntity creates a AddUserIdentifierUnprocessableEntity with default headers values
 func NewAddUserIdentifierUnprocessableEntity() *AddUserIdentifierUnprocessableEntity {
 	return &AddUserIdentifierUnprocessableEntity{}
@@ -472,7 +387,7 @@ func NewAddUserIdentifierUnprocessableEntity() *AddUserIdentifierUnprocessableEn
 /*
 AddUserIdentifierUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type AddUserIdentifierUnprocessableEntity struct {
 	Payload *models.Error

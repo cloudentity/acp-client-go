@@ -78,7 +78,7 @@ func NewGenerateCodeCreated() *GenerateCodeCreated {
 /*
 GenerateCodeCreated describes a response with status code 201, with default header values.
 
-User
+Code
 */
 type GenerateCodeCreated struct {
 
@@ -157,7 +157,7 @@ func NewGenerateCodeBadRequest() *GenerateCodeBadRequest {
 /*
 GenerateCodeBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type GenerateCodeBadRequest struct {
 	Payload *models.Error
@@ -220,7 +220,7 @@ func NewGenerateCodeUnauthorized() *GenerateCodeUnauthorized {
 /*
 GenerateCodeUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GenerateCodeUnauthorized struct {
 	Payload *models.Error
@@ -283,7 +283,7 @@ func NewGenerateCodeNotFound() *GenerateCodeNotFound {
 /*
 GenerateCodeNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GenerateCodeNotFound struct {
 	Payload *models.Error
@@ -346,7 +346,7 @@ func NewGenerateCodePreconditionFailed() *GenerateCodePreconditionFailed {
 /*
 GenerateCodePreconditionFailed describes a response with status code 412, with default header values.
 
-HttpError
+Payload too large
 */
 type GenerateCodePreconditionFailed struct {
 	Payload *models.Error
@@ -409,7 +409,7 @@ func NewGenerateCodeUnprocessableEntity() *GenerateCodeUnprocessableEntity {
 /*
 GenerateCodeUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type GenerateCodeUnprocessableEntity struct {
 	Payload *models.Error
@@ -472,7 +472,7 @@ func NewGenerateCodeTooManyRequests() *GenerateCodeTooManyRequests {
 /*
 GenerateCodeTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GenerateCodeTooManyRequests struct {
 	Payload *models.Error

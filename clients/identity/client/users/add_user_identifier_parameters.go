@@ -66,14 +66,6 @@ type AddUserIdentifierParams struct {
 	// NewIdentifier.
 	NewIdentifier *models.AddUserIdentifier
 
-	/* IfMatch.
-
-	   A server will only return requested resources if the resource matches one of the listed ETag value
-
-	   Format: etag
-	*/
-	IfMatch *string
-
 	// IPID.
 	IPID string
 
@@ -144,17 +136,6 @@ func (o *AddUserIdentifierParams) SetNewIdentifier(newIdentifier *models.AddUser
 	o.NewIdentifier = newIdentifier
 }
 
-// WithIfMatch adds the ifMatch to the add user identifier params
-func (o *AddUserIdentifierParams) WithIfMatch(ifMatch *string) *AddUserIdentifierParams {
-	o.SetIfMatch(ifMatch)
-	return o
-}
-
-// SetIfMatch adds the ifMatch to the add user identifier params
-func (o *AddUserIdentifierParams) SetIfMatch(ifMatch *string) {
-	o.IfMatch = ifMatch
-}
-
 // WithIPID adds the iPID to the add user identifier params
 func (o *AddUserIdentifierParams) WithIPID(iPID string) *AddUserIdentifierParams {
 	o.SetIPID(iPID)
@@ -186,14 +167,6 @@ func (o *AddUserIdentifierParams) WriteToRequest(r runtime.ClientRequest, reg st
 	var res []error
 	if o.NewIdentifier != nil {
 		if err := r.SetBodyParam(o.NewIdentifier); err != nil {
-			return err
-		}
-	}
-
-	if o.IfMatch != nil {
-
-		// header param if-match
-		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

@@ -141,7 +141,7 @@ func NewExportConfigurationBadRequest() *ExportConfigurationBadRequest {
 /*
 ExportConfigurationBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type ExportConfigurationBadRequest struct {
 	Payload *models.Error
@@ -204,7 +204,7 @@ func NewExportConfigurationUnauthorized() *ExportConfigurationUnauthorized {
 /*
 ExportConfigurationUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ExportConfigurationUnauthorized struct {
 	Payload *models.Error
@@ -267,7 +267,7 @@ func NewExportConfigurationForbidden() *ExportConfigurationForbidden {
 /*
 ExportConfigurationForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ExportConfigurationForbidden struct {
 	Payload *models.Error
@@ -330,7 +330,7 @@ func NewExportConfigurationNotFound() *ExportConfigurationNotFound {
 /*
 ExportConfigurationNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type ExportConfigurationNotFound struct {
 	Payload *models.Error
@@ -393,7 +393,7 @@ func NewExportConfigurationUnprocessableEntity() *ExportConfigurationUnprocessab
 /*
 ExportConfigurationUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type ExportConfigurationUnprocessableEntity struct {
 	Payload *models.Error
@@ -456,7 +456,7 @@ func NewExportConfigurationTooManyRequests() *ExportConfigurationTooManyRequests
 /*
 ExportConfigurationTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ExportConfigurationTooManyRequests struct {
 	Payload *models.Error

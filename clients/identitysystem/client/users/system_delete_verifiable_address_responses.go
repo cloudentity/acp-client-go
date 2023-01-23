@@ -138,7 +138,7 @@ func NewSystemDeleteVerifiableAddressUnauthorized() *SystemDeleteVerifiableAddre
 /*
 SystemDeleteVerifiableAddressUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type SystemDeleteVerifiableAddressUnauthorized struct {
 	Payload *models.Error
@@ -201,7 +201,7 @@ func NewSystemDeleteVerifiableAddressForbidden() *SystemDeleteVerifiableAddressF
 /*
 SystemDeleteVerifiableAddressForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type SystemDeleteVerifiableAddressForbidden struct {
 	Payload *models.Error
@@ -264,7 +264,7 @@ func NewSystemDeleteVerifiableAddressNotFound() *SystemDeleteVerifiableAddressNo
 /*
 SystemDeleteVerifiableAddressNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type SystemDeleteVerifiableAddressNotFound struct {
 	Payload *models.Error
@@ -327,7 +327,7 @@ func NewSystemDeleteVerifiableAddressPreconditionFailed() *SystemDeleteVerifiabl
 /*
 SystemDeleteVerifiableAddressPreconditionFailed describes a response with status code 412, with default header values.
 
-HttpError
+Payload too large
 */
 type SystemDeleteVerifiableAddressPreconditionFailed struct {
 	Payload *models.Error
@@ -390,7 +390,7 @@ func NewSystemDeleteVerifiableAddressTooManyRequests() *SystemDeleteVerifiableAd
 /*
 SystemDeleteVerifiableAddressTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type SystemDeleteVerifiableAddressTooManyRequests struct {
 	Payload *models.Error

@@ -60,7 +60,7 @@ func NewConfirmResetPasswordNoContent() *ConfirmResetPasswordNoContent {
 /*
 ConfirmResetPasswordNoContent describes a response with status code 204, with default header values.
 
-Password reset
+Request accepted
 */
 type ConfirmResetPasswordNoContent struct {
 
@@ -126,7 +126,7 @@ func NewConfirmResetPasswordUnauthorized() *ConfirmResetPasswordUnauthorized {
 /*
 ConfirmResetPasswordUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ConfirmResetPasswordUnauthorized struct {
 	Payload *models.Error
@@ -189,7 +189,7 @@ func NewConfirmResetPasswordPreconditionFailed() *ConfirmResetPasswordPreconditi
 /*
 ConfirmResetPasswordPreconditionFailed describes a response with status code 412, with default header values.
 
-HttpError
+Payload too large
 */
 type ConfirmResetPasswordPreconditionFailed struct {
 	Payload *models.Error
@@ -252,7 +252,7 @@ func NewConfirmResetPasswordUnprocessableEntity() *ConfirmResetPasswordUnprocess
 /*
 ConfirmResetPasswordUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type ConfirmResetPasswordUnprocessableEntity struct {
 	Payload *models.Error

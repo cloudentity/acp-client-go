@@ -117,7 +117,7 @@ func NewDeletePoolUnauthorized() *DeletePoolUnauthorized {
 /*
 DeletePoolUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type DeletePoolUnauthorized struct {
 	Payload *models.Error
@@ -180,7 +180,7 @@ func NewDeletePoolForbidden() *DeletePoolForbidden {
 /*
 DeletePoolForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type DeletePoolForbidden struct {
 	Payload *models.Error
@@ -243,7 +243,7 @@ func NewDeletePoolNotFound() *DeletePoolNotFound {
 /*
 DeletePoolNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type DeletePoolNotFound struct {
 	Payload *models.Error
@@ -306,7 +306,7 @@ func NewDeletePoolTooManyRequests() *DeletePoolTooManyRequests {
 /*
 DeletePoolTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type DeletePoolTooManyRequests struct {
 	Payload *models.Error

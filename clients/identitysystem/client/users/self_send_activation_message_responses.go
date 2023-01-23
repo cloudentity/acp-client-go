@@ -144,7 +144,7 @@ func NewSelfSendActivationMessageBadRequest() *SelfSendActivationMessageBadReque
 /*
 SelfSendActivationMessageBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type SelfSendActivationMessageBadRequest struct {
 	Payload *models.Error
@@ -207,7 +207,7 @@ func NewSelfSendActivationMessageUnauthorized() *SelfSendActivationMessageUnauth
 /*
 SelfSendActivationMessageUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type SelfSendActivationMessageUnauthorized struct {
 	Payload *models.Error
@@ -270,7 +270,7 @@ func NewSelfSendActivationMessageNotFound() *SelfSendActivationMessageNotFound {
 /*
 SelfSendActivationMessageNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type SelfSendActivationMessageNotFound struct {
 	Payload *models.Error
@@ -333,7 +333,7 @@ func NewSelfSendActivationMessagePreconditionFailed() *SelfSendActivationMessage
 /*
 SelfSendActivationMessagePreconditionFailed describes a response with status code 412, with default header values.
 
-HttpError
+Payload too large
 */
 type SelfSendActivationMessagePreconditionFailed struct {
 	Payload *models.Error
@@ -396,7 +396,7 @@ func NewSelfSendActivationMessageUnprocessableEntity() *SelfSendActivationMessag
 /*
 SelfSendActivationMessageUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type SelfSendActivationMessageUnprocessableEntity struct {
 	Payload *models.Error
@@ -459,7 +459,7 @@ func NewSelfSendActivationMessageTooManyRequests() *SelfSendActivationMessageToo
 /*
 SelfSendActivationMessageTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type SelfSendActivationMessageTooManyRequests struct {
 	Payload *models.Error

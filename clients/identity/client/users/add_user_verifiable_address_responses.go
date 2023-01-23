@@ -53,12 +53,6 @@ func (o *AddUserVerifiableAddressReader) ReadResponse(response runtime.ClientRes
 			return nil, err
 		}
 		return nil, result
-	case 412:
-		result := NewAddUserVerifiableAddressPreconditionFailed()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return nil, result
 	case 422:
 		result := NewAddUserVerifiableAddressUnprocessableEntity()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -78,18 +72,9 @@ func NewAddUserVerifiableAddressOK() *AddUserVerifiableAddressOK {
 /*
 AddUserVerifiableAddressOK describes a response with status code 200, with default header values.
 
-User
+Address
 */
 type AddUserVerifiableAddressOK struct {
-
-	/* The ETag HTTP header is an identifier for a specific version of a resource
-
-	in:header
-
-	     Format: etag
-	*/
-	Etag string
-
 	Payload *models.UserVerifiableAddress
 }
 
@@ -132,13 +117,6 @@ func (o *AddUserVerifiableAddressOK) GetPayload() *models.UserVerifiableAddress 
 
 func (o *AddUserVerifiableAddressOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header etag
-	hdrEtag := response.GetHeader("etag")
-
-	if hdrEtag != "" {
-		o.Etag = hdrEtag
-	}
-
 	o.Payload = new(models.UserVerifiableAddress)
 
 	// response payload
@@ -157,7 +135,7 @@ func NewAddUserVerifiableAddressUnauthorized() *AddUserVerifiableAddressUnauthor
 /*
 AddUserVerifiableAddressUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type AddUserVerifiableAddressUnauthorized struct {
 	Payload *models.Error
@@ -220,7 +198,7 @@ func NewAddUserVerifiableAddressForbidden() *AddUserVerifiableAddressForbidden {
 /*
 AddUserVerifiableAddressForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type AddUserVerifiableAddressForbidden struct {
 	Payload *models.Error
@@ -283,7 +261,7 @@ func NewAddUserVerifiableAddressNotFound() *AddUserVerifiableAddressNotFound {
 /*
 AddUserVerifiableAddressNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type AddUserVerifiableAddressNotFound struct {
 	Payload *models.Error
@@ -346,7 +324,7 @@ func NewAddUserVerifiableAddressConflict() *AddUserVerifiableAddressConflict {
 /*
 AddUserVerifiableAddressConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type AddUserVerifiableAddressConflict struct {
 	Payload *models.Error
@@ -401,69 +379,6 @@ func (o *AddUserVerifiableAddressConflict) readResponse(response runtime.ClientR
 	return nil
 }
 
-// NewAddUserVerifiableAddressPreconditionFailed creates a AddUserVerifiableAddressPreconditionFailed with default headers values
-func NewAddUserVerifiableAddressPreconditionFailed() *AddUserVerifiableAddressPreconditionFailed {
-	return &AddUserVerifiableAddressPreconditionFailed{}
-}
-
-/*
-AddUserVerifiableAddressPreconditionFailed describes a response with status code 412, with default header values.
-
-HttpError
-*/
-type AddUserVerifiableAddressPreconditionFailed struct {
-	Payload *models.Error
-}
-
-// IsSuccess returns true when this add user verifiable address precondition failed response has a 2xx status code
-func (o *AddUserVerifiableAddressPreconditionFailed) IsSuccess() bool {
-	return false
-}
-
-// IsRedirect returns true when this add user verifiable address precondition failed response has a 3xx status code
-func (o *AddUserVerifiableAddressPreconditionFailed) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this add user verifiable address precondition failed response has a 4xx status code
-func (o *AddUserVerifiableAddressPreconditionFailed) IsClientError() bool {
-	return true
-}
-
-// IsServerError returns true when this add user verifiable address precondition failed response has a 5xx status code
-func (o *AddUserVerifiableAddressPreconditionFailed) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this add user verifiable address precondition failed response a status code equal to that given
-func (o *AddUserVerifiableAddressPreconditionFailed) IsCode(code int) bool {
-	return code == 412
-}
-
-func (o *AddUserVerifiableAddressPreconditionFailed) Error() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/add][%d] addUserVerifiableAddressPreconditionFailed  %+v", 412, o.Payload)
-}
-
-func (o *AddUserVerifiableAddressPreconditionFailed) String() string {
-	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/add][%d] addUserVerifiableAddressPreconditionFailed  %+v", 412, o.Payload)
-}
-
-func (o *AddUserVerifiableAddressPreconditionFailed) GetPayload() *models.Error {
-	return o.Payload
-}
-
-func (o *AddUserVerifiableAddressPreconditionFailed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	o.Payload = new(models.Error)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
 // NewAddUserVerifiableAddressUnprocessableEntity creates a AddUserVerifiableAddressUnprocessableEntity with default headers values
 func NewAddUserVerifiableAddressUnprocessableEntity() *AddUserVerifiableAddressUnprocessableEntity {
 	return &AddUserVerifiableAddressUnprocessableEntity{}
@@ -472,7 +387,7 @@ func NewAddUserVerifiableAddressUnprocessableEntity() *AddUserVerifiableAddressU
 /*
 AddUserVerifiableAddressUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type AddUserVerifiableAddressUnprocessableEntity struct {
 	Payload *models.Error

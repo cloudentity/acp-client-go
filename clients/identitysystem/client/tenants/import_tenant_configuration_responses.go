@@ -135,7 +135,7 @@ func NewImportTenantConfigurationBadRequest() *ImportTenantConfigurationBadReque
 /*
 ImportTenantConfigurationBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type ImportTenantConfigurationBadRequest struct {
 	Payload *models.Error
@@ -198,7 +198,7 @@ func NewImportTenantConfigurationUnauthorized() *ImportTenantConfigurationUnauth
 /*
 ImportTenantConfigurationUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ImportTenantConfigurationUnauthorized struct {
 	Payload *models.Error
@@ -261,7 +261,7 @@ func NewImportTenantConfigurationForbidden() *ImportTenantConfigurationForbidden
 /*
 ImportTenantConfigurationForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ImportTenantConfigurationForbidden struct {
 	Payload *models.Error
@@ -324,7 +324,7 @@ func NewImportTenantConfigurationNotFound() *ImportTenantConfigurationNotFound {
 /*
 ImportTenantConfigurationNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type ImportTenantConfigurationNotFound struct {
 	Payload *models.Error
@@ -387,7 +387,7 @@ func NewImportTenantConfigurationConflict() *ImportTenantConfigurationConflict {
 /*
 ImportTenantConfigurationConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type ImportTenantConfigurationConflict struct {
 	Payload *models.Error
@@ -450,7 +450,7 @@ func NewImportTenantConfigurationUnprocessableEntity() *ImportTenantConfiguratio
 /*
 ImportTenantConfigurationUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type ImportTenantConfigurationUnprocessableEntity struct {
 	Payload *models.Error
@@ -513,7 +513,7 @@ func NewImportTenantConfigurationTooManyRequests() *ImportTenantConfigurationToo
 /*
 ImportTenantConfigurationTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ImportTenantConfigurationTooManyRequests struct {
 	Payload *models.Error

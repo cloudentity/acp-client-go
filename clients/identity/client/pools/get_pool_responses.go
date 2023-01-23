@@ -69,7 +69,7 @@ GetPoolOK describes a response with status code 200, with default header values.
 Identity Pool
 */
 type GetPoolOK struct {
-	Payload *models.Pool
+	Payload *models.PoolResponse
 }
 
 // IsSuccess returns true when this get pool o k response has a 2xx status code
@@ -105,13 +105,13 @@ func (o *GetPoolOK) String() string {
 	return fmt.Sprintf("[GET /admin/pools/{ipID}][%d] getPoolOK  %+v", 200, o.Payload)
 }
 
-func (o *GetPoolOK) GetPayload() *models.Pool {
+func (o *GetPoolOK) GetPayload() *models.PoolResponse {
 	return o.Payload
 }
 
 func (o *GetPoolOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Pool)
+	o.Payload = new(models.PoolResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -129,7 +129,7 @@ func NewGetPoolUnauthorized() *GetPoolUnauthorized {
 /*
 GetPoolUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetPoolUnauthorized struct {
 	Payload *models.Error
@@ -192,7 +192,7 @@ func NewGetPoolForbidden() *GetPoolForbidden {
 /*
 GetPoolForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetPoolForbidden struct {
 	Payload *models.Error
@@ -255,7 +255,7 @@ func NewGetPoolNotFound() *GetPoolNotFound {
 /*
 GetPoolNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetPoolNotFound struct {
 	Payload *models.Error
@@ -318,7 +318,7 @@ func NewGetPoolTooManyRequests() *GetPoolTooManyRequests {
 /*
 GetPoolTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetPoolTooManyRequests struct {
 	Payload *models.Error

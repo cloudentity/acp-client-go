@@ -132,7 +132,7 @@ func NewRequestOTPChallengeUnauthorized() *RequestOTPChallengeUnauthorized {
 /*
 RequestOTPChallengeUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type RequestOTPChallengeUnauthorized struct {
 	Payload *models.Error
@@ -195,7 +195,7 @@ func NewRequestOTPChallengePreconditionFailed() *RequestOTPChallengePrecondition
 /*
 RequestOTPChallengePreconditionFailed describes a response with status code 412, with default header values.
 
-HttpError
+Payload too large
 */
 type RequestOTPChallengePreconditionFailed struct {
 	Payload *models.Error
@@ -258,7 +258,7 @@ func NewRequestOTPChallengeUnprocessableEntity() *RequestOTPChallengeUnprocessab
 /*
 RequestOTPChallengeUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type RequestOTPChallengeUnprocessableEntity struct {
 	Payload *models.Error
@@ -321,7 +321,7 @@ func NewRequestOTPChallengeTooManyRequests() *RequestOTPChallengeTooManyRequests
 /*
 RequestOTPChallengeTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type RequestOTPChallengeTooManyRequests struct {
 	Payload *models.Error

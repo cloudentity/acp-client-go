@@ -350,9 +350,11 @@ func (a *Client) GetUser(params *GetUserParams, authInfo runtime.ClientAuthInfoW
 }
 
 /*
-ListUsers lists users
+	ListUsers lists users
 
-Lists users.
+	Lists users.
+
+Results are sorted by user ID. No other sorting is supported.
 */
 func (a *Client) ListUsers(params *ListUsersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListUsersOK, error) {
 	// TODO: Validate the params before sending

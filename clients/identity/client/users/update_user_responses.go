@@ -87,15 +87,6 @@ UpdateUserOK describes a response with status code 200, with default header valu
 User
 */
 type UpdateUserOK struct {
-
-	/* The ETag HTTP header is an identifier for a specific version of a resource
-
-	in:header
-
-	     Format: etag
-	*/
-	Etag string
-
 	Payload *models.UserWithData
 }
 
@@ -138,13 +129,6 @@ func (o *UpdateUserOK) GetPayload() *models.UserWithData {
 
 func (o *UpdateUserOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header etag
-	hdrEtag := response.GetHeader("etag")
-
-	if hdrEtag != "" {
-		o.Etag = hdrEtag
-	}
-
 	o.Payload = new(models.UserWithData)
 
 	// response payload
@@ -163,7 +147,7 @@ func NewUpdateUserBadRequest() *UpdateUserBadRequest {
 /*
 UpdateUserBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type UpdateUserBadRequest struct {
 	Payload *models.Error
@@ -226,7 +210,7 @@ func NewUpdateUserUnauthorized() *UpdateUserUnauthorized {
 /*
 UpdateUserUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type UpdateUserUnauthorized struct {
 	Payload *models.Error
@@ -289,7 +273,7 @@ func NewUpdateUserForbidden() *UpdateUserForbidden {
 /*
 UpdateUserForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type UpdateUserForbidden struct {
 	Payload *models.Error
@@ -352,7 +336,7 @@ func NewUpdateUserNotFound() *UpdateUserNotFound {
 /*
 UpdateUserNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type UpdateUserNotFound struct {
 	Payload *models.Error
@@ -415,7 +399,7 @@ func NewUpdateUserConflict() *UpdateUserConflict {
 /*
 UpdateUserConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type UpdateUserConflict struct {
 	Payload *models.Error
@@ -478,7 +462,7 @@ func NewUpdateUserUnprocessableEntity() *UpdateUserUnprocessableEntity {
 /*
 UpdateUserUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type UpdateUserUnprocessableEntity struct {
 	Payload *models.Error
@@ -541,7 +525,7 @@ func NewUpdateUserTooManyRequests() *UpdateUserTooManyRequests {
 /*
 UpdateUserTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type UpdateUserTooManyRequests struct {
 	Payload *models.Error

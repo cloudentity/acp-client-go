@@ -151,7 +151,7 @@ func NewSystemGetUserUnauthorized() *SystemGetUserUnauthorized {
 /*
 SystemGetUserUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type SystemGetUserUnauthorized struct {
 	Payload *models.Error
@@ -214,7 +214,7 @@ func NewSystemGetUserForbidden() *SystemGetUserForbidden {
 /*
 SystemGetUserForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type SystemGetUserForbidden struct {
 	Payload *models.Error
@@ -277,7 +277,7 @@ func NewSystemGetUserNotFound() *SystemGetUserNotFound {
 /*
 SystemGetUserNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type SystemGetUserNotFound struct {
 	Payload *models.Error
@@ -340,7 +340,7 @@ func NewSystemGetUserPreconditionFailed() *SystemGetUserPreconditionFailed {
 /*
 SystemGetUserPreconditionFailed describes a response with status code 412, with default header values.
 
-HttpError
+Payload too large
 */
 type SystemGetUserPreconditionFailed struct {
 	Payload *models.Error
@@ -403,7 +403,7 @@ func NewSystemGetUserTooManyRequests() *SystemGetUserTooManyRequests {
 /*
 SystemGetUserTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type SystemGetUserTooManyRequests struct {
 	Payload *models.Error

@@ -78,7 +78,7 @@ func NewGenerateCodeForUserCreated() *GenerateCodeForUserCreated {
 /*
 GenerateCodeForUserCreated describes a response with status code 201, with default header values.
 
-User
+Code
 */
 type GenerateCodeForUserCreated struct {
 
@@ -157,7 +157,7 @@ func NewGenerateCodeForUserBadRequest() *GenerateCodeForUserBadRequest {
 /*
 GenerateCodeForUserBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type GenerateCodeForUserBadRequest struct {
 	Payload *models.Error
@@ -220,7 +220,7 @@ func NewGenerateCodeForUserUnauthorized() *GenerateCodeForUserUnauthorized {
 /*
 GenerateCodeForUserUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GenerateCodeForUserUnauthorized struct {
 	Payload *models.Error
@@ -283,7 +283,7 @@ func NewGenerateCodeForUserNotFound() *GenerateCodeForUserNotFound {
 /*
 GenerateCodeForUserNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GenerateCodeForUserNotFound struct {
 	Payload *models.Error
@@ -346,7 +346,7 @@ func NewGenerateCodeForUserPreconditionFailed() *GenerateCodeForUserPrecondition
 /*
 GenerateCodeForUserPreconditionFailed describes a response with status code 412, with default header values.
 
-HttpError
+Payload too large
 */
 type GenerateCodeForUserPreconditionFailed struct {
 	Payload *models.Error
@@ -409,7 +409,7 @@ func NewGenerateCodeForUserUnprocessableEntity() *GenerateCodeForUserUnprocessab
 /*
 GenerateCodeForUserUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type GenerateCodeForUserUnprocessableEntity struct {
 	Payload *models.Error
@@ -472,7 +472,7 @@ func NewGenerateCodeForUserTooManyRequests() *GenerateCodeForUserTooManyRequests
 /*
 GenerateCodeForUserTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GenerateCodeForUserTooManyRequests struct {
 	Payload *models.Error

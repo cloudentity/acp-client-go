@@ -76,14 +76,6 @@ type SystemListUsersParams struct {
 	*/
 	BeforeUserID *string
 
-	/* IfMatch.
-
-	   A server will only return requested resources if the resource matches one of the listed ETag value
-
-	   Format: etag
-	*/
-	IfMatch *string
-
 	// IPID.
 	IPID string
 
@@ -209,17 +201,6 @@ func (o *SystemListUsersParams) SetBeforeUserID(beforeUserID *string) {
 	o.BeforeUserID = beforeUserID
 }
 
-// WithIfMatch adds the ifMatch to the system list users params
-func (o *SystemListUsersParams) WithIfMatch(ifMatch *string) *SystemListUsersParams {
-	o.SetIfMatch(ifMatch)
-	return o
-}
-
-// SetIfMatch adds the ifMatch to the system list users params
-func (o *SystemListUsersParams) SetIfMatch(ifMatch *string) {
-	o.IfMatch = ifMatch
-}
-
 // WithIPID adds the iPID to the system list users params
 func (o *SystemListUsersParams) WithIPID(iPID string) *SystemListUsersParams {
 	o.SetIPID(iPID)
@@ -314,14 +295,6 @@ func (o *SystemListUsersParams) WriteToRequest(r runtime.ClientRequest, reg strf
 			if err := r.SetQueryParam("before_user_id", qBeforeUserID); err != nil {
 				return err
 			}
-		}
-	}
-
-	if o.IfMatch != nil {
-
-		// header param if-match
-		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
-			return err
 		}
 	}
 

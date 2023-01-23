@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -28,6 +29,9 @@ type SelfRegisterUser struct {
 
 	// payload
 	Payload map[string]interface{} `json:"payload,omitempty"`
+
+	// webauthn credentials
+	WebauthnCredentials []*Credential `json:"webauthn_credentials"`
 }
 
 // Validate validates this self register user
@@ -35,6 +39,10 @@ func (m *SelfRegisterUser) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateIdentifier(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateWebauthnCredentials(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -53,8 +61,63 @@ func (m *SelfRegisterUser) validateIdentifier(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validates this self register user based on context it is used
+func (m *SelfRegisterUser) validateWebauthnCredentials(formats strfmt.Registry) error {
+	if swag.IsZero(m.WebauthnCredentials) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.WebauthnCredentials); i++ {
+		if swag.IsZero(m.WebauthnCredentials[i]) { // not required
+			continue
+		}
+
+		if m.WebauthnCredentials[i] != nil {
+			if err := m.WebauthnCredentials[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("webauthn_credentials" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("webauthn_credentials" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this self register user based on the context it is used
 func (m *SelfRegisterUser) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateWebauthnCredentials(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *SelfRegisterUser) contextValidateWebauthnCredentials(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.WebauthnCredentials); i++ {
+
+		if m.WebauthnCredentials[i] != nil {
+			if err := m.WebauthnCredentials[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("webauthn_credentials" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("webauthn_credentials" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 

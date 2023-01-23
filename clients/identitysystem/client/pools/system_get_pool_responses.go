@@ -47,12 +47,6 @@ func (o *SystemGetPoolReader) ReadResponse(response runtime.ClientResponse, cons
 			return nil, err
 		}
 		return nil, result
-	case 412:
-		result := NewSystemGetPoolPreconditionFailed()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return nil, result
 	case 429:
 		result := NewSystemGetPoolTooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -75,16 +69,7 @@ SystemGetPoolOK describes a response with status code 200, with default header v
 Identity Pool
 */
 type SystemGetPoolOK struct {
-
-	/* The ETag HTTP header is an identifier for a specific version of a resource
-
-	in:header
-
-	     Format: etag
-	*/
-	Etag string
-
-	Payload *models.Pool
+	Payload *models.PoolResponse
 }
 
 // IsSuccess returns true when this system get pool o k response has a 2xx status code
@@ -120,20 +105,13 @@ func (o *SystemGetPoolOK) String() string {
 	return fmt.Sprintf("[GET /system/pools/{ipID}][%d] systemGetPoolOK  %+v", 200, o.Payload)
 }
 
-func (o *SystemGetPoolOK) GetPayload() *models.Pool {
+func (o *SystemGetPoolOK) GetPayload() *models.PoolResponse {
 	return o.Payload
 }
 
 func (o *SystemGetPoolOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	// hydrates response header etag
-	hdrEtag := response.GetHeader("etag")
-
-	if hdrEtag != "" {
-		o.Etag = hdrEtag
-	}
-
-	o.Payload = new(models.Pool)
+	o.Payload = new(models.PoolResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -151,7 +129,7 @@ func NewSystemGetPoolUnauthorized() *SystemGetPoolUnauthorized {
 /*
 SystemGetPoolUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type SystemGetPoolUnauthorized struct {
 	Payload *models.Error
@@ -214,7 +192,7 @@ func NewSystemGetPoolForbidden() *SystemGetPoolForbidden {
 /*
 SystemGetPoolForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type SystemGetPoolForbidden struct {
 	Payload *models.Error
@@ -277,7 +255,7 @@ func NewSystemGetPoolNotFound() *SystemGetPoolNotFound {
 /*
 SystemGetPoolNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type SystemGetPoolNotFound struct {
 	Payload *models.Error
@@ -332,69 +310,6 @@ func (o *SystemGetPoolNotFound) readResponse(response runtime.ClientResponse, co
 	return nil
 }
 
-// NewSystemGetPoolPreconditionFailed creates a SystemGetPoolPreconditionFailed with default headers values
-func NewSystemGetPoolPreconditionFailed() *SystemGetPoolPreconditionFailed {
-	return &SystemGetPoolPreconditionFailed{}
-}
-
-/*
-SystemGetPoolPreconditionFailed describes a response with status code 412, with default header values.
-
-HttpError
-*/
-type SystemGetPoolPreconditionFailed struct {
-	Payload *models.Error
-}
-
-// IsSuccess returns true when this system get pool precondition failed response has a 2xx status code
-func (o *SystemGetPoolPreconditionFailed) IsSuccess() bool {
-	return false
-}
-
-// IsRedirect returns true when this system get pool precondition failed response has a 3xx status code
-func (o *SystemGetPoolPreconditionFailed) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this system get pool precondition failed response has a 4xx status code
-func (o *SystemGetPoolPreconditionFailed) IsClientError() bool {
-	return true
-}
-
-// IsServerError returns true when this system get pool precondition failed response has a 5xx status code
-func (o *SystemGetPoolPreconditionFailed) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this system get pool precondition failed response a status code equal to that given
-func (o *SystemGetPoolPreconditionFailed) IsCode(code int) bool {
-	return code == 412
-}
-
-func (o *SystemGetPoolPreconditionFailed) Error() string {
-	return fmt.Sprintf("[GET /system/pools/{ipID}][%d] systemGetPoolPreconditionFailed  %+v", 412, o.Payload)
-}
-
-func (o *SystemGetPoolPreconditionFailed) String() string {
-	return fmt.Sprintf("[GET /system/pools/{ipID}][%d] systemGetPoolPreconditionFailed  %+v", 412, o.Payload)
-}
-
-func (o *SystemGetPoolPreconditionFailed) GetPayload() *models.Error {
-	return o.Payload
-}
-
-func (o *SystemGetPoolPreconditionFailed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	o.Payload = new(models.Error)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
-		return err
-	}
-
-	return nil
-}
-
 // NewSystemGetPoolTooManyRequests creates a SystemGetPoolTooManyRequests with default headers values
 func NewSystemGetPoolTooManyRequests() *SystemGetPoolTooManyRequests {
 	return &SystemGetPoolTooManyRequests{}
@@ -403,7 +318,7 @@ func NewSystemGetPoolTooManyRequests() *SystemGetPoolTooManyRequests {
 /*
 SystemGetPoolTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type SystemGetPoolTooManyRequests struct {
 	Payload *models.Error

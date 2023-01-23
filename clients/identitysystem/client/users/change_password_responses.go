@@ -150,7 +150,7 @@ func NewChangePasswordBadRequest() *ChangePasswordBadRequest {
 /*
 ChangePasswordBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type ChangePasswordBadRequest struct {
 	Payload *models.Error
@@ -213,7 +213,7 @@ func NewChangePasswordUnauthorized() *ChangePasswordUnauthorized {
 /*
 ChangePasswordUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ChangePasswordUnauthorized struct {
 	Payload *models.Error
@@ -276,7 +276,7 @@ func NewChangePasswordForbidden() *ChangePasswordForbidden {
 /*
 ChangePasswordForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ChangePasswordForbidden struct {
 	Payload *models.Error
@@ -339,7 +339,7 @@ func NewChangePasswordNotFound() *ChangePasswordNotFound {
 /*
 ChangePasswordNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type ChangePasswordNotFound struct {
 	Payload *models.Error
@@ -402,7 +402,7 @@ func NewChangePasswordPreconditionFailed() *ChangePasswordPreconditionFailed {
 /*
 ChangePasswordPreconditionFailed describes a response with status code 412, with default header values.
 
-HttpError
+Payload too large
 */
 type ChangePasswordPreconditionFailed struct {
 	Payload *models.Error
@@ -465,7 +465,7 @@ func NewChangePasswordUnprocessableEntity() *ChangePasswordUnprocessableEntity {
 /*
 ChangePasswordUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type ChangePasswordUnprocessableEntity struct {
 	Payload *models.Error
@@ -528,7 +528,7 @@ func NewChangePasswordTooManyRequests() *ChangePasswordTooManyRequests {
 /*
 ChangePasswordTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ChangePasswordTooManyRequests struct {
 	Payload *models.Error

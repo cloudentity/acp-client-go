@@ -144,7 +144,7 @@ func NewCompleteAddressVerificationBadRequest() *CompleteAddressVerificationBadR
 /*
 CompleteAddressVerificationBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type CompleteAddressVerificationBadRequest struct {
 	Payload *models.Error
@@ -207,7 +207,7 @@ func NewCompleteAddressVerificationUnauthorized() *CompleteAddressVerificationUn
 /*
 CompleteAddressVerificationUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type CompleteAddressVerificationUnauthorized struct {
 	Payload *models.Error
@@ -270,7 +270,7 @@ func NewCompleteAddressVerificationNotFound() *CompleteAddressVerificationNotFou
 /*
 CompleteAddressVerificationNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type CompleteAddressVerificationNotFound struct {
 	Payload *models.Error
@@ -333,7 +333,7 @@ func NewCompleteAddressVerificationConflict() *CompleteAddressVerificationConfli
 /*
 CompleteAddressVerificationConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type CompleteAddressVerificationConflict struct {
 	Payload *models.Error
@@ -396,7 +396,7 @@ func NewCompleteAddressVerificationPreconditionFailed() *CompleteAddressVerifica
 /*
 CompleteAddressVerificationPreconditionFailed describes a response with status code 412, with default header values.
 
-HttpError
+Payload too large
 */
 type CompleteAddressVerificationPreconditionFailed struct {
 	Payload *models.Error
@@ -459,7 +459,7 @@ func NewCompleteAddressVerificationUnprocessableEntity() *CompleteAddressVerific
 /*
 CompleteAddressVerificationUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type CompleteAddressVerificationUnprocessableEntity struct {
 	Payload *models.Error

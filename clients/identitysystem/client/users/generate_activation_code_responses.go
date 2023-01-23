@@ -78,7 +78,7 @@ func NewGenerateActivationCodeCreated() *GenerateActivationCodeCreated {
 /*
 GenerateActivationCodeCreated describes a response with status code 201, with default header values.
 
-User
+Code ID
 */
 type GenerateActivationCodeCreated struct {
 
@@ -157,7 +157,7 @@ func NewGenerateActivationCodeBadRequest() *GenerateActivationCodeBadRequest {
 /*
 GenerateActivationCodeBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type GenerateActivationCodeBadRequest struct {
 	Payload *models.Error
@@ -220,7 +220,7 @@ func NewGenerateActivationCodeUnauthorized() *GenerateActivationCodeUnauthorized
 /*
 GenerateActivationCodeUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GenerateActivationCodeUnauthorized struct {
 	Payload *models.Error
@@ -283,7 +283,7 @@ func NewGenerateActivationCodeNotFound() *GenerateActivationCodeNotFound {
 /*
 GenerateActivationCodeNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GenerateActivationCodeNotFound struct {
 	Payload *models.Error
@@ -346,7 +346,7 @@ func NewGenerateActivationCodePreconditionFailed() *GenerateActivationCodePrecon
 /*
 GenerateActivationCodePreconditionFailed describes a response with status code 412, with default header values.
 
-HttpError
+Payload too large
 */
 type GenerateActivationCodePreconditionFailed struct {
 	Payload *models.Error
@@ -409,7 +409,7 @@ func NewGenerateActivationCodeUnprocessableEntity() *GenerateActivationCodeUnpro
 /*
 GenerateActivationCodeUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type GenerateActivationCodeUnprocessableEntity struct {
 	Payload *models.Error
@@ -472,7 +472,7 @@ func NewGenerateActivationCodeTooManyRequests() *GenerateActivationCodeTooManyRe
 /*
 GenerateActivationCodeTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GenerateActivationCodeTooManyRequests struct {
 	Payload *models.Error

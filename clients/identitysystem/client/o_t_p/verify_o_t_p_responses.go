@@ -139,7 +139,7 @@ func NewVerifyOTPUnauthorized() *VerifyOTPUnauthorized {
 /*
 VerifyOTPUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type VerifyOTPUnauthorized struct {
 	Payload *models.Error
@@ -202,7 +202,7 @@ func NewVerifyOTPPreconditionFailed() *VerifyOTPPreconditionFailed {
 /*
 VerifyOTPPreconditionFailed describes a response with status code 412, with default header values.
 
-HttpError
+Payload too large
 */
 type VerifyOTPPreconditionFailed struct {
 	Payload *models.Error
@@ -265,7 +265,7 @@ func NewVerifyOTPUnprocessableEntity() *VerifyOTPUnprocessableEntity {
 /*
 VerifyOTPUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type VerifyOTPUnprocessableEntity struct {
 	Payload *models.Error

@@ -66,29 +66,6 @@ type ImportTenantConfigurationParams struct {
 	// TenantDump.
 	TenantDump *models.TenantDump
 
-	/* Mode.
-
-	     Insert mode
-
-	Defines what happens in case of configuration import conflicts.
-
-	The `mode` parameter defines
-	what happens if there are any conflicts when importing your configuration. For example, if a
-	client already exists within ACP and you are trying to import a
-	configuration that also has a client with this ID, there are the following ways
-	ACP can handle the request:
-
-	`mode` set to `ignore` - ACP ignores the changes that come from your configuration import.
-
-	`mode` set to `fail` - ACP stops processing the import and returns an error.
-
-	`mode` set to `update` - ACP updates the value from the previous configuration with the value
-	provided in the request.
-
-	     Format: insertMode
-	*/
-	Mode *string
-
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -153,17 +130,6 @@ func (o *ImportTenantConfigurationParams) SetTenantDump(tenantDump *models.Tenan
 	o.TenantDump = tenantDump
 }
 
-// WithMode adds the mode to the import tenant configuration params
-func (o *ImportTenantConfigurationParams) WithMode(mode *string) *ImportTenantConfigurationParams {
-	o.SetMode(mode)
-	return o
-}
-
-// SetMode adds the mode to the import tenant configuration params
-func (o *ImportTenantConfigurationParams) SetMode(mode *string) {
-	o.Mode = mode
-}
-
 // WriteToRequest writes these params to a swagger request
 func (o *ImportTenantConfigurationParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -174,23 +140,6 @@ func (o *ImportTenantConfigurationParams) WriteToRequest(r runtime.ClientRequest
 	if o.TenantDump != nil {
 		if err := r.SetBodyParam(o.TenantDump); err != nil {
 			return err
-		}
-	}
-
-	if o.Mode != nil {
-
-		// query param mode
-		var qrMode string
-
-		if o.Mode != nil {
-			qrMode = *o.Mode
-		}
-		qMode := qrMode
-		if qMode != "" {
-
-			if err := r.SetQueryParam("mode", qMode); err != nil {
-				return err
-			}
 		}
 	}
 
