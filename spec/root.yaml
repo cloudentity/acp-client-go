@@ -357,6 +357,7 @@ definitions:
         - accepted
         - rejected
         - revoked
+        - notified
         - issued
         - denied
         - granted
@@ -365,6 +366,7 @@ definitions:
         - succeeded
         - sent
         - not_sent
+        - executed
         type: string
         x-nullable: false
       event_id:
@@ -381,7 +383,9 @@ definitions:
         - gateway_policy
         - policy
         - client
+        - credential
         - login
+        - post_authn
         - consent
         - client_consents
         - authorization_code
@@ -396,6 +400,8 @@ definitions:
         - password
         - bruteforce
         - dcr
+        - script
+        - role
         type: string
         x-nullable: false
       event_type:
@@ -761,7 +767,11 @@ definitions:
   CDRArrangement:
     properties:
       account_ids:
-        description: List of accounts
+        description: |-
+          List of accounts.
+
+          It can refer to user's bank accounts that can be accessed by your client application in order to provide consumer
+          services.
         items:
           type: string
         type: array
@@ -769,7 +779,7 @@ definitions:
       amending_arrangement_id:
         $ref: '#/definitions/CDRArrangementID'
       authorization_server_id:
-        description: Workspace Identifier
+        description: Workspace identifier
         example: server
         format: serverID
         type: string
@@ -779,7 +789,7 @@ definitions:
       cdr_arrangement_metadata:
         $ref: '#/definitions/CDRArrangementMetadata'
       client_id:
-        description: Client Identifier
+        description: Client application identifier
         example: bugkgm23g9kregtu051g
         format: clientID
         type: string
@@ -794,21 +804,20 @@ definitions:
         $ref: '#/definitions/CDRCustomerID'
       expiry:
         description: Arrangement expiration date
-        example: "2022-07-01T09:02:27.127932Z"
+        example: "2023-03-01T09:02:27.127932Z"
         format: date-time
         type: string
         x-nullable: false
       scope_grants:
-        description: List of scope grants
+        description: The detailed list of scopes voluntarily granted by the user for
+          the client application to access user data.
         items:
           $ref: '#/definitions/ScopeGrant'
         type: array
         x-nullable: false
       sharing_type:
-        description: |-
-          Sharing type
-
-          One of: one_time, one_time_with_refresh_token, reusable
+        description: 'The rule on how a user shares their data: reuse with a token
+          or without it, or the user allows one-time access.'
         enum:
         - one_time
         - one_time_with_refresh_token
@@ -830,21 +839,21 @@ definitions:
         $ref: '#/definitions/ConsentStatus'
       subject:
         description: |-
-          Subject identifing the authenticated user.
-          Depending on the workspace configuration the value might be hashed.
+          Subject identifies an authenticated user.
+          Depending on the workspace configuration, the value can be hashed.
         example: 377eb000a87a471291b5a9869930a2422c670b7b6a06f74143eb74a01ed2fbe1
         format: subject
         type: string
         x-nullable: false
       tenant_id:
-        description: Tenant Identifier
-        example: tenant
+        description: Tenant identifier
+        example: my-company
         format: tenantID
         type: string
         x-nullable: false
       updated_at:
         description: Arrangement last update date
-        example: "2022-07-01T08:52:27.127932Z"
+        example: "2022-10-01T08:52:27.127932Z"
         format: date-time
         type: string
         x-nullable: false
@@ -873,12 +882,16 @@ definitions:
         x-nullable: false
       industry:
         $ref: '#/definitions/CDRIndustry'
+      register_api_version:
+        $ref: '#/definitions/CDRRegisterAPIVersion'
       register_url:
         $ref: '#/definitions/CDRRegisterURL'
     type: object
   CDRCustomerID:
     type: string
   CDRIndustry:
+    type: string
+  CDRRegisterAPIVersion:
     type: string
   CDRRegisterURL:
     type: string
@@ -1110,7 +1123,7 @@ definitions:
         type: integer
         x-nullable: false
       client_name:
-        description: Human readable name of a client application
+        description: Human-readable name of a client application
         example: My app
         type: string
         x-nullable: false
@@ -1173,6 +1186,8 @@ definitions:
       dynamically_registered:
         type: boolean
         x-nullable: false
+      fdx:
+        $ref: '#/definitions/FDXMetadata'
       grant_types:
         default:
         - authorization_code
@@ -1283,9 +1298,10 @@ definitions:
         $ref: '#/definitions/Metadata'
       organisation_id:
         description: |-
-          External organisation ID
+          External organization ID
 
-          This field is used as an aud for message signing
+          This field value is used as the `aud` (audience) claim for message signing. `aud` indicates what entity will
+          consume a token.
         example: 5647fe90-f6bc-11eb-9a03-0242ac130003
         type: string
         x-nullable: false
@@ -1528,11 +1544,13 @@ definitions:
         type: string
         x-nullable: false
       token_endpoint_auth_signing_alg:
-        default: none
+        default: ES256
         description: |-
           Signing algorithm for the token endpoint
 
-          ACP supports signing tokens using the RS256, ES256, PS256, and HS256 algorithms.
+          This field is optional. If empty, a client can use any algorithm supported by the server (see `token_endpoint_auth_signing_alg_values_supported` in the well-known endpoing).
+
+          If provided, depending on the server configuration, client can use of one: HS256, RS256, ES256, PS256 algorithms.
 
           If your token endpoint authentication is set to the `private_key_jwt` method, the
           `token_endpoint_auth_signing_alg` parameter must be either RS256, ES256, or PS256.
@@ -1540,12 +1558,12 @@ definitions:
           If your token endpoint authentication is set to the `client_secret_jwt` method,
           the `token_endpoint_auth_signing_alg` parameter must be HS256.
         enum:
-        - none
         - RS256
         - ES256
         - PS256
         - HS256
-        example: none
+        - ""
+        example: ES256
         type: string
         x-nullable: false
       token_exchange:
@@ -2238,6 +2256,51 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  CustomApp:
+    description: Custom Branding CustomApp
+    properties:
+      client_id:
+        description: ClientID used for the CustomApp
+        format: clientID
+        type: string
+        x-nullable: false
+      id:
+        description: ID of the CustomApp
+        format: customAppID
+        type: string
+        x-nullable: false
+      name:
+        description: Name of the CustomApp
+        type: string
+        x-nullable: false
+      server_id:
+        description: ID of the server
+        format: serverID
+        type: string
+        x-nullable: false
+      tenant_id:
+        description: ID of the tenant
+        example: default
+        format: tenantID
+        type: string
+        x-nullable: false
+      type:
+        default: post-authn
+        description: Type of the custom app
+        enum:
+        - post-authn
+        example: post-authn
+        type: string
+        x-nullable: false
+      url:
+        description: url of the CustomApp
+        type: string
+        x-nullable: false
+    required:
+    - tenant_id
+    - server_id
+    - id
+    type: object
   CustomCredentials:
     description: Custom IDP specific credentials
     type: object
@@ -2371,6 +2434,11 @@ definitions:
           $ref: '#/definitions/CrossTenantAPIPolicyBinding'
         type: array
         x-nullable: false
+      custom_apps:
+        items:
+          $ref: '#/definitions/CustomApp'
+        type: array
+        x-nullable: false
       feature_flags:
         items:
           $ref: '#/definitions/Feature'
@@ -2436,6 +2504,11 @@ definitions:
       recurring_jobs:
         items:
           $ref: '#/definitions/RecurringJob'
+        type: array
+        x-nullable: false
+      roles:
+        items:
+          $ref: '#/definitions/Role'
         type: array
         x-nullable: false
       scope_grants:
@@ -2808,6 +2881,15 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  FDXClientStatus:
+    type: string
+  FDXConfiguration:
+    properties:
+      initial_client_status:
+        $ref: '#/definitions/FDXClientStatus'
+      legal_entity:
+        $ref: '#/definitions/LegalEntity'
+    type: object
   FDXConsent:
     properties:
       authorization_server_id:
@@ -2965,6 +3047,56 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  FDXMetadata:
+    properties:
+      contacts:
+        description: Array of strings representing ways to contact individuals responsible
+          for the Data Recipient application
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      duration_period:
+        default: 365
+        description: The duration period is the maximum consent duration that would
+          be requested for a Recipient consumer
+        format: int64
+        type: integer
+        x-nullable: false
+      duration_type:
+        default:
+        - ONE_TIME
+        - PERSISTENT
+        - TIME_BOUND
+        description: The duration of consent for the Data Recipient consumers
+        items:
+          $ref: '#/definitions/DurationType'
+        type: array
+        x-nullable: false
+      intermediaries:
+        description: An array of the intermediaries for this data recipient
+        items:
+          $ref: '#/definitions/Intermediary'
+        type: array
+        x-nullable: false
+      lookback_period:
+        default: 365
+        description: The maximum number of days allowed for Data Recipient consumers
+          to obtain in transaction history, effective from the current date
+        format: int64
+        type: integer
+        x-nullable: false
+      registry_references:
+        description: |-
+          An array of external registries containing registered entity name,
+          registered entity id and registry fields for the registries where the data recipient is registered
+        items:
+          $ref: '#/definitions/RegistryReference'
+        type: array
+        x-nullable: false
+      status:
+        $ref: '#/definitions/FDXClientStatus'
+    type: object
   FDXParty:
     properties:
       home_uri:
@@ -3034,6 +3166,10 @@ definitions:
         description: enable admin workspace access (tenant)
         type: boolean
         x-nullable: false
+      administrator_management:
+        description: enable administrator management (tenant)
+        type: boolean
+        x-nullable: false
       block_non_vanity_domain_access:
         description: block access to tenant for traffic not originated from the vanity
           domain
@@ -3041,6 +3177,10 @@ definitions:
         x-nullable: false
       cdr_disable_unique_software_id:
         description: disable unique software id for CDR
+        type: boolean
+        x-nullable: false
+      cdr_follower_reads:
+        description: enable follower reads for CDR
         type: boolean
         x-nullable: false
       ciba:
@@ -3055,6 +3195,10 @@ definitions:
         description: enable Cloudentity IDP (tenant)
         type: boolean
         x-nullable: false
+      custom_apps:
+        description: enable CustomApps (tenant)
+        type: boolean
+        x-nullable: false
       dedicated_faas:
         description: enable usage of dedicated faas rego/js environment (MANUAL DEPLOYMENT
           OF DEDICATED ENVS IS REQUIRED FIRST)
@@ -3065,12 +3209,20 @@ definitions:
         type: boolean
         x-nullable: false
       dev_mode:
-        description: realod templates and adds local redirects urls to frontend apps
+        description: reloads templates and adds local redirects urls to frontend apps
           (system)
+        type: boolean
+        x-nullable: false
+      drop_tokens_on_password_reset:
+        description: drop tokens on password reset
         type: boolean
         x-nullable: false
       extended_audit_events_retention:
         description: extended audit events retention
+        type: boolean
+        x-nullable: false
+      fdx_dcr:
+        description: enable Dynamic Client Registration for FDX
         type: boolean
         x-nullable: false
       initialize_demo_workspace:
@@ -3099,16 +3251,16 @@ definitions:
         description: enable consents v2 apis for open banking brasil
         type: boolean
         x-nullable: false
+      openbanking_brasil_payments_v2:
+        description: enable payment consent v2 apis for open banking brasil
+        type: boolean
+        x-nullable: false
       permissions:
         description: enable permissions
         type: boolean
         x-nullable: false
       planet_scale_authorization:
         description: enable planet scale authorization
-        type: boolean
-        x-nullable: false
-      planet_scale_identity:
-        description: enable planet scale identity
         type: boolean
         x-nullable: false
       pyron_on_prem:
@@ -3118,6 +3270,10 @@ definitions:
         x-nullable: false
       quick_access:
         description: enable quick access functionality on UI (system)
+        type: boolean
+        x-nullable: false
+      roles:
+        description: enable roles
         type: boolean
         x-nullable: false
       saml:
@@ -3137,11 +3293,7 @@ definitions:
         type: boolean
         x-nullable: false
       system_workspace_access:
-        description: enable admin workspace access (tenant)
-        type: boolean
-        x-nullable: false
-      themes:
-        description: enable Custom Branding Themes (tenant)
+        description: enable system workspace access (tenant)
         type: boolean
         x-nullable: false
       token_exchange:
@@ -3150,6 +3302,14 @@ definitions:
         x-nullable: false
       token_exchange_delegation:
         description: enable Token Exchange Delegation (tenant)
+        type: boolean
+        x-nullable: false
+      token_exchange_issue_id_token:
+        description: allow to issue id token for token exchange
+        type: boolean
+        x-nullable: false
+      webauthn:
+        description: enable webauthn
         type: boolean
         x-nullable: false
     type: object
@@ -3470,6 +3630,13 @@ definitions:
         x-nullable: false
       discovery_settings:
         $ref: '#/definitions/IDPDiscoverySettings'
+      display_order:
+        description: Can be used to e.g. modify the order in which the Identity Providers
+          are presented on the login page.
+        example: 1
+        format: int64
+        type: integer
+        x-nullable: false
       hidden:
         description: |-
           If set to `true`, the IDP is not displayed on the login page.
@@ -3491,6 +3658,10 @@ definitions:
         format: poolID
         type: string
         x-nullable: false
+      logo_uri:
+        description: Logo URI
+        type: string
+        x-nullable: false
       mappings:
         $ref: '#/definitions/Mappings'
       method:
@@ -3506,6 +3677,11 @@ definitions:
         x-nullable: false
       name:
         description: Display name of your IDP
+        type: string
+        x-nullable: false
+      post_authn_app_id:
+        description: Points to the ID of the custom app, null if not set
+        format: customAppID
         type: string
         x-nullable: false
       settings:
@@ -3547,6 +3723,13 @@ definitions:
           With the stateful authorization, the efficiency of issuing tokens in ACP is significantly
           improved by minimizing latency and performance degradation related to repetitious calls to
           IDPs.
+        type: boolean
+        x-nullable: false
+      reload_claims_at_refresh_token:
+        description: |-
+          If set to `true`, the claims are reloaded while issuing an access token.
+
+          Currently it is only available for Identity Pool IDP.
         type: boolean
         x-nullable: false
       stateful_ctx_duration:
@@ -3832,6 +4015,38 @@ definitions:
         items:
           type: string
         type: array
+        x-nullable: false
+    type: object
+  Intermediary:
+    properties:
+      contacts:
+        description: Array of strings representing ways to contact people responsible
+          for this intermediary
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      description:
+        description: A short description of the intermediary
+        type: string
+        x-nullable: false
+      logo_uri:
+        description: A URL string that references a logo for this intermediary
+        type: string
+        x-nullable: false
+      name:
+        description: Name of intermediary party
+        type: string
+        x-nullable: false
+      registry_references:
+        description: Registry references for this intermediary
+        items:
+          $ref: '#/definitions/RegistryReference'
+        type: array
+        x-nullable: false
+      uri:
+        description: A URL string of a web page providing information about the intermediary
+        type: string
         x-nullable: false
     type: object
   JWSPayloadSettings:
@@ -4140,12 +4355,21 @@ definitions:
         description: OAuth client application secret
         type: string
         x-nullable: false
+      private_key_jwt:
+        $ref: '#/definitions/PrivateKeyJWTCredentials'
     type: object
   OIDCServerConsent:
     type: object
   OIDCSettings:
     description: OIDC IDP specific settings
     properties:
+      authentication_method:
+        description: Client authentication method
+        enum:
+        - client_secret
+        - private_key_jwt
+        type: string
+        x-nullable: false
       client_id:
         description: OAuth client application identifier
         example: client
@@ -4335,14 +4559,14 @@ definitions:
         type: string
         x-nullable: false
     type: object
-  PatchConfiguration:
-    items:
-      $ref: '#/definitions/PatchOperation'
-    type: array
   PatchOperation:
     additionalProperties:
       type: object
     type: object
+  PatchOperations:
+    items:
+      $ref: '#/definitions/PatchOperation'
+    type: array
   PayloadSettings:
     properties:
       format:
@@ -4512,6 +4736,25 @@ definitions:
       event_type:
         $ref: '#/definitions/PrivacyLedgerEventType'
     type: object
+  PrivateKeyJWTCredentials:
+    description: PrivateKeyJWT authentication settings
+    properties:
+      algorithm:
+        description: Algorithm used to sign the client_assertion (see JWS) - default
+          RS256
+        type: string
+        x-nullable: false
+      exp:
+        description: ExpiresIn defines how long client_assertion is valid for - default
+          30 seconds
+        format: duration
+        type: string
+        x-nullable: false
+      key:
+        description: Key is a PEM formatted private key used to sign client_assertion
+        type: string
+        x-nullable: false
+    type: object
   ProtectedType:
     type: string
   Purpose:
@@ -4618,6 +4861,23 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  RegistryReference:
+    description: Used for registry references. In snake case to match IETF RFC 7591
+      naming formats
+    properties:
+      registered_entity_id:
+        description: An ID representing the intermediary that can be looked up from
+          a legal identity registry source
+        type: string
+        x-nullable: false
+      registered_entity_name:
+        description: The legal company name for the intermediary
+        type: string
+        x-nullable: false
+      registry:
+        type: string
+        x-nullable: false
+    type: object
   RequestedAttribute:
     description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
       §2.4.4.2
@@ -4688,12 +4948,25 @@ definitions:
       - token id_token code
       - none
       type: string
-    title: An array of OAuth client response types configured for a client application
+    title: An array of allowed response types
     type: array
   RevocationChannel:
     type: string
   RevocationReason:
     type: string
+  Role:
+    properties:
+      resource:
+        $ref: '#/definitions/RoleResource'
+      role:
+        enum:
+        - admin
+        - auditor
+        type: string
+        x-nullable: false
+      subject:
+        $ref: '#/definitions/RoleSubject'
+    type: object
   RoleDescriptor:
     description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
       §2.4.1
@@ -4728,6 +5001,64 @@ definitions:
         type: string
         x-nullable: false
     title: RoleDescriptor represents the SAML element RoleDescriptor.
+    type: object
+  RoleResource:
+    properties:
+      tenant_id:
+        format: tenantID
+        type: string
+        x-nullable: false
+      type:
+        enum:
+        - tenant
+        - workspace
+        type: string
+        x-nullable: false
+      workspace_id:
+        format: serverID
+        type: string
+        x-nullable: false
+    type: object
+  RoleSubject:
+    properties:
+      identity_pool_id:
+        description: identity pool user pool id
+        format: poolID
+        type: string
+        x-nullable: false
+      identity_pool_user_id:
+        description: identity pool user id
+        type: string
+        x-nullable: false
+      idp_id:
+        description: idp user idp id
+        format: idpID
+        type: string
+        x-nullable: false
+      tenant_id:
+        format: tenantID
+        type: string
+        x-nullable: false
+      type:
+        enum:
+        - identity_pool_user
+        - idp
+        type: string
+        x-nullable: false
+      workspace_id:
+        description: idp user workspace id
+        format: serverID
+        type: string
+        x-nullable: false
+    type: object
+  SAMLConfiguration:
+    properties:
+      subject_name_id:
+        description: |-
+          Allows to change default subject name id.
+          The default one will be 'uid', even if the value is empty.
+        type: string
+        x-nullable: false
     type: object
   SAMLCredentials:
     description: SAML IDP specific credentials
@@ -4933,51 +5264,52 @@ definitions:
   Scope:
     properties:
       authorization_server_id:
-        description: server id
-        example: default
+        description: Authorization server identifier
+        example: my-server
         format: serverID
         type: string
         x-nullable: false
       description:
-        description: scope description which will be displayed as a hint on a consent
-          page
+        description: The scope description displayed as a hint on a consent page
         example: This scope value requests offline access using refresh token
         type: string
         x-nullable: false
       display_name:
-        description: scope display name which will be displayed on a consent page
+        description: The scope name displayed on a consent page
         example: Offline Access
         type: string
         x-nullable: false
       id:
-        description: scope id
-        example: "1"
+        description: Scope identifier
+        example: scope-1
         format: scopeID
         type: string
         x-nullable: false
       metadata:
         $ref: '#/definitions/Metadata'
       name:
-        description: scope name
+        description: Scope name
         example: offline_access
         format: scopeName
         type: string
         x-nullable: false
       tenant_id:
-        description: tenant id
-        example: default
+        description: Tenant identifier
+        example: my-company
         format: tenantID
         type: string
         x-nullable: false
       transient:
-        description: disable storage of scope grants
+        description: Disable storage of scope grants
         type: boolean
         x-nullable: false
     type: object
   ScopeGrant:
     properties:
       client_id:
-        description: Client ID that the scope belongs to
+        description: Identifier of a client application that has been granted the
+          scope
+        example: bugkgm23g9kregtu051g
         format: clientID
         type: string
         x-nullable: false
@@ -4987,7 +5319,8 @@ definitions:
         type: string
         x-nullable: false
       granted_scope_name:
-        description: Granted scope name
+        description: The scope name with its actual value
+        example: accounts.read.own
         format: scopeName
         type: string
         x-nullable: false
@@ -4997,22 +5330,30 @@ definitions:
         type: string
         x-nullable: false
       scope_name:
-        description: Scope name
+        description: |-
+          The scope name as it's set initially. This parameter supports dynamic scope syntax, thus can include a scope
+          root—a fixed core of the dynamic scope name supplemented with a wildcard—a symbol representing
+          an adjustable extension to the scope root allowing to retrieve a specific requested scope.
+
+          The basic dynamic scope template is as follows: `[scope-root.*]` where `*` is a wildcard.
+        example: accounts.read.*
         format: scopeName
         type: string
         x-nullable: false
       server_id:
-        description: Server ID
+        description: Server identifier
+        example: my-server
         format: serverID
         type: string
         x-nullable: false
       subject:
-        description: Subject ID that has granted the scope.
+        description: Identifier of a user that has granted a scope
         format: subject
         type: string
         x-nullable: false
       tenant_id:
-        description: Tenant ID
+        description: Tenant identifier
+        example: my-company
         format: tenantID
         type: string
         x-nullable: false
@@ -5057,6 +5398,10 @@ definitions:
       tenant_id:
         description: ID of the tenant where the script is created
         format: tenantID
+        type: string
+        x-nullable: false
+      test_input:
+        description: Input data for testing this script
         type: string
         x-nullable: false
     required:
@@ -5332,6 +5677,8 @@ definitions:
         example: false
         type: boolean
         x-nullable: false
+      fdx:
+        $ref: '#/definitions/FDXConfiguration'
       grant_types:
         default:
         - authorization_code
@@ -5467,6 +5814,8 @@ definitions:
           accepts authorization request data only via PAR.
         type: boolean
         x-nullable: false
+      response_types:
+        $ref: '#/definitions/ResponseTypes'
       root_cas:
         description: |-
           You can provide root Certificate Authority (CA) certificates encoded to the Privacy-Enhanced
@@ -5485,6 +5834,8 @@ definitions:
           type: string
         type: array
         x-nullable: false
+      saml:
+        $ref: '#/definitions/SAMLConfiguration'
       secret:
         description: |-
           Secret used for hashing
@@ -5570,6 +5921,19 @@ definitions:
           type: string
         type: array
         x-nullable: false
+      token_endpoint_auth_signing_alg_values:
+        description: |-
+          Token endpoint auth signing supported alg values
+
+          Supported algorithms: HS256, RS256, ES256, PS256
+
+          At least one algorithm must be set.
+
+          The default values depends on the server security profile.
+        items:
+          type: string
+        type: array
+        x-nullable: false
       token_endpoint_authn_methods:
         description: 'Deprecated: Use TokenEndpointAuthMethods instead'
         items:
@@ -5600,6 +5964,13 @@ definitions:
         - regular
         example: regular
         type: string
+        x-nullable: false
+      version:
+        description: |-
+          server version to track internal changes
+          currently supported version: 2
+        format: int64
+        type: integer
         x-nullable: false
     required:
     - tenant_id
@@ -5812,6 +6183,8 @@ definitions:
         example: false
         type: boolean
         x-nullable: false
+      fdx:
+        $ref: '#/definitions/FDXConfiguration'
       grant_types:
         default:
         - authorization_code
@@ -5952,6 +6325,8 @@ definitions:
           accepts authorization request data only via PAR.
         type: boolean
         x-nullable: false
+      response_types:
+        $ref: '#/definitions/ResponseTypes'
       root_cas:
         description: |-
           You can provide root Certificate Authority (CA) certificates encoded to the Privacy-Enhanced
@@ -5970,6 +6345,8 @@ definitions:
           type: string
         type: array
         x-nullable: false
+      saml:
+        $ref: '#/definitions/SAMLConfiguration'
       secret:
         description: |-
           Secret used for hashing
@@ -6055,6 +6432,19 @@ definitions:
           type: string
         type: array
         x-nullable: false
+      token_endpoint_auth_signing_alg_values:
+        description: |-
+          Token endpoint auth signing supported alg values
+
+          Supported algorithms: HS256, RS256, ES256, PS256
+
+          At least one algorithm must be set.
+
+          The default values depends on the server security profile.
+        items:
+          type: string
+        type: array
+        x-nullable: false
       token_endpoint_authn_methods:
         description: 'Deprecated: Use TokenEndpointAuthMethods instead'
         items:
@@ -6085,6 +6475,13 @@ definitions:
         - regular
         example: regular
         type: string
+        x-nullable: false
+      version:
+        description: |-
+          server version to track internal changes
+          currently supported version: 2
+        format: int64
+        type: integer
         x-nullable: false
     required:
     - tenant_id
@@ -6320,35 +6717,36 @@ definitions:
         type: array
         x-nullable: false
       authorization_server_id:
-        description: server id
-        example: default
+        description: Authorization server identifier
+        example: my-server
         format: serverID
         type: string
         x-nullable: false
       custom_audience:
-        description: custom service audience
+        description: Custom service audience
         example: https://api.example.com
         type: string
         x-nullable: false
       description:
-        description: service description
+        description: Service description
         example: Service description
         type: string
         x-nullable: false
       gateway_id:
-        description: gateway id
+        description: Gateway identifier
+        example: gateway-1
         format: gatewayID
         type: string
         x-nullable: false
       id:
-        description: unique service id
-        example: "1"
+        description: A unique identifier of a service
+        example: service-1
         format: serviceID
         type: string
         x-nullable: false
       name:
-        description: service name
-        example: Sample service
+        description: Service name
+        example: My service
         type: string
         x-nullable: false
       scopes:
@@ -6358,19 +6756,19 @@ definitions:
         type: array
         x-nullable: false
       system:
-        description: Is service a system service
+        description: '`true` when the service is a system service'
         example: false
         type: boolean
         x-nullable: false
       tenant_id:
-        description: tenant id
-        example: default
+        description: Tenant identifier
+        example: my-company
         format: tenantID
         type: string
         x-nullable: false
       type:
         default: user
-        description: service type
+        description: Service type
         enum:
         - oauth2
         - oidc
@@ -6380,12 +6778,12 @@ definitions:
         type: string
         x-nullable: false
       updated_at:
-        description: Updated at date
+        description: The date of service update
         format: date-time
         type: string
         x-nullable: false
       with_specification:
-        description: true if service has openapi 3 specification
+        description: '`true` when the service has the OpenAPI 3.0 specification'
         type: boolean
         x-nullable: false
     type: object
@@ -6606,6 +7004,10 @@ definitions:
         format: themeID
         type: string
         x-nullable: false
+      logo_url:
+        description: theme logo url
+        type: string
+        x-nullable: false
       name:
         description: Display name of the theme
         example: acme
@@ -6788,8 +7190,8 @@ definitions:
     type: object
 host: localhost:8443
 info:
-  description: Cloudentity Authorization Control Plane Root API
-  title: Cloudentity Authorization Control Plane API
+  description: Cloudentity Root API
+  title: Cloudentity API
   version: latest
 paths:
   /api/admin/tenants:
@@ -6801,13 +7203,13 @@ paths:
         "200":
           $ref: '#/responses/ListTenantsResponse'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - adminSystem: []
       summary: List tenants
@@ -6834,17 +7236,17 @@ paths:
         "204":
           description: ' tenant feature set'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
         "422":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unprocessableEntityHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - adminSystem: []
       summary: Set tenant feature
@@ -6867,13 +7269,13 @@ paths:
         "200":
           $ref: '#/responses/GetTenantFeaturesResponse'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - adminSystem: []
       summary: Get tenant features
@@ -6894,13 +7296,13 @@ paths:
         "200":
           $ref: '#/responses/ListRateLimitsResponse'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - adminSystem: []
       summary: List rate limits
@@ -6925,13 +7327,13 @@ paths:
         "204":
           description: ' custom rate limit has been deleted'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - adminSystem: []
       summary: Delete rate limit
@@ -6959,13 +7361,13 @@ paths:
         "204":
           description: ' custom rate limit has been saved'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - adminSystem: []
       summary: Set rate limit
@@ -6995,23 +7397,32 @@ paths:
         in: query
         name: tid
         type: string
+      - description: Workspace id
+        in: query
+        name: workspace_id
+        type: string
+      - default: false
+        description: Include data in export
+        in: query
+        name: with_data
+        type: boolean
       responses:
         "200":
           description: Dump
           schema:
             $ref: '#/definitions/Dump'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
         "422":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unprocessableEntityHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - setup: []
       summary: Export global tenants configuration
@@ -7029,7 +7440,7 @@ paths:
       - in: body
         name: patch
         schema:
-          $ref: '#/definitions/PatchConfiguration'
+          $ref: '#/definitions/PatchOperations'
       - format: insertMode
         in: query
         name: mode
@@ -7038,17 +7449,17 @@ paths:
         "204":
           description: ' patch applied'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
         "422":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unprocessableEntityHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - setup: []
       summary: Patch configuration
@@ -7101,19 +7512,19 @@ paths:
         "204":
           description: ' configuration has been imported'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
         "409":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/conflictHTTPError'
         "422":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unprocessableEntityHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - setup: []
       summary: Import global tenants configuration
@@ -7137,13 +7548,13 @@ paths:
         "200":
           $ref: '#/responses/ListTenantsResponse'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - setup: []
       summary: List tenants
@@ -7174,17 +7585,17 @@ paths:
         "201":
           $ref: '#/responses/TenantCreated'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "409":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/conflictHTTPError'
         "422":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unprocessableEntityHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - setup: []
       summary: Create tenant
@@ -7204,13 +7615,13 @@ paths:
         "204":
           description: ' Tenant has been deleted'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - setup: []
       summary: Delete tenant
@@ -7230,13 +7641,13 @@ paths:
         "200":
           $ref: '#/responses/TenantResponse'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - setup: []
       summary: Get tenant
@@ -7260,17 +7671,17 @@ paths:
         "200":
           $ref: '#/responses/TenantResponse'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
         "422":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unprocessableEntityHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - setup: []
       summary: Update tenant
@@ -7299,8 +7710,48 @@ responses:
     description: Tenant
     schema:
       $ref: '#/definitions/Tenant'
-  httpError:
-    description: HttpError
+  badRequestHTTPError:
+    description: Bad request
+    schema:
+      $ref: '#/definitions/Error'
+  conflictHTTPError:
+    description: Conflict
+    schema:
+      $ref: '#/definitions/Error'
+  forbiddenHTTPError:
+    description: Forbidden
+    schema:
+      $ref: '#/definitions/Error'
+  internalServerErrorHTTPError:
+    description: Internal server error
+    schema:
+      $ref: '#/definitions/Error'
+  methodNotAllowedHTTPError:
+    description: Method not allowed
+    schema:
+      $ref: '#/definitions/Error'
+  notFoundHTTPError:
+    description: Not found
+    schema:
+      $ref: '#/definitions/Error'
+  payloadTooLargeHTTPError:
+    description: Payload too large
+    schema:
+      $ref: '#/definitions/Error'
+  preconditionFailedHTTPError:
+    description: Precondition failed
+    schema:
+      $ref: '#/definitions/Error'
+  tooManyRequestsHTTPError:
+    description: Too many requests
+    schema:
+      $ref: '#/definitions/Error'
+  unauthorizedHTTPError:
+    description: Unauthorized
+    schema:
+      $ref: '#/definitions/Error'
+  unprocessableEntityHTTPError:
+    description: Unprocessable entity
     schema:
       $ref: '#/definitions/Error'
 schemes:

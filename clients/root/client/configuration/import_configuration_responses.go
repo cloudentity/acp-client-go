@@ -114,6 +114,11 @@ func (o *ImportConfigurationNoContent) IsCode(code int) bool {
 	return code == 204
 }
 
+// Code gets the status code for the import configuration no content response
+func (o *ImportConfigurationNoContent) Code() int {
+	return 204
+}
+
 func (o *ImportConfigurationNoContent) Error() string {
 	return fmt.Sprintf("[PUT /api/system/configuration][%d] importConfigurationNoContent ", 204)
 }
@@ -135,7 +140,7 @@ func NewImportConfigurationBadRequest() *ImportConfigurationBadRequest {
 /*
 ImportConfigurationBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type ImportConfigurationBadRequest struct {
 	Payload *models.Error
@@ -164,6 +169,11 @@ func (o *ImportConfigurationBadRequest) IsServerError() bool {
 // IsCode returns true when this import configuration bad request response a status code equal to that given
 func (o *ImportConfigurationBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the import configuration bad request response
+func (o *ImportConfigurationBadRequest) Code() int {
+	return 400
 }
 
 func (o *ImportConfigurationBadRequest) Error() string {
@@ -198,7 +208,7 @@ func NewImportConfigurationUnauthorized() *ImportConfigurationUnauthorized {
 /*
 ImportConfigurationUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ImportConfigurationUnauthorized struct {
 	Payload *models.Error
@@ -227,6 +237,11 @@ func (o *ImportConfigurationUnauthorized) IsServerError() bool {
 // IsCode returns true when this import configuration unauthorized response a status code equal to that given
 func (o *ImportConfigurationUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the import configuration unauthorized response
+func (o *ImportConfigurationUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ImportConfigurationUnauthorized) Error() string {
@@ -261,7 +276,7 @@ func NewImportConfigurationForbidden() *ImportConfigurationForbidden {
 /*
 ImportConfigurationForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ImportConfigurationForbidden struct {
 	Payload *models.Error
@@ -290,6 +305,11 @@ func (o *ImportConfigurationForbidden) IsServerError() bool {
 // IsCode returns true when this import configuration forbidden response a status code equal to that given
 func (o *ImportConfigurationForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the import configuration forbidden response
+func (o *ImportConfigurationForbidden) Code() int {
+	return 403
 }
 
 func (o *ImportConfigurationForbidden) Error() string {
@@ -324,7 +344,7 @@ func NewImportConfigurationNotFound() *ImportConfigurationNotFound {
 /*
 ImportConfigurationNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type ImportConfigurationNotFound struct {
 	Payload *models.Error
@@ -353,6 +373,11 @@ func (o *ImportConfigurationNotFound) IsServerError() bool {
 // IsCode returns true when this import configuration not found response a status code equal to that given
 func (o *ImportConfigurationNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the import configuration not found response
+func (o *ImportConfigurationNotFound) Code() int {
+	return 404
 }
 
 func (o *ImportConfigurationNotFound) Error() string {
@@ -387,7 +412,7 @@ func NewImportConfigurationConflict() *ImportConfigurationConflict {
 /*
 ImportConfigurationConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type ImportConfigurationConflict struct {
 	Payload *models.Error
@@ -416,6 +441,11 @@ func (o *ImportConfigurationConflict) IsServerError() bool {
 // IsCode returns true when this import configuration conflict response a status code equal to that given
 func (o *ImportConfigurationConflict) IsCode(code int) bool {
 	return code == 409
+}
+
+// Code gets the status code for the import configuration conflict response
+func (o *ImportConfigurationConflict) Code() int {
+	return 409
 }
 
 func (o *ImportConfigurationConflict) Error() string {
@@ -450,7 +480,7 @@ func NewImportConfigurationUnprocessableEntity() *ImportConfigurationUnprocessab
 /*
 ImportConfigurationUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type ImportConfigurationUnprocessableEntity struct {
 	Payload *models.Error
@@ -479,6 +509,11 @@ func (o *ImportConfigurationUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this import configuration unprocessable entity response a status code equal to that given
 func (o *ImportConfigurationUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the import configuration unprocessable entity response
+func (o *ImportConfigurationUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *ImportConfigurationUnprocessableEntity) Error() string {
@@ -513,7 +548,7 @@ func NewImportConfigurationTooManyRequests() *ImportConfigurationTooManyRequests
 /*
 ImportConfigurationTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ImportConfigurationTooManyRequests struct {
 	Payload *models.Error
@@ -542,6 +577,11 @@ func (o *ImportConfigurationTooManyRequests) IsServerError() bool {
 // IsCode returns true when this import configuration too many requests response a status code equal to that given
 func (o *ImportConfigurationTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the import configuration too many requests response
+func (o *ImportConfigurationTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ImportConfigurationTooManyRequests) Error() string {

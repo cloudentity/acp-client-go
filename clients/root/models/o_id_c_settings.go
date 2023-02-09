@@ -7,15 +7,22 @@ package models
 
 import (
 	"context"
+	"encoding/json"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // OIDCSettings OIDC IDP specific settings
 //
 // swagger:model OIDCSettings
 type OIDCSettings struct {
+
+	// Client authentication method
+	// Enum: [client_secret private_key_jwt]
+	AuthenticationMethod string `json:"authentication_method,omitempty"`
 
 	// OAuth client application identifier
 	// Example: client
@@ -34,6 +41,57 @@ type OIDCSettings struct {
 
 // Validate validates this o ID c settings
 func (m *OIDCSettings) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateAuthenticationMethod(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+var oIdCSettingsTypeAuthenticationMethodPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["client_secret","private_key_jwt"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		oIdCSettingsTypeAuthenticationMethodPropEnum = append(oIdCSettingsTypeAuthenticationMethodPropEnum, v)
+	}
+}
+
+const (
+
+	// OIDCSettingsAuthenticationMethodClientSecret captures enum value "client_secret"
+	OIDCSettingsAuthenticationMethodClientSecret string = "client_secret"
+
+	// OIDCSettingsAuthenticationMethodPrivateKeyJwt captures enum value "private_key_jwt"
+	OIDCSettingsAuthenticationMethodPrivateKeyJwt string = "private_key_jwt"
+)
+
+// prop value enum
+func (m *OIDCSettings) validateAuthenticationMethodEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, oIdCSettingsTypeAuthenticationMethodPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *OIDCSettings) validateAuthenticationMethod(formats strfmt.Registry) error {
+	if swag.IsZero(m.AuthenticationMethod) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateAuthenticationMethodEnum("authentication_method", "body", m.AuthenticationMethod); err != nil {
+		return err
+	}
+
 	return nil
 }
 

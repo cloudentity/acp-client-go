@@ -21,13 +21,16 @@ import (
 // swagger:model CDRArrangement
 type CDRArrangement struct {
 
-	// List of accounts
+	// List of accounts.
+	//
+	// It can refer to user's bank accounts that can be accessed by your client application in order to provide consumer
+	// services.
 	AccountIds []string `json:"account_ids"`
 
 	// amending arrangement id
 	AmendingArrangementID CDRArrangementID `json:"amending_arrangement_id,omitempty"`
 
-	// Workspace Identifier
+	// Workspace identifier
 	// Example: server
 	AuthorizationServerID string `json:"authorization_server_id,omitempty"`
 
@@ -37,7 +40,7 @@ type CDRArrangement struct {
 	// cdr arrangement metadata
 	CdrArrangementMetadata *CDRArrangementMetadata `json:"cdr_arrangement_metadata,omitempty"`
 
-	// Client Identifier
+	// Client application identifier
 	// Example: bugkgm23g9kregtu051g
 	ClientID string `json:"client_id,omitempty"`
 
@@ -50,16 +53,14 @@ type CDRArrangement struct {
 	CustomerID CDRCustomerID `json:"customer_id,omitempty"`
 
 	// Arrangement expiration date
-	// Example: 2022-07-01T09:02:27.127932Z
+	// Example: 2023-03-01T09:02:27.127932Z
 	// Format: date-time
 	Expiry strfmt.DateTime `json:"expiry,omitempty"`
 
-	// List of scope grants
+	// The detailed list of scopes voluntarily granted by the user for the client application to access user data.
 	ScopeGrants []*ScopeGrant `json:"scope_grants"`
 
-	// Sharing type
-	//
-	// One of: one_time, one_time_with_refresh_token, reusable
+	// The rule on how a user shares their data: reuse with a token or without it, or the user allows one-time access.
 	// Example: one_time
 	// Enum: [one_time one_time_with_refresh_token reusable]
 	SharingType string `json:"sharing_type,omitempty"`
@@ -73,17 +74,17 @@ type CDRArrangement struct {
 	// status
 	Status ConsentStatus `json:"status,omitempty"`
 
-	// Subject identifing the authenticated user.
-	// Depending on the workspace configuration the value might be hashed.
+	// Subject identifies an authenticated user.
+	// Depending on the workspace configuration, the value can be hashed.
 	// Example: 377eb000a87a471291b5a9869930a2422c670b7b6a06f74143eb74a01ed2fbe1
 	Subject string `json:"subject,omitempty"`
 
-	// Tenant Identifier
-	// Example: tenant
+	// Tenant identifier
+	// Example: my-company
 	TenantID string `json:"tenant_id,omitempty"`
 
 	// Arrangement last update date
-	// Example: 2022-07-01T08:52:27.127932Z
+	// Example: 2022-10-01T08:52:27.127932Z
 	// Format: date-time
 	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty"`
 }

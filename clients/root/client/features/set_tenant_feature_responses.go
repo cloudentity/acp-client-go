@@ -108,6 +108,11 @@ func (o *SetTenantFeatureNoContent) IsCode(code int) bool {
 	return code == 204
 }
 
+// Code gets the status code for the set tenant feature no content response
+func (o *SetTenantFeatureNoContent) Code() int {
+	return 204
+}
+
 func (o *SetTenantFeatureNoContent) Error() string {
 	return fmt.Sprintf("[POST /api/admin/tenants/{tid}/feature][%d] setTenantFeatureNoContent ", 204)
 }
@@ -129,7 +134,7 @@ func NewSetTenantFeatureBadRequest() *SetTenantFeatureBadRequest {
 /*
 SetTenantFeatureBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type SetTenantFeatureBadRequest struct {
 	Payload *models.Error
@@ -158,6 +163,11 @@ func (o *SetTenantFeatureBadRequest) IsServerError() bool {
 // IsCode returns true when this set tenant feature bad request response a status code equal to that given
 func (o *SetTenantFeatureBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the set tenant feature bad request response
+func (o *SetTenantFeatureBadRequest) Code() int {
+	return 400
 }
 
 func (o *SetTenantFeatureBadRequest) Error() string {
@@ -192,7 +202,7 @@ func NewSetTenantFeatureUnauthorized() *SetTenantFeatureUnauthorized {
 /*
 SetTenantFeatureUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type SetTenantFeatureUnauthorized struct {
 	Payload *models.Error
@@ -221,6 +231,11 @@ func (o *SetTenantFeatureUnauthorized) IsServerError() bool {
 // IsCode returns true when this set tenant feature unauthorized response a status code equal to that given
 func (o *SetTenantFeatureUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the set tenant feature unauthorized response
+func (o *SetTenantFeatureUnauthorized) Code() int {
+	return 401
 }
 
 func (o *SetTenantFeatureUnauthorized) Error() string {
@@ -255,7 +270,7 @@ func NewSetTenantFeatureForbidden() *SetTenantFeatureForbidden {
 /*
 SetTenantFeatureForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type SetTenantFeatureForbidden struct {
 	Payload *models.Error
@@ -284,6 +299,11 @@ func (o *SetTenantFeatureForbidden) IsServerError() bool {
 // IsCode returns true when this set tenant feature forbidden response a status code equal to that given
 func (o *SetTenantFeatureForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the set tenant feature forbidden response
+func (o *SetTenantFeatureForbidden) Code() int {
+	return 403
 }
 
 func (o *SetTenantFeatureForbidden) Error() string {
@@ -318,7 +338,7 @@ func NewSetTenantFeatureNotFound() *SetTenantFeatureNotFound {
 /*
 SetTenantFeatureNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type SetTenantFeatureNotFound struct {
 	Payload *models.Error
@@ -347,6 +367,11 @@ func (o *SetTenantFeatureNotFound) IsServerError() bool {
 // IsCode returns true when this set tenant feature not found response a status code equal to that given
 func (o *SetTenantFeatureNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the set tenant feature not found response
+func (o *SetTenantFeatureNotFound) Code() int {
+	return 404
 }
 
 func (o *SetTenantFeatureNotFound) Error() string {
@@ -381,7 +406,7 @@ func NewSetTenantFeatureUnprocessableEntity() *SetTenantFeatureUnprocessableEnti
 /*
 SetTenantFeatureUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type SetTenantFeatureUnprocessableEntity struct {
 	Payload *models.Error
@@ -410,6 +435,11 @@ func (o *SetTenantFeatureUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this set tenant feature unprocessable entity response a status code equal to that given
 func (o *SetTenantFeatureUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the set tenant feature unprocessable entity response
+func (o *SetTenantFeatureUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *SetTenantFeatureUnprocessableEntity) Error() string {
@@ -444,7 +474,7 @@ func NewSetTenantFeatureTooManyRequests() *SetTenantFeatureTooManyRequests {
 /*
 SetTenantFeatureTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type SetTenantFeatureTooManyRequests struct {
 	Payload *models.Error
@@ -473,6 +503,11 @@ func (o *SetTenantFeatureTooManyRequests) IsServerError() bool {
 // IsCode returns true when this set tenant feature too many requests response a status code equal to that given
 func (o *SetTenantFeatureTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the set tenant feature too many requests response
+func (o *SetTenantFeatureTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *SetTenantFeatureTooManyRequests) Error() string {

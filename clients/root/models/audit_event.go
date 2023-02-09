@@ -21,7 +21,7 @@ import (
 type AuditEvent struct {
 
 	// action
-	// Enum: [authenticated authorized unauthorized created updated deleted generated requested confirmed accepted rejected revoked issued denied granted attempted failed succeeded sent not_sent]
+	// Enum: [authenticated authorized unauthorized created updated deleted generated requested confirmed accepted rejected revoked notified issued denied granted attempted failed succeeded sent not_sent executed]
 	Action string `json:"action,omitempty"`
 
 	// event id
@@ -31,7 +31,7 @@ type AuditEvent struct {
 	EventPayload interface{} `json:"event_payload,omitempty"`
 
 	// event subject
-	// Enum: [request gateway_request gateway_policy policy client login consent client_consents authorization_code access_token saml_assertion scopes otp user selfuser schema pool password bruteforce dcr]
+	// Enum: [request gateway_request gateway_policy policy client credential login post_authn consent client_consents authorization_code access_token saml_assertion scopes otp user selfuser schema pool password bruteforce dcr script role]
 	EventSubject string `json:"event_subject,omitempty"`
 
 	// event type
@@ -85,7 +85,7 @@ var auditEventTypeActionPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["authenticated","authorized","unauthorized","created","updated","deleted","generated","requested","confirmed","accepted","rejected","revoked","issued","denied","granted","attempted","failed","succeeded","sent","not_sent"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["authenticated","authorized","unauthorized","created","updated","deleted","generated","requested","confirmed","accepted","rejected","revoked","notified","issued","denied","granted","attempted","failed","succeeded","sent","not_sent","executed"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -131,6 +131,9 @@ const (
 	// AuditEventActionRevoked captures enum value "revoked"
 	AuditEventActionRevoked string = "revoked"
 
+	// AuditEventActionNotified captures enum value "notified"
+	AuditEventActionNotified string = "notified"
+
 	// AuditEventActionIssued captures enum value "issued"
 	AuditEventActionIssued string = "issued"
 
@@ -154,6 +157,9 @@ const (
 
 	// AuditEventActionNotSent captures enum value "not_sent"
 	AuditEventActionNotSent string = "not_sent"
+
+	// AuditEventActionExecuted captures enum value "executed"
+	AuditEventActionExecuted string = "executed"
 )
 
 // prop value enum
@@ -181,7 +187,7 @@ var auditEventTypeEventSubjectPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["request","gateway_request","gateway_policy","policy","client","login","consent","client_consents","authorization_code","access_token","saml_assertion","scopes","otp","user","selfuser","schema","pool","password","bruteforce","dcr"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["request","gateway_request","gateway_policy","policy","client","credential","login","post_authn","consent","client_consents","authorization_code","access_token","saml_assertion","scopes","otp","user","selfuser","schema","pool","password","bruteforce","dcr","script","role"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -206,8 +212,14 @@ const (
 	// AuditEventEventSubjectClient captures enum value "client"
 	AuditEventEventSubjectClient string = "client"
 
+	// AuditEventEventSubjectCredential captures enum value "credential"
+	AuditEventEventSubjectCredential string = "credential"
+
 	// AuditEventEventSubjectLogin captures enum value "login"
 	AuditEventEventSubjectLogin string = "login"
+
+	// AuditEventEventSubjectPostAuthn captures enum value "post_authn"
+	AuditEventEventSubjectPostAuthn string = "post_authn"
 
 	// AuditEventEventSubjectConsent captures enum value "consent"
 	AuditEventEventSubjectConsent string = "consent"
@@ -250,6 +262,12 @@ const (
 
 	// AuditEventEventSubjectDcr captures enum value "dcr"
 	AuditEventEventSubjectDcr string = "dcr"
+
+	// AuditEventEventSubjectScript captures enum value "script"
+	AuditEventEventSubjectScript string = "script"
+
+	// AuditEventEventSubjectRole captures enum value "role"
+	AuditEventEventSubjectRole string = "role"
 )
 
 // prop value enum

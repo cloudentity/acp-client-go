@@ -18,34 +18,34 @@ import (
 // swagger:model Scope
 type Scope struct {
 
-	// server id
-	// Example: default
+	// Authorization server identifier
+	// Example: my-server
 	AuthorizationServerID string `json:"authorization_server_id,omitempty"`
 
-	// scope description which will be displayed as a hint on a consent page
+	// The scope description displayed as a hint on a consent page
 	// Example: This scope value requests offline access using refresh token
 	Description string `json:"description,omitempty"`
 
-	// scope display name which will be displayed on a consent page
+	// The scope name displayed on a consent page
 	// Example: Offline Access
 	DisplayName string `json:"display_name,omitempty"`
 
-	// scope id
-	// Example: 1
+	// Scope identifier
+	// Example: scope-1
 	ID string `json:"id,omitempty"`
 
 	// metadata
 	Metadata Metadata `json:"metadata,omitempty"`
 
-	// scope name
+	// Scope name
 	// Example: offline_access
 	Name string `json:"name,omitempty"`
 
-	// tenant id
-	// Example: default
+	// Tenant identifier
+	// Example: my-company
 	TenantID string `json:"tenant_id,omitempty"`
 
-	// disable storage of scope grants
+	// Disable storage of scope grants
 	Transient bool `json:"transient,omitempty"`
 }
 

@@ -14,6 +14,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewExportConfigurationParams creates a new ExportConfigurationParams object,
@@ -69,6 +70,18 @@ type ExportConfigurationParams struct {
 	*/
 	Tid *string
 
+	/* WithData.
+
+	   Include data in export
+	*/
+	WithData *bool
+
+	/* WorkspaceID.
+
+	   Workspace id
+	*/
+	WorkspaceID *string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -88,10 +101,13 @@ func (o *ExportConfigurationParams) WithDefaults() *ExportConfigurationParams {
 func (o *ExportConfigurationParams) SetDefaults() {
 	var (
 		tidDefault = string("default")
+
+		withDataDefault = bool(false)
 	)
 
 	val := ExportConfigurationParams{
-		Tid: &tidDefault,
+		Tid:      &tidDefault,
+		WithData: &withDataDefault,
 	}
 
 	val.timeout = o.timeout
@@ -144,6 +160,28 @@ func (o *ExportConfigurationParams) SetTid(tid *string) {
 	o.Tid = tid
 }
 
+// WithWithData adds the withData to the export configuration params
+func (o *ExportConfigurationParams) WithWithData(withData *bool) *ExportConfigurationParams {
+	o.SetWithData(withData)
+	return o
+}
+
+// SetWithData adds the withData to the export configuration params
+func (o *ExportConfigurationParams) SetWithData(withData *bool) {
+	o.WithData = withData
+}
+
+// WithWorkspaceID adds the workspaceID to the export configuration params
+func (o *ExportConfigurationParams) WithWorkspaceID(workspaceID *string) *ExportConfigurationParams {
+	o.SetWorkspaceID(workspaceID)
+	return o
+}
+
+// SetWorkspaceID adds the workspaceId to the export configuration params
+func (o *ExportConfigurationParams) SetWorkspaceID(workspaceID *string) {
+	o.WorkspaceID = workspaceID
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *ExportConfigurationParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -164,6 +202,40 @@ func (o *ExportConfigurationParams) WriteToRequest(r runtime.ClientRequest, reg 
 		if qTid != "" {
 
 			if err := r.SetQueryParam("tid", qTid); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.WithData != nil {
+
+		// query param with_data
+		var qrWithData bool
+
+		if o.WithData != nil {
+			qrWithData = *o.WithData
+		}
+		qWithData := swag.FormatBool(qrWithData)
+		if qWithData != "" {
+
+			if err := r.SetQueryParam("with_data", qWithData); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.WorkspaceID != nil {
+
+		// query param workspace_id
+		var qrWorkspaceID string
+
+		if o.WorkspaceID != nil {
+			qrWorkspaceID = *o.WorkspaceID
+		}
+		qWorkspaceID := qrWorkspaceID
+		if qWorkspaceID != "" {
+
+			if err := r.SetQueryParam("workspace_id", qWorkspaceID); err != nil {
 				return err
 			}
 		}

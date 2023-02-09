@@ -8,6 +8,7 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -19,15 +20,71 @@ type OIDCCredentials struct {
 
 	// OAuth client application secret
 	ClientSecret string `json:"client_secret,omitempty"`
+
+	// private key jwt
+	PrivateKeyJwt *PrivateKeyJWTCredentials `json:"private_key_jwt,omitempty"`
 }
 
 // Validate validates this o ID c credentials
 func (m *OIDCCredentials) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validatePrivateKeyJwt(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 
-// ContextValidate validates this o ID c credentials based on context it is used
+func (m *OIDCCredentials) validatePrivateKeyJwt(formats strfmt.Registry) error {
+	if swag.IsZero(m.PrivateKeyJwt) { // not required
+		return nil
+	}
+
+	if m.PrivateKeyJwt != nil {
+		if err := m.PrivateKeyJwt.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("private_key_jwt")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("private_key_jwt")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this o ID c credentials based on the context it is used
 func (m *OIDCCredentials) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidatePrivateKeyJwt(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *OIDCCredentials) contextValidatePrivateKeyJwt(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.PrivateKeyJwt != nil {
+		if err := m.PrivateKeyJwt.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("private_key_jwt")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("private_key_jwt")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

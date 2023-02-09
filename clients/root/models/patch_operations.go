@@ -13,13 +13,13 @@ import (
 	"github.com/go-openapi/strfmt"
 )
 
-// PatchConfiguration patch configuration
+// PatchOperations patch operations
 //
-// swagger:model PatchConfiguration
-type PatchConfiguration []PatchOperation
+// swagger:model PatchOperations
+type PatchOperations []PatchOperation
 
-// Validate validates this patch configuration
-func (m PatchConfiguration) Validate(formats strfmt.Registry) error {
+// Validate validates this patch operations
+func (m PatchOperations) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	for i := 0; i < len(m); i++ {
@@ -43,8 +43,8 @@ func (m PatchConfiguration) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validate this patch configuration based on the context it is used
-func (m PatchConfiguration) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validate this patch operations based on the context it is used
+func (m PatchOperations) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	for i := 0; i < len(m); i++ {

@@ -100,7 +100,7 @@ type Client struct {
 	// 1970-01-01T00:00:00Z as measured in UTC until the date/time of issuance.
 	ClientIDIssuedAt int64 `json:"client_id_issued_at,omitempty"`
 
-	// Human readable name of a client application
+	// Human-readable name of a client application
 	// Example: My app
 	ClientName string `json:"client_name,omitempty"`
 
@@ -148,6 +148,9 @@ type Client struct {
 
 	// dynamically registered
 	DynamicallyRegistered bool `json:"dynamically_registered,omitempty"`
+
+	// fdx
+	Fdx *FDXMetadata `json:"fdx,omitempty"`
 
 	// An array of allowed OAuth client grant types
 	//
@@ -207,9 +210,10 @@ type Client struct {
 	// metadata
 	Metadata Metadata `json:"metadata,omitempty"`
 
-	// External organisation ID
+	// External organization ID
 	//
-	// This field is used as an aud for message signing
+	// This field value is used as the `aud` (audience) claim for message signing. `aud` indicates what entity will
+	// consume a token.
 	// Example: 5647fe90-f6bc-11eb-9a03-0242ac130003
 	OrganisationID string `json:"organisation_id,omitempty"`
 
@@ -375,15 +379,17 @@ type Client struct {
 
 	// Signing algorithm for the token endpoint
 	//
-	// ACP supports signing tokens using the RS256, ES256, PS256, and HS256 algorithms.
+	// This field is optional. If empty, a client can use any algorithm supported by the server (see `token_endpoint_auth_signing_alg_values_supported` in the well-known endpoing).
+	//
+	// If provided, depending on the server configuration, client can use of one: HS256, RS256, ES256, PS256 algorithms.
 	//
 	// If your token endpoint authentication is set to the `private_key_jwt` method, the
 	// `token_endpoint_auth_signing_alg` parameter must be either RS256, ES256, or PS256.
 	//
 	// If your token endpoint authentication is set to the `client_secret_jwt` method,
 	// the `token_endpoint_auth_signing_alg` parameter must be HS256.
-	// Example: none
-	// Enum: [none RS256 ES256 PS256 HS256]
+	// Example: ES256
+	// Enum: [RS256 ES256 PS256 HS256 ]
 	TokenEndpointAuthSigningAlg string `json:"token_endpoint_auth_signing_alg,omitempty"`
 
 	// token exchange
@@ -455,6 +461,10 @@ func (m *Client) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateDeveloperMetadata(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateFdx(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -827,6 +837,25 @@ func (m *Client) validateDeveloperMetadata(formats strfmt.Registry) error {
 				return ve.ValidateName("developer_metadata")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("developer_metadata")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *Client) validateFdx(formats strfmt.Registry) error {
+	if swag.IsZero(m.Fdx) { // not required
+		return nil
+	}
+
+	if m.Fdx != nil {
+		if err := m.Fdx.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("fdx")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("fdx")
 			}
 			return err
 		}
@@ -1509,7 +1538,7 @@ var clientTypeTokenEndpointAuthSigningAlgPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["none","RS256","ES256","PS256","HS256"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["RS256","ES256","PS256","HS256",""]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -1518,9 +1547,6 @@ func init() {
 }
 
 const (
-
-	// ClientTokenEndpointAuthSigningAlgNone captures enum value "none"
-	ClientTokenEndpointAuthSigningAlgNone string = "none"
 
 	// ClientTokenEndpointAuthSigningAlgRS256 captures enum value "RS256"
 	ClientTokenEndpointAuthSigningAlgRS256 string = "RS256"
@@ -1533,6 +1559,9 @@ const (
 
 	// ClientTokenEndpointAuthSigningAlgHS256 captures enum value "HS256"
 	ClientTokenEndpointAuthSigningAlgHS256 string = "HS256"
+
+	// ClientTokenEndpointAuthSigningAlgEmpty captures enum value ""
+	ClientTokenEndpointAuthSigningAlgEmpty string = ""
 )
 
 // prop value enum
@@ -1648,6 +1677,10 @@ func (m *Client) ContextValidate(ctx context.Context, formats strfmt.Registry) e
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateFdx(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateJwks(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -1724,6 +1757,22 @@ func (m *Client) contextValidateDeveloperMetadata(ctx context.Context, formats s
 			return ce.ValidateName("developer_metadata")
 		}
 		return err
+	}
+
+	return nil
+}
+
+func (m *Client) contextValidateFdx(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Fdx != nil {
+		if err := m.Fdx.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("fdx")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("fdx")
+			}
+			return err
+		}
 	}
 
 	return nil

@@ -22,6 +22,9 @@ type Theme struct {
 	// theme unique identifier
 	ID string `json:"id,omitempty"`
 
+	// theme logo url
+	LogoURL string `json:"logo_url,omitempty"`
+
 	// Display name of the theme
 	// Example: acme
 	Name string `json:"name,omitempty"`

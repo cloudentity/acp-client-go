@@ -20,11 +20,17 @@ type Features struct {
 	// enable admin workspace access (tenant)
 	AdminWorkspaceAccess bool `json:"admin_workspace_access,omitempty"`
 
+	// enable administrator management (tenant)
+	AdministratorManagement bool `json:"administrator_management,omitempty"`
+
 	// block access to tenant for traffic not originated from the vanity domain
 	BlockNonVanityDomainAccess bool `json:"block_non_vanity_domain_access,omitempty"`
 
 	// disable unique software id for CDR
 	CdrDisableUniqueSoftwareID bool `json:"cdr_disable_unique_software_id,omitempty"`
+
+	// enable follower reads for CDR
+	CdrFollowerReads bool `json:"cdr_follower_reads,omitempty"`
 
 	// enable ciba (system)
 	Ciba bool `json:"ciba,omitempty"`
@@ -35,17 +41,26 @@ type Features struct {
 	// enable Cloudentity IDP (tenant)
 	CloudentityIdp bool `json:"cloudentity_idp,omitempty"`
 
+	// enable CustomApps (tenant)
+	CustomApps bool `json:"custom_apps,omitempty"`
+
 	// enable usage of dedicated faas rego/js environment (MANUAL DEPLOYMENT OF DEDICATED ENVS IS REQUIRED FIRST)
 	DedicatedFaas bool `json:"dedicated_faas,omitempty"`
 
 	// enable demo app endpoints (system)
 	DemoApp bool `json:"demo_app,omitempty"`
 
-	// realod templates and adds local redirects urls to frontend apps (system)
+	// reloads templates and adds local redirects urls to frontend apps (system)
 	DevMode bool `json:"dev_mode,omitempty"`
+
+	// drop tokens on password reset
+	DropTokensOnPasswordReset bool `json:"drop_tokens_on_password_reset,omitempty"`
 
 	// extended audit events retention
 	ExtendedAuditEventsRetention bool `json:"extended_audit_events_retention,omitempty"`
+
+	// enable Dynamic Client Registration for FDX
+	FdxDcr bool `json:"fdx_dcr,omitempty"`
 
 	// when enabled and the display_workspace_wizard feature flag is set to true, a demo workspace with a set of preconfigured IDPs is created and no welcome screen is displayed (tenant)
 	InitializeDemoWorkspace bool `json:"initialize_demo_workspace,omitempty"`
@@ -65,20 +80,23 @@ type Features struct {
 	// enable consents v2 apis for open banking brasil
 	OpenbankingBrasilConsentsV2 bool `json:"openbanking_brasil_consents_v2,omitempty"`
 
+	// enable payment consent v2 apis for open banking brasil
+	OpenbankingBrasilPaymentsV2 bool `json:"openbanking_brasil_payments_v2,omitempty"`
+
 	// enable permissions
 	Permissions bool `json:"permissions,omitempty"`
 
 	// enable planet scale authorization
 	PlanetScaleAuthorization bool `json:"planet_scale_authorization,omitempty"`
 
-	// enable planet scale identity
-	PlanetScaleIdentity bool `json:"planet_scale_identity,omitempty"`
-
 	// enable when ACP is running on-prem and Pyron is used as a gateway (tenant)
 	PyronOnPrem bool `json:"pyron_on_prem,omitempty"`
 
 	// enable quick access functionality on UI (system)
 	QuickAccess bool `json:"quick_access,omitempty"`
+
+	// enable roles
+	Roles bool `json:"roles,omitempty"`
 
 	// enable SAML (tenant)
 	Saml bool `json:"saml,omitempty"`
@@ -92,17 +110,20 @@ type Features struct {
 	// enable swagger ui (system)
 	SwaggerUI bool `json:"swagger_ui,omitempty"`
 
-	// enable admin workspace access (tenant)
+	// enable system workspace access (tenant)
 	SystemWorkspaceAccess bool `json:"system_workspace_access,omitempty"`
-
-	// enable Custom Branding Themes (tenant)
-	Themes bool `json:"themes,omitempty"`
 
 	// enable Token Exchange (system)
 	TokenExchange bool `json:"token_exchange,omitempty"`
 
 	// enable Token Exchange Delegation (tenant)
 	TokenExchangeDelegation bool `json:"token_exchange_delegation,omitempty"`
+
+	// allow to issue id token for token exchange
+	TokenExchangeIssueIDToken bool `json:"token_exchange_issue_id_token,omitempty"`
+
+	// enable webauthn
+	Webauthn bool `json:"webauthn,omitempty"`
 }
 
 // Validate validates this features

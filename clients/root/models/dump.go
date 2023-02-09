@@ -52,6 +52,9 @@ type Dump struct {
 	// cross tenant api policy bindings
 	CrossTenantAPIPolicyBindings []*CrossTenantAPIPolicyBinding `json:"cross_tenant_api_policy_bindings"`
 
+	// custom apps
+	CustomApps []*CustomApp `json:"custom_apps"`
+
 	// feature flags
 	FeatureFlags []*Feature `json:"feature_flags"`
 
@@ -93,6 +96,9 @@ type Dump struct {
 
 	// recurring jobs
 	RecurringJobs []*RecurringJob `json:"recurring_jobs"`
+
+	// roles
+	Roles []*Role `json:"roles"`
 
 	// scope grants
 	ScopeGrants []*ScopeGrant `json:"scope_grants"`
@@ -188,6 +194,10 @@ func (m *Dump) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateCustomApps(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateFeatureFlags(formats); err != nil {
 		res = append(res, err)
 	}
@@ -241,6 +251,10 @@ func (m *Dump) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateRecurringJobs(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRoles(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -596,6 +610,32 @@ func (m *Dump) validateCrossTenantAPIPolicyBindings(formats strfmt.Registry) err
 	return nil
 }
 
+func (m *Dump) validateCustomApps(formats strfmt.Registry) error {
+	if swag.IsZero(m.CustomApps) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.CustomApps); i++ {
+		if swag.IsZero(m.CustomApps[i]) { // not required
+			continue
+		}
+
+		if m.CustomApps[i] != nil {
+			if err := m.CustomApps[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("custom_apps" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("custom_apps" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *Dump) validateFeatureFlags(formats strfmt.Registry) error {
 	if swag.IsZero(m.FeatureFlags) { // not required
 		return nil
@@ -941,6 +981,32 @@ func (m *Dump) validateRecurringJobs(formats strfmt.Registry) error {
 					return ve.ValidateName("recurring_jobs" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
 					return ce.ValidateName("recurring_jobs" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Dump) validateRoles(formats strfmt.Registry) error {
+	if swag.IsZero(m.Roles) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Roles); i++ {
+		if swag.IsZero(m.Roles[i]) { // not required
+			continue
+		}
+
+		if m.Roles[i] != nil {
+			if err := m.Roles[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("roles" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("roles" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1389,6 +1455,10 @@ func (m *Dump) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateCustomApps(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateFeatureFlags(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -1442,6 +1512,10 @@ func (m *Dump) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 	}
 
 	if err := m.contextValidateRecurringJobs(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateRoles(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1731,6 +1805,26 @@ func (m *Dump) contextValidateCrossTenantAPIPolicyBindings(ctx context.Context, 
 	return nil
 }
 
+func (m *Dump) contextValidateCustomApps(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.CustomApps); i++ {
+
+		if m.CustomApps[i] != nil {
+			if err := m.CustomApps[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("custom_apps" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("custom_apps" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *Dump) contextValidateFeatureFlags(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.FeatureFlags); i++ {
@@ -1995,6 +2089,26 @@ func (m *Dump) contextValidateRecurringJobs(ctx context.Context, formats strfmt.
 					return ve.ValidateName("recurring_jobs" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
 					return ce.ValidateName("recurring_jobs" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Dump) contextValidateRoles(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Roles); i++ {
+
+		if m.Roles[i] != nil {
+			if err := m.Roles[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("roles" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("roles" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
