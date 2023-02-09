@@ -109,6 +109,11 @@ func (o *ExportConfigurationOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the export configuration o k response
+func (o *ExportConfigurationOK) Code() int {
+	return 200
+}
+
 func (o *ExportConfigurationOK) Error() string {
 	return fmt.Sprintf("[GET /api/system/configuration][%d] exportConfigurationOK  %+v", 200, o.Payload)
 }
@@ -141,7 +146,7 @@ func NewExportConfigurationBadRequest() *ExportConfigurationBadRequest {
 /*
 ExportConfigurationBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type ExportConfigurationBadRequest struct {
 	Payload *models.Error
@@ -170,6 +175,11 @@ func (o *ExportConfigurationBadRequest) IsServerError() bool {
 // IsCode returns true when this export configuration bad request response a status code equal to that given
 func (o *ExportConfigurationBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the export configuration bad request response
+func (o *ExportConfigurationBadRequest) Code() int {
+	return 400
 }
 
 func (o *ExportConfigurationBadRequest) Error() string {
@@ -204,7 +214,7 @@ func NewExportConfigurationUnauthorized() *ExportConfigurationUnauthorized {
 /*
 ExportConfigurationUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ExportConfigurationUnauthorized struct {
 	Payload *models.Error
@@ -233,6 +243,11 @@ func (o *ExportConfigurationUnauthorized) IsServerError() bool {
 // IsCode returns true when this export configuration unauthorized response a status code equal to that given
 func (o *ExportConfigurationUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the export configuration unauthorized response
+func (o *ExportConfigurationUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ExportConfigurationUnauthorized) Error() string {
@@ -267,7 +282,7 @@ func NewExportConfigurationForbidden() *ExportConfigurationForbidden {
 /*
 ExportConfigurationForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ExportConfigurationForbidden struct {
 	Payload *models.Error
@@ -296,6 +311,11 @@ func (o *ExportConfigurationForbidden) IsServerError() bool {
 // IsCode returns true when this export configuration forbidden response a status code equal to that given
 func (o *ExportConfigurationForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the export configuration forbidden response
+func (o *ExportConfigurationForbidden) Code() int {
+	return 403
 }
 
 func (o *ExportConfigurationForbidden) Error() string {
@@ -330,7 +350,7 @@ func NewExportConfigurationNotFound() *ExportConfigurationNotFound {
 /*
 ExportConfigurationNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type ExportConfigurationNotFound struct {
 	Payload *models.Error
@@ -359,6 +379,11 @@ func (o *ExportConfigurationNotFound) IsServerError() bool {
 // IsCode returns true when this export configuration not found response a status code equal to that given
 func (o *ExportConfigurationNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the export configuration not found response
+func (o *ExportConfigurationNotFound) Code() int {
+	return 404
 }
 
 func (o *ExportConfigurationNotFound) Error() string {
@@ -393,7 +418,7 @@ func NewExportConfigurationUnprocessableEntity() *ExportConfigurationUnprocessab
 /*
 ExportConfigurationUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type ExportConfigurationUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +447,11 @@ func (o *ExportConfigurationUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this export configuration unprocessable entity response a status code equal to that given
 func (o *ExportConfigurationUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the export configuration unprocessable entity response
+func (o *ExportConfigurationUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *ExportConfigurationUnprocessableEntity) Error() string {
@@ -456,7 +486,7 @@ func NewExportConfigurationTooManyRequests() *ExportConfigurationTooManyRequests
 /*
 ExportConfigurationTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ExportConfigurationTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +515,11 @@ func (o *ExportConfigurationTooManyRequests) IsServerError() bool {
 // IsCode returns true when this export configuration too many requests response a status code equal to that given
 func (o *ExportConfigurationTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the export configuration too many requests response
+func (o *ExportConfigurationTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ExportConfigurationTooManyRequests) Error() string {

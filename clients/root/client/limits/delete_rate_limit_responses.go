@@ -96,6 +96,11 @@ func (o *DeleteRateLimitNoContent) IsCode(code int) bool {
 	return code == 204
 }
 
+// Code gets the status code for the delete rate limit no content response
+func (o *DeleteRateLimitNoContent) Code() int {
+	return 204
+}
+
 func (o *DeleteRateLimitNoContent) Error() string {
 	return fmt.Sprintf("[DELETE /api/admin/tenants/{tid}/rate-limits/{module}][%d] deleteRateLimitNoContent ", 204)
 }
@@ -117,7 +122,7 @@ func NewDeleteRateLimitUnauthorized() *DeleteRateLimitUnauthorized {
 /*
 DeleteRateLimitUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type DeleteRateLimitUnauthorized struct {
 	Payload *models.Error
@@ -146,6 +151,11 @@ func (o *DeleteRateLimitUnauthorized) IsServerError() bool {
 // IsCode returns true when this delete rate limit unauthorized response a status code equal to that given
 func (o *DeleteRateLimitUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the delete rate limit unauthorized response
+func (o *DeleteRateLimitUnauthorized) Code() int {
+	return 401
 }
 
 func (o *DeleteRateLimitUnauthorized) Error() string {
@@ -180,7 +190,7 @@ func NewDeleteRateLimitForbidden() *DeleteRateLimitForbidden {
 /*
 DeleteRateLimitForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type DeleteRateLimitForbidden struct {
 	Payload *models.Error
@@ -209,6 +219,11 @@ func (o *DeleteRateLimitForbidden) IsServerError() bool {
 // IsCode returns true when this delete rate limit forbidden response a status code equal to that given
 func (o *DeleteRateLimitForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the delete rate limit forbidden response
+func (o *DeleteRateLimitForbidden) Code() int {
+	return 403
 }
 
 func (o *DeleteRateLimitForbidden) Error() string {
@@ -243,7 +258,7 @@ func NewDeleteRateLimitNotFound() *DeleteRateLimitNotFound {
 /*
 DeleteRateLimitNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type DeleteRateLimitNotFound struct {
 	Payload *models.Error
@@ -272,6 +287,11 @@ func (o *DeleteRateLimitNotFound) IsServerError() bool {
 // IsCode returns true when this delete rate limit not found response a status code equal to that given
 func (o *DeleteRateLimitNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the delete rate limit not found response
+func (o *DeleteRateLimitNotFound) Code() int {
+	return 404
 }
 
 func (o *DeleteRateLimitNotFound) Error() string {
@@ -306,7 +326,7 @@ func NewDeleteRateLimitTooManyRequests() *DeleteRateLimitTooManyRequests {
 /*
 DeleteRateLimitTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type DeleteRateLimitTooManyRequests struct {
 	Payload *models.Error
@@ -335,6 +355,11 @@ func (o *DeleteRateLimitTooManyRequests) IsServerError() bool {
 // IsCode returns true when this delete rate limit too many requests response a status code equal to that given
 func (o *DeleteRateLimitTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the delete rate limit too many requests response
+func (o *DeleteRateLimitTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *DeleteRateLimitTooManyRequests) Error() string {

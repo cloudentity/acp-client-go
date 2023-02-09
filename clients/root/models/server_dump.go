@@ -160,6 +160,9 @@ type ServerDump struct {
 	// Example: false
 	EnforcePkceForPublicClients bool `json:"enforce_pkce_for_public_clients,omitempty"`
 
+	// fdx
+	Fdx *FDXConfiguration `json:"fdx,omitempty"`
+
 	// An array that defines which of the OAuth 2.0 grant types are enabled for the authorization server.
 	// Example: ["authorization_code","implicit","refresh_token","client_credentials"]
 	GrantTypes []string `json:"grant_types"`
@@ -239,6 +242,9 @@ type ServerDump struct {
 	// Boolean parameter indicating whether the authorization server accepts authorization request data only via PAR.
 	RequirePushedAuthorizationRequests bool `json:"require_pushed_authorization_requests,omitempty"`
 
+	// response types
+	ResponseTypes ResponseTypes `json:"response_types,omitempty"`
+
 	// You can provide root Certificate Authority (CA) certificates encoded to the Privacy-Enhanced
 	// Mail (PEM) file format which are used for the `tls_client_auth` and the
 	// `self_signed_tls_client_auth` client authentication methods that use the Mutual
@@ -250,6 +256,9 @@ type ServerDump struct {
 	// An array of rotated secrets that are still used to validate tokens
 	// Example: ["jFpwIvuKJP46J71WqszPv1SrzoUr-cSILP9EPdlClB4"]
 	RotatedSecrets []string `json:"rotated_secrets"`
+
+	// saml
+	Saml *SAMLConfiguration `json:"saml,omitempty"`
 
 	// Secret used for hashing
 	//
@@ -295,6 +304,15 @@ type ServerDump struct {
 	// authorization server.
 	TokenEndpointAuthMethods []string `json:"token_endpoint_auth_methods"`
 
+	// Token endpoint auth signing supported alg values
+	//
+	// Supported algorithms: HS256, RS256, ES256, PS256
+	//
+	// At least one algorithm must be set.
+	//
+	// The default values depends on the server security profile.
+	TokenEndpointAuthSigningAlgValues []string `json:"token_endpoint_auth_signing_alg_values"`
+
 	// Deprecated: Use TokenEndpointAuthMethods instead
 	TokenEndpointAuthnMethods []string `json:"token_endpoint_authn_methods"`
 
@@ -308,6 +326,10 @@ type ServerDump struct {
 	// Example: regular
 	// Enum: [admin developer system regular]
 	Type string `json:"type,omitempty"`
+
+	// server version to track internal changes
+	// currently supported version: 2
+	Version int64 `json:"version,omitempty"`
 }
 
 // Validate validates this server dump
@@ -350,6 +372,10 @@ func (m *ServerDump) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateFdx(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateGrantTypes(formats); err != nil {
 		res = append(res, err)
 	}
@@ -387,6 +413,14 @@ func (m *ServerDump) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateRefreshTokenTTL(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateResponseTypes(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSaml(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -589,6 +623,25 @@ func (m *ServerDump) validateDynamicClientRegistration(formats strfmt.Registry) 
 				return ve.ValidateName("dynamic_client_registration")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("dynamic_client_registration")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ServerDump) validateFdx(formats strfmt.Registry) error {
+	if swag.IsZero(m.Fdx) { // not required
+		return nil
+	}
+
+	if m.Fdx != nil {
+		if err := m.Fdx.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("fdx")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("fdx")
 			}
 			return err
 		}
@@ -871,6 +924,42 @@ func (m *ServerDump) validateRefreshTokenTTL(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *ServerDump) validateResponseTypes(formats strfmt.Registry) error {
+	if swag.IsZero(m.ResponseTypes) { // not required
+		return nil
+	}
+
+	if err := m.ResponseTypes.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("response_types")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("response_types")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *ServerDump) validateSaml(formats strfmt.Registry) error {
+	if swag.IsZero(m.Saml) { // not required
+		return nil
+	}
+
+	if m.Saml != nil {
+		if err := m.Saml.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("saml")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("saml")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 var serverDumpTypeSubjectFormatPropEnum []interface{}
 
 func init() {
@@ -1121,6 +1210,10 @@ func (m *ServerDump) ContextValidate(ctx context.Context, formats strfmt.Registr
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateFdx(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateIdpDiscovery(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -1134,6 +1227,14 @@ func (m *ServerDump) ContextValidate(ctx context.Context, formats strfmt.Registr
 	}
 
 	if err := m.contextValidateObbr(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateResponseTypes(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSaml(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1227,6 +1328,22 @@ func (m *ServerDump) contextValidateDynamicClientRegistration(ctx context.Contex
 	return nil
 }
 
+func (m *ServerDump) contextValidateFdx(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Fdx != nil {
+		if err := m.Fdx.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("fdx")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("fdx")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *ServerDump) contextValidateIdpDiscovery(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.IdpDiscovery != nil {
@@ -1283,6 +1400,36 @@ func (m *ServerDump) contextValidateObbr(ctx context.Context, formats strfmt.Reg
 				return ve.ValidateName("obbr")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("obbr")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ServerDump) contextValidateResponseTypes(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.ResponseTypes.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("response_types")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("response_types")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *ServerDump) contextValidateSaml(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Saml != nil {
+		if err := m.Saml.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("saml")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("saml")
 			}
 			return err
 		}

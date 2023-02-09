@@ -109,6 +109,11 @@ func (o *UpdateTenantOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the update tenant o k response
+func (o *UpdateTenantOK) Code() int {
+	return 200
+}
+
 func (o *UpdateTenantOK) Error() string {
 	return fmt.Sprintf("[PUT /api/system/tenants/{tid}][%d] updateTenantOK  %+v", 200, o.Payload)
 }
@@ -141,7 +146,7 @@ func NewUpdateTenantBadRequest() *UpdateTenantBadRequest {
 /*
 UpdateTenantBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type UpdateTenantBadRequest struct {
 	Payload *models.Error
@@ -170,6 +175,11 @@ func (o *UpdateTenantBadRequest) IsServerError() bool {
 // IsCode returns true when this update tenant bad request response a status code equal to that given
 func (o *UpdateTenantBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the update tenant bad request response
+func (o *UpdateTenantBadRequest) Code() int {
+	return 400
 }
 
 func (o *UpdateTenantBadRequest) Error() string {
@@ -204,7 +214,7 @@ func NewUpdateTenantUnauthorized() *UpdateTenantUnauthorized {
 /*
 UpdateTenantUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type UpdateTenantUnauthorized struct {
 	Payload *models.Error
@@ -233,6 +243,11 @@ func (o *UpdateTenantUnauthorized) IsServerError() bool {
 // IsCode returns true when this update tenant unauthorized response a status code equal to that given
 func (o *UpdateTenantUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the update tenant unauthorized response
+func (o *UpdateTenantUnauthorized) Code() int {
+	return 401
 }
 
 func (o *UpdateTenantUnauthorized) Error() string {
@@ -267,7 +282,7 @@ func NewUpdateTenantForbidden() *UpdateTenantForbidden {
 /*
 UpdateTenantForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type UpdateTenantForbidden struct {
 	Payload *models.Error
@@ -296,6 +311,11 @@ func (o *UpdateTenantForbidden) IsServerError() bool {
 // IsCode returns true when this update tenant forbidden response a status code equal to that given
 func (o *UpdateTenantForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the update tenant forbidden response
+func (o *UpdateTenantForbidden) Code() int {
+	return 403
 }
 
 func (o *UpdateTenantForbidden) Error() string {
@@ -330,7 +350,7 @@ func NewUpdateTenantNotFound() *UpdateTenantNotFound {
 /*
 UpdateTenantNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type UpdateTenantNotFound struct {
 	Payload *models.Error
@@ -359,6 +379,11 @@ func (o *UpdateTenantNotFound) IsServerError() bool {
 // IsCode returns true when this update tenant not found response a status code equal to that given
 func (o *UpdateTenantNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the update tenant not found response
+func (o *UpdateTenantNotFound) Code() int {
+	return 404
 }
 
 func (o *UpdateTenantNotFound) Error() string {
@@ -393,7 +418,7 @@ func NewUpdateTenantUnprocessableEntity() *UpdateTenantUnprocessableEntity {
 /*
 UpdateTenantUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type UpdateTenantUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +447,11 @@ func (o *UpdateTenantUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this update tenant unprocessable entity response a status code equal to that given
 func (o *UpdateTenantUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the update tenant unprocessable entity response
+func (o *UpdateTenantUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *UpdateTenantUnprocessableEntity) Error() string {
@@ -456,7 +486,7 @@ func NewUpdateTenantTooManyRequests() *UpdateTenantTooManyRequests {
 /*
 UpdateTenantTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type UpdateTenantTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +515,11 @@ func (o *UpdateTenantTooManyRequests) IsServerError() bool {
 // IsCode returns true when this update tenant too many requests response a status code equal to that given
 func (o *UpdateTenantTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the update tenant too many requests response
+func (o *UpdateTenantTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *UpdateTenantTooManyRequests) Error() string {

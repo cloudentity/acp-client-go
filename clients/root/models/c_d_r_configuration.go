@@ -28,6 +28,9 @@ type CDRConfiguration struct {
 	// industry
 	Industry CDRIndustry `json:"industry,omitempty"`
 
+	// register api version
+	RegisterAPIVersion CDRRegisterAPIVersion `json:"register_api_version,omitempty"`
+
 	// register url
 	RegisterURL CDRRegisterURL `json:"register_url,omitempty"`
 }
@@ -37,6 +40,10 @@ func (m *CDRConfiguration) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateIndustry(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateRegisterAPIVersion(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -60,6 +67,23 @@ func (m *CDRConfiguration) validateIndustry(formats strfmt.Registry) error {
 			return ve.ValidateName("industry")
 		} else if ce, ok := err.(*errors.CompositeError); ok {
 			return ce.ValidateName("industry")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *CDRConfiguration) validateRegisterAPIVersion(formats strfmt.Registry) error {
+	if swag.IsZero(m.RegisterAPIVersion) { // not required
+		return nil
+	}
+
+	if err := m.RegisterAPIVersion.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("register_api_version")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("register_api_version")
 		}
 		return err
 	}
@@ -92,6 +116,10 @@ func (m *CDRConfiguration) ContextValidate(ctx context.Context, formats strfmt.R
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateRegisterAPIVersion(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateRegisterURL(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -109,6 +137,20 @@ func (m *CDRConfiguration) contextValidateIndustry(ctx context.Context, formats 
 			return ve.ValidateName("industry")
 		} else if ce, ok := err.(*errors.CompositeError); ok {
 			return ce.ValidateName("industry")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *CDRConfiguration) contextValidateRegisterAPIVersion(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.RegisterAPIVersion.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("register_api_version")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("register_api_version")
 		}
 		return err
 	}

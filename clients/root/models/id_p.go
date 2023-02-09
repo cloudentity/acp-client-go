@@ -45,6 +45,10 @@ type IDP struct {
 	// discovery settings
 	DiscoverySettings *IDPDiscoverySettings `json:"discovery_settings,omitempty"`
 
+	// Can be used to e.g. modify the order in which the Identity Providers are presented on the login page.
+	// Example: 1
+	DisplayOrder int64 `json:"display_order,omitempty"`
+
 	// If set to `true`, the IDP is not displayed on the login page.
 	//
 	// When an IDP is hidden, it will not be displayed on the login page. It can still be used
@@ -59,6 +63,9 @@ type IDP struct {
 	// ID of the Identity Pool to which the IDP is connected
 	IdentityPoolID string `json:"identity_pool_id,omitempty"`
 
+	// Logo URI
+	LogoURI string `json:"logo_uri,omitempty"`
+
 	// mappings
 	Mappings Mappings `json:"mappings,omitempty"`
 
@@ -72,6 +79,9 @@ type IDP struct {
 
 	// Display name of your IDP
 	Name string `json:"name,omitempty"`
+
+	// Points to the ID of the custom app, null if not set
+	PostAuthnAppID string `json:"post_authn_app_id,omitempty"`
 
 	// settings
 	Settings *IDPSettings `json:"settings,omitempty"`

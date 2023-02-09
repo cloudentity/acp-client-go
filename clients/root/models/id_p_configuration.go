@@ -30,6 +30,11 @@ type IDPConfiguration struct {
 	// IDPs.
 	EnableStatefulCtx bool `json:"enable_stateful_ctx,omitempty"`
 
+	// If set to `true`, the claims are reloaded while issuing an access token.
+	//
+	// Currently it is only available for Identity Pool IDP.
+	ReloadClaimsAtRefreshToken bool `json:"reload_claims_at_refresh_token,omitempty"`
+
 	// The time that a user's authentication context is stored in the ACP's internal caching system
 	// before it's being deleted or refreshed.
 	// Format: duration

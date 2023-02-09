@@ -108,6 +108,11 @@ func (o *PatchConfigurationNoContent) IsCode(code int) bool {
 	return code == 204
 }
 
+// Code gets the status code for the patch configuration no content response
+func (o *PatchConfigurationNoContent) Code() int {
+	return 204
+}
+
 func (o *PatchConfigurationNoContent) Error() string {
 	return fmt.Sprintf("[PATCH /api/system/configuration][%d] patchConfigurationNoContent ", 204)
 }
@@ -129,7 +134,7 @@ func NewPatchConfigurationBadRequest() *PatchConfigurationBadRequest {
 /*
 PatchConfigurationBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type PatchConfigurationBadRequest struct {
 	Payload *models.Error
@@ -158,6 +163,11 @@ func (o *PatchConfigurationBadRequest) IsServerError() bool {
 // IsCode returns true when this patch configuration bad request response a status code equal to that given
 func (o *PatchConfigurationBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the patch configuration bad request response
+func (o *PatchConfigurationBadRequest) Code() int {
+	return 400
 }
 
 func (o *PatchConfigurationBadRequest) Error() string {
@@ -192,7 +202,7 @@ func NewPatchConfigurationUnauthorized() *PatchConfigurationUnauthorized {
 /*
 PatchConfigurationUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type PatchConfigurationUnauthorized struct {
 	Payload *models.Error
@@ -221,6 +231,11 @@ func (o *PatchConfigurationUnauthorized) IsServerError() bool {
 // IsCode returns true when this patch configuration unauthorized response a status code equal to that given
 func (o *PatchConfigurationUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the patch configuration unauthorized response
+func (o *PatchConfigurationUnauthorized) Code() int {
+	return 401
 }
 
 func (o *PatchConfigurationUnauthorized) Error() string {
@@ -255,7 +270,7 @@ func NewPatchConfigurationForbidden() *PatchConfigurationForbidden {
 /*
 PatchConfigurationForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type PatchConfigurationForbidden struct {
 	Payload *models.Error
@@ -284,6 +299,11 @@ func (o *PatchConfigurationForbidden) IsServerError() bool {
 // IsCode returns true when this patch configuration forbidden response a status code equal to that given
 func (o *PatchConfigurationForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the patch configuration forbidden response
+func (o *PatchConfigurationForbidden) Code() int {
+	return 403
 }
 
 func (o *PatchConfigurationForbidden) Error() string {
@@ -318,7 +338,7 @@ func NewPatchConfigurationNotFound() *PatchConfigurationNotFound {
 /*
 PatchConfigurationNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type PatchConfigurationNotFound struct {
 	Payload *models.Error
@@ -347,6 +367,11 @@ func (o *PatchConfigurationNotFound) IsServerError() bool {
 // IsCode returns true when this patch configuration not found response a status code equal to that given
 func (o *PatchConfigurationNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the patch configuration not found response
+func (o *PatchConfigurationNotFound) Code() int {
+	return 404
 }
 
 func (o *PatchConfigurationNotFound) Error() string {
@@ -381,7 +406,7 @@ func NewPatchConfigurationUnprocessableEntity() *PatchConfigurationUnprocessable
 /*
 PatchConfigurationUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type PatchConfigurationUnprocessableEntity struct {
 	Payload *models.Error
@@ -410,6 +435,11 @@ func (o *PatchConfigurationUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this patch configuration unprocessable entity response a status code equal to that given
 func (o *PatchConfigurationUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the patch configuration unprocessable entity response
+func (o *PatchConfigurationUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *PatchConfigurationUnprocessableEntity) Error() string {
@@ -444,7 +474,7 @@ func NewPatchConfigurationTooManyRequests() *PatchConfigurationTooManyRequests {
 /*
 PatchConfigurationTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type PatchConfigurationTooManyRequests struct {
 	Payload *models.Error
@@ -473,6 +503,11 @@ func (o *PatchConfigurationTooManyRequests) IsServerError() bool {
 // IsCode returns true when this patch configuration too many requests response a status code equal to that given
 func (o *PatchConfigurationTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the patch configuration too many requests response
+func (o *PatchConfigurationTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *PatchConfigurationTooManyRequests) Error() string {

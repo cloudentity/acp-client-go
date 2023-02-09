@@ -97,6 +97,11 @@ func (o *ListAdminTenantsOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the list admin tenants o k response
+func (o *ListAdminTenantsOK) Code() int {
+	return 200
+}
+
 func (o *ListAdminTenantsOK) Error() string {
 	return fmt.Sprintf("[GET /api/admin/tenants][%d] listAdminTenantsOK  %+v", 200, o.Payload)
 }
@@ -129,7 +134,7 @@ func NewListAdminTenantsUnauthorized() *ListAdminTenantsUnauthorized {
 /*
 ListAdminTenantsUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ListAdminTenantsUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +163,11 @@ func (o *ListAdminTenantsUnauthorized) IsServerError() bool {
 // IsCode returns true when this list admin tenants unauthorized response a status code equal to that given
 func (o *ListAdminTenantsUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the list admin tenants unauthorized response
+func (o *ListAdminTenantsUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ListAdminTenantsUnauthorized) Error() string {
@@ -192,7 +202,7 @@ func NewListAdminTenantsForbidden() *ListAdminTenantsForbidden {
 /*
 ListAdminTenantsForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ListAdminTenantsForbidden struct {
 	Payload *models.Error
@@ -221,6 +231,11 @@ func (o *ListAdminTenantsForbidden) IsServerError() bool {
 // IsCode returns true when this list admin tenants forbidden response a status code equal to that given
 func (o *ListAdminTenantsForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the list admin tenants forbidden response
+func (o *ListAdminTenantsForbidden) Code() int {
+	return 403
 }
 
 func (o *ListAdminTenantsForbidden) Error() string {
@@ -255,7 +270,7 @@ func NewListAdminTenantsNotFound() *ListAdminTenantsNotFound {
 /*
 ListAdminTenantsNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type ListAdminTenantsNotFound struct {
 	Payload *models.Error
@@ -284,6 +299,11 @@ func (o *ListAdminTenantsNotFound) IsServerError() bool {
 // IsCode returns true when this list admin tenants not found response a status code equal to that given
 func (o *ListAdminTenantsNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the list admin tenants not found response
+func (o *ListAdminTenantsNotFound) Code() int {
+	return 404
 }
 
 func (o *ListAdminTenantsNotFound) Error() string {
@@ -318,7 +338,7 @@ func NewListAdminTenantsTooManyRequests() *ListAdminTenantsTooManyRequests {
 /*
 ListAdminTenantsTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ListAdminTenantsTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +367,11 @@ func (o *ListAdminTenantsTooManyRequests) IsServerError() bool {
 // IsCode returns true when this list admin tenants too many requests response a status code equal to that given
 func (o *ListAdminTenantsTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the list admin tenants too many requests response
+func (o *ListAdminTenantsTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ListAdminTenantsTooManyRequests) Error() string {

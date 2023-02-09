@@ -69,7 +69,7 @@ type PatchConfigurationParams struct {
 	Mode *string
 
 	// Patch.
-	Patch models.PatchConfiguration
+	Patch models.PatchOperations
 
 	/* Tid.
 
@@ -155,13 +155,13 @@ func (o *PatchConfigurationParams) SetMode(mode *string) {
 }
 
 // WithPatch adds the patch to the patch configuration params
-func (o *PatchConfigurationParams) WithPatch(patch models.PatchConfiguration) *PatchConfigurationParams {
+func (o *PatchConfigurationParams) WithPatch(patch models.PatchOperations) *PatchConfigurationParams {
 	o.SetPatch(patch)
 	return o
 }
 
 // SetPatch adds the patch to the patch configuration params
-func (o *PatchConfigurationParams) SetPatch(patch models.PatchConfiguration) {
+func (o *PatchConfigurationParams) SetPatch(patch models.PatchOperations) {
 	o.Patch = patch
 }
 
