@@ -20,8 +20,12 @@ import (
 type OBExternalAccountType1Code string
 
 func NewOBExternalAccountType1Code(value OBExternalAccountType1Code) *OBExternalAccountType1Code {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated OBExternalAccountType1Code.
+func (m OBExternalAccountType1Code) Pointer() *OBExternalAccountType1Code {
+	return &m
 }
 
 const (

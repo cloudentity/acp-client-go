@@ -20,8 +20,12 @@ import (
 type OBExternalPartyType1Code string
 
 func NewOBExternalPartyType1Code(value OBExternalPartyType1Code) *OBExternalPartyType1Code {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated OBExternalPartyType1Code.
+func (m OBExternalPartyType1Code) Pointer() *OBExternalPartyType1Code {
+	return &m
 }
 
 const (

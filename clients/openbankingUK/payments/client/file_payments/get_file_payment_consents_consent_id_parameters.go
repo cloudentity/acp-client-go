@@ -52,10 +52,12 @@ func NewGetFilePaymentConsentsConsentIDParamsWithHTTPClient(client *http.Client)
 	}
 }
 
-/* GetFilePaymentConsentsConsentIDParams contains all the parameters to send to the API endpoint
-   for the get file payment consents consent Id operation.
+/*
+GetFilePaymentConsentsConsentIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get file payment consents consent Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetFilePaymentConsentsConsentIDParams struct {
 

@@ -51,6 +51,9 @@ type BrazilConsent struct {
 	// customer payment consent
 	CustomerPaymentConsent *BrazilCustomerPaymentConsent `json:"customer_payment_consent,omitempty"`
 
+	// customer payment consent v2
+	CustomerPaymentConsentV2 *BrazilCustomerPaymentConsentV2 `json:"customer_payment_consent_v2,omitempty"`
+
 	// idempotency key
 	IdempotencyKey string `json:"idempotency_key,omitempty"`
 
@@ -99,6 +102,10 @@ func (m *BrazilConsent) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateCustomerPaymentConsent(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCustomerPaymentConsentV2(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -204,6 +211,25 @@ func (m *BrazilConsent) validateCustomerPaymentConsent(formats strfmt.Registry) 
 	return nil
 }
 
+func (m *BrazilConsent) validateCustomerPaymentConsentV2(formats strfmt.Registry) error {
+	if swag.IsZero(m.CustomerPaymentConsentV2) { // not required
+		return nil
+	}
+
+	if m.CustomerPaymentConsentV2 != nil {
+		if err := m.CustomerPaymentConsentV2.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("customer_payment_consent_v2")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("customer_payment_consent_v2")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *BrazilConsent) validateSpecVersion(formats strfmt.Registry) error {
 	if swag.IsZero(m.SpecVersion) { // not required
 		return nil
@@ -255,6 +281,10 @@ func (m *BrazilConsent) ContextValidate(ctx context.Context, formats strfmt.Regi
 	}
 
 	if err := m.contextValidateCustomerPaymentConsent(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCustomerPaymentConsentV2(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -328,6 +358,22 @@ func (m *BrazilConsent) contextValidateCustomerPaymentConsent(ctx context.Contex
 				return ve.ValidateName("customer_payment_consent")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("customer_payment_consent")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *BrazilConsent) contextValidateCustomerPaymentConsentV2(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.CustomerPaymentConsentV2 != nil {
+		if err := m.CustomerPaymentConsentV2.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("customer_payment_consent_v2")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("customer_payment_consent_v2")
 			}
 			return err
 		}

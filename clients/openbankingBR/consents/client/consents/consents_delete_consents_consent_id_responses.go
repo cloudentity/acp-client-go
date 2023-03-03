@@ -102,7 +102,8 @@ func NewConsentsDeleteConsentsConsentIDNoContent() *ConsentsDeleteConsentsConsen
 	}
 }
 
-/* ConsentsDeleteConsentsConsentIDNoContent describes a response with status code 204, with default header values.
+/*
+ConsentsDeleteConsentsConsentIDNoContent describes a response with status code 204, with default header values.
 
 Consentimento revogado com sucesso.
 */
@@ -117,7 +118,36 @@ type ConsentsDeleteConsentsConsentIDNoContent struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this consents delete consents consent Id no content response has a 2xx status code
+func (o *ConsentsDeleteConsentsConsentIDNoContent) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this consents delete consents consent Id no content response has a 3xx status code
+func (o *ConsentsDeleteConsentsConsentIDNoContent) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this consents delete consents consent Id no content response has a 4xx status code
+func (o *ConsentsDeleteConsentsConsentIDNoContent) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this consents delete consents consent Id no content response has a 5xx status code
+func (o *ConsentsDeleteConsentsConsentIDNoContent) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this consents delete consents consent Id no content response a status code equal to that given
+func (o *ConsentsDeleteConsentsConsentIDNoContent) IsCode(code int) bool {
+	return code == 204
+}
+
 func (o *ConsentsDeleteConsentsConsentIDNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /consents/{consentId}][%d] consentsDeleteConsentsConsentIdNoContent ", 204)
+}
+
+func (o *ConsentsDeleteConsentsConsentIDNoContent) String() string {
 	return fmt.Sprintf("[DELETE /consents/{consentId}][%d] consentsDeleteConsentsConsentIdNoContent ", 204)
 }
 
@@ -138,7 +168,8 @@ func NewConsentsDeleteConsentsConsentIDBadRequest() *ConsentsDeleteConsentsConse
 	return &ConsentsDeleteConsentsConsentIDBadRequest{}
 }
 
-/* ConsentsDeleteConsentsConsentIDBadRequest describes a response with status code 400, with default header values.
+/*
+ConsentsDeleteConsentsConsentIDBadRequest describes a response with status code 400, with default header values.
 
 A requisio foi malformada, omitindo atributos obrigatrios, seja no payload ou atravs de atributos na URL.
 */
@@ -146,9 +177,39 @@ type ConsentsDeleteConsentsConsentIDBadRequest struct {
 	Payload *models.ResponseError
 }
 
+// IsSuccess returns true when this consents delete consents consent Id bad request response has a 2xx status code
+func (o *ConsentsDeleteConsentsConsentIDBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this consents delete consents consent Id bad request response has a 3xx status code
+func (o *ConsentsDeleteConsentsConsentIDBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this consents delete consents consent Id bad request response has a 4xx status code
+func (o *ConsentsDeleteConsentsConsentIDBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this consents delete consents consent Id bad request response has a 5xx status code
+func (o *ConsentsDeleteConsentsConsentIDBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this consents delete consents consent Id bad request response a status code equal to that given
+func (o *ConsentsDeleteConsentsConsentIDBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *ConsentsDeleteConsentsConsentIDBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /consents/{consentId}][%d] consentsDeleteConsentsConsentIdBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *ConsentsDeleteConsentsConsentIDBadRequest) String() string {
+	return fmt.Sprintf("[DELETE /consents/{consentId}][%d] consentsDeleteConsentsConsentIdBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *ConsentsDeleteConsentsConsentIDBadRequest) GetPayload() *models.ResponseError {
 	return o.Payload
 }
@@ -170,7 +231,8 @@ func NewConsentsDeleteConsentsConsentIDUnauthorized() *ConsentsDeleteConsentsCon
 	return &ConsentsDeleteConsentsConsentIDUnauthorized{}
 }
 
-/* ConsentsDeleteConsentsConsentIDUnauthorized describes a response with status code 401, with default header values.
+/*
+ConsentsDeleteConsentsConsentIDUnauthorized describes a response with status code 401, with default header values.
 
 Cabealho de autenticao ausente/invlido ou token invlido
 */
@@ -178,9 +240,39 @@ type ConsentsDeleteConsentsConsentIDUnauthorized struct {
 	Payload *models.ResponseError
 }
 
+// IsSuccess returns true when this consents delete consents consent Id unauthorized response has a 2xx status code
+func (o *ConsentsDeleteConsentsConsentIDUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this consents delete consents consent Id unauthorized response has a 3xx status code
+func (o *ConsentsDeleteConsentsConsentIDUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this consents delete consents consent Id unauthorized response has a 4xx status code
+func (o *ConsentsDeleteConsentsConsentIDUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this consents delete consents consent Id unauthorized response has a 5xx status code
+func (o *ConsentsDeleteConsentsConsentIDUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this consents delete consents consent Id unauthorized response a status code equal to that given
+func (o *ConsentsDeleteConsentsConsentIDUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *ConsentsDeleteConsentsConsentIDUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /consents/{consentId}][%d] consentsDeleteConsentsConsentIdUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *ConsentsDeleteConsentsConsentIDUnauthorized) String() string {
+	return fmt.Sprintf("[DELETE /consents/{consentId}][%d] consentsDeleteConsentsConsentIdUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *ConsentsDeleteConsentsConsentIDUnauthorized) GetPayload() *models.ResponseError {
 	return o.Payload
 }
@@ -202,7 +294,8 @@ func NewConsentsDeleteConsentsConsentIDForbidden() *ConsentsDeleteConsentsConsen
 	return &ConsentsDeleteConsentsConsentIDForbidden{}
 }
 
-/* ConsentsDeleteConsentsConsentIDForbidden describes a response with status code 403, with default header values.
+/*
+ConsentsDeleteConsentsConsentIDForbidden describes a response with status code 403, with default header values.
 
 O token tem escopo incorreto ou uma poltica de segurana foi violada
 */
@@ -210,9 +303,39 @@ type ConsentsDeleteConsentsConsentIDForbidden struct {
 	Payload *models.ResponseError
 }
 
+// IsSuccess returns true when this consents delete consents consent Id forbidden response has a 2xx status code
+func (o *ConsentsDeleteConsentsConsentIDForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this consents delete consents consent Id forbidden response has a 3xx status code
+func (o *ConsentsDeleteConsentsConsentIDForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this consents delete consents consent Id forbidden response has a 4xx status code
+func (o *ConsentsDeleteConsentsConsentIDForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this consents delete consents consent Id forbidden response has a 5xx status code
+func (o *ConsentsDeleteConsentsConsentIDForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this consents delete consents consent Id forbidden response a status code equal to that given
+func (o *ConsentsDeleteConsentsConsentIDForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *ConsentsDeleteConsentsConsentIDForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /consents/{consentId}][%d] consentsDeleteConsentsConsentIdForbidden  %+v", 403, o.Payload)
 }
+
+func (o *ConsentsDeleteConsentsConsentIDForbidden) String() string {
+	return fmt.Sprintf("[DELETE /consents/{consentId}][%d] consentsDeleteConsentsConsentIdForbidden  %+v", 403, o.Payload)
+}
+
 func (o *ConsentsDeleteConsentsConsentIDForbidden) GetPayload() *models.ResponseError {
 	return o.Payload
 }
@@ -234,7 +357,8 @@ func NewConsentsDeleteConsentsConsentIDNotFound() *ConsentsDeleteConsentsConsent
 	return &ConsentsDeleteConsentsConsentIDNotFound{}
 }
 
-/* ConsentsDeleteConsentsConsentIDNotFound describes a response with status code 404, with default header values.
+/*
+ConsentsDeleteConsentsConsentIDNotFound describes a response with status code 404, with default header values.
 
 O recurso solicitado no existe ou no foi implementado
 */
@@ -242,9 +366,39 @@ type ConsentsDeleteConsentsConsentIDNotFound struct {
 	Payload *models.ResponseError
 }
 
+// IsSuccess returns true when this consents delete consents consent Id not found response has a 2xx status code
+func (o *ConsentsDeleteConsentsConsentIDNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this consents delete consents consent Id not found response has a 3xx status code
+func (o *ConsentsDeleteConsentsConsentIDNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this consents delete consents consent Id not found response has a 4xx status code
+func (o *ConsentsDeleteConsentsConsentIDNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this consents delete consents consent Id not found response has a 5xx status code
+func (o *ConsentsDeleteConsentsConsentIDNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this consents delete consents consent Id not found response a status code equal to that given
+func (o *ConsentsDeleteConsentsConsentIDNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *ConsentsDeleteConsentsConsentIDNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /consents/{consentId}][%d] consentsDeleteConsentsConsentIdNotFound  %+v", 404, o.Payload)
 }
+
+func (o *ConsentsDeleteConsentsConsentIDNotFound) String() string {
+	return fmt.Sprintf("[DELETE /consents/{consentId}][%d] consentsDeleteConsentsConsentIdNotFound  %+v", 404, o.Payload)
+}
+
 func (o *ConsentsDeleteConsentsConsentIDNotFound) GetPayload() *models.ResponseError {
 	return o.Payload
 }
@@ -266,7 +420,8 @@ func NewConsentsDeleteConsentsConsentIDMethodNotAllowed() *ConsentsDeleteConsent
 	return &ConsentsDeleteConsentsConsentIDMethodNotAllowed{}
 }
 
-/* ConsentsDeleteConsentsConsentIDMethodNotAllowed describes a response with status code 405, with default header values.
+/*
+ConsentsDeleteConsentsConsentIDMethodNotAllowed describes a response with status code 405, with default header values.
 
 O consumidor tentou acessar o recurso com um mtodo no suportado
 */
@@ -274,9 +429,39 @@ type ConsentsDeleteConsentsConsentIDMethodNotAllowed struct {
 	Payload *models.ResponseError
 }
 
+// IsSuccess returns true when this consents delete consents consent Id method not allowed response has a 2xx status code
+func (o *ConsentsDeleteConsentsConsentIDMethodNotAllowed) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this consents delete consents consent Id method not allowed response has a 3xx status code
+func (o *ConsentsDeleteConsentsConsentIDMethodNotAllowed) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this consents delete consents consent Id method not allowed response has a 4xx status code
+func (o *ConsentsDeleteConsentsConsentIDMethodNotAllowed) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this consents delete consents consent Id method not allowed response has a 5xx status code
+func (o *ConsentsDeleteConsentsConsentIDMethodNotAllowed) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this consents delete consents consent Id method not allowed response a status code equal to that given
+func (o *ConsentsDeleteConsentsConsentIDMethodNotAllowed) IsCode(code int) bool {
+	return code == 405
+}
+
 func (o *ConsentsDeleteConsentsConsentIDMethodNotAllowed) Error() string {
 	return fmt.Sprintf("[DELETE /consents/{consentId}][%d] consentsDeleteConsentsConsentIdMethodNotAllowed  %+v", 405, o.Payload)
 }
+
+func (o *ConsentsDeleteConsentsConsentIDMethodNotAllowed) String() string {
+	return fmt.Sprintf("[DELETE /consents/{consentId}][%d] consentsDeleteConsentsConsentIdMethodNotAllowed  %+v", 405, o.Payload)
+}
+
 func (o *ConsentsDeleteConsentsConsentIDMethodNotAllowed) GetPayload() *models.ResponseError {
 	return o.Payload
 }
@@ -298,7 +483,8 @@ func NewConsentsDeleteConsentsConsentIDNotAcceptable() *ConsentsDeleteConsentsCo
 	return &ConsentsDeleteConsentsConsentIDNotAcceptable{}
 }
 
-/* ConsentsDeleteConsentsConsentIDNotAcceptable describes a response with status code 406, with default header values.
+/*
+ConsentsDeleteConsentsConsentIDNotAcceptable describes a response with status code 406, with default header values.
 
 A solicitao continha um cabealho Accept diferente dos tipos de mdia permitidos ou um conjunto de caracteres diferente de UTF-8
 */
@@ -306,9 +492,39 @@ type ConsentsDeleteConsentsConsentIDNotAcceptable struct {
 	Payload *models.ResponseError
 }
 
+// IsSuccess returns true when this consents delete consents consent Id not acceptable response has a 2xx status code
+func (o *ConsentsDeleteConsentsConsentIDNotAcceptable) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this consents delete consents consent Id not acceptable response has a 3xx status code
+func (o *ConsentsDeleteConsentsConsentIDNotAcceptable) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this consents delete consents consent Id not acceptable response has a 4xx status code
+func (o *ConsentsDeleteConsentsConsentIDNotAcceptable) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this consents delete consents consent Id not acceptable response has a 5xx status code
+func (o *ConsentsDeleteConsentsConsentIDNotAcceptable) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this consents delete consents consent Id not acceptable response a status code equal to that given
+func (o *ConsentsDeleteConsentsConsentIDNotAcceptable) IsCode(code int) bool {
+	return code == 406
+}
+
 func (o *ConsentsDeleteConsentsConsentIDNotAcceptable) Error() string {
 	return fmt.Sprintf("[DELETE /consents/{consentId}][%d] consentsDeleteConsentsConsentIdNotAcceptable  %+v", 406, o.Payload)
 }
+
+func (o *ConsentsDeleteConsentsConsentIDNotAcceptable) String() string {
+	return fmt.Sprintf("[DELETE /consents/{consentId}][%d] consentsDeleteConsentsConsentIdNotAcceptable  %+v", 406, o.Payload)
+}
+
 func (o *ConsentsDeleteConsentsConsentIDNotAcceptable) GetPayload() *models.ResponseError {
 	return o.Payload
 }
@@ -330,7 +546,8 @@ func NewConsentsDeleteConsentsConsentIDTooManyRequests() *ConsentsDeleteConsents
 	return &ConsentsDeleteConsentsConsentIDTooManyRequests{}
 }
 
-/* ConsentsDeleteConsentsConsentIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+ConsentsDeleteConsentsConsentIDTooManyRequests describes a response with status code 429, with default header values.
 
 A operao foi recusada, pois muitas solicitaes foram feitas dentro de um determinado perodo ou o limite global de requisies concorrentes foi atingido
 */
@@ -338,9 +555,39 @@ type ConsentsDeleteConsentsConsentIDTooManyRequests struct {
 	Payload *models.ResponseError
 }
 
+// IsSuccess returns true when this consents delete consents consent Id too many requests response has a 2xx status code
+func (o *ConsentsDeleteConsentsConsentIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this consents delete consents consent Id too many requests response has a 3xx status code
+func (o *ConsentsDeleteConsentsConsentIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this consents delete consents consent Id too many requests response has a 4xx status code
+func (o *ConsentsDeleteConsentsConsentIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this consents delete consents consent Id too many requests response has a 5xx status code
+func (o *ConsentsDeleteConsentsConsentIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this consents delete consents consent Id too many requests response a status code equal to that given
+func (o *ConsentsDeleteConsentsConsentIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *ConsentsDeleteConsentsConsentIDTooManyRequests) Error() string {
 	return fmt.Sprintf("[DELETE /consents/{consentId}][%d] consentsDeleteConsentsConsentIdTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *ConsentsDeleteConsentsConsentIDTooManyRequests) String() string {
+	return fmt.Sprintf("[DELETE /consents/{consentId}][%d] consentsDeleteConsentsConsentIdTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *ConsentsDeleteConsentsConsentIDTooManyRequests) GetPayload() *models.ResponseError {
 	return o.Payload
 }
@@ -362,7 +609,8 @@ func NewConsentsDeleteConsentsConsentIDInternalServerError() *ConsentsDeleteCons
 	return &ConsentsDeleteConsentsConsentIDInternalServerError{}
 }
 
-/* ConsentsDeleteConsentsConsentIDInternalServerError describes a response with status code 500, with default header values.
+/*
+ConsentsDeleteConsentsConsentIDInternalServerError describes a response with status code 500, with default header values.
 
 Ocorreu um erro no gateway da API ou no microsservio
 */
@@ -370,9 +618,39 @@ type ConsentsDeleteConsentsConsentIDInternalServerError struct {
 	Payload *models.ResponseError
 }
 
+// IsSuccess returns true when this consents delete consents consent Id internal server error response has a 2xx status code
+func (o *ConsentsDeleteConsentsConsentIDInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this consents delete consents consent Id internal server error response has a 3xx status code
+func (o *ConsentsDeleteConsentsConsentIDInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this consents delete consents consent Id internal server error response has a 4xx status code
+func (o *ConsentsDeleteConsentsConsentIDInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this consents delete consents consent Id internal server error response has a 5xx status code
+func (o *ConsentsDeleteConsentsConsentIDInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this consents delete consents consent Id internal server error response a status code equal to that given
+func (o *ConsentsDeleteConsentsConsentIDInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *ConsentsDeleteConsentsConsentIDInternalServerError) Error() string {
 	return fmt.Sprintf("[DELETE /consents/{consentId}][%d] consentsDeleteConsentsConsentIdInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *ConsentsDeleteConsentsConsentIDInternalServerError) String() string {
+	return fmt.Sprintf("[DELETE /consents/{consentId}][%d] consentsDeleteConsentsConsentIdInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *ConsentsDeleteConsentsConsentIDInternalServerError) GetPayload() *models.ResponseError {
 	return o.Payload
 }
@@ -396,7 +674,8 @@ func NewConsentsDeleteConsentsConsentIDDefault(code int) *ConsentsDeleteConsents
 	}
 }
 
-/* ConsentsDeleteConsentsConsentIDDefault describes a response with status code -1, with default header values.
+/*
+ConsentsDeleteConsentsConsentIDDefault describes a response with status code -1, with default header values.
 
 Erro inesperado.
 */
@@ -411,9 +690,39 @@ func (o *ConsentsDeleteConsentsConsentIDDefault) Code() int {
 	return o._statusCode
 }
 
+// IsSuccess returns true when this consents delete consents consent Id default response has a 2xx status code
+func (o *ConsentsDeleteConsentsConsentIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this consents delete consents consent Id default response has a 3xx status code
+func (o *ConsentsDeleteConsentsConsentIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this consents delete consents consent Id default response has a 4xx status code
+func (o *ConsentsDeleteConsentsConsentIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this consents delete consents consent Id default response has a 5xx status code
+func (o *ConsentsDeleteConsentsConsentIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this consents delete consents consent Id default response a status code equal to that given
+func (o *ConsentsDeleteConsentsConsentIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 func (o *ConsentsDeleteConsentsConsentIDDefault) Error() string {
 	return fmt.Sprintf("[DELETE /consents/{consentId}][%d] consentsDeleteConsentsConsentId default  %+v", o._statusCode, o.Payload)
 }
+
+func (o *ConsentsDeleteConsentsConsentIDDefault) String() string {
+	return fmt.Sprintf("[DELETE /consents/{consentId}][%d] consentsDeleteConsentsConsentId default  %+v", o._statusCode, o.Payload)
+}
+
 func (o *ConsentsDeleteConsentsConsentIDDefault) GetPayload() *models.ResponseError {
 	return o.Payload
 }

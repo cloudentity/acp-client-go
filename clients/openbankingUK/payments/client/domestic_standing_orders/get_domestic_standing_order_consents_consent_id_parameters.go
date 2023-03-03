@@ -52,10 +52,12 @@ func NewGetDomesticStandingOrderConsentsConsentIDParamsWithHTTPClient(client *ht
 	}
 }
 
-/* GetDomesticStandingOrderConsentsConsentIDParams contains all the parameters to send to the API endpoint
-   for the get domestic standing order consents consent Id operation.
+/*
+GetDomesticStandingOrderConsentsConsentIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get domestic standing order consents consent Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDomesticStandingOrderConsentsConsentIDParams struct {
 

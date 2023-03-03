@@ -94,7 +94,8 @@ func NewPaymentsGetConsentsConsentIDOK() *PaymentsGetConsentsConsentIDOK {
 	return &PaymentsGetConsentsConsentIDOK{}
 }
 
-/* PaymentsGetConsentsConsentIDOK describes a response with status code 200, with default header values.
+/*
+PaymentsGetConsentsConsentIDOK describes a response with status code 200, with default header values.
 
 Dados do consentimento de pagamento obtidos com sucesso.
 */
@@ -108,9 +109,39 @@ type PaymentsGetConsentsConsentIDOK struct {
 	Payload interface{}
 }
 
+// IsSuccess returns true when this payments get consents consent Id o k response has a 2xx status code
+func (o *PaymentsGetConsentsConsentIDOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this payments get consents consent Id o k response has a 3xx status code
+func (o *PaymentsGetConsentsConsentIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this payments get consents consent Id o k response has a 4xx status code
+func (o *PaymentsGetConsentsConsentIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this payments get consents consent Id o k response has a 5xx status code
+func (o *PaymentsGetConsentsConsentIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this payments get consents consent Id o k response a status code equal to that given
+func (o *PaymentsGetConsentsConsentIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *PaymentsGetConsentsConsentIDOK) Error() string {
 	return fmt.Sprintf("[GET /consents/{consentId}][%d] paymentsGetConsentsConsentIdOK  %+v", 200, o.Payload)
 }
+
+func (o *PaymentsGetConsentsConsentIDOK) String() string {
+	return fmt.Sprintf("[GET /consents/{consentId}][%d] paymentsGetConsentsConsentIdOK  %+v", 200, o.Payload)
+}
+
 func (o *PaymentsGetConsentsConsentIDOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -137,7 +168,8 @@ func NewPaymentsGetConsentsConsentIDBadRequest() *PaymentsGetConsentsConsentIDBa
 	return &PaymentsGetConsentsConsentIDBadRequest{}
 }
 
-/* PaymentsGetConsentsConsentIDBadRequest describes a response with status code 400, with default header values.
+/*
+PaymentsGetConsentsConsentIDBadRequest describes a response with status code 400, with default header values.
 
 A requisio foi malformada, omitindo atributos obrigatrios, seja no payload ou atravs de atributos na URL.
 */
@@ -151,9 +183,39 @@ type PaymentsGetConsentsConsentIDBadRequest struct {
 	Payload *models.ResponseError
 }
 
+// IsSuccess returns true when this payments get consents consent Id bad request response has a 2xx status code
+func (o *PaymentsGetConsentsConsentIDBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this payments get consents consent Id bad request response has a 3xx status code
+func (o *PaymentsGetConsentsConsentIDBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this payments get consents consent Id bad request response has a 4xx status code
+func (o *PaymentsGetConsentsConsentIDBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this payments get consents consent Id bad request response has a 5xx status code
+func (o *PaymentsGetConsentsConsentIDBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this payments get consents consent Id bad request response a status code equal to that given
+func (o *PaymentsGetConsentsConsentIDBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *PaymentsGetConsentsConsentIDBadRequest) Error() string {
 	return fmt.Sprintf("[GET /consents/{consentId}][%d] paymentsGetConsentsConsentIdBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *PaymentsGetConsentsConsentIDBadRequest) String() string {
+	return fmt.Sprintf("[GET /consents/{consentId}][%d] paymentsGetConsentsConsentIdBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *PaymentsGetConsentsConsentIDBadRequest) GetPayload() *models.ResponseError {
 	return o.Payload
 }
@@ -182,7 +244,8 @@ func NewPaymentsGetConsentsConsentIDUnauthorized() *PaymentsGetConsentsConsentID
 	return &PaymentsGetConsentsConsentIDUnauthorized{}
 }
 
-/* PaymentsGetConsentsConsentIDUnauthorized describes a response with status code 401, with default header values.
+/*
+PaymentsGetConsentsConsentIDUnauthorized describes a response with status code 401, with default header values.
 
 Cabealho de autenticao ausente/invlido ou token invlido
 */
@@ -196,9 +259,39 @@ type PaymentsGetConsentsConsentIDUnauthorized struct {
 	Payload *models.ResponseError
 }
 
+// IsSuccess returns true when this payments get consents consent Id unauthorized response has a 2xx status code
+func (o *PaymentsGetConsentsConsentIDUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this payments get consents consent Id unauthorized response has a 3xx status code
+func (o *PaymentsGetConsentsConsentIDUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this payments get consents consent Id unauthorized response has a 4xx status code
+func (o *PaymentsGetConsentsConsentIDUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this payments get consents consent Id unauthorized response has a 5xx status code
+func (o *PaymentsGetConsentsConsentIDUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this payments get consents consent Id unauthorized response a status code equal to that given
+func (o *PaymentsGetConsentsConsentIDUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *PaymentsGetConsentsConsentIDUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /consents/{consentId}][%d] paymentsGetConsentsConsentIdUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *PaymentsGetConsentsConsentIDUnauthorized) String() string {
+	return fmt.Sprintf("[GET /consents/{consentId}][%d] paymentsGetConsentsConsentIdUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *PaymentsGetConsentsConsentIDUnauthorized) GetPayload() *models.ResponseError {
 	return o.Payload
 }
@@ -227,7 +320,8 @@ func NewPaymentsGetConsentsConsentIDForbidden() *PaymentsGetConsentsConsentIDFor
 	return &PaymentsGetConsentsConsentIDForbidden{}
 }
 
-/* PaymentsGetConsentsConsentIDForbidden describes a response with status code 403, with default header values.
+/*
+PaymentsGetConsentsConsentIDForbidden describes a response with status code 403, with default header values.
 
 O token tem escopo incorreto ou uma poltica de segurana foi violada
 */
@@ -241,9 +335,39 @@ type PaymentsGetConsentsConsentIDForbidden struct {
 	Payload *models.ResponseError
 }
 
+// IsSuccess returns true when this payments get consents consent Id forbidden response has a 2xx status code
+func (o *PaymentsGetConsentsConsentIDForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this payments get consents consent Id forbidden response has a 3xx status code
+func (o *PaymentsGetConsentsConsentIDForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this payments get consents consent Id forbidden response has a 4xx status code
+func (o *PaymentsGetConsentsConsentIDForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this payments get consents consent Id forbidden response has a 5xx status code
+func (o *PaymentsGetConsentsConsentIDForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this payments get consents consent Id forbidden response a status code equal to that given
+func (o *PaymentsGetConsentsConsentIDForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *PaymentsGetConsentsConsentIDForbidden) Error() string {
 	return fmt.Sprintf("[GET /consents/{consentId}][%d] paymentsGetConsentsConsentIdForbidden  %+v", 403, o.Payload)
 }
+
+func (o *PaymentsGetConsentsConsentIDForbidden) String() string {
+	return fmt.Sprintf("[GET /consents/{consentId}][%d] paymentsGetConsentsConsentIdForbidden  %+v", 403, o.Payload)
+}
+
 func (o *PaymentsGetConsentsConsentIDForbidden) GetPayload() *models.ResponseError {
 	return o.Payload
 }
@@ -272,7 +396,8 @@ func NewPaymentsGetConsentsConsentIDNotFound() *PaymentsGetConsentsConsentIDNotF
 	return &PaymentsGetConsentsConsentIDNotFound{}
 }
 
-/* PaymentsGetConsentsConsentIDNotFound describes a response with status code 404, with default header values.
+/*
+PaymentsGetConsentsConsentIDNotFound describes a response with status code 404, with default header values.
 
 O recurso solicitado no existe ou no foi implementado
 */
@@ -286,9 +411,39 @@ type PaymentsGetConsentsConsentIDNotFound struct {
 	Payload *models.ResponseError
 }
 
+// IsSuccess returns true when this payments get consents consent Id not found response has a 2xx status code
+func (o *PaymentsGetConsentsConsentIDNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this payments get consents consent Id not found response has a 3xx status code
+func (o *PaymentsGetConsentsConsentIDNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this payments get consents consent Id not found response has a 4xx status code
+func (o *PaymentsGetConsentsConsentIDNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this payments get consents consent Id not found response has a 5xx status code
+func (o *PaymentsGetConsentsConsentIDNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this payments get consents consent Id not found response a status code equal to that given
+func (o *PaymentsGetConsentsConsentIDNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *PaymentsGetConsentsConsentIDNotFound) Error() string {
 	return fmt.Sprintf("[GET /consents/{consentId}][%d] paymentsGetConsentsConsentIdNotFound  %+v", 404, o.Payload)
 }
+
+func (o *PaymentsGetConsentsConsentIDNotFound) String() string {
+	return fmt.Sprintf("[GET /consents/{consentId}][%d] paymentsGetConsentsConsentIdNotFound  %+v", 404, o.Payload)
+}
+
 func (o *PaymentsGetConsentsConsentIDNotFound) GetPayload() *models.ResponseError {
 	return o.Payload
 }
@@ -317,7 +472,8 @@ func NewPaymentsGetConsentsConsentIDMethodNotAllowed() *PaymentsGetConsentsConse
 	return &PaymentsGetConsentsConsentIDMethodNotAllowed{}
 }
 
-/* PaymentsGetConsentsConsentIDMethodNotAllowed describes a response with status code 405, with default header values.
+/*
+PaymentsGetConsentsConsentIDMethodNotAllowed describes a response with status code 405, with default header values.
 
 O consumidor tentou acessar o recurso com um mtodo no suportado
 */
@@ -331,9 +487,39 @@ type PaymentsGetConsentsConsentIDMethodNotAllowed struct {
 	Payload *models.ResponseError
 }
 
+// IsSuccess returns true when this payments get consents consent Id method not allowed response has a 2xx status code
+func (o *PaymentsGetConsentsConsentIDMethodNotAllowed) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this payments get consents consent Id method not allowed response has a 3xx status code
+func (o *PaymentsGetConsentsConsentIDMethodNotAllowed) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this payments get consents consent Id method not allowed response has a 4xx status code
+func (o *PaymentsGetConsentsConsentIDMethodNotAllowed) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this payments get consents consent Id method not allowed response has a 5xx status code
+func (o *PaymentsGetConsentsConsentIDMethodNotAllowed) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this payments get consents consent Id method not allowed response a status code equal to that given
+func (o *PaymentsGetConsentsConsentIDMethodNotAllowed) IsCode(code int) bool {
+	return code == 405
+}
+
 func (o *PaymentsGetConsentsConsentIDMethodNotAllowed) Error() string {
 	return fmt.Sprintf("[GET /consents/{consentId}][%d] paymentsGetConsentsConsentIdMethodNotAllowed  %+v", 405, o.Payload)
 }
+
+func (o *PaymentsGetConsentsConsentIDMethodNotAllowed) String() string {
+	return fmt.Sprintf("[GET /consents/{consentId}][%d] paymentsGetConsentsConsentIdMethodNotAllowed  %+v", 405, o.Payload)
+}
+
 func (o *PaymentsGetConsentsConsentIDMethodNotAllowed) GetPayload() *models.ResponseError {
 	return o.Payload
 }
@@ -362,7 +548,8 @@ func NewPaymentsGetConsentsConsentIDNotAcceptable() *PaymentsGetConsentsConsentI
 	return &PaymentsGetConsentsConsentIDNotAcceptable{}
 }
 
-/* PaymentsGetConsentsConsentIDNotAcceptable describes a response with status code 406, with default header values.
+/*
+PaymentsGetConsentsConsentIDNotAcceptable describes a response with status code 406, with default header values.
 
 A solicitao continha um cabealho Accept diferente dos tipos de mdia permitidos ou um conjunto de caracteres diferente de UTF-8
 */
@@ -376,9 +563,39 @@ type PaymentsGetConsentsConsentIDNotAcceptable struct {
 	Payload *models.ResponseError
 }
 
+// IsSuccess returns true when this payments get consents consent Id not acceptable response has a 2xx status code
+func (o *PaymentsGetConsentsConsentIDNotAcceptable) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this payments get consents consent Id not acceptable response has a 3xx status code
+func (o *PaymentsGetConsentsConsentIDNotAcceptable) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this payments get consents consent Id not acceptable response has a 4xx status code
+func (o *PaymentsGetConsentsConsentIDNotAcceptable) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this payments get consents consent Id not acceptable response has a 5xx status code
+func (o *PaymentsGetConsentsConsentIDNotAcceptable) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this payments get consents consent Id not acceptable response a status code equal to that given
+func (o *PaymentsGetConsentsConsentIDNotAcceptable) IsCode(code int) bool {
+	return code == 406
+}
+
 func (o *PaymentsGetConsentsConsentIDNotAcceptable) Error() string {
 	return fmt.Sprintf("[GET /consents/{consentId}][%d] paymentsGetConsentsConsentIdNotAcceptable  %+v", 406, o.Payload)
 }
+
+func (o *PaymentsGetConsentsConsentIDNotAcceptable) String() string {
+	return fmt.Sprintf("[GET /consents/{consentId}][%d] paymentsGetConsentsConsentIdNotAcceptable  %+v", 406, o.Payload)
+}
+
 func (o *PaymentsGetConsentsConsentIDNotAcceptable) GetPayload() *models.ResponseError {
 	return o.Payload
 }
@@ -407,7 +624,8 @@ func NewPaymentsGetConsentsConsentIDTooManyRequests() *PaymentsGetConsentsConsen
 	return &PaymentsGetConsentsConsentIDTooManyRequests{}
 }
 
-/* PaymentsGetConsentsConsentIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+PaymentsGetConsentsConsentIDTooManyRequests describes a response with status code 429, with default header values.
 
 A operao foi recusada, pois muitas solicitaes foram feitas dentro de um determinado perodo ou o limite global de requisies concorrentes foi atingido
 */
@@ -426,9 +644,39 @@ type PaymentsGetConsentsConsentIDTooManyRequests struct {
 	Payload *models.ResponseError
 }
 
+// IsSuccess returns true when this payments get consents consent Id too many requests response has a 2xx status code
+func (o *PaymentsGetConsentsConsentIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this payments get consents consent Id too many requests response has a 3xx status code
+func (o *PaymentsGetConsentsConsentIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this payments get consents consent Id too many requests response has a 4xx status code
+func (o *PaymentsGetConsentsConsentIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this payments get consents consent Id too many requests response has a 5xx status code
+func (o *PaymentsGetConsentsConsentIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this payments get consents consent Id too many requests response a status code equal to that given
+func (o *PaymentsGetConsentsConsentIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *PaymentsGetConsentsConsentIDTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /consents/{consentId}][%d] paymentsGetConsentsConsentIdTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *PaymentsGetConsentsConsentIDTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /consents/{consentId}][%d] paymentsGetConsentsConsentIdTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *PaymentsGetConsentsConsentIDTooManyRequests) GetPayload() *models.ResponseError {
 	return o.Payload
 }
@@ -464,7 +712,8 @@ func NewPaymentsGetConsentsConsentIDInternalServerError() *PaymentsGetConsentsCo
 	return &PaymentsGetConsentsConsentIDInternalServerError{}
 }
 
-/* PaymentsGetConsentsConsentIDInternalServerError describes a response with status code 500, with default header values.
+/*
+PaymentsGetConsentsConsentIDInternalServerError describes a response with status code 500, with default header values.
 
 Ocorreu um erro no gateway da API ou no microsservio
 */
@@ -478,9 +727,39 @@ type PaymentsGetConsentsConsentIDInternalServerError struct {
 	Payload *models.ResponseError
 }
 
+// IsSuccess returns true when this payments get consents consent Id internal server error response has a 2xx status code
+func (o *PaymentsGetConsentsConsentIDInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this payments get consents consent Id internal server error response has a 3xx status code
+func (o *PaymentsGetConsentsConsentIDInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this payments get consents consent Id internal server error response has a 4xx status code
+func (o *PaymentsGetConsentsConsentIDInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this payments get consents consent Id internal server error response has a 5xx status code
+func (o *PaymentsGetConsentsConsentIDInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this payments get consents consent Id internal server error response a status code equal to that given
+func (o *PaymentsGetConsentsConsentIDInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *PaymentsGetConsentsConsentIDInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /consents/{consentId}][%d] paymentsGetConsentsConsentIdInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *PaymentsGetConsentsConsentIDInternalServerError) String() string {
+	return fmt.Sprintf("[GET /consents/{consentId}][%d] paymentsGetConsentsConsentIdInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *PaymentsGetConsentsConsentIDInternalServerError) GetPayload() *models.ResponseError {
 	return o.Payload
 }
@@ -511,7 +790,8 @@ func NewPaymentsGetConsentsConsentIDDefault(code int) *PaymentsGetConsentsConsen
 	}
 }
 
-/* PaymentsGetConsentsConsentIDDefault describes a response with status code -1, with default header values.
+/*
+PaymentsGetConsentsConsentIDDefault describes a response with status code -1, with default header values.
 
 Erro inesperado.
 */
@@ -526,9 +806,39 @@ func (o *PaymentsGetConsentsConsentIDDefault) Code() int {
 	return o._statusCode
 }
 
+// IsSuccess returns true when this payments get consents consent Id default response has a 2xx status code
+func (o *PaymentsGetConsentsConsentIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this payments get consents consent Id default response has a 3xx status code
+func (o *PaymentsGetConsentsConsentIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this payments get consents consent Id default response has a 4xx status code
+func (o *PaymentsGetConsentsConsentIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this payments get consents consent Id default response has a 5xx status code
+func (o *PaymentsGetConsentsConsentIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this payments get consents consent Id default response a status code equal to that given
+func (o *PaymentsGetConsentsConsentIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 func (o *PaymentsGetConsentsConsentIDDefault) Error() string {
 	return fmt.Sprintf("[GET /consents/{consentId}][%d] paymentsGetConsentsConsentId default  %+v", o._statusCode, o.Payload)
 }
+
+func (o *PaymentsGetConsentsConsentIDDefault) String() string {
+	return fmt.Sprintf("[GET /consents/{consentId}][%d] paymentsGetConsentsConsentId default  %+v", o._statusCode, o.Payload)
+}
+
 func (o *PaymentsGetConsentsConsentIDDefault) GetPayload() *models.ResponseError {
 	return o.Payload
 }

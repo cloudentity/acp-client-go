@@ -20,8 +20,12 @@ import (
 type OBFeeFrequency1Code2 string
 
 func NewOBFeeFrequency1Code2(value OBFeeFrequency1Code2) *OBFeeFrequency1Code2 {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated OBFeeFrequency1Code2.
+func (m OBFeeFrequency1Code2) Pointer() *OBFeeFrequency1Code2 {
+	return &m
 }
 
 const (

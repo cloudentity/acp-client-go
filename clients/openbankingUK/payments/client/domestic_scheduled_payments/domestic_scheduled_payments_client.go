@@ -38,7 +38,7 @@ type ClientService interface {
 }
 
 /*
-  CreateDomesticScheduledPaymentConsents creates domestic scheduled payment consents
+CreateDomesticScheduledPaymentConsents creates domestic scheduled payment consents
 */
 func (a *Client) CreateDomesticScheduledPaymentConsents(params *CreateDomesticScheduledPaymentConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateDomesticScheduledPaymentConsentsCreated, error) {
 	// TODO: Validate the params before sending
@@ -77,7 +77,7 @@ func (a *Client) CreateDomesticScheduledPaymentConsents(params *CreateDomesticSc
 }
 
 /*
-  GetDomesticScheduledPaymentConsentsConsentID gets domestic scheduled payment consents
+GetDomesticScheduledPaymentConsentsConsentID gets domestic scheduled payment consents
 */
 func (a *Client) GetDomesticScheduledPaymentConsentsConsentID(params *GetDomesticScheduledPaymentConsentsConsentIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDomesticScheduledPaymentConsentsConsentIDOK, error) {
 	// TODO: Validate the params before sending

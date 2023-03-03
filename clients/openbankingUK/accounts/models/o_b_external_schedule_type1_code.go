@@ -20,8 +20,12 @@ import (
 type OBExternalScheduleType1Code string
 
 func NewOBExternalScheduleType1Code(value OBExternalScheduleType1Code) *OBExternalScheduleType1Code {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated OBExternalScheduleType1Code.
+func (m OBExternalScheduleType1Code) Pointer() *OBExternalScheduleType1Code {
+	return &m
 }
 
 const (

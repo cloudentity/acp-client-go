@@ -20,8 +20,12 @@ import (
 type OBExternalDirectDebitStatus1Code string
 
 func NewOBExternalDirectDebitStatus1Code(value OBExternalDirectDebitStatus1Code) *OBExternalDirectDebitStatus1Code {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated OBExternalDirectDebitStatus1Code.
+func (m OBExternalDirectDebitStatus1Code) Pointer() *OBExternalDirectDebitStatus1Code {
+	return &m
 }
 
 const (

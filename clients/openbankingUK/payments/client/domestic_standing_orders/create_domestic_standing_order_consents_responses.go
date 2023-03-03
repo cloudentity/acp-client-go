@@ -95,7 +95,8 @@ func NewCreateDomesticStandingOrderConsentsCreated() *CreateDomesticStandingOrde
 	return &CreateDomesticStandingOrderConsentsCreated{}
 }
 
-/* CreateDomesticStandingOrderConsentsCreated describes a response with status code 201, with default header values.
+/*
+CreateDomesticStandingOrderConsentsCreated describes a response with status code 201, with default header values.
 
 Domestic Standing Order Consents Created
 */
@@ -113,9 +114,39 @@ type CreateDomesticStandingOrderConsentsCreated struct {
 	Payload *models.OBWriteDomesticStandingOrderConsentResponse6
 }
 
+// IsSuccess returns true when this create domestic standing order consents created response has a 2xx status code
+func (o *CreateDomesticStandingOrderConsentsCreated) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this create domestic standing order consents created response has a 3xx status code
+func (o *CreateDomesticStandingOrderConsentsCreated) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create domestic standing order consents created response has a 4xx status code
+func (o *CreateDomesticStandingOrderConsentsCreated) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create domestic standing order consents created response has a 5xx status code
+func (o *CreateDomesticStandingOrderConsentsCreated) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create domestic standing order consents created response a status code equal to that given
+func (o *CreateDomesticStandingOrderConsentsCreated) IsCode(code int) bool {
+	return code == 201
+}
+
 func (o *CreateDomesticStandingOrderConsentsCreated) Error() string {
 	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsCreated  %+v", 201, o.Payload)
 }
+
+func (o *CreateDomesticStandingOrderConsentsCreated) String() string {
+	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsCreated  %+v", 201, o.Payload)
+}
+
 func (o *CreateDomesticStandingOrderConsentsCreated) GetPayload() *models.OBWriteDomesticStandingOrderConsentResponse6 {
 	return o.Payload
 }
@@ -151,7 +182,8 @@ func NewCreateDomesticStandingOrderConsentsBadRequest() *CreateDomesticStandingO
 	return &CreateDomesticStandingOrderConsentsBadRequest{}
 }
 
-/* CreateDomesticStandingOrderConsentsBadRequest describes a response with status code 400, with default header values.
+/*
+CreateDomesticStandingOrderConsentsBadRequest describes a response with status code 400, with default header values.
 
 Bad request
 */
@@ -169,9 +201,39 @@ type CreateDomesticStandingOrderConsentsBadRequest struct {
 	Payload *models.OBErrorResponse1
 }
 
+// IsSuccess returns true when this create domestic standing order consents bad request response has a 2xx status code
+func (o *CreateDomesticStandingOrderConsentsBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create domestic standing order consents bad request response has a 3xx status code
+func (o *CreateDomesticStandingOrderConsentsBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create domestic standing order consents bad request response has a 4xx status code
+func (o *CreateDomesticStandingOrderConsentsBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create domestic standing order consents bad request response has a 5xx status code
+func (o *CreateDomesticStandingOrderConsentsBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create domestic standing order consents bad request response a status code equal to that given
+func (o *CreateDomesticStandingOrderConsentsBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *CreateDomesticStandingOrderConsentsBadRequest) Error() string {
 	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *CreateDomesticStandingOrderConsentsBadRequest) String() string {
+	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *CreateDomesticStandingOrderConsentsBadRequest) GetPayload() *models.OBErrorResponse1 {
 	return o.Payload
 }
@@ -207,7 +269,8 @@ func NewCreateDomesticStandingOrderConsentsUnauthorized() *CreateDomesticStandin
 	return &CreateDomesticStandingOrderConsentsUnauthorized{}
 }
 
-/* CreateDomesticStandingOrderConsentsUnauthorized describes a response with status code 401, with default header values.
+/*
+CreateDomesticStandingOrderConsentsUnauthorized describes a response with status code 401, with default header values.
 
 Unauthorized
 */
@@ -218,7 +281,36 @@ type CreateDomesticStandingOrderConsentsUnauthorized struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this create domestic standing order consents unauthorized response has a 2xx status code
+func (o *CreateDomesticStandingOrderConsentsUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create domestic standing order consents unauthorized response has a 3xx status code
+func (o *CreateDomesticStandingOrderConsentsUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create domestic standing order consents unauthorized response has a 4xx status code
+func (o *CreateDomesticStandingOrderConsentsUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create domestic standing order consents unauthorized response has a 5xx status code
+func (o *CreateDomesticStandingOrderConsentsUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create domestic standing order consents unauthorized response a status code equal to that given
+func (o *CreateDomesticStandingOrderConsentsUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *CreateDomesticStandingOrderConsentsUnauthorized) Error() string {
+	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsUnauthorized ", 401)
+}
+
+func (o *CreateDomesticStandingOrderConsentsUnauthorized) String() string {
 	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsUnauthorized ", 401)
 }
 
@@ -239,7 +331,8 @@ func NewCreateDomesticStandingOrderConsentsForbidden() *CreateDomesticStandingOr
 	return &CreateDomesticStandingOrderConsentsForbidden{}
 }
 
-/* CreateDomesticStandingOrderConsentsForbidden describes a response with status code 403, with default header values.
+/*
+CreateDomesticStandingOrderConsentsForbidden describes a response with status code 403, with default header values.
 
 Forbidden
 */
@@ -257,9 +350,39 @@ type CreateDomesticStandingOrderConsentsForbidden struct {
 	Payload *models.OBErrorResponse1
 }
 
+// IsSuccess returns true when this create domestic standing order consents forbidden response has a 2xx status code
+func (o *CreateDomesticStandingOrderConsentsForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create domestic standing order consents forbidden response has a 3xx status code
+func (o *CreateDomesticStandingOrderConsentsForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create domestic standing order consents forbidden response has a 4xx status code
+func (o *CreateDomesticStandingOrderConsentsForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create domestic standing order consents forbidden response has a 5xx status code
+func (o *CreateDomesticStandingOrderConsentsForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create domestic standing order consents forbidden response a status code equal to that given
+func (o *CreateDomesticStandingOrderConsentsForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *CreateDomesticStandingOrderConsentsForbidden) Error() string {
 	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsForbidden  %+v", 403, o.Payload)
 }
+
+func (o *CreateDomesticStandingOrderConsentsForbidden) String() string {
+	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsForbidden  %+v", 403, o.Payload)
+}
+
 func (o *CreateDomesticStandingOrderConsentsForbidden) GetPayload() *models.OBErrorResponse1 {
 	return o.Payload
 }
@@ -295,7 +418,8 @@ func NewCreateDomesticStandingOrderConsentsNotFound() *CreateDomesticStandingOrd
 	return &CreateDomesticStandingOrderConsentsNotFound{}
 }
 
-/* CreateDomesticStandingOrderConsentsNotFound describes a response with status code 404, with default header values.
+/*
+CreateDomesticStandingOrderConsentsNotFound describes a response with status code 404, with default header values.
 
 Not found
 */
@@ -306,7 +430,36 @@ type CreateDomesticStandingOrderConsentsNotFound struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this create domestic standing order consents not found response has a 2xx status code
+func (o *CreateDomesticStandingOrderConsentsNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create domestic standing order consents not found response has a 3xx status code
+func (o *CreateDomesticStandingOrderConsentsNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create domestic standing order consents not found response has a 4xx status code
+func (o *CreateDomesticStandingOrderConsentsNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create domestic standing order consents not found response has a 5xx status code
+func (o *CreateDomesticStandingOrderConsentsNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create domestic standing order consents not found response a status code equal to that given
+func (o *CreateDomesticStandingOrderConsentsNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *CreateDomesticStandingOrderConsentsNotFound) Error() string {
+	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsNotFound ", 404)
+}
+
+func (o *CreateDomesticStandingOrderConsentsNotFound) String() string {
 	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsNotFound ", 404)
 }
 
@@ -327,7 +480,8 @@ func NewCreateDomesticStandingOrderConsentsMethodNotAllowed() *CreateDomesticSta
 	return &CreateDomesticStandingOrderConsentsMethodNotAllowed{}
 }
 
-/* CreateDomesticStandingOrderConsentsMethodNotAllowed describes a response with status code 405, with default header values.
+/*
+CreateDomesticStandingOrderConsentsMethodNotAllowed describes a response with status code 405, with default header values.
 
 Method Not Allowed
 */
@@ -338,7 +492,36 @@ type CreateDomesticStandingOrderConsentsMethodNotAllowed struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this create domestic standing order consents method not allowed response has a 2xx status code
+func (o *CreateDomesticStandingOrderConsentsMethodNotAllowed) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create domestic standing order consents method not allowed response has a 3xx status code
+func (o *CreateDomesticStandingOrderConsentsMethodNotAllowed) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create domestic standing order consents method not allowed response has a 4xx status code
+func (o *CreateDomesticStandingOrderConsentsMethodNotAllowed) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create domestic standing order consents method not allowed response has a 5xx status code
+func (o *CreateDomesticStandingOrderConsentsMethodNotAllowed) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create domestic standing order consents method not allowed response a status code equal to that given
+func (o *CreateDomesticStandingOrderConsentsMethodNotAllowed) IsCode(code int) bool {
+	return code == 405
+}
+
 func (o *CreateDomesticStandingOrderConsentsMethodNotAllowed) Error() string {
+	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsMethodNotAllowed ", 405)
+}
+
+func (o *CreateDomesticStandingOrderConsentsMethodNotAllowed) String() string {
 	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsMethodNotAllowed ", 405)
 }
 
@@ -359,7 +542,8 @@ func NewCreateDomesticStandingOrderConsentsNotAcceptable() *CreateDomesticStandi
 	return &CreateDomesticStandingOrderConsentsNotAcceptable{}
 }
 
-/* CreateDomesticStandingOrderConsentsNotAcceptable describes a response with status code 406, with default header values.
+/*
+CreateDomesticStandingOrderConsentsNotAcceptable describes a response with status code 406, with default header values.
 
 Not Acceptable
 */
@@ -370,7 +554,36 @@ type CreateDomesticStandingOrderConsentsNotAcceptable struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this create domestic standing order consents not acceptable response has a 2xx status code
+func (o *CreateDomesticStandingOrderConsentsNotAcceptable) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create domestic standing order consents not acceptable response has a 3xx status code
+func (o *CreateDomesticStandingOrderConsentsNotAcceptable) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create domestic standing order consents not acceptable response has a 4xx status code
+func (o *CreateDomesticStandingOrderConsentsNotAcceptable) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create domestic standing order consents not acceptable response has a 5xx status code
+func (o *CreateDomesticStandingOrderConsentsNotAcceptable) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create domestic standing order consents not acceptable response a status code equal to that given
+func (o *CreateDomesticStandingOrderConsentsNotAcceptable) IsCode(code int) bool {
+	return code == 406
+}
+
 func (o *CreateDomesticStandingOrderConsentsNotAcceptable) Error() string {
+	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsNotAcceptable ", 406)
+}
+
+func (o *CreateDomesticStandingOrderConsentsNotAcceptable) String() string {
 	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsNotAcceptable ", 406)
 }
 
@@ -391,7 +604,8 @@ func NewCreateDomesticStandingOrderConsentsUnsupportedMediaType() *CreateDomesti
 	return &CreateDomesticStandingOrderConsentsUnsupportedMediaType{}
 }
 
-/* CreateDomesticStandingOrderConsentsUnsupportedMediaType describes a response with status code 415, with default header values.
+/*
+CreateDomesticStandingOrderConsentsUnsupportedMediaType describes a response with status code 415, with default header values.
 
 Unsupported Media Type
 */
@@ -402,7 +616,36 @@ type CreateDomesticStandingOrderConsentsUnsupportedMediaType struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this create domestic standing order consents unsupported media type response has a 2xx status code
+func (o *CreateDomesticStandingOrderConsentsUnsupportedMediaType) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create domestic standing order consents unsupported media type response has a 3xx status code
+func (o *CreateDomesticStandingOrderConsentsUnsupportedMediaType) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create domestic standing order consents unsupported media type response has a 4xx status code
+func (o *CreateDomesticStandingOrderConsentsUnsupportedMediaType) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create domestic standing order consents unsupported media type response has a 5xx status code
+func (o *CreateDomesticStandingOrderConsentsUnsupportedMediaType) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create domestic standing order consents unsupported media type response a status code equal to that given
+func (o *CreateDomesticStandingOrderConsentsUnsupportedMediaType) IsCode(code int) bool {
+	return code == 415
+}
+
 func (o *CreateDomesticStandingOrderConsentsUnsupportedMediaType) Error() string {
+	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsUnsupportedMediaType ", 415)
+}
+
+func (o *CreateDomesticStandingOrderConsentsUnsupportedMediaType) String() string {
 	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsUnsupportedMediaType ", 415)
 }
 
@@ -423,7 +666,8 @@ func NewCreateDomesticStandingOrderConsentsTooManyRequests() *CreateDomesticStan
 	return &CreateDomesticStandingOrderConsentsTooManyRequests{}
 }
 
-/* CreateDomesticStandingOrderConsentsTooManyRequests describes a response with status code 429, with default header values.
+/*
+CreateDomesticStandingOrderConsentsTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -438,7 +682,36 @@ type CreateDomesticStandingOrderConsentsTooManyRequests struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this create domestic standing order consents too many requests response has a 2xx status code
+func (o *CreateDomesticStandingOrderConsentsTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create domestic standing order consents too many requests response has a 3xx status code
+func (o *CreateDomesticStandingOrderConsentsTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create domestic standing order consents too many requests response has a 4xx status code
+func (o *CreateDomesticStandingOrderConsentsTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create domestic standing order consents too many requests response has a 5xx status code
+func (o *CreateDomesticStandingOrderConsentsTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create domestic standing order consents too many requests response a status code equal to that given
+func (o *CreateDomesticStandingOrderConsentsTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *CreateDomesticStandingOrderConsentsTooManyRequests) Error() string {
+	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsTooManyRequests ", 429)
+}
+
+func (o *CreateDomesticStandingOrderConsentsTooManyRequests) String() string {
 	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsTooManyRequests ", 429)
 }
 
@@ -470,7 +743,8 @@ func NewCreateDomesticStandingOrderConsentsInternalServerError() *CreateDomestic
 	return &CreateDomesticStandingOrderConsentsInternalServerError{}
 }
 
-/* CreateDomesticStandingOrderConsentsInternalServerError describes a response with status code 500, with default header values.
+/*
+CreateDomesticStandingOrderConsentsInternalServerError describes a response with status code 500, with default header values.
 
 Internal Server Error
 */
@@ -488,9 +762,39 @@ type CreateDomesticStandingOrderConsentsInternalServerError struct {
 	Payload *models.OBErrorResponse1
 }
 
+// IsSuccess returns true when this create domestic standing order consents internal server error response has a 2xx status code
+func (o *CreateDomesticStandingOrderConsentsInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create domestic standing order consents internal server error response has a 3xx status code
+func (o *CreateDomesticStandingOrderConsentsInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create domestic standing order consents internal server error response has a 4xx status code
+func (o *CreateDomesticStandingOrderConsentsInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create domestic standing order consents internal server error response has a 5xx status code
+func (o *CreateDomesticStandingOrderConsentsInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this create domestic standing order consents internal server error response a status code equal to that given
+func (o *CreateDomesticStandingOrderConsentsInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *CreateDomesticStandingOrderConsentsInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *CreateDomesticStandingOrderConsentsInternalServerError) String() string {
+	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *CreateDomesticStandingOrderConsentsInternalServerError) GetPayload() *models.OBErrorResponse1 {
 	return o.Payload
 }

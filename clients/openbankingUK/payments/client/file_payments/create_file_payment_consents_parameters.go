@@ -54,10 +54,12 @@ func NewCreateFilePaymentConsentsParamsWithHTTPClient(client *http.Client) *Crea
 	}
 }
 
-/* CreateFilePaymentConsentsParams contains all the parameters to send to the API endpoint
-   for the create file payment consents operation.
+/*
+CreateFilePaymentConsentsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the create file payment consents operation.
+
+	Typically these are written to a http.Request.
 */
 type CreateFilePaymentConsentsParams struct {
 

@@ -30,8 +30,12 @@ import (
 type EnumAuthorisationStatusType string
 
 func NewEnumAuthorisationStatusType(value EnumAuthorisationStatusType) *EnumAuthorisationStatusType {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated EnumAuthorisationStatusType.
+func (m EnumAuthorisationStatusType) Pointer() *EnumAuthorisationStatusType {
+	return &m
 }
 
 const (

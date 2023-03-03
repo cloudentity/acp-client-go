@@ -30,6 +30,8 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	FDXDynamicClientRegistration(params *FDXDynamicClientRegistrationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FDXDynamicClientRegistrationCreated, error)
+
 	AcceptFDXConsentSystem(params *AcceptFDXConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptFDXConsentSystemOK, error)
 
 	FdxConsentIntrospect(params *FdxConsentIntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FdxConsentIntrospectOK, error)
@@ -51,6 +53,47 @@ type ClientService interface {
 	RevokeFDXConsents(params *RevokeFDXConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeFDXConsentsOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+FDXDynamicClientRegistration fs d x compliant dynamic client registration endpoint
+
+This endpoint can be used to dynamically register new clients.
+*/
+func (a *Client) FDXDynamicClientRegistration(params *FDXDynamicClientRegistrationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FDXDynamicClientRegistrationCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewFDXDynamicClientRegistrationParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "FDXDynamicClientRegistration",
+		Method:             "POST",
+		PathPattern:        "/fdx/dcr/register",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &FDXDynamicClientRegistrationReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*FDXDynamicClientRegistrationCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for FDXDynamicClientRegistration: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
 }
 
 /*

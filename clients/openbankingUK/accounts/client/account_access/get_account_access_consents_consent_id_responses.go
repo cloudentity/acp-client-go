@@ -83,7 +83,8 @@ func NewGetAccountAccessConsentsConsentIDOK() *GetAccountAccessConsentsConsentID
 	return &GetAccountAccessConsentsConsentIDOK{}
 }
 
-/* GetAccountAccessConsentsConsentIDOK describes a response with status code 200, with default header values.
+/*
+GetAccountAccessConsentsConsentIDOK describes a response with status code 200, with default header values.
 
 Account Access Consents Read
 */
@@ -96,9 +97,39 @@ type GetAccountAccessConsentsConsentIDOK struct {
 	Payload *models.OBReadConsentResponse1
 }
 
+// IsSuccess returns true when this get account access consents consent Id o k response has a 2xx status code
+func (o *GetAccountAccessConsentsConsentIDOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get account access consents consent Id o k response has a 3xx status code
+func (o *GetAccountAccessConsentsConsentIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get account access consents consent Id o k response has a 4xx status code
+func (o *GetAccountAccessConsentsConsentIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get account access consents consent Id o k response has a 5xx status code
+func (o *GetAccountAccessConsentsConsentIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get account access consents consent Id o k response a status code equal to that given
+func (o *GetAccountAccessConsentsConsentIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *GetAccountAccessConsentsConsentIDOK) Error() string {
 	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdOK  %+v", 200, o.Payload)
 }
+
+func (o *GetAccountAccessConsentsConsentIDOK) String() string {
+	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdOK  %+v", 200, o.Payload)
+}
+
 func (o *GetAccountAccessConsentsConsentIDOK) GetPayload() *models.OBReadConsentResponse1 {
 	return o.Payload
 }
@@ -127,7 +158,8 @@ func NewGetAccountAccessConsentsConsentIDBadRequest() *GetAccountAccessConsentsC
 	return &GetAccountAccessConsentsConsentIDBadRequest{}
 }
 
-/* GetAccountAccessConsentsConsentIDBadRequest describes a response with status code 400, with default header values.
+/*
+GetAccountAccessConsentsConsentIDBadRequest describes a response with status code 400, with default header values.
 
 Bad request
 */
@@ -140,9 +172,39 @@ type GetAccountAccessConsentsConsentIDBadRequest struct {
 	Payload *models.OBErrorResponse1
 }
 
+// IsSuccess returns true when this get account access consents consent Id bad request response has a 2xx status code
+func (o *GetAccountAccessConsentsConsentIDBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get account access consents consent Id bad request response has a 3xx status code
+func (o *GetAccountAccessConsentsConsentIDBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get account access consents consent Id bad request response has a 4xx status code
+func (o *GetAccountAccessConsentsConsentIDBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get account access consents consent Id bad request response has a 5xx status code
+func (o *GetAccountAccessConsentsConsentIDBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get account access consents consent Id bad request response a status code equal to that given
+func (o *GetAccountAccessConsentsConsentIDBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *GetAccountAccessConsentsConsentIDBadRequest) Error() string {
 	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *GetAccountAccessConsentsConsentIDBadRequest) String() string {
+	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *GetAccountAccessConsentsConsentIDBadRequest) GetPayload() *models.OBErrorResponse1 {
 	return o.Payload
 }
@@ -171,7 +233,8 @@ func NewGetAccountAccessConsentsConsentIDUnauthorized() *GetAccountAccessConsent
 	return &GetAccountAccessConsentsConsentIDUnauthorized{}
 }
 
-/* GetAccountAccessConsentsConsentIDUnauthorized describes a response with status code 401, with default header values.
+/*
+GetAccountAccessConsentsConsentIDUnauthorized describes a response with status code 401, with default header values.
 
 Unauthorized
 */
@@ -182,7 +245,36 @@ type GetAccountAccessConsentsConsentIDUnauthorized struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this get account access consents consent Id unauthorized response has a 2xx status code
+func (o *GetAccountAccessConsentsConsentIDUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get account access consents consent Id unauthorized response has a 3xx status code
+func (o *GetAccountAccessConsentsConsentIDUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get account access consents consent Id unauthorized response has a 4xx status code
+func (o *GetAccountAccessConsentsConsentIDUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get account access consents consent Id unauthorized response has a 5xx status code
+func (o *GetAccountAccessConsentsConsentIDUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get account access consents consent Id unauthorized response a status code equal to that given
+func (o *GetAccountAccessConsentsConsentIDUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *GetAccountAccessConsentsConsentIDUnauthorized) Error() string {
+	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdUnauthorized ", 401)
+}
+
+func (o *GetAccountAccessConsentsConsentIDUnauthorized) String() string {
 	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdUnauthorized ", 401)
 }
 
@@ -203,7 +295,8 @@ func NewGetAccountAccessConsentsConsentIDForbidden() *GetAccountAccessConsentsCo
 	return &GetAccountAccessConsentsConsentIDForbidden{}
 }
 
-/* GetAccountAccessConsentsConsentIDForbidden describes a response with status code 403, with default header values.
+/*
+GetAccountAccessConsentsConsentIDForbidden describes a response with status code 403, with default header values.
 
 Forbidden
 */
@@ -216,9 +309,39 @@ type GetAccountAccessConsentsConsentIDForbidden struct {
 	Payload *models.OBErrorResponse1
 }
 
+// IsSuccess returns true when this get account access consents consent Id forbidden response has a 2xx status code
+func (o *GetAccountAccessConsentsConsentIDForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get account access consents consent Id forbidden response has a 3xx status code
+func (o *GetAccountAccessConsentsConsentIDForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get account access consents consent Id forbidden response has a 4xx status code
+func (o *GetAccountAccessConsentsConsentIDForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get account access consents consent Id forbidden response has a 5xx status code
+func (o *GetAccountAccessConsentsConsentIDForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get account access consents consent Id forbidden response a status code equal to that given
+func (o *GetAccountAccessConsentsConsentIDForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *GetAccountAccessConsentsConsentIDForbidden) Error() string {
 	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdForbidden  %+v", 403, o.Payload)
 }
+
+func (o *GetAccountAccessConsentsConsentIDForbidden) String() string {
+	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdForbidden  %+v", 403, o.Payload)
+}
+
 func (o *GetAccountAccessConsentsConsentIDForbidden) GetPayload() *models.OBErrorResponse1 {
 	return o.Payload
 }
@@ -247,7 +370,8 @@ func NewGetAccountAccessConsentsConsentIDMethodNotAllowed() *GetAccountAccessCon
 	return &GetAccountAccessConsentsConsentIDMethodNotAllowed{}
 }
 
-/* GetAccountAccessConsentsConsentIDMethodNotAllowed describes a response with status code 405, with default header values.
+/*
+GetAccountAccessConsentsConsentIDMethodNotAllowed describes a response with status code 405, with default header values.
 
 Method Not Allowed
 */
@@ -258,7 +382,36 @@ type GetAccountAccessConsentsConsentIDMethodNotAllowed struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this get account access consents consent Id method not allowed response has a 2xx status code
+func (o *GetAccountAccessConsentsConsentIDMethodNotAllowed) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get account access consents consent Id method not allowed response has a 3xx status code
+func (o *GetAccountAccessConsentsConsentIDMethodNotAllowed) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get account access consents consent Id method not allowed response has a 4xx status code
+func (o *GetAccountAccessConsentsConsentIDMethodNotAllowed) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get account access consents consent Id method not allowed response has a 5xx status code
+func (o *GetAccountAccessConsentsConsentIDMethodNotAllowed) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get account access consents consent Id method not allowed response a status code equal to that given
+func (o *GetAccountAccessConsentsConsentIDMethodNotAllowed) IsCode(code int) bool {
+	return code == 405
+}
+
 func (o *GetAccountAccessConsentsConsentIDMethodNotAllowed) Error() string {
+	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdMethodNotAllowed ", 405)
+}
+
+func (o *GetAccountAccessConsentsConsentIDMethodNotAllowed) String() string {
 	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdMethodNotAllowed ", 405)
 }
 
@@ -279,7 +432,8 @@ func NewGetAccountAccessConsentsConsentIDNotAcceptable() *GetAccountAccessConsen
 	return &GetAccountAccessConsentsConsentIDNotAcceptable{}
 }
 
-/* GetAccountAccessConsentsConsentIDNotAcceptable describes a response with status code 406, with default header values.
+/*
+GetAccountAccessConsentsConsentIDNotAcceptable describes a response with status code 406, with default header values.
 
 Not Acceptable
 */
@@ -290,7 +444,36 @@ type GetAccountAccessConsentsConsentIDNotAcceptable struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this get account access consents consent Id not acceptable response has a 2xx status code
+func (o *GetAccountAccessConsentsConsentIDNotAcceptable) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get account access consents consent Id not acceptable response has a 3xx status code
+func (o *GetAccountAccessConsentsConsentIDNotAcceptable) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get account access consents consent Id not acceptable response has a 4xx status code
+func (o *GetAccountAccessConsentsConsentIDNotAcceptable) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get account access consents consent Id not acceptable response has a 5xx status code
+func (o *GetAccountAccessConsentsConsentIDNotAcceptable) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get account access consents consent Id not acceptable response a status code equal to that given
+func (o *GetAccountAccessConsentsConsentIDNotAcceptable) IsCode(code int) bool {
+	return code == 406
+}
+
 func (o *GetAccountAccessConsentsConsentIDNotAcceptable) Error() string {
+	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdNotAcceptable ", 406)
+}
+
+func (o *GetAccountAccessConsentsConsentIDNotAcceptable) String() string {
 	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdNotAcceptable ", 406)
 }
 
@@ -311,7 +494,8 @@ func NewGetAccountAccessConsentsConsentIDTooManyRequests() *GetAccountAccessCons
 	return &GetAccountAccessConsentsConsentIDTooManyRequests{}
 }
 
-/* GetAccountAccessConsentsConsentIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetAccountAccessConsentsConsentIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -326,7 +510,36 @@ type GetAccountAccessConsentsConsentIDTooManyRequests struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this get account access consents consent Id too many requests response has a 2xx status code
+func (o *GetAccountAccessConsentsConsentIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get account access consents consent Id too many requests response has a 3xx status code
+func (o *GetAccountAccessConsentsConsentIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get account access consents consent Id too many requests response has a 4xx status code
+func (o *GetAccountAccessConsentsConsentIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get account access consents consent Id too many requests response has a 5xx status code
+func (o *GetAccountAccessConsentsConsentIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get account access consents consent Id too many requests response a status code equal to that given
+func (o *GetAccountAccessConsentsConsentIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *GetAccountAccessConsentsConsentIDTooManyRequests) Error() string {
+	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdTooManyRequests ", 429)
+}
+
+func (o *GetAccountAccessConsentsConsentIDTooManyRequests) String() string {
 	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdTooManyRequests ", 429)
 }
 
@@ -358,7 +571,8 @@ func NewGetAccountAccessConsentsConsentIDInternalServerError() *GetAccountAccess
 	return &GetAccountAccessConsentsConsentIDInternalServerError{}
 }
 
-/* GetAccountAccessConsentsConsentIDInternalServerError describes a response with status code 500, with default header values.
+/*
+GetAccountAccessConsentsConsentIDInternalServerError describes a response with status code 500, with default header values.
 
 Internal Server Error
 */
@@ -371,9 +585,39 @@ type GetAccountAccessConsentsConsentIDInternalServerError struct {
 	Payload *models.OBErrorResponse1
 }
 
+// IsSuccess returns true when this get account access consents consent Id internal server error response has a 2xx status code
+func (o *GetAccountAccessConsentsConsentIDInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get account access consents consent Id internal server error response has a 3xx status code
+func (o *GetAccountAccessConsentsConsentIDInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get account access consents consent Id internal server error response has a 4xx status code
+func (o *GetAccountAccessConsentsConsentIDInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get account access consents consent Id internal server error response has a 5xx status code
+func (o *GetAccountAccessConsentsConsentIDInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this get account access consents consent Id internal server error response a status code equal to that given
+func (o *GetAccountAccessConsentsConsentIDInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *GetAccountAccessConsentsConsentIDInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *GetAccountAccessConsentsConsentIDInternalServerError) String() string {
+	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *GetAccountAccessConsentsConsentIDInternalServerError) GetPayload() *models.OBErrorResponse1 {
 	return o.Payload
 }

@@ -20,8 +20,12 @@ import (
 type OBCreditDebitCode1 string
 
 func NewOBCreditDebitCode1(value OBCreditDebitCode1) *OBCreditDebitCode1 {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated OBCreditDebitCode1.
+func (m OBCreditDebitCode1) Pointer() *OBCreditDebitCode1 {
+	return &m
 }
 
 const (

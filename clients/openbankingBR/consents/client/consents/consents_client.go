@@ -38,9 +38,9 @@ type ClientService interface {
 }
 
 /*
-  ConsentsDeleteConsentsConsentID consents delete consents consent Id
+ConsentsDeleteConsentsConsentID consents delete consents consent Id
 
-  Mtodo para deletar / revogar o consentimento identificado por consentId.
+Mtodo para deletar / revogar o consentimento identificado por consentId.
 */
 func (a *Client) ConsentsDeleteConsentsConsentID(params *ConsentsDeleteConsentsConsentIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ConsentsDeleteConsentsConsentIDNoContent, error) {
 	// TODO: Validate the params before sending
@@ -78,9 +78,9 @@ func (a *Client) ConsentsDeleteConsentsConsentID(params *ConsentsDeleteConsentsC
 }
 
 /*
-  ConsentsGetConsentsConsentID consents get consents consent Id
+ConsentsGetConsentsConsentID consents get consents consent Id
 
-  Mtodo para obter detalhes do consentimento identificado por consentId.
+Mtodo para obter detalhes do consentimento identificado por consentId.
 */
 func (a *Client) ConsentsGetConsentsConsentID(params *ConsentsGetConsentsConsentIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ConsentsGetConsentsConsentIDOK, error) {
 	// TODO: Validate the params before sending
@@ -118,9 +118,9 @@ func (a *Client) ConsentsGetConsentsConsentID(params *ConsentsGetConsentsConsent
 }
 
 /*
-  ConsentsPostConsents consents post consents
+ConsentsPostConsents consents post consents
 
-  Mtodo para a criao de um novo consentimento.
+Mtodo para a criao de um novo consentimento.
 */
 func (a *Client) ConsentsPostConsents(params *ConsentsPostConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ConsentsPostConsentsCreated, error) {
 	// TODO: Validate the params before sending

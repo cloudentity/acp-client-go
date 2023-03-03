@@ -130,7 +130,7 @@ type GetOBBRConsentsParams struct {
 
 	/* Status.
 
-	     Optional status
+	     Optional list of statuses
 	Status
 	*/
 	Status []string

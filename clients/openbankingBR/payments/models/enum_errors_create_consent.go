@@ -17,17 +17,22 @@ import (
 // EnumErrorsCreateConsent EnumErrorsCreateConsent
 //
 // Cdigos de erros previstos na criao de consentimento para a iniciao de pagamentos:
-//  FORMA_PGTO_INVALIDA: Forma de pagamento invlida.
-//  DATA_PGTO_INVALIDA: Data de pagamento invlida.
-//  DETALHE_PGTO_INVALIDO: Detalhe do pagamento invlido.
-//  NAO_INFORMADO: No informado.
+//
+//	FORMA_PGTO_INVALIDA: Forma de pagamento invlida.
+//	DATA_PGTO_INVALIDA: Data de pagamento invlida.
+//	DETALHE_PGTO_INVALIDO: Detalhe do pagamento invlido.
+//	NAO_INFORMADO: No informado.
 //
 // swagger:model EnumErrorsCreateConsent
 type EnumErrorsCreateConsent string
 
 func NewEnumErrorsCreateConsent(value EnumErrorsCreateConsent) *EnumErrorsCreateConsent {
-	v := value
-	return &v
+	return &value
+}
+
+// Pointer returns a pointer to a freshly-allocated EnumErrorsCreateConsent.
+func (m EnumErrorsCreateConsent) Pointer() *EnumErrorsCreateConsent {
+	return &m
 }
 
 const (

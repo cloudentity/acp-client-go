@@ -73,7 +73,7 @@ type AcceptCDRArrangementSystemParams struct {
 
 	     Login session identifier.
 
-	Cloudentity sends this identifier as the `login_id` query parameter when redirecting the user to the consent page.
+	Cloudentity passes the login session identifier with the `login_id` query parameter when redirecting a user to the consent page.
 	*/
 	Login string
 

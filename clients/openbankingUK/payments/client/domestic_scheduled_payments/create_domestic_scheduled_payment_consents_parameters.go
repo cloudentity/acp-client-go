@@ -54,10 +54,12 @@ func NewCreateDomesticScheduledPaymentConsentsParamsWithHTTPClient(client *http.
 	}
 }
 
-/* CreateDomesticScheduledPaymentConsentsParams contains all the parameters to send to the API endpoint
-   for the create domestic scheduled payment consents operation.
+/*
+CreateDomesticScheduledPaymentConsentsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the create domestic scheduled payment consents operation.
+
+	Typically these are written to a http.Request.
 */
 type CreateDomesticScheduledPaymentConsentsParams struct {
 

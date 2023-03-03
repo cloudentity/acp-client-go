@@ -15,7 +15,7 @@ import (
 
 // Meta MetaData
 //
-// Meta Data relevant to the payload
+// # Meta Data relevant to the payload
 //
 // swagger:model Meta
 type Meta struct {

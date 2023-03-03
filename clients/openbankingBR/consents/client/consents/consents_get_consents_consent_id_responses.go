@@ -102,7 +102,8 @@ func NewConsentsGetConsentsConsentIDOK() *ConsentsGetConsentsConsentIDOK {
 	}
 }
 
-/* ConsentsGetConsentsConsentIDOK describes a response with status code 200, with default header values.
+/*
+ConsentsGetConsentsConsentIDOK describes a response with status code 200, with default header values.
 
 Consentimento consultado com sucesso.
 */
@@ -119,9 +120,39 @@ type ConsentsGetConsentsConsentIDOK struct {
 	Payload *models.ResponseConsent
 }
 
+// IsSuccess returns true when this consents get consents consent Id o k response has a 2xx status code
+func (o *ConsentsGetConsentsConsentIDOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this consents get consents consent Id o k response has a 3xx status code
+func (o *ConsentsGetConsentsConsentIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this consents get consents consent Id o k response has a 4xx status code
+func (o *ConsentsGetConsentsConsentIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this consents get consents consent Id o k response has a 5xx status code
+func (o *ConsentsGetConsentsConsentIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this consents get consents consent Id o k response a status code equal to that given
+func (o *ConsentsGetConsentsConsentIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
 func (o *ConsentsGetConsentsConsentIDOK) Error() string {
 	return fmt.Sprintf("[GET /consents/{consentId}][%d] consentsGetConsentsConsentIdOK  %+v", 200, o.Payload)
 }
+
+func (o *ConsentsGetConsentsConsentIDOK) String() string {
+	return fmt.Sprintf("[GET /consents/{consentId}][%d] consentsGetConsentsConsentIdOK  %+v", 200, o.Payload)
+}
+
 func (o *ConsentsGetConsentsConsentIDOK) GetPayload() *models.ResponseConsent {
 	return o.Payload
 }
@@ -150,7 +181,8 @@ func NewConsentsGetConsentsConsentIDBadRequest() *ConsentsGetConsentsConsentIDBa
 	return &ConsentsGetConsentsConsentIDBadRequest{}
 }
 
-/* ConsentsGetConsentsConsentIDBadRequest describes a response with status code 400, with default header values.
+/*
+ConsentsGetConsentsConsentIDBadRequest describes a response with status code 400, with default header values.
 
 A requisio foi malformada, omitindo atributos obrigatrios, seja no payload ou atravs de atributos na URL.
 */
@@ -158,9 +190,39 @@ type ConsentsGetConsentsConsentIDBadRequest struct {
 	Payload *models.ResponseError
 }
 
+// IsSuccess returns true when this consents get consents consent Id bad request response has a 2xx status code
+func (o *ConsentsGetConsentsConsentIDBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this consents get consents consent Id bad request response has a 3xx status code
+func (o *ConsentsGetConsentsConsentIDBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this consents get consents consent Id bad request response has a 4xx status code
+func (o *ConsentsGetConsentsConsentIDBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this consents get consents consent Id bad request response has a 5xx status code
+func (o *ConsentsGetConsentsConsentIDBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this consents get consents consent Id bad request response a status code equal to that given
+func (o *ConsentsGetConsentsConsentIDBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *ConsentsGetConsentsConsentIDBadRequest) Error() string {
 	return fmt.Sprintf("[GET /consents/{consentId}][%d] consentsGetConsentsConsentIdBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *ConsentsGetConsentsConsentIDBadRequest) String() string {
+	return fmt.Sprintf("[GET /consents/{consentId}][%d] consentsGetConsentsConsentIdBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *ConsentsGetConsentsConsentIDBadRequest) GetPayload() *models.ResponseError {
 	return o.Payload
 }
@@ -182,7 +244,8 @@ func NewConsentsGetConsentsConsentIDUnauthorized() *ConsentsGetConsentsConsentID
 	return &ConsentsGetConsentsConsentIDUnauthorized{}
 }
 
-/* ConsentsGetConsentsConsentIDUnauthorized describes a response with status code 401, with default header values.
+/*
+ConsentsGetConsentsConsentIDUnauthorized describes a response with status code 401, with default header values.
 
 Cabealho de autenticao ausente/invlido ou token invlido
 */
@@ -190,9 +253,39 @@ type ConsentsGetConsentsConsentIDUnauthorized struct {
 	Payload *models.ResponseError
 }
 
+// IsSuccess returns true when this consents get consents consent Id unauthorized response has a 2xx status code
+func (o *ConsentsGetConsentsConsentIDUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this consents get consents consent Id unauthorized response has a 3xx status code
+func (o *ConsentsGetConsentsConsentIDUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this consents get consents consent Id unauthorized response has a 4xx status code
+func (o *ConsentsGetConsentsConsentIDUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this consents get consents consent Id unauthorized response has a 5xx status code
+func (o *ConsentsGetConsentsConsentIDUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this consents get consents consent Id unauthorized response a status code equal to that given
+func (o *ConsentsGetConsentsConsentIDUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *ConsentsGetConsentsConsentIDUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /consents/{consentId}][%d] consentsGetConsentsConsentIdUnauthorized  %+v", 401, o.Payload)
 }
+
+func (o *ConsentsGetConsentsConsentIDUnauthorized) String() string {
+	return fmt.Sprintf("[GET /consents/{consentId}][%d] consentsGetConsentsConsentIdUnauthorized  %+v", 401, o.Payload)
+}
+
 func (o *ConsentsGetConsentsConsentIDUnauthorized) GetPayload() *models.ResponseError {
 	return o.Payload
 }
@@ -214,7 +307,8 @@ func NewConsentsGetConsentsConsentIDForbidden() *ConsentsGetConsentsConsentIDFor
 	return &ConsentsGetConsentsConsentIDForbidden{}
 }
 
-/* ConsentsGetConsentsConsentIDForbidden describes a response with status code 403, with default header values.
+/*
+ConsentsGetConsentsConsentIDForbidden describes a response with status code 403, with default header values.
 
 O token tem escopo incorreto ou uma poltica de segurana foi violada
 */
@@ -222,9 +316,39 @@ type ConsentsGetConsentsConsentIDForbidden struct {
 	Payload *models.ResponseError
 }
 
+// IsSuccess returns true when this consents get consents consent Id forbidden response has a 2xx status code
+func (o *ConsentsGetConsentsConsentIDForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this consents get consents consent Id forbidden response has a 3xx status code
+func (o *ConsentsGetConsentsConsentIDForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this consents get consents consent Id forbidden response has a 4xx status code
+func (o *ConsentsGetConsentsConsentIDForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this consents get consents consent Id forbidden response has a 5xx status code
+func (o *ConsentsGetConsentsConsentIDForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this consents get consents consent Id forbidden response a status code equal to that given
+func (o *ConsentsGetConsentsConsentIDForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *ConsentsGetConsentsConsentIDForbidden) Error() string {
 	return fmt.Sprintf("[GET /consents/{consentId}][%d] consentsGetConsentsConsentIdForbidden  %+v", 403, o.Payload)
 }
+
+func (o *ConsentsGetConsentsConsentIDForbidden) String() string {
+	return fmt.Sprintf("[GET /consents/{consentId}][%d] consentsGetConsentsConsentIdForbidden  %+v", 403, o.Payload)
+}
+
 func (o *ConsentsGetConsentsConsentIDForbidden) GetPayload() *models.ResponseError {
 	return o.Payload
 }
@@ -246,7 +370,8 @@ func NewConsentsGetConsentsConsentIDNotFound() *ConsentsGetConsentsConsentIDNotF
 	return &ConsentsGetConsentsConsentIDNotFound{}
 }
 
-/* ConsentsGetConsentsConsentIDNotFound describes a response with status code 404, with default header values.
+/*
+ConsentsGetConsentsConsentIDNotFound describes a response with status code 404, with default header values.
 
 O recurso solicitado no existe ou no foi implementado
 */
@@ -254,9 +379,39 @@ type ConsentsGetConsentsConsentIDNotFound struct {
 	Payload *models.ResponseError
 }
 
+// IsSuccess returns true when this consents get consents consent Id not found response has a 2xx status code
+func (o *ConsentsGetConsentsConsentIDNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this consents get consents consent Id not found response has a 3xx status code
+func (o *ConsentsGetConsentsConsentIDNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this consents get consents consent Id not found response has a 4xx status code
+func (o *ConsentsGetConsentsConsentIDNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this consents get consents consent Id not found response has a 5xx status code
+func (o *ConsentsGetConsentsConsentIDNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this consents get consents consent Id not found response a status code equal to that given
+func (o *ConsentsGetConsentsConsentIDNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *ConsentsGetConsentsConsentIDNotFound) Error() string {
 	return fmt.Sprintf("[GET /consents/{consentId}][%d] consentsGetConsentsConsentIdNotFound  %+v", 404, o.Payload)
 }
+
+func (o *ConsentsGetConsentsConsentIDNotFound) String() string {
+	return fmt.Sprintf("[GET /consents/{consentId}][%d] consentsGetConsentsConsentIdNotFound  %+v", 404, o.Payload)
+}
+
 func (o *ConsentsGetConsentsConsentIDNotFound) GetPayload() *models.ResponseError {
 	return o.Payload
 }
@@ -278,7 +433,8 @@ func NewConsentsGetConsentsConsentIDMethodNotAllowed() *ConsentsGetConsentsConse
 	return &ConsentsGetConsentsConsentIDMethodNotAllowed{}
 }
 
-/* ConsentsGetConsentsConsentIDMethodNotAllowed describes a response with status code 405, with default header values.
+/*
+ConsentsGetConsentsConsentIDMethodNotAllowed describes a response with status code 405, with default header values.
 
 O consumidor tentou acessar o recurso com um mtodo no suportado
 */
@@ -286,9 +442,39 @@ type ConsentsGetConsentsConsentIDMethodNotAllowed struct {
 	Payload *models.ResponseError
 }
 
+// IsSuccess returns true when this consents get consents consent Id method not allowed response has a 2xx status code
+func (o *ConsentsGetConsentsConsentIDMethodNotAllowed) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this consents get consents consent Id method not allowed response has a 3xx status code
+func (o *ConsentsGetConsentsConsentIDMethodNotAllowed) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this consents get consents consent Id method not allowed response has a 4xx status code
+func (o *ConsentsGetConsentsConsentIDMethodNotAllowed) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this consents get consents consent Id method not allowed response has a 5xx status code
+func (o *ConsentsGetConsentsConsentIDMethodNotAllowed) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this consents get consents consent Id method not allowed response a status code equal to that given
+func (o *ConsentsGetConsentsConsentIDMethodNotAllowed) IsCode(code int) bool {
+	return code == 405
+}
+
 func (o *ConsentsGetConsentsConsentIDMethodNotAllowed) Error() string {
 	return fmt.Sprintf("[GET /consents/{consentId}][%d] consentsGetConsentsConsentIdMethodNotAllowed  %+v", 405, o.Payload)
 }
+
+func (o *ConsentsGetConsentsConsentIDMethodNotAllowed) String() string {
+	return fmt.Sprintf("[GET /consents/{consentId}][%d] consentsGetConsentsConsentIdMethodNotAllowed  %+v", 405, o.Payload)
+}
+
 func (o *ConsentsGetConsentsConsentIDMethodNotAllowed) GetPayload() *models.ResponseError {
 	return o.Payload
 }
@@ -310,7 +496,8 @@ func NewConsentsGetConsentsConsentIDNotAcceptable() *ConsentsGetConsentsConsentI
 	return &ConsentsGetConsentsConsentIDNotAcceptable{}
 }
 
-/* ConsentsGetConsentsConsentIDNotAcceptable describes a response with status code 406, with default header values.
+/*
+ConsentsGetConsentsConsentIDNotAcceptable describes a response with status code 406, with default header values.
 
 A solicitao continha um cabealho Accept diferente dos tipos de mdia permitidos ou um conjunto de caracteres diferente de UTF-8
 */
@@ -318,9 +505,39 @@ type ConsentsGetConsentsConsentIDNotAcceptable struct {
 	Payload *models.ResponseError
 }
 
+// IsSuccess returns true when this consents get consents consent Id not acceptable response has a 2xx status code
+func (o *ConsentsGetConsentsConsentIDNotAcceptable) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this consents get consents consent Id not acceptable response has a 3xx status code
+func (o *ConsentsGetConsentsConsentIDNotAcceptable) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this consents get consents consent Id not acceptable response has a 4xx status code
+func (o *ConsentsGetConsentsConsentIDNotAcceptable) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this consents get consents consent Id not acceptable response has a 5xx status code
+func (o *ConsentsGetConsentsConsentIDNotAcceptable) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this consents get consents consent Id not acceptable response a status code equal to that given
+func (o *ConsentsGetConsentsConsentIDNotAcceptable) IsCode(code int) bool {
+	return code == 406
+}
+
 func (o *ConsentsGetConsentsConsentIDNotAcceptable) Error() string {
 	return fmt.Sprintf("[GET /consents/{consentId}][%d] consentsGetConsentsConsentIdNotAcceptable  %+v", 406, o.Payload)
 }
+
+func (o *ConsentsGetConsentsConsentIDNotAcceptable) String() string {
+	return fmt.Sprintf("[GET /consents/{consentId}][%d] consentsGetConsentsConsentIdNotAcceptable  %+v", 406, o.Payload)
+}
+
 func (o *ConsentsGetConsentsConsentIDNotAcceptable) GetPayload() *models.ResponseError {
 	return o.Payload
 }
@@ -342,7 +559,8 @@ func NewConsentsGetConsentsConsentIDTooManyRequests() *ConsentsGetConsentsConsen
 	return &ConsentsGetConsentsConsentIDTooManyRequests{}
 }
 
-/* ConsentsGetConsentsConsentIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+ConsentsGetConsentsConsentIDTooManyRequests describes a response with status code 429, with default header values.
 
 A operao foi recusada, pois muitas solicitaes foram feitas dentro de um determinado perodo ou o limite global de requisies concorrentes foi atingido
 */
@@ -350,9 +568,39 @@ type ConsentsGetConsentsConsentIDTooManyRequests struct {
 	Payload *models.ResponseError
 }
 
+// IsSuccess returns true when this consents get consents consent Id too many requests response has a 2xx status code
+func (o *ConsentsGetConsentsConsentIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this consents get consents consent Id too many requests response has a 3xx status code
+func (o *ConsentsGetConsentsConsentIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this consents get consents consent Id too many requests response has a 4xx status code
+func (o *ConsentsGetConsentsConsentIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this consents get consents consent Id too many requests response has a 5xx status code
+func (o *ConsentsGetConsentsConsentIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this consents get consents consent Id too many requests response a status code equal to that given
+func (o *ConsentsGetConsentsConsentIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *ConsentsGetConsentsConsentIDTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /consents/{consentId}][%d] consentsGetConsentsConsentIdTooManyRequests  %+v", 429, o.Payload)
 }
+
+func (o *ConsentsGetConsentsConsentIDTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /consents/{consentId}][%d] consentsGetConsentsConsentIdTooManyRequests  %+v", 429, o.Payload)
+}
+
 func (o *ConsentsGetConsentsConsentIDTooManyRequests) GetPayload() *models.ResponseError {
 	return o.Payload
 }
@@ -374,7 +622,8 @@ func NewConsentsGetConsentsConsentIDInternalServerError() *ConsentsGetConsentsCo
 	return &ConsentsGetConsentsConsentIDInternalServerError{}
 }
 
-/* ConsentsGetConsentsConsentIDInternalServerError describes a response with status code 500, with default header values.
+/*
+ConsentsGetConsentsConsentIDInternalServerError describes a response with status code 500, with default header values.
 
 Ocorreu um erro no gateway da API ou no microsservio
 */
@@ -382,9 +631,39 @@ type ConsentsGetConsentsConsentIDInternalServerError struct {
 	Payload *models.ResponseError
 }
 
+// IsSuccess returns true when this consents get consents consent Id internal server error response has a 2xx status code
+func (o *ConsentsGetConsentsConsentIDInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this consents get consents consent Id internal server error response has a 3xx status code
+func (o *ConsentsGetConsentsConsentIDInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this consents get consents consent Id internal server error response has a 4xx status code
+func (o *ConsentsGetConsentsConsentIDInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this consents get consents consent Id internal server error response has a 5xx status code
+func (o *ConsentsGetConsentsConsentIDInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this consents get consents consent Id internal server error response a status code equal to that given
+func (o *ConsentsGetConsentsConsentIDInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *ConsentsGetConsentsConsentIDInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /consents/{consentId}][%d] consentsGetConsentsConsentIdInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *ConsentsGetConsentsConsentIDInternalServerError) String() string {
+	return fmt.Sprintf("[GET /consents/{consentId}][%d] consentsGetConsentsConsentIdInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *ConsentsGetConsentsConsentIDInternalServerError) GetPayload() *models.ResponseError {
 	return o.Payload
 }
@@ -408,7 +687,8 @@ func NewConsentsGetConsentsConsentIDDefault(code int) *ConsentsGetConsentsConsen
 	}
 }
 
-/* ConsentsGetConsentsConsentIDDefault describes a response with status code -1, with default header values.
+/*
+ConsentsGetConsentsConsentIDDefault describes a response with status code -1, with default header values.
 
 Erro inesperado.
 */
@@ -423,9 +703,39 @@ func (o *ConsentsGetConsentsConsentIDDefault) Code() int {
 	return o._statusCode
 }
 
+// IsSuccess returns true when this consents get consents consent Id default response has a 2xx status code
+func (o *ConsentsGetConsentsConsentIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this consents get consents consent Id default response has a 3xx status code
+func (o *ConsentsGetConsentsConsentIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this consents get consents consent Id default response has a 4xx status code
+func (o *ConsentsGetConsentsConsentIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this consents get consents consent Id default response has a 5xx status code
+func (o *ConsentsGetConsentsConsentIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this consents get consents consent Id default response a status code equal to that given
+func (o *ConsentsGetConsentsConsentIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 func (o *ConsentsGetConsentsConsentIDDefault) Error() string {
 	return fmt.Sprintf("[GET /consents/{consentId}][%d] consentsGetConsentsConsentId default  %+v", o._statusCode, o.Payload)
 }
+
+func (o *ConsentsGetConsentsConsentIDDefault) String() string {
+	return fmt.Sprintf("[GET /consents/{consentId}][%d] consentsGetConsentsConsentId default  %+v", o._statusCode, o.Payload)
+}
+
 func (o *ConsentsGetConsentsConsentIDDefault) GetPayload() *models.ResponseError {
 	return o.Payload
 }

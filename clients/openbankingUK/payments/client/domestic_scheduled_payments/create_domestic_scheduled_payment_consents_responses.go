@@ -95,7 +95,8 @@ func NewCreateDomesticScheduledPaymentConsentsCreated() *CreateDomesticScheduled
 	return &CreateDomesticScheduledPaymentConsentsCreated{}
 }
 
-/* CreateDomesticScheduledPaymentConsentsCreated describes a response with status code 201, with default header values.
+/*
+CreateDomesticScheduledPaymentConsentsCreated describes a response with status code 201, with default header values.
 
 Domestic Scheduled Payment Consents Created
 */
@@ -113,9 +114,39 @@ type CreateDomesticScheduledPaymentConsentsCreated struct {
 	Payload *models.OBWriteDomesticScheduledConsentResponse5
 }
 
+// IsSuccess returns true when this create domestic scheduled payment consents created response has a 2xx status code
+func (o *CreateDomesticScheduledPaymentConsentsCreated) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this create domestic scheduled payment consents created response has a 3xx status code
+func (o *CreateDomesticScheduledPaymentConsentsCreated) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create domestic scheduled payment consents created response has a 4xx status code
+func (o *CreateDomesticScheduledPaymentConsentsCreated) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create domestic scheduled payment consents created response has a 5xx status code
+func (o *CreateDomesticScheduledPaymentConsentsCreated) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create domestic scheduled payment consents created response a status code equal to that given
+func (o *CreateDomesticScheduledPaymentConsentsCreated) IsCode(code int) bool {
+	return code == 201
+}
+
 func (o *CreateDomesticScheduledPaymentConsentsCreated) Error() string {
 	return fmt.Sprintf("[POST /domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentsCreated  %+v", 201, o.Payload)
 }
+
+func (o *CreateDomesticScheduledPaymentConsentsCreated) String() string {
+	return fmt.Sprintf("[POST /domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentsCreated  %+v", 201, o.Payload)
+}
+
 func (o *CreateDomesticScheduledPaymentConsentsCreated) GetPayload() *models.OBWriteDomesticScheduledConsentResponse5 {
 	return o.Payload
 }
@@ -151,7 +182,8 @@ func NewCreateDomesticScheduledPaymentConsentsBadRequest() *CreateDomesticSchedu
 	return &CreateDomesticScheduledPaymentConsentsBadRequest{}
 }
 
-/* CreateDomesticScheduledPaymentConsentsBadRequest describes a response with status code 400, with default header values.
+/*
+CreateDomesticScheduledPaymentConsentsBadRequest describes a response with status code 400, with default header values.
 
 Bad request
 */
@@ -169,9 +201,39 @@ type CreateDomesticScheduledPaymentConsentsBadRequest struct {
 	Payload *models.OBErrorResponse1
 }
 
+// IsSuccess returns true when this create domestic scheduled payment consents bad request response has a 2xx status code
+func (o *CreateDomesticScheduledPaymentConsentsBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create domestic scheduled payment consents bad request response has a 3xx status code
+func (o *CreateDomesticScheduledPaymentConsentsBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create domestic scheduled payment consents bad request response has a 4xx status code
+func (o *CreateDomesticScheduledPaymentConsentsBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create domestic scheduled payment consents bad request response has a 5xx status code
+func (o *CreateDomesticScheduledPaymentConsentsBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create domestic scheduled payment consents bad request response a status code equal to that given
+func (o *CreateDomesticScheduledPaymentConsentsBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *CreateDomesticScheduledPaymentConsentsBadRequest) Error() string {
 	return fmt.Sprintf("[POST /domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentsBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *CreateDomesticScheduledPaymentConsentsBadRequest) String() string {
+	return fmt.Sprintf("[POST /domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentsBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *CreateDomesticScheduledPaymentConsentsBadRequest) GetPayload() *models.OBErrorResponse1 {
 	return o.Payload
 }
@@ -207,7 +269,8 @@ func NewCreateDomesticScheduledPaymentConsentsUnauthorized() *CreateDomesticSche
 	return &CreateDomesticScheduledPaymentConsentsUnauthorized{}
 }
 
-/* CreateDomesticScheduledPaymentConsentsUnauthorized describes a response with status code 401, with default header values.
+/*
+CreateDomesticScheduledPaymentConsentsUnauthorized describes a response with status code 401, with default header values.
 
 Unauthorized
 */
@@ -218,7 +281,36 @@ type CreateDomesticScheduledPaymentConsentsUnauthorized struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this create domestic scheduled payment consents unauthorized response has a 2xx status code
+func (o *CreateDomesticScheduledPaymentConsentsUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create domestic scheduled payment consents unauthorized response has a 3xx status code
+func (o *CreateDomesticScheduledPaymentConsentsUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create domestic scheduled payment consents unauthorized response has a 4xx status code
+func (o *CreateDomesticScheduledPaymentConsentsUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create domestic scheduled payment consents unauthorized response has a 5xx status code
+func (o *CreateDomesticScheduledPaymentConsentsUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create domestic scheduled payment consents unauthorized response a status code equal to that given
+func (o *CreateDomesticScheduledPaymentConsentsUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *CreateDomesticScheduledPaymentConsentsUnauthorized) Error() string {
+	return fmt.Sprintf("[POST /domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentsUnauthorized ", 401)
+}
+
+func (o *CreateDomesticScheduledPaymentConsentsUnauthorized) String() string {
 	return fmt.Sprintf("[POST /domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentsUnauthorized ", 401)
 }
 
@@ -239,7 +331,8 @@ func NewCreateDomesticScheduledPaymentConsentsForbidden() *CreateDomesticSchedul
 	return &CreateDomesticScheduledPaymentConsentsForbidden{}
 }
 
-/* CreateDomesticScheduledPaymentConsentsForbidden describes a response with status code 403, with default header values.
+/*
+CreateDomesticScheduledPaymentConsentsForbidden describes a response with status code 403, with default header values.
 
 Forbidden
 */
@@ -257,9 +350,39 @@ type CreateDomesticScheduledPaymentConsentsForbidden struct {
 	Payload *models.OBErrorResponse1
 }
 
+// IsSuccess returns true when this create domestic scheduled payment consents forbidden response has a 2xx status code
+func (o *CreateDomesticScheduledPaymentConsentsForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create domestic scheduled payment consents forbidden response has a 3xx status code
+func (o *CreateDomesticScheduledPaymentConsentsForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create domestic scheduled payment consents forbidden response has a 4xx status code
+func (o *CreateDomesticScheduledPaymentConsentsForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create domestic scheduled payment consents forbidden response has a 5xx status code
+func (o *CreateDomesticScheduledPaymentConsentsForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create domestic scheduled payment consents forbidden response a status code equal to that given
+func (o *CreateDomesticScheduledPaymentConsentsForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *CreateDomesticScheduledPaymentConsentsForbidden) Error() string {
 	return fmt.Sprintf("[POST /domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentsForbidden  %+v", 403, o.Payload)
 }
+
+func (o *CreateDomesticScheduledPaymentConsentsForbidden) String() string {
+	return fmt.Sprintf("[POST /domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentsForbidden  %+v", 403, o.Payload)
+}
+
 func (o *CreateDomesticScheduledPaymentConsentsForbidden) GetPayload() *models.OBErrorResponse1 {
 	return o.Payload
 }
@@ -295,7 +418,8 @@ func NewCreateDomesticScheduledPaymentConsentsNotFound() *CreateDomesticSchedule
 	return &CreateDomesticScheduledPaymentConsentsNotFound{}
 }
 
-/* CreateDomesticScheduledPaymentConsentsNotFound describes a response with status code 404, with default header values.
+/*
+CreateDomesticScheduledPaymentConsentsNotFound describes a response with status code 404, with default header values.
 
 Not found
 */
@@ -306,7 +430,36 @@ type CreateDomesticScheduledPaymentConsentsNotFound struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this create domestic scheduled payment consents not found response has a 2xx status code
+func (o *CreateDomesticScheduledPaymentConsentsNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create domestic scheduled payment consents not found response has a 3xx status code
+func (o *CreateDomesticScheduledPaymentConsentsNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create domestic scheduled payment consents not found response has a 4xx status code
+func (o *CreateDomesticScheduledPaymentConsentsNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create domestic scheduled payment consents not found response has a 5xx status code
+func (o *CreateDomesticScheduledPaymentConsentsNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create domestic scheduled payment consents not found response a status code equal to that given
+func (o *CreateDomesticScheduledPaymentConsentsNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
 func (o *CreateDomesticScheduledPaymentConsentsNotFound) Error() string {
+	return fmt.Sprintf("[POST /domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentsNotFound ", 404)
+}
+
+func (o *CreateDomesticScheduledPaymentConsentsNotFound) String() string {
 	return fmt.Sprintf("[POST /domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentsNotFound ", 404)
 }
 
@@ -327,7 +480,8 @@ func NewCreateDomesticScheduledPaymentConsentsMethodNotAllowed() *CreateDomestic
 	return &CreateDomesticScheduledPaymentConsentsMethodNotAllowed{}
 }
 
-/* CreateDomesticScheduledPaymentConsentsMethodNotAllowed describes a response with status code 405, with default header values.
+/*
+CreateDomesticScheduledPaymentConsentsMethodNotAllowed describes a response with status code 405, with default header values.
 
 Method Not Allowed
 */
@@ -338,7 +492,36 @@ type CreateDomesticScheduledPaymentConsentsMethodNotAllowed struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this create domestic scheduled payment consents method not allowed response has a 2xx status code
+func (o *CreateDomesticScheduledPaymentConsentsMethodNotAllowed) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create domestic scheduled payment consents method not allowed response has a 3xx status code
+func (o *CreateDomesticScheduledPaymentConsentsMethodNotAllowed) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create domestic scheduled payment consents method not allowed response has a 4xx status code
+func (o *CreateDomesticScheduledPaymentConsentsMethodNotAllowed) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create domestic scheduled payment consents method not allowed response has a 5xx status code
+func (o *CreateDomesticScheduledPaymentConsentsMethodNotAllowed) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create domestic scheduled payment consents method not allowed response a status code equal to that given
+func (o *CreateDomesticScheduledPaymentConsentsMethodNotAllowed) IsCode(code int) bool {
+	return code == 405
+}
+
 func (o *CreateDomesticScheduledPaymentConsentsMethodNotAllowed) Error() string {
+	return fmt.Sprintf("[POST /domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentsMethodNotAllowed ", 405)
+}
+
+func (o *CreateDomesticScheduledPaymentConsentsMethodNotAllowed) String() string {
 	return fmt.Sprintf("[POST /domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentsMethodNotAllowed ", 405)
 }
 
@@ -359,7 +542,8 @@ func NewCreateDomesticScheduledPaymentConsentsNotAcceptable() *CreateDomesticSch
 	return &CreateDomesticScheduledPaymentConsentsNotAcceptable{}
 }
 
-/* CreateDomesticScheduledPaymentConsentsNotAcceptable describes a response with status code 406, with default header values.
+/*
+CreateDomesticScheduledPaymentConsentsNotAcceptable describes a response with status code 406, with default header values.
 
 Not Acceptable
 */
@@ -370,7 +554,36 @@ type CreateDomesticScheduledPaymentConsentsNotAcceptable struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this create domestic scheduled payment consents not acceptable response has a 2xx status code
+func (o *CreateDomesticScheduledPaymentConsentsNotAcceptable) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create domestic scheduled payment consents not acceptable response has a 3xx status code
+func (o *CreateDomesticScheduledPaymentConsentsNotAcceptable) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create domestic scheduled payment consents not acceptable response has a 4xx status code
+func (o *CreateDomesticScheduledPaymentConsentsNotAcceptable) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create domestic scheduled payment consents not acceptable response has a 5xx status code
+func (o *CreateDomesticScheduledPaymentConsentsNotAcceptable) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create domestic scheduled payment consents not acceptable response a status code equal to that given
+func (o *CreateDomesticScheduledPaymentConsentsNotAcceptable) IsCode(code int) bool {
+	return code == 406
+}
+
 func (o *CreateDomesticScheduledPaymentConsentsNotAcceptable) Error() string {
+	return fmt.Sprintf("[POST /domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentsNotAcceptable ", 406)
+}
+
+func (o *CreateDomesticScheduledPaymentConsentsNotAcceptable) String() string {
 	return fmt.Sprintf("[POST /domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentsNotAcceptable ", 406)
 }
 
@@ -391,7 +604,8 @@ func NewCreateDomesticScheduledPaymentConsentsUnsupportedMediaType() *CreateDome
 	return &CreateDomesticScheduledPaymentConsentsUnsupportedMediaType{}
 }
 
-/* CreateDomesticScheduledPaymentConsentsUnsupportedMediaType describes a response with status code 415, with default header values.
+/*
+CreateDomesticScheduledPaymentConsentsUnsupportedMediaType describes a response with status code 415, with default header values.
 
 Unsupported Media Type
 */
@@ -402,7 +616,36 @@ type CreateDomesticScheduledPaymentConsentsUnsupportedMediaType struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this create domestic scheduled payment consents unsupported media type response has a 2xx status code
+func (o *CreateDomesticScheduledPaymentConsentsUnsupportedMediaType) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create domestic scheduled payment consents unsupported media type response has a 3xx status code
+func (o *CreateDomesticScheduledPaymentConsentsUnsupportedMediaType) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create domestic scheduled payment consents unsupported media type response has a 4xx status code
+func (o *CreateDomesticScheduledPaymentConsentsUnsupportedMediaType) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create domestic scheduled payment consents unsupported media type response has a 5xx status code
+func (o *CreateDomesticScheduledPaymentConsentsUnsupportedMediaType) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create domestic scheduled payment consents unsupported media type response a status code equal to that given
+func (o *CreateDomesticScheduledPaymentConsentsUnsupportedMediaType) IsCode(code int) bool {
+	return code == 415
+}
+
 func (o *CreateDomesticScheduledPaymentConsentsUnsupportedMediaType) Error() string {
+	return fmt.Sprintf("[POST /domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentsUnsupportedMediaType ", 415)
+}
+
+func (o *CreateDomesticScheduledPaymentConsentsUnsupportedMediaType) String() string {
 	return fmt.Sprintf("[POST /domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentsUnsupportedMediaType ", 415)
 }
 
@@ -423,7 +666,8 @@ func NewCreateDomesticScheduledPaymentConsentsTooManyRequests() *CreateDomesticS
 	return &CreateDomesticScheduledPaymentConsentsTooManyRequests{}
 }
 
-/* CreateDomesticScheduledPaymentConsentsTooManyRequests describes a response with status code 429, with default header values.
+/*
+CreateDomesticScheduledPaymentConsentsTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -438,7 +682,36 @@ type CreateDomesticScheduledPaymentConsentsTooManyRequests struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this create domestic scheduled payment consents too many requests response has a 2xx status code
+func (o *CreateDomesticScheduledPaymentConsentsTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create domestic scheduled payment consents too many requests response has a 3xx status code
+func (o *CreateDomesticScheduledPaymentConsentsTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create domestic scheduled payment consents too many requests response has a 4xx status code
+func (o *CreateDomesticScheduledPaymentConsentsTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this create domestic scheduled payment consents too many requests response has a 5xx status code
+func (o *CreateDomesticScheduledPaymentConsentsTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this create domestic scheduled payment consents too many requests response a status code equal to that given
+func (o *CreateDomesticScheduledPaymentConsentsTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *CreateDomesticScheduledPaymentConsentsTooManyRequests) Error() string {
+	return fmt.Sprintf("[POST /domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentsTooManyRequests ", 429)
+}
+
+func (o *CreateDomesticScheduledPaymentConsentsTooManyRequests) String() string {
 	return fmt.Sprintf("[POST /domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentsTooManyRequests ", 429)
 }
 
@@ -470,7 +743,8 @@ func NewCreateDomesticScheduledPaymentConsentsInternalServerError() *CreateDomes
 	return &CreateDomesticScheduledPaymentConsentsInternalServerError{}
 }
 
-/* CreateDomesticScheduledPaymentConsentsInternalServerError describes a response with status code 500, with default header values.
+/*
+CreateDomesticScheduledPaymentConsentsInternalServerError describes a response with status code 500, with default header values.
 
 Internal Server Error
 */
@@ -488,9 +762,39 @@ type CreateDomesticScheduledPaymentConsentsInternalServerError struct {
 	Payload *models.OBErrorResponse1
 }
 
+// IsSuccess returns true when this create domestic scheduled payment consents internal server error response has a 2xx status code
+func (o *CreateDomesticScheduledPaymentConsentsInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this create domestic scheduled payment consents internal server error response has a 3xx status code
+func (o *CreateDomesticScheduledPaymentConsentsInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this create domestic scheduled payment consents internal server error response has a 4xx status code
+func (o *CreateDomesticScheduledPaymentConsentsInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this create domestic scheduled payment consents internal server error response has a 5xx status code
+func (o *CreateDomesticScheduledPaymentConsentsInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this create domestic scheduled payment consents internal server error response a status code equal to that given
+func (o *CreateDomesticScheduledPaymentConsentsInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *CreateDomesticScheduledPaymentConsentsInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentsInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *CreateDomesticScheduledPaymentConsentsInternalServerError) String() string {
+	return fmt.Sprintf("[POST /domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentsInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *CreateDomesticScheduledPaymentConsentsInternalServerError) GetPayload() *models.OBErrorResponse1 {
 	return o.Payload
 }

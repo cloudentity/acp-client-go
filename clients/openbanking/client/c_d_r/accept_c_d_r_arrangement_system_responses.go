@@ -29,6 +29,12 @@ func (o *AcceptCDRArrangementSystemReader) ReadResponse(response runtime.ClientR
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewAcceptCDRArrangementSystemBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewAcceptCDRArrangementSystemUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -112,6 +118,69 @@ func (o *AcceptCDRArrangementSystemOK) GetPayload() *models.ConsentAccepted {
 func (o *AcceptCDRArrangementSystemOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
 	o.Payload = new(models.ConsentAccepted)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
+// NewAcceptCDRArrangementSystemBadRequest creates a AcceptCDRArrangementSystemBadRequest with default headers values
+func NewAcceptCDRArrangementSystemBadRequest() *AcceptCDRArrangementSystemBadRequest {
+	return &AcceptCDRArrangementSystemBadRequest{}
+}
+
+/*
+AcceptCDRArrangementSystemBadRequest describes a response with status code 400, with default header values.
+
+HttpError
+*/
+type AcceptCDRArrangementSystemBadRequest struct {
+	Payload *models.Error
+}
+
+// IsSuccess returns true when this accept c d r arrangement system bad request response has a 2xx status code
+func (o *AcceptCDRArrangementSystemBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this accept c d r arrangement system bad request response has a 3xx status code
+func (o *AcceptCDRArrangementSystemBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this accept c d r arrangement system bad request response has a 4xx status code
+func (o *AcceptCDRArrangementSystemBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this accept c d r arrangement system bad request response has a 5xx status code
+func (o *AcceptCDRArrangementSystemBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this accept c d r arrangement system bad request response a status code equal to that given
+func (o *AcceptCDRArrangementSystemBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
+func (o *AcceptCDRArrangementSystemBadRequest) Error() string {
+	return fmt.Sprintf("[POST /cdr/cdr-arrangement/{login}/accept][%d] acceptCDRArrangementSystemBadRequest  %+v", 400, o.Payload)
+}
+
+func (o *AcceptCDRArrangementSystemBadRequest) String() string {
+	return fmt.Sprintf("[POST /cdr/cdr-arrangement/{login}/accept][%d] acceptCDRArrangementSystemBadRequest  %+v", 400, o.Payload)
+}
+
+func (o *AcceptCDRArrangementSystemBadRequest) GetPayload() *models.Error {
+	return o.Payload
+}
+
+func (o *AcceptCDRArrangementSystemBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

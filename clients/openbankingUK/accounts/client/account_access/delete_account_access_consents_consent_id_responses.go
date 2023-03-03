@@ -83,7 +83,8 @@ func NewDeleteAccountAccessConsentsConsentIDNoContent() *DeleteAccountAccessCons
 	return &DeleteAccountAccessConsentsConsentIDNoContent{}
 }
 
-/* DeleteAccountAccessConsentsConsentIDNoContent describes a response with status code 204, with default header values.
+/*
+DeleteAccountAccessConsentsConsentIDNoContent describes a response with status code 204, with default header values.
 
 Account Access Consents Deleted
 */
@@ -94,7 +95,36 @@ type DeleteAccountAccessConsentsConsentIDNoContent struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this delete account access consents consent Id no content response has a 2xx status code
+func (o *DeleteAccountAccessConsentsConsentIDNoContent) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this delete account access consents consent Id no content response has a 3xx status code
+func (o *DeleteAccountAccessConsentsConsentIDNoContent) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete account access consents consent Id no content response has a 4xx status code
+func (o *DeleteAccountAccessConsentsConsentIDNoContent) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this delete account access consents consent Id no content response has a 5xx status code
+func (o *DeleteAccountAccessConsentsConsentIDNoContent) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete account access consents consent Id no content response a status code equal to that given
+func (o *DeleteAccountAccessConsentsConsentIDNoContent) IsCode(code int) bool {
+	return code == 204
+}
+
 func (o *DeleteAccountAccessConsentsConsentIDNoContent) Error() string {
+	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdNoContent ", 204)
+}
+
+func (o *DeleteAccountAccessConsentsConsentIDNoContent) String() string {
 	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdNoContent ", 204)
 }
 
@@ -115,7 +145,8 @@ func NewDeleteAccountAccessConsentsConsentIDBadRequest() *DeleteAccountAccessCon
 	return &DeleteAccountAccessConsentsConsentIDBadRequest{}
 }
 
-/* DeleteAccountAccessConsentsConsentIDBadRequest describes a response with status code 400, with default header values.
+/*
+DeleteAccountAccessConsentsConsentIDBadRequest describes a response with status code 400, with default header values.
 
 Bad request
 */
@@ -128,9 +159,39 @@ type DeleteAccountAccessConsentsConsentIDBadRequest struct {
 	Payload *models.OBErrorResponse1
 }
 
+// IsSuccess returns true when this delete account access consents consent Id bad request response has a 2xx status code
+func (o *DeleteAccountAccessConsentsConsentIDBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete account access consents consent Id bad request response has a 3xx status code
+func (o *DeleteAccountAccessConsentsConsentIDBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete account access consents consent Id bad request response has a 4xx status code
+func (o *DeleteAccountAccessConsentsConsentIDBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete account access consents consent Id bad request response has a 5xx status code
+func (o *DeleteAccountAccessConsentsConsentIDBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete account access consents consent Id bad request response a status code equal to that given
+func (o *DeleteAccountAccessConsentsConsentIDBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
 func (o *DeleteAccountAccessConsentsConsentIDBadRequest) Error() string {
 	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *DeleteAccountAccessConsentsConsentIDBadRequest) String() string {
+	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *DeleteAccountAccessConsentsConsentIDBadRequest) GetPayload() *models.OBErrorResponse1 {
 	return o.Payload
 }
@@ -159,7 +220,8 @@ func NewDeleteAccountAccessConsentsConsentIDUnauthorized() *DeleteAccountAccessC
 	return &DeleteAccountAccessConsentsConsentIDUnauthorized{}
 }
 
-/* DeleteAccountAccessConsentsConsentIDUnauthorized describes a response with status code 401, with default header values.
+/*
+DeleteAccountAccessConsentsConsentIDUnauthorized describes a response with status code 401, with default header values.
 
 Unauthorized
 */
@@ -170,7 +232,36 @@ type DeleteAccountAccessConsentsConsentIDUnauthorized struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this delete account access consents consent Id unauthorized response has a 2xx status code
+func (o *DeleteAccountAccessConsentsConsentIDUnauthorized) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete account access consents consent Id unauthorized response has a 3xx status code
+func (o *DeleteAccountAccessConsentsConsentIDUnauthorized) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete account access consents consent Id unauthorized response has a 4xx status code
+func (o *DeleteAccountAccessConsentsConsentIDUnauthorized) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete account access consents consent Id unauthorized response has a 5xx status code
+func (o *DeleteAccountAccessConsentsConsentIDUnauthorized) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete account access consents consent Id unauthorized response a status code equal to that given
+func (o *DeleteAccountAccessConsentsConsentIDUnauthorized) IsCode(code int) bool {
+	return code == 401
+}
+
 func (o *DeleteAccountAccessConsentsConsentIDUnauthorized) Error() string {
+	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdUnauthorized ", 401)
+}
+
+func (o *DeleteAccountAccessConsentsConsentIDUnauthorized) String() string {
 	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdUnauthorized ", 401)
 }
 
@@ -191,7 +282,8 @@ func NewDeleteAccountAccessConsentsConsentIDForbidden() *DeleteAccountAccessCons
 	return &DeleteAccountAccessConsentsConsentIDForbidden{}
 }
 
-/* DeleteAccountAccessConsentsConsentIDForbidden describes a response with status code 403, with default header values.
+/*
+DeleteAccountAccessConsentsConsentIDForbidden describes a response with status code 403, with default header values.
 
 Forbidden
 */
@@ -204,9 +296,39 @@ type DeleteAccountAccessConsentsConsentIDForbidden struct {
 	Payload *models.OBErrorResponse1
 }
 
+// IsSuccess returns true when this delete account access consents consent Id forbidden response has a 2xx status code
+func (o *DeleteAccountAccessConsentsConsentIDForbidden) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete account access consents consent Id forbidden response has a 3xx status code
+func (o *DeleteAccountAccessConsentsConsentIDForbidden) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete account access consents consent Id forbidden response has a 4xx status code
+func (o *DeleteAccountAccessConsentsConsentIDForbidden) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete account access consents consent Id forbidden response has a 5xx status code
+func (o *DeleteAccountAccessConsentsConsentIDForbidden) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete account access consents consent Id forbidden response a status code equal to that given
+func (o *DeleteAccountAccessConsentsConsentIDForbidden) IsCode(code int) bool {
+	return code == 403
+}
+
 func (o *DeleteAccountAccessConsentsConsentIDForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdForbidden  %+v", 403, o.Payload)
 }
+
+func (o *DeleteAccountAccessConsentsConsentIDForbidden) String() string {
+	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdForbidden  %+v", 403, o.Payload)
+}
+
 func (o *DeleteAccountAccessConsentsConsentIDForbidden) GetPayload() *models.OBErrorResponse1 {
 	return o.Payload
 }
@@ -235,7 +357,8 @@ func NewDeleteAccountAccessConsentsConsentIDMethodNotAllowed() *DeleteAccountAcc
 	return &DeleteAccountAccessConsentsConsentIDMethodNotAllowed{}
 }
 
-/* DeleteAccountAccessConsentsConsentIDMethodNotAllowed describes a response with status code 405, with default header values.
+/*
+DeleteAccountAccessConsentsConsentIDMethodNotAllowed describes a response with status code 405, with default header values.
 
 Method Not Allowed
 */
@@ -246,7 +369,36 @@ type DeleteAccountAccessConsentsConsentIDMethodNotAllowed struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this delete account access consents consent Id method not allowed response has a 2xx status code
+func (o *DeleteAccountAccessConsentsConsentIDMethodNotAllowed) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete account access consents consent Id method not allowed response has a 3xx status code
+func (o *DeleteAccountAccessConsentsConsentIDMethodNotAllowed) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete account access consents consent Id method not allowed response has a 4xx status code
+func (o *DeleteAccountAccessConsentsConsentIDMethodNotAllowed) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete account access consents consent Id method not allowed response has a 5xx status code
+func (o *DeleteAccountAccessConsentsConsentIDMethodNotAllowed) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete account access consents consent Id method not allowed response a status code equal to that given
+func (o *DeleteAccountAccessConsentsConsentIDMethodNotAllowed) IsCode(code int) bool {
+	return code == 405
+}
+
 func (o *DeleteAccountAccessConsentsConsentIDMethodNotAllowed) Error() string {
+	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdMethodNotAllowed ", 405)
+}
+
+func (o *DeleteAccountAccessConsentsConsentIDMethodNotAllowed) String() string {
 	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdMethodNotAllowed ", 405)
 }
 
@@ -267,7 +419,8 @@ func NewDeleteAccountAccessConsentsConsentIDNotAcceptable() *DeleteAccountAccess
 	return &DeleteAccountAccessConsentsConsentIDNotAcceptable{}
 }
 
-/* DeleteAccountAccessConsentsConsentIDNotAcceptable describes a response with status code 406, with default header values.
+/*
+DeleteAccountAccessConsentsConsentIDNotAcceptable describes a response with status code 406, with default header values.
 
 Not Acceptable
 */
@@ -278,7 +431,36 @@ type DeleteAccountAccessConsentsConsentIDNotAcceptable struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this delete account access consents consent Id not acceptable response has a 2xx status code
+func (o *DeleteAccountAccessConsentsConsentIDNotAcceptable) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete account access consents consent Id not acceptable response has a 3xx status code
+func (o *DeleteAccountAccessConsentsConsentIDNotAcceptable) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete account access consents consent Id not acceptable response has a 4xx status code
+func (o *DeleteAccountAccessConsentsConsentIDNotAcceptable) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete account access consents consent Id not acceptable response has a 5xx status code
+func (o *DeleteAccountAccessConsentsConsentIDNotAcceptable) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete account access consents consent Id not acceptable response a status code equal to that given
+func (o *DeleteAccountAccessConsentsConsentIDNotAcceptable) IsCode(code int) bool {
+	return code == 406
+}
+
 func (o *DeleteAccountAccessConsentsConsentIDNotAcceptable) Error() string {
+	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdNotAcceptable ", 406)
+}
+
+func (o *DeleteAccountAccessConsentsConsentIDNotAcceptable) String() string {
 	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdNotAcceptable ", 406)
 }
 
@@ -299,7 +481,8 @@ func NewDeleteAccountAccessConsentsConsentIDTooManyRequests() *DeleteAccountAcce
 	return &DeleteAccountAccessConsentsConsentIDTooManyRequests{}
 }
 
-/* DeleteAccountAccessConsentsConsentIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+DeleteAccountAccessConsentsConsentIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -314,7 +497,36 @@ type DeleteAccountAccessConsentsConsentIDTooManyRequests struct {
 	XFapiInteractionID string
 }
 
+// IsSuccess returns true when this delete account access consents consent Id too many requests response has a 2xx status code
+func (o *DeleteAccountAccessConsentsConsentIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete account access consents consent Id too many requests response has a 3xx status code
+func (o *DeleteAccountAccessConsentsConsentIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete account access consents consent Id too many requests response has a 4xx status code
+func (o *DeleteAccountAccessConsentsConsentIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete account access consents consent Id too many requests response has a 5xx status code
+func (o *DeleteAccountAccessConsentsConsentIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete account access consents consent Id too many requests response a status code equal to that given
+func (o *DeleteAccountAccessConsentsConsentIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
 func (o *DeleteAccountAccessConsentsConsentIDTooManyRequests) Error() string {
+	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdTooManyRequests ", 429)
+}
+
+func (o *DeleteAccountAccessConsentsConsentIDTooManyRequests) String() string {
 	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdTooManyRequests ", 429)
 }
 
@@ -346,7 +558,8 @@ func NewDeleteAccountAccessConsentsConsentIDInternalServerError() *DeleteAccount
 	return &DeleteAccountAccessConsentsConsentIDInternalServerError{}
 }
 
-/* DeleteAccountAccessConsentsConsentIDInternalServerError describes a response with status code 500, with default header values.
+/*
+DeleteAccountAccessConsentsConsentIDInternalServerError describes a response with status code 500, with default header values.
 
 Internal Server Error
 */
@@ -359,9 +572,39 @@ type DeleteAccountAccessConsentsConsentIDInternalServerError struct {
 	Payload *models.OBErrorResponse1
 }
 
+// IsSuccess returns true when this delete account access consents consent Id internal server error response has a 2xx status code
+func (o *DeleteAccountAccessConsentsConsentIDInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete account access consents consent Id internal server error response has a 3xx status code
+func (o *DeleteAccountAccessConsentsConsentIDInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete account access consents consent Id internal server error response has a 4xx status code
+func (o *DeleteAccountAccessConsentsConsentIDInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this delete account access consents consent Id internal server error response has a 5xx status code
+func (o *DeleteAccountAccessConsentsConsentIDInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this delete account access consents consent Id internal server error response a status code equal to that given
+func (o *DeleteAccountAccessConsentsConsentIDInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
 func (o *DeleteAccountAccessConsentsConsentIDInternalServerError) Error() string {
 	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *DeleteAccountAccessConsentsConsentIDInternalServerError) String() string {
+	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *DeleteAccountAccessConsentsConsentIDInternalServerError) GetPayload() *models.OBErrorResponse1 {
 	return o.Payload
 }

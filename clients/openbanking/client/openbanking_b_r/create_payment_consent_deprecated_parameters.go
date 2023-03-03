@@ -67,7 +67,7 @@ type CreatePaymentConsentDeprecatedParams struct {
 
 	   Request
 	*/
-	Request *models.BrazilCustomerPaymentConsentRequest
+	Request *models.BrazilCustomerCreatePaymentConsentRequest
 
 	/* XCustomerUserAgent.
 
@@ -171,13 +171,13 @@ func (o *CreatePaymentConsentDeprecatedParams) SetHTTPClient(client *http.Client
 }
 
 // WithRequest adds the request to the create payment consent deprecated params
-func (o *CreatePaymentConsentDeprecatedParams) WithRequest(request *models.BrazilCustomerPaymentConsentRequest) *CreatePaymentConsentDeprecatedParams {
+func (o *CreatePaymentConsentDeprecatedParams) WithRequest(request *models.BrazilCustomerCreatePaymentConsentRequest) *CreatePaymentConsentDeprecatedParams {
 	o.SetRequest(request)
 	return o
 }
 
 // SetRequest adds the request to the create payment consent deprecated params
-func (o *CreatePaymentConsentDeprecatedParams) SetRequest(request *models.BrazilCustomerPaymentConsentRequest) {
+func (o *CreatePaymentConsentDeprecatedParams) SetRequest(request *models.BrazilCustomerCreatePaymentConsentRequest) {
 	o.Request = request
 }
 

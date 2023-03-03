@@ -38,7 +38,7 @@ type ClientService interface {
 }
 
 /*
-  CreateInternationalScheduledPaymentConsents creates international scheduled payment consents
+CreateInternationalScheduledPaymentConsents creates international scheduled payment consents
 */
 func (a *Client) CreateInternationalScheduledPaymentConsents(params *CreateInternationalScheduledPaymentConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateInternationalScheduledPaymentConsentsCreated, error) {
 	// TODO: Validate the params before sending
@@ -77,7 +77,7 @@ func (a *Client) CreateInternationalScheduledPaymentConsents(params *CreateInter
 }
 
 /*
-  GetInternationalScheduledPaymentConsentsConsentID gets international scheduled payment consents
+GetInternationalScheduledPaymentConsentsConsentID gets international scheduled payment consents
 */
 func (a *Client) GetInternationalScheduledPaymentConsentsConsentID(params *GetInternationalScheduledPaymentConsentsConsentIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetInternationalScheduledPaymentConsentsConsentIDOK, error) {
 	// TODO: Validate the params before sending

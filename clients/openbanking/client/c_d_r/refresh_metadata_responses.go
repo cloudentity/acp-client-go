@@ -111,10 +111,10 @@ func NewRefreshMetadataBadRequest() *RefreshMetadataBadRequest {
 /*
 RefreshMetadataBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+CDR Error
 */
 type RefreshMetadataBadRequest struct {
-	Payload *models.Error
+	Payload *models.CDRErrorResponse
 }
 
 // IsSuccess returns true when this refresh metadata bad request response has a 2xx status code
@@ -150,13 +150,13 @@ func (o *RefreshMetadataBadRequest) String() string {
 	return fmt.Sprintf("[POST /admin/register/metadata][%d] refreshMetadataBadRequest  %+v", 400, o.Payload)
 }
 
-func (o *RefreshMetadataBadRequest) GetPayload() *models.Error {
+func (o *RefreshMetadataBadRequest) GetPayload() *models.CDRErrorResponse {
 	return o.Payload
 }
 
 func (o *RefreshMetadataBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Error)
+	o.Payload = new(models.CDRErrorResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -174,10 +174,10 @@ func NewRefreshMetadataUnauthorized() *RefreshMetadataUnauthorized {
 /*
 RefreshMetadataUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+CDR Error
 */
 type RefreshMetadataUnauthorized struct {
-	Payload *models.Error
+	Payload *models.CDRErrorResponse
 }
 
 // IsSuccess returns true when this refresh metadata unauthorized response has a 2xx status code
@@ -213,13 +213,13 @@ func (o *RefreshMetadataUnauthorized) String() string {
 	return fmt.Sprintf("[POST /admin/register/metadata][%d] refreshMetadataUnauthorized  %+v", 401, o.Payload)
 }
 
-func (o *RefreshMetadataUnauthorized) GetPayload() *models.Error {
+func (o *RefreshMetadataUnauthorized) GetPayload() *models.CDRErrorResponse {
 	return o.Payload
 }
 
 func (o *RefreshMetadataUnauthorized) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Error)
+	o.Payload = new(models.CDRErrorResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -237,10 +237,10 @@ func NewRefreshMetadataNotAcceptable() *RefreshMetadataNotAcceptable {
 /*
 RefreshMetadataNotAcceptable describes a response with status code 406, with default header values.
 
-HttpError
+CDR Error
 */
 type RefreshMetadataNotAcceptable struct {
-	Payload *models.Error
+	Payload *models.CDRErrorResponse
 }
 
 // IsSuccess returns true when this refresh metadata not acceptable response has a 2xx status code
@@ -276,13 +276,13 @@ func (o *RefreshMetadataNotAcceptable) String() string {
 	return fmt.Sprintf("[POST /admin/register/metadata][%d] refreshMetadataNotAcceptable  %+v", 406, o.Payload)
 }
 
-func (o *RefreshMetadataNotAcceptable) GetPayload() *models.Error {
+func (o *RefreshMetadataNotAcceptable) GetPayload() *models.CDRErrorResponse {
 	return o.Payload
 }
 
 func (o *RefreshMetadataNotAcceptable) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Error)
+	o.Payload = new(models.CDRErrorResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

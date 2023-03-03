@@ -40,7 +40,7 @@ type ClientService interface {
 }
 
 /*
-  CreateAccountAccessConsents creates account access consents
+CreateAccountAccessConsents creates account access consents
 */
 func (a *Client) CreateAccountAccessConsents(params *CreateAccountAccessConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateAccountAccessConsentsCreated, error) {
 	// TODO: Validate the params before sending
@@ -79,7 +79,7 @@ func (a *Client) CreateAccountAccessConsents(params *CreateAccountAccessConsents
 }
 
 /*
-  DeleteAccountAccessConsentsConsentID deletes account access consents
+DeleteAccountAccessConsentsConsentID deletes account access consents
 */
 func (a *Client) DeleteAccountAccessConsentsConsentID(params *DeleteAccountAccessConsentsConsentIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteAccountAccessConsentsConsentIDNoContent, error) {
 	// TODO: Validate the params before sending
@@ -118,7 +118,7 @@ func (a *Client) DeleteAccountAccessConsentsConsentID(params *DeleteAccountAcces
 }
 
 /*
-  GetAccountAccessConsentsConsentID gets account access consents
+GetAccountAccessConsentsConsentID gets account access consents
 */
 func (a *Client) GetAccountAccessConsentsConsentID(params *GetAccountAccessConsentsConsentIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetAccountAccessConsentsConsentIDOK, error) {
 	// TODO: Validate the params before sending

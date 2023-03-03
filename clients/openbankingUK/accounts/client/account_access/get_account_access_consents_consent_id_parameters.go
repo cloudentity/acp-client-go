@@ -52,10 +52,12 @@ func NewGetAccountAccessConsentsConsentIDParamsWithHTTPClient(client *http.Clien
 	}
 }
 
-/* GetAccountAccessConsentsConsentIDParams contains all the parameters to send to the API endpoint
-   for the get account access consents consent Id operation.
+/*
+GetAccountAccessConsentsConsentIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get account access consents consent Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetAccountAccessConsentsConsentIDParams struct {
 
