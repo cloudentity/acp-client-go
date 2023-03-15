@@ -994,7 +994,7 @@ func WithSignedRequestObject(claims jwt.MapClaims) AuthorizeOption {
 			err         error
 		)
 
-		if method, err = getSigningMethod(c.Config.ClientAssertionSigningAlg); err != nil {
+		if method, err = getSigningMethod(c.Config.RequestObjectSigningAlg); err != nil {
 			return errors.Wrapf(err, "failed to get signing method for request object")
 		}
 
