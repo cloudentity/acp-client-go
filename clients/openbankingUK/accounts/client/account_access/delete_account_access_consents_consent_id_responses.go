@@ -120,6 +120,11 @@ func (o *DeleteAccountAccessConsentsConsentIDNoContent) IsCode(code int) bool {
 	return code == 204
 }
 
+// Code gets the status code for the delete account access consents consent Id no content response
+func (o *DeleteAccountAccessConsentsConsentIDNoContent) Code() int {
+	return 204
+}
+
 func (o *DeleteAccountAccessConsentsConsentIDNoContent) Error() string {
 	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdNoContent ", 204)
 }
@@ -182,6 +187,11 @@ func (o *DeleteAccountAccessConsentsConsentIDBadRequest) IsServerError() bool {
 // IsCode returns true when this delete account access consents consent Id bad request response a status code equal to that given
 func (o *DeleteAccountAccessConsentsConsentIDBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the delete account access consents consent Id bad request response
+func (o *DeleteAccountAccessConsentsConsentIDBadRequest) Code() int {
+	return 400
 }
 
 func (o *DeleteAccountAccessConsentsConsentIDBadRequest) Error() string {
@@ -257,6 +267,11 @@ func (o *DeleteAccountAccessConsentsConsentIDUnauthorized) IsCode(code int) bool
 	return code == 401
 }
 
+// Code gets the status code for the delete account access consents consent Id unauthorized response
+func (o *DeleteAccountAccessConsentsConsentIDUnauthorized) Code() int {
+	return 401
+}
+
 func (o *DeleteAccountAccessConsentsConsentIDUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdUnauthorized ", 401)
 }
@@ -319,6 +334,11 @@ func (o *DeleteAccountAccessConsentsConsentIDForbidden) IsServerError() bool {
 // IsCode returns true when this delete account access consents consent Id forbidden response a status code equal to that given
 func (o *DeleteAccountAccessConsentsConsentIDForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the delete account access consents consent Id forbidden response
+func (o *DeleteAccountAccessConsentsConsentIDForbidden) Code() int {
+	return 403
 }
 
 func (o *DeleteAccountAccessConsentsConsentIDForbidden) Error() string {
@@ -394,6 +414,11 @@ func (o *DeleteAccountAccessConsentsConsentIDMethodNotAllowed) IsCode(code int) 
 	return code == 405
 }
 
+// Code gets the status code for the delete account access consents consent Id method not allowed response
+func (o *DeleteAccountAccessConsentsConsentIDMethodNotAllowed) Code() int {
+	return 405
+}
+
 func (o *DeleteAccountAccessConsentsConsentIDMethodNotAllowed) Error() string {
 	return fmt.Sprintf("[DELETE /account-access-consents/{ConsentId}][%d] deleteAccountAccessConsentsConsentIdMethodNotAllowed ", 405)
 }
@@ -454,6 +479,11 @@ func (o *DeleteAccountAccessConsentsConsentIDNotAcceptable) IsServerError() bool
 // IsCode returns true when this delete account access consents consent Id not acceptable response a status code equal to that given
 func (o *DeleteAccountAccessConsentsConsentIDNotAcceptable) IsCode(code int) bool {
 	return code == 406
+}
+
+// Code gets the status code for the delete account access consents consent Id not acceptable response
+func (o *DeleteAccountAccessConsentsConsentIDNotAcceptable) Code() int {
+	return 406
 }
 
 func (o *DeleteAccountAccessConsentsConsentIDNotAcceptable) Error() string {
@@ -520,6 +550,11 @@ func (o *DeleteAccountAccessConsentsConsentIDTooManyRequests) IsServerError() bo
 // IsCode returns true when this delete account access consents consent Id too many requests response a status code equal to that given
 func (o *DeleteAccountAccessConsentsConsentIDTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the delete account access consents consent Id too many requests response
+func (o *DeleteAccountAccessConsentsConsentIDTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *DeleteAccountAccessConsentsConsentIDTooManyRequests) Error() string {
@@ -595,6 +630,11 @@ func (o *DeleteAccountAccessConsentsConsentIDInternalServerError) IsServerError(
 // IsCode returns true when this delete account access consents consent Id internal server error response a status code equal to that given
 func (o *DeleteAccountAccessConsentsConsentIDInternalServerError) IsCode(code int) bool {
 	return code == 500
+}
+
+// Code gets the status code for the delete account access consents consent Id internal server error response
+func (o *DeleteAccountAccessConsentsConsentIDInternalServerError) Code() int {
+	return 500
 }
 
 func (o *DeleteAccountAccessConsentsConsentIDInternalServerError) Error() string {

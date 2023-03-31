@@ -133,6 +133,11 @@ func (o *GetDomesticStandingOrderConsentsConsentIDOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get domestic standing order consents consent Id o k response
+func (o *GetDomesticStandingOrderConsentsConsentIDOK) Code() int {
+	return 200
+}
+
 func (o *GetDomesticStandingOrderConsentsConsentIDOK) Error() string {
 	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdOK  %+v", 200, o.Payload)
 }
@@ -220,6 +225,11 @@ func (o *GetDomesticStandingOrderConsentsConsentIDBadRequest) IsCode(code int) b
 	return code == 400
 }
 
+// Code gets the status code for the get domestic standing order consents consent Id bad request response
+func (o *GetDomesticStandingOrderConsentsConsentIDBadRequest) Code() int {
+	return 400
+}
+
 func (o *GetDomesticStandingOrderConsentsConsentIDBadRequest) Error() string {
 	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdBadRequest  %+v", 400, o.Payload)
 }
@@ -300,6 +310,11 @@ func (o *GetDomesticStandingOrderConsentsConsentIDUnauthorized) IsCode(code int)
 	return code == 401
 }
 
+// Code gets the status code for the get domestic standing order consents consent Id unauthorized response
+func (o *GetDomesticStandingOrderConsentsConsentIDUnauthorized) Code() int {
+	return 401
+}
+
 func (o *GetDomesticStandingOrderConsentsConsentIDUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdUnauthorized ", 401)
 }
@@ -367,6 +382,11 @@ func (o *GetDomesticStandingOrderConsentsConsentIDForbidden) IsServerError() boo
 // IsCode returns true when this get domestic standing order consents consent Id forbidden response a status code equal to that given
 func (o *GetDomesticStandingOrderConsentsConsentIDForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get domestic standing order consents consent Id forbidden response
+func (o *GetDomesticStandingOrderConsentsConsentIDForbidden) Code() int {
+	return 403
 }
 
 func (o *GetDomesticStandingOrderConsentsConsentIDForbidden) Error() string {
@@ -449,6 +469,11 @@ func (o *GetDomesticStandingOrderConsentsConsentIDNotFound) IsCode(code int) boo
 	return code == 404
 }
 
+// Code gets the status code for the get domestic standing order consents consent Id not found response
+func (o *GetDomesticStandingOrderConsentsConsentIDNotFound) Code() int {
+	return 404
+}
+
 func (o *GetDomesticStandingOrderConsentsConsentIDNotFound) Error() string {
 	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdNotFound ", 404)
 }
@@ -511,6 +536,11 @@ func (o *GetDomesticStandingOrderConsentsConsentIDMethodNotAllowed) IsCode(code 
 	return code == 405
 }
 
+// Code gets the status code for the get domestic standing order consents consent Id method not allowed response
+func (o *GetDomesticStandingOrderConsentsConsentIDMethodNotAllowed) Code() int {
+	return 405
+}
+
 func (o *GetDomesticStandingOrderConsentsConsentIDMethodNotAllowed) Error() string {
 	return fmt.Sprintf("[GET /domestic-standing-order-consents/{ConsentId}][%d] getDomesticStandingOrderConsentsConsentIdMethodNotAllowed ", 405)
 }
@@ -571,6 +601,11 @@ func (o *GetDomesticStandingOrderConsentsConsentIDNotAcceptable) IsServerError()
 // IsCode returns true when this get domestic standing order consents consent Id not acceptable response a status code equal to that given
 func (o *GetDomesticStandingOrderConsentsConsentIDNotAcceptable) IsCode(code int) bool {
 	return code == 406
+}
+
+// Code gets the status code for the get domestic standing order consents consent Id not acceptable response
+func (o *GetDomesticStandingOrderConsentsConsentIDNotAcceptable) Code() int {
+	return 406
 }
 
 func (o *GetDomesticStandingOrderConsentsConsentIDNotAcceptable) Error() string {
@@ -637,6 +672,11 @@ func (o *GetDomesticStandingOrderConsentsConsentIDTooManyRequests) IsServerError
 // IsCode returns true when this get domestic standing order consents consent Id too many requests response a status code equal to that given
 func (o *GetDomesticStandingOrderConsentsConsentIDTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get domestic standing order consents consent Id too many requests response
+func (o *GetDomesticStandingOrderConsentsConsentIDTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetDomesticStandingOrderConsentsConsentIDTooManyRequests) Error() string {
@@ -717,6 +757,11 @@ func (o *GetDomesticStandingOrderConsentsConsentIDInternalServerError) IsServerE
 // IsCode returns true when this get domestic standing order consents consent Id internal server error response a status code equal to that given
 func (o *GetDomesticStandingOrderConsentsConsentIDInternalServerError) IsCode(code int) bool {
 	return code == 500
+}
+
+// Code gets the status code for the get domestic standing order consents consent Id internal server error response
+func (o *GetDomesticStandingOrderConsentsConsentIDInternalServerError) Code() int {
+	return 500
 }
 
 func (o *GetDomesticStandingOrderConsentsConsentIDInternalServerError) Error() string {

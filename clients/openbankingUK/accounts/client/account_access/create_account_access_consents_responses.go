@@ -128,6 +128,11 @@ func (o *CreateAccountAccessConsentsCreated) IsCode(code int) bool {
 	return code == 201
 }
 
+// Code gets the status code for the create account access consents created response
+func (o *CreateAccountAccessConsentsCreated) Code() int {
+	return 201
+}
+
 func (o *CreateAccountAccessConsentsCreated) Error() string {
 	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsCreated  %+v", 201, o.Payload)
 }
@@ -203,6 +208,11 @@ func (o *CreateAccountAccessConsentsBadRequest) IsCode(code int) bool {
 	return code == 400
 }
 
+// Code gets the status code for the create account access consents bad request response
+func (o *CreateAccountAccessConsentsBadRequest) Code() int {
+	return 400
+}
+
 func (o *CreateAccountAccessConsentsBadRequest) Error() string {
 	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsBadRequest  %+v", 400, o.Payload)
 }
@@ -276,6 +286,11 @@ func (o *CreateAccountAccessConsentsUnauthorized) IsCode(code int) bool {
 	return code == 401
 }
 
+// Code gets the status code for the create account access consents unauthorized response
+func (o *CreateAccountAccessConsentsUnauthorized) Code() int {
+	return 401
+}
+
 func (o *CreateAccountAccessConsentsUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsUnauthorized ", 401)
 }
@@ -338,6 +353,11 @@ func (o *CreateAccountAccessConsentsForbidden) IsServerError() bool {
 // IsCode returns true when this create account access consents forbidden response a status code equal to that given
 func (o *CreateAccountAccessConsentsForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the create account access consents forbidden response
+func (o *CreateAccountAccessConsentsForbidden) Code() int {
+	return 403
 }
 
 func (o *CreateAccountAccessConsentsForbidden) Error() string {
@@ -413,6 +433,11 @@ func (o *CreateAccountAccessConsentsMethodNotAllowed) IsCode(code int) bool {
 	return code == 405
 }
 
+// Code gets the status code for the create account access consents method not allowed response
+func (o *CreateAccountAccessConsentsMethodNotAllowed) Code() int {
+	return 405
+}
+
 func (o *CreateAccountAccessConsentsMethodNotAllowed) Error() string {
 	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsMethodNotAllowed ", 405)
 }
@@ -475,6 +500,11 @@ func (o *CreateAccountAccessConsentsNotAcceptable) IsCode(code int) bool {
 	return code == 406
 }
 
+// Code gets the status code for the create account access consents not acceptable response
+func (o *CreateAccountAccessConsentsNotAcceptable) Code() int {
+	return 406
+}
+
 func (o *CreateAccountAccessConsentsNotAcceptable) Error() string {
 	return fmt.Sprintf("[POST /account-access-consents][%d] createAccountAccessConsentsNotAcceptable ", 406)
 }
@@ -535,6 +565,11 @@ func (o *CreateAccountAccessConsentsUnsupportedMediaType) IsServerError() bool {
 // IsCode returns true when this create account access consents unsupported media type response a status code equal to that given
 func (o *CreateAccountAccessConsentsUnsupportedMediaType) IsCode(code int) bool {
 	return code == 415
+}
+
+// Code gets the status code for the create account access consents unsupported media type response
+func (o *CreateAccountAccessConsentsUnsupportedMediaType) Code() int {
+	return 415
 }
 
 func (o *CreateAccountAccessConsentsUnsupportedMediaType) Error() string {
@@ -601,6 +636,11 @@ func (o *CreateAccountAccessConsentsTooManyRequests) IsServerError() bool {
 // IsCode returns true when this create account access consents too many requests response a status code equal to that given
 func (o *CreateAccountAccessConsentsTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the create account access consents too many requests response
+func (o *CreateAccountAccessConsentsTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *CreateAccountAccessConsentsTooManyRequests) Error() string {
@@ -676,6 +716,11 @@ func (o *CreateAccountAccessConsentsInternalServerError) IsServerError() bool {
 // IsCode returns true when this create account access consents internal server error response a status code equal to that given
 func (o *CreateAccountAccessConsentsInternalServerError) IsCode(code int) bool {
 	return code == 500
+}
+
+// Code gets the status code for the create account access consents internal server error response
+func (o *CreateAccountAccessConsentsInternalServerError) Code() int {
+	return 500
 }
 
 func (o *CreateAccountAccessConsentsInternalServerError) Error() string {

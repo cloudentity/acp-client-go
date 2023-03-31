@@ -139,6 +139,11 @@ func (o *CreateInternationalScheduledPaymentConsentsCreated) IsCode(code int) bo
 	return code == 201
 }
 
+// Code gets the status code for the create international scheduled payment consents created response
+func (o *CreateInternationalScheduledPaymentConsentsCreated) Code() int {
+	return 201
+}
+
 func (o *CreateInternationalScheduledPaymentConsentsCreated) Error() string {
 	return fmt.Sprintf("[POST /international-scheduled-payment-consents][%d] createInternationalScheduledPaymentConsentsCreated  %+v", 201, o.Payload)
 }
@@ -226,6 +231,11 @@ func (o *CreateInternationalScheduledPaymentConsentsBadRequest) IsCode(code int)
 	return code == 400
 }
 
+// Code gets the status code for the create international scheduled payment consents bad request response
+func (o *CreateInternationalScheduledPaymentConsentsBadRequest) Code() int {
+	return 400
+}
+
 func (o *CreateInternationalScheduledPaymentConsentsBadRequest) Error() string {
 	return fmt.Sprintf("[POST /international-scheduled-payment-consents][%d] createInternationalScheduledPaymentConsentsBadRequest  %+v", 400, o.Payload)
 }
@@ -306,6 +316,11 @@ func (o *CreateInternationalScheduledPaymentConsentsUnauthorized) IsCode(code in
 	return code == 401
 }
 
+// Code gets the status code for the create international scheduled payment consents unauthorized response
+func (o *CreateInternationalScheduledPaymentConsentsUnauthorized) Code() int {
+	return 401
+}
+
 func (o *CreateInternationalScheduledPaymentConsentsUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /international-scheduled-payment-consents][%d] createInternationalScheduledPaymentConsentsUnauthorized ", 401)
 }
@@ -373,6 +388,11 @@ func (o *CreateInternationalScheduledPaymentConsentsForbidden) IsServerError() b
 // IsCode returns true when this create international scheduled payment consents forbidden response a status code equal to that given
 func (o *CreateInternationalScheduledPaymentConsentsForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the create international scheduled payment consents forbidden response
+func (o *CreateInternationalScheduledPaymentConsentsForbidden) Code() int {
+	return 403
 }
 
 func (o *CreateInternationalScheduledPaymentConsentsForbidden) Error() string {
@@ -455,6 +475,11 @@ func (o *CreateInternationalScheduledPaymentConsentsNotFound) IsCode(code int) b
 	return code == 404
 }
 
+// Code gets the status code for the create international scheduled payment consents not found response
+func (o *CreateInternationalScheduledPaymentConsentsNotFound) Code() int {
+	return 404
+}
+
 func (o *CreateInternationalScheduledPaymentConsentsNotFound) Error() string {
 	return fmt.Sprintf("[POST /international-scheduled-payment-consents][%d] createInternationalScheduledPaymentConsentsNotFound ", 404)
 }
@@ -515,6 +540,11 @@ func (o *CreateInternationalScheduledPaymentConsentsMethodNotAllowed) IsServerEr
 // IsCode returns true when this create international scheduled payment consents method not allowed response a status code equal to that given
 func (o *CreateInternationalScheduledPaymentConsentsMethodNotAllowed) IsCode(code int) bool {
 	return code == 405
+}
+
+// Code gets the status code for the create international scheduled payment consents method not allowed response
+func (o *CreateInternationalScheduledPaymentConsentsMethodNotAllowed) Code() int {
+	return 405
 }
 
 func (o *CreateInternationalScheduledPaymentConsentsMethodNotAllowed) Error() string {
@@ -579,6 +609,11 @@ func (o *CreateInternationalScheduledPaymentConsentsNotAcceptable) IsCode(code i
 	return code == 406
 }
 
+// Code gets the status code for the create international scheduled payment consents not acceptable response
+func (o *CreateInternationalScheduledPaymentConsentsNotAcceptable) Code() int {
+	return 406
+}
+
 func (o *CreateInternationalScheduledPaymentConsentsNotAcceptable) Error() string {
 	return fmt.Sprintf("[POST /international-scheduled-payment-consents][%d] createInternationalScheduledPaymentConsentsNotAcceptable ", 406)
 }
@@ -639,6 +674,11 @@ func (o *CreateInternationalScheduledPaymentConsentsUnsupportedMediaType) IsServ
 // IsCode returns true when this create international scheduled payment consents unsupported media type response a status code equal to that given
 func (o *CreateInternationalScheduledPaymentConsentsUnsupportedMediaType) IsCode(code int) bool {
 	return code == 415
+}
+
+// Code gets the status code for the create international scheduled payment consents unsupported media type response
+func (o *CreateInternationalScheduledPaymentConsentsUnsupportedMediaType) Code() int {
+	return 415
 }
 
 func (o *CreateInternationalScheduledPaymentConsentsUnsupportedMediaType) Error() string {
@@ -705,6 +745,11 @@ func (o *CreateInternationalScheduledPaymentConsentsTooManyRequests) IsServerErr
 // IsCode returns true when this create international scheduled payment consents too many requests response a status code equal to that given
 func (o *CreateInternationalScheduledPaymentConsentsTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the create international scheduled payment consents too many requests response
+func (o *CreateInternationalScheduledPaymentConsentsTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *CreateInternationalScheduledPaymentConsentsTooManyRequests) Error() string {
@@ -785,6 +830,11 @@ func (o *CreateInternationalScheduledPaymentConsentsInternalServerError) IsServe
 // IsCode returns true when this create international scheduled payment consents internal server error response a status code equal to that given
 func (o *CreateInternationalScheduledPaymentConsentsInternalServerError) IsCode(code int) bool {
 	return code == 500
+}
+
+// Code gets the status code for the create international scheduled payment consents internal server error response
+func (o *CreateInternationalScheduledPaymentConsentsInternalServerError) Code() int {
+	return 500
 }
 
 func (o *CreateInternationalScheduledPaymentConsentsInternalServerError) Error() string {

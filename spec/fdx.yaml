@@ -1,0 +1,3011 @@
+basePath: /default/default
+consumes:
+- application/json
+definitions:
+  AcceptFDXConsentRequest:
+    properties:
+      granted_scopes:
+        $ref: '#/definitions/GrantedScopes'
+      login_state:
+        format: loginState
+        type: string
+        x-nullable: false
+      resources:
+        items:
+          $ref: '#/definitions/FDXResource'
+        type: array
+        x-nullable: false
+    type: object
+  AuthenticationContext:
+    additionalProperties:
+      type: object
+    type: object
+  ClientInfo:
+    properties:
+      client_name:
+        description: Human-readable name of a client application.
+        example: My app
+        type: string
+        x-nullable: false
+      client_uri:
+        description: URI of a client application.
+        type: string
+        x-nullable: false
+      description:
+        description: Description of the client application.
+        type: string
+        x-nullable: false
+      logo_uri:
+        description: Logo URI.
+        type: string
+        x-nullable: false
+      organisation_id:
+        description: |-
+          External organization identifier. It is a unique string assigned by the CDR Register to identify an Accredited
+          Data Recipient Brand.
+
+          The value obtained is used as the `aud` claim for message signing, for example, when a JSON Web Token (JWT) is
+          required for authorization, and represents the audience(s) the JWT is intended for.
+        example: 5647fe90-f6bc-11eb-9a03-0242ac130003
+        type: string
+        x-nullable: false
+      policy_uri:
+        description: Policy URL to read about how the profile data is used.
+        type: string
+        x-nullable: false
+      tos_uri:
+        description: Terms of Service URL.
+        type: string
+        x-nullable: false
+    type: object
+  ClientJWK:
+    properties:
+      alg:
+        description: |-
+          The "alg" (algorithm) parameter identifies the algorithm intended for
+          use with the key.  The values used should either be registered in the
+          IANA "JSON Web Signature and Encryption Algorithms" registry
+          established by [JWA] or be a value that contains a Collision-
+          Resistant Name.
+        example: RS256
+        type: string
+        x-nullable: false
+      crv:
+        example: P-256
+        type: string
+        x-nullable: false
+      d:
+        example: T_N8I-6He3M8a7X1vWt6TGIx4xB_GP3Mb4SsZSA4v-orvJzzRiQhLlRR81naWYxfQAYt5isDI6_C2L9bdWo4FFPjGQFvNoRX-_sBJyBI_rl-TBgsZYoUlAj3J92WmY2inbA-PwyJfsaIIDceYBC-eX-xiCu6qMqkZi3MwQAFL6bMdPEM0z4JBcwFT3VdiWAIRUuACWQwrXMq672x7fMuaIaHi7XDGgt1ith23CLfaREmJku9PQcchbt_uEY-hqrFY6ntTtS4paWWQj86xLL94S-Tf6v6xkL918PfLSOTq6XCzxvlFwzBJqApnAhbwqLjpPhgUG04EDRrqrSBc5Y1BLevn6Ip5h1AhessBp3wLkQgz_roeckt-ybvzKTjESMuagnpqLvOT7Y9veIug2MwPJZI2VjczRc1vzMs25XrFQ8DpUy-bNdp89TmvAXwctUMiJdgHloJw23Cv03gIUAkDnsTqZmkpbIf-crpgNKFmQP_EDKoe8p_PXZZgfbRri3NoEVGP7Mk6yEu8LjJhClhZaBNjuWw2-KlBfOA3g79mhfBnkInee5KO9mGR50qPk1V-MorUYNTFMZIm0kFE6eYVWFBwJHLKYhHU34DoiK1VP-svZpC2uAMFNA_UJEwM9CQ2b8qe4-5e9aywMvwcuArRkAB5mBIfOaOJao3mfukKAE
+        type: string
+        x-nullable: false
+      dp:
+        example: G4sPXkc6Ya9y8oJW9_ILj4xuppu0lzi_H7VTkS8xj5SdX3coE0oimYwxIi2emTAue0UOa5dpgFGyBJ4c8tQ2VF402XRugKDTP8akYhFo5tAA77Qe_NmtuYZc3C3m3I24G2GvR5sSDxUyAN2zq8Lfn9EUms6rY3Ob8YeiKkTiBj0
+        type: string
+        x-nullable: false
+      dq:
+        example: s9lAH9fggBsoFR8Oac2R_E2gw282rT2kGOAhvIllETE1efrA6huUUvMfBcMpn8lqeW6vzznYY5SSQF7pMdC_agI3nG8Ibp1BUb0JUiraRNqUfLhcQb_d9GF4Dh7e74WbRsobRonujTYN1xCaP6TO61jvWrX-L18txXw494Q_cgk
+        type: string
+        x-nullable: false
+      e:
+        example: AQAB
+        type: string
+        x-nullable: false
+      k:
+        example: GawgguFyGrWKav7AX4VKUg
+        type: string
+        x-nullable: false
+      kid:
+        description: |-
+          The "kid" (key ID) parameter is used to match a specific key.  This
+          is used, for instance, to choose among a set of keys within a JWK Set
+          during key rollover.  The structure of the "kid" value is
+          unspecified.  When "kid" values are used within a JWK Set, different
+          keys within the JWK Set SHOULD use distinct "kid" values.  (One
+          example in which different keys might use the same "kid" value is if
+          they have different "kty" (key type) values but are considered to be
+          equivalent alternatives by the application using them.)  The "kid"
+          value is a case-sensitive string.
+        example: 1603dfe0af8f4596
+        type: string
+        x-nullable: false
+      kty:
+        description: |-
+          The "kty" (key type) parameter identifies the cryptographic algorithm
+          family used with the key, such as "RSA" or "EC". "kty" values should
+          either be registered in the IANA "JSON Web Key Types" registry
+          established by [JWA] or be a value that contains a Collision-
+          Resistant Name.  The "kty" value is a case-sensitive string.
+        example: RSA
+        type: string
+        x-nullable: false
+      "n":
+        example: vTqrxUyQPl_20aqf5kXHwDZrel-KovIp8s7ewJod2EXHl8tWlRB3_Rem34KwBfqlKQGp1nqah-51H4Jzruqe0cFP58hPEIt6WqrvnmJCXxnNuIB53iX_uUUXXHDHBeaPCSRoNJzNysjoJ30TIUsKBiirhBa7f235PXbKiHducLevV6PcKxJ5cY8zO286qJLBWSPm-OIevwqsIsSIH44Qtm9sioFikhkbLwoqwWORGAY0nl6XvVOlhADdLjBSqSAeT1FPuCDCnXwzCDR8N9IFB_IjdStFkC-rVt2K5BYfPd0c3yFp_vHR15eRd0zJ8XQ7woBC8Vnsac6Et1pKS59pX6256DPWu8UDdEOolKAPgcd_g2NpA76cAaF_jcT80j9KrEzw8Tv0nJBGesuCjPNjGs_KzdkWTUXt23Hn9QJsdc1MZuaW0iqXBepHYfYoqNelzVte117t4BwVp0kUM6we0IqyXClaZgOI8S-WDBw2_Ovdm8e5NmhYAblEVoygcX8Y46oH6bKiaCQfKCFDMcRgChme7AoE1yZZYsPbaG_3IjPrC4LBMHQw8rM9dWjJ8ImjicvZ1pAm0dx-KHCP3y5PVKrxBDf1zSOsBRkOSjB8TPODnJMz6-jd5hTtZxpZPwPoIdCanTZ3ZD6uRBpTmDwtpRGm63UQs1m5FWPwb0T2IF0
+        type: string
+        x-nullable: false
+      p:
+        example: 6NbkXwDWUhi-eR55Cgbf27FkQDDWIamOaDr0rj1q0f1fFEz1W5A_09YvG09Fiv1AO2-D8Rl8gS1Vkz2i0zCSqnyy8A025XOcRviOMK7nIxE4OH_PEsko8dtIrb3TmE2hUXvCkmzw9EsTF1LQBOGC6iusLTXepIC1x9ukCKFZQvdgtEObQ5kzd9Nhq-cdqmSeMVLoxPLd1blviVT9Vm8-y12CtYpeJHOaIDtVPLlBhJiBoPKWg3vxSm4XxIliNOefqegIlsmTIa3MpS6WWlCK3yHhat0Q-rRxDxdyiVdG_wzJvp0Iw_2wms7pe-PgNPYvUWH9JphWP5K38YqEBiJFXQ
+        type: string
+        x-nullable: false
+      q:
+        example: 0A1FmpOWR91_RAWpqreWSavNaZb9nXeKiBo0DQGBz32DbqKqQ8S4aBJmbRhJcctjCLjain-ivut477tAUMmzJwVJDDq2MZFwC9Q-4VYZmFU4HJityQuSzHYe64RjN-E_NQ02TWhG3QGW6roq6c57c99rrUsETwJJiwS8M5p15Miuz53DaOjv-uqqFAFfywN5WkxHbraBcjHtMiQuyQbQqkCFh-oanHkwYNeytsNhTu2mQmwR5DR2roZ2nPiFjC6nsdk-A7E3S3wMzYYFw7jvbWWoYWo9vB40_MY2Y0FYQSqcDzcBIcq_0tnnasf3VW4Fdx6m80RzOb2Fsnln7vKXAQ
+        type: string
+        x-nullable: false
+      qi:
+        example: GyM_p6JrXySiz1toFgKbWV-JdI3jQ4ypu9rbMWx3rQJBfmt0FoYzgUIZEVFEcOqwemRN81zoDAaa-Bk0KWNGDjJHZDdDmFhW3AN7lI-puxk_mHZGJ11rxyR8O55XLSe3SPmRfKwZI6yU24ZxvQKFYItdldUKGzO6Ia6zTKhAVRU
+        type: string
+        x-nullable: false
+      use:
+        description: |-
+          Use ("public key use") identifies the intended use of
+          the public key. The "use" parameter is employed to indicate whether
+          a public key is used for encrypting data or verifying the signature
+          on data. Values are commonly "sig" (signature) or "enc" (encryption).
+        example: sig
+        type: string
+        x-nullable: false
+      x:
+        example: f83OJ3D2xF1Bg8vub9tLe1gHMzV76e8Tus9uPHvRVEU
+        type: string
+        x-nullable: false
+      x5c:
+        description: |-
+          The "x5c" (X.509 certificate chain) parameter contains a chain of one
+          or more PKIX certificates [RFC5280].  The certificate chain is
+          represented as a JSON array of certificate value strings.  Each
+          string in the array is a base64-encoded (Section 4 of [RFC4648] --
+          not base64url-encoded) DER [ITU.X690.1994] PKIX certificate value.
+          The PKIX certificate containing the key value MUST be the first
+          certificate.
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      x5t:
+        example: GawgguFyGrWKav7AX4VKUg
+        type: string
+        x-nullable: false
+      x5t#S256:
+        example: GawgguFyGrWKav7AX4VKUg
+        type: string
+        x-nullable: false
+      "y":
+        example: x_FEzRu9m36HLN_tue659LNpXW6pCyStikYjKIWI5a0
+        type: string
+        x-nullable: false
+    required:
+    - kty
+    type: object
+  ClientJWKs:
+    properties:
+      keys:
+        example: []
+        items:
+          $ref: '#/definitions/ClientJWK'
+        type: array
+        x-nullable: false
+    type: object
+  ClientPrivacy:
+    properties:
+      scopes:
+        additionalProperties:
+          $ref: '#/definitions/ScopePrivacyInformation'
+        description: optional privacy information mapping for scopes
+        type: object
+        x-nullable: false
+    type: object
+  ClientTokenExchangeConfiguration:
+    properties:
+      actor_claims:
+        description: |-
+          Additional actor token claims
+
+          Claims from the actor token that will be injected into the exchanged token under the `act` claim.
+
+          Applies for the token exchange delegation flow only.
+        items:
+          type: string
+        type: array
+        x-nullable: false
+    type: object
+  Confirmation:
+    properties:
+      jkt:
+        type: string
+        x-nullable: false
+      x5t#S256:
+        type: string
+        x-nullable: false
+    type: object
+  ConsentAccepted:
+    properties:
+      redirect_to:
+        description: |-
+          A URL to redirect the user.
+          It applies for the redirect flow only, i.e the consent page.
+        example: https://authorization.cloudentity.com:8443/tenant/server/oauth2/authorize?client_id=bugkgm23g9kregtu051g&consent_verified=true&login_id=cavai7d8s9nelp7k792g&login_state=cauq8fonbud6q8806bf0
+        type: string
+        x-nullable: false
+    type: object
+  ConsentRejected:
+    properties:
+      redirect_to:
+        description: |-
+          A URL to redirect the user.
+          It applies for the redirect flow only, i.e the consent page.
+        example: https://authorization.cloudentity.com:8443/tenant/server/oauth2/authorize?client_id=bugkgm23g9kregtu051g&consent_verified=true&login_id=cavai7d8s9nelp7k792g&login_state=cauq8fonbud6q8806bf0
+        type: string
+        x-nullable: false
+    type: object
+  ConsentRevocationByCLientID:
+    properties:
+      RevocationDetails:
+        $ref: '#/definitions/FDXConsentRevocation'
+      client_id:
+        description: Client ID
+        type: string
+        x-nullable: false
+    type: object
+  ConsentStatus:
+    type: string
+  ConsentType:
+    type: string
+  ConsentsRemovedResponse:
+    properties:
+      number_of_consents_removed:
+        format: int64
+        type: integer
+        x-nullable: false
+    type: object
+  DurationType:
+    type: string
+  Error:
+    description: HTTP error response
+    properties:
+      details:
+        type: object
+        x-nullable: false
+      error:
+        type: string
+        x-nullable: false
+      status_code:
+        format: int64
+        type: integer
+        x-nullable: false
+    type: object
+  FDXClientStatus:
+    type: string
+  FDXConsent:
+    properties:
+      authorization_server_id:
+        format: serverID
+        type: string
+        x-nullable: false
+      client_id:
+        format: clientID
+        type: string
+        x-nullable: false
+      createdTime:
+        description: Time of consent creation
+        format: date-time
+        type: string
+        x-nullable: false
+      durationPeriod:
+        description: Consent duration, in days, from day of original grant.
+        format: int64
+        type: integer
+        x-nullable: false
+      durationType:
+        $ref: '#/definitions/DurationType'
+      expirationTime:
+        description: Time of consent expiration
+        format: date-time
+        type: string
+        x-nullable: false
+      granted_resources:
+        description: |-
+          Enumeration of the Clusters of granted data elements permissioned by this Consent Grant.
+          Data Clusters are described in FDX RFC 0167.
+        items:
+          $ref: '#/definitions/FDXGrantedResource'
+        type: array
+        x-nullable: false
+      id:
+        $ref: '#/definitions/FDXConsentID'
+      lookbackPeriod:
+        description: Period, in days, for which historical data may be requested;
+          period is measured from request time, not grant time
+        format: int64
+        type: integer
+        x-nullable: false
+      parties:
+        description: |-
+          A collection of parameters identifying the Parties (including the legal entity operating branded products or services)
+          in the data sharing chain. Descriptive information is collected during Data Recipient registration at Data Provider,
+          and populated during issuance by DataProvider from its registry;
+        items:
+          $ref: '#/definitions/FDXConsentGrantParty'
+        type: array
+        x-nullable: false
+      resources:
+        description: |-
+          Enumeration of the Clusters of requested data elements permissioned by this Consent Grant.
+          Data Clusters are described in FDX RFC 0167.
+        items:
+          $ref: '#/definitions/FDXRequestedResource'
+        type: array
+        x-nullable: false
+      revocationReason:
+        $ref: '#/definitions/FDXConsentRevocation'
+      status:
+        $ref: '#/definitions/ConsentStatus'
+      tenant_id:
+        format: tenantID
+        type: string
+        x-nullable: false
+      updatedTime:
+        description: Time of last consent's status change
+        format: date-time
+        type: string
+        x-nullable: false
+    type: object
+  FDXConsentGrantParty:
+    description: |-
+      Consent Party entity
+      Details on the non-end user parties in the Consent Grant. Includes the legal entity operating branded products or services
+      in the data sharing chain. Descriptive information is collected during Data Recipient registration at Data Provider,
+      and populated during issuance by Data Provider from its registry
+    properties:
+      homeUri:
+        description: URL for party, where an end user could learn more about the company
+          or application involved in the data sharing chain
+        type: string
+        x-nullable: false
+      logoUri:
+        description: URL for a logo asset to be displayed to the end user
+        type: string
+        x-nullable: false
+      name:
+        description: Common name for party, as it should be displayed to the end user
+        type: string
+        x-nullable: false
+      registeredEntityIdentifier:
+        description: Registered id of party
+        type: string
+        x-nullable: false
+      registeredEntityName:
+        description: Registered name of party
+        type: string
+        x-nullable: false
+      registryName:
+        description: The registry with the party's registered name and id
+        type: string
+        x-nullable: false
+    type: object
+  FDXConsentGrantStatus:
+    title: Current status of Consent Grant.
+    type: string
+  FDXConsentID:
+    type: string
+  FDXConsentRevocation:
+    description: Revocation data
+    properties:
+      initiator:
+        description: Revocation initiator
+        enum:
+        - DATA_ACCESS_PLATFORM
+        - DATA_PROVIDER
+        - DATA_RECIPIENT
+        - INDIVIDUAL
+        - MERCHANT
+        - VENDOR
+        example: '"INDIVIDUAL"'
+        type: string
+        x-nullable: false
+      reason:
+        description: Revocation reason
+        enum:
+        - BUSINESS_RULE
+        - USER_ACTION
+        example: '"USER_ACTION"'
+        type: string
+        x-nullable: false
+    type: object
+  FDXConsents:
+    properties:
+      consents:
+        items:
+          $ref: '#/definitions/FDXConsent'
+        type: array
+        x-nullable: false
+    type: object
+  FDXConsentsRequest:
+    properties:
+      after_consent_id:
+        description: |-
+          A consent identifier.
+
+          Use it to navigate through the request pagination when the number of consents is greater than
+          the `limit` set for results in the response.
+
+          With `after_consent_id`, the list you obtain starts from the subsequent consent after the specified one. Also,
+          the response depends on the `sort` and `order` parameters, if any are passed.
+        type: string
+        x-nullable: false
+      before_consent_id:
+        description: |-
+          A consent identifier.
+
+          Use it to navigate through the request pagination when the number of consents is greater than
+          the limit set for results in the response.
+
+          With `before_consent_id`, the list you obtain comprises consents up to the specified one. The specified consent
+          isn't included. Also, the response depends on the `sort` and `order` parameters, if any are passed.
+        type: string
+        x-nullable: false
+      client_id:
+        description: A client identifier.
+        type: string
+        x-nullable: false
+      limit:
+        default: 20
+        description: Limit the number of results returned in the response.
+        format: int64
+        maximum: 100
+        minimum: 1
+        type: integer
+        x-nullable: false
+      order:
+        default: desc
+        description: |-
+          Input: `acs` or `desc`.
+
+          Set the order of results returned in the response.
+        type: string
+        x-nullable: false
+      resource:
+        $ref: '#/definitions/Resource'
+      sort:
+        description: Sort results returned in the response.
+        type: string
+        x-nullable: false
+      status:
+        description: List of the consent statuses.
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      types:
+        description: |-
+          Consent types.
+
+          in:query
+        items:
+          type: string
+        type: array
+        x-nullable: false
+    type: object
+  FDXDynamicClientRegistrationRequest:
+    properties:
+      application_type:
+        default: web
+        description: |-
+          The client application type.
+
+          Client applications can be either of a `web` or `native` types.
+
+          Web applications include clients like server web applications or service apps.
+
+          Native applications include single-page applications (SPAs) and mobile or desktop
+          applications.
+
+          Apply security measures according to the type of your application.
+        example: web
+        type: string
+        x-nullable: false
+      application_types:
+        default:
+        - server_web
+        description: An array of dynamically calculated application types that can
+          be used for filtering
+        example:
+        - single_page
+        - server_web
+        - mobile_desktop
+        - service
+        - legacy
+        - dcr
+        items:
+          enum:
+          - single_page
+          - server_web
+          - mobile_desktop
+          - service
+          - legacy
+          - dcr
+          type: string
+        readOnly: true
+        type: array
+        x-nullable: false
+      audience:
+        default:
+        - client_id
+        description: |-
+          Identity of the intended recipients (the audience).
+
+          Typically, the audience is a single resource server or a list of resource servers.
+
+          It is considered a good practice to limit the audience of the token for security purposes.
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      authorization_encrypted_response_alg:
+        description: |-
+          Algorithm used for encrypting authorization responses.
+
+          If both signing and encryption are requested, the response is first signed, and then encrypted.
+          As a result, a Nested JWT is obtained, as defined in JWT [RFC7519].
+
+          If omitted, no encryption is applied by default.
+        enum:
+        - RSA-OAEP
+        - RSA-OAEP-256
+        example: RSA-OAEP-256
+        type: string
+        x-nullable: false
+      authorization_encrypted_response_enc:
+        description: |-
+          Algorithm used for encrypting authorization responses.
+
+          With `authorization_encrypted_response_alg` specified, the default value is `A128CBC-HS256`.
+          When `authorization_encrypted_response_enc` is included, `authorization_encrypted_response_alg`
+          MUST also be provided in a request.
+        enum:
+        - A256GCM
+        - A128CBC-HS256
+        example: A128CBC-HS256
+        type: string
+        x-nullable: false
+      authorization_signed_response_alg:
+        description: |-
+          Algorithm used for signing authorization responses.
+
+          With this parameter specified, the response is signed using JWS and according to the configured algorithm.
+
+          `none` isn't allowed.
+        example: RS256
+        type: string
+        x-nullable: false
+      backchannel_authentication_request_signing_alg:
+        description: |-
+          OPTIONAL. The JWS alg algorithm value used by the client application to sign authentication requests.
+
+          When omitted, the client application doesn't send signed authentication requests.
+        type: string
+        x-nullable: false
+      backchannel_client_notification_endpoint:
+        description: |-
+          REQUIRED for requests when the client application uses CIBA as an authorization grant type, and the token
+          delivery mode is set to `ping` or `push`.
+
+          This parameter is the endpoint where an OP (OpenID Provider) posts a notification after end-user authentication.
+
+          Input: an HTTPS URL.
+        type: string
+        x-nullable: false
+      backchannel_token_delivery_mode:
+        description: |-
+          REQUIRED for requests when the client application uses CIBA as an authorization grant type.
+
+          Input: `poll`, `ping`, or `push`.
+        type: string
+        x-nullable: false
+      backchannel_user_code_parameter:
+        description: |-
+          OPTIONAL. A boolean value indicating the `user_code` parameter support by the client application.
+
+          If omitted, the default value is `false`.
+
+          This applies only when the `backchannel_user_code_parameter_supported` OP parameter is `true`.
+        type: boolean
+        x-nullable: false
+      client_id_issued_at:
+        description: |-
+          The client identifier time of issue.
+
+          The value is the number of seconds between 1970-01-01T00:00:00Z (UTC) and the date/time of issue.
+        format: int64
+        type: integer
+        x-nullable: false
+      client_name:
+        description: Human-readable name of a client application.
+        example: My app
+        type: string
+        x-nullable: false
+      client_secret_expires_at:
+        description: |-
+          The client secret expiration time.
+
+          If the client secret does not expire, `client_secret_expires_at` = `0`.
+        format: int64
+        type: integer
+        x-nullable: false
+      client_uri:
+        description: URI of a client application.
+        type: string
+        x-nullable: false
+      contacts:
+        description: Contact information of individuals responsible for the Data Recipient
+          application
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      created_at:
+        description: Date when the client application was created.
+        example: "2022-04-07T19:17:31.323187Z"
+        format: date-time
+        type: string
+        x-nullable: false
+      description:
+        description: Description of the client application.
+        type: string
+        x-nullable: false
+      dpop_bound_access_tokens:
+        description: |-
+          Boolean value specifying whether the client always uses DPoP for token requests
+          If true, the authorization server will reject token requests from this client that do not contain the DPoP header.
+        type: boolean
+        x-nullable: false
+      duration_period:
+        default: 365
+        description: |-
+          The time window the end-user grants the consent for. Used when `duration_type`=`TIME_BOUND`.
+          If 0 or no value is provided, default value is applied.
+        format: int64
+        minimum: 1
+        type: integer
+        x-nullable: false
+      duration_type:
+        description: |-
+          The rule of consent granting by the end-user to indicate whether they must take action
+          to revoke access or the consent will be revoked automatically.
+
+          The acceptable values: "ONE_TIME", "PERSISTENT", "TIME_BOUND"
+        example: '"ONE_TIME"'
+        items:
+          $ref: '#/definitions/DurationType'
+        type: array
+        x-nullable: false
+      grant_types:
+        default:
+        - authorization_code
+        description: |-
+          An array of allowed OAuth client grant types.
+
+          The `grantTypes` array stores OAuth flows that are allowed for a given client application.
+
+          [Read more](https://cloudentity.com/developers/basics/oauth-grant-types/grant-types-overview/) about grant types.
+        example:
+        - password
+        - refresh_token
+        - client_credentials
+        - implicit
+        - authorization_code
+        items:
+          enum:
+          - authorization_code
+          - implicit
+          - client_credentials
+          - refresh_token
+          - password
+          - urn:ietf:params:oauth:grant-type:jwt-bearer
+          - urn:openid:params:grant-type:ciba
+          - urn:ietf:params:oauth:grant-type:token-exchange
+          - urn:ietf:params:oauth:grant-type:device_code
+          type: string
+        type: array
+        x-nullable: false
+      id_token_encrypted_response_alg:
+        description: JWE alg algorithm for encrypting the ID token issued to this
+          client application.
+        enum:
+        - RSA-OAEP
+        - RSA-OAEP-256
+        type: string
+        x-nullable: false
+      id_token_encrypted_response_enc:
+        description: JWE enc algorithm for encrypting the ID token issued to this
+          client application.
+        enum:
+        - A256GCM
+        - A128CBC-HS256
+        type: string
+        x-nullable: false
+      id_token_signed_response_alg:
+        description: |-
+          Algorithm for signing ID tokens issued for a client application.
+
+          The default value depends on authorization server configuration.
+        enum:
+        - RS256
+        - ES256
+        - PS256
+        example: ES256
+        type: string
+        x-nullable: false
+      intermediaries:
+        description: An array of the intermediaries for this Data Recipient.
+        items:
+          $ref: '#/definitions/Intermediary'
+        type: array
+        x-nullable: false
+      introspection_endpoint_auth_method:
+        default: client_secret_basic
+        description: |-
+          An introspection endpoint authentication method configured for the client application.
+
+          If empty, the `token_endpoint_auth_method` is used.
+
+          Cloudentity supports the following client authentication methods:
+          `client_secret_basic`, `client_secret_post`, `client_secret_jwt`, `private_key_jwt`,
+          `self_signed_tls_client_auth`, `tls_client_auth`, `none`.
+
+          [Read more](https://cloudentity.com/developers/basics/oauth-client-authentication/client-authentication-overview/) about client authentication.
+        enum:
+        - client_secret_basic
+        - client_secret_post
+        - client_secret_jwt
+        - private_key_jwt
+        - self_signed_tls_client_auth
+        - tls_client_auth
+        - none
+        example: client_secret_basic
+        type: string
+        x-nullable: false
+      jwks:
+        $ref: '#/definitions/ClientJWKs'
+      jwks_uri:
+        description: A URL of JSON Web Key Set with the public keys used by a client
+          application to authenticate to Cloudentity.
+        type: string
+        x-nullable: false
+      logo_uri:
+        description: Logo URI.
+        type: string
+        x-nullable: false
+      lookback_period:
+        default: 365
+        description: |-
+          The maximum number of days allowed for Data Recipient consumers to obtain in transaction history, effective from
+          the current date.
+          If 0 or no value is provided, default value is applied.
+        format: int64
+        minimum: 1
+        type: integer
+        x-nullable: false
+      organisation_id:
+        description: |-
+          External organization identifier. It is a unique string assigned by the CDR Register to identify an Accredited
+          Data Recipient Brand.
+
+          The value obtained is used as the `aud` claim for message signing, for example, when a JSON Web Token (JWT) is
+          required for authorization, and represents the audience(s) the JWT is intended for.
+        example: 5647fe90-f6bc-11eb-9a03-0242ac130003
+        type: string
+        x-nullable: false
+      policy_uri:
+        description: Policy URL to read about how the profile data is used.
+        type: string
+        x-nullable: false
+      privacy:
+        $ref: '#/definitions/ClientPrivacy'
+      redirect_uris:
+        $ref: '#/definitions/RedirectURIs'
+      registry_references:
+        description: |-
+          The list of external registries where the Data Recipient is registered. It comprises the following details:
+          name, identifier, and the `registry` string with any additional info.
+        items:
+          $ref: '#/definitions/RegistryReference'
+        type: array
+        x-nullable: false
+      request_object_encryption_alg:
+        description: Optional JWE alg algorithm the client is declaring that it may
+          use for encrypting Request Objects
+        enum:
+        - RSA-OAEP
+        - RSA-OAEP-256
+        example: RSA-OAEP
+        type: string
+        x-nullable: false
+      request_object_encryption_enc:
+        description: |-
+          Optional JWE enc algorithm the client is declaring that it may use for encrypting Request Objects
+          When `request_object_encryption_enc` is included, `request_object_encryption_alg` MUST also be provided.
+        enum:
+        - A256GCM
+        - A128CBC-HS256
+        example: A256GCM
+        type: string
+        x-nullable: false
+      request_object_signing_alg:
+        default: any
+        description: |-
+          Request object signing algorithm for the token endpoint
+
+          Cloudentity supports signing tokens with the RS256, ES256, and PS256 algorithms. If you do not want
+          to use a signing algorithm, set the value of this parameter to `none`.
+        enum:
+        - any
+        - none
+        - RS256
+        - ES256
+        - PS256
+        example: none
+        type: string
+        x-nullable: false
+      request_uris:
+        description: Array of absolute URIs that points to the Request Object that
+          holds authorization request parameters.
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      require_pushed_authorization_requests:
+        description: Boolean parameter indicating whether the only means of initiating
+          an authorization request the client is allowed to use is PAR.
+        type: boolean
+        x-nullable: false
+      response_types:
+        $ref: '#/definitions/ResponseTypes'
+      revocation_endpoint_auth_method:
+        default: client_secret_basic
+        description: |-
+          A revocation endpoint authentication method configured for the client application.
+          If empty, the `token_endpoint_auth_method` is used.
+
+          Cloudentity supports the following client authentication methods:
+          `client_secret_basic`, `client_secret_post`, `client_secret_jwt`, `private_key_jwt`,
+          `self_signed_tls_client_auth`, `tls_client_auth`, `none`.
+
+          [Read more](https://cloudentity.com/developers/basics/oauth-client-authentication/client-authentication-overview/) about client authentication.
+        enum:
+        - client_secret_basic
+        - client_secret_post
+        - client_secret_jwt
+        - private_key_jwt
+        - self_signed_tls_client_auth
+        - tls_client_auth
+        - none
+        example: client_secret_basic
+        type: string
+        x-nullable: false
+      scope:
+        description: Space-separated list of scopes for compatibility with the OAuth
+          specification.
+        example: email offline_access openid
+        type: string
+        x-nullable: false
+      scopes:
+        description: An array of string represented scopes assigned to a client application
+        example:
+        - email
+        - offline_access
+        - openid
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      sector_identifier_uri:
+        description: |-
+          OPTIONAL. [A URL using the HTTPS scheme](https://openid.net/specs/openid-connect-registration-1_0.html#SectorIdentifierValidation).
+          It must reference a JSON file with the array of `redirect_uri` values.
+
+          Pass this parameter when you use multiple domains in your `redirect_uris` or need a mechanism to allow changes in
+          domain without affecting consumer consent.
+
+          [Read more](https://openid.net/specs/openid-connect-core-1_0.html)
+        type: string
+        x-nullable: false
+      subject_type:
+        default: public
+        description: |-
+          Subject identifier type
+
+          Stores information if the subject identifier is of the `public` or the `pairwise` type.
+
+          Subject identifiers identify an end-user. They are locally unique and never reassigned within the Issuer,
+          and are intended to be consumed by client applications. There are two types
+          of subject identifiers: `public` and `pairwise`.
+
+          For the `public` type, the value of the `sub` (subject) token claim is the same for all clients.
+
+          For the `pairwise` type, a different `sub` (subject) token claim is provided for each client.
+          Using the `pairwise` subject identifier makes it impossible for client applications to correlate the end-user's
+          activity without their permission.
+        enum:
+        - public
+        - pairwise
+        example: public
+        type: string
+        x-nullable: false
+      tls_client_auth_san_dns:
+        description: A string containing the value of an expected dNSName SAN entry
+          in the certificate.
+        type: string
+        x-nullable: false
+      tls_client_auth_san_email:
+        description: A string containing the value of an expected rfc822Name SAN entry
+          in the certificate.
+        type: string
+        x-nullable: false
+      tls_client_auth_san_ip:
+        description: A string representation of an IP address in either dotted decimal
+          notation (for IPv4) or colon-delimited hexadecimal (for IPv6, as defined
+          in [RFC5952]) that is expected to be present as an iPAddress SAN entry in
+          the certificate.
+        type: string
+        x-nullable: false
+      tls_client_auth_san_uri:
+        description: A string containing the value of an expected uniformResourceIdentifier
+          SAN entry in the certificate.
+        type: string
+        x-nullable: false
+      tls_client_auth_subject_dn:
+        description: An [RFC4514] string representation of the expected subject distinguished
+          name of the certificate.
+        type: string
+        x-nullable: false
+      tls_client_certificate_bound_access_tokens:
+        description: Boolean value indicating server support for mutual TLS client
+          certificate-bound access tokens. If omitted, the default value is "false".
+        type: boolean
+        x-nullable: false
+      token_endpoint_auth_method:
+        default: client_secret_basic
+        description: |-
+          Token endpoint authentication method configured for a client application
+
+          Cloudentity supports the following client authentication methods:
+          `client_secret_basic`, `client_secret_post`, `client_secret_jwt`, `private_key_jwt`,
+          `self_signed_tls_client_auth`, `tls_client_auth`, `none`.
+
+          To learn more, go to the Authorization Basics > Client Authentication section of this guide.
+        enum:
+        - client_secret_basic
+        - client_secret_post
+        - client_secret_jwt
+        - private_key_jwt
+        - self_signed_tls_client_auth
+        - tls_client_auth
+        - none
+        example: client_secret_basic
+        type: string
+        x-nullable: false
+      token_endpoint_auth_signing_alg:
+        default: ES256
+        description: |-
+          Signing algorithm for the token endpoint
+
+          This field is optional. If empty, a client can use any algorithm supported by the server (see `token_endpoint_auth_signing_alg_values_supported` in the well-known endpoing).
+
+          If provided, depending on the server configuration, client can use of one: HS256, RS256, ES256, PS256 algorithms.
+
+          If your token endpoint authentication is set to the `private_key_jwt` method, the
+          `token_endpoint_auth_signing_alg` parameter must be either RS256, ES256, or PS256.
+
+          If your token endpoint authentication is set to the `client_secret_jwt` method,
+          the `token_endpoint_auth_signing_alg` parameter must be HS256.
+        enum:
+        - RS256
+        - ES256
+        - PS256
+        - HS256
+        - ""
+        example: ES256
+        type: string
+        x-nullable: false
+      token_exchange:
+        $ref: '#/definitions/ClientTokenExchangeConfiguration'
+      tos_uri:
+        description: Terms of Service URL.
+        type: string
+        x-nullable: false
+      updated_at:
+        description: Date when the client application was updated.
+        example: "2022-05-08T01:11:51.1262916Z"
+        format: date-time
+        type: string
+        x-nullable: false
+      userinfo_signed_response_alg:
+        default: none
+        description: |-
+          JWS alg algorithm REQUIRED for signing UserInfo Responses.
+
+          If specified, the response is a JWT serialized and signed with JWS.
+
+          If omitted, then by default, UserInfo Response returns the Claims
+          as an UTF-8 encoded JSON object using the application/json content-type.
+        enum:
+        - none
+        - RS256
+        - ES256
+        example: none
+        type: string
+        x-nullable: false
+    type: object
+  FDXDynamicClientRegistrationResponse:
+    properties:
+      application_type:
+        default: web
+        description: |-
+          The client application type.
+
+          Client applications can be either of a `web` or `native` types.
+
+          Web applications include clients like server web applications or service apps.
+
+          Native applications include single-page applications (SPAs) and mobile or desktop
+          applications.
+
+          Apply security measures according to the type of your application.
+        example: web
+        type: string
+        x-nullable: false
+      application_types:
+        default:
+        - server_web
+        description: An array of dynamically calculated application types that can
+          be used for filtering
+        example:
+        - single_page
+        - server_web
+        - mobile_desktop
+        - service
+        - legacy
+        - dcr
+        items:
+          enum:
+          - single_page
+          - server_web
+          - mobile_desktop
+          - service
+          - legacy
+          - dcr
+          type: string
+        readOnly: true
+        type: array
+        x-nullable: false
+      audience:
+        default:
+        - client_id
+        description: |-
+          Identity of the intended recipients (the audience).
+
+          Typically, the audience is a single resource server or a list of resource servers.
+
+          It is considered a good practice to limit the audience of the token for security purposes.
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      authorization_encrypted_response_alg:
+        description: |-
+          Algorithm used for encrypting authorization responses.
+
+          If both signing and encryption are requested, the response is first signed, and then encrypted.
+          As a result, a Nested JWT is obtained, as defined in JWT [RFC7519].
+
+          If omitted, no encryption is applied by default.
+        enum:
+        - RSA-OAEP
+        - RSA-OAEP-256
+        example: RSA-OAEP-256
+        type: string
+        x-nullable: false
+      authorization_encrypted_response_enc:
+        description: |-
+          Algorithm used for encrypting authorization responses.
+
+          With `authorization_encrypted_response_alg` specified, the default value is `A128CBC-HS256`.
+          When `authorization_encrypted_response_enc` is included, `authorization_encrypted_response_alg`
+          MUST also be provided in a request.
+        enum:
+        - A256GCM
+        - A128CBC-HS256
+        example: A128CBC-HS256
+        type: string
+        x-nullable: false
+      authorization_signed_response_alg:
+        description: |-
+          Algorithm used for signing authorization responses.
+
+          With this parameter specified, the response is signed using JWS and according to the configured algorithm.
+
+          `none` isn't allowed.
+        example: RS256
+        type: string
+        x-nullable: false
+      backchannel_authentication_request_signing_alg:
+        description: |-
+          OPTIONAL. The JWS alg algorithm value used by the client application to sign authentication requests.
+
+          When omitted, the client application doesn't send signed authentication requests.
+        type: string
+        x-nullable: false
+      backchannel_client_notification_endpoint:
+        description: |-
+          REQUIRED for requests when the client application uses CIBA as an authorization grant type, and the token
+          delivery mode is set to `ping` or `push`.
+
+          This parameter is the endpoint where an OP (OpenID Provider) posts a notification after end-user authentication.
+
+          Input: an HTTPS URL.
+        type: string
+        x-nullable: false
+      backchannel_token_delivery_mode:
+        description: |-
+          REQUIRED for requests when the client application uses CIBA as an authorization grant type.
+
+          Input: `poll`, `ping`, or `push`.
+        type: string
+        x-nullable: false
+      backchannel_user_code_parameter:
+        description: |-
+          OPTIONAL. A boolean value indicating the `user_code` parameter support by the client application.
+
+          If omitted, the default value is `false`.
+
+          This applies only when the `backchannel_user_code_parameter_supported` OP parameter is `true`.
+        type: boolean
+        x-nullable: false
+      client_id:
+        description: |-
+          OAuth client application identifier
+
+          If not provided, a random client ID is generated.
+        format: clientID
+        type: string
+        x-nullable: false
+      client_id_issued_at:
+        description: |-
+          The client identifier time of issue.
+
+          The value is the number of seconds between 1970-01-01T00:00:00Z (UTC) and the date/time of issue.
+        format: int64
+        type: integer
+        x-nullable: false
+      client_name:
+        description: Human-readable name of a client application.
+        example: My app
+        type: string
+        x-nullable: false
+      client_secret:
+        description: |-
+          OAuth client secret
+
+          If not provided, a random client secret is generated.
+        minLength: 32
+        type: string
+        x-nullable: false
+      client_secret_expires_at:
+        description: |-
+          The client secret expiration time.
+
+          If the client secret does not expire, `client_secret_expires_at` = `0`.
+        format: int64
+        type: integer
+        x-nullable: false
+      client_status:
+        description: |-
+          Defines whether the client application is active or not.
+
+          Only clients with the `Active` status can preform authorization, authentication, and PAR requests.
+        enum:
+        - active
+        - inactive
+        type: string
+        x-nullable: false
+      client_uri:
+        description: URI of a client application.
+        type: string
+        x-nullable: false
+      contacts:
+        description: Contact information of individuals responsible for the Data Recipient
+          application.
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      created_at:
+        description: Date when the client application was created.
+        example: "2022-04-07T19:17:31.323187Z"
+        format: date-time
+        type: string
+        x-nullable: false
+      description:
+        description: Description of the client application.
+        type: string
+        x-nullable: false
+      developer_id:
+        description: Optional developer owner of the client application.
+        format: subject
+        type: string
+        x-nullable: false
+      dpop_bound_access_tokens:
+        description: |-
+          Boolean value specifying whether the client always uses DPoP for token requests
+          If true, the authorization server will reject token requests from this client that do not contain the DPoP header.
+        type: boolean
+        x-nullable: false
+      duration_period:
+        default: 365
+        description: The time window the end-user grants the consent for. Used when
+          `duration_type`=`TIME_BOUND`.
+        format: int64
+        type: integer
+        x-nullable: false
+      duration_type:
+        default:
+        - ONE_TIME
+        - PERSISTENT
+        - TIME_BOUND
+        description: |-
+          The rule of consent granting by the end-user to indicate whether they must take action
+          to revoke access or the consent will be revoked automatically.
+
+          The acceptable values: "ONE_TIME", "PERSISTENT", "TIME_BOUND"
+        example: '"ONE_TIME"'
+        items:
+          $ref: '#/definitions/DurationType'
+        type: array
+        x-nullable: false
+      grant_types:
+        default:
+        - authorization_code
+        description: |-
+          An array of allowed OAuth client grant types.
+
+          The `grantTypes` array stores OAuth flows that are allowed for a given client application.
+
+          [Read more](https://cloudentity.com/developers/basics/oauth-grant-types/grant-types-overview/) about grant types.
+        example:
+        - password
+        - refresh_token
+        - client_credentials
+        - implicit
+        - authorization_code
+        items:
+          enum:
+          - authorization_code
+          - implicit
+          - client_credentials
+          - refresh_token
+          - password
+          - urn:ietf:params:oauth:grant-type:jwt-bearer
+          - urn:openid:params:grant-type:ciba
+          - urn:ietf:params:oauth:grant-type:token-exchange
+          - urn:ietf:params:oauth:grant-type:device_code
+          type: string
+        type: array
+        x-nullable: false
+      hashed_rotated_secrets:
+        description: An array of hashed rotated client secrets
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      hashed_secret:
+        description: |-
+          Hashed client secret
+
+          Hashing client secrets provides additional security for your secrets storage as it hides
+          plaintext secrets from being viewed both in the UI and the database.
+        type: string
+        x-nullable: false
+      id_token_encrypted_response_alg:
+        description: JWE alg algorithm for encrypting the ID token issued to this
+          client application.
+        enum:
+        - RSA-OAEP
+        - RSA-OAEP-256
+        type: string
+        x-nullable: false
+      id_token_encrypted_response_enc:
+        description: JWE enc algorithm for encrypting the ID token issued to this
+          client application.
+        enum:
+        - A256GCM
+        - A128CBC-HS256
+        type: string
+        x-nullable: false
+      id_token_signed_response_alg:
+        description: |-
+          Algorithm for signing ID tokens issued for a client application.
+
+          The default value depends on authorization server configuration.
+        enum:
+        - RS256
+        - ES256
+        - PS256
+        example: ES256
+        type: string
+        x-nullable: false
+      intermediaries:
+        description: An array of the intermediaries for this Data Recipient.
+        items:
+          $ref: '#/definitions/Intermediary'
+        type: array
+        x-nullable: false
+      introspection_endpoint_auth_method:
+        default: client_secret_basic
+        description: |-
+          An introspection endpoint authentication method configured for the client application.
+
+          If empty, the `token_endpoint_auth_method` is used.
+
+          Cloudentity supports the following client authentication methods:
+          `client_secret_basic`, `client_secret_post`, `client_secret_jwt`, `private_key_jwt`,
+          `self_signed_tls_client_auth`, `tls_client_auth`, `none`.
+
+          [Read more](https://cloudentity.com/developers/basics/oauth-client-authentication/client-authentication-overview/) about client authentication.
+        enum:
+        - client_secret_basic
+        - client_secret_post
+        - client_secret_jwt
+        - private_key_jwt
+        - self_signed_tls_client_auth
+        - tls_client_auth
+        - none
+        example: client_secret_basic
+        type: string
+        x-nullable: false
+      jwks:
+        $ref: '#/definitions/ClientJWKs'
+      jwks_uri:
+        description: A URL of JSON Web Key Set with the public keys used by a client
+          application to authenticate to Cloudentity.
+        type: string
+        x-nullable: false
+      logo_uri:
+        description: Logo URI.
+        type: string
+        x-nullable: false
+      lookback_period:
+        default: 365
+        description: |-
+          The maximum number of days allowed for Data Recipient consumers to obtain in transaction history, effective from
+          the current date
+        format: int64
+        type: integer
+        x-nullable: false
+      organisation_id:
+        description: |-
+          External organization identifier. It is a unique string assigned by the CDR Register to identify an Accredited
+          Data Recipient Brand.
+
+          The value obtained is used as the `aud` claim for message signing, for example, when a JSON Web Token (JWT) is
+          required for authorization, and represents the audience(s) the JWT is intended for.
+        example: 5647fe90-f6bc-11eb-9a03-0242ac130003
+        type: string
+        x-nullable: false
+      policy_uri:
+        description: Policy URL to read about how the profile data is used.
+        type: string
+        x-nullable: false
+      privacy:
+        $ref: '#/definitions/ClientPrivacy'
+      redirect_uris:
+        $ref: '#/definitions/RedirectURIs'
+      registration_client_uri:
+        description: Fully qualified URI for subsequent DCR calls (GET, PUT, DELETE)
+          for managing the Data Recipient registration
+        type: string
+        x-nullable: false
+      registry_references:
+        description: |-
+          The list of external registries where the Data Recipient is registered. It comprises the following details:
+          name, identifier, and the `registry` string with any additional info.
+        items:
+          $ref: '#/definitions/RegistryReference'
+        type: array
+        x-nullable: false
+      request_object_encryption_alg:
+        description: Optional JWE alg algorithm the client is declaring that it may
+          use for encrypting Request Objects
+        enum:
+        - RSA-OAEP
+        - RSA-OAEP-256
+        example: RSA-OAEP
+        type: string
+        x-nullable: false
+      request_object_encryption_enc:
+        description: |-
+          Optional JWE enc algorithm the client is declaring that it may use for encrypting Request Objects
+          When `request_object_encryption_enc` is included, `request_object_encryption_alg` MUST also be provided.
+        enum:
+        - A256GCM
+        - A128CBC-HS256
+        example: A256GCM
+        type: string
+        x-nullable: false
+      request_object_signing_alg:
+        default: any
+        description: |-
+          Request object signing algorithm for the token endpoint
+
+          Cloudentity supports signing tokens with the RS256, ES256, and PS256 algorithms. If you do not want
+          to use a signing algorithm, set the value of this parameter to `none`.
+        enum:
+        - any
+        - none
+        - RS256
+        - ES256
+        - PS256
+        example: none
+        type: string
+        x-nullable: false
+      request_uris:
+        description: Array of absolute URIs that points to the Request Object that
+          holds authorization request parameters.
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      require_pushed_authorization_requests:
+        description: Boolean parameter indicating whether the only means of initiating
+          an authorization request the client is allowed to use is PAR.
+        type: boolean
+        x-nullable: false
+      response_types:
+        $ref: '#/definitions/ResponseTypes'
+      revocation_endpoint_auth_method:
+        default: client_secret_basic
+        description: |-
+          A revocation endpoint authentication method configured for the client application.
+          If empty, the `token_endpoint_auth_method` is used.
+
+          Cloudentity supports the following client authentication methods:
+          `client_secret_basic`, `client_secret_post`, `client_secret_jwt`, `private_key_jwt`,
+          `self_signed_tls_client_auth`, `tls_client_auth`, `none`.
+
+          [Read more](https://cloudentity.com/developers/basics/oauth-client-authentication/client-authentication-overview/) about client authentication.
+        enum:
+        - client_secret_basic
+        - client_secret_post
+        - client_secret_jwt
+        - private_key_jwt
+        - self_signed_tls_client_auth
+        - tls_client_auth
+        - none
+        example: client_secret_basic
+        type: string
+        x-nullable: false
+      rotated_secrets:
+        description: An array of rotated OAuth client secrets
+        items:
+          type: string
+        minLength: 32
+        type: array
+        x-nullable: false
+      scope:
+        description: Space-separated list of scopes for compatibility with the OAuth
+          specification.
+        example: email offline_access openid
+        type: string
+        x-nullable: false
+      scopes:
+        description: An array of string represented scopes assigned to a client application
+        example:
+        - email
+        - offline_access
+        - openid
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      sector_identifier_uri:
+        description: |-
+          OPTIONAL. [A URL using the HTTPS scheme](https://openid.net/specs/openid-connect-registration-1_0.html#SectorIdentifierValidation).
+          It must reference a JSON file with the array of `redirect_uri` values.
+
+          Pass this parameter when you use multiple domains in your `redirect_uris` or need a mechanism to allow changes in
+          domain without affecting consumer consent.
+
+          [Read more](https://openid.net/specs/openid-connect-core-1_0.html)
+        type: string
+        x-nullable: false
+      status:
+        $ref: '#/definitions/FDXClientStatus'
+      subject_type:
+        default: public
+        description: |-
+          Subject identifier type
+
+          Stores information if the subject identifier is of the `public` or the `pairwise` type.
+
+          Subject identifiers identify an end-user. They are locally unique and never reassigned within the Issuer,
+          and are intended to be consumed by client applications. There are two types
+          of subject identifiers: `public` and `pairwise`.
+
+          For the `public` type, the value of the `sub` (subject) token claim is the same for all clients.
+
+          For the `pairwise` type, a different `sub` (subject) token claim is provided for each client.
+          Using the `pairwise` subject identifier makes it impossible for client applications to correlate the end-user's
+          activity without their permission.
+        enum:
+        - public
+        - pairwise
+        example: public
+        type: string
+        x-nullable: false
+      system:
+        description: Defines whether the client application is a system tenant's application
+          or not.
+        type: boolean
+        x-nullable: false
+      tls_client_auth_san_dns:
+        description: A string containing the value of an expected dNSName SAN entry
+          in the certificate.
+        type: string
+        x-nullable: false
+      tls_client_auth_san_email:
+        description: A string containing the value of an expected rfc822Name SAN entry
+          in the certificate.
+        type: string
+        x-nullable: false
+      tls_client_auth_san_ip:
+        description: A string representation of an IP address in either dotted decimal
+          notation (for IPv4) or colon-delimited hexadecimal (for IPv6, as defined
+          in [RFC5952]) that is expected to be present as an iPAddress SAN entry in
+          the certificate.
+        type: string
+        x-nullable: false
+      tls_client_auth_san_uri:
+        description: A string containing the value of an expected uniformResourceIdentifier
+          SAN entry in the certificate.
+        type: string
+        x-nullable: false
+      tls_client_auth_subject_dn:
+        description: An [RFC4514] string representation of the expected subject distinguished
+          name of the certificate.
+        type: string
+        x-nullable: false
+      tls_client_certificate_bound_access_tokens:
+        description: Boolean value indicating server support for mutual TLS client
+          certificate-bound access tokens. If omitted, the default value is "false".
+        type: boolean
+        x-nullable: false
+      token_endpoint_auth_method:
+        default: client_secret_basic
+        description: |-
+          Token endpoint authentication method configured for a client application
+
+          Cloudentity supports the following client authentication methods:
+          `client_secret_basic`, `client_secret_post`, `client_secret_jwt`, `private_key_jwt`,
+          `self_signed_tls_client_auth`, `tls_client_auth`, `none`.
+
+          To learn more, go to the Authorization Basics > Client Authentication section of this guide.
+        enum:
+        - client_secret_basic
+        - client_secret_post
+        - client_secret_jwt
+        - private_key_jwt
+        - self_signed_tls_client_auth
+        - tls_client_auth
+        - none
+        example: client_secret_basic
+        type: string
+        x-nullable: false
+      token_endpoint_auth_signing_alg:
+        default: ES256
+        description: |-
+          Signing algorithm for the token endpoint
+
+          This field is optional. If empty, a client can use any algorithm supported by the server (see `token_endpoint_auth_signing_alg_values_supported` in the well-known endpoing).
+
+          If provided, depending on the server configuration, client can use of one: HS256, RS256, ES256, PS256 algorithms.
+
+          If your token endpoint authentication is set to the `private_key_jwt` method, the
+          `token_endpoint_auth_signing_alg` parameter must be either RS256, ES256, or PS256.
+
+          If your token endpoint authentication is set to the `client_secret_jwt` method,
+          the `token_endpoint_auth_signing_alg` parameter must be HS256.
+        enum:
+        - RS256
+        - ES256
+        - PS256
+        - HS256
+        - ""
+        example: ES256
+        type: string
+        x-nullable: false
+      token_exchange:
+        $ref: '#/definitions/ClientTokenExchangeConfiguration'
+      tos_uri:
+        description: Terms of Service URL.
+        type: string
+        x-nullable: false
+      trusted:
+        description: |-
+          Defines whether the client application is trusted or not.
+
+          For trusted clients, consent pages are skipped during the authorization process.
+        type: boolean
+        x-nullable: false
+      updated_at:
+        description: Date when the client application was updated.
+        example: "2022-05-08T01:11:51.1262916Z"
+        format: date-time
+        type: string
+        x-nullable: false
+      userinfo_signed_response_alg:
+        default: none
+        description: |-
+          JWS alg algorithm REQUIRED for signing UserInfo Responses.
+
+          If specified, the response is a JWT serialized and signed with JWS.
+
+          If omitted, then by default, UserInfo Response returns the Claims
+          as an UTF-8 encoded JSON object using the application/json content-type.
+        enum:
+        - none
+        - RS256
+        - ES256
+        example: none
+        type: string
+        x-nullable: false
+    type: object
+  FDXError:
+    properties:
+      code:
+        description: |-
+          Long term persistent identifier
+          which can be used to trace error condition back to log information
+        type: string
+        x-nullable: false
+      message:
+        description: End user displayable information which might help the customer
+          diagnose an error
+        type: string
+        x-nullable: false
+    type: object
+  FDXErrorResponse:
+    properties:
+      error:
+        $ref: '#/definitions/FDXError'
+    type: object
+  FDXGrantedResource:
+    properties:
+      dataClusters:
+        description: The names of clusters with data elements permitted.
+        example:
+        - ACCOUNT_DETAILED
+        - TRANSACTIONS
+        - STATEMENTS
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      id:
+        description: resource ID
+        example: b14e1e714693bc00
+        type: string
+        x-nullable: false
+      resourceType:
+        description: A type of resource that holds the permitted data elements. This
+          parameter can be extended to support additional resource types.
+        example: ACCOUNT
+        type: string
+        x-nullable: false
+    type: object
+  FDXRequestedResource:
+    properties:
+      dataClusters:
+        description: The names of clusters with data elements permitted.
+        example:
+        - ACCOUNT_DETAILED
+        - TRANSACTIONS
+        - STATEMENTS
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      resourceType:
+        description: A type of resource that holds the permitted data elements. This
+          parameter can be extended to support additional resource types.
+        example: ACCOUNT
+        type: string
+        x-nullable: false
+    type: object
+  FDXResource:
+    description: FDX specific resource
+    properties:
+      dataClusters:
+        description: The names of clusters with data elements permitted.
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      id:
+        description: Resource identifier.
+        type: string
+        x-nullable: false
+      resouceType:
+        description: A type of resource that holds the permitted data elements. This
+          parameter can be extended to support additional resource types.
+        type: string
+        x-nullable: false
+    type: object
+  FDXUpdateClientStatusRequest:
+    properties:
+      new_status:
+        description: New Status
+        example: Approved
+        type: string
+        x-nullable: false
+    type: object
+  GetFDXConsent:
+    properties:
+      createdTime:
+        description: Time of consent creation
+        format: date-time
+        type: string
+        x-nullable: false
+      durationPeriod:
+        description: Consent duration, in days, from day of original grant.
+        format: int64
+        type: integer
+        x-nullable: false
+      durationType:
+        $ref: '#/definitions/DurationType'
+      expirationTime:
+        description: Time of consent expiration
+        format: date-time
+        type: string
+        x-nullable: false
+      id:
+        $ref: '#/definitions/FDXConsentID'
+      lookbackPeriod:
+        description: Period, in days, for which historical data may be requested;
+          period is measured from request time, not grant time
+        format: int64
+        type: integer
+        x-nullable: false
+      parties:
+        description: |-
+          A collection of parameters identifying the Parties (including the legal entity operating branded products or services)
+          in the data sharing chain. Descriptive information is collected during Data Recipient registration at Data Provider,
+          and populated during issuance by DataProvider from its registry;
+        items:
+          $ref: '#/definitions/FDXConsentGrantParty'
+        type: array
+        x-nullable: false
+      resources:
+        description: |-
+          Enumeration of the Clusters of granted data elements permissioned by this Consent Grant.
+          Data Clusters are described in FDX RFC 0167.
+        items:
+          $ref: '#/definitions/FDXGrantedResource'
+        type: array
+        x-nullable: false
+      status:
+        $ref: '#/definitions/FDXConsentGrantStatus'
+    type: object
+  GetFDXConsentResponse:
+    properties:
+      account_ids:
+        description: List of account identifiers
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      authentication_context:
+        $ref: '#/definitions/AuthenticationContext'
+      client_id:
+        description: Client identifier
+        example: '"cauqo9c9vpbs0aj2b2v0"'
+        format: clientID
+        type: string
+        x-nullable: false
+      client_info:
+        $ref: '#/definitions/ClientInfo'
+      consent_id:
+        format: consentID
+        type: string
+        x-nullable: false
+      created_at:
+        description: Consent creation time
+        format: date-time
+        type: string
+        x-nullable: false
+      fdx_consent:
+        $ref: '#/definitions/FDXConsent'
+      requested_scopes:
+        description: List of requested scopes
+        items:
+          $ref: '#/definitions/RequestedScope'
+        type: array
+        x-nullable: false
+      server_id:
+        description: Server / Workspace identifier
+        example: '"server"'
+        format: serverID
+        type: string
+        x-nullable: false
+      status:
+        description: Consent status
+        type: string
+        x-nullable: false
+      subject:
+        description: Subject
+        format: subject
+        type: string
+        x-nullable: false
+      tenant_id:
+        description: Tenant identifier
+        example: '"tenant"'
+        format: tenantID
+        type: string
+        x-nullable: false
+      type:
+        $ref: '#/definitions/ConsentType'
+    type: object
+  GetFDXConsentRevocation:
+    properties:
+      initiator:
+        description: Consent revocation initiator
+        enum:
+        - DATA_ACCESS_PLATFORM
+        - DATA_PROVIDER
+        - DATA_RECIPIENT
+        - INDIVIDUAL
+        - MERCHANT
+        - VENDOR
+        example: DATA_RECIPIENT
+        type: string
+        x-nullable: false
+      reason:
+        description: Consent revocation reason
+        enum:
+        - BUSINESS_RULE
+        - USER_ACTION
+        example: BUSINESS_RULE
+        type: string
+        x-nullable: false
+      status:
+        $ref: '#/definitions/FDXConsentGrantStatus'
+      updatedTime:
+        description: Time of last consent's status change
+        format: date-time
+        type: string
+        x-nullable: false
+    type: object
+  GrantedScopes:
+    items:
+      format: scopeName
+      type: string
+    type: array
+  Intermediary:
+    properties:
+      contacts:
+        description: Array of strings representing ways to contact people responsible
+          for this intermediary
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      description:
+        description: A short description of the intermediary
+        type: string
+        x-nullable: false
+      logo_uri:
+        description: A URL string that references a logo for this intermediary
+        type: string
+        x-nullable: false
+      name:
+        description: Name of intermediary party
+        type: string
+        x-nullable: false
+      registry_references:
+        description: Registry references for this intermediary
+        items:
+          $ref: '#/definitions/RegistryReference'
+        type: array
+        x-nullable: false
+      uri:
+        description: A URL string of a web page providing information about the intermediary
+        type: string
+        x-nullable: false
+    type: object
+  IntrospectResponse:
+    properties:
+      acr:
+        description: Authentication context class reference
+        type: string
+        x-nullable: false
+      act:
+        additionalProperties:
+          type: object
+        description: Actor claims used in the Token Exchange flow.
+        type: object
+        x-nullable: false
+      active:
+        description: |-
+          Active is a boolean indicator of whether or not the presented token
+          is currently active. The specifics of a token's `active` state
+          varies depending on the implementation of an authorization
+          server and the information it keeps about its token. Still, the `true`
+          value returned for the `active` property generally indicates
+          that a given token has been issued by this authorization server,
+          has not been revoked by the resource owner, and is within its
+          given time window of validity (e.g., between its issuance and
+          expiration time).
+        type: boolean
+        x-nullable: false
+      amr:
+        description: Authentication method references
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      aud:
+        description: Audience contains the list of the audiences the token is intended
+          for.
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      client_id:
+        description: |-
+          A client application identifier for the OAuth 2.0 client that
+          requested this token.
+        type: string
+        x-nullable: false
+      cnf:
+        $ref: '#/definitions/Confirmation'
+      exp:
+        description: |-
+          ExpiredAt is the integer timestamp measured in the number of seconds
+          since January 1 1970 UTC (1970-01-01T00:00:00Z). It indicates when this token will expire.
+        format: int64
+        type: integer
+        x-nullable: false
+      ext:
+        additionalProperties:
+          type: object
+        description: Extra is arbitrary data set by the session.
+        type: object
+        x-nullable: false
+      iat:
+        description: |-
+          IssuedAt is the integer timestamp measured in the number of seconds
+          since January 1 1970 UTC. It indicates when this token was
+          originally issued.
+        format: int64
+        type: integer
+        x-nullable: false
+      idp:
+        description: The identifier of an identity provider that user authenticated
+          with.
+        type: string
+        x-nullable: false
+      idp_sub:
+        description: IDP subject
+        type: string
+        x-nullable: false
+      iss:
+        description: Issuer URL is a string representing the issuer of this token.
+        type: string
+        x-nullable: false
+      nbf:
+        description: |-
+          NotBefore is an integer timestamp measured in the number of seconds
+          since January 1 1970 UTC. It indicates this token was not
+          used before the specified time.
+        format: int64
+        type: integer
+        x-nullable: false
+      refresh_token_expires_at:
+        description: |-
+          Deprecated and can be removed at any time.
+          The integer timestamp measured in the number
+          of seconds since January 1 1970 UTC. It indicates when the issued refresh
+          token will expire.
+        format: int64
+        type: integer
+        x-nullable: false
+      scope:
+        description: |-
+          Scope is a JSON string containing a space-separated list of
+          scopes associated with this token.
+        type: string
+        x-nullable: false
+      server_id:
+        description: |-
+          The OAuth 2.0 authorization server identifier that
+          issued this token.
+        type: string
+        x-nullable: false
+      sub:
+        description: |-
+          Subject of the token, as defined in JWT [RFC7519].
+          Usually a machine-readable identifier of the resource owner who
+          authorized this token.
+        type: string
+        x-nullable: false
+      tenant_id:
+        description: |-
+          TenantID identifies a tenant holding the authorization server that
+          issued this token.
+        type: string
+        x-nullable: false
+      token_type:
+        description: TokenType is the type of the introspected token. For example,
+          `access_token` or `refresh_token`.
+        type: string
+        x-nullable: false
+      username:
+        description: |-
+          Username is a human-readable identifier for the resource owner who
+          authorized this token.
+        type: string
+        x-nullable: false
+    type: object
+  Metadata:
+    additionalProperties:
+      type: object
+    type: object
+  PIICategory:
+    properties:
+      name:
+        description: name
+        example: HIPAA
+        type: string
+        x-nullable: false
+    type: object
+  RFC6749Error:
+    properties:
+      cause:
+        type: string
+        x-nullable: false
+      error:
+        type: string
+        x-nullable: false
+      error_description:
+        type: string
+        x-nullable: false
+      error_hint:
+        type: string
+        x-nullable: false
+      status_code:
+        format: int64
+        type: integer
+        x-nullable: false
+    type: object
+  RedirectURIs:
+    description: |-
+      Cloudentity uses redirect URIs to redirect users back to the application after they authorized the application. Along
+      with the redirection, an authorization code or access token is added to the URL.
+
+      For backward compatibility reasons, it's also acceptable to pass `redirect_uris` as a string, for example:
+      https://example.com/callback.
+
+      example: ["https://example.com/callback"]
+    items:
+      type: string
+    title: OAuth-allowed redirect URIs
+    type: array
+  RegistryReference:
+    description: Used for registry references. In snake case to match IETF RFC 7591
+      naming formats
+    properties:
+      registered_entity_id:
+        description: An identifier of the intermediary that can be looked up from
+          a legal identity registry source.
+        type: string
+        x-nullable: false
+      registered_entity_name:
+        description: The legal company name for the intermediary.
+        type: string
+        x-nullable: false
+      registry:
+        type: string
+        x-nullable: false
+    type: object
+  RejectConsentRequest:
+    properties:
+      error:
+        description: Rejection error indication.
+        example: Rejected
+        type: string
+        x-nullable: false
+      error_cause:
+        description: Rejection cause.
+        example: Rejected by the user.
+        type: string
+        x-nullable: false
+      error_description:
+        description: Rejection error description.
+        example: The user rejected authentication.
+        type: string
+        x-nullable: false
+      id:
+        description: Login identifier.
+        format: loginID
+        type: string
+        x-nullable: false
+      login_state:
+        description: |-
+          Random string generated by Cloudentity used to mitigate cross-site request forgery (CSRF) attacks.
+          Cloudentity sends state as the `login_state` query parameter when redirecting to the consent page.
+        example: cauq8fonbud6q8806bf0
+        format: loginState
+        type: string
+        x-nullable: false
+      status_code:
+        description: Rejection HTTP status code.
+        example: 403
+        format: int64
+        type: integer
+        x-nullable: false
+    type: object
+  RequestedScope:
+    properties:
+      authorization_server_id:
+        description: Authorization server identifier
+        example: my-server
+        format: serverID
+        type: string
+        x-nullable: false
+      description:
+        description: The scope description displayed as a hint on a consent page
+        example: This scope value requests offline access using refresh token
+        type: string
+        x-nullable: false
+      display_name:
+        description: The scope name displayed on a consent page
+        example: Offline Access
+        type: string
+        x-nullable: false
+      id:
+        description: Scope identifier
+        example: scope-1
+        format: scopeID
+        type: string
+        x-nullable: false
+      metadata:
+        $ref: '#/definitions/Metadata'
+      name:
+        description: Scope name
+        example: offline_access
+        format: scopeName
+        type: string
+        x-nullable: false
+      params:
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      requested_name:
+        format: scopeName
+        type: string
+        x-nullable: false
+      service:
+        $ref: '#/definitions/Service'
+      tenant_id:
+        description: Tenant identifier
+        example: my-company
+        format: tenantID
+        type: string
+        x-nullable: false
+      transient:
+        description: Disable storage of scope grants
+        type: boolean
+        x-nullable: false
+      with_service:
+        type: boolean
+        x-nullable: false
+    type: object
+  Resource:
+    description: The resource holding data under the FDX consent
+    properties:
+      ids:
+        description: Resource identifiers/values.
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      resourceType:
+        description: The type of the resource.
+        example: ACCOUNT
+        type: string
+        x-nullable: false
+    type: object
+  ResponseTypes:
+    description: |-
+      The array may consist of the following arguments:
+
+      `code` - when supplied as the value for the `response_type` parameter, a successful
+      response includes an authorization code
+
+      `code token` - when supplied as the value for the `response_type` parameter, a successful
+      response includes an access token, an access token type, and an authorization code
+
+      `id_token token` - when supplied as the value for the `response_type` parameter, a successful
+      response includes an access token, an access token type, and an ID token
+
+      `code id_token token` - when supplied as the value for the `response_type` parameter, a successful
+      response includes an authorization code, an ID token, an access token, and an access token
+      type.
+
+      `token` - when supplied as the value for the `response_type` parameter, a successful
+      response includes an access token and its type. This argument is used for the implicit grant
+      flow, but is not recommended. Instead, you should use either the authorization code grant
+      flow with PKCE or client authentication set to `none` and with the use of PKCE.
+
+      example: ["token", "id_token", "code"]
+      default: ["code"]
+    items:
+      enum:
+      - token
+      - id_token
+      - code
+      - code id_token
+      - token id_token
+      - token code
+      - token id_token code
+      - none
+      type: string
+    title: An array of allowed response types
+    type: array
+  ScopePrivacyInformation:
+    properties:
+      pii_categories:
+        items:
+          $ref: '#/definitions/PIICategory'
+        type: array
+        x-nullable: false
+      purpose:
+        format: purposeName
+        type: string
+        x-nullable: false
+    type: object
+  Service:
+    properties:
+      authorization_server_id:
+        description: Authorization server identifier
+        example: my-server
+        format: serverID
+        type: string
+        x-nullable: false
+      custom_audience:
+        description: Custom service audience
+        example: https://api.example.com
+        type: string
+        x-nullable: false
+      description:
+        description: Service description
+        example: Service description
+        type: string
+        x-nullable: false
+      gateway_id:
+        description: Gateway identifier
+        example: gateway-1
+        format: gatewayID
+        type: string
+        x-nullable: false
+      id:
+        description: A unique identifier of a service
+        example: service-1
+        format: serviceID
+        type: string
+        x-nullable: false
+      name:
+        description: Service name
+        example: My service
+        type: string
+        x-nullable: false
+      system:
+        description: '`true` when the service is a system service'
+        example: false
+        type: boolean
+        x-nullable: false
+      tenant_id:
+        description: Tenant identifier
+        example: my-company
+        format: tenantID
+        type: string
+        x-nullable: false
+      type:
+        default: user
+        description: Service type
+        enum:
+        - oauth2
+        - oidc
+        - system
+        - user
+        - openbanking
+        type: string
+        x-nullable: false
+      updated_at:
+        description: The date of service update
+        format: date-time
+        type: string
+        x-nullable: false
+      with_specification:
+        description: '`true` when the service has the OpenAPI 3.0 specification'
+        type: boolean
+        x-nullable: false
+    type: object
+  genericError:
+    description: Error response
+    properties:
+      error:
+        example: The requested resource could not be found
+        type: string
+        x-nullable: false
+      error_code:
+        description: Code represents the error status code (404, 403, 401, ...).
+        example: 404
+        format: int64
+        type: integer
+        x-nullable: false
+      error_hint:
+        example: Object with ID 12345 does not exist
+        type: string
+        x-nullable: false
+    required:
+    - error
+    type: object
+host: localhost:8443
+info:
+  description: |-
+    Cloudentity FDX APIs
+
+    Financial Data Exchange (FDX) APIs ensure compliance with the FDX
+    standard.
+
+    This collection is compatible with the
+    [FDX workspace](https://cloudentity.com/developers/howtos/fdx/fdx-security-profile-workspace/) available in Cloudentity.
+    It covers operations for
+    [dynamic client registration](https://cloudentity.com/developers/howtos/applications/configuring-dcr/), client details
+    update and deletion, as well as [consent management](https://cloudentity.com/developers/howtos/fdx/fdx-consent-apis/)
+    options for a
+    [custom Open Finance consent screen](https://cloudentity.com/developers/howtos/fdx/fdx-consent-page/), including
+    consent provision, consent information retrieval, and handling consent revocation options.
+  title: Cloudentity API
+  version: latest
+paths:
+  /consents/{consentID}:
+    get:
+      description: 'Get a Consent Grant'
+      operationId: getFDXConsent
+      parameters:
+      - default: default
+        description: Consent id
+        in: path
+        name: consentID
+        required: true
+        type: string
+      responses:
+        "200":
+          description: GetFDXConsent
+          schema:
+            $ref: '#/definitions/GetFDXConsent'
+        "400":
+          $ref: '#/responses/FDXErrorResponse'
+        "401":
+          $ref: '#/responses/FDXErrorResponse'
+        "404":
+          $ref: '#/responses/FDXErrorResponse'
+      summary: Get a Consent Grant
+      tags:
+      - FDX
+  /consents/{consentID}/revocation:
+    get:
+      description: |-
+        This API can be used used to get information about consent revocation.
+        404 response code is returned in two cases:
+        when consent does not exists or consent is not revoked
+      operationId: getFDXConsentRevocation
+      parameters:
+      - default: default
+        description: Consent id
+        in: path
+        name: consentID
+        required: true
+        type: string
+      responses:
+        "200":
+          description: GetFDXConsentRevocation
+          schema:
+            $ref: '#/definitions/GetFDXConsentRevocation'
+        "400":
+          $ref: '#/responses/FDXErrorResponse'
+        "401":
+          $ref: '#/responses/FDXErrorResponse'
+        "404":
+          $ref: '#/responses/FDXErrorResponse'
+      summary: Retrieve Consent Revocation record
+      tags:
+      - FDX
+    put:
+      description: |-
+        This API can be used used to revoke user's consent.
+        As a result consent's state is changed to REVOKED
+        and revocation reason and initiator passed in request body are saved.
+      operationId: revokeFDXConsent
+      parameters:
+      - default: default
+        description: Consent id
+        in: path
+        name: consentID
+        required: true
+        type: string
+      - description: Revocation details
+        in: body
+        name: ConsentRevocation
+        schema:
+          $ref: '#/definitions/FDXConsentRevocation'
+      responses:
+        "204":
+          description: ' consent revoked'
+        "400":
+          $ref: '#/responses/FDXErrorResponse'
+        "401":
+          $ref: '#/responses/FDXErrorResponse'
+        "403":
+          $ref: '#/responses/FDXErrorResponse'
+        "404":
+          $ref: '#/responses/FDXErrorResponse'
+        "409":
+          $ref: '#/responses/FDXErrorResponse'
+      summary: Revoke a Consent
+      tags:
+      - FDX
+  /fdx/clients/{cid}:
+    put:
+      description: This API updates FDX client status.
+      operationId: FDXUpdateClientStatus
+      parameters:
+      - default: default
+        description: Client id
+        in: path
+        name: cid
+        required: true
+        type: string
+      - description: FDXUpdateClientStatusRequest
+        in: body
+        name: FDXUpdateClientRequest
+        schema:
+          $ref: '#/definitions/FDXUpdateClientStatusRequest'
+      responses:
+        "200":
+          description: ' Client status has been changed'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - update_client_status
+      summary: Update FDX Client's status
+      tags:
+      - DCR
+  /fdx/consents/introspect:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: |-
+        Accepts an OAuth 2.0 token and returns meta information surrounding the token along with the FDX consent.
+
+        Authorization: Bearer token.
+      operationId: fdxConsentIntrospect
+      parameters:
+      - in: formData
+        name: token
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/IntrospectFDXConsentResponse'
+        "401":
+          $ref: '#/responses/genericError'
+        "404":
+          $ref: '#/responses/genericError'
+        "429":
+          $ref: '#/responses/genericError'
+      security:
+      - default:
+        - introspect_openbanking_tokens
+      summary: Introspect FDX Consent
+      tags:
+      - FDX
+  /fdx/dcr/register:
+    post:
+      description: |-
+        Register a new client application dynamically.
+
+        Authorization: Bearer token.
+      operationId: FDXDynamicClientRegistration
+      parameters:
+      - in: body
+        name: Client
+        schema:
+          $ref: '#/definitions/FDXDynamicClientRegistrationRequest'
+      responses:
+        "201":
+          $ref: '#/responses/FDXDynamicClientRegistrationResponse'
+        "400":
+          $ref: '#/responses/RFC6749Error'
+        "401":
+          $ref: '#/responses/RFC6749Error'
+        "403":
+          $ref: '#/responses/RFC6749Error'
+        "404":
+          $ref: '#/responses/genericError'
+      security:
+      - default:
+        - client_register
+      summary: Dynamic Client Registration
+      tags:
+      - DCR
+  /fdx/dcr/register/{cid}:
+    delete:
+      description: |-
+        This endpoint can be used to delete registered client details.
+        Use client credentials flow to authorize to this api.
+      operationId: FDXDynamicClientRegistrationDelete
+      parameters:
+      - default: default
+        description: Client id
+        in: path
+        name: cid
+        required: true
+        type: string
+      responses:
+        "204":
+          description: ' Client has been deleted'
+        "400":
+          $ref: '#/responses/RFC6749Error'
+        "401":
+          $ref: '#/responses/RFC6749Error'
+        "403":
+          $ref: '#/responses/RFC6749Error'
+        "404":
+          $ref: '#/responses/genericError'
+      security:
+      - default: []
+      summary: Delete client endpoint.
+      tags:
+      - DCR
+    get:
+      description: |-
+        This endpoint can be used to get registered client details.
+        Use client credentials flow to authorize to this api.
+      operationId: FDXDynamicClientRegistrationGet
+      parameters:
+      - default: default
+        description: Client id
+        in: path
+        name: cid
+        required: true
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/FDXDynamicClientRegistrationGetResponse'
+        "400":
+          $ref: '#/responses/RFC6749Error'
+        "401":
+          $ref: '#/responses/RFC6749Error'
+        "403":
+          $ref: '#/responses/RFC6749Error'
+        "404":
+          $ref: '#/responses/genericError'
+      security:
+      - default: []
+      summary: Get client endpoint.
+      tags:
+      - DCR
+    put:
+      description: This endpoint can be used to modify registered client details.
+      operationId: FDXDynamicClientRegistrationPut
+      parameters:
+      - default: default
+        description: Client id
+        in: path
+        name: cid
+        required: true
+        type: string
+      - in: body
+        name: Client
+        schema:
+          $ref: '#/definitions/FDXDynamicClientRegistrationRequest'
+      responses:
+        "200":
+          $ref: '#/responses/FDXDynamicClientRegistrationPutResponse'
+        "400":
+          $ref: '#/responses/RFC6749Error'
+        "401":
+          $ref: '#/responses/RFC6749Error'
+        "403":
+          $ref: '#/responses/RFC6749Error'
+        "404":
+          $ref: '#/responses/genericError'
+      security:
+      - default: []
+      summary: Update client endpoint.
+      tags:
+      - DCR
+  /fdx/fdx/{login}:
+    get:
+      description: |-
+        This API can be used by a custom openbanking consent page.
+        The consent page must first use client credentials flow to create consent.
+      operationId: getFDXConsentSystem
+      parameters:
+      - in: path
+        name: login
+        required: true
+        type: string
+      - in: query
+        name: login_state
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/GetFDXConsentResponse'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - manage_openbanking_consents
+      summary: Get FDX consent
+      tags:
+      - CONSENT_PAGE
+  /fdx/fdx/{login}/accept:
+    post:
+      description: |-
+        Used by a custom consent page to notify Cloudentity that a consumer accepted a consent.
+
+        Authorization: Bearer token.
+
+        The `login` path parameter accepts the `login_id` value—the login session identifier.
+
+        Cloudentity passes the login session identifier along with the `login_state` parameter when redirecting
+        a user to the consent page.
+      operationId: acceptFDXConsentSystem
+      parameters:
+      - in: path
+        name: login
+        required: true
+        type: string
+      - in: body
+        name: AcceptConsent
+        schema:
+          $ref: '#/definitions/AcceptFDXConsentRequest'
+      responses:
+        "200":
+          $ref: '#/responses/ConsentAccepted'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - manage_openbanking_consents
+      summary: Accept FDX Consent
+      tags:
+      - CONSENT_PAGE
+  /fdx/fdx/{login}/reject:
+    post:
+      description: |-
+        Used by a consent page to notify Cloudentity that a consumer rejected a consent.
+
+        Authorization: Bearer token.
+
+        The `login` path parameter accepts the `login_id` value—the login session identifier.
+
+        Cloudentity passes the login session identifier along with the `login_state` parameter when redirecting
+        a user to the consent page.
+      operationId: rejectFDXConsentSystem
+      parameters:
+      - in: path
+        name: login
+        required: true
+        type: string
+      - in: body
+        name: RejectConsent
+        schema:
+          $ref: '#/definitions/RejectConsentRequest'
+      responses:
+        "200":
+          $ref: '#/responses/ConsentRejected'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - manage_openbanking_consents
+      summary: Reject FDX Consent
+      tags:
+      - CONSENT_PAGE
+  /servers/{wid}/fdx/consents:
+    delete:
+      description: |-
+        This API revokes FDX consents matching provided parameters.
+
+        Currently supporting removal by client id.
+        RevocationDetails also have to be provided.
+      operationId: revokeFDXConsents
+      parameters:
+      - default: default
+        description: Workspace id
+        in: path
+        name: wid
+        required: true
+        type: string
+      - description: Revocation details
+        in: body
+        name: ConsentRevocationByClientID
+        schema:
+          $ref: '#/definitions/ConsentRevocationByCLientID'
+      responses:
+        "200":
+          $ref: '#/responses/ConsentsRemovedResponse'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - manage_openbanking_consents
+      summary: Revoke FDX consents.
+      tags:
+      - MANAGEMENT
+    post:
+      description: |-
+        Obtain the list of FDX consents.
+
+        To narrow down the list, define the required parameters in the request body.
+
+        Authorization: Bearer token.
+      operationId: listFDXConsents
+      parameters:
+      - default: default
+        description: Workspace id
+        in: path
+        name: wid
+        required: true
+        type: string
+      - in: body
+        name: FDXConsentsRequest
+        schema:
+          $ref: '#/definitions/FDXConsentsRequest'
+      responses:
+        "200":
+          $ref: '#/responses/FDXConsents'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - manage_openbanking_consents
+      summary: List FDX Consents
+      tags:
+      - MANAGEMENT
+  /servers/{wid}/fdx/consents/{consentID}:
+    delete:
+      description: 'This API revokes a single FDX Consent with the matching consent
+        id'
+      operationId: revokeFDXConsentByID
+      parameters:
+      - default: default
+        description: Workspace id
+        in: path
+        name: wid
+        required: true
+        type: string
+      - description: Consent id
+        in: path
+        name: consentID
+        required: true
+        type: string
+      - description: Revocation details
+        in: body
+        name: RevocationDetails
+        schema:
+          $ref: '#/definitions/FDXConsentRevocation'
+      responses:
+        "204":
+          description: ' Consnet has been revoked'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - manage_openbanking_consents
+      summary: Revoke FDX Consent
+      tags:
+      - MANAGEMENT
+produces:
+- application/json
+responses:
+  ConsentAccepted:
+    description: Consent accepted
+    schema:
+      $ref: '#/definitions/ConsentAccepted'
+  ConsentRejected:
+    description: Consent rejected
+    schema:
+      $ref: '#/definitions/ConsentRejected'
+  ConsentsRemovedResponse:
+    description: ConsentsRemovedResponse
+    schema:
+      $ref: '#/definitions/ConsentsRemovedResponse'
+  FDXConsentResponse:
+    description: FDX Get Consent
+    schema:
+      $ref: '#/definitions/GetFDXConsent'
+  FDXConsentRevocationResponse:
+    description: FDX Get Consent Revocation
+    schema:
+      $ref: '#/definitions/GetFDXConsentRevocation'
+  FDXConsents:
+    description: FDXConsents
+    schema:
+      $ref: '#/definitions/FDXConsents'
+  FDXDynamicClientRegistrationGetResponse:
+    description: Get client response
+    schema:
+      $ref: '#/definitions/FDXDynamicClientRegistrationResponse'
+  FDXDynamicClientRegistrationPutResponse:
+    description: Update client response
+    schema:
+      $ref: '#/definitions/FDXDynamicClientRegistrationResponse'
+  FDXDynamicClientRegistrationResponse:
+    description: Dynamic Client Registration Response
+    schema:
+      $ref: '#/definitions/FDXDynamicClientRegistrationResponse'
+  FDXErrorResponse:
+    description: FDX Error
+    schema:
+      $ref: '#/definitions/FDXErrorResponse'
+  GetFDXConsentResponse:
+    description: GetFDXConsentResponse
+    schema:
+      $ref: '#/definitions/GetFDXConsentResponse'
+  IntrospectFDXConsentResponse:
+    description: Introspect FDX Consent Response
+    schema:
+      allOf:
+      - $ref: '#/definitions/IntrospectResponse'
+      - properties:
+          fdx_consent:
+            $ref: '#/definitions/GetFDXConsent'
+        type: object
+  RFC6749Error:
+    description: RFC6749 error
+    schema:
+      $ref: '#/definitions/RFC6749Error'
+  badRequestHTTPError:
+    description: Bad request
+    schema:
+      $ref: '#/definitions/Error'
+  conflictHTTPError:
+    description: Conflict
+    schema:
+      $ref: '#/definitions/Error'
+  forbiddenHTTPError:
+    description: Forbidden
+    schema:
+      $ref: '#/definitions/Error'
+  genericError:
+    description: ErrorResponse
+    schema:
+      $ref: '#/definitions/genericError'
+  internalServerErrorHTTPError:
+    description: Internal server error
+    schema:
+      $ref: '#/definitions/Error'
+  methodNotAllowedHTTPError:
+    description: Method not allowed
+    schema:
+      $ref: '#/definitions/Error'
+  notFoundHTTPError:
+    description: Not found
+    schema:
+      $ref: '#/definitions/Error'
+  payloadTooLargeHTTPError:
+    description: Payload too large
+    schema:
+      $ref: '#/definitions/Error'
+  preconditionFailedHTTPError:
+    description: Precondition failed
+    schema:
+      $ref: '#/definitions/Error'
+  tooManyRequestsHTTPError:
+    description: Too many requests
+    schema:
+      $ref: '#/definitions/Error'
+  unauthorizedHTTPError:
+    description: Unauthorized
+    schema:
+      $ref: '#/definitions/Error'
+  unprocessableEntityHTTPError:
+    description: Unprocessable entity
+    schema:
+      $ref: '#/definitions/Error'
+schemes:
+- https
+securityDefinitions:
+  default:
+    authorizationUrl: /default/default/oauth2/authorize
+    flow: accessCode
+    scopes:
+      dcr_register: dcr_register
+      introspect_openbanking_tokens: introspect_openbanking_tokens
+    tokenUrl: /default/default/oauth2/token
+    type: oauth2
+  defaultcc:
+    authorizationUrl: /default/default/oauth2/authorize
+    flow: accessCode
+    scopes:
+      accounts: accounts
+      consents: consents
+      payments: payments
+    tokenUrl: /default/default/oauth2/token
+    type: oauth2
+  system:
+    authorizationUrl: /default/system/oauth2/authorize
+    flow: accessCode
+    scopes:
+      manage_openbanking_consents: manage_openbanking_consents
+    tokenUrl: /default/system/oauth2/token
+    type: oauth2
+swagger: "2.0"

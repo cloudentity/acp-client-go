@@ -139,6 +139,11 @@ func (o *CreateDomesticStandingOrderConsentsCreated) IsCode(code int) bool {
 	return code == 201
 }
 
+// Code gets the status code for the create domestic standing order consents created response
+func (o *CreateDomesticStandingOrderConsentsCreated) Code() int {
+	return 201
+}
+
 func (o *CreateDomesticStandingOrderConsentsCreated) Error() string {
 	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsCreated  %+v", 201, o.Payload)
 }
@@ -226,6 +231,11 @@ func (o *CreateDomesticStandingOrderConsentsBadRequest) IsCode(code int) bool {
 	return code == 400
 }
 
+// Code gets the status code for the create domestic standing order consents bad request response
+func (o *CreateDomesticStandingOrderConsentsBadRequest) Code() int {
+	return 400
+}
+
 func (o *CreateDomesticStandingOrderConsentsBadRequest) Error() string {
 	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsBadRequest  %+v", 400, o.Payload)
 }
@@ -306,6 +316,11 @@ func (o *CreateDomesticStandingOrderConsentsUnauthorized) IsCode(code int) bool 
 	return code == 401
 }
 
+// Code gets the status code for the create domestic standing order consents unauthorized response
+func (o *CreateDomesticStandingOrderConsentsUnauthorized) Code() int {
+	return 401
+}
+
 func (o *CreateDomesticStandingOrderConsentsUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsUnauthorized ", 401)
 }
@@ -373,6 +388,11 @@ func (o *CreateDomesticStandingOrderConsentsForbidden) IsServerError() bool {
 // IsCode returns true when this create domestic standing order consents forbidden response a status code equal to that given
 func (o *CreateDomesticStandingOrderConsentsForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the create domestic standing order consents forbidden response
+func (o *CreateDomesticStandingOrderConsentsForbidden) Code() int {
+	return 403
 }
 
 func (o *CreateDomesticStandingOrderConsentsForbidden) Error() string {
@@ -455,6 +475,11 @@ func (o *CreateDomesticStandingOrderConsentsNotFound) IsCode(code int) bool {
 	return code == 404
 }
 
+// Code gets the status code for the create domestic standing order consents not found response
+func (o *CreateDomesticStandingOrderConsentsNotFound) Code() int {
+	return 404
+}
+
 func (o *CreateDomesticStandingOrderConsentsNotFound) Error() string {
 	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsNotFound ", 404)
 }
@@ -515,6 +540,11 @@ func (o *CreateDomesticStandingOrderConsentsMethodNotAllowed) IsServerError() bo
 // IsCode returns true when this create domestic standing order consents method not allowed response a status code equal to that given
 func (o *CreateDomesticStandingOrderConsentsMethodNotAllowed) IsCode(code int) bool {
 	return code == 405
+}
+
+// Code gets the status code for the create domestic standing order consents method not allowed response
+func (o *CreateDomesticStandingOrderConsentsMethodNotAllowed) Code() int {
+	return 405
 }
 
 func (o *CreateDomesticStandingOrderConsentsMethodNotAllowed) Error() string {
@@ -579,6 +609,11 @@ func (o *CreateDomesticStandingOrderConsentsNotAcceptable) IsCode(code int) bool
 	return code == 406
 }
 
+// Code gets the status code for the create domestic standing order consents not acceptable response
+func (o *CreateDomesticStandingOrderConsentsNotAcceptable) Code() int {
+	return 406
+}
+
 func (o *CreateDomesticStandingOrderConsentsNotAcceptable) Error() string {
 	return fmt.Sprintf("[POST /domestic-standing-order-consents][%d] createDomesticStandingOrderConsentsNotAcceptable ", 406)
 }
@@ -639,6 +674,11 @@ func (o *CreateDomesticStandingOrderConsentsUnsupportedMediaType) IsServerError(
 // IsCode returns true when this create domestic standing order consents unsupported media type response a status code equal to that given
 func (o *CreateDomesticStandingOrderConsentsUnsupportedMediaType) IsCode(code int) bool {
 	return code == 415
+}
+
+// Code gets the status code for the create domestic standing order consents unsupported media type response
+func (o *CreateDomesticStandingOrderConsentsUnsupportedMediaType) Code() int {
+	return 415
 }
 
 func (o *CreateDomesticStandingOrderConsentsUnsupportedMediaType) Error() string {
@@ -705,6 +745,11 @@ func (o *CreateDomesticStandingOrderConsentsTooManyRequests) IsServerError() boo
 // IsCode returns true when this create domestic standing order consents too many requests response a status code equal to that given
 func (o *CreateDomesticStandingOrderConsentsTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the create domestic standing order consents too many requests response
+func (o *CreateDomesticStandingOrderConsentsTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *CreateDomesticStandingOrderConsentsTooManyRequests) Error() string {
@@ -785,6 +830,11 @@ func (o *CreateDomesticStandingOrderConsentsInternalServerError) IsServerError()
 // IsCode returns true when this create domestic standing order consents internal server error response a status code equal to that given
 func (o *CreateDomesticStandingOrderConsentsInternalServerError) IsCode(code int) bool {
 	return code == 500
+}
+
+// Code gets the status code for the create domestic standing order consents internal server error response
+func (o *CreateDomesticStandingOrderConsentsInternalServerError) Code() int {
+	return 500
 }
 
 func (o *CreateDomesticStandingOrderConsentsInternalServerError) Error() string {

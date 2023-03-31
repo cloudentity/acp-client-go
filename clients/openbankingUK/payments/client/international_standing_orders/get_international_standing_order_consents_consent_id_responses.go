@@ -133,6 +133,11 @@ func (o *GetInternationalStandingOrderConsentsConsentIDOK) IsCode(code int) bool
 	return code == 200
 }
 
+// Code gets the status code for the get international standing order consents consent Id o k response
+func (o *GetInternationalStandingOrderConsentsConsentIDOK) Code() int {
+	return 200
+}
+
 func (o *GetInternationalStandingOrderConsentsConsentIDOK) Error() string {
 	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdOK  %+v", 200, o.Payload)
 }
@@ -220,6 +225,11 @@ func (o *GetInternationalStandingOrderConsentsConsentIDBadRequest) IsCode(code i
 	return code == 400
 }
 
+// Code gets the status code for the get international standing order consents consent Id bad request response
+func (o *GetInternationalStandingOrderConsentsConsentIDBadRequest) Code() int {
+	return 400
+}
+
 func (o *GetInternationalStandingOrderConsentsConsentIDBadRequest) Error() string {
 	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdBadRequest  %+v", 400, o.Payload)
 }
@@ -300,6 +310,11 @@ func (o *GetInternationalStandingOrderConsentsConsentIDUnauthorized) IsCode(code
 	return code == 401
 }
 
+// Code gets the status code for the get international standing order consents consent Id unauthorized response
+func (o *GetInternationalStandingOrderConsentsConsentIDUnauthorized) Code() int {
+	return 401
+}
+
 func (o *GetInternationalStandingOrderConsentsConsentIDUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdUnauthorized ", 401)
 }
@@ -367,6 +382,11 @@ func (o *GetInternationalStandingOrderConsentsConsentIDForbidden) IsServerError(
 // IsCode returns true when this get international standing order consents consent Id forbidden response a status code equal to that given
 func (o *GetInternationalStandingOrderConsentsConsentIDForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get international standing order consents consent Id forbidden response
+func (o *GetInternationalStandingOrderConsentsConsentIDForbidden) Code() int {
+	return 403
 }
 
 func (o *GetInternationalStandingOrderConsentsConsentIDForbidden) Error() string {
@@ -449,6 +469,11 @@ func (o *GetInternationalStandingOrderConsentsConsentIDNotFound) IsCode(code int
 	return code == 404
 }
 
+// Code gets the status code for the get international standing order consents consent Id not found response
+func (o *GetInternationalStandingOrderConsentsConsentIDNotFound) Code() int {
+	return 404
+}
+
 func (o *GetInternationalStandingOrderConsentsConsentIDNotFound) Error() string {
 	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdNotFound ", 404)
 }
@@ -511,6 +536,11 @@ func (o *GetInternationalStandingOrderConsentsConsentIDMethodNotAllowed) IsCode(
 	return code == 405
 }
 
+// Code gets the status code for the get international standing order consents consent Id method not allowed response
+func (o *GetInternationalStandingOrderConsentsConsentIDMethodNotAllowed) Code() int {
+	return 405
+}
+
 func (o *GetInternationalStandingOrderConsentsConsentIDMethodNotAllowed) Error() string {
 	return fmt.Sprintf("[GET /international-standing-order-consents/{ConsentId}][%d] getInternationalStandingOrderConsentsConsentIdMethodNotAllowed ", 405)
 }
@@ -571,6 +601,11 @@ func (o *GetInternationalStandingOrderConsentsConsentIDNotAcceptable) IsServerEr
 // IsCode returns true when this get international standing order consents consent Id not acceptable response a status code equal to that given
 func (o *GetInternationalStandingOrderConsentsConsentIDNotAcceptable) IsCode(code int) bool {
 	return code == 406
+}
+
+// Code gets the status code for the get international standing order consents consent Id not acceptable response
+func (o *GetInternationalStandingOrderConsentsConsentIDNotAcceptable) Code() int {
+	return 406
 }
 
 func (o *GetInternationalStandingOrderConsentsConsentIDNotAcceptable) Error() string {
@@ -637,6 +672,11 @@ func (o *GetInternationalStandingOrderConsentsConsentIDTooManyRequests) IsServer
 // IsCode returns true when this get international standing order consents consent Id too many requests response a status code equal to that given
 func (o *GetInternationalStandingOrderConsentsConsentIDTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get international standing order consents consent Id too many requests response
+func (o *GetInternationalStandingOrderConsentsConsentIDTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetInternationalStandingOrderConsentsConsentIDTooManyRequests) Error() string {
@@ -717,6 +757,11 @@ func (o *GetInternationalStandingOrderConsentsConsentIDInternalServerError) IsSe
 // IsCode returns true when this get international standing order consents consent Id internal server error response a status code equal to that given
 func (o *GetInternationalStandingOrderConsentsConsentIDInternalServerError) IsCode(code int) bool {
 	return code == 500
+}
+
+// Code gets the status code for the get international standing order consents consent Id internal server error response
+func (o *GetInternationalStandingOrderConsentsConsentIDInternalServerError) Code() int {
+	return 500
 }
 
 func (o *GetInternationalStandingOrderConsentsConsentIDInternalServerError) Error() string {

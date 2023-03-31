@@ -139,6 +139,11 @@ func (o *CreateDomesticScheduledPaymentConsentsCreated) IsCode(code int) bool {
 	return code == 201
 }
 
+// Code gets the status code for the create domestic scheduled payment consents created response
+func (o *CreateDomesticScheduledPaymentConsentsCreated) Code() int {
+	return 201
+}
+
 func (o *CreateDomesticScheduledPaymentConsentsCreated) Error() string {
 	return fmt.Sprintf("[POST /domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentsCreated  %+v", 201, o.Payload)
 }
@@ -226,6 +231,11 @@ func (o *CreateDomesticScheduledPaymentConsentsBadRequest) IsCode(code int) bool
 	return code == 400
 }
 
+// Code gets the status code for the create domestic scheduled payment consents bad request response
+func (o *CreateDomesticScheduledPaymentConsentsBadRequest) Code() int {
+	return 400
+}
+
 func (o *CreateDomesticScheduledPaymentConsentsBadRequest) Error() string {
 	return fmt.Sprintf("[POST /domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentsBadRequest  %+v", 400, o.Payload)
 }
@@ -306,6 +316,11 @@ func (o *CreateDomesticScheduledPaymentConsentsUnauthorized) IsCode(code int) bo
 	return code == 401
 }
 
+// Code gets the status code for the create domestic scheduled payment consents unauthorized response
+func (o *CreateDomesticScheduledPaymentConsentsUnauthorized) Code() int {
+	return 401
+}
+
 func (o *CreateDomesticScheduledPaymentConsentsUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentsUnauthorized ", 401)
 }
@@ -373,6 +388,11 @@ func (o *CreateDomesticScheduledPaymentConsentsForbidden) IsServerError() bool {
 // IsCode returns true when this create domestic scheduled payment consents forbidden response a status code equal to that given
 func (o *CreateDomesticScheduledPaymentConsentsForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the create domestic scheduled payment consents forbidden response
+func (o *CreateDomesticScheduledPaymentConsentsForbidden) Code() int {
+	return 403
 }
 
 func (o *CreateDomesticScheduledPaymentConsentsForbidden) Error() string {
@@ -455,6 +475,11 @@ func (o *CreateDomesticScheduledPaymentConsentsNotFound) IsCode(code int) bool {
 	return code == 404
 }
 
+// Code gets the status code for the create domestic scheduled payment consents not found response
+func (o *CreateDomesticScheduledPaymentConsentsNotFound) Code() int {
+	return 404
+}
+
 func (o *CreateDomesticScheduledPaymentConsentsNotFound) Error() string {
 	return fmt.Sprintf("[POST /domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentsNotFound ", 404)
 }
@@ -515,6 +540,11 @@ func (o *CreateDomesticScheduledPaymentConsentsMethodNotAllowed) IsServerError()
 // IsCode returns true when this create domestic scheduled payment consents method not allowed response a status code equal to that given
 func (o *CreateDomesticScheduledPaymentConsentsMethodNotAllowed) IsCode(code int) bool {
 	return code == 405
+}
+
+// Code gets the status code for the create domestic scheduled payment consents method not allowed response
+func (o *CreateDomesticScheduledPaymentConsentsMethodNotAllowed) Code() int {
+	return 405
 }
 
 func (o *CreateDomesticScheduledPaymentConsentsMethodNotAllowed) Error() string {
@@ -579,6 +609,11 @@ func (o *CreateDomesticScheduledPaymentConsentsNotAcceptable) IsCode(code int) b
 	return code == 406
 }
 
+// Code gets the status code for the create domestic scheduled payment consents not acceptable response
+func (o *CreateDomesticScheduledPaymentConsentsNotAcceptable) Code() int {
+	return 406
+}
+
 func (o *CreateDomesticScheduledPaymentConsentsNotAcceptable) Error() string {
 	return fmt.Sprintf("[POST /domestic-scheduled-payment-consents][%d] createDomesticScheduledPaymentConsentsNotAcceptable ", 406)
 }
@@ -639,6 +674,11 @@ func (o *CreateDomesticScheduledPaymentConsentsUnsupportedMediaType) IsServerErr
 // IsCode returns true when this create domestic scheduled payment consents unsupported media type response a status code equal to that given
 func (o *CreateDomesticScheduledPaymentConsentsUnsupportedMediaType) IsCode(code int) bool {
 	return code == 415
+}
+
+// Code gets the status code for the create domestic scheduled payment consents unsupported media type response
+func (o *CreateDomesticScheduledPaymentConsentsUnsupportedMediaType) Code() int {
+	return 415
 }
 
 func (o *CreateDomesticScheduledPaymentConsentsUnsupportedMediaType) Error() string {
@@ -705,6 +745,11 @@ func (o *CreateDomesticScheduledPaymentConsentsTooManyRequests) IsServerError() 
 // IsCode returns true when this create domestic scheduled payment consents too many requests response a status code equal to that given
 func (o *CreateDomesticScheduledPaymentConsentsTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the create domestic scheduled payment consents too many requests response
+func (o *CreateDomesticScheduledPaymentConsentsTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *CreateDomesticScheduledPaymentConsentsTooManyRequests) Error() string {
@@ -785,6 +830,11 @@ func (o *CreateDomesticScheduledPaymentConsentsInternalServerError) IsServerErro
 // IsCode returns true when this create domestic scheduled payment consents internal server error response a status code equal to that given
 func (o *CreateDomesticScheduledPaymentConsentsInternalServerError) IsCode(code int) bool {
 	return code == 500
+}
+
+// Code gets the status code for the create domestic scheduled payment consents internal server error response
+func (o *CreateDomesticScheduledPaymentConsentsInternalServerError) Code() int {
+	return 500
 }
 
 func (o *CreateDomesticScheduledPaymentConsentsInternalServerError) Error() string {
