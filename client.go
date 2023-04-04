@@ -638,38 +638,6 @@ func New(cfg Config) (c Client, err error) {
 		).WithOpenTracing(), nil),
 	}
 
-	openbankingTransport := httptransport.NewWithClient(
-		cfg.IssuerURL.Host,
-		c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
-		[]string{cfg.IssuerURL.Scheme},
-		client,
-	)
-	openbankingTransport.Consumers["application/jwt"] = &JWTConsumer{}
-
-	c.Fdx = &Fdx{
-		Acp: fdx.New(openbankingTransport.WithOpenTracing(), nil),
-	}
-
-	c.Cdr = &Cdr{
-		Acp: cdr.New(openbankingTransport.WithOpenTracing(), nil),
-	}
-
-	c.Obuk = &Obuk{
-		Acp: obuk.New(openbankingTransport.WithOpenTracing(), nil),
-	}
-
-	c.Obbr = &Obbr{
-		Acp: obbr.New(openbankingTransport.WithOpenTracing(), nil),
-	}
-
-	c.Opin = &Opin{
-		Acp: opin.New(openbankingTransport.WithOpenTracing(), nil),
-	}
-
-	c.Ksa = &Ksa{
-		Acp: ksa.New(openbankingTransport.WithOpenTracing(), nil),
-	}
-
 	apiPrefix := c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s")
 
 	c.OpenbankingUK = &OpenbankingUK{
@@ -707,141 +675,59 @@ func New(cfg Config) (c Client, err error) {
 		Payments: obbrPayments.New(obbrPaymentsTransport.WithOpenTracing(), nil),
 	}
 
+	openbankingTransport := httptransport.NewWithClient(
+		cfg.IssuerURL.Host,
+		c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
+		[]string{cfg.IssuerURL.Scheme},
+		client,
+	)
+	openbankingTransport.Consumers["application/jwt"] = &JWTConsumer{}
+
 	c.Fdx = &Fdx{
 		Acp: &fdx.Acp{
-			Fdx: fdxfdx.New(httptransport.NewWithClient(
-				cfg.IssuerURL.Host,
-				c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
-				[]string{cfg.IssuerURL.Scheme},
-				client,
-			).WithOpenTracing(), nil),
-			Consentpage: fdxconsentpage.New(httptransport.NewWithClient(
-				cfg.IssuerURL.Host,
-				c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
-				[]string{cfg.IssuerURL.Scheme},
-				client,
-			).WithOpenTracing(), nil),
-			Dcr: fdxdcr.New(httptransport.NewWithClient(
-				cfg.IssuerURL.Host,
-				c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
-				[]string{cfg.IssuerURL.Scheme},
-				client,
-			).WithOpenTracing(), nil),
-			Management: fdxmanagement.New(httptransport.NewWithClient(
-				cfg.IssuerURL.Host,
-				c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
-				[]string{cfg.IssuerURL.Scheme},
-				client,
-			).WithOpenTracing(), nil),
+			Fdx: fdxfdx.New(openbankingTransport.WithOpenTracing(), nil),
+			Consentpage: fdxconsentpage.New(openbankingTransport.WithOpenTracing(), nil),
+			Dcr: fdxdcr.New(openbankingTransport.WithOpenTracing(), nil),
+			Management: fdxmanagement.New(openbankingTransport.WithOpenTracing(), nil),
 		},
 	}
 
 	c.Cdr = &Cdr{
 		Acp: &cdr.Acp{
-			Cdr: cdrcdr.New(httptransport.NewWithClient(
-				cfg.IssuerURL.Host,
-				c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
-				[]string{cfg.IssuerURL.Scheme},
-				client,
-			).WithOpenTracing(), nil),
-			Consentpage: cdrconsentpage.New(httptransport.NewWithClient(
-				cfg.IssuerURL.Host,
-				c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
-				[]string{cfg.IssuerURL.Scheme},
-				client,
-			).WithOpenTracing(), nil),
-			Dcr: cdrdcr.New(httptransport.NewWithClient(
-				cfg.IssuerURL.Host,
-				c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
-				[]string{cfg.IssuerURL.Scheme},
-				client,
-			).WithOpenTracing(), nil),
-			Management: cdrmanagement.New(httptransport.NewWithClient(
-				cfg.IssuerURL.Host,
-				c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
-				[]string{cfg.IssuerURL.Scheme},
-				client,
-			).WithOpenTracing(), nil),
+			Cdr: cdrcdr.New(openbankingTransport.WithOpenTracing(), nil),
+			Consentpage: cdrconsentpage.New(openbankingTransport.WithOpenTracing(), nil),
+			Dcr: cdrdcr.New(openbankingTransport.WithOpenTracing(), nil),
+			Management: cdrmanagement.New(openbankingTransport.WithOpenTracing(), nil),
 		},
 	}
 
 	c.Obbr = &Obbr{
 		Acp: &obbr.Acp{
-			Obbr: obbrobbr.New(httptransport.NewWithClient(
-				cfg.IssuerURL.Host,
-				c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
-				[]string{cfg.IssuerURL.Scheme},
-				client,
-			).WithOpenTracing(), nil),
-			Consentpage: obbrconsentpage.New(httptransport.NewWithClient(
-				cfg.IssuerURL.Host,
-				c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
-				[]string{cfg.IssuerURL.Scheme},
-				client,
-			).WithOpenTracing(), nil),
-			Dcr: obbrdcr.New(httptransport.NewWithClient(
-				cfg.IssuerURL.Host,
-				c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
-				[]string{cfg.IssuerURL.Scheme},
-				client,
-			).WithOpenTracing(), nil),
-			Management: obbrmanagement.New(httptransport.NewWithClient(
-				cfg.IssuerURL.Host,
-				c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
-				[]string{cfg.IssuerURL.Scheme},
-				client,
-			).WithOpenTracing(), nil),
+			Obbr: obbrobbr.New(openbankingTransport.WithOpenTracing(), nil),
+			Consentpage: obbrconsentpage.New(openbankingTransport.WithOpenTracing(), nil),
+			Dcr: obbrdcr.New(openbankingTransport.WithOpenTracing(), nil),
+			Management: obbrmanagement.New(openbankingTransport.WithOpenTracing(), nil),
 		},
 	}
 
 	c.Obuk = &Obuk{
 		Acp: &obuk.Acp{
-			Obuk: obukobuk.New(httptransport.NewWithClient(
-				cfg.IssuerURL.Host,
-				c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
-				[]string{cfg.IssuerURL.Scheme},
-				client,
-			).WithOpenTracing(), nil),
-			Consentpage: obukconsentpage.New(httptransport.NewWithClient(
-				cfg.IssuerURL.Host,
-				c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
-				[]string{cfg.IssuerURL.Scheme},
-				client,
-			).WithOpenTracing(), nil),
-			Dcr: obukdcr.New(httptransport.NewWithClient(
-				cfg.IssuerURL.Host,
-				c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
-				[]string{cfg.IssuerURL.Scheme},
-				client,
-			).WithOpenTracing(), nil),
-			Management: obukmanagement.New(httptransport.NewWithClient(
-				cfg.IssuerURL.Host,
-				c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
-				[]string{cfg.IssuerURL.Scheme},
-				client,
-			).WithOpenTracing(), nil),
+			Obuk: obukobuk.New(openbankingTransport.WithOpenTracing(), nil),
+			Consentpage: obukconsentpage.New(openbankingTransport.WithOpenTracing(), nil),
+			Dcr: obukdcr.New(openbankingTransport.WithOpenTracing(), nil),
+			Management: obukmanagement.New(openbankingTransport.WithOpenTracing(), nil),
 		},
 	}
 
 	c.Opin = &Opin{
 		Acp: &opin.Acp{
-			Opin: opinopin.New(httptransport.NewWithClient(
-				cfg.IssuerURL.Host,
-				c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
-				[]string{cfg.IssuerURL.Scheme},
-				client,
-			).WithOpenTracing(), nil),
+			Opin: opinopin.New(openbankingTransport.WithOpenTracing(), nil),
 		},
 	}
 
 	c.Ksa = &Ksa{
 		Acp: &ksa.Acp{
-			Consentpage: ksaconsentpage.New(httptransport.NewWithClient(
-				cfg.IssuerURL.Host,
-				c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
-				[]string{cfg.IssuerURL.Scheme},
-				client,
-			).WithOpenTracing(), nil),
+			Consentpage: ksaconsentpage.New(openbankingTransport.WithOpenTracing(), nil),
 		},
 	}
 
