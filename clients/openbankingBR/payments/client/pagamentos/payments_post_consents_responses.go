@@ -146,6 +146,11 @@ func (o *PaymentsPostConsentsCreated) IsCode(code int) bool {
 	return code == 201
 }
 
+// Code gets the status code for the payments post consents created response
+func (o *PaymentsPostConsentsCreated) Code() int {
+	return 201
+}
+
 func (o *PaymentsPostConsentsCreated) Error() string {
 	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsCreated  %+v", 201, o.Payload)
 }
@@ -218,6 +223,11 @@ func (o *PaymentsPostConsentsBadRequest) IsServerError() bool {
 // IsCode returns true when this payments post consents bad request response a status code equal to that given
 func (o *PaymentsPostConsentsBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the payments post consents bad request response
+func (o *PaymentsPostConsentsBadRequest) Code() int {
+	return 400
 }
 
 func (o *PaymentsPostConsentsBadRequest) Error() string {
@@ -296,6 +306,11 @@ func (o *PaymentsPostConsentsUnauthorized) IsCode(code int) bool {
 	return code == 401
 }
 
+// Code gets the status code for the payments post consents unauthorized response
+func (o *PaymentsPostConsentsUnauthorized) Code() int {
+	return 401
+}
+
 func (o *PaymentsPostConsentsUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsUnauthorized  %+v", 401, o.Payload)
 }
@@ -370,6 +385,11 @@ func (o *PaymentsPostConsentsForbidden) IsServerError() bool {
 // IsCode returns true when this payments post consents forbidden response a status code equal to that given
 func (o *PaymentsPostConsentsForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the payments post consents forbidden response
+func (o *PaymentsPostConsentsForbidden) Code() int {
+	return 403
 }
 
 func (o *PaymentsPostConsentsForbidden) Error() string {
@@ -448,6 +468,11 @@ func (o *PaymentsPostConsentsNotFound) IsCode(code int) bool {
 	return code == 404
 }
 
+// Code gets the status code for the payments post consents not found response
+func (o *PaymentsPostConsentsNotFound) Code() int {
+	return 404
+}
+
 func (o *PaymentsPostConsentsNotFound) Error() string {
 	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsNotFound  %+v", 404, o.Payload)
 }
@@ -522,6 +547,11 @@ func (o *PaymentsPostConsentsMethodNotAllowed) IsServerError() bool {
 // IsCode returns true when this payments post consents method not allowed response a status code equal to that given
 func (o *PaymentsPostConsentsMethodNotAllowed) IsCode(code int) bool {
 	return code == 405
+}
+
+// Code gets the status code for the payments post consents method not allowed response
+func (o *PaymentsPostConsentsMethodNotAllowed) Code() int {
+	return 405
 }
 
 func (o *PaymentsPostConsentsMethodNotAllowed) Error() string {
@@ -600,6 +630,11 @@ func (o *PaymentsPostConsentsNotAcceptable) IsCode(code int) bool {
 	return code == 406
 }
 
+// Code gets the status code for the payments post consents not acceptable response
+func (o *PaymentsPostConsentsNotAcceptable) Code() int {
+	return 406
+}
+
 func (o *PaymentsPostConsentsNotAcceptable) Error() string {
 	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsNotAcceptable  %+v", 406, o.Payload)
 }
@@ -676,6 +711,11 @@ func (o *PaymentsPostConsentsUnsupportedMediaType) IsCode(code int) bool {
 	return code == 415
 }
 
+// Code gets the status code for the payments post consents unsupported media type response
+func (o *PaymentsPostConsentsUnsupportedMediaType) Code() int {
+	return 415
+}
+
 func (o *PaymentsPostConsentsUnsupportedMediaType) Error() string {
 	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsUnsupportedMediaType  %+v", 415, o.Payload)
 }
@@ -750,6 +790,11 @@ func (o *PaymentsPostConsentsUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this payments post consents unprocessable entity response a status code equal to that given
 func (o *PaymentsPostConsentsUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the payments post consents unprocessable entity response
+func (o *PaymentsPostConsentsUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *PaymentsPostConsentsUnprocessableEntity) Error() string {
@@ -829,6 +874,11 @@ func (o *PaymentsPostConsentsTooManyRequests) IsServerError() bool {
 // IsCode returns true when this payments post consents too many requests response a status code equal to that given
 func (o *PaymentsPostConsentsTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the payments post consents too many requests response
+func (o *PaymentsPostConsentsTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *PaymentsPostConsentsTooManyRequests) Error() string {
@@ -914,6 +964,11 @@ func (o *PaymentsPostConsentsInternalServerError) IsCode(code int) bool {
 	return code == 500
 }
 
+// Code gets the status code for the payments post consents internal server error response
+func (o *PaymentsPostConsentsInternalServerError) Code() int {
+	return 500
+}
+
 func (o *PaymentsPostConsentsInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /consents][%d] paymentsPostConsentsInternalServerError  %+v", 500, o.Payload)
 }
@@ -963,11 +1018,6 @@ type PaymentsPostConsentsDefault struct {
 	Payload *models.ResponseError
 }
 
-// Code gets the status code for the payments post consents default response
-func (o *PaymentsPostConsentsDefault) Code() int {
-	return o._statusCode
-}
-
 // IsSuccess returns true when this payments post consents default response has a 2xx status code
 func (o *PaymentsPostConsentsDefault) IsSuccess() bool {
 	return o._statusCode/100 == 2
@@ -991,6 +1041,11 @@ func (o *PaymentsPostConsentsDefault) IsServerError() bool {
 // IsCode returns true when this payments post consents default response a status code equal to that given
 func (o *PaymentsPostConsentsDefault) IsCode(code int) bool {
 	return o._statusCode == code
+}
+
+// Code gets the status code for the payments post consents default response
+func (o *PaymentsPostConsentsDefault) Code() int {
+	return o._statusCode
 }
 
 func (o *PaymentsPostConsentsDefault) Error() string {

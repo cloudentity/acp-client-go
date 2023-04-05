@@ -122,6 +122,11 @@ func (o *GetAccountAccessConsentsConsentIDOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get account access consents consent Id o k response
+func (o *GetAccountAccessConsentsConsentIDOK) Code() int {
+	return 200
+}
+
 func (o *GetAccountAccessConsentsConsentIDOK) Error() string {
 	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdOK  %+v", 200, o.Payload)
 }
@@ -197,6 +202,11 @@ func (o *GetAccountAccessConsentsConsentIDBadRequest) IsCode(code int) bool {
 	return code == 400
 }
 
+// Code gets the status code for the get account access consents consent Id bad request response
+func (o *GetAccountAccessConsentsConsentIDBadRequest) Code() int {
+	return 400
+}
+
 func (o *GetAccountAccessConsentsConsentIDBadRequest) Error() string {
 	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdBadRequest  %+v", 400, o.Payload)
 }
@@ -270,6 +280,11 @@ func (o *GetAccountAccessConsentsConsentIDUnauthorized) IsCode(code int) bool {
 	return code == 401
 }
 
+// Code gets the status code for the get account access consents consent Id unauthorized response
+func (o *GetAccountAccessConsentsConsentIDUnauthorized) Code() int {
+	return 401
+}
+
 func (o *GetAccountAccessConsentsConsentIDUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdUnauthorized ", 401)
 }
@@ -332,6 +347,11 @@ func (o *GetAccountAccessConsentsConsentIDForbidden) IsServerError() bool {
 // IsCode returns true when this get account access consents consent Id forbidden response a status code equal to that given
 func (o *GetAccountAccessConsentsConsentIDForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get account access consents consent Id forbidden response
+func (o *GetAccountAccessConsentsConsentIDForbidden) Code() int {
+	return 403
 }
 
 func (o *GetAccountAccessConsentsConsentIDForbidden) Error() string {
@@ -407,6 +427,11 @@ func (o *GetAccountAccessConsentsConsentIDMethodNotAllowed) IsCode(code int) boo
 	return code == 405
 }
 
+// Code gets the status code for the get account access consents consent Id method not allowed response
+func (o *GetAccountAccessConsentsConsentIDMethodNotAllowed) Code() int {
+	return 405
+}
+
 func (o *GetAccountAccessConsentsConsentIDMethodNotAllowed) Error() string {
 	return fmt.Sprintf("[GET /account-access-consents/{ConsentId}][%d] getAccountAccessConsentsConsentIdMethodNotAllowed ", 405)
 }
@@ -467,6 +492,11 @@ func (o *GetAccountAccessConsentsConsentIDNotAcceptable) IsServerError() bool {
 // IsCode returns true when this get account access consents consent Id not acceptable response a status code equal to that given
 func (o *GetAccountAccessConsentsConsentIDNotAcceptable) IsCode(code int) bool {
 	return code == 406
+}
+
+// Code gets the status code for the get account access consents consent Id not acceptable response
+func (o *GetAccountAccessConsentsConsentIDNotAcceptable) Code() int {
+	return 406
 }
 
 func (o *GetAccountAccessConsentsConsentIDNotAcceptable) Error() string {
@@ -533,6 +563,11 @@ func (o *GetAccountAccessConsentsConsentIDTooManyRequests) IsServerError() bool 
 // IsCode returns true when this get account access consents consent Id too many requests response a status code equal to that given
 func (o *GetAccountAccessConsentsConsentIDTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get account access consents consent Id too many requests response
+func (o *GetAccountAccessConsentsConsentIDTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetAccountAccessConsentsConsentIDTooManyRequests) Error() string {
@@ -608,6 +643,11 @@ func (o *GetAccountAccessConsentsConsentIDInternalServerError) IsServerError() b
 // IsCode returns true when this get account access consents consent Id internal server error response a status code equal to that given
 func (o *GetAccountAccessConsentsConsentIDInternalServerError) IsCode(code int) bool {
 	return code == 500
+}
+
+// Code gets the status code for the get account access consents consent Id internal server error response
+func (o *GetAccountAccessConsentsConsentIDInternalServerError) Code() int {
+	return 500
 }
 
 func (o *GetAccountAccessConsentsConsentIDInternalServerError) Error() string {

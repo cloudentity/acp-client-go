@@ -139,6 +139,11 @@ func (o *CreateInternationalStandingOrderConsentsCreated) IsCode(code int) bool 
 	return code == 201
 }
 
+// Code gets the status code for the create international standing order consents created response
+func (o *CreateInternationalStandingOrderConsentsCreated) Code() int {
+	return 201
+}
+
 func (o *CreateInternationalStandingOrderConsentsCreated) Error() string {
 	return fmt.Sprintf("[POST /international-standing-order-consents][%d] createInternationalStandingOrderConsentsCreated  %+v", 201, o.Payload)
 }
@@ -226,6 +231,11 @@ func (o *CreateInternationalStandingOrderConsentsBadRequest) IsCode(code int) bo
 	return code == 400
 }
 
+// Code gets the status code for the create international standing order consents bad request response
+func (o *CreateInternationalStandingOrderConsentsBadRequest) Code() int {
+	return 400
+}
+
 func (o *CreateInternationalStandingOrderConsentsBadRequest) Error() string {
 	return fmt.Sprintf("[POST /international-standing-order-consents][%d] createInternationalStandingOrderConsentsBadRequest  %+v", 400, o.Payload)
 }
@@ -306,6 +316,11 @@ func (o *CreateInternationalStandingOrderConsentsUnauthorized) IsCode(code int) 
 	return code == 401
 }
 
+// Code gets the status code for the create international standing order consents unauthorized response
+func (o *CreateInternationalStandingOrderConsentsUnauthorized) Code() int {
+	return 401
+}
+
 func (o *CreateInternationalStandingOrderConsentsUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /international-standing-order-consents][%d] createInternationalStandingOrderConsentsUnauthorized ", 401)
 }
@@ -373,6 +388,11 @@ func (o *CreateInternationalStandingOrderConsentsForbidden) IsServerError() bool
 // IsCode returns true when this create international standing order consents forbidden response a status code equal to that given
 func (o *CreateInternationalStandingOrderConsentsForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the create international standing order consents forbidden response
+func (o *CreateInternationalStandingOrderConsentsForbidden) Code() int {
+	return 403
 }
 
 func (o *CreateInternationalStandingOrderConsentsForbidden) Error() string {
@@ -455,6 +475,11 @@ func (o *CreateInternationalStandingOrderConsentsNotFound) IsCode(code int) bool
 	return code == 404
 }
 
+// Code gets the status code for the create international standing order consents not found response
+func (o *CreateInternationalStandingOrderConsentsNotFound) Code() int {
+	return 404
+}
+
 func (o *CreateInternationalStandingOrderConsentsNotFound) Error() string {
 	return fmt.Sprintf("[POST /international-standing-order-consents][%d] createInternationalStandingOrderConsentsNotFound ", 404)
 }
@@ -515,6 +540,11 @@ func (o *CreateInternationalStandingOrderConsentsMethodNotAllowed) IsServerError
 // IsCode returns true when this create international standing order consents method not allowed response a status code equal to that given
 func (o *CreateInternationalStandingOrderConsentsMethodNotAllowed) IsCode(code int) bool {
 	return code == 405
+}
+
+// Code gets the status code for the create international standing order consents method not allowed response
+func (o *CreateInternationalStandingOrderConsentsMethodNotAllowed) Code() int {
+	return 405
 }
 
 func (o *CreateInternationalStandingOrderConsentsMethodNotAllowed) Error() string {
@@ -579,6 +609,11 @@ func (o *CreateInternationalStandingOrderConsentsNotAcceptable) IsCode(code int)
 	return code == 406
 }
 
+// Code gets the status code for the create international standing order consents not acceptable response
+func (o *CreateInternationalStandingOrderConsentsNotAcceptable) Code() int {
+	return 406
+}
+
 func (o *CreateInternationalStandingOrderConsentsNotAcceptable) Error() string {
 	return fmt.Sprintf("[POST /international-standing-order-consents][%d] createInternationalStandingOrderConsentsNotAcceptable ", 406)
 }
@@ -639,6 +674,11 @@ func (o *CreateInternationalStandingOrderConsentsUnsupportedMediaType) IsServerE
 // IsCode returns true when this create international standing order consents unsupported media type response a status code equal to that given
 func (o *CreateInternationalStandingOrderConsentsUnsupportedMediaType) IsCode(code int) bool {
 	return code == 415
+}
+
+// Code gets the status code for the create international standing order consents unsupported media type response
+func (o *CreateInternationalStandingOrderConsentsUnsupportedMediaType) Code() int {
+	return 415
 }
 
 func (o *CreateInternationalStandingOrderConsentsUnsupportedMediaType) Error() string {
@@ -705,6 +745,11 @@ func (o *CreateInternationalStandingOrderConsentsTooManyRequests) IsServerError(
 // IsCode returns true when this create international standing order consents too many requests response a status code equal to that given
 func (o *CreateInternationalStandingOrderConsentsTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the create international standing order consents too many requests response
+func (o *CreateInternationalStandingOrderConsentsTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *CreateInternationalStandingOrderConsentsTooManyRequests) Error() string {
@@ -785,6 +830,11 @@ func (o *CreateInternationalStandingOrderConsentsInternalServerError) IsServerEr
 // IsCode returns true when this create international standing order consents internal server error response a status code equal to that given
 func (o *CreateInternationalStandingOrderConsentsInternalServerError) IsCode(code int) bool {
 	return code == 500
+}
+
+// Code gets the status code for the create international standing order consents internal server error response
+func (o *CreateInternationalStandingOrderConsentsInternalServerError) Code() int {
+	return 500
 }
 
 func (o *CreateInternationalStandingOrderConsentsInternalServerError) Error() string {

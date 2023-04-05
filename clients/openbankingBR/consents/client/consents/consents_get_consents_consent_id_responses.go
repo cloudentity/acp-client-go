@@ -145,6 +145,11 @@ func (o *ConsentsGetConsentsConsentIDOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the consents get consents consent Id o k response
+func (o *ConsentsGetConsentsConsentIDOK) Code() int {
+	return 200
+}
+
 func (o *ConsentsGetConsentsConsentIDOK) Error() string {
 	return fmt.Sprintf("[GET /consents/{consentId}][%d] consentsGetConsentsConsentIdOK  %+v", 200, o.Payload)
 }
@@ -215,6 +220,11 @@ func (o *ConsentsGetConsentsConsentIDBadRequest) IsCode(code int) bool {
 	return code == 400
 }
 
+// Code gets the status code for the consents get consents consent Id bad request response
+func (o *ConsentsGetConsentsConsentIDBadRequest) Code() int {
+	return 400
+}
+
 func (o *ConsentsGetConsentsConsentIDBadRequest) Error() string {
 	return fmt.Sprintf("[GET /consents/{consentId}][%d] consentsGetConsentsConsentIdBadRequest  %+v", 400, o.Payload)
 }
@@ -276,6 +286,11 @@ func (o *ConsentsGetConsentsConsentIDUnauthorized) IsServerError() bool {
 // IsCode returns true when this consents get consents consent Id unauthorized response a status code equal to that given
 func (o *ConsentsGetConsentsConsentIDUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the consents get consents consent Id unauthorized response
+func (o *ConsentsGetConsentsConsentIDUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ConsentsGetConsentsConsentIDUnauthorized) Error() string {
@@ -341,6 +356,11 @@ func (o *ConsentsGetConsentsConsentIDForbidden) IsCode(code int) bool {
 	return code == 403
 }
 
+// Code gets the status code for the consents get consents consent Id forbidden response
+func (o *ConsentsGetConsentsConsentIDForbidden) Code() int {
+	return 403
+}
+
 func (o *ConsentsGetConsentsConsentIDForbidden) Error() string {
 	return fmt.Sprintf("[GET /consents/{consentId}][%d] consentsGetConsentsConsentIdForbidden  %+v", 403, o.Payload)
 }
@@ -402,6 +422,11 @@ func (o *ConsentsGetConsentsConsentIDNotFound) IsServerError() bool {
 // IsCode returns true when this consents get consents consent Id not found response a status code equal to that given
 func (o *ConsentsGetConsentsConsentIDNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the consents get consents consent Id not found response
+func (o *ConsentsGetConsentsConsentIDNotFound) Code() int {
+	return 404
 }
 
 func (o *ConsentsGetConsentsConsentIDNotFound) Error() string {
@@ -467,6 +492,11 @@ func (o *ConsentsGetConsentsConsentIDMethodNotAllowed) IsCode(code int) bool {
 	return code == 405
 }
 
+// Code gets the status code for the consents get consents consent Id method not allowed response
+func (o *ConsentsGetConsentsConsentIDMethodNotAllowed) Code() int {
+	return 405
+}
+
 func (o *ConsentsGetConsentsConsentIDMethodNotAllowed) Error() string {
 	return fmt.Sprintf("[GET /consents/{consentId}][%d] consentsGetConsentsConsentIdMethodNotAllowed  %+v", 405, o.Payload)
 }
@@ -528,6 +558,11 @@ func (o *ConsentsGetConsentsConsentIDNotAcceptable) IsServerError() bool {
 // IsCode returns true when this consents get consents consent Id not acceptable response a status code equal to that given
 func (o *ConsentsGetConsentsConsentIDNotAcceptable) IsCode(code int) bool {
 	return code == 406
+}
+
+// Code gets the status code for the consents get consents consent Id not acceptable response
+func (o *ConsentsGetConsentsConsentIDNotAcceptable) Code() int {
+	return 406
 }
 
 func (o *ConsentsGetConsentsConsentIDNotAcceptable) Error() string {
@@ -593,6 +628,11 @@ func (o *ConsentsGetConsentsConsentIDTooManyRequests) IsCode(code int) bool {
 	return code == 429
 }
 
+// Code gets the status code for the consents get consents consent Id too many requests response
+func (o *ConsentsGetConsentsConsentIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *ConsentsGetConsentsConsentIDTooManyRequests) Error() string {
 	return fmt.Sprintf("[GET /consents/{consentId}][%d] consentsGetConsentsConsentIdTooManyRequests  %+v", 429, o.Payload)
 }
@@ -656,6 +696,11 @@ func (o *ConsentsGetConsentsConsentIDInternalServerError) IsCode(code int) bool 
 	return code == 500
 }
 
+// Code gets the status code for the consents get consents consent Id internal server error response
+func (o *ConsentsGetConsentsConsentIDInternalServerError) Code() int {
+	return 500
+}
+
 func (o *ConsentsGetConsentsConsentIDInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /consents/{consentId}][%d] consentsGetConsentsConsentIdInternalServerError  %+v", 500, o.Payload)
 }
@@ -698,11 +743,6 @@ type ConsentsGetConsentsConsentIDDefault struct {
 	Payload *models.ResponseError
 }
 
-// Code gets the status code for the consents get consents consent Id default response
-func (o *ConsentsGetConsentsConsentIDDefault) Code() int {
-	return o._statusCode
-}
-
 // IsSuccess returns true when this consents get consents consent Id default response has a 2xx status code
 func (o *ConsentsGetConsentsConsentIDDefault) IsSuccess() bool {
 	return o._statusCode/100 == 2
@@ -726,6 +766,11 @@ func (o *ConsentsGetConsentsConsentIDDefault) IsServerError() bool {
 // IsCode returns true when this consents get consents consent Id default response a status code equal to that given
 func (o *ConsentsGetConsentsConsentIDDefault) IsCode(code int) bool {
 	return o._statusCode == code
+}
+
+// Code gets the status code for the consents get consents consent Id default response
+func (o *ConsentsGetConsentsConsentIDDefault) Code() int {
+	return o._statusCode
 }
 
 func (o *ConsentsGetConsentsConsentIDDefault) Error() string {

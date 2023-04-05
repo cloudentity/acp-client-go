@@ -139,6 +139,11 @@ func (o *CreateInternationalPaymentConsentsCreated) IsCode(code int) bool {
 	return code == 201
 }
 
+// Code gets the status code for the create international payment consents created response
+func (o *CreateInternationalPaymentConsentsCreated) Code() int {
+	return 201
+}
+
 func (o *CreateInternationalPaymentConsentsCreated) Error() string {
 	return fmt.Sprintf("[POST /international-payment-consents][%d] createInternationalPaymentConsentsCreated  %+v", 201, o.Payload)
 }
@@ -226,6 +231,11 @@ func (o *CreateInternationalPaymentConsentsBadRequest) IsCode(code int) bool {
 	return code == 400
 }
 
+// Code gets the status code for the create international payment consents bad request response
+func (o *CreateInternationalPaymentConsentsBadRequest) Code() int {
+	return 400
+}
+
 func (o *CreateInternationalPaymentConsentsBadRequest) Error() string {
 	return fmt.Sprintf("[POST /international-payment-consents][%d] createInternationalPaymentConsentsBadRequest  %+v", 400, o.Payload)
 }
@@ -306,6 +316,11 @@ func (o *CreateInternationalPaymentConsentsUnauthorized) IsCode(code int) bool {
 	return code == 401
 }
 
+// Code gets the status code for the create international payment consents unauthorized response
+func (o *CreateInternationalPaymentConsentsUnauthorized) Code() int {
+	return 401
+}
+
 func (o *CreateInternationalPaymentConsentsUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /international-payment-consents][%d] createInternationalPaymentConsentsUnauthorized ", 401)
 }
@@ -373,6 +388,11 @@ func (o *CreateInternationalPaymentConsentsForbidden) IsServerError() bool {
 // IsCode returns true when this create international payment consents forbidden response a status code equal to that given
 func (o *CreateInternationalPaymentConsentsForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the create international payment consents forbidden response
+func (o *CreateInternationalPaymentConsentsForbidden) Code() int {
+	return 403
 }
 
 func (o *CreateInternationalPaymentConsentsForbidden) Error() string {
@@ -455,6 +475,11 @@ func (o *CreateInternationalPaymentConsentsNotFound) IsCode(code int) bool {
 	return code == 404
 }
 
+// Code gets the status code for the create international payment consents not found response
+func (o *CreateInternationalPaymentConsentsNotFound) Code() int {
+	return 404
+}
+
 func (o *CreateInternationalPaymentConsentsNotFound) Error() string {
 	return fmt.Sprintf("[POST /international-payment-consents][%d] createInternationalPaymentConsentsNotFound ", 404)
 }
@@ -515,6 +540,11 @@ func (o *CreateInternationalPaymentConsentsMethodNotAllowed) IsServerError() boo
 // IsCode returns true when this create international payment consents method not allowed response a status code equal to that given
 func (o *CreateInternationalPaymentConsentsMethodNotAllowed) IsCode(code int) bool {
 	return code == 405
+}
+
+// Code gets the status code for the create international payment consents method not allowed response
+func (o *CreateInternationalPaymentConsentsMethodNotAllowed) Code() int {
+	return 405
 }
 
 func (o *CreateInternationalPaymentConsentsMethodNotAllowed) Error() string {
@@ -579,6 +609,11 @@ func (o *CreateInternationalPaymentConsentsNotAcceptable) IsCode(code int) bool 
 	return code == 406
 }
 
+// Code gets the status code for the create international payment consents not acceptable response
+func (o *CreateInternationalPaymentConsentsNotAcceptable) Code() int {
+	return 406
+}
+
 func (o *CreateInternationalPaymentConsentsNotAcceptable) Error() string {
 	return fmt.Sprintf("[POST /international-payment-consents][%d] createInternationalPaymentConsentsNotAcceptable ", 406)
 }
@@ -639,6 +674,11 @@ func (o *CreateInternationalPaymentConsentsUnsupportedMediaType) IsServerError()
 // IsCode returns true when this create international payment consents unsupported media type response a status code equal to that given
 func (o *CreateInternationalPaymentConsentsUnsupportedMediaType) IsCode(code int) bool {
 	return code == 415
+}
+
+// Code gets the status code for the create international payment consents unsupported media type response
+func (o *CreateInternationalPaymentConsentsUnsupportedMediaType) Code() int {
+	return 415
 }
 
 func (o *CreateInternationalPaymentConsentsUnsupportedMediaType) Error() string {
@@ -705,6 +745,11 @@ func (o *CreateInternationalPaymentConsentsTooManyRequests) IsServerError() bool
 // IsCode returns true when this create international payment consents too many requests response a status code equal to that given
 func (o *CreateInternationalPaymentConsentsTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the create international payment consents too many requests response
+func (o *CreateInternationalPaymentConsentsTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *CreateInternationalPaymentConsentsTooManyRequests) Error() string {
@@ -785,6 +830,11 @@ func (o *CreateInternationalPaymentConsentsInternalServerError) IsServerError() 
 // IsCode returns true when this create international payment consents internal server error response a status code equal to that given
 func (o *CreateInternationalPaymentConsentsInternalServerError) IsCode(code int) bool {
 	return code == 500
+}
+
+// Code gets the status code for the create international payment consents internal server error response
+func (o *CreateInternationalPaymentConsentsInternalServerError) Code() int {
+	return 500
 }
 
 func (o *CreateInternationalPaymentConsentsInternalServerError) Error() string {

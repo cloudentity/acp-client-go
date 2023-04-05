@@ -132,6 +132,11 @@ func (o *CreateFilePaymentConsentsConsentIDFileOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the create file payment consents consent Id file o k response
+func (o *CreateFilePaymentConsentsConsentIDFileOK) Code() int {
+	return 200
+}
+
 func (o *CreateFilePaymentConsentsConsentIDFileOK) Error() string {
 	return fmt.Sprintf("[POST /file-payment-consents/{ConsentId}/file][%d] createFilePaymentConsentsConsentIdFileOK ", 200)
 }
@@ -199,6 +204,11 @@ func (o *CreateFilePaymentConsentsConsentIDFileBadRequest) IsServerError() bool 
 // IsCode returns true when this create file payment consents consent Id file bad request response a status code equal to that given
 func (o *CreateFilePaymentConsentsConsentIDFileBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the create file payment consents consent Id file bad request response
+func (o *CreateFilePaymentConsentsConsentIDFileBadRequest) Code() int {
+	return 400
 }
 
 func (o *CreateFilePaymentConsentsConsentIDFileBadRequest) Error() string {
@@ -281,6 +291,11 @@ func (o *CreateFilePaymentConsentsConsentIDFileUnauthorized) IsCode(code int) bo
 	return code == 401
 }
 
+// Code gets the status code for the create file payment consents consent Id file unauthorized response
+func (o *CreateFilePaymentConsentsConsentIDFileUnauthorized) Code() int {
+	return 401
+}
+
 func (o *CreateFilePaymentConsentsConsentIDFileUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /file-payment-consents/{ConsentId}/file][%d] createFilePaymentConsentsConsentIdFileUnauthorized ", 401)
 }
@@ -348,6 +363,11 @@ func (o *CreateFilePaymentConsentsConsentIDFileForbidden) IsServerError() bool {
 // IsCode returns true when this create file payment consents consent Id file forbidden response a status code equal to that given
 func (o *CreateFilePaymentConsentsConsentIDFileForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the create file payment consents consent Id file forbidden response
+func (o *CreateFilePaymentConsentsConsentIDFileForbidden) Code() int {
+	return 403
 }
 
 func (o *CreateFilePaymentConsentsConsentIDFileForbidden) Error() string {
@@ -430,6 +450,11 @@ func (o *CreateFilePaymentConsentsConsentIDFileNotFound) IsCode(code int) bool {
 	return code == 404
 }
 
+// Code gets the status code for the create file payment consents consent Id file not found response
+func (o *CreateFilePaymentConsentsConsentIDFileNotFound) Code() int {
+	return 404
+}
+
 func (o *CreateFilePaymentConsentsConsentIDFileNotFound) Error() string {
 	return fmt.Sprintf("[POST /file-payment-consents/{ConsentId}/file][%d] createFilePaymentConsentsConsentIdFileNotFound ", 404)
 }
@@ -490,6 +515,11 @@ func (o *CreateFilePaymentConsentsConsentIDFileMethodNotAllowed) IsServerError()
 // IsCode returns true when this create file payment consents consent Id file method not allowed response a status code equal to that given
 func (o *CreateFilePaymentConsentsConsentIDFileMethodNotAllowed) IsCode(code int) bool {
 	return code == 405
+}
+
+// Code gets the status code for the create file payment consents consent Id file method not allowed response
+func (o *CreateFilePaymentConsentsConsentIDFileMethodNotAllowed) Code() int {
+	return 405
 }
 
 func (o *CreateFilePaymentConsentsConsentIDFileMethodNotAllowed) Error() string {
@@ -554,6 +584,11 @@ func (o *CreateFilePaymentConsentsConsentIDFileNotAcceptable) IsCode(code int) b
 	return code == 406
 }
 
+// Code gets the status code for the create file payment consents consent Id file not acceptable response
+func (o *CreateFilePaymentConsentsConsentIDFileNotAcceptable) Code() int {
+	return 406
+}
+
 func (o *CreateFilePaymentConsentsConsentIDFileNotAcceptable) Error() string {
 	return fmt.Sprintf("[POST /file-payment-consents/{ConsentId}/file][%d] createFilePaymentConsentsConsentIdFileNotAcceptable ", 406)
 }
@@ -614,6 +649,11 @@ func (o *CreateFilePaymentConsentsConsentIDFileUnsupportedMediaType) IsServerErr
 // IsCode returns true when this create file payment consents consent Id file unsupported media type response a status code equal to that given
 func (o *CreateFilePaymentConsentsConsentIDFileUnsupportedMediaType) IsCode(code int) bool {
 	return code == 415
+}
+
+// Code gets the status code for the create file payment consents consent Id file unsupported media type response
+func (o *CreateFilePaymentConsentsConsentIDFileUnsupportedMediaType) Code() int {
+	return 415
 }
 
 func (o *CreateFilePaymentConsentsConsentIDFileUnsupportedMediaType) Error() string {
@@ -680,6 +720,11 @@ func (o *CreateFilePaymentConsentsConsentIDFileTooManyRequests) IsServerError() 
 // IsCode returns true when this create file payment consents consent Id file too many requests response a status code equal to that given
 func (o *CreateFilePaymentConsentsConsentIDFileTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the create file payment consents consent Id file too many requests response
+func (o *CreateFilePaymentConsentsConsentIDFileTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *CreateFilePaymentConsentsConsentIDFileTooManyRequests) Error() string {
@@ -760,6 +805,11 @@ func (o *CreateFilePaymentConsentsConsentIDFileInternalServerError) IsServerErro
 // IsCode returns true when this create file payment consents consent Id file internal server error response a status code equal to that given
 func (o *CreateFilePaymentConsentsConsentIDFileInternalServerError) IsCode(code int) bool {
 	return code == 500
+}
+
+// Code gets the status code for the create file payment consents consent Id file internal server error response
+func (o *CreateFilePaymentConsentsConsentIDFileInternalServerError) Code() int {
+	return 500
 }
 
 func (o *CreateFilePaymentConsentsConsentIDFileInternalServerError) Error() string {

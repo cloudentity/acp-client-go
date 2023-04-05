@@ -133,6 +133,11 @@ func (o *GetDomesticScheduledPaymentConsentsConsentIDOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get domestic scheduled payment consents consent Id o k response
+func (o *GetDomesticScheduledPaymentConsentsConsentIDOK) Code() int {
+	return 200
+}
+
 func (o *GetDomesticScheduledPaymentConsentsConsentIDOK) Error() string {
 	return fmt.Sprintf("[GET /domestic-scheduled-payment-consents/{ConsentId}][%d] getDomesticScheduledPaymentConsentsConsentIdOK  %+v", 200, o.Payload)
 }
@@ -220,6 +225,11 @@ func (o *GetDomesticScheduledPaymentConsentsConsentIDBadRequest) IsCode(code int
 	return code == 400
 }
 
+// Code gets the status code for the get domestic scheduled payment consents consent Id bad request response
+func (o *GetDomesticScheduledPaymentConsentsConsentIDBadRequest) Code() int {
+	return 400
+}
+
 func (o *GetDomesticScheduledPaymentConsentsConsentIDBadRequest) Error() string {
 	return fmt.Sprintf("[GET /domestic-scheduled-payment-consents/{ConsentId}][%d] getDomesticScheduledPaymentConsentsConsentIdBadRequest  %+v", 400, o.Payload)
 }
@@ -300,6 +310,11 @@ func (o *GetDomesticScheduledPaymentConsentsConsentIDUnauthorized) IsCode(code i
 	return code == 401
 }
 
+// Code gets the status code for the get domestic scheduled payment consents consent Id unauthorized response
+func (o *GetDomesticScheduledPaymentConsentsConsentIDUnauthorized) Code() int {
+	return 401
+}
+
 func (o *GetDomesticScheduledPaymentConsentsConsentIDUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /domestic-scheduled-payment-consents/{ConsentId}][%d] getDomesticScheduledPaymentConsentsConsentIdUnauthorized ", 401)
 }
@@ -367,6 +382,11 @@ func (o *GetDomesticScheduledPaymentConsentsConsentIDForbidden) IsServerError() 
 // IsCode returns true when this get domestic scheduled payment consents consent Id forbidden response a status code equal to that given
 func (o *GetDomesticScheduledPaymentConsentsConsentIDForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get domestic scheduled payment consents consent Id forbidden response
+func (o *GetDomesticScheduledPaymentConsentsConsentIDForbidden) Code() int {
+	return 403
 }
 
 func (o *GetDomesticScheduledPaymentConsentsConsentIDForbidden) Error() string {
@@ -449,6 +469,11 @@ func (o *GetDomesticScheduledPaymentConsentsConsentIDNotFound) IsCode(code int) 
 	return code == 404
 }
 
+// Code gets the status code for the get domestic scheduled payment consents consent Id not found response
+func (o *GetDomesticScheduledPaymentConsentsConsentIDNotFound) Code() int {
+	return 404
+}
+
 func (o *GetDomesticScheduledPaymentConsentsConsentIDNotFound) Error() string {
 	return fmt.Sprintf("[GET /domestic-scheduled-payment-consents/{ConsentId}][%d] getDomesticScheduledPaymentConsentsConsentIdNotFound ", 404)
 }
@@ -511,6 +536,11 @@ func (o *GetDomesticScheduledPaymentConsentsConsentIDMethodNotAllowed) IsCode(co
 	return code == 405
 }
 
+// Code gets the status code for the get domestic scheduled payment consents consent Id method not allowed response
+func (o *GetDomesticScheduledPaymentConsentsConsentIDMethodNotAllowed) Code() int {
+	return 405
+}
+
 func (o *GetDomesticScheduledPaymentConsentsConsentIDMethodNotAllowed) Error() string {
 	return fmt.Sprintf("[GET /domestic-scheduled-payment-consents/{ConsentId}][%d] getDomesticScheduledPaymentConsentsConsentIdMethodNotAllowed ", 405)
 }
@@ -571,6 +601,11 @@ func (o *GetDomesticScheduledPaymentConsentsConsentIDNotAcceptable) IsServerErro
 // IsCode returns true when this get domestic scheduled payment consents consent Id not acceptable response a status code equal to that given
 func (o *GetDomesticScheduledPaymentConsentsConsentIDNotAcceptable) IsCode(code int) bool {
 	return code == 406
+}
+
+// Code gets the status code for the get domestic scheduled payment consents consent Id not acceptable response
+func (o *GetDomesticScheduledPaymentConsentsConsentIDNotAcceptable) Code() int {
+	return 406
 }
 
 func (o *GetDomesticScheduledPaymentConsentsConsentIDNotAcceptable) Error() string {
@@ -637,6 +672,11 @@ func (o *GetDomesticScheduledPaymentConsentsConsentIDTooManyRequests) IsServerEr
 // IsCode returns true when this get domestic scheduled payment consents consent Id too many requests response a status code equal to that given
 func (o *GetDomesticScheduledPaymentConsentsConsentIDTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get domestic scheduled payment consents consent Id too many requests response
+func (o *GetDomesticScheduledPaymentConsentsConsentIDTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetDomesticScheduledPaymentConsentsConsentIDTooManyRequests) Error() string {
@@ -717,6 +757,11 @@ func (o *GetDomesticScheduledPaymentConsentsConsentIDInternalServerError) IsServ
 // IsCode returns true when this get domestic scheduled payment consents consent Id internal server error response a status code equal to that given
 func (o *GetDomesticScheduledPaymentConsentsConsentIDInternalServerError) IsCode(code int) bool {
 	return code == 500
+}
+
+// Code gets the status code for the get domestic scheduled payment consents consent Id internal server error response
+func (o *GetDomesticScheduledPaymentConsentsConsentIDInternalServerError) Code() int {
+	return 500
 }
 
 func (o *GetDomesticScheduledPaymentConsentsConsentIDInternalServerError) Error() string {

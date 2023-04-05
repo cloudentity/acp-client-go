@@ -133,6 +133,11 @@ func (o *CreateDomesticPaymentConsentsCreated) IsCode(code int) bool {
 	return code == 201
 }
 
+// Code gets the status code for the create domestic payment consents created response
+func (o *CreateDomesticPaymentConsentsCreated) Code() int {
+	return 201
+}
+
 func (o *CreateDomesticPaymentConsentsCreated) Error() string {
 	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsCreated  %+v", 201, o.Payload)
 }
@@ -220,6 +225,11 @@ func (o *CreateDomesticPaymentConsentsBadRequest) IsCode(code int) bool {
 	return code == 400
 }
 
+// Code gets the status code for the create domestic payment consents bad request response
+func (o *CreateDomesticPaymentConsentsBadRequest) Code() int {
+	return 400
+}
+
 func (o *CreateDomesticPaymentConsentsBadRequest) Error() string {
 	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsBadRequest  %+v", 400, o.Payload)
 }
@@ -300,6 +310,11 @@ func (o *CreateDomesticPaymentConsentsUnauthorized) IsCode(code int) bool {
 	return code == 401
 }
 
+// Code gets the status code for the create domestic payment consents unauthorized response
+func (o *CreateDomesticPaymentConsentsUnauthorized) Code() int {
+	return 401
+}
+
 func (o *CreateDomesticPaymentConsentsUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsUnauthorized ", 401)
 }
@@ -367,6 +382,11 @@ func (o *CreateDomesticPaymentConsentsForbidden) IsServerError() bool {
 // IsCode returns true when this create domestic payment consents forbidden response a status code equal to that given
 func (o *CreateDomesticPaymentConsentsForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the create domestic payment consents forbidden response
+func (o *CreateDomesticPaymentConsentsForbidden) Code() int {
+	return 403
 }
 
 func (o *CreateDomesticPaymentConsentsForbidden) Error() string {
@@ -449,6 +469,11 @@ func (o *CreateDomesticPaymentConsentsMethodNotAllowed) IsCode(code int) bool {
 	return code == 405
 }
 
+// Code gets the status code for the create domestic payment consents method not allowed response
+func (o *CreateDomesticPaymentConsentsMethodNotAllowed) Code() int {
+	return 405
+}
+
 func (o *CreateDomesticPaymentConsentsMethodNotAllowed) Error() string {
 	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsMethodNotAllowed ", 405)
 }
@@ -511,6 +536,11 @@ func (o *CreateDomesticPaymentConsentsNotAcceptable) IsCode(code int) bool {
 	return code == 406
 }
 
+// Code gets the status code for the create domestic payment consents not acceptable response
+func (o *CreateDomesticPaymentConsentsNotAcceptable) Code() int {
+	return 406
+}
+
 func (o *CreateDomesticPaymentConsentsNotAcceptable) Error() string {
 	return fmt.Sprintf("[POST /domestic-payment-consents][%d] createDomesticPaymentConsentsNotAcceptable ", 406)
 }
@@ -571,6 +601,11 @@ func (o *CreateDomesticPaymentConsentsUnsupportedMediaType) IsServerError() bool
 // IsCode returns true when this create domestic payment consents unsupported media type response a status code equal to that given
 func (o *CreateDomesticPaymentConsentsUnsupportedMediaType) IsCode(code int) bool {
 	return code == 415
+}
+
+// Code gets the status code for the create domestic payment consents unsupported media type response
+func (o *CreateDomesticPaymentConsentsUnsupportedMediaType) Code() int {
+	return 415
 }
 
 func (o *CreateDomesticPaymentConsentsUnsupportedMediaType) Error() string {
@@ -637,6 +672,11 @@ func (o *CreateDomesticPaymentConsentsTooManyRequests) IsServerError() bool {
 // IsCode returns true when this create domestic payment consents too many requests response a status code equal to that given
 func (o *CreateDomesticPaymentConsentsTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the create domestic payment consents too many requests response
+func (o *CreateDomesticPaymentConsentsTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *CreateDomesticPaymentConsentsTooManyRequests) Error() string {
@@ -717,6 +757,11 @@ func (o *CreateDomesticPaymentConsentsInternalServerError) IsServerError() bool 
 // IsCode returns true when this create domestic payment consents internal server error response a status code equal to that given
 func (o *CreateDomesticPaymentConsentsInternalServerError) IsCode(code int) bool {
 	return code == 500
+}
+
+// Code gets the status code for the create domestic payment consents internal server error response
+func (o *CreateDomesticPaymentConsentsInternalServerError) Code() int {
+	return 500
 }
 
 func (o *CreateDomesticPaymentConsentsInternalServerError) Error() string {

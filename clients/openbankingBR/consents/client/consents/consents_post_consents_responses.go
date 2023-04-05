@@ -157,6 +157,11 @@ func (o *ConsentsPostConsentsCreated) IsCode(code int) bool {
 	return code == 201
 }
 
+// Code gets the status code for the consents post consents created response
+func (o *ConsentsPostConsentsCreated) Code() int {
+	return 201
+}
+
 func (o *ConsentsPostConsentsCreated) Error() string {
 	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsCreated  %+v", 201, o.Payload)
 }
@@ -227,6 +232,11 @@ func (o *ConsentsPostConsentsBadRequest) IsCode(code int) bool {
 	return code == 400
 }
 
+// Code gets the status code for the consents post consents bad request response
+func (o *ConsentsPostConsentsBadRequest) Code() int {
+	return 400
+}
+
 func (o *ConsentsPostConsentsBadRequest) Error() string {
 	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsBadRequest  %+v", 400, o.Payload)
 }
@@ -288,6 +298,11 @@ func (o *ConsentsPostConsentsUnauthorized) IsServerError() bool {
 // IsCode returns true when this consents post consents unauthorized response a status code equal to that given
 func (o *ConsentsPostConsentsUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the consents post consents unauthorized response
+func (o *ConsentsPostConsentsUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ConsentsPostConsentsUnauthorized) Error() string {
@@ -353,6 +368,11 @@ func (o *ConsentsPostConsentsForbidden) IsCode(code int) bool {
 	return code == 403
 }
 
+// Code gets the status code for the consents post consents forbidden response
+func (o *ConsentsPostConsentsForbidden) Code() int {
+	return 403
+}
+
 func (o *ConsentsPostConsentsForbidden) Error() string {
 	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsForbidden  %+v", 403, o.Payload)
 }
@@ -414,6 +434,11 @@ func (o *ConsentsPostConsentsNotFound) IsServerError() bool {
 // IsCode returns true when this consents post consents not found response a status code equal to that given
 func (o *ConsentsPostConsentsNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the consents post consents not found response
+func (o *ConsentsPostConsentsNotFound) Code() int {
+	return 404
 }
 
 func (o *ConsentsPostConsentsNotFound) Error() string {
@@ -479,6 +504,11 @@ func (o *ConsentsPostConsentsMethodNotAllowed) IsCode(code int) bool {
 	return code == 405
 }
 
+// Code gets the status code for the consents post consents method not allowed response
+func (o *ConsentsPostConsentsMethodNotAllowed) Code() int {
+	return 405
+}
+
 func (o *ConsentsPostConsentsMethodNotAllowed) Error() string {
 	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsMethodNotAllowed  %+v", 405, o.Payload)
 }
@@ -540,6 +570,11 @@ func (o *ConsentsPostConsentsNotAcceptable) IsServerError() bool {
 // IsCode returns true when this consents post consents not acceptable response a status code equal to that given
 func (o *ConsentsPostConsentsNotAcceptable) IsCode(code int) bool {
 	return code == 406
+}
+
+// Code gets the status code for the consents post consents not acceptable response
+func (o *ConsentsPostConsentsNotAcceptable) Code() int {
+	return 406
 }
 
 func (o *ConsentsPostConsentsNotAcceptable) Error() string {
@@ -605,6 +640,11 @@ func (o *ConsentsPostConsentsUnsupportedMediaType) IsCode(code int) bool {
 	return code == 415
 }
 
+// Code gets the status code for the consents post consents unsupported media type response
+func (o *ConsentsPostConsentsUnsupportedMediaType) Code() int {
+	return 415
+}
+
 func (o *ConsentsPostConsentsUnsupportedMediaType) Error() string {
 	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsUnsupportedMediaType  %+v", 415, o.Payload)
 }
@@ -666,6 +706,11 @@ func (o *ConsentsPostConsentsUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this consents post consents unprocessable entity response a status code equal to that given
 func (o *ConsentsPostConsentsUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the consents post consents unprocessable entity response
+func (o *ConsentsPostConsentsUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *ConsentsPostConsentsUnprocessableEntity) Error() string {
@@ -731,6 +776,11 @@ func (o *ConsentsPostConsentsTooManyRequests) IsCode(code int) bool {
 	return code == 429
 }
 
+// Code gets the status code for the consents post consents too many requests response
+func (o *ConsentsPostConsentsTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *ConsentsPostConsentsTooManyRequests) Error() string {
 	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsTooManyRequests  %+v", 429, o.Payload)
 }
@@ -794,6 +844,11 @@ func (o *ConsentsPostConsentsInternalServerError) IsCode(code int) bool {
 	return code == 500
 }
 
+// Code gets the status code for the consents post consents internal server error response
+func (o *ConsentsPostConsentsInternalServerError) Code() int {
+	return 500
+}
+
 func (o *ConsentsPostConsentsInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /consents][%d] consentsPostConsentsInternalServerError  %+v", 500, o.Payload)
 }
@@ -836,11 +891,6 @@ type ConsentsPostConsentsDefault struct {
 	Payload *models.ResponseError
 }
 
-// Code gets the status code for the consents post consents default response
-func (o *ConsentsPostConsentsDefault) Code() int {
-	return o._statusCode
-}
-
 // IsSuccess returns true when this consents post consents default response has a 2xx status code
 func (o *ConsentsPostConsentsDefault) IsSuccess() bool {
 	return o._statusCode/100 == 2
@@ -864,6 +914,11 @@ func (o *ConsentsPostConsentsDefault) IsServerError() bool {
 // IsCode returns true when this consents post consents default response a status code equal to that given
 func (o *ConsentsPostConsentsDefault) IsCode(code int) bool {
 	return o._statusCode == code
+}
+
+// Code gets the status code for the consents post consents default response
+func (o *ConsentsPostConsentsDefault) Code() int {
+	return o._statusCode
 }
 
 func (o *ConsentsPostConsentsDefault) Error() string {

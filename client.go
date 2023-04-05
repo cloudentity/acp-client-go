@@ -31,18 +31,46 @@ import (
 
 	adminClient "github.com/cloudentity/acp-client-go/clients/admin/client"
 	developerClient "github.com/cloudentity/acp-client-go/clients/developer/client"
-	openbankingClient "github.com/cloudentity/acp-client-go/clients/openbanking/client"
 
 	identity "github.com/cloudentity/acp-client-go/clients/identity/client"
 	identityroot "github.com/cloudentity/acp-client-go/clients/identityroot/client"
 	identityself "github.com/cloudentity/acp-client-go/clients/identityself/client"
 	identitysystem "github.com/cloudentity/acp-client-go/clients/identitysystem/client"
 
-	fdxClient "github.com/cloudentity/acp-client-go/clients/openbanking/client/f_d_x"
 	publicClient "github.com/cloudentity/acp-client-go/clients/public/client"
 	rootClient "github.com/cloudentity/acp-client-go/clients/root/client"
 	systemClient "github.com/cloudentity/acp-client-go/clients/system/client"
 	webClient "github.com/cloudentity/acp-client-go/clients/web/client"
+
+	cdr "github.com/cloudentity/acp-client-go/clients/cdr/client"
+	cdrcdr "github.com/cloudentity/acp-client-go/clients/cdr/client/c_d_r"
+	cdrconsentpage "github.com/cloudentity/acp-client-go/clients/cdr/client/c_o_n_s_e_n_t_p_a_g_e"
+	cdrdcr "github.com/cloudentity/acp-client-go/clients/cdr/client/d_c_r"
+	cdrmanagement "github.com/cloudentity/acp-client-go/clients/cdr/client/m_a_n_a_g_e_m_e_n_t"
+
+	fdx "github.com/cloudentity/acp-client-go/clients/fdx/client"
+	fdxconsentpage "github.com/cloudentity/acp-client-go/clients/fdx/client/c_o_n_s_e_n_t_p_a_g_e"
+	fdxdcr "github.com/cloudentity/acp-client-go/clients/fdx/client/d_c_r"
+	fdxfdx "github.com/cloudentity/acp-client-go/clients/fdx/client/f_d_x"
+	fdxmanagement "github.com/cloudentity/acp-client-go/clients/fdx/client/m_a_n_a_g_e_m_e_n_t"
+
+	ksa "github.com/cloudentity/acp-client-go/clients/ksa/client"
+	ksaconsentpage "github.com/cloudentity/acp-client-go/clients/ksa/client/c_o_n_s_e_n_t_p_a_g_e"
+
+	obbr "github.com/cloudentity/acp-client-go/clients/obbr/client"
+	obbrconsentpage "github.com/cloudentity/acp-client-go/clients/obbr/client/c_o_n_s_e_n_t_p_a_g_e"
+	obbrdcr "github.com/cloudentity/acp-client-go/clients/obbr/client/d_c_r"
+	obbrmanagement "github.com/cloudentity/acp-client-go/clients/obbr/client/m_a_n_a_g_e_m_e_n_t"
+	obbrobbr "github.com/cloudentity/acp-client-go/clients/obbr/client/o_b_b_r"
+
+	obuk "github.com/cloudentity/acp-client-go/clients/obuk/client"
+	obukconsentpage "github.com/cloudentity/acp-client-go/clients/obuk/client/c_o_n_s_e_n_t_p_a_g_e"
+	obukdcr "github.com/cloudentity/acp-client-go/clients/obuk/client/d_c_r"
+	obukmanagement "github.com/cloudentity/acp-client-go/clients/obuk/client/m_a_n_a_g_e_m_e_n_t"
+	obukobuk "github.com/cloudentity/acp-client-go/clients/obuk/client/o_b_u_k"
+
+	opin "github.com/cloudentity/acp-client-go/clients/opin/client"
+	opinopin "github.com/cloudentity/acp-client-go/clients/opin/client/o_p_i_n"
 
 	"github.com/golang-jwt/jwt/v4"
 	"github.com/google/uuid"
@@ -87,8 +115,28 @@ type Root struct {
 	*rootClient.Acp
 }
 
-type Openbanking struct {
-	*openbankingClient.Acp
+type Fdx struct {
+	*fdx.Acp
+}
+
+type Cdr struct {
+	*cdr.Acp
+}
+
+type Obuk struct {
+	*obuk.Acp
+}
+
+type Obbr struct {
+	*obbr.Acp
+}
+
+type Opin struct {
+	*opin.Acp
+}
+
+type Ksa struct {
+	*ksa.Acp
 }
 
 type OpenbankingUK struct {
@@ -99,10 +147,6 @@ type OpenbankingUK struct {
 type OpenbankingBrasil struct {
 	Consents *obbrConsents.OpenbankingBRClient
 	Payments *obbrPayments.OpenbankingBRClient
-}
-
-type OpenbankingFDX struct {
-	fdxClient.ClientService
 }
 
 type Identity struct {
@@ -123,18 +167,22 @@ type IdentitySystem struct {
 
 // Client provides a client to the ACP API
 type Client struct {
-	Oauth2      *Oauth2
-	Admin       *Admin
-	Developer   *Developer
-	Public      *Public
-	System      *System
-	Web         *Web
-	Root        *Root
-	Openbanking *Openbanking
+	Oauth2    *Oauth2
+	Admin     *Admin
+	Developer *Developer
+	Public    *Public
+	System    *System
+	Web       *Web
+	Root      *Root
+	Fdx       *Fdx
+	Cdr       *Cdr
+	Obuk      *Obuk
+	Obbr      *Obbr
+	Opin      *Opin
+	Ksa       *Ksa
 
 	*OpenbankingUK
 	*OpenbankingBrasil
-	OpenbankingFDX
 
 	Identity       *Identity
 	IdentitySelf   *IdentitySelf
@@ -590,18 +638,6 @@ func New(cfg Config) (c Client, err error) {
 		).WithOpenTracing(), nil),
 	}
 
-	openbankingTransport := httptransport.NewWithClient(
-		cfg.IssuerURL.Host,
-		c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
-		[]string{cfg.IssuerURL.Scheme},
-		client,
-	)
-	openbankingTransport.Consumers["application/jwt"] = &JWTConsumer{}
-
-	c.Openbanking = &Openbanking{
-		Acp: openbankingClient.New(openbankingTransport.WithOpenTracing(), nil),
-	}
-
 	apiPrefix := c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s")
 
 	c.OpenbankingUK = &OpenbankingUK{
@@ -639,13 +675,60 @@ func New(cfg Config) (c Client, err error) {
 		Payments: obbrPayments.New(obbrPaymentsTransport.WithOpenTracing(), nil),
 	}
 
-	c.OpenbankingFDX = OpenbankingFDX{
-		ClientService: fdxClient.New(httptransport.NewWithClient(
-			cfg.IssuerURL.Host,
-			c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
-			[]string{cfg.IssuerURL.Scheme},
-			client,
-		).WithOpenTracing(), nil),
+	openbankingTransport := httptransport.NewWithClient(
+		cfg.IssuerURL.Host,
+		c.apiPathPrefix(cfg.VanityDomainType, "/%s/%s"),
+		[]string{cfg.IssuerURL.Scheme},
+		client,
+	)
+	openbankingTransport.Consumers["application/jwt"] = &JWTConsumer{}
+
+	c.Fdx = &Fdx{
+		Acp: &fdx.Acp{
+			Fdx: fdxfdx.New(openbankingTransport.WithOpenTracing(), nil),
+			Consentpage: fdxconsentpage.New(openbankingTransport.WithOpenTracing(), nil),
+			Dcr: fdxdcr.New(openbankingTransport.WithOpenTracing(), nil),
+			Management: fdxmanagement.New(openbankingTransport.WithOpenTracing(), nil),
+		},
+	}
+
+	c.Cdr = &Cdr{
+		Acp: &cdr.Acp{
+			Cdr: cdrcdr.New(openbankingTransport.WithOpenTracing(), nil),
+			Consentpage: cdrconsentpage.New(openbankingTransport.WithOpenTracing(), nil),
+			Dcr: cdrdcr.New(openbankingTransport.WithOpenTracing(), nil),
+			Management: cdrmanagement.New(openbankingTransport.WithOpenTracing(), nil),
+		},
+	}
+
+	c.Obbr = &Obbr{
+		Acp: &obbr.Acp{
+			Obbr: obbrobbr.New(openbankingTransport.WithOpenTracing(), nil),
+			Consentpage: obbrconsentpage.New(openbankingTransport.WithOpenTracing(), nil),
+			Dcr: obbrdcr.New(openbankingTransport.WithOpenTracing(), nil),
+			Management: obbrmanagement.New(openbankingTransport.WithOpenTracing(), nil),
+		},
+	}
+
+	c.Obuk = &Obuk{
+		Acp: &obuk.Acp{
+			Obuk: obukobuk.New(openbankingTransport.WithOpenTracing(), nil),
+			Consentpage: obukconsentpage.New(openbankingTransport.WithOpenTracing(), nil),
+			Dcr: obukdcr.New(openbankingTransport.WithOpenTracing(), nil),
+			Management: obukmanagement.New(openbankingTransport.WithOpenTracing(), nil),
+		},
+	}
+
+	c.Opin = &Opin{
+		Acp: &opin.Acp{
+			Opin: opinopin.New(openbankingTransport.WithOpenTracing(), nil),
+		},
+	}
+
+	c.Ksa = &Ksa{
+		Acp: &ksa.Acp{
+			Consentpage: ksaconsentpage.New(openbankingTransport.WithOpenTracing(), nil),
+		},
 	}
 
 	c.Identity = &Identity{
