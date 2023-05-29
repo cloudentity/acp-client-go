@@ -127,6 +127,9 @@ type PushedAuthorizationRequestParams struct {
 	*/
 	ResponseType string
 
+
+	ResponseMode string
+
 	/* Scope.
 
 	   Scope
@@ -313,6 +316,12 @@ func (o *PushedAuthorizationRequestParams) SetResponseType(responseType string) 
 	o.ResponseType = responseType
 }
 
+
+func (o *PushedAuthorizationRequestParams) SetResponseMode(responseMode string) {
+	o.ResponseMode = responseMode
+}
+
+
 // WithScope adds the scope to the pushed authorization request params
 func (o *PushedAuthorizationRequestParams) WithScope(scope *string) *PushedAuthorizationRequestParams {
 	o.SetScope(scope)
@@ -488,6 +497,16 @@ func (o *PushedAuthorizationRequestParams) WriteToRequest(r runtime.ClientReques
 	fResponseType := frResponseType
 	if fResponseType != "" {
 		if err := r.SetFormParam("response_type", fResponseType); err != nil {
+			return err
+		}
+	}
+
+
+	// form param response_mode
+	frResponseMode := o.ResponseMode
+	fResponseMode := frResponseMode
+	if fResponseMode != "" {
+		if err := r.SetFormParam("response_mode", fResponseMode); err != nil {
 			return err
 		}
 	}
