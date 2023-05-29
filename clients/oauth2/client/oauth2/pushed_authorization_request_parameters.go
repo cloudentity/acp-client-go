@@ -311,6 +311,12 @@ func (o *PushedAuthorizationRequestParams) WithResponseType(responseType string)
 	return o
 }
 
+// WithResponseMode adds the responseMode to the pushed authorization request params
+func (o *PushedAuthorizationRequestParams) WithResponseMode(responseMode string) *PushedAuthorizationRequestParams {
+	o.SetResponseMode(responseMode)
+	return o
+}
+
 // SetResponseType adds the responseType to the pushed authorization request params
 func (o *PushedAuthorizationRequestParams) SetResponseType(responseType string) {
 	o.ResponseType = responseType
