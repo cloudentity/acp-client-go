@@ -685,37 +685,37 @@ func New(cfg Config) (c Client, err error) {
 
 	c.Fdx = &Fdx{
 		Acp: &fdx.Acp{
-			Fdx: fdxfdx.New(openbankingTransport.WithOpenTracing(), nil),
+			Fdx:         fdxfdx.New(openbankingTransport.WithOpenTracing(), nil),
 			Consentpage: fdxconsentpage.New(openbankingTransport.WithOpenTracing(), nil),
-			Dcr: fdxdcr.New(openbankingTransport.WithOpenTracing(), nil),
-			Management: fdxmanagement.New(openbankingTransport.WithOpenTracing(), nil),
+			Dcr:         fdxdcr.New(openbankingTransport.WithOpenTracing(), nil),
+			Management:  fdxmanagement.New(openbankingTransport.WithOpenTracing(), nil),
 		},
 	}
 
 	c.Cdr = &Cdr{
 		Acp: &cdr.Acp{
-			Cdr: cdrcdr.New(openbankingTransport.WithOpenTracing(), nil),
+			Cdr:         cdrcdr.New(openbankingTransport.WithOpenTracing(), nil),
 			Consentpage: cdrconsentpage.New(openbankingTransport.WithOpenTracing(), nil),
-			Dcr: cdrdcr.New(openbankingTransport.WithOpenTracing(), nil),
-			Management: cdrmanagement.New(openbankingTransport.WithOpenTracing(), nil),
+			Dcr:         cdrdcr.New(openbankingTransport.WithOpenTracing(), nil),
+			Management:  cdrmanagement.New(openbankingTransport.WithOpenTracing(), nil),
 		},
 	}
 
 	c.Obbr = &Obbr{
 		Acp: &obbr.Acp{
-			Obbr: obbrobbr.New(openbankingTransport.WithOpenTracing(), nil),
+			Obbr:        obbrobbr.New(openbankingTransport.WithOpenTracing(), nil),
 			Consentpage: obbrconsentpage.New(openbankingTransport.WithOpenTracing(), nil),
-			Dcr: obbrdcr.New(openbankingTransport.WithOpenTracing(), nil),
-			Management: obbrmanagement.New(openbankingTransport.WithOpenTracing(), nil),
+			Dcr:         obbrdcr.New(openbankingTransport.WithOpenTracing(), nil),
+			Management:  obbrmanagement.New(openbankingTransport.WithOpenTracing(), nil),
 		},
 	}
 
 	c.Obuk = &Obuk{
 		Acp: &obuk.Acp{
-			Obuk: obukobuk.New(openbankingTransport.WithOpenTracing(), nil),
+			Obuk:        obukobuk.New(openbankingTransport.WithOpenTracing(), nil),
 			Consentpage: obukconsentpage.New(openbankingTransport.WithOpenTracing(), nil),
-			Dcr: obukdcr.New(openbankingTransport.WithOpenTracing(), nil),
-			Management: obukmanagement.New(openbankingTransport.WithOpenTracing(), nil),
+			Dcr:         obukdcr.New(openbankingTransport.WithOpenTracing(), nil),
+			Management:  obukmanagement.New(openbankingTransport.WithOpenTracing(), nil),
 		},
 	}
 
@@ -761,7 +761,7 @@ func New(cfg Config) (c Client, err error) {
 	c.IdentitySystem = &IdentitySystem{
 		Acp: identitysystem.New(httptransport.NewWithClient(
 			cfg.IssuerURL.Host,
-			c.apiPathPrefix(cfg.VanityDomainType, "/api/identity/system/%s"),
+			c.apiPathPrefix(cfg.VanityDomainType, "/api/identity/%s"),
 			[]string{cfg.IssuerURL.Scheme},
 			client,
 		).WithOpenTracing(), nil),
