@@ -75,6 +75,7 @@ func (m *FilePaymentConsentRequest) ContextValidate(ctx context.Context, formats
 func (m *FilePaymentConsentRequest) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Data != nil {
+
 		if err := m.Data.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data")

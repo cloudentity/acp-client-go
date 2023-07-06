@@ -20,6 +20,12 @@ import (
 // swagger:model Environment
 type Environment struct {
 
+	// add fake tenantUrl to query params for routing other than default (needed for backward compatibility with CIP for vanity domains)
+	AddFakeTenantURLToLoginRequestForNonDefaultRouting bool `json:"add_fake_tenant_url_to_login_request_for_non_default_routing,omitempty"`
+
+	// enable admin portal face lifting
+	AdminPortalFaceLifting bool `json:"admin_portal_face_lifting,omitempty"`
+
 	// enable admin workspace access (tenant)
 	AdminWorkspaceAccess bool `json:"admin_workspace_access,omitempty"`
 
@@ -33,8 +39,17 @@ type Environment struct {
 	// brute force limits
 	BruteForceLimits *DefaultBruteForceLimits `json:"brute_force_limits,omitempty"`
 
+	// cache access tokens
+	CacheAccessTokens bool `json:"cache_access_tokens,omitempty"`
+
+	// enable Arrangement cache for CDR
+	CdrArrangementCache bool `json:"cdr_arrangement_cache,omitempty"`
+
 	// disable unique software id for CDR
 	CdrDisableUniqueSoftwareID bool `json:"cdr_disable_unique_software_id,omitempty"`
+
+	// enable follower reads for CDR
+	CdrFollowerReads bool `json:"cdr_follower_reads,omitempty"`
 
 	// enable ciba (system)
 	Ciba bool `json:"ciba,omitempty"`
@@ -48,23 +63,47 @@ type Environment struct {
 	// commit
 	Commit string `json:"commit,omitempty"`
 
+	// enable ConnectID profile
+	ConnectID bool `json:"connect_id,omitempty"`
+
+	// enable additional debug logs
+	Debug bool `json:"debug,omitempty"`
+
 	// enable usage of dedicated faas rego/js environment (MANUAL DEPLOYMENT OF DEDICATED ENVS IS REQUIRED FIRST)
 	DedicatedFaas bool `json:"dedicated_faas,omitempty"`
 
 	// enable demo app endpoints (system)
 	DemoApp bool `json:"demo_app,omitempty"`
 
-	// realod templates and adds local redirects urls to frontend apps (system)
+	// reloads templates and adds local redirects urls to frontend apps (system)
 	DevMode bool `json:"dev_mode,omitempty"`
+
+	// disable audit events
+	DisableAuditEvents bool `json:"disable_audit_events,omitempty"`
 
 	// display workspace wizard
 	DisplayWorkspaceWizard bool `json:"display_workspace_wizard,omitempty"`
 
+	// do not validate cert for private key jwt
+	DoNotValidateCertForPrivateKeyJwt bool `json:"do_not_validate_cert_for_private_key_jwt,omitempty"`
+
+	// drop tokens on password reset
+	DropTokensOnPasswordReset bool `json:"drop_tokens_on_password_reset,omitempty"`
+
 	// extended audit events retention
 	ExtendedAuditEventsRetention bool `json:"extended_audit_events_retention,omitempty"`
 
+	// enable Dynamic Client Registration for FDX
+	FdxDcr bool `json:"fdx_dcr,omitempty"`
+
 	// grpc url
 	GrpcURL string `json:"grpc_url,omitempty"`
+
+	// identifier-based discovery
+	IdentifierBasedDiscovery bool `json:"identifier_based_discovery,omitempty"`
+
+	// enable case insensitive for users identifiers and addresses
+	IdentifierCaseInsensitive bool `json:"identifier_case_insensitive,omitempty"`
 
 	// when enabled and the display_workspace_wizard feature flag is set to true, a demo workspace with a set of preconfigured IDPs is created and no welcome screen is displayed (tenant)
 	InitializeDemoWorkspace bool `json:"initialize_demo_workspace,omitempty"`
@@ -78,11 +117,20 @@ type Environment struct {
 	// enable global import and export configuration endpoints (system)
 	IntegrationEndpoints bool `json:"integration_endpoints,omitempty"`
 
+	// Just in time provisioning (JIT)
+	Jit bool `json:"jit,omitempty"`
+
 	// enable login with select_account param (tenant)
 	LoginWithSelectAccount bool `json:"login_with_select_account,omitempty"`
 
-	// enable consents v2 apis for open banking brasil
-	OpenbankingBrasilConsentsV2 bool `json:"openbanking_brasil_consents_v2,omitempty"`
+	// make admin APIs open
+	OpenAdminApis bool `json:"open_admin_apis,omitempty"`
+
+	// enable openbanking ksa workspace and security profile
+	OpenbankingKsa bool `json:"openbanking_ksa,omitempty"`
+
+	// enable organizations
+	Organizations bool `json:"organizations,omitempty"`
 
 	// enable permissions
 	Permissions bool `json:"permissions,omitempty"`
@@ -90,17 +138,14 @@ type Environment struct {
 	// enable planet scale authorization
 	PlanetScaleAuthorization bool `json:"planet_scale_authorization,omitempty"`
 
-	// enable planet scale identity
-	PlanetScaleIdentity bool `json:"planet_scale_identity,omitempty"`
-
 	// enable when ACP is running on-prem and Pyron is used as a gateway (tenant)
 	PyronOnPrem bool `json:"pyron_on_prem,omitempty"`
 
 	// enable quick access functionality on UI (system)
 	QuickAccess bool `json:"quick_access,omitempty"`
 
-	// enable SAML (tenant)
-	Saml bool `json:"saml,omitempty"`
+	// enable roles
+	Roles bool `json:"roles,omitempty"`
 
 	// enable scope transient_otp (tenant)
 	ScopeTransientOtp bool `json:"scope_transient_otp,omitempty"`
@@ -111,35 +156,44 @@ type Environment struct {
 	// enable the javascript transformer (tenant)
 	ScriptTransformer bool `json:"script_transformer,omitempty"`
 
+	// enable Single Sign-On (SSO) in workspaces
+	SingleSignOn bool `json:"single_sign_on,omitempty"`
+
 	// enable swagger ui (system)
 	SwaggerUI bool `json:"swagger_ui,omitempty"`
 
 	// system flags
 	SystemFlags []string `json:"system_flags"`
 
-	// enable admin workspace access (tenant)
+	// enable system workspace access (tenant)
 	SystemWorkspaceAccess bool `json:"system_workspace_access,omitempty"`
 
 	// tenant flags
 	TenantFlags []string `json:"tenant_flags"`
 
-	// enable Custom Branding Themes (tenant)
-	Themes bool `json:"themes,omitempty"`
+	// enable themed messages
+	ThemedMessages bool `json:"themed_messages,omitempty"`
 
-	// enable Token Exchange (system)
-	TokenExchange bool `json:"token_exchange,omitempty"`
+	// enable hierarchical dumps system APIs (system)
+	TreeDump bool `json:"tree_dump,omitempty"`
 
-	// enable Token Exchange Delegation (tenant)
-	TokenExchangeDelegation bool `json:"token_exchange_delegation,omitempty"`
+	// enable hierarchical dumps tenant APIs
+	TreeDumpTenant bool `json:"tree_dump_tenant,omitempty"`
 
 	// version
 	Version string `json:"version,omitempty"`
+
+	// enable webauthn
+	Webauthn bool `json:"webauthn,omitempty"`
 
 	// with analytics
 	WithAnalytics bool `json:"with_analytics,omitempty"`
 
 	// with permissions
 	WithPermissions bool `json:"with_permissions,omitempty"`
+
+	// with roles
+	WithRoles bool `json:"with_roles,omitempty"`
 }
 
 // Validate validates this environment
@@ -242,6 +296,11 @@ func (m *Environment) ContextValidate(ctx context.Context, formats strfmt.Regist
 func (m *Environment) contextValidateBruteForceLimits(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.BruteForceLimits != nil {
+
+		if swag.IsZero(m.BruteForceLimits) { // not required
+			return nil
+		}
+
 		if err := m.BruteForceLimits.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("brute_force_limits")
@@ -260,6 +319,11 @@ func (m *Environment) contextValidateScriptRuntimes(ctx context.Context, formats
 	for i := 0; i < len(m.ScriptRuntimes); i++ {
 
 		if m.ScriptRuntimes[i] != nil {
+
+			if swag.IsZero(m.ScriptRuntimes[i]) { // not required
+				return nil
+			}
+
 			if err := m.ScriptRuntimes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("script_runtimes" + "." + strconv.Itoa(i))

@@ -138,8 +138,8 @@ type FDXDynamicClientRegistrationRequest struct {
 	// The rule of consent granting by the end-user to indicate whether they must take action
 	// to revoke access or the consent will be revoked automatically.
 	//
-	// The acceptable values: "ONE_TIME", "PERSISTENT", "TIME_BOUND"
-	// Example: \"ONE_TIME\
+	// One of: `ONE_TIME`, `PERSISTENT`, `TIME_BOUND`
+	// Example: ONE_TIME
 	DurationType []DurationType `json:"duration_type"`
 
 	// An array of allowed OAuth client grant types.
@@ -168,7 +168,7 @@ type FDXDynamicClientRegistrationRequest struct {
 	// An array of the intermediaries for this Data Recipient.
 	Intermediaries []*Intermediary `json:"intermediaries"`
 
-	// An introspection endpoint authentication method configured for the client application.
+	// An introspection endpoint authentication method configured for the client application (read-only).
 	//
 	// If empty, the `token_endpoint_auth_method` is used.
 	//
@@ -245,7 +245,7 @@ type FDXDynamicClientRegistrationRequest struct {
 	// response types
 	ResponseTypes ResponseTypes `json:"response_types,omitempty"`
 
-	// A revocation endpoint authentication method configured for the client application.
+	// A revocation endpoint authentication method configured for the client application (read-only).
 	// If empty, the `token_endpoint_auth_method` is used.
 	//
 	// Cloudentity supports the following client authentication methods:
@@ -1479,6 +1479,10 @@ func (m *FDXDynamicClientRegistrationRequest) contextValidateDurationType(ctx co
 
 	for i := 0; i < len(m.DurationType); i++ {
 
+		if swag.IsZero(m.DurationType[i]) { // not required
+			return nil
+		}
+
 		if err := m.DurationType[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("duration_type" + "." + strconv.Itoa(i))
@@ -1498,6 +1502,11 @@ func (m *FDXDynamicClientRegistrationRequest) contextValidateIntermediaries(ctx 
 	for i := 0; i < len(m.Intermediaries); i++ {
 
 		if m.Intermediaries[i] != nil {
+
+			if swag.IsZero(m.Intermediaries[i]) { // not required
+				return nil
+			}
+
 			if err := m.Intermediaries[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("intermediaries" + "." + strconv.Itoa(i))
@@ -1516,6 +1525,11 @@ func (m *FDXDynamicClientRegistrationRequest) contextValidateIntermediaries(ctx 
 func (m *FDXDynamicClientRegistrationRequest) contextValidateJwks(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Jwks != nil {
+
+		if swag.IsZero(m.Jwks) { // not required
+			return nil
+		}
+
 		if err := m.Jwks.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("jwks")
@@ -1532,6 +1546,11 @@ func (m *FDXDynamicClientRegistrationRequest) contextValidateJwks(ctx context.Co
 func (m *FDXDynamicClientRegistrationRequest) contextValidatePrivacy(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Privacy != nil {
+
+		if swag.IsZero(m.Privacy) { // not required
+			return nil
+		}
+
 		if err := m.Privacy.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("privacy")
@@ -1564,6 +1583,11 @@ func (m *FDXDynamicClientRegistrationRequest) contextValidateRegistryReferences(
 	for i := 0; i < len(m.RegistryReferences); i++ {
 
 		if m.RegistryReferences[i] != nil {
+
+			if swag.IsZero(m.RegistryReferences[i]) { // not required
+				return nil
+			}
+
 			if err := m.RegistryReferences[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("registry_references" + "." + strconv.Itoa(i))
@@ -1596,6 +1620,11 @@ func (m *FDXDynamicClientRegistrationRequest) contextValidateResponseTypes(ctx c
 func (m *FDXDynamicClientRegistrationRequest) contextValidateTokenExchange(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.TokenExchange != nil {
+
+		if swag.IsZero(m.TokenExchange) { // not required
+			return nil
+		}
+
 		if err := m.TokenExchange.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("token_exchange")

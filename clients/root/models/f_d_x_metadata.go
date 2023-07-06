@@ -19,23 +19,28 @@ import (
 // swagger:model FDXMetadata
 type FDXMetadata struct {
 
-	// Array of strings representing ways to contact individuals responsible for the Data Recipient application
+	// Contact information of individuals responsible for the Data Recipient application.
 	Contacts []string `json:"contacts"`
 
-	// The duration period is the maximum consent duration that would be requested for a Recipient consumer
+	// The time window the end-user grants the consent for. Used when `duration_type`=`TIME_BOUND`.
 	DurationPeriod int64 `json:"duration_period,omitempty"`
 
-	// The duration of consent for the Data Recipient consumers
+	// The rule of consent granting by the end-user to indicate whether they must take action
+	// to revoke access or the consent will be revoked automatically.
+	//
+	// One of: `ONE_TIME`, `PERSISTENT`, `TIME_BOUND`
+	// Example: ONE_TIME
 	DurationType []DurationType `json:"duration_type"`
 
-	// An array of the intermediaries for this data recipient
+	// An array of the intermediaries for this Data Recipient.
 	Intermediaries []*Intermediary `json:"intermediaries"`
 
-	// The maximum number of days allowed for Data Recipient consumers to obtain in transaction history, effective from the current date
+	// The maximum number of days allowed for Data Recipient consumers to obtain in transaction history, effective from
+	// the current date
 	LookbackPeriod int64 `json:"lookback_period,omitempty"`
 
-	// An array of external registries containing registered entity name,
-	// registered entity id and registry fields for the registries where the data recipient is registered
+	// The list of external registries where the Data Recipient is registered. It comprises the following details:
+	// name, identifier, and the `registry` string with any additional info.
 	RegistryReferences []*RegistryReference `json:"registry_references"`
 
 	// status
@@ -188,6 +193,10 @@ func (m *FDXMetadata) contextValidateDurationType(ctx context.Context, formats s
 
 	for i := 0; i < len(m.DurationType); i++ {
 
+		if swag.IsZero(m.DurationType[i]) { // not required
+			return nil
+		}
+
 		if err := m.DurationType[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("duration_type" + "." + strconv.Itoa(i))
@@ -207,6 +216,11 @@ func (m *FDXMetadata) contextValidateIntermediaries(ctx context.Context, formats
 	for i := 0; i < len(m.Intermediaries); i++ {
 
 		if m.Intermediaries[i] != nil {
+
+			if swag.IsZero(m.Intermediaries[i]) { // not required
+				return nil
+			}
+
 			if err := m.Intermediaries[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("intermediaries" + "." + strconv.Itoa(i))
@@ -227,6 +241,11 @@ func (m *FDXMetadata) contextValidateRegistryReferences(ctx context.Context, for
 	for i := 0; i < len(m.RegistryReferences); i++ {
 
 		if m.RegistryReferences[i] != nil {
+
+			if swag.IsZero(m.RegistryReferences[i]) { // not required
+				return nil
+			}
+
 			if err := m.RegistryReferences[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("registry_references" + "." + strconv.Itoa(i))
@@ -243,6 +262,10 @@ func (m *FDXMetadata) contextValidateRegistryReferences(ctx context.Context, for
 }
 
 func (m *FDXMetadata) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Status) { // not required
+		return nil
+	}
 
 	if err := m.Status.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

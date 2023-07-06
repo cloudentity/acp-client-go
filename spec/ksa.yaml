@@ -1,3 +1,6 @@
+basePath: /default/default
+consumes:
+- application/json
 definitions:
   AcceptConsentRequest:
     properties:
@@ -116,7 +119,7 @@ definitions:
       authentication_context:
         $ref: '#/definitions/AuthenticationContext'
       client_id:
-        description: Client identifier
+        description: Client application identifier.
         example: '"cauqo9c9vpbs0aj2b2v0"'
         format: clientID
         type: string
@@ -141,7 +144,7 @@ definitions:
         type: array
         x-nullable: false
       server_id:
-        description: Server / Workspace identifier
+        description: Server / Workspace identifier.
         example: '"server"'
         format: serverID
         type: string
@@ -156,7 +159,7 @@ definitions:
         type: string
         x-nullable: false
       tenant_id:
-        description: Tenant identifier
+        description: Tenant identifier.
         example: '"tenant"'
         format: tenantID
         type: string
@@ -274,6 +277,11 @@ definitions:
         format: scopeID
         type: string
         x-nullable: false
+      implicit:
+        description: Request this scope by default for all clients who subscribed
+          to this scope
+        type: boolean
+        x-nullable: false
       metadata:
         $ref: '#/definitions/Metadata'
       name:
@@ -374,9 +382,26 @@ definitions:
         type: boolean
         x-nullable: false
     type: object
+host: localhost:8443
 info:
-  title: ""
-  version: ""
+  description: |-
+    Cloudentity's [Kingdom of Saudi Arabia Open Banking](https://openbanking.sa/index-en.html) API collection
+    meets the guidelines of the Open Banking Framework for products and services operating in line with the
+    Fintech Strategy.
+
+    The collection covers two endpoints to handle KSA consents and an endpoint to retrieve consent data for building
+    a [custom consent page](https://cloudentity.com/developers/basics/openfinance/consent-management/).
+
+    API requests must feature the explicitly defined `manage_openbanking_consents` scope the client application can access.
+    [Enable](https://cloudentity.com/developers/howtos/access-control/creating-and-configuring-dynamic-scopes/#add-scope)
+    this scope for your client application in advance.
+
+    Learn more about the
+    [Open Finance ecosystems](https://cloudentity.com/developers/basics/openfinance/api-security-profiles-for-open-finance/).
+    When your need to get familiar with terms and abbreviations, read our
+    [Open Banking Glossary](https://cloudentity.com/developers/basics/openfinance/glossary-ob/).
+  title: Cloudentity KSA Open Banking APIs
+  version: latest
 paths:
   /ksa/consent/{login}:
     get:
@@ -471,9 +496,11 @@ paths:
       summary: Reject KSA consent
       tags:
       - CONSENT_PAGE
+produces:
+- application/json
 responses:
   ConsentAccepted:
-    description: Consent accepted
+    description: Consent Accepted
     schema:
       $ref: '#/definitions/ConsentAccepted'
   ConsentRejected:
@@ -481,7 +508,7 @@ responses:
     schema:
       $ref: '#/definitions/ConsentRejected'
   ConsentsRemovedResponse:
-    description: ConsentsRemovedResponse
+    description: Consents Revoked
     schema:
       $ref: '#/definitions/ConsentsRemovedResponse'
   GetKSAConsentResponse:
@@ -532,4 +559,31 @@ responses:
     description: Unprocessable entity
     schema:
       $ref: '#/definitions/Error'
+schemes:
+- https
+securityDefinitions:
+  default:
+    authorizationUrl: /default/default/oauth2/authorize
+    flow: accessCode
+    scopes:
+      dcr_register: dcr_register
+      introspect_openbanking_tokens: introspect_openbanking_tokens
+    tokenUrl: /default/default/oauth2/token
+    type: oauth2
+  defaultcc:
+    authorizationUrl: /default/default/oauth2/authorize
+    flow: accessCode
+    scopes:
+      accounts: accounts
+      consents: consents
+      payments: payments
+    tokenUrl: /default/default/oauth2/token
+    type: oauth2
+  system:
+    authorizationUrl: /default/system/oauth2/authorize
+    flow: accessCode
+    scopes:
+      manage_openbanking_consents: manage_openbanking_consents
+    tokenUrl: /default/system/oauth2/token
+    type: oauth2
 swagger: "2.0"

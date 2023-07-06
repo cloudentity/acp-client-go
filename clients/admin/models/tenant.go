@@ -144,6 +144,11 @@ func (m *Tenant) ContextValidate(ctx context.Context, formats strfmt.Registry) e
 func (m *Tenant) contextValidateJwks(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Jwks != nil {
+
+		if swag.IsZero(m.Jwks) { // not required
+			return nil
+		}
+
 		if err := m.Jwks.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("jwks")
@@ -158,6 +163,10 @@ func (m *Tenant) contextValidateJwks(ctx context.Context, formats strfmt.Registr
 }
 
 func (m *Tenant) contextValidateMetadata(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Metadata) { // not required
+		return nil
+	}
 
 	if err := m.Metadata.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -174,6 +183,11 @@ func (m *Tenant) contextValidateMetadata(ctx context.Context, formats strfmt.Reg
 func (m *Tenant) contextValidateStyling(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Styling != nil {
+
+		if swag.IsZero(m.Styling) { // not required
+			return nil
+		}
+
 		if err := m.Styling.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("styling")

@@ -137,6 +137,10 @@ func (m *Claim) ContextValidate(ctx context.Context, formats strfmt.Registry) er
 
 func (m *Claim) contextValidateSourceType(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.SourceType) { // not required
+		return nil
+	}
+
 	if err := m.SourceType.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("source_type")
@@ -150,6 +154,10 @@ func (m *Claim) contextValidateSourceType(ctx context.Context, formats strfmt.Re
 }
 
 func (m *Claim) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Type) { // not required
+		return nil
+	}
 
 	if err := m.Type.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

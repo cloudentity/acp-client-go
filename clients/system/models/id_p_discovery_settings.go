@@ -85,6 +85,10 @@ func (m *IDPDiscoverySettings) contextValidateDomains(ctx context.Context, forma
 
 	for i := 0; i < len(m.Domains); i++ {
 
+		if swag.IsZero(m.Domains[i]) { // not required
+			return nil
+		}
+
 		if err := m.Domains[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("domains" + "." + strconv.Itoa(i))

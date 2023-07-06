@@ -54,7 +54,7 @@ func (o *GetAdminTenantReader) ReadResponse(response runtime.ClientResponse, con
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /tenant] getAdminTenant", response, response.Code())
 	}
 }
 
@@ -97,6 +97,11 @@ func (o *GetAdminTenantOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get admin tenant o k response
+func (o *GetAdminTenantOK) Code() int {
+	return 200
+}
+
 func (o *GetAdminTenantOK) Error() string {
 	return fmt.Sprintf("[GET /tenant][%d] getAdminTenantOK  %+v", 200, o.Payload)
 }
@@ -129,7 +134,7 @@ func NewGetAdminTenantUnauthorized() *GetAdminTenantUnauthorized {
 /*
 GetAdminTenantUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetAdminTenantUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +163,11 @@ func (o *GetAdminTenantUnauthorized) IsServerError() bool {
 // IsCode returns true when this get admin tenant unauthorized response a status code equal to that given
 func (o *GetAdminTenantUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get admin tenant unauthorized response
+func (o *GetAdminTenantUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetAdminTenantUnauthorized) Error() string {
@@ -192,7 +202,7 @@ func NewGetAdminTenantForbidden() *GetAdminTenantForbidden {
 /*
 GetAdminTenantForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetAdminTenantForbidden struct {
 	Payload *models.Error
@@ -221,6 +231,11 @@ func (o *GetAdminTenantForbidden) IsServerError() bool {
 // IsCode returns true when this get admin tenant forbidden response a status code equal to that given
 func (o *GetAdminTenantForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get admin tenant forbidden response
+func (o *GetAdminTenantForbidden) Code() int {
+	return 403
 }
 
 func (o *GetAdminTenantForbidden) Error() string {
@@ -255,7 +270,7 @@ func NewGetAdminTenantNotFound() *GetAdminTenantNotFound {
 /*
 GetAdminTenantNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetAdminTenantNotFound struct {
 	Payload *models.Error
@@ -284,6 +299,11 @@ func (o *GetAdminTenantNotFound) IsServerError() bool {
 // IsCode returns true when this get admin tenant not found response a status code equal to that given
 func (o *GetAdminTenantNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the get admin tenant not found response
+func (o *GetAdminTenantNotFound) Code() int {
+	return 404
 }
 
 func (o *GetAdminTenantNotFound) Error() string {
@@ -318,7 +338,7 @@ func NewGetAdminTenantTooManyRequests() *GetAdminTenantTooManyRequests {
 /*
 GetAdminTenantTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetAdminTenantTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +367,11 @@ func (o *GetAdminTenantTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get admin tenant too many requests response a status code equal to that given
 func (o *GetAdminTenantTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get admin tenant too many requests response
+func (o *GetAdminTenantTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetAdminTenantTooManyRequests) Error() string {

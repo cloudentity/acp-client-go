@@ -45,6 +45,10 @@ type IDP struct {
 	// discovery settings
 	DiscoverySettings *IDPDiscoverySettings `json:"discovery_settings,omitempty"`
 
+	// Can be used to e.g. modify the order in which the Identity Providers are presented on the login page.
+	// Example: 1
+	DisplayOrder int64 `json:"display_order,omitempty"`
+
 	// If set to `true`, the IDP is not displayed on the login page.
 	//
 	// When an IDP is hidden, it will not be displayed on the login page. It can still be used
@@ -59,13 +63,19 @@ type IDP struct {
 	// ID of the Identity Pool to which the IDP is connected
 	IdentityPoolID string `json:"identity_pool_id,omitempty"`
 
+	// jit
+	Jit *JITSettings `json:"jit,omitempty"`
+
+	// Logo URI
+	LogoURI string `json:"logo_uri,omitempty"`
+
 	// mappings
 	Mappings Mappings `json:"mappings,omitempty"`
 
 	// Defines the type of an IDP
 	//
-	// ACP is designed to make it possible for you to bring any of your own IDPs and integrate it
-	// with ACP as it delivers enterprise connectors for major Cloud IDPs and a possibility for
+	// Cloudentity is designed to make it possible for you to bring any of your own IDPs and integrate it
+	// with Cloudentity as it delivers enterprise connectors for major Cloud IDPs and a possibility for
 	// custom integration DKS for home-built solutions. You can also use built-in Sandbox IDP, which
 	// is a static IDP, to create an IDP for testing purposes.
 	Method string `json:"method,omitempty"`
@@ -73,8 +83,14 @@ type IDP struct {
 	// Display name of your IDP
 	Name string `json:"name,omitempty"`
 
+	// Points to the ID of the custom app, null if not set
+	PostAuthnAppID string `json:"post_authn_app_id,omitempty"`
+
 	// settings
 	Settings *IDPSettings `json:"settings,omitempty"`
+
+	// sso settings
+	SsoSettings *IDPSSOSettings `json:"sso_settings,omitempty"`
 
 	// Authentication method reference
 	//
@@ -93,6 +109,13 @@ type IDP struct {
 
 	// transformer
 	Transformer *ScriptTransformer `json:"transformer,omitempty"`
+
+	// IDP version to track internal changes
+	// version that is currently supported: 3
+	Version int64 `json:"version,omitempty"`
+
+	// ID of the Workspace to which the IDP is connected
+	WorkspaceID string `json:"workspace_id,omitempty"`
 }
 
 // Validate validates this ID p
@@ -115,11 +138,19 @@ func (m *IDP) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateJit(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateMappings(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.validateSettings(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSsoSettings(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -211,6 +242,25 @@ func (m *IDP) validateDiscoverySettings(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *IDP) validateJit(formats strfmt.Registry) error {
+	if swag.IsZero(m.Jit) { // not required
+		return nil
+	}
+
+	if m.Jit != nil {
+		if err := m.Jit.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("jit")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("jit")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *IDP) validateMappings(formats strfmt.Registry) error {
 	if swag.IsZero(m.Mappings) { // not required
 		return nil
@@ -239,6 +289,25 @@ func (m *IDP) validateSettings(formats strfmt.Registry) error {
 				return ve.ValidateName("settings")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("settings")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IDP) validateSsoSettings(formats strfmt.Registry) error {
+	if swag.IsZero(m.SsoSettings) { // not required
+		return nil
+	}
+
+	if m.SsoSettings != nil {
+		if err := m.SsoSettings.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("sso_settings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("sso_settings")
 			}
 			return err
 		}
@@ -305,11 +374,19 @@ func (m *IDP) ContextValidate(ctx context.Context, formats strfmt.Registry) erro
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateJit(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateMappings(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.contextValidateSettings(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSsoSettings(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -344,6 +421,11 @@ func (m *IDP) contextValidateAttributes(ctx context.Context, formats strfmt.Regi
 func (m *IDP) contextValidateConfig(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Config != nil {
+
+		if swag.IsZero(m.Config) { // not required
+			return nil
+		}
+
 		if err := m.Config.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("config")
@@ -360,6 +442,11 @@ func (m *IDP) contextValidateConfig(ctx context.Context, formats strfmt.Registry
 func (m *IDP) contextValidateCredentials(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Credentials != nil {
+
+		if swag.IsZero(m.Credentials) { // not required
+			return nil
+		}
+
 		if err := m.Credentials.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("credentials")
@@ -376,11 +463,37 @@ func (m *IDP) contextValidateCredentials(ctx context.Context, formats strfmt.Reg
 func (m *IDP) contextValidateDiscoverySettings(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.DiscoverySettings != nil {
+
+		if swag.IsZero(m.DiscoverySettings) { // not required
+			return nil
+		}
+
 		if err := m.DiscoverySettings.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("discovery_settings")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("discovery_settings")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IDP) contextValidateJit(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Jit != nil {
+
+		if swag.IsZero(m.Jit) { // not required
+			return nil
+		}
+
+		if err := m.Jit.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("jit")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("jit")
 			}
 			return err
 		}
@@ -406,6 +519,11 @@ func (m *IDP) contextValidateMappings(ctx context.Context, formats strfmt.Regist
 func (m *IDP) contextValidateSettings(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Settings != nil {
+
+		if swag.IsZero(m.Settings) { // not required
+			return nil
+		}
+
 		if err := m.Settings.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("settings")
@@ -419,9 +537,35 @@ func (m *IDP) contextValidateSettings(ctx context.Context, formats strfmt.Regist
 	return nil
 }
 
+func (m *IDP) contextValidateSsoSettings(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.SsoSettings != nil {
+
+		if swag.IsZero(m.SsoSettings) { // not required
+			return nil
+		}
+
+		if err := m.SsoSettings.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("sso_settings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("sso_settings")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *IDP) contextValidateTokenExchangeSettings(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.TokenExchangeSettings != nil {
+
+		if swag.IsZero(m.TokenExchangeSettings) { // not required
+			return nil
+		}
+
 		if err := m.TokenExchangeSettings.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("token_exchange_settings")
@@ -438,6 +582,11 @@ func (m *IDP) contextValidateTokenExchangeSettings(ctx context.Context, formats 
 func (m *IDP) contextValidateTransformer(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Transformer != nil {
+
+		if swag.IsZero(m.Transformer) { // not required
+			return nil
+		}
+
 		if err := m.Transformer.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("transformer")

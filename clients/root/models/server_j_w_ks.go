@@ -229,6 +229,11 @@ func (m *ServerJWKs) contextValidateKeys(ctx context.Context, formats strfmt.Reg
 	for i := 0; i < len(m.Keys); i++ {
 
 		if m.Keys[i] != nil {
+
+			if swag.IsZero(m.Keys[i]) { // not required
+				return nil
+			}
+
 			if err := m.Keys[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("keys" + "." + strconv.Itoa(i))
@@ -247,6 +252,11 @@ func (m *ServerJWKs) contextValidateKeys(ctx context.Context, formats strfmt.Reg
 func (m *ServerJWKs) contextValidateNextEncryptionKey(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.NextEncryptionKey != nil {
+
+		if swag.IsZero(m.NextEncryptionKey) { // not required
+			return nil
+		}
+
 		if err := m.NextEncryptionKey.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("next_encryption_key")
@@ -263,6 +273,11 @@ func (m *ServerJWKs) contextValidateNextEncryptionKey(ctx context.Context, forma
 func (m *ServerJWKs) contextValidateNextSigningKey(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.NextSigningKey != nil {
+
+		if swag.IsZero(m.NextSigningKey) { // not required
+			return nil
+		}
+
 		if err := m.NextSigningKey.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("next_signing_key")
@@ -281,6 +296,11 @@ func (m *ServerJWKs) contextValidateRevokedEncryptionKeys(ctx context.Context, f
 	for i := 0; i < len(m.RevokedEncryptionKeys); i++ {
 
 		if m.RevokedEncryptionKeys[i] != nil {
+
+			if swag.IsZero(m.RevokedEncryptionKeys[i]) { // not required
+				return nil
+			}
+
 			if err := m.RevokedEncryptionKeys[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("revoked_encryption_keys" + "." + strconv.Itoa(i))
@@ -301,6 +321,11 @@ func (m *ServerJWKs) contextValidateRevokedSigningKeys(ctx context.Context, form
 	for i := 0; i < len(m.RevokedSigningKeys); i++ {
 
 		if m.RevokedSigningKeys[i] != nil {
+
+			if swag.IsZero(m.RevokedSigningKeys[i]) { // not required
+				return nil
+			}
+
 			if err := m.RevokedSigningKeys[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("revoked_signing_keys" + "." + strconv.Itoa(i))

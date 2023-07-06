@@ -54,7 +54,7 @@ func (o *GetAzureIDPReader) ReadResponse(response runtime.ClientResponse, consum
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /servers/{wid}/idps/azure/{iid}] getAzureIDP", response, response.Code())
 	}
 }
 
@@ -97,6 +97,11 @@ func (o *GetAzureIDPOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get azure Id p o k response
+func (o *GetAzureIDPOK) Code() int {
+	return 200
+}
+
 func (o *GetAzureIDPOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/idps/azure/{iid}][%d] getAzureIdPOK  %+v", 200, o.Payload)
 }
@@ -129,7 +134,7 @@ func NewGetAzureIDPUnauthorized() *GetAzureIDPUnauthorized {
 /*
 GetAzureIDPUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetAzureIDPUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +163,11 @@ func (o *GetAzureIDPUnauthorized) IsServerError() bool {
 // IsCode returns true when this get azure Id p unauthorized response a status code equal to that given
 func (o *GetAzureIDPUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get azure Id p unauthorized response
+func (o *GetAzureIDPUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetAzureIDPUnauthorized) Error() string {
@@ -192,7 +202,7 @@ func NewGetAzureIDPForbidden() *GetAzureIDPForbidden {
 /*
 GetAzureIDPForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetAzureIDPForbidden struct {
 	Payload *models.Error
@@ -221,6 +231,11 @@ func (o *GetAzureIDPForbidden) IsServerError() bool {
 // IsCode returns true when this get azure Id p forbidden response a status code equal to that given
 func (o *GetAzureIDPForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get azure Id p forbidden response
+func (o *GetAzureIDPForbidden) Code() int {
+	return 403
 }
 
 func (o *GetAzureIDPForbidden) Error() string {
@@ -255,7 +270,7 @@ func NewGetAzureIDPNotFound() *GetAzureIDPNotFound {
 /*
 GetAzureIDPNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetAzureIDPNotFound struct {
 	Payload *models.Error
@@ -284,6 +299,11 @@ func (o *GetAzureIDPNotFound) IsServerError() bool {
 // IsCode returns true when this get azure Id p not found response a status code equal to that given
 func (o *GetAzureIDPNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the get azure Id p not found response
+func (o *GetAzureIDPNotFound) Code() int {
+	return 404
 }
 
 func (o *GetAzureIDPNotFound) Error() string {
@@ -318,7 +338,7 @@ func NewGetAzureIDPTooManyRequests() *GetAzureIDPTooManyRequests {
 /*
 GetAzureIDPTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetAzureIDPTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +367,11 @@ func (o *GetAzureIDPTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get azure Id p too many requests response a status code equal to that given
 func (o *GetAzureIDPTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get azure Id p too many requests response
+func (o *GetAzureIDPTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetAzureIDPTooManyRequests) Error() string {

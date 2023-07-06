@@ -54,7 +54,7 @@ func (o *GetGoogleIDPReader) ReadResponse(response runtime.ClientResponse, consu
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /servers/{wid}/idps/google/{iid}] getGoogleIDP", response, response.Code())
 	}
 }
 
@@ -97,6 +97,11 @@ func (o *GetGoogleIDPOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get google Id p o k response
+func (o *GetGoogleIDPOK) Code() int {
+	return 200
+}
+
 func (o *GetGoogleIDPOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/idps/google/{iid}][%d] getGoogleIdPOK  %+v", 200, o.Payload)
 }
@@ -129,7 +134,7 @@ func NewGetGoogleIDPUnauthorized() *GetGoogleIDPUnauthorized {
 /*
 GetGoogleIDPUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetGoogleIDPUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +163,11 @@ func (o *GetGoogleIDPUnauthorized) IsServerError() bool {
 // IsCode returns true when this get google Id p unauthorized response a status code equal to that given
 func (o *GetGoogleIDPUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get google Id p unauthorized response
+func (o *GetGoogleIDPUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetGoogleIDPUnauthorized) Error() string {
@@ -192,7 +202,7 @@ func NewGetGoogleIDPForbidden() *GetGoogleIDPForbidden {
 /*
 GetGoogleIDPForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetGoogleIDPForbidden struct {
 	Payload *models.Error
@@ -221,6 +231,11 @@ func (o *GetGoogleIDPForbidden) IsServerError() bool {
 // IsCode returns true when this get google Id p forbidden response a status code equal to that given
 func (o *GetGoogleIDPForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get google Id p forbidden response
+func (o *GetGoogleIDPForbidden) Code() int {
+	return 403
 }
 
 func (o *GetGoogleIDPForbidden) Error() string {
@@ -255,7 +270,7 @@ func NewGetGoogleIDPNotFound() *GetGoogleIDPNotFound {
 /*
 GetGoogleIDPNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetGoogleIDPNotFound struct {
 	Payload *models.Error
@@ -284,6 +299,11 @@ func (o *GetGoogleIDPNotFound) IsServerError() bool {
 // IsCode returns true when this get google Id p not found response a status code equal to that given
 func (o *GetGoogleIDPNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the get google Id p not found response
+func (o *GetGoogleIDPNotFound) Code() int {
+	return 404
 }
 
 func (o *GetGoogleIDPNotFound) Error() string {
@@ -318,7 +338,7 @@ func NewGetGoogleIDPTooManyRequests() *GetGoogleIDPTooManyRequests {
 /*
 GetGoogleIDPTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetGoogleIDPTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +367,11 @@ func (o *GetGoogleIDPTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get google Id p too many requests response a status code equal to that given
 func (o *GetGoogleIDPTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get google Id p too many requests response
+func (o *GetGoogleIDPTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetGoogleIDPTooManyRequests) Error() string {

@@ -54,7 +54,7 @@ func (o *GetAuthorizationServerReader) ReadResponse(response runtime.ClientRespo
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /servers/{wid}] getAuthorizationServer", response, response.Code())
 	}
 }
 
@@ -69,6 +69,15 @@ GetAuthorizationServerOK describes a response with status code 200, with default
 Server
 */
 type GetAuthorizationServerOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.ServerResponse
 }
 
@@ -97,6 +106,11 @@ func (o *GetAuthorizationServerOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get authorization server o k response
+func (o *GetAuthorizationServerOK) Code() int {
+	return 200
+}
+
 func (o *GetAuthorizationServerOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}][%d] getAuthorizationServerOK  %+v", 200, o.Payload)
 }
@@ -110,6 +124,13 @@ func (o *GetAuthorizationServerOK) GetPayload() *models.ServerResponse {
 }
 
 func (o *GetAuthorizationServerOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.ServerResponse)
 
@@ -129,7 +150,7 @@ func NewGetAuthorizationServerUnauthorized() *GetAuthorizationServerUnauthorized
 /*
 GetAuthorizationServerUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetAuthorizationServerUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +179,11 @@ func (o *GetAuthorizationServerUnauthorized) IsServerError() bool {
 // IsCode returns true when this get authorization server unauthorized response a status code equal to that given
 func (o *GetAuthorizationServerUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get authorization server unauthorized response
+func (o *GetAuthorizationServerUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetAuthorizationServerUnauthorized) Error() string {
@@ -192,7 +218,7 @@ func NewGetAuthorizationServerForbidden() *GetAuthorizationServerForbidden {
 /*
 GetAuthorizationServerForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetAuthorizationServerForbidden struct {
 	Payload *models.Error
@@ -221,6 +247,11 @@ func (o *GetAuthorizationServerForbidden) IsServerError() bool {
 // IsCode returns true when this get authorization server forbidden response a status code equal to that given
 func (o *GetAuthorizationServerForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get authorization server forbidden response
+func (o *GetAuthorizationServerForbidden) Code() int {
+	return 403
 }
 
 func (o *GetAuthorizationServerForbidden) Error() string {
@@ -255,7 +286,7 @@ func NewGetAuthorizationServerNotFound() *GetAuthorizationServerNotFound {
 /*
 GetAuthorizationServerNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetAuthorizationServerNotFound struct {
 	Payload *models.Error
@@ -284,6 +315,11 @@ func (o *GetAuthorizationServerNotFound) IsServerError() bool {
 // IsCode returns true when this get authorization server not found response a status code equal to that given
 func (o *GetAuthorizationServerNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the get authorization server not found response
+func (o *GetAuthorizationServerNotFound) Code() int {
+	return 404
 }
 
 func (o *GetAuthorizationServerNotFound) Error() string {
@@ -318,7 +354,7 @@ func NewGetAuthorizationServerTooManyRequests() *GetAuthorizationServerTooManyRe
 /*
 GetAuthorizationServerTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetAuthorizationServerTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +383,11 @@ func (o *GetAuthorizationServerTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get authorization server too many requests response a status code equal to that given
 func (o *GetAuthorizationServerTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get authorization server too many requests response
+func (o *GetAuthorizationServerTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetAuthorizationServerTooManyRequests) Error() string {

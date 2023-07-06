@@ -60,7 +60,7 @@ func (o *SystemDeleteVerifiableAddressReader) ReadResponse(response runtime.Clie
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /system/pools/{ipID}/users/{userID}/addresses/remove] systemDeleteVerifiableAddress", response, response.Code())
 	}
 }
 
@@ -108,6 +108,11 @@ func (o *SystemDeleteVerifiableAddressNoContent) IsServerError() bool {
 // IsCode returns true when this system delete verifiable address no content response a status code equal to that given
 func (o *SystemDeleteVerifiableAddressNoContent) IsCode(code int) bool {
 	return code == 204
+}
+
+// Code gets the status code for the system delete verifiable address no content response
+func (o *SystemDeleteVerifiableAddressNoContent) Code() int {
+	return 204
 }
 
 func (o *SystemDeleteVerifiableAddressNoContent) Error() string {
@@ -167,6 +172,11 @@ func (o *SystemDeleteVerifiableAddressUnauthorized) IsServerError() bool {
 // IsCode returns true when this system delete verifiable address unauthorized response a status code equal to that given
 func (o *SystemDeleteVerifiableAddressUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the system delete verifiable address unauthorized response
+func (o *SystemDeleteVerifiableAddressUnauthorized) Code() int {
+	return 401
 }
 
 func (o *SystemDeleteVerifiableAddressUnauthorized) Error() string {
@@ -232,6 +242,11 @@ func (o *SystemDeleteVerifiableAddressForbidden) IsCode(code int) bool {
 	return code == 403
 }
 
+// Code gets the status code for the system delete verifiable address forbidden response
+func (o *SystemDeleteVerifiableAddressForbidden) Code() int {
+	return 403
+}
+
 func (o *SystemDeleteVerifiableAddressForbidden) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/addresses/remove][%d] systemDeleteVerifiableAddressForbidden  %+v", 403, o.Payload)
 }
@@ -293,6 +308,11 @@ func (o *SystemDeleteVerifiableAddressNotFound) IsServerError() bool {
 // IsCode returns true when this system delete verifiable address not found response a status code equal to that given
 func (o *SystemDeleteVerifiableAddressNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the system delete verifiable address not found response
+func (o *SystemDeleteVerifiableAddressNotFound) Code() int {
+	return 404
 }
 
 func (o *SystemDeleteVerifiableAddressNotFound) Error() string {
@@ -358,6 +378,11 @@ func (o *SystemDeleteVerifiableAddressPreconditionFailed) IsCode(code int) bool 
 	return code == 412
 }
 
+// Code gets the status code for the system delete verifiable address precondition failed response
+func (o *SystemDeleteVerifiableAddressPreconditionFailed) Code() int {
+	return 412
+}
+
 func (o *SystemDeleteVerifiableAddressPreconditionFailed) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/addresses/remove][%d] systemDeleteVerifiableAddressPreconditionFailed  %+v", 412, o.Payload)
 }
@@ -419,6 +444,11 @@ func (o *SystemDeleteVerifiableAddressTooManyRequests) IsServerError() bool {
 // IsCode returns true when this system delete verifiable address too many requests response a status code equal to that given
 func (o *SystemDeleteVerifiableAddressTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the system delete verifiable address too many requests response
+func (o *SystemDeleteVerifiableAddressTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *SystemDeleteVerifiableAddressTooManyRequests) Error() string {

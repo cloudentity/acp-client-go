@@ -72,7 +72,7 @@ func (o *TestScriptReader) ReadResponse(response runtime.ClientResponse, consume
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /servers/{wid}/scripts/test] testScript", response, response.Code())
 	}
 }
 
@@ -87,6 +87,15 @@ TestScriptOK describes a response with status code 200, with default header valu
 Script execution result
 */
 type TestScriptOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.ScriptExecutionResult
 }
 
@@ -115,6 +124,11 @@ func (o *TestScriptOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the test script o k response
+func (o *TestScriptOK) Code() int {
+	return 200
+}
+
 func (o *TestScriptOK) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/scripts/test][%d] testScriptOK  %+v", 200, o.Payload)
 }
@@ -128,6 +142,13 @@ func (o *TestScriptOK) GetPayload() *models.ScriptExecutionResult {
 }
 
 func (o *TestScriptOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.ScriptExecutionResult)
 
@@ -147,7 +168,7 @@ func NewTestScriptBadRequest() *TestScriptBadRequest {
 /*
 TestScriptBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type TestScriptBadRequest struct {
 	Payload *models.Error
@@ -176,6 +197,11 @@ func (o *TestScriptBadRequest) IsServerError() bool {
 // IsCode returns true when this test script bad request response a status code equal to that given
 func (o *TestScriptBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the test script bad request response
+func (o *TestScriptBadRequest) Code() int {
+	return 400
 }
 
 func (o *TestScriptBadRequest) Error() string {
@@ -210,7 +236,7 @@ func NewTestScriptUnauthorized() *TestScriptUnauthorized {
 /*
 TestScriptUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type TestScriptUnauthorized struct {
 	Payload *models.Error
@@ -239,6 +265,11 @@ func (o *TestScriptUnauthorized) IsServerError() bool {
 // IsCode returns true when this test script unauthorized response a status code equal to that given
 func (o *TestScriptUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the test script unauthorized response
+func (o *TestScriptUnauthorized) Code() int {
+	return 401
 }
 
 func (o *TestScriptUnauthorized) Error() string {
@@ -273,7 +304,7 @@ func NewTestScriptForbidden() *TestScriptForbidden {
 /*
 TestScriptForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type TestScriptForbidden struct {
 	Payload *models.Error
@@ -302,6 +333,11 @@ func (o *TestScriptForbidden) IsServerError() bool {
 // IsCode returns true when this test script forbidden response a status code equal to that given
 func (o *TestScriptForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the test script forbidden response
+func (o *TestScriptForbidden) Code() int {
+	return 403
 }
 
 func (o *TestScriptForbidden) Error() string {
@@ -336,7 +372,7 @@ func NewTestScriptNotFound() *TestScriptNotFound {
 /*
 TestScriptNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type TestScriptNotFound struct {
 	Payload *models.Error
@@ -365,6 +401,11 @@ func (o *TestScriptNotFound) IsServerError() bool {
 // IsCode returns true when this test script not found response a status code equal to that given
 func (o *TestScriptNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the test script not found response
+func (o *TestScriptNotFound) Code() int {
+	return 404
 }
 
 func (o *TestScriptNotFound) Error() string {
@@ -399,7 +440,7 @@ func NewTestScriptConflict() *TestScriptConflict {
 /*
 TestScriptConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type TestScriptConflict struct {
 	Payload *models.Error
@@ -428,6 +469,11 @@ func (o *TestScriptConflict) IsServerError() bool {
 // IsCode returns true when this test script conflict response a status code equal to that given
 func (o *TestScriptConflict) IsCode(code int) bool {
 	return code == 409
+}
+
+// Code gets the status code for the test script conflict response
+func (o *TestScriptConflict) Code() int {
+	return 409
 }
 
 func (o *TestScriptConflict) Error() string {
@@ -462,7 +508,7 @@ func NewTestScriptUnprocessableEntity() *TestScriptUnprocessableEntity {
 /*
 TestScriptUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type TestScriptUnprocessableEntity struct {
 	Payload *models.Error
@@ -491,6 +537,11 @@ func (o *TestScriptUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this test script unprocessable entity response a status code equal to that given
 func (o *TestScriptUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the test script unprocessable entity response
+func (o *TestScriptUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *TestScriptUnprocessableEntity) Error() string {
@@ -525,7 +576,7 @@ func NewTestScriptTooManyRequests() *TestScriptTooManyRequests {
 /*
 TestScriptTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type TestScriptTooManyRequests struct {
 	Payload *models.Error
@@ -554,6 +605,11 @@ func (o *TestScriptTooManyRequests) IsServerError() bool {
 // IsCode returns true when this test script too many requests response a status code equal to that given
 func (o *TestScriptTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the test script too many requests response
+func (o *TestScriptTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *TestScriptTooManyRequests) Error() string {

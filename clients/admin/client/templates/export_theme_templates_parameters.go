@@ -61,6 +61,14 @@ ExportThemeTemplatesParams contains all the parameters to send to the API endpoi
 */
 type ExportThemeTemplatesParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* ThemeID.
 
 	   Theme ID
@@ -120,6 +128,17 @@ func (o *ExportThemeTemplatesParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the export theme templates params
+func (o *ExportThemeTemplatesParams) WithIfMatch(ifMatch *string) *ExportThemeTemplatesParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the export theme templates params
+func (o *ExportThemeTemplatesParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithThemeID adds the themeID to the export theme templates params
 func (o *ExportThemeTemplatesParams) WithThemeID(themeID string) *ExportThemeTemplatesParams {
 	o.SetThemeID(themeID)
@@ -138,6 +157,14 @@ func (o *ExportThemeTemplatesParams) WriteToRequest(r runtime.ClientRequest, reg
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	// path param themeID
 	if err := r.SetPathParam("themeID", o.ThemeID); err != nil {

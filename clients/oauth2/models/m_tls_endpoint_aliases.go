@@ -20,6 +20,9 @@ type MTLSEndpointAliases struct {
 	// backchannel authentication endpoint
 	BackchannelAuthenticationEndpoint string `json:"backchannel_authentication_endpoint,omitempty"`
 
+	// device authorization endpoint
+	DeviceAuthorizationEndpoint string `json:"device_authorization_endpoint,omitempty"`
+
 	// introspection endpoint
 	IntrospectionEndpoint string `json:"introspection_endpoint,omitempty"`
 

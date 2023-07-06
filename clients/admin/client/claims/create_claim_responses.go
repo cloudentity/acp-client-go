@@ -66,7 +66,7 @@ func (o *CreateClaimReader) ReadResponse(response runtime.ClientResponse, consum
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /claims] createClaim", response, response.Code())
 	}
 }
 
@@ -81,6 +81,15 @@ CreateClaimCreated describes a response with status code 201, with default heade
 Claim
 */
 type CreateClaimCreated struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.Claim
 }
 
@@ -109,6 +118,11 @@ func (o *CreateClaimCreated) IsCode(code int) bool {
 	return code == 201
 }
 
+// Code gets the status code for the create claim created response
+func (o *CreateClaimCreated) Code() int {
+	return 201
+}
+
 func (o *CreateClaimCreated) Error() string {
 	return fmt.Sprintf("[POST /claims][%d] createClaimCreated  %+v", 201, o.Payload)
 }
@@ -122,6 +136,13 @@ func (o *CreateClaimCreated) GetPayload() *models.Claim {
 }
 
 func (o *CreateClaimCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.Claim)
 
@@ -141,7 +162,7 @@ func NewCreateClaimUnauthorized() *CreateClaimUnauthorized {
 /*
 CreateClaimUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type CreateClaimUnauthorized struct {
 	Payload *models.Error
@@ -170,6 +191,11 @@ func (o *CreateClaimUnauthorized) IsServerError() bool {
 // IsCode returns true when this create claim unauthorized response a status code equal to that given
 func (o *CreateClaimUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the create claim unauthorized response
+func (o *CreateClaimUnauthorized) Code() int {
+	return 401
 }
 
 func (o *CreateClaimUnauthorized) Error() string {
@@ -204,7 +230,7 @@ func NewCreateClaimForbidden() *CreateClaimForbidden {
 /*
 CreateClaimForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type CreateClaimForbidden struct {
 	Payload *models.Error
@@ -233,6 +259,11 @@ func (o *CreateClaimForbidden) IsServerError() bool {
 // IsCode returns true when this create claim forbidden response a status code equal to that given
 func (o *CreateClaimForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the create claim forbidden response
+func (o *CreateClaimForbidden) Code() int {
+	return 403
 }
 
 func (o *CreateClaimForbidden) Error() string {
@@ -267,7 +298,7 @@ func NewCreateClaimNotFound() *CreateClaimNotFound {
 /*
 CreateClaimNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type CreateClaimNotFound struct {
 	Payload *models.Error
@@ -296,6 +327,11 @@ func (o *CreateClaimNotFound) IsServerError() bool {
 // IsCode returns true when this create claim not found response a status code equal to that given
 func (o *CreateClaimNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the create claim not found response
+func (o *CreateClaimNotFound) Code() int {
+	return 404
 }
 
 func (o *CreateClaimNotFound) Error() string {
@@ -330,7 +366,7 @@ func NewCreateClaimConflict() *CreateClaimConflict {
 /*
 CreateClaimConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type CreateClaimConflict struct {
 	Payload *models.Error
@@ -359,6 +395,11 @@ func (o *CreateClaimConflict) IsServerError() bool {
 // IsCode returns true when this create claim conflict response a status code equal to that given
 func (o *CreateClaimConflict) IsCode(code int) bool {
 	return code == 409
+}
+
+// Code gets the status code for the create claim conflict response
+func (o *CreateClaimConflict) Code() int {
+	return 409
 }
 
 func (o *CreateClaimConflict) Error() string {
@@ -393,7 +434,7 @@ func NewCreateClaimUnprocessableEntity() *CreateClaimUnprocessableEntity {
 /*
 CreateClaimUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type CreateClaimUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +463,11 @@ func (o *CreateClaimUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this create claim unprocessable entity response a status code equal to that given
 func (o *CreateClaimUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the create claim unprocessable entity response
+func (o *CreateClaimUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *CreateClaimUnprocessableEntity) Error() string {
@@ -456,7 +502,7 @@ func NewCreateClaimTooManyRequests() *CreateClaimTooManyRequests {
 /*
 CreateClaimTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type CreateClaimTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +531,11 @@ func (o *CreateClaimTooManyRequests) IsServerError() bool {
 // IsCode returns true when this create claim too many requests response a status code equal to that given
 func (o *CreateClaimTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the create claim too many requests response
+func (o *CreateClaimTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *CreateClaimTooManyRequests) Error() string {

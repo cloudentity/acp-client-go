@@ -22,7 +22,7 @@ type BRConsentPayload struct {
 	// account ids
 	AccountIds []string `json:"account_ids"`
 
-	// Client identifier
+	// Client application identifier.
 	// Example: \"cauqo9c9vpbs0aj2b2v0\
 	ClientID string `json:"client_id,omitempty"`
 
@@ -39,7 +39,7 @@ type BRConsentPayload struct {
 	// request hash
 	RequestHash string `json:"request_hash,omitempty"`
 
-	// Server / Workspace identifier
+	// Server / Workspace identifier.
 	// Example: \"server\
 	ServerID string `json:"server_id,omitempty"`
 
@@ -52,7 +52,7 @@ type BRConsentPayload struct {
 	// status
 	Status string `json:"status,omitempty"`
 
-	// Tenant identifier
+	// Tenant identifier.
 	// Example: \"tenant\
 	TenantID string `json:"tenant_id,omitempty"`
 
@@ -148,6 +148,10 @@ func (m *BRConsentPayload) ContextValidate(ctx context.Context, formats strfmt.R
 
 func (m *BRConsentPayload) contextValidateSpecVersion(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.SpecVersion) { // not required
+		return nil
+	}
+
 	if err := m.SpecVersion.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("spec_version")
@@ -161,6 +165,10 @@ func (m *BRConsentPayload) contextValidateSpecVersion(ctx context.Context, forma
 }
 
 func (m *BRConsentPayload) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Type) { // not required
+		return nil
+	}
 
 	if err := m.Type.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

@@ -61,9 +61,17 @@ GetVanityDomainParams contains all the parameters to send to the API endpoint
 */
 type GetVanityDomainParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* ServerID.
 
-	   Get vanity doman for a given server
+	   Get vanity domain for a given server
 	*/
 	ServerID *string
 
@@ -120,6 +128,17 @@ func (o *GetVanityDomainParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the get vanity domain params
+func (o *GetVanityDomainParams) WithIfMatch(ifMatch *string) *GetVanityDomainParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the get vanity domain params
+func (o *GetVanityDomainParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithServerID adds the serverID to the get vanity domain params
 func (o *GetVanityDomainParams) WithServerID(serverID *string) *GetVanityDomainParams {
 	o.SetServerID(serverID)
@@ -138,6 +157,14 @@ func (o *GetVanityDomainParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	if o.ServerID != nil {
 

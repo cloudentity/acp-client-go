@@ -69,6 +69,14 @@ type CreateGoogleIDPParams struct {
 	*/
 	GoogleIDP *models.GoogleIDP
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Wid.
 
 	   Authorization server id
@@ -152,6 +160,17 @@ func (o *CreateGoogleIDPParams) SetGoogleIDP(googleIDP *models.GoogleIDP) {
 	o.GoogleIDP = googleIDP
 }
 
+// WithIfMatch adds the ifMatch to the create google ID p params
+func (o *CreateGoogleIDPParams) WithIfMatch(ifMatch *string) *CreateGoogleIDPParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the create google ID p params
+func (o *CreateGoogleIDPParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithWid adds the wid to the create google ID p params
 func (o *CreateGoogleIDPParams) WithWid(wid string) *CreateGoogleIDPParams {
 	o.SetWid(wid)
@@ -172,6 +191,14 @@ func (o *CreateGoogleIDPParams) WriteToRequest(r runtime.ClientRequest, reg strf
 	var res []error
 	if o.GoogleIDP != nil {
 		if err := r.SetBodyParam(o.GoogleIDP); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

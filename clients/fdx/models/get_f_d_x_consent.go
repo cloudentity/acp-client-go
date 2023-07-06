@@ -250,6 +250,10 @@ func (m *GetFDXConsent) ContextValidate(ctx context.Context, formats strfmt.Regi
 
 func (m *GetFDXConsent) contextValidateDurationType(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.DurationType) { // not required
+		return nil
+	}
+
 	if err := m.DurationType.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("durationType")
@@ -263,6 +267,10 @@ func (m *GetFDXConsent) contextValidateDurationType(ctx context.Context, formats
 }
 
 func (m *GetFDXConsent) contextValidateID(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.ID) { // not required
+		return nil
+	}
 
 	if err := m.ID.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -281,6 +289,11 @@ func (m *GetFDXConsent) contextValidateParties(ctx context.Context, formats strf
 	for i := 0; i < len(m.Parties); i++ {
 
 		if m.Parties[i] != nil {
+
+			if swag.IsZero(m.Parties[i]) { // not required
+				return nil
+			}
+
 			if err := m.Parties[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("parties" + "." + strconv.Itoa(i))
@@ -301,6 +314,11 @@ func (m *GetFDXConsent) contextValidateResources(ctx context.Context, formats st
 	for i := 0; i < len(m.Resources); i++ {
 
 		if m.Resources[i] != nil {
+
+			if swag.IsZero(m.Resources[i]) { // not required
+				return nil
+			}
+
 			if err := m.Resources[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("resources" + "." + strconv.Itoa(i))
@@ -317,6 +335,10 @@ func (m *GetFDXConsent) contextValidateResources(ctx context.Context, formats st
 }
 
 func (m *GetFDXConsent) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Status) { // not required
+		return nil
+	}
 
 	if err := m.Status.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

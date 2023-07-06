@@ -54,7 +54,7 @@ func (o *GetMFAMethodReader) ReadResponse(response runtime.ClientResponse, consu
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /mfa-methods/{mfaID}] getMFAMethod", response, response.Code())
 	}
 }
 
@@ -69,6 +69,15 @@ GetMFAMethodOK describes a response with status code 200, with default header va
 MFA method
 */
 type GetMFAMethodOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.MFAMethodResponse
 }
 
@@ -97,6 +106,11 @@ func (o *GetMFAMethodOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get m f a method o k response
+func (o *GetMFAMethodOK) Code() int {
+	return 200
+}
+
 func (o *GetMFAMethodOK) Error() string {
 	return fmt.Sprintf("[GET /mfa-methods/{mfaID}][%d] getMFAMethodOK  %+v", 200, o.Payload)
 }
@@ -110,6 +124,13 @@ func (o *GetMFAMethodOK) GetPayload() *models.MFAMethodResponse {
 }
 
 func (o *GetMFAMethodOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.MFAMethodResponse)
 
@@ -129,7 +150,7 @@ func NewGetMFAMethodUnauthorized() *GetMFAMethodUnauthorized {
 /*
 GetMFAMethodUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetMFAMethodUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +179,11 @@ func (o *GetMFAMethodUnauthorized) IsServerError() bool {
 // IsCode returns true when this get m f a method unauthorized response a status code equal to that given
 func (o *GetMFAMethodUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get m f a method unauthorized response
+func (o *GetMFAMethodUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetMFAMethodUnauthorized) Error() string {
@@ -192,7 +218,7 @@ func NewGetMFAMethodForbidden() *GetMFAMethodForbidden {
 /*
 GetMFAMethodForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetMFAMethodForbidden struct {
 	Payload *models.Error
@@ -221,6 +247,11 @@ func (o *GetMFAMethodForbidden) IsServerError() bool {
 // IsCode returns true when this get m f a method forbidden response a status code equal to that given
 func (o *GetMFAMethodForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get m f a method forbidden response
+func (o *GetMFAMethodForbidden) Code() int {
+	return 403
 }
 
 func (o *GetMFAMethodForbidden) Error() string {
@@ -255,7 +286,7 @@ func NewGetMFAMethodNotFound() *GetMFAMethodNotFound {
 /*
 GetMFAMethodNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetMFAMethodNotFound struct {
 	Payload *models.Error
@@ -284,6 +315,11 @@ func (o *GetMFAMethodNotFound) IsServerError() bool {
 // IsCode returns true when this get m f a method not found response a status code equal to that given
 func (o *GetMFAMethodNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the get m f a method not found response
+func (o *GetMFAMethodNotFound) Code() int {
+	return 404
 }
 
 func (o *GetMFAMethodNotFound) Error() string {
@@ -318,7 +354,7 @@ func NewGetMFAMethodTooManyRequests() *GetMFAMethodTooManyRequests {
 /*
 GetMFAMethodTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetMFAMethodTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +383,11 @@ func (o *GetMFAMethodTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get m f a method too many requests response a status code equal to that given
 func (o *GetMFAMethodTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get m f a method too many requests response
+func (o *GetMFAMethodTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetMFAMethodTooManyRequests) Error() string {

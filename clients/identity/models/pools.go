@@ -82,6 +82,11 @@ func (m *Pools) contextValidatePools(ctx context.Context, formats strfmt.Registr
 	for i := 0; i < len(m.Pools); i++ {
 
 		if m.Pools[i] != nil {
+
+			if swag.IsZero(m.Pools[i]) { // not required
+				return nil
+			}
+
 			if err := m.Pools[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("pools" + "." + strconv.Itoa(i))

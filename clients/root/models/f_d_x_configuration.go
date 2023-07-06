@@ -99,6 +99,10 @@ func (m *FDXConfiguration) ContextValidate(ctx context.Context, formats strfmt.R
 
 func (m *FDXConfiguration) contextValidateInitialClientStatus(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.InitialClientStatus) { // not required
+		return nil
+	}
+
 	if err := m.InitialClientStatus.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("initial_client_status")
@@ -114,6 +118,11 @@ func (m *FDXConfiguration) contextValidateInitialClientStatus(ctx context.Contex
 func (m *FDXConfiguration) contextValidateLegalEntity(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.LegalEntity != nil {
+
+		if swag.IsZero(m.LegalEntity) { // not required
+			return nil
+		}
+
 		if err := m.LegalEntity.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("legal_entity")

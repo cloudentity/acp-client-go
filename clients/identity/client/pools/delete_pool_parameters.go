@@ -61,6 +61,14 @@ DeletePoolParams contains all the parameters to send to the API endpoint
 */
 type DeletePoolParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	// IPID.
 	IPID string
 
@@ -117,6 +125,17 @@ func (o *DeletePoolParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the delete pool params
+func (o *DeletePoolParams) WithIfMatch(ifMatch *string) *DeletePoolParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the delete pool params
+func (o *DeletePoolParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithIPID adds the iPID to the delete pool params
 func (o *DeletePoolParams) WithIPID(iPID string) *DeletePoolParams {
 	o.SetIPID(iPID)
@@ -135,6 +154,14 @@ func (o *DeletePoolParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	// path param ipID
 	if err := r.SetPathParam("ipID", o.IPID); err != nil {

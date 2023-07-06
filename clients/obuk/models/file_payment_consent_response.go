@@ -135,6 +135,7 @@ func (m *FilePaymentConsentResponse) ContextValidate(ctx context.Context, format
 func (m *FilePaymentConsentResponse) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Data != nil {
+
 		if err := m.Data.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data")
@@ -151,6 +152,11 @@ func (m *FilePaymentConsentResponse) contextValidateData(ctx context.Context, fo
 func (m *FilePaymentConsentResponse) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Links != nil {
+
+		if swag.IsZero(m.Links) { // not required
+			return nil
+		}
+
 		if err := m.Links.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Links")
@@ -167,6 +173,11 @@ func (m *FilePaymentConsentResponse) contextValidateLinks(ctx context.Context, f
 func (m *FilePaymentConsentResponse) contextValidateMeta(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Meta != nil {
+
+		if swag.IsZero(m.Meta) { // not required
+			return nil
+		}
+
 		if err := m.Meta.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Meta")

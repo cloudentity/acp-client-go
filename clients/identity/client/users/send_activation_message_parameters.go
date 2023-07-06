@@ -74,8 +74,23 @@ type SendActivationMessageParams struct {
 	*/
 	CodeTypeInMessage *string
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	// IPID.
 	IPID string
+
+	/* ServerID.
+
+	     optional server's identifier (used for themes etc.)
+	ServerID
+	*/
+	ServerID *string
 
 	// UserID.
 	UserID string
@@ -166,6 +181,17 @@ func (o *SendActivationMessageParams) SetCodeTypeInMessage(codeTypeInMessage *st
 	o.CodeTypeInMessage = codeTypeInMessage
 }
 
+// WithIfMatch adds the ifMatch to the send activation message params
+func (o *SendActivationMessageParams) WithIfMatch(ifMatch *string) *SendActivationMessageParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the send activation message params
+func (o *SendActivationMessageParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithIPID adds the iPID to the send activation message params
 func (o *SendActivationMessageParams) WithIPID(iPID string) *SendActivationMessageParams {
 	o.SetIPID(iPID)
@@ -175,6 +201,17 @@ func (o *SendActivationMessageParams) WithIPID(iPID string) *SendActivationMessa
 // SetIPID adds the ipId to the send activation message params
 func (o *SendActivationMessageParams) SetIPID(iPID string) {
 	o.IPID = iPID
+}
+
+// WithServerID adds the serverID to the send activation message params
+func (o *SendActivationMessageParams) WithServerID(serverID *string) *SendActivationMessageParams {
+	o.SetServerID(serverID)
+	return o
+}
+
+// SetServerID adds the serverId to the send activation message params
+func (o *SendActivationMessageParams) SetServerID(serverID *string) {
+	o.ServerID = serverID
 }
 
 // WithUserID adds the userID to the send activation message params
@@ -218,9 +255,34 @@ func (o *SendActivationMessageParams) WriteToRequest(r runtime.ClientRequest, re
 		}
 	}
 
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
+
 	// path param ipID
 	if err := r.SetPathParam("ipID", o.IPID); err != nil {
 		return err
+	}
+
+	if o.ServerID != nil {
+
+		// query param server_id
+		var qrServerID string
+
+		if o.ServerID != nil {
+			qrServerID = *o.ServerID
+		}
+		qServerID := qrServerID
+		if qServerID != "" {
+
+			if err := r.SetQueryParam("server_id", qServerID); err != nil {
+				return err
+			}
+		}
 	}
 
 	// path param userID

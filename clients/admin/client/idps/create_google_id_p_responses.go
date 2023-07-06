@@ -66,7 +66,7 @@ func (o *CreateGoogleIDPReader) ReadResponse(response runtime.ClientResponse, co
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /servers/{wid}/idps/google] createGoogleIDP", response, response.Code())
 	}
 }
 
@@ -109,6 +109,11 @@ func (o *CreateGoogleIDPCreated) IsCode(code int) bool {
 	return code == 201
 }
 
+// Code gets the status code for the create google Id p created response
+func (o *CreateGoogleIDPCreated) Code() int {
+	return 201
+}
+
 func (o *CreateGoogleIDPCreated) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/google][%d] createGoogleIdPCreated  %+v", 201, o.Payload)
 }
@@ -141,7 +146,7 @@ func NewCreateGoogleIDPBadRequest() *CreateGoogleIDPBadRequest {
 /*
 CreateGoogleIDPBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type CreateGoogleIDPBadRequest struct {
 	Payload *models.Error
@@ -170,6 +175,11 @@ func (o *CreateGoogleIDPBadRequest) IsServerError() bool {
 // IsCode returns true when this create google Id p bad request response a status code equal to that given
 func (o *CreateGoogleIDPBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the create google Id p bad request response
+func (o *CreateGoogleIDPBadRequest) Code() int {
+	return 400
 }
 
 func (o *CreateGoogleIDPBadRequest) Error() string {
@@ -204,7 +214,7 @@ func NewCreateGoogleIDPUnauthorized() *CreateGoogleIDPUnauthorized {
 /*
 CreateGoogleIDPUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type CreateGoogleIDPUnauthorized struct {
 	Payload *models.Error
@@ -233,6 +243,11 @@ func (o *CreateGoogleIDPUnauthorized) IsServerError() bool {
 // IsCode returns true when this create google Id p unauthorized response a status code equal to that given
 func (o *CreateGoogleIDPUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the create google Id p unauthorized response
+func (o *CreateGoogleIDPUnauthorized) Code() int {
+	return 401
 }
 
 func (o *CreateGoogleIDPUnauthorized) Error() string {
@@ -267,7 +282,7 @@ func NewCreateGoogleIDPForbidden() *CreateGoogleIDPForbidden {
 /*
 CreateGoogleIDPForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type CreateGoogleIDPForbidden struct {
 	Payload *models.Error
@@ -296,6 +311,11 @@ func (o *CreateGoogleIDPForbidden) IsServerError() bool {
 // IsCode returns true when this create google Id p forbidden response a status code equal to that given
 func (o *CreateGoogleIDPForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the create google Id p forbidden response
+func (o *CreateGoogleIDPForbidden) Code() int {
+	return 403
 }
 
 func (o *CreateGoogleIDPForbidden) Error() string {
@@ -330,7 +350,7 @@ func NewCreateGoogleIDPNotFound() *CreateGoogleIDPNotFound {
 /*
 CreateGoogleIDPNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type CreateGoogleIDPNotFound struct {
 	Payload *models.Error
@@ -359,6 +379,11 @@ func (o *CreateGoogleIDPNotFound) IsServerError() bool {
 // IsCode returns true when this create google Id p not found response a status code equal to that given
 func (o *CreateGoogleIDPNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the create google Id p not found response
+func (o *CreateGoogleIDPNotFound) Code() int {
+	return 404
 }
 
 func (o *CreateGoogleIDPNotFound) Error() string {
@@ -393,7 +418,7 @@ func NewCreateGoogleIDPUnprocessableEntity() *CreateGoogleIDPUnprocessableEntity
 /*
 CreateGoogleIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type CreateGoogleIDPUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +447,11 @@ func (o *CreateGoogleIDPUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this create google Id p unprocessable entity response a status code equal to that given
 func (o *CreateGoogleIDPUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the create google Id p unprocessable entity response
+func (o *CreateGoogleIDPUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *CreateGoogleIDPUnprocessableEntity) Error() string {
@@ -456,7 +486,7 @@ func NewCreateGoogleIDPTooManyRequests() *CreateGoogleIDPTooManyRequests {
 /*
 CreateGoogleIDPTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type CreateGoogleIDPTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +515,11 @@ func (o *CreateGoogleIDPTooManyRequests) IsServerError() bool {
 // IsCode returns true when this create google Id p too many requests response a status code equal to that given
 func (o *CreateGoogleIDPTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the create google Id p too many requests response
+func (o *CreateGoogleIDPTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *CreateGoogleIDPTooManyRequests) Error() string {

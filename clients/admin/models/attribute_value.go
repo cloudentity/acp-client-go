@@ -80,6 +80,11 @@ func (m *AttributeValue) ContextValidate(ctx context.Context, formats strfmt.Reg
 func (m *AttributeValue) contextValidateNameID(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.NameID != nil {
+
+		if swag.IsZero(m.NameID) { // not required
+			return nil
+		}
+
 		if err := m.NameID.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("NameID")

@@ -67,6 +67,14 @@ type CreateAuthorizationServerParams struct {
 	// Server.
 	Server *models.Server
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* WithDemoClient.
 
 	   With demo client
@@ -137,6 +145,17 @@ func (o *CreateAuthorizationServerParams) SetServer(server *models.Server) {
 	o.Server = server
 }
 
+// WithIfMatch adds the ifMatch to the create authorization server params
+func (o *CreateAuthorizationServerParams) WithIfMatch(ifMatch *string) *CreateAuthorizationServerParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the create authorization server params
+func (o *CreateAuthorizationServerParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithWithDemoClient adds the withDemoClient to the create authorization server params
 func (o *CreateAuthorizationServerParams) WithWithDemoClient(withDemoClient *bool) *CreateAuthorizationServerParams {
 	o.SetWithDemoClient(withDemoClient)
@@ -157,6 +176,14 @@ func (o *CreateAuthorizationServerParams) WriteToRequest(r runtime.ClientRequest
 	var res []error
 	if o.Server != nil {
 		if err := r.SetBodyParam(o.Server); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

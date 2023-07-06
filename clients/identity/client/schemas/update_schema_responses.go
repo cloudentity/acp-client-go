@@ -72,7 +72,7 @@ func (o *UpdateSchemaReader) ReadResponse(response runtime.ClientResponse, consu
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /admin/schemas/{schID}] updateSchema", response, response.Code())
 	}
 }
 
@@ -113,6 +113,11 @@ func (o *UpdateSchemaOK) IsServerError() bool {
 // IsCode returns true when this update schema o k response a status code equal to that given
 func (o *UpdateSchemaOK) IsCode(code int) bool {
 	return code == 200
+}
+
+// Code gets the status code for the update schema o k response
+func (o *UpdateSchemaOK) Code() int {
+	return 200
 }
 
 func (o *UpdateSchemaOK) Error() string {
@@ -178,6 +183,11 @@ func (o *UpdateSchemaBadRequest) IsCode(code int) bool {
 	return code == 400
 }
 
+// Code gets the status code for the update schema bad request response
+func (o *UpdateSchemaBadRequest) Code() int {
+	return 400
+}
+
 func (o *UpdateSchemaBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /admin/schemas/{schID}][%d] updateSchemaBadRequest  %+v", 400, o.Payload)
 }
@@ -239,6 +249,11 @@ func (o *UpdateSchemaUnauthorized) IsServerError() bool {
 // IsCode returns true when this update schema unauthorized response a status code equal to that given
 func (o *UpdateSchemaUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the update schema unauthorized response
+func (o *UpdateSchemaUnauthorized) Code() int {
+	return 401
 }
 
 func (o *UpdateSchemaUnauthorized) Error() string {
@@ -304,6 +319,11 @@ func (o *UpdateSchemaForbidden) IsCode(code int) bool {
 	return code == 403
 }
 
+// Code gets the status code for the update schema forbidden response
+func (o *UpdateSchemaForbidden) Code() int {
+	return 403
+}
+
 func (o *UpdateSchemaForbidden) Error() string {
 	return fmt.Sprintf("[PUT /admin/schemas/{schID}][%d] updateSchemaForbidden  %+v", 403, o.Payload)
 }
@@ -365,6 +385,11 @@ func (o *UpdateSchemaNotFound) IsServerError() bool {
 // IsCode returns true when this update schema not found response a status code equal to that given
 func (o *UpdateSchemaNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the update schema not found response
+func (o *UpdateSchemaNotFound) Code() int {
+	return 404
 }
 
 func (o *UpdateSchemaNotFound) Error() string {
@@ -430,6 +455,11 @@ func (o *UpdateSchemaConflict) IsCode(code int) bool {
 	return code == 409
 }
 
+// Code gets the status code for the update schema conflict response
+func (o *UpdateSchemaConflict) Code() int {
+	return 409
+}
+
 func (o *UpdateSchemaConflict) Error() string {
 	return fmt.Sprintf("[PUT /admin/schemas/{schID}][%d] updateSchemaConflict  %+v", 409, o.Payload)
 }
@@ -493,6 +523,11 @@ func (o *UpdateSchemaUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
 }
 
+// Code gets the status code for the update schema unprocessable entity response
+func (o *UpdateSchemaUnprocessableEntity) Code() int {
+	return 422
+}
+
 func (o *UpdateSchemaUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /admin/schemas/{schID}][%d] updateSchemaUnprocessableEntity  %+v", 422, o.Payload)
 }
@@ -554,6 +589,11 @@ func (o *UpdateSchemaTooManyRequests) IsServerError() bool {
 // IsCode returns true when this update schema too many requests response a status code equal to that given
 func (o *UpdateSchemaTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the update schema too many requests response
+func (o *UpdateSchemaTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *UpdateSchemaTooManyRequests) Error() string {

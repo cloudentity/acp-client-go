@@ -24,49 +24,50 @@ type ServiceWithScopesAndAPIs struct {
 	// list of apis
 	Apis []*API `json:"apis"`
 
-	// server id
-	// Example: default
+	// Authorization server identifier
+	// Example: my-server
 	AuthorizationServerID string `json:"authorization_server_id,omitempty"`
 
-	// custom service audience
+	// Custom service audience
 	// Example: https://api.example.com
 	CustomAudience string `json:"custom_audience,omitempty"`
 
-	// service description
+	// Service description
 	// Example: Service description
 	Description string `json:"description,omitempty"`
 
-	// gateway id
+	// Gateway identifier
+	// Example: gateway-1
 	GatewayID string `json:"gateway_id,omitempty"`
 
-	// unique service id
-	// Example: 1
+	// A unique identifier of a service
+	// Example: service-1
 	ID string `json:"id,omitempty"`
 
-	// service name
-	// Example: Sample service
+	// Service name
+	// Example: My service
 	Name string `json:"name,omitempty"`
 
 	// list of scopes
 	Scopes []*Scope `json:"scopes"`
 
-	// Is service a system service
+	// `true` when the service is a system service
 	// Example: false
 	System bool `json:"system,omitempty"`
 
-	// tenant id
-	// Example: default
+	// Tenant identifier
+	// Example: my-company
 	TenantID string `json:"tenant_id,omitempty"`
 
-	// service type
+	// Service type
 	// Enum: [oauth2 oidc system user openbanking]
 	Type string `json:"type,omitempty"`
 
-	// Updated at date
+	// The date of service update
 	// Format: date-time
 	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty"`
 
-	// true if service has openapi 3 specification
+	// `true` when the service has the OpenAPI 3.0 specification
 	WithSpecification bool `json:"with_specification,omitempty"`
 }
 
@@ -234,6 +235,11 @@ func (m *ServiceWithScopesAndAPIs) contextValidateApis(ctx context.Context, form
 	for i := 0; i < len(m.Apis); i++ {
 
 		if m.Apis[i] != nil {
+
+			if swag.IsZero(m.Apis[i]) { // not required
+				return nil
+			}
+
 			if err := m.Apis[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("apis" + "." + strconv.Itoa(i))
@@ -254,6 +260,11 @@ func (m *ServiceWithScopesAndAPIs) contextValidateScopes(ctx context.Context, fo
 	for i := 0; i < len(m.Scopes); i++ {
 
 		if m.Scopes[i] != nil {
+
+			if swag.IsZero(m.Scopes[i]) { // not required
+				return nil
+			}
+
 			if err := m.Scopes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("scopes" + "." + strconv.Itoa(i))

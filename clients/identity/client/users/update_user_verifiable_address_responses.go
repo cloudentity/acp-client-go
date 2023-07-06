@@ -60,7 +60,7 @@ func (o *UpdateUserVerifiableAddressReader) ReadResponse(response runtime.Client
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /admin/pools/{ipID}/users/{userID}/addresses/update] updateUserVerifiableAddress", response, response.Code())
 	}
 }
 
@@ -75,6 +75,15 @@ UpdateUserVerifiableAddressOK describes a response with status code 200, with de
 Address
 */
 type UpdateUserVerifiableAddressOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.UserVerifiableAddress
 }
 
@@ -103,6 +112,11 @@ func (o *UpdateUserVerifiableAddressOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the update user verifiable address o k response
+func (o *UpdateUserVerifiableAddressOK) Code() int {
+	return 200
+}
+
 func (o *UpdateUserVerifiableAddressOK) Error() string {
 	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/update][%d] updateUserVerifiableAddressOK  %+v", 200, o.Payload)
 }
@@ -116,6 +130,13 @@ func (o *UpdateUserVerifiableAddressOK) GetPayload() *models.UserVerifiableAddre
 }
 
 func (o *UpdateUserVerifiableAddressOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.UserVerifiableAddress)
 
@@ -164,6 +185,11 @@ func (o *UpdateUserVerifiableAddressUnauthorized) IsServerError() bool {
 // IsCode returns true when this update user verifiable address unauthorized response a status code equal to that given
 func (o *UpdateUserVerifiableAddressUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the update user verifiable address unauthorized response
+func (o *UpdateUserVerifiableAddressUnauthorized) Code() int {
+	return 401
 }
 
 func (o *UpdateUserVerifiableAddressUnauthorized) Error() string {
@@ -229,6 +255,11 @@ func (o *UpdateUserVerifiableAddressForbidden) IsCode(code int) bool {
 	return code == 403
 }
 
+// Code gets the status code for the update user verifiable address forbidden response
+func (o *UpdateUserVerifiableAddressForbidden) Code() int {
+	return 403
+}
+
 func (o *UpdateUserVerifiableAddressForbidden) Error() string {
 	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/update][%d] updateUserVerifiableAddressForbidden  %+v", 403, o.Payload)
 }
@@ -290,6 +321,11 @@ func (o *UpdateUserVerifiableAddressNotFound) IsServerError() bool {
 // IsCode returns true when this update user verifiable address not found response a status code equal to that given
 func (o *UpdateUserVerifiableAddressNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the update user verifiable address not found response
+func (o *UpdateUserVerifiableAddressNotFound) Code() int {
+	return 404
 }
 
 func (o *UpdateUserVerifiableAddressNotFound) Error() string {
@@ -355,6 +391,11 @@ func (o *UpdateUserVerifiableAddressConflict) IsCode(code int) bool {
 	return code == 409
 }
 
+// Code gets the status code for the update user verifiable address conflict response
+func (o *UpdateUserVerifiableAddressConflict) Code() int {
+	return 409
+}
+
 func (o *UpdateUserVerifiableAddressConflict) Error() string {
 	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/update][%d] updateUserVerifiableAddressConflict  %+v", 409, o.Payload)
 }
@@ -416,6 +457,11 @@ func (o *UpdateUserVerifiableAddressUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this update user verifiable address unprocessable entity response a status code equal to that given
 func (o *UpdateUserVerifiableAddressUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the update user verifiable address unprocessable entity response
+func (o *UpdateUserVerifiableAddressUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *UpdateUserVerifiableAddressUnprocessableEntity) Error() string {

@@ -44,12 +44,15 @@ type ClientService interface {
 
 	Used by a custom consent page to notify Cloudentity that a consumer accepted a consent.
 
-Authorization: Bearer token.
-
 The `login` path parameter accepts the `login_id` value—the login session identifier.
 
 Cloudentity passes the login session identifier along with the `login_state` parameter when redirecting
 a user to the consent page.
+
+Authorization: Bearer token.
+
+To obtain a token, use the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
 */
 func (a *Client) AcceptFDXConsentSystem(params *AcceptFDXConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptFDXConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -90,9 +93,14 @@ func (a *Client) AcceptFDXConsentSystem(params *AcceptFDXConsentSystemParams, au
 /*
 	GetFDXConsentSystem gets f d x consent
 
-	This API can be used by a custom openbanking consent page.
+	Retrieve FDX consent-related data: information about a consent, its status, type, and scopes it requires, as well
 
-The consent page must first use client credentials flow to create consent.
+as data of the client application requesting this consent.
+
+Pass the `Authorization: Bearer` header with a token as the bearer value for authorization. To obtain a
+token and create the consent, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/)
+grant type.
 */
 func (a *Client) GetFDXConsentSystem(params *GetFDXConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetFDXConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -135,12 +143,15 @@ func (a *Client) GetFDXConsentSystem(params *GetFDXConsentSystemParams, authInfo
 
 	Used by a consent page to notify Cloudentity that a consumer rejected a consent.
 
-Authorization: Bearer token.
-
 The `login` path parameter accepts the `login_id` value—the login session identifier.
 
 Cloudentity passes the login session identifier along with the `login_state` parameter when redirecting
 a user to the consent page.
+
+Authorization: Bearer token.
+
+To obtain a token, use the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
 */
 func (a *Client) RejectFDXConsentSystem(params *RejectFDXConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectFDXConsentSystemOK, error) {
 	// TODO: Validate the params before sending

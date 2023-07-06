@@ -66,7 +66,7 @@ func (o *UpdateClaimReader) ReadResponse(response runtime.ClientResponse, consum
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /claims/{claim}] updateClaim", response, response.Code())
 	}
 }
 
@@ -81,6 +81,15 @@ UpdateClaimOK describes a response with status code 200, with default header val
 Claim
 */
 type UpdateClaimOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.Claim
 }
 
@@ -109,6 +118,11 @@ func (o *UpdateClaimOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the update claim o k response
+func (o *UpdateClaimOK) Code() int {
+	return 200
+}
+
 func (o *UpdateClaimOK) Error() string {
 	return fmt.Sprintf("[PUT /claims/{claim}][%d] updateClaimOK  %+v", 200, o.Payload)
 }
@@ -122,6 +136,13 @@ func (o *UpdateClaimOK) GetPayload() *models.Claim {
 }
 
 func (o *UpdateClaimOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.Claim)
 
@@ -141,7 +162,7 @@ func NewUpdateClaimBadRequest() *UpdateClaimBadRequest {
 /*
 UpdateClaimBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type UpdateClaimBadRequest struct {
 	Payload *models.Error
@@ -170,6 +191,11 @@ func (o *UpdateClaimBadRequest) IsServerError() bool {
 // IsCode returns true when this update claim bad request response a status code equal to that given
 func (o *UpdateClaimBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the update claim bad request response
+func (o *UpdateClaimBadRequest) Code() int {
+	return 400
 }
 
 func (o *UpdateClaimBadRequest) Error() string {
@@ -204,7 +230,7 @@ func NewUpdateClaimUnauthorized() *UpdateClaimUnauthorized {
 /*
 UpdateClaimUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type UpdateClaimUnauthorized struct {
 	Payload *models.Error
@@ -233,6 +259,11 @@ func (o *UpdateClaimUnauthorized) IsServerError() bool {
 // IsCode returns true when this update claim unauthorized response a status code equal to that given
 func (o *UpdateClaimUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the update claim unauthorized response
+func (o *UpdateClaimUnauthorized) Code() int {
+	return 401
 }
 
 func (o *UpdateClaimUnauthorized) Error() string {
@@ -267,7 +298,7 @@ func NewUpdateClaimForbidden() *UpdateClaimForbidden {
 /*
 UpdateClaimForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type UpdateClaimForbidden struct {
 	Payload *models.Error
@@ -296,6 +327,11 @@ func (o *UpdateClaimForbidden) IsServerError() bool {
 // IsCode returns true when this update claim forbidden response a status code equal to that given
 func (o *UpdateClaimForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the update claim forbidden response
+func (o *UpdateClaimForbidden) Code() int {
+	return 403
 }
 
 func (o *UpdateClaimForbidden) Error() string {
@@ -330,7 +366,7 @@ func NewUpdateClaimNotFound() *UpdateClaimNotFound {
 /*
 UpdateClaimNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type UpdateClaimNotFound struct {
 	Payload *models.Error
@@ -359,6 +395,11 @@ func (o *UpdateClaimNotFound) IsServerError() bool {
 // IsCode returns true when this update claim not found response a status code equal to that given
 func (o *UpdateClaimNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the update claim not found response
+func (o *UpdateClaimNotFound) Code() int {
+	return 404
 }
 
 func (o *UpdateClaimNotFound) Error() string {
@@ -393,7 +434,7 @@ func NewUpdateClaimUnprocessableEntity() *UpdateClaimUnprocessableEntity {
 /*
 UpdateClaimUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type UpdateClaimUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +463,11 @@ func (o *UpdateClaimUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this update claim unprocessable entity response a status code equal to that given
 func (o *UpdateClaimUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the update claim unprocessable entity response
+func (o *UpdateClaimUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *UpdateClaimUnprocessableEntity) Error() string {
@@ -456,7 +502,7 @@ func NewUpdateClaimTooManyRequests() *UpdateClaimTooManyRequests {
 /*
 UpdateClaimTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type UpdateClaimTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +531,11 @@ func (o *UpdateClaimTooManyRequests) IsServerError() bool {
 // IsCode returns true when this update claim too many requests response a status code equal to that given
 func (o *UpdateClaimTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the update claim too many requests response
+func (o *UpdateClaimTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *UpdateClaimTooManyRequests) Error() string {

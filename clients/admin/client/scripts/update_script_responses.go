@@ -60,7 +60,7 @@ func (o *UpdateScriptReader) ReadResponse(response runtime.ClientResponse, consu
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /servers/{wid}/scripts/{script}] updateScript", response, response.Code())
 	}
 }
 
@@ -75,6 +75,15 @@ UpdateScriptOK describes a response with status code 200, with default header va
 Script
 */
 type UpdateScriptOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.Script
 }
 
@@ -103,6 +112,11 @@ func (o *UpdateScriptOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the update script o k response
+func (o *UpdateScriptOK) Code() int {
+	return 200
+}
+
 func (o *UpdateScriptOK) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/scripts/{script}][%d] updateScriptOK  %+v", 200, o.Payload)
 }
@@ -116,6 +130,13 @@ func (o *UpdateScriptOK) GetPayload() *models.Script {
 }
 
 func (o *UpdateScriptOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.Script)
 
@@ -135,7 +156,7 @@ func NewUpdateScriptBadRequest() *UpdateScriptBadRequest {
 /*
 UpdateScriptBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type UpdateScriptBadRequest struct {
 	Payload *models.Error
@@ -164,6 +185,11 @@ func (o *UpdateScriptBadRequest) IsServerError() bool {
 // IsCode returns true when this update script bad request response a status code equal to that given
 func (o *UpdateScriptBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the update script bad request response
+func (o *UpdateScriptBadRequest) Code() int {
+	return 400
 }
 
 func (o *UpdateScriptBadRequest) Error() string {
@@ -198,7 +224,7 @@ func NewUpdateScriptUnauthorized() *UpdateScriptUnauthorized {
 /*
 UpdateScriptUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type UpdateScriptUnauthorized struct {
 	Payload *models.Error
@@ -227,6 +253,11 @@ func (o *UpdateScriptUnauthorized) IsServerError() bool {
 // IsCode returns true when this update script unauthorized response a status code equal to that given
 func (o *UpdateScriptUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the update script unauthorized response
+func (o *UpdateScriptUnauthorized) Code() int {
+	return 401
 }
 
 func (o *UpdateScriptUnauthorized) Error() string {
@@ -261,7 +292,7 @@ func NewUpdateScriptForbidden() *UpdateScriptForbidden {
 /*
 UpdateScriptForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type UpdateScriptForbidden struct {
 	Payload *models.Error
@@ -290,6 +321,11 @@ func (o *UpdateScriptForbidden) IsServerError() bool {
 // IsCode returns true when this update script forbidden response a status code equal to that given
 func (o *UpdateScriptForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the update script forbidden response
+func (o *UpdateScriptForbidden) Code() int {
+	return 403
 }
 
 func (o *UpdateScriptForbidden) Error() string {
@@ -324,7 +360,7 @@ func NewUpdateScriptNotFound() *UpdateScriptNotFound {
 /*
 UpdateScriptNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type UpdateScriptNotFound struct {
 	Payload *models.Error
@@ -353,6 +389,11 @@ func (o *UpdateScriptNotFound) IsServerError() bool {
 // IsCode returns true when this update script not found response a status code equal to that given
 func (o *UpdateScriptNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the update script not found response
+func (o *UpdateScriptNotFound) Code() int {
+	return 404
 }
 
 func (o *UpdateScriptNotFound) Error() string {
@@ -387,7 +428,7 @@ func NewUpdateScriptTooManyRequests() *UpdateScriptTooManyRequests {
 /*
 UpdateScriptTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type UpdateScriptTooManyRequests struct {
 	Payload *models.Error
@@ -416,6 +457,11 @@ func (o *UpdateScriptTooManyRequests) IsServerError() bool {
 // IsCode returns true when this update script too many requests response a status code equal to that given
 func (o *UpdateScriptTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the update script too many requests response
+func (o *UpdateScriptTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *UpdateScriptTooManyRequests) Error() string {

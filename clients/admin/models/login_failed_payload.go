@@ -87,6 +87,11 @@ func (m *LoginFailedPayload) ContextValidate(ctx context.Context, formats strfmt
 func (m *LoginFailedPayload) contextValidateIdp(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Idp != nil {
+
+		if swag.IsZero(m.Idp) { // not required
+			return nil
+		}
+
 		if err := m.Idp.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("idp")

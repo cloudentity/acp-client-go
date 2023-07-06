@@ -61,6 +61,14 @@ ListServerWebhooksParams contains all the parameters to send to the API endpoint
 */
 type ListServerWebhooksParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Wid.
 
 	   Authorization server id
@@ -120,6 +128,17 @@ func (o *ListServerWebhooksParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the list server webhooks params
+func (o *ListServerWebhooksParams) WithIfMatch(ifMatch *string) *ListServerWebhooksParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the list server webhooks params
+func (o *ListServerWebhooksParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithWid adds the wid to the list server webhooks params
 func (o *ListServerWebhooksParams) WithWid(wid string) *ListServerWebhooksParams {
 	o.SetWid(wid)
@@ -138,6 +157,14 @@ func (o *ListServerWebhooksParams) WriteToRequest(r runtime.ClientRequest, reg s
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	// path param wid
 	if err := r.SetPathParam("wid", o.Wid); err != nil {

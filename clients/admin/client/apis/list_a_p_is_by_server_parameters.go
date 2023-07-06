@@ -68,6 +68,14 @@ type ListAPIsByServerParams struct {
 	*/
 	DataClassification []string
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Wid.
 
 	   Server id
@@ -157,6 +165,17 @@ func (o *ListAPIsByServerParams) SetDataClassification(dataClassification []stri
 	o.DataClassification = dataClassification
 }
 
+// WithIfMatch adds the ifMatch to the list a p is by server params
+func (o *ListAPIsByServerParams) WithIfMatch(ifMatch *string) *ListAPIsByServerParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the list a p is by server params
+func (o *ListAPIsByServerParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithWid adds the wid to the list a p is by server params
 func (o *ListAPIsByServerParams) WithWid(wid string) *ListAPIsByServerParams {
 	o.SetWid(wid)
@@ -194,6 +213,14 @@ func (o *ListAPIsByServerParams) WriteToRequest(r runtime.ClientRequest, reg str
 
 		// query array param data_classification
 		if err := r.SetQueryParam("data_classification", joinedDataClassification...); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

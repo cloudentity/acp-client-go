@@ -54,7 +54,7 @@ func (o *DeleteConsentReader) ReadResponse(response runtime.ClientResponse, cons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[DELETE /consents/{consent}] deleteConsent", response, response.Code())
 	}
 }
 
@@ -96,6 +96,11 @@ func (o *DeleteConsentNoContent) IsCode(code int) bool {
 	return code == 204
 }
 
+// Code gets the status code for the delete consent no content response
+func (o *DeleteConsentNoContent) Code() int {
+	return 204
+}
+
 func (o *DeleteConsentNoContent) Error() string {
 	return fmt.Sprintf("[DELETE /consents/{consent}][%d] deleteConsentNoContent ", 204)
 }
@@ -117,7 +122,7 @@ func NewDeleteConsentUnauthorized() *DeleteConsentUnauthorized {
 /*
 DeleteConsentUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type DeleteConsentUnauthorized struct {
 	Payload *models.Error
@@ -146,6 +151,11 @@ func (o *DeleteConsentUnauthorized) IsServerError() bool {
 // IsCode returns true when this delete consent unauthorized response a status code equal to that given
 func (o *DeleteConsentUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the delete consent unauthorized response
+func (o *DeleteConsentUnauthorized) Code() int {
+	return 401
 }
 
 func (o *DeleteConsentUnauthorized) Error() string {
@@ -180,7 +190,7 @@ func NewDeleteConsentForbidden() *DeleteConsentForbidden {
 /*
 DeleteConsentForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type DeleteConsentForbidden struct {
 	Payload *models.Error
@@ -209,6 +219,11 @@ func (o *DeleteConsentForbidden) IsServerError() bool {
 // IsCode returns true when this delete consent forbidden response a status code equal to that given
 func (o *DeleteConsentForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the delete consent forbidden response
+func (o *DeleteConsentForbidden) Code() int {
+	return 403
 }
 
 func (o *DeleteConsentForbidden) Error() string {
@@ -243,7 +258,7 @@ func NewDeleteConsentNotFound() *DeleteConsentNotFound {
 /*
 DeleteConsentNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type DeleteConsentNotFound struct {
 	Payload *models.Error
@@ -272,6 +287,11 @@ func (o *DeleteConsentNotFound) IsServerError() bool {
 // IsCode returns true when this delete consent not found response a status code equal to that given
 func (o *DeleteConsentNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the delete consent not found response
+func (o *DeleteConsentNotFound) Code() int {
+	return 404
 }
 
 func (o *DeleteConsentNotFound) Error() string {
@@ -306,7 +326,7 @@ func NewDeleteConsentTooManyRequests() *DeleteConsentTooManyRequests {
 /*
 DeleteConsentTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type DeleteConsentTooManyRequests struct {
 	Payload *models.Error
@@ -335,6 +355,11 @@ func (o *DeleteConsentTooManyRequests) IsServerError() bool {
 // IsCode returns true when this delete consent too many requests response a status code equal to that given
 func (o *DeleteConsentTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the delete consent too many requests response
+func (o *DeleteConsentTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *DeleteConsentTooManyRequests) Error() string {

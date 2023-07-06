@@ -54,7 +54,7 @@ func (o *SystemGetPoolReader) ReadResponse(response runtime.ClientResponse, cons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /system/pools/{ipID}] systemGetPool", response, response.Code())
 	}
 }
 
@@ -95,6 +95,11 @@ func (o *SystemGetPoolOK) IsServerError() bool {
 // IsCode returns true when this system get pool o k response a status code equal to that given
 func (o *SystemGetPoolOK) IsCode(code int) bool {
 	return code == 200
+}
+
+// Code gets the status code for the system get pool o k response
+func (o *SystemGetPoolOK) Code() int {
+	return 200
 }
 
 func (o *SystemGetPoolOK) Error() string {
@@ -160,6 +165,11 @@ func (o *SystemGetPoolUnauthorized) IsCode(code int) bool {
 	return code == 401
 }
 
+// Code gets the status code for the system get pool unauthorized response
+func (o *SystemGetPoolUnauthorized) Code() int {
+	return 401
+}
+
 func (o *SystemGetPoolUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /system/pools/{ipID}][%d] systemGetPoolUnauthorized  %+v", 401, o.Payload)
 }
@@ -221,6 +231,11 @@ func (o *SystemGetPoolForbidden) IsServerError() bool {
 // IsCode returns true when this system get pool forbidden response a status code equal to that given
 func (o *SystemGetPoolForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the system get pool forbidden response
+func (o *SystemGetPoolForbidden) Code() int {
+	return 403
 }
 
 func (o *SystemGetPoolForbidden) Error() string {
@@ -286,6 +301,11 @@ func (o *SystemGetPoolNotFound) IsCode(code int) bool {
 	return code == 404
 }
 
+// Code gets the status code for the system get pool not found response
+func (o *SystemGetPoolNotFound) Code() int {
+	return 404
+}
+
 func (o *SystemGetPoolNotFound) Error() string {
 	return fmt.Sprintf("[GET /system/pools/{ipID}][%d] systemGetPoolNotFound  %+v", 404, o.Payload)
 }
@@ -347,6 +367,11 @@ func (o *SystemGetPoolTooManyRequests) IsServerError() bool {
 // IsCode returns true when this system get pool too many requests response a status code equal to that given
 func (o *SystemGetPoolTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the system get pool too many requests response
+func (o *SystemGetPoolTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *SystemGetPoolTooManyRequests) Error() string {

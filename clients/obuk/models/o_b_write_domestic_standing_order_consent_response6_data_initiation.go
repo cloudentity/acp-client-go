@@ -370,6 +370,7 @@ func (m *OBWriteDomesticStandingOrderConsentResponse6DataInitiation) ContextVali
 func (m *OBWriteDomesticStandingOrderConsentResponse6DataInitiation) contextValidateCreditorAccount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CreditorAccount != nil {
+
 		if err := m.CreditorAccount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("CreditorAccount")
@@ -386,6 +387,11 @@ func (m *OBWriteDomesticStandingOrderConsentResponse6DataInitiation) contextVali
 func (m *OBWriteDomesticStandingOrderConsentResponse6DataInitiation) contextValidateDebtorAccount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.DebtorAccount != nil {
+
+		if swag.IsZero(m.DebtorAccount) { // not required
+			return nil
+		}
+
 		if err := m.DebtorAccount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("DebtorAccount")
@@ -402,6 +408,11 @@ func (m *OBWriteDomesticStandingOrderConsentResponse6DataInitiation) contextVali
 func (m *OBWriteDomesticStandingOrderConsentResponse6DataInitiation) contextValidateFinalPaymentAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.FinalPaymentAmount != nil {
+
+		if swag.IsZero(m.FinalPaymentAmount) { // not required
+			return nil
+		}
+
 		if err := m.FinalPaymentAmount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("FinalPaymentAmount")
@@ -418,6 +429,7 @@ func (m *OBWriteDomesticStandingOrderConsentResponse6DataInitiation) contextVali
 func (m *OBWriteDomesticStandingOrderConsentResponse6DataInitiation) contextValidateFirstPaymentAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.FirstPaymentAmount != nil {
+
 		if err := m.FirstPaymentAmount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("FirstPaymentAmount")
@@ -434,6 +446,11 @@ func (m *OBWriteDomesticStandingOrderConsentResponse6DataInitiation) contextVali
 func (m *OBWriteDomesticStandingOrderConsentResponse6DataInitiation) contextValidateRecurringPaymentAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.RecurringPaymentAmount != nil {
+
+		if swag.IsZero(m.RecurringPaymentAmount) { // not required
+			return nil
+		}
+
 		if err := m.RecurringPaymentAmount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("RecurringPaymentAmount")

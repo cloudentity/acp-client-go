@@ -99,6 +99,10 @@ func (m *CustomRateLimit) ContextValidate(ctx context.Context, formats strfmt.Re
 
 func (m *CustomRateLimit) contextValidateModule(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Module) { // not required
+		return nil
+	}
+
 	if err := m.Module.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("module")

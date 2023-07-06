@@ -23,6 +23,9 @@ type SHAConfig struct {
 	// salt
 	Salt string `json:"salt,omitempty"`
 
+	// salt after digest in hash
+	SaltAfterDigestInHash bool `json:"salt_after_digest_in_hash,omitempty"`
+
 	// salt length
 	SaltLength int64 `json:"salt_length,omitempty"`
 }

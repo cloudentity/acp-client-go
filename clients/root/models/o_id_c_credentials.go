@@ -75,6 +75,11 @@ func (m *OIDCCredentials) ContextValidate(ctx context.Context, formats strfmt.Re
 func (m *OIDCCredentials) contextValidatePrivateKeyJwt(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.PrivateKeyJwt != nil {
+
+		if swag.IsZero(m.PrivateKeyJwt) { // not required
+			return nil
+		}
+
 		if err := m.PrivateKeyJwt.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("private_key_jwt")

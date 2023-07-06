@@ -8,12 +8,19 @@ definitions:
         format: userIdentifierValue
         type: string
         x-nullable: false
+      metadata:
+        additionalProperties:
+          type: object
+        description: identifier metadata
+        type: object
+        x-nullable: false
       type:
         enum:
         - email
         - mobile
         - uid
         - external
+        - federated
         example: email
         type: string
         x-nullable: false
@@ -55,6 +62,15 @@ definitions:
     - address
     - type
     - verified
+    type: object
+  Address:
+    properties:
+      address:
+        type: string
+        x-nullable: false
+      verified:
+        type: boolean
+        x-nullable: false
     type: object
   AuthenticationMechanisms:
     items:
@@ -158,6 +174,11 @@ definitions:
     type: object
   ExtendedUser:
     properties:
+      addresses:
+        items:
+          $ref: '#/definitions/Address'
+        type: array
+        x-nullable: false
       created_at:
         format: date-time
         type: string
@@ -169,6 +190,11 @@ definitions:
       identifiers:
         items:
           type: string
+        type: array
+        x-nullable: false
+      identifiers_with_details:
+        items:
+          $ref: '#/definitions/IdentifierDetails'
         type: array
         x-nullable: false
       metadata:
@@ -225,6 +251,30 @@ definitions:
     - tenant_id
     - user_pool_id
     - status
+    type: object
+  IdentifierDetails:
+    properties:
+      type:
+        enum:
+        - email
+        - mobile
+        - uid
+        - external
+        - federated
+        type: string
+        x-nullable: false
+      value:
+        format: userIdentifierValue
+        type: string
+        x-nullable: false
+    type: object
+  InspectOTP:
+    properties:
+      code:
+        type: string
+        x-nullable: false
+    required:
+    - code
     type: object
   NewUser:
     properties:
@@ -304,12 +354,19 @@ definitions:
         format: userIdentifierValue
         type: string
         x-nullable: false
+      metadata:
+        additionalProperties:
+          type: object
+        description: identifier metadata
+        type: object
+        x-nullable: false
       type:
         enum:
         - email
         - mobile
         - uid
         - external
+        - federated
         example: email
         type: string
         x-nullable: false
@@ -367,6 +424,8 @@ definitions:
   OtpSettings:
     properties:
       activation:
+        $ref: '#/definitions/OtpConfig'
+      authentication:
         $ref: '#/definitions/OtpConfig'
       challenge:
         $ref: '#/definitions/OtpConfig'
@@ -435,6 +494,9 @@ definitions:
         format: poolID
         type: string
         x-nullable: false
+      identifier_case_insensitive:
+        type: boolean
+        x-nullable: false
       metadata:
         additionalProperties:
           type: object
@@ -476,9 +538,37 @@ definitions:
         format: tenantID
         type: string
         x-nullable: false
+      workspace_id:
+        format: serverID
+        type: string
+        x-nullable: false
     required:
     - tenant_id
     - name
+    type: object
+  PoolPermissionsResponse:
+    properties:
+      delete_identity_pool:
+        type: boolean
+        x-nullable: false
+      get_identity_pool:
+        type: boolean
+        x-nullable: false
+      manage_identity_pool_users:
+        type: boolean
+        x-nullable: false
+      manage_user_manager_role:
+        type: boolean
+        x-nullable: false
+      read_identity_pool_users:
+        type: boolean
+        x-nullable: false
+      read_roles:
+        type: boolean
+        x-nullable: false
+      update_identity_pool:
+        type: boolean
+        x-nullable: false
     type: object
   PoolResponse:
     properties:
@@ -496,6 +586,9 @@ definitions:
       id:
         format: poolID
         type: string
+        x-nullable: false
+      identifier_case_insensitive:
+        type: boolean
         x-nullable: false
       metadata:
         additionalProperties:
@@ -542,6 +635,10 @@ definitions:
         format: tenantID
         type: string
         x-nullable: false
+      workspace_id:
+        format: serverID
+        type: string
+        x-nullable: false
     required:
     - tenant_id
     - name
@@ -562,6 +659,30 @@ definitions:
       identifier:
         type: string
         x-nullable: false
+    type: object
+  RequestOTPChallenge:
+    properties:
+      address:
+        type: string
+        x-nullable: false
+    required:
+    - address
+    type: object
+  RequestOTPForAddress:
+    properties:
+      address:
+        type: string
+        x-nullable: false
+    required:
+    - address
+    type: object
+  RequestResetPassword:
+    properties:
+      address:
+        type: string
+        x-nullable: false
+    required:
+    - address
     type: object
   Schema:
     properties:
@@ -859,6 +980,15 @@ definitions:
     - created_at
     - updated_at
     type: object
+  UserID:
+    properties:
+      id:
+        format: userID
+        type: string
+        x-nullable: false
+    required:
+    - id
+    type: object
   UserIdentifier:
     properties:
       created_at:
@@ -873,6 +1003,16 @@ definitions:
         format: userIdentifierValue
         type: string
         x-nullable: false
+      identifier_lc:
+        format: userIdentifierValue
+        type: string
+        x-nullable: false
+      metadata:
+        additionalProperties:
+          type: object
+        description: general purpose metadata
+        type: object
+        x-nullable: false
       tenant_id:
         example: default
         format: tenantID
@@ -884,6 +1024,7 @@ definitions:
         - mobile
         - uid
         - external
+        - federated
         example: email
         type: string
         x-nullable: false
@@ -904,6 +1045,7 @@ definitions:
     - tenant_id
     - user_pool_id
     - identifier
+    - identifier_lc
     - user_id
     - type
     - created_at
@@ -912,6 +1054,10 @@ definitions:
   UserVerifiableAddress:
     properties:
       address:
+        format: verifiableAddress
+        type: string
+        x-nullable: false
+      address_lc:
         format: verifiableAddress
         type: string
         x-nullable: false
@@ -974,6 +1120,7 @@ definitions:
     - user_pool_id
     - user_id
     - address
+    - address_lc
     - type
     - status
     - verified
@@ -1071,42 +1218,64 @@ info:
 paths:
   /admin/pools:
     get:
-      description: Lists pools.
+      description: |-
+        Retrieve the list of identity pools available under the current administrator.
+
+        You can filter the response with the query parameters to narrow the pool list down.
       operationId: listPools
       parameters:
       - description: |-
-          Optional search phrase: pool id OR pool name substring
+          A search substring. Use the identity pool identifier or name as its value.
+
           SearchPhrase
         in: query
         name: search_phrase
         type: string
       - description: |-
-          optional list pools after given id
+          An identity pool identifier.
+
+          Use it to navigate through the request pagination when the number of identity pools is greater than the
+          `limit` set for results in the response.
+
+          With `after_pool_id`, the list you obtain starts from the subsequent identity pool after the specified one. Also,
+          the response depends on the `sort` and `order` parameters, if any are passed.
+
           AfterPoolID
         in: query
         name: after_pool_id
         type: string
       - description: |-
-          optional list pools before given id
+          An identity pool identifier.
+
+          Use it to navigate through the request pagination when the number of identity pools is greater than the
+          `limit` set for the results in the response.
+
+          With `before_pool_id`, the list you obtain comprises identity pools up to the specified one. The specified
+          identity pool isn't included. Also, the response depends on the `sort` and `order` parameters, if any are
+          passed.
+
           BeforePoolID
         in: query
         name: before_pool_id
         type: string
       - description: |-
-          optional sort pools by given field, one of: name, id
+          Sort results returned in the response by `name` or `id`.
+
           Sort
         in: query
         name: sort
         type: string
       - description: |-
-          optional order pools by given direction
+          Set the order of results returned in the response. Input: `acs`, `desc`.
+
           Order
         in: query
         name: order
         type: string
       - default: 20
         description: |-
-          optional limit results
+          Limit the number of results returned in the response.
+
           Limit
         format: int64
         in: query
@@ -1114,6 +1283,12 @@ paths:
         minimum: 1
         name: limit
         type: integer
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       responses:
         "200":
           description: Pools
@@ -1127,16 +1302,27 @@ paths:
           $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
-      summary: List Pools
+      summary: List Identity Pools
       tags:
       - Pools
     post:
       description: |-
-        Creates a pool.
-        If metadata or payload IDs are not provided,
-        they default to `default_payload` and `default_metadata` system schemas.
+        Create an identity pool.
+
+        When no `metadata_schema_id` and/or `payload_schema_id` are provided in the request body, the identity pool
+        is created with the following defaults accordingly:
+
+        `default_metadata=metadata_v0`
+
+        `default_payload=user_v0`
       operationId: createPool
       parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - in: body
         name: Pool
         schema:
@@ -1160,21 +1346,31 @@ paths:
           $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
-      summary: Create Pool
+      summary: Create Identity Pool
       tags:
       - Pools
   /admin/pools/{ipID}:
     delete:
-      description: Deletes pool.
+      description: |-
+        Delete an identity pool. For this, provide the required identity pool identifier in the path.
+
+        To retrieve the identity pool ID, log in to the Admin workspace. Then go to Identity Providers >
+        [*click the connected identity provider name*] > Identity Pool > Manage Pool.
       operationId: deletePool
       parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - in: path
         name: ipID
         required: true
         type: string
       responses:
         "204":
-          description: ' Pool has been deleted'
+          description: ' Identity Pool Deleted'
         "401":
           $ref: '#/responses/unauthorizedHTTPError'
         "403":
@@ -1185,13 +1381,24 @@ paths:
           $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
-      summary: Delete Pool
+      summary: Delete Identity Pool
       tags:
       - Pools
     get:
-      description: Gets pool.
+      description: |-
+        Retrieve detailed information about an identity pool. Pass the identifier of the required identity pool with the
+        `ipID` path parameter.
+
+        To retrieve the pool identifier, log in to the Admin workspace. Then go to Identity Providers >
+        [*click the connected identity provider name*] > Identity Pool > Manage Pool.
       operationId: getPool
       parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - in: path
         name: ipID
         required: true
@@ -1209,13 +1416,23 @@ paths:
           $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
-      summary: Get Pool
+      summary: Get Identity Pool
       tags:
       - Pools
     put:
-      description: Updates pool.
+      description: |-
+        Update the identity pool details. Pass the identifier of the required identity pool with the `ipID` path parameter.
+
+        To retrieve the identity pool ID, log in to the Admin workspace. Then go to Identity Providers >
+        [*click the connected identity provider name*] > Identity Pool > Manage Pool.
       operationId: updatePool
       parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - in: path
         name: ipID
         required: true
@@ -1243,17 +1460,59 @@ paths:
           $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
-      summary: Update Pool
+      summary: Update Identity Pool
       tags:
       - Pools
+  /admin/pools/{ipID}/permissions:
+    get:
+      description: |-
+        Check permissions granted to the current administrator relating to the identity pool specified.
+
+        Pass the required identity pool identifier as the value of the `ipID` path parameter.
+
+        For authorization, include the `if-match` header with the ETag value.
+      operationId: checkPoolPermissions
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/PoolPermissionsResponse'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Check Identity Pool Permissions
+      tags:
+      - permissions
   /admin/pools/{ipID}/users:
     get:
       description: |-
-        Lists users.
+        Retrieve the list of users from the specified identity pool.
 
         Results are sorted by user ID. No other sorting is supported.
       operationId: listUsers
       parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - in: path
         name: ipID
         required: true
@@ -1325,12 +1584,26 @@ paths:
       - Users
     post:
       description: |-
-        Creates a user with extended data. User can be created with any status and set of identifiers, addresses and credentials.
-        If payload schema ID or metadata schema ID is not provided, they default to the value from Identity Pool.
-        Payload and metadata must be valid against a proper schema.
-        Returns an extended view on user entry (see Get User endpoint).
+        Create a user with extended data.
+
+        Any status and set of identifiers, addresses, and credentials are allowed.
+
+        When no `payload_schema_id` or `metadata_schema_id` are provided, the default values are taken from the
+        specified Identity Pool.
+
+        Payload and metadata must match the specified schema.
+
+        The response contains an extended view on user entry.
+
+        To retrieve a user entry without user creation, call the **Get User Details** endpoint.
       operationId: createUser
       parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - in: path
         name: ipID
         required: true
@@ -1358,14 +1631,21 @@ paths:
           $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
-      summary: Create User
+      summary: Create User Account
       tags:
       - Users
   /admin/pools/{ipID}/users/{userID}:
     delete:
-      description: Deletes user.
+      description: Remove a record about a user account in the specified identity
+        pool.
       operationId: deleteUser
       parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - in: path
         name: ipID
         required: true
@@ -1387,16 +1667,23 @@ paths:
           $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
-      summary: Delete User
+      summary: Delete User Account
       tags:
       - Users
     get:
       description: |-
-        Returns an extended view on user entry.
-        Besides the basic user entry, it returns all user identifiers, addresses, and credentials (blurred).
-        User payload and metadata are also returned.
+        Retrieve an extended information about a user record.
+
+        The response contains user's basic details, payload, and metadata, as well as all their identifiers,
+        addresses, and blurred credentials.
       operationId: getUser
       parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - in: path
         name: ipID
         required: true
@@ -1418,18 +1705,27 @@ paths:
           $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
-      summary: Get User
+      summary: Get User Details
       tags:
       - Users
     put:
       description: |-
-        Updates base set of user data like payload, metadata, schemas and status.
-        Updates only provided fields - overrides them. Not provided fields are not removed/cleared.
-        If payload or metadata is provided it must be valid against proper schema.
-        If any schema is provided then the corresponding entry (payload or metadata) must be valid against it.
-        Returns an extended view on user entry (see Get User endpoint).
+        Update the basic set of user data: payload, metadata, schemas, and status. Provide the required values for the fields
+        you need to update. Fields with no values are skipped for the update (not removed nor cleared).
+
+        The fields to be updated are overridden.
+
+        Any `payload` / `metadata` and `payload_schema_id` / `metadata_schema_id` values passed must be mutually relevant.
+
+        To retrieve a user entry without updating their record, call the **Get User Details** endpoint.
       operationId: updateUser
       parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - in: path
         name: ipID
         required: true
@@ -1461,25 +1757,41 @@ paths:
           $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
-      summary: Update User
+      summary: Update User Record
       tags:
       - Users
   /admin/pools/{ipID}/users/{userID}/activation/send:
     post:
       description: |-
-        Sends an activation message to user to provided address.
-        If an address is not provided then it takes user address as destination (if only one address exists)
-        Fails if:
-        address is not provided and user has no addresses or more than one
-        address is someone's else verified address or identifier
-        user status is not New.
-        Invalidates previously generated OTPs for user activation.
-        If `code_type_in_message` query parameter was set to link or not provided then a link will be generated for activation.
-        Activation message is valid for specific period of time configured in Identity Pool.
+        Send an activation message to the user's provided address.
 
-        REFACTORED: input field name has been changed from `identifier` to `address`; field `identifier` stays for backward compatibility and overrides `address` if not empty
+        When no `address` is provided in the request body, the message is sent to the address saved for this user (if there
+        is only one address).
+
+        The request fails upon the following:
+
+        • `address` is not provided and user has no addresses or more than one.
+
+        • `address` is someone else's verified address or identifier.
+
+        • The user's `status` is not `new`.
+
+        This request invalidates any previously generated OTPs for user account activation.
+
+        When `code_type_in_message=link` or no value is provided for it, an activation link is generated.
+
+        Activation message validity period is configured in the identity pool settings.
+
+        ❕ REFACTORED: `identifier` is renamed to `address` in the request body. For backward compatibility, the both
+        fields are available. If `identifier` is not empty, it overrides the `address` value.
       operationId: sendActivationMessage
       parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - in: path
         name: ipID
         required: true
@@ -1500,6 +1812,12 @@ paths:
         in: query
         name: code_type_in_message
         type: string
+      - description: |-
+          optional server's identifier (used for themes etc.)
+          ServerID
+        in: query
+        name: server_id
+        type: string
       responses:
         "204":
           description: ' Activation message sent'
@@ -1518,11 +1836,70 @@ paths:
       summary: Send Activation Message
       tags:
       - Users
+  /admin/pools/{ipID}/users/{userID}/address/verification/request:
+    post:
+      description: |-
+        Generate and send a verification link to the provided address.
+        The `address` value must be a valid email or mobile number marked as the user's `unverified address` and
+        must not be a verified address of any other user.
+
+        Error `404` is returned when either `userID` or `address` are incorrect.
+
+        The requested link validity period is configured in the identity pool settings.
+      operationId: requestAddressVerification
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: userID
+        required: true
+        type: string
+      - in: body
+        name: RequestAddressVerification
+        schema:
+          $ref: '#/definitions/RequestOTPForAddress'
+      - description: |-
+          optional server's identifier (used for themes etc.)
+          ServerID
+        in: query
+        name: server_id
+        type: string
+      responses:
+        "204":
+          description: ' Request accepted'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "409":
+          $ref: '#/responses/conflictHTTPError'
+        "412":
+          $ref: '#/responses/payloadTooLargeHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Request Address Verification
+      tags:
+      - OTP
   /admin/pools/{ipID}/users/{userID}/addresses/add:
     post:
-      description: 'Adds a verifiable address to the user account'
+      description: Add a verifiable address to the user account in the specified identity
+        pool.
       operationId: addUserVerifiableAddress
       parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - in: path
         name: ipID
         required: true
@@ -1555,9 +1932,16 @@ paths:
       - Users
   /admin/pools/{ipID}/users/{userID}/addresses/remove:
     post:
-      description: 'Deletes a verifiable address from the user account'
+      description: Remove a verifiable address from a user account so it is no longer
+        associated with the specified user.
       operationId: deleteUserVerifiableAddress
       parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - in: path
         name: ipID
         required: true
@@ -1572,7 +1956,7 @@ paths:
           $ref: '#/definitions/DeleteUserVerifiableAddress'
       responses:
         "204":
-          description: ' Address has been deleted'
+          description: ' Address Deleted'
         "401":
           $ref: '#/responses/unauthorizedHTTPError'
         "403":
@@ -1588,9 +1972,15 @@ paths:
       - Users
   /admin/pools/{ipID}/users/{userID}/addresses/update:
     post:
-      description: 'Updates a verifiable address of the user account'
+      description: Updates a verifiable address for the user account.
       operationId: updateUserVerifiableAddress
       parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - in: path
         name: ipID
         required: true
@@ -1623,9 +2013,16 @@ paths:
       - Users
   /admin/pools/{ipID}/users/{userID}/identifiers/add:
     post:
-      description: 'Adds an identifier to the user account'
+      description: Add a new identifier to a user's profile in the specified identity
+        pool.
       operationId: addUserIdentifier
       parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - in: path
         name: ipID
         required: true
@@ -1658,9 +2055,15 @@ paths:
       - Users
   /admin/pools/{ipID}/users/{userID}/identifiers/remove:
     post:
-      description: 'Deletes an identifier from the user account'
+      description: Remove an identifier from the specified user account.
       operationId: deleteUserIdentifier
       parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - in: path
         name: ipID
         required: true
@@ -1686,13 +2089,152 @@ paths:
           $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
-      summary: Delete Identifier
+      summary: Remove Identifier
+      tags:
+      - Users
+  /admin/pools/{ipID}/users/{userID}/otp/request:
+    post:
+      description: |-
+        Generate and send an OTP to the provided address.
+
+        The `address` value must be a valid email or mobile number marked as the user's `unverified address` and
+        must not be a verified address of any other user.
+
+        The requested OTP validity period is configured in the identity pool settings.
+
+        Generating new challenge invalidates a previous challenge.
+      operationId: requestOTPChallenge
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: userID
+        required: true
+        type: string
+      - in: body
+        name: RequestOTPChallenge
+        schema:
+          $ref: '#/definitions/RequestOTPChallenge'
+      - description: |-
+          optional server's identifier (used for themes etc.)
+          ServerID
+        in: query
+        name: server_id
+        type: string
+      responses:
+        "204":
+          description: ' Request accepted'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "412":
+          $ref: '#/responses/payloadTooLargeHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Request OTP Challenge
+      tags:
+      - OTP
+  /admin/pools/{ipID}/users/{userID}/otp/verify:
+    post:
+      description: |-
+        Verify the OTP generates as part of a challenge-response mechanism.
+
+        A valid OTP is removed, and the endpoint returns the **Request accepted** response.
+
+        For password change or activation, call **Request Reset Password** and **Send Activation Message**. Find these
+        endpoints documented under the **Users** section of this specification.
+      operationId: verifyOTP
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: userID
+        required: true
+        type: string
+      - in: body
+        name: InspectOTP
+        schema:
+          $ref: '#/definitions/InspectOTP'
+      responses:
+        "200":
+          $ref: '#/responses/UserIDResponse'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "412":
+          $ref: '#/responses/payloadTooLargeHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+      security:
+      - admin: []
+      summary: Verify OTP Challenge
+      tags:
+      - OTP
+  /admin/pools/{ipID}/users/{userID}/password/reset/request:
+    post:
+      description: |-
+        Send an OTP to reset a password.
+
+        The first step of the reset password flow. The `address` body parameter can be either `verified` or `unverified`.
+
+        A new OTP invalidates any previous OTPs sent for password reset.
+
+        Reset password OTP validity period is configured in the identity pool settings.
+      operationId: requestResetPassword
+      parameters:
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: path
+        name: userID
+        required: true
+        type: string
+      - in: body
+        name: RequestResetPassword
+        schema:
+          $ref: '#/definitions/RequestResetPassword'
+      - description: |-
+          optional server's identifier (used for themes etc.)
+          ServerID
+        in: query
+        name: server_id
+        type: string
+      responses:
+        "204":
+          description: ' Request Accepted'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+      security:
+      - admin: []
+      summary: Request Password Reset
       tags:
       - Users
   /admin/schemas:
     get:
-      description: Lists schemas.
+      description: List schemas available for the current administrator.
       operationId: listSchemas
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       responses:
         "200":
           description: Schemas
@@ -1710,10 +2252,16 @@ paths:
       tags:
       - Schemas
     post:
-      description: Creates schema. If the `system` flag is set then that schema cannot
-        be later deleted or modified.
+      description: Create a schema. Set the `system` flag to prevent the schema from
+        deletion or modifications.
       operationId: createSchema
       parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - in: body
         name: Schema
         schema:
@@ -1744,9 +2292,16 @@ paths:
       - Schemas
   /admin/schemas/{schID}:
     delete:
-      description: Deletes schema. It is not possible to delete schema marked as `system`.
+      description: Delete a schema. Schemas marked with the `system` flag aren't available
+        for deletion.
       operationId: deleteSchema
       parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - in: path
         name: schID
         required: true
@@ -1772,9 +2327,15 @@ paths:
       tags:
       - Schemas
     get:
-      description: Gets schema.
+      description: Retrieve information about a specified identity schema.
       operationId: getSchema
       parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - in: path
         name: schID
         required: true
@@ -1796,9 +2357,16 @@ paths:
       tags:
       - Schemas
     put:
-      description: Updates schema. It is not possible to update schema marked as `system`.
+      description: Update a schema. Schemas marked with the `system` flag aren't available
+        for update.
       operationId: updateSchema
       parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - in: path
         name: schID
         required: true
@@ -1831,39 +2399,419 @@ paths:
       summary: Update Schema
       tags:
       - Schemas
+  /admin/workspace/{wid}/my/pools:
+    get:
+      description: |-
+        Retrieve the detailed information about identity pools connected to the workspace and available for the current
+        administrator.
+
+        Pass the required workspace identifier with the `wid` path parameter.
+
+        For administrator identification, pass the `if-match` header with the ETag as its value.
+      operationId: listMyWorkspacePools
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: default
+        description: Workspace id
+        in: path
+        name: wid
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Pools
+          schema:
+            $ref: '#/definitions/Pools'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: List My Workspace Pools
+      tags:
+      - Pools
+  /admin/workspace/{wid}/pools:
+    get:
+      description: |-
+        Retrieve the list of identity pools available for a workspace. Pass the required workspace identifier with the
+        `wid` path parameter.
+
+        You can filter the response with the query parameters to narrow the pool list down.
+      operationId: listWorkspacePools
+      parameters:
+      - description: |-
+          A search substring. Use the identity pool identifier or name as its value.
+
+          SearchPhrase
+        in: query
+        name: search_phrase
+        type: string
+      - description: |-
+          An identity pool identifier.
+
+          Use it to navigate through the request pagination when the number of identity pools is greater than the
+          `limit` set for results in the response.
+
+          With `after_pool_id`, the list you obtain starts from the subsequent identity pool after the specified one. Also,
+          the response depends on the `sort` and `order` parameters, if any are passed.
+
+          AfterPoolID
+        in: query
+        name: after_pool_id
+        type: string
+      - description: |-
+          An identity pool identifier.
+
+          Use it to navigate through the request pagination when the number of identity pools is greater than the
+          `limit` set for the results in the response.
+
+          With `before_pool_id`, the list you obtain comprises identity pools up to the specified one. The specified
+          identity pool isn't included. Also, the response depends on the `sort` and `order` parameters, if any are
+          passed.
+
+          BeforePoolID
+        in: query
+        name: before_pool_id
+        type: string
+      - description: |-
+          Sort results returned in the response by `name` or `id`.
+
+          Sort
+        in: query
+        name: sort
+        type: string
+      - description: |-
+          Set the order of results returned in the response. Input: `acs`, `desc`.
+
+          Order
+        in: query
+        name: order
+        type: string
+      - default: 20
+        description: |-
+          Limit the number of results returned in the response.
+
+          Limit
+        format: int64
+        in: query
+        maximum: 100
+        minimum: 1
+        name: limit
+        type: integer
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: default
+        description: Workspace id
+        in: path
+        name: wid
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Pools
+          schema:
+            $ref: '#/definitions/Pools'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: List Identity Pools Per Workspace
+      tags:
+      - Pools
+    post:
+      description: |-
+        Create an identity pool under the required workspace.
+
+        When no `metadata_schema_id` and/or `payload_schema_id` are provided in the request body, the identity pool
+        is created with the following defaults accordingly:
+
+        `default_metadata=metadata_v0`
+
+        `default_payload=user_v0`
+      operationId: createWorkspacePool
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: default
+        description: Workspace id
+        in: path
+        name: wid
+        required: true
+        type: string
+      - in: body
+        name: Pool
+        schema:
+          $ref: '#/definitions/Pool'
+      - description: With idp
+        in: query
+        name: with_idp
+        type: boolean
+      responses:
+        "201":
+          $ref: '#/responses/PoolResponseParams'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "409":
+          $ref: '#/responses/conflictHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Create Identity Pool For Workspace
+      tags:
+      - Pools
+  /admin/workspace/{wid}/pools/{ipID}:
+    delete:
+      description: Delete a workspace identity pool.
+      operationId: deleteWorkspacePool
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: default
+        description: Workspace id
+        in: path
+        name: wid
+        required: true
+        type: string
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - description: With idp
+        in: query
+        name: with_idp
+        type: boolean
+      responses:
+        "204":
+          description: ' Identity Pool Deleted'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Delete Workspace Identity Pool
+      tags:
+      - Pools
+  /admin/workspace/{wid}/schemas:
+    get:
+      description: List schemas available for the workspace.
+      operationId: listWorkspaceSchemas
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: default
+        description: Workspace id
+        in: path
+        name: wid
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Schemas
+          schema:
+            $ref: '#/definitions/Schemas'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: List Workspace Schemas
+      tags:
+      - Schemas
+  /admin/workspace/{wid}/schemas/{schID}:
+    get:
+      description: Retrieve information about a specified identity schema.
+      operationId: getWorkspaceSchema
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: default
+        description: Workspace id
+        in: path
+        name: wid
+        required: true
+        type: string
+      - in: path
+        name: schID
+        required: true
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/SchemaResponse'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Get Workspace Schema
+      tags:
+      - Schemas
 produces:
 - application/json
 responses:
   AdminAddressResponse:
     description: Address
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
     schema:
       $ref: '#/definitions/UserVerifiableAddress'
   AdminIdentifierResponse:
     description: Identifier
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
     schema:
       $ref: '#/definitions/UserIdentifier'
   AdminUserResponse:
     description: User
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
     schema:
       $ref: '#/definitions/UserWithData'
+  PoolPermissionsResponse:
+    description: PoolPermissions
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+    schema:
+      $ref: '#/definitions/PoolPermissionsResponse'
   PoolResponseParams:
     description: Identity Pool
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
     schema:
       $ref: '#/definitions/PoolResponse'
   PoolsResponse:
     description: Identity Pools
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
     schema:
       $ref: '#/definitions/Pools'
   SchemaResponse:
     description: Identity Schema
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
     schema:
       $ref: '#/definitions/Schema'
   SchemasResponse:
     description: Identity Schemas
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
     schema:
       $ref: '#/definitions/Schemas'
+  UserIDResponse:
+    description: User
+    schema:
+      $ref: '#/definitions/UserID'
   UsersResponse:
     description: Identity Users
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
     schema:
       $ref: '#/definitions/Users'
   badRequestHTTPError:

@@ -54,7 +54,7 @@ func (o *ListScriptsReader) ReadResponse(response runtime.ClientResponse, consum
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /servers/{wid}/scripts] listScripts", response, response.Code())
 	}
 }
 
@@ -69,6 +69,15 @@ ListScriptsOK describes a response with status code 200, with default header val
 Scripts
 */
 type ListScriptsOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.Scripts
 }
 
@@ -97,6 +106,11 @@ func (o *ListScriptsOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the list scripts o k response
+func (o *ListScriptsOK) Code() int {
+	return 200
+}
+
 func (o *ListScriptsOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/scripts][%d] listScriptsOK  %+v", 200, o.Payload)
 }
@@ -110,6 +124,13 @@ func (o *ListScriptsOK) GetPayload() *models.Scripts {
 }
 
 func (o *ListScriptsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.Scripts)
 
@@ -129,7 +150,7 @@ func NewListScriptsBadRequest() *ListScriptsBadRequest {
 /*
 ListScriptsBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type ListScriptsBadRequest struct {
 	Payload *models.Error
@@ -158,6 +179,11 @@ func (o *ListScriptsBadRequest) IsServerError() bool {
 // IsCode returns true when this list scripts bad request response a status code equal to that given
 func (o *ListScriptsBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the list scripts bad request response
+func (o *ListScriptsBadRequest) Code() int {
+	return 400
 }
 
 func (o *ListScriptsBadRequest) Error() string {
@@ -192,7 +218,7 @@ func NewListScriptsUnauthorized() *ListScriptsUnauthorized {
 /*
 ListScriptsUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ListScriptsUnauthorized struct {
 	Payload *models.Error
@@ -221,6 +247,11 @@ func (o *ListScriptsUnauthorized) IsServerError() bool {
 // IsCode returns true when this list scripts unauthorized response a status code equal to that given
 func (o *ListScriptsUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the list scripts unauthorized response
+func (o *ListScriptsUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ListScriptsUnauthorized) Error() string {
@@ -255,7 +286,7 @@ func NewListScriptsForbidden() *ListScriptsForbidden {
 /*
 ListScriptsForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ListScriptsForbidden struct {
 	Payload *models.Error
@@ -284,6 +315,11 @@ func (o *ListScriptsForbidden) IsServerError() bool {
 // IsCode returns true when this list scripts forbidden response a status code equal to that given
 func (o *ListScriptsForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the list scripts forbidden response
+func (o *ListScriptsForbidden) Code() int {
+	return 403
 }
 
 func (o *ListScriptsForbidden) Error() string {
@@ -318,7 +354,7 @@ func NewListScriptsTooManyRequests() *ListScriptsTooManyRequests {
 /*
 ListScriptsTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ListScriptsTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +383,11 @@ func (o *ListScriptsTooManyRequests) IsServerError() bool {
 // IsCode returns true when this list scripts too many requests response a status code equal to that given
 func (o *ListScriptsTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the list scripts too many requests response
+func (o *ListScriptsTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ListScriptsTooManyRequests) Error() string {

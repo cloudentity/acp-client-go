@@ -135,6 +135,11 @@ func (m *OBWriteFileConsent3Data) ContextValidate(ctx context.Context, formats s
 func (m *OBWriteFileConsent3Data) contextValidateAuthorisation(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Authorisation != nil {
+
+		if swag.IsZero(m.Authorisation) { // not required
+			return nil
+		}
+
 		if err := m.Authorisation.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Authorisation")
@@ -151,6 +156,7 @@ func (m *OBWriteFileConsent3Data) contextValidateAuthorisation(ctx context.Conte
 func (m *OBWriteFileConsent3Data) contextValidateInitiation(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Initiation != nil {
+
 		if err := m.Initiation.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Initiation")
@@ -167,6 +173,11 @@ func (m *OBWriteFileConsent3Data) contextValidateInitiation(ctx context.Context,
 func (m *OBWriteFileConsent3Data) contextValidateSCASupportData(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.SCASupportData != nil {
+
+		if swag.IsZero(m.SCASupportData) { // not required
+			return nil
+		}
+
 		if err := m.SCASupportData.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("SCASupportData")

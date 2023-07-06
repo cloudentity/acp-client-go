@@ -32,6 +32,11 @@ type AuditEventMetadata struct {
 	// It's first not empty value from: X-Forwaded-For, X-Real-IP or network socket IP address
 	IP string `json:"ip,omitempty"`
 
+	// Access request may act claims.
+	//
+	// It's only populated if the token has been issued token with may_act claim.
+	MayActClaims map[string]interface{} `json:"may_act_claims,omitempty"`
+
 	// Session id
 	//
 	// Correlation ID in a login process. Returns events related to a particular login process.

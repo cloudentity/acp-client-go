@@ -150,6 +150,10 @@ func (m *RecurringJob) ContextValidate(ctx context.Context, formats strfmt.Regis
 
 func (m *RecurringJob) contextValidateID(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.ID) { // not required
+		return nil
+	}
+
 	if err := m.ID.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("id")
@@ -163,6 +167,10 @@ func (m *RecurringJob) contextValidateID(ctx context.Context, formats strfmt.Reg
 }
 
 func (m *RecurringJob) contextValidateQueue(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Queue) { // not required
+		return nil
+	}
 
 	if err := m.Queue.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

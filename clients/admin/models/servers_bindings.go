@@ -82,6 +82,11 @@ func (m *ServersBindings) contextValidateBindings(ctx context.Context, formats s
 	for i := 0; i < len(m.Bindings); i++ {
 
 		if m.Bindings[i] != nil {
+
+			if swag.IsZero(m.Bindings[i]) { // not required
+				return nil
+			}
+
 			if err := m.Bindings[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("bindings" + "." + strconv.Itoa(i))

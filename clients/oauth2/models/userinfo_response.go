@@ -17,6 +17,9 @@ import (
 // swagger:model userinfoResponse
 type UserinfoResponse struct {
 
+	// Server ID - Authorization Server ID that this ID Token is intended for.
+	Aid string `json:"aid,omitempty"`
+
 	// Audience - Audiences that this ID Token is intended for.
 	Aud []string `json:"aud"`
 
@@ -37,6 +40,12 @@ type UserinfoResponse struct {
 
 	// Given name(s) or first name(s) of the End-User. Note that in some cultures, people can have multiple given names; all can be present, with the names being separated by space characters.
 	GivenName string `json:"given_name,omitempty"`
+
+	// IdpID - IDP ID that this ID Token is intended for.
+	Idp string `json:"idp,omitempty"`
+
+	// IdpMethod - IDP Method that this ID Token is intended for.
+	IdpMethod string `json:"idp_method,omitempty"`
 
 	// End-User's locale, represented as a BCP47 [RFC5646] language tag. This is typically an ISO 639-1 Alpha-2 [ISO639‑1] language code in lowercase and an ISO 3166-1 Alpha-2 [ISO3166‑1] country code in uppercase, separated by a dash. For example, en-US or fr-CA. As a compatibility note, some implementations have used an underscore as the separator rather than a dash, for example, en_US; Relying Parties MAY choose to accept this locale syntax as well.
 	Locale string `json:"locale,omitempty"`
@@ -67,6 +76,9 @@ type UserinfoResponse struct {
 
 	// Subject - Identifier for the End-User at the IssuerURL.
 	Sub string `json:"sub,omitempty"`
+
+	// TenantID - Tenant ID that this ID Token is intended for.
+	Tid string `json:"tid,omitempty"`
 
 	// Time the End-User's information was last updated. Its value is a JSON number representing the number of seconds from 1970-01-01T0:0:0Z as measured in UTC until the date/time.
 	UpdatedAt int64 `json:"updated_at,omitempty"`

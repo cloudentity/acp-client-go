@@ -54,7 +54,7 @@ func (o *FDXDynamicClientRegistrationDeleteReader) ReadResponse(response runtime
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[DELETE /fdx/dcr/register/{cid}] FDXDynamicClientRegistrationDelete", response, response.Code())
 	}
 }
 
@@ -66,7 +66,7 @@ func NewFDXDynamicClientRegistrationDeleteNoContent() *FDXDynamicClientRegistrat
 /*
 FDXDynamicClientRegistrationDeleteNoContent describes a response with status code 204, with default header values.
 
-	Client has been deleted
+	Client details deleted
 */
 type FDXDynamicClientRegistrationDeleteNoContent struct {
 }

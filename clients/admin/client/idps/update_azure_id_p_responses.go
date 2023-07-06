@@ -66,7 +66,7 @@ func (o *UpdateAzureIDPReader) ReadResponse(response runtime.ClientResponse, con
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /servers/{wid}/idps/azure/{iid}] updateAzureIDP", response, response.Code())
 	}
 }
 
@@ -109,6 +109,11 @@ func (o *UpdateAzureIDPOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the update azure Id p o k response
+func (o *UpdateAzureIDPOK) Code() int {
+	return 200
+}
+
 func (o *UpdateAzureIDPOK) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/azure/{iid}][%d] updateAzureIdPOK  %+v", 200, o.Payload)
 }
@@ -141,7 +146,7 @@ func NewUpdateAzureIDPBadRequest() *UpdateAzureIDPBadRequest {
 /*
 UpdateAzureIDPBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type UpdateAzureIDPBadRequest struct {
 	Payload *models.Error
@@ -170,6 +175,11 @@ func (o *UpdateAzureIDPBadRequest) IsServerError() bool {
 // IsCode returns true when this update azure Id p bad request response a status code equal to that given
 func (o *UpdateAzureIDPBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the update azure Id p bad request response
+func (o *UpdateAzureIDPBadRequest) Code() int {
+	return 400
 }
 
 func (o *UpdateAzureIDPBadRequest) Error() string {
@@ -204,7 +214,7 @@ func NewUpdateAzureIDPUnauthorized() *UpdateAzureIDPUnauthorized {
 /*
 UpdateAzureIDPUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type UpdateAzureIDPUnauthorized struct {
 	Payload *models.Error
@@ -233,6 +243,11 @@ func (o *UpdateAzureIDPUnauthorized) IsServerError() bool {
 // IsCode returns true when this update azure Id p unauthorized response a status code equal to that given
 func (o *UpdateAzureIDPUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the update azure Id p unauthorized response
+func (o *UpdateAzureIDPUnauthorized) Code() int {
+	return 401
 }
 
 func (o *UpdateAzureIDPUnauthorized) Error() string {
@@ -267,7 +282,7 @@ func NewUpdateAzureIDPForbidden() *UpdateAzureIDPForbidden {
 /*
 UpdateAzureIDPForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type UpdateAzureIDPForbidden struct {
 	Payload *models.Error
@@ -296,6 +311,11 @@ func (o *UpdateAzureIDPForbidden) IsServerError() bool {
 // IsCode returns true when this update azure Id p forbidden response a status code equal to that given
 func (o *UpdateAzureIDPForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the update azure Id p forbidden response
+func (o *UpdateAzureIDPForbidden) Code() int {
+	return 403
 }
 
 func (o *UpdateAzureIDPForbidden) Error() string {
@@ -330,7 +350,7 @@ func NewUpdateAzureIDPNotFound() *UpdateAzureIDPNotFound {
 /*
 UpdateAzureIDPNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type UpdateAzureIDPNotFound struct {
 	Payload *models.Error
@@ -359,6 +379,11 @@ func (o *UpdateAzureIDPNotFound) IsServerError() bool {
 // IsCode returns true when this update azure Id p not found response a status code equal to that given
 func (o *UpdateAzureIDPNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the update azure Id p not found response
+func (o *UpdateAzureIDPNotFound) Code() int {
+	return 404
 }
 
 func (o *UpdateAzureIDPNotFound) Error() string {
@@ -393,7 +418,7 @@ func NewUpdateAzureIDPUnprocessableEntity() *UpdateAzureIDPUnprocessableEntity {
 /*
 UpdateAzureIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type UpdateAzureIDPUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +447,11 @@ func (o *UpdateAzureIDPUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this update azure Id p unprocessable entity response a status code equal to that given
 func (o *UpdateAzureIDPUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the update azure Id p unprocessable entity response
+func (o *UpdateAzureIDPUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *UpdateAzureIDPUnprocessableEntity) Error() string {
@@ -456,7 +486,7 @@ func NewUpdateAzureIDPTooManyRequests() *UpdateAzureIDPTooManyRequests {
 /*
 UpdateAzureIDPTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type UpdateAzureIDPTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +515,11 @@ func (o *UpdateAzureIDPTooManyRequests) IsServerError() bool {
 // IsCode returns true when this update azure Id p too many requests response a status code equal to that given
 func (o *UpdateAzureIDPTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the update azure Id p too many requests response
+func (o *UpdateAzureIDPTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *UpdateAzureIDPTooManyRequests) Error() string {

@@ -255,6 +255,11 @@ func (m *MFAMethodResponse) ContextValidate(ctx context.Context, formats strfmt.
 func (m *MFAMethodResponse) contextValidateAuth(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Auth != nil {
+
+		if swag.IsZero(m.Auth) { // not required
+			return nil
+		}
+
 		if err := m.Auth.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("auth")
@@ -271,6 +276,11 @@ func (m *MFAMethodResponse) contextValidateAuth(ctx context.Context, formats str
 func (m *MFAMethodResponse) contextValidateDefaultEmailSettings(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.DefaultEmailSettings != nil {
+
+		if swag.IsZero(m.DefaultEmailSettings) { // not required
+			return nil
+		}
+
 		if err := m.DefaultEmailSettings.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("default_email_settings")
@@ -287,6 +297,11 @@ func (m *MFAMethodResponse) contextValidateDefaultEmailSettings(ctx context.Cont
 func (m *MFAMethodResponse) contextValidateDefaultSmsSettings(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.DefaultSmsSettings != nil {
+
+		if swag.IsZero(m.DefaultSmsSettings) { // not required
+			return nil
+		}
+
 		if err := m.DefaultSmsSettings.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("default_sms_settings")
@@ -303,6 +318,11 @@ func (m *MFAMethodResponse) contextValidateDefaultSmsSettings(ctx context.Contex
 func (m *MFAMethodResponse) contextValidateSettings(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Settings != nil {
+
+		if swag.IsZero(m.Settings) { // not required
+			return nil
+		}
+
 		if err := m.Settings.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("settings")

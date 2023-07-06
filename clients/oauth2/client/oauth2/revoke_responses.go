@@ -48,7 +48,7 @@ func (o *RevokeReader) ReadResponse(response runtime.ClientResponse, consumer ru
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /oauth2/revoke] revoke", response, response.Code())
 	}
 }
 
@@ -88,6 +88,11 @@ func (o *RevokeOK) IsServerError() bool {
 // IsCode returns true when this revoke o k response a status code equal to that given
 func (o *RevokeOK) IsCode(code int) bool {
 	return code == 200
+}
+
+// Code gets the status code for the revoke o k response
+func (o *RevokeOK) Code() int {
+	return 200
 }
 
 func (o *RevokeOK) Error() string {
@@ -140,6 +145,11 @@ func (o *RevokeUnauthorized) IsServerError() bool {
 // IsCode returns true when this revoke unauthorized response a status code equal to that given
 func (o *RevokeUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the revoke unauthorized response
+func (o *RevokeUnauthorized) Code() int {
+	return 401
 }
 
 func (o *RevokeUnauthorized) Error() string {
@@ -205,6 +215,11 @@ func (o *RevokeNotFound) IsCode(code int) bool {
 	return code == 404
 }
 
+// Code gets the status code for the revoke not found response
+func (o *RevokeNotFound) Code() int {
+	return 404
+}
+
 func (o *RevokeNotFound) Error() string {
 	return fmt.Sprintf("[POST /oauth2/revoke][%d] revokeNotFound  %+v", 404, o.Payload)
 }
@@ -266,6 +281,11 @@ func (o *RevokeTooManyRequests) IsServerError() bool {
 // IsCode returns true when this revoke too many requests response a status code equal to that given
 func (o *RevokeTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the revoke too many requests response
+func (o *RevokeTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *RevokeTooManyRequests) Error() string {

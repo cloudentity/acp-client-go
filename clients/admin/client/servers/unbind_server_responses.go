@@ -54,7 +54,7 @@ func (o *UnbindServerReader) ReadResponse(response runtime.ClientResponse, consu
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[DELETE /servers/{wid}/unbind/{rid}] unbindServer", response, response.Code())
 	}
 }
 
@@ -69,6 +69,15 @@ UnbindServerOK describes a response with status code 200, with default header va
 Server to server binding
 */
 type UnbindServerOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.ServerToServer
 }
 
@@ -97,6 +106,11 @@ func (o *UnbindServerOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the unbind server o k response
+func (o *UnbindServerOK) Code() int {
+	return 200
+}
+
 func (o *UnbindServerOK) Error() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}/unbind/{rid}][%d] unbindServerOK  %+v", 200, o.Payload)
 }
@@ -110,6 +124,13 @@ func (o *UnbindServerOK) GetPayload() *models.ServerToServer {
 }
 
 func (o *UnbindServerOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.ServerToServer)
 
@@ -129,7 +150,7 @@ func NewUnbindServerUnauthorized() *UnbindServerUnauthorized {
 /*
 UnbindServerUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type UnbindServerUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +179,11 @@ func (o *UnbindServerUnauthorized) IsServerError() bool {
 // IsCode returns true when this unbind server unauthorized response a status code equal to that given
 func (o *UnbindServerUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the unbind server unauthorized response
+func (o *UnbindServerUnauthorized) Code() int {
+	return 401
 }
 
 func (o *UnbindServerUnauthorized) Error() string {
@@ -192,7 +218,7 @@ func NewUnbindServerForbidden() *UnbindServerForbidden {
 /*
 UnbindServerForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type UnbindServerForbidden struct {
 	Payload *models.Error
@@ -221,6 +247,11 @@ func (o *UnbindServerForbidden) IsServerError() bool {
 // IsCode returns true when this unbind server forbidden response a status code equal to that given
 func (o *UnbindServerForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the unbind server forbidden response
+func (o *UnbindServerForbidden) Code() int {
+	return 403
 }
 
 func (o *UnbindServerForbidden) Error() string {
@@ -255,7 +286,7 @@ func NewUnbindServerNotFound() *UnbindServerNotFound {
 /*
 UnbindServerNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type UnbindServerNotFound struct {
 	Payload *models.Error
@@ -284,6 +315,11 @@ func (o *UnbindServerNotFound) IsServerError() bool {
 // IsCode returns true when this unbind server not found response a status code equal to that given
 func (o *UnbindServerNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the unbind server not found response
+func (o *UnbindServerNotFound) Code() int {
+	return 404
 }
 
 func (o *UnbindServerNotFound) Error() string {
@@ -318,7 +354,7 @@ func NewUnbindServerTooManyRequests() *UnbindServerTooManyRequests {
 /*
 UnbindServerTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type UnbindServerTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +383,11 @@ func (o *UnbindServerTooManyRequests) IsServerError() bool {
 // IsCode returns true when this unbind server too many requests response a status code equal to that given
 func (o *UnbindServerTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the unbind server too many requests response
+func (o *UnbindServerTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *UnbindServerTooManyRequests) Error() string {

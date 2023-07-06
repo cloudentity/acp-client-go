@@ -60,6 +60,15 @@ GetStylingParams contains all the parameters to send to the API endpoint
 	Typically these are written to a http.Request.
 */
 type GetStylingParams struct {
+
+	/* Aid.
+
+	   Authorization server id
+
+	   Default: "admin"
+	*/
+	Aid string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -77,7 +86,18 @@ func (o *GetStylingParams) WithDefaults() *GetStylingParams {
 //
 // All values with no default are reset to their zero value.
 func (o *GetStylingParams) SetDefaults() {
-	// no default values defined for this parameter
+	var (
+		aidDefault = string("admin")
+	)
+
+	val := GetStylingParams{
+		Aid: aidDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the get styling params
@@ -113,6 +133,17 @@ func (o *GetStylingParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAid adds the aid to the get styling params
+func (o *GetStylingParams) WithAid(aid string) *GetStylingParams {
+	o.SetAid(aid)
+	return o
+}
+
+// SetAid adds the aid to the get styling params
+func (o *GetStylingParams) SetAid(aid string) {
+	o.Aid = aid
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetStylingParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -120,6 +151,11 @@ func (o *GetStylingParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 		return err
 	}
 	var res []error
+
+	// path param aid
+	if err := r.SetPathParam("aid", o.Aid); err != nil {
+		return err
+	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)

@@ -66,7 +66,7 @@ func (o *BindGroupToServiceReader) ReadResponse(response runtime.ClientResponse,
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /gateways/{gw}/groups/{apiGroup}/bind] bindGroupToService", response, response.Code())
 	}
 }
 
@@ -81,6 +81,15 @@ BindGroupToServiceOK describes a response with status code 200, with default hea
 Bind group to service response
 */
 type BindGroupToServiceOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.RemoveServiceConfigurationResult
 }
 
@@ -109,6 +118,11 @@ func (o *BindGroupToServiceOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the bind group to service o k response
+func (o *BindGroupToServiceOK) Code() int {
+	return 200
+}
+
 func (o *BindGroupToServiceOK) Error() string {
 	return fmt.Sprintf("[POST /gateways/{gw}/groups/{apiGroup}/bind][%d] bindGroupToServiceOK  %+v", 200, o.Payload)
 }
@@ -122,6 +136,13 @@ func (o *BindGroupToServiceOK) GetPayload() *models.RemoveServiceConfigurationRe
 }
 
 func (o *BindGroupToServiceOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.RemoveServiceConfigurationResult)
 
@@ -141,7 +162,7 @@ func NewBindGroupToServiceBadRequest() *BindGroupToServiceBadRequest {
 /*
 BindGroupToServiceBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type BindGroupToServiceBadRequest struct {
 	Payload *models.Error
@@ -170,6 +191,11 @@ func (o *BindGroupToServiceBadRequest) IsServerError() bool {
 // IsCode returns true when this bind group to service bad request response a status code equal to that given
 func (o *BindGroupToServiceBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the bind group to service bad request response
+func (o *BindGroupToServiceBadRequest) Code() int {
+	return 400
 }
 
 func (o *BindGroupToServiceBadRequest) Error() string {
@@ -204,7 +230,7 @@ func NewBindGroupToServiceUnauthorized() *BindGroupToServiceUnauthorized {
 /*
 BindGroupToServiceUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type BindGroupToServiceUnauthorized struct {
 	Payload *models.Error
@@ -233,6 +259,11 @@ func (o *BindGroupToServiceUnauthorized) IsServerError() bool {
 // IsCode returns true when this bind group to service unauthorized response a status code equal to that given
 func (o *BindGroupToServiceUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the bind group to service unauthorized response
+func (o *BindGroupToServiceUnauthorized) Code() int {
+	return 401
 }
 
 func (o *BindGroupToServiceUnauthorized) Error() string {
@@ -267,7 +298,7 @@ func NewBindGroupToServiceForbidden() *BindGroupToServiceForbidden {
 /*
 BindGroupToServiceForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type BindGroupToServiceForbidden struct {
 	Payload *models.Error
@@ -296,6 +327,11 @@ func (o *BindGroupToServiceForbidden) IsServerError() bool {
 // IsCode returns true when this bind group to service forbidden response a status code equal to that given
 func (o *BindGroupToServiceForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the bind group to service forbidden response
+func (o *BindGroupToServiceForbidden) Code() int {
+	return 403
 }
 
 func (o *BindGroupToServiceForbidden) Error() string {
@@ -330,7 +366,7 @@ func NewBindGroupToServiceNotFound() *BindGroupToServiceNotFound {
 /*
 BindGroupToServiceNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type BindGroupToServiceNotFound struct {
 	Payload *models.Error
@@ -359,6 +395,11 @@ func (o *BindGroupToServiceNotFound) IsServerError() bool {
 // IsCode returns true when this bind group to service not found response a status code equal to that given
 func (o *BindGroupToServiceNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the bind group to service not found response
+func (o *BindGroupToServiceNotFound) Code() int {
+	return 404
 }
 
 func (o *BindGroupToServiceNotFound) Error() string {
@@ -393,7 +434,7 @@ func NewBindGroupToServiceUnprocessableEntity() *BindGroupToServiceUnprocessable
 /*
 BindGroupToServiceUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type BindGroupToServiceUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +463,11 @@ func (o *BindGroupToServiceUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this bind group to service unprocessable entity response a status code equal to that given
 func (o *BindGroupToServiceUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the bind group to service unprocessable entity response
+func (o *BindGroupToServiceUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *BindGroupToServiceUnprocessableEntity) Error() string {
@@ -456,7 +502,7 @@ func NewBindGroupToServiceTooManyRequests() *BindGroupToServiceTooManyRequests {
 /*
 BindGroupToServiceTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type BindGroupToServiceTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +531,11 @@ func (o *BindGroupToServiceTooManyRequests) IsServerError() bool {
 // IsCode returns true when this bind group to service too many requests response a status code equal to that given
 func (o *BindGroupToServiceTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the bind group to service too many requests response
+func (o *BindGroupToServiceTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *BindGroupToServiceTooManyRequests) Error() string {

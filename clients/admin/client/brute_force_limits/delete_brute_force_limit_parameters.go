@@ -61,6 +61,14 @@ DeleteBruteForceLimitParams contains all the parameters to send to the API endpo
 */
 type DeleteBruteForceLimitParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	// ProtectedType.
 	ProtectedType string
 
@@ -117,6 +125,17 @@ func (o *DeleteBruteForceLimitParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the delete brute force limit params
+func (o *DeleteBruteForceLimitParams) WithIfMatch(ifMatch *string) *DeleteBruteForceLimitParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the delete brute force limit params
+func (o *DeleteBruteForceLimitParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithProtectedType adds the protectedType to the delete brute force limit params
 func (o *DeleteBruteForceLimitParams) WithProtectedType(protectedType string) *DeleteBruteForceLimitParams {
 	o.SetProtectedType(protectedType)
@@ -135,6 +154,14 @@ func (o *DeleteBruteForceLimitParams) WriteToRequest(r runtime.ClientRequest, re
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	// path param protectedType
 	if err := r.SetPathParam("protectedType", o.ProtectedType); err != nil {

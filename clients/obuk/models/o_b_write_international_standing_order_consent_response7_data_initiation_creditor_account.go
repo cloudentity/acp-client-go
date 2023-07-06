@@ -172,6 +172,7 @@ func (m *OBWriteInternationalStandingOrderConsentResponse7DataInitiationCreditor
 func (m *OBWriteInternationalStandingOrderConsentResponse7DataInitiationCreditorAccount) contextValidateIdentification(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Identification != nil {
+
 		if err := m.Identification.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Identification")
@@ -188,6 +189,7 @@ func (m *OBWriteInternationalStandingOrderConsentResponse7DataInitiationCreditor
 func (m *OBWriteInternationalStandingOrderConsentResponse7DataInitiationCreditorAccount) contextValidateSchemeName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.SchemeName != nil {
+
 		if err := m.SchemeName.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("SchemeName")
@@ -202,6 +204,10 @@ func (m *OBWriteInternationalStandingOrderConsentResponse7DataInitiationCreditor
 }
 
 func (m *OBWriteInternationalStandingOrderConsentResponse7DataInitiationCreditorAccount) contextValidateSecondaryIdentification(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SecondaryIdentification) { // not required
+		return nil
+	}
 
 	if err := m.SecondaryIdentification.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

@@ -26,7 +26,7 @@ type GetInternationalScheduledPaymentConsentResponse struct {
 	// authentication context
 	AuthenticationContext AuthenticationContext `json:"authentication_context,omitempty"`
 
-	// Client identifier
+	// Client application identifier.
 	// Example: \"cauqo9c9vpbs0aj2b2v0\
 	ClientID string `json:"client_id,omitempty"`
 
@@ -46,7 +46,7 @@ type GetInternationalScheduledPaymentConsentResponse struct {
 	// List of requested scopes
 	RequestedScopes []*RequestedScope `json:"requested_scopes"`
 
-	// Server / Workspace identifier
+	// Server / Workspace identifier.
 	// Example: \"server\
 	ServerID string `json:"server_id,omitempty"`
 
@@ -56,7 +56,7 @@ type GetInternationalScheduledPaymentConsentResponse struct {
 	// Subject
 	Subject string `json:"subject,omitempty"`
 
-	// Tenant identifier
+	// Tenant identifier.
 	// Example: \"tenant\
 	TenantID string `json:"tenant_id,omitempty"`
 
@@ -242,6 +242,10 @@ func (m *GetInternationalScheduledPaymentConsentResponse) ContextValidate(ctx co
 
 func (m *GetInternationalScheduledPaymentConsentResponse) contextValidateAuthenticationContext(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.AuthenticationContext) { // not required
+		return nil
+	}
+
 	if err := m.AuthenticationContext.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("authentication_context")
@@ -257,6 +261,11 @@ func (m *GetInternationalScheduledPaymentConsentResponse) contextValidateAuthent
 func (m *GetInternationalScheduledPaymentConsentResponse) contextValidateClientInfo(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ClientInfo != nil {
+
+		if swag.IsZero(m.ClientInfo) { // not required
+			return nil
+		}
+
 		if err := m.ClientInfo.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("client_info")
@@ -273,6 +282,11 @@ func (m *GetInternationalScheduledPaymentConsentResponse) contextValidateClientI
 func (m *GetInternationalScheduledPaymentConsentResponse) contextValidateInternationalScheduledPaymentConsent(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.InternationalScheduledPaymentConsent != nil {
+
+		if swag.IsZero(m.InternationalScheduledPaymentConsent) { // not required
+			return nil
+		}
+
 		if err := m.InternationalScheduledPaymentConsent.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("international_scheduled_payment_consent")
@@ -291,6 +305,11 @@ func (m *GetInternationalScheduledPaymentConsentResponse) contextValidateRequest
 	for i := 0; i < len(m.RequestedScopes); i++ {
 
 		if m.RequestedScopes[i] != nil {
+
+			if swag.IsZero(m.RequestedScopes[i]) { // not required
+				return nil
+			}
+
 			if err := m.RequestedScopes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("requested_scopes" + "." + strconv.Itoa(i))
@@ -307,6 +326,10 @@ func (m *GetInternationalScheduledPaymentConsentResponse) contextValidateRequest
 }
 
 func (m *GetInternationalScheduledPaymentConsentResponse) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Type) { // not required
+		return nil
+	}
 
 	if err := m.Type.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

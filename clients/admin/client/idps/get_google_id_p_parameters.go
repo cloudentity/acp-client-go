@@ -61,6 +61,14 @@ GetGoogleIDPParams contains all the parameters to send to the API endpoint
 */
 type GetGoogleIDPParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Iid.
 
 	   IDP id
@@ -139,6 +147,17 @@ func (o *GetGoogleIDPParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the get google ID p params
+func (o *GetGoogleIDPParams) WithIfMatch(ifMatch *string) *GetGoogleIDPParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the get google ID p params
+func (o *GetGoogleIDPParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithIid adds the iid to the get google ID p params
 func (o *GetGoogleIDPParams) WithIid(iid string) *GetGoogleIDPParams {
 	o.SetIid(iid)
@@ -168,6 +187,14 @@ func (o *GetGoogleIDPParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	// path param iid
 	if err := r.SetPathParam("iid", o.Iid); err != nil {

@@ -185,7 +185,7 @@ type CDRDynamicClientRegistrationResponse struct {
 	// Enum: [RS256 ES256 PS256]
 	IDTokenSignedResponseAlg string `json:"id_token_signed_response_alg,omitempty"`
 
-	// An introspection endpoint authentication method configured for the client application.
+	// An introspection endpoint authentication method configured for the client application (read-only).
 	//
 	// If empty, the `token_endpoint_auth_method` is used.
 	//
@@ -267,7 +267,7 @@ type CDRDynamicClientRegistrationResponse struct {
 	// response types
 	ResponseTypes ResponseTypes `json:"response_types,omitempty"`
 
-	// A revocation endpoint authentication method configured for the client application.
+	// A revocation endpoint authentication method configured for the client application (read-only).
 	// If empty, the `token_endpoint_auth_method` is used.
 	//
 	// Cloudentity supports the following client authentication methods:
@@ -387,6 +387,9 @@ type CDRDynamicClientRegistrationResponse struct {
 	// token exchange
 	TokenExchange *ClientTokenExchangeConfiguration `json:"token_exchange,omitempty"`
 
+	// token ttls
+	TokenTtls *TokenTTLs `json:"token_ttls,omitempty"`
+
 	// Terms of Service URL.
 	TosURI string `json:"tos_uri,omitempty"`
 
@@ -399,6 +402,9 @@ type CDRDynamicClientRegistrationResponse struct {
 	// Example: 2022-05-08T01:11:51.1262916Z
 	// Format: date-time
 	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty"`
+
+	// If enabled the client application will be able to set its own token TTLs.
+	UseCustomTokenTtls bool `json:"use_custom_token_ttls,omitempty"`
 
 	// JWS alg algorithm REQUIRED for signing UserInfo Responses.
 	//
@@ -504,6 +510,10 @@ func (m *CDRDynamicClientRegistrationResponse) Validate(formats strfmt.Registry)
 	}
 
 	if err := m.validateTokenExchange(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTokenTtls(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1362,6 +1372,25 @@ func (m *CDRDynamicClientRegistrationResponse) validateTokenExchange(formats str
 	return nil
 }
 
+func (m *CDRDynamicClientRegistrationResponse) validateTokenTtls(formats strfmt.Registry) error {
+	if swag.IsZero(m.TokenTtls) { // not required
+		return nil
+	}
+
+	if m.TokenTtls != nil {
+		if err := m.TokenTtls.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("token_ttls")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("token_ttls")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *CDRDynamicClientRegistrationResponse) validateUpdatedAt(formats strfmt.Registry) error {
 	if swag.IsZero(m.UpdatedAt) { // not required
 		return nil
@@ -1447,6 +1476,10 @@ func (m *CDRDynamicClientRegistrationResponse) ContextValidate(ctx context.Conte
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateTokenTtls(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -1465,6 +1498,11 @@ func (m *CDRDynamicClientRegistrationResponse) contextValidateApplicationTypes(c
 func (m *CDRDynamicClientRegistrationResponse) contextValidateJwks(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Jwks != nil {
+
+		if swag.IsZero(m.Jwks) { // not required
+			return nil
+		}
+
 		if err := m.Jwks.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("jwks")
@@ -1481,6 +1519,11 @@ func (m *CDRDynamicClientRegistrationResponse) contextValidateJwks(ctx context.C
 func (m *CDRDynamicClientRegistrationResponse) contextValidatePrivacy(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Privacy != nil {
+
+		if swag.IsZero(m.Privacy) { // not required
+			return nil
+		}
+
 		if err := m.Privacy.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("privacy")
@@ -1525,11 +1568,37 @@ func (m *CDRDynamicClientRegistrationResponse) contextValidateResponseTypes(ctx 
 func (m *CDRDynamicClientRegistrationResponse) contextValidateTokenExchange(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.TokenExchange != nil {
+
+		if swag.IsZero(m.TokenExchange) { // not required
+			return nil
+		}
+
 		if err := m.TokenExchange.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("token_exchange")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("token_exchange")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *CDRDynamicClientRegistrationResponse) contextValidateTokenTtls(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.TokenTtls != nil {
+
+		if swag.IsZero(m.TokenTtls) { // not required
+			return nil
+		}
+
+		if err := m.TokenTtls.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("token_ttls")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("token_ttls")
 			}
 			return err
 		}

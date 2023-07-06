@@ -66,6 +66,14 @@ type UpdateAdminTenantParams struct {
 	// Tenant.
 	Tenant *models.Tenant
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -130,6 +138,17 @@ func (o *UpdateAdminTenantParams) SetTenant(tenant *models.Tenant) {
 	o.Tenant = tenant
 }
 
+// WithIfMatch adds the ifMatch to the update admin tenant params
+func (o *UpdateAdminTenantParams) WithIfMatch(ifMatch *string) *UpdateAdminTenantParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the update admin tenant params
+func (o *UpdateAdminTenantParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *UpdateAdminTenantParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -139,6 +158,14 @@ func (o *UpdateAdminTenantParams) WriteToRequest(r runtime.ClientRequest, reg st
 	var res []error
 	if o.Tenant != nil {
 		if err := r.SetBodyParam(o.Tenant); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

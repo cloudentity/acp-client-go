@@ -169,6 +169,10 @@ func (m *AffiliationDescriptor) ContextValidate(ctx context.Context, formats str
 
 func (m *AffiliationDescriptor) contextValidateCacheDuration(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.CacheDuration) { // not required
+		return nil
+	}
+
 	if err := m.CacheDuration.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("CacheDuration")
@@ -186,6 +190,11 @@ func (m *AffiliationDescriptor) contextValidateKeyDescriptors(ctx context.Contex
 	for i := 0; i < len(m.KeyDescriptors); i++ {
 
 		if m.KeyDescriptors[i] != nil {
+
+			if swag.IsZero(m.KeyDescriptors[i]) { // not required
+				return nil
+			}
+
 			if err := m.KeyDescriptors[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("KeyDescriptors" + "." + strconv.Itoa(i))
@@ -204,6 +213,11 @@ func (m *AffiliationDescriptor) contextValidateKeyDescriptors(ctx context.Contex
 func (m *AffiliationDescriptor) contextValidateSignature(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Signature != nil {
+
+		if swag.IsZero(m.Signature) { // not required
+			return nil
+		}
+
 		if err := m.Signature.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Signature")

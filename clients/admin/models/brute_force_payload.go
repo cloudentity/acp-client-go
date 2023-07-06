@@ -138,6 +138,7 @@ func (m *BruteForcePayload) ContextValidate(ctx context.Context, formats strfmt.
 func (m *BruteForcePayload) contextValidateProtectedType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ProtectedType != nil {
+
 		if err := m.ProtectedType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("protected_type")

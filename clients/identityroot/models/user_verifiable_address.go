@@ -24,6 +24,10 @@ type UserVerifiableAddress struct {
 	// Required: true
 	Address string `json:"address"`
 
+	// address lc
+	// Required: true
+	AddressLc string `json:"address_lc"`
+
 	// created at
 	// Required: true
 	// Format: date-time
@@ -85,6 +89,10 @@ func (m *UserVerifiableAddress) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateAddressLc(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateCreatedAt(formats); err != nil {
 		res = append(res, err)
 	}
@@ -134,6 +142,15 @@ func (m *UserVerifiableAddress) Validate(formats strfmt.Registry) error {
 func (m *UserVerifiableAddress) validateAddress(formats strfmt.Registry) error {
 
 	if err := validate.RequiredString("address", "body", m.Address); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *UserVerifiableAddress) validateAddressLc(formats strfmt.Registry) error {
+
+	if err := validate.RequiredString("address_lc", "body", m.AddressLc); err != nil {
 		return err
 	}
 

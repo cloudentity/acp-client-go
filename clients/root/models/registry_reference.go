@@ -17,10 +17,10 @@ import (
 // swagger:model RegistryReference
 type RegistryReference struct {
 
-	// An ID representing the intermediary that can be looked up from a legal identity registry source
+	// An identifier of the intermediary that can be looked up from a legal identity registry source.
 	RegisteredEntityID string `json:"registered_entity_id,omitempty"`
 
-	// The legal company name for the intermediary
+	// The legal company name for the intermediary.
 	RegisteredEntityName string `json:"registered_entity_name,omitempty"`
 
 	// registry

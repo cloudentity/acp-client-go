@@ -72,6 +72,11 @@ func (m *OktaCredentials) ContextValidate(ctx context.Context, formats strfmt.Re
 func (m *OktaCredentials) contextValidateSupervisorClient(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.SupervisorClient != nil {
+
+		if swag.IsZero(m.SupervisorClient) { // not required
+			return nil
+		}
+
 		if err := m.SupervisorClient.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("supervisor_client")

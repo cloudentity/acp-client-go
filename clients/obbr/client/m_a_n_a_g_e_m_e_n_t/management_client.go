@@ -32,6 +32,8 @@ type ClientOption func(*runtime.ClientOperation)
 type ClientService interface {
 	ConsumeOBBRConsent(params *ConsumeOBBRConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ConsumeOBBRConsentOK, error)
 
+	GetOBBRConsent(params *GetOBBRConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOBBRConsentOK, error)
+
 	GetOBBRConsents(params *GetOBBRConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOBBRConsentsOK, error)
 
 	ListOBBRConsents(params *ListOBBRConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListOBBRConsentsOK, error)
@@ -44,9 +46,20 @@ type ClientService interface {
 }
 
 /*
-ConsumeOBBRConsent consumes openbanking consent by ID
+	ConsumeOBBRConsent consumes open banking brazil consent by ID
 
-This API consumes openbanking consent by consent id.
+	Retrieve the details of an Open Banking Brazil data access or payment initiation consent. Specify the required
+
+consent identifier along with the identifier of the related workspace in the path.
+
+The response contains detailed data about the consent, including both versions of `customer_data_access_consent`,
+`customer_payment_consent`, and `customer_insurance_data_access_consent`.
+
+For authorization, pass the `Authorization: Bearer` header with a token as the bearer value. To obtain the token with
+the necessary scopes, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+Find the scope list in the AUTHORIZATIONS block.
 */
 func (a *Client) ConsumeOBBRConsent(params *ConsumeOBBRConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ConsumeOBBRConsentOK, error) {
 	// TODO: Validate the params before sending
@@ -85,13 +98,64 @@ func (a *Client) ConsumeOBBRConsent(params *ConsumeOBBRConsentParams, authInfo r
 }
 
 /*
-	GetOBBRConsents gets openbanking brasil consents
+	GetOBBRConsent gets open banking brazil consent by ID
 
-	This API returns the list of openbanking brasil consents.
+	Call this endpoint to get the details of a consent within the specified workspace.
 
-Currently supporting v1 and v2 consents.
-You can narrow the list of returned consents using filters defined in query parameters.
-See GetConsentsParams for details.
+For authorization, pass the `Authorization: Bearer` header with a token as the bearer value. To obtain the token
+and the necessary scopes, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+Find the scope list in the AUTHORIZATIONS block.
+*/
+func (a *Client) GetOBBRConsent(params *GetOBBRConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOBBRConsentOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetOBBRConsentParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getOBBRConsent",
+		Method:             "GET",
+		PathPattern:        "/servers/{wid}/open-banking-brasil/consents/{consentID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetOBBRConsentReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetOBBRConsentOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getOBBRConsent: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	GetOBBRConsents gets open banking brazil consents
+
+	Retrieve the list of Open Banking Brazil consents per workspace. Pass the required workspace identifier in the path.
+
+To narrow the list, use the query parameters. Currently, this endpoint supports v1 and v2 consents.
+
+For authorization, pass the `Authorization: Bearer` header with a token as the bearer value. To obtain the token
+with the required scopes, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+Find the scope list in the AUTHORIZATIONS block.
 */
 func (a *Client) GetOBBRConsents(params *GetOBBRConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOBBRConsentsOK, error) {
 	// TODO: Validate the params before sending
@@ -130,13 +194,18 @@ func (a *Client) GetOBBRConsents(params *GetOBBRConsentsParams, authInfo runtime
 }
 
 /*
-	ListOBBRConsents lists openbanking brasil consents
+	ListOBBRConsents lists open banking brazil consents
 
-	This API returns the list of openbanking brasil consents.
+	Retrieve the list of Open Banking Brazil consents per workplace. Pass the required workplace identifier in the path.
 
-Currently supporting v1 and v2 consents.
-You can narrow the list of returned consents using filters defined in request body.
-See ListConsentsParams for details.
+This endpoint currently supports v1 and v2 consents. To narrow the list, filter the response with the request body
+parameters.
+
+For authorization, pass the `Authorization: Bearer` header with a token as the bearer value. To obtain the token with
+the necessary scopes, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+Find the scope list in the AUTHORIZATIONS block.
 */
 func (a *Client) ListOBBRConsents(params *ListOBBRConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListOBBRConsentsOK, error) {
 	// TODO: Validate the params before sending
@@ -175,11 +244,19 @@ func (a *Client) ListOBBRConsents(params *ListOBBRConsentsParams, authInfo runti
 }
 
 /*
-	RevokeOBBRConsent revokes openbanking consent by ID
+	RevokeOBBRConsent revokes open banking brazil consent by ID
 
-	This API revokes openbanking consent by consent id.
+	Revoke an Open Banking Brazil consent by ID. Pass the identifiers of the required consent and the related workspace
 
-Currently supporting v1 and v2 consents.
+in the path.
+
+Currently, v1 and v2 consents are supported.
+
+For authorization, pass the `Authorization: Bearer` header with a token as the bearer value. To obtain the token
+and the necessary scopes, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+Find the scope list in the AUTHORIZATIONS block.
 */
 func (a *Client) RevokeOBBRConsent(params *RevokeOBBRConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeOBBRConsentNoContent, error) {
 	// TODO: Validate the params before sending
@@ -218,16 +295,20 @@ func (a *Client) RevokeOBBRConsent(params *RevokeOBBRConsentParams, authInfo run
 }
 
 /*
-	RevokeOBBRConsents revokes openbanking brasil consents
+	RevokeOBBRConsents revokes open banking brazil consents
 
-	This API revokes openbanking consents matching provided parameters.
+	Revoke Open Banking Brazil consents by a client ID or combination of client ID and consent types.
 
-Currently supporting v1 and v2 consents.
-Currently supporting removal by client id.
-Use ?client_id={clientID} to remove all consents by a given client.
+For this, pass the `client_id` query parameter with the value set to the required client identifier. It revokes
+all consents for the given client application.
 
-You can also optionally specify which consent should be removed by specifying consent type
-example: ?client_id={clientID}&consent_type=account_access
+Currently, v1 and v2 consents are supported.
+
+For authorization, pass the `Authorization: Bearer` with a token as the bearer value. To obtain the token with the
+necessary scopes, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+Find the scope list in the AUTHORIZATIONS block.
 */
 func (a *Client) RevokeOBBRConsents(params *RevokeOBBRConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeOBBRConsentsOK, error) {
 	// TODO: Validate the params before sending

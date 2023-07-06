@@ -54,7 +54,7 @@ func (o *ListClientsSystemReader) ReadResponse(response runtime.ClientResponse, 
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /clients/{wid}] listClientsSystem", response, response.Code())
 	}
 }
 
@@ -97,6 +97,11 @@ func (o *ListClientsSystemOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the list clients system o k response
+func (o *ListClientsSystemOK) Code() int {
+	return 200
+}
+
 func (o *ListClientsSystemOK) Error() string {
 	return fmt.Sprintf("[GET /clients/{wid}][%d] listClientsSystemOK  %+v", 200, o.Payload)
 }
@@ -129,7 +134,7 @@ func NewListClientsSystemUnauthorized() *ListClientsSystemUnauthorized {
 /*
 ListClientsSystemUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ListClientsSystemUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +163,11 @@ func (o *ListClientsSystemUnauthorized) IsServerError() bool {
 // IsCode returns true when this list clients system unauthorized response a status code equal to that given
 func (o *ListClientsSystemUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the list clients system unauthorized response
+func (o *ListClientsSystemUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ListClientsSystemUnauthorized) Error() string {
@@ -192,7 +202,7 @@ func NewListClientsSystemForbidden() *ListClientsSystemForbidden {
 /*
 ListClientsSystemForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ListClientsSystemForbidden struct {
 	Payload *models.Error
@@ -221,6 +231,11 @@ func (o *ListClientsSystemForbidden) IsServerError() bool {
 // IsCode returns true when this list clients system forbidden response a status code equal to that given
 func (o *ListClientsSystemForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the list clients system forbidden response
+func (o *ListClientsSystemForbidden) Code() int {
+	return 403
 }
 
 func (o *ListClientsSystemForbidden) Error() string {
@@ -255,7 +270,7 @@ func NewListClientsSystemNotFound() *ListClientsSystemNotFound {
 /*
 ListClientsSystemNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type ListClientsSystemNotFound struct {
 	Payload *models.Error
@@ -284,6 +299,11 @@ func (o *ListClientsSystemNotFound) IsServerError() bool {
 // IsCode returns true when this list clients system not found response a status code equal to that given
 func (o *ListClientsSystemNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the list clients system not found response
+func (o *ListClientsSystemNotFound) Code() int {
+	return 404
 }
 
 func (o *ListClientsSystemNotFound) Error() string {
@@ -318,7 +338,7 @@ func NewListClientsSystemTooManyRequests() *ListClientsSystemTooManyRequests {
 /*
 ListClientsSystemTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ListClientsSystemTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +367,11 @@ func (o *ListClientsSystemTooManyRequests) IsServerError() bool {
 // IsCode returns true when this list clients system too many requests response a status code equal to that given
 func (o *ListClientsSystemTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the list clients system too many requests response
+func (o *ListClientsSystemTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ListClientsSystemTooManyRequests) Error() string {

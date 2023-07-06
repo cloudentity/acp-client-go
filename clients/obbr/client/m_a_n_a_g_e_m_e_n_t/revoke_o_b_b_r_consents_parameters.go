@@ -70,7 +70,7 @@ type RevokeOBBRConsentsParams struct {
 
 	/* ConsentTypes.
 
-	   Required consent types
+	   A string of consent types you can pass along with the client identifier to detail your request.
 	*/
 	ConsentTypes []string
 

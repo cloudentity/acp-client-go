@@ -69,6 +69,14 @@ type CreateStaticIDPParams struct {
 	*/
 	StaticIDP *models.StaticIDP
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Wid.
 
 	   Authorization server id
@@ -152,6 +160,17 @@ func (o *CreateStaticIDPParams) SetStaticIDP(staticIDP *models.StaticIDP) {
 	o.StaticIDP = staticIDP
 }
 
+// WithIfMatch adds the ifMatch to the create static ID p params
+func (o *CreateStaticIDPParams) WithIfMatch(ifMatch *string) *CreateStaticIDPParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the create static ID p params
+func (o *CreateStaticIDPParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithWid adds the wid to the create static ID p params
 func (o *CreateStaticIDPParams) WithWid(wid string) *CreateStaticIDPParams {
 	o.SetWid(wid)
@@ -172,6 +191,14 @@ func (o *CreateStaticIDPParams) WriteToRequest(r runtime.ClientRequest, reg strf
 	var res []error
 	if o.StaticIDP != nil {
 		if err := r.SetBodyParam(o.StaticIDP); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

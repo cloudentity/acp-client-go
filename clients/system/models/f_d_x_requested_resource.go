@@ -17,11 +17,11 @@ import (
 // swagger:model FDXRequestedResource
 type FDXRequestedResource struct {
 
-	// Name of cluster of data elements permissioned
+	// The names of clusters with data elements permitted.
 	// Example: ["ACCOUNT_DETAILED","TRANSACTIONS","STATEMENTS"]
 	DataClusters []string `json:"dataClusters"`
 
-	// Resource for which data may be permissioned; can be extended to supportadditional types of resources
+	// A type of resource that holds the permitted data elements. This parameter can be extended to support additional resource types.
 	// Example: ACCOUNT
 	ResourceType string `json:"resourceType,omitempty"`
 }

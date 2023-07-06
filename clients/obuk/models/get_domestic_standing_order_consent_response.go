@@ -26,7 +26,7 @@ type GetDomesticStandingOrderConsentResponse struct {
 	// authentication context
 	AuthenticationContext AuthenticationContext `json:"authentication_context,omitempty"`
 
-	// Client identifier
+	// Client application identifier.
 	// Example: \"cauqo9c9vpbs0aj2b2v0\
 	ClientID string `json:"client_id,omitempty"`
 
@@ -46,7 +46,7 @@ type GetDomesticStandingOrderConsentResponse struct {
 	// List of requested scopes
 	RequestedScopes []*RequestedScope `json:"requested_scopes"`
 
-	// Server / Workspace identifier
+	// Server / Workspace identifier.
 	// Example: \"server\
 	ServerID string `json:"server_id,omitempty"`
 
@@ -56,7 +56,7 @@ type GetDomesticStandingOrderConsentResponse struct {
 	// Subject
 	Subject string `json:"subject,omitempty"`
 
-	// Tenant identifier
+	// Tenant identifier.
 	// Example: \"tenant\
 	TenantID string `json:"tenant_id,omitempty"`
 
@@ -242,6 +242,10 @@ func (m *GetDomesticStandingOrderConsentResponse) ContextValidate(ctx context.Co
 
 func (m *GetDomesticStandingOrderConsentResponse) contextValidateAuthenticationContext(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.AuthenticationContext) { // not required
+		return nil
+	}
+
 	if err := m.AuthenticationContext.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("authentication_context")
@@ -257,6 +261,11 @@ func (m *GetDomesticStandingOrderConsentResponse) contextValidateAuthenticationC
 func (m *GetDomesticStandingOrderConsentResponse) contextValidateClientInfo(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ClientInfo != nil {
+
+		if swag.IsZero(m.ClientInfo) { // not required
+			return nil
+		}
+
 		if err := m.ClientInfo.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("client_info")
@@ -273,6 +282,11 @@ func (m *GetDomesticStandingOrderConsentResponse) contextValidateClientInfo(ctx 
 func (m *GetDomesticStandingOrderConsentResponse) contextValidateDomesticStandingOrderConsent(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.DomesticStandingOrderConsent != nil {
+
+		if swag.IsZero(m.DomesticStandingOrderConsent) { // not required
+			return nil
+		}
+
 		if err := m.DomesticStandingOrderConsent.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("domestic_standing_order_consent")
@@ -291,6 +305,11 @@ func (m *GetDomesticStandingOrderConsentResponse) contextValidateRequestedScopes
 	for i := 0; i < len(m.RequestedScopes); i++ {
 
 		if m.RequestedScopes[i] != nil {
+
+			if swag.IsZero(m.RequestedScopes[i]) { // not required
+				return nil
+			}
+
 			if err := m.RequestedScopes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("requested_scopes" + "." + strconv.Itoa(i))
@@ -307,6 +326,10 @@ func (m *GetDomesticStandingOrderConsentResponse) contextValidateRequestedScopes
 }
 
 func (m *GetDomesticStandingOrderConsentResponse) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Type) { // not required
+		return nil
+	}
 
 	if err := m.Type.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

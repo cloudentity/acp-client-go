@@ -66,7 +66,7 @@ func (o *CreateSAMLIDPReader) ReadResponse(response runtime.ClientResponse, cons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /servers/{wid}/idps/saml] createSAMLIDP", response, response.Code())
 	}
 }
 
@@ -109,6 +109,11 @@ func (o *CreateSAMLIDPCreated) IsCode(code int) bool {
 	return code == 201
 }
 
+// Code gets the status code for the create s a m l Id p created response
+func (o *CreateSAMLIDPCreated) Code() int {
+	return 201
+}
+
 func (o *CreateSAMLIDPCreated) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/saml][%d] createSAMLIdPCreated  %+v", 201, o.Payload)
 }
@@ -141,7 +146,7 @@ func NewCreateSAMLIDPBadRequest() *CreateSAMLIDPBadRequest {
 /*
 CreateSAMLIDPBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type CreateSAMLIDPBadRequest struct {
 	Payload *models.Error
@@ -170,6 +175,11 @@ func (o *CreateSAMLIDPBadRequest) IsServerError() bool {
 // IsCode returns true when this create s a m l Id p bad request response a status code equal to that given
 func (o *CreateSAMLIDPBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the create s a m l Id p bad request response
+func (o *CreateSAMLIDPBadRequest) Code() int {
+	return 400
 }
 
 func (o *CreateSAMLIDPBadRequest) Error() string {
@@ -204,7 +214,7 @@ func NewCreateSAMLIDPUnauthorized() *CreateSAMLIDPUnauthorized {
 /*
 CreateSAMLIDPUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type CreateSAMLIDPUnauthorized struct {
 	Payload *models.Error
@@ -233,6 +243,11 @@ func (o *CreateSAMLIDPUnauthorized) IsServerError() bool {
 // IsCode returns true when this create s a m l Id p unauthorized response a status code equal to that given
 func (o *CreateSAMLIDPUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the create s a m l Id p unauthorized response
+func (o *CreateSAMLIDPUnauthorized) Code() int {
+	return 401
 }
 
 func (o *CreateSAMLIDPUnauthorized) Error() string {
@@ -267,7 +282,7 @@ func NewCreateSAMLIDPForbidden() *CreateSAMLIDPForbidden {
 /*
 CreateSAMLIDPForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type CreateSAMLIDPForbidden struct {
 	Payload *models.Error
@@ -296,6 +311,11 @@ func (o *CreateSAMLIDPForbidden) IsServerError() bool {
 // IsCode returns true when this create s a m l Id p forbidden response a status code equal to that given
 func (o *CreateSAMLIDPForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the create s a m l Id p forbidden response
+func (o *CreateSAMLIDPForbidden) Code() int {
+	return 403
 }
 
 func (o *CreateSAMLIDPForbidden) Error() string {
@@ -330,7 +350,7 @@ func NewCreateSAMLIDPNotFound() *CreateSAMLIDPNotFound {
 /*
 CreateSAMLIDPNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type CreateSAMLIDPNotFound struct {
 	Payload *models.Error
@@ -359,6 +379,11 @@ func (o *CreateSAMLIDPNotFound) IsServerError() bool {
 // IsCode returns true when this create s a m l Id p not found response a status code equal to that given
 func (o *CreateSAMLIDPNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the create s a m l Id p not found response
+func (o *CreateSAMLIDPNotFound) Code() int {
+	return 404
 }
 
 func (o *CreateSAMLIDPNotFound) Error() string {
@@ -393,7 +418,7 @@ func NewCreateSAMLIDPUnprocessableEntity() *CreateSAMLIDPUnprocessableEntity {
 /*
 CreateSAMLIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type CreateSAMLIDPUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +447,11 @@ func (o *CreateSAMLIDPUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this create s a m l Id p unprocessable entity response a status code equal to that given
 func (o *CreateSAMLIDPUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the create s a m l Id p unprocessable entity response
+func (o *CreateSAMLIDPUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *CreateSAMLIDPUnprocessableEntity) Error() string {
@@ -456,7 +486,7 @@ func NewCreateSAMLIDPTooManyRequests() *CreateSAMLIDPTooManyRequests {
 /*
 CreateSAMLIDPTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type CreateSAMLIDPTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +515,11 @@ func (o *CreateSAMLIDPTooManyRequests) IsServerError() bool {
 // IsCode returns true when this create s a m l Id p too many requests response a status code equal to that given
 func (o *CreateSAMLIDPTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the create s a m l Id p too many requests response
+func (o *CreateSAMLIDPTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *CreateSAMLIDPTooManyRequests) Error() string {

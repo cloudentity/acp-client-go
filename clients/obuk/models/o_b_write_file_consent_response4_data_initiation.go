@@ -250,6 +250,11 @@ func (m *OBWriteFileConsentResponse4DataInitiation) ContextValidate(ctx context.
 func (m *OBWriteFileConsentResponse4DataInitiation) contextValidateDebtorAccount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.DebtorAccount != nil {
+
+		if swag.IsZero(m.DebtorAccount) { // not required
+			return nil
+		}
+
 		if err := m.DebtorAccount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("DebtorAccount")
@@ -264,6 +269,10 @@ func (m *OBWriteFileConsentResponse4DataInitiation) contextValidateDebtorAccount
 }
 
 func (m *OBWriteFileConsentResponse4DataInitiation) contextValidateLocalInstrument(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.LocalInstrument) { // not required
+		return nil
+	}
 
 	if err := m.LocalInstrument.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -280,6 +289,11 @@ func (m *OBWriteFileConsentResponse4DataInitiation) contextValidateLocalInstrume
 func (m *OBWriteFileConsentResponse4DataInitiation) contextValidateRemittanceInformation(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.RemittanceInformation != nil {
+
+		if swag.IsZero(m.RemittanceInformation) { // not required
+			return nil
+		}
+
 		if err := m.RemittanceInformation.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("RemittanceInformation")

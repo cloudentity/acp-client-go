@@ -62,6 +62,14 @@ GetRecentActivitiesParams contains all the parameters to send to the API endpoin
 */
 type GetRecentActivitiesParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Limit.
 
 	   Limit
@@ -146,6 +154,17 @@ func (o *GetRecentActivitiesParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the get recent activities params
+func (o *GetRecentActivitiesParams) WithIfMatch(ifMatch *string) *GetRecentActivitiesParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the get recent activities params
+func (o *GetRecentActivitiesParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithLimit adds the limit to the get recent activities params
 func (o *GetRecentActivitiesParams) WithLimit(limit *int64) *GetRecentActivitiesParams {
 	o.SetLimit(limit)
@@ -175,6 +194,14 @@ func (o *GetRecentActivitiesParams) WriteToRequest(r runtime.ClientRequest, reg 
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	if o.Limit != nil {
 

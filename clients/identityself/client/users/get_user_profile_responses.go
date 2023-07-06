@@ -47,6 +47,12 @@ func (o *GetUserProfileReader) ReadResponse(response runtime.ClientResponse, con
 			return nil, err
 		}
 		return nil, result
+	case 412:
+		result := NewGetUserProfilePreconditionFailed()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 429:
 		result := NewGetUserProfileTooManyRequests()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -54,7 +60,7 @@ func (o *GetUserProfileReader) ReadResponse(response runtime.ClientResponse, con
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /self/me] getUserProfile", response, response.Code())
 	}
 }
 
@@ -66,9 +72,18 @@ func NewGetUserProfileOK() *GetUserProfileOK {
 /*
 GetUserProfileOK describes a response with status code 200, with default header values.
 
-Self
+User profile data
 */
 type GetUserProfileOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.SelfUserWithData
 }
 
@@ -97,6 +112,11 @@ func (o *GetUserProfileOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get user profile o k response
+func (o *GetUserProfileOK) Code() int {
+	return 200
+}
+
 func (o *GetUserProfileOK) Error() string {
 	return fmt.Sprintf("[GET /self/me][%d] getUserProfileOK  %+v", 200, o.Payload)
 }
@@ -110,6 +130,13 @@ func (o *GetUserProfileOK) GetPayload() *models.SelfUserWithData {
 }
 
 func (o *GetUserProfileOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.SelfUserWithData)
 
@@ -129,7 +156,7 @@ func NewGetUserProfileUnauthorized() *GetUserProfileUnauthorized {
 /*
 GetUserProfileUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetUserProfileUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +185,11 @@ func (o *GetUserProfileUnauthorized) IsServerError() bool {
 // IsCode returns true when this get user profile unauthorized response a status code equal to that given
 func (o *GetUserProfileUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get user profile unauthorized response
+func (o *GetUserProfileUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetUserProfileUnauthorized) Error() string {
@@ -192,7 +224,7 @@ func NewGetUserProfileForbidden() *GetUserProfileForbidden {
 /*
 GetUserProfileForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetUserProfileForbidden struct {
 	Payload *models.Error
@@ -221,6 +253,11 @@ func (o *GetUserProfileForbidden) IsServerError() bool {
 // IsCode returns true when this get user profile forbidden response a status code equal to that given
 func (o *GetUserProfileForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get user profile forbidden response
+func (o *GetUserProfileForbidden) Code() int {
+	return 403
 }
 
 func (o *GetUserProfileForbidden) Error() string {
@@ -255,7 +292,7 @@ func NewGetUserProfileNotFound() *GetUserProfileNotFound {
 /*
 GetUserProfileNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetUserProfileNotFound struct {
 	Payload *models.Error
@@ -286,6 +323,11 @@ func (o *GetUserProfileNotFound) IsCode(code int) bool {
 	return code == 404
 }
 
+// Code gets the status code for the get user profile not found response
+func (o *GetUserProfileNotFound) Code() int {
+	return 404
+}
+
 func (o *GetUserProfileNotFound) Error() string {
 	return fmt.Sprintf("[GET /self/me][%d] getUserProfileNotFound  %+v", 404, o.Payload)
 }
@@ -310,6 +352,74 @@ func (o *GetUserProfileNotFound) readResponse(response runtime.ClientResponse, c
 	return nil
 }
 
+// NewGetUserProfilePreconditionFailed creates a GetUserProfilePreconditionFailed with default headers values
+func NewGetUserProfilePreconditionFailed() *GetUserProfilePreconditionFailed {
+	return &GetUserProfilePreconditionFailed{}
+}
+
+/*
+GetUserProfilePreconditionFailed describes a response with status code 412, with default header values.
+
+Payload too large
+*/
+type GetUserProfilePreconditionFailed struct {
+	Payload *models.Error
+}
+
+// IsSuccess returns true when this get user profile precondition failed response has a 2xx status code
+func (o *GetUserProfilePreconditionFailed) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get user profile precondition failed response has a 3xx status code
+func (o *GetUserProfilePreconditionFailed) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get user profile precondition failed response has a 4xx status code
+func (o *GetUserProfilePreconditionFailed) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get user profile precondition failed response has a 5xx status code
+func (o *GetUserProfilePreconditionFailed) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get user profile precondition failed response a status code equal to that given
+func (o *GetUserProfilePreconditionFailed) IsCode(code int) bool {
+	return code == 412
+}
+
+// Code gets the status code for the get user profile precondition failed response
+func (o *GetUserProfilePreconditionFailed) Code() int {
+	return 412
+}
+
+func (o *GetUserProfilePreconditionFailed) Error() string {
+	return fmt.Sprintf("[GET /self/me][%d] getUserProfilePreconditionFailed  %+v", 412, o.Payload)
+}
+
+func (o *GetUserProfilePreconditionFailed) String() string {
+	return fmt.Sprintf("[GET /self/me][%d] getUserProfilePreconditionFailed  %+v", 412, o.Payload)
+}
+
+func (o *GetUserProfilePreconditionFailed) GetPayload() *models.Error {
+	return o.Payload
+}
+
+func (o *GetUserProfilePreconditionFailed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewGetUserProfileTooManyRequests creates a GetUserProfileTooManyRequests with default headers values
 func NewGetUserProfileTooManyRequests() *GetUserProfileTooManyRequests {
 	return &GetUserProfileTooManyRequests{}
@@ -318,7 +428,7 @@ func NewGetUserProfileTooManyRequests() *GetUserProfileTooManyRequests {
 /*
 GetUserProfileTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetUserProfileTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +457,11 @@ func (o *GetUserProfileTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get user profile too many requests response a status code equal to that given
 func (o *GetUserProfileTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get user profile too many requests response
+func (o *GetUserProfileTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetUserProfileTooManyRequests) Error() string {

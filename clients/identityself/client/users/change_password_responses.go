@@ -53,6 +53,12 @@ func (o *ChangePasswordReader) ReadResponse(response runtime.ClientResponse, con
 			return nil, err
 		}
 		return nil, result
+	case 412:
+		result := NewChangePasswordPreconditionFailed()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 422:
 		result := NewChangePasswordUnprocessableEntity()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,7 +72,7 @@ func (o *ChangePasswordReader) ReadResponse(response runtime.ClientResponse, con
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /self/change-password] changePassword", response, response.Code())
 	}
 }
 
@@ -78,9 +84,17 @@ func NewChangePasswordNoContent() *ChangePasswordNoContent {
 /*
 ChangePasswordNoContent describes a response with status code 204, with default header values.
 
-	Password has been changed
+Password has been changed
 */
 type ChangePasswordNoContent struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
 }
 
 // IsSuccess returns true when this change password no content response has a 2xx status code
@@ -108,6 +122,11 @@ func (o *ChangePasswordNoContent) IsCode(code int) bool {
 	return code == 204
 }
 
+// Code gets the status code for the change password no content response
+func (o *ChangePasswordNoContent) Code() int {
+	return 204
+}
+
 func (o *ChangePasswordNoContent) Error() string {
 	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordNoContent ", 204)
 }
@@ -117,6 +136,13 @@ func (o *ChangePasswordNoContent) String() string {
 }
 
 func (o *ChangePasswordNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	return nil
 }
@@ -129,7 +155,7 @@ func NewChangePasswordBadRequest() *ChangePasswordBadRequest {
 /*
 ChangePasswordBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type ChangePasswordBadRequest struct {
 	Payload *models.Error
@@ -158,6 +184,11 @@ func (o *ChangePasswordBadRequest) IsServerError() bool {
 // IsCode returns true when this change password bad request response a status code equal to that given
 func (o *ChangePasswordBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the change password bad request response
+func (o *ChangePasswordBadRequest) Code() int {
+	return 400
 }
 
 func (o *ChangePasswordBadRequest) Error() string {
@@ -192,7 +223,7 @@ func NewChangePasswordUnauthorized() *ChangePasswordUnauthorized {
 /*
 ChangePasswordUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ChangePasswordUnauthorized struct {
 	Payload *models.Error
@@ -221,6 +252,11 @@ func (o *ChangePasswordUnauthorized) IsServerError() bool {
 // IsCode returns true when this change password unauthorized response a status code equal to that given
 func (o *ChangePasswordUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the change password unauthorized response
+func (o *ChangePasswordUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ChangePasswordUnauthorized) Error() string {
@@ -255,7 +291,7 @@ func NewChangePasswordForbidden() *ChangePasswordForbidden {
 /*
 ChangePasswordForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ChangePasswordForbidden struct {
 	Payload *models.Error
@@ -284,6 +320,11 @@ func (o *ChangePasswordForbidden) IsServerError() bool {
 // IsCode returns true when this change password forbidden response a status code equal to that given
 func (o *ChangePasswordForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the change password forbidden response
+func (o *ChangePasswordForbidden) Code() int {
+	return 403
 }
 
 func (o *ChangePasswordForbidden) Error() string {
@@ -318,7 +359,7 @@ func NewChangePasswordNotFound() *ChangePasswordNotFound {
 /*
 ChangePasswordNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type ChangePasswordNotFound struct {
 	Payload *models.Error
@@ -349,6 +390,11 @@ func (o *ChangePasswordNotFound) IsCode(code int) bool {
 	return code == 404
 }
 
+// Code gets the status code for the change password not found response
+func (o *ChangePasswordNotFound) Code() int {
+	return 404
+}
+
 func (o *ChangePasswordNotFound) Error() string {
 	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordNotFound  %+v", 404, o.Payload)
 }
@@ -373,6 +419,74 @@ func (o *ChangePasswordNotFound) readResponse(response runtime.ClientResponse, c
 	return nil
 }
 
+// NewChangePasswordPreconditionFailed creates a ChangePasswordPreconditionFailed with default headers values
+func NewChangePasswordPreconditionFailed() *ChangePasswordPreconditionFailed {
+	return &ChangePasswordPreconditionFailed{}
+}
+
+/*
+ChangePasswordPreconditionFailed describes a response with status code 412, with default header values.
+
+Payload too large
+*/
+type ChangePasswordPreconditionFailed struct {
+	Payload *models.Error
+}
+
+// IsSuccess returns true when this change password precondition failed response has a 2xx status code
+func (o *ChangePasswordPreconditionFailed) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this change password precondition failed response has a 3xx status code
+func (o *ChangePasswordPreconditionFailed) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this change password precondition failed response has a 4xx status code
+func (o *ChangePasswordPreconditionFailed) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this change password precondition failed response has a 5xx status code
+func (o *ChangePasswordPreconditionFailed) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this change password precondition failed response a status code equal to that given
+func (o *ChangePasswordPreconditionFailed) IsCode(code int) bool {
+	return code == 412
+}
+
+// Code gets the status code for the change password precondition failed response
+func (o *ChangePasswordPreconditionFailed) Code() int {
+	return 412
+}
+
+func (o *ChangePasswordPreconditionFailed) Error() string {
+	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordPreconditionFailed  %+v", 412, o.Payload)
+}
+
+func (o *ChangePasswordPreconditionFailed) String() string {
+	return fmt.Sprintf("[POST /self/change-password][%d] changePasswordPreconditionFailed  %+v", 412, o.Payload)
+}
+
+func (o *ChangePasswordPreconditionFailed) GetPayload() *models.Error {
+	return o.Payload
+}
+
+func (o *ChangePasswordPreconditionFailed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewChangePasswordUnprocessableEntity creates a ChangePasswordUnprocessableEntity with default headers values
 func NewChangePasswordUnprocessableEntity() *ChangePasswordUnprocessableEntity {
 	return &ChangePasswordUnprocessableEntity{}
@@ -381,7 +495,7 @@ func NewChangePasswordUnprocessableEntity() *ChangePasswordUnprocessableEntity {
 /*
 ChangePasswordUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type ChangePasswordUnprocessableEntity struct {
 	Payload *models.Error
@@ -410,6 +524,11 @@ func (o *ChangePasswordUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this change password unprocessable entity response a status code equal to that given
 func (o *ChangePasswordUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the change password unprocessable entity response
+func (o *ChangePasswordUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *ChangePasswordUnprocessableEntity) Error() string {
@@ -444,7 +563,7 @@ func NewChangePasswordTooManyRequests() *ChangePasswordTooManyRequests {
 /*
 ChangePasswordTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ChangePasswordTooManyRequests struct {
 	Payload *models.Error
@@ -473,6 +592,11 @@ func (o *ChangePasswordTooManyRequests) IsServerError() bool {
 // IsCode returns true when this change password too many requests response a status code equal to that given
 func (o *ChangePasswordTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the change password too many requests response
+func (o *ChangePasswordTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ChangePasswordTooManyRequests) Error() string {

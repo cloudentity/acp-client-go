@@ -21,7 +21,7 @@ import (
 // swagger:model Client
 type Client struct {
 
-	// String represented type of a client application
+	// The client application type.
 	//
 	// Client applications can be either of a `web` or `native` types.
 	//
@@ -30,7 +30,7 @@ type Client struct {
 	// Native applications include single-page applications (SPAs) and mobile or desktop
 	// applications.
 	//
-	// Depending on the type of your application remember to choose appropriate security measures.
+	// Apply security measures according to the type of your application.
 	// Example: web
 	ApplicationType string `json:"application_type,omitempty"`
 
@@ -39,54 +39,68 @@ type Client struct {
 	// Read Only: true
 	ApplicationTypes []string `json:"application_types"`
 
-	// Identity of the intended recipients (the audience)
+	// Identity of the intended recipients (the audience).
 	//
-	// Typically, the audience may be a single resources server or a list of resource servers.
+	// Typically, the audience is a single resource server or a list of resource servers.
+	//
 	// It is considered a good practice to limit the audience of the token for security purposes.
 	Audience []string `json:"audience"`
 
 	// Algorithm used for encrypting authorization responses.
-	// If both signing and encryption are requested, the response will be signed then encrypted,
-	// with the result being a Nested JWT, as defined in JWT [RFC7519].
-	// The default, if omitted, is that no encryption is performed.
+	//
+	// If both signing and encryption are requested, the response is first signed, and then encrypted.
+	// As a result, a Nested JWT is obtained, as defined in JWT [RFC7519].
+	//
+	// If omitted, no encryption is applied by default.
 	// Example: RSA-OAEP-256
 	// Enum: [RSA-OAEP RSA-OAEP-256]
 	AuthorizationEncryptedResponseAlg string `json:"authorization_encrypted_response_alg,omitempty"`
 
 	// Algorithm used for encrypting authorization responses.
-	// If authorization_encrypted_response_alg is specified, the default for this value is A128CBC-HS256.
-	// When authorization_encrypted_response_enc is included, authorization_encrypted_response_alg
-	// MUST also be provided.
+	//
+	// With `authorization_encrypted_response_alg` specified, the default value is `A128CBC-HS256`.
+	// When `authorization_encrypted_response_enc` is included, `authorization_encrypted_response_alg`
+	// MUST also be provided in a request.
 	// Example: A128CBC-HS256
 	// Enum: [A256GCM A128CBC-HS256]
 	AuthorizationEncryptedResponseEnc string `json:"authorization_encrypted_response_enc,omitempty"`
 
-	// ID of the authorization server (workspace) to which a client application is tied
+	// An authorization server (workspace) identifier holding the client application.
 	// Example: default
 	// Required: true
 	AuthorizationServerID string `json:"authorization_server_id"`
 
 	// Algorithm used for signing authorization responses.
-	// If this is specified, the response will be signed using JWS and the configured algorithm.
-	// The algorithm none is not allowed.
+	//
+	// With this parameter specified, the response is signed using JWS and according to the configured algorithm.
+	//
+	// `none` isn't allowed.
 	// Example: RS256
 	AuthorizationSignedResponseAlg string `json:"authorization_signed_response_alg,omitempty"`
 
-	// OPTIONAL. The JWS algorithm alg value that the Client will use for signing authentication requests.
-	// When omitted, the Client will not send signed authentication requests.
+	// OPTIONAL. The JWS alg algorithm value used by the client application to sign authentication requests.
+	//
+	// When omitted, the client application doesn't send signed authentication requests.
 	BackchannelAuthenticationRequestSigningAlg string `json:"backchannel_authentication_request_signing_alg,omitempty"`
 
-	// REQUIRED if the token delivery mode is set to ping or push.
-	// This is the endpoint to which the OP will post a notification after a successful or failed end-user authentication.
-	// It MUST be an HTTPS URL.
+	// REQUIRED for requests when the client application uses CIBA as an authorization grant type, and the token
+	// delivery mode is set to `ping` or `push`.
+	//
+	// This parameter is the endpoint where an OP (OpenID Provider) posts a notification after end-user authentication.
+	//
+	// Input: an HTTPS URL.
 	BackchannelClientNotificationEndpoint string `json:"backchannel_client_notification_endpoint,omitempty"`
 
-	// REQUIRED. One of the following values: poll, ping, or push.
+	// REQUIRED for requests when the client application uses CIBA as an authorization grant type.
+	//
+	// Input: `poll`, `ping`, or `push`.
 	BackchannelTokenDeliveryMode string `json:"backchannel_token_delivery_mode,omitempty"`
 
-	// OPTIONAL. Boolean value specifying whether the Client supports the user_code parameter.
-	// If omitted, the default value is false.
-	// This parameter only applies when OP parameter backchannel_user_code_parameter_supported is true.
+	// OPTIONAL. A boolean value indicating the `user_code` parameter support by the client application.
+	//
+	// If omitted, the default value is `false`.
+	//
+	// This applies only when the `backchannel_user_code_parameter_supported` OP parameter is `true`.
 	BackchannelUserCodeParameter bool `json:"backchannel_user_code_parameter,omitempty"`
 
 	// OAuth client application identifier
@@ -94,13 +108,12 @@ type Client struct {
 	// If not provided, a random client ID is generated.
 	ClientID string `json:"client_id,omitempty"`
 
-	// Time at which the client identifier was issued.
+	// The client identifier time of issue.
 	//
-	// The time is represented as the number of seconds from
-	// 1970-01-01T00:00:00Z as measured in UTC until the date/time of issuance.
+	// The value is the number of seconds between 1970-01-01T00:00:00Z (UTC) and the date/time of issue.
 	ClientIDIssuedAt int64 `json:"client_id_issued_at,omitempty"`
 
-	// Human-readable name of a client application
+	// Human-readable name of a client application.
 	// Example: My app
 	ClientName string `json:"client_name,omitempty"`
 
@@ -110,15 +123,14 @@ type Client struct {
 	// Min Length: 32
 	ClientSecret string `json:"client_secret,omitempty"`
 
-	// The `client_secret_expires_at` holds an integer that defines the time at which the client
-	// secret expires
+	// The client secret expiration time.
 	//
-	// If the client secret does not expire, the value should be set to `0`.
+	// If the client secret does not expire, `client_secret_expires_at` = `0`.
 	ClientSecretExpiresAt int64 `json:"client_secret_expires_at,omitempty"`
 
-	// Defines if client is active
+	// Defines whether the client application is active or not.
 	//
-	// Only clients with status Active can preform authorization, authentication and PAR requests.
+	// Only clients with the `Active` status can preform authorization, authentication, and PAR requests.
 	// Enum: [active inactive]
 	ClientStatus string `json:"client_status,omitempty"`
 
@@ -126,25 +138,29 @@ type Client struct {
 	// Enum: [oauth2 saml]
 	ClientType string `json:"client_type,omitempty"`
 
-	// URI of a client application
+	// URI of a client application.
 	ClientURI string `json:"client_uri,omitempty"`
 
 	// confirmation
 	Confirmation *Confirmation `json:"confirmation,omitempty"`
 
-	// Date when the client was created
+	// Date when the client application was created.
 	// Example: 2022-04-07T19:17:31.323187Z
 	// Format: date-time
 	CreatedAt strfmt.DateTime `json:"created_at,omitempty"`
 
-	// Description of a client application
+	// Description of the client application.
 	Description string `json:"description,omitempty"`
 
-	// Optional developer owner of the client application
+	// Optional developer owner of the client application.
 	DeveloperID string `json:"developer_id,omitempty"`
 
 	// developer metadata
 	DeveloperMetadata Metadata `json:"developer_metadata,omitempty"`
+
+	// Boolean value specifying whether the client always uses DPoP for token requests
+	// If true, the authorization server will reject token requests from this client that do not contain the DPoP header.
+	DpopBoundAccessTokens bool `json:"dpop_bound_access_tokens,omitempty"`
 
 	// dynamically registered
 	DynamicallyRegistered bool `json:"dynamically_registered,omitempty"`
@@ -152,12 +168,11 @@ type Client struct {
 	// fdx
 	Fdx *FDXMetadata `json:"fdx,omitempty"`
 
-	// An array of allowed OAuth client grant types
+	// An array of allowed OAuth client grant types.
 	//
 	// The `grantTypes` array stores OAuth flows that are allowed for a given client application.
 	//
-	// To know more about OAuth grant flows, see the
-	// [ACP grant flows documentation](https://docs.authorization.cloudentity.com/features/oauth/grant_flows/).
+	// [Read more](https://cloudentity.com/developers/basics/oauth-grant-types/grant-types-overview/) about grant types.
 	// Example: ["password","refresh_token","client_credentials","implicit","authorization_code"]
 	GrantTypes []string `json:"grant_types"`
 
@@ -170,29 +185,30 @@ type Client struct {
 	// plaintext secrets from being viewed both in the UI and the database.
 	HashedSecret string `json:"hashed_secret,omitempty"`
 
-	// JWE alg algorithm for encrypting the ID Token issued to this Client
+	// JWE alg algorithm for encrypting the ID token issued to this client application.
 	// Enum: [RSA-OAEP RSA-OAEP-256]
 	IDTokenEncryptedResponseAlg string `json:"id_token_encrypted_response_alg,omitempty"`
 
-	// JWE enc algorithm for encrypting the ID Token issued to this Client
+	// JWE enc algorithm for encrypting the ID token issued to this client application.
 	// Enum: [A256GCM A128CBC-HS256]
 	IDTokenEncryptedResponseEnc string `json:"id_token_encrypted_response_enc,omitempty"`
 
-	// Algorithm for signing ID tokens issued for a client application
+	// Algorithm for signing ID tokens issued for a client application.
 	//
 	// The default value depends on authorization server configuration.
 	// Example: ES256
 	// Enum: [RS256 ES256 PS256]
 	IDTokenSignedResponseAlg string `json:"id_token_signed_response_alg,omitempty"`
 
-	// Introspection endpoint authentication method configured for a client application
-	// If empty, the token_endpoint_auth_method will be used
+	// An introspection endpoint authentication method configured for the client application (read-only).
 	//
-	// ACP supports the following client authentication methods:
-	// client_secret_basic, client_secret_post, client_secret_jwt, private_key_jwt,
-	// self_signed_tls_client_auth, tls_client_auth, none.
+	// If empty, the `token_endpoint_auth_method` is used.
 	//
-	// To learn more, see the [ACP client authentication documentation](https://docs.authorization.cloudentity.com/features/oauth/client_auth/)
+	// Cloudentity supports the following client authentication methods:
+	// `client_secret_basic`, `client_secret_post`, `client_secret_jwt`, `private_key_jwt`,
+	// `self_signed_tls_client_auth`, `tls_client_auth`, `none`.
+	//
+	// [Read more](https://cloudentity.com/developers/basics/oauth-client-authentication/client-authentication-overview/) about client authentication.
 	// Example: client_secret_basic
 	// Enum: [client_secret_basic client_secret_post client_secret_jwt private_key_jwt self_signed_tls_client_auth tls_client_auth none]
 	IntrospectionEndpointAuthMethod string `json:"introspection_endpoint_auth_method,omitempty"`
@@ -200,24 +216,27 @@ type Client struct {
 	// jwks
 	Jwks *ClientJWKs `json:"jwks,omitempty"`
 
-	// URL of JSON Web Key Set containing the public keys used by a client application to authenticate itself
-	// with ACP
+	// A URL of JSON Web Key Set with the public keys used by a client application to authenticate to Cloudentity.
 	JwksURI string `json:"jwks_uri,omitempty"`
 
-	// Logo URI
+	// Logo URI.
 	LogoURI string `json:"logo_uri,omitempty"`
 
 	// metadata
 	Metadata Metadata `json:"metadata,omitempty"`
 
-	// External organization ID
+	// obbr
+	Obbr *OBBRMetadata `json:"obbr,omitempty"`
+
+	// External organization identifier. It is a unique string assigned by the CDR Register to identify an Accredited
+	// Data Recipient Brand.
 	//
-	// This field value is used as the `aud` (audience) claim for message signing. `aud` indicates what entity will
-	// consume a token.
+	// The value obtained is used as the `aud` claim for message signing, for example, when a JSON Web Token (JWT) is
+	// required for authorization, and represents the audience(s) the JWT is intended for.
 	// Example: 5647fe90-f6bc-11eb-9a03-0242ac130003
 	OrganisationID string `json:"organisation_id,omitempty"`
 
-	// Policy URL to read about how the profile data is used
+	// Policy URL to read about how the profile data is used.
 	PolicyURI string `json:"policy_uri,omitempty"`
 
 	// privacy
@@ -235,15 +254,15 @@ type Client struct {
 	RequestObjectEncryptionAlg string `json:"request_object_encryption_alg,omitempty"`
 
 	// Optional JWE enc algorithm the client is declaring that it may use for encrypting Request Objects
-	// When request_object_encryption_enc is included, request_object_encryption_alg MUST also be provided.
+	// When `request_object_encryption_enc` is included, `request_object_encryption_alg` MUST also be provided.
 	// Example: A256GCM
 	// Enum: [A256GCM A128CBC-HS256]
 	RequestObjectEncryptionEnc string `json:"request_object_encryption_enc,omitempty"`
 
 	// Request object signing algorithm for the token endpoint
 	//
-	// ACP supports signing tokens using the RS256, ES256, and PS256 algorithms. If you do not want
-	// to use a signing algorithm, the value of the parameter should be set to `none`.
+	// Cloudentity supports signing tokens with the RS256, ES256, and PS256 algorithms. If you do not want
+	// to use a signing algorithm, set the value of this parameter to `none`.
 	// Example: none
 	// Enum: [any none RS256 ES256 PS256]
 	RequestObjectSigningAlg string `json:"request_object_signing_alg,omitempty"`
@@ -257,14 +276,14 @@ type Client struct {
 	// response types
 	ResponseTypes ResponseTypes `json:"response_types,omitempty"`
 
-	// Revocation endpoint authentication method configured for a client application
-	// If empty, the token_endpoint_auth_method will be used
+	// A revocation endpoint authentication method configured for the client application (read-only).
+	// If empty, the `token_endpoint_auth_method` is used.
 	//
-	// ACP supports the following client authentication methods:
-	// client_secret_basic, client_secret_post, client_secret_jwt, private_key_jwt,
-	// self_signed_tls_client_auth, tls_client_auth, none.
+	// Cloudentity supports the following client authentication methods:
+	// `client_secret_basic`, `client_secret_post`, `client_secret_jwt`, `private_key_jwt`,
+	// `self_signed_tls_client_auth`, `tls_client_auth`, `none`.
 	//
-	// To learn more, see the [ACP client authentication documentation](https://docs.authorization.cloudentity.com/features/oauth/client_auth/)
+	// [Read more](https://cloudentity.com/developers/basics/oauth-client-authentication/client-authentication-overview/) about client authentication.
 	// Example: client_secret_basic
 	// Enum: [client_secret_basic client_secret_post client_secret_jwt private_key_jwt self_signed_tls_client_auth tls_client_auth none]
 	RevocationEndpointAuthMethod string `json:"revocation_endpoint_auth_method,omitempty"`
@@ -278,7 +297,7 @@ type Client struct {
 	// saml service provider id
 	SamlServiceProviderID string `json:"saml_service_provider_id,omitempty"`
 
-	// Space separated scopes for compatibility with OAuth specification
+	// Space-separated list of scopes for compatibility with the OAuth specification.
 	// Example: email offline_access openid
 	Scope string `json:"scope,omitempty"`
 
@@ -286,16 +305,21 @@ type Client struct {
 	// Example: ["email","offline_access","openid"]
 	Scopes []string `json:"scopes"`
 
-	// URL using the HTTPS scheme to be used in calculating Pseudonymous Identifiers by the OpenID Provider. The URL references a
-	// file with a single JSON array of redirect_uri values.
-	// Example: https://api.jsonbin.io/b/5db6ef08688fed59d2841f1e
+	// OPTIONAL. [A URL using the HTTPS scheme](https://openid.net/specs/openid-connect-registration-1_0.html#SectorIdentifierValidation).
+	// It must reference a JSON file with the array of `redirect_uri` values.
+	//
+	// Pass this parameter when you use multiple domains in your `redirect_uris` or need a mechanism to allow changes in
+	// domain without affecting consumer consent.
+	//
+	// [Read more](https://openid.net/specs/openid-connect-core-1_0.html)
 	SectorIdentifierURI string `json:"sector_identifier_uri,omitempty"`
 
 	// A unique identifier string (e.g., a Universally Unique Identifier
-	// (UUID)) assigned by the client developer or software publisher
-	// The "software_id" SHOULD remain the same across
-	// multiple updates or versions of the same piece of software.  The
-	// value of this field is not intended to be human readable and is
+	// (UUID)) assigned by the client developer or software publisher.
+	//
+	// The `software_id` MUST remain the same across
+	// multiple updates or versions of the same software package. The
+	// value of this field is not intended to be human-readable and is
 	// usually opaque to the client and authorization server.
 	SoftwareID string `json:"software_id,omitempty"`
 
@@ -318,17 +342,17 @@ type Client struct {
 	SoftwareStatementPayload Metadata `json:"software_statement_payload,omitempty"`
 
 	// A version identifier string for the client software identified by
-	// "software_id".  The value of the "software_version" SHOULD change
-	// on any update to the client software identified by the same
-	// "software_id".
+	// `software_id`. The value of the `software_version` MUST be changed
+	// with any update of the client software identified by the same
+	// `software_id`.
 	SoftwareVersion string `json:"software_version,omitempty"`
 
 	// Subject identifier type
 	//
 	// Stores information if the subject identifier is of the `public` or the `pairwise` type.
 	//
-	// Subject identifiers are locally unique and never reassigned identifiers within the Issuer
-	// for the end-user and are inteded to be consumed by client applications. There are two types
+	// Subject identifiers identify an end-user. They are locally unique and never reassigned within the Issuer,
+	// and are intended to be consumed by client applications. There are two types
 	// of subject identifiers: `public` and `pairwise`.
 	//
 	// For the `public` type, the value of the `sub` (subject) token claim is the same for all clients.
@@ -340,7 +364,7 @@ type Client struct {
 	// Enum: [public pairwise]
 	SubjectType string `json:"subject_type,omitempty"`
 
-	// Stores information if the client application is a system tenant's application
+	// Defines whether the client application is a system tenant's application or not.
 	System bool `json:"system,omitempty"`
 
 	// ID of a tenant where the client application is added
@@ -368,11 +392,11 @@ type Client struct {
 
 	// Token endpoint authentication method configured for a client application
 	//
-	// ACP supports the following client authentication methods:
-	// client_secret_basic, client_secret_post, client_secret_jwt, private_key_jwt,
-	// self_signed_tls_client_auth, tls_client_auth, none.
+	// Cloudentity supports the following client authentication methods:
+	// `client_secret_basic`, `client_secret_post`, `client_secret_jwt`, `private_key_jwt`,
+	// `self_signed_tls_client_auth`, `tls_client_auth`, `none`.
 	//
-	// To learn more, see the [ACP client authentication documentation](https://docs.authorization.cloudentity.com/features/oauth/client_auth/)
+	// To learn more, go to the Authorization Basics > Client Authentication section of this guide.
 	// Example: client_secret_basic
 	// Enum: [client_secret_basic client_secret_post client_secret_jwt private_key_jwt self_signed_tls_client_auth tls_client_auth none]
 	TokenEndpointAuthMethod string `json:"token_endpoint_auth_method,omitempty"`
@@ -395,7 +419,10 @@ type Client struct {
 	// token exchange
 	TokenExchange *ClientTokenExchangeConfiguration `json:"token_exchange,omitempty"`
 
-	// Terms of Service URL
+	// token ttls
+	TokenTtls *TokenTTLs `json:"token_ttls,omitempty"`
+
+	// Terms of Service URL.
 	TosURI string `json:"tos_uri,omitempty"`
 
 	// Defines whether the client application is trusted or not.
@@ -403,17 +430,19 @@ type Client struct {
 	// For trusted clients, consent pages are skipped during the authorization process.
 	Trusted bool `json:"trusted,omitempty"`
 
-	// Date when the client was updated
+	// Date when the client application was updated.
 	// Example: 2022-05-08T01:11:51.1262916Z
 	// Format: date-time
 	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty"`
 
+	// If enabled the client application will be able to set its own token TTLs.
+	UseCustomTokenTtls bool `json:"use_custom_token_ttls,omitempty"`
+
 	// JWS alg algorithm REQUIRED for signing UserInfo Responses.
 	//
-	// If specified, the response is JWT
-	// [JWT] serialized, and signed using JWS.
+	// If specified, the response is a JWT serialized and signed with JWS.
 	//
-	// If omitted, the default behavior is for the UserInfo Response to return the Claims
+	// If omitted, then by default, UserInfo Response returns the Claims
 	// as an UTF-8 encoded JSON object using the application/json content-type.
 	// Example: none
 	// Enum: [none RS256 ES256]
@@ -496,6 +525,10 @@ func (m *Client) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateObbr(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validatePrivacy(formats); err != nil {
 		res = append(res, err)
 	}
@@ -553,6 +586,10 @@ func (m *Client) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateTokenExchange(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTokenTtls(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1124,6 +1161,25 @@ func (m *Client) validateMetadata(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Client) validateObbr(formats strfmt.Registry) error {
+	if swag.IsZero(m.Obbr) { // not required
+		return nil
+	}
+
+	if m.Obbr != nil {
+		if err := m.Obbr.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("obbr")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("obbr")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *Client) validatePrivacy(formats strfmt.Registry) error {
 	if swag.IsZero(m.Privacy) { // not required
 		return nil
@@ -1604,6 +1660,25 @@ func (m *Client) validateTokenExchange(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Client) validateTokenTtls(formats strfmt.Registry) error {
+	if swag.IsZero(m.TokenTtls) { // not required
+		return nil
+	}
+
+	if m.TokenTtls != nil {
+		if err := m.TokenTtls.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("token_ttls")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("token_ttls")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *Client) validateUpdatedAt(formats strfmt.Registry) error {
 	if swag.IsZero(m.UpdatedAt) { // not required
 		return nil
@@ -1689,6 +1764,10 @@ func (m *Client) ContextValidate(ctx context.Context, formats strfmt.Registry) e
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateObbr(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidatePrivacy(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -1717,6 +1796,10 @@ func (m *Client) ContextValidate(ctx context.Context, formats strfmt.Registry) e
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateTokenTtls(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -1735,6 +1818,11 @@ func (m *Client) contextValidateApplicationTypes(ctx context.Context, formats st
 func (m *Client) contextValidateConfirmation(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Confirmation != nil {
+
+		if swag.IsZero(m.Confirmation) { // not required
+			return nil
+		}
+
 		if err := m.Confirmation.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("confirmation")
@@ -1749,6 +1837,10 @@ func (m *Client) contextValidateConfirmation(ctx context.Context, formats strfmt
 }
 
 func (m *Client) contextValidateDeveloperMetadata(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.DeveloperMetadata) { // not required
+		return nil
+	}
 
 	if err := m.DeveloperMetadata.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -1765,6 +1857,11 @@ func (m *Client) contextValidateDeveloperMetadata(ctx context.Context, formats s
 func (m *Client) contextValidateFdx(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Fdx != nil {
+
+		if swag.IsZero(m.Fdx) { // not required
+			return nil
+		}
+
 		if err := m.Fdx.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("fdx")
@@ -1781,6 +1878,11 @@ func (m *Client) contextValidateFdx(ctx context.Context, formats strfmt.Registry
 func (m *Client) contextValidateJwks(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Jwks != nil {
+
+		if swag.IsZero(m.Jwks) { // not required
+			return nil
+		}
+
 		if err := m.Jwks.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("jwks")
@@ -1796,6 +1898,10 @@ func (m *Client) contextValidateJwks(ctx context.Context, formats strfmt.Registr
 
 func (m *Client) contextValidateMetadata(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Metadata) { // not required
+		return nil
+	}
+
 	if err := m.Metadata.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("metadata")
@@ -1808,9 +1914,35 @@ func (m *Client) contextValidateMetadata(ctx context.Context, formats strfmt.Reg
 	return nil
 }
 
+func (m *Client) contextValidateObbr(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Obbr != nil {
+
+		if swag.IsZero(m.Obbr) { // not required
+			return nil
+		}
+
+		if err := m.Obbr.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("obbr")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("obbr")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *Client) contextValidatePrivacy(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Privacy != nil {
+
+		if swag.IsZero(m.Privacy) { // not required
+			return nil
+		}
+
 		if err := m.Privacy.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("privacy")
@@ -1841,6 +1973,11 @@ func (m *Client) contextValidateRedirectUris(ctx context.Context, formats strfmt
 func (m *Client) contextValidateRegistrationToken(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.RegistrationToken != nil {
+
+		if swag.IsZero(m.RegistrationToken) { // not required
+			return nil
+		}
+
 		if err := m.RegistrationToken.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("registration_token")
@@ -1871,6 +2008,11 @@ func (m *Client) contextValidateResponseTypes(ctx context.Context, formats strfm
 func (m *Client) contextValidateSamlMetadata(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.SamlMetadata != nil {
+
+		if swag.IsZero(m.SamlMetadata) { // not required
+			return nil
+		}
+
 		if err := m.SamlMetadata.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("saml_metadata")
@@ -1885,6 +2027,10 @@ func (m *Client) contextValidateSamlMetadata(ctx context.Context, formats strfmt
 }
 
 func (m *Client) contextValidateSoftwareStatementPayload(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SoftwareStatementPayload) { // not required
+		return nil
+	}
 
 	if err := m.SoftwareStatementPayload.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -1901,11 +2047,37 @@ func (m *Client) contextValidateSoftwareStatementPayload(ctx context.Context, fo
 func (m *Client) contextValidateTokenExchange(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.TokenExchange != nil {
+
+		if swag.IsZero(m.TokenExchange) { // not required
+			return nil
+		}
+
 		if err := m.TokenExchange.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("token_exchange")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("token_exchange")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *Client) contextValidateTokenTtls(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.TokenTtls != nil {
+
+		if swag.IsZero(m.TokenTtls) { // not required
+			return nil
+		}
+
+		if err := m.TokenTtls.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("token_ttls")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("token_ttls")
 			}
 			return err
 		}

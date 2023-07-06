@@ -44,9 +44,15 @@ type AccessRequestDataWithError struct {
 	// Error hint
 	ErrorHint string `json:"error_hint,omitempty"`
 
+	// External error
+	ExternalError bool `json:"external_error,omitempty"`
+
 	// Stores the information which grant type was selected to perfom a given action.
 	// Matches one of allowed OAuth client grant types for a given client.
 	GrantType string `json:"grant_type,omitempty"`
+
+	// May act claims
+	MayActClaims map[string]interface{} `json:"may_act_claims,omitempty"`
 
 	// Stores information if the client application is a public one.
 	Public bool `json:"public,omitempty"`

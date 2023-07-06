@@ -48,7 +48,7 @@ func (o *InspectOTPReader) ReadResponse(response runtime.ClientResponse, consume
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /system/pools/{ipID}/user/otp/inspect] inspectOTP", response, response.Code())
 	}
 }
 
@@ -98,6 +98,11 @@ func (o *InspectOTPOK) IsServerError() bool {
 // IsCode returns true when this inspect o t p o k response a status code equal to that given
 func (o *InspectOTPOK) IsCode(code int) bool {
 	return code == 200
+}
+
+// Code gets the status code for the inspect o t p o k response
+func (o *InspectOTPOK) Code() int {
+	return 200
 }
 
 func (o *InspectOTPOK) Error() string {
@@ -170,6 +175,11 @@ func (o *InspectOTPUnauthorized) IsCode(code int) bool {
 	return code == 401
 }
 
+// Code gets the status code for the inspect o t p unauthorized response
+func (o *InspectOTPUnauthorized) Code() int {
+	return 401
+}
+
 func (o *InspectOTPUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/inspect][%d] inspectOTPUnauthorized  %+v", 401, o.Payload)
 }
@@ -233,6 +243,11 @@ func (o *InspectOTPPreconditionFailed) IsCode(code int) bool {
 	return code == 412
 }
 
+// Code gets the status code for the inspect o t p precondition failed response
+func (o *InspectOTPPreconditionFailed) Code() int {
+	return 412
+}
+
 func (o *InspectOTPPreconditionFailed) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/inspect][%d] inspectOTPPreconditionFailed  %+v", 412, o.Payload)
 }
@@ -294,6 +309,11 @@ func (o *InspectOTPUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this inspect o t p unprocessable entity response a status code equal to that given
 func (o *InspectOTPUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the inspect o t p unprocessable entity response
+func (o *InspectOTPUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *InspectOTPUnprocessableEntity) Error() string {

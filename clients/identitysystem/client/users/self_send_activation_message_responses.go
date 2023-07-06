@@ -66,7 +66,7 @@ func (o *SelfSendActivationMessageReader) ReadResponse(response runtime.ClientRe
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /system/pools/{ipID}/users/{userID}/activation/send] selfSendActivationMessage", response, response.Code())
 	}
 }
 
@@ -114,6 +114,11 @@ func (o *SelfSendActivationMessageNoContent) IsServerError() bool {
 // IsCode returns true when this self send activation message no content response a status code equal to that given
 func (o *SelfSendActivationMessageNoContent) IsCode(code int) bool {
 	return code == 204
+}
+
+// Code gets the status code for the self send activation message no content response
+func (o *SelfSendActivationMessageNoContent) Code() int {
+	return 204
 }
 
 func (o *SelfSendActivationMessageNoContent) Error() string {
@@ -173,6 +178,11 @@ func (o *SelfSendActivationMessageBadRequest) IsServerError() bool {
 // IsCode returns true when this self send activation message bad request response a status code equal to that given
 func (o *SelfSendActivationMessageBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the self send activation message bad request response
+func (o *SelfSendActivationMessageBadRequest) Code() int {
+	return 400
 }
 
 func (o *SelfSendActivationMessageBadRequest) Error() string {
@@ -238,6 +248,11 @@ func (o *SelfSendActivationMessageUnauthorized) IsCode(code int) bool {
 	return code == 401
 }
 
+// Code gets the status code for the self send activation message unauthorized response
+func (o *SelfSendActivationMessageUnauthorized) Code() int {
+	return 401
+}
+
 func (o *SelfSendActivationMessageUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/activation/send][%d] selfSendActivationMessageUnauthorized  %+v", 401, o.Payload)
 }
@@ -299,6 +314,11 @@ func (o *SelfSendActivationMessageNotFound) IsServerError() bool {
 // IsCode returns true when this self send activation message not found response a status code equal to that given
 func (o *SelfSendActivationMessageNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the self send activation message not found response
+func (o *SelfSendActivationMessageNotFound) Code() int {
+	return 404
 }
 
 func (o *SelfSendActivationMessageNotFound) Error() string {
@@ -364,6 +384,11 @@ func (o *SelfSendActivationMessagePreconditionFailed) IsCode(code int) bool {
 	return code == 412
 }
 
+// Code gets the status code for the self send activation message precondition failed response
+func (o *SelfSendActivationMessagePreconditionFailed) Code() int {
+	return 412
+}
+
 func (o *SelfSendActivationMessagePreconditionFailed) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/activation/send][%d] selfSendActivationMessagePreconditionFailed  %+v", 412, o.Payload)
 }
@@ -427,6 +452,11 @@ func (o *SelfSendActivationMessageUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
 }
 
+// Code gets the status code for the self send activation message unprocessable entity response
+func (o *SelfSendActivationMessageUnprocessableEntity) Code() int {
+	return 422
+}
+
 func (o *SelfSendActivationMessageUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/activation/send][%d] selfSendActivationMessageUnprocessableEntity  %+v", 422, o.Payload)
 }
@@ -488,6 +518,11 @@ func (o *SelfSendActivationMessageTooManyRequests) IsServerError() bool {
 // IsCode returns true when this self send activation message too many requests response a status code equal to that given
 func (o *SelfSendActivationMessageTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the self send activation message too many requests response
+func (o *SelfSendActivationMessageTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *SelfSendActivationMessageTooManyRequests) Error() string {

@@ -285,6 +285,7 @@ func (m *OBWriteDomesticConsentResponse5DataInitiation) ContextValidate(ctx cont
 func (m *OBWriteDomesticConsentResponse5DataInitiation) contextValidateCreditorAccount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CreditorAccount != nil {
+
 		if err := m.CreditorAccount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("CreditorAccount")
@@ -301,6 +302,11 @@ func (m *OBWriteDomesticConsentResponse5DataInitiation) contextValidateCreditorA
 func (m *OBWriteDomesticConsentResponse5DataInitiation) contextValidateCreditorPostalAddress(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CreditorPostalAddress != nil {
+
+		if swag.IsZero(m.CreditorPostalAddress) { // not required
+			return nil
+		}
+
 		if err := m.CreditorPostalAddress.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("CreditorPostalAddress")
@@ -317,6 +323,11 @@ func (m *OBWriteDomesticConsentResponse5DataInitiation) contextValidateCreditorP
 func (m *OBWriteDomesticConsentResponse5DataInitiation) contextValidateDebtorAccount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.DebtorAccount != nil {
+
+		if swag.IsZero(m.DebtorAccount) { // not required
+			return nil
+		}
+
 		if err := m.DebtorAccount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("DebtorAccount")
@@ -333,6 +344,7 @@ func (m *OBWriteDomesticConsentResponse5DataInitiation) contextValidateDebtorAcc
 func (m *OBWriteDomesticConsentResponse5DataInitiation) contextValidateInstructedAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.InstructedAmount != nil {
+
 		if err := m.InstructedAmount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("InstructedAmount")
@@ -347,6 +359,10 @@ func (m *OBWriteDomesticConsentResponse5DataInitiation) contextValidateInstructe
 }
 
 func (m *OBWriteDomesticConsentResponse5DataInitiation) contextValidateLocalInstrument(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.LocalInstrument) { // not required
+		return nil
+	}
 
 	if err := m.LocalInstrument.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -363,6 +379,11 @@ func (m *OBWriteDomesticConsentResponse5DataInitiation) contextValidateLocalInst
 func (m *OBWriteDomesticConsentResponse5DataInitiation) contextValidateRemittanceInformation(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.RemittanceInformation != nil {
+
+		if swag.IsZero(m.RemittanceInformation) { // not required
+			return nil
+		}
+
 		if err := m.RemittanceInformation.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("RemittanceInformation")

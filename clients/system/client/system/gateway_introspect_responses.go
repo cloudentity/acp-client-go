@@ -42,7 +42,7 @@ func (o *GatewayIntrospectReader) ReadResponse(response runtime.ClientResponse, 
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /gateways/introspect] gatewayIntrospect", response, response.Code())
 	}
 }
 
@@ -85,6 +85,11 @@ func (o *GatewayIntrospectOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the gateway introspect o k response
+func (o *GatewayIntrospectOK) Code() int {
+	return 200
+}
+
 func (o *GatewayIntrospectOK) Error() string {
 	return fmt.Sprintf("[POST /gateways/introspect][%d] gatewayIntrospectOK  %+v", 200, o.Payload)
 }
@@ -117,7 +122,7 @@ func NewGatewayIntrospectBadRequest() *GatewayIntrospectBadRequest {
 /*
 GatewayIntrospectBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type GatewayIntrospectBadRequest struct {
 	Payload *models.Error
@@ -146,6 +151,11 @@ func (o *GatewayIntrospectBadRequest) IsServerError() bool {
 // IsCode returns true when this gateway introspect bad request response a status code equal to that given
 func (o *GatewayIntrospectBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the gateway introspect bad request response
+func (o *GatewayIntrospectBadRequest) Code() int {
+	return 400
 }
 
 func (o *GatewayIntrospectBadRequest) Error() string {
@@ -180,7 +190,7 @@ func NewGatewayIntrospectUnprocessableEntity() *GatewayIntrospectUnprocessableEn
 /*
 GatewayIntrospectUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type GatewayIntrospectUnprocessableEntity struct {
 	Payload *models.Error
@@ -209,6 +219,11 @@ func (o *GatewayIntrospectUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this gateway introspect unprocessable entity response a status code equal to that given
 func (o *GatewayIntrospectUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the gateway introspect unprocessable entity response
+func (o *GatewayIntrospectUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *GatewayIntrospectUnprocessableEntity) Error() string {

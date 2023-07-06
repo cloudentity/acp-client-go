@@ -51,7 +51,7 @@ func (o *CdrConsentIntrospectReader) ReadResponse(response runtime.ClientRespons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /cdr/consents/introspect] cdrConsentIntrospect", response, response.Code())
 	}
 }
 
@@ -505,6 +505,11 @@ func (o *CdrConsentIntrospectOKBody) ContextValidate(ctx context.Context, format
 func (o *CdrConsentIntrospectOKBody) contextValidateCdrArrangement(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.CdrArrangement != nil {
+
+		if swag.IsZero(o.CdrArrangement) { // not required
+			return nil
+		}
+
 		if err := o.CdrArrangement.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cdrConsentIntrospectOK" + "." + "cdr_arrangement")
@@ -521,6 +526,11 @@ func (o *CdrConsentIntrospectOKBody) contextValidateCdrArrangement(ctx context.C
 func (o *CdrConsentIntrospectOKBody) contextValidateCdrRegisterClientMetadata(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.CdrRegisterClientMetadata != nil {
+
+		if swag.IsZero(o.CdrRegisterClientMetadata) { // not required
+			return nil
+		}
+
 		if err := o.CdrRegisterClientMetadata.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cdrConsentIntrospectOK" + "." + "cdr_register_client_metadata")

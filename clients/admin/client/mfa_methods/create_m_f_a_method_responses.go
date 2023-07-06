@@ -72,7 +72,7 @@ func (o *CreateMFAMethodReader) ReadResponse(response runtime.ClientResponse, co
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /mfa-methods] createMFAMethod", response, response.Code())
 	}
 }
 
@@ -115,6 +115,11 @@ func (o *CreateMFAMethodCreated) IsCode(code int) bool {
 	return code == 201
 }
 
+// Code gets the status code for the create m f a method created response
+func (o *CreateMFAMethodCreated) Code() int {
+	return 201
+}
+
 func (o *CreateMFAMethodCreated) Error() string {
 	return fmt.Sprintf("[POST /mfa-methods][%d] createMFAMethodCreated  %+v", 201, o.Payload)
 }
@@ -147,7 +152,7 @@ func NewCreateMFAMethodBadRequest() *CreateMFAMethodBadRequest {
 /*
 CreateMFAMethodBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type CreateMFAMethodBadRequest struct {
 	Payload *models.Error
@@ -176,6 +181,11 @@ func (o *CreateMFAMethodBadRequest) IsServerError() bool {
 // IsCode returns true when this create m f a method bad request response a status code equal to that given
 func (o *CreateMFAMethodBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the create m f a method bad request response
+func (o *CreateMFAMethodBadRequest) Code() int {
+	return 400
 }
 
 func (o *CreateMFAMethodBadRequest) Error() string {
@@ -210,7 +220,7 @@ func NewCreateMFAMethodUnauthorized() *CreateMFAMethodUnauthorized {
 /*
 CreateMFAMethodUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type CreateMFAMethodUnauthorized struct {
 	Payload *models.Error
@@ -239,6 +249,11 @@ func (o *CreateMFAMethodUnauthorized) IsServerError() bool {
 // IsCode returns true when this create m f a method unauthorized response a status code equal to that given
 func (o *CreateMFAMethodUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the create m f a method unauthorized response
+func (o *CreateMFAMethodUnauthorized) Code() int {
+	return 401
 }
 
 func (o *CreateMFAMethodUnauthorized) Error() string {
@@ -273,7 +288,7 @@ func NewCreateMFAMethodForbidden() *CreateMFAMethodForbidden {
 /*
 CreateMFAMethodForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type CreateMFAMethodForbidden struct {
 	Payload *models.Error
@@ -302,6 +317,11 @@ func (o *CreateMFAMethodForbidden) IsServerError() bool {
 // IsCode returns true when this create m f a method forbidden response a status code equal to that given
 func (o *CreateMFAMethodForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the create m f a method forbidden response
+func (o *CreateMFAMethodForbidden) Code() int {
+	return 403
 }
 
 func (o *CreateMFAMethodForbidden) Error() string {
@@ -336,7 +356,7 @@ func NewCreateMFAMethodNotFound() *CreateMFAMethodNotFound {
 /*
 CreateMFAMethodNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type CreateMFAMethodNotFound struct {
 	Payload *models.Error
@@ -365,6 +385,11 @@ func (o *CreateMFAMethodNotFound) IsServerError() bool {
 // IsCode returns true when this create m f a method not found response a status code equal to that given
 func (o *CreateMFAMethodNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the create m f a method not found response
+func (o *CreateMFAMethodNotFound) Code() int {
+	return 404
 }
 
 func (o *CreateMFAMethodNotFound) Error() string {
@@ -399,7 +424,7 @@ func NewCreateMFAMethodConflict() *CreateMFAMethodConflict {
 /*
 CreateMFAMethodConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type CreateMFAMethodConflict struct {
 	Payload *models.Error
@@ -428,6 +453,11 @@ func (o *CreateMFAMethodConflict) IsServerError() bool {
 // IsCode returns true when this create m f a method conflict response a status code equal to that given
 func (o *CreateMFAMethodConflict) IsCode(code int) bool {
 	return code == 409
+}
+
+// Code gets the status code for the create m f a method conflict response
+func (o *CreateMFAMethodConflict) Code() int {
+	return 409
 }
 
 func (o *CreateMFAMethodConflict) Error() string {
@@ -462,7 +492,7 @@ func NewCreateMFAMethodUnprocessableEntity() *CreateMFAMethodUnprocessableEntity
 /*
 CreateMFAMethodUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type CreateMFAMethodUnprocessableEntity struct {
 	Payload *models.Error
@@ -491,6 +521,11 @@ func (o *CreateMFAMethodUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this create m f a method unprocessable entity response a status code equal to that given
 func (o *CreateMFAMethodUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the create m f a method unprocessable entity response
+func (o *CreateMFAMethodUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *CreateMFAMethodUnprocessableEntity) Error() string {
@@ -525,7 +560,7 @@ func NewCreateMFAMethodTooManyRequests() *CreateMFAMethodTooManyRequests {
 /*
 CreateMFAMethodTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type CreateMFAMethodTooManyRequests struct {
 	Payload *models.Error
@@ -554,6 +589,11 @@ func (o *CreateMFAMethodTooManyRequests) IsServerError() bool {
 // IsCode returns true when this create m f a method too many requests response a status code equal to that given
 func (o *CreateMFAMethodTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the create m f a method too many requests response
+func (o *CreateMFAMethodTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *CreateMFAMethodTooManyRequests) Error() string {

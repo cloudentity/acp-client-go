@@ -54,7 +54,7 @@ func (o *ListServersForDeveloperReader) ReadResponse(response runtime.ClientResp
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /servers] listServersForDeveloper", response, response.Code())
 	}
 }
 
@@ -97,6 +97,11 @@ func (o *ListServersForDeveloperOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the list servers for developer o k response
+func (o *ListServersForDeveloperOK) Code() int {
+	return 200
+}
+
 func (o *ListServersForDeveloperOK) Error() string {
 	return fmt.Sprintf("[GET /servers][%d] listServersForDeveloperOK  %+v", 200, o.Payload)
 }
@@ -129,7 +134,7 @@ func NewListServersForDeveloperUnauthorized() *ListServersForDeveloperUnauthoriz
 /*
 ListServersForDeveloperUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ListServersForDeveloperUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +163,11 @@ func (o *ListServersForDeveloperUnauthorized) IsServerError() bool {
 // IsCode returns true when this list servers for developer unauthorized response a status code equal to that given
 func (o *ListServersForDeveloperUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the list servers for developer unauthorized response
+func (o *ListServersForDeveloperUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ListServersForDeveloperUnauthorized) Error() string {
@@ -192,7 +202,7 @@ func NewListServersForDeveloperForbidden() *ListServersForDeveloperForbidden {
 /*
 ListServersForDeveloperForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ListServersForDeveloperForbidden struct {
 	Payload *models.Error
@@ -221,6 +231,11 @@ func (o *ListServersForDeveloperForbidden) IsServerError() bool {
 // IsCode returns true when this list servers for developer forbidden response a status code equal to that given
 func (o *ListServersForDeveloperForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the list servers for developer forbidden response
+func (o *ListServersForDeveloperForbidden) Code() int {
+	return 403
 }
 
 func (o *ListServersForDeveloperForbidden) Error() string {
@@ -255,7 +270,7 @@ func NewListServersForDeveloperNotFound() *ListServersForDeveloperNotFound {
 /*
 ListServersForDeveloperNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type ListServersForDeveloperNotFound struct {
 	Payload *models.Error
@@ -284,6 +299,11 @@ func (o *ListServersForDeveloperNotFound) IsServerError() bool {
 // IsCode returns true when this list servers for developer not found response a status code equal to that given
 func (o *ListServersForDeveloperNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the list servers for developer not found response
+func (o *ListServersForDeveloperNotFound) Code() int {
+	return 404
 }
 
 func (o *ListServersForDeveloperNotFound) Error() string {
@@ -318,7 +338,7 @@ func NewListServersForDeveloperTooManyRequests() *ListServersForDeveloperTooMany
 /*
 ListServersForDeveloperTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ListServersForDeveloperTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +367,11 @@ func (o *ListServersForDeveloperTooManyRequests) IsServerError() bool {
 // IsCode returns true when this list servers for developer too many requests response a status code equal to that given
 func (o *ListServersForDeveloperTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the list servers for developer too many requests response
+func (o *ListServersForDeveloperTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ListServersForDeveloperTooManyRequests) Error() string {

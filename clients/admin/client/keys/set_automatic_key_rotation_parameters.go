@@ -69,6 +69,14 @@ type SetAutomaticKeyRotationParams struct {
 	*/
 	AutomaticKeyRotation *models.AutomaticKeyRotation
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Use.
 
 	   Key use (sig or enc)
@@ -163,6 +171,17 @@ func (o *SetAutomaticKeyRotationParams) SetAutomaticKeyRotation(automaticKeyRota
 	o.AutomaticKeyRotation = automaticKeyRotation
 }
 
+// WithIfMatch adds the ifMatch to the set automatic key rotation params
+func (o *SetAutomaticKeyRotationParams) WithIfMatch(ifMatch *string) *SetAutomaticKeyRotationParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the set automatic key rotation params
+func (o *SetAutomaticKeyRotationParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithUse adds the use to the set automatic key rotation params
 func (o *SetAutomaticKeyRotationParams) WithUse(use *string) *SetAutomaticKeyRotationParams {
 	o.SetUse(use)
@@ -194,6 +213,14 @@ func (o *SetAutomaticKeyRotationParams) WriteToRequest(r runtime.ClientRequest, 
 	var res []error
 	if o.AutomaticKeyRotation != nil {
 		if err := r.SetBodyParam(o.AutomaticKeyRotation); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

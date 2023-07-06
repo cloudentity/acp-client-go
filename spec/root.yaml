@@ -30,7 +30,7 @@ definitions:
       graphql_types:
         $ref: '#/definitions/GraphQLTypes'
       id:
-        description: scope id
+        description: API id
         example: "1"
         format: apiID
         type: string
@@ -110,8 +110,24 @@ definitions:
           type: string
         type: array
         x-nullable: false
+      advertise_only_mtls_aliases_in_well_known:
+        description: This option overrides all urls advertised by the well known endpoint
+          with their mtls alias
+        type: boolean
+        x-nullable: false
       block_response_modes:
         description: Block response modes
+        type: boolean
+        x-nullable: false
+      disable_dcr_client_certificate_bound_access_tokens:
+        description: |-
+          Disable certificate-bound access tokens for new DCR clients
+
+          If true, new DCR clients are created with CertificateBoundAccessToken disabled.
+        type: boolean
+        x-nullable: false
+      disable_par:
+        description: Disable PAR
         type: boolean
         x-nullable: false
       disable_refresh_token_cycling:
@@ -119,6 +135,12 @@ definitions:
           Disable refresh token cycling
 
           Once disabled, original refresh token can be constantly used to issue new access token.
+        type: boolean
+        x-nullable: false
+      disallow_access_token_in_query_for_protected_resources:
+        description: |-
+          When enabled, the authorization server will not accept access tokens supplied in the request query parameter
+          for protected resources endpoints.
         type: boolean
         x-nullable: false
       disallow_code_response_type_without_jarm:
@@ -136,6 +158,14 @@ definitions:
           Ignore unknown scopes for DCR
 
           If enabled, an attempt to register or update a client with a scope that does not exist in the server will succeed.
+        type: boolean
+        x-nullable: false
+      require_request_or_request_uri_parameter:
+        description: Require request or request uri parameter for authorization flow
+        type: boolean
+        x-nullable: false
+      return_iss_parameter_in_authorization_response:
+        description: Return iss parameter in the authorization response
         type: boolean
         x-nullable: false
     type: object
@@ -228,7 +258,7 @@ definitions:
 
           It stores information what kind of data is used as the value of the attribute.
 
-          Available types: `number`, `string`, `bool`, `number_array`, `string_array`, `bool_array` or `any`.
+          Available types: `number`, `string`, `bool`, `object`, `number_array`, `string_array`, `bool_array`, `object_array` or `any`.
         format: type
         type: string
         x-nullable: false
@@ -388,6 +418,7 @@ definitions:
         - post_authn
         - consent
         - client_consents
+        - customer_consents
         - authorization_code
         - access_token
         - saml_assertion
@@ -402,6 +433,8 @@ definitions:
         - dcr
         - script
         - role
+        - task
+        - jit
         type: string
         x-nullable: false
       event_type:
@@ -446,6 +479,15 @@ definitions:
 
           It's first not empty value from: X-Forwaded-For, X-Real-IP or network socket IP address
         type: string
+        x-nullable: false
+      may_act_claims:
+        additionalProperties:
+          type: object
+        description: |-
+          Access request may act claims.
+
+          It's only populated if the token has been issued token with may_act claim.
+        type: object
         x-nullable: false
       session_id:
         description: |-
@@ -518,6 +560,11 @@ definitions:
         items:
           type: string
         type: array
+        x-nullable: false
+      send_login_hint:
+        description: Whether to send the identifier as a `login_hint` parameter to
+          the IDP
+        type: boolean
         x-nullable: false
     type: object
   AuthenticationContext:
@@ -661,6 +708,11 @@ definitions:
           type: string
         type: array
         x-nullable: false
+      send_login_hint:
+        description: Whether to send the identifier as a `login_hint` parameter to
+          the IDP
+        type: boolean
+        x-nullable: false
       tenant:
         description: Directory ID from your Microsoft Azure B2C application settings
         example: 123-312-123
@@ -732,6 +784,11 @@ definitions:
         items:
           type: string
         type: array
+        x-nullable: false
+      send_login_hint:
+        description: Whether to send the identifier as a `login_hint` parameter to
+          the IDP
+        type: boolean
         x-nullable: false
       tenant:
         description: Directory ID from your Microsoft Azure application settings
@@ -880,12 +937,26 @@ definitions:
       brand_id:
         type: string
         x-nullable: false
+      dont_cache_trust_anchor_data:
+        description: |-
+          Do not cache trust anchor data, fetch it from registry every time
+          This is useful for testing purposes when the registry might not be fully up when the test is run
+        type: boolean
+        x-nullable: false
       industry:
         $ref: '#/definitions/CDRIndustry'
       register_api_version:
         $ref: '#/definitions/CDRRegisterAPIVersion'
       register_url:
         $ref: '#/definitions/CDRRegisterURL'
+      skip_register_url_validation:
+        description: |-
+          Flag to disable register URL validation
+          If enabled, there will be no error message
+          if data from provided register URL can not be fetched
+          It is highly not recommended to use this flag if it is not required
+        type: boolean
+        x-nullable: false
     type: object
   CDRCustomerID:
     type: string
@@ -993,7 +1064,7 @@ definitions:
       application_type:
         default: web
         description: |-
-          String represented type of a client application
+          The client application type.
 
           Client applications can be either of a `web` or `native` types.
 
@@ -1002,7 +1073,7 @@ definitions:
           Native applications include single-page applications (SPAs) and mobile or desktop
           applications.
 
-          Depending on the type of your application remember to choose appropriate security measures.
+          Apply security measures according to the type of your application.
         example: web
         type: string
         x-nullable: false
@@ -1034,9 +1105,10 @@ definitions:
         default:
         - client_id
         description: |-
-          Identity of the intended recipients (the audience)
+          Identity of the intended recipients (the audience).
 
-          Typically, the audience may be a single resources server or a list of resource servers.
+          Typically, the audience is a single resource server or a list of resource servers.
+
           It is considered a good practice to limit the audience of the token for security purposes.
         items:
           type: string
@@ -1045,9 +1117,11 @@ definitions:
       authorization_encrypted_response_alg:
         description: |-
           Algorithm used for encrypting authorization responses.
-          If both signing and encryption are requested, the response will be signed then encrypted,
-          with the result being a Nested JWT, as defined in JWT [RFC7519].
-          The default, if omitted, is that no encryption is performed.
+
+          If both signing and encryption are requested, the response is first signed, and then encrypted.
+          As a result, a Nested JWT is obtained, as defined in JWT [RFC7519].
+
+          If omitted, no encryption is applied by default.
         enum:
         - RSA-OAEP
         - RSA-OAEP-256
@@ -1057,9 +1131,10 @@ definitions:
       authorization_encrypted_response_enc:
         description: |-
           Algorithm used for encrypting authorization responses.
-          If authorization_encrypted_response_alg is specified, the default for this value is A128CBC-HS256.
-          When authorization_encrypted_response_enc is included, authorization_encrypted_response_alg
-          MUST also be provided.
+
+          With `authorization_encrypted_response_alg` specified, the default value is `A128CBC-HS256`.
+          When `authorization_encrypted_response_enc` is included, `authorization_encrypted_response_alg`
+          MUST also be provided in a request.
         enum:
         - A256GCM
         - A128CBC-HS256
@@ -1067,8 +1142,8 @@ definitions:
         type: string
         x-nullable: false
       authorization_server_id:
-        description: ID of the authorization server (workspace) to which a client
-          application is tied
+        description: An authorization server (workspace) identifier holding the client
+          application.
         example: default
         format: serverID
         type: string
@@ -1076,33 +1151,44 @@ definitions:
       authorization_signed_response_alg:
         description: |-
           Algorithm used for signing authorization responses.
-          If this is specified, the response will be signed using JWS and the configured algorithm.
-          The algorithm none is not allowed.
+
+          With this parameter specified, the response is signed using JWS and according to the configured algorithm.
+
+          `none` isn't allowed.
         example: RS256
         type: string
         x-nullable: false
       backchannel_authentication_request_signing_alg:
         description: |-
-          OPTIONAL. The JWS algorithm alg value that the Client will use for signing authentication requests.
-          When omitted, the Client will not send signed authentication requests.
+          OPTIONAL. The JWS alg algorithm value used by the client application to sign authentication requests.
+
+          When omitted, the client application doesn't send signed authentication requests.
         type: string
         x-nullable: false
       backchannel_client_notification_endpoint:
         description: |-
-          REQUIRED if the token delivery mode is set to ping or push.
-          This is the endpoint to which the OP will post a notification after a successful or failed end-user authentication.
-          It MUST be an HTTPS URL.
+          REQUIRED for requests when the client application uses CIBA as an authorization grant type, and the token
+          delivery mode is set to `ping` or `push`.
+
+          This parameter is the endpoint where an OP (OpenID Provider) posts a notification after end-user authentication.
+
+          Input: an HTTPS URL.
         type: string
         x-nullable: false
       backchannel_token_delivery_mode:
-        description: 'REQUIRED. One of the following values: poll, ping, or push.'
+        description: |-
+          REQUIRED for requests when the client application uses CIBA as an authorization grant type.
+
+          Input: `poll`, `ping`, or `push`.
         type: string
         x-nullable: false
       backchannel_user_code_parameter:
         description: |-
-          OPTIONAL. Boolean value specifying whether the Client supports the user_code parameter.
-          If omitted, the default value is false.
-          This parameter only applies when OP parameter backchannel_user_code_parameter_supported is true.
+          OPTIONAL. A boolean value indicating the `user_code` parameter support by the client application.
+
+          If omitted, the default value is `false`.
+
+          This applies only when the `backchannel_user_code_parameter_supported` OP parameter is `true`.
         type: boolean
         x-nullable: false
       client_id:
@@ -1115,15 +1201,14 @@ definitions:
         x-nullable: false
       client_id_issued_at:
         description: |-
-          Time at which the client identifier was issued.
+          The client identifier time of issue.
 
-          The time is represented as the number of seconds from
-          1970-01-01T00:00:00Z as measured in UTC until the date/time of issuance.
+          The value is the number of seconds between 1970-01-01T00:00:00Z (UTC) and the date/time of issue.
         format: int64
         type: integer
         x-nullable: false
       client_name:
-        description: Human-readable name of a client application
+        description: Human-readable name of a client application.
         example: My app
         type: string
         x-nullable: false
@@ -1137,18 +1222,17 @@ definitions:
         x-nullable: false
       client_secret_expires_at:
         description: |-
-          The `client_secret_expires_at` holds an integer that defines the time at which the client
-          secret expires
+          The client secret expiration time.
 
-          If the client secret does not expire, the value should be set to `0`.
+          If the client secret does not expire, `client_secret_expires_at` = `0`.
         format: int64
         type: integer
         x-nullable: false
       client_status:
         description: |-
-          Defines if client is active
+          Defines whether the client application is active or not.
 
-          Only clients with status Active can preform authorization, authentication and PAR requests.
+          Only clients with the `Active` status can preform authorization, authentication, and PAR requests.
         enum:
         - active
         - inactive
@@ -1161,28 +1245,34 @@ definitions:
         type: string
         x-nullable: false
       client_uri:
-        description: URI of a client application
+        description: URI of a client application.
         type: string
         x-nullable: false
       confirmation:
         $ref: '#/definitions/Confirmation'
       created_at:
-        description: Date when the client was created
+        description: Date when the client application was created.
         example: "2022-04-07T19:17:31.323187Z"
         format: date-time
         type: string
         x-nullable: false
       description:
-        description: Description of a client application
+        description: Description of the client application.
         type: string
         x-nullable: false
       developer_id:
-        description: Optional developer owner of the client application
+        description: Optional developer owner of the client application.
         format: subject
         type: string
         x-nullable: false
       developer_metadata:
         $ref: '#/definitions/Metadata'
+      dpop_bound_access_tokens:
+        description: |-
+          Boolean value specifying whether the client always uses DPoP for token requests
+          If true, the authorization server will reject token requests from this client that do not contain the DPoP header.
+        type: boolean
+        x-nullable: false
       dynamically_registered:
         type: boolean
         x-nullable: false
@@ -1192,12 +1282,11 @@ definitions:
         default:
         - authorization_code
         description: |-
-          An array of allowed OAuth client grant types
+          An array of allowed OAuth client grant types.
 
           The `grantTypes` array stores OAuth flows that are allowed for a given client application.
 
-          To know more about OAuth grant flows, see the
-          [ACP grant flows documentation](https://docs.authorization.cloudentity.com/features/oauth/grant_flows/).
+          [Read more](https://cloudentity.com/developers/basics/oauth-grant-types/grant-types-overview/) about grant types.
         example:
         - password
         - refresh_token
@@ -1233,16 +1322,16 @@ definitions:
         type: string
         x-nullable: false
       id_token_encrypted_response_alg:
-        description: JWE alg algorithm for encrypting the ID Token issued to this
-          Client
+        description: JWE alg algorithm for encrypting the ID token issued to this
+          client application.
         enum:
         - RSA-OAEP
         - RSA-OAEP-256
         type: string
         x-nullable: false
       id_token_encrypted_response_enc:
-        description: JWE enc algorithm for encrypting the ID Token issued to this
-          Client
+        description: JWE enc algorithm for encrypting the ID token issued to this
+          client application.
         enum:
         - A256GCM
         - A128CBC-HS256
@@ -1250,7 +1339,7 @@ definitions:
         x-nullable: false
       id_token_signed_response_alg:
         description: |-
-          Algorithm for signing ID tokens issued for a client application
+          Algorithm for signing ID tokens issued for a client application.
 
           The default value depends on authorization server configuration.
         enum:
@@ -1263,14 +1352,15 @@ definitions:
       introspection_endpoint_auth_method:
         default: client_secret_basic
         description: |-
-          Introspection endpoint authentication method configured for a client application
-          If empty, the token_endpoint_auth_method will be used
+          An introspection endpoint authentication method configured for the client application (read-only).
 
-          ACP supports the following client authentication methods:
-          client_secret_basic, client_secret_post, client_secret_jwt, private_key_jwt,
-          self_signed_tls_client_auth, tls_client_auth, none.
+          If empty, the `token_endpoint_auth_method` is used.
 
-          To learn more, see the [ACP client authentication documentation](https://docs.authorization.cloudentity.com/features/oauth/client_auth/)
+          Cloudentity supports the following client authentication methods:
+          `client_secret_basic`, `client_secret_post`, `client_secret_jwt`, `private_key_jwt`,
+          `self_signed_tls_client_auth`, `tls_client_auth`, `none`.
+
+          [Read more](https://cloudentity.com/developers/basics/oauth-client-authentication/client-authentication-overview/) about client authentication.
         enum:
         - client_secret_basic
         - client_secret_post
@@ -1285,28 +1375,30 @@ definitions:
       jwks:
         $ref: '#/definitions/ClientJWKs'
       jwks_uri:
-        description: |-
-          URL of JSON Web Key Set containing the public keys used by a client application to authenticate itself
-          with ACP
+        description: A URL of JSON Web Key Set with the public keys used by a client
+          application to authenticate to Cloudentity.
         type: string
         x-nullable: false
       logo_uri:
-        description: Logo URI
+        description: Logo URI.
         type: string
         x-nullable: false
       metadata:
         $ref: '#/definitions/Metadata'
+      obbr:
+        $ref: '#/definitions/OBBRMetadata'
       organisation_id:
         description: |-
-          External organization ID
+          External organization identifier. It is a unique string assigned by the CDR Register to identify an Accredited
+          Data Recipient Brand.
 
-          This field value is used as the `aud` (audience) claim for message signing. `aud` indicates what entity will
-          consume a token.
+          The value obtained is used as the `aud` claim for message signing, for example, when a JSON Web Token (JWT) is
+          required for authorization, and represents the audience(s) the JWT is intended for.
         example: 5647fe90-f6bc-11eb-9a03-0242ac130003
         type: string
         x-nullable: false
       policy_uri:
-        description: Policy URL to read about how the profile data is used
+        description: Policy URL to read about how the profile data is used.
         type: string
         x-nullable: false
       privacy:
@@ -1327,7 +1419,7 @@ definitions:
       request_object_encryption_enc:
         description: |-
           Optional JWE enc algorithm the client is declaring that it may use for encrypting Request Objects
-          When request_object_encryption_enc is included, request_object_encryption_alg MUST also be provided.
+          When `request_object_encryption_enc` is included, `request_object_encryption_alg` MUST also be provided.
         enum:
         - A256GCM
         - A128CBC-HS256
@@ -1339,8 +1431,8 @@ definitions:
         description: |-
           Request object signing algorithm for the token endpoint
 
-          ACP supports signing tokens using the RS256, ES256, and PS256 algorithms. If you do not want
-          to use a signing algorithm, the value of the parameter should be set to `none`.
+          Cloudentity supports signing tokens with the RS256, ES256, and PS256 algorithms. If you do not want
+          to use a signing algorithm, set the value of this parameter to `none`.
         enum:
         - any
         - none
@@ -1367,14 +1459,14 @@ definitions:
       revocation_endpoint_auth_method:
         default: client_secret_basic
         description: |-
-          Revocation endpoint authentication method configured for a client application
-          If empty, the token_endpoint_auth_method will be used
+          A revocation endpoint authentication method configured for the client application (read-only).
+          If empty, the `token_endpoint_auth_method` is used.
 
-          ACP supports the following client authentication methods:
-          client_secret_basic, client_secret_post, client_secret_jwt, private_key_jwt,
-          self_signed_tls_client_auth, tls_client_auth, none.
+          Cloudentity supports the following client authentication methods:
+          `client_secret_basic`, `client_secret_post`, `client_secret_jwt`, `private_key_jwt`,
+          `self_signed_tls_client_auth`, `tls_client_auth`, `none`.
 
-          To learn more, see the [ACP client authentication documentation](https://docs.authorization.cloudentity.com/features/oauth/client_auth/)
+          [Read more](https://cloudentity.com/developers/basics/oauth-client-authentication/client-authentication-overview/) about client authentication.
         enum:
         - client_secret_basic
         - client_secret_post
@@ -1399,7 +1491,8 @@ definitions:
         type: string
         x-nullable: false
       scope:
-        description: Space separated scopes for compatibility with OAuth specification
+        description: Space-separated list of scopes for compatibility with the OAuth
+          specification.
         example: email offline_access openid
         type: string
         x-nullable: false
@@ -1415,18 +1508,23 @@ definitions:
         x-nullable: false
       sector_identifier_uri:
         description: |-
-          URL using the HTTPS scheme to be used in calculating Pseudonymous Identifiers by the OpenID Provider. The URL references a
-          file with a single JSON array of redirect_uri values.
-        example: https://api.jsonbin.io/b/5db6ef08688fed59d2841f1e
+          OPTIONAL. [A URL using the HTTPS scheme](https://openid.net/specs/openid-connect-registration-1_0.html#SectorIdentifierValidation).
+          It must reference a JSON file with the array of `redirect_uri` values.
+
+          Pass this parameter when you use multiple domains in your `redirect_uris` or need a mechanism to allow changes in
+          domain without affecting consumer consent.
+
+          [Read more](https://openid.net/specs/openid-connect-core-1_0.html)
         type: string
         x-nullable: false
       software_id:
         description: |-
           A unique identifier string (e.g., a Universally Unique Identifier
-          (UUID)) assigned by the client developer or software publisher
-          The "software_id" SHOULD remain the same across
-          multiple updates or versions of the same piece of software.  The
-          value of this field is not intended to be human readable and is
+          (UUID)) assigned by the client developer or software publisher.
+
+          The `software_id` MUST remain the same across
+          multiple updates or versions of the same software package. The
+          value of this field is not intended to be human-readable and is
           usually opaque to the client and authorization server.
         type: string
         x-nullable: false
@@ -1452,9 +1550,9 @@ definitions:
       software_version:
         description: |-
           A version identifier string for the client software identified by
-          "software_id".  The value of the "software_version" SHOULD change
-          on any update to the client software identified by the same
-          "software_id".
+          `software_id`. The value of the `software_version` MUST be changed
+          with any update of the client software identified by the same
+          `software_id`.
         type: string
         x-nullable: false
       subject_type:
@@ -1464,8 +1562,8 @@ definitions:
 
           Stores information if the subject identifier is of the `public` or the `pairwise` type.
 
-          Subject identifiers are locally unique and never reassigned identifiers within the Issuer
-          for the end-user and are inteded to be consumed by client applications. There are two types
+          Subject identifiers identify an end-user. They are locally unique and never reassigned within the Issuer,
+          and are intended to be consumed by client applications. There are two types
           of subject identifiers: `public` and `pairwise`.
 
           For the `public` type, the value of the `sub` (subject) token claim is the same for all clients.
@@ -1480,8 +1578,8 @@ definitions:
         type: string
         x-nullable: false
       system:
-        description: Stores information if the client application is a system tenant's
-          application
+        description: Defines whether the client application is a system tenant's application
+          or not.
         type: boolean
         x-nullable: false
       tenant_id:
@@ -1527,11 +1625,11 @@ definitions:
         description: |-
           Token endpoint authentication method configured for a client application
 
-          ACP supports the following client authentication methods:
-          client_secret_basic, client_secret_post, client_secret_jwt, private_key_jwt,
-          self_signed_tls_client_auth, tls_client_auth, none.
+          Cloudentity supports the following client authentication methods:
+          `client_secret_basic`, `client_secret_post`, `client_secret_jwt`, `private_key_jwt`,
+          `self_signed_tls_client_auth`, `tls_client_auth`, `none`.
 
-          To learn more, see the [ACP client authentication documentation](https://docs.authorization.cloudentity.com/features/oauth/client_auth/)
+          To learn more, go to the Authorization Basics > Client Authentication section of this guide.
         enum:
         - client_secret_basic
         - client_secret_post
@@ -1568,8 +1666,10 @@ definitions:
         x-nullable: false
       token_exchange:
         $ref: '#/definitions/ClientTokenExchangeConfiguration'
+      token_ttls:
+        $ref: '#/definitions/TokenTTLs'
       tos_uri:
-        description: Terms of Service URL
+        description: Terms of Service URL.
         type: string
         x-nullable: false
       trusted:
@@ -1580,20 +1680,24 @@ definitions:
         type: boolean
         x-nullable: false
       updated_at:
-        description: Date when the client was updated
+        description: Date when the client application was updated.
         example: "2022-05-08T01:11:51.1262916Z"
         format: date-time
         type: string
+        x-nullable: false
+      use_custom_token_ttls:
+        description: If enabled the client application will be able to set its own
+          token TTLs.
+        type: boolean
         x-nullable: false
       userinfo_signed_response_alg:
         default: none
         description: |-
           JWS alg algorithm REQUIRED for signing UserInfo Responses.
 
-          If specified, the response is JWT
-          [JWT] serialized, and signed using JWS.
+          If specified, the response is a JWT serialized and signed with JWS.
 
-          If omitted, the default behavior is for the UserInfo Response to return the Claims
+          If omitted, then by default, UserInfo Response returns the Claims
           as an UTF-8 encoded JSON object using the application/json content-type.
         enum:
         - none
@@ -1603,8 +1707,8 @@ definitions:
         type: string
         x-nullable: false
     required:
-    - authorization_server_id
     - tenant_id
+    - authorization_server_id
     title: Defines a client application and its properties.
     type: object
   ClientJWK:
@@ -1748,9 +1852,9 @@ definitions:
         description: |-
           Additional actor token claims
 
-          Claims from the actor token that will be injected into exchanged token under `act` claim.
+          Claims from the actor token that will be injected into the exchanged token under the `act` claim.
 
-          Applies only for token exchange delegation flow.
+          Applies for the token exchange delegation flow only.
         items:
           type: string
         type: array
@@ -1805,9 +1909,17 @@ definitions:
           type: string
         type: array
         x-nullable: false
+      send_login_hint:
+        description: Whether to send the identifier as a `login_hint` parameter to
+          the IDP
+        type: boolean
+        x-nullable: false
     type: object
   Confirmation:
     properties:
+      jkt:
+        type: string
+        x-nullable: false
       x5t#S256:
         type: string
         x-nullable: false
@@ -2297,9 +2409,10 @@ definitions:
         type: string
         x-nullable: false
     required:
+    - id
     - tenant_id
     - server_id
-    - id
+    - url
     type: object
   CustomCredentials:
     description: Custom IDP specific credentials
@@ -2476,6 +2589,11 @@ definitions:
           $ref: '#/definitions/FilePaymentConsentFileResource'
         type: array
         x-nullable: false
+      openbanking_ksa_consents:
+        items:
+          $ref: '#/definitions/KSAConsent'
+        type: array
+        x-nullable: false
       openbanking_uk_consents:
         items:
           $ref: '#/definitions/OBConsent'
@@ -2612,6 +2730,14 @@ definitions:
           type: string
         type: array
         x-nullable: false
+      disable_registration_access_token_expiry:
+        default: false
+        description: |-
+          Disable registration access token expiry
+
+          If is flag is on, the registration access token will never expire.
+        type: boolean
+        x-nullable: false
       disable_registration_token_management:
         description: |-
           Disables client management using registration token
@@ -2631,6 +2757,17 @@ definitions:
         $ref: '#/definitions/InitialAccessTokenSettings'
       payload:
         $ref: '#/definitions/PayloadSettings'
+      registration_access_token_ttl:
+        default: 720h0m0s
+        description: |-
+          Registration access token TTL
+
+          Time to live of the registration access token (default 30 days).
+          The minimum value is 24 hours.
+        example: 720h0m0s
+        format: duration
+        type: string
+        x-nullable: false
     type: object
   Element:
     properties:
@@ -2707,7 +2844,7 @@ definitions:
         type: string
         x-nullable: false
       otp:
-        $ref: '#/definitions/OTPConfig'
+        $ref: '#/definitions/OTPConfiguration'
       provider:
         description: Email provider.
         enum:
@@ -3026,7 +3163,7 @@ definitions:
   FDXGrantedResource:
     properties:
       dataClusters:
-        description: Name of cluster of data elements permissioned
+        description: The names of clusters with data elements permitted.
         example:
         - ACCOUNT_DETAILED
         - TRANSACTIONS
@@ -3041,8 +3178,8 @@ definitions:
         type: string
         x-nullable: false
       resourceType:
-        description: Resource for which data may be permissioned; can be extended
-          to supportadditional types of resources
+        description: A type of resource that holds the permitted data elements. This
+          parameter can be extended to support additional resource types.
         example: ACCOUNT
         type: string
         x-nullable: false
@@ -3050,16 +3187,16 @@ definitions:
   FDXMetadata:
     properties:
       contacts:
-        description: Array of strings representing ways to contact individuals responsible
-          for the Data Recipient application
+        description: Contact information of individuals responsible for the Data Recipient
+          application.
         items:
           type: string
         type: array
         x-nullable: false
       duration_period:
         default: 365
-        description: The duration period is the maximum consent duration that would
-          be requested for a Recipient consumer
+        description: The time window the end-user grants the consent for. Used when
+          `duration_type`=`TIME_BOUND`.
         format: int64
         type: integer
         x-nullable: false
@@ -3068,28 +3205,34 @@ definitions:
         - ONE_TIME
         - PERSISTENT
         - TIME_BOUND
-        description: The duration of consent for the Data Recipient consumers
+        description: |-
+          The rule of consent granting by the end-user to indicate whether they must take action
+          to revoke access or the consent will be revoked automatically.
+
+          One of: `ONE_TIME`, `PERSISTENT`, `TIME_BOUND`
+        example: ONE_TIME
         items:
           $ref: '#/definitions/DurationType'
         type: array
         x-nullable: false
       intermediaries:
-        description: An array of the intermediaries for this data recipient
+        description: An array of the intermediaries for this Data Recipient.
         items:
           $ref: '#/definitions/Intermediary'
         type: array
         x-nullable: false
       lookback_period:
         default: 365
-        description: The maximum number of days allowed for Data Recipient consumers
-          to obtain in transaction history, effective from the current date
+        description: |-
+          The maximum number of days allowed for Data Recipient consumers to obtain in transaction history, effective from
+          the current date
         format: int64
         type: integer
         x-nullable: false
       registry_references:
         description: |-
-          An array of external registries containing registered entity name,
-          registered entity id and registry fields for the registries where the data recipient is registered
+          The list of external registries where the Data Recipient is registered. It comprises the following details:
+          name, identifier, and the `registry` string with any additional info.
         items:
           $ref: '#/definitions/RegistryReference'
         type: array
@@ -3121,7 +3264,7 @@ definitions:
   FDXRequestedResource:
     properties:
       dataClusters:
-        description: Name of cluster of data elements permissioned
+        description: The names of clusters with data elements permitted.
         example:
         - ACCOUNT_DETAILED
         - TRANSACTIONS
@@ -3131,8 +3274,8 @@ definitions:
         type: array
         x-nullable: false
       resourceType:
-        description: Resource for which data may be permissioned; can be extended
-          to supportadditional types of resources
+        description: A type of resource that holds the permitted data elements. This
+          parameter can be extended to support additional resource types.
         example: ACCOUNT
         type: string
         x-nullable: false
@@ -3162,17 +3305,30 @@ definitions:
     type: object
   Features:
     properties:
-      admin_workspace_access:
-        description: enable admin workspace access (tenant)
+      add_fake_tenant_url_to_login_request_for_non_default_routing:
+        description: add fake tenantUrl to query params for routing other than default
+          (needed for backward compatibility with CIP for vanity domains)
         type: boolean
         x-nullable: false
-      administrator_management:
-        description: enable administrator management (tenant)
+      admin_portal_face_lifting:
+        description: enable admin portal face lifting
+        type: boolean
+        x-nullable: false
+      admin_workspace_access:
+        description: enable admin workspace access (tenant)
         type: boolean
         x-nullable: false
       block_non_vanity_domain_access:
         description: block access to tenant for traffic not originated from the vanity
           domain
+        type: boolean
+        x-nullable: false
+      cache_access_tokens:
+        description: cache access tokens
+        type: boolean
+        x-nullable: false
+      cdr_arrangement_cache:
+        description: enable Arrangement cache for CDR
         type: boolean
         x-nullable: false
       cdr_disable_unique_software_id:
@@ -3195,8 +3351,12 @@ definitions:
         description: enable Cloudentity IDP (tenant)
         type: boolean
         x-nullable: false
-      custom_apps:
-        description: enable CustomApps (tenant)
+      connect_id:
+        description: enable ConnectID profile
+        type: boolean
+        x-nullable: false
+      debug:
+        description: enable additional debug logs
         type: boolean
         x-nullable: false
       dedicated_faas:
@@ -3213,6 +3373,14 @@ definitions:
           (system)
         type: boolean
         x-nullable: false
+      disable_audit_events:
+        description: disable audit events
+        type: boolean
+        x-nullable: false
+      do_not_validate_cert_for_private_key_jwt:
+        description: do not validate cert for private key jwt
+        type: boolean
+        x-nullable: false
       drop_tokens_on_password_reset:
         description: drop tokens on password reset
         type: boolean
@@ -3223,6 +3391,14 @@ definitions:
         x-nullable: false
       fdx_dcr:
         description: enable Dynamic Client Registration for FDX
+        type: boolean
+        x-nullable: false
+      identifier_based_discovery:
+        description: identifier-based discovery
+        type: boolean
+        x-nullable: false
+      identifier_case_insensitive:
+        description: enable case insensitive for users identifiers and addresses
         type: boolean
         x-nullable: false
       initialize_demo_workspace:
@@ -3243,16 +3419,24 @@ definitions:
         description: enable global import and export configuration endpoints (system)
         type: boolean
         x-nullable: false
+      jit:
+        description: Just in time provisioning (JIT)
+        type: boolean
+        x-nullable: false
       login_with_select_account:
         description: enable login with select_account param (tenant)
         type: boolean
         x-nullable: false
-      openbanking_brasil_consents_v2:
-        description: enable consents v2 apis for open banking brasil
+      open_admin_apis:
+        description: make admin APIs open
         type: boolean
         x-nullable: false
-      openbanking_brasil_payments_v2:
-        description: enable payment consent v2 apis for open banking brasil
+      openbanking_ksa:
+        description: enable openbanking ksa workspace and security profile
+        type: boolean
+        x-nullable: false
+      organizations:
+        description: enable organizations
         type: boolean
         x-nullable: false
       permissions:
@@ -3276,16 +3460,16 @@ definitions:
         description: enable roles
         type: boolean
         x-nullable: false
-      saml:
-        description: enable SAML (tenant)
-        type: boolean
-        x-nullable: false
       scope_transient_otp:
         description: enable scope transient_otp (tenant)
         type: boolean
         x-nullable: false
       script_transformer:
         description: enable the javascript transformer (tenant)
+        type: boolean
+        x-nullable: false
+      single_sign_on:
+        description: enable Single Sign-On (SSO) in workspaces
         type: boolean
         x-nullable: false
       swagger_ui:
@@ -3296,16 +3480,16 @@ definitions:
         description: enable system workspace access (tenant)
         type: boolean
         x-nullable: false
-      token_exchange:
-        description: enable Token Exchange (system)
+      themed_messages:
+        description: enable themed messages
         type: boolean
         x-nullable: false
-      token_exchange_delegation:
-        description: enable Token Exchange Delegation (tenant)
+      tree_dump:
+        description: enable hierarchical dumps system APIs (system)
         type: boolean
         x-nullable: false
-      token_exchange_issue_id_token:
-        description: allow to issue id token for token exchange
+      tree_dump_tenant:
+        description: enable hierarchical dumps tenant APIs
         type: boolean
         x-nullable: false
       webauthn:
@@ -3316,7 +3500,7 @@ definitions:
   FilePaymentConsentFileResource:
     properties:
       client_id:
-        description: Client identifier
+        description: Client application identifier.
         example: '"cauqo9c9vpbs0aj2b2v0"'
         format: clientID
         type: string
@@ -3332,13 +3516,13 @@ definitions:
         type: array
         x-nullable: false
       server_id:
-        description: Server / Workspace identifier
+        description: Server / Workspace identifier.
         example: '"server"'
         format: serverID
         type: string
         x-nullable: false
       tenant_id:
-        description: Tenant identifier
+        description: Tenant identifier.
         example: '"tenant"'
         format: tenantID
         type: string
@@ -3510,6 +3694,11 @@ definitions:
           type: string
         type: array
         x-nullable: false
+      send_login_hint:
+        description: Whether to send the identifier as a `login_hint` parameter to
+          the IDP
+        type: boolean
+        x-nullable: false
     type: object
   GoogleCredentials:
     description: Google IDP specific credentials
@@ -3546,6 +3735,11 @@ definitions:
         items:
           type: string
         type: array
+        x-nullable: false
+      send_login_hint:
+        description: Whether to send the identifier as a `login_hint` parameter to
+          the IDP
+        type: boolean
         x-nullable: false
     type: object
   GraphQLField:
@@ -3658,6 +3852,8 @@ definitions:
         format: poolID
         type: string
         x-nullable: false
+      jit:
+        $ref: '#/definitions/JITSettings'
       logo_uri:
         description: Logo URI
         type: string
@@ -3668,8 +3864,8 @@ definitions:
         description: |-
           Defines the type of an IDP
 
-          ACP is designed to make it possible for you to bring any of your own IDPs and integrate it
-          with ACP as it delivers enterprise connectors for major Cloud IDPs and a possibility for
+          Cloudentity is designed to make it possible for you to bring any of your own IDPs and integrate it
+          with Cloudentity as it delivers enterprise connectors for major Cloud IDPs and a possibility for
           custom integration DKS for home-built solutions. You can also use built-in Sandbox IDP, which
           is a static IDP, to create an IDP for testing purposes.
         format: idpMethod
@@ -3686,6 +3882,8 @@ definitions:
         x-nullable: false
       settings:
         $ref: '#/definitions/IDPSettings'
+      sso_settings:
+        $ref: '#/definitions/IDPSSOSettings'
       static_amr:
         description: |-
           Authentication method reference
@@ -3709,6 +3907,18 @@ definitions:
         $ref: '#/definitions/IDPTokenExchangeSettings'
       transformer:
         $ref: '#/definitions/ScriptTransformer'
+      version:
+        description: |-
+          IDP version to track internal changes
+          version that is currently supported: 3
+        format: int64
+        type: integer
+        x-nullable: false
+      workspace_id:
+        description: ID of the Workspace to which the IDP is connected
+        format: serverID
+        type: string
+        x-nullable: false
     type: object
   IDPConfiguration:
     properties:
@@ -3736,6 +3946,7 @@ definitions:
         description: |-
           The time that a user's authentication context is stored in the ACP's internal caching system
           before it's being deleted or refreshed.
+        example: 1h15m30s
         format: duration
         type: string
         x-nullable: false
@@ -3893,6 +4104,13 @@ definitions:
         $ref: '#/definitions/Name'
     title: IDPSSODescriptor represents the SAML IDPSSODescriptorType object.
     type: object
+  IDPSSOSettings:
+    properties:
+      disabled:
+        description: Opt this IDP out of workspace SSO enablement
+        type: boolean
+        x-nullable: false
+    type: object
   IDPSettings:
     properties:
       auth0:
@@ -3933,6 +4151,8 @@ definitions:
     items:
       $ref: '#/definitions/IDP'
     type: array
+  IdentifierType:
+    type: string
   IndexedEndpoint:
     description: See http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf
       §2.2.3
@@ -4016,6 +4236,11 @@ definitions:
           type: string
         type: array
         x-nullable: false
+      send_login_hint:
+        description: Whether to send the identifier as a `login_hint` parameter to
+          the IDP
+        type: boolean
+        x-nullable: false
     type: object
   Intermediary:
     properties:
@@ -4049,6 +4274,62 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  JITProvisioning:
+    properties:
+      identifier_salt:
+        type: string
+        x-nullable: false
+      mode:
+        $ref: '#/definitions/ProvisioningMode'
+      pool_id:
+        format: poolID
+        type: string
+        x-nullable: false
+      user:
+        $ref: '#/definitions/JITUser'
+    type: object
+  JITSettings:
+    properties:
+      enabled:
+        type: boolean
+        x-nullable: false
+      provisioning:
+        $ref: '#/definitions/JITProvisioning'
+    type: object
+  JITUser:
+    properties:
+      addresses:
+        items:
+          $ref: '#/definitions/JITUserAddress'
+        type: array
+        x-nullable: false
+      attributes_mapping:
+        $ref: '#/definitions/UserAttributesMapping'
+      identifiers:
+        items:
+          $ref: '#/definitions/JITUserIdentifier'
+        type: array
+        x-nullable: false
+    type: object
+  JITUserAddress:
+    properties:
+      source:
+        type: string
+        x-nullable: false
+      type:
+        $ref: '#/definitions/IdentifierType'
+      verified:
+        type: boolean
+        x-nullable: false
+    type: object
+  JITUserIdentifier:
+    properties:
+      source:
+        type: string
+        x-nullable: false
+      type:
+        $ref: '#/definitions/IdentifierType'
+    type: object
   JWSPayloadSettings:
     properties:
       jwks:
@@ -4068,6 +4349,46 @@ definitions:
     type: object
   JobID:
     type: string
+  KSAConsent:
+    properties:
+      client_id:
+        description: Client application identifier
+        example: bugkgm23g9kregtu051g
+        format: clientID
+        type: string
+        x-nullable: false
+      consent_id:
+        description: Consent identifier
+        example: cavbbioiagh6fla7koig
+        type: string
+        x-nullable: false
+      created_at:
+        description: Consent creation date
+        example: "2022-07-01T08:52:27.127932Z"
+        format: date-time
+        type: string
+        x-nullable: false
+      expiry:
+        description: Consent expiration date
+        example: "2023-03-01T09:02:27.127932Z"
+        format: date-time
+        type: string
+        x-nullable: false
+      server_id:
+        description: Workspace identifier
+        example: server
+        format: serverID
+        type: string
+        x-nullable: false
+      status:
+        $ref: '#/definitions/ConsentStatus'
+      tenant_id:
+        description: Tenant identifier
+        example: my-company
+        format: tenantID
+        type: string
+        x-nullable: false
+    type: object
   KeyDescriptor:
     description: KeyDescriptor represents the XMLSEC object of the same name
     properties:
@@ -4296,6 +4617,15 @@ definitions:
     type: object
   OBBRIndustry:
     type: string
+  OBBRMetadata:
+    properties:
+      webhook_uris:
+        description: An array of hosts subscribed to Open Finance Webhook Notifications
+        items:
+          type: string
+        type: array
+        x-nullable: false
+    type: object
   OBConsent:
     description: OBConsent this type is only meant to be used for importing and exporting
       consents for testing
@@ -4306,7 +4636,7 @@ definitions:
         type: array
         x-nullable: false
       client_id:
-        description: Client identifier
+        description: Client application identifier.
         example: '"cauqo9c9vpbs0aj2b2v0"'
         format: clientID
         type: string
@@ -4326,7 +4656,7 @@ definitions:
         type: string
         x-nullable: false
       server_id:
-        description: Server / Workspace identifier
+        description: Server / Workspace identifier.
         example: '"server"'
         format: serverID
         type: string
@@ -4340,7 +4670,7 @@ definitions:
         type: string
         x-nullable: false
       tenant_id:
-        description: Tenant identifier
+        description: Tenant identifier.
         example: '"tenant"'
         format: tenantID
         type: string
@@ -4395,8 +4725,13 @@ definitions:
           type: string
         type: array
         x-nullable: false
+      send_login_hint:
+        description: Whether to send the identifier as a `login_hint` parameter to
+          the IDP
+        type: boolean
+        x-nullable: false
     type: object
-  OTPConfig:
+  OTPConfiguration:
     properties:
       expiration:
         default: 5m
@@ -4453,6 +4788,11 @@ definitions:
         items:
           type: string
         type: array
+        x-nullable: false
+      send_login_hint:
+        description: Whether to send the identifier as a `login_hint` parameter to
+          the IDP
+        type: boolean
         x-nullable: false
       use_org_authorization_server:
         description: If set to `true`, the built-in authorization server is used
@@ -4559,14 +4899,6 @@ definitions:
         type: string
         x-nullable: false
     type: object
-  PatchOperation:
-    additionalProperties:
-      type: object
-    type: object
-  PatchOperations:
-    items:
-      $ref: '#/definitions/PatchOperation'
-    type: array
   PayloadSettings:
     properties:
       format:
@@ -4757,6 +5089,8 @@ definitions:
     type: object
   ProtectedType:
     type: string
+  ProvisioningMode:
+    type: string
   Purpose:
     properties:
       name:
@@ -4838,15 +5172,16 @@ definitions:
     type: object
   RedirectURIs:
     description: |-
-      Redirect URIs are used after a user authorizes an application and ACP redirect them back to
-      the application with an authorization code or an access token included in the URL.
+      Cloudentity uses redirect URIs to redirect users back to the application after they authorized the application. Along
+      with the redirection, an authorization code or access token is added to the URL.
 
-      For a legacy reason it's also acceptable to pass redirect_uris as string, example: "https://example.com/callback"
+      For backward compatibility reasons, it's also acceptable to pass `redirect_uris` as a string, for example:
+      https://example.com/callback.
 
       example: ["https://example.com/callback"]
     items:
       type: string
-    title: An array of OAuth allowed redirect URIs
+    title: OAuth-allowed redirect URIs
     type: array
   RegistrationToken:
     properties:
@@ -4866,12 +5201,12 @@ definitions:
       naming formats
     properties:
       registered_entity_id:
-        description: An ID representing the intermediary that can be looked up from
-          a legal identity registry source
+        description: An identifier of the intermediary that can be looked up from
+          a legal identity registry source.
         type: string
         x-nullable: false
       registered_entity_name:
-        description: The legal company name for the intermediary
+        description: The legal company name for the intermediary.
         type: string
         x-nullable: false
       registry:
@@ -4954,6 +5289,29 @@ definitions:
     type: string
   RevocationReason:
     type: string
+  Rfc6902PatchOperation:
+    properties:
+      op:
+        enum:
+        - add
+        - remove
+        - replace
+        - move
+        - copy
+        - test
+        type: string
+        x-nullable: false
+      path:
+        type: string
+        x-nullable: false
+      value:
+        type: object
+        x-nullable: false
+    type: object
+  Rfc6902PatchOperations:
+    items:
+      $ref: '#/definitions/Rfc6902PatchOperation'
+    type: array
   Role:
     properties:
       resource:
@@ -4961,7 +5319,11 @@ definitions:
       role:
         enum:
         - admin
+        - business_admin
         - auditor
+        - manager
+        - user_manager
+        - member
         type: string
         x-nullable: false
       subject:
@@ -5004,6 +5366,10 @@ definitions:
     type: object
   RoleResource:
     properties:
+      identity_pool_id:
+        format: poolID
+        type: string
+        x-nullable: false
       tenant_id:
         format: tenantID
         type: string
@@ -5012,6 +5378,7 @@ definitions:
         enum:
         - tenant
         - workspace
+        - identity_pool
         type: string
         x-nullable: false
       workspace_id:
@@ -5075,10 +5442,7 @@ definitions:
     description: SAML IDP specific settings
     properties:
       entity_issuer:
-        description: |-
-          Unique id of a service provider
-
-          If not provided, a random string is generated.
+        description: Unique id of a service provider
         example: https://localhost:8443/default/default/login
         type: string
         x-nullable: false
@@ -5099,6 +5463,14 @@ definitions:
 
           Depending on which identifier source you choose, you must define either the
           `identifierAttribute` or the `subjectNameIDFormat` parameter.
+        type: string
+        x-nullable: false
+      metadata_url:
+        description: IDP metadata URL
+        type: string
+        x-nullable: false
+      metadata_xml:
+        description: IDP metadata xml
         type: string
         x-nullable: false
       skip_in_response_to_verification:
@@ -5178,7 +5550,7 @@ definitions:
         type: string
         x-nullable: false
       otp:
-        $ref: '#/definitions/OTPConfig'
+        $ref: '#/definitions/OTPConfiguration'
       provider:
         description: SMS provider.
         enum:
@@ -5261,6 +5633,40 @@ definitions:
         $ref: '#/definitions/Name'
     title: SPSSODescriptor represents the SAML SPSSODescriptorType object.
     type: object
+  SSOConfiguration:
+    properties:
+      domain:
+        description: Domain for the SSO cookie
+        type: string
+        x-nullable: false
+      enabled:
+        description: If enabled, single-sign-on (SSO) is active for all IDPs in this
+          workspace.
+        example: false
+        type: boolean
+        x-nullable: false
+      logout_redirect_domains:
+        description: Additional domains permitted in the logout redirect_to parameter
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      max_age:
+        description: Active TTL - Active SSO sessions expire after MaxAge nanoseconds.
+        format: duration
+        type: string
+        x-nullable: false
+      max_idle:
+        description: Idle TTL - Idle SSO sessions expire after MaxIdle nanoseconds.
+        format: duration
+        type: string
+        x-nullable: false
+      post_logout_url:
+        description: Admin-configured target URL after logout, if redirect_to omitted
+          or invalid
+        type: string
+        x-nullable: false
+    type: object
   Scope:
     properties:
       authorization_server_id:
@@ -5285,6 +5691,11 @@ definitions:
         format: scopeID
         type: string
         x-nullable: false
+      implicit:
+        description: Request this scope by default for all clients who subscribed
+          to this scope
+        type: boolean
+        x-nullable: false
       metadata:
         $ref: '#/definitions/Metadata'
       name:
@@ -5307,8 +5718,7 @@ definitions:
   ScopeGrant:
     properties:
       client_id:
-        description: Identifier of a client application that has been granted the
-          scope
+        description: Identifier of a client application that is granted with the scope.
         example: bugkgm23g9kregtu051g
         format: clientID
         type: string
@@ -5341,18 +5751,18 @@ definitions:
         type: string
         x-nullable: false
       server_id:
-        description: Server identifier
+        description: Identifier of a server where the client app is hosted.
         example: my-server
         format: serverID
         type: string
         x-nullable: false
       subject:
-        description: Identifier of a user that has granted a scope
+        description: Identifier of a user who granted the scope.
         format: subject
         type: string
         x-nullable: false
       tenant_id:
-        description: Tenant identifier
+        description: Identifier of the tenant where the client app is hosted.
         example: my-company
         format: tenantID
         type: string
@@ -5439,6 +5849,7 @@ definitions:
         - post_authn_ctx
         - allowed_idp_ids
         - token_minting
+        - client_token_minting
         example: post_authn_ctx
         type: string
         x-nullable: false
@@ -5493,9 +5904,9 @@ definitions:
         type: string
         x-nullable: false
     required:
-    - tenant_id
-    - server_id
     - id
+    - server_id
+    - tenant_id
     - secret
     type: object
   Server:
@@ -5757,9 +6168,14 @@ definitions:
         description: Logo URI
         type: string
         x-nullable: false
+      metadata:
+        $ref: '#/definitions/ServerMetadata'
       name:
-        description: Display name of your authorization server
-        example: Sample authorization server
+        description: |-
+          Display name of the workspace
+
+          If not provided, a random ID is generated.
+        example: default
         type: string
         x-nullable: false
       obbr:
@@ -5788,6 +6204,10 @@ definitions:
         - cdr_australia
         - cdr_australia_fapi_rw
         - fdx
+        - openbanking_ksa
+        - fapi_20_security
+        - fapi_20_message_signing
+        - connect_id
         example: default
         type: string
         x-nullable: false
@@ -5844,6 +6264,10 @@ definitions:
         example: hW5WhKX_7w7BLwUQ6mn7Cp70_OoKI_F1y1hLS5U8lIU
         type: string
         x-nullable: false
+      sso:
+        $ref: '#/definitions/SSOConfiguration'
+      styling:
+        $ref: '#/definitions/Styling'
       subject_format:
         description: |-
           Define the format of a subject
@@ -5873,8 +6297,8 @@ definitions:
         description: |-
           An array that defines supported subject identifier types.
 
-          Subject identifiers are locally unique and never reassigned identifiers within the Issuer
-          for the end-user and are inteded to be consumed by client applications. There are two types
+          Subject identifiers identify an end-user. They are locally unique and never reassigned within the Issuer,
+          and are intended to be consumed by client applications. There are two types
           of subject identifiers: `public` and `pairwise`.
 
           `public` identifiers provide the same `sub` claim value to all client applications.
@@ -5962,13 +6386,14 @@ definitions:
         - developer
         - system
         - regular
+        - organization
         example: regular
         type: string
         x-nullable: false
       version:
         description: |-
           server version to track internal changes
-          currently supported version: 2
+          version that is currently supported: 2
         format: int64
         type: integer
         x-nullable: false
@@ -6268,9 +6693,14 @@ definitions:
         description: Logo URI
         type: string
         x-nullable: false
+      metadata:
+        $ref: '#/definitions/ServerMetadata'
       name:
-        description: Display name of your authorization server
-        example: Sample authorization server
+        description: |-
+          Display name of the workspace
+
+          If not provided, a random ID is generated.
+        example: default
         type: string
         x-nullable: false
       obbr:
@@ -6299,6 +6729,10 @@ definitions:
         - cdr_australia
         - cdr_australia_fapi_rw
         - fdx
+        - openbanking_ksa
+        - fapi_20_security
+        - fapi_20_message_signing
+        - connect_id
         example: default
         type: string
         x-nullable: false
@@ -6355,6 +6789,10 @@ definitions:
         example: hW5WhKX_7w7BLwUQ6mn7Cp70_OoKI_F1y1hLS5U8lIU
         type: string
         x-nullable: false
+      sso:
+        $ref: '#/definitions/SSOConfiguration'
+      styling:
+        $ref: '#/definitions/Styling'
       subject_format:
         description: |-
           Define the format of a subject
@@ -6384,8 +6822,8 @@ definitions:
         description: |-
           An array that defines supported subject identifier types.
 
-          Subject identifiers are locally unique and never reassigned identifiers within the Issuer
-          for the end-user and are inteded to be consumed by client applications. There are two types
+          Subject identifiers identify an end-user. They are locally unique and never reassigned within the Issuer,
+          and are intended to be consumed by client applications. There are two types
           of subject identifiers: `public` and `pairwise`.
 
           `public` identifiers provide the same `sub` claim value to all client applications.
@@ -6473,13 +6911,14 @@ definitions:
         - developer
         - system
         - regular
+        - organization
         example: regular
         type: string
         x-nullable: false
       version:
         description: |-
           server version to track internal changes
-          currently supported version: 2
+          version that is currently supported: 2
         format: int64
         type: integer
         x-nullable: false
@@ -6665,6 +7104,17 @@ definitions:
         format: int64
         type: integer
         x-nullable: false
+    type: object
+  ServerMetadata:
+    properties:
+      payload:
+        additionalProperties:
+          type: object
+        description: metadata payload
+        type: object
+        x-nullable: false
+      schema:
+        $ref: '#/definitions/SupportedJSONSchema'
     type: object
   ServerToServer:
     properties:
@@ -6896,6 +7346,148 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  SupportedJSONSchema:
+    properties:
+      additionalProperties:
+        type: boolean
+        x-nullable: false
+      allOf:
+        items:
+          $ref: '#/definitions/SupportedJSONSchema'
+        type: array
+        x-nullable: false
+      anyOf:
+        items:
+          $ref: '#/definitions/SupportedJSONSchema'
+        type: array
+        x-nullable: false
+      const:
+        type: string
+        x-nullable: false
+      contains:
+        $ref: '#/definitions/SupportedJSONSchema'
+      dependentRequired:
+        additionalProperties:
+          items:
+            type: string
+          type: array
+        type: object
+        x-nullable: false
+      dependentSchemas:
+        additionalProperties:
+          $ref: '#/definitions/SupportedJSONSchema'
+        type: object
+        x-nullable: false
+      description:
+        type: string
+        x-nullable: false
+      else:
+        $ref: '#/definitions/SupportedJSONSchema'
+      enum:
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      exclusiveMaximum:
+        format: int64
+        type: integer
+        x-nullable: false
+      exclusiveMinimum:
+        format: int64
+        type: integer
+        x-nullable: false
+      hidden:
+        type: boolean
+        x-nullable: false
+      if:
+        $ref: '#/definitions/SupportedJSONSchema'
+      items:
+        $ref: '#/definitions/SupportedJSONSchema'
+      maxContains:
+        format: int64
+        type: integer
+        x-nullable: false
+      maxItems:
+        description: arrays
+        format: int64
+        type: integer
+        x-nullable: false
+      maxLength:
+        description: strings
+        format: int64
+        type: integer
+        x-nullable: false
+      maxProperties:
+        description: objects
+        format: int64
+        type: integer
+        x-nullable: false
+      maximum:
+        format: int64
+        type: integer
+        x-nullable: false
+      minContains:
+        format: int64
+        type: integer
+        x-nullable: false
+      minItems:
+        format: int64
+        type: integer
+        x-nullable: false
+      minLength:
+        format: int64
+        type: integer
+        x-nullable: false
+      minProperties:
+        format: int64
+        type: integer
+        x-nullable: false
+      minimum:
+        format: int64
+        type: integer
+        x-nullable: false
+      multipleOf:
+        description: numeric
+        format: int64
+        type: integer
+        x-nullable: false
+      not:
+        $ref: '#/definitions/SupportedJSONSchema'
+      oneOf:
+        items:
+          $ref: '#/definitions/SupportedJSONSchema'
+        type: array
+        x-nullable: false
+      pattern:
+        type: string
+        x-nullable: false
+      patternProperties:
+        additionalProperties:
+          $ref: '#/definitions/SupportedJSONSchema'
+        type: object
+        x-nullable: false
+      properties:
+        additionalProperties:
+          $ref: '#/definitions/SupportedJSONSchema'
+        type: object
+        x-nullable: false
+      propertyNames:
+        $ref: '#/definitions/SupportedJSONSchema'
+      required:
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      then:
+        $ref: '#/definitions/SupportedJSONSchema'
+      type:
+        description: any
+        type: string
+        x-nullable: false
+      uniqueItems:
+        type: boolean
+        x-nullable: false
+    type: object
   Template:
     description: Custom Branding template
     properties:
@@ -6930,9 +7522,9 @@ definitions:
         type: string
         x-nullable: false
     required:
+    - fs_path
     - tenant_id
     - theme_id
-    - fs_path
     type: object
   Tenant:
     properties:
@@ -7033,6 +7625,51 @@ definitions:
         $ref: '#/definitions/Element'
     title: A Token is an empty interface that represents an Element, CharData,
     type: object
+  TokenTTLs:
+    properties:
+      access_token_ttl:
+        default: 1h0m0s
+        description: |-
+          Access token time to live
+
+          After an access token reaches its time to live, it expires and it cannot be used to
+          authenticate the client application.
+        example: 1h10m30s
+        format: duration
+        type: string
+        x-nullable: false
+      authorization_code_ttl:
+        description: |-
+          Authorization code time to live
+
+          After an authorization code reaches its time to live, it expires and it cannot be used to
+          authorize the request to the `/token` endpoint.
+        example: 10m0s
+        format: duration
+        type: string
+        x-nullable: false
+      id_token_ttl:
+        description: |-
+          ID token time to live
+
+          After an ID token reaches its time to live, it expires and it cannot be used to provide
+          user profile information to a client application.
+        example: 1h10m30s
+        format: duration
+        type: string
+        x-nullable: false
+      refresh_token_ttl:
+        default: 720h0m0s
+        description: |-
+          Refresh token time to live
+
+          After a refresh token reaches its time to live, it expires and it cannot be used to obtain
+          new access tokens for a client application.
+        example: 720h0m0s
+        format: duration
+        type: string
+        x-nullable: false
+    type: object
   TrustAnchorConfiguration:
     properties:
       jwks:
@@ -7043,6 +7680,74 @@ definitions:
         type: string
         x-nullable: false
     type: object
+  UserAttributeMapping:
+    properties:
+      allow_weak_decoding:
+        description: |-
+          If enabled, the decoder makes the following "weak" conversions:
+
+          Bools to string (true = "1", false = "0")
+
+          numbers to string (base 10)
+
+          bools to int/uint (true = 1, false = 0)
+
+          strings to int/uint (base implied by prefix)
+
+          int to bool (true if value != 0)
+
+          string to bool (accepts only the following: 1, t, T, TRUE, true, True, 0, f, F, FALSE, false, False)
+
+          empty array = empty map and vice versa
+
+          negative numbers to overflowed uint values (base 10)
+
+          slice of maps to a merged map
+
+          single values are converted to slices if required. Each element is weakly decoded.
+        example: false
+        type: boolean
+        x-nullable: false
+      source:
+        description: |-
+          Source attribute.
+
+          Source path to the attribute(s) which should be copied to the authentication context.
+          Use '.' to copy everything.
+        example: access_token
+        type: string
+        x-nullable: false
+      target:
+        description: |-
+          Target attribute.
+
+          Target path in the authentication context where source attribute(s) should be pasted.
+          Use '.' to paste to the context top level object.
+        example: .
+        type: string
+        x-nullable: false
+      type:
+        description: |-
+          Type of the target attribute
+
+          The `type` parameter accepts the following values:
+          `number`, `string`, `bool`, `number_array`, `string_array`, `bool_array`, `any`.
+        example: string
+        format: type
+        type: string
+        x-nullable: false
+      update_on_sign_in:
+        type: boolean
+        x-nullable: false
+    required:
+    - source
+    - target
+    - type
+    type: object
+  UserAttributesMapping:
+    items:
+      $ref: '#/definitions/UserAttributeMapping'
+    type: array
   UserCodeCharacterSet:
     type: string
   ValidatorConfig:
@@ -7164,9 +7869,9 @@ definitions:
         type: string
         x-nullable: false
     required:
+    - webhook_id
     - tenant_id
     - server_id
-    - webhook_id
     type: object
   X509Certificate:
     description: X509Certificate represents the XMLSEC object of the same name
@@ -7440,7 +8145,7 @@ paths:
       - in: body
         name: patch
         schema:
-          $ref: '#/definitions/PatchOperations'
+          $ref: '#/definitions/Rfc6902PatchOperations'
       - format: insertMode
         in: query
         name: mode

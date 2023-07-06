@@ -158,6 +158,11 @@ func (m *Organization) contextValidateOrganizationDisplayNames(ctx context.Conte
 	for i := 0; i < len(m.OrganizationDisplayNames); i++ {
 
 		if m.OrganizationDisplayNames[i] != nil {
+
+			if swag.IsZero(m.OrganizationDisplayNames[i]) { // not required
+				return nil
+			}
+
 			if err := m.OrganizationDisplayNames[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OrganizationDisplayNames" + "." + strconv.Itoa(i))
@@ -178,6 +183,11 @@ func (m *Organization) contextValidateOrganizationNames(ctx context.Context, for
 	for i := 0; i < len(m.OrganizationNames); i++ {
 
 		if m.OrganizationNames[i] != nil {
+
+			if swag.IsZero(m.OrganizationNames[i]) { // not required
+				return nil
+			}
+
 			if err := m.OrganizationNames[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OrganizationNames" + "." + strconv.Itoa(i))
@@ -198,6 +208,11 @@ func (m *Organization) contextValidateOrganizationURLs(ctx context.Context, form
 	for i := 0; i < len(m.OrganizationURLs); i++ {
 
 		if m.OrganizationURLs[i] != nil {
+
+			if swag.IsZero(m.OrganizationURLs[i]) { // not required
+				return nil
+			}
+
 			if err := m.OrganizationURLs[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("OrganizationURLs" + "." + strconv.Itoa(i))

@@ -21,6 +21,9 @@ type OtpSettings struct {
 	// activation
 	Activation *OtpConfig `json:"activation,omitempty"`
 
+	// authentication
+	Authentication *OtpConfig `json:"authentication,omitempty"`
+
 	// challenge
 	Challenge *OtpConfig `json:"challenge,omitempty"`
 
@@ -36,6 +39,10 @@ func (m *OtpSettings) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateActivation(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateAuthentication(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -68,6 +75,25 @@ func (m *OtpSettings) validateActivation(formats strfmt.Registry) error {
 				return ve.ValidateName("activation")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("activation")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *OtpSettings) validateAuthentication(formats strfmt.Registry) error {
+	if swag.IsZero(m.Authentication) { // not required
+		return nil
+	}
+
+	if m.Authentication != nil {
+		if err := m.Authentication.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("authentication")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("authentication")
 			}
 			return err
 		}
@@ -141,6 +167,10 @@ func (m *OtpSettings) ContextValidate(ctx context.Context, formats strfmt.Regist
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateAuthentication(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateChallenge(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -162,6 +192,11 @@ func (m *OtpSettings) ContextValidate(ctx context.Context, formats strfmt.Regist
 func (m *OtpSettings) contextValidateActivation(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Activation != nil {
+
+		if swag.IsZero(m.Activation) { // not required
+			return nil
+		}
+
 		if err := m.Activation.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("activation")
@@ -175,9 +210,35 @@ func (m *OtpSettings) contextValidateActivation(ctx context.Context, formats str
 	return nil
 }
 
+func (m *OtpSettings) contextValidateAuthentication(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Authentication != nil {
+
+		if swag.IsZero(m.Authentication) { // not required
+			return nil
+		}
+
+		if err := m.Authentication.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("authentication")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("authentication")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *OtpSettings) contextValidateChallenge(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Challenge != nil {
+
+		if swag.IsZero(m.Challenge) { // not required
+			return nil
+		}
+
 		if err := m.Challenge.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("challenge")
@@ -194,6 +255,11 @@ func (m *OtpSettings) contextValidateChallenge(ctx context.Context, formats strf
 func (m *OtpSettings) contextValidateResetPassword(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ResetPassword != nil {
+
+		if swag.IsZero(m.ResetPassword) { // not required
+			return nil
+		}
+
 		if err := m.ResetPassword.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("reset_password")
@@ -210,6 +276,11 @@ func (m *OtpSettings) contextValidateResetPassword(ctx context.Context, formats 
 func (m *OtpSettings) contextValidateVerifyAddress(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.VerifyAddress != nil {
+
+		if swag.IsZero(m.VerifyAddress) { // not required
+			return nil
+		}
+
 		if err := m.VerifyAddress.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("verify_address")

@@ -37,6 +37,7 @@ type IDPConfiguration struct {
 
 	// The time that a user's authentication context is stored in the ACP's internal caching system
 	// before it's being deleted or refreshed.
+	// Example: 1h15m30s
 	// Format: duration
 	StatefulCtxDuration strfmt.Duration `json:"stateful_ctx_duration,omitempty"`
 }

@@ -48,7 +48,7 @@ func (o *AuthorizeReader) ReadResponse(response runtime.ClientResponse, consumer
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /oauth2/authorize] authorize", response, response.Code())
 	}
 }
 
@@ -88,6 +88,11 @@ func (o *AuthorizeFound) IsServerError() bool {
 // IsCode returns true when this authorize found response a status code equal to that given
 func (o *AuthorizeFound) IsCode(code int) bool {
 	return code == 302
+}
+
+// Code gets the status code for the authorize found response
+func (o *AuthorizeFound) Code() int {
+	return 302
 }
 
 func (o *AuthorizeFound) Error() string {
@@ -140,6 +145,11 @@ func (o *AuthorizeUnauthorized) IsServerError() bool {
 // IsCode returns true when this authorize unauthorized response a status code equal to that given
 func (o *AuthorizeUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the authorize unauthorized response
+func (o *AuthorizeUnauthorized) Code() int {
+	return 401
 }
 
 func (o *AuthorizeUnauthorized) Error() string {
@@ -205,6 +215,11 @@ func (o *AuthorizeNotFound) IsCode(code int) bool {
 	return code == 404
 }
 
+// Code gets the status code for the authorize not found response
+func (o *AuthorizeNotFound) Code() int {
+	return 404
+}
+
 func (o *AuthorizeNotFound) Error() string {
 	return fmt.Sprintf("[GET /oauth2/authorize][%d] authorizeNotFound  %+v", 404, o.Payload)
 }
@@ -266,6 +281,11 @@ func (o *AuthorizeTooManyRequests) IsServerError() bool {
 // IsCode returns true when this authorize too many requests response a status code equal to that given
 func (o *AuthorizeTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the authorize too many requests response
+func (o *AuthorizeTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *AuthorizeTooManyRequests) Error() string {

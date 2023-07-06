@@ -54,7 +54,7 @@ func (o *GetPoolReader) ReadResponse(response runtime.ClientResponse, consumer r
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /admin/pools/{ipID}] getPool", response, response.Code())
 	}
 }
 
@@ -69,6 +69,15 @@ GetPoolOK describes a response with status code 200, with default header values.
 Identity Pool
 */
 type GetPoolOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.PoolResponse
 }
 
@@ -97,6 +106,11 @@ func (o *GetPoolOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get pool o k response
+func (o *GetPoolOK) Code() int {
+	return 200
+}
+
 func (o *GetPoolOK) Error() string {
 	return fmt.Sprintf("[GET /admin/pools/{ipID}][%d] getPoolOK  %+v", 200, o.Payload)
 }
@@ -110,6 +124,13 @@ func (o *GetPoolOK) GetPayload() *models.PoolResponse {
 }
 
 func (o *GetPoolOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.PoolResponse)
 
@@ -158,6 +179,11 @@ func (o *GetPoolUnauthorized) IsServerError() bool {
 // IsCode returns true when this get pool unauthorized response a status code equal to that given
 func (o *GetPoolUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get pool unauthorized response
+func (o *GetPoolUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetPoolUnauthorized) Error() string {
@@ -223,6 +249,11 @@ func (o *GetPoolForbidden) IsCode(code int) bool {
 	return code == 403
 }
 
+// Code gets the status code for the get pool forbidden response
+func (o *GetPoolForbidden) Code() int {
+	return 403
+}
+
 func (o *GetPoolForbidden) Error() string {
 	return fmt.Sprintf("[GET /admin/pools/{ipID}][%d] getPoolForbidden  %+v", 403, o.Payload)
 }
@@ -286,6 +317,11 @@ func (o *GetPoolNotFound) IsCode(code int) bool {
 	return code == 404
 }
 
+// Code gets the status code for the get pool not found response
+func (o *GetPoolNotFound) Code() int {
+	return 404
+}
+
 func (o *GetPoolNotFound) Error() string {
 	return fmt.Sprintf("[GET /admin/pools/{ipID}][%d] getPoolNotFound  %+v", 404, o.Payload)
 }
@@ -347,6 +383,11 @@ func (o *GetPoolTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get pool too many requests response a status code equal to that given
 func (o *GetPoolTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get pool too many requests response
+func (o *GetPoolTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetPoolTooManyRequests) Error() string {

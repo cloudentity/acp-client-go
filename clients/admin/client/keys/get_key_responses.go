@@ -54,7 +54,7 @@ func (o *GetKeyReader) ReadResponse(response runtime.ClientResponse, consumer ru
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /servers/{wid}/keys/{kid}/raw] getKey", response, response.Code())
 	}
 }
 
@@ -69,6 +69,15 @@ GetKeyOK describes a response with status code 200, with default header values.
 JWK
 */
 type GetKeyOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.ClientJWK
 }
 
@@ -97,6 +106,11 @@ func (o *GetKeyOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get key o k response
+func (o *GetKeyOK) Code() int {
+	return 200
+}
+
 func (o *GetKeyOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/keys/{kid}/raw][%d] getKeyOK  %+v", 200, o.Payload)
 }
@@ -110,6 +124,13 @@ func (o *GetKeyOK) GetPayload() *models.ClientJWK {
 }
 
 func (o *GetKeyOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.ClientJWK)
 
@@ -129,7 +150,7 @@ func NewGetKeyUnauthorized() *GetKeyUnauthorized {
 /*
 GetKeyUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetKeyUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +179,11 @@ func (o *GetKeyUnauthorized) IsServerError() bool {
 // IsCode returns true when this get key unauthorized response a status code equal to that given
 func (o *GetKeyUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get key unauthorized response
+func (o *GetKeyUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetKeyUnauthorized) Error() string {
@@ -192,7 +218,7 @@ func NewGetKeyForbidden() *GetKeyForbidden {
 /*
 GetKeyForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetKeyForbidden struct {
 	Payload *models.Error
@@ -221,6 +247,11 @@ func (o *GetKeyForbidden) IsServerError() bool {
 // IsCode returns true when this get key forbidden response a status code equal to that given
 func (o *GetKeyForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get key forbidden response
+func (o *GetKeyForbidden) Code() int {
+	return 403
 }
 
 func (o *GetKeyForbidden) Error() string {
@@ -255,7 +286,7 @@ func NewGetKeyNotFound() *GetKeyNotFound {
 /*
 GetKeyNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetKeyNotFound struct {
 	Payload *models.Error
@@ -284,6 +315,11 @@ func (o *GetKeyNotFound) IsServerError() bool {
 // IsCode returns true when this get key not found response a status code equal to that given
 func (o *GetKeyNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the get key not found response
+func (o *GetKeyNotFound) Code() int {
+	return 404
 }
 
 func (o *GetKeyNotFound) Error() string {
@@ -318,7 +354,7 @@ func NewGetKeyTooManyRequests() *GetKeyTooManyRequests {
 /*
 GetKeyTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetKeyTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +383,11 @@ func (o *GetKeyTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get key too many requests response a status code equal to that given
 func (o *GetKeyTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get key too many requests response
+func (o *GetKeyTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetKeyTooManyRequests) Error() string {

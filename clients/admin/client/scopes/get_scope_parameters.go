@@ -61,6 +61,14 @@ GetScopeParams contains all the parameters to send to the API endpoint
 */
 type GetScopeParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	// Scp.
 	Scp string
 
@@ -117,6 +125,17 @@ func (o *GetScopeParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the get scope params
+func (o *GetScopeParams) WithIfMatch(ifMatch *string) *GetScopeParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the get scope params
+func (o *GetScopeParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithScp adds the scp to the get scope params
 func (o *GetScopeParams) WithScp(scp string) *GetScopeParams {
 	o.SetScp(scp)
@@ -135,6 +154,14 @@ func (o *GetScopeParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regi
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	// path param scp
 	if err := r.SetPathParam("scp", o.Scp); err != nil {

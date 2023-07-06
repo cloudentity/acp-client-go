@@ -459,6 +459,11 @@ func (m *OBWriteDomesticStandingOrderConsentResponse6Data) ContextValidate(ctx c
 func (m *OBWriteDomesticStandingOrderConsentResponse6Data) contextValidateAuthorisation(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Authorisation != nil {
+
+		if swag.IsZero(m.Authorisation) { // not required
+			return nil
+		}
+
 		if err := m.Authorisation.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Authorisation")
@@ -477,6 +482,11 @@ func (m *OBWriteDomesticStandingOrderConsentResponse6Data) contextValidateCharge
 	for i := 0; i < len(m.Charges); i++ {
 
 		if m.Charges[i] != nil {
+
+			if swag.IsZero(m.Charges[i]) { // not required
+				return nil
+			}
+
 			if err := m.Charges[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("Charges" + "." + strconv.Itoa(i))
@@ -495,6 +505,11 @@ func (m *OBWriteDomesticStandingOrderConsentResponse6Data) contextValidateCharge
 func (m *OBWriteDomesticStandingOrderConsentResponse6Data) contextValidateDebtor(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Debtor != nil {
+
+		if swag.IsZero(m.Debtor) { // not required
+			return nil
+		}
+
 		if err := m.Debtor.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Debtor")
@@ -511,6 +526,7 @@ func (m *OBWriteDomesticStandingOrderConsentResponse6Data) contextValidateDebtor
 func (m *OBWriteDomesticStandingOrderConsentResponse6Data) contextValidateInitiation(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Initiation != nil {
+
 		if err := m.Initiation.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Initiation")
@@ -527,6 +543,11 @@ func (m *OBWriteDomesticStandingOrderConsentResponse6Data) contextValidateInitia
 func (m *OBWriteDomesticStandingOrderConsentResponse6Data) contextValidateSCASupportData(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.SCASupportData != nil {
+
+		if swag.IsZero(m.SCASupportData) { // not required
+			return nil
+		}
+
 		if err := m.SCASupportData.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("SCASupportData")

@@ -37,6 +37,9 @@ type Script struct {
 	// ID of the tenant where the script is created
 	// Required: true
 	TenantID string `json:"tenant_id"`
+
+	// Input data for testing this script
+	TestInput string `json:"test_input,omitempty"`
 }
 
 // Validate validates this script

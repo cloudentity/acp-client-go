@@ -64,8 +64,8 @@ definitions:
     type: object
 host: localhost:8443
 info:
-  description: Cloudentity Authorization Control Plane Analytics API
-  title: Cloudentity Authorization Control Plane API
+  description: Cloudentity Analytics API
+  title: Cloudentity API
   version: latest
 paths:
   /servers/{wid}/access-tokens:
@@ -148,6 +148,12 @@ paths:
         in: query
         name: to
         type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - default: count
         description: |-
           Function
@@ -169,13 +175,13 @@ paths:
         "200":
           $ref: '#/responses/DataPoints'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
       summary: Query access tokens
@@ -261,6 +267,12 @@ paths:
         in: query
         name: to
         type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - default: count
         description: |-
           Function
@@ -293,13 +305,13 @@ paths:
         "200":
           $ref: '#/responses/AggregatedDataPoints'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
       summary: Query access tokens by group
@@ -385,6 +397,12 @@ paths:
         in: query
         name: to
         type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - default: count
         description: |-
           Function
@@ -415,13 +433,13 @@ paths:
         "200":
           $ref: '#/responses/DataPoints'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
       summary: Query gateway requests
@@ -507,6 +525,12 @@ paths:
         in: query
         name: to
         type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - default: count
         description: |-
           Function
@@ -548,13 +572,13 @@ paths:
         "200":
           $ref: '#/responses/AggregatedDataPoints'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
       summary: Query gateway requests by group
@@ -640,6 +664,12 @@ paths:
         in: query
         name: to
         type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - default: count
         description: |-
           Function
@@ -691,13 +721,13 @@ paths:
         "200":
           $ref: '#/responses/DataPoints'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
       summary: Query http requests
@@ -783,6 +813,12 @@ paths:
         in: query
         name: to
         type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - default: count
         description: |-
           Function
@@ -852,13 +888,13 @@ paths:
         "200":
           $ref: '#/responses/AggregatedDataPoints'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
       summary: Query http requests by group
@@ -944,6 +980,12 @@ paths:
         in: query
         name: to
         type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - default: count
         description: |-
           Function
@@ -958,13 +1000,13 @@ paths:
         "200":
           $ref: '#/responses/DataPoints'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
       summary: Query otp operations
@@ -1050,6 +1092,12 @@ paths:
         in: query
         name: to
         type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - default: count
         description: |-
           Function
@@ -1075,13 +1123,13 @@ paths:
         "200":
           $ref: '#/responses/AggregatedDataPoints'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
       summary: Query otp operations by group
@@ -1167,6 +1215,12 @@ paths:
         in: query
         name: to
         type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - default: count
         description: |-
           Function
@@ -1181,13 +1235,13 @@ paths:
         "200":
           $ref: '#/responses/DataPoints'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
       summary: Query policy validations
@@ -1273,6 +1327,12 @@ paths:
         in: query
         name: to
         type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - default: count
         description: |-
           Function
@@ -1298,13 +1358,13 @@ paths:
         "200":
           $ref: '#/responses/AggregatedDataPoints'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
       summary: Query policy validations by group
@@ -1316,14 +1376,70 @@ produces:
 responses:
   AggregatedDataPoints:
     description: Aggregated data points
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
     schema:
       $ref: '#/definitions/AggregatedDataPoints'
   DataPoints:
     description: Data points
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
     schema:
       $ref: '#/definitions/DataPoints'
-  httpError:
-    description: HttpError
+  badRequestHTTPError:
+    description: Bad request
+    schema:
+      $ref: '#/definitions/Error'
+  conflictHTTPError:
+    description: Conflict
+    schema:
+      $ref: '#/definitions/Error'
+  forbiddenHTTPError:
+    description: Forbidden
+    schema:
+      $ref: '#/definitions/Error'
+  internalServerErrorHTTPError:
+    description: Internal server error
+    schema:
+      $ref: '#/definitions/Error'
+  methodNotAllowedHTTPError:
+    description: Method not allowed
+    schema:
+      $ref: '#/definitions/Error'
+  notFoundHTTPError:
+    description: Not found
+    schema:
+      $ref: '#/definitions/Error'
+  payloadTooLargeHTTPError:
+    description: Payload too large
+    schema:
+      $ref: '#/definitions/Error'
+  preconditionFailedHTTPError:
+    description: Precondition failed
+    schema:
+      $ref: '#/definitions/Error'
+  tooManyRequestsHTTPError:
+    description: Too many requests
+    schema:
+      $ref: '#/definitions/Error'
+  unauthorizedHTTPError:
+    description: Unauthorized
+    schema:
+      $ref: '#/definitions/Error'
+  unprocessableEntityHTTPError:
+    description: Unprocessable entity
     schema:
       $ref: '#/definitions/Error'
 schemes:

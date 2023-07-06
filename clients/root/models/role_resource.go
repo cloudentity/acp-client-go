@@ -20,11 +20,14 @@ import (
 // swagger:model RoleResource
 type RoleResource struct {
 
+	// identity pool id
+	IdentityPoolID string `json:"identity_pool_id,omitempty"`
+
 	// tenant id
 	TenantID string `json:"tenant_id,omitempty"`
 
 	// type
-	// Enum: [tenant workspace]
+	// Enum: [tenant workspace identity_pool]
 	Type string `json:"type,omitempty"`
 
 	// workspace id
@@ -49,7 +52,7 @@ var roleResourceTypeTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["tenant","workspace"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["tenant","workspace","identity_pool"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -64,6 +67,9 @@ const (
 
 	// RoleResourceTypeWorkspace captures enum value "workspace"
 	RoleResourceTypeWorkspace string = "workspace"
+
+	// RoleResourceTypeIdentityPool captures enum value "identity_pool"
+	RoleResourceTypeIdentityPool string = "identity_pool"
 )
 
 // prop value enum

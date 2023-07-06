@@ -760,8 +760,8 @@ definitions:
     type: object
 host: localhost:8443
 info:
-  description: Cloudentity Authorization Control Plane Public API
-  title: Cloudentity Authorization Control Plane API
+  description: Cloudentity Public API
+  title: Cloudentity API
   version: latest
 paths:
   /authn/otp/transient:
@@ -777,17 +777,17 @@ paths:
         "200":
           $ref: '#/responses/TransientOTPResponse'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
         "422":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unprocessableEntityHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - default:
         - transient_otp
@@ -810,13 +810,13 @@ paths:
         "200":
           $ref: '#/responses/TransientOTPResponse'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
         "422":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unprocessableEntityHTTPError'
       security:
       - default:
         - transient_otp
@@ -839,11 +839,11 @@ paths:
         "204":
           description: ' one-time password verified'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
       security:
       - default:
         - transient_otp
@@ -858,13 +858,13 @@ paths:
         "200":
           $ref: '#/responses/ListClientsWithAccess'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - default:
         - list_clients_with_access
@@ -886,11 +886,11 @@ paths:
         "204":
           description: ' Client access has been revoked'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - default:
         - revoke_client_access
@@ -913,13 +913,13 @@ paths:
         "200":
           $ref: '#/responses/ConsentsWithGrants'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - default:
         - view_consents
@@ -943,17 +943,17 @@ paths:
         "201":
           $ref: '#/responses/ConsentGrantPatchResponse'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
         "409":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/conflictHTTPError'
         "422":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unprocessableEntityHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - default:
         - manage_consents
@@ -979,13 +979,13 @@ paths:
         "200":
           $ref: '#/responses/ConsentsWithGrants'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - default:
         - view_consents
@@ -1008,17 +1008,17 @@ paths:
         "201":
           $ref: '#/responses/ConsentGrant'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
         "409":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/conflictHTTPError'
         "422":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unprocessableEntityHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - default:
         - manage_consents
@@ -1044,15 +1044,15 @@ paths:
         "200":
           $ref: '#/responses/ConsentGrant'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
         "422":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unprocessableEntityHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - default:
         - manage_consents
@@ -1079,13 +1079,13 @@ paths:
         "200":
           $ref: '#/responses/PrivacyLedgerEvents'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - default:
         - view_consents
@@ -1119,8 +1119,48 @@ responses:
     description: Transient OTP
     schema:
       $ref: '#/definitions/TransientOTPResponse'
-  httpError:
-    description: HttpError
+  badRequestHTTPError:
+    description: Bad request
+    schema:
+      $ref: '#/definitions/Error'
+  conflictHTTPError:
+    description: Conflict
+    schema:
+      $ref: '#/definitions/Error'
+  forbiddenHTTPError:
+    description: Forbidden
+    schema:
+      $ref: '#/definitions/Error'
+  internalServerErrorHTTPError:
+    description: Internal server error
+    schema:
+      $ref: '#/definitions/Error'
+  methodNotAllowedHTTPError:
+    description: Method not allowed
+    schema:
+      $ref: '#/definitions/Error'
+  notFoundHTTPError:
+    description: Not found
+    schema:
+      $ref: '#/definitions/Error'
+  payloadTooLargeHTTPError:
+    description: Payload too large
+    schema:
+      $ref: '#/definitions/Error'
+  preconditionFailedHTTPError:
+    description: Precondition failed
+    schema:
+      $ref: '#/definitions/Error'
+  tooManyRequestsHTTPError:
+    description: Too many requests
+    schema:
+      $ref: '#/definitions/Error'
+  unauthorizedHTTPError:
+    description: Unauthorized
+    schema:
+      $ref: '#/definitions/Error'
+  unprocessableEntityHTTPError:
+    description: Unprocessable entity
     schema:
       $ref: '#/definitions/Error'
 schemes:
@@ -1132,6 +1172,7 @@ securityDefinitions:
     scopes:
       list_clients_with_access: list_clients_with_access
       manage_consents: manage_consents
+      manage_post_authn: manage_post_authn
       revoke_client_access: revoke_client_access
       transient_otp: transient_otp
       view_consents: view_consents

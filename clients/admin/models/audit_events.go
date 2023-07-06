@@ -82,6 +82,11 @@ func (m *AuditEvents) contextValidateAuditEvents(ctx context.Context, formats st
 	for i := 0; i < len(m.AuditEvents); i++ {
 
 		if m.AuditEvents[i] != nil {
+
+			if swag.IsZero(m.AuditEvents[i]) { // not required
+				return nil
+			}
+
 			if err := m.AuditEvents[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("audit_events" + "." + strconv.Itoa(i))

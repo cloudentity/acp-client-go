@@ -66,7 +66,7 @@ func (o *CreateClientForDeveloperReader) ReadResponse(response runtime.ClientRes
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /clients] createClientForDeveloper", response, response.Code())
 	}
 }
 
@@ -109,6 +109,11 @@ func (o *CreateClientForDeveloperCreated) IsCode(code int) bool {
 	return code == 201
 }
 
+// Code gets the status code for the create client for developer created response
+func (o *CreateClientForDeveloperCreated) Code() int {
+	return 201
+}
+
 func (o *CreateClientForDeveloperCreated) Error() string {
 	return fmt.Sprintf("[POST /clients][%d] createClientForDeveloperCreated  %+v", 201, o.Payload)
 }
@@ -141,7 +146,7 @@ func NewCreateClientForDeveloperUnauthorized() *CreateClientForDeveloperUnauthor
 /*
 CreateClientForDeveloperUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type CreateClientForDeveloperUnauthorized struct {
 	Payload *models.Error
@@ -170,6 +175,11 @@ func (o *CreateClientForDeveloperUnauthorized) IsServerError() bool {
 // IsCode returns true when this create client for developer unauthorized response a status code equal to that given
 func (o *CreateClientForDeveloperUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the create client for developer unauthorized response
+func (o *CreateClientForDeveloperUnauthorized) Code() int {
+	return 401
 }
 
 func (o *CreateClientForDeveloperUnauthorized) Error() string {
@@ -204,7 +214,7 @@ func NewCreateClientForDeveloperForbidden() *CreateClientForDeveloperForbidden {
 /*
 CreateClientForDeveloperForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type CreateClientForDeveloperForbidden struct {
 	Payload *models.Error
@@ -233,6 +243,11 @@ func (o *CreateClientForDeveloperForbidden) IsServerError() bool {
 // IsCode returns true when this create client for developer forbidden response a status code equal to that given
 func (o *CreateClientForDeveloperForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the create client for developer forbidden response
+func (o *CreateClientForDeveloperForbidden) Code() int {
+	return 403
 }
 
 func (o *CreateClientForDeveloperForbidden) Error() string {
@@ -267,7 +282,7 @@ func NewCreateClientForDeveloperNotFound() *CreateClientForDeveloperNotFound {
 /*
 CreateClientForDeveloperNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type CreateClientForDeveloperNotFound struct {
 	Payload *models.Error
@@ -296,6 +311,11 @@ func (o *CreateClientForDeveloperNotFound) IsServerError() bool {
 // IsCode returns true when this create client for developer not found response a status code equal to that given
 func (o *CreateClientForDeveloperNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the create client for developer not found response
+func (o *CreateClientForDeveloperNotFound) Code() int {
+	return 404
 }
 
 func (o *CreateClientForDeveloperNotFound) Error() string {
@@ -330,7 +350,7 @@ func NewCreateClientForDeveloperConflict() *CreateClientForDeveloperConflict {
 /*
 CreateClientForDeveloperConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type CreateClientForDeveloperConflict struct {
 	Payload *models.Error
@@ -359,6 +379,11 @@ func (o *CreateClientForDeveloperConflict) IsServerError() bool {
 // IsCode returns true when this create client for developer conflict response a status code equal to that given
 func (o *CreateClientForDeveloperConflict) IsCode(code int) bool {
 	return code == 409
+}
+
+// Code gets the status code for the create client for developer conflict response
+func (o *CreateClientForDeveloperConflict) Code() int {
+	return 409
 }
 
 func (o *CreateClientForDeveloperConflict) Error() string {
@@ -393,7 +418,7 @@ func NewCreateClientForDeveloperUnprocessableEntity() *CreateClientForDeveloperU
 /*
 CreateClientForDeveloperUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type CreateClientForDeveloperUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +447,11 @@ func (o *CreateClientForDeveloperUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this create client for developer unprocessable entity response a status code equal to that given
 func (o *CreateClientForDeveloperUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the create client for developer unprocessable entity response
+func (o *CreateClientForDeveloperUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *CreateClientForDeveloperUnprocessableEntity) Error() string {
@@ -456,7 +486,7 @@ func NewCreateClientForDeveloperTooManyRequests() *CreateClientForDeveloperTooMa
 /*
 CreateClientForDeveloperTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type CreateClientForDeveloperTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +515,11 @@ func (o *CreateClientForDeveloperTooManyRequests) IsServerError() bool {
 // IsCode returns true when this create client for developer too many requests response a status code equal to that given
 func (o *CreateClientForDeveloperTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the create client for developer too many requests response
+func (o *CreateClientForDeveloperTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *CreateClientForDeveloperTooManyRequests) Error() string {

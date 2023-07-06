@@ -56,17 +56,18 @@ type ClientService interface {
 }
 
 /*
-	CreateClient creates new o auth s a m l client available values are saml oauth2 if omitted then oauth2 will be used as default
+	CreateClient creates o auth s a m l client
 
-	Client must be created under existing tenant and authorization server.
+	Create an OAuth 2.0 or SAML client application. Specify the required protocol type with the
 
-Authorization server id must be provided in the request body.
+`client_type` request body parameter.
 
-Client id and secret can be provided, otherwise are generated.
+Client must be created under existing tenant and authorization server. Provide the tenant identifier
+as the `{tenantID}` path value, and the authorization server with the `authorization_server_id`
+request body parameter.
 
-If grant type is not set, client will get authorization code grant type assigned with code as response type.
-
-Default token authentication method is client_secret_basic.
+The default values: `client_type`=`oauth2`, `grant_type`=`authorization_code`, `response_type`=`code`,
+`token_endpoint_auth_method`=`client_secret_basic`.
 */
 func (a *Client) CreateClient(params *CreateClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateClientCreated, error) {
 	// TODO: Validate the params before sending

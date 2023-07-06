@@ -69,6 +69,14 @@ type ImportSAMLMetadataFromURLParams struct {
 	*/
 	Cid string
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	// URL.
 	URL *string
 
@@ -147,6 +155,17 @@ func (o *ImportSAMLMetadataFromURLParams) SetCid(cid string) {
 	o.Cid = cid
 }
 
+// WithIfMatch adds the ifMatch to the import s a m l metadata from URL params
+func (o *ImportSAMLMetadataFromURLParams) WithIfMatch(ifMatch *string) *ImportSAMLMetadataFromURLParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the import s a m l metadata from URL params
+func (o *ImportSAMLMetadataFromURLParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithURL adds the url to the import s a m l metadata from URL params
 func (o *ImportSAMLMetadataFromURLParams) WithURL(url *string) *ImportSAMLMetadataFromURLParams {
 	o.SetURL(url)
@@ -169,6 +188,14 @@ func (o *ImportSAMLMetadataFromURLParams) WriteToRequest(r runtime.ClientRequest
 	// path param cid
 	if err := r.SetPathParam("cid", o.Cid); err != nil {
 		return err
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
 	}
 
 	if o.URL != nil {

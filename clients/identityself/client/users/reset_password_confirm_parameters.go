@@ -66,6 +66,14 @@ type ResetPasswordConfirmParams struct {
 	// ResetPasswordConfirm.
 	ResetPasswordConfirm *models.ResetPasswordConfirm
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	// IPID.
 	IPID string
 
@@ -133,6 +141,17 @@ func (o *ResetPasswordConfirmParams) SetResetPasswordConfirm(resetPasswordConfir
 	o.ResetPasswordConfirm = resetPasswordConfirm
 }
 
+// WithIfMatch adds the ifMatch to the reset password confirm params
+func (o *ResetPasswordConfirmParams) WithIfMatch(ifMatch *string) *ResetPasswordConfirmParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the reset password confirm params
+func (o *ResetPasswordConfirmParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithIPID adds the iPID to the reset password confirm params
 func (o *ResetPasswordConfirmParams) WithIPID(iPID string) *ResetPasswordConfirmParams {
 	o.SetIPID(iPID)
@@ -153,6 +172,14 @@ func (o *ResetPasswordConfirmParams) WriteToRequest(r runtime.ClientRequest, reg
 	var res []error
 	if o.ResetPasswordConfirm != nil {
 		if err := r.SetBodyParam(o.ResetPasswordConfirm); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

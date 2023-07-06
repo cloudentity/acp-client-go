@@ -54,7 +54,7 @@ func (o *GetServerThemeReader) ReadResponse(response runtime.ClientResponse, con
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /servers/{wid}/theme] getServerTheme", response, response.Code())
 	}
 }
 
@@ -69,6 +69,15 @@ GetServerThemeOK describes a response with status code 200, with default header 
 Server to Theme binding
 */
 type GetServerThemeOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.ServerToTheme
 }
 
@@ -97,6 +106,11 @@ func (o *GetServerThemeOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get server theme o k response
+func (o *GetServerThemeOK) Code() int {
+	return 200
+}
+
 func (o *GetServerThemeOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/theme][%d] getServerThemeOK  %+v", 200, o.Payload)
 }
@@ -110,6 +124,13 @@ func (o *GetServerThemeOK) GetPayload() *models.ServerToTheme {
 }
 
 func (o *GetServerThemeOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.ServerToTheme)
 
@@ -129,7 +150,7 @@ func NewGetServerThemeUnauthorized() *GetServerThemeUnauthorized {
 /*
 GetServerThemeUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetServerThemeUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +179,11 @@ func (o *GetServerThemeUnauthorized) IsServerError() bool {
 // IsCode returns true when this get server theme unauthorized response a status code equal to that given
 func (o *GetServerThemeUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get server theme unauthorized response
+func (o *GetServerThemeUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetServerThemeUnauthorized) Error() string {
@@ -192,7 +218,7 @@ func NewGetServerThemeForbidden() *GetServerThemeForbidden {
 /*
 GetServerThemeForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetServerThemeForbidden struct {
 	Payload *models.Error
@@ -221,6 +247,11 @@ func (o *GetServerThemeForbidden) IsServerError() bool {
 // IsCode returns true when this get server theme forbidden response a status code equal to that given
 func (o *GetServerThemeForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get server theme forbidden response
+func (o *GetServerThemeForbidden) Code() int {
+	return 403
 }
 
 func (o *GetServerThemeForbidden) Error() string {
@@ -255,7 +286,7 @@ func NewGetServerThemeNotFound() *GetServerThemeNotFound {
 /*
 GetServerThemeNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetServerThemeNotFound struct {
 	Payload *models.Error
@@ -284,6 +315,11 @@ func (o *GetServerThemeNotFound) IsServerError() bool {
 // IsCode returns true when this get server theme not found response a status code equal to that given
 func (o *GetServerThemeNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the get server theme not found response
+func (o *GetServerThemeNotFound) Code() int {
+	return 404
 }
 
 func (o *GetServerThemeNotFound) Error() string {
@@ -318,7 +354,7 @@ func NewGetServerThemeTooManyRequests() *GetServerThemeTooManyRequests {
 /*
 GetServerThemeTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetServerThemeTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +383,11 @@ func (o *GetServerThemeTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get server theme too many requests response a status code equal to that given
 func (o *GetServerThemeTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get server theme too many requests response
+func (o *GetServerThemeTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetServerThemeTooManyRequests) Error() string {

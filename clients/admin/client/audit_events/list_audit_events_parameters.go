@@ -85,17 +85,25 @@ type ListAuditEventsParams struct {
 
 	/* EventAction.
 
-	     Optional event type, one of: authorized unauthorized created updated deleted requested accepted rejected issued denied granted attempted failed sent not_sent revoked
+	     Optional list of event types, one of: authorized unauthorized created updated deleted requested accepted rejected issued denied granted attempted failed sent not_sent revoked
 	EventType
 	*/
-	EventAction *string
+	EventAction []string
 
 	/* EventSubject.
 
-	     Optional event subject, one of: request client gateway_request policy consent authorization_code recovery login access_token scopes otp gateway_policy user credential dcr
-	EventType
+	     Optional list of event subjects, one of: request client gateway_request policy consent authorization_code recovery login access_token scopes otp gateway_policy user credential dcr role jit
+	EventSubject
 	*/
-	EventSubject *string
+	EventSubject []string
+
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
 
 	/* IP.
 
@@ -271,25 +279,36 @@ func (o *ListAuditEventsParams) SetClientID(clientID *string) {
 }
 
 // WithEventAction adds the eventAction to the list audit events params
-func (o *ListAuditEventsParams) WithEventAction(eventAction *string) *ListAuditEventsParams {
+func (o *ListAuditEventsParams) WithEventAction(eventAction []string) *ListAuditEventsParams {
 	o.SetEventAction(eventAction)
 	return o
 }
 
 // SetEventAction adds the eventAction to the list audit events params
-func (o *ListAuditEventsParams) SetEventAction(eventAction *string) {
+func (o *ListAuditEventsParams) SetEventAction(eventAction []string) {
 	o.EventAction = eventAction
 }
 
 // WithEventSubject adds the eventSubject to the list audit events params
-func (o *ListAuditEventsParams) WithEventSubject(eventSubject *string) *ListAuditEventsParams {
+func (o *ListAuditEventsParams) WithEventSubject(eventSubject []string) *ListAuditEventsParams {
 	o.SetEventSubject(eventSubject)
 	return o
 }
 
 // SetEventSubject adds the eventSubject to the list audit events params
-func (o *ListAuditEventsParams) SetEventSubject(eventSubject *string) {
+func (o *ListAuditEventsParams) SetEventSubject(eventSubject []string) {
 	o.EventSubject = eventSubject
+}
+
+// WithIfMatch adds the ifMatch to the list audit events params
+func (o *ListAuditEventsParams) WithIfMatch(ifMatch *string) *ListAuditEventsParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the list audit events params
+func (o *ListAuditEventsParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
 }
 
 // WithIP adds the ip to the list audit events params
@@ -452,35 +471,31 @@ func (o *ListAuditEventsParams) WriteToRequest(r runtime.ClientRequest, reg strf
 
 	if o.EventAction != nil {
 
-		// query param event_action
-		var qrEventAction string
+		// binding items for event_action
+		joinedEventAction := o.bindParamEventAction(reg)
 
-		if o.EventAction != nil {
-			qrEventAction = *o.EventAction
-		}
-		qEventAction := qrEventAction
-		if qEventAction != "" {
-
-			if err := r.SetQueryParam("event_action", qEventAction); err != nil {
-				return err
-			}
+		// query array param event_action
+		if err := r.SetQueryParam("event_action", joinedEventAction...); err != nil {
+			return err
 		}
 	}
 
 	if o.EventSubject != nil {
 
-		// query param event_subject
-		var qrEventSubject string
+		// binding items for event_subject
+		joinedEventSubject := o.bindParamEventSubject(reg)
 
-		if o.EventSubject != nil {
-			qrEventSubject = *o.EventSubject
+		// query array param event_subject
+		if err := r.SetQueryParam("event_subject", joinedEventSubject...); err != nil {
+			return err
 		}
-		qEventSubject := qrEventSubject
-		if qEventSubject != "" {
+	}
 
-			if err := r.SetQueryParam("event_subject", qEventSubject); err != nil {
-				return err
-			}
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
 		}
 	}
 
@@ -629,4 +644,38 @@ func (o *ListAuditEventsParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		return errors.CompositeValidationError(res...)
 	}
 	return nil
+}
+
+// bindParamListAuditEvents binds the parameter event_action
+func (o *ListAuditEventsParams) bindParamEventAction(formats strfmt.Registry) []string {
+	eventActionIR := o.EventAction
+
+	var eventActionIC []string
+	for _, eventActionIIR := range eventActionIR { // explode []string
+
+		eventActionIIV := eventActionIIR // string as string
+		eventActionIC = append(eventActionIC, eventActionIIV)
+	}
+
+	// items.CollectionFormat: ""
+	eventActionIS := swag.JoinByFormat(eventActionIC, "")
+
+	return eventActionIS
+}
+
+// bindParamListAuditEvents binds the parameter event_subject
+func (o *ListAuditEventsParams) bindParamEventSubject(formats strfmt.Registry) []string {
+	eventSubjectIR := o.EventSubject
+
+	var eventSubjectIC []string
+	for _, eventSubjectIIR := range eventSubjectIR { // explode []string
+
+		eventSubjectIIV := eventSubjectIIR // string as string
+		eventSubjectIC = append(eventSubjectIC, eventSubjectIIV)
+	}
+
+	// items.CollectionFormat: ""
+	eventSubjectIS := swag.JoinByFormat(eventSubjectIC, "")
+
+	return eventSubjectIS
 }

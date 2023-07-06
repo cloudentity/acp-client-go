@@ -112,6 +112,11 @@ func (m *X509Data) contextValidateX509Certificates(ctx context.Context, formats 
 	for i := 0; i < len(m.X509Certificates); i++ {
 
 		if m.X509Certificates[i] != nil {
+
+			if swag.IsZero(m.X509Certificates[i]) { // not required
+				return nil
+			}
+
 			if err := m.X509Certificates[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("X509Certificates" + "." + strconv.Itoa(i))
@@ -130,6 +135,11 @@ func (m *X509Data) contextValidateX509Certificates(ctx context.Context, formats 
 func (m *X509Data) contextValidateXMLName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.XMLName != nil {
+
+		if swag.IsZero(m.XMLName) { // not required
+			return nil
+		}
+
 		if err := m.XMLName.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("XMLName")

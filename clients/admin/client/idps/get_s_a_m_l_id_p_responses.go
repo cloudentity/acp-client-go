@@ -54,7 +54,7 @@ func (o *GetSAMLIDPReader) ReadResponse(response runtime.ClientResponse, consume
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /servers/{wid}/idps/saml/{iid}] getSAMLIDP", response, response.Code())
 	}
 }
 
@@ -97,6 +97,11 @@ func (o *GetSAMLIDPOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get s a m l Id p o k response
+func (o *GetSAMLIDPOK) Code() int {
+	return 200
+}
+
 func (o *GetSAMLIDPOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/idps/saml/{iid}][%d] getSAMLIdPOK  %+v", 200, o.Payload)
 }
@@ -129,7 +134,7 @@ func NewGetSAMLIDPUnauthorized() *GetSAMLIDPUnauthorized {
 /*
 GetSAMLIDPUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetSAMLIDPUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +163,11 @@ func (o *GetSAMLIDPUnauthorized) IsServerError() bool {
 // IsCode returns true when this get s a m l Id p unauthorized response a status code equal to that given
 func (o *GetSAMLIDPUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get s a m l Id p unauthorized response
+func (o *GetSAMLIDPUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetSAMLIDPUnauthorized) Error() string {
@@ -192,7 +202,7 @@ func NewGetSAMLIDPForbidden() *GetSAMLIDPForbidden {
 /*
 GetSAMLIDPForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetSAMLIDPForbidden struct {
 	Payload *models.Error
@@ -221,6 +231,11 @@ func (o *GetSAMLIDPForbidden) IsServerError() bool {
 // IsCode returns true when this get s a m l Id p forbidden response a status code equal to that given
 func (o *GetSAMLIDPForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get s a m l Id p forbidden response
+func (o *GetSAMLIDPForbidden) Code() int {
+	return 403
 }
 
 func (o *GetSAMLIDPForbidden) Error() string {
@@ -255,7 +270,7 @@ func NewGetSAMLIDPNotFound() *GetSAMLIDPNotFound {
 /*
 GetSAMLIDPNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetSAMLIDPNotFound struct {
 	Payload *models.Error
@@ -284,6 +299,11 @@ func (o *GetSAMLIDPNotFound) IsServerError() bool {
 // IsCode returns true when this get s a m l Id p not found response a status code equal to that given
 func (o *GetSAMLIDPNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the get s a m l Id p not found response
+func (o *GetSAMLIDPNotFound) Code() int {
+	return 404
 }
 
 func (o *GetSAMLIDPNotFound) Error() string {
@@ -318,7 +338,7 @@ func NewGetSAMLIDPTooManyRequests() *GetSAMLIDPTooManyRequests {
 /*
 GetSAMLIDPTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetSAMLIDPTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +367,11 @@ func (o *GetSAMLIDPTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get s a m l Id p too many requests response a status code equal to that given
 func (o *GetSAMLIDPTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get s a m l Id p too many requests response
+func (o *GetSAMLIDPTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetSAMLIDPTooManyRequests) Error() string {

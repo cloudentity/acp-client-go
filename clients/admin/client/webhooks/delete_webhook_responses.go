@@ -54,7 +54,7 @@ func (o *DeleteWebhookReader) ReadResponse(response runtime.ClientResponse, cons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[DELETE /servers/{wid}/webhooks/{webhookID}] deleteWebhook", response, response.Code())
 	}
 }
 
@@ -96,6 +96,11 @@ func (o *DeleteWebhookNoContent) IsCode(code int) bool {
 	return code == 204
 }
 
+// Code gets the status code for the delete webhook no content response
+func (o *DeleteWebhookNoContent) Code() int {
+	return 204
+}
+
 func (o *DeleteWebhookNoContent) Error() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}/webhooks/{webhookID}][%d] deleteWebhookNoContent ", 204)
 }
@@ -117,7 +122,7 @@ func NewDeleteWebhookUnauthorized() *DeleteWebhookUnauthorized {
 /*
 DeleteWebhookUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type DeleteWebhookUnauthorized struct {
 	Payload *models.Error
@@ -146,6 +151,11 @@ func (o *DeleteWebhookUnauthorized) IsServerError() bool {
 // IsCode returns true when this delete webhook unauthorized response a status code equal to that given
 func (o *DeleteWebhookUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the delete webhook unauthorized response
+func (o *DeleteWebhookUnauthorized) Code() int {
+	return 401
 }
 
 func (o *DeleteWebhookUnauthorized) Error() string {
@@ -180,7 +190,7 @@ func NewDeleteWebhookForbidden() *DeleteWebhookForbidden {
 /*
 DeleteWebhookForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type DeleteWebhookForbidden struct {
 	Payload *models.Error
@@ -209,6 +219,11 @@ func (o *DeleteWebhookForbidden) IsServerError() bool {
 // IsCode returns true when this delete webhook forbidden response a status code equal to that given
 func (o *DeleteWebhookForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the delete webhook forbidden response
+func (o *DeleteWebhookForbidden) Code() int {
+	return 403
 }
 
 func (o *DeleteWebhookForbidden) Error() string {
@@ -243,7 +258,7 @@ func NewDeleteWebhookNotFound() *DeleteWebhookNotFound {
 /*
 DeleteWebhookNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type DeleteWebhookNotFound struct {
 	Payload *models.Error
@@ -272,6 +287,11 @@ func (o *DeleteWebhookNotFound) IsServerError() bool {
 // IsCode returns true when this delete webhook not found response a status code equal to that given
 func (o *DeleteWebhookNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the delete webhook not found response
+func (o *DeleteWebhookNotFound) Code() int {
+	return 404
 }
 
 func (o *DeleteWebhookNotFound) Error() string {
@@ -306,7 +326,7 @@ func NewDeleteWebhookTooManyRequests() *DeleteWebhookTooManyRequests {
 /*
 DeleteWebhookTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type DeleteWebhookTooManyRequests struct {
 	Payload *models.Error
@@ -335,6 +355,11 @@ func (o *DeleteWebhookTooManyRequests) IsServerError() bool {
 // IsCode returns true when this delete webhook too many requests response a status code equal to that given
 func (o *DeleteWebhookTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the delete webhook too many requests response
+func (o *DeleteWebhookTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *DeleteWebhookTooManyRequests) Error() string {

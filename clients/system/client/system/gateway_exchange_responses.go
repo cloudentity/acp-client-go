@@ -54,7 +54,7 @@ func (o *GatewayExchangeReader) ReadResponse(response runtime.ClientResponse, co
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /gateways/exchange] gatewayExchange", response, response.Code())
 	}
 }
 
@@ -97,6 +97,11 @@ func (o *GatewayExchangeOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the gateway exchange o k response
+func (o *GatewayExchangeOK) Code() int {
+	return 200
+}
+
 func (o *GatewayExchangeOK) Error() string {
 	return fmt.Sprintf("[POST /gateways/exchange][%d] gatewayExchangeOK  %+v", 200, o.Payload)
 }
@@ -129,7 +134,7 @@ func NewGatewayExchangeBadRequest() *GatewayExchangeBadRequest {
 /*
 GatewayExchangeBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type GatewayExchangeBadRequest struct {
 	Payload *models.Error
@@ -158,6 +163,11 @@ func (o *GatewayExchangeBadRequest) IsServerError() bool {
 // IsCode returns true when this gateway exchange bad request response a status code equal to that given
 func (o *GatewayExchangeBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the gateway exchange bad request response
+func (o *GatewayExchangeBadRequest) Code() int {
+	return 400
 }
 
 func (o *GatewayExchangeBadRequest) Error() string {
@@ -192,7 +202,7 @@ func NewGatewayExchangeUnauthorized() *GatewayExchangeUnauthorized {
 /*
 GatewayExchangeUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GatewayExchangeUnauthorized struct {
 	Payload *models.Error
@@ -221,6 +231,11 @@ func (o *GatewayExchangeUnauthorized) IsServerError() bool {
 // IsCode returns true when this gateway exchange unauthorized response a status code equal to that given
 func (o *GatewayExchangeUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the gateway exchange unauthorized response
+func (o *GatewayExchangeUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GatewayExchangeUnauthorized) Error() string {
@@ -255,7 +270,7 @@ func NewGatewayExchangeForbidden() *GatewayExchangeForbidden {
 /*
 GatewayExchangeForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GatewayExchangeForbidden struct {
 	Payload *models.Error
@@ -284,6 +299,11 @@ func (o *GatewayExchangeForbidden) IsServerError() bool {
 // IsCode returns true when this gateway exchange forbidden response a status code equal to that given
 func (o *GatewayExchangeForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the gateway exchange forbidden response
+func (o *GatewayExchangeForbidden) Code() int {
+	return 403
 }
 
 func (o *GatewayExchangeForbidden) Error() string {
@@ -318,7 +338,7 @@ func NewGatewayExchangeUnprocessableEntity() *GatewayExchangeUnprocessableEntity
 /*
 GatewayExchangeUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type GatewayExchangeUnprocessableEntity struct {
 	Payload *models.Error
@@ -347,6 +367,11 @@ func (o *GatewayExchangeUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this gateway exchange unprocessable entity response a status code equal to that given
 func (o *GatewayExchangeUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the gateway exchange unprocessable entity response
+func (o *GatewayExchangeUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *GatewayExchangeUnprocessableEntity) Error() string {

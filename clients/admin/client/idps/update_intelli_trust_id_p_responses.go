@@ -66,7 +66,7 @@ func (o *UpdateIntelliTrustIDPReader) ReadResponse(response runtime.ClientRespon
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /servers/{wid}/idps/intelli_trust/{iid}] updateIntelliTrustIDP", response, response.Code())
 	}
 }
 
@@ -109,6 +109,11 @@ func (o *UpdateIntelliTrustIDPOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the update intelli trust Id p o k response
+func (o *UpdateIntelliTrustIDPOK) Code() int {
+	return 200
+}
+
 func (o *UpdateIntelliTrustIDPOK) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/intelli_trust/{iid}][%d] updateIntelliTrustIdPOK  %+v", 200, o.Payload)
 }
@@ -141,7 +146,7 @@ func NewUpdateIntelliTrustIDPBadRequest() *UpdateIntelliTrustIDPBadRequest {
 /*
 UpdateIntelliTrustIDPBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type UpdateIntelliTrustIDPBadRequest struct {
 	Payload *models.Error
@@ -170,6 +175,11 @@ func (o *UpdateIntelliTrustIDPBadRequest) IsServerError() bool {
 // IsCode returns true when this update intelli trust Id p bad request response a status code equal to that given
 func (o *UpdateIntelliTrustIDPBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the update intelli trust Id p bad request response
+func (o *UpdateIntelliTrustIDPBadRequest) Code() int {
+	return 400
 }
 
 func (o *UpdateIntelliTrustIDPBadRequest) Error() string {
@@ -204,7 +214,7 @@ func NewUpdateIntelliTrustIDPUnauthorized() *UpdateIntelliTrustIDPUnauthorized {
 /*
 UpdateIntelliTrustIDPUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type UpdateIntelliTrustIDPUnauthorized struct {
 	Payload *models.Error
@@ -233,6 +243,11 @@ func (o *UpdateIntelliTrustIDPUnauthorized) IsServerError() bool {
 // IsCode returns true when this update intelli trust Id p unauthorized response a status code equal to that given
 func (o *UpdateIntelliTrustIDPUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the update intelli trust Id p unauthorized response
+func (o *UpdateIntelliTrustIDPUnauthorized) Code() int {
+	return 401
 }
 
 func (o *UpdateIntelliTrustIDPUnauthorized) Error() string {
@@ -267,7 +282,7 @@ func NewUpdateIntelliTrustIDPForbidden() *UpdateIntelliTrustIDPForbidden {
 /*
 UpdateIntelliTrustIDPForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type UpdateIntelliTrustIDPForbidden struct {
 	Payload *models.Error
@@ -296,6 +311,11 @@ func (o *UpdateIntelliTrustIDPForbidden) IsServerError() bool {
 // IsCode returns true when this update intelli trust Id p forbidden response a status code equal to that given
 func (o *UpdateIntelliTrustIDPForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the update intelli trust Id p forbidden response
+func (o *UpdateIntelliTrustIDPForbidden) Code() int {
+	return 403
 }
 
 func (o *UpdateIntelliTrustIDPForbidden) Error() string {
@@ -330,7 +350,7 @@ func NewUpdateIntelliTrustIDPNotFound() *UpdateIntelliTrustIDPNotFound {
 /*
 UpdateIntelliTrustIDPNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type UpdateIntelliTrustIDPNotFound struct {
 	Payload *models.Error
@@ -359,6 +379,11 @@ func (o *UpdateIntelliTrustIDPNotFound) IsServerError() bool {
 // IsCode returns true when this update intelli trust Id p not found response a status code equal to that given
 func (o *UpdateIntelliTrustIDPNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the update intelli trust Id p not found response
+func (o *UpdateIntelliTrustIDPNotFound) Code() int {
+	return 404
 }
 
 func (o *UpdateIntelliTrustIDPNotFound) Error() string {
@@ -393,7 +418,7 @@ func NewUpdateIntelliTrustIDPUnprocessableEntity() *UpdateIntelliTrustIDPUnproce
 /*
 UpdateIntelliTrustIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type UpdateIntelliTrustIDPUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +447,11 @@ func (o *UpdateIntelliTrustIDPUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this update intelli trust Id p unprocessable entity response a status code equal to that given
 func (o *UpdateIntelliTrustIDPUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the update intelli trust Id p unprocessable entity response
+func (o *UpdateIntelliTrustIDPUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *UpdateIntelliTrustIDPUnprocessableEntity) Error() string {
@@ -456,7 +486,7 @@ func NewUpdateIntelliTrustIDPTooManyRequests() *UpdateIntelliTrustIDPTooManyRequ
 /*
 UpdateIntelliTrustIDPTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type UpdateIntelliTrustIDPTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +515,11 @@ func (o *UpdateIntelliTrustIDPTooManyRequests) IsServerError() bool {
 // IsCode returns true when this update intelli trust Id p too many requests response a status code equal to that given
 func (o *UpdateIntelliTrustIDPTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the update intelli trust Id p too many requests response
+func (o *UpdateIntelliTrustIDPTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *UpdateIntelliTrustIDPTooManyRequests) Error() string {

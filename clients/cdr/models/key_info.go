@@ -102,6 +102,11 @@ func (m *KeyInfo) ContextValidate(ctx context.Context, formats strfmt.Registry) 
 func (m *KeyInfo) contextValidateX509Data(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.X509Data != nil {
+
+		if swag.IsZero(m.X509Data) { // not required
+			return nil
+		}
+
 		if err := m.X509Data.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("X509Data")
@@ -118,6 +123,11 @@ func (m *KeyInfo) contextValidateX509Data(ctx context.Context, formats strfmt.Re
 func (m *KeyInfo) contextValidateXMLName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.XMLName != nil {
+
+		if swag.IsZero(m.XMLName) { // not required
+			return nil
+		}
+
 		if err := m.XMLName.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("XMLName")

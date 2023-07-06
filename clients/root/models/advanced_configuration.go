@@ -21,13 +21,28 @@ type AdvancedConfiguration struct {
 	// Configurable ACR values to enforce during auth flow
 	AcrValues []string `json:"acr_values"`
 
+	// This option overrides all urls advertised by the well known endpoint with their mtls alias
+	AdvertiseOnlyMtlsAliasesInWellKnown bool `json:"advertise_only_mtls_aliases_in_well_known,omitempty"`
+
 	// Block response modes
 	BlockResponseModes bool `json:"block_response_modes,omitempty"`
+
+	// Disable certificate-bound access tokens for new DCR clients
+	//
+	// If true, new DCR clients are created with CertificateBoundAccessToken disabled.
+	DisableDcrClientCertificateBoundAccessTokens bool `json:"disable_dcr_client_certificate_bound_access_tokens,omitempty"`
+
+	// Disable PAR
+	DisablePar bool `json:"disable_par,omitempty"`
 
 	// Disable refresh token cycling
 	//
 	// Once disabled, original refresh token can be constantly used to issue new access token.
 	DisableRefreshTokenCycling bool `json:"disable_refresh_token_cycling,omitempty"`
+
+	// When enabled, the authorization server will not accept access tokens supplied in the request query parameter
+	// for protected resources endpoints.
+	DisallowAccessTokenInQueryForProtectedResources bool `json:"disallow_access_token_in_query_for_protected_resources,omitempty"`
 
 	// Disallow code response type without JARM
 	DisallowCodeResponseTypeWithoutJarm bool `json:"disallow_code_response_type_without_jarm,omitempty"`
@@ -42,6 +57,12 @@ type AdvancedConfiguration struct {
 	//
 	// If enabled, an attempt to register or update a client with a scope that does not exist in the server will succeed.
 	IgnoreUnknownScopesForDcr bool `json:"ignore_unknown_scopes_for_dcr,omitempty"`
+
+	// Require request or request uri parameter for authorization flow
+	RequireRequestOrRequestURIParameter bool `json:"require_request_or_request_uri_parameter,omitempty"`
+
+	// Return iss parameter in the authorization response
+	ReturnIssParameterInAuthorizationResponse bool `json:"return_iss_parameter_in_authorization_response,omitempty"`
 }
 
 // Validate validates this advanced configuration

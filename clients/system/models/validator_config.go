@@ -96,6 +96,11 @@ func (m *ValidatorConfig) contextValidateRecovery(ctx context.Context, formats s
 	for i := 0; i < len(m.Recovery); i++ {
 
 		if m.Recovery[i] != nil {
+
+			if swag.IsZero(m.Recovery[i]) { // not required
+				return nil
+			}
+
 			if err := m.Recovery[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recovery" + "." + strconv.Itoa(i))

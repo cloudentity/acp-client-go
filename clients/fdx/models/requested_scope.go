@@ -34,6 +34,9 @@ type RequestedScope struct {
 	// Example: scope-1
 	ID string `json:"id,omitempty"`
 
+	// Request this scope by default for all clients who subscribed to this scope
+	Implicit bool `json:"implicit,omitempty"`
+
 	// metadata
 	Metadata Metadata `json:"metadata,omitempty"`
 
@@ -137,6 +140,10 @@ func (m *RequestedScope) ContextValidate(ctx context.Context, formats strfmt.Reg
 
 func (m *RequestedScope) contextValidateMetadata(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Metadata) { // not required
+		return nil
+	}
+
 	if err := m.Metadata.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("metadata")
@@ -152,6 +159,11 @@ func (m *RequestedScope) contextValidateMetadata(ctx context.Context, formats st
 func (m *RequestedScope) contextValidateService(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Service != nil {
+
+		if swag.IsZero(m.Service) { // not required
+			return nil
+		}
+
 		if err := m.Service.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("service")

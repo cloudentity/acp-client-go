@@ -24,6 +24,9 @@ type GatewayRequestEvent struct {
 	// duration ms
 	DurationMs int64 `json:"duration_ms,omitempty"`
 
+	// invocation ctx
+	InvocationCtx AuthenticationContext `json:"invocation_ctx,omitempty"`
+
 	// output
 	Output map[string]string `json:"output,omitempty"`
 
@@ -47,6 +50,10 @@ type GatewayRequestEvent struct {
 func (m *GatewayRequestEvent) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateInvocationCtx(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateResult(formats); err != nil {
 		res = append(res, err)
 	}
@@ -54,6 +61,25 @@ func (m *GatewayRequestEvent) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *GatewayRequestEvent) validateInvocationCtx(formats strfmt.Registry) error {
+	if swag.IsZero(m.InvocationCtx) { // not required
+		return nil
+	}
+
+	if m.InvocationCtx != nil {
+		if err := m.InvocationCtx.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("invocation_ctx")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("invocation_ctx")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -80,6 +106,10 @@ func (m *GatewayRequestEvent) validateResult(formats strfmt.Registry) error {
 func (m *GatewayRequestEvent) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateInvocationCtx(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateResult(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -90,9 +120,32 @@ func (m *GatewayRequestEvent) ContextValidate(ctx context.Context, formats strfm
 	return nil
 }
 
+func (m *GatewayRequestEvent) contextValidateInvocationCtx(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.InvocationCtx) { // not required
+		return nil
+	}
+
+	if err := m.InvocationCtx.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("invocation_ctx")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("invocation_ctx")
+		}
+		return err
+	}
+
+	return nil
+}
+
 func (m *GatewayRequestEvent) contextValidateResult(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Result != nil {
+
+		if swag.IsZero(m.Result) { // not required
+			return nil
+		}
+
 		if err := m.Result.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("result")

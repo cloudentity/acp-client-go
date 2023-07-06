@@ -61,6 +61,14 @@ RemoveSpecificationParams contains all the parameters to send to the API endpoin
 */
 type RemoveSpecificationParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	// Sid.
 	Sid string
 
@@ -117,6 +125,17 @@ func (o *RemoveSpecificationParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the remove specification params
+func (o *RemoveSpecificationParams) WithIfMatch(ifMatch *string) *RemoveSpecificationParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the remove specification params
+func (o *RemoveSpecificationParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithSid adds the sid to the remove specification params
 func (o *RemoveSpecificationParams) WithSid(sid string) *RemoveSpecificationParams {
 	o.SetSid(sid)
@@ -135,6 +154,14 @@ func (o *RemoveSpecificationParams) WriteToRequest(r runtime.ClientRequest, reg 
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	// path param sid
 	if err := r.SetPathParam("sid", o.Sid); err != nil {

@@ -183,7 +183,7 @@ func (a *Client) DeviceAuthorization(params *DeviceAuthorizationParams, authInfo
 }
 
 /*
-	DynamicClientRegistration thes o auth 2 0 dynamic client registration endpoint
+	DynamicClientRegistration os auth 2 0 dynamic client registration endpoint
 
 	Dynamic Client Registration endpoint allows to dynamically register OAuth 2.0 client applications
 
@@ -230,7 +230,7 @@ func (a *Client) DynamicClientRegistration(params *DynamicClientRegistrationPara
 }
 
 /*
-DynamicClientRegistrationDeleteClient thes o auth 2 0 dynamic client registration delete client endpoint
+DynamicClientRegistrationDeleteClient os auth 2 0 dynamic client registration delete client endpoint
 
 This endpoint allows to delete a dynamically registered client.
 */
@@ -271,7 +271,7 @@ func (a *Client) DynamicClientRegistrationDeleteClient(params *DynamicClientRegi
 }
 
 /*
-DynamicClientRegistrationGetClient thes o auth 2 0 dynamic client registration get client endpoint
+DynamicClientRegistrationGetClient os auth 2 0 dynamic client registration get client endpoint
 
 This endpoint allows to get metadata values of a dynamically registered client.
 */
@@ -312,7 +312,7 @@ func (a *Client) DynamicClientRegistrationGetClient(params *DynamicClientRegistr
 }
 
 /*
-DynamicClientRegistrationUpdateClient thes o auth 2 0 dynamic client registration update client endpoint
+DynamicClientRegistrationUpdateClient os auth 2 0 dynamic client registration update client endpoint
 
 This endpoint allows to update metadata values of a dynamically registered client.
 */
@@ -355,11 +355,30 @@ func (a *Client) DynamicClientRegistrationUpdateClient(params *DynamicClientRegi
 /*
 	Introspect thes o auth 2 0 introspection endpoint
 
-	The introspection endpoint is an OAuth 2.0 endpoint that takes a
+	Takes the `token` parameter representing an OAuth 2.0 token (the one the application wants to
 
-parameter representing an OAuth 2.0 token and returns a JSON
-document representing the meta information surrounding the
-token, including whether this token is currently active.
+introspect) and returns a JSON
+representing the metadata surrounding the token such as, for example,
+whether the token is still active, what are the approved access scopes, what is the
+authentication context in which the token was issued.
+
+Token introspection allows resource servers or applications to
+query this information regardless of whether or not it is carried in
+the token itself. It allows to use this method along with or
+independently of structured token values.  Additionally, you can use the mechanism to
+introspect the token in a particular authentication context
+and ascertain the relevant metadata about the token to make the
+authorization decision appropriately.
+
+Client applications that call the OAuth 2.0 Introspection Endpoint must authenticate with the
+Cloudentity authorization server either with a valid access token provided as the value of
+the `Authorization: Bearer $AT` request header or using the client authentication method
+configured for the client application.
+
+When a client application is assigned the `introspect_tokens` scope, it can introspect tokens
+that belong to client applications **registered within the same workspace** as the client app
+requesting the token instrospection. When a client application has no `introspect_tokens` scope
+assigned, it can **only introspect its tokens**.
 */
 func (a *Client) Introspect(params *IntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*IntrospectOK, error) {
 	// TODO: Validate the params before sending
@@ -484,9 +503,22 @@ func (a *Client) PushedAuthorizationRequest(params *PushedAuthorizationRequestPa
 }
 
 /*
-Revoke thes o auth 2 0 revocation endpoint
+	Revoke thes o auth 2 0 revocation endpoint
 
-Supports revocation of access and refresh tokens.
+	Supports revocation of access and refresh tokens. The token to be revoked must be provided as the
+
+value of the `token` parameter. When a token is revoked, it cannot be used to, for example,
+exchange a refresh token to an access token.
+
+Client applications that call the OAuth 2.0 Revocation Endpoint must authenticate with the
+Cloudentity authorization server either
+with a valid access token provided as the value of the `Authorization: Bearer $AT` request header
+or using the client authentication method configured for the client application.
+
+When a client application is assigned the `revoke_tokens` scope, it can revoke tokens
+that belong to client applications **registered within the same workspace** as the client app
+requesting the token revocation. When a client application has no `revoke_tokens` scope
+assigned, it can **only revoke its tokens**.
 */
 func (a *Client) Revoke(params *RevokeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeOK, error) {
 	// TODO: Validate the params before sending

@@ -66,6 +66,14 @@ type DeleteVanityDomainParams struct {
 	// VanityDomain.
 	VanityDomain *models.VanityDomain
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -130,6 +138,17 @@ func (o *DeleteVanityDomainParams) SetVanityDomain(vanityDomain *models.VanityDo
 	o.VanityDomain = vanityDomain
 }
 
+// WithIfMatch adds the ifMatch to the delete vanity domain params
+func (o *DeleteVanityDomainParams) WithIfMatch(ifMatch *string) *DeleteVanityDomainParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the delete vanity domain params
+func (o *DeleteVanityDomainParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *DeleteVanityDomainParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -139,6 +158,14 @@ func (o *DeleteVanityDomainParams) WriteToRequest(r runtime.ClientRequest, reg s
 	var res []error
 	if o.VanityDomain != nil {
 		if err := r.SetBodyParam(o.VanityDomain); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

@@ -107,6 +107,7 @@ func (m *InternationalPaymentConsentRequest) ContextValidate(ctx context.Context
 func (m *InternationalPaymentConsentRequest) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Data != nil {
+
 		if err := m.Data.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data")
@@ -123,6 +124,7 @@ func (m *InternationalPaymentConsentRequest) contextValidateData(ctx context.Con
 func (m *InternationalPaymentConsentRequest) contextValidateRisk(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Risk != nil {
+
 		if err := m.Risk.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Risk")

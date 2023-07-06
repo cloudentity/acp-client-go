@@ -439,6 +439,7 @@ func (m *IntrospectOBBRDataAccessConsentResponse) ContextValidate(ctx context.Co
 func (m *IntrospectOBBRDataAccessConsentResponse) contextValidateDocument(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Document != nil {
+
 		if err := m.Document.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("document")
@@ -455,6 +456,10 @@ func (m *IntrospectOBBRDataAccessConsentResponse) contextValidateDocument(ctx co
 func (m *IntrospectOBBRDataAccessConsentResponse) contextValidatePermissions(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.Permissions); i++ {
+
+		if swag.IsZero(m.Permissions[i]) { // not required
+			return nil
+		}
 
 		if err := m.Permissions[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
@@ -473,6 +478,7 @@ func (m *IntrospectOBBRDataAccessConsentResponse) contextValidatePermissions(ctx
 func (m *IntrospectOBBRDataAccessConsentResponse) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Status != nil {
+
 		if err := m.Status.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status")

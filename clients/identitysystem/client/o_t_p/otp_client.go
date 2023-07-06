@@ -136,11 +136,14 @@ func (a *Client) InspectOTP(params *InspectOTPParams, authInfo runtime.ClientAut
 /*
 	RequestAddressVerification requests address verification
 
-	Generates and sends verification code to the provided address.
+	Generate and send a verification code to the provided address.
 
-Address must be a valid email or mobile which is marked as an unverified address for the user and is not someone's verified address.
-If address is someone's verified address, the request ends successfully to prevent email/mobile enumeration.
-Requested code is valid for specific period of time configured in Identity Pool.
+The `address` value must be a valid email or mobile number marked as the user's `unverified address`.
+
+Also, this value must not be a verified address of any other user. Otherwise, the request returns the
+verification link and runs protection for email or mobile enumeration for the address specified.
+
+The requested code validity period is configured in the identity pool settings.
 */
 func (a *Client) RequestAddressVerification(params *RequestAddressVerificationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RequestAddressVerificationNoContent, error) {
 	// TODO: Validate the params before sending

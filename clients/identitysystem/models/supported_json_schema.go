@@ -547,6 +547,11 @@ func (m *SupportedJSONSchema) contextValidateAllOf(ctx context.Context, formats 
 	for i := 0; i < len(m.AllOf); i++ {
 
 		if m.AllOf[i] != nil {
+
+			if swag.IsZero(m.AllOf[i]) { // not required
+				return nil
+			}
+
 			if err := m.AllOf[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("allOf" + "." + strconv.Itoa(i))
@@ -567,6 +572,11 @@ func (m *SupportedJSONSchema) contextValidateAnyOf(ctx context.Context, formats 
 	for i := 0; i < len(m.AnyOf); i++ {
 
 		if m.AnyOf[i] != nil {
+
+			if swag.IsZero(m.AnyOf[i]) { // not required
+				return nil
+			}
+
 			if err := m.AnyOf[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("anyOf" + "." + strconv.Itoa(i))
@@ -585,6 +595,11 @@ func (m *SupportedJSONSchema) contextValidateAnyOf(ctx context.Context, formats 
 func (m *SupportedJSONSchema) contextValidateContains(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Contains != nil {
+
+		if swag.IsZero(m.Contains) { // not required
+			return nil
+		}
+
 		if err := m.Contains.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("contains")
@@ -616,6 +631,11 @@ func (m *SupportedJSONSchema) contextValidateDependentSchemas(ctx context.Contex
 func (m *SupportedJSONSchema) contextValidateElse(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Else != nil {
+
+		if swag.IsZero(m.Else) { // not required
+			return nil
+		}
+
 		if err := m.Else.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("else")
@@ -632,6 +652,11 @@ func (m *SupportedJSONSchema) contextValidateElse(ctx context.Context, formats s
 func (m *SupportedJSONSchema) contextValidateIf(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.If != nil {
+
+		if swag.IsZero(m.If) { // not required
+			return nil
+		}
+
 		if err := m.If.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("if")
@@ -648,6 +673,11 @@ func (m *SupportedJSONSchema) contextValidateIf(ctx context.Context, formats str
 func (m *SupportedJSONSchema) contextValidateItems(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Items != nil {
+
+		if swag.IsZero(m.Items) { // not required
+			return nil
+		}
+
 		if err := m.Items.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("items")
@@ -664,6 +694,11 @@ func (m *SupportedJSONSchema) contextValidateItems(ctx context.Context, formats 
 func (m *SupportedJSONSchema) contextValidateNot(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Not != nil {
+
+		if swag.IsZero(m.Not) { // not required
+			return nil
+		}
+
 		if err := m.Not.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("not")
@@ -682,6 +717,11 @@ func (m *SupportedJSONSchema) contextValidateOneOf(ctx context.Context, formats 
 	for i := 0; i < len(m.OneOf); i++ {
 
 		if m.OneOf[i] != nil {
+
+			if swag.IsZero(m.OneOf[i]) { // not required
+				return nil
+			}
+
 			if err := m.OneOf[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("oneOf" + "." + strconv.Itoa(i))
@@ -730,6 +770,11 @@ func (m *SupportedJSONSchema) contextValidateProperties(ctx context.Context, for
 func (m *SupportedJSONSchema) contextValidatePropertyNames(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.PropertyNames != nil {
+
+		if swag.IsZero(m.PropertyNames) { // not required
+			return nil
+		}
+
 		if err := m.PropertyNames.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("propertyNames")
@@ -746,6 +791,11 @@ func (m *SupportedJSONSchema) contextValidatePropertyNames(ctx context.Context, 
 func (m *SupportedJSONSchema) contextValidateThen(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Then != nil {
+
+		if swag.IsZero(m.Then) { // not required
+			return nil
+		}
+
 		if err := m.Then.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("then")

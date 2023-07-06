@@ -34,11 +34,21 @@ type ClientService interface {
 
 	DeleteScript(params *DeleteScriptParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteScriptNoContent, error)
 
+	DisableScriptDebug(params *DisableScriptDebugParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DisableScriptDebugNoContent, error)
+
+	EnableScriptDebug(params *EnableScriptDebugParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*EnableScriptDebugOK, error)
+
 	GetScript(params *GetScriptParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScriptOK, error)
+
+	GetScriptDebug(params *GetScriptDebugParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScriptDebugOK, error)
+
+	ListScriptDebugs(params *ListScriptDebugsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListScriptDebugsOK, error)
 
 	ListScriptExecutionPoints(params *ListScriptExecutionPointsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListScriptExecutionPointsOK, error)
 
 	ListScripts(params *ListScriptsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListScriptsOK, error)
+
+	PatchScript(params *PatchScriptParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchScriptOK, error)
 
 	SetScriptExecutionPoints(params *SetScriptExecutionPointsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetScriptExecutionPointsOK, error)
 
@@ -135,6 +145,88 @@ func (a *Client) DeleteScript(params *DeleteScriptParams, authInfo runtime.Clien
 }
 
 /*
+DisableScriptDebug disables script debug logging
+
+Disables detailed logging of the script execution results.
+*/
+func (a *Client) DisableScriptDebug(params *DisableScriptDebugParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DisableScriptDebugNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDisableScriptDebugParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "disableScriptDebug",
+		Method:             "DELETE",
+		PathPattern:        "/servers/{wid}/scripts/{script}/debug",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DisableScriptDebugReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DisableScriptDebugNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for disableScriptDebug: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+EnableScriptDebug enables script debug logging
+
+Enables detailed logging of the script execution results.
+*/
+func (a *Client) EnableScriptDebug(params *EnableScriptDebugParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*EnableScriptDebugOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewEnableScriptDebugParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "enableScriptDebug",
+		Method:             "PUT",
+		PathPattern:        "/servers/{wid}/scripts/{script}/debug",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &EnableScriptDebugReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*EnableScriptDebugOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for enableScriptDebug: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
 GetScript gets script
 
 Returns a script and it's content.
@@ -172,6 +264,88 @@ func (a *Client) GetScript(params *GetScriptParams, authInfo runtime.ClientAuthI
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for getScript: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+GetScriptDebug gets script debug trigger
+
+Returns the trigger for detailed script execution logging, if any.
+*/
+func (a *Client) GetScriptDebug(params *GetScriptDebugParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetScriptDebugOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetScriptDebugParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getScriptDebug",
+		Method:             "GET",
+		PathPattern:        "/servers/{wid}/scripts/{script}/debug",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetScriptDebugReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetScriptDebugOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getScriptDebug: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+ListScriptDebugs lists script debug triggers
+
+Returns a list of script debug triggers for a given workspace.
+*/
+func (a *Client) ListScriptDebugs(params *ListScriptDebugsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListScriptDebugsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListScriptDebugsParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "listScriptDebugs",
+		Method:             "GET",
+		PathPattern:        "/servers/{wid}/script-debugs",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListScriptDebugsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ListScriptDebugsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for listScriptDebugs: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -254,6 +428,47 @@ func (a *Client) ListScripts(params *ListScriptsParams, authInfo runtime.ClientA
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for listScripts: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+PatchScript patches script
+
+Patch existing script.
+*/
+func (a *Client) PatchScript(params *PatchScriptParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchScriptOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPatchScriptParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "patchScript",
+		Method:             "PATCH",
+		PathPattern:        "/servers/{wid}/scripts/{script}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PatchScriptReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*PatchScriptOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for patchScript: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

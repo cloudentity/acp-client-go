@@ -48,7 +48,7 @@ func (o *ConfirmResetPasswordReader) ReadResponse(response runtime.ClientRespons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /system/pools/{ipID}/user/password/reset/confirm] confirmResetPassword", response, response.Code())
 	}
 }
 
@@ -96,6 +96,11 @@ func (o *ConfirmResetPasswordNoContent) IsServerError() bool {
 // IsCode returns true when this confirm reset password no content response a status code equal to that given
 func (o *ConfirmResetPasswordNoContent) IsCode(code int) bool {
 	return code == 204
+}
+
+// Code gets the status code for the confirm reset password no content response
+func (o *ConfirmResetPasswordNoContent) Code() int {
+	return 204
 }
 
 func (o *ConfirmResetPasswordNoContent) Error() string {
@@ -155,6 +160,11 @@ func (o *ConfirmResetPasswordUnauthorized) IsServerError() bool {
 // IsCode returns true when this confirm reset password unauthorized response a status code equal to that given
 func (o *ConfirmResetPasswordUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the confirm reset password unauthorized response
+func (o *ConfirmResetPasswordUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ConfirmResetPasswordUnauthorized) Error() string {
@@ -220,6 +230,11 @@ func (o *ConfirmResetPasswordPreconditionFailed) IsCode(code int) bool {
 	return code == 412
 }
 
+// Code gets the status code for the confirm reset password precondition failed response
+func (o *ConfirmResetPasswordPreconditionFailed) Code() int {
+	return 412
+}
+
 func (o *ConfirmResetPasswordPreconditionFailed) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/user/password/reset/confirm][%d] confirmResetPasswordPreconditionFailed  %+v", 412, o.Payload)
 }
@@ -281,6 +296,11 @@ func (o *ConfirmResetPasswordUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this confirm reset password unprocessable entity response a status code equal to that given
 func (o *ConfirmResetPasswordUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the confirm reset password unprocessable entity response
+func (o *ConfirmResetPasswordUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *ConfirmResetPasswordUnprocessableEntity) Error() string {

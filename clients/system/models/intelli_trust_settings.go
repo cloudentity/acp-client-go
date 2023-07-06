@@ -38,6 +38,9 @@ type IntelliTrustSettings struct {
 	// An array of additional scopes your client requests
 	// Example: ["email","profile","openid"]
 	Scopes []string `json:"scopes"`
+
+	// Whether to send the identifier as a `login_hint` parameter to the IDP
+	SendLoginHint bool `json:"send_login_hint,omitempty"`
 }
 
 // Validate validates this intelli trust settings

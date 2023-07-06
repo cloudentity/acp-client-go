@@ -61,6 +61,14 @@ RevokeKeyParams contains all the parameters to send to the API endpoint
 */
 type RevokeKeyParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Kid.
 
 	   Key id
@@ -150,6 +158,17 @@ func (o *RevokeKeyParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the revoke key params
+func (o *RevokeKeyParams) WithIfMatch(ifMatch *string) *RevokeKeyParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the revoke key params
+func (o *RevokeKeyParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithKid adds the kid to the revoke key params
 func (o *RevokeKeyParams) WithKid(kid string) *RevokeKeyParams {
 	o.SetKid(kid)
@@ -190,6 +209,14 @@ func (o *RevokeKeyParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	// path param kid
 	if err := r.SetPathParam("kid", o.Kid); err != nil {

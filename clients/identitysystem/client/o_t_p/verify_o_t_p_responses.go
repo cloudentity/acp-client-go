@@ -48,7 +48,7 @@ func (o *VerifyOTPReader) ReadResponse(response runtime.ClientResponse, consumer
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /system/pools/{ipID}/user/otp/verify] verifyOTP", response, response.Code())
 	}
 }
 
@@ -98,6 +98,11 @@ func (o *VerifyOTPOK) IsServerError() bool {
 // IsCode returns true when this verify o t p o k response a status code equal to that given
 func (o *VerifyOTPOK) IsCode(code int) bool {
 	return code == 200
+}
+
+// Code gets the status code for the verify o t p o k response
+func (o *VerifyOTPOK) Code() int {
+	return 200
 }
 
 func (o *VerifyOTPOK) Error() string {
@@ -170,6 +175,11 @@ func (o *VerifyOTPUnauthorized) IsCode(code int) bool {
 	return code == 401
 }
 
+// Code gets the status code for the verify o t p unauthorized response
+func (o *VerifyOTPUnauthorized) Code() int {
+	return 401
+}
+
 func (o *VerifyOTPUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/verify][%d] verifyOTPUnauthorized  %+v", 401, o.Payload)
 }
@@ -233,6 +243,11 @@ func (o *VerifyOTPPreconditionFailed) IsCode(code int) bool {
 	return code == 412
 }
 
+// Code gets the status code for the verify o t p precondition failed response
+func (o *VerifyOTPPreconditionFailed) Code() int {
+	return 412
+}
+
 func (o *VerifyOTPPreconditionFailed) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/verify][%d] verifyOTPPreconditionFailed  %+v", 412, o.Payload)
 }
@@ -294,6 +309,11 @@ func (o *VerifyOTPUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this verify o t p unprocessable entity response a status code equal to that given
 func (o *VerifyOTPUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the verify o t p unprocessable entity response
+func (o *VerifyOTPUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *VerifyOTPUnprocessableEntity) Error() string {

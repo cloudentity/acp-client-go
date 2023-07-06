@@ -142,6 +142,11 @@ func (m *NewUserCredential) contextValidateWebauthnCredentials(ctx context.Conte
 	for i := 0; i < len(m.WebauthnCredentials); i++ {
 
 		if m.WebauthnCredentials[i] != nil {
+
+			if swag.IsZero(m.WebauthnCredentials[i]) { // not required
+				return nil
+			}
+
 			if err := m.WebauthnCredentials[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("webauthn_credentials" + "." + strconv.Itoa(i))

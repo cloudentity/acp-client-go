@@ -109,6 +109,7 @@ func (m *OpenbankingBrasilPaymentReason) ContextValidate(ctx context.Context, fo
 func (m *OpenbankingBrasilPaymentReason) contextValidateCode(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Code != nil {
+
 		if err := m.Code.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("code")

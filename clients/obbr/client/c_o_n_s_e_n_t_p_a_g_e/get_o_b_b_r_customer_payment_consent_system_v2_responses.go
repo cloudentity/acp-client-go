@@ -54,7 +54,7 @@ func (o *GetOBBRCustomerPaymentConsentSystemV2Reader) ReadResponse(response runt
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /open-banking-brasil/payment/v2/{login}] getOBBRCustomerPaymentConsentSystemV2", response, response.Code())
 	}
 }
 

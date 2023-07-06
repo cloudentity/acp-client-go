@@ -94,6 +94,11 @@ func (m *TestPolicyResponse) contextValidateFailures(ctx context.Context, format
 	for i := 0; i < len(m.Failures); i++ {
 
 		if m.Failures[i] != nil {
+
+			if swag.IsZero(m.Failures[i]) { // not required
+				return nil
+			}
+
 			if err := m.Failures[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("failures" + "." + strconv.Itoa(i))

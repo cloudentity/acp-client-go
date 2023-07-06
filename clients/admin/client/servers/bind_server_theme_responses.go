@@ -54,7 +54,7 @@ func (o *BindServerThemeReader) ReadResponse(response runtime.ClientResponse, co
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /servers/{wid}/bind-theme/{themeID}] bindServerTheme", response, response.Code())
 	}
 }
 
@@ -69,6 +69,15 @@ BindServerThemeOK describes a response with status code 200, with default header
 Server to Theme binding
 */
 type BindServerThemeOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.ServerToTheme
 }
 
@@ -97,6 +106,11 @@ func (o *BindServerThemeOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the bind server theme o k response
+func (o *BindServerThemeOK) Code() int {
+	return 200
+}
+
 func (o *BindServerThemeOK) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/bind-theme/{themeID}][%d] bindServerThemeOK  %+v", 200, o.Payload)
 }
@@ -110,6 +124,13 @@ func (o *BindServerThemeOK) GetPayload() *models.ServerToTheme {
 }
 
 func (o *BindServerThemeOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.ServerToTheme)
 
@@ -129,7 +150,7 @@ func NewBindServerThemeUnauthorized() *BindServerThemeUnauthorized {
 /*
 BindServerThemeUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type BindServerThemeUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +179,11 @@ func (o *BindServerThemeUnauthorized) IsServerError() bool {
 // IsCode returns true when this bind server theme unauthorized response a status code equal to that given
 func (o *BindServerThemeUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the bind server theme unauthorized response
+func (o *BindServerThemeUnauthorized) Code() int {
+	return 401
 }
 
 func (o *BindServerThemeUnauthorized) Error() string {
@@ -192,7 +218,7 @@ func NewBindServerThemeForbidden() *BindServerThemeForbidden {
 /*
 BindServerThemeForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type BindServerThemeForbidden struct {
 	Payload *models.Error
@@ -221,6 +247,11 @@ func (o *BindServerThemeForbidden) IsServerError() bool {
 // IsCode returns true when this bind server theme forbidden response a status code equal to that given
 func (o *BindServerThemeForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the bind server theme forbidden response
+func (o *BindServerThemeForbidden) Code() int {
+	return 403
 }
 
 func (o *BindServerThemeForbidden) Error() string {
@@ -255,7 +286,7 @@ func NewBindServerThemeNotFound() *BindServerThemeNotFound {
 /*
 BindServerThemeNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type BindServerThemeNotFound struct {
 	Payload *models.Error
@@ -284,6 +315,11 @@ func (o *BindServerThemeNotFound) IsServerError() bool {
 // IsCode returns true when this bind server theme not found response a status code equal to that given
 func (o *BindServerThemeNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the bind server theme not found response
+func (o *BindServerThemeNotFound) Code() int {
+	return 404
 }
 
 func (o *BindServerThemeNotFound) Error() string {
@@ -318,7 +354,7 @@ func NewBindServerThemeTooManyRequests() *BindServerThemeTooManyRequests {
 /*
 BindServerThemeTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type BindServerThemeTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +383,11 @@ func (o *BindServerThemeTooManyRequests) IsServerError() bool {
 // IsCode returns true when this bind server theme too many requests response a status code equal to that given
 func (o *BindServerThemeTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the bind server theme too many requests response
+func (o *BindServerThemeTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *BindServerThemeTooManyRequests) Error() string {

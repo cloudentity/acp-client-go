@@ -72,6 +72,11 @@ func (m *CodeValue) ContextValidate(ctx context.Context, formats strfmt.Registry
 func (m *CodeValue) contextValidateHashedCode(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.HashedCode != nil {
+
+		if swag.IsZero(m.HashedCode) { // not required
+			return nil
+		}
+
 		if err := m.HashedCode.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("hashed_code")

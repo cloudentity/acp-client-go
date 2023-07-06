@@ -82,6 +82,11 @@ func (m *BruteForceLimits) contextValidateBruteForceLimits(ctx context.Context, 
 	for i := 0; i < len(m.BruteForceLimits); i++ {
 
 		if m.BruteForceLimits[i] != nil {
+
+			if swag.IsZero(m.BruteForceLimits[i]) { // not required
+				return nil
+			}
+
 			if err := m.BruteForceLimits[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("brute_force_limits" + "." + strconv.Itoa(i))

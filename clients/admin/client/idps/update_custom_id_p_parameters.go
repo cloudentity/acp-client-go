@@ -69,6 +69,14 @@ type UpdateCustomIDPParams struct {
 	*/
 	CustomIDP *models.CustomIDP
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Iid.
 
 	   IDP id
@@ -163,6 +171,17 @@ func (o *UpdateCustomIDPParams) SetCustomIDP(customIDP *models.CustomIDP) {
 	o.CustomIDP = customIDP
 }
 
+// WithIfMatch adds the ifMatch to the update custom ID p params
+func (o *UpdateCustomIDPParams) WithIfMatch(ifMatch *string) *UpdateCustomIDPParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the update custom ID p params
+func (o *UpdateCustomIDPParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithIid adds the iid to the update custom ID p params
 func (o *UpdateCustomIDPParams) WithIid(iid string) *UpdateCustomIDPParams {
 	o.SetIid(iid)
@@ -194,6 +213,14 @@ func (o *UpdateCustomIDPParams) WriteToRequest(r runtime.ClientRequest, reg strf
 	var res []error
 	if o.CustomIDP != nil {
 		if err := r.SetBodyParam(o.CustomIDP); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

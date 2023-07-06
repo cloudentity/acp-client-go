@@ -17,14 +17,23 @@ import (
 // swagger:model Features
 type Features struct {
 
+	// add fake tenantUrl to query params for routing other than default (needed for backward compatibility with CIP for vanity domains)
+	AddFakeTenantURLToLoginRequestForNonDefaultRouting bool `json:"add_fake_tenant_url_to_login_request_for_non_default_routing,omitempty"`
+
+	// enable admin portal face lifting
+	AdminPortalFaceLifting bool `json:"admin_portal_face_lifting,omitempty"`
+
 	// enable admin workspace access (tenant)
 	AdminWorkspaceAccess bool `json:"admin_workspace_access,omitempty"`
 
-	// enable administrator management (tenant)
-	AdministratorManagement bool `json:"administrator_management,omitempty"`
-
 	// block access to tenant for traffic not originated from the vanity domain
 	BlockNonVanityDomainAccess bool `json:"block_non_vanity_domain_access,omitempty"`
+
+	// cache access tokens
+	CacheAccessTokens bool `json:"cache_access_tokens,omitempty"`
+
+	// enable Arrangement cache for CDR
+	CdrArrangementCache bool `json:"cdr_arrangement_cache,omitempty"`
 
 	// disable unique software id for CDR
 	CdrDisableUniqueSoftwareID bool `json:"cdr_disable_unique_software_id,omitempty"`
@@ -41,8 +50,11 @@ type Features struct {
 	// enable Cloudentity IDP (tenant)
 	CloudentityIdp bool `json:"cloudentity_idp,omitempty"`
 
-	// enable CustomApps (tenant)
-	CustomApps bool `json:"custom_apps,omitempty"`
+	// enable ConnectID profile
+	ConnectID bool `json:"connect_id,omitempty"`
+
+	// enable additional debug logs
+	Debug bool `json:"debug,omitempty"`
 
 	// enable usage of dedicated faas rego/js environment (MANUAL DEPLOYMENT OF DEDICATED ENVS IS REQUIRED FIRST)
 	DedicatedFaas bool `json:"dedicated_faas,omitempty"`
@@ -53,6 +65,12 @@ type Features struct {
 	// reloads templates and adds local redirects urls to frontend apps (system)
 	DevMode bool `json:"dev_mode,omitempty"`
 
+	// disable audit events
+	DisableAuditEvents bool `json:"disable_audit_events,omitempty"`
+
+	// do not validate cert for private key jwt
+	DoNotValidateCertForPrivateKeyJwt bool `json:"do_not_validate_cert_for_private_key_jwt,omitempty"`
+
 	// drop tokens on password reset
 	DropTokensOnPasswordReset bool `json:"drop_tokens_on_password_reset,omitempty"`
 
@@ -61,6 +79,12 @@ type Features struct {
 
 	// enable Dynamic Client Registration for FDX
 	FdxDcr bool `json:"fdx_dcr,omitempty"`
+
+	// identifier-based discovery
+	IdentifierBasedDiscovery bool `json:"identifier_based_discovery,omitempty"`
+
+	// enable case insensitive for users identifiers and addresses
+	IdentifierCaseInsensitive bool `json:"identifier_case_insensitive,omitempty"`
 
 	// when enabled and the display_workspace_wizard feature flag is set to true, a demo workspace with a set of preconfigured IDPs is created and no welcome screen is displayed (tenant)
 	InitializeDemoWorkspace bool `json:"initialize_demo_workspace,omitempty"`
@@ -74,14 +98,20 @@ type Features struct {
 	// enable global import and export configuration endpoints (system)
 	IntegrationEndpoints bool `json:"integration_endpoints,omitempty"`
 
+	// Just in time provisioning (JIT)
+	Jit bool `json:"jit,omitempty"`
+
 	// enable login with select_account param (tenant)
 	LoginWithSelectAccount bool `json:"login_with_select_account,omitempty"`
 
-	// enable consents v2 apis for open banking brasil
-	OpenbankingBrasilConsentsV2 bool `json:"openbanking_brasil_consents_v2,omitempty"`
+	// make admin APIs open
+	OpenAdminApis bool `json:"open_admin_apis,omitempty"`
 
-	// enable payment consent v2 apis for open banking brasil
-	OpenbankingBrasilPaymentsV2 bool `json:"openbanking_brasil_payments_v2,omitempty"`
+	// enable openbanking ksa workspace and security profile
+	OpenbankingKsa bool `json:"openbanking_ksa,omitempty"`
+
+	// enable organizations
+	Organizations bool `json:"organizations,omitempty"`
 
 	// enable permissions
 	Permissions bool `json:"permissions,omitempty"`
@@ -98,14 +128,14 @@ type Features struct {
 	// enable roles
 	Roles bool `json:"roles,omitempty"`
 
-	// enable SAML (tenant)
-	Saml bool `json:"saml,omitempty"`
-
 	// enable scope transient_otp (tenant)
 	ScopeTransientOtp bool `json:"scope_transient_otp,omitempty"`
 
 	// enable the javascript transformer (tenant)
 	ScriptTransformer bool `json:"script_transformer,omitempty"`
+
+	// enable Single Sign-On (SSO) in workspaces
+	SingleSignOn bool `json:"single_sign_on,omitempty"`
 
 	// enable swagger ui (system)
 	SwaggerUI bool `json:"swagger_ui,omitempty"`
@@ -113,14 +143,14 @@ type Features struct {
 	// enable system workspace access (tenant)
 	SystemWorkspaceAccess bool `json:"system_workspace_access,omitempty"`
 
-	// enable Token Exchange (system)
-	TokenExchange bool `json:"token_exchange,omitempty"`
+	// enable themed messages
+	ThemedMessages bool `json:"themed_messages,omitempty"`
 
-	// enable Token Exchange Delegation (tenant)
-	TokenExchangeDelegation bool `json:"token_exchange_delegation,omitempty"`
+	// enable hierarchical dumps system APIs (system)
+	TreeDump bool `json:"tree_dump,omitempty"`
 
-	// allow to issue id token for token exchange
-	TokenExchangeIssueIDToken bool `json:"token_exchange_issue_id_token,omitempty"`
+	// enable hierarchical dumps tenant APIs
+	TreeDumpTenant bool `json:"tree_dump_tenant,omitempty"`
 
 	// enable webauthn
 	Webauthn bool `json:"webauthn,omitempty"`

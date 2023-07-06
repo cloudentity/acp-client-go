@@ -87,6 +87,7 @@ func (m *BrazilCustomerCreatePaymentConsentRequest) ContextValidate(ctx context.
 func (m *BrazilCustomerCreatePaymentConsentRequest) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Data != nil {
+
 		if err := m.Data.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data")

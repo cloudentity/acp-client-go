@@ -29,6 +29,12 @@ func (o *AcceptLoginRequestReader) ReadResponse(response runtime.ClientResponse,
 			return nil, err
 		}
 		return result, nil
+	case 400:
+		result := NewAcceptLoginRequestBadRequest()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 401:
 		result := NewAcceptLoginRequestUnauthorized()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -54,7 +60,7 @@ func (o *AcceptLoginRequestReader) ReadResponse(response runtime.ClientResponse,
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /logins/{login}/accept] acceptLoginRequest", response, response.Code())
 	}
 }
 
@@ -97,6 +103,11 @@ func (o *AcceptLoginRequestOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the accept login request o k response
+func (o *AcceptLoginRequestOK) Code() int {
+	return 200
+}
+
 func (o *AcceptLoginRequestOK) Error() string {
 	return fmt.Sprintf("[POST /logins/{login}/accept][%d] acceptLoginRequestOK  %+v", 200, o.Payload)
 }
@@ -121,6 +132,74 @@ func (o *AcceptLoginRequestOK) readResponse(response runtime.ClientResponse, con
 	return nil
 }
 
+// NewAcceptLoginRequestBadRequest creates a AcceptLoginRequestBadRequest with default headers values
+func NewAcceptLoginRequestBadRequest() *AcceptLoginRequestBadRequest {
+	return &AcceptLoginRequestBadRequest{}
+}
+
+/*
+AcceptLoginRequestBadRequest describes a response with status code 400, with default header values.
+
+Bad request
+*/
+type AcceptLoginRequestBadRequest struct {
+	Payload *models.Error
+}
+
+// IsSuccess returns true when this accept login request bad request response has a 2xx status code
+func (o *AcceptLoginRequestBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this accept login request bad request response has a 3xx status code
+func (o *AcceptLoginRequestBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this accept login request bad request response has a 4xx status code
+func (o *AcceptLoginRequestBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this accept login request bad request response has a 5xx status code
+func (o *AcceptLoginRequestBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this accept login request bad request response a status code equal to that given
+func (o *AcceptLoginRequestBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
+// Code gets the status code for the accept login request bad request response
+func (o *AcceptLoginRequestBadRequest) Code() int {
+	return 400
+}
+
+func (o *AcceptLoginRequestBadRequest) Error() string {
+	return fmt.Sprintf("[POST /logins/{login}/accept][%d] acceptLoginRequestBadRequest  %+v", 400, o.Payload)
+}
+
+func (o *AcceptLoginRequestBadRequest) String() string {
+	return fmt.Sprintf("[POST /logins/{login}/accept][%d] acceptLoginRequestBadRequest  %+v", 400, o.Payload)
+}
+
+func (o *AcceptLoginRequestBadRequest) GetPayload() *models.Error {
+	return o.Payload
+}
+
+func (o *AcceptLoginRequestBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewAcceptLoginRequestUnauthorized creates a AcceptLoginRequestUnauthorized with default headers values
 func NewAcceptLoginRequestUnauthorized() *AcceptLoginRequestUnauthorized {
 	return &AcceptLoginRequestUnauthorized{}
@@ -129,7 +208,7 @@ func NewAcceptLoginRequestUnauthorized() *AcceptLoginRequestUnauthorized {
 /*
 AcceptLoginRequestUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type AcceptLoginRequestUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +237,11 @@ func (o *AcceptLoginRequestUnauthorized) IsServerError() bool {
 // IsCode returns true when this accept login request unauthorized response a status code equal to that given
 func (o *AcceptLoginRequestUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the accept login request unauthorized response
+func (o *AcceptLoginRequestUnauthorized) Code() int {
+	return 401
 }
 
 func (o *AcceptLoginRequestUnauthorized) Error() string {
@@ -192,7 +276,7 @@ func NewAcceptLoginRequestForbidden() *AcceptLoginRequestForbidden {
 /*
 AcceptLoginRequestForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type AcceptLoginRequestForbidden struct {
 	Payload *models.Error
@@ -221,6 +305,11 @@ func (o *AcceptLoginRequestForbidden) IsServerError() bool {
 // IsCode returns true when this accept login request forbidden response a status code equal to that given
 func (o *AcceptLoginRequestForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the accept login request forbidden response
+func (o *AcceptLoginRequestForbidden) Code() int {
+	return 403
 }
 
 func (o *AcceptLoginRequestForbidden) Error() string {
@@ -255,7 +344,7 @@ func NewAcceptLoginRequestNotFound() *AcceptLoginRequestNotFound {
 /*
 AcceptLoginRequestNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type AcceptLoginRequestNotFound struct {
 	Payload *models.Error
@@ -284,6 +373,11 @@ func (o *AcceptLoginRequestNotFound) IsServerError() bool {
 // IsCode returns true when this accept login request not found response a status code equal to that given
 func (o *AcceptLoginRequestNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the accept login request not found response
+func (o *AcceptLoginRequestNotFound) Code() int {
+	return 404
 }
 
 func (o *AcceptLoginRequestNotFound) Error() string {
@@ -318,7 +412,7 @@ func NewAcceptLoginRequestTooManyRequests() *AcceptLoginRequestTooManyRequests {
 /*
 AcceptLoginRequestTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type AcceptLoginRequestTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +441,11 @@ func (o *AcceptLoginRequestTooManyRequests) IsServerError() bool {
 // IsCode returns true when this accept login request too many requests response a status code equal to that given
 func (o *AcceptLoginRequestTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the accept login request too many requests response
+func (o *AcceptLoginRequestTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *AcceptLoginRequestTooManyRequests) Error() string {

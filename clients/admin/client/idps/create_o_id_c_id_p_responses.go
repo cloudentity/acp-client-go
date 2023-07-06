@@ -66,7 +66,7 @@ func (o *CreateOIDCIDPReader) ReadResponse(response runtime.ClientResponse, cons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /servers/{wid}/idps/oidc] createOIDCIDP", response, response.Code())
 	}
 }
 
@@ -109,6 +109,11 @@ func (o *CreateOIDCIDPCreated) IsCode(code int) bool {
 	return code == 201
 }
 
+// Code gets the status code for the create o Id c Id p created response
+func (o *CreateOIDCIDPCreated) Code() int {
+	return 201
+}
+
 func (o *CreateOIDCIDPCreated) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/oidc][%d] createOIdCIdPCreated  %+v", 201, o.Payload)
 }
@@ -141,7 +146,7 @@ func NewCreateOIDCIDPBadRequest() *CreateOIDCIDPBadRequest {
 /*
 CreateOIDCIDPBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type CreateOIDCIDPBadRequest struct {
 	Payload *models.Error
@@ -170,6 +175,11 @@ func (o *CreateOIDCIDPBadRequest) IsServerError() bool {
 // IsCode returns true when this create o Id c Id p bad request response a status code equal to that given
 func (o *CreateOIDCIDPBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the create o Id c Id p bad request response
+func (o *CreateOIDCIDPBadRequest) Code() int {
+	return 400
 }
 
 func (o *CreateOIDCIDPBadRequest) Error() string {
@@ -204,7 +214,7 @@ func NewCreateOIDCIDPUnauthorized() *CreateOIDCIDPUnauthorized {
 /*
 CreateOIDCIDPUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type CreateOIDCIDPUnauthorized struct {
 	Payload *models.Error
@@ -233,6 +243,11 @@ func (o *CreateOIDCIDPUnauthorized) IsServerError() bool {
 // IsCode returns true when this create o Id c Id p unauthorized response a status code equal to that given
 func (o *CreateOIDCIDPUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the create o Id c Id p unauthorized response
+func (o *CreateOIDCIDPUnauthorized) Code() int {
+	return 401
 }
 
 func (o *CreateOIDCIDPUnauthorized) Error() string {
@@ -267,7 +282,7 @@ func NewCreateOIDCIDPForbidden() *CreateOIDCIDPForbidden {
 /*
 CreateOIDCIDPForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type CreateOIDCIDPForbidden struct {
 	Payload *models.Error
@@ -296,6 +311,11 @@ func (o *CreateOIDCIDPForbidden) IsServerError() bool {
 // IsCode returns true when this create o Id c Id p forbidden response a status code equal to that given
 func (o *CreateOIDCIDPForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the create o Id c Id p forbidden response
+func (o *CreateOIDCIDPForbidden) Code() int {
+	return 403
 }
 
 func (o *CreateOIDCIDPForbidden) Error() string {
@@ -330,7 +350,7 @@ func NewCreateOIDCIDPNotFound() *CreateOIDCIDPNotFound {
 /*
 CreateOIDCIDPNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type CreateOIDCIDPNotFound struct {
 	Payload *models.Error
@@ -359,6 +379,11 @@ func (o *CreateOIDCIDPNotFound) IsServerError() bool {
 // IsCode returns true when this create o Id c Id p not found response a status code equal to that given
 func (o *CreateOIDCIDPNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the create o Id c Id p not found response
+func (o *CreateOIDCIDPNotFound) Code() int {
+	return 404
 }
 
 func (o *CreateOIDCIDPNotFound) Error() string {
@@ -393,7 +418,7 @@ func NewCreateOIDCIDPUnprocessableEntity() *CreateOIDCIDPUnprocessableEntity {
 /*
 CreateOIDCIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type CreateOIDCIDPUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +447,11 @@ func (o *CreateOIDCIDPUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this create o Id c Id p unprocessable entity response a status code equal to that given
 func (o *CreateOIDCIDPUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the create o Id c Id p unprocessable entity response
+func (o *CreateOIDCIDPUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *CreateOIDCIDPUnprocessableEntity) Error() string {
@@ -456,7 +486,7 @@ func NewCreateOIDCIDPTooManyRequests() *CreateOIDCIDPTooManyRequests {
 /*
 CreateOIDCIDPTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type CreateOIDCIDPTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +515,11 @@ func (o *CreateOIDCIDPTooManyRequests) IsServerError() bool {
 // IsCode returns true when this create o Id c Id p too many requests response a status code equal to that given
 func (o *CreateOIDCIDPTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the create o Id c Id p too many requests response
+func (o *CreateOIDCIDPTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *CreateOIDCIDPTooManyRequests) Error() string {

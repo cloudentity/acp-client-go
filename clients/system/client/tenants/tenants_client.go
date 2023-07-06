@@ -44,7 +44,7 @@ type ClientService interface {
 
 	Returns a JSON with the configuration of the specified tenant.
 
-With ACP system API, you can export a specified tenant's
+With Cloudentity system API, you can export a specified tenant's
 configuration. You can, for example, move your tenant's configuration between different ACP deployments
 using the export API and, then, import it to a different ACP deployment using the import API.
 For example, a company that delivers its services to financial institutions and uses
@@ -98,7 +98,7 @@ func (a *Client) ExportTenantConfiguration(params *ExportTenantConfigurationPara
 
 	Allows to quickly import the specified tenant configuration.
 
-With ACP system API, you can import a specific tenant's
+With Cloudentity system API, you can import a specific tenant's
 configuration. You can, for example, move your tenant's configuration between different ACP deployments.
 For example, a company that delivers its services to financial institutions and uses
 ACP to protect their APIs, may want to import an Open Banking directive compliant

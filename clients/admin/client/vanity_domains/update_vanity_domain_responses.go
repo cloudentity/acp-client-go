@@ -66,7 +66,7 @@ func (o *UpdateVanityDomainReader) ReadResponse(response runtime.ClientResponse,
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /vanity-domains] updateVanityDomain", response, response.Code())
 	}
 }
 
@@ -81,6 +81,15 @@ UpdateVanityDomainOK describes a response with status code 200, with default hea
 Vanity domain
 */
 type UpdateVanityDomainOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.VanityDomain
 }
 
@@ -109,6 +118,11 @@ func (o *UpdateVanityDomainOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the update vanity domain o k response
+func (o *UpdateVanityDomainOK) Code() int {
+	return 200
+}
+
 func (o *UpdateVanityDomainOK) Error() string {
 	return fmt.Sprintf("[PUT /vanity-domains][%d] updateVanityDomainOK  %+v", 200, o.Payload)
 }
@@ -122,6 +136,13 @@ func (o *UpdateVanityDomainOK) GetPayload() *models.VanityDomain {
 }
 
 func (o *UpdateVanityDomainOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.VanityDomain)
 
@@ -141,7 +162,7 @@ func NewUpdateVanityDomainUnauthorized() *UpdateVanityDomainUnauthorized {
 /*
 UpdateVanityDomainUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type UpdateVanityDomainUnauthorized struct {
 	Payload *models.Error
@@ -170,6 +191,11 @@ func (o *UpdateVanityDomainUnauthorized) IsServerError() bool {
 // IsCode returns true when this update vanity domain unauthorized response a status code equal to that given
 func (o *UpdateVanityDomainUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the update vanity domain unauthorized response
+func (o *UpdateVanityDomainUnauthorized) Code() int {
+	return 401
 }
 
 func (o *UpdateVanityDomainUnauthorized) Error() string {
@@ -204,7 +230,7 @@ func NewUpdateVanityDomainForbidden() *UpdateVanityDomainForbidden {
 /*
 UpdateVanityDomainForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type UpdateVanityDomainForbidden struct {
 	Payload *models.Error
@@ -233,6 +259,11 @@ func (o *UpdateVanityDomainForbidden) IsServerError() bool {
 // IsCode returns true when this update vanity domain forbidden response a status code equal to that given
 func (o *UpdateVanityDomainForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the update vanity domain forbidden response
+func (o *UpdateVanityDomainForbidden) Code() int {
+	return 403
 }
 
 func (o *UpdateVanityDomainForbidden) Error() string {
@@ -267,7 +298,7 @@ func NewUpdateVanityDomainNotFound() *UpdateVanityDomainNotFound {
 /*
 UpdateVanityDomainNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type UpdateVanityDomainNotFound struct {
 	Payload *models.Error
@@ -296,6 +327,11 @@ func (o *UpdateVanityDomainNotFound) IsServerError() bool {
 // IsCode returns true when this update vanity domain not found response a status code equal to that given
 func (o *UpdateVanityDomainNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the update vanity domain not found response
+func (o *UpdateVanityDomainNotFound) Code() int {
+	return 404
 }
 
 func (o *UpdateVanityDomainNotFound) Error() string {
@@ -330,7 +366,7 @@ func NewUpdateVanityDomainConflict() *UpdateVanityDomainConflict {
 /*
 UpdateVanityDomainConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type UpdateVanityDomainConflict struct {
 	Payload *models.Error
@@ -359,6 +395,11 @@ func (o *UpdateVanityDomainConflict) IsServerError() bool {
 // IsCode returns true when this update vanity domain conflict response a status code equal to that given
 func (o *UpdateVanityDomainConflict) IsCode(code int) bool {
 	return code == 409
+}
+
+// Code gets the status code for the update vanity domain conflict response
+func (o *UpdateVanityDomainConflict) Code() int {
+	return 409
 }
 
 func (o *UpdateVanityDomainConflict) Error() string {
@@ -393,7 +434,7 @@ func NewUpdateVanityDomainUnprocessableEntity() *UpdateVanityDomainUnprocessable
 /*
 UpdateVanityDomainUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type UpdateVanityDomainUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +463,11 @@ func (o *UpdateVanityDomainUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this update vanity domain unprocessable entity response a status code equal to that given
 func (o *UpdateVanityDomainUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the update vanity domain unprocessable entity response
+func (o *UpdateVanityDomainUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *UpdateVanityDomainUnprocessableEntity) Error() string {
@@ -456,7 +502,7 @@ func NewUpdateVanityDomainTooManyRequests() *UpdateVanityDomainTooManyRequests {
 /*
 UpdateVanityDomainTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type UpdateVanityDomainTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +531,11 @@ func (o *UpdateVanityDomainTooManyRequests) IsServerError() bool {
 // IsCode returns true when this update vanity domain too many requests response a status code equal to that given
 func (o *UpdateVanityDomainTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the update vanity domain too many requests response
+func (o *UpdateVanityDomainTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *UpdateVanityDomainTooManyRequests) Error() string {

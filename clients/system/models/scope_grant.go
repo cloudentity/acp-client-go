@@ -19,29 +19,38 @@ import (
 // swagger:model ScopeGrant
 type ScopeGrant struct {
 
-	// Client ID that the scope belongs to
+	// Identifier of a client application that is granted with the scope.
+	// Example: bugkgm23g9kregtu051g
 	ClientID string `json:"client_id,omitempty"`
 
 	// Time when the scope was granted
 	// Format: date-time
 	GivenAt strfmt.DateTime `json:"given_at,omitempty"`
 
-	// Granted scope name
+	// The scope name with its actual value
+	// Example: accounts.read.own
 	GrantedScopeName string `json:"granted_scope_name,omitempty"`
 
 	// Language
 	Language string `json:"language,omitempty"`
 
-	// Scope name
+	// The scope name as it's set initially. This parameter supports dynamic scope syntax, thus can include a scope
+	// root—a fixed core of the dynamic scope name supplemented with a wildcard—a symbol representing
+	// an adjustable extension to the scope root allowing to retrieve a specific requested scope.
+	//
+	// The basic dynamic scope template is as follows: `[scope-root.*]` where `*` is a wildcard.
+	// Example: accounts.read.*
 	ScopeName string `json:"scope_name,omitempty"`
 
-	// Server ID
+	// Identifier of a server where the client app is hosted.
+	// Example: my-server
 	ServerID string `json:"server_id,omitempty"`
 
-	// Subject ID that has granted the scope.
+	// Identifier of a user who granted the scope.
 	Subject string `json:"subject,omitempty"`
 
-	// Tenant ID
+	// Identifier of the tenant where the client app is hosted.
+	// Example: my-company
 	TenantID string `json:"tenant_id,omitempty"`
 }
 

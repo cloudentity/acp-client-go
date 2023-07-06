@@ -16,7 +16,7 @@ import (
 
 // OpenbankingBrasilConsentV2Meta OpenbankingBrasilConsentV2Meta Meta
 //
-// Meta informaes referente  API requisitada.
+// Meta informaes referente   API requisitada.
 //
 // swagger:model OpenbankingBrasilConsentV2Meta
 type OpenbankingBrasilConsentV2Meta struct {

@@ -54,7 +54,7 @@ func (o *DeleteThemeReader) ReadResponse(response runtime.ClientResponse, consum
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[DELETE /theme/{themeID}] deleteTheme", response, response.Code())
 	}
 }
 
@@ -96,6 +96,11 @@ func (o *DeleteThemeNoContent) IsCode(code int) bool {
 	return code == 204
 }
 
+// Code gets the status code for the delete theme no content response
+func (o *DeleteThemeNoContent) Code() int {
+	return 204
+}
+
 func (o *DeleteThemeNoContent) Error() string {
 	return fmt.Sprintf("[DELETE /theme/{themeID}][%d] deleteThemeNoContent ", 204)
 }
@@ -117,7 +122,7 @@ func NewDeleteThemeUnauthorized() *DeleteThemeUnauthorized {
 /*
 DeleteThemeUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type DeleteThemeUnauthorized struct {
 	Payload *models.Error
@@ -146,6 +151,11 @@ func (o *DeleteThemeUnauthorized) IsServerError() bool {
 // IsCode returns true when this delete theme unauthorized response a status code equal to that given
 func (o *DeleteThemeUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the delete theme unauthorized response
+func (o *DeleteThemeUnauthorized) Code() int {
+	return 401
 }
 
 func (o *DeleteThemeUnauthorized) Error() string {
@@ -180,7 +190,7 @@ func NewDeleteThemeForbidden() *DeleteThemeForbidden {
 /*
 DeleteThemeForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type DeleteThemeForbidden struct {
 	Payload *models.Error
@@ -209,6 +219,11 @@ func (o *DeleteThemeForbidden) IsServerError() bool {
 // IsCode returns true when this delete theme forbidden response a status code equal to that given
 func (o *DeleteThemeForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the delete theme forbidden response
+func (o *DeleteThemeForbidden) Code() int {
+	return 403
 }
 
 func (o *DeleteThemeForbidden) Error() string {
@@ -243,7 +258,7 @@ func NewDeleteThemeNotFound() *DeleteThemeNotFound {
 /*
 DeleteThemeNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type DeleteThemeNotFound struct {
 	Payload *models.Error
@@ -272,6 +287,11 @@ func (o *DeleteThemeNotFound) IsServerError() bool {
 // IsCode returns true when this delete theme not found response a status code equal to that given
 func (o *DeleteThemeNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the delete theme not found response
+func (o *DeleteThemeNotFound) Code() int {
+	return 404
 }
 
 func (o *DeleteThemeNotFound) Error() string {
@@ -306,7 +326,7 @@ func NewDeleteThemeTooManyRequests() *DeleteThemeTooManyRequests {
 /*
 DeleteThemeTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type DeleteThemeTooManyRequests struct {
 	Payload *models.Error
@@ -335,6 +355,11 @@ func (o *DeleteThemeTooManyRequests) IsServerError() bool {
 // IsCode returns true when this delete theme too many requests response a status code equal to that given
 func (o *DeleteThemeTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the delete theme too many requests response
+func (o *DeleteThemeTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *DeleteThemeTooManyRequests) Error() string {

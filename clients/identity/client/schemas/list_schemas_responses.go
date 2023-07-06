@@ -48,7 +48,7 @@ func (o *ListSchemasReader) ReadResponse(response runtime.ClientResponse, consum
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /admin/schemas] listSchemas", response, response.Code())
 	}
 }
 
@@ -89,6 +89,11 @@ func (o *ListSchemasOK) IsServerError() bool {
 // IsCode returns true when this list schemas o k response a status code equal to that given
 func (o *ListSchemasOK) IsCode(code int) bool {
 	return code == 200
+}
+
+// Code gets the status code for the list schemas o k response
+func (o *ListSchemasOK) Code() int {
+	return 200
 }
 
 func (o *ListSchemasOK) Error() string {
@@ -154,6 +159,11 @@ func (o *ListSchemasUnauthorized) IsCode(code int) bool {
 	return code == 401
 }
 
+// Code gets the status code for the list schemas unauthorized response
+func (o *ListSchemasUnauthorized) Code() int {
+	return 401
+}
+
 func (o *ListSchemasUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /admin/schemas][%d] listSchemasUnauthorized  %+v", 401, o.Payload)
 }
@@ -217,6 +227,11 @@ func (o *ListSchemasForbidden) IsCode(code int) bool {
 	return code == 403
 }
 
+// Code gets the status code for the list schemas forbidden response
+func (o *ListSchemasForbidden) Code() int {
+	return 403
+}
+
 func (o *ListSchemasForbidden) Error() string {
 	return fmt.Sprintf("[GET /admin/schemas][%d] listSchemasForbidden  %+v", 403, o.Payload)
 }
@@ -278,6 +293,11 @@ func (o *ListSchemasTooManyRequests) IsServerError() bool {
 // IsCode returns true when this list schemas too many requests response a status code equal to that given
 func (o *ListSchemasTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the list schemas too many requests response
+func (o *ListSchemasTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ListSchemasTooManyRequests) Error() string {

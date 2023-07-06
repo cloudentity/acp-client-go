@@ -72,7 +72,7 @@ func (o *SetBruteForceLimitReader) ReadResponse(response runtime.ClientResponse,
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /bruteforce] setBruteForceLimit", response, response.Code())
 	}
 }
 
@@ -87,6 +87,15 @@ SetBruteForceLimitCreated describes a response with status code 201, with defaul
 Brute force limit
 */
 type SetBruteForceLimitCreated struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.BruteForceLimit
 }
 
@@ -115,6 +124,11 @@ func (o *SetBruteForceLimitCreated) IsCode(code int) bool {
 	return code == 201
 }
 
+// Code gets the status code for the set brute force limit created response
+func (o *SetBruteForceLimitCreated) Code() int {
+	return 201
+}
+
 func (o *SetBruteForceLimitCreated) Error() string {
 	return fmt.Sprintf("[PUT /bruteforce][%d] setBruteForceLimitCreated  %+v", 201, o.Payload)
 }
@@ -128,6 +142,13 @@ func (o *SetBruteForceLimitCreated) GetPayload() *models.BruteForceLimit {
 }
 
 func (o *SetBruteForceLimitCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.BruteForceLimit)
 
@@ -147,7 +168,7 @@ func NewSetBruteForceLimitBadRequest() *SetBruteForceLimitBadRequest {
 /*
 SetBruteForceLimitBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type SetBruteForceLimitBadRequest struct {
 	Payload *models.Error
@@ -176,6 +197,11 @@ func (o *SetBruteForceLimitBadRequest) IsServerError() bool {
 // IsCode returns true when this set brute force limit bad request response a status code equal to that given
 func (o *SetBruteForceLimitBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the set brute force limit bad request response
+func (o *SetBruteForceLimitBadRequest) Code() int {
+	return 400
 }
 
 func (o *SetBruteForceLimitBadRequest) Error() string {
@@ -210,7 +236,7 @@ func NewSetBruteForceLimitUnauthorized() *SetBruteForceLimitUnauthorized {
 /*
 SetBruteForceLimitUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type SetBruteForceLimitUnauthorized struct {
 	Payload *models.Error
@@ -239,6 +265,11 @@ func (o *SetBruteForceLimitUnauthorized) IsServerError() bool {
 // IsCode returns true when this set brute force limit unauthorized response a status code equal to that given
 func (o *SetBruteForceLimitUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the set brute force limit unauthorized response
+func (o *SetBruteForceLimitUnauthorized) Code() int {
+	return 401
 }
 
 func (o *SetBruteForceLimitUnauthorized) Error() string {
@@ -273,7 +304,7 @@ func NewSetBruteForceLimitForbidden() *SetBruteForceLimitForbidden {
 /*
 SetBruteForceLimitForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type SetBruteForceLimitForbidden struct {
 	Payload *models.Error
@@ -302,6 +333,11 @@ func (o *SetBruteForceLimitForbidden) IsServerError() bool {
 // IsCode returns true when this set brute force limit forbidden response a status code equal to that given
 func (o *SetBruteForceLimitForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the set brute force limit forbidden response
+func (o *SetBruteForceLimitForbidden) Code() int {
+	return 403
 }
 
 func (o *SetBruteForceLimitForbidden) Error() string {
@@ -336,7 +372,7 @@ func NewSetBruteForceLimitNotFound() *SetBruteForceLimitNotFound {
 /*
 SetBruteForceLimitNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type SetBruteForceLimitNotFound struct {
 	Payload *models.Error
@@ -365,6 +401,11 @@ func (o *SetBruteForceLimitNotFound) IsServerError() bool {
 // IsCode returns true when this set brute force limit not found response a status code equal to that given
 func (o *SetBruteForceLimitNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the set brute force limit not found response
+func (o *SetBruteForceLimitNotFound) Code() int {
+	return 404
 }
 
 func (o *SetBruteForceLimitNotFound) Error() string {
@@ -399,7 +440,7 @@ func NewSetBruteForceLimitConflict() *SetBruteForceLimitConflict {
 /*
 SetBruteForceLimitConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type SetBruteForceLimitConflict struct {
 	Payload *models.Error
@@ -428,6 +469,11 @@ func (o *SetBruteForceLimitConflict) IsServerError() bool {
 // IsCode returns true when this set brute force limit conflict response a status code equal to that given
 func (o *SetBruteForceLimitConflict) IsCode(code int) bool {
 	return code == 409
+}
+
+// Code gets the status code for the set brute force limit conflict response
+func (o *SetBruteForceLimitConflict) Code() int {
+	return 409
 }
 
 func (o *SetBruteForceLimitConflict) Error() string {
@@ -462,7 +508,7 @@ func NewSetBruteForceLimitUnprocessableEntity() *SetBruteForceLimitUnprocessable
 /*
 SetBruteForceLimitUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type SetBruteForceLimitUnprocessableEntity struct {
 	Payload *models.Error
@@ -491,6 +537,11 @@ func (o *SetBruteForceLimitUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this set brute force limit unprocessable entity response a status code equal to that given
 func (o *SetBruteForceLimitUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the set brute force limit unprocessable entity response
+func (o *SetBruteForceLimitUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *SetBruteForceLimitUnprocessableEntity) Error() string {
@@ -525,7 +576,7 @@ func NewSetBruteForceLimitTooManyRequests() *SetBruteForceLimitTooManyRequests {
 /*
 SetBruteForceLimitTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type SetBruteForceLimitTooManyRequests struct {
 	Payload *models.Error
@@ -554,6 +605,11 @@ func (o *SetBruteForceLimitTooManyRequests) IsServerError() bool {
 // IsCode returns true when this set brute force limit too many requests response a status code equal to that given
 func (o *SetBruteForceLimitTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the set brute force limit too many requests response
+func (o *SetBruteForceLimitTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *SetBruteForceLimitTooManyRequests) Error() string {

@@ -26,6 +26,9 @@ type TokenResponse struct {
 	// expires in
 	ExpiresIn int64 `json:"expires_in,omitempty"`
 
+	// grant id
+	GrantID string `json:"grant_id,omitempty"`
+
 	// id token
 	IDToken string `json:"id_token,omitempty"`
 
@@ -38,7 +41,7 @@ type TokenResponse struct {
 	// scope
 	Scope string `json:"scope,omitempty"`
 
-	// token type
+	// Token type: Bearer or DPoP
 	TokenType string `json:"token_type,omitempty"`
 }
 

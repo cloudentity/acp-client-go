@@ -75,6 +75,11 @@ func (m *X509Certificate) ContextValidate(ctx context.Context, formats strfmt.Re
 func (m *X509Certificate) contextValidateXMLName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.XMLName != nil {
+
+		if swag.IsZero(m.XMLName) { // not required
+			return nil
+		}
+
 		if err := m.XMLName.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("XMLName")

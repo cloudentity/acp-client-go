@@ -67,6 +67,14 @@ type GetTemplateParams struct {
 	*/
 	FsPath string
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* ThemeID.
 
 	   Theme ID
@@ -137,6 +145,17 @@ func (o *GetTemplateParams) SetFsPath(fsPath string) {
 	o.FsPath = fsPath
 }
 
+// WithIfMatch adds the ifMatch to the get template params
+func (o *GetTemplateParams) WithIfMatch(ifMatch *string) *GetTemplateParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the get template params
+func (o *GetTemplateParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithThemeID adds the themeID to the get template params
 func (o *GetTemplateParams) WithThemeID(themeID string) *GetTemplateParams {
 	o.SetThemeID(themeID)
@@ -159,6 +178,14 @@ func (o *GetTemplateParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 	// path param fsPath
 	if err := r.SetPathParam("fsPath", o.FsPath); err != nil {
 		return err
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
 	}
 
 	// path param themeID

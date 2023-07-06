@@ -24,7 +24,7 @@ type Role struct {
 	Resource *RoleResource `json:"resource,omitempty"`
 
 	// role
-	// Enum: [admin auditor]
+	// Enum: [admin business_admin auditor manager user_manager member]
 	Role string `json:"role,omitempty"`
 
 	// subject
@@ -76,7 +76,7 @@ var roleTypeRolePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["admin","auditor"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["admin","business_admin","auditor","manager","user_manager","member"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -89,8 +89,20 @@ const (
 	// RoleRoleAdmin captures enum value "admin"
 	RoleRoleAdmin string = "admin"
 
+	// RoleRoleBusinessAdmin captures enum value "business_admin"
+	RoleRoleBusinessAdmin string = "business_admin"
+
 	// RoleRoleAuditor captures enum value "auditor"
 	RoleRoleAuditor string = "auditor"
+
+	// RoleRoleManager captures enum value "manager"
+	RoleRoleManager string = "manager"
+
+	// RoleRoleUserManager captures enum value "user_manager"
+	RoleRoleUserManager string = "user_manager"
+
+	// RoleRoleMember captures enum value "member"
+	RoleRoleMember string = "member"
 )
 
 // prop value enum
@@ -154,6 +166,11 @@ func (m *Role) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 func (m *Role) contextValidateResource(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Resource != nil {
+
+		if swag.IsZero(m.Resource) { // not required
+			return nil
+		}
+
 		if err := m.Resource.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("resource")
@@ -170,6 +187,11 @@ func (m *Role) contextValidateResource(ctx context.Context, formats strfmt.Regis
 func (m *Role) contextValidateSubject(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Subject != nil {
+
+		if swag.IsZero(m.Subject) { // not required
+			return nil
+		}
+
 		if err := m.Subject.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("subject")

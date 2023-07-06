@@ -54,7 +54,7 @@ func (o *GetScopeReader) ReadResponse(response runtime.ClientResponse, consumer 
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /scopes/{scp}] getScope", response, response.Code())
 	}
 }
 
@@ -69,6 +69,15 @@ GetScopeOK describes a response with status code 200, with default header values
 Scope with service
 */
 type GetScopeOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.ScopeWithService
 }
 
@@ -97,6 +106,11 @@ func (o *GetScopeOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get scope o k response
+func (o *GetScopeOK) Code() int {
+	return 200
+}
+
 func (o *GetScopeOK) Error() string {
 	return fmt.Sprintf("[GET /scopes/{scp}][%d] getScopeOK  %+v", 200, o.Payload)
 }
@@ -110,6 +124,13 @@ func (o *GetScopeOK) GetPayload() *models.ScopeWithService {
 }
 
 func (o *GetScopeOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.ScopeWithService)
 
@@ -129,7 +150,7 @@ func NewGetScopeUnauthorized() *GetScopeUnauthorized {
 /*
 GetScopeUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetScopeUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +179,11 @@ func (o *GetScopeUnauthorized) IsServerError() bool {
 // IsCode returns true when this get scope unauthorized response a status code equal to that given
 func (o *GetScopeUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get scope unauthorized response
+func (o *GetScopeUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetScopeUnauthorized) Error() string {
@@ -192,7 +218,7 @@ func NewGetScopeForbidden() *GetScopeForbidden {
 /*
 GetScopeForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetScopeForbidden struct {
 	Payload *models.Error
@@ -221,6 +247,11 @@ func (o *GetScopeForbidden) IsServerError() bool {
 // IsCode returns true when this get scope forbidden response a status code equal to that given
 func (o *GetScopeForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get scope forbidden response
+func (o *GetScopeForbidden) Code() int {
+	return 403
 }
 
 func (o *GetScopeForbidden) Error() string {
@@ -255,7 +286,7 @@ func NewGetScopeNotFound() *GetScopeNotFound {
 /*
 GetScopeNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetScopeNotFound struct {
 	Payload *models.Error
@@ -284,6 +315,11 @@ func (o *GetScopeNotFound) IsServerError() bool {
 // IsCode returns true when this get scope not found response a status code equal to that given
 func (o *GetScopeNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the get scope not found response
+func (o *GetScopeNotFound) Code() int {
+	return 404
 }
 
 func (o *GetScopeNotFound) Error() string {
@@ -318,7 +354,7 @@ func NewGetScopeTooManyRequests() *GetScopeTooManyRequests {
 /*
 GetScopeTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetScopeTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +383,11 @@ func (o *GetScopeTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get scope too many requests response a status code equal to that given
 func (o *GetScopeTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get scope too many requests response
+func (o *GetScopeTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetScopeTooManyRequests) Error() string {

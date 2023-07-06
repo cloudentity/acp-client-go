@@ -66,6 +66,22 @@ type CreateThemeParams struct {
 	// Theme.
 	Theme *models.Theme
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
+	/* SourceThemeID.
+
+	   Optional source theme ID. The new theme will copy the source theme's templates.
+
+	   Format: themeID
+	*/
+	SourceThemeID *string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -130,6 +146,28 @@ func (o *CreateThemeParams) SetTheme(theme *models.Theme) {
 	o.Theme = theme
 }
 
+// WithIfMatch adds the ifMatch to the create theme params
+func (o *CreateThemeParams) WithIfMatch(ifMatch *string) *CreateThemeParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the create theme params
+func (o *CreateThemeParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
+// WithSourceThemeID adds the sourceThemeID to the create theme params
+func (o *CreateThemeParams) WithSourceThemeID(sourceThemeID *string) *CreateThemeParams {
+	o.SetSourceThemeID(sourceThemeID)
+	return o
+}
+
+// SetSourceThemeID adds the sourceThemeId to the create theme params
+func (o *CreateThemeParams) SetSourceThemeID(sourceThemeID *string) {
+	o.SourceThemeID = sourceThemeID
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *CreateThemeParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -140,6 +178,31 @@ func (o *CreateThemeParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 	if o.Theme != nil {
 		if err := r.SetBodyParam(o.Theme); err != nil {
 			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
+
+	if o.SourceThemeID != nil {
+
+		// query param source_theme_id
+		var qrSourceThemeID string
+
+		if o.SourceThemeID != nil {
+			qrSourceThemeID = *o.SourceThemeID
+		}
+		qSourceThemeID := qrSourceThemeID
+		if qSourceThemeID != "" {
+
+			if err := r.SetQueryParam("source_theme_id", qSourceThemeID); err != nil {
+				return err
+			}
 		}
 	}
 

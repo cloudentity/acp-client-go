@@ -66,7 +66,7 @@ func (o *SetGatewayConfigurationReader) ReadResponse(response runtime.ClientResp
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /gateways/configuration] setGatewayConfiguration", response, response.Code())
 	}
 }
 
@@ -109,6 +109,11 @@ func (o *SetGatewayConfigurationOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the set gateway configuration o k response
+func (o *SetGatewayConfigurationOK) Code() int {
+	return 200
+}
+
 func (o *SetGatewayConfigurationOK) Error() string {
 	return fmt.Sprintf("[POST /gateways/configuration][%d] setGatewayConfigurationOK  %+v", 200, o.Payload)
 }
@@ -141,7 +146,7 @@ func NewSetGatewayConfigurationUnauthorized() *SetGatewayConfigurationUnauthoriz
 /*
 SetGatewayConfigurationUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type SetGatewayConfigurationUnauthorized struct {
 	Payload *models.Error
@@ -170,6 +175,11 @@ func (o *SetGatewayConfigurationUnauthorized) IsServerError() bool {
 // IsCode returns true when this set gateway configuration unauthorized response a status code equal to that given
 func (o *SetGatewayConfigurationUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the set gateway configuration unauthorized response
+func (o *SetGatewayConfigurationUnauthorized) Code() int {
+	return 401
 }
 
 func (o *SetGatewayConfigurationUnauthorized) Error() string {
@@ -204,7 +214,7 @@ func NewSetGatewayConfigurationForbidden() *SetGatewayConfigurationForbidden {
 /*
 SetGatewayConfigurationForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type SetGatewayConfigurationForbidden struct {
 	Payload *models.Error
@@ -233,6 +243,11 @@ func (o *SetGatewayConfigurationForbidden) IsServerError() bool {
 // IsCode returns true when this set gateway configuration forbidden response a status code equal to that given
 func (o *SetGatewayConfigurationForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the set gateway configuration forbidden response
+func (o *SetGatewayConfigurationForbidden) Code() int {
+	return 403
 }
 
 func (o *SetGatewayConfigurationForbidden) Error() string {
@@ -267,7 +282,7 @@ func NewSetGatewayConfigurationNotFound() *SetGatewayConfigurationNotFound {
 /*
 SetGatewayConfigurationNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type SetGatewayConfigurationNotFound struct {
 	Payload *models.Error
@@ -296,6 +311,11 @@ func (o *SetGatewayConfigurationNotFound) IsServerError() bool {
 // IsCode returns true when this set gateway configuration not found response a status code equal to that given
 func (o *SetGatewayConfigurationNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the set gateway configuration not found response
+func (o *SetGatewayConfigurationNotFound) Code() int {
+	return 404
 }
 
 func (o *SetGatewayConfigurationNotFound) Error() string {
@@ -330,7 +350,7 @@ func NewSetGatewayConfigurationConflict() *SetGatewayConfigurationConflict {
 /*
 SetGatewayConfigurationConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type SetGatewayConfigurationConflict struct {
 	Payload *models.Error
@@ -359,6 +379,11 @@ func (o *SetGatewayConfigurationConflict) IsServerError() bool {
 // IsCode returns true when this set gateway configuration conflict response a status code equal to that given
 func (o *SetGatewayConfigurationConflict) IsCode(code int) bool {
 	return code == 409
+}
+
+// Code gets the status code for the set gateway configuration conflict response
+func (o *SetGatewayConfigurationConflict) Code() int {
+	return 409
 }
 
 func (o *SetGatewayConfigurationConflict) Error() string {
@@ -393,7 +418,7 @@ func NewSetGatewayConfigurationUnprocessableEntity() *SetGatewayConfigurationUnp
 /*
 SetGatewayConfigurationUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type SetGatewayConfigurationUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +447,11 @@ func (o *SetGatewayConfigurationUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this set gateway configuration unprocessable entity response a status code equal to that given
 func (o *SetGatewayConfigurationUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the set gateway configuration unprocessable entity response
+func (o *SetGatewayConfigurationUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *SetGatewayConfigurationUnprocessableEntity) Error() string {
@@ -456,7 +486,7 @@ func NewSetGatewayConfigurationTooManyRequests() *SetGatewayConfigurationTooMany
 /*
 SetGatewayConfigurationTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type SetGatewayConfigurationTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +515,11 @@ func (o *SetGatewayConfigurationTooManyRequests) IsServerError() bool {
 // IsCode returns true when this set gateway configuration too many requests response a status code equal to that given
 func (o *SetGatewayConfigurationTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the set gateway configuration too many requests response
+func (o *SetGatewayConfigurationTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *SetGatewayConfigurationTooManyRequests) Error() string {

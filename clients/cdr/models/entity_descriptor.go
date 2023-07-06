@@ -475,6 +475,11 @@ func (m *EntityDescriptor) ContextValidate(ctx context.Context, formats strfmt.R
 func (m *EntityDescriptor) contextValidateAffiliationDescriptor(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.AffiliationDescriptor != nil {
+
+		if swag.IsZero(m.AffiliationDescriptor) { // not required
+			return nil
+		}
+
 		if err := m.AffiliationDescriptor.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("AffiliationDescriptor")
@@ -493,6 +498,11 @@ func (m *EntityDescriptor) contextValidateAttributeAuthorityDescriptors(ctx cont
 	for i := 0; i < len(m.AttributeAuthorityDescriptors); i++ {
 
 		if m.AttributeAuthorityDescriptors[i] != nil {
+
+			if swag.IsZero(m.AttributeAuthorityDescriptors[i]) { // not required
+				return nil
+			}
+
 			if err := m.AttributeAuthorityDescriptors[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AttributeAuthorityDescriptors" + "." + strconv.Itoa(i))
@@ -513,6 +523,11 @@ func (m *EntityDescriptor) contextValidateAuthnAuthorityDescriptors(ctx context.
 	for i := 0; i < len(m.AuthnAuthorityDescriptors); i++ {
 
 		if m.AuthnAuthorityDescriptors[i] != nil {
+
+			if swag.IsZero(m.AuthnAuthorityDescriptors[i]) { // not required
+				return nil
+			}
+
 			if err := m.AuthnAuthorityDescriptors[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AuthnAuthorityDescriptors" + "." + strconv.Itoa(i))
@@ -530,6 +545,10 @@ func (m *EntityDescriptor) contextValidateAuthnAuthorityDescriptors(ctx context.
 
 func (m *EntityDescriptor) contextValidateCacheDuration(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.CacheDuration) { // not required
+		return nil
+	}
+
 	if err := m.CacheDuration.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("CacheDuration")
@@ -545,6 +564,11 @@ func (m *EntityDescriptor) contextValidateCacheDuration(ctx context.Context, for
 func (m *EntityDescriptor) contextValidateContactPerson(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ContactPerson != nil {
+
+		if swag.IsZero(m.ContactPerson) { // not required
+			return nil
+		}
+
 		if err := m.ContactPerson.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ContactPerson")
@@ -563,6 +587,11 @@ func (m *EntityDescriptor) contextValidateIDPSSODescriptors(ctx context.Context,
 	for i := 0; i < len(m.IDPSSODescriptors); i++ {
 
 		if m.IDPSSODescriptors[i] != nil {
+
+			if swag.IsZero(m.IDPSSODescriptors[i]) { // not required
+				return nil
+			}
+
 			if err := m.IDPSSODescriptors[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("IDPSSODescriptors" + "." + strconv.Itoa(i))
@@ -581,6 +610,11 @@ func (m *EntityDescriptor) contextValidateIDPSSODescriptors(ctx context.Context,
 func (m *EntityDescriptor) contextValidateOrganization(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Organization != nil {
+
+		if swag.IsZero(m.Organization) { // not required
+			return nil
+		}
+
 		if err := m.Organization.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Organization")
@@ -599,6 +633,11 @@ func (m *EntityDescriptor) contextValidatePDPDescriptors(ctx context.Context, fo
 	for i := 0; i < len(m.PDPDescriptors); i++ {
 
 		if m.PDPDescriptors[i] != nil {
+
+			if swag.IsZero(m.PDPDescriptors[i]) { // not required
+				return nil
+			}
+
 			if err := m.PDPDescriptors[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("PDPDescriptors" + "." + strconv.Itoa(i))
@@ -619,6 +658,11 @@ func (m *EntityDescriptor) contextValidateRoleDescriptors(ctx context.Context, f
 	for i := 0; i < len(m.RoleDescriptors); i++ {
 
 		if m.RoleDescriptors[i] != nil {
+
+			if swag.IsZero(m.RoleDescriptors[i]) { // not required
+				return nil
+			}
+
 			if err := m.RoleDescriptors[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("RoleDescriptors" + "." + strconv.Itoa(i))
@@ -639,6 +683,11 @@ func (m *EntityDescriptor) contextValidateSPSSODescriptors(ctx context.Context, 
 	for i := 0; i < len(m.SPSSODescriptors); i++ {
 
 		if m.SPSSODescriptors[i] != nil {
+
+			if swag.IsZero(m.SPSSODescriptors[i]) { // not required
+				return nil
+			}
+
 			if err := m.SPSSODescriptors[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("SPSSODescriptors" + "." + strconv.Itoa(i))
@@ -657,6 +706,11 @@ func (m *EntityDescriptor) contextValidateSPSSODescriptors(ctx context.Context, 
 func (m *EntityDescriptor) contextValidateSignature(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Signature != nil {
+
+		if swag.IsZero(m.Signature) { // not required
+			return nil
+		}
+
 		if err := m.Signature.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Signature")
@@ -673,6 +727,11 @@ func (m *EntityDescriptor) contextValidateSignature(ctx context.Context, formats
 func (m *EntityDescriptor) contextValidateXMLName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.XMLName != nil {
+
+		if swag.IsZero(m.XMLName) { // not required
+			return nil
+		}
+
 		if err := m.XMLName.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("XMLName")

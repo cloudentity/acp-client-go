@@ -133,6 +133,11 @@ func (m *Policy) contextValidateValidators(ctx context.Context, formats strfmt.R
 	for i := 0; i < len(m.Validators); i++ {
 
 		if m.Validators[i] != nil {
+
+			if swag.IsZero(m.Validators[i]) { // not required
+				return nil
+			}
+
 			if err := m.Validators[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("validators" + "." + strconv.Itoa(i))

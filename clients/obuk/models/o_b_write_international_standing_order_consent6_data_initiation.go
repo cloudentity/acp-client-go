@@ -467,6 +467,10 @@ func (m *OBWriteInternationalStandingOrderConsent6DataInitiation) ContextValidat
 
 func (m *OBWriteInternationalStandingOrderConsent6DataInitiation) contextValidateChargeBearer(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.ChargeBearer) { // not required
+		return nil
+	}
+
 	if err := m.ChargeBearer.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("ChargeBearer")
@@ -482,6 +486,11 @@ func (m *OBWriteInternationalStandingOrderConsent6DataInitiation) contextValidat
 func (m *OBWriteInternationalStandingOrderConsent6DataInitiation) contextValidateCreditor(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Creditor != nil {
+
+		if swag.IsZero(m.Creditor) { // not required
+			return nil
+		}
+
 		if err := m.Creditor.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Creditor")
@@ -498,6 +507,7 @@ func (m *OBWriteInternationalStandingOrderConsent6DataInitiation) contextValidat
 func (m *OBWriteInternationalStandingOrderConsent6DataInitiation) contextValidateCreditorAccount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CreditorAccount != nil {
+
 		if err := m.CreditorAccount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("CreditorAccount")
@@ -514,6 +524,11 @@ func (m *OBWriteInternationalStandingOrderConsent6DataInitiation) contextValidat
 func (m *OBWriteInternationalStandingOrderConsent6DataInitiation) contextValidateCreditorAgent(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CreditorAgent != nil {
+
+		if swag.IsZero(m.CreditorAgent) { // not required
+			return nil
+		}
+
 		if err := m.CreditorAgent.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("CreditorAgent")
@@ -530,6 +545,11 @@ func (m *OBWriteInternationalStandingOrderConsent6DataInitiation) contextValidat
 func (m *OBWriteInternationalStandingOrderConsent6DataInitiation) contextValidateDebtorAccount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.DebtorAccount != nil {
+
+		if swag.IsZero(m.DebtorAccount) { // not required
+			return nil
+		}
+
 		if err := m.DebtorAccount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("DebtorAccount")
@@ -546,6 +566,7 @@ func (m *OBWriteInternationalStandingOrderConsent6DataInitiation) contextValidat
 func (m *OBWriteInternationalStandingOrderConsent6DataInitiation) contextValidateInstructedAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.InstructedAmount != nil {
+
 		if err := m.InstructedAmount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("InstructedAmount")

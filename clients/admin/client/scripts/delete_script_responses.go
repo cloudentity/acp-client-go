@@ -60,7 +60,7 @@ func (o *DeleteScriptReader) ReadResponse(response runtime.ClientResponse, consu
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[DELETE /servers/{wid}/scripts/{script}] deleteScript", response, response.Code())
 	}
 }
 
@@ -102,6 +102,11 @@ func (o *DeleteScriptNoContent) IsCode(code int) bool {
 	return code == 204
 }
 
+// Code gets the status code for the delete script no content response
+func (o *DeleteScriptNoContent) Code() int {
+	return 204
+}
+
 func (o *DeleteScriptNoContent) Error() string {
 	return fmt.Sprintf("[DELETE /servers/{wid}/scripts/{script}][%d] deleteScriptNoContent ", 204)
 }
@@ -123,7 +128,7 @@ func NewDeleteScriptBadRequest() *DeleteScriptBadRequest {
 /*
 DeleteScriptBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type DeleteScriptBadRequest struct {
 	Payload *models.Error
@@ -152,6 +157,11 @@ func (o *DeleteScriptBadRequest) IsServerError() bool {
 // IsCode returns true when this delete script bad request response a status code equal to that given
 func (o *DeleteScriptBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the delete script bad request response
+func (o *DeleteScriptBadRequest) Code() int {
+	return 400
 }
 
 func (o *DeleteScriptBadRequest) Error() string {
@@ -186,7 +196,7 @@ func NewDeleteScriptUnauthorized() *DeleteScriptUnauthorized {
 /*
 DeleteScriptUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type DeleteScriptUnauthorized struct {
 	Payload *models.Error
@@ -215,6 +225,11 @@ func (o *DeleteScriptUnauthorized) IsServerError() bool {
 // IsCode returns true when this delete script unauthorized response a status code equal to that given
 func (o *DeleteScriptUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the delete script unauthorized response
+func (o *DeleteScriptUnauthorized) Code() int {
+	return 401
 }
 
 func (o *DeleteScriptUnauthorized) Error() string {
@@ -249,7 +264,7 @@ func NewDeleteScriptForbidden() *DeleteScriptForbidden {
 /*
 DeleteScriptForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type DeleteScriptForbidden struct {
 	Payload *models.Error
@@ -278,6 +293,11 @@ func (o *DeleteScriptForbidden) IsServerError() bool {
 // IsCode returns true when this delete script forbidden response a status code equal to that given
 func (o *DeleteScriptForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the delete script forbidden response
+func (o *DeleteScriptForbidden) Code() int {
+	return 403
 }
 
 func (o *DeleteScriptForbidden) Error() string {
@@ -312,7 +332,7 @@ func NewDeleteScriptNotFound() *DeleteScriptNotFound {
 /*
 DeleteScriptNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type DeleteScriptNotFound struct {
 	Payload *models.Error
@@ -341,6 +361,11 @@ func (o *DeleteScriptNotFound) IsServerError() bool {
 // IsCode returns true when this delete script not found response a status code equal to that given
 func (o *DeleteScriptNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the delete script not found response
+func (o *DeleteScriptNotFound) Code() int {
+	return 404
 }
 
 func (o *DeleteScriptNotFound) Error() string {
@@ -375,7 +400,7 @@ func NewDeleteScriptTooManyRequests() *DeleteScriptTooManyRequests {
 /*
 DeleteScriptTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type DeleteScriptTooManyRequests struct {
 	Payload *models.Error
@@ -404,6 +429,11 @@ func (o *DeleteScriptTooManyRequests) IsServerError() bool {
 // IsCode returns true when this delete script too many requests response a status code equal to that given
 func (o *DeleteScriptTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the delete script too many requests response
+func (o *DeleteScriptTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *DeleteScriptTooManyRequests) Error() string {

@@ -24,12 +24,19 @@ definitions:
         format: userIdentifierValue
         type: string
         x-nullable: false
+      metadata:
+        additionalProperties:
+          type: object
+        description: identifier metadata
+        type: object
+        x-nullable: false
       type:
         enum:
         - email
         - mobile
         - uid
         - external
+        - federated
         example: email
         type: string
         x-nullable: false
@@ -71,6 +78,15 @@ definitions:
     - address
     - type
     - verified
+    type: object
+  Address:
+    properties:
+      address:
+        type: string
+        x-nullable: false
+      verified:
+        type: boolean
+        x-nullable: false
     type: object
   Argon2Config:
     properties:
@@ -185,6 +201,7 @@ definitions:
         - reset_password
         - challenge
         - verify_address
+        - authentication
         example: active
         type: string
         x-nullable: false
@@ -228,7 +245,6 @@ definitions:
         type: string
         x-nullable: false
       extended_code:
-        format: codeID
         type: string
         x-nullable: false
     required:
@@ -268,6 +284,29 @@ definitions:
     required:
     - code
     - new_password
+    type: object
+  CompleteResetWebAuthn:
+    properties:
+      address:
+        type: string
+        x-nullable: false
+      code:
+        type: string
+        x-nullable: false
+      identifier:
+        type: string
+        x-nullable: false
+      new_web_authn:
+        items:
+          $ref: '#/definitions/Credential'
+        type: array
+        x-nullable: false
+      userID:
+        type: string
+        x-nullable: false
+    required:
+    - code
+    - new_web_authn
     type: object
   ConfirmResetPassword:
     properties:
@@ -352,6 +391,11 @@ definitions:
     type: object
   ExtendedUser:
     properties:
+      addresses:
+        items:
+          $ref: '#/definitions/Address'
+        type: array
+        x-nullable: false
       created_at:
         format: date-time
         type: string
@@ -363,6 +407,11 @@ definitions:
       identifiers:
         items:
           type: string
+        type: array
+        x-nullable: false
+      identifiers_with_details:
+        items:
+          $ref: '#/definitions/IdentifierDetails'
         type: array
         x-nullable: false
       metadata:
@@ -420,6 +469,15 @@ definitions:
     - user_pool_id
     - status
     type: object
+  GetUserByKey:
+    properties:
+      address:
+        type: string
+        x-nullable: false
+      identifier:
+        type: string
+        x-nullable: false
+    type: object
   Hash:
     properties:
       config:
@@ -447,6 +505,22 @@ definitions:
       sha:
         $ref: '#/definitions/SHAConfig'
     type: object
+  IdentifierDetails:
+    properties:
+      type:
+        enum:
+        - email
+        - mobile
+        - uid
+        - external
+        - federated
+        type: string
+        x-nullable: false
+      value:
+        format: userIdentifierValue
+        type: string
+        x-nullable: false
+    type: object
   InspectOTP:
     properties:
       code:
@@ -460,7 +534,11 @@ definitions:
       password_set:
         type: boolean
         x-nullable: false
+      user_id:
+        type: string
+        x-nullable: false
     required:
+    - user_id
     - password_set
     type: object
   NewUser:
@@ -541,12 +619,19 @@ definitions:
         format: userIdentifierValue
         type: string
         x-nullable: false
+      metadata:
+        additionalProperties:
+          type: object
+        description: identifier metadata
+        type: object
+        x-nullable: false
       type:
         enum:
         - email
         - mobile
         - uid
         - external
+        - federated
         example: email
         type: string
         x-nullable: false
@@ -604,6 +689,8 @@ definitions:
   OtpSettings:
     properties:
       activation:
+        $ref: '#/definitions/OtpConfig'
+      authentication:
         $ref: '#/definitions/OtpConfig'
       challenge:
         $ref: '#/definitions/OtpConfig'
@@ -676,14 +763,6 @@ definitions:
         type: string
         x-nullable: false
     type: object
-  PatchOperation:
-    additionalProperties:
-      type: object
-    type: object
-  PatchTenantConfiguration:
-    items:
-      $ref: '#/definitions/PatchOperation'
-    type: array
   Pool:
     properties:
       authentication_mechanisms:
@@ -700,6 +779,9 @@ definitions:
       id:
         format: poolID
         type: string
+        x-nullable: false
+      identifier_case_insensitive:
+        type: boolean
         x-nullable: false
       metadata:
         additionalProperties:
@@ -742,6 +824,10 @@ definitions:
         format: tenantID
         type: string
         x-nullable: false
+      workspace_id:
+        format: serverID
+        type: string
+        x-nullable: false
     required:
     - tenant_id
     - name
@@ -762,6 +848,9 @@ definitions:
       id:
         format: poolID
         type: string
+        x-nullable: false
+      identifier_case_insensitive:
+        type: boolean
         x-nullable: false
       metadata:
         additionalProperties:
@@ -808,6 +897,10 @@ definitions:
         format: tenantID
         type: string
         x-nullable: false
+      workspace_id:
+        format: serverID
+        type: string
+        x-nullable: false
     required:
     - tenant_id
     - name
@@ -835,6 +928,7 @@ definitions:
         - reset_password
         - challenge
         - verify_address
+        - authentication
         type: string
         x-nullable: false
     required:
@@ -854,6 +948,7 @@ definitions:
         - reset_password
         - challenge
         - verify_address
+        - authentication
         type: string
         x-nullable: false
       userID:
@@ -864,7 +959,7 @@ definitions:
     - address
     - type
     type: object
-  RequestOTPChallenge:
+  RequestOTPCode:
     properties:
       address:
         type: string
@@ -886,7 +981,7 @@ definitions:
     required:
     - address
     type: object
-  RequestResetPassword:
+  RequestResetCredential:
     properties:
       address:
         type: string
@@ -900,6 +995,29 @@ definitions:
     required:
     - address
     type: object
+  Rfc6902PatchOperation:
+    properties:
+      op:
+        enum:
+        - add
+        - remove
+        - replace
+        - move
+        - copy
+        - test
+        type: string
+        x-nullable: false
+      path:
+        type: string
+        x-nullable: false
+      value:
+        type: object
+        x-nullable: false
+    type: object
+  Rfc6902PatchOperations:
+    items:
+      $ref: '#/definitions/Rfc6902PatchOperation'
+    type: array
   SHAConfig:
     properties:
       function:
@@ -907,6 +1025,9 @@ definitions:
         x-nullable: false
       salt:
         type: string
+        x-nullable: false
+      salt_after_digest_in_hash:
+        type: boolean
         x-nullable: false
       salt_length:
         format: int64
@@ -1343,6 +1464,16 @@ definitions:
         format: userIdentifierValue
         type: string
         x-nullable: false
+      identifier_lc:
+        format: userIdentifierValue
+        type: string
+        x-nullable: false
+      metadata:
+        additionalProperties:
+          type: object
+        description: general purpose metadata
+        type: object
+        x-nullable: false
       tenant_id:
         example: default
         format: tenantID
@@ -1354,6 +1485,7 @@ definitions:
         - mobile
         - uid
         - external
+        - federated
         example: email
         type: string
         x-nullable: false
@@ -1374,6 +1506,7 @@ definitions:
     - tenant_id
     - user_pool_id
     - identifier
+    - identifier_lc
     - user_id
     - type
     - created_at
@@ -1382,6 +1515,10 @@ definitions:
   UserVerifiableAddress:
     properties:
       address:
+        format: verifiableAddress
+        type: string
+        x-nullable: false
+      address_lc:
         format: verifiableAddress
         type: string
         x-nullable: false
@@ -1444,6 +1581,7 @@ definitions:
     - user_pool_id
     - user_id
     - address
+    - address_lc
     - type
     - status
     - verified
@@ -1608,7 +1746,7 @@ paths:
       - in: body
         name: patch
         schema:
-          $ref: '#/definitions/PatchTenantConfiguration'
+          $ref: '#/definitions/Rfc6902PatchOperations'
       - format: insertMode
         in: query
         name: mode
@@ -1756,7 +1894,7 @@ paths:
         Exceptions are: reset password and challenge if address is user's verified address
 
         Keep in mind that `address` attribute for different code types does not mean the same:
-        for `reset_password` and `challenge` it must be user's address (verified or unverified)
+        for `reset_password`, `authentication` and `challenge` it must be user's address (verified or unverified)
         for `activation` it is not mandatory (system will pick up address itself if there is only one in user entry) but if provided it must be one of the user's addresses (can be not verified)
         for `verify_address` it must be user's unverified address and that address cannot be someone's else verified address
 
@@ -1863,7 +2001,13 @@ paths:
       - in: body
         name: RequestOTPChallenge
         schema:
-          $ref: '#/definitions/RequestOTPChallenge'
+          $ref: '#/definitions/RequestOTPCode'
+      - description: |-
+          optional server's identifier (used for themes etc.)
+          ServerID
+        in: query
+        name: server_id
+        type: string
       responses:
         "204":
           $ref: '#/responses/RequestOTPChallengeResponse'
@@ -2031,7 +2175,7 @@ paths:
       - in: body
         name: RequestResetPassword
         schema:
-          $ref: '#/definitions/RequestResetPassword'
+          $ref: '#/definitions/RequestResetCredential'
       - default: link
         description: Code type in message
         enum:
@@ -2039,6 +2183,12 @@ paths:
         - code
         in: query
         name: code_type_in_message
+        type: string
+      - description: |-
+          optional server's identifier (used for themes etc.)
+          ServerID
+        in: query
+        name: server_id
         type: string
       responses:
         "204":
@@ -2141,6 +2291,12 @@ paths:
         in: query
         name: code_type_in_message
         type: string
+      - description: |-
+          optional server's identifier (used for themes etc.)
+          ServerID
+        in: query
+        name: server_id
+        type: string
       responses:
         "201":
           $ref: '#/responses/UserIDResponse'
@@ -2162,14 +2318,115 @@ paths:
       summary: Self Register User
       tags:
       - Users
+  /system/pools/{ipID}/user/webauthn/reset/complete:
+    post:
+      description: |-
+        Resets WebAuthn for user if the provided OTP is valid. It's the second and final step of the
+        flow to reset the WebAuthn.
+        Either address (must be a valid email or mobile which is marked as verified address for the user), user id, identifier (must be user's identifier) or extended code must be provided.
+        Endpoint returns generic `401` regardless of the reason of failure to prevent email/mobile enumeration.
+        After a successful WebAuthn reset, OTP gets invalidated, so it cannot be reused.
+        Endpoint is protected by Brute Force mechanism.
+      operationId: completeResetWebAuthn
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: body
+        name: CompleteResetWebAuthn
+        schema:
+          $ref: '#/definitions/CompleteResetWebAuthn'
+      responses:
+        "204":
+          $ref: '#/responses/CompleteResetWebAuthnResponse'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "412":
+          $ref: '#/responses/payloadTooLargeHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+      security:
+      - system:
+        - identity
+      summary: Complete Reset WebAuthn
+      tags:
+      - Users
+  /system/pools/{ipID}/user/webauthn/reset/request:
+    post:
+      description: |-
+        Sends OTP for WebAuthn reset. It's first out of two steps of the reset WebAuthn flow.
+        Address must be a valid email or mobile which is marked as verified address for the user.
+        For validating unverified address userID or identifier must be provided.
+        If userID is provided then identifier must not be set.
+        When both userID or identifier and address are provided then address is taken from user pointed by either userID or identifier.
+        Regardless if the address points to some user or not, the request ends successfully to
+        prevent email/mobile enumeration.
+        Invalidates previously generated OTPs for WebAuthn reset.
+        Reset WebAuthn OTP is valid for a specific period of time configured in Identity Pool.
+
+        REFACTORED: input field name has been renamed from `identifier` to `address`; new field `identifier` has been added and described in documentation
+      operationId: requestResetWebAuthn
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: body
+        name: RequestResetWebAuthn
+        schema:
+          $ref: '#/definitions/RequestResetCredential'
+      - default: link
+        description: Code type in message
+        enum:
+        - link
+        - code
+        in: query
+        name: code_type_in_message
+        type: string
+      - description: |-
+          optional server's identifier (used for themes etc.)
+          ServerID
+        in: query
+        name: server_id
+        type: string
+      responses:
+        "204":
+          $ref: '#/responses/RequestResetWebAuthnResponse'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "412":
+          $ref: '#/responses/payloadTooLargeHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+      security:
+      - system:
+        - identity
+      summary: Request Reset WebAuthn
+      tags:
+      - Users
   /system/pools/{ipID}/users:
     get:
       description: |-
-        Lists users.
+        Retrieve the list of users from the specified identity pool.
 
         Results are sorted by user ID. No other sorting is supported.
 
-        This API does not use ETags. Data returned from this API is eventually consistent.
+        This API does not use ETags. Data returned in the response is eventually consistent.
         It's not possible to enforce full consistency for this API.
       operationId: systemListUsers
       parameters:
@@ -2245,10 +2502,18 @@ paths:
       - Users
     post:
       description: |-
-        Creates a user with extended data. User can be created with any status and set of identifiers, addresses and credentials.
-        If payload schema ID or metadata schema ID is not provided, they default to the value from Identity Pool.
-        Payload and metadata must be valid against a proper schema.
-        Returns an extended view on user entry (see Get User endpoint).
+        Create a user with extended data.
+
+        Any status and set of identifiers, addresses, and credentials are allowed.
+
+        When no `payload_schema_id` or `metadata_schema_id` are provided, the default values are taken from the
+        specified Identity Pool.
+
+        Payload and metadata must match the specified schema.
+
+        The response contains an extended view on user entry.
+
+        To retrieve a user entry without user creation, call the **Get User Details** endpoint.
       operationId: systemCreateUser
       parameters:
       - description: A server will only return requested resources if the resource
@@ -2292,7 +2557,8 @@ paths:
       - Users
   /system/pools/{ipID}/users/{userID}:
     delete:
-      description: Deletes user.
+      description: Remove a record about a user account in the specified identity
+        pool.
       operationId: systemDeleteUser
       parameters:
       - description: A server will only return requested resources if the resource
@@ -2325,14 +2591,15 @@ paths:
       security:
       - system:
         - identity
-      summary: Delete User
+      summary: Delete User Account
       tags:
       - Users
     get:
       description: |-
-        Returns an extended view on user entry.
-        Besides the basic user entry, it returns all user identifiers, addresses, and credentials (blurred).
-        User payload and metadata are also returned.
+        Retrieve extended information about a user record.
+
+        The response contains user's basic details, payload, and metadata, as well as all their identifiers,
+        addresses, and blurred credentials.
       operationId: systemGetUser
       parameters:
       - description: A server will only return requested resources if the resource
@@ -2365,16 +2632,19 @@ paths:
       security:
       - system:
         - identity
-      summary: Get User
+      summary: Get User Details
       tags:
       - Users
     put:
       description: |-
-        Updates base set of user data like payload, metadata, schemas and status.
-        Updates only provided fields - overrides them. Not provided fields are not removed/cleared.
-        If payload or metadata is provided it must be valid against proper schema.
-        If any schema is provided then the corresponding entry (payload or metadata) must be valid against it.
-        Returns an extended view on user entry (see Get User endpoint).
+        Update the basic set of user data: payload, metadata, schemas, and status. Provide the required values for the fields
+        you need to update. Fields with no values are skipped for the update (not removed nor cleared).
+
+        The fields to be updated are overridden.
+
+        Any `payload` / `metadata` and `payload_schema_id` / `metadata_schema_id` values passed must be mutually relevant.
+
+        To retrieve a user entry without updating their record, call the **Get User Details** endpoint.
       operationId: systemUpdateUser
       parameters:
       - description: A server will only return requested resources if the resource
@@ -2417,7 +2687,7 @@ paths:
       security:
       - system:
         - identity
-      summary: Update User
+      summary: Update User Record
       tags:
       - Users
   /system/pools/{ipID}/users/{userID}/activate:
@@ -2528,20 +2798,27 @@ paths:
   /system/pools/{ipID}/users/{userID}/activation/send:
     post:
       description: |-
-        Sends activation message to user to provided address.
-        If address is not provided then it takes user address as destination if there is only one
-        Endpoint does not fail to prevent email/mobile enumeration.
-        It does not send message if:
-        address is not provided and user has no addresses or more than one
-        address is someone's else verified address or identifier
-        user status is not New.
-        If address is someone's else verified address or identifier user whose email/mobile was provided
-        will get notification that identifier is already used.
-        Invalidates previously generated OTPs for user activation.
-        If `code_type_in_message` query parameter was set to link or not provided then link will be generated for activation.
-        Activation message is valid for specific period of time configured in Identity Pool.
+        Send an activation message to the user's provided address.
 
-        REFACTORED: input field name has been changed from `identifier` to `address`; field `identifier` stays for backward compatibility and overrides `address` if not empty
+        When no `address` is provided in the request body, the message is sent to the address saved for this user (if there
+        is only one address). To prevent email or mobile enumeration, this endpoint does not fail.
+
+        The message is **not** sent upon the following:
+
+        • `address` is not provided and user has no addresses or more than one.
+
+        • `address` is someone else's verified address or identifier. This results in the `Identifier is already used` response.
+
+        • The user's `status` is not `new`.
+
+        This request invalidates any previously generated OTPs for user account activation.
+
+        When `code_type_in_message=link` or no value is provided for it, an activation link is generated.
+
+        Activation message validity period is configured in the identity pool settings.
+
+        ❕ REFACTORED: `identifier` is renamed to `address` in the request body. For backward compatibility, the both
+        fields are available. If `identifier` is not empty, it overrides the `address` value.
       operationId: selfSendActivationMessage
       parameters:
       - description: A server will only return requested resources if the resource
@@ -2569,6 +2846,12 @@ paths:
         - code
         in: query
         name: code_type_in_message
+        type: string
+      - description: |-
+          optional server's identifier (used for themes etc.)
+          ServerID
+        in: query
+        name: server_id
         type: string
       responses:
         "204":
@@ -2643,10 +2926,13 @@ paths:
   /system/pools/{ipID}/users/{userID}/address/verification/request:
     post:
       description: |-
-        Generates and sends verification code to the provided address.
-        Address must be a valid email or mobile which is marked as an unverified address for the user and is not someone's verified address.
-        If address is someone's verified address, the request ends successfully to prevent email/mobile enumeration.
-        Requested code is valid for specific period of time configured in Identity Pool.
+        Generate and send a verification code to the provided address.
+        The `address` value must be a valid email or mobile number marked as the user's `unverified address`.
+
+        Also, this value must not be a verified address of any other user. Otherwise, the request returns the
+        verification link and runs protection for email or mobile enumeration for the address specified.
+
+        The requested code validity period is configured in the identity pool settings.
       operationId: requestAddressVerification
       parameters:
       - description: A server will only return requested resources if the resource
@@ -2736,7 +3022,8 @@ paths:
       - Users
   /system/pools/{ipID}/users/{userID}/addresses/remove:
     post:
-      description: 'Deletes a verifiable address from the user account'
+      description: Remove a verifiable address from a user account so it is no longer
+        associated with the specified user.
       operationId: systemDeleteVerifiableAddress
       parameters:
       - description: A server will only return requested resources if the resource
@@ -2778,7 +3065,7 @@ paths:
       - Users
   /system/pools/{ipID}/users/{userID}/addresses/update:
     post:
-      description: 'Updates a verifiable address of the user account'
+      description: Update a verifiable address for the user account.
       operationId: systemUpdateVerifiableAddress
       parameters:
       - description: A server will only return requested resources if the resource
@@ -2878,7 +3165,7 @@ paths:
         Code is valid for specific period of time configured in Identity Pool.
 
         Keep in mind that `address` attribute for different code types does not mean the same:
-        for `reset_password` and `challenge` it must be user's address (verified or unverified)
+        for `reset_password`, `authentication` and `challenge` it must be user's address (verified or unverified)
         for `activation` it is not mandatory (system will pick up address itself if there is only one in user entry) but if provided it must be one of the user's addresses (can be not verified)
         for `verify_address` it must be user's unverified address and that address cannot be someone's else verified address
 
@@ -2927,7 +3214,10 @@ paths:
       - Users
   /system/pools/{ipID}/users/{userID}/identifiers/add:
     post:
-      description: 'Adds an identifier to the user account'
+      description: |-
+        Add an identifier to the user account in the specified identity pool.
+
+        The identifier must be unique within the user's account.
       operationId: systemAddIdentifier
       parameters:
       - description: A server will only return requested resources if the resource
@@ -2971,7 +3261,7 @@ paths:
       - Users
   /system/pools/{ipID}/users/{userID}/identifiers/remove:
     post:
-      description: 'Deletes an identifier from the user account'
+      description: Remove an identifier from the specified user account.
       operationId: systemDeleteIdentifier
       parameters:
       - description: A server will only return requested resources if the resource
@@ -3008,7 +3298,52 @@ paths:
       security:
       - system:
         - identity
-      summary: Delete Identifier
+      summary: Remove Identifier
+      tags:
+      - Users
+  /system/pools/{ipID}/users/by_key:
+    post:
+      description: |-
+        Retrieve extended information about a user record found by provided key.
+
+        Only one of `identifier` or `address` can be provided.
+        Address must be user's verified address. It's not possible to find user by unverified address.
+
+        The response contains user's basic details, payload, and metadata, as well as all their identifiers,
+        addresses, and blurred credentials.
+      operationId: systemGetUserByKey
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - in: path
+        name: ipID
+        required: true
+        type: string
+      - in: body
+        name: GetUserByKey
+        schema:
+          $ref: '#/definitions/GetUserByKey'
+      responses:
+        "200":
+          $ref: '#/responses/SystemUserResponse'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "412":
+          $ref: '#/responses/payloadTooLargeHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - identity
+      summary: Get User Details by key
       tags:
       - Users
   /system/schemas/{schID}:
@@ -3077,6 +3412,16 @@ responses:
         type: string
   CompleteResetPasswordResponse:
     description: Password reset
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+  CompleteResetWebAuthnResponse:
+    description: Request accepted
     headers:
       etag:
         description: |-
@@ -3164,6 +3509,16 @@ responses:
         format: etag
         type: string
   RequestResetPasswordResponse:
+    description: Request accepted
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+  RequestResetWebAuthnResponse:
     description: Request accepted
     headers:
       etag:

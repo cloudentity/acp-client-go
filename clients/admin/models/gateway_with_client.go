@@ -161,6 +161,11 @@ func (m *GatewayWithClient) ContextValidate(ctx context.Context, formats strfmt.
 func (m *GatewayWithClient) contextValidateClient(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Client != nil {
+
+		if swag.IsZero(m.Client) { // not required
+			return nil
+		}
+
 		if err := m.Client.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("client")
@@ -177,6 +182,11 @@ func (m *GatewayWithClient) contextValidateClient(ctx context.Context, formats s
 func (m *GatewayWithClient) contextValidateTokenExchange(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.TokenExchange != nil {
+
+		if swag.IsZero(m.TokenExchange) { // not required
+			return nil
+		}
+
 		if err := m.TokenExchange.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("token_exchange")

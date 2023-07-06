@@ -48,7 +48,7 @@ func (o *ListGatewayAPIGroupsReader) ReadResponse(response runtime.ClientRespons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /gateways/{gw}/groups] listGatewayAPIGroups", response, response.Code())
 	}
 }
 
@@ -63,6 +63,15 @@ ListGatewayAPIGroupsOK describes a response with status code 200, with default h
 Gateway API groups
 */
 type ListGatewayAPIGroupsOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.GatewayAPIGroups
 }
 
@@ -91,6 +100,11 @@ func (o *ListGatewayAPIGroupsOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the list gateway Api groups o k response
+func (o *ListGatewayAPIGroupsOK) Code() int {
+	return 200
+}
+
 func (o *ListGatewayAPIGroupsOK) Error() string {
 	return fmt.Sprintf("[GET /gateways/{gw}/groups][%d] listGatewayApiGroupsOK  %+v", 200, o.Payload)
 }
@@ -104,6 +118,13 @@ func (o *ListGatewayAPIGroupsOK) GetPayload() *models.GatewayAPIGroups {
 }
 
 func (o *ListGatewayAPIGroupsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.GatewayAPIGroups)
 
@@ -123,7 +144,7 @@ func NewListGatewayAPIGroupsUnauthorized() *ListGatewayAPIGroupsUnauthorized {
 /*
 ListGatewayAPIGroupsUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ListGatewayAPIGroupsUnauthorized struct {
 	Payload *models.Error
@@ -152,6 +173,11 @@ func (o *ListGatewayAPIGroupsUnauthorized) IsServerError() bool {
 // IsCode returns true when this list gateway Api groups unauthorized response a status code equal to that given
 func (o *ListGatewayAPIGroupsUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the list gateway Api groups unauthorized response
+func (o *ListGatewayAPIGroupsUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ListGatewayAPIGroupsUnauthorized) Error() string {
@@ -186,7 +212,7 @@ func NewListGatewayAPIGroupsForbidden() *ListGatewayAPIGroupsForbidden {
 /*
 ListGatewayAPIGroupsForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ListGatewayAPIGroupsForbidden struct {
 	Payload *models.Error
@@ -215,6 +241,11 @@ func (o *ListGatewayAPIGroupsForbidden) IsServerError() bool {
 // IsCode returns true when this list gateway Api groups forbidden response a status code equal to that given
 func (o *ListGatewayAPIGroupsForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the list gateway Api groups forbidden response
+func (o *ListGatewayAPIGroupsForbidden) Code() int {
+	return 403
 }
 
 func (o *ListGatewayAPIGroupsForbidden) Error() string {
@@ -249,7 +280,7 @@ func NewListGatewayAPIGroupsTooManyRequests() *ListGatewayAPIGroupsTooManyReques
 /*
 ListGatewayAPIGroupsTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ListGatewayAPIGroupsTooManyRequests struct {
 	Payload *models.Error
@@ -278,6 +309,11 @@ func (o *ListGatewayAPIGroupsTooManyRequests) IsServerError() bool {
 // IsCode returns true when this list gateway Api groups too many requests response a status code equal to that given
 func (o *ListGatewayAPIGroupsTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the list gateway Api groups too many requests response
+func (o *ListGatewayAPIGroupsTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ListGatewayAPIGroupsTooManyRequests) Error() string {

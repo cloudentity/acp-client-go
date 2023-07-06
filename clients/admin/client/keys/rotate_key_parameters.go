@@ -61,6 +61,14 @@ RotateKeyParams contains all the parameters to send to the API endpoint
 */
 type RotateKeyParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* KeyType.
 
 	   Key type
@@ -155,6 +163,17 @@ func (o *RotateKeyParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the rotate key params
+func (o *RotateKeyParams) WithIfMatch(ifMatch *string) *RotateKeyParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the rotate key params
+func (o *RotateKeyParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithKeyType adds the keyType to the rotate key params
 func (o *RotateKeyParams) WithKeyType(keyType *string) *RotateKeyParams {
 	o.SetKeyType(keyType)
@@ -195,6 +214,14 @@ func (o *RotateKeyParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	if o.KeyType != nil {
 

@@ -33,6 +33,9 @@ type DefaultBruteForceLimits struct {
 	// identity activate with extended code
 	IdentityActivateWithExtendedCode *DefaultBruteForceLimit `json:"identity_activate_with_extended_code,omitempty"`
 
+	// identity address verification
+	IdentityAddressVerification *DefaultBruteForceLimit `json:"identity_address_verification,omitempty"`
+
 	// identity authentication
 	IdentityAuthentication *DefaultBruteForceLimit `json:"identity_authentication,omitempty"`
 
@@ -60,8 +63,8 @@ type DefaultBruteForceLimits struct {
 	// identity self register
 	IdentitySelfRegister *DefaultBruteForceLimit `json:"identity_self_register,omitempty"`
 
-	// identity set password
-	IdentitySetPassword *DefaultBruteForceLimit `json:"identity_set_password,omitempty"`
+	// identity set credential
+	IdentitySetCredential *DefaultBruteForceLimit `json:"identity_set_credential,omitempty"`
 
 	// identity verify password
 	IdentityVerifyPassword *DefaultBruteForceLimit `json:"identity_verify_password,omitempty"`
@@ -87,6 +90,10 @@ func (m *DefaultBruteForceLimits) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateIdentityActivateWithExtendedCode(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIdentityAddressVerification(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -126,7 +133,7 @@ func (m *DefaultBruteForceLimits) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateIdentitySetPassword(formats); err != nil {
+	if err := m.validateIdentitySetCredential(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -212,6 +219,25 @@ func (m *DefaultBruteForceLimits) validateIdentityActivateWithExtendedCode(forma
 				return ve.ValidateName("identity_activate_with_extended_code")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("identity_activate_with_extended_code")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *DefaultBruteForceLimits) validateIdentityAddressVerification(formats strfmt.Registry) error {
+	if swag.IsZero(m.IdentityAddressVerification) { // not required
+		return nil
+	}
+
+	if m.IdentityAddressVerification != nil {
+		if err := m.IdentityAddressVerification.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("identity_address_verification")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("identity_address_verification")
 			}
 			return err
 		}
@@ -391,17 +417,17 @@ func (m *DefaultBruteForceLimits) validateIdentitySelfRegister(formats strfmt.Re
 	return nil
 }
 
-func (m *DefaultBruteForceLimits) validateIdentitySetPassword(formats strfmt.Registry) error {
-	if swag.IsZero(m.IdentitySetPassword) { // not required
+func (m *DefaultBruteForceLimits) validateIdentitySetCredential(formats strfmt.Registry) error {
+	if swag.IsZero(m.IdentitySetCredential) { // not required
 		return nil
 	}
 
-	if m.IdentitySetPassword != nil {
-		if err := m.IdentitySetPassword.Validate(formats); err != nil {
+	if m.IdentitySetCredential != nil {
+		if err := m.IdentitySetCredential.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("identity_set_password")
+				return ve.ValidateName("identity_set_credential")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("identity_set_password")
+				return ce.ValidateName("identity_set_credential")
 			}
 			return err
 		}
@@ -468,6 +494,10 @@ func (m *DefaultBruteForceLimits) ContextValidate(ctx context.Context, formats s
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateIdentityAddressVerification(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateIdentityAuthentication(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -504,7 +534,7 @@ func (m *DefaultBruteForceLimits) ContextValidate(ctx context.Context, formats s
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateIdentitySetPassword(ctx, formats); err != nil {
+	if err := m.contextValidateIdentitySetCredential(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -525,6 +555,11 @@ func (m *DefaultBruteForceLimits) ContextValidate(ctx context.Context, formats s
 func (m *DefaultBruteForceLimits) contextValidateClientAuthentication(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ClientAuthentication != nil {
+
+		if swag.IsZero(m.ClientAuthentication) { // not required
+			return nil
+		}
+
 		if err := m.ClientAuthentication.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("client_authentication")
@@ -541,6 +576,11 @@ func (m *DefaultBruteForceLimits) contextValidateClientAuthentication(ctx contex
 func (m *DefaultBruteForceLimits) contextValidateDeviceHandling(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.DeviceHandling != nil {
+
+		if swag.IsZero(m.DeviceHandling) { // not required
+			return nil
+		}
+
 		if err := m.DeviceHandling.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("device_handling")
@@ -557,6 +597,11 @@ func (m *DefaultBruteForceLimits) contextValidateDeviceHandling(ctx context.Cont
 func (m *DefaultBruteForceLimits) contextValidateIdentityActivateSelfRegistered(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.IdentityActivateSelfRegistered != nil {
+
+		if swag.IsZero(m.IdentityActivateSelfRegistered) { // not required
+			return nil
+		}
+
 		if err := m.IdentityActivateSelfRegistered.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("identity_activate_self_registered")
@@ -573,6 +618,11 @@ func (m *DefaultBruteForceLimits) contextValidateIdentityActivateSelfRegistered(
 func (m *DefaultBruteForceLimits) contextValidateIdentityActivateWithExtendedCode(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.IdentityActivateWithExtendedCode != nil {
+
+		if swag.IsZero(m.IdentityActivateWithExtendedCode) { // not required
+			return nil
+		}
+
 		if err := m.IdentityActivateWithExtendedCode.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("identity_activate_with_extended_code")
@@ -586,9 +636,35 @@ func (m *DefaultBruteForceLimits) contextValidateIdentityActivateWithExtendedCod
 	return nil
 }
 
+func (m *DefaultBruteForceLimits) contextValidateIdentityAddressVerification(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.IdentityAddressVerification != nil {
+
+		if swag.IsZero(m.IdentityAddressVerification) { // not required
+			return nil
+		}
+
+		if err := m.IdentityAddressVerification.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("identity_address_verification")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("identity_address_verification")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *DefaultBruteForceLimits) contextValidateIdentityAuthentication(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.IdentityAuthentication != nil {
+
+		if swag.IsZero(m.IdentityAuthentication) { // not required
+			return nil
+		}
+
 		if err := m.IdentityAuthentication.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("identity_authentication")
@@ -605,6 +681,11 @@ func (m *DefaultBruteForceLimits) contextValidateIdentityAuthentication(ctx cont
 func (m *DefaultBruteForceLimits) contextValidateIdentityChangePassword(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.IdentityChangePassword != nil {
+
+		if swag.IsZero(m.IdentityChangePassword) { // not required
+			return nil
+		}
+
 		if err := m.IdentityChangePassword.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("identity_change_password")
@@ -621,6 +702,11 @@ func (m *DefaultBruteForceLimits) contextValidateIdentityChangePassword(ctx cont
 func (m *DefaultBruteForceLimits) contextValidateIdentityCodeInspect(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.IdentityCodeInspect != nil {
+
+		if swag.IsZero(m.IdentityCodeInspect) { // not required
+			return nil
+		}
+
 		if err := m.IdentityCodeInspect.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("identity_code_inspect")
@@ -637,6 +723,11 @@ func (m *DefaultBruteForceLimits) contextValidateIdentityCodeInspect(ctx context
 func (m *DefaultBruteForceLimits) contextValidateIdentityCodeVerify(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.IdentityCodeVerify != nil {
+
+		if swag.IsZero(m.IdentityCodeVerify) { // not required
+			return nil
+		}
+
 		if err := m.IdentityCodeVerify.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("identity_code_verify")
@@ -653,6 +744,11 @@ func (m *DefaultBruteForceLimits) contextValidateIdentityCodeVerify(ctx context.
 func (m *DefaultBruteForceLimits) contextValidateIdentityConfirmPassword(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.IdentityConfirmPassword != nil {
+
+		if swag.IsZero(m.IdentityConfirmPassword) { // not required
+			return nil
+		}
+
 		if err := m.IdentityConfirmPassword.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("identity_confirm_password")
@@ -669,6 +765,11 @@ func (m *DefaultBruteForceLimits) contextValidateIdentityConfirmPassword(ctx con
 func (m *DefaultBruteForceLimits) contextValidateIdentityRegistration(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.IdentityRegistration != nil {
+
+		if swag.IsZero(m.IdentityRegistration) { // not required
+			return nil
+		}
+
 		if err := m.IdentityRegistration.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("identity_registration")
@@ -685,6 +786,11 @@ func (m *DefaultBruteForceLimits) contextValidateIdentityRegistration(ctx contex
 func (m *DefaultBruteForceLimits) contextValidateIdentitySelfActivation(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.IdentitySelfActivation != nil {
+
+		if swag.IsZero(m.IdentitySelfActivation) { // not required
+			return nil
+		}
+
 		if err := m.IdentitySelfActivation.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("identity_self_activation")
@@ -701,6 +807,11 @@ func (m *DefaultBruteForceLimits) contextValidateIdentitySelfActivation(ctx cont
 func (m *DefaultBruteForceLimits) contextValidateIdentitySelfChangePassword(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.IdentitySelfChangePassword != nil {
+
+		if swag.IsZero(m.IdentitySelfChangePassword) { // not required
+			return nil
+		}
+
 		if err := m.IdentitySelfChangePassword.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("identity_self_change_password")
@@ -717,6 +828,11 @@ func (m *DefaultBruteForceLimits) contextValidateIdentitySelfChangePassword(ctx 
 func (m *DefaultBruteForceLimits) contextValidateIdentitySelfRegister(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.IdentitySelfRegister != nil {
+
+		if swag.IsZero(m.IdentitySelfRegister) { // not required
+			return nil
+		}
+
 		if err := m.IdentitySelfRegister.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("identity_self_register")
@@ -730,14 +846,19 @@ func (m *DefaultBruteForceLimits) contextValidateIdentitySelfRegister(ctx contex
 	return nil
 }
 
-func (m *DefaultBruteForceLimits) contextValidateIdentitySetPassword(ctx context.Context, formats strfmt.Registry) error {
+func (m *DefaultBruteForceLimits) contextValidateIdentitySetCredential(ctx context.Context, formats strfmt.Registry) error {
 
-	if m.IdentitySetPassword != nil {
-		if err := m.IdentitySetPassword.ContextValidate(ctx, formats); err != nil {
+	if m.IdentitySetCredential != nil {
+
+		if swag.IsZero(m.IdentitySetCredential) { // not required
+			return nil
+		}
+
+		if err := m.IdentitySetCredential.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("identity_set_password")
+				return ve.ValidateName("identity_set_credential")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("identity_set_password")
+				return ce.ValidateName("identity_set_credential")
 			}
 			return err
 		}
@@ -749,6 +870,11 @@ func (m *DefaultBruteForceLimits) contextValidateIdentitySetPassword(ctx context
 func (m *DefaultBruteForceLimits) contextValidateIdentityVerifyPassword(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.IdentityVerifyPassword != nil {
+
+		if swag.IsZero(m.IdentityVerifyPassword) { // not required
+			return nil
+		}
+
 		if err := m.IdentityVerifyPassword.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("identity_verify_password")
@@ -765,6 +891,11 @@ func (m *DefaultBruteForceLimits) contextValidateIdentityVerifyPassword(ctx cont
 func (m *DefaultBruteForceLimits) contextValidateMfa(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Mfa != nil {
+
+		if swag.IsZero(m.Mfa) { // not required
+			return nil
+		}
+
 		if err := m.Mfa.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("mfa")

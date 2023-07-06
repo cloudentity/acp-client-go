@@ -156,8 +156,8 @@ type FDXDynamicClientRegistrationResponse struct {
 	// The rule of consent granting by the end-user to indicate whether they must take action
 	// to revoke access or the consent will be revoked automatically.
 	//
-	// The acceptable values: "ONE_TIME", "PERSISTENT", "TIME_BOUND"
-	// Example: \"ONE_TIME\
+	// One of: `ONE_TIME`, `PERSISTENT`, `TIME_BOUND`
+	// Example: ONE_TIME
 	DurationType []DurationType `json:"duration_type"`
 
 	// An array of allowed OAuth client grant types.
@@ -195,7 +195,7 @@ type FDXDynamicClientRegistrationResponse struct {
 	// An array of the intermediaries for this Data Recipient.
 	Intermediaries []*Intermediary `json:"intermediaries"`
 
-	// An introspection endpoint authentication method configured for the client application.
+	// An introspection endpoint authentication method configured for the client application (read-only).
 	//
 	// If empty, the `token_endpoint_auth_method` is used.
 	//
@@ -273,7 +273,7 @@ type FDXDynamicClientRegistrationResponse struct {
 	// response types
 	ResponseTypes ResponseTypes `json:"response_types,omitempty"`
 
-	// A revocation endpoint authentication method configured for the client application.
+	// A revocation endpoint authentication method configured for the client application (read-only).
 	// If empty, the `token_endpoint_auth_method` is used.
 	//
 	// Cloudentity supports the following client authentication methods:
@@ -375,6 +375,9 @@ type FDXDynamicClientRegistrationResponse struct {
 	// token exchange
 	TokenExchange *ClientTokenExchangeConfiguration `json:"token_exchange,omitempty"`
 
+	// token ttls
+	TokenTtls *TokenTTLs `json:"token_ttls,omitempty"`
+
 	// Terms of Service URL.
 	TosURI string `json:"tos_uri,omitempty"`
 
@@ -387,6 +390,9 @@ type FDXDynamicClientRegistrationResponse struct {
 	// Example: 2022-05-08T01:11:51.1262916Z
 	// Format: date-time
 	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty"`
+
+	// If enabled the client application will be able to set its own token TTLs.
+	UseCustomTokenTtls bool `json:"use_custom_token_ttls,omitempty"`
 
 	// JWS alg algorithm REQUIRED for signing UserInfo Responses.
 	//
@@ -508,6 +514,10 @@ func (m *FDXDynamicClientRegistrationResponse) Validate(formats strfmt.Registry)
 	}
 
 	if err := m.validateTokenExchange(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTokenTtls(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1456,6 +1466,25 @@ func (m *FDXDynamicClientRegistrationResponse) validateTokenExchange(formats str
 	return nil
 }
 
+func (m *FDXDynamicClientRegistrationResponse) validateTokenTtls(formats strfmt.Registry) error {
+	if swag.IsZero(m.TokenTtls) { // not required
+		return nil
+	}
+
+	if m.TokenTtls != nil {
+		if err := m.TokenTtls.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("token_ttls")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("token_ttls")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *FDXDynamicClientRegistrationResponse) validateUpdatedAt(formats strfmt.Registry) error {
 	if swag.IsZero(m.UpdatedAt) { // not required
 		return nil
@@ -1557,6 +1586,10 @@ func (m *FDXDynamicClientRegistrationResponse) ContextValidate(ctx context.Conte
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateTokenTtls(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -1575,6 +1608,10 @@ func (m *FDXDynamicClientRegistrationResponse) contextValidateApplicationTypes(c
 func (m *FDXDynamicClientRegistrationResponse) contextValidateDurationType(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.DurationType); i++ {
+
+		if swag.IsZero(m.DurationType[i]) { // not required
+			return nil
+		}
 
 		if err := m.DurationType[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
@@ -1595,6 +1632,11 @@ func (m *FDXDynamicClientRegistrationResponse) contextValidateIntermediaries(ctx
 	for i := 0; i < len(m.Intermediaries); i++ {
 
 		if m.Intermediaries[i] != nil {
+
+			if swag.IsZero(m.Intermediaries[i]) { // not required
+				return nil
+			}
+
 			if err := m.Intermediaries[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("intermediaries" + "." + strconv.Itoa(i))
@@ -1613,6 +1655,11 @@ func (m *FDXDynamicClientRegistrationResponse) contextValidateIntermediaries(ctx
 func (m *FDXDynamicClientRegistrationResponse) contextValidateJwks(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Jwks != nil {
+
+		if swag.IsZero(m.Jwks) { // not required
+			return nil
+		}
+
 		if err := m.Jwks.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("jwks")
@@ -1629,6 +1676,11 @@ func (m *FDXDynamicClientRegistrationResponse) contextValidateJwks(ctx context.C
 func (m *FDXDynamicClientRegistrationResponse) contextValidatePrivacy(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Privacy != nil {
+
+		if swag.IsZero(m.Privacy) { // not required
+			return nil
+		}
+
 		if err := m.Privacy.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("privacy")
@@ -1661,6 +1713,11 @@ func (m *FDXDynamicClientRegistrationResponse) contextValidateRegistryReferences
 	for i := 0; i < len(m.RegistryReferences); i++ {
 
 		if m.RegistryReferences[i] != nil {
+
+			if swag.IsZero(m.RegistryReferences[i]) { // not required
+				return nil
+			}
+
 			if err := m.RegistryReferences[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("registry_references" + "." + strconv.Itoa(i))
@@ -1692,6 +1749,10 @@ func (m *FDXDynamicClientRegistrationResponse) contextValidateResponseTypes(ctx 
 
 func (m *FDXDynamicClientRegistrationResponse) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Status) { // not required
+		return nil
+	}
+
 	if err := m.Status.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("status")
@@ -1707,11 +1768,37 @@ func (m *FDXDynamicClientRegistrationResponse) contextValidateStatus(ctx context
 func (m *FDXDynamicClientRegistrationResponse) contextValidateTokenExchange(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.TokenExchange != nil {
+
+		if swag.IsZero(m.TokenExchange) { // not required
+			return nil
+		}
+
 		if err := m.TokenExchange.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("token_exchange")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("token_exchange")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *FDXDynamicClientRegistrationResponse) contextValidateTokenTtls(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.TokenTtls != nil {
+
+		if swag.IsZero(m.TokenTtls) { // not required
+			return nil
+		}
+
+		if err := m.TokenTtls.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("token_ttls")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("token_ttls")
 			}
 			return err
 		}

@@ -66,6 +66,14 @@ type CreateWebhookParams struct {
 	// Webhook.
 	Webhook *models.Webhook
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Wid.
 
 	   Authorization server id
@@ -136,6 +144,17 @@ func (o *CreateWebhookParams) SetWebhook(webhook *models.Webhook) {
 	o.Webhook = webhook
 }
 
+// WithIfMatch adds the ifMatch to the create webhook params
+func (o *CreateWebhookParams) WithIfMatch(ifMatch *string) *CreateWebhookParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the create webhook params
+func (o *CreateWebhookParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithWid adds the wid to the create webhook params
 func (o *CreateWebhookParams) WithWid(wid string) *CreateWebhookParams {
 	o.SetWid(wid)
@@ -156,6 +175,14 @@ func (o *CreateWebhookParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	var res []error
 	if o.Webhook != nil {
 		if err := r.SetBodyParam(o.Webhook); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

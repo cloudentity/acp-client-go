@@ -28,8 +28,8 @@ type FDXMetadata struct {
 	// The rule of consent granting by the end-user to indicate whether they must take action
 	// to revoke access or the consent will be revoked automatically.
 	//
-	// The acceptable values: "ONE_TIME", "PERSISTENT", "TIME_BOUND"
-	// Example: \"ONE_TIME\
+	// One of: `ONE_TIME`, `PERSISTENT`, `TIME_BOUND`
+	// Example: ONE_TIME
 	DurationType []DurationType `json:"duration_type"`
 
 	// An array of the intermediaries for this Data Recipient.
@@ -193,6 +193,10 @@ func (m *FDXMetadata) contextValidateDurationType(ctx context.Context, formats s
 
 	for i := 0; i < len(m.DurationType); i++ {
 
+		if swag.IsZero(m.DurationType[i]) { // not required
+			return nil
+		}
+
 		if err := m.DurationType[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("duration_type" + "." + strconv.Itoa(i))
@@ -212,6 +216,11 @@ func (m *FDXMetadata) contextValidateIntermediaries(ctx context.Context, formats
 	for i := 0; i < len(m.Intermediaries); i++ {
 
 		if m.Intermediaries[i] != nil {
+
+			if swag.IsZero(m.Intermediaries[i]) { // not required
+				return nil
+			}
+
 			if err := m.Intermediaries[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("intermediaries" + "." + strconv.Itoa(i))
@@ -232,6 +241,11 @@ func (m *FDXMetadata) contextValidateRegistryReferences(ctx context.Context, for
 	for i := 0; i < len(m.RegistryReferences); i++ {
 
 		if m.RegistryReferences[i] != nil {
+
+			if swag.IsZero(m.RegistryReferences[i]) { // not required
+				return nil
+			}
+
 			if err := m.RegistryReferences[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("registry_references" + "." + strconv.Itoa(i))
@@ -248,6 +262,10 @@ func (m *FDXMetadata) contextValidateRegistryReferences(ctx context.Context, for
 }
 
 func (m *FDXMetadata) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Status) { // not required
+		return nil
+	}
 
 	if err := m.Status.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

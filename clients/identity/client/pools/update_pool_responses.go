@@ -72,7 +72,7 @@ func (o *UpdatePoolReader) ReadResponse(response runtime.ClientResponse, consume
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /admin/pools/{ipID}] updatePool", response, response.Code())
 	}
 }
 
@@ -87,6 +87,15 @@ UpdatePoolOK describes a response with status code 200, with default header valu
 Identity Pool
 */
 type UpdatePoolOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.PoolResponse
 }
 
@@ -115,6 +124,11 @@ func (o *UpdatePoolOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the update pool o k response
+func (o *UpdatePoolOK) Code() int {
+	return 200
+}
+
 func (o *UpdatePoolOK) Error() string {
 	return fmt.Sprintf("[PUT /admin/pools/{ipID}][%d] updatePoolOK  %+v", 200, o.Payload)
 }
@@ -128,6 +142,13 @@ func (o *UpdatePoolOK) GetPayload() *models.PoolResponse {
 }
 
 func (o *UpdatePoolOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.PoolResponse)
 
@@ -176,6 +197,11 @@ func (o *UpdatePoolBadRequest) IsServerError() bool {
 // IsCode returns true when this update pool bad request response a status code equal to that given
 func (o *UpdatePoolBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the update pool bad request response
+func (o *UpdatePoolBadRequest) Code() int {
+	return 400
 }
 
 func (o *UpdatePoolBadRequest) Error() string {
@@ -241,6 +267,11 @@ func (o *UpdatePoolUnauthorized) IsCode(code int) bool {
 	return code == 401
 }
 
+// Code gets the status code for the update pool unauthorized response
+func (o *UpdatePoolUnauthorized) Code() int {
+	return 401
+}
+
 func (o *UpdatePoolUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /admin/pools/{ipID}][%d] updatePoolUnauthorized  %+v", 401, o.Payload)
 }
@@ -302,6 +333,11 @@ func (o *UpdatePoolForbidden) IsServerError() bool {
 // IsCode returns true when this update pool forbidden response a status code equal to that given
 func (o *UpdatePoolForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the update pool forbidden response
+func (o *UpdatePoolForbidden) Code() int {
+	return 403
 }
 
 func (o *UpdatePoolForbidden) Error() string {
@@ -367,6 +403,11 @@ func (o *UpdatePoolNotFound) IsCode(code int) bool {
 	return code == 404
 }
 
+// Code gets the status code for the update pool not found response
+func (o *UpdatePoolNotFound) Code() int {
+	return 404
+}
+
 func (o *UpdatePoolNotFound) Error() string {
 	return fmt.Sprintf("[PUT /admin/pools/{ipID}][%d] updatePoolNotFound  %+v", 404, o.Payload)
 }
@@ -428,6 +469,11 @@ func (o *UpdatePoolConflict) IsServerError() bool {
 // IsCode returns true when this update pool conflict response a status code equal to that given
 func (o *UpdatePoolConflict) IsCode(code int) bool {
 	return code == 409
+}
+
+// Code gets the status code for the update pool conflict response
+func (o *UpdatePoolConflict) Code() int {
+	return 409
 }
 
 func (o *UpdatePoolConflict) Error() string {
@@ -493,6 +539,11 @@ func (o *UpdatePoolUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
 }
 
+// Code gets the status code for the update pool unprocessable entity response
+func (o *UpdatePoolUnprocessableEntity) Code() int {
+	return 422
+}
+
 func (o *UpdatePoolUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /admin/pools/{ipID}][%d] updatePoolUnprocessableEntity  %+v", 422, o.Payload)
 }
@@ -554,6 +605,11 @@ func (o *UpdatePoolTooManyRequests) IsServerError() bool {
 // IsCode returns true when this update pool too many requests response a status code equal to that given
 func (o *UpdatePoolTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the update pool too many requests response
+func (o *UpdatePoolTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *UpdatePoolTooManyRequests) Error() string {

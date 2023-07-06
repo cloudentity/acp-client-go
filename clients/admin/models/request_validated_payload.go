@@ -54,6 +54,9 @@ type RequestValidatedPayload struct {
 	// invalid token
 	InvalidToken bool `json:"invalid_token,omitempty"`
 
+	// May act claims
+	MayActClaims map[string]interface{} `json:"may_act_claims,omitempty"`
+
 	// output
 	Output map[string]string `json:"output,omitempty"`
 
@@ -323,6 +326,11 @@ func (m *RequestValidatedPayload) ContextValidate(ctx context.Context, formats s
 func (m *RequestValidatedPayload) contextValidateAPI(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.API != nil {
+
+		if swag.IsZero(m.API) { // not required
+			return nil
+		}
+
 		if err := m.API.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("api")
@@ -337,6 +345,10 @@ func (m *RequestValidatedPayload) contextValidateAPI(ctx context.Context, format
 }
 
 func (m *RequestValidatedPayload) contextValidateClaims(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Claims) { // not required
+		return nil
+	}
 
 	if err := m.Claims.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -353,6 +365,11 @@ func (m *RequestValidatedPayload) contextValidateClaims(ctx context.Context, for
 func (m *RequestValidatedPayload) contextValidateGateway(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Gateway != nil {
+
+		if swag.IsZero(m.Gateway) { // not required
+			return nil
+		}
+
 		if err := m.Gateway.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("gateway")
@@ -369,6 +386,11 @@ func (m *RequestValidatedPayload) contextValidateGateway(ctx context.Context, fo
 func (m *RequestValidatedPayload) contextValidateResult(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Result != nil {
+
+		if swag.IsZero(m.Result) { // not required
+			return nil
+		}
+
 		if err := m.Result.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("result")
@@ -385,6 +407,11 @@ func (m *RequestValidatedPayload) contextValidateResult(ctx context.Context, for
 func (m *RequestValidatedPayload) contextValidateService(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Service != nil {
+
+		if swag.IsZero(m.Service) { // not required
+			return nil
+		}
+
 		if err := m.Service.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("service")

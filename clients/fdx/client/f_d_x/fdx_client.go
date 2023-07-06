@@ -47,6 +47,9 @@ type ClientService interface {
 	Accepts an OAuth 2.0 token and returns meta information surrounding the token along with the FDX consent.
 
 Authorization: Bearer token.
+
+To obtain a token, use the
+[Authorization code](https://cloudentity.com/developers/basics/oauth-grant-types/authorization-code-flow/) grant type.
 */
 func (a *Client) FdxConsentIntrospect(params *FdxConsentIntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FdxConsentIntrospectOK, error) {
 	// TODO: Validate the params before sending
@@ -85,9 +88,9 @@ func (a *Client) FdxConsentIntrospect(params *FdxConsentIntrospectParams, authIn
 }
 
 /*
-GetFDXConsent gets a consent grant
+GetFDXConsent gets consent grant
 
-Get a Consent Grant
+Retrieve FDX consent grant data by the consent identifier.
 */
 func (a *Client) GetFDXConsent(params *GetFDXConsentParams, opts ...ClientOption) (*GetFDXConsentOK, error) {
 	// TODO: Validate the params before sending
@@ -127,10 +130,13 @@ func (a *Client) GetFDXConsent(params *GetFDXConsentParams, opts ...ClientOption
 /*
 	GetFDXConsentRevocation retrieves consent revocation record
 
-	This API can be used used to get information about consent revocation.
+	Retrieve the details about consent revocation by the consent identifier.
 
-404 response code is returned in two cases:
-when consent does not exists or consent is not revoked
+This endpoint returns the `404` response code when:
+
+1. No consent with this ID exists.
+
+2. The specified consent isn't revoked.
 */
 func (a *Client) GetFDXConsentRevocation(params *GetFDXConsentRevocationParams, opts ...ClientOption) (*GetFDXConsentRevocationOK, error) {
 	// TODO: Validate the params before sending
@@ -168,12 +174,12 @@ func (a *Client) GetFDXConsentRevocation(params *GetFDXConsentRevocationParams, 
 }
 
 /*
-	RevokeFDXConsent revokes a consent
+	RevokeFDXConsent revokes f d x consent
 
-	This API can be used used to revoke user's consent.
+	Revoke a user's consent.
 
-As a result consent's state is changed to REVOKED
-and revocation reason and initiator passed in request body are saved.
+The `204` response indicates that the consent status is changed to `REVOKED`. The revocation `initiator` and `reason`
+passed in the request body are saved.
 */
 func (a *Client) RevokeFDXConsent(params *RevokeFDXConsentParams, opts ...ClientOption) (*RevokeFDXConsentNoContent, error) {
 	// TODO: Validate the params before sending

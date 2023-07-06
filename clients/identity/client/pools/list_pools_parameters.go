@@ -64,21 +64,45 @@ type ListPoolsParams struct {
 
 	/* AfterPoolID.
 
-	     optional list pools after given id
+	     An identity pool identifier.
+
+	Use it to navigate through the request pagination when the number of identity pools is greater than the
+	`limit` set for results in the response.
+
+	With `after_pool_id`, the list you obtain starts from the subsequent identity pool after the specified one. Also,
+	the response depends on the `sort` and `order` parameters, if any are passed.
+
 	AfterPoolID
 	*/
 	AfterPoolID *string
 
 	/* BeforePoolID.
 
-	     optional list pools before given id
+	     An identity pool identifier.
+
+	Use it to navigate through the request pagination when the number of identity pools is greater than the
+	`limit` set for the results in the response.
+
+	With `before_pool_id`, the list you obtain comprises identity pools up to the specified one. The specified
+	identity pool isn't included. Also, the response depends on the `sort` and `order` parameters, if any are
+	passed.
+
 	BeforePoolID
 	*/
 	BeforePoolID *string
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Limit.
 
-	     optional limit results
+	     Limit the number of results returned in the response.
+
 	Limit
 
 	     Format: int64
@@ -88,21 +112,24 @@ type ListPoolsParams struct {
 
 	/* Order.
 
-	     optional order pools by given direction
+	     Set the order of results returned in the response. Input: `acs`, `desc`.
+
 	Order
 	*/
 	Order *string
 
 	/* SearchPhrase.
 
-	     Optional search phrase: pool id OR pool name substring
+	     A search substring. Use the identity pool identifier or name as its value.
+
 	SearchPhrase
 	*/
 	SearchPhrase *string
 
 	/* Sort.
 
-	     optional sort pools by given field, one of: name, id
+	     Sort results returned in the response by `name` or `id`.
+
 	Sort
 	*/
 	Sort *string
@@ -193,6 +220,17 @@ func (o *ListPoolsParams) SetBeforePoolID(beforePoolID *string) {
 	o.BeforePoolID = beforePoolID
 }
 
+// WithIfMatch adds the ifMatch to the list pools params
+func (o *ListPoolsParams) WithIfMatch(ifMatch *string) *ListPoolsParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the list pools params
+func (o *ListPoolsParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithLimit adds the limit to the list pools params
 func (o *ListPoolsParams) WithLimit(limit *int64) *ListPoolsParams {
 	o.SetLimit(limit)
@@ -276,6 +314,14 @@ func (o *ListPoolsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 			if err := r.SetQueryParam("before_pool_id", qBeforePoolID); err != nil {
 				return err
 			}
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
 		}
 	}
 

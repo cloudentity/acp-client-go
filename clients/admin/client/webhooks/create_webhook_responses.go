@@ -66,7 +66,7 @@ func (o *CreateWebhookReader) ReadResponse(response runtime.ClientResponse, cons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /servers/{wid}/webhooks] createWebhook", response, response.Code())
 	}
 }
 
@@ -81,6 +81,15 @@ CreateWebhookCreated describes a response with status code 201, with default hea
 Webhook on create response
 */
 type CreateWebhookCreated struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.WebhookOnCreateResponse
 }
 
@@ -109,6 +118,11 @@ func (o *CreateWebhookCreated) IsCode(code int) bool {
 	return code == 201
 }
 
+// Code gets the status code for the create webhook created response
+func (o *CreateWebhookCreated) Code() int {
+	return 201
+}
+
 func (o *CreateWebhookCreated) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/webhooks][%d] createWebhookCreated  %+v", 201, o.Payload)
 }
@@ -122,6 +136,13 @@ func (o *CreateWebhookCreated) GetPayload() *models.WebhookOnCreateResponse {
 }
 
 func (o *CreateWebhookCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.WebhookOnCreateResponse)
 
@@ -141,7 +162,7 @@ func NewCreateWebhookBadRequest() *CreateWebhookBadRequest {
 /*
 CreateWebhookBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type CreateWebhookBadRequest struct {
 	Payload *models.Error
@@ -170,6 +191,11 @@ func (o *CreateWebhookBadRequest) IsServerError() bool {
 // IsCode returns true when this create webhook bad request response a status code equal to that given
 func (o *CreateWebhookBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the create webhook bad request response
+func (o *CreateWebhookBadRequest) Code() int {
+	return 400
 }
 
 func (o *CreateWebhookBadRequest) Error() string {
@@ -204,7 +230,7 @@ func NewCreateWebhookUnauthorized() *CreateWebhookUnauthorized {
 /*
 CreateWebhookUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type CreateWebhookUnauthorized struct {
 	Payload *models.Error
@@ -233,6 +259,11 @@ func (o *CreateWebhookUnauthorized) IsServerError() bool {
 // IsCode returns true when this create webhook unauthorized response a status code equal to that given
 func (o *CreateWebhookUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the create webhook unauthorized response
+func (o *CreateWebhookUnauthorized) Code() int {
+	return 401
 }
 
 func (o *CreateWebhookUnauthorized) Error() string {
@@ -267,7 +298,7 @@ func NewCreateWebhookForbidden() *CreateWebhookForbidden {
 /*
 CreateWebhookForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type CreateWebhookForbidden struct {
 	Payload *models.Error
@@ -296,6 +327,11 @@ func (o *CreateWebhookForbidden) IsServerError() bool {
 // IsCode returns true when this create webhook forbidden response a status code equal to that given
 func (o *CreateWebhookForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the create webhook forbidden response
+func (o *CreateWebhookForbidden) Code() int {
+	return 403
 }
 
 func (o *CreateWebhookForbidden) Error() string {
@@ -330,7 +366,7 @@ func NewCreateWebhookNotFound() *CreateWebhookNotFound {
 /*
 CreateWebhookNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type CreateWebhookNotFound struct {
 	Payload *models.Error
@@ -359,6 +395,11 @@ func (o *CreateWebhookNotFound) IsServerError() bool {
 // IsCode returns true when this create webhook not found response a status code equal to that given
 func (o *CreateWebhookNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the create webhook not found response
+func (o *CreateWebhookNotFound) Code() int {
+	return 404
 }
 
 func (o *CreateWebhookNotFound) Error() string {
@@ -393,7 +434,7 @@ func NewCreateWebhookUnprocessableEntity() *CreateWebhookUnprocessableEntity {
 /*
 CreateWebhookUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type CreateWebhookUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +463,11 @@ func (o *CreateWebhookUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this create webhook unprocessable entity response a status code equal to that given
 func (o *CreateWebhookUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the create webhook unprocessable entity response
+func (o *CreateWebhookUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *CreateWebhookUnprocessableEntity) Error() string {
@@ -456,7 +502,7 @@ func NewCreateWebhookTooManyRequests() *CreateWebhookTooManyRequests {
 /*
 CreateWebhookTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type CreateWebhookTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +531,11 @@ func (o *CreateWebhookTooManyRequests) IsServerError() bool {
 // IsCode returns true when this create webhook too many requests response a status code equal to that given
 func (o *CreateWebhookTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the create webhook too many requests response
+func (o *CreateWebhookTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *CreateWebhookTooManyRequests) Error() string {

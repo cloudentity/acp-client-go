@@ -54,7 +54,7 @@ func (o *GetClientSAMLMetadataReader) ReadResponse(response runtime.ClientRespon
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /clients/{cid}/saml/metadata] getClientSAMLMetadata", response, response.Code())
 	}
 }
 
@@ -69,6 +69,15 @@ GetClientSAMLMetadataOK describes a response with status code 200, with default 
 SAML Client metadata
 */
 type GetClientSAMLMetadataOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.SAMLClientMetadataResponse
 }
 
@@ -97,6 +106,11 @@ func (o *GetClientSAMLMetadataOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get client s a m l metadata o k response
+func (o *GetClientSAMLMetadataOK) Code() int {
+	return 200
+}
+
 func (o *GetClientSAMLMetadataOK) Error() string {
 	return fmt.Sprintf("[GET /clients/{cid}/saml/metadata][%d] getClientSAMLMetadataOK  %+v", 200, o.Payload)
 }
@@ -110,6 +124,13 @@ func (o *GetClientSAMLMetadataOK) GetPayload() *models.SAMLClientMetadataRespons
 }
 
 func (o *GetClientSAMLMetadataOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.SAMLClientMetadataResponse)
 
@@ -129,7 +150,7 @@ func NewGetClientSAMLMetadataUnauthorized() *GetClientSAMLMetadataUnauthorized {
 /*
 GetClientSAMLMetadataUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetClientSAMLMetadataUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +179,11 @@ func (o *GetClientSAMLMetadataUnauthorized) IsServerError() bool {
 // IsCode returns true when this get client s a m l metadata unauthorized response a status code equal to that given
 func (o *GetClientSAMLMetadataUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get client s a m l metadata unauthorized response
+func (o *GetClientSAMLMetadataUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetClientSAMLMetadataUnauthorized) Error() string {
@@ -192,7 +218,7 @@ func NewGetClientSAMLMetadataForbidden() *GetClientSAMLMetadataForbidden {
 /*
 GetClientSAMLMetadataForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetClientSAMLMetadataForbidden struct {
 	Payload *models.Error
@@ -221,6 +247,11 @@ func (o *GetClientSAMLMetadataForbidden) IsServerError() bool {
 // IsCode returns true when this get client s a m l metadata forbidden response a status code equal to that given
 func (o *GetClientSAMLMetadataForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get client s a m l metadata forbidden response
+func (o *GetClientSAMLMetadataForbidden) Code() int {
+	return 403
 }
 
 func (o *GetClientSAMLMetadataForbidden) Error() string {
@@ -255,7 +286,7 @@ func NewGetClientSAMLMetadataNotFound() *GetClientSAMLMetadataNotFound {
 /*
 GetClientSAMLMetadataNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetClientSAMLMetadataNotFound struct {
 	Payload *models.Error
@@ -284,6 +315,11 @@ func (o *GetClientSAMLMetadataNotFound) IsServerError() bool {
 // IsCode returns true when this get client s a m l metadata not found response a status code equal to that given
 func (o *GetClientSAMLMetadataNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the get client s a m l metadata not found response
+func (o *GetClientSAMLMetadataNotFound) Code() int {
+	return 404
 }
 
 func (o *GetClientSAMLMetadataNotFound) Error() string {
@@ -318,7 +354,7 @@ func NewGetClientSAMLMetadataTooManyRequests() *GetClientSAMLMetadataTooManyRequ
 /*
 GetClientSAMLMetadataTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetClientSAMLMetadataTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +383,11 @@ func (o *GetClientSAMLMetadataTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get client s a m l metadata too many requests response a status code equal to that given
 func (o *GetClientSAMLMetadataTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get client s a m l metadata too many requests response
+func (o *GetClientSAMLMetadataTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetClientSAMLMetadataTooManyRequests) Error() string {

@@ -66,7 +66,7 @@ func (o *UpdateOIDCIDPReader) ReadResponse(response runtime.ClientResponse, cons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /servers/{wid}/idps/oidc/{iid}] updateOIDCIDP", response, response.Code())
 	}
 }
 
@@ -109,6 +109,11 @@ func (o *UpdateOIDCIDPOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the update o Id c Id p o k response
+func (o *UpdateOIDCIDPOK) Code() int {
+	return 200
+}
+
 func (o *UpdateOIDCIDPOK) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/oidc/{iid}][%d] updateOIdCIdPOK  %+v", 200, o.Payload)
 }
@@ -141,7 +146,7 @@ func NewUpdateOIDCIDPBadRequest() *UpdateOIDCIDPBadRequest {
 /*
 UpdateOIDCIDPBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type UpdateOIDCIDPBadRequest struct {
 	Payload *models.Error
@@ -170,6 +175,11 @@ func (o *UpdateOIDCIDPBadRequest) IsServerError() bool {
 // IsCode returns true when this update o Id c Id p bad request response a status code equal to that given
 func (o *UpdateOIDCIDPBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the update o Id c Id p bad request response
+func (o *UpdateOIDCIDPBadRequest) Code() int {
+	return 400
 }
 
 func (o *UpdateOIDCIDPBadRequest) Error() string {
@@ -204,7 +214,7 @@ func NewUpdateOIDCIDPUnauthorized() *UpdateOIDCIDPUnauthorized {
 /*
 UpdateOIDCIDPUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type UpdateOIDCIDPUnauthorized struct {
 	Payload *models.Error
@@ -233,6 +243,11 @@ func (o *UpdateOIDCIDPUnauthorized) IsServerError() bool {
 // IsCode returns true when this update o Id c Id p unauthorized response a status code equal to that given
 func (o *UpdateOIDCIDPUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the update o Id c Id p unauthorized response
+func (o *UpdateOIDCIDPUnauthorized) Code() int {
+	return 401
 }
 
 func (o *UpdateOIDCIDPUnauthorized) Error() string {
@@ -267,7 +282,7 @@ func NewUpdateOIDCIDPForbidden() *UpdateOIDCIDPForbidden {
 /*
 UpdateOIDCIDPForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type UpdateOIDCIDPForbidden struct {
 	Payload *models.Error
@@ -296,6 +311,11 @@ func (o *UpdateOIDCIDPForbidden) IsServerError() bool {
 // IsCode returns true when this update o Id c Id p forbidden response a status code equal to that given
 func (o *UpdateOIDCIDPForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the update o Id c Id p forbidden response
+func (o *UpdateOIDCIDPForbidden) Code() int {
+	return 403
 }
 
 func (o *UpdateOIDCIDPForbidden) Error() string {
@@ -330,7 +350,7 @@ func NewUpdateOIDCIDPNotFound() *UpdateOIDCIDPNotFound {
 /*
 UpdateOIDCIDPNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type UpdateOIDCIDPNotFound struct {
 	Payload *models.Error
@@ -359,6 +379,11 @@ func (o *UpdateOIDCIDPNotFound) IsServerError() bool {
 // IsCode returns true when this update o Id c Id p not found response a status code equal to that given
 func (o *UpdateOIDCIDPNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the update o Id c Id p not found response
+func (o *UpdateOIDCIDPNotFound) Code() int {
+	return 404
 }
 
 func (o *UpdateOIDCIDPNotFound) Error() string {
@@ -393,7 +418,7 @@ func NewUpdateOIDCIDPUnprocessableEntity() *UpdateOIDCIDPUnprocessableEntity {
 /*
 UpdateOIDCIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type UpdateOIDCIDPUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +447,11 @@ func (o *UpdateOIDCIDPUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this update o Id c Id p unprocessable entity response a status code equal to that given
 func (o *UpdateOIDCIDPUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the update o Id c Id p unprocessable entity response
+func (o *UpdateOIDCIDPUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *UpdateOIDCIDPUnprocessableEntity) Error() string {
@@ -456,7 +486,7 @@ func NewUpdateOIDCIDPTooManyRequests() *UpdateOIDCIDPTooManyRequests {
 /*
 UpdateOIDCIDPTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type UpdateOIDCIDPTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +515,11 @@ func (o *UpdateOIDCIDPTooManyRequests) IsServerError() bool {
 // IsCode returns true when this update o Id c Id p too many requests response a status code equal to that given
 func (o *UpdateOIDCIDPTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the update o Id c Id p too many requests response
+func (o *UpdateOIDCIDPTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *UpdateOIDCIDPTooManyRequests) Error() string {

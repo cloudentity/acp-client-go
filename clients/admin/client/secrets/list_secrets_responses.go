@@ -54,7 +54,7 @@ func (o *ListSecretsReader) ReadResponse(response runtime.ClientResponse, consum
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /servers/{wid}/secrets] listSecrets", response, response.Code())
 	}
 }
 
@@ -69,6 +69,15 @@ ListSecretsOK describes a response with status code 200, with default header val
 Secrets
 */
 type ListSecretsOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.SecretsResponse
 }
 
@@ -97,6 +106,11 @@ func (o *ListSecretsOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the list secrets o k response
+func (o *ListSecretsOK) Code() int {
+	return 200
+}
+
 func (o *ListSecretsOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/secrets][%d] listSecretsOK  %+v", 200, o.Payload)
 }
@@ -110,6 +124,13 @@ func (o *ListSecretsOK) GetPayload() *models.SecretsResponse {
 }
 
 func (o *ListSecretsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.SecretsResponse)
 
@@ -129,7 +150,7 @@ func NewListSecretsBadRequest() *ListSecretsBadRequest {
 /*
 ListSecretsBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type ListSecretsBadRequest struct {
 	Payload *models.Error
@@ -158,6 +179,11 @@ func (o *ListSecretsBadRequest) IsServerError() bool {
 // IsCode returns true when this list secrets bad request response a status code equal to that given
 func (o *ListSecretsBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the list secrets bad request response
+func (o *ListSecretsBadRequest) Code() int {
+	return 400
 }
 
 func (o *ListSecretsBadRequest) Error() string {
@@ -192,7 +218,7 @@ func NewListSecretsUnauthorized() *ListSecretsUnauthorized {
 /*
 ListSecretsUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ListSecretsUnauthorized struct {
 	Payload *models.Error
@@ -221,6 +247,11 @@ func (o *ListSecretsUnauthorized) IsServerError() bool {
 // IsCode returns true when this list secrets unauthorized response a status code equal to that given
 func (o *ListSecretsUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the list secrets unauthorized response
+func (o *ListSecretsUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ListSecretsUnauthorized) Error() string {
@@ -255,7 +286,7 @@ func NewListSecretsForbidden() *ListSecretsForbidden {
 /*
 ListSecretsForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ListSecretsForbidden struct {
 	Payload *models.Error
@@ -284,6 +315,11 @@ func (o *ListSecretsForbidden) IsServerError() bool {
 // IsCode returns true when this list secrets forbidden response a status code equal to that given
 func (o *ListSecretsForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the list secrets forbidden response
+func (o *ListSecretsForbidden) Code() int {
+	return 403
 }
 
 func (o *ListSecretsForbidden) Error() string {
@@ -318,7 +354,7 @@ func NewListSecretsTooManyRequests() *ListSecretsTooManyRequests {
 /*
 ListSecretsTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ListSecretsTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +383,11 @@ func (o *ListSecretsTooManyRequests) IsServerError() bool {
 // IsCode returns true when this list secrets too many requests response a status code equal to that given
 func (o *ListSecretsTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the list secrets too many requests response
+func (o *ListSecretsTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ListSecretsTooManyRequests) Error() string {

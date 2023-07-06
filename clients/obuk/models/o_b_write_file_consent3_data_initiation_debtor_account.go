@@ -169,6 +169,7 @@ func (m *OBWriteFileConsent3DataInitiationDebtorAccount) ContextValidate(ctx con
 func (m *OBWriteFileConsent3DataInitiationDebtorAccount) contextValidateIdentification(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Identification != nil {
+
 		if err := m.Identification.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Identification")
@@ -185,6 +186,7 @@ func (m *OBWriteFileConsent3DataInitiationDebtorAccount) contextValidateIdentifi
 func (m *OBWriteFileConsent3DataInitiationDebtorAccount) contextValidateSchemeName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.SchemeName != nil {
+
 		if err := m.SchemeName.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("SchemeName")
@@ -199,6 +201,10 @@ func (m *OBWriteFileConsent3DataInitiationDebtorAccount) contextValidateSchemeNa
 }
 
 func (m *OBWriteFileConsent3DataInitiationDebtorAccount) contextValidateSecondaryIdentification(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SecondaryIdentification) { // not required
+		return nil
+	}
 
 	if err := m.SecondaryIdentification.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

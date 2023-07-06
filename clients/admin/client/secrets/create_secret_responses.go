@@ -72,7 +72,7 @@ func (o *CreateSecretReader) ReadResponse(response runtime.ClientResponse, consu
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /servers/{wid}/secrets] createSecret", response, response.Code())
 	}
 }
 
@@ -87,6 +87,15 @@ CreateSecretCreated describes a response with status code 201, with default head
 Secret
 */
 type CreateSecretCreated struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.Secret
 }
 
@@ -115,6 +124,11 @@ func (o *CreateSecretCreated) IsCode(code int) bool {
 	return code == 201
 }
 
+// Code gets the status code for the create secret created response
+func (o *CreateSecretCreated) Code() int {
+	return 201
+}
+
 func (o *CreateSecretCreated) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/secrets][%d] createSecretCreated  %+v", 201, o.Payload)
 }
@@ -128,6 +142,13 @@ func (o *CreateSecretCreated) GetPayload() *models.Secret {
 }
 
 func (o *CreateSecretCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.Secret)
 
@@ -147,7 +168,7 @@ func NewCreateSecretBadRequest() *CreateSecretBadRequest {
 /*
 CreateSecretBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type CreateSecretBadRequest struct {
 	Payload *models.Error
@@ -176,6 +197,11 @@ func (o *CreateSecretBadRequest) IsServerError() bool {
 // IsCode returns true when this create secret bad request response a status code equal to that given
 func (o *CreateSecretBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the create secret bad request response
+func (o *CreateSecretBadRequest) Code() int {
+	return 400
 }
 
 func (o *CreateSecretBadRequest) Error() string {
@@ -210,7 +236,7 @@ func NewCreateSecretUnauthorized() *CreateSecretUnauthorized {
 /*
 CreateSecretUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type CreateSecretUnauthorized struct {
 	Payload *models.Error
@@ -239,6 +265,11 @@ func (o *CreateSecretUnauthorized) IsServerError() bool {
 // IsCode returns true when this create secret unauthorized response a status code equal to that given
 func (o *CreateSecretUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the create secret unauthorized response
+func (o *CreateSecretUnauthorized) Code() int {
+	return 401
 }
 
 func (o *CreateSecretUnauthorized) Error() string {
@@ -273,7 +304,7 @@ func NewCreateSecretForbidden() *CreateSecretForbidden {
 /*
 CreateSecretForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type CreateSecretForbidden struct {
 	Payload *models.Error
@@ -302,6 +333,11 @@ func (o *CreateSecretForbidden) IsServerError() bool {
 // IsCode returns true when this create secret forbidden response a status code equal to that given
 func (o *CreateSecretForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the create secret forbidden response
+func (o *CreateSecretForbidden) Code() int {
+	return 403
 }
 
 func (o *CreateSecretForbidden) Error() string {
@@ -336,7 +372,7 @@ func NewCreateSecretNotFound() *CreateSecretNotFound {
 /*
 CreateSecretNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type CreateSecretNotFound struct {
 	Payload *models.Error
@@ -365,6 +401,11 @@ func (o *CreateSecretNotFound) IsServerError() bool {
 // IsCode returns true when this create secret not found response a status code equal to that given
 func (o *CreateSecretNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the create secret not found response
+func (o *CreateSecretNotFound) Code() int {
+	return 404
 }
 
 func (o *CreateSecretNotFound) Error() string {
@@ -399,7 +440,7 @@ func NewCreateSecretConflict() *CreateSecretConflict {
 /*
 CreateSecretConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type CreateSecretConflict struct {
 	Payload *models.Error
@@ -428,6 +469,11 @@ func (o *CreateSecretConflict) IsServerError() bool {
 // IsCode returns true when this create secret conflict response a status code equal to that given
 func (o *CreateSecretConflict) IsCode(code int) bool {
 	return code == 409
+}
+
+// Code gets the status code for the create secret conflict response
+func (o *CreateSecretConflict) Code() int {
+	return 409
 }
 
 func (o *CreateSecretConflict) Error() string {
@@ -462,7 +508,7 @@ func NewCreateSecretUnprocessableEntity() *CreateSecretUnprocessableEntity {
 /*
 CreateSecretUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type CreateSecretUnprocessableEntity struct {
 	Payload *models.Error
@@ -491,6 +537,11 @@ func (o *CreateSecretUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this create secret unprocessable entity response a status code equal to that given
 func (o *CreateSecretUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the create secret unprocessable entity response
+func (o *CreateSecretUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *CreateSecretUnprocessableEntity) Error() string {
@@ -525,7 +576,7 @@ func NewCreateSecretTooManyRequests() *CreateSecretTooManyRequests {
 /*
 CreateSecretTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type CreateSecretTooManyRequests struct {
 	Payload *models.Error
@@ -554,6 +605,11 @@ func (o *CreateSecretTooManyRequests) IsServerError() bool {
 // IsCode returns true when this create secret too many requests response a status code equal to that given
 func (o *CreateSecretTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the create secret too many requests response
+func (o *CreateSecretTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *CreateSecretTooManyRequests) Error() string {

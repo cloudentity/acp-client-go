@@ -84,6 +84,11 @@ func (m *DCRCreatedEventPayload) ContextValidate(ctx context.Context, formats st
 func (m *DCRCreatedEventPayload) contextValidateClientDetails(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ClientDetails != nil {
+
+		if swag.IsZero(m.ClientDetails) { // not required
+			return nil
+		}
+
 		if err := m.ClientDetails.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("client_details")

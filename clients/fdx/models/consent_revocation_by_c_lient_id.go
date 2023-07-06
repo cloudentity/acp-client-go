@@ -75,6 +75,11 @@ func (m *ConsentRevocationByCLientID) ContextValidate(ctx context.Context, forma
 func (m *ConsentRevocationByCLientID) contextValidateRevocationDetails(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.RevocationDetails != nil {
+
+		if swag.IsZero(m.RevocationDetails) { // not required
+			return nil
+		}
+
 		if err := m.RevocationDetails.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("RevocationDetails")

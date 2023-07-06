@@ -22,7 +22,7 @@ type BrazilConsent struct {
 	// account ids
 	AccountIds []string `json:"account_ids"`
 
-	// Client identifier
+	// Client application identifier.
 	// Example: \"cauqo9c9vpbs0aj2b2v0\
 	ClientID string `json:"client_id,omitempty"`
 
@@ -60,7 +60,7 @@ type BrazilConsent struct {
 	// request hash
 	RequestHash string `json:"request_hash,omitempty"`
 
-	// Server / Workspace identifier
+	// Server / Workspace identifier.
 	// Example: \"server\
 	ServerID string `json:"server_id,omitempty"`
 
@@ -73,7 +73,7 @@ type BrazilConsent struct {
 	// status
 	Status string `json:"status,omitempty"`
 
-	// Tenant identifier
+	// Tenant identifier.
 	// Example: \"tenant\
 	TenantID string `json:"tenant_id,omitempty"`
 
@@ -305,6 +305,11 @@ func (m *BrazilConsent) ContextValidate(ctx context.Context, formats strfmt.Regi
 func (m *BrazilConsent) contextValidateCustomerDataAccessConsent(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CustomerDataAccessConsent != nil {
+
+		if swag.IsZero(m.CustomerDataAccessConsent) { // not required
+			return nil
+		}
+
 		if err := m.CustomerDataAccessConsent.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("customer_data_access_consent")
@@ -321,6 +326,11 @@ func (m *BrazilConsent) contextValidateCustomerDataAccessConsent(ctx context.Con
 func (m *BrazilConsent) contextValidateCustomerDataAccessConsentV2(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CustomerDataAccessConsentV2 != nil {
+
+		if swag.IsZero(m.CustomerDataAccessConsentV2) { // not required
+			return nil
+		}
+
 		if err := m.CustomerDataAccessConsentV2.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("customer_data_access_consent_v2")
@@ -337,6 +347,11 @@ func (m *BrazilConsent) contextValidateCustomerDataAccessConsentV2(ctx context.C
 func (m *BrazilConsent) contextValidateCustomerInsuranceDataAccessConsent(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CustomerInsuranceDataAccessConsent != nil {
+
+		if swag.IsZero(m.CustomerInsuranceDataAccessConsent) { // not required
+			return nil
+		}
+
 		if err := m.CustomerInsuranceDataAccessConsent.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("customer_insurance_data_access_consent")
@@ -353,6 +368,11 @@ func (m *BrazilConsent) contextValidateCustomerInsuranceDataAccessConsent(ctx co
 func (m *BrazilConsent) contextValidateCustomerPaymentConsent(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CustomerPaymentConsent != nil {
+
+		if swag.IsZero(m.CustomerPaymentConsent) { // not required
+			return nil
+		}
+
 		if err := m.CustomerPaymentConsent.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("customer_payment_consent")
@@ -369,6 +389,11 @@ func (m *BrazilConsent) contextValidateCustomerPaymentConsent(ctx context.Contex
 func (m *BrazilConsent) contextValidateCustomerPaymentConsentV2(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CustomerPaymentConsentV2 != nil {
+
+		if swag.IsZero(m.CustomerPaymentConsentV2) { // not required
+			return nil
+		}
+
 		if err := m.CustomerPaymentConsentV2.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("customer_payment_consent_v2")
@@ -384,6 +409,10 @@ func (m *BrazilConsent) contextValidateCustomerPaymentConsentV2(ctx context.Cont
 
 func (m *BrazilConsent) contextValidateSpecVersion(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.SpecVersion) { // not required
+		return nil
+	}
+
 	if err := m.SpecVersion.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("spec_version")
@@ -397,6 +426,10 @@ func (m *BrazilConsent) contextValidateSpecVersion(ctx context.Context, formats 
 }
 
 func (m *BrazilConsent) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Type) { // not required
+		return nil
+	}
 
 	if err := m.Type.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

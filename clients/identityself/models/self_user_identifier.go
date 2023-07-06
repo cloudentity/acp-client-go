@@ -32,7 +32,7 @@ type SelfUserIdentifier struct {
 	// type
 	// Example: email
 	// Required: true
-	// Enum: [email mobile uid external]
+	// Enum: [email mobile uid external federated]
 	Type string `json:"type"`
 }
 
@@ -84,7 +84,7 @@ var selfUserIdentifierTypeTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["email","mobile","uid","external"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["email","mobile","uid","external","federated"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -105,6 +105,9 @@ const (
 
 	// SelfUserIdentifierTypeExternal captures enum value "external"
 	SelfUserIdentifierTypeExternal string = "external"
+
+	// SelfUserIdentifierTypeFederated captures enum value "federated"
+	SelfUserIdentifierTypeFederated string = "federated"
 )
 
 // prop value enum

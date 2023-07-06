@@ -48,7 +48,7 @@ func (o *ListClaimsReader) ReadResponse(response runtime.ClientResponse, consume
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /servers/{wid}/claims] listClaims", response, response.Code())
 	}
 }
 
@@ -63,6 +63,15 @@ ListClaimsOK describes a response with status code 200, with default header valu
 Claims
 */
 type ListClaimsOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.Claims
 }
 
@@ -91,6 +100,11 @@ func (o *ListClaimsOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the list claims o k response
+func (o *ListClaimsOK) Code() int {
+	return 200
+}
+
 func (o *ListClaimsOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/claims][%d] listClaimsOK  %+v", 200, o.Payload)
 }
@@ -104,6 +118,13 @@ func (o *ListClaimsOK) GetPayload() *models.Claims {
 }
 
 func (o *ListClaimsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.Claims)
 
@@ -123,7 +144,7 @@ func NewListClaimsUnauthorized() *ListClaimsUnauthorized {
 /*
 ListClaimsUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ListClaimsUnauthorized struct {
 	Payload *models.Error
@@ -152,6 +173,11 @@ func (o *ListClaimsUnauthorized) IsServerError() bool {
 // IsCode returns true when this list claims unauthorized response a status code equal to that given
 func (o *ListClaimsUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the list claims unauthorized response
+func (o *ListClaimsUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ListClaimsUnauthorized) Error() string {
@@ -186,7 +212,7 @@ func NewListClaimsForbidden() *ListClaimsForbidden {
 /*
 ListClaimsForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ListClaimsForbidden struct {
 	Payload *models.Error
@@ -215,6 +241,11 @@ func (o *ListClaimsForbidden) IsServerError() bool {
 // IsCode returns true when this list claims forbidden response a status code equal to that given
 func (o *ListClaimsForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the list claims forbidden response
+func (o *ListClaimsForbidden) Code() int {
+	return 403
 }
 
 func (o *ListClaimsForbidden) Error() string {
@@ -249,7 +280,7 @@ func NewListClaimsTooManyRequests() *ListClaimsTooManyRequests {
 /*
 ListClaimsTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ListClaimsTooManyRequests struct {
 	Payload *models.Error
@@ -278,6 +309,11 @@ func (o *ListClaimsTooManyRequests) IsServerError() bool {
 // IsCode returns true when this list claims too many requests response a status code equal to that given
 func (o *ListClaimsTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the list claims too many requests response
+func (o *ListClaimsTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ListClaimsTooManyRequests) Error() string {

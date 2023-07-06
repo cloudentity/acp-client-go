@@ -248,6 +248,7 @@ func (m *OpenbankingBrasilPaymentV2Payment) ContextValidate(ctx context.Context,
 func (m *OpenbankingBrasilPaymentV2Payment) contextValidateDetails(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Details != nil {
+
 		if err := m.Details.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("details")
@@ -264,6 +265,11 @@ func (m *OpenbankingBrasilPaymentV2Payment) contextValidateDetails(ctx context.C
 func (m *OpenbankingBrasilPaymentV2Payment) contextValidateSchedule(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Schedule != nil {
+
+		if swag.IsZero(m.Schedule) { // not required
+			return nil
+		}
+
 		if err := m.Schedule.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("schedule")

@@ -190,9 +190,9 @@ definitions:
         description: |-
           Additional actor token claims
 
-          Claims from the actor token that will be injected into exchanged token under `act` claim.
+          Claims from the actor token that will be injected into the exchanged token under the `act` claim.
 
-          Applies only for token exchange delegation flow.
+          Applies for the token exchange delegation flow only.
         items:
           type: string
         type: array
@@ -200,6 +200,9 @@ definitions:
     type: object
   Confirmation:
     properties:
+      jkt:
+        type: string
+        x-nullable: false
       x5t#S256:
         type: string
         x-nullable: false
@@ -246,7 +249,7 @@ definitions:
       application_type:
         default: web
         description: |-
-          String represented type of a client application
+          The client application type.
 
           Client applications can be either of a `web` or `native` types.
 
@@ -255,7 +258,7 @@ definitions:
           Native applications include single-page applications (SPAs) and mobile or desktop
           applications.
 
-          Depending on the type of your application remember to choose appropriate security measures.
+          Apply security measures according to the type of your application.
         example: web
         type: string
         x-nullable: false
@@ -287,9 +290,10 @@ definitions:
         default:
         - client_id
         description: |-
-          Identity of the intended recipients (the audience)
+          Identity of the intended recipients (the audience).
 
-          Typically, the audience may be a single resources server or a list of resource servers.
+          Typically, the audience is a single resource server or a list of resource servers.
+
           It is considered a good practice to limit the audience of the token for security purposes.
         items:
           type: string
@@ -298,9 +302,11 @@ definitions:
       authorization_encrypted_response_alg:
         description: |-
           Algorithm used for encrypting authorization responses.
-          If both signing and encryption are requested, the response will be signed then encrypted,
-          with the result being a Nested JWT, as defined in JWT [RFC7519].
-          The default, if omitted, is that no encryption is performed.
+
+          If both signing and encryption are requested, the response is first signed, and then encrypted.
+          As a result, a Nested JWT is obtained, as defined in JWT [RFC7519].
+
+          If omitted, no encryption is applied by default.
         enum:
         - RSA-OAEP
         - RSA-OAEP-256
@@ -310,9 +316,10 @@ definitions:
       authorization_encrypted_response_enc:
         description: |-
           Algorithm used for encrypting authorization responses.
-          If authorization_encrypted_response_alg is specified, the default for this value is A128CBC-HS256.
-          When authorization_encrypted_response_enc is included, authorization_encrypted_response_alg
-          MUST also be provided.
+
+          With `authorization_encrypted_response_alg` specified, the default value is `A128CBC-HS256`.
+          When `authorization_encrypted_response_enc` is included, `authorization_encrypted_response_alg`
+          MUST also be provided in a request.
         enum:
         - A256GCM
         - A128CBC-HS256
@@ -322,82 +329,96 @@ definitions:
       authorization_signed_response_alg:
         description: |-
           Algorithm used for signing authorization responses.
-          If this is specified, the response will be signed using JWS and the configured algorithm.
-          The algorithm none is not allowed.
+
+          With this parameter specified, the response is signed using JWS and according to the configured algorithm.
+
+          `none` isn't allowed.
         example: RS256
         type: string
         x-nullable: false
       backchannel_authentication_request_signing_alg:
         description: |-
-          OPTIONAL. The JWS algorithm alg value that the Client will use for signing authentication requests.
-          When omitted, the Client will not send signed authentication requests.
+          OPTIONAL. The JWS alg algorithm value used by the client application to sign authentication requests.
+
+          When omitted, the client application doesn't send signed authentication requests.
         type: string
         x-nullable: false
       backchannel_client_notification_endpoint:
         description: |-
-          REQUIRED if the token delivery mode is set to ping or push.
-          This is the endpoint to which the OP will post a notification after a successful or failed end-user authentication.
-          It MUST be an HTTPS URL.
+          REQUIRED for requests when the client application uses CIBA as an authorization grant type, and the token
+          delivery mode is set to `ping` or `push`.
+
+          This parameter is the endpoint where an OP (OpenID Provider) posts a notification after end-user authentication.
+
+          Input: an HTTPS URL.
         type: string
         x-nullable: false
       backchannel_token_delivery_mode:
-        description: 'REQUIRED. One of the following values: poll, ping, or push.'
+        description: |-
+          REQUIRED for requests when the client application uses CIBA as an authorization grant type.
+
+          Input: `poll`, `ping`, or `push`.
         type: string
         x-nullable: false
       backchannel_user_code_parameter:
         description: |-
-          OPTIONAL. Boolean value specifying whether the Client supports the user_code parameter.
-          If omitted, the default value is false.
-          This parameter only applies when OP parameter backchannel_user_code_parameter_supported is true.
+          OPTIONAL. A boolean value indicating the `user_code` parameter support by the client application.
+
+          If omitted, the default value is `false`.
+
+          This applies only when the `backchannel_user_code_parameter_supported` OP parameter is `true`.
         type: boolean
         x-nullable: false
       client_id_issued_at:
         description: |-
-          Time at which the client identifier was issued.
+          The client identifier time of issue.
 
-          The time is represented as the number of seconds from
-          1970-01-01T00:00:00Z as measured in UTC until the date/time of issuance.
+          The value is the number of seconds between 1970-01-01T00:00:00Z (UTC) and the date/time of issue.
         format: int64
         type: integer
         x-nullable: false
       client_name:
-        description: Human readable name of a client application
+        description: Human-readable name of a client application.
         example: My app
         type: string
         x-nullable: false
       client_secret_expires_at:
         description: |-
-          The `client_secret_expires_at` holds an integer that defines the time at which the client
-          secret expires
+          The client secret expiration time.
 
-          If the client secret does not expire, the value should be set to `0`.
+          If the client secret does not expire, `client_secret_expires_at` = `0`.
         format: int64
         type: integer
         x-nullable: false
       client_uri:
-        description: URI of a client application
+        description: URI of a client application.
         type: string
         x-nullable: false
       created_at:
-        description: Date when the client was created
+        description: Date when the client application was created.
         example: "2022-04-07T19:17:31.323187Z"
         format: date-time
         type: string
         x-nullable: false
       description:
-        description: Description of a client application
+        description: Description of the client application.
         type: string
+        x-nullable: false
+      dpop_bound_access_tokens:
+        description: |-
+          Boolean value specifying whether the client always uses DPoP for token requests
+          If true, the authorization server will reject token requests from this client that do not contain the DPoP header.
+        type: boolean
         x-nullable: false
       grant_types:
         default:
         - authorization_code
         description: |-
-          An array of allowed OAuth client grant types
+          An array of allowed OAuth client grant types.
 
           The `grantTypes` array stores OAuth flows that are allowed for a given client application.
 
-          To know more about OAuth grant flows, see the
-          [ACP grant flows documentation](https://docs.authorization.cloudentity.com/features/oauth/grant_flows/).
+          [Read more](https://cloudentity.com/developers/basics/oauth-grant-types/grant-types-overview/) about grant types.
         example:
         - password
         - refresh_token
@@ -419,16 +440,16 @@ definitions:
         type: array
         x-nullable: false
       id_token_encrypted_response_alg:
-        description: JWE alg algorithm for encrypting the ID Token issued to this
-          Client
+        description: JWE alg algorithm for encrypting the ID token issued to this
+          client application.
         enum:
         - RSA-OAEP
         - RSA-OAEP-256
         type: string
         x-nullable: false
       id_token_encrypted_response_enc:
-        description: JWE enc algorithm for encrypting the ID Token issued to this
-          Client
+        description: JWE enc algorithm for encrypting the ID token issued to this
+          client application.
         enum:
         - A256GCM
         - A128CBC-HS256
@@ -436,7 +457,7 @@ definitions:
         x-nullable: false
       id_token_signed_response_alg:
         description: |-
-          Algorithm for signing ID tokens issued for a client application
+          Algorithm for signing ID tokens issued for a client application.
 
           The default value depends on authorization server configuration.
         enum:
@@ -449,14 +470,15 @@ definitions:
       introspection_endpoint_auth_method:
         default: client_secret_basic
         description: |-
-          Introspection endpoint authentication method configured for a client application
-          If empty, the token_endpoint_auth_method will be used
+          An introspection endpoint authentication method configured for the client application (read-only).
 
-          ACP supports the following client authentication methods:
-          client_secret_basic, client_secret_post, client_secret_jwt, private_key_jwt,
-          self_signed_tls_client_auth, tls_client_auth, none.
+          If empty, the `token_endpoint_auth_method` is used.
 
-          To learn more, see the [ACP client authentication documentation](https://docs.authorization.cloudentity.com/features/oauth/client_auth/)
+          Cloudentity supports the following client authentication methods:
+          `client_secret_basic`, `client_secret_post`, `client_secret_jwt`, `private_key_jwt`,
+          `self_signed_tls_client_auth`, `tls_client_auth`, `none`.
+
+          [Read more](https://cloudentity.com/developers/basics/oauth-client-authentication/client-authentication-overview/) about client authentication.
         enum:
         - client_secret_basic
         - client_secret_post
@@ -471,25 +493,26 @@ definitions:
       jwks:
         $ref: '#/definitions/ClientJWKs'
       jwks_uri:
-        description: |-
-          URL of JSON Web Key Set containing the public keys used by a client application to authenticate itself
-          with ACP
+        description: A URL of JSON Web Key Set with the public keys used by a client
+          application to authenticate to Cloudentity.
         type: string
         x-nullable: false
       logo_uri:
-        description: Logo URI
+        description: Logo URI.
         type: string
         x-nullable: false
       organisation_id:
         description: |-
-          External organisation ID
+          External organization identifier. It is a unique string assigned by the CDR Register to identify an Accredited
+          Data Recipient Brand.
 
-          This field is used as an aud for message signing
+          The value obtained is used as the `aud` claim for message signing, for example, when a JSON Web Token (JWT) is
+          required for authorization, and represents the audience(s) the JWT is intended for.
         example: 5647fe90-f6bc-11eb-9a03-0242ac130003
         type: string
         x-nullable: false
       policy_uri:
-        description: Policy URL to read about how the profile data is used
+        description: Policy URL to read about how the profile data is used.
         type: string
         x-nullable: false
       privacy:
@@ -508,7 +531,7 @@ definitions:
       request_object_encryption_enc:
         description: |-
           Optional JWE enc algorithm the client is declaring that it may use for encrypting Request Objects
-          When request_object_encryption_enc is included, request_object_encryption_alg MUST also be provided.
+          When `request_object_encryption_enc` is included, `request_object_encryption_alg` MUST also be provided.
         enum:
         - A256GCM
         - A128CBC-HS256
@@ -520,8 +543,8 @@ definitions:
         description: |-
           Request object signing algorithm for the token endpoint
 
-          ACP supports signing tokens using the RS256, ES256, and PS256 algorithms. If you do not want
-          to use a signing algorithm, the value of the parameter should be set to `none`.
+          Cloudentity supports signing tokens with the RS256, ES256, and PS256 algorithms. If you do not want
+          to use a signing algorithm, set the value of this parameter to `none`.
         enum:
         - any
         - none
@@ -548,14 +571,14 @@ definitions:
       revocation_endpoint_auth_method:
         default: client_secret_basic
         description: |-
-          Revocation endpoint authentication method configured for a client application
-          If empty, the token_endpoint_auth_method will be used
+          A revocation endpoint authentication method configured for the client application (read-only).
+          If empty, the `token_endpoint_auth_method` is used.
 
-          ACP supports the following client authentication methods:
-          client_secret_basic, client_secret_post, client_secret_jwt, private_key_jwt,
-          self_signed_tls_client_auth, tls_client_auth, none.
+          Cloudentity supports the following client authentication methods:
+          `client_secret_basic`, `client_secret_post`, `client_secret_jwt`, `private_key_jwt`,
+          `self_signed_tls_client_auth`, `tls_client_auth`, `none`.
 
-          To learn more, see the [ACP client authentication documentation](https://docs.authorization.cloudentity.com/features/oauth/client_auth/)
+          [Read more](https://cloudentity.com/developers/basics/oauth-client-authentication/client-authentication-overview/) about client authentication.
         enum:
         - client_secret_basic
         - client_secret_post
@@ -568,7 +591,8 @@ definitions:
         type: string
         x-nullable: false
       scope:
-        description: Space separated scopes for compatibility with OAuth specification
+        description: Space-separated list of scopes for compatibility with the OAuth
+          specification.
         example: email offline_access openid
         type: string
         x-nullable: false
@@ -584,18 +608,23 @@ definitions:
         x-nullable: false
       sector_identifier_uri:
         description: |-
-          URL using the HTTPS scheme to be used in calculating Pseudonymous Identifiers by the OpenID Provider. The URL references a
-          file with a single JSON array of redirect_uri values.
-        example: https://api.jsonbin.io/b/5db6ef08688fed59d2841f1e
+          OPTIONAL. [A URL using the HTTPS scheme](https://openid.net/specs/openid-connect-registration-1_0.html#SectorIdentifierValidation).
+          It must reference a JSON file with the array of `redirect_uri` values.
+
+          Pass this parameter when you use multiple domains in your `redirect_uris` or need a mechanism to allow changes in
+          domain without affecting consumer consent.
+
+          [Read more](https://openid.net/specs/openid-connect-core-1_0.html)
         type: string
         x-nullable: false
       software_id:
         description: |-
           A unique identifier string (e.g., a Universally Unique Identifier
-          (UUID)) assigned by the client developer or software publisher
-          The "software_id" SHOULD remain the same across
-          multiple updates or versions of the same piece of software.  The
-          value of this field is not intended to be human readable and is
+          (UUID)) assigned by the client developer or software publisher.
+
+          The `software_id` MUST remain the same across
+          multiple updates or versions of the same software package. The
+          value of this field is not intended to be human-readable and is
           usually opaque to the client and authorization server.
         type: string
         x-nullable: false
@@ -619,9 +648,9 @@ definitions:
       software_version:
         description: |-
           A version identifier string for the client software identified by
-          "software_id".  The value of the "software_version" SHOULD change
-          on any update to the client software identified by the same
-          "software_id".
+          `software_id`. The value of the `software_version` MUST be changed
+          with any update of the client software identified by the same
+          `software_id`.
         type: string
         x-nullable: false
       subject_type:
@@ -631,8 +660,8 @@ definitions:
 
           Stores information if the subject identifier is of the `public` or the `pairwise` type.
 
-          Subject identifiers are locally unique and never reassigned identifiers within the Issuer
-          for the end-user and are inteded to be consumed by client applications. There are two types
+          Subject identifiers identify an end-user. They are locally unique and never reassigned within the Issuer,
+          and are intended to be consumed by client applications. There are two types
           of subject identifiers: `public` and `pairwise`.
 
           For the `public` type, the value of the `sub` (subject) token claim is the same for all clients.
@@ -683,11 +712,11 @@ definitions:
         description: |-
           Token endpoint authentication method configured for a client application
 
-          ACP supports the following client authentication methods:
-          client_secret_basic, client_secret_post, client_secret_jwt, private_key_jwt,
-          self_signed_tls_client_auth, tls_client_auth, none.
+          Cloudentity supports the following client authentication methods:
+          `client_secret_basic`, `client_secret_post`, `client_secret_jwt`, `private_key_jwt`,
+          `self_signed_tls_client_auth`, `tls_client_auth`, `none`.
 
-          To learn more, see the [ACP client authentication documentation](https://docs.authorization.cloudentity.com/features/oauth/client_auth/)
+          To learn more, go to the Authorization Basics > Client Authentication section of this guide.
         enum:
         - client_secret_basic
         - client_secret_post
@@ -700,11 +729,13 @@ definitions:
         type: string
         x-nullable: false
       token_endpoint_auth_signing_alg:
-        default: none
+        default: ES256
         description: |-
           Signing algorithm for the token endpoint
 
-          ACP supports signing tokens using the RS256, ES256, PS256, and HS256 algorithms.
+          This field is optional. If empty, a client can use any algorithm supported by the server (see `token_endpoint_auth_signing_alg_values_supported` in the well-known endpoing).
+
+          If provided, depending on the server configuration, client can use of one: HS256, RS256, ES256, PS256 algorithms.
 
           If your token endpoint authentication is set to the `private_key_jwt` method, the
           `token_endpoint_auth_signing_alg` parameter must be either RS256, ES256, or PS256.
@@ -712,22 +743,22 @@ definitions:
           If your token endpoint authentication is set to the `client_secret_jwt` method,
           the `token_endpoint_auth_signing_alg` parameter must be HS256.
         enum:
-        - none
         - RS256
         - ES256
         - PS256
         - HS256
-        example: none
+        - ""
+        example: ES256
         type: string
         x-nullable: false
       token_exchange:
         $ref: '#/definitions/ClientTokenExchangeConfiguration'
       tos_uri:
-        description: Terms of Service URL
+        description: Terms of Service URL.
         type: string
         x-nullable: false
       updated_at:
-        description: Date when the client was updated
+        description: Date when the client application was updated.
         example: "2022-05-08T01:11:51.1262916Z"
         format: date-time
         type: string
@@ -737,10 +768,9 @@ definitions:
         description: |-
           JWS alg algorithm REQUIRED for signing UserInfo Responses.
 
-          If specified, the response is JWT
-          [JWT] serialized, and signed using JWS.
+          If specified, the response is a JWT serialized and signed with JWS.
 
-          If omitted, the default behavior is for the UserInfo Response to return the Claims
+          If omitted, then by default, UserInfo Response returns the Claims
           as an UTF-8 encoded JSON object using the application/json content-type.
         enum:
         - none
@@ -755,7 +785,7 @@ definitions:
       application_type:
         default: web
         description: |-
-          String represented type of a client application
+          The client application type.
 
           Client applications can be either of a `web` or `native` types.
 
@@ -764,7 +794,7 @@ definitions:
           Native applications include single-page applications (SPAs) and mobile or desktop
           applications.
 
-          Depending on the type of your application remember to choose appropriate security measures.
+          Apply security measures according to the type of your application.
         example: web
         type: string
         x-nullable: false
@@ -796,9 +826,10 @@ definitions:
         default:
         - client_id
         description: |-
-          Identity of the intended recipients (the audience)
+          Identity of the intended recipients (the audience).
 
-          Typically, the audience may be a single resources server or a list of resource servers.
+          Typically, the audience is a single resource server or a list of resource servers.
+
           It is considered a good practice to limit the audience of the token for security purposes.
         items:
           type: string
@@ -807,9 +838,11 @@ definitions:
       authorization_encrypted_response_alg:
         description: |-
           Algorithm used for encrypting authorization responses.
-          If both signing and encryption are requested, the response will be signed then encrypted,
-          with the result being a Nested JWT, as defined in JWT [RFC7519].
-          The default, if omitted, is that no encryption is performed.
+
+          If both signing and encryption are requested, the response is first signed, and then encrypted.
+          As a result, a Nested JWT is obtained, as defined in JWT [RFC7519].
+
+          If omitted, no encryption is applied by default.
         enum:
         - RSA-OAEP
         - RSA-OAEP-256
@@ -819,9 +852,10 @@ definitions:
       authorization_encrypted_response_enc:
         description: |-
           Algorithm used for encrypting authorization responses.
-          If authorization_encrypted_response_alg is specified, the default for this value is A128CBC-HS256.
-          When authorization_encrypted_response_enc is included, authorization_encrypted_response_alg
-          MUST also be provided.
+
+          With `authorization_encrypted_response_alg` specified, the default value is `A128CBC-HS256`.
+          When `authorization_encrypted_response_enc` is included, `authorization_encrypted_response_alg`
+          MUST also be provided in a request.
         enum:
         - A256GCM
         - A128CBC-HS256
@@ -831,33 +865,44 @@ definitions:
       authorization_signed_response_alg:
         description: |-
           Algorithm used for signing authorization responses.
-          If this is specified, the response will be signed using JWS and the configured algorithm.
-          The algorithm none is not allowed.
+
+          With this parameter specified, the response is signed using JWS and according to the configured algorithm.
+
+          `none` isn't allowed.
         example: RS256
         type: string
         x-nullable: false
       backchannel_authentication_request_signing_alg:
         description: |-
-          OPTIONAL. The JWS algorithm alg value that the Client will use for signing authentication requests.
-          When omitted, the Client will not send signed authentication requests.
+          OPTIONAL. The JWS alg algorithm value used by the client application to sign authentication requests.
+
+          When omitted, the client application doesn't send signed authentication requests.
         type: string
         x-nullable: false
       backchannel_client_notification_endpoint:
         description: |-
-          REQUIRED if the token delivery mode is set to ping or push.
-          This is the endpoint to which the OP will post a notification after a successful or failed end-user authentication.
-          It MUST be an HTTPS URL.
+          REQUIRED for requests when the client application uses CIBA as an authorization grant type, and the token
+          delivery mode is set to `ping` or `push`.
+
+          This parameter is the endpoint where an OP (OpenID Provider) posts a notification after end-user authentication.
+
+          Input: an HTTPS URL.
         type: string
         x-nullable: false
       backchannel_token_delivery_mode:
-        description: 'REQUIRED. One of the following values: poll, ping, or push.'
+        description: |-
+          REQUIRED for requests when the client application uses CIBA as an authorization grant type.
+
+          Input: `poll`, `ping`, or `push`.
         type: string
         x-nullable: false
       backchannel_user_code_parameter:
         description: |-
-          OPTIONAL. Boolean value specifying whether the Client supports the user_code parameter.
-          If omitted, the default value is false.
-          This parameter only applies when OP parameter backchannel_user_code_parameter_supported is true.
+          OPTIONAL. A boolean value indicating the `user_code` parameter support by the client application.
+
+          If omitted, the default value is `false`.
+
+          This applies only when the `backchannel_user_code_parameter_supported` OP parameter is `true`.
         type: boolean
         x-nullable: false
       client_id:
@@ -870,15 +915,14 @@ definitions:
         x-nullable: false
       client_id_issued_at:
         description: |-
-          Time at which the client identifier was issued.
+          The client identifier time of issue.
 
-          The time is represented as the number of seconds from
-          1970-01-01T00:00:00Z as measured in UTC until the date/time of issuance.
+          The value is the number of seconds between 1970-01-01T00:00:00Z (UTC) and the date/time of issue.
         format: int64
         type: integer
         x-nullable: false
       client_name:
-        description: Human readable name of a client application
+        description: Human-readable name of a client application.
         example: My app
         type: string
         x-nullable: false
@@ -892,26 +936,31 @@ definitions:
         x-nullable: false
       client_secret_expires_at:
         description: |-
-          The `client_secret_expires_at` holds an integer that defines the time at which the client
-          secret expires
+          The client secret expiration time.
 
-          If the client secret does not expire, the value should be set to `0`.
+          If the client secret does not expire, `client_secret_expires_at` = `0`.
         format: int64
         type: integer
         x-nullable: false
       client_uri:
-        description: URI of a client application
+        description: URI of a client application.
         type: string
         x-nullable: false
       created_at:
-        description: Date when the client was created
+        description: Date when the client application was created.
         example: "2022-04-07T19:17:31.323187Z"
         format: date-time
         type: string
         x-nullable: false
       description:
-        description: Description of a client application
+        description: Description of the client application.
         type: string
+        x-nullable: false
+      dpop_bound_access_tokens:
+        description: |-
+          Boolean value specifying whether the client always uses DPoP for token requests
+          If true, the authorization server will reject token requests from this client that do not contain the DPoP header.
+        type: boolean
         x-nullable: false
       dynamically_registered:
         type: boolean
@@ -920,12 +969,11 @@ definitions:
         default:
         - authorization_code
         description: |-
-          An array of allowed OAuth client grant types
+          An array of allowed OAuth client grant types.
 
           The `grantTypes` array stores OAuth flows that are allowed for a given client application.
 
-          To know more about OAuth grant flows, see the
-          [ACP grant flows documentation](https://docs.authorization.cloudentity.com/features/oauth/grant_flows/).
+          [Read more](https://cloudentity.com/developers/basics/oauth-grant-types/grant-types-overview/) about grant types.
         example:
         - password
         - refresh_token
@@ -961,16 +1009,16 @@ definitions:
         type: string
         x-nullable: false
       id_token_encrypted_response_alg:
-        description: JWE alg algorithm for encrypting the ID Token issued to this
-          Client
+        description: JWE alg algorithm for encrypting the ID token issued to this
+          client application.
         enum:
         - RSA-OAEP
         - RSA-OAEP-256
         type: string
         x-nullable: false
       id_token_encrypted_response_enc:
-        description: JWE enc algorithm for encrypting the ID Token issued to this
-          Client
+        description: JWE enc algorithm for encrypting the ID token issued to this
+          client application.
         enum:
         - A256GCM
         - A128CBC-HS256
@@ -978,7 +1026,7 @@ definitions:
         x-nullable: false
       id_token_signed_response_alg:
         description: |-
-          Algorithm for signing ID tokens issued for a client application
+          Algorithm for signing ID tokens issued for a client application.
 
           The default value depends on authorization server configuration.
         enum:
@@ -991,14 +1039,15 @@ definitions:
       introspection_endpoint_auth_method:
         default: client_secret_basic
         description: |-
-          Introspection endpoint authentication method configured for a client application
-          If empty, the token_endpoint_auth_method will be used
+          An introspection endpoint authentication method configured for the client application (read-only).
 
-          ACP supports the following client authentication methods:
-          client_secret_basic, client_secret_post, client_secret_jwt, private_key_jwt,
-          self_signed_tls_client_auth, tls_client_auth, none.
+          If empty, the `token_endpoint_auth_method` is used.
 
-          To learn more, see the [ACP client authentication documentation](https://docs.authorization.cloudentity.com/features/oauth/client_auth/)
+          Cloudentity supports the following client authentication methods:
+          `client_secret_basic`, `client_secret_post`, `client_secret_jwt`, `private_key_jwt`,
+          `self_signed_tls_client_auth`, `tls_client_auth`, `none`.
+
+          [Read more](https://cloudentity.com/developers/basics/oauth-client-authentication/client-authentication-overview/) about client authentication.
         enum:
         - client_secret_basic
         - client_secret_post
@@ -1013,25 +1062,26 @@ definitions:
       jwks:
         $ref: '#/definitions/ClientJWKs'
       jwks_uri:
-        description: |-
-          URL of JSON Web Key Set containing the public keys used by a client application to authenticate itself
-          with ACP
+        description: A URL of JSON Web Key Set with the public keys used by a client
+          application to authenticate to Cloudentity.
         type: string
         x-nullable: false
       logo_uri:
-        description: Logo URI
+        description: Logo URI.
         type: string
         x-nullable: false
       organisation_id:
         description: |-
-          External organisation ID
+          External organization identifier. It is a unique string assigned by the CDR Register to identify an Accredited
+          Data Recipient Brand.
 
-          This field is used as an aud for message signing
+          The value obtained is used as the `aud` claim for message signing, for example, when a JSON Web Token (JWT) is
+          required for authorization, and represents the audience(s) the JWT is intended for.
         example: 5647fe90-f6bc-11eb-9a03-0242ac130003
         type: string
         x-nullable: false
       policy_uri:
-        description: Policy URL to read about how the profile data is used
+        description: Policy URL to read about how the profile data is used.
         type: string
         x-nullable: false
       privacy:
@@ -1039,13 +1089,17 @@ definitions:
       redirect_uris:
         $ref: '#/definitions/RedirectURIs'
       registration_access_token:
+        description: Registration token that can be used for client management
         type: string
         x-nullable: false
       registration_access_token_expires_in:
+        description: Registration token expiration time in seconds. If 0 value is
+          returned, token never expires.
         format: int64
         type: integer
         x-nullable: false
       registration_client_uri:
+        description: URL for client management
         type: string
         x-nullable: false
       request_object_encryption_alg:
@@ -1060,7 +1114,7 @@ definitions:
       request_object_encryption_enc:
         description: |-
           Optional JWE enc algorithm the client is declaring that it may use for encrypting Request Objects
-          When request_object_encryption_enc is included, request_object_encryption_alg MUST also be provided.
+          When `request_object_encryption_enc` is included, `request_object_encryption_alg` MUST also be provided.
         enum:
         - A256GCM
         - A128CBC-HS256
@@ -1072,8 +1126,8 @@ definitions:
         description: |-
           Request object signing algorithm for the token endpoint
 
-          ACP supports signing tokens using the RS256, ES256, and PS256 algorithms. If you do not want
-          to use a signing algorithm, the value of the parameter should be set to `none`.
+          Cloudentity supports signing tokens with the RS256, ES256, and PS256 algorithms. If you do not want
+          to use a signing algorithm, set the value of this parameter to `none`.
         enum:
         - any
         - none
@@ -1100,14 +1154,14 @@ definitions:
       revocation_endpoint_auth_method:
         default: client_secret_basic
         description: |-
-          Revocation endpoint authentication method configured for a client application
-          If empty, the token_endpoint_auth_method will be used
+          A revocation endpoint authentication method configured for the client application (read-only).
+          If empty, the `token_endpoint_auth_method` is used.
 
-          ACP supports the following client authentication methods:
-          client_secret_basic, client_secret_post, client_secret_jwt, private_key_jwt,
-          self_signed_tls_client_auth, tls_client_auth, none.
+          Cloudentity supports the following client authentication methods:
+          `client_secret_basic`, `client_secret_post`, `client_secret_jwt`, `private_key_jwt`,
+          `self_signed_tls_client_auth`, `tls_client_auth`, `none`.
 
-          To learn more, see the [ACP client authentication documentation](https://docs.authorization.cloudentity.com/features/oauth/client_auth/)
+          [Read more](https://cloudentity.com/developers/basics/oauth-client-authentication/client-authentication-overview/) about client authentication.
         enum:
         - client_secret_basic
         - client_secret_post
@@ -1127,7 +1181,8 @@ definitions:
         type: array
         x-nullable: false
       scope:
-        description: Space separated scopes for compatibility with OAuth specification
+        description: Space-separated list of scopes for compatibility with the OAuth
+          specification.
         example: email offline_access openid
         type: string
         x-nullable: false
@@ -1143,18 +1198,23 @@ definitions:
         x-nullable: false
       sector_identifier_uri:
         description: |-
-          URL using the HTTPS scheme to be used in calculating Pseudonymous Identifiers by the OpenID Provider. The URL references a
-          file with a single JSON array of redirect_uri values.
-        example: https://api.jsonbin.io/b/5db6ef08688fed59d2841f1e
+          OPTIONAL. [A URL using the HTTPS scheme](https://openid.net/specs/openid-connect-registration-1_0.html#SectorIdentifierValidation).
+          It must reference a JSON file with the array of `redirect_uri` values.
+
+          Pass this parameter when you use multiple domains in your `redirect_uris` or need a mechanism to allow changes in
+          domain without affecting consumer consent.
+
+          [Read more](https://openid.net/specs/openid-connect-core-1_0.html)
         type: string
         x-nullable: false
       software_id:
         description: |-
           A unique identifier string (e.g., a Universally Unique Identifier
-          (UUID)) assigned by the client developer or software publisher
-          The "software_id" SHOULD remain the same across
-          multiple updates or versions of the same piece of software.  The
-          value of this field is not intended to be human readable and is
+          (UUID)) assigned by the client developer or software publisher.
+
+          The `software_id` MUST remain the same across
+          multiple updates or versions of the same software package. The
+          value of this field is not intended to be human-readable and is
           usually opaque to the client and authorization server.
         type: string
         x-nullable: false
@@ -1164,9 +1224,9 @@ definitions:
       software_version:
         description: |-
           A version identifier string for the client software identified by
-          "software_id".  The value of the "software_version" SHOULD change
-          on any update to the client software identified by the same
-          "software_id".
+          `software_id`. The value of the `software_version` MUST be changed
+          with any update of the client software identified by the same
+          `software_id`.
         type: string
         x-nullable: false
       subject_type:
@@ -1176,8 +1236,8 @@ definitions:
 
           Stores information if the subject identifier is of the `public` or the `pairwise` type.
 
-          Subject identifiers are locally unique and never reassigned identifiers within the Issuer
-          for the end-user and are inteded to be consumed by client applications. There are two types
+          Subject identifiers identify an end-user. They are locally unique and never reassigned within the Issuer,
+          and are intended to be consumed by client applications. There are two types
           of subject identifiers: `public` and `pairwise`.
 
           For the `public` type, the value of the `sub` (subject) token claim is the same for all clients.
@@ -1228,11 +1288,11 @@ definitions:
         description: |-
           Token endpoint authentication method configured for a client application
 
-          ACP supports the following client authentication methods:
-          client_secret_basic, client_secret_post, client_secret_jwt, private_key_jwt,
-          self_signed_tls_client_auth, tls_client_auth, none.
+          Cloudentity supports the following client authentication methods:
+          `client_secret_basic`, `client_secret_post`, `client_secret_jwt`, `private_key_jwt`,
+          `self_signed_tls_client_auth`, `tls_client_auth`, `none`.
 
-          To learn more, see the [ACP client authentication documentation](https://docs.authorization.cloudentity.com/features/oauth/client_auth/)
+          To learn more, go to the Authorization Basics > Client Authentication section of this guide.
         enum:
         - client_secret_basic
         - client_secret_post
@@ -1245,11 +1305,13 @@ definitions:
         type: string
         x-nullable: false
       token_endpoint_auth_signing_alg:
-        default: none
+        default: ES256
         description: |-
           Signing algorithm for the token endpoint
 
-          ACP supports signing tokens using the RS256, ES256, PS256, and HS256 algorithms.
+          This field is optional. If empty, a client can use any algorithm supported by the server (see `token_endpoint_auth_signing_alg_values_supported` in the well-known endpoing).
+
+          If provided, depending on the server configuration, client can use of one: HS256, RS256, ES256, PS256 algorithms.
 
           If your token endpoint authentication is set to the `private_key_jwt` method, the
           `token_endpoint_auth_signing_alg` parameter must be either RS256, ES256, or PS256.
@@ -1257,22 +1319,22 @@ definitions:
           If your token endpoint authentication is set to the `client_secret_jwt` method,
           the `token_endpoint_auth_signing_alg` parameter must be HS256.
         enum:
-        - none
         - RS256
         - ES256
         - PS256
         - HS256
-        example: none
+        - ""
+        example: ES256
         type: string
         x-nullable: false
       token_exchange:
         $ref: '#/definitions/ClientTokenExchangeConfiguration'
       tos_uri:
-        description: Terms of Service URL
+        description: Terms of Service URL.
         type: string
         x-nullable: false
       updated_at:
-        description: Date when the client was updated
+        description: Date when the client application was updated.
         example: "2022-05-08T01:11:51.1262916Z"
         format: date-time
         type: string
@@ -1282,10 +1344,9 @@ definitions:
         description: |-
           JWS alg algorithm REQUIRED for signing UserInfo Responses.
 
-          If specified, the response is JWT
-          [JWT] serialized, and signed using JWS.
+          If specified, the response is a JWT serialized and signed with JWS.
 
-          If omitted, the default behavior is for the UserInfo Response to return the Claims
+          If omitted, then by default, UserInfo Response returns the Claims
           as an UTF-8 encoded JSON object using the application/json content-type.
         enum:
         - none
@@ -1312,43 +1373,44 @@ definitions:
   IntrospectResponse:
     properties:
       acr:
-        description: Authentication Context Class Reference
+        description: Authentication context class reference
         type: string
         x-nullable: false
       act:
         additionalProperties:
           type: object
-        description: actor claims used in token exchange flow
+        description: Actor claims used in the Token Exchange flow.
         type: object
         x-nullable: false
       active:
         description: |-
           Active is a boolean indicator of whether or not the presented token
-          is currently active.  The specifics of a token's "active" state
-          will vary depending on the implementation of the authorization
-          server and the information it keeps about its tokens, but a "true"
-          value return for the "active" property will generally indicate
+          is currently active. The specifics of a token's `active` state
+          varies depending on the implementation of an authorization
+          server and the information it keeps about its token. Still, the `true`
+          value returned for the `active` property generally indicates
           that a given token has been issued by this authorization server,
           has not been revoked by the resource owner, and is within its
-          given time window of validity (e.g., after its issuance time and
-          before its expiration time).
+          given time window of validity (e.g., between its issuance and
+          expiration time).
         type: boolean
         x-nullable: false
       amr:
-        description: Authentication Method References
+        description: Authentication method references
         items:
           type: string
         type: array
         x-nullable: false
       aud:
-        description: Audience contains a list of the token's intended audiences.
+        description: Audience contains the list of the audiences the token is intended
+          for.
         items:
           type: string
         type: array
         x-nullable: false
       client_id:
         description: |-
-          ClientID is a client identifier for the OAuth 2.0 client that
+          A client application identifier for the OAuth 2.0 client that
           requested this token.
         type: string
         x-nullable: false
@@ -1356,8 +1418,8 @@ definitions:
         $ref: '#/definitions/Confirmation'
       exp:
         description: |-
-          Expires at is an integer timestamp, measured in the number of seconds
-          since January 1 1970 UTC, indicating when this token will expire.
+          ExpiredAt is the integer timestamp measured in the number of seconds
+          since January 1 1970 UTC (1970-01-01T00:00:00Z). It indicates when this token will expire.
         format: int64
         type: integer
         x-nullable: false
@@ -1369,38 +1431,36 @@ definitions:
         x-nullable: false
       iat:
         description: |-
-          Issued at is an integer timestamp, measured in the number of seconds
-          since January 1 1970 UTC, indicating when this token was
+          IssuedAt is the integer timestamp measured in the number of seconds
+          since January 1 1970 UTC. It indicates when this token was
           originally issued.
         format: int64
         type: integer
         x-nullable: false
       idp:
-        description: IDP ID that user authenticated with
+        description: The identifier of an identity provider that user authenticated
+          with.
         type: string
         x-nullable: false
       idp_sub:
-        description: Idp subject
+        description: IDP subject
         type: string
         x-nullable: false
       iss:
-        description: IssuerURL is a string representing the issuer of this token
+        description: Issuer URL is a string representing the issuer of this token.
         type: string
+        x-nullable: false
+      may_act:
+        additionalProperties:
+          type: object
+        description: May act claims used in the Token Exchange flow.s
+        type: object
         x-nullable: false
       nbf:
         description: |-
-          NotBefore is an integer timestamp, measured in the number of seconds
-          since January 1 1970 UTC, indicating when this token is not to be
-          used before.
-        format: int64
-        type: integer
-        x-nullable: false
-      refresh_token_expires_at:
-        description: |-
-          Deprecated and can be removed at any time.
-          Refresh Token Expires at is an integer timestamp, measured in the number
-          of seconds since January 1 1970 UTC, indicating when the issued refresh
-          token witll expire.
+          NotBefore is an integer timestamp measured in the number of seconds
+          since January 1 1970 UTC. It indicates this token was not
+          used before the specified time.
         format: int64
         type: integer
         x-nullable: false
@@ -1412,7 +1472,7 @@ definitions:
         x-nullable: false
       server_id:
         description: |-
-          ServerID is OAuth 2.0 authorization server identifier that
+          The OAuth 2.0 authorization server identifier that
           issued this token.
         type: string
         x-nullable: false
@@ -1425,13 +1485,13 @@ definitions:
         x-nullable: false
       tenant_id:
         description: |-
-          TenantID identifies tenant where authorization server that
-          issued this token belongs to.
+          TenantID identifies a tenant holding the authorization server that
+          issued this token.
         type: string
         x-nullable: false
       token_type:
-        description: TokenType is the introspected token's type, for example `access_token`
-          or `refresh_token`.
+        description: TokenType is the type of the introspected token. For example,
+          `access_token` or `refresh_token`.
         type: string
         x-nullable: false
       username:
@@ -1444,6 +1504,9 @@ definitions:
   MTLSEndpointAliases:
     properties:
       backchannel_authentication_endpoint:
+        type: string
+        x-nullable: false
+      device_authorization_endpoint:
         type: string
         x-nullable: false
       introspection_endpoint:
@@ -1515,15 +1578,16 @@ definitions:
     type: object
   RedirectURIs:
     description: |-
-      Redirect URIs are used after a user authorizes an application and ACP redirect them back to
-      the application with an authorization code or an access token included in the URL.
+      Cloudentity uses redirect URIs to redirect users back to the application after they authorized the application. Along
+      with the redirection, an authorization code or access token is added to the URL.
 
-      For a legacy reason it's also acceptable to pass redirect_uris as string, example: "https://example.com/callback"
+      For backward compatibility reasons, it's also acceptable to pass `redirect_uris` as a string, for example:
+      https://example.com/callback.
 
       example: ["https://example.com/callback"]
     items:
       type: string
-    title: An array of OAuth allowed redirect URIs
+    title: OAuth-allowed redirect URIs
     type: array
   ResponseTypes:
     description: |-
@@ -1560,7 +1624,7 @@ definitions:
       - token id_token code
       - none
       type: string
-    title: An array of OAuth client response types configured for a client application
+    title: An array of allowed response types
     type: array
   ScopePrivacyInformation:
     properties:
@@ -1586,6 +1650,9 @@ definitions:
         format: int64
         type: integer
         x-nullable: false
+      grant_id:
+        type: string
+        x-nullable: false
       id_token:
         type: string
         x-nullable: false
@@ -1599,6 +1666,7 @@ definitions:
         type: string
         x-nullable: false
       token_type:
+        description: 'Token type: Bearer or DPoP'
         type: string
         x-nullable: false
     type: object
@@ -1624,6 +1692,11 @@ definitions:
     type: object
   userinfoResponse:
     properties:
+      aid:
+        description: Server ID - Authorization Server ID that this ID Token is intended
+          for.
+        type: string
+        x-nullable: false
       aud:
         description: Audience - Audiences that this ID Token is intended for.
         items:
@@ -1670,6 +1743,14 @@ definitions:
         description: Given name(s) or first name(s) of the End-User. Note that in
           some cultures, people can have multiple given names; all can be present,
           with the names being separated by space characters.
+        type: string
+        x-nullable: false
+      idp:
+        description: IdpID - IDP ID that this ID Token is intended for.
+        type: string
+        x-nullable: false
+      idp_method:
+        description: IdpMethod - IDP Method that this ID Token is intended for.
         type: string
         x-nullable: false
       locale:
@@ -1743,6 +1824,10 @@ definitions:
         description: Subject - Identifier for the End-User at the IssuerURL.
         type: string
         x-nullable: false
+      tid:
+        description: TenantID - Tenant ID that this ID Token is intended for.
+        type: string
+        x-nullable: false
       updated_at:
         description: Time the End-User's information was last updated. Its value is
           a JSON number representing the number of seconds from 1970-01-01T0:0:0Z
@@ -1798,6 +1883,9 @@ definitions:
         description: URL of the OP's OAuth 2.0 Authorization Endpoint.
         example: https://example.com/oauth2/auth
         type: string
+        x-nullable: false
+      authorization_response_iss_parameter_supported:
+        type: boolean
         x-nullable: false
       authorization_signing_alg_values_supported:
         description: optional JSON array containing a list of the signing algorithms
@@ -1871,6 +1959,13 @@ definitions:
       device_authorization_endpoint:
         description: URL of the authorization server's device authorization endpoint
         type: string
+        x-nullable: false
+      dpop_signing_alg_values_supported:
+        description: JSON array containing a list of the JWS algorithms supported
+          for DPoP proof JWTs
+        items:
+          type: string
+        type: array
         x-nullable: false
       frontchannel_logout_session_supported:
         description: |-
@@ -2165,8 +2260,8 @@ definitions:
     type: object
 host: localhost:8443
 info:
-  description: Cloudentity Authorization Control Plane OAuth2 API
-  title: Cloudentity Authorization Control Plane API
+  description: Cloudentity OAuth2 API
+  title: Cloudentity  API
   version: latest
 paths:
   /.well-known/jwks.json:
@@ -2306,15 +2401,15 @@ paths:
         "200":
           $ref: '#/responses/DeviceResponse'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "405":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/methodNotAllowedHTTPError'
         "413":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/payloadTooLargeHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - default: []
       summary: OAuth 2.0 Device Authorization endpoint
@@ -2334,7 +2429,12 @@ paths:
       - in: query
         name: redirect_uri
         type: string
-      - in: query
+      - description: |-
+          Client application identifier
+
+
+          You can find the `client_id` value on the Settings page of the required client application.
+        in: query
         name: client_id
         required: true
         type: string
@@ -2365,6 +2465,10 @@ paths:
       - in: query
         name: idp_hint
         type: string
+      - description: Thumbprint of the DPoP public key
+        in: query
+        name: dpop_jkt
+        type: string
       responses:
         "302":
           $ref: '#/responses/emptyResponse'
@@ -2382,10 +2486,29 @@ paths:
       consumes:
       - application/x-www-form-urlencoded
       description: |-
-        The introspection endpoint is an OAuth 2.0 endpoint that takes a
-        parameter representing an OAuth 2.0 token and returns a JSON
-        document representing the meta information surrounding the
-        token, including whether this token is currently active.
+        Takes the `token` parameter representing an OAuth 2.0 token (the one the application wants to
+        introspect) and returns a JSON
+        representing the metadata surrounding the token such as, for example,
+        whether the token is still active, what are the approved access scopes, what is the
+        authentication context in which the token was issued.
+
+        Token introspection allows resource servers or applications to
+        query this information regardless of whether or not it is carried in
+        the token itself. It allows to use this method along with or
+        independently of structured token values.  Additionally, you can use the mechanism to
+        introspect the token in a particular authentication context
+        and ascertain the relevant metadata about the token to make the
+        authorization decision appropriately.
+
+        Client applications that call the OAuth 2.0 Introspection Endpoint must authenticate with the
+        Cloudentity authorization server either with a valid access token provided as the value of
+        the `Authorization: Bearer $AT` request header or using the client authentication method
+        configured for the client application.
+
+        When a client application is assigned the `introspect_tokens` scope, it can introspect tokens
+        that belong to client applications **registered within the same workspace** as the client app
+        requesting the token instrospection. When a client application has no `introspect_tokens` scope
+        assigned, it can **only introspect its tokens**.
       operationId: introspect
       parameters:
       - in: formData
@@ -2403,7 +2526,7 @@ paths:
       security:
       - default:
         - introspect_tokens
-      summary: The OAuth 2.0 Introspection endpoint
+      summary: The OAuth 2.0 Introspection Endpoint
       tags:
       - oauth2
   /oauth2/register:
@@ -2435,7 +2558,7 @@ paths:
       security:
       - default:
         - dcr_register
-      summary: The OAuth 2.0 Dynamic Client Registration endpoint
+      summary: OAuth 2.0 Dynamic Client Registration Endpoint
       tags:
       - oauth2
   /oauth2/register/{cid}:
@@ -2462,7 +2585,7 @@ paths:
           $ref: '#/responses/genericError'
       security:
       - default: []
-      summary: The OAuth 2.0 Dynamic Client Registration Delete Client endpoint
+      summary: OAuth 2.0 Dynamic Client Registration Delete Client Endpoint
       tags:
       - oauth2
     get:
@@ -2489,7 +2612,7 @@ paths:
           $ref: '#/responses/genericError'
       security:
       - default: []
-      summary: The OAuth 2.0 Dynamic Client Registration Get Client endpoint
+      summary: OAuth 2.0 Dynamic Client Registration Get Client Endpoint
       tags:
       - oauth2
     put:
@@ -2520,14 +2643,27 @@ paths:
           $ref: '#/responses/genericError'
       security:
       - default: []
-      summary: The OAuth 2.0 Dynamic Client Registration Update Client endpoint
+      summary: OAuth 2.0 Dynamic Client Registration Update Client Endpoint
       tags:
       - oauth2
   /oauth2/revoke:
     post:
       consumes:
       - application/x-www-form-urlencoded
-      description: Supports revocation of access and refresh tokens.
+      description: |-
+        Supports revocation of access and refresh tokens. The token to be revoked must be provided as the
+        value of the `token` parameter. When a token is revoked, it cannot be used to, for example,
+        exchange a refresh token to an access token.
+
+        Client applications that call the OAuth 2.0 Revocation Endpoint must authenticate with the
+        Cloudentity authorization server either
+        with a valid access token provided as the value of the `Authorization: Bearer $AT` request header
+        or using the client authentication method configured for the client application.
+
+        When a client application is assigned the `revoke_tokens` scope, it can revoke tokens
+        that belong to client applications **registered within the same workspace** as the client app
+        requesting the token revocation. When a client application has no `revoke_tokens` scope
+        assigned, it can **only revoke its tokens**.
       operationId: revoke
       parameters:
       - in: formData
@@ -2545,7 +2681,7 @@ paths:
       security:
       - default:
         - revoke_tokens
-      summary: The OAuth 2.0 Revocation endpoint
+      summary: The OAuth 2.0 Revocation Endpoint
       tags:
       - oauth2
   /oauth2/token:
@@ -2606,9 +2742,12 @@ paths:
       - in: formData
         name: actor_token
         type: string
-      - description: 'in: `json:""` formData'
-        in: query
+      - in: formData
         name: actor_token_type
+        type: string
+      - description: DPoP proof
+        in: header
+        name: dpop
         type: string
       responses:
         "200":
@@ -2689,19 +2828,27 @@ paths:
         in: formData
         name: authorization_details
         type: string
+      - description: Thumbprint of the DPoP public key
+        in: formData
+        name: dpop_jkt
+        type: string
+      - description: DPoP proof
+        in: header
+        name: dpop
+        type: string
       responses:
         "201":
           $ref: '#/responses/PARResponse'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "405":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/methodNotAllowedHTTPError'
         "413":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/payloadTooLargeHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - default: []
       summary: Pushed Authorization Request (PAR) endpoint
@@ -2762,20 +2909,48 @@ responses:
     description: RFC6749 error
     schema:
       $ref: '#/definitions/RFC6749Error'
+  badRequestHTTPError:
+    description: Bad request
+    schema:
+      $ref: '#/definitions/Error'
+  conflictHTTPError:
+    description: Conflict
+    schema:
+      $ref: '#/definitions/Error'
   emptyResponse:
     description: Empty response
+  forbiddenHTTPError:
+    description: Forbidden
+    schema:
+      $ref: '#/definitions/Error'
   genericError:
     description: ErrorResponse
     schema:
       $ref: '#/definitions/genericError'
-  httpError:
-    description: HttpError
+  internalServerErrorHTTPError:
+    description: Internal server error
     schema:
       $ref: '#/definitions/Error'
   jwksResponse:
     description: JWKs
     schema:
       $ref: '#/definitions/ClientJWKs'
+  methodNotAllowedHTTPError:
+    description: Method not allowed
+    schema:
+      $ref: '#/definitions/Error'
+  notFoundHTTPError:
+    description: Not found
+    schema:
+      $ref: '#/definitions/Error'
+  payloadTooLargeHTTPError:
+    description: Payload too large
+    schema:
+      $ref: '#/definitions/Error'
+  preconditionFailedHTTPError:
+    description: Precondition failed
+    schema:
+      $ref: '#/definitions/Error'
   tokenResponse:
     description: Token
     headers:
@@ -2788,6 +2963,18 @@ responses:
         type: string
     schema:
       $ref: '#/definitions/TokenResponse'
+  tooManyRequestsHTTPError:
+    description: Too many requests
+    schema:
+      $ref: '#/definitions/Error'
+  unauthorizedHTTPError:
+    description: Unauthorized
+    schema:
+      $ref: '#/definitions/Error'
+  unprocessableEntityHTTPError:
+    description: Unprocessable entity
+    schema:
+      $ref: '#/definitions/Error'
   userinfoResponse:
     description: Userinfo
     schema:

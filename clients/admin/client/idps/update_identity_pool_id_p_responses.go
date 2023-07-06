@@ -66,7 +66,7 @@ func (o *UpdateIdentityPoolIDPReader) ReadResponse(response runtime.ClientRespon
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /servers/{wid}/idps/identity_pool/{iid}] updateIdentityPoolIDP", response, response.Code())
 	}
 }
 
@@ -109,6 +109,11 @@ func (o *UpdateIdentityPoolIDPOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the update identity pool Id p o k response
+func (o *UpdateIdentityPoolIDPOK) Code() int {
+	return 200
+}
+
 func (o *UpdateIdentityPoolIDPOK) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/identity_pool/{iid}][%d] updateIdentityPoolIdPOK  %+v", 200, o.Payload)
 }
@@ -141,7 +146,7 @@ func NewUpdateIdentityPoolIDPBadRequest() *UpdateIdentityPoolIDPBadRequest {
 /*
 UpdateIdentityPoolIDPBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type UpdateIdentityPoolIDPBadRequest struct {
 	Payload *models.Error
@@ -170,6 +175,11 @@ func (o *UpdateIdentityPoolIDPBadRequest) IsServerError() bool {
 // IsCode returns true when this update identity pool Id p bad request response a status code equal to that given
 func (o *UpdateIdentityPoolIDPBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the update identity pool Id p bad request response
+func (o *UpdateIdentityPoolIDPBadRequest) Code() int {
+	return 400
 }
 
 func (o *UpdateIdentityPoolIDPBadRequest) Error() string {
@@ -204,7 +214,7 @@ func NewUpdateIdentityPoolIDPUnauthorized() *UpdateIdentityPoolIDPUnauthorized {
 /*
 UpdateIdentityPoolIDPUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type UpdateIdentityPoolIDPUnauthorized struct {
 	Payload *models.Error
@@ -233,6 +243,11 @@ func (o *UpdateIdentityPoolIDPUnauthorized) IsServerError() bool {
 // IsCode returns true when this update identity pool Id p unauthorized response a status code equal to that given
 func (o *UpdateIdentityPoolIDPUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the update identity pool Id p unauthorized response
+func (o *UpdateIdentityPoolIDPUnauthorized) Code() int {
+	return 401
 }
 
 func (o *UpdateIdentityPoolIDPUnauthorized) Error() string {
@@ -267,7 +282,7 @@ func NewUpdateIdentityPoolIDPForbidden() *UpdateIdentityPoolIDPForbidden {
 /*
 UpdateIdentityPoolIDPForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type UpdateIdentityPoolIDPForbidden struct {
 	Payload *models.Error
@@ -296,6 +311,11 @@ func (o *UpdateIdentityPoolIDPForbidden) IsServerError() bool {
 // IsCode returns true when this update identity pool Id p forbidden response a status code equal to that given
 func (o *UpdateIdentityPoolIDPForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the update identity pool Id p forbidden response
+func (o *UpdateIdentityPoolIDPForbidden) Code() int {
+	return 403
 }
 
 func (o *UpdateIdentityPoolIDPForbidden) Error() string {
@@ -330,7 +350,7 @@ func NewUpdateIdentityPoolIDPNotFound() *UpdateIdentityPoolIDPNotFound {
 /*
 UpdateIdentityPoolIDPNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type UpdateIdentityPoolIDPNotFound struct {
 	Payload *models.Error
@@ -359,6 +379,11 @@ func (o *UpdateIdentityPoolIDPNotFound) IsServerError() bool {
 // IsCode returns true when this update identity pool Id p not found response a status code equal to that given
 func (o *UpdateIdentityPoolIDPNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the update identity pool Id p not found response
+func (o *UpdateIdentityPoolIDPNotFound) Code() int {
+	return 404
 }
 
 func (o *UpdateIdentityPoolIDPNotFound) Error() string {
@@ -393,7 +418,7 @@ func NewUpdateIdentityPoolIDPUnprocessableEntity() *UpdateIdentityPoolIDPUnproce
 /*
 UpdateIdentityPoolIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type UpdateIdentityPoolIDPUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +447,11 @@ func (o *UpdateIdentityPoolIDPUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this update identity pool Id p unprocessable entity response a status code equal to that given
 func (o *UpdateIdentityPoolIDPUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the update identity pool Id p unprocessable entity response
+func (o *UpdateIdentityPoolIDPUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *UpdateIdentityPoolIDPUnprocessableEntity) Error() string {
@@ -456,7 +486,7 @@ func NewUpdateIdentityPoolIDPTooManyRequests() *UpdateIdentityPoolIDPTooManyRequ
 /*
 UpdateIdentityPoolIDPTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type UpdateIdentityPoolIDPTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +515,11 @@ func (o *UpdateIdentityPoolIDPTooManyRequests) IsServerError() bool {
 // IsCode returns true when this update identity pool Id p too many requests response a status code equal to that given
 func (o *UpdateIdentityPoolIDPTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the update identity pool Id p too many requests response
+func (o *UpdateIdentityPoolIDPTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *UpdateIdentityPoolIDPTooManyRequests) Error() string {

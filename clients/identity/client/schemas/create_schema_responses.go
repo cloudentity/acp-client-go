@@ -72,7 +72,7 @@ func (o *CreateSchemaReader) ReadResponse(response runtime.ClientResponse, consu
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /admin/schemas] createSchema", response, response.Code())
 	}
 }
 
@@ -113,6 +113,11 @@ func (o *CreateSchemaCreated) IsServerError() bool {
 // IsCode returns true when this create schema created response a status code equal to that given
 func (o *CreateSchemaCreated) IsCode(code int) bool {
 	return code == 201
+}
+
+// Code gets the status code for the create schema created response
+func (o *CreateSchemaCreated) Code() int {
+	return 201
 }
 
 func (o *CreateSchemaCreated) Error() string {
@@ -178,6 +183,11 @@ func (o *CreateSchemaBadRequest) IsCode(code int) bool {
 	return code == 400
 }
 
+// Code gets the status code for the create schema bad request response
+func (o *CreateSchemaBadRequest) Code() int {
+	return 400
+}
+
 func (o *CreateSchemaBadRequest) Error() string {
 	return fmt.Sprintf("[POST /admin/schemas][%d] createSchemaBadRequest  %+v", 400, o.Payload)
 }
@@ -239,6 +249,11 @@ func (o *CreateSchemaUnauthorized) IsServerError() bool {
 // IsCode returns true when this create schema unauthorized response a status code equal to that given
 func (o *CreateSchemaUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the create schema unauthorized response
+func (o *CreateSchemaUnauthorized) Code() int {
+	return 401
 }
 
 func (o *CreateSchemaUnauthorized) Error() string {
@@ -304,6 +319,11 @@ func (o *CreateSchemaForbidden) IsCode(code int) bool {
 	return code == 403
 }
 
+// Code gets the status code for the create schema forbidden response
+func (o *CreateSchemaForbidden) Code() int {
+	return 403
+}
+
 func (o *CreateSchemaForbidden) Error() string {
 	return fmt.Sprintf("[POST /admin/schemas][%d] createSchemaForbidden  %+v", 403, o.Payload)
 }
@@ -365,6 +385,11 @@ func (o *CreateSchemaNotFound) IsServerError() bool {
 // IsCode returns true when this create schema not found response a status code equal to that given
 func (o *CreateSchemaNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the create schema not found response
+func (o *CreateSchemaNotFound) Code() int {
+	return 404
 }
 
 func (o *CreateSchemaNotFound) Error() string {
@@ -430,6 +455,11 @@ func (o *CreateSchemaConflict) IsCode(code int) bool {
 	return code == 409
 }
 
+// Code gets the status code for the create schema conflict response
+func (o *CreateSchemaConflict) Code() int {
+	return 409
+}
+
 func (o *CreateSchemaConflict) Error() string {
 	return fmt.Sprintf("[POST /admin/schemas][%d] createSchemaConflict  %+v", 409, o.Payload)
 }
@@ -493,6 +523,11 @@ func (o *CreateSchemaUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
 }
 
+// Code gets the status code for the create schema unprocessable entity response
+func (o *CreateSchemaUnprocessableEntity) Code() int {
+	return 422
+}
+
 func (o *CreateSchemaUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /admin/schemas][%d] createSchemaUnprocessableEntity  %+v", 422, o.Payload)
 }
@@ -554,6 +589,11 @@ func (o *CreateSchemaTooManyRequests) IsServerError() bool {
 // IsCode returns true when this create schema too many requests response a status code equal to that given
 func (o *CreateSchemaTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the create schema too many requests response
+func (o *CreateSchemaTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *CreateSchemaTooManyRequests) Error() string {

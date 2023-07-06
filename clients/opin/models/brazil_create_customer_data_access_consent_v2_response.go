@@ -135,6 +135,7 @@ func (m *BrazilCreateCustomerDataAccessConsentV2Response) ContextValidate(ctx co
 func (m *BrazilCreateCustomerDataAccessConsentV2Response) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Data != nil {
+
 		if err := m.Data.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data")
@@ -151,6 +152,11 @@ func (m *BrazilCreateCustomerDataAccessConsentV2Response) contextValidateData(ct
 func (m *BrazilCreateCustomerDataAccessConsentV2Response) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Links != nil {
+
+		if swag.IsZero(m.Links) { // not required
+			return nil
+		}
+
 		if err := m.Links.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("links")
@@ -167,6 +173,11 @@ func (m *BrazilCreateCustomerDataAccessConsentV2Response) contextValidateLinks(c
 func (m *BrazilCreateCustomerDataAccessConsentV2Response) contextValidateMeta(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Meta != nil {
+
+		if swag.IsZero(m.Meta) { // not required
+			return nil
+		}
+
 		if err := m.Meta.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("meta")

@@ -33,7 +33,7 @@ definitions:
         type: array
         x-nullable: false
       client_id:
-        description: Client identifier
+        description: Client application identifier.
         example: '"cauqo9c9vpbs0aj2b2v0"'
         format: clientID
         type: string
@@ -69,7 +69,7 @@ definitions:
         type: string
         x-nullable: false
       server_id:
-        description: Server / Workspace identifier
+        description: Server / Workspace identifier.
         example: '"server"'
         format: serverID
         type: string
@@ -83,7 +83,7 @@ definitions:
         type: string
         x-nullable: false
       tenant_id:
-        description: Tenant identifier
+        description: Tenant identifier.
         example: '"tenant"'
         format: tenantID
         type: string
@@ -293,16 +293,16 @@ definitions:
         type: string
         x-nullable: false
       permissions:
-        description: Especifica os tipos de permisses de acesso s APIs no escopo do
-          Open Banking Brasil - Fase 2, de acordo com os blocos de consentimento fornecidos
-          pelo usurio e necessrios ao acesso a cada endpoint das APIs.
+        description: Especifica os tipos de permisses de acesso  s APIs no escopo
+          do Open Finance Brasil - Dados cadastrais e transacionais, de acordo com
+          os blocos de consentimento fornecidos pelo usurio e necessrios ao acesso
+          a cada endpoint das APIs. Esse array no deve ter duplicidade de itens.
         example:
         - ACCOUNTS_READ
         - ACCOUNTS_OVERDRAFT_LIMITS_READ
         - RESOURCES_READ
         items:
           $ref: '#/definitions/OpenbankingBrasilConsentV2Permission1'
-        maxItems: 30
         minItems: 1
         type: array
         x-nullable: false
@@ -1100,7 +1100,7 @@ definitions:
       introspection_endpoint_auth_method:
         default: client_secret_basic
         description: |-
-          An introspection endpoint authentication method configured for the client application.
+          An introspection endpoint authentication method configured for the client application (read-only).
 
           If empty, the `token_endpoint_auth_method` is used.
 
@@ -1201,7 +1201,7 @@ definitions:
       revocation_endpoint_auth_method:
         default: client_secret_basic
         description: |-
-          A revocation endpoint authentication method configured for the client application.
+          A revocation endpoint authentication method configured for the client application (read-only).
           If empty, the `token_endpoint_auth_method` is used.
 
           Cloudentity supports the following client authentication methods:
@@ -1408,6 +1408,11 @@ definitions:
         - ES256
         example: none
         type: string
+        x-nullable: false
+      webhook_uris:
+        items:
+          type: string
+        type: array
         x-nullable: false
     type: object
   DynamicClientRegistrationResponse:
@@ -1669,7 +1674,7 @@ definitions:
       introspection_endpoint_auth_method:
         default: client_secret_basic
         description: |-
-          An introspection endpoint authentication method configured for the client application.
+          An introspection endpoint authentication method configured for the client application (read-only).
 
           If empty, the `token_endpoint_auth_method` is used.
 
@@ -1784,7 +1789,7 @@ definitions:
       revocation_endpoint_auth_method:
         default: client_secret_basic
         description: |-
-          A revocation endpoint authentication method configured for the client application.
+          A revocation endpoint authentication method configured for the client application (read-only).
           If empty, the `token_endpoint_auth_method` is used.
 
           Cloudentity supports the following client authentication methods:
@@ -2011,7 +2016,7 @@ definitions:
       authentication_context:
         $ref: '#/definitions/AuthenticationContext'
       client_id:
-        description: Client identifier
+        description: Client application identifier.
         example: '"cauqo9c9vpbs0aj2b2v0"'
         format: clientID
         type: string
@@ -2036,7 +2041,7 @@ definitions:
         type: array
         x-nullable: false
       server_id:
-        description: Server / Workspace identifier
+        description: Server / Workspace identifier.
         example: '"server"'
         format: serverID
         type: string
@@ -2051,7 +2056,7 @@ definitions:
         type: string
         x-nullable: false
       tenant_id:
-        description: Tenant identifier
+        description: Tenant identifier.
         example: '"tenant"'
         format: tenantID
         type: string
@@ -2070,7 +2075,7 @@ definitions:
       authentication_context:
         $ref: '#/definitions/AuthenticationContext'
       client_id:
-        description: Client identifier
+        description: Client application identifier.
         example: '"cauqo9c9vpbs0aj2b2v0"'
         format: clientID
         type: string
@@ -2095,7 +2100,7 @@ definitions:
         type: array
         x-nullable: false
       server_id:
-        description: Server / Workspace identifier
+        description: Server / Workspace identifier.
         example: '"server"'
         format: serverID
         type: string
@@ -2110,7 +2115,7 @@ definitions:
         type: string
         x-nullable: false
       tenant_id:
-        description: Tenant identifier
+        description: Tenant identifier.
         example: '"tenant"'
         format: tenantID
         type: string
@@ -2129,7 +2134,7 @@ definitions:
       authentication_context:
         $ref: '#/definitions/AuthenticationContext'
       client_id:
-        description: Client identifier
+        description: Client application identifier.
         example: '"cauqo9c9vpbs0aj2b2v0"'
         format: clientID
         type: string
@@ -2154,7 +2159,7 @@ definitions:
         type: array
         x-nullable: false
       server_id:
-        description: Server / Workspace identifier
+        description: Server / Workspace identifier.
         example: '"server"'
         format: serverID
         type: string
@@ -2169,7 +2174,7 @@ definitions:
         type: string
         x-nullable: false
       tenant_id:
-        description: Tenant identifier
+        description: Tenant identifier.
         example: '"tenant"'
         format: tenantID
         type: string
@@ -2322,16 +2327,16 @@ definitions:
           format: date-time
           type: string
         permissions:
-          description: Especifica os tipos de permisses de acesso s APIs no escopo
-            do Open Banking Brasil - Fase 2, de acordo com os blocos de consentimento
-            fornecidos pelo usurio e necessrios ao acesso a cada endpoint das APIs.
+          description: Especifica os tipos de permisses de acesso  s APIs no escopo
+            do Open Finance Brasil - Dados cadastrais e transacionais, de acordo com
+            os blocos de consentimento fornecidos pelo usurio e necessrios ao acesso
+            a cada endpoint das APIs. Esse array no deve ter duplicidade de itens.
           example:
           - ACCOUNTS_READ
           - ACCOUNTS_OVERDRAFT_LIMITS_READ
           - RESOURCES_READ
           items:
             $ref: '#/definitions/OpenbankingBrasilConsentV2Permission1'
-          maxItems: 30
           minItems: 1
           type: array
         rejection:
@@ -2572,20 +2577,17 @@ definitions:
         description: Issuer URL is a string representing the issuer of this token.
         type: string
         x-nullable: false
+      may_act:
+        additionalProperties:
+          type: object
+        description: May act claims used in the Token Exchange flow.s
+        type: object
+        x-nullable: false
       nbf:
         description: |-
           NotBefore is an integer timestamp measured in the number of seconds
           since January 1 1970 UTC. It indicates this token was not
           used before the specified time.
-        format: int64
-        type: integer
-        x-nullable: false
-      refresh_token_expires_at:
-        description: |-
-          Deprecated and can be removed at any time.
-          The integer timestamp measured in the number
-          of seconds since January 1 1970 UTC. It indicates when the issued refresh
-          token will expire.
         format: int64
         type: integer
         x-nullable: false
@@ -2640,7 +2642,7 @@ definitions:
         type: array
         x-nullable: false
       client_id:
-        description: Client identifier
+        description: Client application identifier.
         example: '"cauqo9c9vpbs0aj2b2v0"'
         format: clientID
         type: string
@@ -2676,7 +2678,7 @@ definitions:
         type: string
         x-nullable: false
       server_id:
-        description: Server / Workspace identifier
+        description: Server / Workspace identifier.
         example: '"server"'
         format: serverID
         type: string
@@ -2690,7 +2692,7 @@ definitions:
         type: string
         x-nullable: false
       tenant_id:
-        description: Tenant identifier
+        description: Tenant identifier.
         example: '"tenant"'
         format: tenantID
         type: string
@@ -2740,27 +2742,35 @@ definitions:
         type: string
         x-nullable: false
       client_id:
-        description: A client identifier.
+        description: A client application identifier.
         type: string
         x-nullable: false
       cnpj:
         description: |-
-          Optional cnpj
-          cnpj
+          Optional. A
+          [14-digit identification number](https://openbanking-brasil.github.io/specs-seguranca/open-banking-brasil-financial-api-1_ID3.html#section-5.2.2.4)
+          of a company in Cadastro Nacional da Pessoa Jurídica (Brazilian National Registry of Legal Entities).
         type: string
         x-nullable: false
       cpf:
         description: |-
-          Optional cpf
-          cpf
+          Optional. An
+          [11-digit taxpayer identification number](https://openbanking-brasil.github.io/specs-seguranca/open-banking-brasil-financial-api-1_ID3.html#name-requesting-the-cpf-claim)
+          in Cadastro de Pessoas Físicas (Natural Persons Register).
         type: string
         x-nullable: false
       date_from:
-        description: Optional start date for when consent was created
+        description: |-
+          Optional. Consent creation date.
+
+          Sets the start date of the consent retrieval date range.
         type: string
         x-nullable: false
       date_to:
-        description: Optional end date for when consent was created
+        description: |-
+          Optional. Consent creation date.
+
+          Sets the end date of the consent retrieval date range.
         type: string
         x-nullable: false
       limit:
@@ -3412,7 +3422,6 @@ definitions:
         - RESOURCES_READ
         items:
           $ref: '#/definitions/OpenbankingBrasilConsentV2Permission'
-        maxItems: 30
         minItems: 1
         type: array
         x-nullable: false
@@ -3458,16 +3467,16 @@ definitions:
         type: string
         x-nullable: false
       permissions:
-        description: Especifica os tipos de permisses de acesso s APIs no escopo do
-          Open Banking Brasil - Fase 2, de acordo com os blocos de consentimento fornecidos
-          pelo usurio e necessrios ao acesso a cada endpoint das APIs.
+        description: Especifica os tipos de permisses de acesso  s APIs no escopo
+          do Open Finance Brasil - Dados cadastrais e transacionais, de acordo com
+          os blocos de consentimento fornecidos pelo usurio e necessrios ao acesso
+          a cada endpoint das APIs. Esse array no deve ter duplicidade de itens.
         example:
         - ACCOUNTS_READ
         - ACCOUNTS_OVERDRAFT_LIMITS_READ
         - RESOURCES_READ
         items:
           $ref: '#/definitions/OpenbankingBrasilConsentV2Permission1'
-        maxItems: 30
         minItems: 1
         type: array
         x-nullable: false
@@ -3526,16 +3535,16 @@ definitions:
         type: string
         x-nullable: false
       permissions:
-        description: Especifica os tipos de permisses de acesso s APIs no escopo do
-          Open Banking Brasil - Fase 2, de acordo com os blocos de consentimento fornecidos
-          pelo usurio e necessrios ao acesso a cada endpoint das APIs.
+        description: Especifica os tipos de permisses de acesso  s APIs no escopo
+          do Open Finance Brasil - Dados cadastrais e transacionais, de acordo com
+          os blocos de consentimento fornecidos pelo usurio e necessrios ao acesso
+          a cada endpoint das APIs. Esse array no deve ter duplicidade de itens.
         example:
         - ACCOUNTS_READ
         - ACCOUNTS_OVERDRAFT_LIMITS_READ
         - RESOURCES_READ
         items:
           $ref: '#/definitions/OpenbankingBrasilConsentV2Permission1'
-        maxItems: 30
         minItems: 1
         type: array
         x-nullable: false
@@ -3680,7 +3689,7 @@ definitions:
     title: OpenbankingBrasilConsentV2LoggedUser LoggedUser
     type: object
   OpenbankingBrasilConsentV2Meta:
-    description: Meta informaes referente  API requisitada.
+    description: Meta informaes referente   API requisitada.
     properties:
       requestDateTime:
         description: Data e hora da consulta, conforme especificao RFC-3339, formato
@@ -3708,9 +3717,10 @@ definitions:
     title: OpenbankingBrasilConsentV2Meta Meta
     type: object
   OpenbankingBrasilConsentV2Permission:
-    description: Especifica os tipos de permisses de acesso s APIs no escopo do Open
-      Banking Brasil - Fase 2, de acordo com os blocos de consentimento fornecidos
-      pelo usurio e necessrios ao acesso a cada endpoint das APIs.
+    description: Especifica os tipos de permisses de acesso  s APIs no escopo do Open
+      Finance Brasil - Dados cadastrais e transacionais, de acordo com os blocos de
+      consentimento fornecidos pelo usurio e necessrios ao acesso a cada endpoint
+      das APIs. Esse array no deve ter duplicidade de itens.
     title: OpenbankingBrasilConsentV2Permission Permission
     type: string
   OpenbankingBrasilConsentV2Permission1:
@@ -4977,6 +4987,11 @@ definitions:
         format: scopeID
         type: string
         x-nullable: false
+      implicit:
+        description: Request this scope by default for all clients who subscribed
+          to this scope
+        type: boolean
+        x-nullable: false
       metadata:
         $ref: '#/definitions/Metadata'
       name:
@@ -5151,14 +5166,27 @@ definitions:
 host: localhost:8443
 info:
   description: |-
-    Cloudentity Open Finance APIs
+    Cloudentity's Brazil [Open Banking](https://cloudentity.com/developers/basics/openfinance/open-banking-brazil-overview/)
+    and [Open Insurance](https://cloudentity.com/developers/basics/openfinance/open-insurance-brazil/) API collections meet
+    the guidelines for products and services operating within the Open Finance ecosystem in Brazil.
 
-    Brazil Open Banking API collection meets
-    the guidelines of the Brazilian Central Bank for products and services operating within the open banking sector
-    in Brazil.
-    With these APIs, you can dynamically register a client application or initiate a payment in compliance with the
-    Brazilian Open Banking specification.
-  title: Cloudentity API
+    These APIs must be called with the `Authorization: Bearer` header with a token as its value.
+    To obtain the token, apply the
+    [Authorization Code](https://cloudentity.com/developers/basics/oauth-grant-types/authorization-code-flow/) grant type
+    for the introspection endpoints and
+    [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) for the
+    rest of the APIs.
+
+    API requests must feature the explicitly defined scopes the client application can access. The required and
+    optional scopes are listed under individual endpoints. To check scopes for an endpoint, unfold the **AUTHORIZATIONS:**
+    block in the endpoint description.
+    [Enable](https://cloudentity.com/developers/howtos/access-control/creating-and-configuring-dynamic-scopes/#add-scope)
+    necessary scopes for your client application in advance.
+
+    Check our
+    [Open Banking Glossary](https://cloudentity.com/developers/basics/openfinance/glossary-ob/) to get familiar with terms and
+    abbreviations.
+  title: Cloudentity Brazil Open Banking and Open Insurance APIs
   version: latest
 paths:
   /oauth2/register:
@@ -5190,12 +5218,12 @@ paths:
       security:
       - default:
         - dcr_register
-      summary: The Brazil Open Banking Dynamic Client Registration endpoint
+      summary: OBBR Dynamic Client Registration
       tags:
       - DCR
   /oauth2/register/{cid}:
     delete:
-      description: This endpoint allows to delete a dynamically registered client.
+      description: Delete a dynamically registered client application.
       operationId: dynamicClientRegistrationDeleteClient
       parameters:
       - default: default
@@ -5217,12 +5245,11 @@ paths:
           $ref: '#/responses/genericError'
       security:
       - default: []
-      summary: The Brazil Open Banking Dynamic Client Registration Delete Client endpoint
+      summary: Delete OBBR Client
       tags:
       - DCR
     get:
-      description: This endpoint allows to get metadata values of a dynamically registered
-        client.
+      description: Retrieve metadata values of a dynamically registered client application.
       operationId: dynamicClientRegistrationGetClient
       parameters:
       - default: default
@@ -5244,12 +5271,11 @@ paths:
           $ref: '#/responses/genericError'
       security:
       - default: []
-      summary: The Brazil Open Banking Dynamic Client Registration Get Client endpoint
+      summary: Get OBBR Client Metadata
       tags:
       - DCR
     put:
-      description: This endpoint allows to update metadata values of a dynamically
-        registered client.
+      description: Update metadata values of a dynamically registered client application.
       operationId: dynamicClientRegistrationUpdateClient
       parameters:
       - default: default
@@ -5275,14 +5301,19 @@ paths:
           $ref: '#/responses/genericError'
       security:
       - default: []
-      summary: The Brazil Open Banking Dynamic Client Registration Update Client endpoint
+      summary: Update OBBR Client Metadata
       tags:
       - DCR
   /open-banking-brasil/consent/{login}:
     get:
       description: |-
-        This API can be used by a custom openbanking consent page.
-        The consent page must first use client credentials flow to create consent.
+        Retrieve information about data access consents per client application. This endpoint is used by a custom
+        Open Banking consent page during the authorization process. It returns consents previously created with the
+        `POST` **Create Data Access** endpoints.
+
+        For authorization, pass the `Authorization: Bearer` with a token as the bearer value. To obtain the token, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/)
+        grant type.
       operationId: getOBBRCustomerDataAccessConsentSystem
       parameters:
       - in: path
@@ -5306,13 +5337,20 @@ paths:
       security:
       - system:
         - manage_openbanking_consents
-      summary: Get customer data access consent
+      summary: Get Customer Data Access Consent
       tags:
       - CONSENT_PAGE
   /open-banking-brasil/consent/{login}/accept:
     post:
-      description: This API can be used by a custom openbanking consent page to notify
-        ACP that user granted consent to a customer data access.
+      description: |-
+        Notify Cloudentity that a user allowed access to their data.
+
+        Used by a custom Open Banking consent page.
+
+        For authorization, pass the `Authorization: Bearer` header with a token as the bearer value. To obtain
+        the token, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/)
+        grant type.
       operationId: acceptOBBRCustomerDataAccessConsentSystem
       parameters:
       - in: path
@@ -5337,13 +5375,20 @@ paths:
       security:
       - system:
         - manage_openbanking_consents
-      summary: Accept customer data access consent
+      summary: Accept Customer Data Access Consent
       tags:
       - CONSENT_PAGE
   /open-banking-brasil/consent/{login}/reject:
     post:
-      description: This API can be used by a custom openbanking consent page to notify
-        ACP that user rejected access.
+      description: |-
+        Notify Cloudentity that a user rejected access to their data.
+
+        Used by a custom Open Banking consent page.
+
+        For authorization, pass the `Authorization: Bearer` header with a token as the bearer value. To obtain
+        the token, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/)
+        grant type.
       operationId: rejectOBBRCustomerDataAccessConsentSystem
       parameters:
       - in: path
@@ -5368,15 +5413,22 @@ paths:
       security:
       - system:
         - manage_openbanking_consents
-      summary: Reject consent
+      summary: Reject Customer Data Access Consent
       tags:
       - CONSENT_PAGE
   /open-banking-brasil/open-banking/consents/v1/consents:
     post:
       deprecated: true
-      description: This API allows AISP to create consent to access PSU registration
-        data, information about transactions in their accounts, credit card and contracted
-        credit products
+      description: |-
+        This API allows an Account Information Service Provider (AISP) to create a consent to access the registration data
+        of a Payment Service User (PSU), along with information about transactions in PSU's accounts, credit cards, and
+        contracted credit products.
+
+        For authorization, pass the `Authorization: Bearer` header with an access token as the bearer value. To obtain the
+        access token with all the required scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scopes list in the AUTHORIZATIONS block.
       operationId: CreateDataAccessConsentDeprecated
       parameters:
       - description: |-
@@ -5450,13 +5502,22 @@ paths:
       security:
       - defaultcc:
         - consents
-      summary: Create data access consent
+      summary: Create Data Access Consent v1
       tags:
       - OBBR
   /open-banking-brasil/open-banking/consents/v1/consents/{consentID}:
     delete:
       deprecated: true
-      description: This API allows PISP to remove previously created consent
+      description: |-
+        Delete a previously created data access consent. Pass the required consent identifier in the path.
+
+        This endpoint is used by a Payment Initiation Service Provider (PISP).
+
+        For authorization, pass the `Authorization: Bearer` with a token as a bearer value. To obtain the token and include
+        the required scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scope list in the AUTHORIZATIONS block.
       operationId: DeleteDataAccessConsentDeprecated
       parameters:
       - description: |-
@@ -5525,12 +5586,22 @@ paths:
       security:
       - defaultcc:
         - consents
-      summary: Delete data access consent
+      summary: Delete Data Access Consent v1
       tags:
       - OBBR
     get:
       deprecated: true
-      description: This API allows PISP to retrieve previously created consent
+      description: |-
+        Retrieve the information about a previously created data access consent. Pass the required consent identifier
+        in the path.
+
+        This endpoint is used by a Payment Initiation Service Provider (PISP).
+
+        For authorization, pass the `Authorization: Bearer` with a token as a bearer value. To obtain the token and include
+        the required scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scope list in the AUTHORIZATIONS block.
       operationId: GetDataAccessConsentDeprecated
       parameters:
       - description: |-
@@ -5599,14 +5670,22 @@ paths:
       security:
       - defaultcc:
         - consents
-      summary: Get data access consent
+      summary: Get Data Access Consent v1
       tags:
       - OBBR
   /open-banking-brasil/open-banking/consents/v1/consents/introspect:
     post:
       consumes:
       - application/x-www-form-urlencoded
-      description: 'Introspect openbanking brasil data access consent'
+      description: |-
+        This endpoint accepts an OAuth 2.0 token and returns meta information surrounding the token along with the
+        data access consent and the associated account identifiers.
+
+        Pass the token as the bearer value with the `Authorization: Bearer` header. To obtain the token with all the required
+        scopes, apply the
+        [Authorization Code](https://cloudentity.com/developers/basics/oauth-grant-types/authorization-code-flow/) grant type.
+
+        Find the scopes list in the AUTHORIZATIONS block.
       operationId: obbrDataAccessConsentIntrospect
       parameters:
       - in: formData
@@ -5624,15 +5703,23 @@ paths:
       security:
       - default:
         - introspect_openbanking_tokens
-      summary: Introspect openbanking brasil data access consent
+      summary: Introspect Open Banking Brazil Data Access Consent v1
       tags:
       - OBBR
   /open-banking-brasil/open-banking/consents/v2/consents/introspect:
     post:
       consumes:
       - application/x-www-form-urlencoded
-      description: This API allows introspection of tokens bound to v2 consents. It
-        is also backwards compatible with v1 consent tokens.
+      description: |-
+        This endpoint accepts an OAuth 2.0 token bound to v2 data access consents and returns meta information surrounding the token
+        along with the data access consent and the associated account identifiers. It's also backwards compatible with v1
+        data access consent tokens.
+
+        Pass the token as the bearer value with the `Authorization: Bearer` header. To obtain the token with all the required
+        scopes, apply the
+        [Authorization Code](https://cloudentity.com/developers/basics/oauth-grant-types/authorization-code-flow/) grant type.
+
+        Find the scopes list in the AUTHORIZATIONS block.
       operationId: obbrDataAccessConsentV2Introspect
       parameters:
       - in: formData
@@ -5650,7 +5737,7 @@ paths:
       security:
       - default:
         - introspect_openbanking_tokens
-      summary: Introspect openbanking brasil data access consent.
+      summary: Introspect Open Banking Brazil Data Access Consent v2
       tags:
       - OBBR
   /open-banking-brasil/open-banking/payments/v1/consents:
@@ -5658,8 +5745,15 @@ paths:
       consumes:
       - application/jwt
       deprecated: true
-      description: This API allows AISP to create consent to initiate payments between
-        banks and financial institutions
+      description: |-
+        This API allows an Account Information Service Provider (AISP) to create a consent to initiate payments between
+        banks and financial institutions on behalf of a Payment Service User (PSU).
+
+        For authorization, pass the `Authorization: Bearer` header with an access token as the bearer value. To obtain the
+        access token with all the required scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scopes list in the AUTHORIZATIONS block.
       operationId: CreatePaymentConsentDeprecated
       parameters:
       - description: |-
@@ -5735,13 +5829,23 @@ paths:
       security:
       - defaultcc:
         - payments
-      summary: Create payment consent
+      summary: Create Payment Consent v1
       tags:
       - OBBR
   /open-banking-brasil/open-banking/payments/v1/consents/{consentID}:
     get:
       deprecated: true
-      description: This API allows PISP to retrieve previously created payment consent
+      description: |-
+        Retrieve the information about a previously created payment consent. Pass the required consent identifier
+        in the path.
+
+        This endpoint is used by a Payment Initiation Service Provider (PISP).
+
+        For authorization, pass the `Authorization: Bearer` with a token as a bearer value. To obtain the token and include
+        the required scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scope list in the AUTHORIZATIONS block.
       operationId: GetPaymentConsentDeprecated
       parameters:
       - description: |-
@@ -5810,7 +5914,7 @@ paths:
       security:
       - defaultcc:
         - payments
-      summary: Get payment consent
+      summary: Get Payment Consent v1
       tags:
       - OBBR
   /open-banking-brasil/open-banking/payments/v1/consents/introspect:
@@ -5818,9 +5922,14 @@ paths:
       consumes:
       - application/x-www-form-urlencoded
       description: |-
-        This endpoint takes an OAuth 2.0 token and, in addition to returning
-        meta information surrounding the token, returns the payment consent and
-        associated account ids.
+        This endpoint accepts an Oauth 2.0 token and returns meta information surrounding the token along with the
+        payment consent and the associated account identifiers.
+
+        Pass the token as the bearer value with the `Authorization: Bearer` header. To obtain the token with all the required
+        scopes, apply the
+        [Authorization Code](https://cloudentity.com/developers/basics/oauth-grant-types/authorization-code-flow/) grant type.
+
+        Find the scopes list in the AUTHORIZATIONS block.
       operationId: obbrPaymentConsentIntrospect
       parameters:
       - in: formData
@@ -5838,15 +5947,23 @@ paths:
       security:
       - default:
         - introspect_openbanking_tokens
-      summary: Introspect openbanking brasil payment consent
+      summary: Introspect Open Banking Brazil Payment Consent v1
       tags:
       - OBBR
   /open-banking-brasil/open-banking/payments/v2/consents/introspect:
     post:
       consumes:
       - application/x-www-form-urlencoded
-      description: This API allows introspection of tokens bound to v2 payment consents.
-        It is also backwards compatible with v1 payment consent tokens.
+      description: |-
+        This endpoint accepts an OAuth 2.0 token bound to v2 payment consents and returns meta information surrounding the
+        token along with the payment consent and the associated account identifiers. It's also backwards compatible with v1
+        payment consent tokens.
+
+        Pass the token as the bearer value with the `Authorization: Bearer` header. To obtain the token with all the required
+        scopes, apply the
+        [Authorization Code](https://cloudentity.com/developers/basics/oauth-grant-types/authorization-code-flow/) grant type.
+
+        Find the scopes list in the AUTHORIZATIONS block.
       operationId: obbrPaymentConsentIntrospectV2
       parameters:
       - in: formData
@@ -5864,14 +5981,19 @@ paths:
       security:
       - default:
         - introspect_openbanking_tokens
-      summary: Introspect openbanking brasil payment consent
+      summary: Introspect Open Banking Brazil Payment Consent v2
       tags:
       - OBBR
   /open-banking-brasil/payment/{login}:
     get:
       description: |-
-        This API can be used by a custom openbanking consent page.
-        The consent page must first use client credentials flow to create consent.
+        Retrieve information about payment initiation consents per client application. This endpoint is used by a custom
+        Open Banking consent page during the authorization process. It returns consents previously created with the
+        `POST` **Create Payment Consent** endpoints.
+
+        For authorization, pass the `Authorization: Bearer` with a token as the bearer value. To obtain the token, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/)
+        grant type.
       operationId: getOBBRCustomerPaymentConsentSystem
       parameters:
       - in: path
@@ -5895,13 +6017,20 @@ paths:
       security:
       - system:
         - manage_openbanking_consents
-      summary: Get customer payment initiation consent
+      summary: Get Customer Payment Initiation Consent
       tags:
       - CONSENT_PAGE
   /open-banking-brasil/payment/{login}/accept:
     post:
-      description: This API can be used by a custom openbanking consent page to notify
-        ACP that user granted consent for payment initiation.
+      description: |-
+        Notify Cloudentity that a user allowed payment initiation.
+
+        Used by a custom Open Banking consent page.
+
+        For authorization, pass the `Authorization: Bearer` header with a token as the bearer value. To obtain
+        the token, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/)
+        grant type.
       operationId: acceptOBBRCustomerPaymentConsentSystem
       parameters:
       - in: path
@@ -5926,13 +6055,20 @@ paths:
       security:
       - system:
         - manage_openbanking_consents
-      summary: Accept customer payment initiation consent
+      summary: Accept Customer Payment Initiation Consent
       tags:
       - CONSENT_PAGE
   /open-banking-brasil/payment/{login}/reject:
     post:
-      description: This API can be used by a custom openbanking consent page to notify
-        ACP that user rejected payment initiation.
+      description: |-
+        Notify Cloudentity that a user rejected payment initiation.
+
+        Used by a custom Open Banking consent page.
+
+        For authorization, pass the `Authorization: Bearer` header with a token as the bearer value. To obtain
+        the token, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/)
+        grant type.
       operationId: rejectOBBRCustomerPaymentConsentSystem
       parameters:
       - in: path
@@ -5957,14 +6093,21 @@ paths:
       security:
       - system:
         - manage_openbanking_consents
-      summary: Reject consent
+      summary: Reject Customer Payment Initiation Consent
       tags:
       - CONSENT_PAGE
   /open-banking-brasil/payment/v2/{login}:
     get:
       description: |-
-        This API can be used by a custom openbanking consent page.
-        The consent page must first use client credentials flow to create consent.
+        Retrieve information about payment initiation consents per client application. This endpoint is used by a custom
+        Open Banking consent page during the authorization process. It returns consents previously created with the
+        `POST` **Create Payment Consent** endpoints.
+
+        This endpoint is compatible with version 2.0 of the Open Banking Brazil standard.
+
+        For authorization, pass the `Authorization: Bearer` with a token as the bearer value. To obtain the token, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/)
+        grant type.
       operationId: getOBBRCustomerPaymentConsentSystemV2
       parameters:
       - in: path
@@ -5988,14 +6131,21 @@ paths:
       security:
       - system:
         - manage_openbanking_consents
-      summary: Get customer payment initiation consent v2
+      summary: Get Customer Payment Initiation Consent v2
       tags:
       - CONSENT_PAGE
   /open-banking/consents/v1/consents:
     post:
-      description: 'This API allows AISP to create consent to access PSU registration
-        data, information about transactions in their accounts, credit card and contracted
-        credit products'
+      description: |-
+        This API allows an Account Information Service Provider (AISP) to create a consent to access the registration data
+        of a Payment Service User (PSU), along with information about transactions in PSU's accounts, credit cards, and
+        contracted credit products.
+
+        For authorization, pass the `Authorization: Bearer` header with an access token as the bearer value. To obtain the
+        access token with all the required scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scopes list in the AUTHORIZATIONS block.
       operationId: CreateDataAccessConsent
       parameters:
       - description: |-
@@ -6069,12 +6219,21 @@ paths:
       security:
       - defaultcc:
         - consents
-      summary: Create data access consent
+      summary: Create Data Access Consent v1
       tags:
       - OBBR
   /open-banking/consents/v1/consents/{consentID}:
     delete:
-      description: 'This API allows PISP to remove previously created consent'
+      description: |-
+        Delete a previously created data access consent. Pass the required consent identifier in the path.
+
+        This endpoint is used by a Payment Initiation Service Provider (PISP).
+
+        For authorization, pass the `Authorization: Bearer` with a token as a bearer value. To obtain the token and include
+        the required scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scope list in the AUTHORIZATIONS block.
       operationId: DeleteDataAccessConsent
       parameters:
       - description: |-
@@ -6143,11 +6302,21 @@ paths:
       security:
       - defaultcc:
         - consents
-      summary: Delete data access consent
+      summary: Delete Data Access Consent v1
       tags:
       - OBBR
     get:
-      description: 'This API allows PISP to retrieve previously created consent'
+      description: |-
+        Retrieve the information about a previously created data access consent. Pass the required consent identifier
+        in the path.
+
+        This endpoint is used by a Payment Initiation Service Provider (PISP).
+
+        For authorization, pass the `Authorization: Bearer` with a token as a bearer value. To obtain the token and include
+        the required scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scope list in the AUTHORIZATIONS block.
       operationId: GetDataAccessConsent
       parameters:
       - description: |-
@@ -6216,14 +6385,21 @@ paths:
       security:
       - defaultcc:
         - consents
-      summary: Get data access consent
+      summary: Get Data Access Consent v1
       tags:
       - OBBR
   /open-banking/consents/v2/consents:
     post:
-      description: 'This API allows AISP to create consent to access PSU registration
-        data, information about transactions in their accounts, credit card and contracted
-        credit products'
+      description: |-
+        This API allows an Account Information Service Provider (AISP) to create a consent to access the registration data
+        of a Payment Service User (PSU), along with information about transactions in PSU's accounts, credit cards, and
+        contracted credit products.
+
+        For authorization, pass the `Authorization: Bearer` header with an access token as the bearer value. To obtain the
+        access token with all the required scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scopes list in the AUTHORIZATIONS block.
       operationId: CreateDataAccessConsentV2
       parameters:
       - description: |-
@@ -6297,12 +6473,21 @@ paths:
       security:
       - defaultcc:
         - consents
-      summary: Create data access consent
+      summary: Create Data Access Consent v2
       tags:
       - OBBR
   /open-banking/consents/v2/consents/{consentID}:
     delete:
-      description: 'This API allows PISP to remove previously created consent'
+      description: |-
+        Delete a previously created data access consent. Pass the required consent identifier in the path.
+
+        This endpoint is used by a Payment Initiation Service Provider (PISP).
+
+        For authorization, pass the `Authorization: Bearer` with a token as a bearer value. To obtain the token and include
+        the required scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scope list in the AUTHORIZATIONS block.
       operationId: DeleteDataAccessConsentV2
       parameters:
       - description: |-
@@ -6371,11 +6556,21 @@ paths:
       security:
       - defaultcc:
         - consents
-      summary: Delete data access consent
+      summary: Delete Data Access Consent v2
       tags:
       - OBBR
     get:
-      description: 'This API allows PISP to retrieve previously created consent'
+      description: |-
+        Retrieve the information about a previously created data access consent. Pass the required consent identifier
+        in the path.
+
+        This endpoint is used by a Payment Initiation Service Provider (PISP).
+
+        For authorization, pass the `Authorization: Bearer` with a token as a bearer value. To obtain the token and include
+        the required scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scope list in the AUTHORIZATIONS block.
       operationId: GetDataAccessConsentV2
       parameters:
       - description: |-
@@ -6444,15 +6639,23 @@ paths:
       security:
       - defaultcc:
         - consents
-      summary: Get data access consent
+      summary: Get Data Access Consent v2
       tags:
       - OBBR
   /open-banking/payments/v1/consents:
     post:
       consumes:
       - application/jwt
-      description: 'This API allows AISP to create consent to initiate payments
-        between banks and financial institutions'
+      deprecated: true
+      description: |-
+        This API allows an Account Information Service Provider (AISP) to create a consent to initiate payments between
+        banks and financial institutions on behalf of a Payment Service User (PSU).
+
+        For authorization, pass the `Authorization: Bearer` header with an access token as the bearer value. To obtain the
+        access token with all the required scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scopes list in the AUTHORIZATIONS block.
       operationId: CreatePaymentConsent
       parameters:
       - description: |-
@@ -6528,13 +6731,23 @@ paths:
       security:
       - defaultcc:
         - payments
-      summary: Create payment consent
+      summary: Create Payment Consent v1
       tags:
       - OBBR
   /open-banking/payments/v1/consents/{consentID}:
     get:
-      description: 'This API allows PISP to retrieve previously created payment
-        consent'
+      deprecated: true
+      description: |-
+        Retrieve the information about a previously created payment consent. Pass the required consent identifier
+        in the path.
+
+        This endpoint is used by a Payment Initiation Service Provider (PISP).
+
+        For authorization, pass the `Authorization: Bearer` with a token as a bearer value. To obtain the token and include
+        the required scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scope list in the AUTHORIZATIONS block.
       operationId: GetPaymentConsent
       parameters:
       - description: |-
@@ -6603,11 +6816,21 @@ paths:
       security:
       - defaultcc:
         - payments
-      summary: Get payment consent
+      summary: Get Payment Consent v1
       tags:
       - OBBR
     patch:
-      description: 'This API allows PISP to revoke a payment consent'
+      deprecated: true
+      description: |-
+        Revoke a previously granted payment consent. Pass the required consent identifier in the path.
+
+        This endpoint is used by a Payment Initiation Service Provider (PISP).
+
+        For authorization, pass the `Authorization: Bearer` with a token as a bearer value. To obtain the token and include
+        the required scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scope list in the AUTHORIZATIONS block.
       operationId: PatchPaymentConsent
       parameters:
       - description: |-
@@ -6681,15 +6904,22 @@ paths:
       security:
       - defaultcc:
         - payments
-      summary: Revoke payment consent
+      summary: Revoke Payment Consent
       tags:
       - OBBR
   /open-banking/payments/v2/consents:
     post:
       consumes:
       - application/jwt
-      description: 'This API allows AISP to create consent to initiate payments
-        between banks and financial institutions'
+      description: |-
+        This API allows an Account Information Service Provider (AISP) to create a consent to initiate payments between
+        banks and financial institutions on behalf of a Payment Service User (PSU).
+
+        For authorization, pass the `Authorization: Bearer` header with an access token as the bearer value. To obtain the
+        access token with all the required scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scopes list in the AUTHORIZATIONS block.
       operationId: CreatePaymentConsentV2
       parameters:
       - description: |-
@@ -6765,13 +6995,22 @@ paths:
       security:
       - defaultcc:
         - payments
-      summary: Create payment consent
+      summary: Create Payment Consent v2
       tags:
       - OBBR
   /open-banking/payments/v2/consents/{consentID}:
     get:
-      description: 'This API allows PISP to retrieve previously created payment
-        consent'
+      description: |-
+        Retrieve the information about a previously created payment consent. Pass the required consent identifier
+        in the path.
+
+        This endpoint is used by a Payment Initiation Service Provider (PISP).
+
+        For authorization, pass the `Authorization: Bearer` with a token as a bearer value. To obtain the token and include
+        the required scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scope list in the AUTHORIZATIONS block.
       operationId: GetPaymentConsentV2
       parameters:
       - description: |-
@@ -6840,19 +7079,23 @@ paths:
       security:
       - defaultcc:
         - payments
-      summary: Get payment consent
+      summary: Get Payment Consent v2
       tags:
       - OBBR
   /servers/{wid}/open-banking-brasil/consents:
     delete:
       description: |-
-        This API revokes openbanking consents matching provided parameters.
-        Currently supporting v1 and v2 consents.
-        Currently supporting removal by client id.
-        Use ?client_id={clientID} to remove all consents by a given client.
+        Revoke Open Banking Brazil consents by a client ID or combination of client ID and consent types.
+        For this, pass the `client_id` query parameter with the value set to the required client identifier. It revokes
+        all consents for the given client application.
 
-        You can also optionally specify which consent should be removed by specifying consent type
-        example: ?client_id={clientID}&consent_type=account_access
+        Currently, v1 and v2 consents are supported.
+
+        For authorization, pass the `Authorization: Bearer` with a token as the bearer value. To obtain the token with the
+        necessary scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scope list in the AUTHORIZATIONS block.
       operationId: revokeOBBRConsents
       parameters:
       - default: default
@@ -6865,7 +7108,8 @@ paths:
         in: query
         name: client_id
         type: string
-      - description: Required consent types
+      - description: A string of consent types you can pass along with the client
+          identifier to detail your request.
         in: query
         items:
           type: string
@@ -6887,35 +7131,47 @@ paths:
       security:
       - system:
         - manage_openbanking_consents
-      summary: Revoke openbanking Brasil consents.
+      summary: Revoke Open Banking Brazil Consents
       tags:
       - MANAGEMENT
     get:
       deprecated: true
       description: |-
-        This API returns the list of openbanking brasil consents.
-        Currently supporting v1 and v2 consents.
-        You can narrow the list of returned consents using filters defined in query parameters.
-        See GetConsentsParams for details.
+        Retrieve the list of Open Banking Brazil consents per workspace. Pass the required workspace identifier in the path.
+        To narrow the list, use the query parameters. Currently, this endpoint supports v1 and v2 consents.
+
+        For authorization, pass the `Authorization: Bearer` header with a token as the bearer value. To obtain the token
+        with the required scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scope list in the AUTHORIZATIONS block.
       operationId: getOBBRConsents
       parameters:
       - description: |-
-          Optional cnpj
-          cnpj
+          Optional. A
+          [14-digit identification number](https://openbanking-brasil.github.io/specs-seguranca/open-banking-brasil-financial-api-1_ID3.html#section-5.2.2.4)
+          of a company in Cadastro Nacional da Pessoa Jurídica (Brazilian National Registry of Legal Entities).
         in: query
         name: cnpj
         type: string
       - description: |-
-          Optional cpf
-          cpf
+          Optional. An
+          [11-digit taxpayer identification number](https://openbanking-brasil.github.io/specs-seguranca/open-banking-brasil-financial-api-1_ID3.html#name-requesting-the-cpf-claim)
+          in Cadastro de Pessoas Físicas (Natural Persons Register).
         in: query
         name: cpf
         type: string
-      - description: Optional start date for when consent was created
+      - description: |-
+          Optional. Consent creation date.
+
+          Sets the start date of the consent retrieval date range.
         in: query
         name: date_from
         type: string
-      - description: Optional end date for when consent was created
+      - description: |-
+          Optional. Consent creation date.
+
+          Sets the end date of the consent retrieval date range.
         in: query
         name: date_to
         type: string
@@ -6928,7 +7184,7 @@ paths:
           type: string
         name: accounts
         type: array
-      - description: A client identifier.
+      - description: A client application identifier.
         in: query
         name: client_id
         type: string
@@ -7008,15 +7264,20 @@ paths:
       security:
       - system:
         - manage_openbanking_consents
-      summary: Get openbanking brasil consents.
+      summary: Get Open Banking Brazil Consents
       tags:
       - MANAGEMENT
     post:
       description: |-
-        This API returns the list of openbanking brasil consents.
-        Currently supporting v1 and v2 consents.
-        You can narrow the list of returned consents using filters defined in request body.
-        See ListConsentsParams for details.
+        Retrieve the list of Open Banking Brazil consents per workplace. Pass the required workplace identifier in the path.
+        This endpoint currently supports v1 and v2 consents. To narrow the list, filter the response with the request body
+        parameters.
+
+        For authorization, pass the `Authorization: Bearer` header with a token as the bearer value. To obtain the token with
+        the necessary scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scope list in the AUTHORIZATIONS block.
       operationId: listOBBRConsents
       parameters:
       - default: default
@@ -7047,14 +7308,22 @@ paths:
       security:
       - system:
         - manage_openbanking_consents
-      summary: List openbanking brasil consents.
+      summary: List Open Banking Brazil Consents
       tags:
       - MANAGEMENT
   /servers/{wid}/open-banking-brasil/consents/{consentID}:
     delete:
       description: |-
-        This API revokes openbanking consent by consent id.
-        Currently supporting v1 and v2 consents.
+        Revoke an Open Banking Brazil consent by ID. Pass the identifiers of the required consent and the related workspace
+        in the path.
+
+        Currently, v1 and v2 consents are supported.
+
+        For authorization, pass the `Authorization: Bearer` header with a token as the bearer value. To obtain the token
+        and the necessary scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scope list in the AUTHORIZATIONS block.
       operationId: revokeOBBRConsent
       parameters:
       - default: default
@@ -7069,7 +7338,7 @@ paths:
         type: string
       responses:
         "204":
-          description: ' Consent has been revoked'
+          description: ' Consent Revoked'
         "400":
           $ref: '#/responses/badRequestHTTPError'
         "401":
@@ -7083,12 +7352,63 @@ paths:
       security:
       - system:
         - manage_openbanking_consents
-      summary: Revoke openbanking consent by ID.
+      summary: Revoke Open Banking Brazil Consent by ID
+      tags:
+      - MANAGEMENT
+    get:
+      description: |-
+        Call this endpoint to get the details of a consent within the specified workspace.
+
+        For authorization, pass the `Authorization: Bearer` header with a token as the bearer value. To obtain the token
+        and the necessary scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scope list in the AUTHORIZATIONS block.
+      operationId: getOBBRConsent
+      parameters:
+      - default: default
+        description: Workspace id
+        in: path
+        name: wid
+        required: true
+        type: string
+      - in: path
+        name: consentID
+        required: true
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/BrazilConsent'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - manage_openbanking_consents
+      summary: Get Open Banking Brazil Consent by ID
       tags:
       - MANAGEMENT
   /servers/{wid}/open-banking-brasil/consents/{consentID}/consume:
     post:
-      description: This API consumes openbanking consent by consent id.
+      description: |-
+        Retrieve the details of an Open Banking Brazil data access or payment initiation consent. Specify the required
+        consent identifier along with the identifier of the related workspace in the path.
+
+        The response contains detailed data about the consent, including both versions of `customer_data_access_consent`,
+        `customer_payment_consent`, and `customer_insurance_data_access_consent`.
+
+        For authorization, pass the `Authorization: Bearer` header with a token as the bearer value. To obtain the token with
+        the necessary scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scope list in the AUTHORIZATIONS block.
       operationId: consumeOBBRConsent
       parameters:
       - default: default
@@ -7117,14 +7437,14 @@ paths:
       security:
       - system:
         - manage_openbanking_consents
-      summary: Consume openbanking consent by ID.
+      summary: Consume Open Banking Brazil Consent by ID
       tags:
       - MANAGEMENT
 produces:
 - application/json
 responses:
   BrazilConsent:
-    description: BrazilConsent
+    description: Open Banking Brazil Consent
     schema:
       $ref: '#/definitions/BrazilConsent'
   BrazilCreateCustomerDataAccessConsentV2Response:
@@ -7152,7 +7472,7 @@ responses:
     schema:
       $ref: '#/definitions/BrazilInsuranceCustomerDataAccessConsentResponse'
   ConsentAccepted:
-    description: Consent accepted
+    description: Consent Accepted
     schema:
       $ref: '#/definitions/ConsentAccepted'
   ConsentRejected:
@@ -7160,7 +7480,7 @@ responses:
     schema:
       $ref: '#/definitions/ConsentRejected'
   ConsentsRemovedResponse:
-    description: ConsentsRemovedResponse
+    description: Consents Revoked
     schema:
       $ref: '#/definitions/ConsentsRemovedResponse'
   DynamicClientRegistrationResponse:
@@ -7196,7 +7516,7 @@ responses:
     schema:
       $ref: '#/definitions/IntrospectOBBRPaymentConsentResponseV2'
   OBBRConsents:
-    description: OBBRConsents
+    description: Open Banking Brazil Consents
     schema:
       $ref: '#/definitions/OBBRConsents'
   OBBRErrorResponse:
@@ -7268,7 +7588,7 @@ securityDefinitions:
     type: oauth2
   defaultcc:
     authorizationUrl: /default/default/oauth2/authorize
-    flow: application
+    flow: accessCode
     scopes:
       accounts: accounts
       consents: consents
@@ -7277,7 +7597,7 @@ securityDefinitions:
     type: oauth2
   system:
     authorizationUrl: /default/system/oauth2/authorize
-    flow: application
+    flow: accessCode
     scopes:
       manage_openbanking_consents: manage_openbanking_consents
     tokenUrl: /default/system/oauth2/token

@@ -2,6 +2,96 @@ basePath: /api/permissions/default
 consumes:
 - application/json
 definitions:
+  CheckPermissionRequest:
+    properties:
+      permission:
+        description: the name of the permission on which to execute the check
+        type: string
+        x-nullable: false
+      resource_id:
+        description: resource id
+        example: "1"
+        type: string
+        x-nullable: false
+      resource_type:
+        description: resource type
+        example: post
+        type: string
+        x-nullable: false
+      revision:
+        description: the data must be at least as fresh as that revision
+        type: string
+        x-nullable: false
+      subject_id:
+        description: subject id
+        example: emilia
+        type: string
+        x-nullable: false
+      subject_relation:
+        description: optional sub-relation on the subject
+        type: string
+        x-nullable: false
+      subject_type:
+        description: subject type
+        example: user
+        type: string
+        x-nullable: false
+    required:
+    - subject_type
+    - subject_id
+    - resource_type
+    - resource_id
+    - permission
+    type: object
+  CheckPermissionResponse:
+    properties:
+      has_permission:
+        description: true if subject has permission for the given resource
+        type: boolean
+        x-nullable: false
+    type: object
+  DeleteRelationshipsRequest:
+    properties:
+      relation:
+        description: Optional relation that provides information on how a resource
+          is related to a subject
+        example: user
+        type: string
+        x-nullable: false
+      resource_id:
+        description: Optional resource identifier to which the subject is related
+        example: "1"
+        type: string
+        x-nullable: false
+      resource_type:
+        description: Resource type to which the subject is related
+        example: post
+        type: string
+        x-nullable: false
+      subject_id:
+        description: Optional subject identifier to which the resource is related
+        example: John
+        type: string
+        x-nullable: false
+      subject_relation:
+        description: Optional sub-relation on the subject
+        type: string
+        x-nullable: false
+      subject_type:
+        description: Optional subject type to which the resource is related
+        example: user
+        type: string
+        x-nullable: false
+    required:
+    - resource_type
+    type: object
+  DeleteRelationshipsResponse:
+    properties:
+      revision:
+        description: the data must be at least as fresh as that revision
+        type: string
+        x-nullable: false
+    type: object
   Error:
     description: HTTP error response
     properties:
@@ -15,6 +105,219 @@ definitions:
         format: int64
         type: integer
         x-nullable: false
+    type: object
+  LookupResourcesRequest:
+    properties:
+      permission:
+        description: the name of the permission that the subject must have
+        type: string
+        x-nullable: false
+      resource_type:
+        description: resource type for which to lookup
+        example: post
+        type: string
+        x-nullable: false
+      revision:
+        description: the data must be at least as fresh as that revision
+        type: string
+        x-nullable: false
+      subject_id:
+        description: subject id
+        example: emilia
+        type: string
+        x-nullable: false
+      subject_relation:
+        description: optional sub-relation on the subject
+        type: string
+        x-nullable: false
+      subject_type:
+        description: subject type
+        example: user
+        type: string
+        x-nullable: false
+    required:
+    - subject_type
+    - subject_id
+    - resource_type
+    - permission
+    type: object
+  LookupResourcesResponse:
+    properties:
+      resource_id:
+        description: resource id that a subject has a permission for
+        type: string
+        x-nullable: false
+    type: object
+  LookupSubjectsRequest:
+    properties:
+      permission:
+        description: the name of the permission that the subject must have
+        type: string
+        x-nullable: false
+      resource_id:
+        description: resource id
+        example: "1"
+        type: string
+        x-nullable: false
+      resource_type:
+        description: resource type
+        example: post
+        type: string
+        x-nullable: false
+      revision:
+        description: the data must be at least as fresh as that revision
+        type: string
+        x-nullable: false
+      subject_relation:
+        description: optional sub-relation on the subject
+        type: string
+        x-nullable: false
+      subject_type:
+        description: subject type for which to lookup
+        example: emilia
+        type: string
+        x-nullable: false
+    required:
+    - resource_type
+    - resource_id
+    - subject_type
+    - permission
+    type: object
+  LookupSubjectsResponse:
+    properties:
+      excluded_subject_ids:
+        description: excluded subject ids
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      subject_id:
+        description: subject that has a permission for a given resource
+        type: string
+        x-nullable: false
+    type: object
+  ReadRelationshipsRequest:
+    properties:
+      relation:
+        description: Optional relation that provides information on how a resource
+          is related to a subject
+        example: user
+        type: string
+        x-nullable: false
+      resource_id:
+        description: Optional resource identifier to which the subject is related
+        example: "1"
+        type: string
+        x-nullable: false
+      resource_type:
+        description: Resource type to which the subject is related
+        example: post
+        type: string
+        x-nullable: false
+      revision:
+        description: the data must be at least as fresh as that revision
+        type: string
+        x-nullable: false
+      subject_id:
+        description: Optional subject identifier to which the resource is related
+        example: John
+        type: string
+        x-nullable: false
+      subject_relation:
+        description: Optional sub-relation on the subject
+        type: string
+        x-nullable: false
+      subject_type:
+        description: Optional subject type to which the resource is related
+        example: user
+        type: string
+        x-nullable: false
+    required:
+    - resource_type
+    type: object
+  ReadRelationshipsResponse:
+    properties:
+      relation:
+        description: how the resource and subject are related
+        type: string
+        x-nullable: false
+      resource_id:
+        description: resource id
+        example: "1"
+        type: string
+        x-nullable: false
+      resource_type:
+        description: resource type
+        example: post
+        type: string
+        x-nullable: false
+      subject_id:
+        description: subject id
+        example: emilia
+        type: string
+        x-nullable: false
+      subject_relation:
+        description: optional sub-relation on the subject
+        type: string
+        x-nullable: false
+      subject_type:
+        description: subject type
+        example: user
+        type: string
+        x-nullable: false
+    required:
+    - resource_type
+    - resource_id
+    - subject_type
+    - subject_id
+    type: object
+  RelationshipUpdate:
+    properties:
+      operation:
+        description: 'operation type: insert, upsert (create or update) or delete'
+        enum:
+        - insert
+        - upsert
+        - delete
+        example: upsert
+        type: string
+        x-nullable: false
+      relation:
+        description: relation is how the resource and subject are related
+        example: reader
+        type: string
+        x-nullable: false
+      resource_id:
+        description: resource id to which the subject is related
+        example: "1"
+        type: string
+        x-nullable: false
+      resource_type:
+        description: resource type to which the subject is related
+        example: post
+        type: string
+        x-nullable: false
+      subject_id:
+        description: subject id to which the resource is related
+        example: emilia
+        type: string
+        x-nullable: false
+      subject_relation:
+        description: optional sub-relation on the subject
+        type: string
+        x-nullable: false
+      subject_type:
+        description: subject type to which the resource is related
+        example: user
+        type: string
+        x-nullable: false
+    required:
+    - operation
+    - relation
+    - resource_type
+    - resource_id
+    - subject_type
+    - subject_id
     type: object
   System:
     properties:
@@ -114,25 +417,48 @@ definitions:
         type: array
         x-nullable: false
     type: object
+  WriteRelationshipsRequest:
+    properties:
+      updates:
+        description: list of mutations
+        items:
+          $ref: '#/definitions/RelationshipUpdate'
+        type: array
+        x-nullable: false
+    type: object
+  WriteRelationshipsResponse:
+    properties:
+      revision:
+        description: the data must be at least as fresh as that revision
+        type: string
+        x-nullable: false
+    type: object
 host: localhost:8443
 info:
-  description: Cloudentity Authorization Control Plane Permissions API
-  title: Cloudentity Authorization Control Plane API
+  description: Cloudentity Permissions API
+  title: Cloudentity API
   version: latest
 paths:
   /admin/systems:
     get:
       description: Lists permission systems.
       operationId: listSystems
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       responses:
         "200":
           $ref: '#/responses/SystemsResponse'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
       summary: List permission systems
@@ -142,6 +468,12 @@ paths:
       description: Creates a permission system.
       operationId: createSystem
       parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - in: body
         name: System
         schema:
@@ -150,19 +482,19 @@ paths:
         "201":
           $ref: '#/responses/SystemResponse'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
         "409":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/conflictHTTPError'
         "422":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unprocessableEntityHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
       summary: Create permission system
@@ -173,6 +505,12 @@ paths:
       description: Deletes permission system.
       operationId: deleteSystem
       parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - in: path
         name: psID
         required: true
@@ -181,13 +519,13 @@ paths:
         "204":
           description: ' Permission system has been deleted'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
       summary: Delete permission system
@@ -197,6 +535,12 @@ paths:
       description: Gets permission system.
       operationId: getSystem
       parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - in: path
         name: psID
         required: true
@@ -205,13 +549,13 @@ paths:
         "200":
           $ref: '#/responses/SystemResponse'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
       summary: Get permission system
@@ -221,6 +565,12 @@ paths:
       description: Updates permission system.
       operationId: updateSystem
       parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - in: path
         name: psID
         required: true
@@ -233,19 +583,19 @@ paths:
         "200":
           $ref: '#/responses/SystemResponse'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
         "409":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/conflictHTTPError'
         "422":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unprocessableEntityHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
       summary: Update permission system
@@ -256,6 +606,12 @@ paths:
       description: Lists permission system tokens.
       operationId: listTokens
       parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - in: path
         name: psID
         required: true
@@ -264,11 +620,11 @@ paths:
         "200":
           $ref: '#/responses/TokensResponse'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
       summary: List permission system tokens
@@ -278,6 +634,12 @@ paths:
       description: Creates a permission system token.
       operationId: createToken
       parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - in: path
         name: psID
         required: true
@@ -290,19 +652,19 @@ paths:
         "201":
           $ref: '#/responses/TokenResponse'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
         "409":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/conflictHTTPError'
         "422":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unprocessableEntityHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
       summary: Create permission system token
@@ -313,6 +675,12 @@ paths:
       description: Deletes permission system token.
       operationId: deleteToken
       parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - in: path
         name: psID
         required: true
@@ -325,13 +693,13 @@ paths:
         "204":
           description: ' Permission system token has been deleted'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
       summary: Delete permission system token
@@ -341,6 +709,12 @@ paths:
       description: Gets permission system token.
       operationId: getToken
       parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - in: path
         name: psID
         required: true
@@ -353,13 +727,13 @@ paths:
         "200":
           $ref: '#/responses/TokenResponse'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
       summary: Get permission system token
@@ -369,6 +743,12 @@ paths:
       description: Updates permission system token.
       operationId: updateToken
       parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - in: path
         name: psID
         required: true
@@ -385,46 +765,448 @@ paths:
         "200":
           $ref: '#/responses/TokenResponse'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
         "409":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/conflictHTTPError'
         "422":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unprocessableEntityHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
       summary: Update permission system token
       tags:
       - Tokens
+  /system/systems/{psID}/check:
+    post:
+      description: Check permission.
+      operationId: checkPermission
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - in: path
+        name: psID
+        required: true
+        type: string
+      - in: body
+        name: Request
+        schema:
+          $ref: '#/definitions/CheckPermissionRequest'
+      responses:
+        "200":
+          $ref: '#/responses/CheckPermissionResponse'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "409":
+          $ref: '#/responses/conflictHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - token: []
+      summary: Check permission
+      tags:
+      - Permissions
+  /system/systems/{psID}/lookup/resources:
+    post:
+      description: Lookup resources.
+      operationId: lookupResources
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - in: path
+        name: psID
+        required: true
+        type: string
+      - in: body
+        name: Request
+        schema:
+          $ref: '#/definitions/LookupResourcesRequest'
+      responses:
+        "200":
+          $ref: '#/responses/LookupResourcesResponse'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "409":
+          $ref: '#/responses/conflictHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - token: []
+      summary: Lookup resources
+      tags:
+      - Permissions
+  /system/systems/{psID}/lookup/subjects:
+    post:
+      description: Lookup subjects.
+      operationId: lookupSubjects
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - in: path
+        name: psID
+        required: true
+        type: string
+      - in: body
+        name: Request
+        schema:
+          $ref: '#/definitions/LookupSubjectsRequest'
+      responses:
+        "200":
+          $ref: '#/responses/LookupSubjectsResponse'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "409":
+          $ref: '#/responses/conflictHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - token: []
+      summary: Lookup subjects
+      tags:
+      - Permissions
+  /system/systems/{psID}/relationships:
+    delete:
+      description: Delete relationships.
+      operationId: deleteRelationships
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - in: path
+        name: psID
+        required: true
+        type: string
+      - in: body
+        name: Request
+        schema:
+          $ref: '#/definitions/DeleteRelationshipsRequest'
+      responses:
+        "200":
+          $ref: '#/responses/DeleteRelationshipsResponse'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "409":
+          $ref: '#/responses/conflictHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - token: []
+      summary: Delete relationships
+      tags:
+      - Relationships
+    get:
+      description: Read relationships.
+      operationId: readRelationships
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - in: path
+        name: psID
+        required: true
+        type: string
+      - in: body
+        name: Request
+        schema:
+          $ref: '#/definitions/ReadRelationshipsRequest'
+      responses:
+        "200":
+          $ref: '#/responses/ReadRelationshipsResponse'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "409":
+          $ref: '#/responses/conflictHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - token: []
+      summary: Read relationships
+      tags:
+      - Relationships
+    post:
+      description: Write relationships.
+      operationId: writeRelationships
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - in: path
+        name: psID
+        required: true
+        type: string
+      - in: body
+        name: Request
+        schema:
+          $ref: '#/definitions/WriteRelationshipsRequest'
+      responses:
+        "200":
+          $ref: '#/responses/WriteRelationshipsResponse'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "409":
+          $ref: '#/responses/conflictHTTPError'
+        "422":
+          $ref: '#/responses/unprocessableEntityHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - token: []
+      summary: Write relationships
+      tags:
+      - Relationships
 produces:
 - application/json
-- text/csv
 responses:
+  CheckPermissionResponse:
+    description: CheckPermissionResponse
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+    schema:
+      $ref: '#/definitions/CheckPermissionResponse'
+  DeleteRelationshipsResponse:
+    description: DeleteRelationshipsResponse
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+    schema:
+      $ref: '#/definitions/DeleteRelationshipsResponse'
+  LookupResourcesResponse:
+    description: LookupResourcesResponse
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+    schema:
+      properties:
+        values:
+          items:
+            $ref: '#/definitions/LookupResourcesResponse'
+          type: array
+      type: object
+  LookupSubjectsResponse:
+    description: LookupSubjectsResponse
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+    schema:
+      properties:
+        values:
+          items:
+            $ref: '#/definitions/LookupSubjectsResponse'
+          type: array
+      type: object
+  ReadRelationshipsResponse:
+    description: ReadRelationshipsResponse
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+    schema:
+      properties:
+        values:
+          items:
+            $ref: '#/definitions/ReadRelationshipsResponse'
+          type: array
+      type: object
   SystemResponse:
     description: Permission system
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
     schema:
       $ref: '#/definitions/System'
   SystemsResponse:
     description: Permission systems
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
     schema:
       $ref: '#/definitions/Systems'
   TokenResponse:
     description: Permission system token
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
     schema:
       $ref: '#/definitions/Token'
   TokensResponse:
     description: Permission system tokens
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
     schema:
       $ref: '#/definitions/Tokens'
-  httpError:
-    description: HttpError
+  WriteRelationshipsResponse:
+    description: WriteRelationshipsResponse
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
+    schema:
+      $ref: '#/definitions/WriteRelationshipsResponse'
+  badRequestHTTPError:
+    description: Bad request
+    schema:
+      $ref: '#/definitions/Error'
+  conflictHTTPError:
+    description: Conflict
+    schema:
+      $ref: '#/definitions/Error'
+  forbiddenHTTPError:
+    description: Forbidden
+    schema:
+      $ref: '#/definitions/Error'
+  internalServerErrorHTTPError:
+    description: Internal server error
+    schema:
+      $ref: '#/definitions/Error'
+  methodNotAllowedHTTPError:
+    description: Method not allowed
+    schema:
+      $ref: '#/definitions/Error'
+  notFoundHTTPError:
+    description: Not found
+    schema:
+      $ref: '#/definitions/Error'
+  payloadTooLargeHTTPError:
+    description: Payload too large
+    schema:
+      $ref: '#/definitions/Error'
+  preconditionFailedHTTPError:
+    description: Precondition failed
+    schema:
+      $ref: '#/definitions/Error'
+  tooManyRequestsHTTPError:
+    description: Too many requests
+    schema:
+      $ref: '#/definitions/Error'
+  unauthorizedHTTPError:
+    description: Unauthorized
+    schema:
+      $ref: '#/definitions/Error'
+  unprocessableEntityHTTPError:
+    description: Unprocessable entity
     schema:
       $ref: '#/definitions/Error'
 schemes:
@@ -435,4 +1217,8 @@ securityDefinitions:
     flow: application
     tokenUrl: /default/admin/oauth2/token
     type: oauth2
+  token:
+    in: header
+    name: X-API-KEY
+    type: apiKey
 swagger: "2.0"

@@ -69,6 +69,14 @@ type ImportSAMLMetadataFromTextParams struct {
 	*/
 	Cid string
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	// Text.
 	Text string
 
@@ -147,6 +155,17 @@ func (o *ImportSAMLMetadataFromTextParams) SetCid(cid string) {
 	o.Cid = cid
 }
 
+// WithIfMatch adds the ifMatch to the import s a m l metadata from text params
+func (o *ImportSAMLMetadataFromTextParams) WithIfMatch(ifMatch *string) *ImportSAMLMetadataFromTextParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the import s a m l metadata from text params
+func (o *ImportSAMLMetadataFromTextParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithText adds the text to the import s a m l metadata from text params
 func (o *ImportSAMLMetadataFromTextParams) WithText(text string) *ImportSAMLMetadataFromTextParams {
 	o.SetText(text)
@@ -169,6 +188,14 @@ func (o *ImportSAMLMetadataFromTextParams) WriteToRequest(r runtime.ClientReques
 	// path param cid
 	if err := r.SetPathParam("cid", o.Cid); err != nil {
 		return err
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
 	}
 	if err := r.SetBodyParam(o.Text); err != nil {
 		return err

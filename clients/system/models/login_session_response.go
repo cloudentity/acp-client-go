@@ -99,6 +99,9 @@ type LoginSessionResponse struct {
 	// requested grant type
 	RequestedGrantType string `json:"requested_grant_type,omitempty"`
 
+	// requested redirect uri
+	RequestedRedirectURI string `json:"requested_redirect_uri,omitempty"`
+
 	// list of requested scopes
 	RequestedScopes []*RequestedScope `json:"requested_scopes"`
 
@@ -361,6 +364,10 @@ func (m *LoginSessionResponse) ContextValidate(ctx context.Context, formats strf
 
 func (m *LoginSessionResponse) contextValidateAuthenticationContext(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.AuthenticationContext) { // not required
+		return nil
+	}
+
 	if err := m.AuthenticationContext.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("authentication_context")
@@ -376,6 +383,11 @@ func (m *LoginSessionResponse) contextValidateAuthenticationContext(ctx context.
 func (m *LoginSessionResponse) contextValidateClientInfo(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ClientInfo != nil {
+
+		if swag.IsZero(m.ClientInfo) { // not required
+			return nil
+		}
+
 		if err := m.ClientInfo.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("client_info")
@@ -392,6 +404,11 @@ func (m *LoginSessionResponse) contextValidateClientInfo(ctx context.Context, fo
 func (m *LoginSessionResponse) contextValidateError(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Error != nil {
+
+		if swag.IsZero(m.Error) { // not required
+			return nil
+		}
+
 		if err := m.Error.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("error")
@@ -406,6 +423,10 @@ func (m *LoginSessionResponse) contextValidateError(ctx context.Context, formats
 }
 
 func (m *LoginSessionResponse) contextValidateRequestQueryParams(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.RequestQueryParams) { // not required
+		return nil
+	}
 
 	if err := m.RequestQueryParams.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -422,6 +443,11 @@ func (m *LoginSessionResponse) contextValidateRequestQueryParams(ctx context.Con
 func (m *LoginSessionResponse) contextValidateRequestedClaims(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.RequestedClaims != nil {
+
+		if swag.IsZero(m.RequestedClaims) { // not required
+			return nil
+		}
+
 		if err := m.RequestedClaims.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("requested_claims")
@@ -440,6 +466,11 @@ func (m *LoginSessionResponse) contextValidateRequestedScopes(ctx context.Contex
 	for i := 0; i < len(m.RequestedScopes); i++ {
 
 		if m.RequestedScopes[i] != nil {
+
+			if swag.IsZero(m.RequestedScopes[i]) { // not required
+				return nil
+			}
+
 			if err := m.RequestedScopes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("requested_scopes" + "." + strconv.Itoa(i))

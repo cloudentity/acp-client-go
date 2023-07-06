@@ -54,7 +54,7 @@ func (o *AcceptDomesticScheduledPaymentConsentSystemReader) ReadResponse(respons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /open-banking/domestic-scheduled-payment-consent/{login}/accept] acceptDomesticScheduledPaymentConsentSystem", response, response.Code())
 	}
 }
 
@@ -66,7 +66,7 @@ func NewAcceptDomesticScheduledPaymentConsentSystemOK() *AcceptDomesticScheduled
 /*
 AcceptDomesticScheduledPaymentConsentSystemOK describes a response with status code 200, with default header values.
 
-Consent accepted
+Consent Accepted
 */
 type AcceptDomesticScheduledPaymentConsentSystemOK struct {
 	Payload *models.ConsentAccepted

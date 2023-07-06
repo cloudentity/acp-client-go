@@ -66,7 +66,7 @@ func (o *CreateIntelliTrustIDPReader) ReadResponse(response runtime.ClientRespon
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /servers/{wid}/idps/intelli_trust] createIntelliTrustIDP", response, response.Code())
 	}
 }
 
@@ -109,6 +109,11 @@ func (o *CreateIntelliTrustIDPCreated) IsCode(code int) bool {
 	return code == 201
 }
 
+// Code gets the status code for the create intelli trust Id p created response
+func (o *CreateIntelliTrustIDPCreated) Code() int {
+	return 201
+}
+
 func (o *CreateIntelliTrustIDPCreated) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/intelli_trust][%d] createIntelliTrustIdPCreated  %+v", 201, o.Payload)
 }
@@ -141,7 +146,7 @@ func NewCreateIntelliTrustIDPBadRequest() *CreateIntelliTrustIDPBadRequest {
 /*
 CreateIntelliTrustIDPBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type CreateIntelliTrustIDPBadRequest struct {
 	Payload *models.Error
@@ -170,6 +175,11 @@ func (o *CreateIntelliTrustIDPBadRequest) IsServerError() bool {
 // IsCode returns true when this create intelli trust Id p bad request response a status code equal to that given
 func (o *CreateIntelliTrustIDPBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the create intelli trust Id p bad request response
+func (o *CreateIntelliTrustIDPBadRequest) Code() int {
+	return 400
 }
 
 func (o *CreateIntelliTrustIDPBadRequest) Error() string {
@@ -204,7 +214,7 @@ func NewCreateIntelliTrustIDPUnauthorized() *CreateIntelliTrustIDPUnauthorized {
 /*
 CreateIntelliTrustIDPUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type CreateIntelliTrustIDPUnauthorized struct {
 	Payload *models.Error
@@ -233,6 +243,11 @@ func (o *CreateIntelliTrustIDPUnauthorized) IsServerError() bool {
 // IsCode returns true when this create intelli trust Id p unauthorized response a status code equal to that given
 func (o *CreateIntelliTrustIDPUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the create intelli trust Id p unauthorized response
+func (o *CreateIntelliTrustIDPUnauthorized) Code() int {
+	return 401
 }
 
 func (o *CreateIntelliTrustIDPUnauthorized) Error() string {
@@ -267,7 +282,7 @@ func NewCreateIntelliTrustIDPForbidden() *CreateIntelliTrustIDPForbidden {
 /*
 CreateIntelliTrustIDPForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type CreateIntelliTrustIDPForbidden struct {
 	Payload *models.Error
@@ -296,6 +311,11 @@ func (o *CreateIntelliTrustIDPForbidden) IsServerError() bool {
 // IsCode returns true when this create intelli trust Id p forbidden response a status code equal to that given
 func (o *CreateIntelliTrustIDPForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the create intelli trust Id p forbidden response
+func (o *CreateIntelliTrustIDPForbidden) Code() int {
+	return 403
 }
 
 func (o *CreateIntelliTrustIDPForbidden) Error() string {
@@ -330,7 +350,7 @@ func NewCreateIntelliTrustIDPNotFound() *CreateIntelliTrustIDPNotFound {
 /*
 CreateIntelliTrustIDPNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type CreateIntelliTrustIDPNotFound struct {
 	Payload *models.Error
@@ -359,6 +379,11 @@ func (o *CreateIntelliTrustIDPNotFound) IsServerError() bool {
 // IsCode returns true when this create intelli trust Id p not found response a status code equal to that given
 func (o *CreateIntelliTrustIDPNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the create intelli trust Id p not found response
+func (o *CreateIntelliTrustIDPNotFound) Code() int {
+	return 404
 }
 
 func (o *CreateIntelliTrustIDPNotFound) Error() string {
@@ -393,7 +418,7 @@ func NewCreateIntelliTrustIDPUnprocessableEntity() *CreateIntelliTrustIDPUnproce
 /*
 CreateIntelliTrustIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type CreateIntelliTrustIDPUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +447,11 @@ func (o *CreateIntelliTrustIDPUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this create intelli trust Id p unprocessable entity response a status code equal to that given
 func (o *CreateIntelliTrustIDPUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the create intelli trust Id p unprocessable entity response
+func (o *CreateIntelliTrustIDPUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *CreateIntelliTrustIDPUnprocessableEntity) Error() string {
@@ -456,7 +486,7 @@ func NewCreateIntelliTrustIDPTooManyRequests() *CreateIntelliTrustIDPTooManyRequ
 /*
 CreateIntelliTrustIDPTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type CreateIntelliTrustIDPTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +515,11 @@ func (o *CreateIntelliTrustIDPTooManyRequests) IsServerError() bool {
 // IsCode returns true when this create intelli trust Id p too many requests response a status code equal to that given
 func (o *CreateIntelliTrustIDPTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the create intelli trust Id p too many requests response
+func (o *CreateIntelliTrustIDPTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *CreateIntelliTrustIDPTooManyRequests) Error() string {

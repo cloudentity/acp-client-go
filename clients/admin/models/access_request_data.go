@@ -36,6 +36,9 @@ type AccessRequestData struct {
 	// Matches one of allowed OAuth client grant types for a given client.
 	GrantType string `json:"grant_type,omitempty"`
 
+	// May act claims
+	MayActClaims map[string]interface{} `json:"may_act_claims,omitempty"`
+
 	// Stores information if the client application is a public one.
 	Public bool `json:"public,omitempty"`
 

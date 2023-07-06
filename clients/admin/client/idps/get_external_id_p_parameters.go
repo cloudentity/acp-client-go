@@ -61,6 +61,14 @@ GetExternalIDPParams contains all the parameters to send to the API endpoint
 */
 type GetExternalIDPParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Iid.
 
 	   IDP id
@@ -139,6 +147,17 @@ func (o *GetExternalIDPParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the get external ID p params
+func (o *GetExternalIDPParams) WithIfMatch(ifMatch *string) *GetExternalIDPParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the get external ID p params
+func (o *GetExternalIDPParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithIid adds the iid to the get external ID p params
 func (o *GetExternalIDPParams) WithIid(iid string) *GetExternalIDPParams {
 	o.SetIid(iid)
@@ -168,6 +187,14 @@ func (o *GetExternalIDPParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	// path param iid
 	if err := r.SetPathParam("iid", o.Iid); err != nil {

@@ -61,6 +61,14 @@ ListScopesParams contains all the parameters to send to the API endpoint
 */
 type ListScopesParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Wid.
 
 	   Authorization server id
@@ -133,6 +141,17 @@ func (o *ListScopesParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the list scopes params
+func (o *ListScopesParams) WithIfMatch(ifMatch *string) *ListScopesParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the list scopes params
+func (o *ListScopesParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithWid adds the wid to the list scopes params
 func (o *ListScopesParams) WithWid(wid string) *ListScopesParams {
 	o.SetWid(wid)
@@ -151,6 +170,14 @@ func (o *ListScopesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	// path param wid
 	if err := r.SetPathParam("wid", o.Wid); err != nil {

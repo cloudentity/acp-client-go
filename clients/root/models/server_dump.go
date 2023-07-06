@@ -210,8 +210,13 @@ type ServerDump struct {
 	// Logo URI
 	LogoURI string `json:"logo_uri,omitempty"`
 
-	// Display name of your authorization server
-	// Example: Sample authorization server
+	// metadata
+	Metadata *ServerMetadata `json:"metadata,omitempty"`
+
+	// Display name of the workspace
+	//
+	// If not provided, a random ID is generated.
+	// Example: default
 	Name string `json:"name,omitempty"`
 
 	// obbr
@@ -223,7 +228,7 @@ type ServerDump struct {
 	// specific configuration patterns. For example, you can instantly create an Open Banking
 	// compliant workspace that has all of the required mechanisms and settings already in place.
 	// Example: default
-	// Enum: [default demo workforce consumer partners third_party fapi_advanced fapi_rw fapi_ro openbanking_uk_fapi_advanced openbanking_uk openbanking_br cdr_australia cdr_australia_fapi_rw fdx]
+	// Enum: [default demo workforce consumer partners third_party fapi_advanced fapi_rw fapi_ro openbanking_uk_fapi_advanced openbanking_uk openbanking_br cdr_australia cdr_australia_fapi_rw fdx openbanking_ksa fapi_20_security fapi_20_message_signing connect_id]
 	Profile string `json:"profile,omitempty"`
 
 	// Custom pushed authentication request TTL
@@ -266,6 +271,12 @@ type ServerDump struct {
 	// Example: hW5WhKX_7w7BLwUQ6mn7Cp70_OoKI_F1y1hLS5U8lIU
 	Secret string `json:"secret,omitempty"`
 
+	// sso
+	Sso *SSOConfiguration `json:"sso,omitempty"`
+
+	// styling
+	Styling *Styling `json:"styling,omitempty"`
+
 	// Define the format of a subject
 	// When set to hash sub value is a one way hash of idp id and idp sub
 	// Enum: [hash legacy]
@@ -284,8 +295,8 @@ type ServerDump struct {
 
 	// An array that defines supported subject identifier types.
 	//
-	// Subject identifiers are locally unique and never reassigned identifiers within the Issuer
-	// for the end-user and are inteded to be consumed by client applications. There are two types
+	// Subject identifiers identify an end-user. They are locally unique and never reassigned within the Issuer,
+	// and are intended to be consumed by client applications. There are two types
 	// of subject identifiers: `public` and `pairwise`.
 	//
 	// `public` identifiers provide the same `sub` claim value to all client applications.
@@ -324,11 +335,11 @@ type ServerDump struct {
 	// It is an internal property used to recognize if the server is created for an admin portal,
 	// a developer portal, or if it is a system or a regular workspace.
 	// Example: regular
-	// Enum: [admin developer system regular]
+	// Enum: [admin developer system regular organization]
 	Type string `json:"type,omitempty"`
 
 	// server version to track internal changes
-	// currently supported version: 2
+	// version that is currently supported: 2
 	Version int64 `json:"version,omitempty"`
 }
 
@@ -400,6 +411,10 @@ func (m *ServerDump) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateMetadata(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateObbr(formats); err != nil {
 		res = append(res, err)
 	}
@@ -421,6 +436,14 @@ func (m *ServerDump) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateSaml(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSso(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStyling(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -800,6 +823,25 @@ func (m *ServerDump) validateLegalEntity(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *ServerDump) validateMetadata(formats strfmt.Registry) error {
+	if swag.IsZero(m.Metadata) { // not required
+		return nil
+	}
+
+	if m.Metadata != nil {
+		if err := m.Metadata.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("metadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("metadata")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *ServerDump) validateObbr(formats strfmt.Registry) error {
 	if swag.IsZero(m.Obbr) { // not required
 		return nil
@@ -823,7 +865,7 @@ var serverDumpTypeProfilePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["default","demo","workforce","consumer","partners","third_party","fapi_advanced","fapi_rw","fapi_ro","openbanking_uk_fapi_advanced","openbanking_uk","openbanking_br","cdr_australia","cdr_australia_fapi_rw","fdx"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["default","demo","workforce","consumer","partners","third_party","fapi_advanced","fapi_rw","fapi_ro","openbanking_uk_fapi_advanced","openbanking_uk","openbanking_br","cdr_australia","cdr_australia_fapi_rw","fdx","openbanking_ksa","fapi_20_security","fapi_20_message_signing","connect_id"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -877,6 +919,18 @@ const (
 
 	// ServerDumpProfileFdx captures enum value "fdx"
 	ServerDumpProfileFdx string = "fdx"
+
+	// ServerDumpProfileOpenbankingKsa captures enum value "openbanking_ksa"
+	ServerDumpProfileOpenbankingKsa string = "openbanking_ksa"
+
+	// ServerDumpProfileFapi20Security captures enum value "fapi_20_security"
+	ServerDumpProfileFapi20Security string = "fapi_20_security"
+
+	// ServerDumpProfileFapi20MessageSigning captures enum value "fapi_20_message_signing"
+	ServerDumpProfileFapi20MessageSigning string = "fapi_20_message_signing"
+
+	// ServerDumpProfileConnectID captures enum value "connect_id"
+	ServerDumpProfileConnectID string = "connect_id"
 )
 
 // prop value enum
@@ -952,6 +1006,44 @@ func (m *ServerDump) validateSaml(formats strfmt.Registry) error {
 				return ve.ValidateName("saml")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("saml")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ServerDump) validateSso(formats strfmt.Registry) error {
+	if swag.IsZero(m.Sso) { // not required
+		return nil
+	}
+
+	if m.Sso != nil {
+		if err := m.Sso.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("sso")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("sso")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ServerDump) validateStyling(formats strfmt.Registry) error {
+	if swag.IsZero(m.Styling) { // not required
+		return nil
+	}
+
+	if m.Styling != nil {
+		if err := m.Styling.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("styling")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("styling")
 			}
 			return err
 		}
@@ -1142,7 +1234,7 @@ var serverDumpTypeTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["admin","developer","system","regular"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["admin","developer","system","regular","organization"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -1163,6 +1255,9 @@ const (
 
 	// ServerDumpTypeRegular captures enum value "regular"
 	ServerDumpTypeRegular string = "regular"
+
+	// ServerDumpTypeOrganization captures enum value "organization"
+	ServerDumpTypeOrganization string = "organization"
 )
 
 // prop value enum
@@ -1226,6 +1321,10 @@ func (m *ServerDump) ContextValidate(ctx context.Context, formats strfmt.Registr
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateMetadata(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateObbr(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -1235,6 +1334,14 @@ func (m *ServerDump) ContextValidate(ctx context.Context, formats strfmt.Registr
 	}
 
 	if err := m.contextValidateSaml(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSso(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStyling(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1251,6 +1358,11 @@ func (m *ServerDump) ContextValidate(ctx context.Context, formats strfmt.Registr
 func (m *ServerDump) contextValidateAdvanced(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Advanced != nil {
+
+		if swag.IsZero(m.Advanced) { // not required
+			return nil
+		}
+
 		if err := m.Advanced.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("advanced")
@@ -1267,6 +1379,11 @@ func (m *ServerDump) contextValidateAdvanced(ctx context.Context, formats strfmt
 func (m *ServerDump) contextValidateAuthenticationContextSettings(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.AuthenticationContextSettings != nil {
+
+		if swag.IsZero(m.AuthenticationContextSettings) { // not required
+			return nil
+		}
+
 		if err := m.AuthenticationContextSettings.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("authentication_context_settings")
@@ -1283,6 +1400,11 @@ func (m *ServerDump) contextValidateAuthenticationContextSettings(ctx context.Co
 func (m *ServerDump) contextValidateCdr(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Cdr != nil {
+
+		if swag.IsZero(m.Cdr) { // not required
+			return nil
+		}
+
 		if err := m.Cdr.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cdr")
@@ -1299,6 +1421,11 @@ func (m *ServerDump) contextValidateCdr(ctx context.Context, formats strfmt.Regi
 func (m *ServerDump) contextValidateDeviceAuthorization(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.DeviceAuthorization != nil {
+
+		if swag.IsZero(m.DeviceAuthorization) { // not required
+			return nil
+		}
+
 		if err := m.DeviceAuthorization.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("device_authorization")
@@ -1315,6 +1442,11 @@ func (m *ServerDump) contextValidateDeviceAuthorization(ctx context.Context, for
 func (m *ServerDump) contextValidateDynamicClientRegistration(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.DynamicClientRegistration != nil {
+
+		if swag.IsZero(m.DynamicClientRegistration) { // not required
+			return nil
+		}
+
 		if err := m.DynamicClientRegistration.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("dynamic_client_registration")
@@ -1331,6 +1463,11 @@ func (m *ServerDump) contextValidateDynamicClientRegistration(ctx context.Contex
 func (m *ServerDump) contextValidateFdx(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Fdx != nil {
+
+		if swag.IsZero(m.Fdx) { // not required
+			return nil
+		}
+
 		if err := m.Fdx.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("fdx")
@@ -1347,6 +1484,11 @@ func (m *ServerDump) contextValidateFdx(ctx context.Context, formats strfmt.Regi
 func (m *ServerDump) contextValidateIdpDiscovery(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.IdpDiscovery != nil {
+
+		if swag.IsZero(m.IdpDiscovery) { // not required
+			return nil
+		}
+
 		if err := m.IdpDiscovery.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("idp_discovery")
@@ -1363,6 +1505,11 @@ func (m *ServerDump) contextValidateIdpDiscovery(ctx context.Context, formats st
 func (m *ServerDump) contextValidateJwks(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Jwks != nil {
+
+		if swag.IsZero(m.Jwks) { // not required
+			return nil
+		}
+
 		if err := m.Jwks.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("jwks")
@@ -1379,6 +1526,11 @@ func (m *ServerDump) contextValidateJwks(ctx context.Context, formats strfmt.Reg
 func (m *ServerDump) contextValidateLegalEntity(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.LegalEntity != nil {
+
+		if swag.IsZero(m.LegalEntity) { // not required
+			return nil
+		}
+
 		if err := m.LegalEntity.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("legal_entity")
@@ -1392,9 +1544,35 @@ func (m *ServerDump) contextValidateLegalEntity(ctx context.Context, formats str
 	return nil
 }
 
+func (m *ServerDump) contextValidateMetadata(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Metadata != nil {
+
+		if swag.IsZero(m.Metadata) { // not required
+			return nil
+		}
+
+		if err := m.Metadata.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("metadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("metadata")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *ServerDump) contextValidateObbr(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Obbr != nil {
+
+		if swag.IsZero(m.Obbr) { // not required
+			return nil
+		}
+
 		if err := m.Obbr.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("obbr")
@@ -1425,6 +1603,11 @@ func (m *ServerDump) contextValidateResponseTypes(ctx context.Context, formats s
 func (m *ServerDump) contextValidateSaml(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Saml != nil {
+
+		if swag.IsZero(m.Saml) { // not required
+			return nil
+		}
+
 		if err := m.Saml.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("saml")
@@ -1438,9 +1621,56 @@ func (m *ServerDump) contextValidateSaml(ctx context.Context, formats strfmt.Reg
 	return nil
 }
 
+func (m *ServerDump) contextValidateSso(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Sso != nil {
+
+		if swag.IsZero(m.Sso) { // not required
+			return nil
+		}
+
+		if err := m.Sso.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("sso")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("sso")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ServerDump) contextValidateStyling(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Styling != nil {
+
+		if swag.IsZero(m.Styling) { // not required
+			return nil
+		}
+
+		if err := m.Styling.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("styling")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("styling")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *ServerDump) contextValidateTrustAnchorConfiguration(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.TrustAnchorConfiguration != nil {
+
+		if swag.IsZero(m.TrustAnchorConfiguration) { // not required
+			return nil
+		}
+
 		if err := m.TrustAnchorConfiguration.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("trust_anchor_configuration")

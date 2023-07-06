@@ -66,6 +66,14 @@ type CreatePolicyParams struct {
 	// Policy.
 	Policy *models.Policy
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -130,6 +138,17 @@ func (o *CreatePolicyParams) SetPolicy(policy *models.Policy) {
 	o.Policy = policy
 }
 
+// WithIfMatch adds the ifMatch to the create policy params
+func (o *CreatePolicyParams) WithIfMatch(ifMatch *string) *CreatePolicyParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the create policy params
+func (o *CreatePolicyParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *CreatePolicyParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -139,6 +158,14 @@ func (o *CreatePolicyParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 	var res []error
 	if o.Policy != nil {
 		if err := r.SetBodyParam(o.Policy); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

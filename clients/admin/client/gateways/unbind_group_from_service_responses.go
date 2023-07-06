@@ -66,7 +66,7 @@ func (o *UnbindGroupFromServiceReader) ReadResponse(response runtime.ClientRespo
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind] unbindGroupFromService", response, response.Code())
 	}
 }
 
@@ -81,6 +81,15 @@ UnbindGroupFromServiceOK describes a response with status code 200, with default
 Unbind group from service response
 */
 type UnbindGroupFromServiceOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.RemoveServiceConfigurationResult
 }
 
@@ -109,6 +118,11 @@ func (o *UnbindGroupFromServiceOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the unbind group from service o k response
+func (o *UnbindGroupFromServiceOK) Code() int {
+	return 200
+}
+
 func (o *UnbindGroupFromServiceOK) Error() string {
 	return fmt.Sprintf("[DELETE /gateways/{gw}/groups/{apiGroup}/unbind][%d] unbindGroupFromServiceOK  %+v", 200, o.Payload)
 }
@@ -122,6 +136,13 @@ func (o *UnbindGroupFromServiceOK) GetPayload() *models.RemoveServiceConfigurati
 }
 
 func (o *UnbindGroupFromServiceOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.RemoveServiceConfigurationResult)
 
@@ -141,7 +162,7 @@ func NewUnbindGroupFromServiceBadRequest() *UnbindGroupFromServiceBadRequest {
 /*
 UnbindGroupFromServiceBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type UnbindGroupFromServiceBadRequest struct {
 	Payload *models.Error
@@ -170,6 +191,11 @@ func (o *UnbindGroupFromServiceBadRequest) IsServerError() bool {
 // IsCode returns true when this unbind group from service bad request response a status code equal to that given
 func (o *UnbindGroupFromServiceBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the unbind group from service bad request response
+func (o *UnbindGroupFromServiceBadRequest) Code() int {
+	return 400
 }
 
 func (o *UnbindGroupFromServiceBadRequest) Error() string {
@@ -204,7 +230,7 @@ func NewUnbindGroupFromServiceUnauthorized() *UnbindGroupFromServiceUnauthorized
 /*
 UnbindGroupFromServiceUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type UnbindGroupFromServiceUnauthorized struct {
 	Payload *models.Error
@@ -233,6 +259,11 @@ func (o *UnbindGroupFromServiceUnauthorized) IsServerError() bool {
 // IsCode returns true when this unbind group from service unauthorized response a status code equal to that given
 func (o *UnbindGroupFromServiceUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the unbind group from service unauthorized response
+func (o *UnbindGroupFromServiceUnauthorized) Code() int {
+	return 401
 }
 
 func (o *UnbindGroupFromServiceUnauthorized) Error() string {
@@ -267,7 +298,7 @@ func NewUnbindGroupFromServiceForbidden() *UnbindGroupFromServiceForbidden {
 /*
 UnbindGroupFromServiceForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type UnbindGroupFromServiceForbidden struct {
 	Payload *models.Error
@@ -296,6 +327,11 @@ func (o *UnbindGroupFromServiceForbidden) IsServerError() bool {
 // IsCode returns true when this unbind group from service forbidden response a status code equal to that given
 func (o *UnbindGroupFromServiceForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the unbind group from service forbidden response
+func (o *UnbindGroupFromServiceForbidden) Code() int {
+	return 403
 }
 
 func (o *UnbindGroupFromServiceForbidden) Error() string {
@@ -330,7 +366,7 @@ func NewUnbindGroupFromServiceNotFound() *UnbindGroupFromServiceNotFound {
 /*
 UnbindGroupFromServiceNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type UnbindGroupFromServiceNotFound struct {
 	Payload *models.Error
@@ -359,6 +395,11 @@ func (o *UnbindGroupFromServiceNotFound) IsServerError() bool {
 // IsCode returns true when this unbind group from service not found response a status code equal to that given
 func (o *UnbindGroupFromServiceNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the unbind group from service not found response
+func (o *UnbindGroupFromServiceNotFound) Code() int {
+	return 404
 }
 
 func (o *UnbindGroupFromServiceNotFound) Error() string {
@@ -393,7 +434,7 @@ func NewUnbindGroupFromServiceUnprocessableEntity() *UnbindGroupFromServiceUnpro
 /*
 UnbindGroupFromServiceUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type UnbindGroupFromServiceUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +463,11 @@ func (o *UnbindGroupFromServiceUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this unbind group from service unprocessable entity response a status code equal to that given
 func (o *UnbindGroupFromServiceUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the unbind group from service unprocessable entity response
+func (o *UnbindGroupFromServiceUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *UnbindGroupFromServiceUnprocessableEntity) Error() string {
@@ -456,7 +502,7 @@ func NewUnbindGroupFromServiceTooManyRequests() *UnbindGroupFromServiceTooManyRe
 /*
 UnbindGroupFromServiceTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type UnbindGroupFromServiceTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +531,11 @@ func (o *UnbindGroupFromServiceTooManyRequests) IsServerError() bool {
 // IsCode returns true when this unbind group from service too many requests response a status code equal to that given
 func (o *UnbindGroupFromServiceTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the unbind group from service too many requests response
+func (o *UnbindGroupFromServiceTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *UnbindGroupFromServiceTooManyRequests) Error() string {

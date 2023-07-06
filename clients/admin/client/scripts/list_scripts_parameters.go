@@ -76,6 +76,14 @@ type ListScriptsParams struct {
 	*/
 	BeforeScriptID *string
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Limit.
 
 	     optional limit results
@@ -204,6 +212,17 @@ func (o *ListScriptsParams) SetBeforeScriptID(beforeScriptID *string) {
 	o.BeforeScriptID = beforeScriptID
 }
 
+// WithIfMatch adds the ifMatch to the list scripts params
+func (o *ListScriptsParams) WithIfMatch(ifMatch *string) *ListScriptsParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the list scripts params
+func (o *ListScriptsParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithLimit adds the limit to the list scripts params
 func (o *ListScriptsParams) WithLimit(limit *int64) *ListScriptsParams {
 	o.SetLimit(limit)
@@ -298,6 +317,14 @@ func (o *ListScriptsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 			if err := r.SetQueryParam("before_script_id", qBeforeScriptID); err != nil {
 				return err
 			}
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
 		}
 	}
 

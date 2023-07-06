@@ -54,7 +54,7 @@ func (o *RevokeRotatedClientSecretsReader) ReadResponse(response runtime.ClientR
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /clients/{cid}/revokeRotatedSecrets] revokeRotatedClientSecrets", response, response.Code())
 	}
 }
 
@@ -96,6 +96,11 @@ func (o *RevokeRotatedClientSecretsNoContent) IsCode(code int) bool {
 	return code == 204
 }
 
+// Code gets the status code for the revoke rotated client secrets no content response
+func (o *RevokeRotatedClientSecretsNoContent) Code() int {
+	return 204
+}
+
 func (o *RevokeRotatedClientSecretsNoContent) Error() string {
 	return fmt.Sprintf("[POST /clients/{cid}/revokeRotatedSecrets][%d] revokeRotatedClientSecretsNoContent ", 204)
 }
@@ -117,7 +122,7 @@ func NewRevokeRotatedClientSecretsUnauthorized() *RevokeRotatedClientSecretsUnau
 /*
 RevokeRotatedClientSecretsUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type RevokeRotatedClientSecretsUnauthorized struct {
 	Payload *models.Error
@@ -146,6 +151,11 @@ func (o *RevokeRotatedClientSecretsUnauthorized) IsServerError() bool {
 // IsCode returns true when this revoke rotated client secrets unauthorized response a status code equal to that given
 func (o *RevokeRotatedClientSecretsUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the revoke rotated client secrets unauthorized response
+func (o *RevokeRotatedClientSecretsUnauthorized) Code() int {
+	return 401
 }
 
 func (o *RevokeRotatedClientSecretsUnauthorized) Error() string {
@@ -180,7 +190,7 @@ func NewRevokeRotatedClientSecretsForbidden() *RevokeRotatedClientSecretsForbidd
 /*
 RevokeRotatedClientSecretsForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type RevokeRotatedClientSecretsForbidden struct {
 	Payload *models.Error
@@ -209,6 +219,11 @@ func (o *RevokeRotatedClientSecretsForbidden) IsServerError() bool {
 // IsCode returns true when this revoke rotated client secrets forbidden response a status code equal to that given
 func (o *RevokeRotatedClientSecretsForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the revoke rotated client secrets forbidden response
+func (o *RevokeRotatedClientSecretsForbidden) Code() int {
+	return 403
 }
 
 func (o *RevokeRotatedClientSecretsForbidden) Error() string {
@@ -243,7 +258,7 @@ func NewRevokeRotatedClientSecretsNotFound() *RevokeRotatedClientSecretsNotFound
 /*
 RevokeRotatedClientSecretsNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type RevokeRotatedClientSecretsNotFound struct {
 	Payload *models.Error
@@ -272,6 +287,11 @@ func (o *RevokeRotatedClientSecretsNotFound) IsServerError() bool {
 // IsCode returns true when this revoke rotated client secrets not found response a status code equal to that given
 func (o *RevokeRotatedClientSecretsNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the revoke rotated client secrets not found response
+func (o *RevokeRotatedClientSecretsNotFound) Code() int {
+	return 404
 }
 
 func (o *RevokeRotatedClientSecretsNotFound) Error() string {
@@ -306,7 +326,7 @@ func NewRevokeRotatedClientSecretsTooManyRequests() *RevokeRotatedClientSecretsT
 /*
 RevokeRotatedClientSecretsTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type RevokeRotatedClientSecretsTooManyRequests struct {
 	Payload *models.Error
@@ -335,6 +355,11 @@ func (o *RevokeRotatedClientSecretsTooManyRequests) IsServerError() bool {
 // IsCode returns true when this revoke rotated client secrets too many requests response a status code equal to that given
 func (o *RevokeRotatedClientSecretsTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the revoke rotated client secrets too many requests response
+func (o *RevokeRotatedClientSecretsTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *RevokeRotatedClientSecretsTooManyRequests) Error() string {

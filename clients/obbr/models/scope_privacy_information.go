@@ -85,6 +85,11 @@ func (m *ScopePrivacyInformation) contextValidatePiiCategories(ctx context.Conte
 	for i := 0; i < len(m.PiiCategories); i++ {
 
 		if m.PiiCategories[i] != nil {
+
+			if swag.IsZero(m.PiiCategories[i]) { // not required
+				return nil
+			}
+
 			if err := m.PiiCategories[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("pii_categories" + "." + strconv.Itoa(i))

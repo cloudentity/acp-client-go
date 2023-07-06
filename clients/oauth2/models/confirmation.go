@@ -17,6 +17,9 @@ import (
 // swagger:model Confirmation
 type Confirmation struct {
 
+	// jkt
+	Jkt string `json:"jkt,omitempty"`
+
 	// x5t s256
 	X5tS256 string `json:"x5t#S256,omitempty"`
 }

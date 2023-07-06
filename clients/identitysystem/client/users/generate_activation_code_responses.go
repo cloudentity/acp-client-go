@@ -66,7 +66,7 @@ func (o *GenerateActivationCodeReader) ReadResponse(response runtime.ClientRespo
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /system/pools/{ipID}/users/{userID}/activation/generate] generateActivationCode", response, response.Code())
 	}
 }
 
@@ -116,6 +116,11 @@ func (o *GenerateActivationCodeCreated) IsServerError() bool {
 // IsCode returns true when this generate activation code created response a status code equal to that given
 func (o *GenerateActivationCodeCreated) IsCode(code int) bool {
 	return code == 201
+}
+
+// Code gets the status code for the generate activation code created response
+func (o *GenerateActivationCodeCreated) Code() int {
+	return 201
 }
 
 func (o *GenerateActivationCodeCreated) Error() string {
@@ -188,6 +193,11 @@ func (o *GenerateActivationCodeBadRequest) IsCode(code int) bool {
 	return code == 400
 }
 
+// Code gets the status code for the generate activation code bad request response
+func (o *GenerateActivationCodeBadRequest) Code() int {
+	return 400
+}
+
 func (o *GenerateActivationCodeBadRequest) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/activation/generate][%d] generateActivationCodeBadRequest  %+v", 400, o.Payload)
 }
@@ -249,6 +259,11 @@ func (o *GenerateActivationCodeUnauthorized) IsServerError() bool {
 // IsCode returns true when this generate activation code unauthorized response a status code equal to that given
 func (o *GenerateActivationCodeUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the generate activation code unauthorized response
+func (o *GenerateActivationCodeUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GenerateActivationCodeUnauthorized) Error() string {
@@ -314,6 +329,11 @@ func (o *GenerateActivationCodeNotFound) IsCode(code int) bool {
 	return code == 404
 }
 
+// Code gets the status code for the generate activation code not found response
+func (o *GenerateActivationCodeNotFound) Code() int {
+	return 404
+}
+
 func (o *GenerateActivationCodeNotFound) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/activation/generate][%d] generateActivationCodeNotFound  %+v", 404, o.Payload)
 }
@@ -375,6 +395,11 @@ func (o *GenerateActivationCodePreconditionFailed) IsServerError() bool {
 // IsCode returns true when this generate activation code precondition failed response a status code equal to that given
 func (o *GenerateActivationCodePreconditionFailed) IsCode(code int) bool {
 	return code == 412
+}
+
+// Code gets the status code for the generate activation code precondition failed response
+func (o *GenerateActivationCodePreconditionFailed) Code() int {
+	return 412
 }
 
 func (o *GenerateActivationCodePreconditionFailed) Error() string {
@@ -440,6 +465,11 @@ func (o *GenerateActivationCodeUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
 }
 
+// Code gets the status code for the generate activation code unprocessable entity response
+func (o *GenerateActivationCodeUnprocessableEntity) Code() int {
+	return 422
+}
+
 func (o *GenerateActivationCodeUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/activation/generate][%d] generateActivationCodeUnprocessableEntity  %+v", 422, o.Payload)
 }
@@ -501,6 +531,11 @@ func (o *GenerateActivationCodeTooManyRequests) IsServerError() bool {
 // IsCode returns true when this generate activation code too many requests response a status code equal to that given
 func (o *GenerateActivationCodeTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the generate activation code too many requests response
+func (o *GenerateActivationCodeTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GenerateActivationCodeTooManyRequests) Error() string {

@@ -299,6 +299,7 @@ func (m *OBReadConsentResponse1Data) ContextValidate(ctx context.Context, format
 func (m *OBReadConsentResponse1Data) contextValidateCreationDateTime(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CreationDateTime != nil {
+
 		if err := m.CreationDateTime.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("CreationDateTime")
@@ -315,6 +316,7 @@ func (m *OBReadConsentResponse1Data) contextValidateCreationDateTime(ctx context
 func (m *OBReadConsentResponse1Data) contextValidateStatusUpdateDateTime(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.StatusUpdateDateTime != nil {
+
 		if err := m.StatusUpdateDateTime.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("StatusUpdateDateTime")

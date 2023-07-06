@@ -40,6 +40,9 @@ type WellKnown struct {
 	// Required: true
 	AuthorizationEndpoint string `json:"authorization_endpoint"`
 
+	// authorization response iss parameter supported
+	AuthorizationResponseIssParameterSupported bool `json:"authorization_response_iss_parameter_supported,omitempty"`
+
 	// optional JSON array containing a list of the signing algorithms supported by the authorization endpoint to sign the response.
 	AuthorizationSigningAlgValuesSupported []string `json:"authorization_signing_alg_values_supported"`
 
@@ -80,6 +83,9 @@ type WellKnown struct {
 
 	// URL of the authorization server's device authorization endpoint
 	DeviceAuthorizationEndpoint string `json:"device_authorization_endpoint,omitempty"`
+
+	// JSON array containing a list of the JWS algorithms supported for DPoP proof JWTs
+	DpopSigningAlgValuesSupported []string `json:"dpop_signing_alg_values_supported"`
 
 	// Boolean value specifying whether the OP can pass iss (issuer) and sid (session ID) query parameters to identify
 	// the RP session with the OP when the frontchannel_logout_uri is used. If supported, the sid Claim is also
@@ -772,6 +778,11 @@ func (m *WellKnown) ContextValidate(ctx context.Context, formats strfmt.Registry
 func (m *WellKnown) contextValidateMtlsEndpointAliases(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.MtlsEndpointAliases != nil {
+
+		if swag.IsZero(m.MtlsEndpointAliases) { // not required
+			return nil
+		}
+
 		if err := m.MtlsEndpointAliases.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("mtls_endpoint_aliases")

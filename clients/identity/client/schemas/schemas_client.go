@@ -36,7 +36,11 @@ type ClientService interface {
 
 	GetSchema(params *GetSchemaParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetSchemaOK, error)
 
+	GetWorkspaceSchema(params *GetWorkspaceSchemaParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceSchemaOK, error)
+
 	ListSchemas(params *ListSchemasParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListSchemasOK, error)
+
+	ListWorkspaceSchemas(params *ListWorkspaceSchemasParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListWorkspaceSchemasOK, error)
 
 	UpdateSchema(params *UpdateSchemaParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateSchemaOK, error)
 
@@ -46,7 +50,7 @@ type ClientService interface {
 /*
 CreateSchema creates schema
 
-Creates schema. If the `system` flag is set then that schema cannot be later deleted or modified.
+Create a schema. Set the `system` flag to prevent the schema from deletion or modifications.
 */
 func (a *Client) CreateSchema(params *CreateSchemaParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateSchemaCreated, error) {
 	// TODO: Validate the params before sending
@@ -87,7 +91,7 @@ func (a *Client) CreateSchema(params *CreateSchemaParams, authInfo runtime.Clien
 /*
 DeleteSchema deletes schema
 
-Deletes schema. It is not possible to delete schema marked as `system`.
+Delete a schema. Schemas marked with the `system` flag aren't available for deletion.
 */
 func (a *Client) DeleteSchema(params *DeleteSchemaParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteSchemaNoContent, error) {
 	// TODO: Validate the params before sending
@@ -128,7 +132,7 @@ func (a *Client) DeleteSchema(params *DeleteSchemaParams, authInfo runtime.Clien
 /*
 GetSchema gets schema
 
-Gets schema.
+Retrieve information about a specified identity schema.
 */
 func (a *Client) GetSchema(params *GetSchemaParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetSchemaOK, error) {
 	// TODO: Validate the params before sending
@@ -167,9 +171,50 @@ func (a *Client) GetSchema(params *GetSchemaParams, authInfo runtime.ClientAuthI
 }
 
 /*
+GetWorkspaceSchema gets workspace schema
+
+Retrieve information about a specified identity schema.
+*/
+func (a *Client) GetWorkspaceSchema(params *GetWorkspaceSchemaParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetWorkspaceSchemaOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetWorkspaceSchemaParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getWorkspaceSchema",
+		Method:             "GET",
+		PathPattern:        "/admin/workspace/{wid}/schemas/{schID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetWorkspaceSchemaReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetWorkspaceSchemaOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getWorkspaceSchema: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
 ListSchemas lists schemas
 
-Lists schemas.
+List schemas available for the current administrator.
 */
 func (a *Client) ListSchemas(params *ListSchemasParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListSchemasOK, error) {
 	// TODO: Validate the params before sending
@@ -208,9 +253,50 @@ func (a *Client) ListSchemas(params *ListSchemasParams, authInfo runtime.ClientA
 }
 
 /*
+ListWorkspaceSchemas lists workspace schemas
+
+List schemas available for the workspace.
+*/
+func (a *Client) ListWorkspaceSchemas(params *ListWorkspaceSchemasParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListWorkspaceSchemasOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewListWorkspaceSchemasParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "listWorkspaceSchemas",
+		Method:             "GET",
+		PathPattern:        "/admin/workspace/{wid}/schemas",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ListWorkspaceSchemasReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ListWorkspaceSchemasOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for listWorkspaceSchemas: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
 UpdateSchema updates schema
 
-Updates schema. It is not possible to update schema marked as `system`.
+Update a schema. Schemas marked with the `system` flag aren't available for update.
 */
 func (a *Client) UpdateSchema(params *UpdateSchemaParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateSchemaOK, error) {
 	// TODO: Validate the params before sending

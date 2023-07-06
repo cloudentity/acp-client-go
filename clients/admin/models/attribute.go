@@ -30,7 +30,7 @@ type Attribute struct {
 	//
 	// It stores information what kind of data is used as the value of the attribute.
 	//
-	// Available types: `number`, `string`, `bool`, `number_array`, `string_array`, `bool_array` or `any`.
+	// Available types: `number`, `string`, `bool`, `object`, `number_array`, `string_array`, `bool_array`, `object_array` or `any`.
 	Type string `json:"type,omitempty"`
 }
 

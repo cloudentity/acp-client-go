@@ -54,7 +54,7 @@ func (o *GetScriptReader) ReadResponse(response runtime.ClientResponse, consumer
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /servers/{wid}/scripts/{script}] getScript", response, response.Code())
 	}
 }
 
@@ -69,6 +69,15 @@ GetScriptOK describes a response with status code 200, with default header value
 Script
 */
 type GetScriptOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.Script
 }
 
@@ -97,6 +106,11 @@ func (o *GetScriptOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get script o k response
+func (o *GetScriptOK) Code() int {
+	return 200
+}
+
 func (o *GetScriptOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/scripts/{script}][%d] getScriptOK  %+v", 200, o.Payload)
 }
@@ -110,6 +124,13 @@ func (o *GetScriptOK) GetPayload() *models.Script {
 }
 
 func (o *GetScriptOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.Script)
 
@@ -129,7 +150,7 @@ func NewGetScriptUnauthorized() *GetScriptUnauthorized {
 /*
 GetScriptUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetScriptUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +179,11 @@ func (o *GetScriptUnauthorized) IsServerError() bool {
 // IsCode returns true when this get script unauthorized response a status code equal to that given
 func (o *GetScriptUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get script unauthorized response
+func (o *GetScriptUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetScriptUnauthorized) Error() string {
@@ -192,7 +218,7 @@ func NewGetScriptForbidden() *GetScriptForbidden {
 /*
 GetScriptForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetScriptForbidden struct {
 	Payload *models.Error
@@ -221,6 +247,11 @@ func (o *GetScriptForbidden) IsServerError() bool {
 // IsCode returns true when this get script forbidden response a status code equal to that given
 func (o *GetScriptForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get script forbidden response
+func (o *GetScriptForbidden) Code() int {
+	return 403
 }
 
 func (o *GetScriptForbidden) Error() string {
@@ -255,7 +286,7 @@ func NewGetScriptNotFound() *GetScriptNotFound {
 /*
 GetScriptNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetScriptNotFound struct {
 	Payload *models.Error
@@ -284,6 +315,11 @@ func (o *GetScriptNotFound) IsServerError() bool {
 // IsCode returns true when this get script not found response a status code equal to that given
 func (o *GetScriptNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the get script not found response
+func (o *GetScriptNotFound) Code() int {
+	return 404
 }
 
 func (o *GetScriptNotFound) Error() string {
@@ -318,7 +354,7 @@ func NewGetScriptTooManyRequests() *GetScriptTooManyRequests {
 /*
 GetScriptTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetScriptTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +383,11 @@ func (o *GetScriptTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get script too many requests response a status code equal to that given
 func (o *GetScriptTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get script too many requests response
+func (o *GetScriptTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetScriptTooManyRequests) Error() string {

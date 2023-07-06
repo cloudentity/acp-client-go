@@ -31,7 +31,7 @@ type SMSSettings struct {
 	CustomSource string `json:"custom_source,omitempty"`
 
 	// otp
-	Otp *OTPConfig `json:"otp,omitempty"`
+	Otp *OTPConfiguration `json:"otp,omitempty"`
 
 	// SMS provider.
 	// Example: embedded
@@ -135,6 +135,11 @@ func (m *SMSSettings) ContextValidate(ctx context.Context, formats strfmt.Regist
 func (m *SMSSettings) contextValidateOtp(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Otp != nil {
+
+		if swag.IsZero(m.Otp) { // not required
+			return nil
+		}
+
 		if err := m.Otp.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("otp")

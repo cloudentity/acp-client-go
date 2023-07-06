@@ -54,7 +54,7 @@ func (o *BindSystemAPIReader) ReadResponse(response runtime.ClientResponse, cons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /system/apis/bind] bindSystemAPI", response, response.Code())
 	}
 }
 
@@ -96,6 +96,11 @@ func (o *BindSystemAPINoContent) IsCode(code int) bool {
 	return code == 204
 }
 
+// Code gets the status code for the bind system Api no content response
+func (o *BindSystemAPINoContent) Code() int {
+	return 204
+}
+
 func (o *BindSystemAPINoContent) Error() string {
 	return fmt.Sprintf("[POST /system/apis/bind][%d] bindSystemApiNoContent ", 204)
 }
@@ -117,7 +122,7 @@ func NewBindSystemAPIUnauthorized() *BindSystemAPIUnauthorized {
 /*
 BindSystemAPIUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type BindSystemAPIUnauthorized struct {
 	Payload *models.Error
@@ -146,6 +151,11 @@ func (o *BindSystemAPIUnauthorized) IsServerError() bool {
 // IsCode returns true when this bind system Api unauthorized response a status code equal to that given
 func (o *BindSystemAPIUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the bind system Api unauthorized response
+func (o *BindSystemAPIUnauthorized) Code() int {
+	return 401
 }
 
 func (o *BindSystemAPIUnauthorized) Error() string {
@@ -180,7 +190,7 @@ func NewBindSystemAPIForbidden() *BindSystemAPIForbidden {
 /*
 BindSystemAPIForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type BindSystemAPIForbidden struct {
 	Payload *models.Error
@@ -209,6 +219,11 @@ func (o *BindSystemAPIForbidden) IsServerError() bool {
 // IsCode returns true when this bind system Api forbidden response a status code equal to that given
 func (o *BindSystemAPIForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the bind system Api forbidden response
+func (o *BindSystemAPIForbidden) Code() int {
+	return 403
 }
 
 func (o *BindSystemAPIForbidden) Error() string {
@@ -243,7 +258,7 @@ func NewBindSystemAPIConflict() *BindSystemAPIConflict {
 /*
 BindSystemAPIConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type BindSystemAPIConflict struct {
 	Payload *models.Error
@@ -272,6 +287,11 @@ func (o *BindSystemAPIConflict) IsServerError() bool {
 // IsCode returns true when this bind system Api conflict response a status code equal to that given
 func (o *BindSystemAPIConflict) IsCode(code int) bool {
 	return code == 409
+}
+
+// Code gets the status code for the bind system Api conflict response
+func (o *BindSystemAPIConflict) Code() int {
+	return 409
 }
 
 func (o *BindSystemAPIConflict) Error() string {
@@ -306,7 +326,7 @@ func NewBindSystemAPITooManyRequests() *BindSystemAPITooManyRequests {
 /*
 BindSystemAPITooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type BindSystemAPITooManyRequests struct {
 	Payload *models.Error
@@ -335,6 +355,11 @@ func (o *BindSystemAPITooManyRequests) IsServerError() bool {
 // IsCode returns true when this bind system Api too many requests response a status code equal to that given
 func (o *BindSystemAPITooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the bind system Api too many requests response
+func (o *BindSystemAPITooManyRequests) Code() int {
+	return 429
 }
 
 func (o *BindSystemAPITooManyRequests) Error() string {

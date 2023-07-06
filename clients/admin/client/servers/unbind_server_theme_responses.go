@@ -54,7 +54,7 @@ func (o *UnbindServerThemeReader) ReadResponse(response runtime.ClientResponse, 
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /servers/{wid}/unbind-theme] unbindServerTheme", response, response.Code())
 	}
 }
 
@@ -69,6 +69,15 @@ UnbindServerThemeOK describes a response with status code 200, with default head
 Server to Theme binding
 */
 type UnbindServerThemeOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.ServerToTheme
 }
 
@@ -97,6 +106,11 @@ func (o *UnbindServerThemeOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the unbind server theme o k response
+func (o *UnbindServerThemeOK) Code() int {
+	return 200
+}
+
 func (o *UnbindServerThemeOK) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/unbind-theme][%d] unbindServerThemeOK  %+v", 200, o.Payload)
 }
@@ -110,6 +124,13 @@ func (o *UnbindServerThemeOK) GetPayload() *models.ServerToTheme {
 }
 
 func (o *UnbindServerThemeOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.ServerToTheme)
 
@@ -129,7 +150,7 @@ func NewUnbindServerThemeUnauthorized() *UnbindServerThemeUnauthorized {
 /*
 UnbindServerThemeUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type UnbindServerThemeUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +179,11 @@ func (o *UnbindServerThemeUnauthorized) IsServerError() bool {
 // IsCode returns true when this unbind server theme unauthorized response a status code equal to that given
 func (o *UnbindServerThemeUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the unbind server theme unauthorized response
+func (o *UnbindServerThemeUnauthorized) Code() int {
+	return 401
 }
 
 func (o *UnbindServerThemeUnauthorized) Error() string {
@@ -192,7 +218,7 @@ func NewUnbindServerThemeForbidden() *UnbindServerThemeForbidden {
 /*
 UnbindServerThemeForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type UnbindServerThemeForbidden struct {
 	Payload *models.Error
@@ -221,6 +247,11 @@ func (o *UnbindServerThemeForbidden) IsServerError() bool {
 // IsCode returns true when this unbind server theme forbidden response a status code equal to that given
 func (o *UnbindServerThemeForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the unbind server theme forbidden response
+func (o *UnbindServerThemeForbidden) Code() int {
+	return 403
 }
 
 func (o *UnbindServerThemeForbidden) Error() string {
@@ -255,7 +286,7 @@ func NewUnbindServerThemeNotFound() *UnbindServerThemeNotFound {
 /*
 UnbindServerThemeNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type UnbindServerThemeNotFound struct {
 	Payload *models.Error
@@ -284,6 +315,11 @@ func (o *UnbindServerThemeNotFound) IsServerError() bool {
 // IsCode returns true when this unbind server theme not found response a status code equal to that given
 func (o *UnbindServerThemeNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the unbind server theme not found response
+func (o *UnbindServerThemeNotFound) Code() int {
+	return 404
 }
 
 func (o *UnbindServerThemeNotFound) Error() string {
@@ -318,7 +354,7 @@ func NewUnbindServerThemeTooManyRequests() *UnbindServerThemeTooManyRequests {
 /*
 UnbindServerThemeTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type UnbindServerThemeTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +383,11 @@ func (o *UnbindServerThemeTooManyRequests) IsServerError() bool {
 // IsCode returns true when this unbind server theme too many requests response a status code equal to that given
 func (o *UnbindServerThemeTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the unbind server theme too many requests response
+func (o *UnbindServerThemeTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *UnbindServerThemeTooManyRequests) Error() string {

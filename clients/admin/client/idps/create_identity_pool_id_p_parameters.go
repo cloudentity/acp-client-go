@@ -69,6 +69,14 @@ type CreateIdentityPoolIDPParams struct {
 	*/
 	IdentityPoolIDP *models.IdentityPoolIDP
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Wid.
 
 	   Authorization server id
@@ -152,6 +160,17 @@ func (o *CreateIdentityPoolIDPParams) SetIdentityPoolIDP(identityPoolIDP *models
 	o.IdentityPoolIDP = identityPoolIDP
 }
 
+// WithIfMatch adds the ifMatch to the create identity pool ID p params
+func (o *CreateIdentityPoolIDPParams) WithIfMatch(ifMatch *string) *CreateIdentityPoolIDPParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the create identity pool ID p params
+func (o *CreateIdentityPoolIDPParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithWid adds the wid to the create identity pool ID p params
 func (o *CreateIdentityPoolIDPParams) WithWid(wid string) *CreateIdentityPoolIDPParams {
 	o.SetWid(wid)
@@ -172,6 +191,14 @@ func (o *CreateIdentityPoolIDPParams) WriteToRequest(r runtime.ClientRequest, re
 	var res []error
 	if o.IdentityPoolIDP != nil {
 		if err := r.SetBodyParam(o.IdentityPoolIDP); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

@@ -54,7 +54,7 @@ func (o *DeleteUserIdentifierReader) ReadResponse(response runtime.ClientRespons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /admin/pools/{ipID}/users/{userID}/identifiers/remove] deleteUserIdentifier", response, response.Code())
 	}
 }
 
@@ -94,6 +94,11 @@ func (o *DeleteUserIdentifierNoContent) IsServerError() bool {
 // IsCode returns true when this delete user identifier no content response a status code equal to that given
 func (o *DeleteUserIdentifierNoContent) IsCode(code int) bool {
 	return code == 204
+}
+
+// Code gets the status code for the delete user identifier no content response
+func (o *DeleteUserIdentifierNoContent) Code() int {
+	return 204
 }
 
 func (o *DeleteUserIdentifierNoContent) Error() string {
@@ -146,6 +151,11 @@ func (o *DeleteUserIdentifierUnauthorized) IsServerError() bool {
 // IsCode returns true when this delete user identifier unauthorized response a status code equal to that given
 func (o *DeleteUserIdentifierUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the delete user identifier unauthorized response
+func (o *DeleteUserIdentifierUnauthorized) Code() int {
+	return 401
 }
 
 func (o *DeleteUserIdentifierUnauthorized) Error() string {
@@ -211,6 +221,11 @@ func (o *DeleteUserIdentifierForbidden) IsCode(code int) bool {
 	return code == 403
 }
 
+// Code gets the status code for the delete user identifier forbidden response
+func (o *DeleteUserIdentifierForbidden) Code() int {
+	return 403
+}
+
 func (o *DeleteUserIdentifierForbidden) Error() string {
 	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/identifiers/remove][%d] deleteUserIdentifierForbidden  %+v", 403, o.Payload)
 }
@@ -274,6 +289,11 @@ func (o *DeleteUserIdentifierNotFound) IsCode(code int) bool {
 	return code == 404
 }
 
+// Code gets the status code for the delete user identifier not found response
+func (o *DeleteUserIdentifierNotFound) Code() int {
+	return 404
+}
+
 func (o *DeleteUserIdentifierNotFound) Error() string {
 	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/identifiers/remove][%d] deleteUserIdentifierNotFound  %+v", 404, o.Payload)
 }
@@ -335,6 +355,11 @@ func (o *DeleteUserIdentifierTooManyRequests) IsServerError() bool {
 // IsCode returns true when this delete user identifier too many requests response a status code equal to that given
 func (o *DeleteUserIdentifierTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the delete user identifier too many requests response
+func (o *DeleteUserIdentifierTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *DeleteUserIdentifierTooManyRequests) Error() string {

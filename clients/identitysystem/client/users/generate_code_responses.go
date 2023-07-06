@@ -66,7 +66,7 @@ func (o *GenerateCodeReader) ReadResponse(response runtime.ClientResponse, consu
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /system/pools/{ipID}/users/{userID}/code/generate] generateCode", response, response.Code())
 	}
 }
 
@@ -116,6 +116,11 @@ func (o *GenerateCodeCreated) IsServerError() bool {
 // IsCode returns true when this generate code created response a status code equal to that given
 func (o *GenerateCodeCreated) IsCode(code int) bool {
 	return code == 201
+}
+
+// Code gets the status code for the generate code created response
+func (o *GenerateCodeCreated) Code() int {
+	return 201
 }
 
 func (o *GenerateCodeCreated) Error() string {
@@ -188,6 +193,11 @@ func (o *GenerateCodeBadRequest) IsCode(code int) bool {
 	return code == 400
 }
 
+// Code gets the status code for the generate code bad request response
+func (o *GenerateCodeBadRequest) Code() int {
+	return 400
+}
+
 func (o *GenerateCodeBadRequest) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/code/generate][%d] generateCodeBadRequest  %+v", 400, o.Payload)
 }
@@ -249,6 +259,11 @@ func (o *GenerateCodeUnauthorized) IsServerError() bool {
 // IsCode returns true when this generate code unauthorized response a status code equal to that given
 func (o *GenerateCodeUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the generate code unauthorized response
+func (o *GenerateCodeUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GenerateCodeUnauthorized) Error() string {
@@ -314,6 +329,11 @@ func (o *GenerateCodeNotFound) IsCode(code int) bool {
 	return code == 404
 }
 
+// Code gets the status code for the generate code not found response
+func (o *GenerateCodeNotFound) Code() int {
+	return 404
+}
+
 func (o *GenerateCodeNotFound) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/code/generate][%d] generateCodeNotFound  %+v", 404, o.Payload)
 }
@@ -375,6 +395,11 @@ func (o *GenerateCodePreconditionFailed) IsServerError() bool {
 // IsCode returns true when this generate code precondition failed response a status code equal to that given
 func (o *GenerateCodePreconditionFailed) IsCode(code int) bool {
 	return code == 412
+}
+
+// Code gets the status code for the generate code precondition failed response
+func (o *GenerateCodePreconditionFailed) Code() int {
+	return 412
 }
 
 func (o *GenerateCodePreconditionFailed) Error() string {
@@ -440,6 +465,11 @@ func (o *GenerateCodeUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
 }
 
+// Code gets the status code for the generate code unprocessable entity response
+func (o *GenerateCodeUnprocessableEntity) Code() int {
+	return 422
+}
+
 func (o *GenerateCodeUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/code/generate][%d] generateCodeUnprocessableEntity  %+v", 422, o.Payload)
 }
@@ -501,6 +531,11 @@ func (o *GenerateCodeTooManyRequests) IsServerError() bool {
 // IsCode returns true when this generate code too many requests response a status code equal to that given
 func (o *GenerateCodeTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the generate code too many requests response
+func (o *GenerateCodeTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GenerateCodeTooManyRequests) Error() string {

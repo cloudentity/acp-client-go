@@ -29,6 +29,9 @@ type DCRRejectedEventPayload struct {
 	// Error hint
 	ErrorHint string `json:"error_hint,omitempty"`
 
+	// External error
+	ExternalError bool `json:"external_error,omitempty"`
+
 	// Requester IP address obtained from system network socket information.
 	RemoteAddr string `json:"remote_addr,omitempty"`
 

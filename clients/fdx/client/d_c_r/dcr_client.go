@@ -87,11 +87,13 @@ func (a *Client) FDXDynamicClientRegistration(params *FDXDynamicClientRegistrati
 }
 
 /*
-	FDXDynamicClientRegistrationDelete deletes client endpoint
+	FDXDynamicClientRegistrationDelete deletes client
 
-	This endpoint can be used to delete registered client details.
+	Delete the registered client application details.
 
-Use client credentials flow to authorize to this api.
+Pass the `Authorization: Bearer` header with a token as the bearer value. To obtain the token,
+apply the [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/)
+grant type.
 */
 func (a *Client) FDXDynamicClientRegistrationDelete(params *FDXDynamicClientRegistrationDeleteParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FDXDynamicClientRegistrationDeleteNoContent, error) {
 	// TODO: Validate the params before sending
@@ -132,9 +134,12 @@ func (a *Client) FDXDynamicClientRegistrationDelete(params *FDXDynamicClientRegi
 /*
 	FDXDynamicClientRegistrationGet gets client endpoint
 
-	This endpoint can be used to get registered client details.
+	Retrieve the details about a registered client application by the client identifier.
 
-Use client credentials flow to authorize to this api.
+Pass the `Authorization: Bearer` header with a token as the bearer value for authorization.
+To obtain the token, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/)
+grant type.
 */
 func (a *Client) FDXDynamicClientRegistrationGet(params *FDXDynamicClientRegistrationGetParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FDXDynamicClientRegistrationGetOK, error) {
 	// TODO: Validate the params before sending
@@ -173,9 +178,13 @@ func (a *Client) FDXDynamicClientRegistrationGet(params *FDXDynamicClientRegistr
 }
 
 /*
-FDXDynamicClientRegistrationPut updates client endpoint
+	FDXDynamicClientRegistrationPut updates f d x client details
 
-This endpoint can be used to modify registered client details.
+	Modify the registered client application details.
+
+Pass the `Authorization: Bearer` header with a token as the bearer value. To obtain the token, apply
+the [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/)
+grant type.
 */
 func (a *Client) FDXDynamicClientRegistrationPut(params *FDXDynamicClientRegistrationPutParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FDXDynamicClientRegistrationPutOK, error) {
 	// TODO: Validate the params before sending
@@ -214,9 +223,13 @@ func (a *Client) FDXDynamicClientRegistrationPut(params *FDXDynamicClientRegistr
 }
 
 /*
-FDXUpdateClientStatus updates f d x client s status
+	FDXUpdateClientStatus updates f d x client status
 
-This API updates FDX client status.
+	Update an FDX client application status.
+
+Pass the `Authorization: Bearer` header with a token as the bearer value. To obtain the token, apply
+the [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/)
+grant type.
 */
 func (a *Client) FDXUpdateClientStatus(params *FDXUpdateClientStatusParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*FDXUpdateClientStatusOK, error) {
 	// TODO: Validate the params before sending

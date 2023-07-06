@@ -54,7 +54,7 @@ func (o *DeleteClaimReader) ReadResponse(response runtime.ClientResponse, consum
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[DELETE /claims/{claim}] deleteClaim", response, response.Code())
 	}
 }
 
@@ -96,6 +96,11 @@ func (o *DeleteClaimNoContent) IsCode(code int) bool {
 	return code == 204
 }
 
+// Code gets the status code for the delete claim no content response
+func (o *DeleteClaimNoContent) Code() int {
+	return 204
+}
+
 func (o *DeleteClaimNoContent) Error() string {
 	return fmt.Sprintf("[DELETE /claims/{claim}][%d] deleteClaimNoContent ", 204)
 }
@@ -117,7 +122,7 @@ func NewDeleteClaimUnauthorized() *DeleteClaimUnauthorized {
 /*
 DeleteClaimUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type DeleteClaimUnauthorized struct {
 	Payload *models.Error
@@ -146,6 +151,11 @@ func (o *DeleteClaimUnauthorized) IsServerError() bool {
 // IsCode returns true when this delete claim unauthorized response a status code equal to that given
 func (o *DeleteClaimUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the delete claim unauthorized response
+func (o *DeleteClaimUnauthorized) Code() int {
+	return 401
 }
 
 func (o *DeleteClaimUnauthorized) Error() string {
@@ -180,7 +190,7 @@ func NewDeleteClaimForbidden() *DeleteClaimForbidden {
 /*
 DeleteClaimForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type DeleteClaimForbidden struct {
 	Payload *models.Error
@@ -209,6 +219,11 @@ func (o *DeleteClaimForbidden) IsServerError() bool {
 // IsCode returns true when this delete claim forbidden response a status code equal to that given
 func (o *DeleteClaimForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the delete claim forbidden response
+func (o *DeleteClaimForbidden) Code() int {
+	return 403
 }
 
 func (o *DeleteClaimForbidden) Error() string {
@@ -243,7 +258,7 @@ func NewDeleteClaimNotFound() *DeleteClaimNotFound {
 /*
 DeleteClaimNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type DeleteClaimNotFound struct {
 	Payload *models.Error
@@ -272,6 +287,11 @@ func (o *DeleteClaimNotFound) IsServerError() bool {
 // IsCode returns true when this delete claim not found response a status code equal to that given
 func (o *DeleteClaimNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the delete claim not found response
+func (o *DeleteClaimNotFound) Code() int {
+	return 404
 }
 
 func (o *DeleteClaimNotFound) Error() string {
@@ -306,7 +326,7 @@ func NewDeleteClaimTooManyRequests() *DeleteClaimTooManyRequests {
 /*
 DeleteClaimTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type DeleteClaimTooManyRequests struct {
 	Payload *models.Error
@@ -335,6 +355,11 @@ func (o *DeleteClaimTooManyRequests) IsServerError() bool {
 // IsCode returns true when this delete claim too many requests response a status code equal to that given
 func (o *DeleteClaimTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the delete claim too many requests response
+func (o *DeleteClaimTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *DeleteClaimTooManyRequests) Error() string {

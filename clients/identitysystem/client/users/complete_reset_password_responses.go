@@ -48,7 +48,7 @@ func (o *CompleteResetPasswordReader) ReadResponse(response runtime.ClientRespon
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /system/pools/{ipID}/user/password/reset/complete] completeResetPassword", response, response.Code())
 	}
 }
 
@@ -96,6 +96,11 @@ func (o *CompleteResetPasswordNoContent) IsServerError() bool {
 // IsCode returns true when this complete reset password no content response a status code equal to that given
 func (o *CompleteResetPasswordNoContent) IsCode(code int) bool {
 	return code == 204
+}
+
+// Code gets the status code for the complete reset password no content response
+func (o *CompleteResetPasswordNoContent) Code() int {
+	return 204
 }
 
 func (o *CompleteResetPasswordNoContent) Error() string {
@@ -155,6 +160,11 @@ func (o *CompleteResetPasswordUnauthorized) IsServerError() bool {
 // IsCode returns true when this complete reset password unauthorized response a status code equal to that given
 func (o *CompleteResetPasswordUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the complete reset password unauthorized response
+func (o *CompleteResetPasswordUnauthorized) Code() int {
+	return 401
 }
 
 func (o *CompleteResetPasswordUnauthorized) Error() string {
@@ -220,6 +230,11 @@ func (o *CompleteResetPasswordPreconditionFailed) IsCode(code int) bool {
 	return code == 412
 }
 
+// Code gets the status code for the complete reset password precondition failed response
+func (o *CompleteResetPasswordPreconditionFailed) Code() int {
+	return 412
+}
+
 func (o *CompleteResetPasswordPreconditionFailed) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/user/password/reset/complete][%d] completeResetPasswordPreconditionFailed  %+v", 412, o.Payload)
 }
@@ -281,6 +296,11 @@ func (o *CompleteResetPasswordUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this complete reset password unprocessable entity response a status code equal to that given
 func (o *CompleteResetPasswordUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the complete reset password unprocessable entity response
+func (o *CompleteResetPasswordUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *CompleteResetPasswordUnprocessableEntity) Error() string {

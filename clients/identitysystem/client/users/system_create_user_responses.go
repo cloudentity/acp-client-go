@@ -78,7 +78,7 @@ func (o *SystemCreateUserReader) ReadResponse(response runtime.ClientResponse, c
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /system/pools/{ipID}/users] systemCreateUser", response, response.Code())
 	}
 }
 
@@ -128,6 +128,11 @@ func (o *SystemCreateUserCreated) IsServerError() bool {
 // IsCode returns true when this system create user created response a status code equal to that given
 func (o *SystemCreateUserCreated) IsCode(code int) bool {
 	return code == 201
+}
+
+// Code gets the status code for the system create user created response
+func (o *SystemCreateUserCreated) Code() int {
+	return 201
 }
 
 func (o *SystemCreateUserCreated) Error() string {
@@ -200,6 +205,11 @@ func (o *SystemCreateUserBadRequest) IsCode(code int) bool {
 	return code == 400
 }
 
+// Code gets the status code for the system create user bad request response
+func (o *SystemCreateUserBadRequest) Code() int {
+	return 400
+}
+
 func (o *SystemCreateUserBadRequest) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserBadRequest  %+v", 400, o.Payload)
 }
@@ -261,6 +271,11 @@ func (o *SystemCreateUserUnauthorized) IsServerError() bool {
 // IsCode returns true when this system create user unauthorized response a status code equal to that given
 func (o *SystemCreateUserUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the system create user unauthorized response
+func (o *SystemCreateUserUnauthorized) Code() int {
+	return 401
 }
 
 func (o *SystemCreateUserUnauthorized) Error() string {
@@ -326,6 +341,11 @@ func (o *SystemCreateUserForbidden) IsCode(code int) bool {
 	return code == 403
 }
 
+// Code gets the status code for the system create user forbidden response
+func (o *SystemCreateUserForbidden) Code() int {
+	return 403
+}
+
 func (o *SystemCreateUserForbidden) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserForbidden  %+v", 403, o.Payload)
 }
@@ -387,6 +407,11 @@ func (o *SystemCreateUserNotFound) IsServerError() bool {
 // IsCode returns true when this system create user not found response a status code equal to that given
 func (o *SystemCreateUserNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the system create user not found response
+func (o *SystemCreateUserNotFound) Code() int {
+	return 404
 }
 
 func (o *SystemCreateUserNotFound) Error() string {
@@ -452,6 +477,11 @@ func (o *SystemCreateUserConflict) IsCode(code int) bool {
 	return code == 409
 }
 
+// Code gets the status code for the system create user conflict response
+func (o *SystemCreateUserConflict) Code() int {
+	return 409
+}
+
 func (o *SystemCreateUserConflict) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserConflict  %+v", 409, o.Payload)
 }
@@ -513,6 +543,11 @@ func (o *SystemCreateUserPreconditionFailed) IsServerError() bool {
 // IsCode returns true when this system create user precondition failed response a status code equal to that given
 func (o *SystemCreateUserPreconditionFailed) IsCode(code int) bool {
 	return code == 412
+}
+
+// Code gets the status code for the system create user precondition failed response
+func (o *SystemCreateUserPreconditionFailed) Code() int {
+	return 412
 }
 
 func (o *SystemCreateUserPreconditionFailed) Error() string {
@@ -578,6 +613,11 @@ func (o *SystemCreateUserUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
 }
 
+// Code gets the status code for the system create user unprocessable entity response
+func (o *SystemCreateUserUnprocessableEntity) Code() int {
+	return 422
+}
+
 func (o *SystemCreateUserUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/users][%d] systemCreateUserUnprocessableEntity  %+v", 422, o.Payload)
 }
@@ -639,6 +679,11 @@ func (o *SystemCreateUserTooManyRequests) IsServerError() bool {
 // IsCode returns true when this system create user too many requests response a status code equal to that given
 func (o *SystemCreateUserTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the system create user too many requests response
+func (o *SystemCreateUserTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *SystemCreateUserTooManyRequests) Error() string {

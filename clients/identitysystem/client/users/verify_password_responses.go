@@ -48,7 +48,7 @@ func (o *VerifyPasswordReader) ReadResponse(response runtime.ClientResponse, con
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /system/pools/{ipID}/user/password/verify] verifyPassword", response, response.Code())
 	}
 }
 
@@ -98,6 +98,11 @@ func (o *VerifyPasswordOK) IsServerError() bool {
 // IsCode returns true when this verify password o k response a status code equal to that given
 func (o *VerifyPasswordOK) IsCode(code int) bool {
 	return code == 200
+}
+
+// Code gets the status code for the verify password o k response
+func (o *VerifyPasswordOK) Code() int {
+	return 200
 }
 
 func (o *VerifyPasswordOK) Error() string {
@@ -170,6 +175,11 @@ func (o *VerifyPasswordUnauthorized) IsCode(code int) bool {
 	return code == 401
 }
 
+// Code gets the status code for the verify password unauthorized response
+func (o *VerifyPasswordUnauthorized) Code() int {
+	return 401
+}
+
 func (o *VerifyPasswordUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/user/password/verify][%d] verifyPasswordUnauthorized  %+v", 401, o.Payload)
 }
@@ -233,6 +243,11 @@ func (o *VerifyPasswordPreconditionFailed) IsCode(code int) bool {
 	return code == 412
 }
 
+// Code gets the status code for the verify password precondition failed response
+func (o *VerifyPasswordPreconditionFailed) Code() int {
+	return 412
+}
+
 func (o *VerifyPasswordPreconditionFailed) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/user/password/verify][%d] verifyPasswordPreconditionFailed  %+v", 412, o.Payload)
 }
@@ -294,6 +309,11 @@ func (o *VerifyPasswordUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this verify password unprocessable entity response a status code equal to that given
 func (o *VerifyPasswordUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the verify password unprocessable entity response
+func (o *VerifyPasswordUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *VerifyPasswordUnprocessableEntity) Error() string {

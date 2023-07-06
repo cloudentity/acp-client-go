@@ -94,6 +94,10 @@ func (m *DeviceAuthorizationConfiguration) ContextValidate(ctx context.Context, 
 
 func (m *DeviceAuthorizationConfiguration) contextValidateUserCodeCharacterSet(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.UserCodeCharacterSet) { // not required
+		return nil
+	}
+
 	if err := m.UserCodeCharacterSet.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("user_code_character_set")

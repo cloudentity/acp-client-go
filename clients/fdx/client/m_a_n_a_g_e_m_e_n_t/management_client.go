@@ -47,6 +47,9 @@ type ClientService interface {
 To narrow down the list, define the required parameters in the request body.
 
 Authorization: Bearer token.
+
+To obtain a token, use the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
 */
 func (a *Client) ListFDXConsents(params *ListFDXConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListFDXConsentsOK, error) {
 	// TODO: Validate the params before sending
@@ -85,9 +88,14 @@ func (a *Client) ListFDXConsents(params *ListFDXConsentsParams, authInfo runtime
 }
 
 /*
-RevokeFDXConsentByID revokes f d x consent
+	RevokeFDXConsentByID revokes f d x consent
 
-This API revokes a single FDX Consent with the matching consent id
+	Revoke an FDX consent. Provide the required consent identifier in the path.
+
+Authorization: Bearer token.
+
+To obtain a token, use the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
 */
 func (a *Client) RevokeFDXConsentByID(params *RevokeFDXConsentByIDParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeFDXConsentByIDNoContent, error) {
 	// TODO: Validate the params before sending
@@ -128,10 +136,17 @@ func (a *Client) RevokeFDXConsentByID(params *RevokeFDXConsentByIDParams, authIn
 /*
 	RevokeFDXConsents revokes f d x consents
 
-	This API revokes FDX consents matching provided parameters.
+	Revoke FDX consents by parameters passed with the request.
 
-Currently supporting removal by client id.
-RevocationDetails also have to be provided.
+Currently supported revocation by a client identifier. It revokes all consents provided for a given client
+application.
+
+Pass the revocation initiator and reason details with the `RevocationDetails` body parameter.
+
+Authorization: Bearer token.
+
+To obtain a token, use the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
 */
 func (a *Client) RevokeFDXConsents(params *RevokeFDXConsentsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeFDXConsentsOK, error) {
 	// TODO: Validate the params before sending
