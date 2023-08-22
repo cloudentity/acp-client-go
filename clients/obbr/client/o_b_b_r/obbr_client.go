@@ -42,6 +42,8 @@ type ClientService interface {
 
 	CreatePaymentConsentV2(params *CreatePaymentConsentV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreatePaymentConsentV2Created, error)
 
+	CreatePaymentConsentV3(params *CreatePaymentConsentV3Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreatePaymentConsentV3Created, error)
+
 	DeleteDataAccessConsent(params *DeleteDataAccessConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteDataAccessConsentNoContent, error)
 
 	DeleteDataAccessConsentDeprecated(params *DeleteDataAccessConsentDeprecatedParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteDataAccessConsentDeprecatedNoContent, error)
@@ -60,6 +62,8 @@ type ClientService interface {
 
 	GetPaymentConsentV2(params *GetPaymentConsentV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPaymentConsentV2OK, error)
 
+	GetPaymentConsentV3(params *GetPaymentConsentV3Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPaymentConsentV3OK, error)
+
 	PatchPaymentConsent(params *PatchPaymentConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchPaymentConsentOK, error)
 
 	ObbrDataAccessConsentIntrospect(params *ObbrDataAccessConsentIntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ObbrDataAccessConsentIntrospectOK, error)
@@ -70,13 +74,24 @@ type ClientService interface {
 
 	ObbrPaymentConsentIntrospectV2(params *ObbrPaymentConsentIntrospectV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ObbrPaymentConsentIntrospectV2OK, error)
 
+	ObbrPaymentConsentIntrospectV3(params *ObbrPaymentConsentIntrospectV3Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ObbrPaymentConsentIntrospectV3OK, error)
+
 	SetTransport(transport runtime.ClientTransport)
 }
 
 /*
-CreateDataAccessConsent creates data access consent
+	CreateDataAccessConsent creates data access consent v1
 
-This API allows AISP to create consent to access PSU registration data, information about transactions in their accounts, credit card and contracted credit products
+	This API allows an Account Information Service Provider (AISP) to create a consent to access the registration data
+
+of a Payment Service User (PSU), along with information about transactions in PSU's accounts, credit cards, and
+contracted credit products.
+
+For authorization, pass the `Authorization: Bearer` header with an access token as the bearer value. To obtain the
+access token with all the required scopes, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+Find the scopes list in the AUTHORIZATIONS block.
 */
 func (a *Client) CreateDataAccessConsent(params *CreateDataAccessConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateDataAccessConsentCreated, error) {
 	// TODO: Validate the params before sending
@@ -115,9 +130,18 @@ func (a *Client) CreateDataAccessConsent(params *CreateDataAccessConsentParams, 
 }
 
 /*
-CreateDataAccessConsentDeprecated creates data access consent
+	CreateDataAccessConsentDeprecated creates data access consent v1
 
-This API allows AISP to create consent to access PSU registration data, information about transactions in their accounts, credit card and contracted credit products
+	This API allows an Account Information Service Provider (AISP) to create a consent to access the registration data
+
+of a Payment Service User (PSU), along with information about transactions in PSU's accounts, credit cards, and
+contracted credit products.
+
+For authorization, pass the `Authorization: Bearer` header with an access token as the bearer value. To obtain the
+access token with all the required scopes, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+Find the scopes list in the AUTHORIZATIONS block.
 */
 func (a *Client) CreateDataAccessConsentDeprecated(params *CreateDataAccessConsentDeprecatedParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateDataAccessConsentDeprecatedCreated, error) {
 	// TODO: Validate the params before sending
@@ -156,9 +180,18 @@ func (a *Client) CreateDataAccessConsentDeprecated(params *CreateDataAccessConse
 }
 
 /*
-CreateDataAccessConsentV2 creates data access consent
+	CreateDataAccessConsentV2 creates data access consent v2
 
-This API allows AISP to create consent to access PSU registration data, information about transactions in their accounts, credit card and contracted credit products
+	This API allows an Account Information Service Provider (AISP) to create a consent to access the registration data
+
+of a Payment Service User (PSU), along with information about transactions in PSU's accounts, credit cards, and
+contracted credit products.
+
+For authorization, pass the `Authorization: Bearer` header with an access token as the bearer value. To obtain the
+access token with all the required scopes, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+Find the scopes list in the AUTHORIZATIONS block.
 */
 func (a *Client) CreateDataAccessConsentV2(params *CreateDataAccessConsentV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateDataAccessConsentV2Created, error) {
 	// TODO: Validate the params before sending
@@ -197,9 +230,17 @@ func (a *Client) CreateDataAccessConsentV2(params *CreateDataAccessConsentV2Para
 }
 
 /*
-CreatePaymentConsent creates payment consent
+	CreatePaymentConsent creates payment consent v1
 
-This API allows AISP to create consent to initiate payments between banks and financial institutions
+	This API allows an Account Information Service Provider (AISP) to create a consent to initiate payments between
+
+banks and financial institutions on behalf of a Payment Service User (PSU).
+
+For authorization, pass the `Authorization: Bearer` header with an access token as the bearer value. To obtain the
+access token with all the required scopes, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+Find the scopes list in the AUTHORIZATIONS block.
 */
 func (a *Client) CreatePaymentConsent(params *CreatePaymentConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreatePaymentConsentCreated, error) {
 	// TODO: Validate the params before sending
@@ -238,9 +279,17 @@ func (a *Client) CreatePaymentConsent(params *CreatePaymentConsentParams, authIn
 }
 
 /*
-CreatePaymentConsentDeprecated creates payment consent
+	CreatePaymentConsentDeprecated creates payment consent v1
 
-This API allows AISP to create consent to initiate payments between banks and financial institutions
+	This API allows an Account Information Service Provider (AISP) to create a consent to initiate payments between
+
+banks and financial institutions on behalf of a Payment Service User (PSU).
+
+For authorization, pass the `Authorization: Bearer` header with an access token as the bearer value. To obtain the
+access token with all the required scopes, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+Find the scopes list in the AUTHORIZATIONS block.
 */
 func (a *Client) CreatePaymentConsentDeprecated(params *CreatePaymentConsentDeprecatedParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreatePaymentConsentDeprecatedCreated, error) {
 	// TODO: Validate the params before sending
@@ -279,9 +328,17 @@ func (a *Client) CreatePaymentConsentDeprecated(params *CreatePaymentConsentDepr
 }
 
 /*
-CreatePaymentConsentV2 creates payment consent
+	CreatePaymentConsentV2 creates payment consent v2
 
-This API allows AISP to create consent to initiate payments between banks and financial institutions
+	This API allows an Account Information Service Provider (AISP) to create a consent to initiate payments between
+
+banks and financial institutions on behalf of a Payment Service User (PSU).
+
+For authorization, pass the `Authorization: Bearer` header with an access token as the bearer value. To obtain the
+access token with all the required scopes, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+Find the scopes list in the AUTHORIZATIONS block.
 */
 func (a *Client) CreatePaymentConsentV2(params *CreatePaymentConsentV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreatePaymentConsentV2Created, error) {
 	// TODO: Validate the params before sending
@@ -320,9 +377,66 @@ func (a *Client) CreatePaymentConsentV2(params *CreatePaymentConsentV2Params, au
 }
 
 /*
-DeleteDataAccessConsent deletes data access consent
+	CreatePaymentConsentV3 creates payment consent v3
 
-This API allows PISP to remove previously created consent
+	This API allows an Account Information Service Provider (AISP) to create a consent to initiate payments between
+
+banks and financial institutions on behalf of a Payment Service User (PSU).
+
+For authorization, pass the `Authorization: Bearer` header with an access token as the bearer value. To obtain the
+access token with all the required scopes, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+Find the scopes list in the AUTHORIZATIONS block.
+*/
+func (a *Client) CreatePaymentConsentV3(params *CreatePaymentConsentV3Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreatePaymentConsentV3Created, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreatePaymentConsentV3Params()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "CreatePaymentConsentV3",
+		Method:             "POST",
+		PathPattern:        "/open-banking/payments/v3/consents",
+		ProducesMediaTypes: []string{"application/jwt"},
+		ConsumesMediaTypes: []string{"application/jwt"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreatePaymentConsentV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CreatePaymentConsentV3Created)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for CreatePaymentConsentV3: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	DeleteDataAccessConsent deletes data access consent v1
+
+	Delete a previously created data access consent. Pass the required consent identifier in the path.
+
+This endpoint is used by a Payment Initiation Service Provider (PISP).
+
+For authorization, pass the `Authorization: Bearer` with a token as a bearer value. To obtain the token and include
+the required scopes, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+Find the scope list in the AUTHORIZATIONS block.
 */
 func (a *Client) DeleteDataAccessConsent(params *DeleteDataAccessConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteDataAccessConsentNoContent, error) {
 	// TODO: Validate the params before sending
@@ -361,9 +475,17 @@ func (a *Client) DeleteDataAccessConsent(params *DeleteDataAccessConsentParams, 
 }
 
 /*
-DeleteDataAccessConsentDeprecated deletes data access consent
+	DeleteDataAccessConsentDeprecated deletes data access consent v1
 
-This API allows PISP to remove previously created consent
+	Delete a previously created data access consent. Pass the required consent identifier in the path.
+
+This endpoint is used by a Payment Initiation Service Provider (PISP).
+
+For authorization, pass the `Authorization: Bearer` with a token as a bearer value. To obtain the token and include
+the required scopes, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+Find the scope list in the AUTHORIZATIONS block.
 */
 func (a *Client) DeleteDataAccessConsentDeprecated(params *DeleteDataAccessConsentDeprecatedParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteDataAccessConsentDeprecatedNoContent, error) {
 	// TODO: Validate the params before sending
@@ -402,9 +524,17 @@ func (a *Client) DeleteDataAccessConsentDeprecated(params *DeleteDataAccessConse
 }
 
 /*
-DeleteDataAccessConsentV2 deletes data access consent
+	DeleteDataAccessConsentV2 deletes data access consent v2
 
-This API allows PISP to remove previously created consent
+	Delete a previously created data access consent. Pass the required consent identifier in the path.
+
+This endpoint is used by a Payment Initiation Service Provider (PISP).
+
+For authorization, pass the `Authorization: Bearer` with a token as a bearer value. To obtain the token and include
+the required scopes, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+Find the scope list in the AUTHORIZATIONS block.
 */
 func (a *Client) DeleteDataAccessConsentV2(params *DeleteDataAccessConsentV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteDataAccessConsentV2NoContent, error) {
 	// TODO: Validate the params before sending
@@ -443,9 +573,19 @@ func (a *Client) DeleteDataAccessConsentV2(params *DeleteDataAccessConsentV2Para
 }
 
 /*
-GetDataAccessConsent gets data access consent
+	GetDataAccessConsent gets data access consent v1
 
-This API allows PISP to retrieve previously created consent
+	Retrieve the information about a previously created data access consent. Pass the required consent identifier
+
+in the path.
+
+This endpoint is used by a Payment Initiation Service Provider (PISP).
+
+For authorization, pass the `Authorization: Bearer` with a token as a bearer value. To obtain the token and include
+the required scopes, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+Find the scope list in the AUTHORIZATIONS block.
 */
 func (a *Client) GetDataAccessConsent(params *GetDataAccessConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDataAccessConsentOK, error) {
 	// TODO: Validate the params before sending
@@ -484,9 +624,19 @@ func (a *Client) GetDataAccessConsent(params *GetDataAccessConsentParams, authIn
 }
 
 /*
-GetDataAccessConsentDeprecated gets data access consent
+	GetDataAccessConsentDeprecated gets data access consent v1
 
-This API allows PISP to retrieve previously created consent
+	Retrieve the information about a previously created data access consent. Pass the required consent identifier
+
+in the path.
+
+This endpoint is used by a Payment Initiation Service Provider (PISP).
+
+For authorization, pass the `Authorization: Bearer` with a token as a bearer value. To obtain the token and include
+the required scopes, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+Find the scope list in the AUTHORIZATIONS block.
 */
 func (a *Client) GetDataAccessConsentDeprecated(params *GetDataAccessConsentDeprecatedParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDataAccessConsentDeprecatedOK, error) {
 	// TODO: Validate the params before sending
@@ -525,9 +675,19 @@ func (a *Client) GetDataAccessConsentDeprecated(params *GetDataAccessConsentDepr
 }
 
 /*
-GetDataAccessConsentV2 gets data access consent
+	GetDataAccessConsentV2 gets data access consent v2
 
-This API allows PISP to retrieve previously created consent
+	Retrieve the information about a previously created data access consent. Pass the required consent identifier
+
+in the path.
+
+This endpoint is used by a Payment Initiation Service Provider (PISP).
+
+For authorization, pass the `Authorization: Bearer` with a token as a bearer value. To obtain the token and include
+the required scopes, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+Find the scope list in the AUTHORIZATIONS block.
 */
 func (a *Client) GetDataAccessConsentV2(params *GetDataAccessConsentV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDataAccessConsentV2OK, error) {
 	// TODO: Validate the params before sending
@@ -566,9 +726,19 @@ func (a *Client) GetDataAccessConsentV2(params *GetDataAccessConsentV2Params, au
 }
 
 /*
-GetPaymentConsent gets payment consent
+	GetPaymentConsent gets payment consent v1
 
-This API allows PISP to retrieve previously created payment consent
+	Retrieve the information about a previously created payment consent. Pass the required consent identifier
+
+in the path.
+
+This endpoint is used by a Payment Initiation Service Provider (PISP).
+
+For authorization, pass the `Authorization: Bearer` with a token as a bearer value. To obtain the token and include
+the required scopes, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+Find the scope list in the AUTHORIZATIONS block.
 */
 func (a *Client) GetPaymentConsent(params *GetPaymentConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPaymentConsentOK, error) {
 	// TODO: Validate the params before sending
@@ -607,9 +777,19 @@ func (a *Client) GetPaymentConsent(params *GetPaymentConsentParams, authInfo run
 }
 
 /*
-GetPaymentConsentDeprecated gets payment consent
+	GetPaymentConsentDeprecated gets payment consent v1
 
-This API allows PISP to retrieve previously created payment consent
+	Retrieve the information about a previously created payment consent. Pass the required consent identifier
+
+in the path.
+
+This endpoint is used by a Payment Initiation Service Provider (PISP).
+
+For authorization, pass the `Authorization: Bearer` with a token as a bearer value. To obtain the token and include
+the required scopes, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+Find the scope list in the AUTHORIZATIONS block.
 */
 func (a *Client) GetPaymentConsentDeprecated(params *GetPaymentConsentDeprecatedParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPaymentConsentDeprecatedOK, error) {
 	// TODO: Validate the params before sending
@@ -648,9 +828,19 @@ func (a *Client) GetPaymentConsentDeprecated(params *GetPaymentConsentDeprecated
 }
 
 /*
-GetPaymentConsentV2 gets payment consent
+	GetPaymentConsentV2 gets payment consent v2
 
-This API allows PISP to retrieve previously created payment consent
+	Retrieve the information about a previously created payment consent. Pass the required consent identifier
+
+in the path.
+
+This endpoint is used by a Payment Initiation Service Provider (PISP).
+
+For authorization, pass the `Authorization: Bearer` with a token as a bearer value. To obtain the token and include
+the required scopes, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+Find the scope list in the AUTHORIZATIONS block.
 */
 func (a *Client) GetPaymentConsentV2(params *GetPaymentConsentV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPaymentConsentV2OK, error) {
 	// TODO: Validate the params before sending
@@ -689,9 +879,68 @@ func (a *Client) GetPaymentConsentV2(params *GetPaymentConsentV2Params, authInfo
 }
 
 /*
-PatchPaymentConsent revokes payment consent
+	GetPaymentConsentV3 gets payment consent v3
 
-This API allows PISP to revoke a payment consent
+	Retrieve the information about a previously created payment consent. Pass the required consent identifier
+
+in the path.
+
+This endpoint is used by a Payment Initiation Service Provider (PISP).
+
+For authorization, pass the `Authorization: Bearer` with a token as a bearer value. To obtain the token and include
+the required scopes, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+Find the scope list in the AUTHORIZATIONS block.
+*/
+func (a *Client) GetPaymentConsentV3(params *GetPaymentConsentV3Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetPaymentConsentV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetPaymentConsentV3Params()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetPaymentConsentV3",
+		Method:             "GET",
+		PathPattern:        "/open-banking/payments/v3/consents/{consentID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetPaymentConsentV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetPaymentConsentV3OK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetPaymentConsentV3: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	PatchPaymentConsent revokes payment consent
+
+	Revoke a previously granted payment consent. Pass the required consent identifier in the path.
+
+This endpoint is used by a Payment Initiation Service Provider (PISP).
+
+For authorization, pass the `Authorization: Bearer` with a token as a bearer value. To obtain the token and include
+the required scopes, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+Find the scope list in the AUTHORIZATIONS block.
 */
 func (a *Client) PatchPaymentConsent(params *PatchPaymentConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*PatchPaymentConsentOK, error) {
 	// TODO: Validate the params before sending
@@ -730,9 +979,17 @@ func (a *Client) PatchPaymentConsent(params *PatchPaymentConsentParams, authInfo
 }
 
 /*
-ObbrDataAccessConsentIntrospect introspects openbanking brasil data access consent
+	ObbrDataAccessConsentIntrospect introspects open banking brazil data access consent v1
 
-Introspect openbanking brasil data access consent
+	This endpoint accepts an OAuth 2.0 token and returns meta information surrounding the token along with the
+
+data access consent and the associated account identifiers.
+
+Pass the token as the bearer value with the `Authorization: Bearer` header. To obtain the token with all the required
+scopes, apply the
+[Authorization Code](https://cloudentity.com/developers/basics/oauth-grant-types/authorization-code-flow/) grant type.
+
+Find the scopes list in the AUTHORIZATIONS block.
 */
 func (a *Client) ObbrDataAccessConsentIntrospect(params *ObbrDataAccessConsentIntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ObbrDataAccessConsentIntrospectOK, error) {
 	// TODO: Validate the params before sending
@@ -771,9 +1028,18 @@ func (a *Client) ObbrDataAccessConsentIntrospect(params *ObbrDataAccessConsentIn
 }
 
 /*
-ObbrDataAccessConsentV2Introspect introspects openbanking brasil data access consent
+	ObbrDataAccessConsentV2Introspect introspects open banking brazil data access consent v2
 
-This API allows introspection of tokens bound to v2 consents. It is also backwards compatible with v1 consent tokens.
+	This endpoint accepts an OAuth 2.0 token bound to v2 data access consents and returns meta information surrounding the token
+
+along with the data access consent and the associated account identifiers. It's also backwards compatible with v1
+data access consent tokens.
+
+Pass the token as the bearer value with the `Authorization: Bearer` header. To obtain the token with all the required
+scopes, apply the
+[Authorization Code](https://cloudentity.com/developers/basics/oauth-grant-types/authorization-code-flow/) grant type.
+
+Find the scopes list in the AUTHORIZATIONS block.
 */
 func (a *Client) ObbrDataAccessConsentV2Introspect(params *ObbrDataAccessConsentV2IntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ObbrDataAccessConsentV2IntrospectOK, error) {
 	// TODO: Validate the params before sending
@@ -812,12 +1078,17 @@ func (a *Client) ObbrDataAccessConsentV2Introspect(params *ObbrDataAccessConsent
 }
 
 /*
-	ObbrPaymentConsentIntrospect introspects openbanking brasil payment consent
+	ObbrPaymentConsentIntrospect introspects open banking brazil payment consent v1
 
-	This endpoint takes an OAuth 2.0 token and, in addition to returning
+	This endpoint accepts an Oauth 2.0 token and returns meta information surrounding the token along with the
 
-meta information surrounding the token, returns the payment consent and
-associated account ids.
+payment consent and the associated account identifiers.
+
+Pass the token as the bearer value with the `Authorization: Bearer` header. To obtain the token with all the required
+scopes, apply the
+[Authorization Code](https://cloudentity.com/developers/basics/oauth-grant-types/authorization-code-flow/) grant type.
+
+Find the scopes list in the AUTHORIZATIONS block.
 */
 func (a *Client) ObbrPaymentConsentIntrospect(params *ObbrPaymentConsentIntrospectParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ObbrPaymentConsentIntrospectOK, error) {
 	// TODO: Validate the params before sending
@@ -856,9 +1127,18 @@ func (a *Client) ObbrPaymentConsentIntrospect(params *ObbrPaymentConsentIntrospe
 }
 
 /*
-ObbrPaymentConsentIntrospectV2 introspects openbanking brasil payment consent
+	ObbrPaymentConsentIntrospectV2 introspects open banking brazil payment consent v2
 
-This API allows introspection of tokens bound to v2 payment consents. It is also backwards compatible with v1 payment consent tokens.
+	This endpoint accepts an OAuth 2.0 token bound to v2 payment consents and returns meta information surrounding the
+
+token along with the payment consent and the associated account identifiers. It's also backwards compatible with v1
+payment consent tokens.
+
+Pass the token as the bearer value with the `Authorization: Bearer` header. To obtain the token with all the required
+scopes, apply the
+[Authorization Code](https://cloudentity.com/developers/basics/oauth-grant-types/authorization-code-flow/) grant type.
+
+Find the scopes list in the AUTHORIZATIONS block.
 */
 func (a *Client) ObbrPaymentConsentIntrospectV2(params *ObbrPaymentConsentIntrospectV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ObbrPaymentConsentIntrospectV2OK, error) {
 	// TODO: Validate the params before sending
@@ -893,6 +1173,56 @@ func (a *Client) ObbrPaymentConsentIntrospectV2(params *ObbrPaymentConsentIntros
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for obbrPaymentConsentIntrospectV2: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	ObbrPaymentConsentIntrospectV3 introspects open banking brazil payment consent v3
+
+	This endpoint accepts an OAuth 2.0 token bound to v3 payment consents and returns meta information surrounding the
+
+token along with the payment consent and the associated account identifiers. It's also backwards compatible with v1 and v2
+payment consent tokens.
+
+Pass the token as the bearer value with the `Authorization: Bearer` header. To obtain the token with all the required
+scopes, apply the
+[Authorization Code](https://cloudentity.com/developers/basics/oauth-grant-types/authorization-code-flow/) grant type.
+
+Find the scopes list in the AUTHORIZATIONS block.
+*/
+func (a *Client) ObbrPaymentConsentIntrospectV3(params *ObbrPaymentConsentIntrospectV3Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ObbrPaymentConsentIntrospectV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewObbrPaymentConsentIntrospectV3Params()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "obbrPaymentConsentIntrospectV3",
+		Method:             "POST",
+		PathPattern:        "/open-banking-brasil/open-banking/payments/v3/consents/introspect",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/x-www-form-urlencoded"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ObbrPaymentConsentIntrospectV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ObbrPaymentConsentIntrospectV3OK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for obbrPaymentConsentIntrospectV3: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

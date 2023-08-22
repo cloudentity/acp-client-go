@@ -60,7 +60,7 @@ func (o *ConsumeOBBRConsentReader) ReadResponse(response runtime.ClientResponse,
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /servers/{wid}/open-banking-brasil/consents/{consentID}/consume] consumeOBBRConsent", response, response.Code())
 	}
 }
 
@@ -72,7 +72,7 @@ func NewConsumeOBBRConsentOK() *ConsumeOBBRConsentOK {
 /*
 ConsumeOBBRConsentOK describes a response with status code 200, with default header values.
 
-BrazilConsent
+Open Banking Brazil Consent
 */
 type ConsumeOBBRConsentOK struct {
 	Payload *models.BrazilConsent

@@ -42,7 +42,7 @@ type ClientService interface {
 }
 
 /*
-	DynamicClientRegistration thes brazil open banking dynamic client registration endpoint
+	DynamicClientRegistration os b b r dynamic client registration
 
 	Dynamic Client Registration endpoint allows to dynamically register OAuth 2.0 client applications
 
@@ -89,9 +89,9 @@ func (a *Client) DynamicClientRegistration(params *DynamicClientRegistrationPara
 }
 
 /*
-DynamicClientRegistrationDeleteClient thes brazil open banking dynamic client registration delete client endpoint
+DynamicClientRegistrationDeleteClient deletes o b b r client
 
-This endpoint allows to delete a dynamically registered client.
+Delete a dynamically registered client application.
 */
 func (a *Client) DynamicClientRegistrationDeleteClient(params *DynamicClientRegistrationDeleteClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationDeleteClientNoContent, error) {
 	// TODO: Validate the params before sending
@@ -130,9 +130,9 @@ func (a *Client) DynamicClientRegistrationDeleteClient(params *DynamicClientRegi
 }
 
 /*
-DynamicClientRegistrationGetClient thes brazil open banking dynamic client registration get client endpoint
+DynamicClientRegistrationGetClient gets o b b r client metadata
 
-This endpoint allows to get metadata values of a dynamically registered client.
+Retrieve metadata values of a dynamically registered client application.
 */
 func (a *Client) DynamicClientRegistrationGetClient(params *DynamicClientRegistrationGetClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationGetClientOK, error) {
 	// TODO: Validate the params before sending
@@ -171,9 +171,9 @@ func (a *Client) DynamicClientRegistrationGetClient(params *DynamicClientRegistr
 }
 
 /*
-DynamicClientRegistrationUpdateClient thes brazil open banking dynamic client registration update client endpoint
+DynamicClientRegistrationUpdateClient updates o b b r client metadata
 
-This endpoint allows to update metadata values of a dynamically registered client.
+Update metadata values of a dynamically registered client application.
 */
 func (a *Client) DynamicClientRegistrationUpdateClient(params *DynamicClientRegistrationUpdateClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DynamicClientRegistrationUpdateClientOK, error) {
 	// TODO: Validate the params before sending

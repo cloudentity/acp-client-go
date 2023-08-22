@@ -46,6 +46,11 @@ type DynamicClientRegistrationJSONRequest struct {
 	// It is considered a good practice to limit the audience of the token for security purposes.
 	Audience []string `json:"audience"`
 
+	// Authorization details types
+	//
+	// Indicates what authorization details types the client can use.
+	AuthorizationDetailsTypes []AuthorizationDetailType `json:"authorization_details_types"`
+
 	// Algorithm used for encrypting authorization responses.
 	//
 	// If both signing and encryption are requested, the response is first signed, and then encrypted.
@@ -150,7 +155,7 @@ type DynamicClientRegistrationJSONRequest struct {
 	// Enum: [RS256 ES256 PS256]
 	IDTokenSignedResponseAlg string `json:"id_token_signed_response_alg,omitempty"`
 
-	// An introspection endpoint authentication method configured for the client application.
+	// An introspection endpoint authentication method configured for the client application (read-only).
 	//
 	// If empty, the `token_endpoint_auth_method` is used.
 	//
@@ -217,7 +222,7 @@ type DynamicClientRegistrationJSONRequest struct {
 	// response types
 	ResponseTypes ResponseTypes `json:"response_types,omitempty"`
 
-	// A revocation endpoint authentication method configured for the client application.
+	// A revocation endpoint authentication method configured for the client application (read-only).
 	// If empty, the `token_endpoint_auth_method` is used.
 	//
 	// Cloudentity supports the following client authentication methods:
@@ -357,6 +362,9 @@ type DynamicClientRegistrationJSONRequest struct {
 	// Example: none
 	// Enum: [none RS256 ES256]
 	UserinfoSignedResponseAlg string `json:"userinfo_signed_response_alg,omitempty"`
+
+	// webhook uris
+	WebhookUris []string `json:"webhook_uris"`
 }
 
 // Validate validates this dynamic client registration JSON request
@@ -364,6 +372,10 @@ func (m *DynamicClientRegistrationJSONRequest) Validate(formats strfmt.Registry)
 	var res []error
 
 	if err := m.validateApplicationTypes(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateAuthorizationDetailsTypes(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -489,6 +501,27 @@ func (m *DynamicClientRegistrationJSONRequest) validateApplicationTypes(formats 
 
 		// value enum
 		if err := m.validateApplicationTypesItemsEnum("application_types"+"."+strconv.Itoa(i), "body", m.ApplicationTypes[i]); err != nil {
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *DynamicClientRegistrationJSONRequest) validateAuthorizationDetailsTypes(formats strfmt.Registry) error {
+	if swag.IsZero(m.AuthorizationDetailsTypes) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.AuthorizationDetailsTypes); i++ {
+
+		if err := m.AuthorizationDetailsTypes[i].Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("authorization_details_types" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("authorization_details_types" + "." + strconv.Itoa(i))
+			}
 			return err
 		}
 
@@ -1313,6 +1346,10 @@ func (m *DynamicClientRegistrationJSONRequest) ContextValidate(ctx context.Conte
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateAuthorizationDetailsTypes(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateJwks(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -1348,9 +1385,36 @@ func (m *DynamicClientRegistrationJSONRequest) contextValidateApplicationTypes(c
 	return nil
 }
 
+func (m *DynamicClientRegistrationJSONRequest) contextValidateAuthorizationDetailsTypes(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.AuthorizationDetailsTypes); i++ {
+
+		if swag.IsZero(m.AuthorizationDetailsTypes[i]) { // not required
+			return nil
+		}
+
+		if err := m.AuthorizationDetailsTypes[i].ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("authorization_details_types" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("authorization_details_types" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
 func (m *DynamicClientRegistrationJSONRequest) contextValidateJwks(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Jwks != nil {
+
+		if swag.IsZero(m.Jwks) { // not required
+			return nil
+		}
+
 		if err := m.Jwks.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("jwks")
@@ -1367,6 +1431,11 @@ func (m *DynamicClientRegistrationJSONRequest) contextValidateJwks(ctx context.C
 func (m *DynamicClientRegistrationJSONRequest) contextValidatePrivacy(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Privacy != nil {
+
+		if swag.IsZero(m.Privacy) { // not required
+			return nil
+		}
+
 		if err := m.Privacy.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("privacy")
@@ -1411,6 +1480,11 @@ func (m *DynamicClientRegistrationJSONRequest) contextValidateResponseTypes(ctx 
 func (m *DynamicClientRegistrationJSONRequest) contextValidateTokenExchange(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.TokenExchange != nil {
+
+		if swag.IsZero(m.TokenExchange) { // not required
+			return nil
+		}
+
 		if err := m.TokenExchange.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("token_exchange")

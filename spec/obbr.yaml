@@ -25,6 +25,8 @@ definitions:
     additionalProperties:
       type: object
     type: object
+  AuthorizationDetailType:
+    type: string
   BrazilConsent:
     properties:
       account_ids:
@@ -33,7 +35,7 @@ definitions:
         type: array
         x-nullable: false
       client_id:
-        description: Client identifier
+        description: Client application identifier.
         example: '"cauqo9c9vpbs0aj2b2v0"'
         format: clientID
         type: string
@@ -62,6 +64,8 @@ definitions:
         $ref: '#/definitions/BrazilCustomerPaymentConsent'
       customer_payment_consent_v2:
         $ref: '#/definitions/BrazilCustomerPaymentConsentV2'
+      customer_payment_consent_v3:
+        $ref: '#/definitions/BrazilCustomerPaymentConsentV3'
       idempotency_key:
         type: string
         x-nullable: false
@@ -69,7 +73,7 @@ definitions:
         type: string
         x-nullable: false
       server_id:
-        description: Server / Workspace identifier
+        description: Server / Workspace identifier.
         example: '"server"'
         format: serverID
         type: string
@@ -83,7 +87,7 @@ definitions:
         type: string
         x-nullable: false
       tenant_id:
-        description: Tenant identifier
+        description: Tenant identifier.
         example: '"tenant"'
         format: tenantID
         type: string
@@ -129,6 +133,26 @@ definitions:
         x-nullable: false
       data:
         $ref: '#/definitions/OpenbankingBrasilPaymentV2Data'
+      iat:
+        format: int64
+        type: integer
+        x-nullable: false
+      iss:
+        type: string
+        x-nullable: false
+      jti:
+        type: string
+        x-nullable: false
+    required:
+    - data
+    type: object
+  BrazilCustomerCreatePaymentConsentRequestV3:
+    properties:
+      aud:
+        type: string
+        x-nullable: false
+      data:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3Data'
       iat:
         format: int64
         type: integer
@@ -294,15 +318,15 @@ definitions:
         x-nullable: false
       permissions:
         description: Especifica os tipos de permisses de acesso s APIs no escopo do
-          Open Banking Brasil - Fase 2, de acordo com os blocos de consentimento fornecidos
-          pelo usurio e necessrios ao acesso a cada endpoint das APIs.
+          Open Finance Brasil - Dados cadastrais e transacionais, de acordo com os
+          blocos de consentimento fornecidos pelo usurio e necessrios ao acesso a
+          cada endpoint das APIs. Esse array no deve ter duplicidade de itens.
         example:
         - ACCOUNTS_READ
         - ACCOUNTS_OVERDRAFT_LIMITS_READ
         - RESOURCES_READ
         items:
           $ref: '#/definitions/OpenbankingBrasilConsentV2Permission1'
-        maxItems: 30
         minItems: 1
         type: array
         x-nullable: false
@@ -467,6 +491,32 @@ definitions:
     - links
     - meta
     type: object
+  BrazilCustomerPaymentConsentResponseV3:
+    properties:
+      aud:
+        type: string
+        x-nullable: false
+      data:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3Data1'
+      iat:
+        format: int64
+        type: integer
+        x-nullable: false
+      iss:
+        type: string
+        x-nullable: false
+      jti:
+        type: string
+        x-nullable: false
+      links:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3LinkSingle'
+      meta:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3Meta'
+    required:
+    - data
+    - links
+    - meta
+    type: object
   BrazilCustomerPaymentConsentV2:
     properties:
       businessEntity:
@@ -515,6 +565,74 @@ definitions:
         $ref: '#/definitions/OpenbankingBrasilPaymentV2PaymentConsent'
       status:
         $ref: '#/definitions/OpenbankingBrasilPaymentV2EnumAuthorisationStatusType'
+      statusUpdateDateTime:
+        description: Data e hora em que o recurso foi atualizado. Uma string com data
+          e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
+          UTC(UTC time format).
+        example: "2021-05-21T08:30:00Z"
+        format: date-time
+        type: string
+        x-nullable: false
+    required:
+    - consentId
+    - creationDateTime
+    - creditor
+    - expirationDateTime
+    - loggedUser
+    - payment
+    - status
+    - statusUpdateDateTime
+    type: object
+  BrazilCustomerPaymentConsentV3:
+    properties:
+      businessEntity:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3BusinessEntity'
+      consentId:
+        description: |-
+          Identificador nico do consentimento criado para a iniciao de pagamento solicitada. Dever ser um URN - Uniform Resource Name.
+          Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141)  um Uniform Resource
+          Identifier - URI - que  atribudo sob o URI scheme "urn" e um namespace URN especfico, com a inteno de que o URN
+          seja um identificador de recurso persistente e independente da localizao.
+          Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+          o namespace(urn)
+          o identificador associado ao namespace da instituio transnmissora (bancoex)
+          o identificador especfico dentro do namespace (C1DD33123).
+          Informaes mais detalhadas sobre a construo de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+        example: urn:bancoex:C1DD33123
+        maxLength: 256
+        pattern: ^urn:[a-zA-Z0-9][a-zA-Z0-9\-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$
+        type: string
+        x-nullable: false
+      creationDateTime:
+        description: Data e hora em que o consentimento foi criado. Uma string com
+          data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
+          UTC(UTC time format).
+        example: "2021-05-21T08:30:00Z"
+        format: date-time
+        type: string
+        x-nullable: false
+      creditor:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3Identification'
+      debtorAccount:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3ConsentsDebtorAccount'
+      expirationDateTime:
+        description: |-
+          Data e hora em que o consentimento da iniciao de pagamento expira, devendo ser sempre o creationDateTime mais 5 minutos. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC (UTC time format).
+          O consentimento  criado com o status AWAITING_AUTHORISATION, e deve assumir o status AUTHORIZED ou REJECTED antes do tempo de expirao - 5 minutos. Caso o tempo seja expirado, o status deve assumir REJECTED.
+          Para o cenrio em que o status assumiu AUTHORISED, o tempo mximo do expirationDateTime do consentimento deve assumir "now + 60 minutos". Este  o tempo para consumir o consentimento autorizado, mudando seu status para CONSUMED. No  possvel prorrogar este tempo e a criao de um novo consentimento ser necessria para os cenrios de insucesso.
+          O tempo do expirationDateTime  garantido com os 15 minutos do access token, sendo possvel utilizar mais trs refresh tokens at totalizar 60 minutos.
+        example: "2021-05-21T08:30:00Z"
+        format: date-time
+        type: string
+        x-nullable: false
+      loggedUser:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3LoggedUser'
+      payment:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3PaymentConsent'
+      rejectionReason:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3ConsentRejectionReason'
+      status:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3EnumAuthorisationStatusType'
       statusUpdateDateTime:
         description: Data e hora em que o recurso foi atualizado. Uma string com data
           e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
@@ -929,6 +1047,15 @@ definitions:
           type: string
         type: array
         x-nullable: false
+      authorization_details_types:
+        description: |-
+          Authorization details types
+
+          Indicates what authorization details types the client can use.
+        items:
+          $ref: '#/definitions/AuthorizationDetailType'
+        type: array
+        x-nullable: false
       authorization_encrypted_response_alg:
         description: |-
           Algorithm used for encrypting authorization responses.
@@ -1100,7 +1227,7 @@ definitions:
       introspection_endpoint_auth_method:
         default: client_secret_basic
         description: |-
-          An introspection endpoint authentication method configured for the client application.
+          An introspection endpoint authentication method configured for the client application (read-only).
 
           If empty, the `token_endpoint_auth_method` is used.
 
@@ -1201,7 +1328,7 @@ definitions:
       revocation_endpoint_auth_method:
         default: client_secret_basic
         description: |-
-          A revocation endpoint authentication method configured for the client application.
+          A revocation endpoint authentication method configured for the client application (read-only).
           If empty, the `token_endpoint_auth_method` is used.
 
           Cloudentity supports the following client authentication methods:
@@ -1409,6 +1536,11 @@ definitions:
         example: none
         type: string
         x-nullable: false
+      webhook_uris:
+        items:
+          type: string
+        type: array
+        x-nullable: false
     type: object
   DynamicClientRegistrationResponse:
     properties:
@@ -1463,6 +1595,15 @@ definitions:
           It is considered a good practice to limit the audience of the token for security purposes.
         items:
           type: string
+        type: array
+        x-nullable: false
+      authorization_details_types:
+        description: |-
+          Authorization details types
+
+          Indicates what authorization details types the client can use.
+        items:
+          $ref: '#/definitions/AuthorizationDetailType'
         type: array
         x-nullable: false
       authorization_encrypted_response_alg:
@@ -1669,7 +1810,7 @@ definitions:
       introspection_endpoint_auth_method:
         default: client_secret_basic
         description: |-
-          An introspection endpoint authentication method configured for the client application.
+          An introspection endpoint authentication method configured for the client application (read-only).
 
           If empty, the `token_endpoint_auth_method` is used.
 
@@ -1784,7 +1925,7 @@ definitions:
       revocation_endpoint_auth_method:
         default: client_secret_basic
         description: |-
-          A revocation endpoint authentication method configured for the client application.
+          A revocation endpoint authentication method configured for the client application (read-only).
           If empty, the `token_endpoint_auth_method` is used.
 
           Cloudentity supports the following client authentication methods:
@@ -2011,7 +2152,7 @@ definitions:
       authentication_context:
         $ref: '#/definitions/AuthenticationContext'
       client_id:
-        description: Client identifier
+        description: Client application identifier.
         example: '"cauqo9c9vpbs0aj2b2v0"'
         format: clientID
         type: string
@@ -2036,7 +2177,7 @@ definitions:
         type: array
         x-nullable: false
       server_id:
-        description: Server / Workspace identifier
+        description: Server / Workspace identifier.
         example: '"server"'
         format: serverID
         type: string
@@ -2051,7 +2192,7 @@ definitions:
         type: string
         x-nullable: false
       tenant_id:
-        description: Tenant identifier
+        description: Tenant identifier.
         example: '"tenant"'
         format: tenantID
         type: string
@@ -2070,7 +2211,7 @@ definitions:
       authentication_context:
         $ref: '#/definitions/AuthenticationContext'
       client_id:
-        description: Client identifier
+        description: Client application identifier.
         example: '"cauqo9c9vpbs0aj2b2v0"'
         format: clientID
         type: string
@@ -2095,7 +2236,7 @@ definitions:
         type: array
         x-nullable: false
       server_id:
-        description: Server / Workspace identifier
+        description: Server / Workspace identifier.
         example: '"server"'
         format: serverID
         type: string
@@ -2110,7 +2251,7 @@ definitions:
         type: string
         x-nullable: false
       tenant_id:
-        description: Tenant identifier
+        description: Tenant identifier.
         example: '"tenant"'
         format: tenantID
         type: string
@@ -2129,7 +2270,7 @@ definitions:
       authentication_context:
         $ref: '#/definitions/AuthenticationContext'
       client_id:
-        description: Client identifier
+        description: Client application identifier.
         example: '"cauqo9c9vpbs0aj2b2v0"'
         format: clientID
         type: string
@@ -2154,7 +2295,7 @@ definitions:
         type: array
         x-nullable: false
       server_id:
-        description: Server / Workspace identifier
+        description: Server / Workspace identifier.
         example: '"server"'
         format: serverID
         type: string
@@ -2169,7 +2310,7 @@ definitions:
         type: string
         x-nullable: false
       tenant_id:
-        description: Tenant identifier
+        description: Tenant identifier.
         example: '"tenant"'
         format: tenantID
         type: string
@@ -2323,15 +2464,15 @@ definitions:
           type: string
         permissions:
           description: Especifica os tipos de permisses de acesso s APIs no escopo
-            do Open Banking Brasil - Fase 2, de acordo com os blocos de consentimento
-            fornecidos pelo usurio e necessrios ao acesso a cada endpoint das APIs.
+            do Open Finance Brasil - Dados cadastrais e transacionais, de acordo com
+            os blocos de consentimento fornecidos pelo usurio e necessrios ao acesso
+            a cada endpoint das APIs. Esse array no deve ter duplicidade de itens.
           example:
           - ACCOUNTS_READ
           - ACCOUNTS_OVERDRAFT_LIMITS_READ
           - RESOURCES_READ
           items:
             $ref: '#/definitions/OpenbankingBrasilConsentV2Permission1'
-          maxItems: 30
           minItems: 1
           type: array
         rejection:
@@ -2492,6 +2633,76 @@ definitions:
       - status
       - statusUpdateDateTime
       type: object
+  IntrospectOBBRPaymentConsentResponseV3:
+    allOf:
+    - $ref: '#/definitions/IntrospectResponse'
+    - properties:
+        AccountIDs:
+          items:
+            type: string
+          type: array
+        businessEntity:
+          $ref: '#/definitions/OpenbankingBrasilPaymentV3BusinessEntity'
+        consentId:
+          description: |-
+            Identificador nico do consentimento criado para a iniciao de pagamento solicitada. Dever ser um URN - Uniform Resource Name.
+            Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141)  um Uniform Resource
+            Identifier - URI - que  atribudo sob o URI scheme "urn" e um namespace URN especfico, com a inteno de que o URN
+            seja um identificador de recurso persistente e independente da localizao.
+            Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+            o namespace(urn)
+            o identificador associado ao namespace da instituio transnmissora (bancoex)
+            o identificador especfico dentro do namespace (C1DD33123).
+            Informaes mais detalhadas sobre a construo de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+          example: urn:bancoex:C1DD33123
+          maxLength: 256
+          pattern: ^urn:[a-zA-Z0-9][a-zA-Z0-9\-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$
+          type: string
+        creationDateTime:
+          description: Data e hora em que o consentimento foi criado. Uma string com
+            data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
+            UTC(UTC time format).
+          example: "2021-05-21T08:30:00Z"
+          format: date-time
+          type: string
+        creditor:
+          $ref: '#/definitions/OpenbankingBrasilPaymentV3Identification'
+        debtorAccount:
+          $ref: '#/definitions/OpenbankingBrasilPaymentV3ConsentsDebtorAccount'
+        expirationDateTime:
+          description: |-
+            Data e hora em que o consentimento da iniciao de pagamento expira, devendo ser sempre o creationDateTime mais 5 minutos. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC (UTC time format).
+            O consentimento  criado com o status AWAITING_AUTHORISATION, e deve assumir o status AUTHORIZED ou REJECTED antes do tempo de expirao - 5 minutos. Caso o tempo seja expirado, o status deve assumir REJECTED.
+            Para o cenrio em que o status assumiu AUTHORISED, o tempo mximo do expirationDateTime do consentimento deve assumir "now + 60 minutos". Este  o tempo para consumir o consentimento autorizado, mudando seu status para CONSUMED. No  possvel prorrogar este tempo e a criao de um novo consentimento ser necessria para os cenrios de insucesso.
+            O tempo do expirationDateTime  garantido com os 15 minutos do access token, sendo possvel utilizar mais trs refresh tokens at totalizar 60 minutos.
+          example: "2021-05-21T08:30:00Z"
+          format: date-time
+          type: string
+        loggedUser:
+          $ref: '#/definitions/OpenbankingBrasilPaymentV3LoggedUser'
+        payment:
+          $ref: '#/definitions/OpenbankingBrasilPaymentV3PaymentConsent'
+        rejectionReason:
+          $ref: '#/definitions/OpenbankingBrasilPaymentV3ConsentRejectionReason'
+        status:
+          $ref: '#/definitions/OpenbankingBrasilPaymentV3EnumAuthorisationStatusType'
+        statusUpdateDateTime:
+          description: Data e hora em que o recurso foi atualizado. Uma string com
+            data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
+            UTC(UTC time format).
+          example: "2021-05-21T08:30:00Z"
+          format: date-time
+          type: string
+      required:
+      - consentId
+      - creationDateTime
+      - creditor
+      - expirationDateTime
+      - loggedUser
+      - payment
+      - status
+      - statusUpdateDateTime
+      type: object
   IntrospectResponse:
     properties:
       acr:
@@ -2572,20 +2783,17 @@ definitions:
         description: Issuer URL is a string representing the issuer of this token.
         type: string
         x-nullable: false
+      may_act:
+        additionalProperties:
+          type: object
+        description: May act claims used in the Token Exchange flow.s
+        type: object
+        x-nullable: false
       nbf:
         description: |-
           NotBefore is an integer timestamp measured in the number of seconds
           since January 1 1970 UTC. It indicates this token was not
           used before the specified time.
-        format: int64
-        type: integer
-        x-nullable: false
-      refresh_token_expires_at:
-        description: |-
-          Deprecated and can be removed at any time.
-          The integer timestamp measured in the number
-          of seconds since January 1 1970 UTC. It indicates when the issued refresh
-          token will expire.
         format: int64
         type: integer
         x-nullable: false
@@ -2640,7 +2848,7 @@ definitions:
         type: array
         x-nullable: false
       client_id:
-        description: Client identifier
+        description: Client application identifier.
         example: '"cauqo9c9vpbs0aj2b2v0"'
         format: clientID
         type: string
@@ -2669,6 +2877,8 @@ definitions:
         $ref: '#/definitions/BrazilCustomerPaymentConsent'
       customer_payment_consent_v2:
         $ref: '#/definitions/BrazilCustomerPaymentConsentV2'
+      customer_payment_consent_v3:
+        $ref: '#/definitions/BrazilCustomerPaymentConsentV3'
       idempotency_key:
         type: string
         x-nullable: false
@@ -2676,7 +2886,7 @@ definitions:
         type: string
         x-nullable: false
       server_id:
-        description: Server / Workspace identifier
+        description: Server / Workspace identifier.
         example: '"server"'
         format: serverID
         type: string
@@ -2690,7 +2900,7 @@ definitions:
         type: string
         x-nullable: false
       tenant_id:
-        description: Tenant identifier
+        description: Tenant identifier.
         example: '"tenant"'
         format: tenantID
         type: string
@@ -2740,27 +2950,35 @@ definitions:
         type: string
         x-nullable: false
       client_id:
-        description: A client identifier.
+        description: A client application identifier.
         type: string
         x-nullable: false
       cnpj:
         description: |-
-          Optional cnpj
-          cnpj
+          Optional. A
+          [14-digit identification number](https://openbanking-brasil.github.io/specs-seguranca/open-banking-brasil-financial-api-1_ID3.html#section-5.2.2.4)
+          of a company in Cadastro Nacional da Pessoa Jurídica (Brazilian National Registry of Legal Entities).
         type: string
         x-nullable: false
       cpf:
         description: |-
-          Optional cpf
-          cpf
+          Optional. An
+          [11-digit taxpayer identification number](https://openbanking-brasil.github.io/specs-seguranca/open-banking-brasil-financial-api-1_ID3.html#name-requesting-the-cpf-claim)
+          in Cadastro de Pessoas Físicas (Natural Persons Register).
         type: string
         x-nullable: false
       date_from:
-        description: Optional start date for when consent was created
+        description: |-
+          Optional. Consent creation date.
+
+          Sets the start date of the consent retrieval date range.
         type: string
         x-nullable: false
       date_to:
-        description: Optional end date for when consent was created
+        description: |-
+          Optional. Consent creation date.
+
+          Sets the end date of the consent retrieval date range.
         type: string
         x-nullable: false
       limit:
@@ -3412,7 +3630,6 @@ definitions:
         - RESOURCES_READ
         items:
           $ref: '#/definitions/OpenbankingBrasilConsentV2Permission'
-        maxItems: 30
         minItems: 1
         type: array
         x-nullable: false
@@ -3459,15 +3676,15 @@ definitions:
         x-nullable: false
       permissions:
         description: Especifica os tipos de permisses de acesso s APIs no escopo do
-          Open Banking Brasil - Fase 2, de acordo com os blocos de consentimento fornecidos
-          pelo usurio e necessrios ao acesso a cada endpoint das APIs.
+          Open Finance Brasil - Dados cadastrais e transacionais, de acordo com os
+          blocos de consentimento fornecidos pelo usurio e necessrios ao acesso a
+          cada endpoint das APIs. Esse array no deve ter duplicidade de itens.
         example:
         - ACCOUNTS_READ
         - ACCOUNTS_OVERDRAFT_LIMITS_READ
         - RESOURCES_READ
         items:
           $ref: '#/definitions/OpenbankingBrasilConsentV2Permission1'
-        maxItems: 30
         minItems: 1
         type: array
         x-nullable: false
@@ -3527,15 +3744,15 @@ definitions:
         x-nullable: false
       permissions:
         description: Especifica os tipos de permisses de acesso s APIs no escopo do
-          Open Banking Brasil - Fase 2, de acordo com os blocos de consentimento fornecidos
-          pelo usurio e necessrios ao acesso a cada endpoint das APIs.
+          Open Finance Brasil - Dados cadastrais e transacionais, de acordo com os
+          blocos de consentimento fornecidos pelo usurio e necessrios ao acesso a
+          cada endpoint das APIs. Esse array no deve ter duplicidade de itens.
         example:
         - ACCOUNTS_READ
         - ACCOUNTS_OVERDRAFT_LIMITS_READ
         - RESOURCES_READ
         items:
           $ref: '#/definitions/OpenbankingBrasilConsentV2Permission1'
-        maxItems: 30
         minItems: 1
         type: array
         x-nullable: false
@@ -3709,8 +3926,9 @@ definitions:
     type: object
   OpenbankingBrasilConsentV2Permission:
     description: Especifica os tipos de permisses de acesso s APIs no escopo do Open
-      Banking Brasil - Fase 2, de acordo com os blocos de consentimento fornecidos
-      pelo usurio e necessrios ao acesso a cada endpoint das APIs.
+      Finance Brasil - Dados cadastrais e transacionais, de acordo com os blocos de
+      consentimento fornecidos pelo usurio e necessrios ao acesso a cada endpoint
+      das APIs. Esse array no deve ter duplicidade de itens.
     title: OpenbankingBrasilConsentV2Permission Permission
     type: string
   OpenbankingBrasilConsentV2Permission1:
@@ -4853,6 +5071,650 @@ definitions:
     - date
     title: OpenbankingBrasilPaymentV2Single Single
     type: object
+  OpenbankingBrasilPaymentV3BusinessEntity:
+    description: Usurio (pessoa jurdica) que encontra-se logado na instituio Iniciadora
+      de Pagamento. [Restrio] Preenchimento obrigatrio se usurio logado na instituio
+      Iniciadora de Pagamento for um CNPJ (pessoa jurdica).
+    properties:
+      document:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3Document'
+    required:
+    - document
+    title: OpenbankingBrasilPaymentV3BusinessEntity BusinessEntity
+    type: object
+  OpenbankingBrasilPaymentV3ConsentRejectionReason:
+    description: Motivo da rejeio do consentimento. Informaes complementares sobre
+      o motivo do status
+    properties:
+      code:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3EnumConsentRejectionReasonType'
+      detail:
+        description: |-
+          Contm informaes adicionais ao consentimento rejeitado.
+          VALOR_INVALIDO: O valor enviado no  vlido para o QR Code informado;
+          NAO_INFORMADO: No informada pela detentora de conta;
+          FALHA_INFRAESTRUTURA: [Descrio de qual falha na infraestrutura inviabilizou o processamento].
+          TEMPO_EXPIRADO_AUTORIZACAO: Consentimento expirou antes que o usurio pudesse confirm-lo.
+          TEMPO_EXPIRADO_CONSUMO: O usurio no finalizou o fluxo de pagamento e o consentimento expirou;
+          REJEITADO_USUARIO: O usurio rejeitou a autorizao do consentimento
+          CONTAS_ORIGEM_DESTINO_IGUAIS: A conta selecionada  igual  conta destino e no permite realizar esse pagamento.
+          CONTA_NAO_PERMITE_PAGAMENTO: A conta selecionada  do tipo [salario/investimento/liquidao/outros] e no permite realizar esse pagamento.
+          SALDO_INSUFICIENTE: A conta selecionada no possui saldo suficiente para realizar o pagamento.
+          VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido [na instituio/no arranjo/outro] para permitir a realizao de transaes pelo cliente.
+          QRCODE_INVALIDO: O QRCode utilizado para a iniciao de pagamento no  vlido.
+        example: O usurio rejeitou a autorizao do consentimento
+        maxLength: 2048
+        pattern: '[\w\W\s]*'
+        type: string
+        x-nullable: false
+    required:
+    - code
+    - detail
+    title: OpenbankingBrasilPaymentV3ConsentRejectionReason ConsentRejectionReason
+    type: object
+  OpenbankingBrasilPaymentV3ConsentsDebtorAccount:
+    description: |-
+      Objeto que contm a identificao da conta de origem do pagador.
+      As informaes quanto  conta de origem do pagador podero ser trazidas no consentimento para a detentora, caso a iniciadora tenha coletado essas informaes do cliente.
+      No caso em que o cliente no preenche os dados na iniciadora, a detentora dever persistir as informaes da conta selecionada seguindo as condies abaixo.
+
+      [Restrio]
+      AUTHORISED e CONSUMED: Para esses dois status, o preenchimento do campo dever ser obrigatrio.
+      REJECTED: Para este status o preenchimento  condicional, dado que h cenrios em que a detentora tambm no ter conhecimento da conta origem, pois a mesma no foi selecionada pelo usurio. Nos casos em que houver seleo, a conta deve ser preenchida obrigatoriamente.
+    properties:
+      accountType:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3EnumAccountPaymentsType'
+      ispb:
+        description: Deve ser preenchido com o ISPB (Identificador do Sistema de Pagamentos
+          Brasileiros) do participante do SPI (Sistema de pagamentos instantneos)
+          somente com nmeros.
+        example: "12345678"
+        maxLength: 8
+        minLength: 8
+        pattern: ^[0-9]{8}$
+        type: string
+        x-nullable: false
+      issuer:
+        description: |-
+          Cdigo da Agncia emissora da conta sem dgito.
+          (Agncia  a dependncia destinada ao atendimento aos clientes, ao pblico em geral e aos associados de cooperativas de crdito,
+          no exerccio de atividades da instituio, no podendo ser mvel ou transitria).
+
+          [Restrio] Preenchimento obrigatrio para os seguintes tipos de conta: CACC (CONTA_DEPOSITO_A_VISTA) e SVGS (CONTA_POUPANCA).
+        example: "1774"
+        maxLength: 4
+        minLength: 1
+        pattern: ^[0-9]{1,4}$
+        type: string
+        x-nullable: false
+      number:
+        description: |-
+          Deve ser preenchido com o nmero da conta transacional do usurio pagador, com dgito verificador (se este existir),
+          se houver valor alfanumrico, este deve ser convertido para 0.
+        example: "1234567890"
+        maxLength: 20
+        minLength: 1
+        pattern: ^[0-9]{1,20}$
+        type: string
+        x-nullable: false
+    required:
+    - accountType
+    - ispb
+    - number
+    title: OpenbankingBrasilPaymentV3ConsentsDebtorAccount ConsentsDebtorAccount
+    type: object
+  OpenbankingBrasilPaymentV3CreditorAccount:
+    description: Objeto que contm a identificao da conta de destino do beneficirio/recebedor.
+    properties:
+      accountType:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3EnumAccountPaymentsType'
+      ispb:
+        description: Deve ser preenchido com o ISPB (Identificador do Sistema de Pagamentos
+          Brasileiros) do participante do SPI (Sistema de pagamentos instantneos)
+          somente com nmeros.
+        example: "12345678"
+        maxLength: 8
+        minLength: 8
+        pattern: ^[0-9]{8}$
+        type: string
+        x-nullable: false
+      issuer:
+        description: |-
+          Cdigo da Agncia emissora da conta sem dgito.
+          (Agncia  a dependncia destinada ao atendimento aos clientes, ao pblico em geral e aos associados de cooperativas de crdito,
+          no exerccio de atividades da instituio, no podendo ser mvel ou transitria).
+
+          [Restrio] Preenchimento obrigatrio para os seguintes tipos de conta: CACC (CONTA_DEPOSITO_A_VISTA) e SVGS (CONTA_POUPANCA).
+        example: "1774"
+        maxLength: 4
+        minLength: 1
+        pattern: ^[0-9]{1,4}$
+        type: string
+        x-nullable: false
+      number:
+        description: |-
+          Deve ser preenchido com o nmero da conta do usurio recebedor, com dgito verificador (se este existir),
+          se houver valor alfanumrico, este deve ser convertido para 0.
+        example: "1234567890"
+        maxLength: 20
+        minLength: 1
+        pattern: ^[0-9]{1,20}$
+        type: string
+        x-nullable: false
+    required:
+    - accountType
+    - ispb
+    - number
+    title: OpenbankingBrasilPaymentV3CreditorAccount CreditorAccount
+    type: object
+  OpenbankingBrasilPaymentV3Data:
+    description: Objeto contendo as informaes de consentimento para a iniciao de pagamento
+      individual.
+    properties:
+      businessEntity:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3BusinessEntity'
+      creditor:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3Identification'
+      debtorAccount:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3DebtorAccount'
+      loggedUser:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3LoggedUser'
+      payment:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3Payment'
+    required:
+    - creditor
+    - loggedUser
+    - payment
+    title: OpenbankingBrasilPaymentV3Data Data
+    type: object
+  OpenbankingBrasilPaymentV3Data1:
+    description: Objeto contendo as informaes de resposta do consentimento para a
+      iniciao de pagamento individual.
+    properties:
+      businessEntity:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3BusinessEntity'
+      consentId:
+        description: |-
+          Identificador nico do consentimento criado para a iniciao de pagamento solicitada. Dever ser um URN - Uniform Resource Name.
+          Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141)  um Uniform Resource
+          Identifier - URI - que  atribudo sob o URI scheme "urn" e um namespace URN especfico, com a inteno de que o URN
+          seja um identificador de recurso persistente e independente da localizao.
+          Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+          o namespace(urn)
+          o identificador associado ao namespace da instituio transnmissora (bancoex)
+          o identificador especfico dentro do namespace (C1DD33123).
+          Informaes mais detalhadas sobre a construo de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+        example: urn:bancoex:C1DD33123
+        maxLength: 256
+        pattern: ^urn:[a-zA-Z0-9][a-zA-Z0-9\-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$
+        type: string
+        x-nullable: false
+      creationDateTime:
+        description: Data e hora em que o consentimento foi criado. Uma string com
+          data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
+          UTC(UTC time format).
+        example: "2021-05-21T08:30:00Z"
+        format: date-time
+        type: string
+        x-nullable: false
+      creditor:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3Identification'
+      debtorAccount:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3ConsentsDebtorAccount'
+      expirationDateTime:
+        description: |-
+          Data e hora em que o consentimento da iniciao de pagamento expira, devendo ser sempre o creationDateTime mais 5 minutos. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC (UTC time format).
+          O consentimento  criado com o status AWAITING_AUTHORISATION, e deve assumir o status AUTHORIZED ou REJECTED antes do tempo de expirao - 5 minutos. Caso o tempo seja expirado, o status deve assumir REJECTED.
+          Para o cenrio em que o status assumiu AUTHORISED, o tempo mximo do expirationDateTime do consentimento deve assumir "now + 60 minutos". Este  o tempo para consumir o consentimento autorizado, mudando seu status para CONSUMED. No  possvel prorrogar este tempo e a criao de um novo consentimento ser necessria para os cenrios de insucesso.
+          O tempo do expirationDateTime  garantido com os 15 minutos do access token, sendo possvel utilizar mais trs refresh tokens at totalizar 60 minutos.
+        example: "2021-05-21T08:30:00Z"
+        format: date-time
+        type: string
+        x-nullable: false
+      loggedUser:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3LoggedUser'
+      payment:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3PaymentConsent'
+      rejectionReason:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3ConsentRejectionReason'
+      status:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3EnumAuthorisationStatusType'
+      statusUpdateDateTime:
+        description: Data e hora em que o recurso foi atualizado. Uma string com data
+          e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
+          UTC(UTC time format).
+        example: "2021-05-21T08:30:00Z"
+        format: date-time
+        type: string
+        x-nullable: false
+    required:
+    - consentId
+    - creationDateTime
+    - creditor
+    - expirationDateTime
+    - loggedUser
+    - payment
+    - status
+    - statusUpdateDateTime
+    title: OpenbankingBrasilPaymentV3Data1 Data1
+    type: object
+  OpenbankingBrasilPaymentV3DebtorAccount:
+    description: |-
+      Objeto que contm a identificao da conta de origem do pagador.
+      As informaes quanto  conta de origem do pagador podero ser trazidas no consentimento para a detentora, caso a iniciadora tenha coletado essas informaes do cliente. Do contrrio, ser coletada na detentora e trazida para a iniciadora como resposta  criao do pagamento.
+    properties:
+      accountType:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3EnumAccountPaymentsType'
+      ispb:
+        description: Deve ser preenchido com o ISPB (Identificador do Sistema de Pagamentos
+          Brasileiros) do participante do SPI (Sistema de pagamentos instantneos)
+          somente com nmeros.
+        example: "12345678"
+        maxLength: 8
+        minLength: 8
+        pattern: ^[0-9]{8}$
+        type: string
+        x-nullable: false
+      issuer:
+        description: |-
+          Cdigo da Agncia emissora da conta sem dgito.
+          (Agncia  a dependncia destinada ao atendimento aos clientes, ao pblico em geral e aos associados de cooperativas de crdito,
+          no exerccio de atividades da instituio, no podendo ser mvel ou transitria).
+
+          [Restrio] Preenchimento obrigatrio para os seguintes tipos de conta: CACC (CONTA_DEPOSITO_A_VISTA) e SVGS (CONTA_POUPANCA).
+        example: "1774"
+        maxLength: 4
+        minLength: 1
+        pattern: ^[0-9]{1,4}$
+        type: string
+        x-nullable: false
+      number:
+        description: |-
+          Deve ser preenchido com o nmero da conta transacional do usurio pagador, com dgito verificador (se este existir),
+          se houver valor alfanumrico, este deve ser convertido para 0.
+        example: "1234567890"
+        maxLength: 20
+        minLength: 1
+        pattern: ^[0-9]{1,20}$
+        type: string
+        x-nullable: false
+    required:
+    - accountType
+    - ispb
+    - number
+    title: OpenbankingBrasilPaymentV3DebtorAccount DebtorAccount
+    type: object
+  OpenbankingBrasilPaymentV3Details:
+    description: Objeto contendo os detalhes do pagamento.
+    properties:
+      creditorAccount:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3CreditorAccount'
+      localInstrument:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3EnumLocalInstrument'
+      proxy:
+        description: |-
+          Chave cadastrada no DICT pertencente ao recebedor. Os tipos de chaves podem ser: telefone, e-mail, cpf/cnpj ou chave aleatria.
+          No caso de telefone celular deve ser informado no padro E.1641.
+          Para e-mail deve ter o formato xxxxxxxx@xxxxxxx.xxx(.xx) e no mximo 77 caracteres.
+          No caso de CPF dever ser informado com 11 nmeros, sem pontos ou traos.
+          Para o caso de CNPJ dever ser informado com 14 nmeros, sem pontos ou traos.
+          No caso de chave aleatria deve ser informado o UUID gerado pelo DICT, conforme formato especificado na RFC41223.
+          Se informado, a detentora da conta deve validar o proxy no DICT quando localInstrument for igual a DICT, QRDN ou QRES e validar o campo creditorAccount.
+          Esta validao  opcional caso o localInstrument for igual a INIC.
+          [Restrio]
+          Se localInstrument for igual a MANU, o campo proxy no deve ser preenchido.
+          Se localInstrument for igual INIC, DICT, QRDN ou QRES, o campo proxy deve ser sempre preenchido com a chave Pix.
+        example: "12345678901"
+        maxLength: 77
+        pattern: '[\w\W\s]*'
+        type: string
+        x-nullable: false
+      qrCode:
+        description: |-
+          Sequncia de caracteres que corresponde ao QR Code disponibilizado para o pagador.
+
+          a sequncia de caracteres que seria lida pelo leitor de QR Code, e deve propiciar o retorno dos dados do pagador aps consulta na DICT.
+
+          Essa funcionalidade  possvel tanto para QR Code esttico quanto para QR Code dinmico.
+          No arranjo do Pix esta  a mesma sequncia gerada e/ou lida pela funcionalidade Pix Copia e Cola.
+          Este campo dever ser no formato UTF-8.
+          [Restrio] Preenchimento obrigatrio para pagamentos por QR Code, observado o tamanho mximo de 512 bytes.
+        example: 00020104141234567890123426660014BR.GOV.BCB.PIX014466756C616E6F32303139406578616D706C652E636F6D27300012\nBR.COM.OUTRO011001234567895204000053039865406123.455802BR5915NOMEDORECEBEDOR6008BRASILIA61087007490062\n530515RP12345678-201950300017BR.GOV.BCB.BRCODE01051.0.080450014BR.GOV.BCB.PIX0123PADRAO.URL.PIX/0123AB\nCD81390012BR.COM.OUTRO01190123.ABCD.3456.WXYZ6304EB76\n
+        maxLength: 512
+        pattern: '[\w\W\s]*'
+        type: string
+        x-nullable: false
+    required:
+    - creditorAccount
+    - localInstrument
+    title: OpenbankingBrasilPaymentV3Details Details
+    type: object
+  OpenbankingBrasilPaymentV3Document:
+    description: OpenbankingBrasilPaymentV3Document Document
+    properties:
+      identification:
+        description: Nmero do documento de identificao oficial do titular pessoa jurdica.
+        example: "11111111111111"
+        maxLength: 14
+        pattern: ^\d{14}$
+        type: string
+        x-nullable: false
+      rel:
+        description: Tipo do documento de identificao oficial do titular pessoa jurdica.
+        example: CNPJ
+        maxLength: 4
+        pattern: ^[A-Z]{4}$
+        type: string
+        x-nullable: false
+    required:
+    - identification
+    - rel
+    type: object
+  OpenbankingBrasilPaymentV3Document1:
+    description: OpenbankingBrasilPaymentV3Document1 Document1
+    properties:
+      identification:
+        description: Nmero do documento de identificao oficial do usurio.
+        example: "11111111111"
+        maxLength: 11
+        pattern: ^\d{11}$
+        type: string
+        x-nullable: false
+      rel:
+        description: Tipo do documento de identificao oficial do usurio.
+        example: CPF
+        maxLength: 3
+        pattern: ^[A-Z]{3}$
+        type: string
+        x-nullable: false
+    required:
+    - identification
+    - rel
+    type: object
+  OpenbankingBrasilPaymentV3EnumAccountPaymentsType:
+    description: |-
+      Tipos de contas usadas para pagamento.
+      Modalidades tradicionais previstas pela Resoluo 4.753, no contemplando contas vinculadas,
+      conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrnica.
+      Segue descrio de cada valor do ENUM.
+
+      CACC - Current - Conta Corrente.
+      SVGS - Savings - Conta de Poupana.
+      TRAN - TransactingAccount - Conta de Pagamento pr-paga.
+      Example: CACC
+    title: OpenbankingBrasilPaymentV3EnumAccountPaymentsType EnumAccountPaymentsType
+    type: string
+  OpenbankingBrasilPaymentV3EnumAuthorisationStatusType:
+    description: |-
+      Retorna o estado do consentimento, o qual no momento de sua criao ser AWAITING_AUTHORISATION.
+      Este estado ser alterado depois da autorizao do consentimento na detentora da conta do pagador (Debtor) para AUTHORISED ou REJECTED.
+      O consentimento fica no estado CONSUMED aps ocorrer a iniciao do pagamento referente ao consentimento.
+      Em caso de consentimento expirado a detentora dever retornar o status REJECTED.
+      Estados possveis:
+      AWAITING_AUTHORISATION - Aguardando autorizao
+      AUTHORISED - Autorizado
+      REJECTED - Rejeitado
+      CONSUMED - Consumido
+      Example: AWAITING_AUTHORISATION
+    title: OpenbankingBrasilPaymentV3EnumAuthorisationStatusType EnumAuthorisationStatusType
+    type: string
+  OpenbankingBrasilPaymentV3EnumConsentRejectionReasonType:
+    description: |-
+      Define o cdigo da razo pela qual o consentimento foi rejeitado
+      VALOR_INVALIDO
+      NAO_INFORMADO
+      FALHA_INFRAESTRUTURA
+      TEMPO_EXPIRADO_AUTORIZACAO
+      TEMPO_EXPIRADO_CONSUMO
+      REJEITADO_USUARIO
+      CONTAS_ORIGEM_DESTINO_IGUAIS
+      CONTA_NAO_PERMITE_PAGAMENTO
+      SALDO_INSUFICIENTE
+      VALOR_ACIMA_LIMITE
+      QRCODE_INVALIDO
+      Example: SALDO_INSUFICIENTE
+    title: OpenbankingBrasilPaymentV3EnumConsentRejectionReasonType EnumConsentRejectionReasonType
+    type: string
+  OpenbankingBrasilPaymentV3EnumLocalInstrument:
+    description: |-
+      Especifica a forma de iniciao do pagamento:
+      MANU - Insero manual de dados da conta transacional
+      DICT - Insero manual de chave Pix
+      QRDN - QR code dinmico
+      QRES - QR code esttico
+      INIC - Indica que o recebedor (creditor) contratou o Iniciador de Pagamentos especificamente para realizar iniciaes de pagamento em que o beneficirio  previamente conhecido.
+      Example: DICT
+    title: OpenbankingBrasilPaymentV3EnumLocalInstrument EnumLocalInstrument
+    type: string
+  OpenbankingBrasilPaymentV3EnumPaymentPersonType:
+    description: Titular, pessoa natural ou juridica a quem se referem os dados de
+      recebedor (creditor).
+    title: OpenbankingBrasilPaymentV3EnumPaymentPersonType EnumPaymentPersonType
+    type: string
+  OpenbankingBrasilPaymentV3Identification:
+    description: Objeto contendo os dados do recebedor (creditor).
+    properties:
+      cpfCnpj:
+        description: |-
+          Identificao da pessoa envolvida na transao.
+          Preencher com o CPF ou CNPJ, de acordo com o valor escolhido no campo type.
+          O CPF ser utilizado com 11 nmeros e dever ser informado sem pontos ou traos.
+          O CNPJ ser utilizado com 14 nmeros e dever ser informado sem pontos ou traos.
+        example: "58764789000137"
+        maxLength: 14
+        minLength: 11
+        pattern: ^\d{11}$|^\d{14}$
+        type: string
+        x-nullable: false
+      name:
+        description: |-
+          Em caso de pessoa natural deve ser informado o nome completo do titular da conta do recebedor.
+          Em caso de pessoa jurdica deve ser informada a razo social ou o nome fantasia da conta do recebedor.
+        example: Marco Antonio de Brito
+        maxLength: 120
+        pattern: ^([A-Za-z---,.@:&*+_<>()!?/\\$%\d' -]+)$
+        type: string
+        x-nullable: false
+      personType:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3EnumPaymentPersonType'
+    required:
+    - cpfCnpj
+    - name
+    - personType
+    title: OpenbankingBrasilPaymentV3Identification Identification
+    type: object
+  OpenbankingBrasilPaymentV3LinkSingle:
+    description: Referncias para outros recusos da API requisitada.
+    properties:
+      self:
+        description: URI completo que gerou a resposta atual.
+        example: https://api.banco.com.br/open-banking/api/v1/resource
+        maxLength: 2000
+        pattern: ^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$
+        type: string
+        x-nullable: false
+    required:
+    - self
+    title: OpenbankingBrasilPaymentV3LinkSingle LinkSingle
+    type: object
+  OpenbankingBrasilPaymentV3LoggedUser:
+    description: Usurio (pessoa natural) que encontra-se logado na instituio Iniciadora
+      de Pagamento.
+    properties:
+      document:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3Document1'
+    required:
+    - document
+    title: OpenbankingBrasilPaymentV3LoggedUser LoggedUser
+    type: object
+  OpenbankingBrasilPaymentV3Meta:
+    description: Meta informao referente a API requisitada.
+    properties:
+      requestDateTime:
+        description: Data e hora da consulta, conforme especificao RFC-3339, formato
+          UTC.
+        example: "2021-05-21T08:30:00Z"
+        format: date-time
+        type: string
+        x-nullable: false
+    required:
+    - requestDateTime
+    title: OpenbankingBrasilPaymentV3Meta Meta
+    type: object
+  OpenbankingBrasilPaymentV3Payment:
+    description: Objeto contendo dados de pagamento para consentimento.
+    properties:
+      amount:
+        description: |-
+          Valor da transao com 2 casas decimais. O valor deve ser o mesmo enviado no consentimento.
+
+          Para QR Code esttico com valor pr-determinado no QR Code ou para QR Code dinmico com indicao de que o valor no pode ser alterado: O campo amount deve ser preenchido com o valor estabelecido no QR Code.
+          Caso seja preenchido com valor divergente do QR Code, deve ser retornado um erro HTTP Status 422.
+        example: "100000.12"
+        maxLength: 19
+        minLength: 4
+        pattern: ^((\d{1,16}\.\d{2}))$
+        type: string
+        x-nullable: false
+      currency:
+        description: |-
+          Cdigo da moeda nacional segundo modelo ISO-4217, ou seja, 'BRL'.
+          Todos os valores monetrios informados esto representados com a moeda vigente do Brasil.
+        example: BRL
+        maxLength: 3
+        pattern: ^([A-Z]{3})$
+        type: string
+        x-nullable: false
+      date:
+        description: |-
+          [Restrio] Mutuamente excludente com o objeto schedule.
+
+          Este campo  obrigatrio no caso de pagamento nico.
+
+          Neste caso, o objeto schedule no deve ser informado.
+        example: "2021-01-01"
+        format: date
+        type: string
+        x-nullable: false
+      details:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3Details'
+      ibgeTownCode:
+        description: |-
+          O campo ibgetowncode no arranjo PIX, tem o mesmo comportamento que o campo codMun descrito no item 1.6.6 do manual do PIX, conforme segue:
+
+          1. Caso a informao referente ao municpio no seja enviada; o PSP do recebedor assumir que no existem feriados estaduais e municipais no perodo em questo;
+        example: "5300108"
+        maxLength: 7
+        minLength: 7
+        pattern: ^\d{7}$
+        type: string
+        x-nullable: false
+      schedule:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3Schedule'
+      type:
+        description: Este campo define o tipo de pagamento que ser iniciado aps a
+          autorizao do consentimento.
+        example: PIX
+        type: string
+        x-nullable: false
+    required:
+    - amount
+    - currency
+    - details
+    - type
+    title: OpenbankingBrasilPaymentV3Payment Payment
+    type: object
+  OpenbankingBrasilPaymentV3PaymentConsent:
+    description: Objeto contendo dados de pagamento para consentimento.
+    properties:
+      amount:
+        description: Valor da transao com 2 casas decimais.
+        example: "100000.12"
+        maxLength: 19
+        minLength: 4
+        pattern: ^((\d{1,16}\.\d{2}))$
+        type: string
+        x-nullable: false
+      currency:
+        description: |-
+          Cdigo da moeda nacional segundo modelo ISO-4217, ou seja, 'BRL'.
+          Todos os valores monetrios informados esto representados com a moeda vigente do Brasil.
+        example: BRL
+        maxLength: 3
+        pattern: ^([A-Z]{3})$
+        type: string
+        x-nullable: false
+      date:
+        description: |-
+          [Restrio] Mutuamente excludente com o objeto schedule.
+
+          Este campo  obrigatrio no caso de pagamento nico.
+
+          Neste caso, o objeto schedule no deve ser informado.
+        example: "2021-01-01"
+        format: date
+        type: string
+        x-nullable: false
+      details:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3Details'
+      ibgeTownCode:
+        description: |-
+          O campo ibgetowncode no arranjo PIX, tem o mesmo comportamento que o campo codMun descrito no item 1.6.6 do manual do PIX, conforme segue:
+
+          1. Caso a informao referente ao municpio no seja enviada; o PSP do recebedor assumir que no existem feriados estaduais e municipais no perodo em questo;
+        example: "5300108"
+        maxLength: 7
+        minLength: 7
+        pattern: ^\d{7}$
+        type: string
+        x-nullable: false
+      schedule:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3Schedule'
+      type:
+        description: Este campo define o tipo de pagamento que ser iniciado aps a
+          autorizao do consentimento.
+        example: PIX
+        type: string
+        x-nullable: false
+    required:
+    - amount
+    - currency
+    - details
+    - type
+    title: OpenbankingBrasilPaymentV3PaymentConsent PaymentConsent
+    type: object
+  OpenbankingBrasilPaymentV3Schedule:
+    description: |-
+      [Restrio] Mutuamente excludente com o campo date.
+
+      Este campo  obrigatrio no caso de agendamento.
+
+      Neste caso, o campo date no deve ser informado.
+    properties:
+      single:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3Single'
+    required:
+    - single
+    title: OpenbankingBrasilPaymentV3Schedule Schedule
+    type: object
+  OpenbankingBrasilPaymentV3Single:
+    description: Define a poltica de agendamento nico.
+    properties:
+      date:
+        description: |-
+          Define a data alvo da liquidao do pagamento.
+
+          O fuso horrio de Braslia deve ser utilizado para criao e racionalizao sobre os dados deste campo.
+
+          Observao: Esse campo dever sempre ser no mnimo D+1 corrido, ou seja, a data imediatamente posterior em relao a data do consentimento considerando o fuso horrio de Braslia e dever ser no mximo D+365 corridos a partir da data do consentimento considerando o fuso horrio de Braslia
+        example: "2021-01-01"
+        format: date
+        type: string
+        x-nullable: false
+    required:
+    - date
+    title: OpenbankingBrasilPaymentV3Single Single
+    type: object
   OpenbankingClient:
     properties:
       client_uri:
@@ -4946,11 +5808,22 @@ definitions:
         format: loginState
         type: string
         x-nullable: false
+      rejection_reason:
+        $ref: '#/definitions/RejectionReason'
       status_code:
         description: Rejection HTTP status code.
         example: 403
         format: int64
         type: integer
+        x-nullable: false
+    type: object
+  RejectionReason:
+    properties:
+      code:
+        type: string
+        x-nullable: false
+      details:
+        type: string
         x-nullable: false
     type: object
   RequestedScope:
@@ -4976,6 +5849,11 @@ definitions:
         example: scope-1
         format: scopeID
         type: string
+        x-nullable: false
+      implicit:
+        description: Request this scope by default for all clients who subscribed
+          to this scope
+        type: boolean
         x-nullable: false
       metadata:
         $ref: '#/definitions/Metadata'
@@ -5151,14 +6029,27 @@ definitions:
 host: localhost:8443
 info:
   description: |-
-    Cloudentity Open Finance APIs
+    Cloudentity's Brazil [Open Banking](https://cloudentity.com/developers/basics/openfinance/open-banking-brazil-overview/)
+    and [Open Insurance](https://cloudentity.com/developers/basics/openfinance/open-insurance-brazil/) API collections meet
+    the guidelines for products and services operating within the Open Finance ecosystem in Brazil.
 
-    Brazil Open Banking API collection meets
-    the guidelines of the Brazilian Central Bank for products and services operating within the open banking sector
-    in Brazil.
-    With these APIs, you can dynamically register a client application or initiate a payment in compliance with the
-    Brazilian Open Banking specification.
-  title: Cloudentity API
+    These APIs must be called with the `Authorization: Bearer` header with a token as its value.
+    To obtain the token, apply the
+    [Authorization Code](https://cloudentity.com/developers/basics/oauth-grant-types/authorization-code-flow/) grant type
+    for the introspection endpoints and
+    [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) for the
+    rest of the APIs.
+
+    API requests must feature the explicitly defined scopes the client application can access. The required and
+    optional scopes are listed under individual endpoints. To check scopes for an endpoint, unfold the **AUTHORIZATIONS:**
+    block in the endpoint description.
+    [Enable](https://cloudentity.com/developers/howtos/access-control/creating-and-configuring-dynamic-scopes/#add-scope)
+    necessary scopes for your client application in advance.
+
+    Check our
+    [Open Banking Glossary](https://cloudentity.com/developers/basics/openfinance/glossary-ob/) to get familiar with terms and
+    abbreviations.
+  title: Cloudentity Brazil Open Banking and Open Insurance APIs
   version: latest
 paths:
   /oauth2/register:
@@ -5190,12 +6081,12 @@ paths:
       security:
       - default:
         - dcr_register
-      summary: The Brazil Open Banking Dynamic Client Registration endpoint
+      summary: OBBR Dynamic Client Registration
       tags:
       - DCR
   /oauth2/register/{cid}:
     delete:
-      description: This endpoint allows to delete a dynamically registered client.
+      description: Delete a dynamically registered client application.
       operationId: dynamicClientRegistrationDeleteClient
       parameters:
       - default: default
@@ -5217,12 +6108,11 @@ paths:
           $ref: '#/responses/genericError'
       security:
       - default: []
-      summary: The Brazil Open Banking Dynamic Client Registration Delete Client endpoint
+      summary: Delete OBBR Client
       tags:
       - DCR
     get:
-      description: This endpoint allows to get metadata values of a dynamically registered
-        client.
+      description: Retrieve metadata values of a dynamically registered client application.
       operationId: dynamicClientRegistrationGetClient
       parameters:
       - default: default
@@ -5244,12 +6134,11 @@ paths:
           $ref: '#/responses/genericError'
       security:
       - default: []
-      summary: The Brazil Open Banking Dynamic Client Registration Get Client endpoint
+      summary: Get OBBR Client Metadata
       tags:
       - DCR
     put:
-      description: This endpoint allows to update metadata values of a dynamically
-        registered client.
+      description: Update metadata values of a dynamically registered client application.
       operationId: dynamicClientRegistrationUpdateClient
       parameters:
       - default: default
@@ -5275,14 +6164,19 @@ paths:
           $ref: '#/responses/genericError'
       security:
       - default: []
-      summary: The Brazil Open Banking Dynamic Client Registration Update Client endpoint
+      summary: Update OBBR Client Metadata
       tags:
       - DCR
   /open-banking-brasil/consent/{login}:
     get:
       description: |-
-        This API can be used by a custom openbanking consent page.
-        The consent page must first use client credentials flow to create consent.
+        Retrieve information about data access consents per client application. This endpoint is used by a custom
+        Open Banking consent page during the authorization process. It returns consents previously created with the
+        `POST` **Create Data Access** endpoints.
+
+        For authorization, pass the `Authorization: Bearer` with a token as the bearer value. To obtain the token, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/)
+        grant type.
       operationId: getOBBRCustomerDataAccessConsentSystem
       parameters:
       - in: path
@@ -5306,13 +6200,20 @@ paths:
       security:
       - system:
         - manage_openbanking_consents
-      summary: Get customer data access consent
+      summary: Get Customer Data Access Consent
       tags:
       - CONSENT_PAGE
   /open-banking-brasil/consent/{login}/accept:
     post:
-      description: This API can be used by a custom openbanking consent page to notify
-        ACP that user granted consent to a customer data access.
+      description: |-
+        Notify Cloudentity that a user allowed access to their data.
+
+        Used by a custom Open Banking consent page.
+
+        For authorization, pass the `Authorization: Bearer` header with a token as the bearer value. To obtain
+        the token, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/)
+        grant type.
       operationId: acceptOBBRCustomerDataAccessConsentSystem
       parameters:
       - in: path
@@ -5337,13 +6238,20 @@ paths:
       security:
       - system:
         - manage_openbanking_consents
-      summary: Accept customer data access consent
+      summary: Accept Customer Data Access Consent
       tags:
       - CONSENT_PAGE
   /open-banking-brasil/consent/{login}/reject:
     post:
-      description: This API can be used by a custom openbanking consent page to notify
-        ACP that user rejected access.
+      description: |-
+        Notify Cloudentity that a user rejected access to their data.
+
+        Used by a custom Open Banking consent page.
+
+        For authorization, pass the `Authorization: Bearer` header with a token as the bearer value. To obtain
+        the token, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/)
+        grant type.
       operationId: rejectOBBRCustomerDataAccessConsentSystem
       parameters:
       - in: path
@@ -5368,15 +6276,22 @@ paths:
       security:
       - system:
         - manage_openbanking_consents
-      summary: Reject consent
+      summary: Reject Customer Data Access Consent
       tags:
       - CONSENT_PAGE
   /open-banking-brasil/open-banking/consents/v1/consents:
     post:
       deprecated: true
-      description: This API allows AISP to create consent to access PSU registration
-        data, information about transactions in their accounts, credit card and contracted
-        credit products
+      description: |-
+        This API allows an Account Information Service Provider (AISP) to create a consent to access the registration data
+        of a Payment Service User (PSU), along with information about transactions in PSU's accounts, credit cards, and
+        contracted credit products.
+
+        For authorization, pass the `Authorization: Bearer` header with an access token as the bearer value. To obtain the
+        access token with all the required scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scopes list in the AUTHORIZATIONS block.
       operationId: CreateDataAccessConsentDeprecated
       parameters:
       - description: |-
@@ -5450,13 +6365,22 @@ paths:
       security:
       - defaultcc:
         - consents
-      summary: Create data access consent
+      summary: Create Data Access Consent v1
       tags:
       - OBBR
   /open-banking-brasil/open-banking/consents/v1/consents/{consentID}:
     delete:
       deprecated: true
-      description: This API allows PISP to remove previously created consent
+      description: |-
+        Delete a previously created data access consent. Pass the required consent identifier in the path.
+
+        This endpoint is used by a Payment Initiation Service Provider (PISP).
+
+        For authorization, pass the `Authorization: Bearer` with a token as a bearer value. To obtain the token and include
+        the required scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scope list in the AUTHORIZATIONS block.
       operationId: DeleteDataAccessConsentDeprecated
       parameters:
       - description: |-
@@ -5525,12 +6449,22 @@ paths:
       security:
       - defaultcc:
         - consents
-      summary: Delete data access consent
+      summary: Delete Data Access Consent v1
       tags:
       - OBBR
     get:
       deprecated: true
-      description: This API allows PISP to retrieve previously created consent
+      description: |-
+        Retrieve the information about a previously created data access consent. Pass the required consent identifier
+        in the path.
+
+        This endpoint is used by a Payment Initiation Service Provider (PISP).
+
+        For authorization, pass the `Authorization: Bearer` with a token as a bearer value. To obtain the token and include
+        the required scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scope list in the AUTHORIZATIONS block.
       operationId: GetDataAccessConsentDeprecated
       parameters:
       - description: |-
@@ -5599,14 +6533,22 @@ paths:
       security:
       - defaultcc:
         - consents
-      summary: Get data access consent
+      summary: Get Data Access Consent v1
       tags:
       - OBBR
   /open-banking-brasil/open-banking/consents/v1/consents/introspect:
     post:
       consumes:
       - application/x-www-form-urlencoded
-      description: 'Introspect openbanking brasil data access consent'
+      description: |-
+        This endpoint accepts an OAuth 2.0 token and returns meta information surrounding the token along with the
+        data access consent and the associated account identifiers.
+
+        Pass the token as the bearer value with the `Authorization: Bearer` header. To obtain the token with all the required
+        scopes, apply the
+        [Authorization Code](https://cloudentity.com/developers/basics/oauth-grant-types/authorization-code-flow/) grant type.
+
+        Find the scopes list in the AUTHORIZATIONS block.
       operationId: obbrDataAccessConsentIntrospect
       parameters:
       - in: formData
@@ -5624,15 +6566,23 @@ paths:
       security:
       - default:
         - introspect_openbanking_tokens
-      summary: Introspect openbanking brasil data access consent
+      summary: Introspect Open Banking Brazil Data Access Consent v1
       tags:
       - OBBR
   /open-banking-brasil/open-banking/consents/v2/consents/introspect:
     post:
       consumes:
       - application/x-www-form-urlencoded
-      description: This API allows introspection of tokens bound to v2 consents. It
-        is also backwards compatible with v1 consent tokens.
+      description: |-
+        This endpoint accepts an OAuth 2.0 token bound to v2 data access consents and returns meta information surrounding the token
+        along with the data access consent and the associated account identifiers. It's also backwards compatible with v1
+        data access consent tokens.
+
+        Pass the token as the bearer value with the `Authorization: Bearer` header. To obtain the token with all the required
+        scopes, apply the
+        [Authorization Code](https://cloudentity.com/developers/basics/oauth-grant-types/authorization-code-flow/) grant type.
+
+        Find the scopes list in the AUTHORIZATIONS block.
       operationId: obbrDataAccessConsentV2Introspect
       parameters:
       - in: formData
@@ -5650,7 +6600,7 @@ paths:
       security:
       - default:
         - introspect_openbanking_tokens
-      summary: Introspect openbanking brasil data access consent.
+      summary: Introspect Open Banking Brazil Data Access Consent v2
       tags:
       - OBBR
   /open-banking-brasil/open-banking/payments/v1/consents:
@@ -5658,8 +6608,15 @@ paths:
       consumes:
       - application/jwt
       deprecated: true
-      description: This API allows AISP to create consent to initiate payments between
-        banks and financial institutions
+      description: |-
+        This API allows an Account Information Service Provider (AISP) to create a consent to initiate payments between
+        banks and financial institutions on behalf of a Payment Service User (PSU).
+
+        For authorization, pass the `Authorization: Bearer` header with an access token as the bearer value. To obtain the
+        access token with all the required scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scopes list in the AUTHORIZATIONS block.
       operationId: CreatePaymentConsentDeprecated
       parameters:
       - description: |-
@@ -5735,13 +6692,23 @@ paths:
       security:
       - defaultcc:
         - payments
-      summary: Create payment consent
+      summary: Create Payment Consent v1
       tags:
       - OBBR
   /open-banking-brasil/open-banking/payments/v1/consents/{consentID}:
     get:
       deprecated: true
-      description: This API allows PISP to retrieve previously created payment consent
+      description: |-
+        Retrieve the information about a previously created payment consent. Pass the required consent identifier
+        in the path.
+
+        This endpoint is used by a Payment Initiation Service Provider (PISP).
+
+        For authorization, pass the `Authorization: Bearer` with a token as a bearer value. To obtain the token and include
+        the required scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scope list in the AUTHORIZATIONS block.
       operationId: GetPaymentConsentDeprecated
       parameters:
       - description: |-
@@ -5810,17 +6777,23 @@ paths:
       security:
       - defaultcc:
         - payments
-      summary: Get payment consent
+      summary: Get Payment Consent v1
       tags:
       - OBBR
   /open-banking-brasil/open-banking/payments/v1/consents/introspect:
     post:
       consumes:
       - application/x-www-form-urlencoded
+      deprecated: true
       description: |-
-        This endpoint takes an OAuth 2.0 token and, in addition to returning
-        meta information surrounding the token, returns the payment consent and
-        associated account ids.
+        This endpoint accepts an Oauth 2.0 token and returns meta information surrounding the token along with the
+        payment consent and the associated account identifiers.
+
+        Pass the token as the bearer value with the `Authorization: Bearer` header. To obtain the token with all the required
+        scopes, apply the
+        [Authorization Code](https://cloudentity.com/developers/basics/oauth-grant-types/authorization-code-flow/) grant type.
+
+        Find the scopes list in the AUTHORIZATIONS block.
       operationId: obbrPaymentConsentIntrospect
       parameters:
       - in: formData
@@ -5838,15 +6811,24 @@ paths:
       security:
       - default:
         - introspect_openbanking_tokens
-      summary: Introspect openbanking brasil payment consent
+      summary: Introspect Open Banking Brazil Payment Consent v1
       tags:
       - OBBR
   /open-banking-brasil/open-banking/payments/v2/consents/introspect:
     post:
       consumes:
       - application/x-www-form-urlencoded
-      description: This API allows introspection of tokens bound to v2 payment consents.
-        It is also backwards compatible with v1 payment consent tokens.
+      deprecated: true
+      description: |-
+        This endpoint accepts an OAuth 2.0 token bound to v2 payment consents and returns meta information surrounding the
+        token along with the payment consent and the associated account identifiers. It's also backwards compatible with v1
+        payment consent tokens.
+
+        Pass the token as the bearer value with the `Authorization: Bearer` header. To obtain the token with all the required
+        scopes, apply the
+        [Authorization Code](https://cloudentity.com/developers/basics/oauth-grant-types/authorization-code-flow/) grant type.
+
+        Find the scopes list in the AUTHORIZATIONS block.
       operationId: obbrPaymentConsentIntrospectV2
       parameters:
       - in: formData
@@ -5864,14 +6846,54 @@ paths:
       security:
       - default:
         - introspect_openbanking_tokens
-      summary: Introspect openbanking brasil payment consent
+      summary: Introspect Open Banking Brazil Payment Consent v2
+      tags:
+      - OBBR
+  /open-banking-brasil/open-banking/payments/v3/consents/introspect:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      deprecated: true
+      description: |-
+        This endpoint accepts an OAuth 2.0 token bound to v3 payment consents and returns meta information surrounding the
+        token along with the payment consent and the associated account identifiers. It's also backwards compatible with v1 and v2
+        payment consent tokens.
+
+        Pass the token as the bearer value with the `Authorization: Bearer` header. To obtain the token with all the required
+        scopes, apply the
+        [Authorization Code](https://cloudentity.com/developers/basics/oauth-grant-types/authorization-code-flow/) grant type.
+
+        Find the scopes list in the AUTHORIZATIONS block.
+      operationId: obbrPaymentConsentIntrospectV3
+      parameters:
+      - in: formData
+        name: token
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/IntrospectOBBRPaymentConsentResponseV3'
+        "401":
+          $ref: '#/responses/genericError'
+        "404":
+          $ref: '#/responses/genericError'
+        "429":
+          $ref: '#/responses/genericError'
+      security:
+      - default:
+        - introspect_openbanking_tokens
+      summary: Introspect Open Banking Brazil Payment Consent v3
       tags:
       - OBBR
   /open-banking-brasil/payment/{login}:
     get:
       description: |-
-        This API can be used by a custom openbanking consent page.
-        The consent page must first use client credentials flow to create consent.
+        Retrieve information about payment initiation consents per client application. This endpoint is used by a custom
+        Open Banking consent page during the authorization process. It returns consents previously created with the
+        `POST` **Create Payment Consent** endpoints.
+
+        For authorization, pass the `Authorization: Bearer` with a token as the bearer value. To obtain the token, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/)
+        grant type.
       operationId: getOBBRCustomerPaymentConsentSystem
       parameters:
       - in: path
@@ -5895,13 +6917,20 @@ paths:
       security:
       - system:
         - manage_openbanking_consents
-      summary: Get customer payment initiation consent
+      summary: Get Customer Payment Initiation Consent
       tags:
       - CONSENT_PAGE
   /open-banking-brasil/payment/{login}/accept:
     post:
-      description: This API can be used by a custom openbanking consent page to notify
-        ACP that user granted consent for payment initiation.
+      description: |-
+        Notify Cloudentity that a user allowed payment initiation.
+
+        Used by a custom Open Banking consent page.
+
+        For authorization, pass the `Authorization: Bearer` header with a token as the bearer value. To obtain
+        the token, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/)
+        grant type.
       operationId: acceptOBBRCustomerPaymentConsentSystem
       parameters:
       - in: path
@@ -5926,13 +6955,20 @@ paths:
       security:
       - system:
         - manage_openbanking_consents
-      summary: Accept customer payment initiation consent
+      summary: Accept Customer Payment Initiation Consent
       tags:
       - CONSENT_PAGE
   /open-banking-brasil/payment/{login}/reject:
     post:
-      description: This API can be used by a custom openbanking consent page to notify
-        ACP that user rejected payment initiation.
+      description: |-
+        Notify Cloudentity that a user rejected payment initiation.
+
+        Used by a custom Open Banking consent page.
+
+        For authorization, pass the `Authorization: Bearer` header with a token as the bearer value. To obtain
+        the token, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/)
+        grant type.
       operationId: rejectOBBRCustomerPaymentConsentSystem
       parameters:
       - in: path
@@ -5957,14 +6993,21 @@ paths:
       security:
       - system:
         - manage_openbanking_consents
-      summary: Reject consent
+      summary: Reject Customer Payment Initiation Consent
       tags:
       - CONSENT_PAGE
   /open-banking-brasil/payment/v2/{login}:
     get:
       description: |-
-        This API can be used by a custom openbanking consent page.
-        The consent page must first use client credentials flow to create consent.
+        Retrieve information about payment initiation consents per client application. This endpoint is used by a custom
+        Open Banking consent page during the authorization process. It returns consents previously created with the
+        `POST` **Create Payment Consent** endpoints.
+
+        This endpoint is compatible with version 2.0 of the Open Banking Brazil standard.
+
+        For authorization, pass the `Authorization: Bearer` with a token as the bearer value. To obtain the token, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/)
+        grant type.
       operationId: getOBBRCustomerPaymentConsentSystemV2
       parameters:
       - in: path
@@ -5988,14 +7031,21 @@ paths:
       security:
       - system:
         - manage_openbanking_consents
-      summary: Get customer payment initiation consent v2
+      summary: Get Customer Payment Initiation Consent v2
       tags:
       - CONSENT_PAGE
   /open-banking/consents/v1/consents:
     post:
-      description: 'This API allows AISP to create consent to access PSU registration
-        data, information about transactions in their accounts, credit card and contracted
-        credit products'
+      description: |-
+        This API allows an Account Information Service Provider (AISP) to create a consent to access the registration data
+        of a Payment Service User (PSU), along with information about transactions in PSU's accounts, credit cards, and
+        contracted credit products.
+
+        For authorization, pass the `Authorization: Bearer` header with an access token as the bearer value. To obtain the
+        access token with all the required scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scopes list in the AUTHORIZATIONS block.
       operationId: CreateDataAccessConsent
       parameters:
       - description: |-
@@ -6069,12 +7119,21 @@ paths:
       security:
       - defaultcc:
         - consents
-      summary: Create data access consent
+      summary: Create Data Access Consent v1
       tags:
       - OBBR
   /open-banking/consents/v1/consents/{consentID}:
     delete:
-      description: 'This API allows PISP to remove previously created consent'
+      description: |-
+        Delete a previously created data access consent. Pass the required consent identifier in the path.
+
+        This endpoint is used by a Payment Initiation Service Provider (PISP).
+
+        For authorization, pass the `Authorization: Bearer` with a token as a bearer value. To obtain the token and include
+        the required scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scope list in the AUTHORIZATIONS block.
       operationId: DeleteDataAccessConsent
       parameters:
       - description: |-
@@ -6143,11 +7202,21 @@ paths:
       security:
       - defaultcc:
         - consents
-      summary: Delete data access consent
+      summary: Delete Data Access Consent v1
       tags:
       - OBBR
     get:
-      description: 'This API allows PISP to retrieve previously created consent'
+      description: |-
+        Retrieve the information about a previously created data access consent. Pass the required consent identifier
+        in the path.
+
+        This endpoint is used by a Payment Initiation Service Provider (PISP).
+
+        For authorization, pass the `Authorization: Bearer` with a token as a bearer value. To obtain the token and include
+        the required scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scope list in the AUTHORIZATIONS block.
       operationId: GetDataAccessConsent
       parameters:
       - description: |-
@@ -6216,14 +7285,21 @@ paths:
       security:
       - defaultcc:
         - consents
-      summary: Get data access consent
+      summary: Get Data Access Consent v1
       tags:
       - OBBR
   /open-banking/consents/v2/consents:
     post:
-      description: 'This API allows AISP to create consent to access PSU registration
-        data, information about transactions in their accounts, credit card and contracted
-        credit products'
+      description: |-
+        This API allows an Account Information Service Provider (AISP) to create a consent to access the registration data
+        of a Payment Service User (PSU), along with information about transactions in PSU's accounts, credit cards, and
+        contracted credit products.
+
+        For authorization, pass the `Authorization: Bearer` header with an access token as the bearer value. To obtain the
+        access token with all the required scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scopes list in the AUTHORIZATIONS block.
       operationId: CreateDataAccessConsentV2
       parameters:
       - description: |-
@@ -6297,12 +7373,21 @@ paths:
       security:
       - defaultcc:
         - consents
-      summary: Create data access consent
+      summary: Create Data Access Consent v2
       tags:
       - OBBR
   /open-banking/consents/v2/consents/{consentID}:
     delete:
-      description: 'This API allows PISP to remove previously created consent'
+      description: |-
+        Delete a previously created data access consent. Pass the required consent identifier in the path.
+
+        This endpoint is used by a Payment Initiation Service Provider (PISP).
+
+        For authorization, pass the `Authorization: Bearer` with a token as a bearer value. To obtain the token and include
+        the required scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scope list in the AUTHORIZATIONS block.
       operationId: DeleteDataAccessConsentV2
       parameters:
       - description: |-
@@ -6371,11 +7456,21 @@ paths:
       security:
       - defaultcc:
         - consents
-      summary: Delete data access consent
+      summary: Delete Data Access Consent v2
       tags:
       - OBBR
     get:
-      description: 'This API allows PISP to retrieve previously created consent'
+      description: |-
+        Retrieve the information about a previously created data access consent. Pass the required consent identifier
+        in the path.
+
+        This endpoint is used by a Payment Initiation Service Provider (PISP).
+
+        For authorization, pass the `Authorization: Bearer` with a token as a bearer value. To obtain the token and include
+        the required scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scope list in the AUTHORIZATIONS block.
       operationId: GetDataAccessConsentV2
       parameters:
       - description: |-
@@ -6444,15 +7539,23 @@ paths:
       security:
       - defaultcc:
         - consents
-      summary: Get data access consent
+      summary: Get Data Access Consent v2
       tags:
       - OBBR
   /open-banking/payments/v1/consents:
     post:
       consumes:
       - application/jwt
-      description: 'This API allows AISP to create consent to initiate payments
-        between banks and financial institutions'
+      deprecated: true
+      description: |-
+        This API allows an Account Information Service Provider (AISP) to create a consent to initiate payments between
+        banks and financial institutions on behalf of a Payment Service User (PSU).
+
+        For authorization, pass the `Authorization: Bearer` header with an access token as the bearer value. To obtain the
+        access token with all the required scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scopes list in the AUTHORIZATIONS block.
       operationId: CreatePaymentConsent
       parameters:
       - description: |-
@@ -6528,13 +7631,23 @@ paths:
       security:
       - defaultcc:
         - payments
-      summary: Create payment consent
+      summary: Create Payment Consent v1
       tags:
       - OBBR
   /open-banking/payments/v1/consents/{consentID}:
     get:
-      description: 'This API allows PISP to retrieve previously created payment
-        consent'
+      deprecated: true
+      description: |-
+        Retrieve the information about a previously created payment consent. Pass the required consent identifier
+        in the path.
+
+        This endpoint is used by a Payment Initiation Service Provider (PISP).
+
+        For authorization, pass the `Authorization: Bearer` with a token as a bearer value. To obtain the token and include
+        the required scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scope list in the AUTHORIZATIONS block.
       operationId: GetPaymentConsent
       parameters:
       - description: |-
@@ -6603,11 +7716,21 @@ paths:
       security:
       - defaultcc:
         - payments
-      summary: Get payment consent
+      summary: Get Payment Consent v1
       tags:
       - OBBR
     patch:
-      description: 'This API allows PISP to revoke a payment consent'
+      deprecated: true
+      description: |-
+        Revoke a previously granted payment consent. Pass the required consent identifier in the path.
+
+        This endpoint is used by a Payment Initiation Service Provider (PISP).
+
+        For authorization, pass the `Authorization: Bearer` with a token as a bearer value. To obtain the token and include
+        the required scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scope list in the AUTHORIZATIONS block.
       operationId: PatchPaymentConsent
       parameters:
       - description: |-
@@ -6681,15 +7804,22 @@ paths:
       security:
       - defaultcc:
         - payments
-      summary: Revoke payment consent
+      summary: Revoke Payment Consent
       tags:
       - OBBR
   /open-banking/payments/v2/consents:
     post:
       consumes:
       - application/jwt
-      description: 'This API allows AISP to create consent to initiate payments
-        between banks and financial institutions'
+      description: |-
+        This API allows an Account Information Service Provider (AISP) to create a consent to initiate payments between
+        banks and financial institutions on behalf of a Payment Service User (PSU).
+
+        For authorization, pass the `Authorization: Bearer` header with an access token as the bearer value. To obtain the
+        access token with all the required scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scopes list in the AUTHORIZATIONS block.
       operationId: CreatePaymentConsentV2
       parameters:
       - description: |-
@@ -6765,13 +7895,22 @@ paths:
       security:
       - defaultcc:
         - payments
-      summary: Create payment consent
+      summary: Create Payment Consent v2
       tags:
       - OBBR
   /open-banking/payments/v2/consents/{consentID}:
     get:
-      description: 'This API allows PISP to retrieve previously created payment
-        consent'
+      description: |-
+        Retrieve the information about a previously created payment consent. Pass the required consent identifier
+        in the path.
+
+        This endpoint is used by a Payment Initiation Service Provider (PISP).
+
+        For authorization, pass the `Authorization: Bearer` with a token as a bearer value. To obtain the token and include
+        the required scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scope list in the AUTHORIZATIONS block.
       operationId: GetPaymentConsentV2
       parameters:
       - description: |-
@@ -6840,19 +7979,198 @@ paths:
       security:
       - defaultcc:
         - payments
-      summary: Get payment consent
+      summary: Get Payment Consent v2
+      tags:
+      - OBBR
+  /open-banking/payments/v3/consents:
+    post:
+      consumes:
+      - application/jwt
+      description: |-
+        This API allows an Account Information Service Provider (AISP) to create a consent to initiate payments between
+        banks and financial institutions on behalf of a Payment Service User (PSU).
+
+        For authorization, pass the `Authorization: Bearer` header with an access token as the bearer value. To obtain the
+        access token with all the required scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scopes list in the AUTHORIZATIONS block.
+      operationId: CreatePaymentConsentV3
+      parameters:
+      - description: |-
+          The time when the PSU last logged in with the TPP.
+
+          The value is supplied as a HTTP-date as in section 7.1.1.1 of [RFC7231]
+        in: header
+        name: x-fapi-auth-date
+        type: string
+      - description: The PSU's IP address if the PSU is currently logged in with the
+          TPP.
+        in: header
+        name: x-fapi-customer-ip-address
+        type: string
+      - description: |-
+          An RFC4122 UID used as a correlation Id.
+
+          If provided, the ASPSP must "play back" this value
+          in the x-fapi-interaction-id response header.
+        in: header
+        name: x-fapi-interaction-id
+        type: string
+      - description: |-
+          The header indicates the user-agent that the PSU is using.
+
+          The TPP may populate this field with the user-agent indicated by the PSU.
+          If the PSU is using a TPP mobile app, the TPP must ensure that the user-agent string
+          is different from browser based user-agent strings.
+        in: header
+        name: x-customer-user-agent
+        type: string
+      - description: |-
+          Header containing a detached JWS signature of the body of the payload.
+
+          Refer to resource specific documentation on when this header must be specified.
+        in: header
+        name: x-jws-signature
+        type: string
+      - description: |-
+          Every request will be processed only once per x-idempotency-key.
+          The Idempotency Key will be valid for 24 hours
+        in: header
+        name: x-idempotency-key
+        type: string
+      - description: Request
+        in: body
+        name: Request
+        schema:
+          $ref: '#/definitions/BrazilCustomerCreatePaymentConsentRequestV3'
+      produces:
+      - application/jwt
+      responses:
+        "201":
+          $ref: '#/responses/BrazilCustomerPaymentConsentResponseV3'
+        "400":
+          $ref: '#/responses/OBBRErrorResponse'
+        "401":
+          $ref: '#/responses/OBBRErrorResponse'
+        "403":
+          $ref: '#/responses/OBBRErrorResponse'
+        "405":
+          $ref: '#/responses/OBBRErrorResponse'
+        "406":
+          $ref: '#/responses/OBBRErrorResponse'
+        "415":
+          $ref: '#/responses/OBBRErrorResponse'
+        "422":
+          $ref: '#/responses/OBBRErrorResponse'
+        "429":
+          $ref: '#/responses/OBBRErrorResponse'
+        "500":
+          $ref: '#/responses/OBBRErrorResponse'
+      security:
+      - defaultcc:
+        - payments
+      summary: Create Payment Consent v3
+      tags:
+      - OBBR
+  /open-banking/payments/v3/consents/{consentID}:
+    get:
+      description: |-
+        Retrieve the information about a previously created payment consent. Pass the required consent identifier
+        in the path.
+
+        This endpoint is used by a Payment Initiation Service Provider (PISP).
+
+        For authorization, pass the `Authorization: Bearer` with a token as a bearer value. To obtain the token and include
+        the required scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scope list in the AUTHORIZATIONS block.
+      operationId: GetPaymentConsentV3
+      parameters:
+      - description: |-
+          The time when the PSU last logged in with the TPP.
+
+          The value is supplied as a HTTP-date as in section 7.1.1.1 of [RFC7231]
+        in: header
+        name: x-fapi-auth-date
+        type: string
+      - description: The PSU's IP address if the PSU is currently logged in with the
+          TPP.
+        in: header
+        name: x-fapi-customer-ip-address
+        type: string
+      - description: |-
+          An RFC4122 UID used as a correlation Id.
+
+          If provided, the ASPSP must "play back" this value
+          in the x-fapi-interaction-id response header.
+        in: header
+        name: x-fapi-interaction-id
+        type: string
+      - description: |-
+          The header indicates the user-agent that the PSU is using.
+
+          The TPP may populate this field with the user-agent indicated by the PSU.
+          If the PSU is using a TPP mobile app, the TPP must ensure that the user-agent string
+          is different from browser based user-agent strings.
+        in: header
+        name: x-customer-user-agent
+        type: string
+      - description: |-
+          Header containing a detached JWS signature of the body of the payload.
+
+          Refer to resource specific documentation on when this header must be specified.
+        in: header
+        name: x-jws-signature
+        type: string
+      - description: Consent id
+        format: consentID
+        in: path
+        name: consentID
+        required: true
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/BrazilCustomerPaymentConsentResponseV3'
+        "400":
+          $ref: '#/responses/OBBRErrorResponse'
+        "401":
+          $ref: '#/responses/OBBRErrorResponse'
+        "403":
+          $ref: '#/responses/OBBRErrorResponse'
+        "405":
+          $ref: '#/responses/OBBRErrorResponse'
+        "406":
+          $ref: '#/responses/OBBRErrorResponse'
+        "415":
+          $ref: '#/responses/OBBRErrorResponse'
+        "422":
+          $ref: '#/responses/OBBRErrorResponse'
+        "429":
+          $ref: '#/responses/OBBRErrorResponse'
+        "500":
+          $ref: '#/responses/OBBRErrorResponse'
+      security:
+      - defaultcc:
+        - payments
+      summary: Get Payment Consent v3
       tags:
       - OBBR
   /servers/{wid}/open-banking-brasil/consents:
     delete:
       description: |-
-        This API revokes openbanking consents matching provided parameters.
-        Currently supporting v1 and v2 consents.
-        Currently supporting removal by client id.
-        Use ?client_id={clientID} to remove all consents by a given client.
+        Revoke Open Banking Brazil consents by a client ID or combination of client ID and consent types.
+        For this, pass the `client_id` query parameter with the value set to the required client identifier. It revokes
+        all consents for the given client application.
 
-        You can also optionally specify which consent should be removed by specifying consent type
-        example: ?client_id={clientID}&consent_type=account_access
+        Currently, v1 and v2 consents are supported.
+
+        For authorization, pass the `Authorization: Bearer` with a token as the bearer value. To obtain the token with the
+        necessary scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scope list in the AUTHORIZATIONS block.
       operationId: revokeOBBRConsents
       parameters:
       - default: default
@@ -6865,7 +8183,8 @@ paths:
         in: query
         name: client_id
         type: string
-      - description: Required consent types
+      - description: A string of consent types you can pass along with the client
+          identifier to detail your request.
         in: query
         items:
           type: string
@@ -6887,35 +8206,47 @@ paths:
       security:
       - system:
         - manage_openbanking_consents
-      summary: Revoke openbanking Brasil consents.
+      summary: Revoke Open Banking Brazil Consents
       tags:
       - MANAGEMENT
     get:
       deprecated: true
       description: |-
-        This API returns the list of openbanking brasil consents.
-        Currently supporting v1 and v2 consents.
-        You can narrow the list of returned consents using filters defined in query parameters.
-        See GetConsentsParams for details.
+        Retrieve the list of Open Banking Brazil consents per workspace. Pass the required workspace identifier in the path.
+        To narrow the list, use the query parameters. Currently, this endpoint supports v1 and v2 consents.
+
+        For authorization, pass the `Authorization: Bearer` header with a token as the bearer value. To obtain the token
+        with the required scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scope list in the AUTHORIZATIONS block.
       operationId: getOBBRConsents
       parameters:
       - description: |-
-          Optional cnpj
-          cnpj
+          Optional. A
+          [14-digit identification number](https://openbanking-brasil.github.io/specs-seguranca/open-banking-brasil-financial-api-1_ID3.html#section-5.2.2.4)
+          of a company in Cadastro Nacional da Pessoa Jurídica (Brazilian National Registry of Legal Entities).
         in: query
         name: cnpj
         type: string
       - description: |-
-          Optional cpf
-          cpf
+          Optional. An
+          [11-digit taxpayer identification number](https://openbanking-brasil.github.io/specs-seguranca/open-banking-brasil-financial-api-1_ID3.html#name-requesting-the-cpf-claim)
+          in Cadastro de Pessoas Físicas (Natural Persons Register).
         in: query
         name: cpf
         type: string
-      - description: Optional start date for when consent was created
+      - description: |-
+          Optional. Consent creation date.
+
+          Sets the start date of the consent retrieval date range.
         in: query
         name: date_from
         type: string
-      - description: Optional end date for when consent was created
+      - description: |-
+          Optional. Consent creation date.
+
+          Sets the end date of the consent retrieval date range.
         in: query
         name: date_to
         type: string
@@ -6928,7 +8259,7 @@ paths:
           type: string
         name: accounts
         type: array
-      - description: A client identifier.
+      - description: A client application identifier.
         in: query
         name: client_id
         type: string
@@ -7008,15 +8339,20 @@ paths:
       security:
       - system:
         - manage_openbanking_consents
-      summary: Get openbanking brasil consents.
+      summary: Get Open Banking Brazil Consents
       tags:
       - MANAGEMENT
     post:
       description: |-
-        This API returns the list of openbanking brasil consents.
-        Currently supporting v1 and v2 consents.
-        You can narrow the list of returned consents using filters defined in request body.
-        See ListConsentsParams for details.
+        Retrieve the list of Open Banking Brazil consents per workplace. Pass the required workplace identifier in the path.
+        This endpoint currently supports v1 and v2 consents. To narrow the list, filter the response with the request body
+        parameters.
+
+        For authorization, pass the `Authorization: Bearer` header with a token as the bearer value. To obtain the token with
+        the necessary scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scope list in the AUTHORIZATIONS block.
       operationId: listOBBRConsents
       parameters:
       - default: default
@@ -7047,14 +8383,22 @@ paths:
       security:
       - system:
         - manage_openbanking_consents
-      summary: List openbanking brasil consents.
+      summary: List Open Banking Brazil Consents
       tags:
       - MANAGEMENT
   /servers/{wid}/open-banking-brasil/consents/{consentID}:
     delete:
       description: |-
-        This API revokes openbanking consent by consent id.
-        Currently supporting v1 and v2 consents.
+        Revoke an Open Banking Brazil consent by ID. Pass the identifiers of the required consent and the related workspace
+        in the path.
+
+        Currently, v1 and v2 consents are supported.
+
+        For authorization, pass the `Authorization: Bearer` header with a token as the bearer value. To obtain the token
+        and the necessary scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scope list in the AUTHORIZATIONS block.
       operationId: revokeOBBRConsent
       parameters:
       - default: default
@@ -7069,7 +8413,7 @@ paths:
         type: string
       responses:
         "204":
-          description: ' Consent has been revoked'
+          description: ' Consent Revoked'
         "400":
           $ref: '#/responses/badRequestHTTPError'
         "401":
@@ -7083,12 +8427,63 @@ paths:
       security:
       - system:
         - manage_openbanking_consents
-      summary: Revoke openbanking consent by ID.
+      summary: Revoke Open Banking Brazil Consent by ID
+      tags:
+      - MANAGEMENT
+    get:
+      description: |-
+        Call this endpoint to get the details of a consent within the specified workspace.
+
+        For authorization, pass the `Authorization: Bearer` header with a token as the bearer value. To obtain the token
+        and the necessary scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scope list in the AUTHORIZATIONS block.
+      operationId: getOBBRConsent
+      parameters:
+      - default: default
+        description: Workspace id
+        in: path
+        name: wid
+        required: true
+        type: string
+      - in: path
+        name: consentID
+        required: true
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/BrazilConsent'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - manage_openbanking_consents
+      summary: Get Open Banking Brazil Consent by ID
       tags:
       - MANAGEMENT
   /servers/{wid}/open-banking-brasil/consents/{consentID}/consume:
     post:
-      description: This API consumes openbanking consent by consent id.
+      description: |-
+        Retrieve the details of an Open Banking Brazil data access or payment initiation consent. Specify the required
+        consent identifier along with the identifier of the related workspace in the path.
+
+        The response contains detailed data about the consent, including both versions of `customer_data_access_consent`,
+        `customer_payment_consent`, and `customer_insurance_data_access_consent`.
+
+        For authorization, pass the `Authorization: Bearer` header with a token as the bearer value. To obtain the token with
+        the necessary scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scope list in the AUTHORIZATIONS block.
       operationId: consumeOBBRConsent
       parameters:
       - default: default
@@ -7117,14 +8512,14 @@ paths:
       security:
       - system:
         - manage_openbanking_consents
-      summary: Consume openbanking consent by ID.
+      summary: Consume Open Banking Brazil Consent by ID
       tags:
       - MANAGEMENT
 produces:
 - application/json
 responses:
   BrazilConsent:
-    description: BrazilConsent
+    description: Open Banking Brazil Consent
     schema:
       $ref: '#/definitions/BrazilConsent'
   BrazilCreateCustomerDataAccessConsentV2Response:
@@ -7143,6 +8538,10 @@ responses:
     description: Customer payment consent
     schema:
       $ref: '#/definitions/BrazilCustomerPaymentConsentResponseV2'
+  BrazilCustomerPaymentConsentResponseV3:
+    description: Customer payment consent
+    schema:
+      $ref: '#/definitions/BrazilCustomerPaymentConsentResponseV3'
   BrazilGetCustomerDataAccessConsentV2Response:
     description: Get Customer data access v2 consent
     schema:
@@ -7152,7 +8551,7 @@ responses:
     schema:
       $ref: '#/definitions/BrazilInsuranceCustomerDataAccessConsentResponse'
   ConsentAccepted:
-    description: Consent accepted
+    description: Consent Accepted
     schema:
       $ref: '#/definitions/ConsentAccepted'
   ConsentRejected:
@@ -7160,7 +8559,7 @@ responses:
     schema:
       $ref: '#/definitions/ConsentRejected'
   ConsentsRemovedResponse:
-    description: ConsentsRemovedResponse
+    description: Consents Revoked
     schema:
       $ref: '#/definitions/ConsentsRemovedResponse'
   DynamicClientRegistrationResponse:
@@ -7195,8 +8594,12 @@ responses:
     description: Introspect Openbanking Brazil Payment Consent V2 Response
     schema:
       $ref: '#/definitions/IntrospectOBBRPaymentConsentResponseV2'
+  IntrospectOBBRPaymentConsentResponseV3:
+    description: Introspect Openbanking Brazil Payment Consent V3 Response
+    schema:
+      $ref: '#/definitions/IntrospectOBBRPaymentConsentResponseV3'
   OBBRConsents:
-    description: OBBRConsents
+    description: Open Banking Brazil Consents
     schema:
       $ref: '#/definitions/OBBRConsents'
   OBBRErrorResponse:
@@ -7268,7 +8671,7 @@ securityDefinitions:
     type: oauth2
   defaultcc:
     authorizationUrl: /default/default/oauth2/authorize
-    flow: application
+    flow: accessCode
     scopes:
       accounts: accounts
       consents: consents
@@ -7277,7 +8680,7 @@ securityDefinitions:
     type: oauth2
   system:
     authorizationUrl: /default/system/oauth2/authorize
-    flow: application
+    flow: accessCode
     scopes:
       manage_openbanking_consents: manage_openbanking_consents
     tokenUrl: /default/system/oauth2/token

@@ -22,7 +22,7 @@ type BrazilConsent struct {
 	// account ids
 	AccountIds []string `json:"account_ids"`
 
-	// Client identifier
+	// Client application identifier.
 	// Example: \"cauqo9c9vpbs0aj2b2v0\
 	ClientID string `json:"client_id,omitempty"`
 
@@ -54,13 +54,16 @@ type BrazilConsent struct {
 	// customer payment consent v2
 	CustomerPaymentConsentV2 *BrazilCustomerPaymentConsentV2 `json:"customer_payment_consent_v2,omitempty"`
 
+	// customer payment consent v3
+	CustomerPaymentConsentV3 *BrazilCustomerPaymentConsentV3 `json:"customer_payment_consent_v3,omitempty"`
+
 	// idempotency key
 	IdempotencyKey string `json:"idempotency_key,omitempty"`
 
 	// request hash
 	RequestHash string `json:"request_hash,omitempty"`
 
-	// Server / Workspace identifier
+	// Server / Workspace identifier.
 	// Example: \"server\
 	ServerID string `json:"server_id,omitempty"`
 
@@ -73,7 +76,7 @@ type BrazilConsent struct {
 	// status
 	Status string `json:"status,omitempty"`
 
-	// Tenant identifier
+	// Tenant identifier.
 	// Example: \"tenant\
 	TenantID string `json:"tenant_id,omitempty"`
 
@@ -106,6 +109,10 @@ func (m *BrazilConsent) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateCustomerPaymentConsentV2(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCustomerPaymentConsentV3(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -230,6 +237,25 @@ func (m *BrazilConsent) validateCustomerPaymentConsentV2(formats strfmt.Registry
 	return nil
 }
 
+func (m *BrazilConsent) validateCustomerPaymentConsentV3(formats strfmt.Registry) error {
+	if swag.IsZero(m.CustomerPaymentConsentV3) { // not required
+		return nil
+	}
+
+	if m.CustomerPaymentConsentV3 != nil {
+		if err := m.CustomerPaymentConsentV3.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("customer_payment_consent_v3")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("customer_payment_consent_v3")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *BrazilConsent) validateSpecVersion(formats strfmt.Registry) error {
 	if swag.IsZero(m.SpecVersion) { // not required
 		return nil
@@ -288,6 +314,10 @@ func (m *BrazilConsent) ContextValidate(ctx context.Context, formats strfmt.Regi
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateCustomerPaymentConsentV3(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateSpecVersion(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -305,6 +335,11 @@ func (m *BrazilConsent) ContextValidate(ctx context.Context, formats strfmt.Regi
 func (m *BrazilConsent) contextValidateCustomerDataAccessConsent(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CustomerDataAccessConsent != nil {
+
+		if swag.IsZero(m.CustomerDataAccessConsent) { // not required
+			return nil
+		}
+
 		if err := m.CustomerDataAccessConsent.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("customer_data_access_consent")
@@ -321,6 +356,11 @@ func (m *BrazilConsent) contextValidateCustomerDataAccessConsent(ctx context.Con
 func (m *BrazilConsent) contextValidateCustomerDataAccessConsentV2(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CustomerDataAccessConsentV2 != nil {
+
+		if swag.IsZero(m.CustomerDataAccessConsentV2) { // not required
+			return nil
+		}
+
 		if err := m.CustomerDataAccessConsentV2.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("customer_data_access_consent_v2")
@@ -337,6 +377,11 @@ func (m *BrazilConsent) contextValidateCustomerDataAccessConsentV2(ctx context.C
 func (m *BrazilConsent) contextValidateCustomerInsuranceDataAccessConsent(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CustomerInsuranceDataAccessConsent != nil {
+
+		if swag.IsZero(m.CustomerInsuranceDataAccessConsent) { // not required
+			return nil
+		}
+
 		if err := m.CustomerInsuranceDataAccessConsent.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("customer_insurance_data_access_consent")
@@ -353,6 +398,11 @@ func (m *BrazilConsent) contextValidateCustomerInsuranceDataAccessConsent(ctx co
 func (m *BrazilConsent) contextValidateCustomerPaymentConsent(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CustomerPaymentConsent != nil {
+
+		if swag.IsZero(m.CustomerPaymentConsent) { // not required
+			return nil
+		}
+
 		if err := m.CustomerPaymentConsent.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("customer_payment_consent")
@@ -369,6 +419,11 @@ func (m *BrazilConsent) contextValidateCustomerPaymentConsent(ctx context.Contex
 func (m *BrazilConsent) contextValidateCustomerPaymentConsentV2(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CustomerPaymentConsentV2 != nil {
+
+		if swag.IsZero(m.CustomerPaymentConsentV2) { // not required
+			return nil
+		}
+
 		if err := m.CustomerPaymentConsentV2.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("customer_payment_consent_v2")
@@ -382,7 +437,32 @@ func (m *BrazilConsent) contextValidateCustomerPaymentConsentV2(ctx context.Cont
 	return nil
 }
 
+func (m *BrazilConsent) contextValidateCustomerPaymentConsentV3(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.CustomerPaymentConsentV3 != nil {
+
+		if swag.IsZero(m.CustomerPaymentConsentV3) { // not required
+			return nil
+		}
+
+		if err := m.CustomerPaymentConsentV3.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("customer_payment_consent_v3")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("customer_payment_consent_v3")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *BrazilConsent) contextValidateSpecVersion(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SpecVersion) { // not required
+		return nil
+	}
 
 	if err := m.SpecVersion.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -397,6 +477,10 @@ func (m *BrazilConsent) contextValidateSpecVersion(ctx context.Context, formats 
 }
 
 func (m *BrazilConsent) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Type) { // not required
+		return nil
+	}
 
 	if err := m.Type.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

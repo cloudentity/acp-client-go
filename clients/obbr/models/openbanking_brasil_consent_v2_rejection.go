@@ -113,6 +113,7 @@ func (m *OpenbankingBrasilConsentV2Rejection) ContextValidate(ctx context.Contex
 func (m *OpenbankingBrasilConsentV2Rejection) contextValidateReason(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Reason != nil {
+
 		if err := m.Reason.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("reason")
@@ -129,6 +130,7 @@ func (m *OpenbankingBrasilConsentV2Rejection) contextValidateReason(ctx context.
 func (m *OpenbankingBrasilConsentV2Rejection) contextValidateRejectedBy(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.RejectedBy != nil {
+
 		if err := m.RejectedBy.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("rejectedBy")

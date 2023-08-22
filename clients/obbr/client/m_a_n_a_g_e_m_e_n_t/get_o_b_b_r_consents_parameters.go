@@ -96,33 +96,39 @@ type GetOBBRConsentsParams struct {
 
 	/* ClientID.
 
-	   A client identifier.
+	   A client application identifier.
 	*/
 	ClientID *string
 
 	/* Cnpj.
 
-	     Optional cnpj
-	cnpj
+	     Optional. A
+	[14-digit identification number](https://openbanking-brasil.github.io/specs-seguranca/open-banking-brasil-financial-api-1_ID3.html#section-5.2.2.4)
+	of a company in Cadastro Nacional da Pessoa Jurídica (Brazilian National Registry of Legal Entities).
 	*/
 	Cnpj *string
 
 	/* Cpf.
 
-	     Optional cpf
-	cpf
+	     Optional. An
+	[11-digit taxpayer identification number](https://openbanking-brasil.github.io/specs-seguranca/open-banking-brasil-financial-api-1_ID3.html#name-requesting-the-cpf-claim)
+	in Cadastro de Pessoas Físicas (Natural Persons Register).
 	*/
 	Cpf *string
 
 	/* DateFrom.
 
-	   Optional start date for when consent was created
+	     Optional. Consent creation date.
+
+	Sets the start date of the consent retrieval date range.
 	*/
 	DateFrom *string
 
 	/* DateTo.
 
-	   Optional end date for when consent was created
+	     Optional. Consent creation date.
+
+	Sets the end date of the consent retrieval date range.
 	*/
 	DateTo *string
 

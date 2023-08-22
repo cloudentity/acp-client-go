@@ -48,9 +48,16 @@ type ClientService interface {
 }
 
 /*
-AcceptOBBRCustomerDataAccessConsentSystem accepts customer data access consent
+	AcceptOBBRCustomerDataAccessConsentSystem accepts customer data access consent
 
-This API can be used by a custom openbanking consent page to notify ACP that user granted consent to a customer data access.
+	Notify Cloudentity that a user allowed access to their data.
+
+Used by a custom Open Banking consent page.
+
+For authorization, pass the `Authorization: Bearer` header with a token as the bearer value. To obtain
+the token, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/)
+grant type.
 */
 func (a *Client) AcceptOBBRCustomerDataAccessConsentSystem(params *AcceptOBBRCustomerDataAccessConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptOBBRCustomerDataAccessConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -89,9 +96,16 @@ func (a *Client) AcceptOBBRCustomerDataAccessConsentSystem(params *AcceptOBBRCus
 }
 
 /*
-AcceptOBBRCustomerPaymentConsentSystem accepts customer payment initiation consent
+	AcceptOBBRCustomerPaymentConsentSystem accepts customer payment initiation consent
 
-This API can be used by a custom openbanking consent page to notify ACP that user granted consent for payment initiation.
+	Notify Cloudentity that a user allowed payment initiation.
+
+Used by a custom Open Banking consent page.
+
+For authorization, pass the `Authorization: Bearer` header with a token as the bearer value. To obtain
+the token, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/)
+grant type.
 */
 func (a *Client) AcceptOBBRCustomerPaymentConsentSystem(params *AcceptOBBRCustomerPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AcceptOBBRCustomerPaymentConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -132,9 +146,14 @@ func (a *Client) AcceptOBBRCustomerPaymentConsentSystem(params *AcceptOBBRCustom
 /*
 	GetOBBRCustomerDataAccessConsentSystem gets customer data access consent
 
-	This API can be used by a custom openbanking consent page.
+	Retrieve information about data access consents per client application. This endpoint is used by a custom
 
-The consent page must first use client credentials flow to create consent.
+Open Banking consent page during the authorization process. It returns consents previously created with the
+`POST` **Create Data Access** endpoints.
+
+For authorization, pass the `Authorization: Bearer` with a token as the bearer value. To obtain the token, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/)
+grant type.
 */
 func (a *Client) GetOBBRCustomerDataAccessConsentSystem(params *GetOBBRCustomerDataAccessConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOBBRCustomerDataAccessConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -175,9 +194,14 @@ func (a *Client) GetOBBRCustomerDataAccessConsentSystem(params *GetOBBRCustomerD
 /*
 	GetOBBRCustomerPaymentConsentSystem gets customer payment initiation consent
 
-	This API can be used by a custom openbanking consent page.
+	Retrieve information about payment initiation consents per client application. This endpoint is used by a custom
 
-The consent page must first use client credentials flow to create consent.
+Open Banking consent page during the authorization process. It returns consents previously created with the
+`POST` **Create Payment Consent** endpoints.
+
+For authorization, pass the `Authorization: Bearer` with a token as the bearer value. To obtain the token, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/)
+grant type.
 */
 func (a *Client) GetOBBRCustomerPaymentConsentSystem(params *GetOBBRCustomerPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOBBRCustomerPaymentConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -218,9 +242,16 @@ func (a *Client) GetOBBRCustomerPaymentConsentSystem(params *GetOBBRCustomerPaym
 /*
 	GetOBBRCustomerPaymentConsentSystemV2 gets customer payment initiation consent v2
 
-	This API can be used by a custom openbanking consent page.
+	Retrieve information about payment initiation consents per client application. This endpoint is used by a custom
 
-The consent page must first use client credentials flow to create consent.
+Open Banking consent page during the authorization process. It returns consents previously created with the
+`POST` **Create Payment Consent** endpoints.
+
+This endpoint is compatible with version 2.0 of the Open Banking Brazil standard.
+
+For authorization, pass the `Authorization: Bearer` with a token as the bearer value. To obtain the token, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/)
+grant type.
 */
 func (a *Client) GetOBBRCustomerPaymentConsentSystemV2(params *GetOBBRCustomerPaymentConsentSystemV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOBBRCustomerPaymentConsentSystemV2OK, error) {
 	// TODO: Validate the params before sending
@@ -259,9 +290,16 @@ func (a *Client) GetOBBRCustomerPaymentConsentSystemV2(params *GetOBBRCustomerPa
 }
 
 /*
-RejectOBBRCustomerDataAccessConsentSystem rejects consent
+	RejectOBBRCustomerDataAccessConsentSystem rejects customer data access consent
 
-This API can be used by a custom openbanking consent page to notify ACP that user rejected access.
+	Notify Cloudentity that a user rejected access to their data.
+
+Used by a custom Open Banking consent page.
+
+For authorization, pass the `Authorization: Bearer` header with a token as the bearer value. To obtain
+the token, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/)
+grant type.
 */
 func (a *Client) RejectOBBRCustomerDataAccessConsentSystem(params *RejectOBBRCustomerDataAccessConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectOBBRCustomerDataAccessConsentSystemOK, error) {
 	// TODO: Validate the params before sending
@@ -300,9 +338,16 @@ func (a *Client) RejectOBBRCustomerDataAccessConsentSystem(params *RejectOBBRCus
 }
 
 /*
-RejectOBBRCustomerPaymentConsentSystem rejects consent
+	RejectOBBRCustomerPaymentConsentSystem rejects customer payment initiation consent
 
-This API can be used by a custom openbanking consent page to notify ACP that user rejected payment initiation.
+	Notify Cloudentity that a user rejected payment initiation.
+
+Used by a custom Open Banking consent page.
+
+For authorization, pass the `Authorization: Bearer` header with a token as the bearer value. To obtain
+the token, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/)
+grant type.
 */
 func (a *Client) RejectOBBRCustomerPaymentConsentSystem(params *RejectOBBRCustomerPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectOBBRCustomerPaymentConsentSystemOK, error) {
 	// TODO: Validate the params before sending
