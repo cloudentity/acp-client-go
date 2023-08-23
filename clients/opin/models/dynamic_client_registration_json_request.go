@@ -1351,6 +1351,11 @@ func (m *DynamicClientRegistrationJSONRequest) contextValidateApplicationTypes(c
 func (m *DynamicClientRegistrationJSONRequest) contextValidateJwks(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Jwks != nil {
+
+		if swag.IsZero(m.Jwks) { // not required
+			return nil
+		}
+
 		if err := m.Jwks.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("jwks")
@@ -1367,6 +1372,11 @@ func (m *DynamicClientRegistrationJSONRequest) contextValidateJwks(ctx context.C
 func (m *DynamicClientRegistrationJSONRequest) contextValidatePrivacy(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Privacy != nil {
+
+		if swag.IsZero(m.Privacy) { // not required
+			return nil
+		}
+
 		if err := m.Privacy.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("privacy")
@@ -1411,6 +1421,11 @@ func (m *DynamicClientRegistrationJSONRequest) contextValidateResponseTypes(ctx 
 func (m *DynamicClientRegistrationJSONRequest) contextValidateTokenExchange(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.TokenExchange != nil {
+
+		if swag.IsZero(m.TokenExchange) { // not required
+			return nil
+		}
+
 		if err := m.TokenExchange.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("token_exchange")

@@ -213,6 +213,11 @@ func (m *OPINData) ContextValidate(ctx context.Context, formats strfmt.Registry)
 func (m *OPINData) contextValidateBusinessEntity(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.BusinessEntity != nil {
+
+		if swag.IsZero(m.BusinessEntity) { // not required
+			return nil
+		}
+
 		if err := m.BusinessEntity.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("businessEntity")
@@ -229,6 +234,7 @@ func (m *OPINData) contextValidateBusinessEntity(ctx context.Context, formats st
 func (m *OPINData) contextValidateLoggedUser(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.LoggedUser != nil {
+
 		if err := m.LoggedUser.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("loggedUser")
@@ -245,6 +251,10 @@ func (m *OPINData) contextValidateLoggedUser(ctx context.Context, formats strfmt
 func (m *OPINData) contextValidatePermissions(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.Permissions); i++ {
+
+		if swag.IsZero(m.Permissions[i]) { // not required
+			return nil
+		}
 
 		if err := m.Permissions[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {

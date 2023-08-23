@@ -263,6 +263,10 @@ func (m *OpenbankingBrasilConsentV2Data2) contextValidatePermissions(ctx context
 
 	for i := 0; i < len(m.Permissions); i++ {
 
+		if swag.IsZero(m.Permissions[i]) { // not required
+			return nil
+		}
+
 		if err := m.Permissions[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("permissions" + "." + strconv.Itoa(i))
@@ -280,6 +284,11 @@ func (m *OpenbankingBrasilConsentV2Data2) contextValidatePermissions(ctx context
 func (m *OpenbankingBrasilConsentV2Data2) contextValidateRejection(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Rejection != nil {
+
+		if swag.IsZero(m.Rejection) { // not required
+			return nil
+		}
+
 		if err := m.Rejection.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("rejection")
@@ -296,6 +305,7 @@ func (m *OpenbankingBrasilConsentV2Data2) contextValidateRejection(ctx context.C
 func (m *OpenbankingBrasilConsentV2Data2) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Status != nil {
+
 		if err := m.Status.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status")

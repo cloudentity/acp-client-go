@@ -40,6 +40,8 @@ type ClientService interface {
 
 	GetOBBRCustomerPaymentConsentSystemV2(params *GetOBBRCustomerPaymentConsentSystemV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOBBRCustomerPaymentConsentSystemV2OK, error)
 
+	GetOBBRCustomerPaymentConsentSystemV3(params *GetOBBRCustomerPaymentConsentSystemV3Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOBBRCustomerPaymentConsentSystemV3OK, error)
+
 	RejectOBBRCustomerDataAccessConsentSystem(params *RejectOBBRCustomerDataAccessConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectOBBRCustomerDataAccessConsentSystemOK, error)
 
 	RejectOBBRCustomerPaymentConsentSystem(params *RejectOBBRCustomerPaymentConsentSystemParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RejectOBBRCustomerPaymentConsentSystemOK, error)
@@ -286,6 +288,56 @@ func (a *Client) GetOBBRCustomerPaymentConsentSystemV2(params *GetOBBRCustomerPa
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for getOBBRCustomerPaymentConsentSystemV2: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	GetOBBRCustomerPaymentConsentSystemV3 gets customer payment initiation consent v3
+
+	Retrieve information about payment initiation consents per client application. This endpoint is used by a custom
+
+Open Banking consent page during the authorization process. It returns consents previously created with the
+`POST` **Create Payment Consent** endpoints.
+
+This endpoint is compatible with version 3.0 of the Open Banking Brazil payment initiation standard.
+
+For authorization, pass the `Authorization: Bearer` with a token as the bearer value. To obtain the token, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/)
+grant type.
+*/
+func (a *Client) GetOBBRCustomerPaymentConsentSystemV3(params *GetOBBRCustomerPaymentConsentSystemV3Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetOBBRCustomerPaymentConsentSystemV3OK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetOBBRCustomerPaymentConsentSystemV3Params()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "getOBBRCustomerPaymentConsentSystemV3",
+		Method:             "GET",
+		PathPattern:        "/open-banking-brasil/payment/v3/{login}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetOBBRCustomerPaymentConsentSystemV3Reader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetOBBRCustomerPaymentConsentSystemV3OK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for getOBBRCustomerPaymentConsentSystemV3: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

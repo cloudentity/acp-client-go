@@ -155,6 +155,11 @@ func (m *IntrospectResponse) ContextValidate(ctx context.Context, formats strfmt
 func (m *IntrospectResponse) contextValidateCnf(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Cnf != nil {
+
+		if swag.IsZero(m.Cnf) { // not required
+			return nil
+		}
+
 		if err := m.Cnf.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cnf")

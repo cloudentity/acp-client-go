@@ -15,10 +15,10 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// GetOBBRCustomerPaymentConsentResponse get o b b r customer payment consent response
+// GetOBBRCustomerPaymentConsentResponseV3 get o b b r customer payment consent response v3
 //
-// swagger:model GetOBBRCustomerPaymentConsentResponse
-type GetOBBRCustomerPaymentConsentResponse struct {
+// swagger:model GetOBBRCustomerPaymentConsentResponseV3
+type GetOBBRCustomerPaymentConsentResponseV3 struct {
 
 	// List of account identifiers
 	AccountIds []string `json:"account_ids"`
@@ -26,7 +26,7 @@ type GetOBBRCustomerPaymentConsentResponse struct {
 	// authentication context
 	AuthenticationContext AuthenticationContext `json:"authentication_context,omitempty"`
 
-	// Client identifier
+	// Client application identifier.
 	// Example: \"cauqo9c9vpbs0aj2b2v0\
 	ClientID string `json:"client_id,omitempty"`
 
@@ -40,13 +40,13 @@ type GetOBBRCustomerPaymentConsentResponse struct {
 	// Format: date-time
 	CreatedAt strfmt.DateTime `json:"created_at,omitempty"`
 
-	// customer payment consent
-	CustomerPaymentConsent *BrazilCustomerPaymentConsent `json:"customer_payment_consent,omitempty"`
+	// customer payment consent v3
+	CustomerPaymentConsentV3 *BrazilCustomerPaymentConsentV3 `json:"customer_payment_consent_v3,omitempty"`
 
 	// List of requested scopes
 	RequestedScopes []*RequestedScope `json:"requested_scopes"`
 
-	// Server / Workspace identifier
+	// Server / Workspace identifier.
 	// Example: \"server\
 	ServerID string `json:"server_id,omitempty"`
 
@@ -56,7 +56,7 @@ type GetOBBRCustomerPaymentConsentResponse struct {
 	// Subject
 	Subject string `json:"subject,omitempty"`
 
-	// Tenant identifier
+	// Tenant identifier.
 	// Example: \"tenant\
 	TenantID string `json:"tenant_id,omitempty"`
 
@@ -64,8 +64,8 @@ type GetOBBRCustomerPaymentConsentResponse struct {
 	Type ConsentType `json:"type,omitempty"`
 }
 
-// Validate validates this get o b b r customer payment consent response
-func (m *GetOBBRCustomerPaymentConsentResponse) Validate(formats strfmt.Registry) error {
+// Validate validates this get o b b r customer payment consent response v3
+func (m *GetOBBRCustomerPaymentConsentResponseV3) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAuthenticationContext(formats); err != nil {
@@ -80,7 +80,7 @@ func (m *GetOBBRCustomerPaymentConsentResponse) Validate(formats strfmt.Registry
 		res = append(res, err)
 	}
 
-	if err := m.validateCustomerPaymentConsent(formats); err != nil {
+	if err := m.validateCustomerPaymentConsentV3(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -98,7 +98,7 @@ func (m *GetOBBRCustomerPaymentConsentResponse) Validate(formats strfmt.Registry
 	return nil
 }
 
-func (m *GetOBBRCustomerPaymentConsentResponse) validateAuthenticationContext(formats strfmt.Registry) error {
+func (m *GetOBBRCustomerPaymentConsentResponseV3) validateAuthenticationContext(formats strfmt.Registry) error {
 	if swag.IsZero(m.AuthenticationContext) { // not required
 		return nil
 	}
@@ -117,7 +117,7 @@ func (m *GetOBBRCustomerPaymentConsentResponse) validateAuthenticationContext(fo
 	return nil
 }
 
-func (m *GetOBBRCustomerPaymentConsentResponse) validateClientInfo(formats strfmt.Registry) error {
+func (m *GetOBBRCustomerPaymentConsentResponseV3) validateClientInfo(formats strfmt.Registry) error {
 	if swag.IsZero(m.ClientInfo) { // not required
 		return nil
 	}
@@ -136,7 +136,7 @@ func (m *GetOBBRCustomerPaymentConsentResponse) validateClientInfo(formats strfm
 	return nil
 }
 
-func (m *GetOBBRCustomerPaymentConsentResponse) validateCreatedAt(formats strfmt.Registry) error {
+func (m *GetOBBRCustomerPaymentConsentResponseV3) validateCreatedAt(formats strfmt.Registry) error {
 	if swag.IsZero(m.CreatedAt) { // not required
 		return nil
 	}
@@ -148,17 +148,17 @@ func (m *GetOBBRCustomerPaymentConsentResponse) validateCreatedAt(formats strfmt
 	return nil
 }
 
-func (m *GetOBBRCustomerPaymentConsentResponse) validateCustomerPaymentConsent(formats strfmt.Registry) error {
-	if swag.IsZero(m.CustomerPaymentConsent) { // not required
+func (m *GetOBBRCustomerPaymentConsentResponseV3) validateCustomerPaymentConsentV3(formats strfmt.Registry) error {
+	if swag.IsZero(m.CustomerPaymentConsentV3) { // not required
 		return nil
 	}
 
-	if m.CustomerPaymentConsent != nil {
-		if err := m.CustomerPaymentConsent.Validate(formats); err != nil {
+	if m.CustomerPaymentConsentV3 != nil {
+		if err := m.CustomerPaymentConsentV3.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("customer_payment_consent")
+				return ve.ValidateName("customer_payment_consent_v3")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("customer_payment_consent")
+				return ce.ValidateName("customer_payment_consent_v3")
 			}
 			return err
 		}
@@ -167,7 +167,7 @@ func (m *GetOBBRCustomerPaymentConsentResponse) validateCustomerPaymentConsent(f
 	return nil
 }
 
-func (m *GetOBBRCustomerPaymentConsentResponse) validateRequestedScopes(formats strfmt.Registry) error {
+func (m *GetOBBRCustomerPaymentConsentResponseV3) validateRequestedScopes(formats strfmt.Registry) error {
 	if swag.IsZero(m.RequestedScopes) { // not required
 		return nil
 	}
@@ -193,7 +193,7 @@ func (m *GetOBBRCustomerPaymentConsentResponse) validateRequestedScopes(formats 
 	return nil
 }
 
-func (m *GetOBBRCustomerPaymentConsentResponse) validateType(formats strfmt.Registry) error {
+func (m *GetOBBRCustomerPaymentConsentResponseV3) validateType(formats strfmt.Registry) error {
 	if swag.IsZero(m.Type) { // not required
 		return nil
 	}
@@ -210,8 +210,8 @@ func (m *GetOBBRCustomerPaymentConsentResponse) validateType(formats strfmt.Regi
 	return nil
 }
 
-// ContextValidate validate this get o b b r customer payment consent response based on the context it is used
-func (m *GetOBBRCustomerPaymentConsentResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validate this get o b b r customer payment consent response v3 based on the context it is used
+func (m *GetOBBRCustomerPaymentConsentResponseV3) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateAuthenticationContext(ctx, formats); err != nil {
@@ -222,7 +222,7 @@ func (m *GetOBBRCustomerPaymentConsentResponse) ContextValidate(ctx context.Cont
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateCustomerPaymentConsent(ctx, formats); err != nil {
+	if err := m.contextValidateCustomerPaymentConsentV3(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -240,7 +240,7 @@ func (m *GetOBBRCustomerPaymentConsentResponse) ContextValidate(ctx context.Cont
 	return nil
 }
 
-func (m *GetOBBRCustomerPaymentConsentResponse) contextValidateAuthenticationContext(ctx context.Context, formats strfmt.Registry) error {
+func (m *GetOBBRCustomerPaymentConsentResponseV3) contextValidateAuthenticationContext(ctx context.Context, formats strfmt.Registry) error {
 
 	if swag.IsZero(m.AuthenticationContext) { // not required
 		return nil
@@ -258,7 +258,7 @@ func (m *GetOBBRCustomerPaymentConsentResponse) contextValidateAuthenticationCon
 	return nil
 }
 
-func (m *GetOBBRCustomerPaymentConsentResponse) contextValidateClientInfo(ctx context.Context, formats strfmt.Registry) error {
+func (m *GetOBBRCustomerPaymentConsentResponseV3) contextValidateClientInfo(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ClientInfo != nil {
 
@@ -279,19 +279,19 @@ func (m *GetOBBRCustomerPaymentConsentResponse) contextValidateClientInfo(ctx co
 	return nil
 }
 
-func (m *GetOBBRCustomerPaymentConsentResponse) contextValidateCustomerPaymentConsent(ctx context.Context, formats strfmt.Registry) error {
+func (m *GetOBBRCustomerPaymentConsentResponseV3) contextValidateCustomerPaymentConsentV3(ctx context.Context, formats strfmt.Registry) error {
 
-	if m.CustomerPaymentConsent != nil {
+	if m.CustomerPaymentConsentV3 != nil {
 
-		if swag.IsZero(m.CustomerPaymentConsent) { // not required
+		if swag.IsZero(m.CustomerPaymentConsentV3) { // not required
 			return nil
 		}
 
-		if err := m.CustomerPaymentConsent.ContextValidate(ctx, formats); err != nil {
+		if err := m.CustomerPaymentConsentV3.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("customer_payment_consent")
+				return ve.ValidateName("customer_payment_consent_v3")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("customer_payment_consent")
+				return ce.ValidateName("customer_payment_consent_v3")
 			}
 			return err
 		}
@@ -300,7 +300,7 @@ func (m *GetOBBRCustomerPaymentConsentResponse) contextValidateCustomerPaymentCo
 	return nil
 }
 
-func (m *GetOBBRCustomerPaymentConsentResponse) contextValidateRequestedScopes(ctx context.Context, formats strfmt.Registry) error {
+func (m *GetOBBRCustomerPaymentConsentResponseV3) contextValidateRequestedScopes(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.RequestedScopes); i++ {
 
@@ -325,7 +325,7 @@ func (m *GetOBBRCustomerPaymentConsentResponse) contextValidateRequestedScopes(c
 	return nil
 }
 
-func (m *GetOBBRCustomerPaymentConsentResponse) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
+func (m *GetOBBRCustomerPaymentConsentResponseV3) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Type) { // not required
 		return nil
@@ -344,7 +344,7 @@ func (m *GetOBBRCustomerPaymentConsentResponse) contextValidateType(ctx context.
 }
 
 // MarshalBinary interface implementation
-func (m *GetOBBRCustomerPaymentConsentResponse) MarshalBinary() ([]byte, error) {
+func (m *GetOBBRCustomerPaymentConsentResponseV3) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -352,8 +352,8 @@ func (m *GetOBBRCustomerPaymentConsentResponse) MarshalBinary() ([]byte, error) 
 }
 
 // UnmarshalBinary interface implementation
-func (m *GetOBBRCustomerPaymentConsentResponse) UnmarshalBinary(b []byte) error {
-	var res GetOBBRCustomerPaymentConsentResponse
+func (m *GetOBBRCustomerPaymentConsentResponseV3) UnmarshalBinary(b []byte) error {
+	var res GetOBBRCustomerPaymentConsentResponseV3
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

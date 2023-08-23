@@ -2318,6 +2318,65 @@ definitions:
       type:
         $ref: '#/definitions/ConsentType'
     type: object
+  GetOBBRCustomerPaymentConsentResponseV3:
+    properties:
+      account_ids:
+        description: List of account identifiers
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      authentication_context:
+        $ref: '#/definitions/AuthenticationContext'
+      client_id:
+        description: Client application identifier.
+        example: '"cauqo9c9vpbs0aj2b2v0"'
+        format: clientID
+        type: string
+        x-nullable: false
+      client_info:
+        $ref: '#/definitions/ClientInfo'
+      consent_id:
+        format: consentID
+        type: string
+        x-nullable: false
+      created_at:
+        description: Consent creation time
+        format: date-time
+        type: string
+        x-nullable: false
+      customer_payment_consent_v3:
+        $ref: '#/definitions/BrazilCustomerPaymentConsentV3'
+      requested_scopes:
+        description: List of requested scopes
+        items:
+          $ref: '#/definitions/RequestedScope'
+        type: array
+        x-nullable: false
+      server_id:
+        description: Server / Workspace identifier.
+        example: '"server"'
+        format: serverID
+        type: string
+        x-nullable: false
+      status:
+        description: Consent status
+        type: string
+        x-nullable: false
+      subject:
+        description: Subject
+        format: subject
+        type: string
+        x-nullable: false
+      tenant_id:
+        description: Tenant identifier.
+        example: '"tenant"'
+        format: tenantID
+        type: string
+        x-nullable: false
+      type:
+        $ref: '#/definitions/ConsentType'
+    type: object
   GrantedScopes:
     items:
       format: scopeName
@@ -7034,6 +7093,44 @@ paths:
       summary: Get Customer Payment Initiation Consent v2
       tags:
       - CONSENT_PAGE
+  /open-banking-brasil/payment/v3/{login}:
+    get:
+      description: |-
+        Retrieve information about payment initiation consents per client application. This endpoint is used by a custom
+        Open Banking consent page during the authorization process. It returns consents previously created with the
+        `POST` **Create Payment Consent** endpoints.
+
+        This endpoint is compatible with version 3.0 of the Open Banking Brazil payment initiation standard.
+
+        For authorization, pass the `Authorization: Bearer` with a token as the bearer value. To obtain the token, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/)
+        grant type.
+      operationId: getOBBRCustomerPaymentConsentSystemV3
+      parameters:
+      - in: path
+        name: login
+        required: true
+        type: string
+      - in: query
+        name: login_state
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/GetOBBRCustomerPaymentConsentResponseV3'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "404":
+          $ref: '#/responses/notFoundHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - system:
+        - manage_openbanking_consents
+      summary: Get Customer Payment Initiation Consent v3
+      tags:
+      - CONSENT_PAGE
   /open-banking/consents/v1/consents:
     post:
       description: |-
@@ -8578,6 +8675,10 @@ responses:
     description: GetOBBRCustomerPaymentConsentResponseV2
     schema:
       $ref: '#/definitions/GetOBBRCustomerPaymentConsentResponseV2'
+  GetOBBRCustomerPaymentConsentResponseV3:
+    description: GetOBBRCustomerPaymentConsentResponseV3
+    schema:
+      $ref: '#/definitions/GetOBBRCustomerPaymentConsentResponseV3'
   IntrospectOBBRDataAccessConsentResponse:
     description: Introspect Openbanking Brazil Data Access Consent Response
     schema:

@@ -145,6 +145,11 @@ func (m *OpenbankingBrasilPaymentRevocation) ContextValidate(ctx context.Context
 func (m *OpenbankingBrasilPaymentRevocation) contextValidateLoggedUser(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.LoggedUser != nil {
+
+		if swag.IsZero(m.LoggedUser) { // not required
+			return nil
+		}
+
 		if err := m.LoggedUser.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("loggedUser")
@@ -161,6 +166,7 @@ func (m *OpenbankingBrasilPaymentRevocation) contextValidateLoggedUser(ctx conte
 func (m *OpenbankingBrasilPaymentRevocation) contextValidateReason(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Reason != nil {
+
 		if err := m.Reason.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("reason")
@@ -177,6 +183,7 @@ func (m *OpenbankingBrasilPaymentRevocation) contextValidateReason(ctx context.C
 func (m *OpenbankingBrasilPaymentRevocation) contextValidateRevokedBy(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.RevokedBy != nil {
+
 		if err := m.RevokedBy.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("revokedBy")

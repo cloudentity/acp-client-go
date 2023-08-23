@@ -242,6 +242,10 @@ func (m *GetOBBRCustomerPaymentConsentResponseV2) ContextValidate(ctx context.Co
 
 func (m *GetOBBRCustomerPaymentConsentResponseV2) contextValidateAuthenticationContext(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.AuthenticationContext) { // not required
+		return nil
+	}
+
 	if err := m.AuthenticationContext.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("authentication_context")
@@ -257,6 +261,11 @@ func (m *GetOBBRCustomerPaymentConsentResponseV2) contextValidateAuthenticationC
 func (m *GetOBBRCustomerPaymentConsentResponseV2) contextValidateClientInfo(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ClientInfo != nil {
+
+		if swag.IsZero(m.ClientInfo) { // not required
+			return nil
+		}
+
 		if err := m.ClientInfo.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("client_info")
@@ -273,6 +282,11 @@ func (m *GetOBBRCustomerPaymentConsentResponseV2) contextValidateClientInfo(ctx 
 func (m *GetOBBRCustomerPaymentConsentResponseV2) contextValidateCustomerPaymentConsentV2(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CustomerPaymentConsentV2 != nil {
+
+		if swag.IsZero(m.CustomerPaymentConsentV2) { // not required
+			return nil
+		}
+
 		if err := m.CustomerPaymentConsentV2.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("customer_payment_consent_v2")
@@ -291,6 +305,11 @@ func (m *GetOBBRCustomerPaymentConsentResponseV2) contextValidateRequestedScopes
 	for i := 0; i < len(m.RequestedScopes); i++ {
 
 		if m.RequestedScopes[i] != nil {
+
+			if swag.IsZero(m.RequestedScopes[i]) { // not required
+				return nil
+			}
+
 			if err := m.RequestedScopes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("requested_scopes" + "." + strconv.Itoa(i))
@@ -307,6 +326,10 @@ func (m *GetOBBRCustomerPaymentConsentResponseV2) contextValidateRequestedScopes
 }
 
 func (m *GetOBBRCustomerPaymentConsentResponseV2) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Type) { // not required
+		return nil
+	}
 
 	if err := m.Type.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

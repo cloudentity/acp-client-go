@@ -335,6 +335,11 @@ func (m *OBBRConsentWithClient) ContextValidate(ctx context.Context, formats str
 func (m *OBBRConsentWithClient) contextValidateClient(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Client != nil {
+
+		if swag.IsZero(m.Client) { // not required
+			return nil
+		}
+
 		if err := m.Client.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Client")
@@ -351,6 +356,11 @@ func (m *OBBRConsentWithClient) contextValidateClient(ctx context.Context, forma
 func (m *OBBRConsentWithClient) contextValidateCustomerDataAccessConsent(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CustomerDataAccessConsent != nil {
+
+		if swag.IsZero(m.CustomerDataAccessConsent) { // not required
+			return nil
+		}
+
 		if err := m.CustomerDataAccessConsent.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("customer_data_access_consent")
@@ -367,6 +377,11 @@ func (m *OBBRConsentWithClient) contextValidateCustomerDataAccessConsent(ctx con
 func (m *OBBRConsentWithClient) contextValidateCustomerDataAccessConsentV2(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CustomerDataAccessConsentV2 != nil {
+
+		if swag.IsZero(m.CustomerDataAccessConsentV2) { // not required
+			return nil
+		}
+
 		if err := m.CustomerDataAccessConsentV2.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("customer_data_access_consent_v2")
@@ -383,6 +398,11 @@ func (m *OBBRConsentWithClient) contextValidateCustomerDataAccessConsentV2(ctx c
 func (m *OBBRConsentWithClient) contextValidateCustomerInsuranceDataAccessConsent(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CustomerInsuranceDataAccessConsent != nil {
+
+		if swag.IsZero(m.CustomerInsuranceDataAccessConsent) { // not required
+			return nil
+		}
+
 		if err := m.CustomerInsuranceDataAccessConsent.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("customer_insurance_data_access_consent")
@@ -399,6 +419,11 @@ func (m *OBBRConsentWithClient) contextValidateCustomerInsuranceDataAccessConsen
 func (m *OBBRConsentWithClient) contextValidateCustomerPaymentConsent(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CustomerPaymentConsent != nil {
+
+		if swag.IsZero(m.CustomerPaymentConsent) { // not required
+			return nil
+		}
+
 		if err := m.CustomerPaymentConsent.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("customer_payment_consent")
@@ -415,6 +440,11 @@ func (m *OBBRConsentWithClient) contextValidateCustomerPaymentConsent(ctx contex
 func (m *OBBRConsentWithClient) contextValidateCustomerPaymentConsentV2(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CustomerPaymentConsentV2 != nil {
+
+		if swag.IsZero(m.CustomerPaymentConsentV2) { // not required
+			return nil
+		}
+
 		if err := m.CustomerPaymentConsentV2.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("customer_payment_consent_v2")
@@ -430,6 +460,10 @@ func (m *OBBRConsentWithClient) contextValidateCustomerPaymentConsentV2(ctx cont
 
 func (m *OBBRConsentWithClient) contextValidateSpecVersion(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.SpecVersion) { // not required
+		return nil
+	}
+
 	if err := m.SpecVersion.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("spec_version")
@@ -443,6 +477,10 @@ func (m *OBBRConsentWithClient) contextValidateSpecVersion(ctx context.Context, 
 }
 
 func (m *OBBRConsentWithClient) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Type) { // not required
+		return nil
+	}
 
 	if err := m.Type.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
