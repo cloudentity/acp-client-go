@@ -43,6 +43,9 @@ type GetOBBRCustomerDataAccessConsentResponse struct {
 	// customer data access consent
 	CustomerDataAccessConsent *BrazilCustomerDataAccessConsentV1 `json:"customer_data_access_consent,omitempty"`
 
+	// customer data access consent v2
+	CustomerDataAccessConsentV2 *BrazilCustomerDataAccessConsentV2 `json:"customer_data_access_consent_v2,omitempty"`
+
 	// List of requested scopes
 	RequestedScopes []*RequestedScope `json:"requested_scopes"`
 
@@ -81,6 +84,10 @@ func (m *GetOBBRCustomerDataAccessConsentResponse) Validate(formats strfmt.Regis
 	}
 
 	if err := m.validateCustomerDataAccessConsent(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateCustomerDataAccessConsentV2(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -167,6 +174,25 @@ func (m *GetOBBRCustomerDataAccessConsentResponse) validateCustomerDataAccessCon
 	return nil
 }
 
+func (m *GetOBBRCustomerDataAccessConsentResponse) validateCustomerDataAccessConsentV2(formats strfmt.Registry) error {
+	if swag.IsZero(m.CustomerDataAccessConsentV2) { // not required
+		return nil
+	}
+
+	if m.CustomerDataAccessConsentV2 != nil {
+		if err := m.CustomerDataAccessConsentV2.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("customer_data_access_consent_v2")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("customer_data_access_consent_v2")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *GetOBBRCustomerDataAccessConsentResponse) validateRequestedScopes(formats strfmt.Registry) error {
 	if swag.IsZero(m.RequestedScopes) { // not required
 		return nil
@@ -223,6 +249,10 @@ func (m *GetOBBRCustomerDataAccessConsentResponse) ContextValidate(ctx context.C
 	}
 
 	if err := m.contextValidateCustomerDataAccessConsent(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCustomerDataAccessConsentV2(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -292,6 +322,27 @@ func (m *GetOBBRCustomerDataAccessConsentResponse) contextValidateCustomerDataAc
 				return ve.ValidateName("customer_data_access_consent")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("customer_data_access_consent")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *GetOBBRCustomerDataAccessConsentResponse) contextValidateCustomerDataAccessConsentV2(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.CustomerDataAccessConsentV2 != nil {
+
+		if swag.IsZero(m.CustomerDataAccessConsentV2) { // not required
+			return nil
+		}
+
+		if err := m.CustomerDataAccessConsentV2.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("customer_data_access_consent_v2")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("customer_data_access_consent_v2")
 			}
 			return err
 		}
