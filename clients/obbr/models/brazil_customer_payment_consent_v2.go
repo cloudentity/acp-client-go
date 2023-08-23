@@ -343,6 +343,11 @@ func (m *BrazilCustomerPaymentConsentV2) ContextValidate(ctx context.Context, fo
 func (m *BrazilCustomerPaymentConsentV2) contextValidateBusinessEntity(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.BusinessEntity != nil {
+
+		if swag.IsZero(m.BusinessEntity) { // not required
+			return nil
+		}
+
 		if err := m.BusinessEntity.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("businessEntity")
@@ -359,6 +364,7 @@ func (m *BrazilCustomerPaymentConsentV2) contextValidateBusinessEntity(ctx conte
 func (m *BrazilCustomerPaymentConsentV2) contextValidateCreditor(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Creditor != nil {
+
 		if err := m.Creditor.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("creditor")
@@ -375,6 +381,11 @@ func (m *BrazilCustomerPaymentConsentV2) contextValidateCreditor(ctx context.Con
 func (m *BrazilCustomerPaymentConsentV2) contextValidateDebtorAccount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.DebtorAccount != nil {
+
+		if swag.IsZero(m.DebtorAccount) { // not required
+			return nil
+		}
+
 		if err := m.DebtorAccount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("debtorAccount")
@@ -391,6 +402,7 @@ func (m *BrazilCustomerPaymentConsentV2) contextValidateDebtorAccount(ctx contex
 func (m *BrazilCustomerPaymentConsentV2) contextValidateLoggedUser(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.LoggedUser != nil {
+
 		if err := m.LoggedUser.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("loggedUser")
@@ -407,6 +419,7 @@ func (m *BrazilCustomerPaymentConsentV2) contextValidateLoggedUser(ctx context.C
 func (m *BrazilCustomerPaymentConsentV2) contextValidatePayment(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Payment != nil {
+
 		if err := m.Payment.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("payment")
@@ -423,6 +436,7 @@ func (m *BrazilCustomerPaymentConsentV2) contextValidatePayment(ctx context.Cont
 func (m *BrazilCustomerPaymentConsentV2) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Status != nil {
+
 		if err := m.Status.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status")

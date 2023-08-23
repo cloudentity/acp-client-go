@@ -77,6 +77,7 @@ func (m *OpenbankingBrasilConsentLoggedUser) ContextValidate(ctx context.Context
 func (m *OpenbankingBrasilConsentLoggedUser) contextValidateDocument(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Document != nil {
+
 		if err := m.Document.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("document")

@@ -146,6 +146,7 @@ func (m *OpenbankingBrasilPaymentV2Identification) ContextValidate(ctx context.C
 func (m *OpenbankingBrasilPaymentV2Identification) contextValidatePersonType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.PersonType != nil {
+
 		if err := m.PersonType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("personType")

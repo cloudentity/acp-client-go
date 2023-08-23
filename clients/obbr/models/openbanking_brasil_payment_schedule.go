@@ -77,6 +77,7 @@ func (m *OpenbankingBrasilPaymentSchedule) ContextValidate(ctx context.Context, 
 func (m *OpenbankingBrasilPaymentSchedule) contextValidateSingle(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Single != nil {
+
 		if err := m.Single.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("single")

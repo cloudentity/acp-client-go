@@ -375,6 +375,11 @@ func (m *OpenbankingBrasilPaymentData1) ContextValidate(ctx context.Context, for
 func (m *OpenbankingBrasilPaymentData1) contextValidateBusinessEntity(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.BusinessEntity != nil {
+
+		if swag.IsZero(m.BusinessEntity) { // not required
+			return nil
+		}
+
 		if err := m.BusinessEntity.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("businessEntity")
@@ -391,6 +396,7 @@ func (m *OpenbankingBrasilPaymentData1) contextValidateBusinessEntity(ctx contex
 func (m *OpenbankingBrasilPaymentData1) contextValidateCreditor(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Creditor != nil {
+
 		if err := m.Creditor.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("creditor")
@@ -407,6 +413,11 @@ func (m *OpenbankingBrasilPaymentData1) contextValidateCreditor(ctx context.Cont
 func (m *OpenbankingBrasilPaymentData1) contextValidateDebtorAccount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.DebtorAccount != nil {
+
+		if swag.IsZero(m.DebtorAccount) { // not required
+			return nil
+		}
+
 		if err := m.DebtorAccount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("debtorAccount")
@@ -423,6 +434,7 @@ func (m *OpenbankingBrasilPaymentData1) contextValidateDebtorAccount(ctx context
 func (m *OpenbankingBrasilPaymentData1) contextValidateLoggedUser(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.LoggedUser != nil {
+
 		if err := m.LoggedUser.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("loggedUser")
@@ -439,6 +451,7 @@ func (m *OpenbankingBrasilPaymentData1) contextValidateLoggedUser(ctx context.Co
 func (m *OpenbankingBrasilPaymentData1) contextValidatePayment(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Payment != nil {
+
 		if err := m.Payment.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("payment")
@@ -455,6 +468,11 @@ func (m *OpenbankingBrasilPaymentData1) contextValidatePayment(ctx context.Conte
 func (m *OpenbankingBrasilPaymentData1) contextValidateRevocation(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Revocation != nil {
+
+		if swag.IsZero(m.Revocation) { // not required
+			return nil
+		}
+
 		if err := m.Revocation.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("revocation")
@@ -471,6 +489,7 @@ func (m *OpenbankingBrasilPaymentData1) contextValidateRevocation(ctx context.Co
 func (m *OpenbankingBrasilPaymentData1) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Status != nil {
+
 		if err := m.Status.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status")

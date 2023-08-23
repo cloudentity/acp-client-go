@@ -523,6 +523,11 @@ func (m *IntrospectOBBRPaymentConsentResponse) ContextValidate(ctx context.Conte
 func (m *IntrospectOBBRPaymentConsentResponse) contextValidateBusinessEntity(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.BusinessEntity != nil {
+
+		if swag.IsZero(m.BusinessEntity) { // not required
+			return nil
+		}
+
 		if err := m.BusinessEntity.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("businessEntity")
@@ -539,6 +544,7 @@ func (m *IntrospectOBBRPaymentConsentResponse) contextValidateBusinessEntity(ctx
 func (m *IntrospectOBBRPaymentConsentResponse) contextValidateCreditor(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Creditor != nil {
+
 		if err := m.Creditor.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("creditor")
@@ -555,6 +561,11 @@ func (m *IntrospectOBBRPaymentConsentResponse) contextValidateCreditor(ctx conte
 func (m *IntrospectOBBRPaymentConsentResponse) contextValidateDebtorAccount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.DebtorAccount != nil {
+
+		if swag.IsZero(m.DebtorAccount) { // not required
+			return nil
+		}
+
 		if err := m.DebtorAccount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("debtorAccount")
@@ -571,6 +582,7 @@ func (m *IntrospectOBBRPaymentConsentResponse) contextValidateDebtorAccount(ctx 
 func (m *IntrospectOBBRPaymentConsentResponse) contextValidateLoggedUser(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.LoggedUser != nil {
+
 		if err := m.LoggedUser.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("loggedUser")
@@ -587,6 +599,7 @@ func (m *IntrospectOBBRPaymentConsentResponse) contextValidateLoggedUser(ctx con
 func (m *IntrospectOBBRPaymentConsentResponse) contextValidatePayment(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Payment != nil {
+
 		if err := m.Payment.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("payment")
@@ -603,6 +616,11 @@ func (m *IntrospectOBBRPaymentConsentResponse) contextValidatePayment(ctx contex
 func (m *IntrospectOBBRPaymentConsentResponse) contextValidateRevocation(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Revocation != nil {
+
+		if swag.IsZero(m.Revocation) { // not required
+			return nil
+		}
+
 		if err := m.Revocation.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("revocation")
@@ -619,6 +637,7 @@ func (m *IntrospectOBBRPaymentConsentResponse) contextValidateRevocation(ctx con
 func (m *IntrospectOBBRPaymentConsentResponse) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Status != nil {
+
 		if err := m.Status.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status")

@@ -294,6 +294,7 @@ func (m *BrazilCustomerDataAccessConsentV2) ContextValidate(ctx context.Context,
 func (m *BrazilCustomerDataAccessConsentV2) contextValidateDocument(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Document != nil {
+
 		if err := m.Document.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("document")
@@ -310,6 +311,10 @@ func (m *BrazilCustomerDataAccessConsentV2) contextValidateDocument(ctx context.
 func (m *BrazilCustomerDataAccessConsentV2) contextValidatePermissions(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.Permissions); i++ {
+
+		if swag.IsZero(m.Permissions[i]) { // not required
+			return nil
+		}
 
 		if err := m.Permissions[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
@@ -328,6 +333,11 @@ func (m *BrazilCustomerDataAccessConsentV2) contextValidatePermissions(ctx conte
 func (m *BrazilCustomerDataAccessConsentV2) contextValidateRejection(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Rejection != nil {
+
+		if swag.IsZero(m.Rejection) { // not required
+			return nil
+		}
+
 		if err := m.Rejection.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("rejection")
@@ -344,6 +354,7 @@ func (m *BrazilCustomerDataAccessConsentV2) contextValidateRejection(ctx context
 func (m *BrazilCustomerDataAccessConsentV2) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Status != nil {
+
 		if err := m.Status.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status")

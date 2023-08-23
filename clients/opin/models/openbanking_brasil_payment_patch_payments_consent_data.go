@@ -97,6 +97,7 @@ func (m *OpenbankingBrasilPaymentPatchPaymentsConsentData) ContextValidate(ctx c
 func (m *OpenbankingBrasilPaymentPatchPaymentsConsentData) contextValidateRevocation(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Revocation != nil {
+
 		if err := m.Revocation.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("revocation")

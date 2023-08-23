@@ -36,7 +36,6 @@ type OpenbankingBrasilConsentV2Data struct {
 	// permissions
 	// Example: ["ACCOUNTS_READ","ACCOUNTS_OVERDRAFT_LIMITS_READ","RESOURCES_READ"]
 	// Required: true
-	// Max Items: 30
 	// Min Items: 1
 	Permissions []OpenbankingBrasilConsentV2Permission `json:"permissions"`
 }
@@ -131,10 +130,6 @@ func (m *OpenbankingBrasilConsentV2Data) validatePermissions(formats strfmt.Regi
 		return err
 	}
 
-	if err := validate.MaxItems("permissions", "body", iPermissionsSize, 30); err != nil {
-		return err
-	}
-
 	for i := 0; i < len(m.Permissions); i++ {
 
 		if err := m.Permissions[i].Validate(formats); err != nil {
@@ -176,6 +171,11 @@ func (m *OpenbankingBrasilConsentV2Data) ContextValidate(ctx context.Context, fo
 func (m *OpenbankingBrasilConsentV2Data) contextValidateBusinessEntity(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.BusinessEntity != nil {
+
+		if swag.IsZero(m.BusinessEntity) { // not required
+			return nil
+		}
+
 		if err := m.BusinessEntity.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("businessEntity")
@@ -192,6 +192,7 @@ func (m *OpenbankingBrasilConsentV2Data) contextValidateBusinessEntity(ctx conte
 func (m *OpenbankingBrasilConsentV2Data) contextValidateLoggedUser(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.LoggedUser != nil {
+
 		if err := m.LoggedUser.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("loggedUser")
@@ -208,6 +209,10 @@ func (m *OpenbankingBrasilConsentV2Data) contextValidateLoggedUser(ctx context.C
 func (m *OpenbankingBrasilConsentV2Data) contextValidatePermissions(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.Permissions); i++ {
+
+		if swag.IsZero(m.Permissions[i]) { // not required
+			return nil
+		}
 
 		if err := m.Permissions[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {

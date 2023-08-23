@@ -47,10 +47,9 @@ type OpenbankingBrasilConsentV2Data2 struct {
 	// Format: date-time
 	ExpirationDateTime strfmt.DateTime `json:"expirationDateTime"`
 
-	// Especifica os tipos de permisses de acesso s APIs no escopo do Open Banking Brasil - Fase 2, de acordo com os blocos de consentimento fornecidos pelo usurio e necessrios ao acesso a cada endpoint das APIs.
+	// Especifica os tipos de permisses de acesso s APIs no escopo do Open Finance Brasil - Dados cadastrais e transacionais, de acordo com os blocos de consentimento fornecidos pelo usurio e necessrios ao acesso a cada endpoint das APIs. Esse array no deve ter duplicidade de itens.
 	// Example: ["ACCOUNTS_READ","ACCOUNTS_OVERDRAFT_LIMITS_READ","RESOURCES_READ"]
 	// Required: true
-	// Max Items: 30
 	// Min Items: 1
 	Permissions []OpenbankingBrasilConsentV2Permission1 `json:"permissions"`
 
@@ -161,10 +160,6 @@ func (m *OpenbankingBrasilConsentV2Data2) validatePermissions(formats strfmt.Reg
 		return err
 	}
 
-	if err := validate.MaxItems("permissions", "body", iPermissionsSize, 30); err != nil {
-		return err
-	}
-
 	for i := 0; i < len(m.Permissions); i++ {
 
 		if err := m.Permissions[i].Validate(formats); err != nil {
@@ -263,6 +258,10 @@ func (m *OpenbankingBrasilConsentV2Data2) contextValidatePermissions(ctx context
 
 	for i := 0; i < len(m.Permissions); i++ {
 
+		if swag.IsZero(m.Permissions[i]) { // not required
+			return nil
+		}
+
 		if err := m.Permissions[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("permissions" + "." + strconv.Itoa(i))
@@ -280,6 +279,11 @@ func (m *OpenbankingBrasilConsentV2Data2) contextValidatePermissions(ctx context
 func (m *OpenbankingBrasilConsentV2Data2) contextValidateRejection(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Rejection != nil {
+
+		if swag.IsZero(m.Rejection) { // not required
+			return nil
+		}
+
 		if err := m.Rejection.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("rejection")
@@ -296,6 +300,7 @@ func (m *OpenbankingBrasilConsentV2Data2) contextValidateRejection(ctx context.C
 func (m *OpenbankingBrasilConsentV2Data2) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Status != nil {
+
 		if err := m.Status.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("status")

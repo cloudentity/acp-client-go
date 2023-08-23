@@ -183,6 +183,7 @@ func (m *OpenbankingBrasilPaymentV2DebtorAccount) ContextValidate(ctx context.Co
 func (m *OpenbankingBrasilPaymentV2DebtorAccount) contextValidateAccountType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.AccountType != nil {
+
 		if err := m.AccountType.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("accountType")

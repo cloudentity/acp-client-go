@@ -151,6 +151,7 @@ func (m *BrazilCustomerPaymentConsentResponse) ContextValidate(ctx context.Conte
 func (m *BrazilCustomerPaymentConsentResponse) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Data != nil {
+
 		if err := m.Data.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("data")
@@ -167,6 +168,7 @@ func (m *BrazilCustomerPaymentConsentResponse) contextValidateData(ctx context.C
 func (m *BrazilCustomerPaymentConsentResponse) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Links != nil {
+
 		if err := m.Links.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("links")
@@ -183,6 +185,7 @@ func (m *BrazilCustomerPaymentConsentResponse) contextValidateLinks(ctx context.
 func (m *BrazilCustomerPaymentConsentResponse) contextValidateMeta(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Meta != nil {
+
 		if err := m.Meta.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("meta")
