@@ -79,7 +79,11 @@ func (a *Client) ExportConfiguration(params *ExportConfigurationParams, authInfo
 }
 
 /*
-ImportConfiguration import configuration API
+	ImportConfiguration imports configuration
+
+	ACP updates existing values with the values provided in the request.
+
+API supports only full entries update, not partial, meaning if user is re-imported it should be re-imported with all subentries.
 */
 func (a *Client) ImportConfiguration(params *ImportConfigurationParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ImportConfigurationNoContent, error) {
 	// TODO: Validate the params before sending

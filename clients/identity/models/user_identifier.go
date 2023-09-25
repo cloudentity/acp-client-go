@@ -32,6 +32,13 @@ type UserIdentifier struct {
 	// Required: true
 	Identifier string `json:"identifier"`
 
+	// identifier lc
+	// Required: true
+	IdentifierLc string `json:"identifier_lc"`
+
+	// general purpose metadata
+	Metadata map[string]interface{} `json:"metadata,omitempty"`
+
 	// tenant id
 	// Example: default
 	// Required: true
@@ -40,7 +47,7 @@ type UserIdentifier struct {
 	// type
 	// Example: email
 	// Required: true
-	// Enum: [email mobile uid external]
+	// Enum: [email mobile uid external federated]
 	Type string `json:"type"`
 
 	// updated at
@@ -67,6 +74,10 @@ func (m *UserIdentifier) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateIdentifier(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIdentifierLc(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -118,6 +129,15 @@ func (m *UserIdentifier) validateIdentifier(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *UserIdentifier) validateIdentifierLc(formats strfmt.Registry) error {
+
+	if err := validate.RequiredString("identifier_lc", "body", m.IdentifierLc); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *UserIdentifier) validateTenantID(formats strfmt.Registry) error {
 
 	if err := validate.RequiredString("tenant_id", "body", m.TenantID); err != nil {
@@ -131,7 +151,7 @@ var userIdentifierTypeTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["email","mobile","uid","external"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["email","mobile","uid","external","federated"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -152,6 +172,9 @@ const (
 
 	// UserIdentifierTypeExternal captures enum value "external"
 	UserIdentifierTypeExternal string = "external"
+
+	// UserIdentifierTypeFederated captures enum value "federated"
+	UserIdentifierTypeFederated string = "federated"
 )
 
 // prop value enum

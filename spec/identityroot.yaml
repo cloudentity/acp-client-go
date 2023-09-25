@@ -74,6 +74,7 @@ definitions:
         - reset_password
         - challenge
         - verify_address
+        - authentication
         example: active
         type: string
         x-nullable: false
@@ -108,7 +109,6 @@ definitions:
         type: string
         x-nullable: false
       extended_code:
-        format: codeID
         type: string
         x-nullable: false
     required:
@@ -153,6 +153,13 @@ definitions:
         type: array
         x-nullable: false
     type: object
+  Duration:
+    description: |-
+      A Duration represents the elapsed time between two instants
+      as an int64 nanosecond count. The representation limits the
+      largest representable duration to approximately 290 years.
+    format: int64
+    type: integer
   Error:
     description: HTTP error response
     properties:
@@ -209,6 +216,8 @@ definitions:
     properties:
       activation:
         $ref: '#/definitions/OtpConfig'
+      authentication:
+        $ref: '#/definitions/OtpConfig'
       challenge:
         $ref: '#/definitions/OtpConfig'
       reset_password:
@@ -247,6 +256,10 @@ definitions:
         format: uint64
         type: integer
         x-nullable: false
+      lowercase_letters:
+        format: uint64
+        type: integer
+        x-nullable: false
       min_length:
         format: uint64
         type: integer
@@ -271,6 +284,8 @@ definitions:
     type: object
   PasswordSettings:
     properties:
+      expires_after:
+        $ref: '#/definitions/Duration'
       hashing_method:
         enum:
         - bcrypt
@@ -279,14 +294,6 @@ definitions:
         - sha
         type: string
         x-nullable: false
-    type: object
-  PatchConfiguration:
-    items:
-      $ref: '#/definitions/PatchOperation'
-    type: array
-  PatchOperation:
-    additionalProperties:
-      type: object
     type: object
   Pool:
     properties:
@@ -304,6 +311,9 @@ definitions:
       id:
         format: poolID
         type: string
+        x-nullable: false
+      identifier_case_insensitive:
+        type: boolean
         x-nullable: false
       metadata:
         additionalProperties:
@@ -346,6 +356,10 @@ definitions:
         format: tenantID
         type: string
         x-nullable: false
+      workspace_id:
+        format: serverID
+        type: string
+        x-nullable: false
     required:
     - tenant_id
     - name
@@ -364,11 +378,46 @@ definitions:
         - reset_password
         - challenge
         - verify_address
+        - authentication
         type: string
         x-nullable: false
     required:
     - type
     type: object
+  Rfc6902PatchOperation:
+    properties:
+      op:
+        description: |-
+          Each operation must have at least one `op` member, which value indicates
+          the actual operation to be performed against the target (current) configuration.
+          For a detailed description of available operations,
+          see the [Operations #4 section of the RFC6902 specification](https://datatracker.ietf.org/doc/html/rfc6902#section-4).
+        enum:
+        - add
+        - remove
+        - replace
+        - move
+        - copy
+        - test
+        type: string
+        x-nullable: false
+      path:
+        description: |-
+          String containing a JSON-Pointer value ([RFC6901](https://datatracker.ietf.org/doc/html/rfc6901))
+          that references a location within the target configuration where the operation is performed.
+
+          For available paths, reference the exported configuration.
+        type: string
+        x-nullable: false
+      value:
+        description: New object value applied to the patched (target) configuration.
+        type: object
+        x-nullable: false
+    type: object
+  Rfc6902PatchOperations:
+    items:
+      $ref: '#/definitions/Rfc6902PatchOperation'
+    type: array
   SHAConfig:
     properties:
       function:
@@ -376,6 +425,9 @@ definitions:
         x-nullable: false
       salt:
         type: string
+        x-nullable: false
+      salt_after_digest_in_hash:
+        type: boolean
         x-nullable: false
       salt_length:
         format: int64
@@ -614,6 +666,8 @@ definitions:
         format: poolID
         type: string
         x-nullable: false
+      user_type:
+        x-nullable: false
     required:
     - tenant_id
     - user_pool_id
@@ -637,6 +691,13 @@ definitions:
         example:
           hashed_password: '###'
         type: object
+        x-nullable: false
+      state:
+        enum:
+        - valid
+        - must_be_reset
+        - must_be_changed
+        type: string
         x-nullable: false
       tenant_id:
         example: default
@@ -686,6 +747,16 @@ definitions:
         format: userIdentifierValue
         type: string
         x-nullable: false
+      identifier_lc:
+        format: userIdentifierValue
+        type: string
+        x-nullable: false
+      metadata:
+        additionalProperties:
+          type: object
+        description: general purpose metadata
+        type: object
+        x-nullable: false
       tenant_id:
         example: default
         format: tenantID
@@ -697,6 +768,7 @@ definitions:
         - mobile
         - uid
         - external
+        - federated
         example: email
         type: string
         x-nullable: false
@@ -717,6 +789,7 @@ definitions:
     - tenant_id
     - user_pool_id
     - identifier
+    - identifier_lc
     - user_id
     - type
     - created_at
@@ -725,6 +798,10 @@ definitions:
   UserVerifiableAddress:
     properties:
       address:
+        format: verifiableAddress
+        type: string
+        x-nullable: false
+      address_lc:
         format: verifiableAddress
         type: string
         x-nullable: false
@@ -787,6 +864,7 @@ definitions:
     - user_pool_id
     - user_id
     - address
+    - address_lc
     - type
     - status
     - verified
@@ -807,7 +885,7 @@ paths:
         Code is valid for specific period of time configured in Identity Pool.
 
         Keep in mind that `address` attribute for different code types does not mean the same:
-        for `reset_password` and `challenge` it must be user's address (verified or unverified)
+        for `reset_password`, `authentication` and `challenge` it must be user's address (verified or unverified)
         for `activation` it is not mandatory (system will pick up address itself if there is only one in user entry) but if provided it must be one of the user's addresses (can be not verified)
         for `verify_address` it must be user's unverified address and that address cannot be someone's else verified address
 
@@ -890,7 +968,7 @@ paths:
       - in: body
         name: patch
         schema:
-          $ref: '#/definitions/PatchConfiguration'
+          $ref: '#/definitions/Rfc6902PatchOperations'
       - format: insertMode
         in: query
         name: mode
@@ -916,33 +994,15 @@ paths:
       tags:
       - configuration
     put:
+      description: |-
+        ACP updates existing values with the values provided in the request.
+        API supports only full entries update, not partial, meaning if user is re-imported it should be re-imported with all subentries.
       operationId: importConfiguration
       parameters:
       - in: body
         name: Dump
         schema:
           $ref: '#/definitions/Dump'
-      - description: |-
-          Insert mode
-
-          Defines what happens in case of configuration import conflicts.
-
-          The `mode` parameter defines
-          what happens if there are any conflicts when importing your configuration. For example, if a
-          client already exists within ACP and you are trying to import a
-          configuration that also has a client with this ID, there are the following ways
-          ACP can handle the request:
-
-          `mode` set to `ignore`, ACP ignores the changes that come from your configuration import.
-
-          `mode` set to `fail`, ACP stops processing the import and returns an error.
-
-          `mode` set to `update`, ACP updates the value from the previous configuration with the value
-          provided in the request.
-        format: insertMode
-        in: query
-        name: mode
-        type: string
       responses:
         "204":
           description: ' configuration has been imported'
@@ -962,6 +1022,7 @@ paths:
           $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - setup: []
+      summary: Imports configuration
       tags:
       - configuration
 produces:

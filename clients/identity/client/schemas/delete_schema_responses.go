@@ -66,7 +66,7 @@ func (o *DeleteSchemaReader) ReadResponse(response runtime.ClientResponse, consu
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[DELETE /admin/schemas/{schID}] deleteSchema", response, response.Code())
 	}
 }
 
@@ -106,6 +106,11 @@ func (o *DeleteSchemaNoContent) IsServerError() bool {
 // IsCode returns true when this delete schema no content response a status code equal to that given
 func (o *DeleteSchemaNoContent) IsCode(code int) bool {
 	return code == 204
+}
+
+// Code gets the status code for the delete schema no content response
+func (o *DeleteSchemaNoContent) Code() int {
+	return 204
 }
 
 func (o *DeleteSchemaNoContent) Error() string {
@@ -158,6 +163,11 @@ func (o *DeleteSchemaBadRequest) IsServerError() bool {
 // IsCode returns true when this delete schema bad request response a status code equal to that given
 func (o *DeleteSchemaBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the delete schema bad request response
+func (o *DeleteSchemaBadRequest) Code() int {
+	return 400
 }
 
 func (o *DeleteSchemaBadRequest) Error() string {
@@ -223,6 +233,11 @@ func (o *DeleteSchemaUnauthorized) IsCode(code int) bool {
 	return code == 401
 }
 
+// Code gets the status code for the delete schema unauthorized response
+func (o *DeleteSchemaUnauthorized) Code() int {
+	return 401
+}
+
 func (o *DeleteSchemaUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /admin/schemas/{schID}][%d] deleteSchemaUnauthorized  %+v", 401, o.Payload)
 }
@@ -284,6 +299,11 @@ func (o *DeleteSchemaForbidden) IsServerError() bool {
 // IsCode returns true when this delete schema forbidden response a status code equal to that given
 func (o *DeleteSchemaForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the delete schema forbidden response
+func (o *DeleteSchemaForbidden) Code() int {
+	return 403
 }
 
 func (o *DeleteSchemaForbidden) Error() string {
@@ -349,6 +369,11 @@ func (o *DeleteSchemaNotFound) IsCode(code int) bool {
 	return code == 404
 }
 
+// Code gets the status code for the delete schema not found response
+func (o *DeleteSchemaNotFound) Code() int {
+	return 404
+}
+
 func (o *DeleteSchemaNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /admin/schemas/{schID}][%d] deleteSchemaNotFound  %+v", 404, o.Payload)
 }
@@ -412,6 +437,11 @@ func (o *DeleteSchemaConflict) IsCode(code int) bool {
 	return code == 409
 }
 
+// Code gets the status code for the delete schema conflict response
+func (o *DeleteSchemaConflict) Code() int {
+	return 409
+}
+
 func (o *DeleteSchemaConflict) Error() string {
 	return fmt.Sprintf("[DELETE /admin/schemas/{schID}][%d] deleteSchemaConflict  %+v", 409, o.Payload)
 }
@@ -473,6 +503,11 @@ func (o *DeleteSchemaTooManyRequests) IsServerError() bool {
 // IsCode returns true when this delete schema too many requests response a status code equal to that given
 func (o *DeleteSchemaTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the delete schema too many requests response
+func (o *DeleteSchemaTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *DeleteSchemaTooManyRequests) Error() string {

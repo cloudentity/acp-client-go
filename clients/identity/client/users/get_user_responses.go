@@ -54,7 +54,7 @@ func (o *GetUserReader) ReadResponse(response runtime.ClientResponse, consumer r
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /admin/pools/{ipID}/users/{userID}] getUser", response, response.Code())
 	}
 }
 
@@ -69,6 +69,15 @@ GetUserOK describes a response with status code 200, with default header values.
 User
 */
 type GetUserOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.UserWithData
 }
 
@@ -97,6 +106,11 @@ func (o *GetUserOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get user o k response
+func (o *GetUserOK) Code() int {
+	return 200
+}
+
 func (o *GetUserOK) Error() string {
 	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}][%d] getUserOK  %+v", 200, o.Payload)
 }
@@ -110,6 +124,13 @@ func (o *GetUserOK) GetPayload() *models.UserWithData {
 }
 
 func (o *GetUserOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.UserWithData)
 
@@ -158,6 +179,11 @@ func (o *GetUserUnauthorized) IsServerError() bool {
 // IsCode returns true when this get user unauthorized response a status code equal to that given
 func (o *GetUserUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get user unauthorized response
+func (o *GetUserUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetUserUnauthorized) Error() string {
@@ -223,6 +249,11 @@ func (o *GetUserForbidden) IsCode(code int) bool {
 	return code == 403
 }
 
+// Code gets the status code for the get user forbidden response
+func (o *GetUserForbidden) Code() int {
+	return 403
+}
+
 func (o *GetUserForbidden) Error() string {
 	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}][%d] getUserForbidden  %+v", 403, o.Payload)
 }
@@ -286,6 +317,11 @@ func (o *GetUserNotFound) IsCode(code int) bool {
 	return code == 404
 }
 
+// Code gets the status code for the get user not found response
+func (o *GetUserNotFound) Code() int {
+	return 404
+}
+
 func (o *GetUserNotFound) Error() string {
 	return fmt.Sprintf("[GET /admin/pools/{ipID}/users/{userID}][%d] getUserNotFound  %+v", 404, o.Payload)
 }
@@ -347,6 +383,11 @@ func (o *GetUserTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get user too many requests response a status code equal to that given
 func (o *GetUserTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get user too many requests response
+func (o *GetUserTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetUserTooManyRequests) Error() string {

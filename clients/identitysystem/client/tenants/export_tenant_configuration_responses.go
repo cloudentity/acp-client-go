@@ -66,7 +66,7 @@ func (o *ExportTenantConfigurationReader) ReadResponse(response runtime.ClientRe
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /configuration] exportTenantConfiguration", response, response.Code())
 	}
 }
 
@@ -107,6 +107,11 @@ func (o *ExportTenantConfigurationOK) IsServerError() bool {
 // IsCode returns true when this export tenant configuration o k response a status code equal to that given
 func (o *ExportTenantConfigurationOK) IsCode(code int) bool {
 	return code == 200
+}
+
+// Code gets the status code for the export tenant configuration o k response
+func (o *ExportTenantConfigurationOK) Code() int {
+	return 200
 }
 
 func (o *ExportTenantConfigurationOK) Error() string {
@@ -172,6 +177,11 @@ func (o *ExportTenantConfigurationBadRequest) IsCode(code int) bool {
 	return code == 400
 }
 
+// Code gets the status code for the export tenant configuration bad request response
+func (o *ExportTenantConfigurationBadRequest) Code() int {
+	return 400
+}
+
 func (o *ExportTenantConfigurationBadRequest) Error() string {
 	return fmt.Sprintf("[GET /configuration][%d] exportTenantConfigurationBadRequest  %+v", 400, o.Payload)
 }
@@ -233,6 +243,11 @@ func (o *ExportTenantConfigurationUnauthorized) IsServerError() bool {
 // IsCode returns true when this export tenant configuration unauthorized response a status code equal to that given
 func (o *ExportTenantConfigurationUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the export tenant configuration unauthorized response
+func (o *ExportTenantConfigurationUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ExportTenantConfigurationUnauthorized) Error() string {
@@ -298,6 +313,11 @@ func (o *ExportTenantConfigurationForbidden) IsCode(code int) bool {
 	return code == 403
 }
 
+// Code gets the status code for the export tenant configuration forbidden response
+func (o *ExportTenantConfigurationForbidden) Code() int {
+	return 403
+}
+
 func (o *ExportTenantConfigurationForbidden) Error() string {
 	return fmt.Sprintf("[GET /configuration][%d] exportTenantConfigurationForbidden  %+v", 403, o.Payload)
 }
@@ -359,6 +379,11 @@ func (o *ExportTenantConfigurationNotFound) IsServerError() bool {
 // IsCode returns true when this export tenant configuration not found response a status code equal to that given
 func (o *ExportTenantConfigurationNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the export tenant configuration not found response
+func (o *ExportTenantConfigurationNotFound) Code() int {
+	return 404
 }
 
 func (o *ExportTenantConfigurationNotFound) Error() string {
@@ -424,6 +449,11 @@ func (o *ExportTenantConfigurationUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
 }
 
+// Code gets the status code for the export tenant configuration unprocessable entity response
+func (o *ExportTenantConfigurationUnprocessableEntity) Code() int {
+	return 422
+}
+
 func (o *ExportTenantConfigurationUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[GET /configuration][%d] exportTenantConfigurationUnprocessableEntity  %+v", 422, o.Payload)
 }
@@ -485,6 +515,11 @@ func (o *ExportTenantConfigurationTooManyRequests) IsServerError() bool {
 // IsCode returns true when this export tenant configuration too many requests response a status code equal to that given
 func (o *ExportTenantConfigurationTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the export tenant configuration too many requests response
+func (o *ExportTenantConfigurationTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ExportTenantConfigurationTooManyRequests) Error() string {

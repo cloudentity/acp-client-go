@@ -60,7 +60,7 @@ func (o *SendActivationMessageReader) ReadResponse(response runtime.ClientRespon
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /admin/pools/{ipID}/users/{userID}/activation/send] sendActivationMessage", response, response.Code())
 	}
 }
 
@@ -100,6 +100,11 @@ func (o *SendActivationMessageNoContent) IsServerError() bool {
 // IsCode returns true when this send activation message no content response a status code equal to that given
 func (o *SendActivationMessageNoContent) IsCode(code int) bool {
 	return code == 204
+}
+
+// Code gets the status code for the send activation message no content response
+func (o *SendActivationMessageNoContent) Code() int {
+	return 204
 }
 
 func (o *SendActivationMessageNoContent) Error() string {
@@ -152,6 +157,11 @@ func (o *SendActivationMessageBadRequest) IsServerError() bool {
 // IsCode returns true when this send activation message bad request response a status code equal to that given
 func (o *SendActivationMessageBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the send activation message bad request response
+func (o *SendActivationMessageBadRequest) Code() int {
+	return 400
 }
 
 func (o *SendActivationMessageBadRequest) Error() string {
@@ -217,6 +227,11 @@ func (o *SendActivationMessageUnauthorized) IsCode(code int) bool {
 	return code == 401
 }
 
+// Code gets the status code for the send activation message unauthorized response
+func (o *SendActivationMessageUnauthorized) Code() int {
+	return 401
+}
+
 func (o *SendActivationMessageUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/activation/send][%d] sendActivationMessageUnauthorized  %+v", 401, o.Payload)
 }
@@ -278,6 +293,11 @@ func (o *SendActivationMessageNotFound) IsServerError() bool {
 // IsCode returns true when this send activation message not found response a status code equal to that given
 func (o *SendActivationMessageNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the send activation message not found response
+func (o *SendActivationMessageNotFound) Code() int {
+	return 404
 }
 
 func (o *SendActivationMessageNotFound) Error() string {
@@ -343,6 +363,11 @@ func (o *SendActivationMessageUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
 }
 
+// Code gets the status code for the send activation message unprocessable entity response
+func (o *SendActivationMessageUnprocessableEntity) Code() int {
+	return 422
+}
+
 func (o *SendActivationMessageUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/activation/send][%d] sendActivationMessageUnprocessableEntity  %+v", 422, o.Payload)
 }
@@ -404,6 +429,11 @@ func (o *SendActivationMessageTooManyRequests) IsServerError() bool {
 // IsCode returns true when this send activation message too many requests response a status code equal to that given
 func (o *SendActivationMessageTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the send activation message too many requests response
+func (o *SendActivationMessageTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *SendActivationMessageTooManyRequests) Error() string {

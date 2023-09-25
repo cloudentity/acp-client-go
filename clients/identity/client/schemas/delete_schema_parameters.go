@@ -61,6 +61,14 @@ DeleteSchemaParams contains all the parameters to send to the API endpoint
 */
 type DeleteSchemaParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	// SchID.
 	SchID string
 
@@ -117,6 +125,17 @@ func (o *DeleteSchemaParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the delete schema params
+func (o *DeleteSchemaParams) WithIfMatch(ifMatch *string) *DeleteSchemaParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the delete schema params
+func (o *DeleteSchemaParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithSchID adds the schID to the delete schema params
 func (o *DeleteSchemaParams) WithSchID(schID string) *DeleteSchemaParams {
 	o.SetSchID(schID)
@@ -135,6 +154,14 @@ func (o *DeleteSchemaParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	// path param schID
 	if err := r.SetPathParam("schID", o.SchID); err != nil {

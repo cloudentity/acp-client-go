@@ -94,6 +94,13 @@ type SelfRegisterUserParams struct {
 	*/
 	SendActivationMessage *bool
 
+	/* ServerID.
+
+	     optional server's identifier (used for themes etc.)
+	ServerID
+	*/
+	ServerID *string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -216,6 +223,17 @@ func (o *SelfRegisterUserParams) SetSendActivationMessage(sendActivationMessage 
 	o.SendActivationMessage = sendActivationMessage
 }
 
+// WithServerID adds the serverID to the self register user params
+func (o *SelfRegisterUserParams) WithServerID(serverID *string) *SelfRegisterUserParams {
+	o.SetServerID(serverID)
+	return o
+}
+
+// SetServerID adds the serverId to the self register user params
+func (o *SelfRegisterUserParams) SetServerID(serverID *string) {
+	o.ServerID = serverID
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *SelfRegisterUserParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -271,6 +289,23 @@ func (o *SelfRegisterUserParams) WriteToRequest(r runtime.ClientRequest, reg str
 		if qSendActivationMessage != "" {
 
 			if err := r.SetQueryParam("send_activation_message", qSendActivationMessage); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.ServerID != nil {
+
+		// query param server_id
+		var qrServerID string
+
+		if o.ServerID != nil {
+			qrServerID = *o.ServerID
+		}
+		qServerID := qrServerID
+		if qServerID != "" {
+
+			if err := r.SetQueryParam("server_id", qServerID); err != nil {
 				return err
 			}
 		}

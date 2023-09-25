@@ -66,7 +66,7 @@ func (o *SystemAddVerifiableAddressReader) ReadResponse(response runtime.ClientR
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /system/pools/{ipID}/users/{userID}/addresses/add] systemAddVerifiableAddress", response, response.Code())
 	}
 }
 
@@ -116,6 +116,11 @@ func (o *SystemAddVerifiableAddressOK) IsServerError() bool {
 // IsCode returns true when this system add verifiable address o k response a status code equal to that given
 func (o *SystemAddVerifiableAddressOK) IsCode(code int) bool {
 	return code == 200
+}
+
+// Code gets the status code for the system add verifiable address o k response
+func (o *SystemAddVerifiableAddressOK) Code() int {
+	return 200
 }
 
 func (o *SystemAddVerifiableAddressOK) Error() string {
@@ -188,6 +193,11 @@ func (o *SystemAddVerifiableAddressUnauthorized) IsCode(code int) bool {
 	return code == 401
 }
 
+// Code gets the status code for the system add verifiable address unauthorized response
+func (o *SystemAddVerifiableAddressUnauthorized) Code() int {
+	return 401
+}
+
 func (o *SystemAddVerifiableAddressUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/addresses/add][%d] systemAddVerifiableAddressUnauthorized  %+v", 401, o.Payload)
 }
@@ -249,6 +259,11 @@ func (o *SystemAddVerifiableAddressForbidden) IsServerError() bool {
 // IsCode returns true when this system add verifiable address forbidden response a status code equal to that given
 func (o *SystemAddVerifiableAddressForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the system add verifiable address forbidden response
+func (o *SystemAddVerifiableAddressForbidden) Code() int {
+	return 403
 }
 
 func (o *SystemAddVerifiableAddressForbidden) Error() string {
@@ -314,6 +329,11 @@ func (o *SystemAddVerifiableAddressNotFound) IsCode(code int) bool {
 	return code == 404
 }
 
+// Code gets the status code for the system add verifiable address not found response
+func (o *SystemAddVerifiableAddressNotFound) Code() int {
+	return 404
+}
+
 func (o *SystemAddVerifiableAddressNotFound) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/addresses/add][%d] systemAddVerifiableAddressNotFound  %+v", 404, o.Payload)
 }
@@ -375,6 +395,11 @@ func (o *SystemAddVerifiableAddressConflict) IsServerError() bool {
 // IsCode returns true when this system add verifiable address conflict response a status code equal to that given
 func (o *SystemAddVerifiableAddressConflict) IsCode(code int) bool {
 	return code == 409
+}
+
+// Code gets the status code for the system add verifiable address conflict response
+func (o *SystemAddVerifiableAddressConflict) Code() int {
+	return 409
 }
 
 func (o *SystemAddVerifiableAddressConflict) Error() string {
@@ -440,6 +465,11 @@ func (o *SystemAddVerifiableAddressPreconditionFailed) IsCode(code int) bool {
 	return code == 412
 }
 
+// Code gets the status code for the system add verifiable address precondition failed response
+func (o *SystemAddVerifiableAddressPreconditionFailed) Code() int {
+	return 412
+}
+
 func (o *SystemAddVerifiableAddressPreconditionFailed) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/addresses/add][%d] systemAddVerifiableAddressPreconditionFailed  %+v", 412, o.Payload)
 }
@@ -501,6 +531,11 @@ func (o *SystemAddVerifiableAddressUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this system add verifiable address unprocessable entity response a status code equal to that given
 func (o *SystemAddVerifiableAddressUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the system add verifiable address unprocessable entity response
+func (o *SystemAddVerifiableAddressUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *SystemAddVerifiableAddressUnprocessableEntity) Error() string {

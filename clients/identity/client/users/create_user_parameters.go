@@ -64,7 +64,15 @@ CreateUserParams contains all the parameters to send to the API endpoint
 type CreateUserParams struct {
 
 	// NewUser.
-	NewUser *models.NewUser
+	NewUser *models.NewUserPayload
+
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
 
 	// IPID.
 	IPID string
@@ -123,14 +131,25 @@ func (o *CreateUserParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithNewUser adds the newUser to the create user params
-func (o *CreateUserParams) WithNewUser(newUser *models.NewUser) *CreateUserParams {
+func (o *CreateUserParams) WithNewUser(newUser *models.NewUserPayload) *CreateUserParams {
 	o.SetNewUser(newUser)
 	return o
 }
 
 // SetNewUser adds the newUser to the create user params
-func (o *CreateUserParams) SetNewUser(newUser *models.NewUser) {
+func (o *CreateUserParams) SetNewUser(newUser *models.NewUserPayload) {
 	o.NewUser = newUser
+}
+
+// WithIfMatch adds the ifMatch to the create user params
+func (o *CreateUserParams) WithIfMatch(ifMatch *string) *CreateUserParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the create user params
+func (o *CreateUserParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
 }
 
 // WithIPID adds the iPID to the create user params
@@ -153,6 +172,14 @@ func (o *CreateUserParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 	var res []error
 	if o.NewUser != nil {
 		if err := r.SetBodyParam(o.NewUser); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

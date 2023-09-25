@@ -103,6 +103,11 @@ func (m *ActivateSelfRegisteredUser) contextValidateWebauthn(ctx context.Context
 	for i := 0; i < len(m.Webauthn); i++ {
 
 		if m.Webauthn[i] != nil {
+
+			if swag.IsZero(m.Webauthn[i]) { // not required
+				return nil
+			}
+
 			if err := m.Webauthn[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("webauthn" + "." + strconv.Itoa(i))

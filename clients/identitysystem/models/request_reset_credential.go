@@ -14,10 +14,10 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// RequestResetPassword request reset password
+// RequestResetCredential request reset credential
 //
-// swagger:model RequestResetPassword
-type RequestResetPassword struct {
+// swagger:model RequestResetCredential
+type RequestResetCredential struct {
 
 	// address
 	// Required: true
@@ -30,8 +30,8 @@ type RequestResetPassword struct {
 	UserID string `json:"userID,omitempty"`
 }
 
-// Validate validates this request reset password
-func (m *RequestResetPassword) Validate(formats strfmt.Registry) error {
+// Validate validates this request reset credential
+func (m *RequestResetCredential) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAddress(formats); err != nil {
@@ -44,7 +44,7 @@ func (m *RequestResetPassword) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *RequestResetPassword) validateAddress(formats strfmt.Registry) error {
+func (m *RequestResetCredential) validateAddress(formats strfmt.Registry) error {
 
 	if err := validate.RequiredString("address", "body", m.Address); err != nil {
 		return err
@@ -53,13 +53,13 @@ func (m *RequestResetPassword) validateAddress(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validates this request reset password based on context it is used
-func (m *RequestResetPassword) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validates this request reset credential based on context it is used
+func (m *RequestResetCredential) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 
 // MarshalBinary interface implementation
-func (m *RequestResetPassword) MarshalBinary() ([]byte, error) {
+func (m *RequestResetCredential) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -67,8 +67,8 @@ func (m *RequestResetPassword) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *RequestResetPassword) UnmarshalBinary(b []byte) error {
-	var res RequestResetPassword
+func (m *RequestResetCredential) UnmarshalBinary(b []byte) error {
+	var res RequestResetCredential
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

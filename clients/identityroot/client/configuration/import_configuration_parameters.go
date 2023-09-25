@@ -66,29 +66,6 @@ type ImportConfigurationParams struct {
 	// Dump.
 	Dump *models.Dump
 
-	/* Mode.
-
-	     Insert mode
-
-	Defines what happens in case of configuration import conflicts.
-
-	The `mode` parameter defines
-	what happens if there are any conflicts when importing your configuration. For example, if a
-	client already exists within ACP and you are trying to import a
-	configuration that also has a client with this ID, there are the following ways
-	ACP can handle the request:
-
-	`mode` set to `ignore`, ACP ignores the changes that come from your configuration import.
-
-	`mode` set to `fail`, ACP stops processing the import and returns an error.
-
-	`mode` set to `update`, ACP updates the value from the previous configuration with the value
-	provided in the request.
-
-	     Format: insertMode
-	*/
-	Mode *string
-
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -153,17 +130,6 @@ func (o *ImportConfigurationParams) SetDump(dump *models.Dump) {
 	o.Dump = dump
 }
 
-// WithMode adds the mode to the import configuration params
-func (o *ImportConfigurationParams) WithMode(mode *string) *ImportConfigurationParams {
-	o.SetMode(mode)
-	return o
-}
-
-// SetMode adds the mode to the import configuration params
-func (o *ImportConfigurationParams) SetMode(mode *string) {
-	o.Mode = mode
-}
-
 // WriteToRequest writes these params to a swagger request
 func (o *ImportConfigurationParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -174,23 +140,6 @@ func (o *ImportConfigurationParams) WriteToRequest(r runtime.ClientRequest, reg 
 	if o.Dump != nil {
 		if err := r.SetBodyParam(o.Dump); err != nil {
 			return err
-		}
-	}
-
-	if o.Mode != nil {
-
-		// query param mode
-		var qrMode string
-
-		if o.Mode != nil {
-			qrMode = *o.Mode
-		}
-		qMode := qrMode
-		if qMode != "" {
-
-			if err := r.SetQueryParam("mode", qMode); err != nil {
-				return err
-			}
 		}
 	}
 

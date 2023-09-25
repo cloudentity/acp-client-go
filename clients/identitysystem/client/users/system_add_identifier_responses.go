@@ -66,7 +66,7 @@ func (o *SystemAddIdentifierReader) ReadResponse(response runtime.ClientResponse
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /system/pools/{ipID}/users/{userID}/identifiers/add] systemAddIdentifier", response, response.Code())
 	}
 }
 
@@ -116,6 +116,11 @@ func (o *SystemAddIdentifierOK) IsServerError() bool {
 // IsCode returns true when this system add identifier o k response a status code equal to that given
 func (o *SystemAddIdentifierOK) IsCode(code int) bool {
 	return code == 200
+}
+
+// Code gets the status code for the system add identifier o k response
+func (o *SystemAddIdentifierOK) Code() int {
+	return 200
 }
 
 func (o *SystemAddIdentifierOK) Error() string {
@@ -188,6 +193,11 @@ func (o *SystemAddIdentifierUnauthorized) IsCode(code int) bool {
 	return code == 401
 }
 
+// Code gets the status code for the system add identifier unauthorized response
+func (o *SystemAddIdentifierUnauthorized) Code() int {
+	return 401
+}
+
 func (o *SystemAddIdentifierUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/add][%d] systemAddIdentifierUnauthorized  %+v", 401, o.Payload)
 }
@@ -249,6 +259,11 @@ func (o *SystemAddIdentifierForbidden) IsServerError() bool {
 // IsCode returns true when this system add identifier forbidden response a status code equal to that given
 func (o *SystemAddIdentifierForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the system add identifier forbidden response
+func (o *SystemAddIdentifierForbidden) Code() int {
+	return 403
 }
 
 func (o *SystemAddIdentifierForbidden) Error() string {
@@ -314,6 +329,11 @@ func (o *SystemAddIdentifierNotFound) IsCode(code int) bool {
 	return code == 404
 }
 
+// Code gets the status code for the system add identifier not found response
+func (o *SystemAddIdentifierNotFound) Code() int {
+	return 404
+}
+
 func (o *SystemAddIdentifierNotFound) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/add][%d] systemAddIdentifierNotFound  %+v", 404, o.Payload)
 }
@@ -375,6 +395,11 @@ func (o *SystemAddIdentifierConflict) IsServerError() bool {
 // IsCode returns true when this system add identifier conflict response a status code equal to that given
 func (o *SystemAddIdentifierConflict) IsCode(code int) bool {
 	return code == 409
+}
+
+// Code gets the status code for the system add identifier conflict response
+func (o *SystemAddIdentifierConflict) Code() int {
+	return 409
 }
 
 func (o *SystemAddIdentifierConflict) Error() string {
@@ -440,6 +465,11 @@ func (o *SystemAddIdentifierPreconditionFailed) IsCode(code int) bool {
 	return code == 412
 }
 
+// Code gets the status code for the system add identifier precondition failed response
+func (o *SystemAddIdentifierPreconditionFailed) Code() int {
+	return 412
+}
+
 func (o *SystemAddIdentifierPreconditionFailed) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/add][%d] systemAddIdentifierPreconditionFailed  %+v", 412, o.Payload)
 }
@@ -501,6 +531,11 @@ func (o *SystemAddIdentifierUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this system add identifier unprocessable entity response a status code equal to that given
 func (o *SystemAddIdentifierUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the system add identifier unprocessable entity response
+func (o *SystemAddIdentifierUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *SystemAddIdentifierUnprocessableEntity) Error() string {

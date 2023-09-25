@@ -61,6 +61,14 @@ GetSchemaParams contains all the parameters to send to the API endpoint
 */
 type GetSchemaParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	// SchID.
 	SchID string
 
@@ -117,6 +125,17 @@ func (o *GetSchemaParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the get schema params
+func (o *GetSchemaParams) WithIfMatch(ifMatch *string) *GetSchemaParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the get schema params
+func (o *GetSchemaParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithSchID adds the schID to the get schema params
 func (o *GetSchemaParams) WithSchID(schID string) *GetSchemaParams {
 	o.SetSchID(schID)
@@ -135,6 +154,14 @@ func (o *GetSchemaParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	// path param schID
 	if err := r.SetPathParam("schID", o.SchID); err != nil {

@@ -72,7 +72,7 @@ func (o *RequestAddressVerificationReader) ReadResponse(response runtime.ClientR
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /system/pools/{ipID}/users/{userID}/address/verification/request] requestAddressVerification", response, response.Code())
 	}
 }
 
@@ -120,6 +120,11 @@ func (o *RequestAddressVerificationNoContent) IsServerError() bool {
 // IsCode returns true when this request address verification no content response a status code equal to that given
 func (o *RequestAddressVerificationNoContent) IsCode(code int) bool {
 	return code == 204
+}
+
+// Code gets the status code for the request address verification no content response
+func (o *RequestAddressVerificationNoContent) Code() int {
+	return 204
 }
 
 func (o *RequestAddressVerificationNoContent) Error() string {
@@ -179,6 +184,11 @@ func (o *RequestAddressVerificationBadRequest) IsServerError() bool {
 // IsCode returns true when this request address verification bad request response a status code equal to that given
 func (o *RequestAddressVerificationBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the request address verification bad request response
+func (o *RequestAddressVerificationBadRequest) Code() int {
+	return 400
 }
 
 func (o *RequestAddressVerificationBadRequest) Error() string {
@@ -244,6 +254,11 @@ func (o *RequestAddressVerificationUnauthorized) IsCode(code int) bool {
 	return code == 401
 }
 
+// Code gets the status code for the request address verification unauthorized response
+func (o *RequestAddressVerificationUnauthorized) Code() int {
+	return 401
+}
+
 func (o *RequestAddressVerificationUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/request][%d] requestAddressVerificationUnauthorized  %+v", 401, o.Payload)
 }
@@ -305,6 +320,11 @@ func (o *RequestAddressVerificationNotFound) IsServerError() bool {
 // IsCode returns true when this request address verification not found response a status code equal to that given
 func (o *RequestAddressVerificationNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the request address verification not found response
+func (o *RequestAddressVerificationNotFound) Code() int {
+	return 404
 }
 
 func (o *RequestAddressVerificationNotFound) Error() string {
@@ -370,6 +390,11 @@ func (o *RequestAddressVerificationConflict) IsCode(code int) bool {
 	return code == 409
 }
 
+// Code gets the status code for the request address verification conflict response
+func (o *RequestAddressVerificationConflict) Code() int {
+	return 409
+}
+
 func (o *RequestAddressVerificationConflict) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/request][%d] requestAddressVerificationConflict  %+v", 409, o.Payload)
 }
@@ -431,6 +456,11 @@ func (o *RequestAddressVerificationPreconditionFailed) IsServerError() bool {
 // IsCode returns true when this request address verification precondition failed response a status code equal to that given
 func (o *RequestAddressVerificationPreconditionFailed) IsCode(code int) bool {
 	return code == 412
+}
+
+// Code gets the status code for the request address verification precondition failed response
+func (o *RequestAddressVerificationPreconditionFailed) Code() int {
+	return 412
 }
 
 func (o *RequestAddressVerificationPreconditionFailed) Error() string {
@@ -496,6 +526,11 @@ func (o *RequestAddressVerificationUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
 }
 
+// Code gets the status code for the request address verification unprocessable entity response
+func (o *RequestAddressVerificationUnprocessableEntity) Code() int {
+	return 422
+}
+
 func (o *RequestAddressVerificationUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/request][%d] requestAddressVerificationUnprocessableEntity  %+v", 422, o.Payload)
 }
@@ -557,6 +592,11 @@ func (o *RequestAddressVerificationTooManyRequests) IsServerError() bool {
 // IsCode returns true when this request address verification too many requests response a status code equal to that given
 func (o *RequestAddressVerificationTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the request address verification too many requests response
+func (o *RequestAddressVerificationTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *RequestAddressVerificationTooManyRequests) Error() string {

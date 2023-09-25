@@ -84,6 +84,11 @@ func (m *Credential) ContextValidate(ctx context.Context, formats strfmt.Registr
 func (m *Credential) contextValidateAuthenticator(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Authenticator != nil {
+
+		if swag.IsZero(m.Authenticator) { // not required
+			return nil
+		}
+
 		if err := m.Authenticator.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Authenticator")

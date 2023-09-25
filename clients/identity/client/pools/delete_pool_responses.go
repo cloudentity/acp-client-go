@@ -54,7 +54,7 @@ func (o *DeletePoolReader) ReadResponse(response runtime.ClientResponse, consume
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[DELETE /admin/pools/{ipID}] deletePool", response, response.Code())
 	}
 }
 
@@ -66,7 +66,7 @@ func NewDeletePoolNoContent() *DeletePoolNoContent {
 /*
 DeletePoolNoContent describes a response with status code 204, with default header values.
 
-	Pool has been deleted
+	Identity Pool Deleted
 */
 type DeletePoolNoContent struct {
 }
@@ -94,6 +94,11 @@ func (o *DeletePoolNoContent) IsServerError() bool {
 // IsCode returns true when this delete pool no content response a status code equal to that given
 func (o *DeletePoolNoContent) IsCode(code int) bool {
 	return code == 204
+}
+
+// Code gets the status code for the delete pool no content response
+func (o *DeletePoolNoContent) Code() int {
+	return 204
 }
 
 func (o *DeletePoolNoContent) Error() string {
@@ -146,6 +151,11 @@ func (o *DeletePoolUnauthorized) IsServerError() bool {
 // IsCode returns true when this delete pool unauthorized response a status code equal to that given
 func (o *DeletePoolUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the delete pool unauthorized response
+func (o *DeletePoolUnauthorized) Code() int {
+	return 401
 }
 
 func (o *DeletePoolUnauthorized) Error() string {
@@ -211,6 +221,11 @@ func (o *DeletePoolForbidden) IsCode(code int) bool {
 	return code == 403
 }
 
+// Code gets the status code for the delete pool forbidden response
+func (o *DeletePoolForbidden) Code() int {
+	return 403
+}
+
 func (o *DeletePoolForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /admin/pools/{ipID}][%d] deletePoolForbidden  %+v", 403, o.Payload)
 }
@@ -274,6 +289,11 @@ func (o *DeletePoolNotFound) IsCode(code int) bool {
 	return code == 404
 }
 
+// Code gets the status code for the delete pool not found response
+func (o *DeletePoolNotFound) Code() int {
+	return 404
+}
+
 func (o *DeletePoolNotFound) Error() string {
 	return fmt.Sprintf("[DELETE /admin/pools/{ipID}][%d] deletePoolNotFound  %+v", 404, o.Payload)
 }
@@ -335,6 +355,11 @@ func (o *DeletePoolTooManyRequests) IsServerError() bool {
 // IsCode returns true when this delete pool too many requests response a status code equal to that given
 func (o *DeletePoolTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the delete pool too many requests response
+func (o *DeletePoolTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *DeletePoolTooManyRequests) Error() string {

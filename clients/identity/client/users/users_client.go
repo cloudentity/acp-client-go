@@ -46,7 +46,11 @@ type ClientService interface {
 
 	ListUsers(params *ListUsersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListUsersOK, error)
 
+	RequestResetPassword(params *RequestResetPasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RequestResetPasswordNoContent, error)
+
 	SendActivationMessage(params *SendActivationMessageParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SendActivationMessageNoContent, error)
+
+	SetPasswordState(params *SetPasswordStateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetPasswordStateNoContent, error)
 
 	UpdateUser(params *UpdateUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateUserOK, error)
 
@@ -58,7 +62,7 @@ type ClientService interface {
 /*
 AddUserIdentifier adds identifier
 
-Adds an identifier to the user account
+Add a new identifier to a user's profile in the specified identity pool.
 */
 func (a *Client) AddUserIdentifier(params *AddUserIdentifierParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AddUserIdentifierOK, error) {
 	// TODO: Validate the params before sending
@@ -99,7 +103,7 @@ func (a *Client) AddUserIdentifier(params *AddUserIdentifierParams, authInfo run
 /*
 AddUserVerifiableAddress adds verifiable address
 
-Adds a verifiable address to the user account
+Add a verifiable address to the user account in the specified identity pool.
 */
 func (a *Client) AddUserVerifiableAddress(params *AddUserVerifiableAddressParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*AddUserVerifiableAddressOK, error) {
 	// TODO: Validate the params before sending
@@ -138,13 +142,21 @@ func (a *Client) AddUserVerifiableAddress(params *AddUserVerifiableAddressParams
 }
 
 /*
-	CreateUser creates user
+	CreateUser creates user account
 
-	Creates a user with extended data. User can be created with any status and set of identifiers, addresses and credentials.
+	Create a user with extended data.
 
-If payload schema ID or metadata schema ID is not provided, they default to the value from Identity Pool.
-Payload and metadata must be valid against a proper schema.
-Returns an extended view on user entry (see Get User endpoint).
+Any status and set of identifiers, addresses, and credentials are allowed.
+If credential of type password is provided it can be marked as must_be_changed which forces user to change its password upon first login.
+
+When no `payload_schema_id` or `metadata_schema_id` are provided, the default values are taken from the
+specified Identity Pool.
+
+Payload and metadata must match the specified schema.
+
+The response contains an extended view on user entry.
+
+To retrieve a user entry without user creation, call the **Get User Details** endpoint.
 */
 func (a *Client) CreateUser(params *CreateUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateUserCreated, error) {
 	// TODO: Validate the params before sending
@@ -183,9 +195,9 @@ func (a *Client) CreateUser(params *CreateUserParams, authInfo runtime.ClientAut
 }
 
 /*
-DeleteUser deletes user
+DeleteUser deletes user account
 
-Deletes user.
+Remove a record about a user account in the specified identity pool.
 */
 func (a *Client) DeleteUser(params *DeleteUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteUserNoContent, error) {
 	// TODO: Validate the params before sending
@@ -224,9 +236,9 @@ func (a *Client) DeleteUser(params *DeleteUserParams, authInfo runtime.ClientAut
 }
 
 /*
-DeleteUserIdentifier deletes identifier
+DeleteUserIdentifier removes identifier
 
-Deletes an identifier from the user account
+Remove an identifier from the specified user account.
 */
 func (a *Client) DeleteUserIdentifier(params *DeleteUserIdentifierParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteUserIdentifierNoContent, error) {
 	// TODO: Validate the params before sending
@@ -267,7 +279,7 @@ func (a *Client) DeleteUserIdentifier(params *DeleteUserIdentifierParams, authIn
 /*
 DeleteUserVerifiableAddress deletes verifiable address
 
-Deletes a verifiable address from the user account
+Remove a verifiable address from a user account so it is no longer associated with the specified user.
 */
 func (a *Client) DeleteUserVerifiableAddress(params *DeleteUserVerifiableAddressParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*DeleteUserVerifiableAddressNoContent, error) {
 	// TODO: Validate the params before sending
@@ -306,12 +318,12 @@ func (a *Client) DeleteUserVerifiableAddress(params *DeleteUserVerifiableAddress
 }
 
 /*
-	GetUser gets user
+	GetUser gets user details
 
-	Returns an extended view on user entry.
+	Retrieve an extended information about a user record.
 
-Besides the basic user entry, it returns all user identifiers, addresses, and credentials (blurred).
-User payload and metadata are also returned.
+The response contains user's basic details, payload, and metadata, as well as all their identifiers,
+addresses, and blurred credentials.
 */
 func (a *Client) GetUser(params *GetUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetUserOK, error) {
 	// TODO: Validate the params before sending
@@ -352,7 +364,7 @@ func (a *Client) GetUser(params *GetUserParams, authInfo runtime.ClientAuthInfoW
 /*
 	ListUsers lists users
 
-	Lists users.
+	Retrieve the list of users from the specified identity pool.
 
 Results are sorted by user ID. No other sorting is supported.
 */
@@ -393,20 +405,76 @@ func (a *Client) ListUsers(params *ListUsersParams, authInfo runtime.ClientAuthI
 }
 
 /*
+	RequestResetPassword requests password reset
+
+	Send an OTP to reset a password.
+
+The first step of the reset password flow. The `address` body parameter can be either `verified` or `unverified`.
+
+A new OTP invalidates any previous OTPs sent for password reset.
+
+Reset password OTP validity period is configured in the identity pool settings.
+*/
+func (a *Client) RequestResetPassword(params *RequestResetPasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RequestResetPasswordNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRequestResetPasswordParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "requestResetPassword",
+		Method:             "POST",
+		PathPattern:        "/admin/pools/{ipID}/users/{userID}/password/reset/request",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RequestResetPasswordReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*RequestResetPasswordNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for requestResetPassword: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
 	SendActivationMessage sends activation message
 
-	Sends an activation message to user to provided address.
+	Send an activation message to the user's provided address.
 
-If an address is not provided then it takes user address as destination (if only one address exists)
-Fails if:
-address is not provided and user has no addresses or more than one
-address is someone's else verified address or identifier
-user status is not New.
-Invalidates previously generated OTPs for user activation.
-If `code_type_in_message` query parameter was set to link or not provided then a link will be generated for activation.
-Activation message is valid for specific period of time configured in Identity Pool.
+When no `address` is provided in the request body, the message is sent to the address saved for this user (if there
+is only one address).
 
-REFACTORED: input field name has been changed from `identifier` to `address`; field `identifier` stays for backward compatibility and overrides `address` if not empty
+The request fails upon the following:
+
+• `address` is not provided and user has no addresses or more than one.
+
+• `address` is someone else's verified address or identifier.
+
+• The user's `status` is not `new`.
+
+This request invalidates any previously generated OTPs for user account activation.
+
+When `code_type_in_message=link` or no value is provided for it, an activation link is generated.
+
+Activation message validity period is configured in the identity pool settings.
+
+❕ REFACTORED: `identifier` is renamed to `address` in the request body. For backward compatibility, the both
+fields are available. If `identifier` is not empty, it overrides the `address` value.
 */
 func (a *Client) SendActivationMessage(params *SendActivationMessageParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SendActivationMessageNoContent, error) {
 	// TODO: Validate the params before sending
@@ -445,14 +513,62 @@ func (a *Client) SendActivationMessage(params *SendActivationMessageParams, auth
 }
 
 /*
-	UpdateUser updates user
+	SetPasswordState sets password state
 
-	Updates base set of user data like payload, metadata, schemas and status.
+	There is a set of well-defined states password can be in:
 
-Updates only provided fields - overrides them. Not provided fields are not removed/cleared.
-If payload or metadata is provided it must be valid against proper schema.
-If any schema is provided then the corresponding entry (payload or metadata) must be valid against it.
-Returns an extended view on user entry (see Get User endpoint).
+`valid` - password is valid and can be used for authentication etc.
+`must_be_reset` - password is not valid for authentication and must be reset
+`must_be_changed` - password is valid for one authentication and then must be changed or will be moved to `must_be_reset` state
+*/
+func (a *Client) SetPasswordState(params *SetPasswordStateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetPasswordStateNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSetPasswordStateParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "setPasswordState",
+		Method:             "PUT",
+		PathPattern:        "/admin/pools/{ipID}/users/{userID}/password/state",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SetPasswordStateReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SetPasswordStateNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for setPasswordState: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	UpdateUser updates user record
+
+	Update the basic set of user data: payload, metadata, schemas, and status. Provide the required values for the fields
+
+you need to update. Fields with no values are skipped for the update (not removed nor cleared).
+
+The fields to be updated are overridden.
+
+Any `payload` / `metadata` and `payload_schema_id` / `metadata_schema_id` values passed must be mutually relevant.
+
+To retrieve a user entry without updating their record, call the **Get User Details** endpoint.
 */
 func (a *Client) UpdateUser(params *UpdateUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateUserOK, error) {
 	// TODO: Validate the params before sending
@@ -493,7 +609,7 @@ func (a *Client) UpdateUser(params *UpdateUserParams, authInfo runtime.ClientAut
 /*
 UpdateUserVerifiableAddress updates verifiable address
 
-Updates a verifiable address of the user account
+Updates a verifiable address for the user account.
 */
 func (a *Client) UpdateUserVerifiableAddress(params *UpdateUserVerifiableAddressParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*UpdateUserVerifiableAddressOK, error) {
 	// TODO: Validate the params before sending

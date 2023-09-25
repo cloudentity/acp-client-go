@@ -66,6 +66,14 @@ type UpdateUserParams struct {
 	// UpdateUser.
 	UpdateUser *models.UpdateUser
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	// IPID.
 	IPID string
 
@@ -136,6 +144,17 @@ func (o *UpdateUserParams) SetUpdateUser(updateUser *models.UpdateUser) {
 	o.UpdateUser = updateUser
 }
 
+// WithIfMatch adds the ifMatch to the update user params
+func (o *UpdateUserParams) WithIfMatch(ifMatch *string) *UpdateUserParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the update user params
+func (o *UpdateUserParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithIPID adds the iPID to the update user params
 func (o *UpdateUserParams) WithIPID(iPID string) *UpdateUserParams {
 	o.SetIPID(iPID)
@@ -167,6 +186,14 @@ func (o *UpdateUserParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 	var res []error
 	if o.UpdateUser != nil {
 		if err := r.SetBodyParam(o.UpdateUser); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

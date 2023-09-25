@@ -72,7 +72,7 @@ func (o *CreatePoolReader) ReadResponse(response runtime.ClientResponse, consume
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /admin/pools] createPool", response, response.Code())
 	}
 }
 
@@ -87,6 +87,15 @@ CreatePoolCreated describes a response with status code 201, with default header
 Identity Pool
 */
 type CreatePoolCreated struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.PoolResponse
 }
 
@@ -115,6 +124,11 @@ func (o *CreatePoolCreated) IsCode(code int) bool {
 	return code == 201
 }
 
+// Code gets the status code for the create pool created response
+func (o *CreatePoolCreated) Code() int {
+	return 201
+}
+
 func (o *CreatePoolCreated) Error() string {
 	return fmt.Sprintf("[POST /admin/pools][%d] createPoolCreated  %+v", 201, o.Payload)
 }
@@ -128,6 +142,13 @@ func (o *CreatePoolCreated) GetPayload() *models.PoolResponse {
 }
 
 func (o *CreatePoolCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.PoolResponse)
 
@@ -176,6 +197,11 @@ func (o *CreatePoolBadRequest) IsServerError() bool {
 // IsCode returns true when this create pool bad request response a status code equal to that given
 func (o *CreatePoolBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the create pool bad request response
+func (o *CreatePoolBadRequest) Code() int {
+	return 400
 }
 
 func (o *CreatePoolBadRequest) Error() string {
@@ -241,6 +267,11 @@ func (o *CreatePoolUnauthorized) IsCode(code int) bool {
 	return code == 401
 }
 
+// Code gets the status code for the create pool unauthorized response
+func (o *CreatePoolUnauthorized) Code() int {
+	return 401
+}
+
 func (o *CreatePoolUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /admin/pools][%d] createPoolUnauthorized  %+v", 401, o.Payload)
 }
@@ -302,6 +333,11 @@ func (o *CreatePoolForbidden) IsServerError() bool {
 // IsCode returns true when this create pool forbidden response a status code equal to that given
 func (o *CreatePoolForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the create pool forbidden response
+func (o *CreatePoolForbidden) Code() int {
+	return 403
 }
 
 func (o *CreatePoolForbidden) Error() string {
@@ -367,6 +403,11 @@ func (o *CreatePoolNotFound) IsCode(code int) bool {
 	return code == 404
 }
 
+// Code gets the status code for the create pool not found response
+func (o *CreatePoolNotFound) Code() int {
+	return 404
+}
+
 func (o *CreatePoolNotFound) Error() string {
 	return fmt.Sprintf("[POST /admin/pools][%d] createPoolNotFound  %+v", 404, o.Payload)
 }
@@ -428,6 +469,11 @@ func (o *CreatePoolConflict) IsServerError() bool {
 // IsCode returns true when this create pool conflict response a status code equal to that given
 func (o *CreatePoolConflict) IsCode(code int) bool {
 	return code == 409
+}
+
+// Code gets the status code for the create pool conflict response
+func (o *CreatePoolConflict) Code() int {
+	return 409
 }
 
 func (o *CreatePoolConflict) Error() string {
@@ -493,6 +539,11 @@ func (o *CreatePoolUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
 }
 
+// Code gets the status code for the create pool unprocessable entity response
+func (o *CreatePoolUnprocessableEntity) Code() int {
+	return 422
+}
+
 func (o *CreatePoolUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /admin/pools][%d] createPoolUnprocessableEntity  %+v", 422, o.Payload)
 }
@@ -554,6 +605,11 @@ func (o *CreatePoolTooManyRequests) IsServerError() bool {
 // IsCode returns true when this create pool too many requests response a status code equal to that given
 func (o *CreatePoolTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the create pool too many requests response
+func (o *CreatePoolTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *CreatePoolTooManyRequests) Error() string {

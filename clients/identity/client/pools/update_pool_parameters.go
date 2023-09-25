@@ -66,6 +66,14 @@ type UpdatePoolParams struct {
 	// Pool.
 	Pool *models.Pool
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	// IPID.
 	IPID string
 
@@ -133,6 +141,17 @@ func (o *UpdatePoolParams) SetPool(pool *models.Pool) {
 	o.Pool = pool
 }
 
+// WithIfMatch adds the ifMatch to the update pool params
+func (o *UpdatePoolParams) WithIfMatch(ifMatch *string) *UpdatePoolParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the update pool params
+func (o *UpdatePoolParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithIPID adds the iPID to the update pool params
 func (o *UpdatePoolParams) WithIPID(iPID string) *UpdatePoolParams {
 	o.SetIPID(iPID)
@@ -153,6 +172,14 @@ func (o *UpdatePoolParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 	var res []error
 	if o.Pool != nil {
 		if err := r.SetBodyParam(o.Pool); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

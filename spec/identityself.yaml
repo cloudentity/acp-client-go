@@ -14,28 +14,6 @@ definitions:
     - old_password
     - new_password
     type: object
-  CodeID:
-    properties:
-      code_id:
-        format: codeID
-        type: string
-        x-nullable: false
-    required:
-    - code_id
-    type: object
-  Codes:
-    properties:
-      code:
-        type: string
-        x-nullable: false
-      extended_code:
-        format: codeID
-        type: string
-        x-nullable: false
-    required:
-    - extended_code
-    - code
-    type: object
   CompleteAddressVerification:
     properties:
       address:
@@ -62,76 +40,6 @@ definitions:
         format: int64
         type: integer
         x-nullable: false
-    type: object
-  ExtendedUser:
-    properties:
-      created_at:
-        format: date-time
-        type: string
-        x-nullable: false
-      id:
-        format: userID
-        type: string
-        x-nullable: false
-      identifiers:
-        items:
-          type: string
-        type: array
-        x-nullable: false
-      metadata:
-        additionalProperties:
-          type: object
-        type: object
-        x-nullable: false
-      metadata_schema_id:
-        format: schemaID
-        type: string
-        x-nullable: false
-      payload:
-        additionalProperties:
-          type: object
-        type: object
-        x-nullable: false
-      payload_schema_id:
-        format: schemaID
-        type: string
-        x-nullable: false
-      status:
-        enum:
-        - active
-        - inactive
-        - deleted
-        - new
-        example: active
-        type: string
-        x-nullable: false
-      status_updated_at:
-        format: date-time
-        type: string
-        x-nullable: false
-      tenant_id:
-        example: default
-        format: tenantID
-        type: string
-        x-nullable: false
-      updated_at:
-        format: date-time
-        type: string
-        x-nullable: false
-      user_pool_id:
-        example: default
-        format: poolID
-        type: string
-        x-nullable: false
-      verified addresses:
-        items:
-          type: string
-        type: array
-        x-nullable: false
-    required:
-    - tenant_id
-    - user_pool_id
-    - status
     type: object
   ResetPasswordConfirm:
     properties:
@@ -164,6 +72,7 @@ definitions:
         - mobile
         - uid
         - external
+        - federated
         example: email
         type: string
         x-nullable: false
@@ -257,274 +166,20 @@ definitions:
         type: array
         x-nullable: false
     type: object
-  UserCredential:
-    properties:
-      created_at:
-        format: date-time
-        type: string
-        x-nullable: false
-      expires_at:
-        format: date-time
-        type: string
-        x-nullable: false
-      id:
-        format: userCredentialID
-        type: string
-        x-nullable: false
-      payload:
-        example:
-          hashed_password: '###'
-        type: object
-        x-nullable: false
-      tenant_id:
-        example: default
-        format: tenantID
-        type: string
-        x-nullable: false
-      type:
-        enum:
-        - password
-        example: password
-        type: string
-        x-nullable: false
-      updated_at:
-        format: date-time
-        type: string
-        x-nullable: false
-      user_id:
-        format: userID
-        type: string
-        x-nullable: false
-      user_pool_id:
-        example: default
-        format: poolID
-        type: string
-        x-nullable: false
-    required:
-    - tenant_id
-    - user_pool_id
-    - user_id
-    - type
-    - payload
-    - created_at
-    - updated_at
-    type: object
-  UserID:
-    properties:
-      id:
-        format: userID
-        type: string
-        x-nullable: false
-    required:
-    - id
-    type: object
-  UserIdentifier:
-    properties:
-      created_at:
-        format: date-time
-        type: string
-        x-nullable: false
-      id:
-        format: userIdentifierID
-        type: string
-        x-nullable: false
-      identifier:
-        format: userIdentifierValue
-        type: string
-        x-nullable: false
-      tenant_id:
-        example: default
-        format: tenantID
-        type: string
-        x-nullable: false
-      type:
-        enum:
-        - email
-        - mobile
-        - uid
-        - external
-        example: email
-        type: string
-        x-nullable: false
-      updated_at:
-        format: date-time
-        type: string
-        x-nullable: false
-      user_id:
-        format: userID
-        type: string
-        x-nullable: false
-      user_pool_id:
-        example: default
-        format: poolID
-        type: string
-        x-nullable: false
-    required:
-    - tenant_id
-    - user_pool_id
-    - identifier
-    - user_id
-    - type
-    - created_at
-    - updated_at
-    type: object
-  UserVerifiableAddress:
-    properties:
-      address:
-        format: verifiableAddress
-        type: string
-        x-nullable: false
-      created_at:
-        format: date-time
-        type: string
-        x-nullable: false
-      id:
-        format: verifiableAddressID
-        type: string
-        x-nullable: false
-      preferred_contact_method:
-        enum:
-        - sms
-        - voice
-        example: sms
-        type: string
-        x-nullable: false
-      status:
-        enum:
-        - active
-        - inactive
-        example: active
-        type: string
-        x-nullable: false
-      tenant_id:
-        example: default
-        format: tenantID
-        type: string
-        x-nullable: false
-      type:
-        enum:
-        - email
-        - mobile
-        example: mobile
-        type: string
-        x-nullable: false
-      updated_at:
-        format: date-time
-        type: string
-        x-nullable: false
-      user_id:
-        format: userID
-        type: string
-        x-nullable: false
-      user_pool_id:
-        example: default
-        format: poolID
-        type: string
-        x-nullable: false
-      verified:
-        type: boolean
-        x-nullable: false
-      verified_at:
-        format: date-time
-        type: string
-        x-nullable: false
-    required:
-    - tenant_id
-    - user_pool_id
-    - user_id
-    - address
-    - type
-    - status
-    - verified
-    - created_at
-    - updated_at
-    type: object
-  UserWithData:
-    properties:
-      created_at:
-        format: date-time
-        type: string
-        x-nullable: false
-      credentials:
-        items:
-          $ref: '#/definitions/UserCredential'
-        type: array
-        x-nullable: false
-      id:
-        format: userID
-        type: string
-        x-nullable: false
-      identifiers:
-        items:
-          $ref: '#/definitions/UserIdentifier'
-        type: array
-        x-nullable: false
-      metadata:
-        additionalProperties:
-          type: object
-        type: object
-        x-nullable: false
-      metadata_schema_id:
-        format: schemaID
-        type: string
-        x-nullable: false
-      payload:
-        additionalProperties:
-          type: object
-        type: object
-        x-nullable: false
-      payload_schema_id:
-        format: schemaID
-        type: string
-        x-nullable: false
-      status:
-        enum:
-        - active
-        - inactive
-        - deleted
-        - new
-        type: string
-        x-nullable: false
-      status_updated_at:
-        format: date-time
-        type: string
-        x-nullable: false
-      tenant_id:
-        example: default
-        format: tenantID
-        type: string
-        x-nullable: false
-      updated_at:
-        format: date-time
-        type: string
-        x-nullable: false
-      user_pool_id:
-        example: default
-        format: poolID
-        type: string
-        x-nullable: false
-      verifiable_addresses:
-        items:
-          $ref: '#/definitions/UserVerifiableAddress'
-        type: array
-        x-nullable: false
-    required:
-    - tenant_id
-    - user_pool_id
-    - status
-    type: object
-  Users:
-    properties:
-      users:
-        items:
-          $ref: '#/definitions/ExtendedUser'
-        type: array
-        x-nullable: false
-    type: object
 host: localhost:8443
 info:
-  description: Cloudentity Authorization Control Plane Identity API
-  title: Cloudentity Authorization Control Plane API
+  description: |-
+    Cloudentity Identity API
+
+    It is important for clients to note that most APIs return the `ETag` response header. When executing API flows which modify and retrieve a given resource, clients are expected to follow `ETag` protocols by:
+    1. Caching the value of an `ETag` returned by the server when retrieving the resource, and
+    2. Supplying the `If-Match` header with the `ETag` value when attempting to modify the resource.
+
+    A `412 Precondition Failed` response will be returned if a write request is delayed after a sufficient length of time while a previous write request was being processed.
+
+    When interacting with APIs, make sure to always supply the If-Match header from the previous ETag header response for full consistency.
+    Otherwise, the APIs may use the cached user data, and not return what you expect!
+  title: Cloudentity API
   version: latest
 paths:
   /public/pools/{ipID}/reset-password/confirm:
@@ -538,6 +193,12 @@ paths:
         Endpoint is protected by Brute Force mechanism.
       operationId: resetPasswordConfirm
       parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - in: path
         name: ipID
         required: true
@@ -548,11 +209,13 @@ paths:
           $ref: '#/definitions/ResetPasswordConfirm'
       responses:
         "204":
-          description: ' Password reset'
+          $ref: '#/responses/ResetPasswordConfirmedResponse'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
+        "412":
+          $ref: '#/responses/payloadTooLargeHTTPError'
         "422":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unprocessableEntityHTTPError'
       summary: Confirm Reset Password
       tags:
       - Users
@@ -566,23 +229,31 @@ paths:
         Endpoint is protected by Brute Force mechanism.
       operationId: completeAddressVerification
       parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - in: body
         name: CompleteAddressVerification
         schema:
           $ref: '#/definitions/CompleteAddressVerification'
       responses:
         "204":
-          description: ' Request accepted'
+          $ref: '#/responses/AddressVerificationCompletedResponse'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
         "409":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/conflictHTTPError'
+        "412":
+          $ref: '#/responses/payloadTooLargeHTTPError'
         "422":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unprocessableEntityHTTPError'
       summary: Complete Address Verification
       tags:
       - OTP
@@ -592,53 +263,72 @@ paths:
         password.
       operationId: changePassword
       parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - in: body
         name: ChangePassword
         schema:
           $ref: '#/definitions/ChangePassword'
       responses:
         "204":
-          description: ' Password has been changed'
+          $ref: '#/responses/ChangePasswordResponse'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
+        "412":
+          $ref: '#/responses/payloadTooLargeHTTPError'
         "422":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unprocessableEntityHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
-      - admin: []
+      - self: []
       summary: Change Password
       tags:
       - Users
   /self/me:
     get:
+      deprecated: true
       description: |-
         Returns base view on user entry. Besides basic user entry it returns all user identifiers and addresses.
         Also returns user metadata (only fields not marked as hidden) and payload.
       operationId: getUserProfile
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       responses:
         "200":
           $ref: '#/responses/GetProfileResponse'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
+        "412":
+          $ref: '#/responses/payloadTooLargeHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
-      - admin: []
+      - self: []
       summary: Self Get User Profile
       tags:
       - Users
     put:
+      deprecated: true
       description: |-
         Updates user payload.
         Payload must be valid against schema defined in user entry.
@@ -646,6 +336,12 @@ paths:
         Returns base view on user entry (see Self Get User Profile endpoint).
       operationId: updateUserProfile
       parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
       - in: body
         name: UpdateUser
         schema:
@@ -654,29 +350,31 @@ paths:
         "200":
           $ref: '#/responses/GetProfileResponse'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "404":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/notFoundHTTPError'
         "409":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/conflictHTTPError'
+        "412":
+          $ref: '#/responses/payloadTooLargeHTTPError'
         "422":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unprocessableEntityHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
-      - admin: []
+      - self: []
       summary: Self Update User Profile
       tags:
       - Users
 produces:
 - application/json
 responses:
-  AddressResponse:
-    description: User
+  AddressVerificationCompletedResponse:
+    description: Address verification completed
     headers:
       etag:
         description: |-
@@ -685,8 +383,6 @@ responses:
           in:header
         format: etag
         type: string
-    schema:
-      $ref: '#/definitions/UserVerifiableAddress'
   ChangePasswordResponse:
     description: Password has been changed
     headers:
@@ -697,76 +393,20 @@ responses:
           in:header
         format: etag
         type: string
-  CodeIDResponse:
-    description: User
-    headers:
-      etag:
-        description: |-
-          The ETag HTTP header is an identifier for a specific version of a resource
-
-          in:header
-        format: etag
-        type: string
-    schema:
-      $ref: '#/definitions/CodeID'
-  CompleteResetPasswordResponse:
-    description: Password reset
-    headers:
-      etag:
-        description: |-
-          The ETag HTTP header is an identifier for a specific version of a resource
-
-          in:header
-        format: etag
-        type: string
-  ConfirmResetPasswordResponse:
-    description: Password reset
-    headers:
-      etag:
-        description: |-
-          The ETag HTTP header is an identifier for a specific version of a resource
-
-          in:header
-        format: etag
-        type: string
-  DeleteAddressResponse:
-    description: Deletes a verifiable address from the user account
-    headers:
-      etag:
-        description: |-
-          The ETag HTTP header is an identifier for a specific version of a resource
-
-          in:header
-        format: etag
-        type: string
-  DeleteIdentifierResponse:
-    description: Deletes an identifier from the user account
-    headers:
-      etag:
-        description: |-
-          The ETag HTTP header is an identifier for a specific version of a resource
-
-          in:header
-        format: etag
-        type: string
-  GenerateCodeResponse:
-    description: User
-    headers:
-      etag:
-        description: |-
-          The ETag HTTP header is an identifier for a specific version of a resource
-
-          in:header
-        format: etag
-        type: string
-    schema:
-      $ref: '#/definitions/Codes'
   GetProfileResponse:
-    description: Self
+    description: User profile data
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
     schema:
       $ref: '#/definitions/SelfUserWithData'
-  IdentifierResponse:
-    description: User
+  ResetPasswordConfirmedResponse:
+    description: Reset password confirmed
     headers:
       etag:
         description: |-
@@ -775,86 +415,54 @@ responses:
           in:header
         format: etag
         type: string
+  badRequestHTTPError:
+    description: Bad request
     schema:
-      $ref: '#/definitions/UserIdentifier'
-  RequestResetPasswordResponse:
-    description: Request accepted
-    headers:
-      etag:
-        description: |-
-          The ETag HTTP header is an identifier for a specific version of a resource
-
-          in:header
-        format: etag
-        type: string
-  SelfSendActivationMessageResponse:
-    description: Activation message sent
-    headers:
-      etag:
-        description: |-
-          The ETag HTTP header is an identifier for a specific version of a resource
-
-          in:header
-        format: etag
-        type: string
-  SystemDeleteUserResponse:
-    description: User has been deleted
-    headers:
-      etag:
-        description: |-
-          The ETag HTTP header is an identifier for a specific version of a resource
-
-          in:header
-        format: etag
-        type: string
-  SystemUsersResponse:
-    description: Identity Users
-    headers:
-      etag:
-        description: |-
-          The ETag HTTP header is an identifier for a specific version of a resource
-
-          in:header
-        format: etag
-        type: string
+      $ref: '#/definitions/Error'
+  conflictHTTPError:
+    description: Conflict
     schema:
-      $ref: '#/definitions/Users'
-  UserIDResponse:
-    description: User
-    headers:
-      etag:
-        description: |-
-          The ETag HTTP header is an identifier for a specific version of a resource
-
-          in:header
-        format: etag
-        type: string
+      $ref: '#/definitions/Error'
+  forbiddenHTTPError:
+    description: Forbidden
     schema:
-      $ref: '#/definitions/UserID'
-  UserResponse:
-    description: User
-    headers:
-      etag:
-        description: |-
-          The ETag HTTP header is an identifier for a specific version of a resource
-
-          in:header
-        format: etag
-        type: string
+      $ref: '#/definitions/Error'
+  internalServerErrorHTTPError:
+    description: Internal server error
     schema:
-      $ref: '#/definitions/UserWithData'
-  UsersResponse:
-    description: Identity Users
+      $ref: '#/definitions/Error'
+  methodNotAllowedHTTPError:
+    description: Method not allowed
     schema:
-      $ref: '#/definitions/Users'
-  httpError:
-    description: HttpError
+      $ref: '#/definitions/Error'
+  notFoundHTTPError:
+    description: Not found
+    schema:
+      $ref: '#/definitions/Error'
+  payloadTooLargeHTTPError:
+    description: Payload too large
+    schema:
+      $ref: '#/definitions/Error'
+  preconditionFailedHTTPError:
+    description: Precondition failed
+    schema:
+      $ref: '#/definitions/Error'
+  tooManyRequestsHTTPError:
+    description: Too many requests
+    schema:
+      $ref: '#/definitions/Error'
+  unauthorizedHTTPError:
+    description: Unauthorized
+    schema:
+      $ref: '#/definitions/Error'
+  unprocessableEntityHTTPError:
+    description: Unprocessable entity
     schema:
       $ref: '#/definitions/Error'
 schemes:
 - https
 securityDefinitions:
-  admin:
+  self:
     authorizationUrl: /default/default/oauth2/authorize
     flow: accessCode
     tokenUrl: /default/default/oauth2/token

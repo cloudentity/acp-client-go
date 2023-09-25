@@ -22,6 +22,10 @@ type InspectOTPUserOperationalData struct {
 	// password set
 	// Required: true
 	PasswordSet bool `json:"password_set"`
+
+	// user id
+	// Required: true
+	UserID string `json:"user_id"`
 }
 
 // Validate validates this inspect o t p user operational data
@@ -29,6 +33,10 @@ func (m *InspectOTPUserOperationalData) Validate(formats strfmt.Registry) error 
 	var res []error
 
 	if err := m.validatePasswordSet(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateUserID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -41,6 +49,15 @@ func (m *InspectOTPUserOperationalData) Validate(formats strfmt.Registry) error 
 func (m *InspectOTPUserOperationalData) validatePasswordSet(formats strfmt.Registry) error {
 
 	if err := validate.Required("password_set", "body", bool(m.PasswordSet)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InspectOTPUserOperationalData) validateUserID(formats strfmt.Registry) error {
+
+	if err := validate.RequiredString("user_id", "body", m.UserID); err != nil {
 		return err
 	}
 

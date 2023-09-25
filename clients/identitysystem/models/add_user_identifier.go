@@ -24,10 +24,13 @@ type AddUserIdentifier struct {
 	// Required: true
 	Identifier string `json:"identifier"`
 
+	// identifier metadata
+	Metadata map[string]interface{} `json:"metadata,omitempty"`
+
 	// type
 	// Example: email
 	// Required: true
-	// Enum: [email mobile uid external]
+	// Enum: [email mobile uid external federated]
 	Type string `json:"type"`
 }
 
@@ -62,7 +65,7 @@ var addUserIdentifierTypeTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["email","mobile","uid","external"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["email","mobile","uid","external","federated"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -83,6 +86,9 @@ const (
 
 	// AddUserIdentifierTypeExternal captures enum value "external"
 	AddUserIdentifierTypeExternal string = "external"
+
+	// AddUserIdentifierTypeFederated captures enum value "federated"
+	AddUserIdentifierTypeFederated string = "federated"
 )
 
 // prop value enum

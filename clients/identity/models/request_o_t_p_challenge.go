@@ -22,12 +22,6 @@ type RequestOTPChallenge struct {
 	// address
 	// Required: true
 	Address string `json:"address"`
-
-	// identifier
-	Identifier string `json:"identifier,omitempty"`
-
-	// user ID
-	UserID string `json:"userID,omitempty"`
 }
 
 // Validate validates this request o t p challenge

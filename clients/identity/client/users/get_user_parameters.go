@@ -61,6 +61,14 @@ GetUserParams contains all the parameters to send to the API endpoint
 */
 type GetUserParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	// IPID.
 	IPID string
 
@@ -120,6 +128,17 @@ func (o *GetUserParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the get user params
+func (o *GetUserParams) WithIfMatch(ifMatch *string) *GetUserParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the get user params
+func (o *GetUserParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithIPID adds the iPID to the get user params
 func (o *GetUserParams) WithIPID(iPID string) *GetUserParams {
 	o.SetIPID(iPID)
@@ -149,6 +168,14 @@ func (o *GetUserParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regis
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	// path param ipID
 	if err := r.SetPathParam("ipID", o.IPID); err != nil {

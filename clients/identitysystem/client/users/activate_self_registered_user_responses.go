@@ -66,7 +66,7 @@ func (o *ActivateSelfRegisteredUserReader) ReadResponse(response runtime.ClientR
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /system/pools/{ipID}/users/{userID}/activate] activateSelfRegisteredUser", response, response.Code())
 	}
 }
 
@@ -116,6 +116,11 @@ func (o *ActivateSelfRegisteredUserCreated) IsServerError() bool {
 // IsCode returns true when this activate self registered user created response a status code equal to that given
 func (o *ActivateSelfRegisteredUserCreated) IsCode(code int) bool {
 	return code == 201
+}
+
+// Code gets the status code for the activate self registered user created response
+func (o *ActivateSelfRegisteredUserCreated) Code() int {
+	return 201
 }
 
 func (o *ActivateSelfRegisteredUserCreated) Error() string {
@@ -188,6 +193,11 @@ func (o *ActivateSelfRegisteredUserBadRequest) IsCode(code int) bool {
 	return code == 400
 }
 
+// Code gets the status code for the activate self registered user bad request response
+func (o *ActivateSelfRegisteredUserBadRequest) Code() int {
+	return 400
+}
+
 func (o *ActivateSelfRegisteredUserBadRequest) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/activate][%d] activateSelfRegisteredUserBadRequest  %+v", 400, o.Payload)
 }
@@ -249,6 +259,11 @@ func (o *ActivateSelfRegisteredUserUnauthorized) IsServerError() bool {
 // IsCode returns true when this activate self registered user unauthorized response a status code equal to that given
 func (o *ActivateSelfRegisteredUserUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the activate self registered user unauthorized response
+func (o *ActivateSelfRegisteredUserUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ActivateSelfRegisteredUserUnauthorized) Error() string {
@@ -314,6 +329,11 @@ func (o *ActivateSelfRegisteredUserNotFound) IsCode(code int) bool {
 	return code == 404
 }
 
+// Code gets the status code for the activate self registered user not found response
+func (o *ActivateSelfRegisteredUserNotFound) Code() int {
+	return 404
+}
+
 func (o *ActivateSelfRegisteredUserNotFound) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/activate][%d] activateSelfRegisteredUserNotFound  %+v", 404, o.Payload)
 }
@@ -375,6 +395,11 @@ func (o *ActivateSelfRegisteredUserPreconditionFailed) IsServerError() bool {
 // IsCode returns true when this activate self registered user precondition failed response a status code equal to that given
 func (o *ActivateSelfRegisteredUserPreconditionFailed) IsCode(code int) bool {
 	return code == 412
+}
+
+// Code gets the status code for the activate self registered user precondition failed response
+func (o *ActivateSelfRegisteredUserPreconditionFailed) Code() int {
+	return 412
 }
 
 func (o *ActivateSelfRegisteredUserPreconditionFailed) Error() string {
@@ -440,6 +465,11 @@ func (o *ActivateSelfRegisteredUserUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
 }
 
+// Code gets the status code for the activate self registered user unprocessable entity response
+func (o *ActivateSelfRegisteredUserUnprocessableEntity) Code() int {
+	return 422
+}
+
 func (o *ActivateSelfRegisteredUserUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/activate][%d] activateSelfRegisteredUserUnprocessableEntity  %+v", 422, o.Payload)
 }
@@ -501,6 +531,11 @@ func (o *ActivateSelfRegisteredUserTooManyRequests) IsServerError() bool {
 // IsCode returns true when this activate self registered user too many requests response a status code equal to that given
 func (o *ActivateSelfRegisteredUserTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the activate self registered user too many requests response
+func (o *ActivateSelfRegisteredUserTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ActivateSelfRegisteredUserTooManyRequests) Error() string {

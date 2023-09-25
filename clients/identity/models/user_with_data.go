@@ -327,6 +327,11 @@ func (m *UserWithData) contextValidateCredentials(ctx context.Context, formats s
 	for i := 0; i < len(m.Credentials); i++ {
 
 		if m.Credentials[i] != nil {
+
+			if swag.IsZero(m.Credentials[i]) { // not required
+				return nil
+			}
+
 			if err := m.Credentials[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("credentials" + "." + strconv.Itoa(i))
@@ -347,6 +352,11 @@ func (m *UserWithData) contextValidateIdentifiers(ctx context.Context, formats s
 	for i := 0; i < len(m.Identifiers); i++ {
 
 		if m.Identifiers[i] != nil {
+
+			if swag.IsZero(m.Identifiers[i]) { // not required
+				return nil
+			}
+
 			if err := m.Identifiers[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("identifiers" + "." + strconv.Itoa(i))
@@ -367,6 +377,11 @@ func (m *UserWithData) contextValidateVerifiableAddresses(ctx context.Context, f
 	for i := 0; i < len(m.VerifiableAddresses); i++ {
 
 		if m.VerifiableAddresses[i] != nil {
+
+			if swag.IsZero(m.VerifiableAddresses[i]) { // not required
+				return nil
+			}
+
 			if err := m.VerifiableAddresses[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("verifiable_addresses" + "." + strconv.Itoa(i))

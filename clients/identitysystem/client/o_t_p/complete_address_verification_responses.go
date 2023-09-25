@@ -66,7 +66,7 @@ func (o *CompleteAddressVerificationReader) ReadResponse(response runtime.Client
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /system/pools/{ipID}/users/{userID}/address/verification/complete] completeAddressVerification", response, response.Code())
 	}
 }
 
@@ -114,6 +114,11 @@ func (o *CompleteAddressVerificationNoContent) IsServerError() bool {
 // IsCode returns true when this complete address verification no content response a status code equal to that given
 func (o *CompleteAddressVerificationNoContent) IsCode(code int) bool {
 	return code == 204
+}
+
+// Code gets the status code for the complete address verification no content response
+func (o *CompleteAddressVerificationNoContent) Code() int {
+	return 204
 }
 
 func (o *CompleteAddressVerificationNoContent) Error() string {
@@ -173,6 +178,11 @@ func (o *CompleteAddressVerificationBadRequest) IsServerError() bool {
 // IsCode returns true when this complete address verification bad request response a status code equal to that given
 func (o *CompleteAddressVerificationBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the complete address verification bad request response
+func (o *CompleteAddressVerificationBadRequest) Code() int {
+	return 400
 }
 
 func (o *CompleteAddressVerificationBadRequest) Error() string {
@@ -238,6 +248,11 @@ func (o *CompleteAddressVerificationUnauthorized) IsCode(code int) bool {
 	return code == 401
 }
 
+// Code gets the status code for the complete address verification unauthorized response
+func (o *CompleteAddressVerificationUnauthorized) Code() int {
+	return 401
+}
+
 func (o *CompleteAddressVerificationUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/complete][%d] completeAddressVerificationUnauthorized  %+v", 401, o.Payload)
 }
@@ -299,6 +314,11 @@ func (o *CompleteAddressVerificationNotFound) IsServerError() bool {
 // IsCode returns true when this complete address verification not found response a status code equal to that given
 func (o *CompleteAddressVerificationNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the complete address verification not found response
+func (o *CompleteAddressVerificationNotFound) Code() int {
+	return 404
 }
 
 func (o *CompleteAddressVerificationNotFound) Error() string {
@@ -364,6 +384,11 @@ func (o *CompleteAddressVerificationConflict) IsCode(code int) bool {
 	return code == 409
 }
 
+// Code gets the status code for the complete address verification conflict response
+func (o *CompleteAddressVerificationConflict) Code() int {
+	return 409
+}
+
 func (o *CompleteAddressVerificationConflict) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/complete][%d] completeAddressVerificationConflict  %+v", 409, o.Payload)
 }
@@ -427,6 +452,11 @@ func (o *CompleteAddressVerificationPreconditionFailed) IsCode(code int) bool {
 	return code == 412
 }
 
+// Code gets the status code for the complete address verification precondition failed response
+func (o *CompleteAddressVerificationPreconditionFailed) Code() int {
+	return 412
+}
+
 func (o *CompleteAddressVerificationPreconditionFailed) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/address/verification/complete][%d] completeAddressVerificationPreconditionFailed  %+v", 412, o.Payload)
 }
@@ -488,6 +518,11 @@ func (o *CompleteAddressVerificationUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this complete address verification unprocessable entity response a status code equal to that given
 func (o *CompleteAddressVerificationUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the complete address verification unprocessable entity response
+func (o *CompleteAddressVerificationUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *CompleteAddressVerificationUnprocessableEntity) Error() string {

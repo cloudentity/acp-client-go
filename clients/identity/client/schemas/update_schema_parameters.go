@@ -66,6 +66,14 @@ type UpdateSchemaParams struct {
 	// Schema.
 	Schema *models.Schema
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	// SchID.
 	SchID string
 
@@ -133,6 +141,17 @@ func (o *UpdateSchemaParams) SetSchema(schema *models.Schema) {
 	o.Schema = schema
 }
 
+// WithIfMatch adds the ifMatch to the update schema params
+func (o *UpdateSchemaParams) WithIfMatch(ifMatch *string) *UpdateSchemaParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the update schema params
+func (o *UpdateSchemaParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithSchID adds the schID to the update schema params
 func (o *UpdateSchemaParams) WithSchID(schID string) *UpdateSchemaParams {
 	o.SetSchID(schID)
@@ -153,6 +172,14 @@ func (o *UpdateSchemaParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 	var res []error
 	if o.Schema != nil {
 		if err := r.SetBodyParam(o.Schema); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

@@ -54,7 +54,7 @@ func (o *RequestResetPasswordReader) ReadResponse(response runtime.ClientRespons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /system/pools/{ipID}/user/password/reset/request] requestResetPassword", response, response.Code())
 	}
 }
 
@@ -102,6 +102,11 @@ func (o *RequestResetPasswordNoContent) IsServerError() bool {
 // IsCode returns true when this request reset password no content response a status code equal to that given
 func (o *RequestResetPasswordNoContent) IsCode(code int) bool {
 	return code == 204
+}
+
+// Code gets the status code for the request reset password no content response
+func (o *RequestResetPasswordNoContent) Code() int {
+	return 204
 }
 
 func (o *RequestResetPasswordNoContent) Error() string {
@@ -161,6 +166,11 @@ func (o *RequestResetPasswordBadRequest) IsServerError() bool {
 // IsCode returns true when this request reset password bad request response a status code equal to that given
 func (o *RequestResetPasswordBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the request reset password bad request response
+func (o *RequestResetPasswordBadRequest) Code() int {
+	return 400
 }
 
 func (o *RequestResetPasswordBadRequest) Error() string {
@@ -226,6 +236,11 @@ func (o *RequestResetPasswordUnauthorized) IsCode(code int) bool {
 	return code == 401
 }
 
+// Code gets the status code for the request reset password unauthorized response
+func (o *RequestResetPasswordUnauthorized) Code() int {
+	return 401
+}
+
 func (o *RequestResetPasswordUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/user/password/reset/request][%d] requestResetPasswordUnauthorized  %+v", 401, o.Payload)
 }
@@ -289,6 +304,11 @@ func (o *RequestResetPasswordPreconditionFailed) IsCode(code int) bool {
 	return code == 412
 }
 
+// Code gets the status code for the request reset password precondition failed response
+func (o *RequestResetPasswordPreconditionFailed) Code() int {
+	return 412
+}
+
 func (o *RequestResetPasswordPreconditionFailed) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/user/password/reset/request][%d] requestResetPasswordPreconditionFailed  %+v", 412, o.Payload)
 }
@@ -350,6 +370,11 @@ func (o *RequestResetPasswordUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this request reset password unprocessable entity response a status code equal to that given
 func (o *RequestResetPasswordUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the request reset password unprocessable entity response
+func (o *RequestResetPasswordUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *RequestResetPasswordUnprocessableEntity) Error() string {

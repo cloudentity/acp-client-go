@@ -72,7 +72,7 @@ func (o *CreateUserReader) ReadResponse(response runtime.ClientResponse, consume
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /admin/pools/{ipID}/users] createUser", response, response.Code())
 	}
 }
 
@@ -87,6 +87,15 @@ CreateUserCreated describes a response with status code 201, with default header
 User
 */
 type CreateUserCreated struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.UserWithData
 }
 
@@ -115,6 +124,11 @@ func (o *CreateUserCreated) IsCode(code int) bool {
 	return code == 201
 }
 
+// Code gets the status code for the create user created response
+func (o *CreateUserCreated) Code() int {
+	return 201
+}
+
 func (o *CreateUserCreated) Error() string {
 	return fmt.Sprintf("[POST /admin/pools/{ipID}/users][%d] createUserCreated  %+v", 201, o.Payload)
 }
@@ -128,6 +142,13 @@ func (o *CreateUserCreated) GetPayload() *models.UserWithData {
 }
 
 func (o *CreateUserCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.UserWithData)
 
@@ -176,6 +197,11 @@ func (o *CreateUserBadRequest) IsServerError() bool {
 // IsCode returns true when this create user bad request response a status code equal to that given
 func (o *CreateUserBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the create user bad request response
+func (o *CreateUserBadRequest) Code() int {
+	return 400
 }
 
 func (o *CreateUserBadRequest) Error() string {
@@ -241,6 +267,11 @@ func (o *CreateUserUnauthorized) IsCode(code int) bool {
 	return code == 401
 }
 
+// Code gets the status code for the create user unauthorized response
+func (o *CreateUserUnauthorized) Code() int {
+	return 401
+}
+
 func (o *CreateUserUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /admin/pools/{ipID}/users][%d] createUserUnauthorized  %+v", 401, o.Payload)
 }
@@ -302,6 +333,11 @@ func (o *CreateUserForbidden) IsServerError() bool {
 // IsCode returns true when this create user forbidden response a status code equal to that given
 func (o *CreateUserForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the create user forbidden response
+func (o *CreateUserForbidden) Code() int {
+	return 403
 }
 
 func (o *CreateUserForbidden) Error() string {
@@ -367,6 +403,11 @@ func (o *CreateUserNotFound) IsCode(code int) bool {
 	return code == 404
 }
 
+// Code gets the status code for the create user not found response
+func (o *CreateUserNotFound) Code() int {
+	return 404
+}
+
 func (o *CreateUserNotFound) Error() string {
 	return fmt.Sprintf("[POST /admin/pools/{ipID}/users][%d] createUserNotFound  %+v", 404, o.Payload)
 }
@@ -428,6 +469,11 @@ func (o *CreateUserConflict) IsServerError() bool {
 // IsCode returns true when this create user conflict response a status code equal to that given
 func (o *CreateUserConflict) IsCode(code int) bool {
 	return code == 409
+}
+
+// Code gets the status code for the create user conflict response
+func (o *CreateUserConflict) Code() int {
+	return 409
 }
 
 func (o *CreateUserConflict) Error() string {
@@ -493,6 +539,11 @@ func (o *CreateUserUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
 }
 
+// Code gets the status code for the create user unprocessable entity response
+func (o *CreateUserUnprocessableEntity) Code() int {
+	return 422
+}
+
 func (o *CreateUserUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /admin/pools/{ipID}/users][%d] createUserUnprocessableEntity  %+v", 422, o.Payload)
 }
@@ -554,6 +605,11 @@ func (o *CreateUserTooManyRequests) IsServerError() bool {
 // IsCode returns true when this create user too many requests response a status code equal to that given
 func (o *CreateUserTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the create user too many requests response
+func (o *CreateUserTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *CreateUserTooManyRequests) Error() string {

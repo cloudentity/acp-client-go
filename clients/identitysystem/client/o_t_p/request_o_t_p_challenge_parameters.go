@@ -64,7 +64,7 @@ RequestOTPChallengeParams contains all the parameters to send to the API endpoin
 type RequestOTPChallengeParams struct {
 
 	// RequestOTPChallenge.
-	RequestOTPChallenge *models.RequestOTPChallenge
+	RequestOTPChallenge *models.RequestOTPCode
 
 	/* IfMatch.
 
@@ -76,6 +76,13 @@ type RequestOTPChallengeParams struct {
 
 	// IPID.
 	IPID string
+
+	/* ServerID.
+
+	     optional server's identifier (used for themes etc.)
+	ServerID
+	*/
+	ServerID *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -131,13 +138,13 @@ func (o *RequestOTPChallengeParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestOTPChallenge adds the requestOTPChallenge to the request o t p challenge params
-func (o *RequestOTPChallengeParams) WithRequestOTPChallenge(requestOTPChallenge *models.RequestOTPChallenge) *RequestOTPChallengeParams {
+func (o *RequestOTPChallengeParams) WithRequestOTPChallenge(requestOTPChallenge *models.RequestOTPCode) *RequestOTPChallengeParams {
 	o.SetRequestOTPChallenge(requestOTPChallenge)
 	return o
 }
 
 // SetRequestOTPChallenge adds the requestOTPChallenge to the request o t p challenge params
-func (o *RequestOTPChallengeParams) SetRequestOTPChallenge(requestOTPChallenge *models.RequestOTPChallenge) {
+func (o *RequestOTPChallengeParams) SetRequestOTPChallenge(requestOTPChallenge *models.RequestOTPCode) {
 	o.RequestOTPChallenge = requestOTPChallenge
 }
 
@@ -161,6 +168,17 @@ func (o *RequestOTPChallengeParams) WithIPID(iPID string) *RequestOTPChallengePa
 // SetIPID adds the ipId to the request o t p challenge params
 func (o *RequestOTPChallengeParams) SetIPID(iPID string) {
 	o.IPID = iPID
+}
+
+// WithServerID adds the serverID to the request o t p challenge params
+func (o *RequestOTPChallengeParams) WithServerID(serverID *string) *RequestOTPChallengeParams {
+	o.SetServerID(serverID)
+	return o
+}
+
+// SetServerID adds the serverId to the request o t p challenge params
+func (o *RequestOTPChallengeParams) SetServerID(serverID *string) {
+	o.ServerID = serverID
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -187,6 +205,23 @@ func (o *RequestOTPChallengeParams) WriteToRequest(r runtime.ClientRequest, reg 
 	// path param ipID
 	if err := r.SetPathParam("ipID", o.IPID); err != nil {
 		return err
+	}
+
+	if o.ServerID != nil {
+
+		// query param server_id
+		var qrServerID string
+
+		if o.ServerID != nil {
+			qrServerID = *o.ServerID
+		}
+		qServerID := qrServerID
+		if qServerID != "" {
+
+			if err := r.SetQueryParam("server_id", qServerID); err != nil {
+				return err
+			}
+		}
 	}
 
 	if len(res) > 0 {

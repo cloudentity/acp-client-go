@@ -66,6 +66,14 @@ type CompleteAddressVerificationParams struct {
 	// CompleteAddressVerification.
 	CompleteAddressVerification *models.CompleteAddressVerification
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -130,6 +138,17 @@ func (o *CompleteAddressVerificationParams) SetCompleteAddressVerification(compl
 	o.CompleteAddressVerification = completeAddressVerification
 }
 
+// WithIfMatch adds the ifMatch to the complete address verification params
+func (o *CompleteAddressVerificationParams) WithIfMatch(ifMatch *string) *CompleteAddressVerificationParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the complete address verification params
+func (o *CompleteAddressVerificationParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *CompleteAddressVerificationParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -139,6 +158,14 @@ func (o *CompleteAddressVerificationParams) WriteToRequest(r runtime.ClientReque
 	var res []error
 	if o.CompleteAddressVerification != nil {
 		if err := r.SetBodyParam(o.CompleteAddressVerification); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

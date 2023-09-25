@@ -47,7 +47,7 @@ type Code struct {
 	// type
 	// Example: active
 	// Required: true
-	// Enum: [activation reset_password challenge verify_address]
+	// Enum: [activation reset_password challenge verify_address authentication]
 	Type string `json:"type"`
 
 	// user id
@@ -174,7 +174,7 @@ var codeTypeTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["activation","reset_password","challenge","verify_address"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["activation","reset_password","challenge","verify_address","authentication"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -195,6 +195,9 @@ const (
 
 	// CodeTypeVerifyAddress captures enum value "verify_address"
 	CodeTypeVerifyAddress string = "verify_address"
+
+	// CodeTypeAuthentication captures enum value "authentication"
+	CodeTypeAuthentication string = "authentication"
 )
 
 // prop value enum
@@ -254,6 +257,7 @@ func (m *Code) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 func (m *Code) contextValidateCode(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Code != nil {
+
 		if err := m.Code.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("code")

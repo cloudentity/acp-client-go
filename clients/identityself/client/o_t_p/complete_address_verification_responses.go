@@ -53,6 +53,12 @@ func (o *CompleteAddressVerificationReader) ReadResponse(response runtime.Client
 			return nil, err
 		}
 		return nil, result
+	case 412:
+		result := NewCompleteAddressVerificationPreconditionFailed()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	case 422:
 		result := NewCompleteAddressVerificationUnprocessableEntity()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -60,7 +66,7 @@ func (o *CompleteAddressVerificationReader) ReadResponse(response runtime.Client
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /self/address-verification/complete] completeAddressVerification", response, response.Code())
 	}
 }
 
@@ -72,9 +78,17 @@ func NewCompleteAddressVerificationNoContent() *CompleteAddressVerificationNoCon
 /*
 CompleteAddressVerificationNoContent describes a response with status code 204, with default header values.
 
-	Request accepted
+Address verification completed
 */
 type CompleteAddressVerificationNoContent struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
 }
 
 // IsSuccess returns true when this complete address verification no content response has a 2xx status code
@@ -102,6 +116,11 @@ func (o *CompleteAddressVerificationNoContent) IsCode(code int) bool {
 	return code == 204
 }
 
+// Code gets the status code for the complete address verification no content response
+func (o *CompleteAddressVerificationNoContent) Code() int {
+	return 204
+}
+
 func (o *CompleteAddressVerificationNoContent) Error() string {
 	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationNoContent ", 204)
 }
@@ -111,6 +130,13 @@ func (o *CompleteAddressVerificationNoContent) String() string {
 }
 
 func (o *CompleteAddressVerificationNoContent) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	return nil
 }
@@ -123,7 +149,7 @@ func NewCompleteAddressVerificationBadRequest() *CompleteAddressVerificationBadR
 /*
 CompleteAddressVerificationBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type CompleteAddressVerificationBadRequest struct {
 	Payload *models.Error
@@ -152,6 +178,11 @@ func (o *CompleteAddressVerificationBadRequest) IsServerError() bool {
 // IsCode returns true when this complete address verification bad request response a status code equal to that given
 func (o *CompleteAddressVerificationBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the complete address verification bad request response
+func (o *CompleteAddressVerificationBadRequest) Code() int {
+	return 400
 }
 
 func (o *CompleteAddressVerificationBadRequest) Error() string {
@@ -186,7 +217,7 @@ func NewCompleteAddressVerificationUnauthorized() *CompleteAddressVerificationUn
 /*
 CompleteAddressVerificationUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type CompleteAddressVerificationUnauthorized struct {
 	Payload *models.Error
@@ -215,6 +246,11 @@ func (o *CompleteAddressVerificationUnauthorized) IsServerError() bool {
 // IsCode returns true when this complete address verification unauthorized response a status code equal to that given
 func (o *CompleteAddressVerificationUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the complete address verification unauthorized response
+func (o *CompleteAddressVerificationUnauthorized) Code() int {
+	return 401
 }
 
 func (o *CompleteAddressVerificationUnauthorized) Error() string {
@@ -249,7 +285,7 @@ func NewCompleteAddressVerificationNotFound() *CompleteAddressVerificationNotFou
 /*
 CompleteAddressVerificationNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type CompleteAddressVerificationNotFound struct {
 	Payload *models.Error
@@ -278,6 +314,11 @@ func (o *CompleteAddressVerificationNotFound) IsServerError() bool {
 // IsCode returns true when this complete address verification not found response a status code equal to that given
 func (o *CompleteAddressVerificationNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the complete address verification not found response
+func (o *CompleteAddressVerificationNotFound) Code() int {
+	return 404
 }
 
 func (o *CompleteAddressVerificationNotFound) Error() string {
@@ -312,7 +353,7 @@ func NewCompleteAddressVerificationConflict() *CompleteAddressVerificationConfli
 /*
 CompleteAddressVerificationConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type CompleteAddressVerificationConflict struct {
 	Payload *models.Error
@@ -343,6 +384,11 @@ func (o *CompleteAddressVerificationConflict) IsCode(code int) bool {
 	return code == 409
 }
 
+// Code gets the status code for the complete address verification conflict response
+func (o *CompleteAddressVerificationConflict) Code() int {
+	return 409
+}
+
 func (o *CompleteAddressVerificationConflict) Error() string {
 	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationConflict  %+v", 409, o.Payload)
 }
@@ -367,6 +413,74 @@ func (o *CompleteAddressVerificationConflict) readResponse(response runtime.Clie
 	return nil
 }
 
+// NewCompleteAddressVerificationPreconditionFailed creates a CompleteAddressVerificationPreconditionFailed with default headers values
+func NewCompleteAddressVerificationPreconditionFailed() *CompleteAddressVerificationPreconditionFailed {
+	return &CompleteAddressVerificationPreconditionFailed{}
+}
+
+/*
+CompleteAddressVerificationPreconditionFailed describes a response with status code 412, with default header values.
+
+Payload too large
+*/
+type CompleteAddressVerificationPreconditionFailed struct {
+	Payload *models.Error
+}
+
+// IsSuccess returns true when this complete address verification precondition failed response has a 2xx status code
+func (o *CompleteAddressVerificationPreconditionFailed) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this complete address verification precondition failed response has a 3xx status code
+func (o *CompleteAddressVerificationPreconditionFailed) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this complete address verification precondition failed response has a 4xx status code
+func (o *CompleteAddressVerificationPreconditionFailed) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this complete address verification precondition failed response has a 5xx status code
+func (o *CompleteAddressVerificationPreconditionFailed) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this complete address verification precondition failed response a status code equal to that given
+func (o *CompleteAddressVerificationPreconditionFailed) IsCode(code int) bool {
+	return code == 412
+}
+
+// Code gets the status code for the complete address verification precondition failed response
+func (o *CompleteAddressVerificationPreconditionFailed) Code() int {
+	return 412
+}
+
+func (o *CompleteAddressVerificationPreconditionFailed) Error() string {
+	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationPreconditionFailed  %+v", 412, o.Payload)
+}
+
+func (o *CompleteAddressVerificationPreconditionFailed) String() string {
+	return fmt.Sprintf("[POST /self/address-verification/complete][%d] completeAddressVerificationPreconditionFailed  %+v", 412, o.Payload)
+}
+
+func (o *CompleteAddressVerificationPreconditionFailed) GetPayload() *models.Error {
+	return o.Payload
+}
+
+func (o *CompleteAddressVerificationPreconditionFailed) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
+
+	return nil
+}
+
 // NewCompleteAddressVerificationUnprocessableEntity creates a CompleteAddressVerificationUnprocessableEntity with default headers values
 func NewCompleteAddressVerificationUnprocessableEntity() *CompleteAddressVerificationUnprocessableEntity {
 	return &CompleteAddressVerificationUnprocessableEntity{}
@@ -375,7 +489,7 @@ func NewCompleteAddressVerificationUnprocessableEntity() *CompleteAddressVerific
 /*
 CompleteAddressVerificationUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type CompleteAddressVerificationUnprocessableEntity struct {
 	Payload *models.Error
@@ -404,6 +518,11 @@ func (o *CompleteAddressVerificationUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this complete address verification unprocessable entity response a status code equal to that given
 func (o *CompleteAddressVerificationUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the complete address verification unprocessable entity response
+func (o *CompleteAddressVerificationUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *CompleteAddressVerificationUnprocessableEntity) Error() string {

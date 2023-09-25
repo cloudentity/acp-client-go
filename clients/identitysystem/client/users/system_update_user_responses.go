@@ -78,7 +78,7 @@ func (o *SystemUpdateUserReader) ReadResponse(response runtime.ClientResponse, c
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /system/pools/{ipID}/users/{userID}] systemUpdateUser", response, response.Code())
 	}
 }
 
@@ -128,6 +128,11 @@ func (o *SystemUpdateUserOK) IsServerError() bool {
 // IsCode returns true when this system update user o k response a status code equal to that given
 func (o *SystemUpdateUserOK) IsCode(code int) bool {
 	return code == 200
+}
+
+// Code gets the status code for the system update user o k response
+func (o *SystemUpdateUserOK) Code() int {
+	return 200
 }
 
 func (o *SystemUpdateUserOK) Error() string {
@@ -200,6 +205,11 @@ func (o *SystemUpdateUserBadRequest) IsCode(code int) bool {
 	return code == 400
 }
 
+// Code gets the status code for the system update user bad request response
+func (o *SystemUpdateUserBadRequest) Code() int {
+	return 400
+}
+
 func (o *SystemUpdateUserBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserBadRequest  %+v", 400, o.Payload)
 }
@@ -261,6 +271,11 @@ func (o *SystemUpdateUserUnauthorized) IsServerError() bool {
 // IsCode returns true when this system update user unauthorized response a status code equal to that given
 func (o *SystemUpdateUserUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the system update user unauthorized response
+func (o *SystemUpdateUserUnauthorized) Code() int {
+	return 401
 }
 
 func (o *SystemUpdateUserUnauthorized) Error() string {
@@ -326,6 +341,11 @@ func (o *SystemUpdateUserForbidden) IsCode(code int) bool {
 	return code == 403
 }
 
+// Code gets the status code for the system update user forbidden response
+func (o *SystemUpdateUserForbidden) Code() int {
+	return 403
+}
+
 func (o *SystemUpdateUserForbidden) Error() string {
 	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserForbidden  %+v", 403, o.Payload)
 }
@@ -387,6 +407,11 @@ func (o *SystemUpdateUserNotFound) IsServerError() bool {
 // IsCode returns true when this system update user not found response a status code equal to that given
 func (o *SystemUpdateUserNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the system update user not found response
+func (o *SystemUpdateUserNotFound) Code() int {
+	return 404
 }
 
 func (o *SystemUpdateUserNotFound) Error() string {
@@ -452,6 +477,11 @@ func (o *SystemUpdateUserConflict) IsCode(code int) bool {
 	return code == 409
 }
 
+// Code gets the status code for the system update user conflict response
+func (o *SystemUpdateUserConflict) Code() int {
+	return 409
+}
+
 func (o *SystemUpdateUserConflict) Error() string {
 	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserConflict  %+v", 409, o.Payload)
 }
@@ -513,6 +543,11 @@ func (o *SystemUpdateUserPreconditionFailed) IsServerError() bool {
 // IsCode returns true when this system update user precondition failed response a status code equal to that given
 func (o *SystemUpdateUserPreconditionFailed) IsCode(code int) bool {
 	return code == 412
+}
+
+// Code gets the status code for the system update user precondition failed response
+func (o *SystemUpdateUserPreconditionFailed) Code() int {
+	return 412
 }
 
 func (o *SystemUpdateUserPreconditionFailed) Error() string {
@@ -578,6 +613,11 @@ func (o *SystemUpdateUserUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
 }
 
+// Code gets the status code for the system update user unprocessable entity response
+func (o *SystemUpdateUserUnprocessableEntity) Code() int {
+	return 422
+}
+
 func (o *SystemUpdateUserUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /system/pools/{ipID}/users/{userID}][%d] systemUpdateUserUnprocessableEntity  %+v", 422, o.Payload)
 }
@@ -639,6 +679,11 @@ func (o *SystemUpdateUserTooManyRequests) IsServerError() bool {
 // IsCode returns true when this system update user too many requests response a status code equal to that given
 func (o *SystemUpdateUserTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the system update user too many requests response
+func (o *SystemUpdateUserTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *SystemUpdateUserTooManyRequests) Error() string {

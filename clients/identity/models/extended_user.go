@@ -8,6 +8,7 @@ package models
 import (
 	"context"
 	"encoding/json"
+	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -20,6 +21,9 @@ import (
 // swagger:model ExtendedUser
 type ExtendedUser struct {
 
+	// addresses
+	Addresses []*Address `json:"addresses"`
+
 	// created at
 	// Format: date-time
 	CreatedAt strfmt.DateTime `json:"created_at,omitempty"`
@@ -29,6 +33,9 @@ type ExtendedUser struct {
 
 	// identifiers
 	Identifiers []string `json:"identifiers"`
+
+	// identifiers with details
+	IdentifiersWithDetails []*IdentifierDetails `json:"identifiers_with_details"`
 
 	// metadata
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
@@ -66,6 +73,9 @@ type ExtendedUser struct {
 	// Required: true
 	UserPoolID string `json:"user_pool_id"`
 
+	// user type
+	UserType interface{} `json:"user_type,omitempty"`
+
 	// verified addresses
 	VerifiedAddresses []string `json:"verified addresses"`
 }
@@ -74,7 +84,15 @@ type ExtendedUser struct {
 func (m *ExtendedUser) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAddresses(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateCreatedAt(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIdentifiersWithDetails(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -104,6 +122,32 @@ func (m *ExtendedUser) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *ExtendedUser) validateAddresses(formats strfmt.Registry) error {
+	if swag.IsZero(m.Addresses) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Addresses); i++ {
+		if swag.IsZero(m.Addresses[i]) { // not required
+			continue
+		}
+
+		if m.Addresses[i] != nil {
+			if err := m.Addresses[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("addresses" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("addresses" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *ExtendedUser) validateCreatedAt(formats strfmt.Registry) error {
 	if swag.IsZero(m.CreatedAt) { // not required
 		return nil
@@ -111,6 +155,32 @@ func (m *ExtendedUser) validateCreatedAt(formats strfmt.Registry) error {
 
 	if err := validate.FormatOf("created_at", "body", "date-time", m.CreatedAt.String(), formats); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *ExtendedUser) validateIdentifiersWithDetails(formats strfmt.Registry) error {
+	if swag.IsZero(m.IdentifiersWithDetails) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.IdentifiersWithDetails); i++ {
+		if swag.IsZero(m.IdentifiersWithDetails[i]) { // not required
+			continue
+		}
+
+		if m.IdentifiersWithDetails[i] != nil {
+			if err := m.IdentifiersWithDetails[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("identifiers_with_details" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("identifiers_with_details" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -207,8 +277,71 @@ func (m *ExtendedUser) validateUserPoolID(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validates this extended user based on context it is used
+// ContextValidate validate this extended user based on the context it is used
 func (m *ExtendedUser) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateAddresses(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIdentifiersWithDetails(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *ExtendedUser) contextValidateAddresses(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Addresses); i++ {
+
+		if m.Addresses[i] != nil {
+
+			if swag.IsZero(m.Addresses[i]) { // not required
+				return nil
+			}
+
+			if err := m.Addresses[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("addresses" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("addresses" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *ExtendedUser) contextValidateIdentifiersWithDetails(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.IdentifiersWithDetails); i++ {
+
+		if m.IdentifiersWithDetails[i] != nil {
+
+			if swag.IsZero(m.IdentifiersWithDetails[i]) { // not required
+				return nil
+			}
+
+			if err := m.IdentifiersWithDetails[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("identifiers_with_details" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("identifiers_with_details" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 

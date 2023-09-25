@@ -66,7 +66,7 @@ func (o *SelfRegisterUserReader) ReadResponse(response runtime.ClientResponse, c
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /system/pools/{ipID}/user/register] selfRegisterUser", response, response.Code())
 	}
 }
 
@@ -116,6 +116,11 @@ func (o *SelfRegisterUserCreated) IsServerError() bool {
 // IsCode returns true when this self register user created response a status code equal to that given
 func (o *SelfRegisterUserCreated) IsCode(code int) bool {
 	return code == 201
+}
+
+// Code gets the status code for the self register user created response
+func (o *SelfRegisterUserCreated) Code() int {
+	return 201
 }
 
 func (o *SelfRegisterUserCreated) Error() string {
@@ -188,6 +193,11 @@ func (o *SelfRegisterUserBadRequest) IsCode(code int) bool {
 	return code == 400
 }
 
+// Code gets the status code for the self register user bad request response
+func (o *SelfRegisterUserBadRequest) Code() int {
+	return 400
+}
+
 func (o *SelfRegisterUserBadRequest) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/user/register][%d] selfRegisterUserBadRequest  %+v", 400, o.Payload)
 }
@@ -249,6 +259,11 @@ func (o *SelfRegisterUserUnauthorized) IsServerError() bool {
 // IsCode returns true when this self register user unauthorized response a status code equal to that given
 func (o *SelfRegisterUserUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the self register user unauthorized response
+func (o *SelfRegisterUserUnauthorized) Code() int {
+	return 401
 }
 
 func (o *SelfRegisterUserUnauthorized) Error() string {
@@ -314,6 +329,11 @@ func (o *SelfRegisterUserNotFound) IsCode(code int) bool {
 	return code == 404
 }
 
+// Code gets the status code for the self register user not found response
+func (o *SelfRegisterUserNotFound) Code() int {
+	return 404
+}
+
 func (o *SelfRegisterUserNotFound) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/user/register][%d] selfRegisterUserNotFound  %+v", 404, o.Payload)
 }
@@ -375,6 +395,11 @@ func (o *SelfRegisterUserPreconditionFailed) IsServerError() bool {
 // IsCode returns true when this self register user precondition failed response a status code equal to that given
 func (o *SelfRegisterUserPreconditionFailed) IsCode(code int) bool {
 	return code == 412
+}
+
+// Code gets the status code for the self register user precondition failed response
+func (o *SelfRegisterUserPreconditionFailed) Code() int {
+	return 412
 }
 
 func (o *SelfRegisterUserPreconditionFailed) Error() string {
@@ -440,6 +465,11 @@ func (o *SelfRegisterUserUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
 }
 
+// Code gets the status code for the self register user unprocessable entity response
+func (o *SelfRegisterUserUnprocessableEntity) Code() int {
+	return 422
+}
+
 func (o *SelfRegisterUserUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/user/register][%d] selfRegisterUserUnprocessableEntity  %+v", 422, o.Payload)
 }
@@ -501,6 +531,11 @@ func (o *SelfRegisterUserTooManyRequests) IsServerError() bool {
 // IsCode returns true when this self register user too many requests response a status code equal to that given
 func (o *SelfRegisterUserTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the self register user too many requests response
+func (o *SelfRegisterUserTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *SelfRegisterUserTooManyRequests) Error() string {
