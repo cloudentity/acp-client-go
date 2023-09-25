@@ -66,7 +66,7 @@ func (o *ListUsersReader) ReadResponse(response runtime.ClientResponse, consumer
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /admin/pools/{ipID}/users] listUsers", response, response.Code())
 	}
 }
 
@@ -81,6 +81,15 @@ ListUsersOK describes a response with status code 200, with default header value
 Identity Users
 */
 type ListUsersOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.Users
 }
 
@@ -109,6 +118,11 @@ func (o *ListUsersOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the list users o k response
+func (o *ListUsersOK) Code() int {
+	return 200
+}
+
 func (o *ListUsersOK) Error() string {
 	return fmt.Sprintf("[GET /admin/pools/{ipID}/users][%d] listUsersOK  %+v", 200, o.Payload)
 }
@@ -122,6 +136,13 @@ func (o *ListUsersOK) GetPayload() *models.Users {
 }
 
 func (o *ListUsersOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.Users)
 
@@ -170,6 +191,11 @@ func (o *ListUsersBadRequest) IsServerError() bool {
 // IsCode returns true when this list users bad request response a status code equal to that given
 func (o *ListUsersBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the list users bad request response
+func (o *ListUsersBadRequest) Code() int {
+	return 400
 }
 
 func (o *ListUsersBadRequest) Error() string {
@@ -235,6 +261,11 @@ func (o *ListUsersUnauthorized) IsCode(code int) bool {
 	return code == 401
 }
 
+// Code gets the status code for the list users unauthorized response
+func (o *ListUsersUnauthorized) Code() int {
+	return 401
+}
+
 func (o *ListUsersUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /admin/pools/{ipID}/users][%d] listUsersUnauthorized  %+v", 401, o.Payload)
 }
@@ -296,6 +327,11 @@ func (o *ListUsersForbidden) IsServerError() bool {
 // IsCode returns true when this list users forbidden response a status code equal to that given
 func (o *ListUsersForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the list users forbidden response
+func (o *ListUsersForbidden) Code() int {
+	return 403
 }
 
 func (o *ListUsersForbidden) Error() string {
@@ -361,6 +397,11 @@ func (o *ListUsersNotFound) IsCode(code int) bool {
 	return code == 404
 }
 
+// Code gets the status code for the list users not found response
+func (o *ListUsersNotFound) Code() int {
+	return 404
+}
+
 func (o *ListUsersNotFound) Error() string {
 	return fmt.Sprintf("[GET /admin/pools/{ipID}/users][%d] listUsersNotFound  %+v", 404, o.Payload)
 }
@@ -424,6 +465,11 @@ func (o *ListUsersUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
 }
 
+// Code gets the status code for the list users unprocessable entity response
+func (o *ListUsersUnprocessableEntity) Code() int {
+	return 422
+}
+
 func (o *ListUsersUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[GET /admin/pools/{ipID}/users][%d] listUsersUnprocessableEntity  %+v", 422, o.Payload)
 }
@@ -485,6 +531,11 @@ func (o *ListUsersTooManyRequests) IsServerError() bool {
 // IsCode returns true when this list users too many requests response a status code equal to that given
 func (o *ListUsersTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the list users too many requests response
+func (o *ListUsersTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ListUsersTooManyRequests) Error() string {

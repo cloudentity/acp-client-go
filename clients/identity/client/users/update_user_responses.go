@@ -72,7 +72,7 @@ func (o *UpdateUserReader) ReadResponse(response runtime.ClientResponse, consume
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /admin/pools/{ipID}/users/{userID}] updateUser", response, response.Code())
 	}
 }
 
@@ -87,6 +87,15 @@ UpdateUserOK describes a response with status code 200, with default header valu
 User
 */
 type UpdateUserOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.UserWithData
 }
 
@@ -115,6 +124,11 @@ func (o *UpdateUserOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the update user o k response
+func (o *UpdateUserOK) Code() int {
+	return 200
+}
+
 func (o *UpdateUserOK) Error() string {
 	return fmt.Sprintf("[PUT /admin/pools/{ipID}/users/{userID}][%d] updateUserOK  %+v", 200, o.Payload)
 }
@@ -128,6 +142,13 @@ func (o *UpdateUserOK) GetPayload() *models.UserWithData {
 }
 
 func (o *UpdateUserOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.UserWithData)
 
@@ -176,6 +197,11 @@ func (o *UpdateUserBadRequest) IsServerError() bool {
 // IsCode returns true when this update user bad request response a status code equal to that given
 func (o *UpdateUserBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the update user bad request response
+func (o *UpdateUserBadRequest) Code() int {
+	return 400
 }
 
 func (o *UpdateUserBadRequest) Error() string {
@@ -241,6 +267,11 @@ func (o *UpdateUserUnauthorized) IsCode(code int) bool {
 	return code == 401
 }
 
+// Code gets the status code for the update user unauthorized response
+func (o *UpdateUserUnauthorized) Code() int {
+	return 401
+}
+
 func (o *UpdateUserUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /admin/pools/{ipID}/users/{userID}][%d] updateUserUnauthorized  %+v", 401, o.Payload)
 }
@@ -302,6 +333,11 @@ func (o *UpdateUserForbidden) IsServerError() bool {
 // IsCode returns true when this update user forbidden response a status code equal to that given
 func (o *UpdateUserForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the update user forbidden response
+func (o *UpdateUserForbidden) Code() int {
+	return 403
 }
 
 func (o *UpdateUserForbidden) Error() string {
@@ -367,6 +403,11 @@ func (o *UpdateUserNotFound) IsCode(code int) bool {
 	return code == 404
 }
 
+// Code gets the status code for the update user not found response
+func (o *UpdateUserNotFound) Code() int {
+	return 404
+}
+
 func (o *UpdateUserNotFound) Error() string {
 	return fmt.Sprintf("[PUT /admin/pools/{ipID}/users/{userID}][%d] updateUserNotFound  %+v", 404, o.Payload)
 }
@@ -428,6 +469,11 @@ func (o *UpdateUserConflict) IsServerError() bool {
 // IsCode returns true when this update user conflict response a status code equal to that given
 func (o *UpdateUserConflict) IsCode(code int) bool {
 	return code == 409
+}
+
+// Code gets the status code for the update user conflict response
+func (o *UpdateUserConflict) Code() int {
+	return 409
 }
 
 func (o *UpdateUserConflict) Error() string {
@@ -493,6 +539,11 @@ func (o *UpdateUserUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
 }
 
+// Code gets the status code for the update user unprocessable entity response
+func (o *UpdateUserUnprocessableEntity) Code() int {
+	return 422
+}
+
 func (o *UpdateUserUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /admin/pools/{ipID}/users/{userID}][%d] updateUserUnprocessableEntity  %+v", 422, o.Payload)
 }
@@ -554,6 +605,11 @@ func (o *UpdateUserTooManyRequests) IsServerError() bool {
 // IsCode returns true when this update user too many requests response a status code equal to that given
 func (o *UpdateUserTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the update user too many requests response
+func (o *UpdateUserTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *UpdateUserTooManyRequests) Error() string {

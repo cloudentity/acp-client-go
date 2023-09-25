@@ -72,7 +72,7 @@ func (o *ChangePasswordReader) ReadResponse(response runtime.ClientResponse, con
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /system/pools/{ipID}/users/{userID}/change_password] changePassword", response, response.Code())
 	}
 }
 
@@ -120,6 +120,11 @@ func (o *ChangePasswordNoContent) IsServerError() bool {
 // IsCode returns true when this change password no content response a status code equal to that given
 func (o *ChangePasswordNoContent) IsCode(code int) bool {
 	return code == 204
+}
+
+// Code gets the status code for the change password no content response
+func (o *ChangePasswordNoContent) Code() int {
+	return 204
 }
 
 func (o *ChangePasswordNoContent) Error() string {
@@ -179,6 +184,11 @@ func (o *ChangePasswordBadRequest) IsServerError() bool {
 // IsCode returns true when this change password bad request response a status code equal to that given
 func (o *ChangePasswordBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the change password bad request response
+func (o *ChangePasswordBadRequest) Code() int {
+	return 400
 }
 
 func (o *ChangePasswordBadRequest) Error() string {
@@ -244,6 +254,11 @@ func (o *ChangePasswordUnauthorized) IsCode(code int) bool {
 	return code == 401
 }
 
+// Code gets the status code for the change password unauthorized response
+func (o *ChangePasswordUnauthorized) Code() int {
+	return 401
+}
+
 func (o *ChangePasswordUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] changePasswordUnauthorized  %+v", 401, o.Payload)
 }
@@ -305,6 +320,11 @@ func (o *ChangePasswordForbidden) IsServerError() bool {
 // IsCode returns true when this change password forbidden response a status code equal to that given
 func (o *ChangePasswordForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the change password forbidden response
+func (o *ChangePasswordForbidden) Code() int {
+	return 403
 }
 
 func (o *ChangePasswordForbidden) Error() string {
@@ -370,6 +390,11 @@ func (o *ChangePasswordNotFound) IsCode(code int) bool {
 	return code == 404
 }
 
+// Code gets the status code for the change password not found response
+func (o *ChangePasswordNotFound) Code() int {
+	return 404
+}
+
 func (o *ChangePasswordNotFound) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] changePasswordNotFound  %+v", 404, o.Payload)
 }
@@ -431,6 +456,11 @@ func (o *ChangePasswordPreconditionFailed) IsServerError() bool {
 // IsCode returns true when this change password precondition failed response a status code equal to that given
 func (o *ChangePasswordPreconditionFailed) IsCode(code int) bool {
 	return code == 412
+}
+
+// Code gets the status code for the change password precondition failed response
+func (o *ChangePasswordPreconditionFailed) Code() int {
+	return 412
 }
 
 func (o *ChangePasswordPreconditionFailed) Error() string {
@@ -496,6 +526,11 @@ func (o *ChangePasswordUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
 }
 
+// Code gets the status code for the change password unprocessable entity response
+func (o *ChangePasswordUnprocessableEntity) Code() int {
+	return 422
+}
+
 func (o *ChangePasswordUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/change_password][%d] changePasswordUnprocessableEntity  %+v", 422, o.Payload)
 }
@@ -557,6 +592,11 @@ func (o *ChangePasswordTooManyRequests) IsServerError() bool {
 // IsCode returns true when this change password too many requests response a status code equal to that given
 func (o *ChangePasswordTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the change password too many requests response
+func (o *ChangePasswordTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ChangePasswordTooManyRequests) Error() string {

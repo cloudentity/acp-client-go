@@ -66,7 +66,7 @@ func (o *SystemUpdateVerifiableAddressReader) ReadResponse(response runtime.Clie
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /system/pools/{ipID}/users/{userID}/addresses/update] systemUpdateVerifiableAddress", response, response.Code())
 	}
 }
 
@@ -116,6 +116,11 @@ func (o *SystemUpdateVerifiableAddressOK) IsServerError() bool {
 // IsCode returns true when this system update verifiable address o k response a status code equal to that given
 func (o *SystemUpdateVerifiableAddressOK) IsCode(code int) bool {
 	return code == 200
+}
+
+// Code gets the status code for the system update verifiable address o k response
+func (o *SystemUpdateVerifiableAddressOK) Code() int {
+	return 200
 }
 
 func (o *SystemUpdateVerifiableAddressOK) Error() string {
@@ -188,6 +193,11 @@ func (o *SystemUpdateVerifiableAddressUnauthorized) IsCode(code int) bool {
 	return code == 401
 }
 
+// Code gets the status code for the system update verifiable address unauthorized response
+func (o *SystemUpdateVerifiableAddressUnauthorized) Code() int {
+	return 401
+}
+
 func (o *SystemUpdateVerifiableAddressUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/addresses/update][%d] systemUpdateVerifiableAddressUnauthorized  %+v", 401, o.Payload)
 }
@@ -249,6 +259,11 @@ func (o *SystemUpdateVerifiableAddressForbidden) IsServerError() bool {
 // IsCode returns true when this system update verifiable address forbidden response a status code equal to that given
 func (o *SystemUpdateVerifiableAddressForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the system update verifiable address forbidden response
+func (o *SystemUpdateVerifiableAddressForbidden) Code() int {
+	return 403
 }
 
 func (o *SystemUpdateVerifiableAddressForbidden) Error() string {
@@ -314,6 +329,11 @@ func (o *SystemUpdateVerifiableAddressNotFound) IsCode(code int) bool {
 	return code == 404
 }
 
+// Code gets the status code for the system update verifiable address not found response
+func (o *SystemUpdateVerifiableAddressNotFound) Code() int {
+	return 404
+}
+
 func (o *SystemUpdateVerifiableAddressNotFound) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/addresses/update][%d] systemUpdateVerifiableAddressNotFound  %+v", 404, o.Payload)
 }
@@ -375,6 +395,11 @@ func (o *SystemUpdateVerifiableAddressConflict) IsServerError() bool {
 // IsCode returns true when this system update verifiable address conflict response a status code equal to that given
 func (o *SystemUpdateVerifiableAddressConflict) IsCode(code int) bool {
 	return code == 409
+}
+
+// Code gets the status code for the system update verifiable address conflict response
+func (o *SystemUpdateVerifiableAddressConflict) Code() int {
+	return 409
 }
 
 func (o *SystemUpdateVerifiableAddressConflict) Error() string {
@@ -440,6 +465,11 @@ func (o *SystemUpdateVerifiableAddressPreconditionFailed) IsCode(code int) bool 
 	return code == 412
 }
 
+// Code gets the status code for the system update verifiable address precondition failed response
+func (o *SystemUpdateVerifiableAddressPreconditionFailed) Code() int {
+	return 412
+}
+
 func (o *SystemUpdateVerifiableAddressPreconditionFailed) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/addresses/update][%d] systemUpdateVerifiableAddressPreconditionFailed  %+v", 412, o.Payload)
 }
@@ -501,6 +531,11 @@ func (o *SystemUpdateVerifiableAddressUnprocessableEntity) IsServerError() bool 
 // IsCode returns true when this system update verifiable address unprocessable entity response a status code equal to that given
 func (o *SystemUpdateVerifiableAddressUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the system update verifiable address unprocessable entity response
+func (o *SystemUpdateVerifiableAddressUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *SystemUpdateVerifiableAddressUnprocessableEntity) Error() string {

@@ -54,7 +54,7 @@ func (o *RequestOTPChallengeReader) ReadResponse(response runtime.ClientResponse
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /system/pools/{ipID}/user/otp/request] requestOTPChallenge", response, response.Code())
 	}
 }
 
@@ -102,6 +102,11 @@ func (o *RequestOTPChallengeNoContent) IsServerError() bool {
 // IsCode returns true when this request o t p challenge no content response a status code equal to that given
 func (o *RequestOTPChallengeNoContent) IsCode(code int) bool {
 	return code == 204
+}
+
+// Code gets the status code for the request o t p challenge no content response
+func (o *RequestOTPChallengeNoContent) Code() int {
+	return 204
 }
 
 func (o *RequestOTPChallengeNoContent) Error() string {
@@ -161,6 +166,11 @@ func (o *RequestOTPChallengeUnauthorized) IsServerError() bool {
 // IsCode returns true when this request o t p challenge unauthorized response a status code equal to that given
 func (o *RequestOTPChallengeUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the request o t p challenge unauthorized response
+func (o *RequestOTPChallengeUnauthorized) Code() int {
+	return 401
 }
 
 func (o *RequestOTPChallengeUnauthorized) Error() string {
@@ -226,6 +236,11 @@ func (o *RequestOTPChallengePreconditionFailed) IsCode(code int) bool {
 	return code == 412
 }
 
+// Code gets the status code for the request o t p challenge precondition failed response
+func (o *RequestOTPChallengePreconditionFailed) Code() int {
+	return 412
+}
+
 func (o *RequestOTPChallengePreconditionFailed) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/request][%d] requestOTPChallengePreconditionFailed  %+v", 412, o.Payload)
 }
@@ -289,6 +304,11 @@ func (o *RequestOTPChallengeUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
 }
 
+// Code gets the status code for the request o t p challenge unprocessable entity response
+func (o *RequestOTPChallengeUnprocessableEntity) Code() int {
+	return 422
+}
+
 func (o *RequestOTPChallengeUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/user/otp/request][%d] requestOTPChallengeUnprocessableEntity  %+v", 422, o.Payload)
 }
@@ -350,6 +370,11 @@ func (o *RequestOTPChallengeTooManyRequests) IsServerError() bool {
 // IsCode returns true when this request o t p challenge too many requests response a status code equal to that given
 func (o *RequestOTPChallengeTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the request o t p challenge too many requests response
+func (o *RequestOTPChallengeTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *RequestOTPChallengeTooManyRequests) Error() string {

@@ -66,6 +66,14 @@ type UpdateUserProfileParams struct {
 	// UpdateUser.
 	UpdateUser *models.SelfUserUpdate
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -130,6 +138,17 @@ func (o *UpdateUserProfileParams) SetUpdateUser(updateUser *models.SelfUserUpdat
 	o.UpdateUser = updateUser
 }
 
+// WithIfMatch adds the ifMatch to the update user profile params
+func (o *UpdateUserProfileParams) WithIfMatch(ifMatch *string) *UpdateUserProfileParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the update user profile params
+func (o *UpdateUserProfileParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *UpdateUserProfileParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -139,6 +158,14 @@ func (o *UpdateUserProfileParams) WriteToRequest(r runtime.ClientRequest, reg st
 	var res []error
 	if o.UpdateUser != nil {
 		if err := r.SetBodyParam(o.UpdateUser); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

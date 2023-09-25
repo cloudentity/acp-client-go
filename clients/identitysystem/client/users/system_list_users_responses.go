@@ -66,7 +66,7 @@ func (o *SystemListUsersReader) ReadResponse(response runtime.ClientResponse, co
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /system/pools/{ipID}/users] systemListUsers", response, response.Code())
 	}
 }
 
@@ -107,6 +107,11 @@ func (o *SystemListUsersOK) IsServerError() bool {
 // IsCode returns true when this system list users o k response a status code equal to that given
 func (o *SystemListUsersOK) IsCode(code int) bool {
 	return code == 200
+}
+
+// Code gets the status code for the system list users o k response
+func (o *SystemListUsersOK) Code() int {
+	return 200
 }
 
 func (o *SystemListUsersOK) Error() string {
@@ -172,6 +177,11 @@ func (o *SystemListUsersBadRequest) IsCode(code int) bool {
 	return code == 400
 }
 
+// Code gets the status code for the system list users bad request response
+func (o *SystemListUsersBadRequest) Code() int {
+	return 400
+}
+
 func (o *SystemListUsersBadRequest) Error() string {
 	return fmt.Sprintf("[GET /system/pools/{ipID}/users][%d] systemListUsersBadRequest  %+v", 400, o.Payload)
 }
@@ -233,6 +243,11 @@ func (o *SystemListUsersUnauthorized) IsServerError() bool {
 // IsCode returns true when this system list users unauthorized response a status code equal to that given
 func (o *SystemListUsersUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the system list users unauthorized response
+func (o *SystemListUsersUnauthorized) Code() int {
+	return 401
 }
 
 func (o *SystemListUsersUnauthorized) Error() string {
@@ -298,6 +313,11 @@ func (o *SystemListUsersForbidden) IsCode(code int) bool {
 	return code == 403
 }
 
+// Code gets the status code for the system list users forbidden response
+func (o *SystemListUsersForbidden) Code() int {
+	return 403
+}
+
 func (o *SystemListUsersForbidden) Error() string {
 	return fmt.Sprintf("[GET /system/pools/{ipID}/users][%d] systemListUsersForbidden  %+v", 403, o.Payload)
 }
@@ -359,6 +379,11 @@ func (o *SystemListUsersNotFound) IsServerError() bool {
 // IsCode returns true when this system list users not found response a status code equal to that given
 func (o *SystemListUsersNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the system list users not found response
+func (o *SystemListUsersNotFound) Code() int {
+	return 404
 }
 
 func (o *SystemListUsersNotFound) Error() string {
@@ -424,6 +449,11 @@ func (o *SystemListUsersUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
 }
 
+// Code gets the status code for the system list users unprocessable entity response
+func (o *SystemListUsersUnprocessableEntity) Code() int {
+	return 422
+}
+
 func (o *SystemListUsersUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[GET /system/pools/{ipID}/users][%d] systemListUsersUnprocessableEntity  %+v", 422, o.Payload)
 }
@@ -485,6 +515,11 @@ func (o *SystemListUsersTooManyRequests) IsServerError() bool {
 // IsCode returns true when this system list users too many requests response a status code equal to that given
 func (o *SystemListUsersTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the system list users too many requests response
+func (o *SystemListUsersTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *SystemListUsersTooManyRequests) Error() string {

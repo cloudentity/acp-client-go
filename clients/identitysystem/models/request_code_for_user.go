@@ -21,15 +21,14 @@ import (
 type RequestCodeForUser struct {
 
 	// address
-	// Required: true
-	Address string `json:"address"`
+	Address string `json:"address,omitempty"`
 
 	// identifier
 	Identifier string `json:"identifier,omitempty"`
 
 	// type
 	// Required: true
-	// Enum: [activation reset_password challenge verify_address]
+	// Enum: [activation reset_password challenge verify_address authentication]
 	Type string `json:"type"`
 
 	// user ID
@@ -39,10 +38,6 @@ type RequestCodeForUser struct {
 // Validate validates this request code for user
 func (m *RequestCodeForUser) Validate(formats strfmt.Registry) error {
 	var res []error
-
-	if err := m.validateAddress(formats); err != nil {
-		res = append(res, err)
-	}
 
 	if err := m.validateType(formats); err != nil {
 		res = append(res, err)
@@ -54,20 +49,11 @@ func (m *RequestCodeForUser) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *RequestCodeForUser) validateAddress(formats strfmt.Registry) error {
-
-	if err := validate.RequiredString("address", "body", m.Address); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 var requestCodeForUserTypeTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["activation","reset_password","challenge","verify_address"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["activation","reset_password","challenge","verify_address","authentication"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -88,6 +74,9 @@ const (
 
 	// RequestCodeForUserTypeVerifyAddress captures enum value "verify_address"
 	RequestCodeForUserTypeVerifyAddress string = "verify_address"
+
+	// RequestCodeForUserTypeAuthentication captures enum value "authentication"
+	RequestCodeForUserTypeAuthentication string = "authentication"
 )
 
 // prop value enum

@@ -62,6 +62,9 @@ type User struct {
 	// Example: default
 	// Required: true
 	UserPoolID string `json:"user_pool_id"`
+
+	// user type
+	UserType interface{} `json:"user_type,omitempty"`
 }
 
 // Validate validates this user

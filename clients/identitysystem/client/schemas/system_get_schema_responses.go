@@ -54,7 +54,7 @@ func (o *SystemGetSchemaReader) ReadResponse(response runtime.ClientResponse, co
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /system/schemas/{schID}] systemGetSchema", response, response.Code())
 	}
 }
 
@@ -95,6 +95,11 @@ func (o *SystemGetSchemaOK) IsServerError() bool {
 // IsCode returns true when this system get schema o k response a status code equal to that given
 func (o *SystemGetSchemaOK) IsCode(code int) bool {
 	return code == 200
+}
+
+// Code gets the status code for the system get schema o k response
+func (o *SystemGetSchemaOK) Code() int {
+	return 200
 }
 
 func (o *SystemGetSchemaOK) Error() string {
@@ -160,6 +165,11 @@ func (o *SystemGetSchemaUnauthorized) IsCode(code int) bool {
 	return code == 401
 }
 
+// Code gets the status code for the system get schema unauthorized response
+func (o *SystemGetSchemaUnauthorized) Code() int {
+	return 401
+}
+
 func (o *SystemGetSchemaUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /system/schemas/{schID}][%d] systemGetSchemaUnauthorized  %+v", 401, o.Payload)
 }
@@ -221,6 +231,11 @@ func (o *SystemGetSchemaForbidden) IsServerError() bool {
 // IsCode returns true when this system get schema forbidden response a status code equal to that given
 func (o *SystemGetSchemaForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the system get schema forbidden response
+func (o *SystemGetSchemaForbidden) Code() int {
+	return 403
 }
 
 func (o *SystemGetSchemaForbidden) Error() string {
@@ -286,6 +301,11 @@ func (o *SystemGetSchemaNotFound) IsCode(code int) bool {
 	return code == 404
 }
 
+// Code gets the status code for the system get schema not found response
+func (o *SystemGetSchemaNotFound) Code() int {
+	return 404
+}
+
 func (o *SystemGetSchemaNotFound) Error() string {
 	return fmt.Sprintf("[GET /system/schemas/{schID}][%d] systemGetSchemaNotFound  %+v", 404, o.Payload)
 }
@@ -347,6 +367,11 @@ func (o *SystemGetSchemaTooManyRequests) IsServerError() bool {
 // IsCode returns true when this system get schema too many requests response a status code equal to that given
 func (o *SystemGetSchemaTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the system get schema too many requests response
+func (o *SystemGetSchemaTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *SystemGetSchemaTooManyRequests) Error() string {

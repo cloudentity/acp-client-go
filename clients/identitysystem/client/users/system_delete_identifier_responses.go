@@ -60,7 +60,7 @@ func (o *SystemDeleteIdentifierReader) ReadResponse(response runtime.ClientRespo
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /system/pools/{ipID}/users/{userID}/identifiers/remove] systemDeleteIdentifier", response, response.Code())
 	}
 }
 
@@ -108,6 +108,11 @@ func (o *SystemDeleteIdentifierNoContent) IsServerError() bool {
 // IsCode returns true when this system delete identifier no content response a status code equal to that given
 func (o *SystemDeleteIdentifierNoContent) IsCode(code int) bool {
 	return code == 204
+}
+
+// Code gets the status code for the system delete identifier no content response
+func (o *SystemDeleteIdentifierNoContent) Code() int {
+	return 204
 }
 
 func (o *SystemDeleteIdentifierNoContent) Error() string {
@@ -167,6 +172,11 @@ func (o *SystemDeleteIdentifierUnauthorized) IsServerError() bool {
 // IsCode returns true when this system delete identifier unauthorized response a status code equal to that given
 func (o *SystemDeleteIdentifierUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the system delete identifier unauthorized response
+func (o *SystemDeleteIdentifierUnauthorized) Code() int {
+	return 401
 }
 
 func (o *SystemDeleteIdentifierUnauthorized) Error() string {
@@ -232,6 +242,11 @@ func (o *SystemDeleteIdentifierForbidden) IsCode(code int) bool {
 	return code == 403
 }
 
+// Code gets the status code for the system delete identifier forbidden response
+func (o *SystemDeleteIdentifierForbidden) Code() int {
+	return 403
+}
+
 func (o *SystemDeleteIdentifierForbidden) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/remove][%d] systemDeleteIdentifierForbidden  %+v", 403, o.Payload)
 }
@@ -293,6 +308,11 @@ func (o *SystemDeleteIdentifierNotFound) IsServerError() bool {
 // IsCode returns true when this system delete identifier not found response a status code equal to that given
 func (o *SystemDeleteIdentifierNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the system delete identifier not found response
+func (o *SystemDeleteIdentifierNotFound) Code() int {
+	return 404
 }
 
 func (o *SystemDeleteIdentifierNotFound) Error() string {
@@ -358,6 +378,11 @@ func (o *SystemDeleteIdentifierPreconditionFailed) IsCode(code int) bool {
 	return code == 412
 }
 
+// Code gets the status code for the system delete identifier precondition failed response
+func (o *SystemDeleteIdentifierPreconditionFailed) Code() int {
+	return 412
+}
+
 func (o *SystemDeleteIdentifierPreconditionFailed) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/users/{userID}/identifiers/remove][%d] systemDeleteIdentifierPreconditionFailed  %+v", 412, o.Payload)
 }
@@ -419,6 +444,11 @@ func (o *SystemDeleteIdentifierTooManyRequests) IsServerError() bool {
 // IsCode returns true when this system delete identifier too many requests response a status code equal to that given
 func (o *SystemDeleteIdentifierTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the system delete identifier too many requests response
+func (o *SystemDeleteIdentifierTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *SystemDeleteIdentifierTooManyRequests) Error() string {

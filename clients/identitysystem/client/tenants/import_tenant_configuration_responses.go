@@ -72,7 +72,7 @@ func (o *ImportTenantConfigurationReader) ReadResponse(response runtime.ClientRe
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /configuration] importTenantConfiguration", response, response.Code())
 	}
 }
 
@@ -112,6 +112,11 @@ func (o *ImportTenantConfigurationNoContent) IsServerError() bool {
 // IsCode returns true when this import tenant configuration no content response a status code equal to that given
 func (o *ImportTenantConfigurationNoContent) IsCode(code int) bool {
 	return code == 204
+}
+
+// Code gets the status code for the import tenant configuration no content response
+func (o *ImportTenantConfigurationNoContent) Code() int {
+	return 204
 }
 
 func (o *ImportTenantConfigurationNoContent) Error() string {
@@ -164,6 +169,11 @@ func (o *ImportTenantConfigurationBadRequest) IsServerError() bool {
 // IsCode returns true when this import tenant configuration bad request response a status code equal to that given
 func (o *ImportTenantConfigurationBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the import tenant configuration bad request response
+func (o *ImportTenantConfigurationBadRequest) Code() int {
+	return 400
 }
 
 func (o *ImportTenantConfigurationBadRequest) Error() string {
@@ -229,6 +239,11 @@ func (o *ImportTenantConfigurationUnauthorized) IsCode(code int) bool {
 	return code == 401
 }
 
+// Code gets the status code for the import tenant configuration unauthorized response
+func (o *ImportTenantConfigurationUnauthorized) Code() int {
+	return 401
+}
+
 func (o *ImportTenantConfigurationUnauthorized) Error() string {
 	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationUnauthorized  %+v", 401, o.Payload)
 }
@@ -290,6 +305,11 @@ func (o *ImportTenantConfigurationForbidden) IsServerError() bool {
 // IsCode returns true when this import tenant configuration forbidden response a status code equal to that given
 func (o *ImportTenantConfigurationForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the import tenant configuration forbidden response
+func (o *ImportTenantConfigurationForbidden) Code() int {
+	return 403
 }
 
 func (o *ImportTenantConfigurationForbidden) Error() string {
@@ -355,6 +375,11 @@ func (o *ImportTenantConfigurationNotFound) IsCode(code int) bool {
 	return code == 404
 }
 
+// Code gets the status code for the import tenant configuration not found response
+func (o *ImportTenantConfigurationNotFound) Code() int {
+	return 404
+}
+
 func (o *ImportTenantConfigurationNotFound) Error() string {
 	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationNotFound  %+v", 404, o.Payload)
 }
@@ -416,6 +441,11 @@ func (o *ImportTenantConfigurationConflict) IsServerError() bool {
 // IsCode returns true when this import tenant configuration conflict response a status code equal to that given
 func (o *ImportTenantConfigurationConflict) IsCode(code int) bool {
 	return code == 409
+}
+
+// Code gets the status code for the import tenant configuration conflict response
+func (o *ImportTenantConfigurationConflict) Code() int {
+	return 409
 }
 
 func (o *ImportTenantConfigurationConflict) Error() string {
@@ -481,6 +511,11 @@ func (o *ImportTenantConfigurationUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
 }
 
+// Code gets the status code for the import tenant configuration unprocessable entity response
+func (o *ImportTenantConfigurationUnprocessableEntity) Code() int {
+	return 422
+}
+
 func (o *ImportTenantConfigurationUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PUT /configuration][%d] importTenantConfigurationUnprocessableEntity  %+v", 422, o.Payload)
 }
@@ -542,6 +577,11 @@ func (o *ImportTenantConfigurationTooManyRequests) IsServerError() bool {
 // IsCode returns true when this import tenant configuration too many requests response a status code equal to that given
 func (o *ImportTenantConfigurationTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the import tenant configuration too many requests response
+func (o *ImportTenantConfigurationTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ImportTenantConfigurationTooManyRequests) Error() string {

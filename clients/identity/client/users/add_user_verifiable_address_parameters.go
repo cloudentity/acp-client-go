@@ -66,6 +66,14 @@ type AddUserVerifiableAddressParams struct {
 	// NewAddress.
 	NewAddress *models.AddUserVerifiableAddress
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	// IPID.
 	IPID string
 
@@ -136,6 +144,17 @@ func (o *AddUserVerifiableAddressParams) SetNewAddress(newAddress *models.AddUse
 	o.NewAddress = newAddress
 }
 
+// WithIfMatch adds the ifMatch to the add user verifiable address params
+func (o *AddUserVerifiableAddressParams) WithIfMatch(ifMatch *string) *AddUserVerifiableAddressParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the add user verifiable address params
+func (o *AddUserVerifiableAddressParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithIPID adds the iPID to the add user verifiable address params
 func (o *AddUserVerifiableAddressParams) WithIPID(iPID string) *AddUserVerifiableAddressParams {
 	o.SetIPID(iPID)
@@ -167,6 +186,14 @@ func (o *AddUserVerifiableAddressParams) WriteToRequest(r runtime.ClientRequest,
 	var res []error
 	if o.NewAddress != nil {
 		if err := r.SetBodyParam(o.NewAddress); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

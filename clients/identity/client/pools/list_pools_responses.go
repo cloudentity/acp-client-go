@@ -48,7 +48,7 @@ func (o *ListPoolsReader) ReadResponse(response runtime.ClientResponse, consumer
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /admin/pools] listPools", response, response.Code())
 	}
 }
 
@@ -89,6 +89,11 @@ func (o *ListPoolsOK) IsServerError() bool {
 // IsCode returns true when this list pools o k response a status code equal to that given
 func (o *ListPoolsOK) IsCode(code int) bool {
 	return code == 200
+}
+
+// Code gets the status code for the list pools o k response
+func (o *ListPoolsOK) Code() int {
+	return 200
 }
 
 func (o *ListPoolsOK) Error() string {
@@ -154,6 +159,11 @@ func (o *ListPoolsUnauthorized) IsCode(code int) bool {
 	return code == 401
 }
 
+// Code gets the status code for the list pools unauthorized response
+func (o *ListPoolsUnauthorized) Code() int {
+	return 401
+}
+
 func (o *ListPoolsUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /admin/pools][%d] listPoolsUnauthorized  %+v", 401, o.Payload)
 }
@@ -217,6 +227,11 @@ func (o *ListPoolsForbidden) IsCode(code int) bool {
 	return code == 403
 }
 
+// Code gets the status code for the list pools forbidden response
+func (o *ListPoolsForbidden) Code() int {
+	return 403
+}
+
 func (o *ListPoolsForbidden) Error() string {
 	return fmt.Sprintf("[GET /admin/pools][%d] listPoolsForbidden  %+v", 403, o.Payload)
 }
@@ -278,6 +293,11 @@ func (o *ListPoolsTooManyRequests) IsServerError() bool {
 // IsCode returns true when this list pools too many requests response a status code equal to that given
 func (o *ListPoolsTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the list pools too many requests response
+func (o *ListPoolsTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ListPoolsTooManyRequests) Error() string {

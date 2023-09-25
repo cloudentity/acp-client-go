@@ -304,6 +304,11 @@ func (m *Dump) contextValidateCodes(ctx context.Context, formats strfmt.Registry
 	for i := 0; i < len(m.Codes); i++ {
 
 		if m.Codes[i] != nil {
+
+			if swag.IsZero(m.Codes[i]) { // not required
+				return nil
+			}
+
 			if err := m.Codes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("codes" + "." + strconv.Itoa(i))
@@ -324,6 +329,11 @@ func (m *Dump) contextValidatePools(ctx context.Context, formats strfmt.Registry
 	for i := 0; i < len(m.Pools); i++ {
 
 		if m.Pools[i] != nil {
+
+			if swag.IsZero(m.Pools[i]) { // not required
+				return nil
+			}
+
 			if err := m.Pools[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("pools" + "." + strconv.Itoa(i))
@@ -344,6 +354,11 @@ func (m *Dump) contextValidateSchemas(ctx context.Context, formats strfmt.Regist
 	for i := 0; i < len(m.Schemas); i++ {
 
 		if m.Schemas[i] != nil {
+
+			if swag.IsZero(m.Schemas[i]) { // not required
+				return nil
+			}
+
 			if err := m.Schemas[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("schemas" + "." + strconv.Itoa(i))
@@ -364,6 +379,11 @@ func (m *Dump) contextValidateUserCredentials(ctx context.Context, formats strfm
 	for i := 0; i < len(m.UserCredentials); i++ {
 
 		if m.UserCredentials[i] != nil {
+
+			if swag.IsZero(m.UserCredentials[i]) { // not required
+				return nil
+			}
+
 			if err := m.UserCredentials[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("user_credentials" + "." + strconv.Itoa(i))
@@ -384,6 +404,11 @@ func (m *Dump) contextValidateUserIdentifiers(ctx context.Context, formats strfm
 	for i := 0; i < len(m.UserIdentifiers); i++ {
 
 		if m.UserIdentifiers[i] != nil {
+
+			if swag.IsZero(m.UserIdentifiers[i]) { // not required
+				return nil
+			}
+
 			if err := m.UserIdentifiers[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("user_identifiers" + "." + strconv.Itoa(i))
@@ -404,6 +429,11 @@ func (m *Dump) contextValidateUserVerifiableAddresses(ctx context.Context, forma
 	for i := 0; i < len(m.UserVerifiableAddresses); i++ {
 
 		if m.UserVerifiableAddresses[i] != nil {
+
+			if swag.IsZero(m.UserVerifiableAddresses[i]) { // not required
+				return nil
+			}
+
 			if err := m.UserVerifiableAddresses[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("user_verifiable_addresses" + "." + strconv.Itoa(i))
@@ -424,6 +454,11 @@ func (m *Dump) contextValidateUsers(ctx context.Context, formats strfmt.Registry
 	for i := 0; i < len(m.Users); i++ {
 
 		if m.Users[i] != nil {
+
+			if swag.IsZero(m.Users[i]) { // not required
+				return nil
+			}
+
 			if err := m.Users[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("users" + "." + strconv.Itoa(i))

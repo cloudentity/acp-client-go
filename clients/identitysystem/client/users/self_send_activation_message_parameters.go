@@ -85,6 +85,13 @@ type SelfSendActivationMessageParams struct {
 	// IPID.
 	IPID string
 
+	/* ServerID.
+
+	     optional server's identifier (used for themes etc.)
+	ServerID
+	*/
+	ServerID *string
+
 	// UserID.
 	UserID string
 
@@ -196,6 +203,17 @@ func (o *SelfSendActivationMessageParams) SetIPID(iPID string) {
 	o.IPID = iPID
 }
 
+// WithServerID adds the serverID to the self send activation message params
+func (o *SelfSendActivationMessageParams) WithServerID(serverID *string) *SelfSendActivationMessageParams {
+	o.SetServerID(serverID)
+	return o
+}
+
+// SetServerID adds the serverId to the self send activation message params
+func (o *SelfSendActivationMessageParams) SetServerID(serverID *string) {
+	o.ServerID = serverID
+}
+
 // WithUserID adds the userID to the self send activation message params
 func (o *SelfSendActivationMessageParams) WithUserID(userID string) *SelfSendActivationMessageParams {
 	o.SetUserID(userID)
@@ -248,6 +266,23 @@ func (o *SelfSendActivationMessageParams) WriteToRequest(r runtime.ClientRequest
 	// path param ipID
 	if err := r.SetPathParam("ipID", o.IPID); err != nil {
 		return err
+	}
+
+	if o.ServerID != nil {
+
+		// query param server_id
+		var qrServerID string
+
+		if o.ServerID != nil {
+			qrServerID = *o.ServerID
+		}
+		qServerID := qrServerID
+		if qServerID != "" {
+
+			if err := r.SetQueryParam("server_id", qServerID); err != nil {
+				return err
+			}
+		}
 	}
 
 	// path param userID

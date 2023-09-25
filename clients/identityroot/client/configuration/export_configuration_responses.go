@@ -66,7 +66,7 @@ func (o *ExportConfigurationReader) ReadResponse(response runtime.ClientResponse
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /configuration] exportConfiguration", response, response.Code())
 	}
 }
 
@@ -107,6 +107,11 @@ func (o *ExportConfigurationOK) IsServerError() bool {
 // IsCode returns true when this export configuration o k response a status code equal to that given
 func (o *ExportConfigurationOK) IsCode(code int) bool {
 	return code == 200
+}
+
+// Code gets the status code for the export configuration o k response
+func (o *ExportConfigurationOK) Code() int {
+	return 200
 }
 
 func (o *ExportConfigurationOK) Error() string {
@@ -172,6 +177,11 @@ func (o *ExportConfigurationBadRequest) IsCode(code int) bool {
 	return code == 400
 }
 
+// Code gets the status code for the export configuration bad request response
+func (o *ExportConfigurationBadRequest) Code() int {
+	return 400
+}
+
 func (o *ExportConfigurationBadRequest) Error() string {
 	return fmt.Sprintf("[GET /configuration][%d] exportConfigurationBadRequest  %+v", 400, o.Payload)
 }
@@ -233,6 +243,11 @@ func (o *ExportConfigurationUnauthorized) IsServerError() bool {
 // IsCode returns true when this export configuration unauthorized response a status code equal to that given
 func (o *ExportConfigurationUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the export configuration unauthorized response
+func (o *ExportConfigurationUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ExportConfigurationUnauthorized) Error() string {
@@ -298,6 +313,11 @@ func (o *ExportConfigurationForbidden) IsCode(code int) bool {
 	return code == 403
 }
 
+// Code gets the status code for the export configuration forbidden response
+func (o *ExportConfigurationForbidden) Code() int {
+	return 403
+}
+
 func (o *ExportConfigurationForbidden) Error() string {
 	return fmt.Sprintf("[GET /configuration][%d] exportConfigurationForbidden  %+v", 403, o.Payload)
 }
@@ -359,6 +379,11 @@ func (o *ExportConfigurationNotFound) IsServerError() bool {
 // IsCode returns true when this export configuration not found response a status code equal to that given
 func (o *ExportConfigurationNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the export configuration not found response
+func (o *ExportConfigurationNotFound) Code() int {
+	return 404
 }
 
 func (o *ExportConfigurationNotFound) Error() string {
@@ -424,6 +449,11 @@ func (o *ExportConfigurationUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
 }
 
+// Code gets the status code for the export configuration unprocessable entity response
+func (o *ExportConfigurationUnprocessableEntity) Code() int {
+	return 422
+}
+
 func (o *ExportConfigurationUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[GET /configuration][%d] exportConfigurationUnprocessableEntity  %+v", 422, o.Payload)
 }
@@ -485,6 +515,11 @@ func (o *ExportConfigurationTooManyRequests) IsServerError() bool {
 // IsCode returns true when this export configuration too many requests response a status code equal to that given
 func (o *ExportConfigurationTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the export configuration too many requests response
+func (o *ExportConfigurationTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ExportConfigurationTooManyRequests) Error() string {

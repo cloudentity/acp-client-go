@@ -159,6 +159,7 @@ func (m *Schema) ContextValidate(ctx context.Context, formats strfmt.Registry) e
 func (m *Schema) contextValidateSchema(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Schema != nil {
+
 		if err := m.Schema.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("schema")

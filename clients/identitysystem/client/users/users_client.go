@@ -38,6 +38,8 @@ type ClientService interface {
 
 	CompleteResetPassword(params *CompleteResetPasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CompleteResetPasswordNoContent, error)
 
+	CompleteResetWebAuthn(params *CompleteResetWebAuthnParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CompleteResetWebAuthnNoContent, error)
+
 	ConfirmResetPassword(params *ConfirmResetPasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ConfirmResetPasswordNoContent, error)
 
 	GenerateActivationCode(params *GenerateActivationCodeParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GenerateActivationCodeCreated, error)
@@ -48,9 +50,13 @@ type ClientService interface {
 
 	RequestResetPassword(params *RequestResetPasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RequestResetPasswordNoContent, error)
 
+	RequestResetWebAuthn(params *RequestResetWebAuthnParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RequestResetWebAuthnNoContent, error)
+
 	SelfRegisterUser(params *SelfRegisterUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SelfRegisterUserCreated, error)
 
 	SelfSendActivationMessage(params *SelfSendActivationMessageParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SelfSendActivationMessageNoContent, error)
+
+	SetPasswordState(params *SetPasswordStateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetPasswordStateNoContent, error)
 
 	SystemAddIdentifier(params *SystemAddIdentifierParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemAddIdentifierOK, error)
 
@@ -65,6 +71,8 @@ type ClientService interface {
 	SystemDeleteVerifiableAddress(params *SystemDeleteVerifiableAddressParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemDeleteVerifiableAddressNoContent, error)
 
 	SystemGetUser(params *SystemGetUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemGetUserOK, error)
+
+	SystemGetUserByKey(params *SystemGetUserByKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemGetUserByKeyOK, error)
 
 	SystemListUsers(params *SystemListUsersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemListUsersOK, error)
 
@@ -271,6 +279,53 @@ func (a *Client) CompleteResetPassword(params *CompleteResetPasswordParams, auth
 }
 
 /*
+	CompleteResetWebAuthn completes reset web authn
+
+	Resets WebAuthn for user if the provided OTP is valid. It's the second and final step of the
+
+flow to reset the WebAuthn.
+Either address (must be a valid email or mobile which is marked as verified address for the user), user id, identifier (must be user's identifier) or extended code must be provided.
+Endpoint returns generic `401` regardless of the reason of failure to prevent email/mobile enumeration.
+After a successful WebAuthn reset, OTP gets invalidated, so it cannot be reused.
+Endpoint is protected by Brute Force mechanism.
+*/
+func (a *Client) CompleteResetWebAuthn(params *CompleteResetWebAuthnParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CompleteResetWebAuthnNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCompleteResetWebAuthnParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "completeResetWebAuthn",
+		Method:             "POST",
+		PathPattern:        "/system/pools/{ipID}/user/webauthn/reset/complete",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CompleteResetWebAuthnReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CompleteResetWebAuthnNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for completeResetWebAuthn: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
 	ConfirmResetPassword confirms reset password
 
 	Resets password for user if the provided OTP is valid. It's the second and final step of the
@@ -367,13 +422,13 @@ func (a *Client) GenerateActivationCode(params *GenerateActivationCodeParams, au
 /*
 	GenerateCode generates code of a specific type
 
-	Generate code of a specific type for provided address
+	Generate code of a specific type
 
 Invalidates previously generated OTPs for action associated with the type.
 Code is valid for specific period of time configured in Identity Pool.
 
-Keep in mind that `address` attribute for different code types does not mean the same:
-for `reset_password` and `challenge` it must be user's address (verified or unverified)
+Keep in mind that `address` attribute for different code types may be optional and may not mean the same:
+for `reset_password`, `authentication` and `challenge` it is optional, but if provided must be user's address (verified or unverified)
 for `activation` it is not mandatory (system will pick up address itself if there is only one in user entry) but if provided it must be one of the user's addresses (can be not verified)
 for `verify_address` it must be user's unverified address and that address cannot be someone's else verified address
 
@@ -419,7 +474,7 @@ func (a *Client) GenerateCode(params *GenerateCodeParams, authInfo runtime.Clien
 /*
 	GenerateCodeForUser generates code of a specific type
 
-	Generate code of a specific type for provided address
+	Generate code of a specific type
 
 Invalidates previously generated OTPs for action associated with the type.
 Code is valid for specific period of time configured in Identity Pool.
@@ -427,8 +482,8 @@ Code is valid for specific period of time configured in Identity Pool.
 Either userID or identifier (must be user's identifier) must be provided for most types.
 Exceptions are: reset password and challenge if address is user's verified address
 
-Keep in mind that `address` attribute for different code types does not mean the same:
-for `reset_password` and `challenge` it must be user's address (verified or unverified)
+Keep in mind that `address` attribute for different code types may be optional and may not mean the same:
+for `reset_password`, `authentication` and `challenge` it is not mandatory, but if provided must be user's address (verified or unverified)
 for `activation` it is not mandatory (system will pick up address itself if there is only one in user entry) but if provided it must be one of the user's addresses (can be not verified)
 for `verify_address` it must be user's unverified address and that address cannot be someone's else verified address
 
@@ -524,6 +579,58 @@ func (a *Client) RequestResetPassword(params *RequestResetPasswordParams, authIn
 }
 
 /*
+	RequestResetWebAuthn requests reset web authn
+
+	Sends OTP for WebAuthn reset. It's first out of two steps of the reset WebAuthn flow.
+
+Address must be a valid email or mobile which is marked as verified address for the user.
+For validating unverified address userID or identifier must be provided.
+If userID is provided then identifier must not be set.
+When both userID or identifier and address are provided then address is taken from user pointed by either userID or identifier.
+Regardless if the address points to some user or not, the request ends successfully to
+prevent email/mobile enumeration.
+Invalidates previously generated OTPs for WebAuthn reset.
+Reset WebAuthn OTP is valid for a specific period of time configured in Identity Pool.
+
+REFACTORED: input field name has been renamed from `identifier` to `address`; new field `identifier` has been added and described in documentation
+*/
+func (a *Client) RequestResetWebAuthn(params *RequestResetWebAuthnParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RequestResetWebAuthnNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewRequestResetWebAuthnParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "requestResetWebAuthn",
+		Method:             "POST",
+		PathPattern:        "/system/pools/{ipID}/user/webauthn/reset/request",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &RequestResetWebAuthnReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*RequestResetWebAuthnNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for requestResetWebAuthn: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
 	SelfRegisterUser selves register user
 
 	Creates user using a very basic set of data provided by the user.
@@ -581,21 +688,27 @@ func (a *Client) SelfRegisterUser(params *SelfRegisterUserParams, authInfo runti
 /*
 	SelfSendActivationMessage sends activation message
 
-	Sends activation message to user to provided address.
+	Send an activation message to the user's provided address.
 
-If address is not provided then it takes user address as destination if there is only one
-Endpoint does not fail to prevent email/mobile enumeration.
-It does not send message if:
-address is not provided and user has no addresses or more than one
-address is someone's else verified address or identifier
-user status is not New.
-If address is someone's else verified address or identifier user whose email/mobile was provided
-will get notification that identifier is already used.
-Invalidates previously generated OTPs for user activation.
-If `code_type_in_message` query parameter was set to link or not provided then link will be generated for activation.
-Activation message is valid for specific period of time configured in Identity Pool.
+When no `address` is provided in the request body, the message is sent to the address saved for this user (if there
+is only one address). To prevent email or mobile enumeration, this endpoint does not fail.
 
-REFACTORED: input field name has been changed from `identifier` to `address`; field `identifier` stays for backward compatibility and overrides `address` if not empty
+The message is **not** sent upon the following:
+
+• `address` is not provided and user has no addresses or more than one.
+
+• `address` is someone else's verified address or identifier. This results in the `Identifier is already used` response.
+
+• The user's `status` is not `new`.
+
+This request invalidates any previously generated OTPs for user account activation.
+
+When `code_type_in_message=link` or no value is provided for it, an activation link is generated.
+
+Activation message validity period is configured in the identity pool settings.
+
+❕ REFACTORED: `identifier` is renamed to `address` in the request body. For backward compatibility, the both
+fields are available. If `identifier` is not empty, it overrides the `address` value.
 */
 func (a *Client) SelfSendActivationMessage(params *SelfSendActivationMessageParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SelfSendActivationMessageNoContent, error) {
 	// TODO: Validate the params before sending
@@ -634,9 +747,56 @@ func (a *Client) SelfSendActivationMessage(params *SelfSendActivationMessagePara
 }
 
 /*
-SystemAddIdentifier adds identifier
+	SetPasswordState sets password state
 
-Adds an identifier to the user account
+	There is a set of well-defined states password can be in:
+
+`valid` - password is valid and can be used for authentication etc.
+`must_be_reset` - password is not valid for authentication and must be reset
+`must_be_changed` - password is valid for one authentication and then must be changed or will be moved to `must_be_reset` state
+*/
+func (a *Client) SetPasswordState(params *SetPasswordStateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SetPasswordStateNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSetPasswordStateParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "setPasswordState",
+		Method:             "PUT",
+		PathPattern:        "/system/pools/{ipID}/users/{userID}/password/state",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SetPasswordStateReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SetPasswordStateNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for setPasswordState: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	SystemAddIdentifier adds identifier
+
+	Add an identifier to the user account in the specified identity pool.
+
+The identifier must be unique within the user's account.
 */
 func (a *Client) SystemAddIdentifier(params *SystemAddIdentifierParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemAddIdentifierOK, error) {
 	// TODO: Validate the params before sending
@@ -718,11 +878,19 @@ func (a *Client) SystemAddVerifiableAddress(params *SystemAddVerifiableAddressPa
 /*
 	SystemCreateUser creates user
 
-	Creates a user with extended data. User can be created with any status and set of identifiers, addresses and credentials.
+	Create a user with extended data.
 
-If payload schema ID or metadata schema ID is not provided, they default to the value from Identity Pool.
-Payload and metadata must be valid against a proper schema.
-Returns an extended view on user entry (see Get User endpoint).
+Any status and set of identifiers, addresses, and credentials are allowed.
+If credential of type password is provided it can be marked as must_be_changed which forces user to change its password upon first login.
+
+When no `payload_schema_id` or `metadata_schema_id` are provided, the default values are taken from the
+specified Identity Pool.
+
+Payload and metadata must match the specified schema.
+
+The response contains an extended view on user entry.
+
+To retrieve a user entry without user creation, call the **Get User Details** endpoint.
 */
 func (a *Client) SystemCreateUser(params *SystemCreateUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemCreateUserCreated, error) {
 	// TODO: Validate the params before sending
@@ -761,9 +929,9 @@ func (a *Client) SystemCreateUser(params *SystemCreateUserParams, authInfo runti
 }
 
 /*
-SystemDeleteIdentifier deletes identifier
+SystemDeleteIdentifier removes identifier
 
-Deletes an identifier from the user account
+Remove an identifier from the specified user account.
 */
 func (a *Client) SystemDeleteIdentifier(params *SystemDeleteIdentifierParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemDeleteIdentifierNoContent, error) {
 	// TODO: Validate the params before sending
@@ -802,9 +970,9 @@ func (a *Client) SystemDeleteIdentifier(params *SystemDeleteIdentifierParams, au
 }
 
 /*
-SystemDeleteUser deletes user
+SystemDeleteUser deletes user account
 
-Deletes user.
+Remove a record about a user account in the specified identity pool.
 */
 func (a *Client) SystemDeleteUser(params *SystemDeleteUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemDeleteUserNoContent, error) {
 	// TODO: Validate the params before sending
@@ -845,7 +1013,7 @@ func (a *Client) SystemDeleteUser(params *SystemDeleteUserParams, authInfo runti
 /*
 SystemDeleteVerifiableAddress deletes verifiable address
 
-Deletes a verifiable address from the user account
+Remove a verifiable address from a user account so it is no longer associated with the specified user.
 */
 func (a *Client) SystemDeleteVerifiableAddress(params *SystemDeleteVerifiableAddressParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemDeleteVerifiableAddressNoContent, error) {
 	// TODO: Validate the params before sending
@@ -884,12 +1052,12 @@ func (a *Client) SystemDeleteVerifiableAddress(params *SystemDeleteVerifiableAdd
 }
 
 /*
-	SystemGetUser gets user
+	SystemGetUser gets user details
 
-	Returns an extended view on user entry.
+	Retrieve extended information about a user record.
 
-Besides the basic user entry, it returns all user identifiers, addresses, and credentials (blurred).
-User payload and metadata are also returned.
+The response contains user's basic details, payload, and metadata, as well as all their identifiers,
+addresses, and blurred credentials.
 */
 func (a *Client) SystemGetUser(params *SystemGetUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemGetUserOK, error) {
 	// TODO: Validate the params before sending
@@ -928,13 +1096,60 @@ func (a *Client) SystemGetUser(params *SystemGetUserParams, authInfo runtime.Cli
 }
 
 /*
+	SystemGetUserByKey gets user details by key
+
+	Retrieve extended information about a user record found by provided key.
+
+Only one of `identifier` or `address` can be provided.
+Address must be user's verified address. It's not possible to find user by unverified address.
+
+The response contains user's basic details, payload, and metadata, as well as all their identifiers,
+addresses, and blurred credentials.
+*/
+func (a *Client) SystemGetUserByKey(params *SystemGetUserByKeyParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemGetUserByKeyOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSystemGetUserByKeyParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "systemGetUserByKey",
+		Method:             "POST",
+		PathPattern:        "/system/pools/{ipID}/users/by_key",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SystemGetUserByKeyReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SystemGetUserByKeyOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for systemGetUserByKey: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
 	SystemListUsers lists users
 
-	Lists users.
+	Retrieve the list of users from the specified identity pool.
 
 Results are sorted by user ID. No other sorting is supported.
 
-This API does not use ETags. Data returned from this API is eventually consistent.
+This API does not use ETags. Data returned in the response is eventually consistent.
 It's not possible to enforce full consistency for this API.
 */
 func (a *Client) SystemListUsers(params *SystemListUsersParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemListUsersOK, error) {
@@ -974,14 +1189,17 @@ func (a *Client) SystemListUsers(params *SystemListUsersParams, authInfo runtime
 }
 
 /*
-	SystemUpdateUser updates user
+	SystemUpdateUser updates user record
 
-	Updates base set of user data like payload, metadata, schemas and status.
+	Update the basic set of user data: payload, metadata, schemas, and status. Provide the required values for the fields
 
-Updates only provided fields - overrides them. Not provided fields are not removed/cleared.
-If payload or metadata is provided it must be valid against proper schema.
-If any schema is provided then the corresponding entry (payload or metadata) must be valid against it.
-Returns an extended view on user entry (see Get User endpoint).
+you need to update. Fields with no values are skipped for the update (not removed nor cleared).
+
+The fields to be updated are overridden.
+
+Any `payload` / `metadata` and `payload_schema_id` / `metadata_schema_id` values passed must be mutually relevant.
+
+To retrieve a user entry without updating their record, call the **Get User Details** endpoint.
 */
 func (a *Client) SystemUpdateUser(params *SystemUpdateUserParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemUpdateUserOK, error) {
 	// TODO: Validate the params before sending
@@ -1022,7 +1240,7 @@ func (a *Client) SystemUpdateUser(params *SystemUpdateUserParams, authInfo runti
 /*
 SystemUpdateVerifiableAddress updates verifiable address
 
-Updates a verifiable address of the user account
+Update a verifiable address for the user account.
 */
 func (a *Client) SystemUpdateVerifiableAddress(params *SystemUpdateVerifiableAddressParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemUpdateVerifiableAddressOK, error) {
 	// TODO: Validate the params before sending
@@ -1068,6 +1286,8 @@ func (a *Client) SystemUpdateVerifiableAddress(params *SystemUpdateVerifiableAdd
 Either identifier (must be user's identifier) or user ID must be provided.
 Endpoint is protected by Brute Force mechanism.
 This endpoint is meant for integration when external system verifies user's password.
+
+REFACTORED: input field name has been changed from `id` to `userID`; field `id` stays for backward compatibility and overrides `userID` if not empty
 */
 func (a *Client) VerifyPassword(params *VerifyPasswordParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*VerifyPasswordOK, error) {
 	// TODO: Validate the params before sending

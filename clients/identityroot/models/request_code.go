@@ -28,7 +28,7 @@ type RequestCode struct {
 
 	// type
 	// Required: true
-	// Enum: [activation reset_password challenge verify_address]
+	// Enum: [activation reset_password challenge verify_address authentication]
 	Type string `json:"type"`
 }
 
@@ -50,7 +50,7 @@ var requestCodeTypeTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["activation","reset_password","challenge","verify_address"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["activation","reset_password","challenge","verify_address","authentication"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -71,6 +71,9 @@ const (
 
 	// RequestCodeTypeVerifyAddress captures enum value "verify_address"
 	RequestCodeTypeVerifyAddress string = "verify_address"
+
+	// RequestCodeTypeAuthentication captures enum value "authentication"
+	RequestCodeTypeAuthentication string = "authentication"
 )
 
 // prop value enum

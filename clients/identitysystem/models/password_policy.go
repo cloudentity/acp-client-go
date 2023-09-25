@@ -26,6 +26,9 @@ type PasswordPolicy struct {
 	// digits
 	Digits uint64 `json:"digits,omitempty"`
 
+	// lowercase letters
+	LowercaseLetters uint64 `json:"lowercase_letters,omitempty"`
+
 	// min length
 	MinLength uint64 `json:"min_length,omitempty"`
 

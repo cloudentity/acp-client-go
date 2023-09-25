@@ -220,6 +220,11 @@ func (m *HashConfig) ContextValidate(ctx context.Context, formats strfmt.Registr
 func (m *HashConfig) contextValidateArgon2(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Argon2 != nil {
+
+		if swag.IsZero(m.Argon2) { // not required
+			return nil
+		}
+
 		if err := m.Argon2.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("argon2")
@@ -236,6 +241,11 @@ func (m *HashConfig) contextValidateArgon2(ctx context.Context, formats strfmt.R
 func (m *HashConfig) contextValidateBcrypt(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Bcrypt != nil {
+
+		if swag.IsZero(m.Bcrypt) { // not required
+			return nil
+		}
+
 		if err := m.Bcrypt.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("bcrypt")
@@ -252,6 +262,11 @@ func (m *HashConfig) contextValidateBcrypt(ctx context.Context, formats strfmt.R
 func (m *HashConfig) contextValidatePbkdf2(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Pbkdf2 != nil {
+
+		if swag.IsZero(m.Pbkdf2) { // not required
+			return nil
+		}
+
 		if err := m.Pbkdf2.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("pbkdf2")
@@ -268,6 +283,11 @@ func (m *HashConfig) contextValidatePbkdf2(ctx context.Context, formats strfmt.R
 func (m *HashConfig) contextValidateSha(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Sha != nil {
+
+		if swag.IsZero(m.Sha) { // not required
+			return nil
+		}
+
 		if err := m.Sha.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("sha")

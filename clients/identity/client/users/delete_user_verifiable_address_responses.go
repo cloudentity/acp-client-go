@@ -54,7 +54,7 @@ func (o *DeleteUserVerifiableAddressReader) ReadResponse(response runtime.Client
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /admin/pools/{ipID}/users/{userID}/addresses/remove] deleteUserVerifiableAddress", response, response.Code())
 	}
 }
 
@@ -66,7 +66,7 @@ func NewDeleteUserVerifiableAddressNoContent() *DeleteUserVerifiableAddressNoCon
 /*
 DeleteUserVerifiableAddressNoContent describes a response with status code 204, with default header values.
 
-	Address has been deleted
+	Address Deleted
 */
 type DeleteUserVerifiableAddressNoContent struct {
 }
@@ -94,6 +94,11 @@ func (o *DeleteUserVerifiableAddressNoContent) IsServerError() bool {
 // IsCode returns true when this delete user verifiable address no content response a status code equal to that given
 func (o *DeleteUserVerifiableAddressNoContent) IsCode(code int) bool {
 	return code == 204
+}
+
+// Code gets the status code for the delete user verifiable address no content response
+func (o *DeleteUserVerifiableAddressNoContent) Code() int {
+	return 204
 }
 
 func (o *DeleteUserVerifiableAddressNoContent) Error() string {
@@ -146,6 +151,11 @@ func (o *DeleteUserVerifiableAddressUnauthorized) IsServerError() bool {
 // IsCode returns true when this delete user verifiable address unauthorized response a status code equal to that given
 func (o *DeleteUserVerifiableAddressUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the delete user verifiable address unauthorized response
+func (o *DeleteUserVerifiableAddressUnauthorized) Code() int {
+	return 401
 }
 
 func (o *DeleteUserVerifiableAddressUnauthorized) Error() string {
@@ -211,6 +221,11 @@ func (o *DeleteUserVerifiableAddressForbidden) IsCode(code int) bool {
 	return code == 403
 }
 
+// Code gets the status code for the delete user verifiable address forbidden response
+func (o *DeleteUserVerifiableAddressForbidden) Code() int {
+	return 403
+}
+
 func (o *DeleteUserVerifiableAddressForbidden) Error() string {
 	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/remove][%d] deleteUserVerifiableAddressForbidden  %+v", 403, o.Payload)
 }
@@ -274,6 +289,11 @@ func (o *DeleteUserVerifiableAddressNotFound) IsCode(code int) bool {
 	return code == 404
 }
 
+// Code gets the status code for the delete user verifiable address not found response
+func (o *DeleteUserVerifiableAddressNotFound) Code() int {
+	return 404
+}
+
 func (o *DeleteUserVerifiableAddressNotFound) Error() string {
 	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/addresses/remove][%d] deleteUserVerifiableAddressNotFound  %+v", 404, o.Payload)
 }
@@ -335,6 +355,11 @@ func (o *DeleteUserVerifiableAddressTooManyRequests) IsServerError() bool {
 // IsCode returns true when this delete user verifiable address too many requests response a status code equal to that given
 func (o *DeleteUserVerifiableAddressTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the delete user verifiable address too many requests response
+func (o *DeleteUserVerifiableAddressTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *DeleteUserVerifiableAddressTooManyRequests) Error() string {

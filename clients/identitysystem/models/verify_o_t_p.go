@@ -29,6 +29,9 @@ type VerifyOTP struct {
 	// identifier
 	// Example: sample@email.com/+48123456789
 	Identifier string `json:"identifier,omitempty"`
+
+	// user ID
+	UserID string `json:"userID,omitempty"`
 }
 
 // Validate validates this verify o t p

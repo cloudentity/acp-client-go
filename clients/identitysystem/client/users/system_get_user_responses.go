@@ -60,7 +60,7 @@ func (o *SystemGetUserReader) ReadResponse(response runtime.ClientResponse, cons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /system/pools/{ipID}/users/{userID}] systemGetUser", response, response.Code())
 	}
 }
 
@@ -110,6 +110,11 @@ func (o *SystemGetUserOK) IsServerError() bool {
 // IsCode returns true when this system get user o k response a status code equal to that given
 func (o *SystemGetUserOK) IsCode(code int) bool {
 	return code == 200
+}
+
+// Code gets the status code for the system get user o k response
+func (o *SystemGetUserOK) Code() int {
+	return 200
 }
 
 func (o *SystemGetUserOK) Error() string {
@@ -182,6 +187,11 @@ func (o *SystemGetUserUnauthorized) IsCode(code int) bool {
 	return code == 401
 }
 
+// Code gets the status code for the system get user unauthorized response
+func (o *SystemGetUserUnauthorized) Code() int {
+	return 401
+}
+
 func (o *SystemGetUserUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /system/pools/{ipID}/users/{userID}][%d] systemGetUserUnauthorized  %+v", 401, o.Payload)
 }
@@ -243,6 +253,11 @@ func (o *SystemGetUserForbidden) IsServerError() bool {
 // IsCode returns true when this system get user forbidden response a status code equal to that given
 func (o *SystemGetUserForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the system get user forbidden response
+func (o *SystemGetUserForbidden) Code() int {
+	return 403
 }
 
 func (o *SystemGetUserForbidden) Error() string {
@@ -308,6 +323,11 @@ func (o *SystemGetUserNotFound) IsCode(code int) bool {
 	return code == 404
 }
 
+// Code gets the status code for the system get user not found response
+func (o *SystemGetUserNotFound) Code() int {
+	return 404
+}
+
 func (o *SystemGetUserNotFound) Error() string {
 	return fmt.Sprintf("[GET /system/pools/{ipID}/users/{userID}][%d] systemGetUserNotFound  %+v", 404, o.Payload)
 }
@@ -371,6 +391,11 @@ func (o *SystemGetUserPreconditionFailed) IsCode(code int) bool {
 	return code == 412
 }
 
+// Code gets the status code for the system get user precondition failed response
+func (o *SystemGetUserPreconditionFailed) Code() int {
+	return 412
+}
+
 func (o *SystemGetUserPreconditionFailed) Error() string {
 	return fmt.Sprintf("[GET /system/pools/{ipID}/users/{userID}][%d] systemGetUserPreconditionFailed  %+v", 412, o.Payload)
 }
@@ -432,6 +457,11 @@ func (o *SystemGetUserTooManyRequests) IsServerError() bool {
 // IsCode returns true when this system get user too many requests response a status code equal to that given
 func (o *SystemGetUserTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the system get user too many requests response
+func (o *SystemGetUserTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *SystemGetUserTooManyRequests) Error() string {

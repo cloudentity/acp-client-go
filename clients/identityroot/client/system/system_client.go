@@ -44,7 +44,7 @@ Invalidates previously generated OTPs for action associated with the type.
 Code is valid for specific period of time configured in Identity Pool.
 
 Keep in mind that `address` attribute for different code types does not mean the same:
-for `reset_password` and `challenge` it must be user's address (verified or unverified)
+for `reset_password`, `authentication` and `challenge` it must be user's address (verified or unverified)
 for `activation` it is not mandatory (system will pick up address itself if there is only one in user entry) but if provided it must be one of the user's addresses (can be not verified)
 for `verify_address` it must be user's unverified address and that address cannot be someone's else verified address
 

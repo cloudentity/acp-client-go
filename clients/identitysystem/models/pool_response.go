@@ -35,6 +35,9 @@ type PoolResponse struct {
 	// id
 	ID string `json:"id,omitempty"`
 
+	// identifier case insensitive
+	IdentifierCaseInsensitive bool `json:"identifier_case_insensitive,omitempty"`
+
 	// metadata
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
 
@@ -44,6 +47,12 @@ type PoolResponse struct {
 	// name
 	// Required: true
 	Name string `json:"name"`
+
+	// number of jit users
+	NumberOfJitUsers int64 `json:"number_of_jit_users,omitempty"`
+
+	// number of standard users
+	NumberOfStandardUsers int64 `json:"number_of_standard_users,omitempty"`
 
 	// number of users
 	NumberOfUsers int64 `json:"number_of_users,omitempty"`
@@ -75,6 +84,9 @@ type PoolResponse struct {
 	// Example: default
 	// Required: true
 	TenantID string `json:"tenant_id"`
+
+	// workspace id
+	WorkspaceID string `json:"workspace_id,omitempty"`
 }
 
 // Validate validates this pool response
@@ -295,6 +307,11 @@ func (m *PoolResponse) contextValidateAuthenticationMechanisms(ctx context.Conte
 func (m *PoolResponse) contextValidateOtpSettings(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OtpSettings != nil {
+
+		if swag.IsZero(m.OtpSettings) { // not required
+			return nil
+		}
+
 		if err := m.OtpSettings.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("otp_settings")
@@ -311,6 +328,11 @@ func (m *PoolResponse) contextValidateOtpSettings(ctx context.Context, formats s
 func (m *PoolResponse) contextValidatePasswordPolicy(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.PasswordPolicy != nil {
+
+		if swag.IsZero(m.PasswordPolicy) { // not required
+			return nil
+		}
+
 		if err := m.PasswordPolicy.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("password_policy")
@@ -327,6 +349,11 @@ func (m *PoolResponse) contextValidatePasswordPolicy(ctx context.Context, format
 func (m *PoolResponse) contextValidatePasswordSettings(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.PasswordSettings != nil {
+
+		if swag.IsZero(m.PasswordSettings) { // not required
+			return nil
+		}
+
 		if err := m.PasswordSettings.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("password_settings")

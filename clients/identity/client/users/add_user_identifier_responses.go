@@ -60,7 +60,7 @@ func (o *AddUserIdentifierReader) ReadResponse(response runtime.ClientResponse, 
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /admin/pools/{ipID}/users/{userID}/identifiers/add] addUserIdentifier", response, response.Code())
 	}
 }
 
@@ -75,6 +75,15 @@ AddUserIdentifierOK describes a response with status code 200, with default head
 Identifier
 */
 type AddUserIdentifierOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.UserIdentifier
 }
 
@@ -103,6 +112,11 @@ func (o *AddUserIdentifierOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the add user identifier o k response
+func (o *AddUserIdentifierOK) Code() int {
+	return 200
+}
+
 func (o *AddUserIdentifierOK) Error() string {
 	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/identifiers/add][%d] addUserIdentifierOK  %+v", 200, o.Payload)
 }
@@ -116,6 +130,13 @@ func (o *AddUserIdentifierOK) GetPayload() *models.UserIdentifier {
 }
 
 func (o *AddUserIdentifierOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.UserIdentifier)
 
@@ -164,6 +185,11 @@ func (o *AddUserIdentifierUnauthorized) IsServerError() bool {
 // IsCode returns true when this add user identifier unauthorized response a status code equal to that given
 func (o *AddUserIdentifierUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the add user identifier unauthorized response
+func (o *AddUserIdentifierUnauthorized) Code() int {
+	return 401
 }
 
 func (o *AddUserIdentifierUnauthorized) Error() string {
@@ -229,6 +255,11 @@ func (o *AddUserIdentifierForbidden) IsCode(code int) bool {
 	return code == 403
 }
 
+// Code gets the status code for the add user identifier forbidden response
+func (o *AddUserIdentifierForbidden) Code() int {
+	return 403
+}
+
 func (o *AddUserIdentifierForbidden) Error() string {
 	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/identifiers/add][%d] addUserIdentifierForbidden  %+v", 403, o.Payload)
 }
@@ -290,6 +321,11 @@ func (o *AddUserIdentifierNotFound) IsServerError() bool {
 // IsCode returns true when this add user identifier not found response a status code equal to that given
 func (o *AddUserIdentifierNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the add user identifier not found response
+func (o *AddUserIdentifierNotFound) Code() int {
+	return 404
 }
 
 func (o *AddUserIdentifierNotFound) Error() string {
@@ -355,6 +391,11 @@ func (o *AddUserIdentifierConflict) IsCode(code int) bool {
 	return code == 409
 }
 
+// Code gets the status code for the add user identifier conflict response
+func (o *AddUserIdentifierConflict) Code() int {
+	return 409
+}
+
 func (o *AddUserIdentifierConflict) Error() string {
 	return fmt.Sprintf("[POST /admin/pools/{ipID}/users/{userID}/identifiers/add][%d] addUserIdentifierConflict  %+v", 409, o.Payload)
 }
@@ -416,6 +457,11 @@ func (o *AddUserIdentifierUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this add user identifier unprocessable entity response a status code equal to that given
 func (o *AddUserIdentifierUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the add user identifier unprocessable entity response
+func (o *AddUserIdentifierUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *AddUserIdentifierUnprocessableEntity) Error() string {

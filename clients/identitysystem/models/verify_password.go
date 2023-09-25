@@ -29,6 +29,9 @@ type VerifyPassword struct {
 	// password
 	// Required: true
 	Password string `json:"password"`
+
+	// user ID
+	UserID string `json:"userID,omitempty"`
 }
 
 // Validate validates this verify password

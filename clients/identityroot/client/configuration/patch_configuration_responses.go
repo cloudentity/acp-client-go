@@ -66,7 +66,7 @@ func (o *PatchConfigurationReader) ReadResponse(response runtime.ClientResponse,
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[PATCH /configuration] patchConfiguration", response, response.Code())
 	}
 }
 
@@ -106,6 +106,11 @@ func (o *PatchConfigurationNoContent) IsServerError() bool {
 // IsCode returns true when this patch configuration no content response a status code equal to that given
 func (o *PatchConfigurationNoContent) IsCode(code int) bool {
 	return code == 204
+}
+
+// Code gets the status code for the patch configuration no content response
+func (o *PatchConfigurationNoContent) Code() int {
+	return 204
 }
 
 func (o *PatchConfigurationNoContent) Error() string {
@@ -158,6 +163,11 @@ func (o *PatchConfigurationBadRequest) IsServerError() bool {
 // IsCode returns true when this patch configuration bad request response a status code equal to that given
 func (o *PatchConfigurationBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the patch configuration bad request response
+func (o *PatchConfigurationBadRequest) Code() int {
+	return 400
 }
 
 func (o *PatchConfigurationBadRequest) Error() string {
@@ -223,6 +233,11 @@ func (o *PatchConfigurationUnauthorized) IsCode(code int) bool {
 	return code == 401
 }
 
+// Code gets the status code for the patch configuration unauthorized response
+func (o *PatchConfigurationUnauthorized) Code() int {
+	return 401
+}
+
 func (o *PatchConfigurationUnauthorized) Error() string {
 	return fmt.Sprintf("[PATCH /configuration][%d] patchConfigurationUnauthorized  %+v", 401, o.Payload)
 }
@@ -284,6 +299,11 @@ func (o *PatchConfigurationForbidden) IsServerError() bool {
 // IsCode returns true when this patch configuration forbidden response a status code equal to that given
 func (o *PatchConfigurationForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the patch configuration forbidden response
+func (o *PatchConfigurationForbidden) Code() int {
+	return 403
 }
 
 func (o *PatchConfigurationForbidden) Error() string {
@@ -349,6 +369,11 @@ func (o *PatchConfigurationNotFound) IsCode(code int) bool {
 	return code == 404
 }
 
+// Code gets the status code for the patch configuration not found response
+func (o *PatchConfigurationNotFound) Code() int {
+	return 404
+}
+
 func (o *PatchConfigurationNotFound) Error() string {
 	return fmt.Sprintf("[PATCH /configuration][%d] patchConfigurationNotFound  %+v", 404, o.Payload)
 }
@@ -412,6 +437,11 @@ func (o *PatchConfigurationUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
 }
 
+// Code gets the status code for the patch configuration unprocessable entity response
+func (o *PatchConfigurationUnprocessableEntity) Code() int {
+	return 422
+}
+
 func (o *PatchConfigurationUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[PATCH /configuration][%d] patchConfigurationUnprocessableEntity  %+v", 422, o.Payload)
 }
@@ -473,6 +503,11 @@ func (o *PatchConfigurationTooManyRequests) IsServerError() bool {
 // IsCode returns true when this patch configuration too many requests response a status code equal to that given
 func (o *PatchConfigurationTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the patch configuration too many requests response
+func (o *PatchConfigurationTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *PatchConfigurationTooManyRequests) Error() string {

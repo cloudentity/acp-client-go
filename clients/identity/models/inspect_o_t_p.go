@@ -14,29 +14,21 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// Codes codes
+// InspectOTP inspect o t p
 //
-// swagger:model Codes
-type Codes struct {
+// swagger:model InspectOTP
+type InspectOTP struct {
 
 	// code
 	// Required: true
 	Code string `json:"code"`
-
-	// extended code
-	// Required: true
-	ExtendedCode string `json:"extended_code"`
 }
 
-// Validate validates this codes
-func (m *Codes) Validate(formats strfmt.Registry) error {
+// Validate validates this inspect o t p
+func (m *InspectOTP) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCode(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateExtendedCode(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -46,7 +38,7 @@ func (m *Codes) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Codes) validateCode(formats strfmt.Registry) error {
+func (m *InspectOTP) validateCode(formats strfmt.Registry) error {
 
 	if err := validate.RequiredString("code", "body", m.Code); err != nil {
 		return err
@@ -55,22 +47,13 @@ func (m *Codes) validateCode(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Codes) validateExtendedCode(formats strfmt.Registry) error {
-
-	if err := validate.RequiredString("extended_code", "body", m.ExtendedCode); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this codes based on context it is used
-func (m *Codes) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validates this inspect o t p based on context it is used
+func (m *InspectOTP) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 
 // MarshalBinary interface implementation
-func (m *Codes) MarshalBinary() ([]byte, error) {
+func (m *InspectOTP) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -78,8 +61,8 @@ func (m *Codes) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *Codes) UnmarshalBinary(b []byte) error {
-	var res Codes
+func (m *InspectOTP) UnmarshalBinary(b []byte) error {
+	var res InspectOTP
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

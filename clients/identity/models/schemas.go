@@ -82,6 +82,11 @@ func (m *Schemas) contextValidateSchemas(ctx context.Context, formats strfmt.Reg
 	for i := 0; i < len(m.Schemas); i++ {
 
 		if m.Schemas[i] != nil {
+
+			if swag.IsZero(m.Schemas[i]) { // not required
+				return nil
+			}
+
 			if err := m.Schemas[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("schemas" + "." + strconv.Itoa(i))

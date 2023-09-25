@@ -14,6 +14,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewDeletePoolParams creates a new DeletePoolParams object,
@@ -61,8 +62,22 @@ DeletePoolParams contains all the parameters to send to the API endpoint
 */
 type DeletePoolParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	// IPID.
 	IPID string
+
+	/* WithIdp.
+
+	   With idp
+	*/
+	WithIdp *bool
 
 	timeout    time.Duration
 	Context    context.Context
@@ -117,6 +132,17 @@ func (o *DeletePoolParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the delete pool params
+func (o *DeletePoolParams) WithIfMatch(ifMatch *string) *DeletePoolParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the delete pool params
+func (o *DeletePoolParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithIPID adds the iPID to the delete pool params
 func (o *DeletePoolParams) WithIPID(iPID string) *DeletePoolParams {
 	o.SetIPID(iPID)
@@ -128,6 +154,17 @@ func (o *DeletePoolParams) SetIPID(iPID string) {
 	o.IPID = iPID
 }
 
+// WithWithIdp adds the withIdp to the delete pool params
+func (o *DeletePoolParams) WithWithIdp(withIdp *bool) *DeletePoolParams {
+	o.SetWithIdp(withIdp)
+	return o
+}
+
+// SetWithIdp adds the withIdp to the delete pool params
+func (o *DeletePoolParams) SetWithIdp(withIdp *bool) {
+	o.WithIdp = withIdp
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *DeletePoolParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -136,9 +173,34 @@ func (o *DeletePoolParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 	}
 	var res []error
 
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
+
 	// path param ipID
 	if err := r.SetPathParam("ipID", o.IPID); err != nil {
 		return err
+	}
+
+	if o.WithIdp != nil {
+
+		// query param with_idp
+		var qrWithIdp bool
+
+		if o.WithIdp != nil {
+			qrWithIdp = *o.WithIdp
+		}
+		qWithIdp := swag.FormatBool(qrWithIdp)
+		if qWithIdp != "" {
+
+			if err := r.SetQueryParam("with_idp", qWithIdp); err != nil {
+				return err
+			}
+		}
 	}
 
 	if len(res) > 0 {

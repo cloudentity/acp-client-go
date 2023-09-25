@@ -37,6 +37,10 @@ type UserCredential struct {
 	// Required: true
 	Payload interface{} `json:"payload"`
 
+	// state
+	// Enum: [valid must_be_reset must_be_changed]
+	State string `json:"state,omitempty"`
+
 	// tenant id
 	// Example: default
 	// Required: true
@@ -76,6 +80,10 @@ func (m *UserCredential) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validatePayload(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateState(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -134,6 +142,51 @@ func (m *UserCredential) validatePayload(formats strfmt.Registry) error {
 
 	if m.Payload == nil {
 		return errors.Required("payload", "body", nil)
+	}
+
+	return nil
+}
+
+var userCredentialTypeStatePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["valid","must_be_reset","must_be_changed"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		userCredentialTypeStatePropEnum = append(userCredentialTypeStatePropEnum, v)
+	}
+}
+
+const (
+
+	// UserCredentialStateValid captures enum value "valid"
+	UserCredentialStateValid string = "valid"
+
+	// UserCredentialStateMustBeReset captures enum value "must_be_reset"
+	UserCredentialStateMustBeReset string = "must_be_reset"
+
+	// UserCredentialStateMustBeChanged captures enum value "must_be_changed"
+	UserCredentialStateMustBeChanged string = "must_be_changed"
+)
+
+// prop value enum
+func (m *UserCredential) validateStateEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, userCredentialTypeStatePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *UserCredential) validateState(formats strfmt.Registry) error {
+	if swag.IsZero(m.State) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateStateEnum("state", "body", m.State); err != nil {
+		return err
 	}
 
 	return nil

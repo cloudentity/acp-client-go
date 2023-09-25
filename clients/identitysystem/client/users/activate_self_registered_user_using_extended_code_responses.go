@@ -66,7 +66,7 @@ func (o *ActivateSelfRegisteredUserUsingExtendedCodeReader) ReadResponse(respons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /system/pools/{ipID}/user/activate] activateSelfRegisteredUserUsingExtendedCode", response, response.Code())
 	}
 }
 
@@ -116,6 +116,11 @@ func (o *ActivateSelfRegisteredUserUsingExtendedCodeCreated) IsServerError() boo
 // IsCode returns true when this activate self registered user using extended code created response a status code equal to that given
 func (o *ActivateSelfRegisteredUserUsingExtendedCodeCreated) IsCode(code int) bool {
 	return code == 201
+}
+
+// Code gets the status code for the activate self registered user using extended code created response
+func (o *ActivateSelfRegisteredUserUsingExtendedCodeCreated) Code() int {
+	return 201
 }
 
 func (o *ActivateSelfRegisteredUserUsingExtendedCodeCreated) Error() string {
@@ -188,6 +193,11 @@ func (o *ActivateSelfRegisteredUserUsingExtendedCodeBadRequest) IsCode(code int)
 	return code == 400
 }
 
+// Code gets the status code for the activate self registered user using extended code bad request response
+func (o *ActivateSelfRegisteredUserUsingExtendedCodeBadRequest) Code() int {
+	return 400
+}
+
 func (o *ActivateSelfRegisteredUserUsingExtendedCodeBadRequest) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/user/activate][%d] activateSelfRegisteredUserUsingExtendedCodeBadRequest  %+v", 400, o.Payload)
 }
@@ -249,6 +259,11 @@ func (o *ActivateSelfRegisteredUserUsingExtendedCodeUnauthorized) IsServerError(
 // IsCode returns true when this activate self registered user using extended code unauthorized response a status code equal to that given
 func (o *ActivateSelfRegisteredUserUsingExtendedCodeUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the activate self registered user using extended code unauthorized response
+func (o *ActivateSelfRegisteredUserUsingExtendedCodeUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ActivateSelfRegisteredUserUsingExtendedCodeUnauthorized) Error() string {
@@ -314,6 +329,11 @@ func (o *ActivateSelfRegisteredUserUsingExtendedCodeNotFound) IsCode(code int) b
 	return code == 404
 }
 
+// Code gets the status code for the activate self registered user using extended code not found response
+func (o *ActivateSelfRegisteredUserUsingExtendedCodeNotFound) Code() int {
+	return 404
+}
+
 func (o *ActivateSelfRegisteredUserUsingExtendedCodeNotFound) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/user/activate][%d] activateSelfRegisteredUserUsingExtendedCodeNotFound  %+v", 404, o.Payload)
 }
@@ -375,6 +395,11 @@ func (o *ActivateSelfRegisteredUserUsingExtendedCodePreconditionFailed) IsServer
 // IsCode returns true when this activate self registered user using extended code precondition failed response a status code equal to that given
 func (o *ActivateSelfRegisteredUserUsingExtendedCodePreconditionFailed) IsCode(code int) bool {
 	return code == 412
+}
+
+// Code gets the status code for the activate self registered user using extended code precondition failed response
+func (o *ActivateSelfRegisteredUserUsingExtendedCodePreconditionFailed) Code() int {
+	return 412
 }
 
 func (o *ActivateSelfRegisteredUserUsingExtendedCodePreconditionFailed) Error() string {
@@ -440,6 +465,11 @@ func (o *ActivateSelfRegisteredUserUsingExtendedCodeUnprocessableEntity) IsCode(
 	return code == 422
 }
 
+// Code gets the status code for the activate self registered user using extended code unprocessable entity response
+func (o *ActivateSelfRegisteredUserUsingExtendedCodeUnprocessableEntity) Code() int {
+	return 422
+}
+
 func (o *ActivateSelfRegisteredUserUsingExtendedCodeUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /system/pools/{ipID}/user/activate][%d] activateSelfRegisteredUserUsingExtendedCodeUnprocessableEntity  %+v", 422, o.Payload)
 }
@@ -501,6 +531,11 @@ func (o *ActivateSelfRegisteredUserUsingExtendedCodeTooManyRequests) IsServerErr
 // IsCode returns true when this activate self registered user using extended code too many requests response a status code equal to that given
 func (o *ActivateSelfRegisteredUserUsingExtendedCodeTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the activate self registered user using extended code too many requests response
+func (o *ActivateSelfRegisteredUserUsingExtendedCodeTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ActivateSelfRegisteredUserUsingExtendedCodeTooManyRequests) Error() string {

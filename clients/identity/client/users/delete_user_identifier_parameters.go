@@ -66,6 +66,14 @@ type DeleteUserIdentifierParams struct {
 	// Identifier.
 	Identifier *models.DeleteUserIdentifier
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	// IPID.
 	IPID string
 
@@ -136,6 +144,17 @@ func (o *DeleteUserIdentifierParams) SetIdentifier(identifier *models.DeleteUser
 	o.Identifier = identifier
 }
 
+// WithIfMatch adds the ifMatch to the delete user identifier params
+func (o *DeleteUserIdentifierParams) WithIfMatch(ifMatch *string) *DeleteUserIdentifierParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the delete user identifier params
+func (o *DeleteUserIdentifierParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithIPID adds the iPID to the delete user identifier params
 func (o *DeleteUserIdentifierParams) WithIPID(iPID string) *DeleteUserIdentifierParams {
 	o.SetIPID(iPID)
@@ -167,6 +186,14 @@ func (o *DeleteUserIdentifierParams) WriteToRequest(r runtime.ClientRequest, reg
 	var res []error
 	if o.Identifier != nil {
 		if err := r.SetBodyParam(o.Identifier); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

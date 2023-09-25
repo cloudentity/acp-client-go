@@ -64,7 +64,7 @@ RequestResetPasswordParams contains all the parameters to send to the API endpoi
 type RequestResetPasswordParams struct {
 
 	// RequestResetPassword.
-	RequestResetPassword *models.RequestResetPassword
+	RequestResetPassword *models.RequestResetCredential
 
 	/* CodeTypeInMessage.
 
@@ -84,6 +84,13 @@ type RequestResetPasswordParams struct {
 
 	// IPID.
 	IPID string
+
+	/* ServerID.
+
+	     optional server's identifier (used for themes etc.)
+	ServerID
+	*/
+	ServerID *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -150,13 +157,13 @@ func (o *RequestResetPasswordParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithRequestResetPassword adds the requestResetPassword to the request reset password params
-func (o *RequestResetPasswordParams) WithRequestResetPassword(requestResetPassword *models.RequestResetPassword) *RequestResetPasswordParams {
+func (o *RequestResetPasswordParams) WithRequestResetPassword(requestResetPassword *models.RequestResetCredential) *RequestResetPasswordParams {
 	o.SetRequestResetPassword(requestResetPassword)
 	return o
 }
 
 // SetRequestResetPassword adds the requestResetPassword to the request reset password params
-func (o *RequestResetPasswordParams) SetRequestResetPassword(requestResetPassword *models.RequestResetPassword) {
+func (o *RequestResetPasswordParams) SetRequestResetPassword(requestResetPassword *models.RequestResetCredential) {
 	o.RequestResetPassword = requestResetPassword
 }
 
@@ -191,6 +198,17 @@ func (o *RequestResetPasswordParams) WithIPID(iPID string) *RequestResetPassword
 // SetIPID adds the ipId to the request reset password params
 func (o *RequestResetPasswordParams) SetIPID(iPID string) {
 	o.IPID = iPID
+}
+
+// WithServerID adds the serverID to the request reset password params
+func (o *RequestResetPasswordParams) WithServerID(serverID *string) *RequestResetPasswordParams {
+	o.SetServerID(serverID)
+	return o
+}
+
+// SetServerID adds the serverId to the request reset password params
+func (o *RequestResetPasswordParams) SetServerID(serverID *string) {
+	o.ServerID = serverID
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -234,6 +252,23 @@ func (o *RequestResetPasswordParams) WriteToRequest(r runtime.ClientRequest, reg
 	// path param ipID
 	if err := r.SetPathParam("ipID", o.IPID); err != nil {
 		return err
+	}
+
+	if o.ServerID != nil {
+
+		// query param server_id
+		var qrServerID string
+
+		if o.ServerID != nil {
+			qrServerID = *o.ServerID
+		}
+		qServerID := qrServerID
+		if qServerID != "" {
+
+			if err := r.SetQueryParam("server_id", qServerID); err != nil {
+				return err
+			}
+		}
 	}
 
 	if len(res) > 0 {

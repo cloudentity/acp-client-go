@@ -54,7 +54,7 @@ func (o *GetSchemaReader) ReadResponse(response runtime.ClientResponse, consumer
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /admin/schemas/{schID}] getSchema", response, response.Code())
 	}
 }
 
@@ -69,6 +69,15 @@ GetSchemaOK describes a response with status code 200, with default header value
 Identity Schema
 */
 type GetSchemaOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.Schema
 }
 
@@ -97,6 +106,11 @@ func (o *GetSchemaOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get schema o k response
+func (o *GetSchemaOK) Code() int {
+	return 200
+}
+
 func (o *GetSchemaOK) Error() string {
 	return fmt.Sprintf("[GET /admin/schemas/{schID}][%d] getSchemaOK  %+v", 200, o.Payload)
 }
@@ -110,6 +124,13 @@ func (o *GetSchemaOK) GetPayload() *models.Schema {
 }
 
 func (o *GetSchemaOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.Schema)
 
@@ -158,6 +179,11 @@ func (o *GetSchemaUnauthorized) IsServerError() bool {
 // IsCode returns true when this get schema unauthorized response a status code equal to that given
 func (o *GetSchemaUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get schema unauthorized response
+func (o *GetSchemaUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetSchemaUnauthorized) Error() string {
@@ -223,6 +249,11 @@ func (o *GetSchemaForbidden) IsCode(code int) bool {
 	return code == 403
 }
 
+// Code gets the status code for the get schema forbidden response
+func (o *GetSchemaForbidden) Code() int {
+	return 403
+}
+
 func (o *GetSchemaForbidden) Error() string {
 	return fmt.Sprintf("[GET /admin/schemas/{schID}][%d] getSchemaForbidden  %+v", 403, o.Payload)
 }
@@ -286,6 +317,11 @@ func (o *GetSchemaNotFound) IsCode(code int) bool {
 	return code == 404
 }
 
+// Code gets the status code for the get schema not found response
+func (o *GetSchemaNotFound) Code() int {
+	return 404
+}
+
 func (o *GetSchemaNotFound) Error() string {
 	return fmt.Sprintf("[GET /admin/schemas/{schID}][%d] getSchemaNotFound  %+v", 404, o.Payload)
 }
@@ -347,6 +383,11 @@ func (o *GetSchemaTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get schema too many requests response a status code equal to that given
 func (o *GetSchemaTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get schema too many requests response
+func (o *GetSchemaTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetSchemaTooManyRequests) Error() string {

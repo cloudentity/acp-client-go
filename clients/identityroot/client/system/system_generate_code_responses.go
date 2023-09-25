@@ -60,7 +60,7 @@ func (o *SystemGenerateCodeReader) ReadResponse(response runtime.ClientResponse,
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /code/generate] systemGenerateCode", response, response.Code())
 	}
 }
 
@@ -101,6 +101,11 @@ func (o *SystemGenerateCodeCreated) IsServerError() bool {
 // IsCode returns true when this system generate code created response a status code equal to that given
 func (o *SystemGenerateCodeCreated) IsCode(code int) bool {
 	return code == 201
+}
+
+// Code gets the status code for the system generate code created response
+func (o *SystemGenerateCodeCreated) Code() int {
+	return 201
 }
 
 func (o *SystemGenerateCodeCreated) Error() string {
@@ -166,6 +171,11 @@ func (o *SystemGenerateCodeBadRequest) IsCode(code int) bool {
 	return code == 400
 }
 
+// Code gets the status code for the system generate code bad request response
+func (o *SystemGenerateCodeBadRequest) Code() int {
+	return 400
+}
+
 func (o *SystemGenerateCodeBadRequest) Error() string {
 	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeBadRequest  %+v", 400, o.Payload)
 }
@@ -227,6 +237,11 @@ func (o *SystemGenerateCodeUnauthorized) IsServerError() bool {
 // IsCode returns true when this system generate code unauthorized response a status code equal to that given
 func (o *SystemGenerateCodeUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the system generate code unauthorized response
+func (o *SystemGenerateCodeUnauthorized) Code() int {
+	return 401
 }
 
 func (o *SystemGenerateCodeUnauthorized) Error() string {
@@ -292,6 +307,11 @@ func (o *SystemGenerateCodeNotFound) IsCode(code int) bool {
 	return code == 404
 }
 
+// Code gets the status code for the system generate code not found response
+func (o *SystemGenerateCodeNotFound) Code() int {
+	return 404
+}
+
 func (o *SystemGenerateCodeNotFound) Error() string {
 	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeNotFound  %+v", 404, o.Payload)
 }
@@ -355,6 +375,11 @@ func (o *SystemGenerateCodeUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
 }
 
+// Code gets the status code for the system generate code unprocessable entity response
+func (o *SystemGenerateCodeUnprocessableEntity) Code() int {
+	return 422
+}
+
 func (o *SystemGenerateCodeUnprocessableEntity) Error() string {
 	return fmt.Sprintf("[POST /code/generate][%d] systemGenerateCodeUnprocessableEntity  %+v", 422, o.Payload)
 }
@@ -416,6 +441,11 @@ func (o *SystemGenerateCodeTooManyRequests) IsServerError() bool {
 // IsCode returns true when this system generate code too many requests response a status code equal to that given
 func (o *SystemGenerateCodeTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the system generate code too many requests response
+func (o *SystemGenerateCodeTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *SystemGenerateCodeTooManyRequests) Error() string {
