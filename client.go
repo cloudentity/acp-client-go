@@ -777,7 +777,7 @@ func New(cfg Config) (c Client, err error) {
 	c.Hub = &Hub{
 		Acp: hub.New(httptransport.NewWithClient(
 			cfg.IssuerURL.Host,
-			c.apiPathPrefix(cfg.VanityDomainType, "/api/identity/%s"),
+			c.apiPathPrefix(cfg.VanityDomainType, "/api/hub/%s"),
 			[]string{cfg.IssuerURL.Scheme},
 			client,
 		).WithOpenTracing(), nil),
