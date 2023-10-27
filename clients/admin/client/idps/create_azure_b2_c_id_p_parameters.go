@@ -69,6 +69,14 @@ type CreateAzureB2CIDPParams struct {
 	*/
 	AzureB2CIDP *models.AzureB2CIDP
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Wid.
 
 	   Authorization server id
@@ -152,6 +160,17 @@ func (o *CreateAzureB2CIDPParams) SetAzureB2CIDP(azureB2CIDP *models.AzureB2CIDP
 	o.AzureB2CIDP = azureB2CIDP
 }
 
+// WithIfMatch adds the ifMatch to the create azure b2 c ID p params
+func (o *CreateAzureB2CIDPParams) WithIfMatch(ifMatch *string) *CreateAzureB2CIDPParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the create azure b2 c ID p params
+func (o *CreateAzureB2CIDPParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithWid adds the wid to the create azure b2 c ID p params
 func (o *CreateAzureB2CIDPParams) WithWid(wid string) *CreateAzureB2CIDPParams {
 	o.SetWid(wid)
@@ -172,6 +191,14 @@ func (o *CreateAzureB2CIDPParams) WriteToRequest(r runtime.ClientRequest, reg st
 	var res []error
 	if o.AzureB2CIDP != nil {
 		if err := r.SetBodyParam(o.AzureB2CIDP); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

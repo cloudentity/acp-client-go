@@ -30,17 +30,105 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	SystemCreateSchema(params *SystemCreateSchemaParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemCreateSchemaCreated, error)
+
+	SystemDeleteSchema(params *SystemDeleteSchemaParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemDeleteSchemaNoContent, error)
+
 	SystemGetSchema(params *SystemGetSchemaParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemGetSchemaOK, error)
+
+	SystemListSchemas(params *SystemListSchemasParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemListSchemasOK, error)
+
+	SystemUpdateSchema(params *SystemUpdateSchemaParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemUpdateSchemaOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
 
 /*
-	SystemGetSchema gets schema
+SystemCreateSchema creates schema
 
-	Gets schema.
+Create a schema. Set the `system` flag to prevent the schema from deletion or modifications.
+*/
+func (a *Client) SystemCreateSchema(params *SystemCreateSchemaParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemCreateSchemaCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSystemCreateSchemaParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "systemCreateSchema",
+		Method:             "POST",
+		PathPattern:        "/system/schemas",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SystemCreateSchemaReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
 
-This API does not use ETags but data is always consistent.
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SystemCreateSchemaCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for systemCreateSchema: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+SystemDeleteSchema deletes schema
+
+Delete a schema. Schemas marked with the `system` flag aren't available for deletion.
+*/
+func (a *Client) SystemDeleteSchema(params *SystemDeleteSchemaParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemDeleteSchemaNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSystemDeleteSchemaParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "systemDeleteSchema",
+		Method:             "DELETE",
+		PathPattern:        "/system/schemas/{schID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SystemDeleteSchemaReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SystemDeleteSchemaNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for systemDeleteSchema: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+SystemGetSchema gets schema
+
+Gets schema.
 */
 func (a *Client) SystemGetSchema(params *SystemGetSchemaParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemGetSchemaOK, error) {
 	// TODO: Validate the params before sending
@@ -75,6 +163,88 @@ func (a *Client) SystemGetSchema(params *SystemGetSchemaParams, authInfo runtime
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for systemGetSchema: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+SystemListSchemas lists schemas
+
+List all schemas.
+*/
+func (a *Client) SystemListSchemas(params *SystemListSchemasParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemListSchemasOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSystemListSchemasParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "systemListSchemas",
+		Method:             "GET",
+		PathPattern:        "/system/schemas",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SystemListSchemasReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SystemListSchemasOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for systemListSchemas: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+SystemUpdateSchema updates schema
+
+Update a schema. Schemas marked with the `system` flag aren't available for update.
+*/
+func (a *Client) SystemUpdateSchema(params *SystemUpdateSchemaParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*SystemUpdateSchemaOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSystemUpdateSchemaParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "systemUpdateSchema",
+		Method:             "PUT",
+		PathPattern:        "/system/schemas/{schID}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SystemUpdateSchemaReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SystemUpdateSchemaOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for systemUpdateSchema: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

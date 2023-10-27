@@ -104,6 +104,10 @@ func (m *TestPolicyInput) ContextValidate(ctx context.Context, formats strfmt.Re
 
 func (m *TestPolicyInput) contextValidateAuthnCtx(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.AuthnCtx) { // not required
+		return nil
+	}
+
 	if err := m.AuthnCtx.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("authn_ctx")
@@ -119,6 +123,11 @@ func (m *TestPolicyInput) contextValidateAuthnCtx(ctx context.Context, formats s
 func (m *TestPolicyInput) contextValidateRequest(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Request != nil {
+
+		if swag.IsZero(m.Request) { // not required
+			return nil
+		}
+
 		if err := m.Request.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("request")

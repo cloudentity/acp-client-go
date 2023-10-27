@@ -69,6 +69,14 @@ type CreateAzureIDPParams struct {
 	*/
 	AzureIDP *models.AzureIDP
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Wid.
 
 	   Authorization server id
@@ -152,6 +160,17 @@ func (o *CreateAzureIDPParams) SetAzureIDP(azureIDP *models.AzureIDP) {
 	o.AzureIDP = azureIDP
 }
 
+// WithIfMatch adds the ifMatch to the create azure ID p params
+func (o *CreateAzureIDPParams) WithIfMatch(ifMatch *string) *CreateAzureIDPParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the create azure ID p params
+func (o *CreateAzureIDPParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithWid adds the wid to the create azure ID p params
 func (o *CreateAzureIDPParams) WithWid(wid string) *CreateAzureIDPParams {
 	o.SetWid(wid)
@@ -172,6 +191,14 @@ func (o *CreateAzureIDPParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 	var res []error
 	if o.AzureIDP != nil {
 		if err := r.SetBodyParam(o.AzureIDP); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

@@ -69,6 +69,14 @@ type CreateAuth0IDPParams struct {
 	*/
 	Auth0IDP *models.Auth0IDP
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Wid.
 
 	   Authorization server id
@@ -152,6 +160,17 @@ func (o *CreateAuth0IDPParams) SetAuth0IDP(auth0IDP *models.Auth0IDP) {
 	o.Auth0IDP = auth0IDP
 }
 
+// WithIfMatch adds the ifMatch to the create auth0 ID p params
+func (o *CreateAuth0IDPParams) WithIfMatch(ifMatch *string) *CreateAuth0IDPParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the create auth0 ID p params
+func (o *CreateAuth0IDPParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithWid adds the wid to the create auth0 ID p params
 func (o *CreateAuth0IDPParams) WithWid(wid string) *CreateAuth0IDPParams {
 	o.SetWid(wid)
@@ -172,6 +191,14 @@ func (o *CreateAuth0IDPParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 	var res []error
 	if o.Auth0IDP != nil {
 		if err := r.SetBodyParam(o.Auth0IDP); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

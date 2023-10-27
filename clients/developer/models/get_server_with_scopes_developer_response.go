@@ -21,6 +21,9 @@ import (
 // swagger:model GetServerWithScopesDeveloperResponse
 type GetServerWithScopesDeveloperResponse struct {
 
+	// list of authorization details
+	AuthorizationDetails []*AuthorizationDetailWithServiceDeveloperResponse `json:"authorization_details"`
+
 	// Color
 	// Example: #007FFF
 	Color string `json:"color,omitempty"`
@@ -44,6 +47,9 @@ type GetServerWithScopesDeveloperResponse struct {
 	// Example: ACP
 	Name string `json:"name,omitempty"`
 
+	// response types
+	ResponseTypes ResponseTypes `json:"response_types,omitempty"`
+
 	// list of scopes
 	Scopes []*ScopeWithServiceDeveloperResponse `json:"scopes"`
 
@@ -60,7 +66,15 @@ type GetServerWithScopesDeveloperResponse struct {
 func (m *GetServerWithScopesDeveloperResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAuthorizationDetails(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateGrantTypes(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateResponseTypes(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -79,6 +93,32 @@ func (m *GetServerWithScopesDeveloperResponse) Validate(formats strfmt.Registry)
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *GetServerWithScopesDeveloperResponse) validateAuthorizationDetails(formats strfmt.Registry) error {
+	if swag.IsZero(m.AuthorizationDetails) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.AuthorizationDetails); i++ {
+		if swag.IsZero(m.AuthorizationDetails[i]) { // not required
+			continue
+		}
+
+		if m.AuthorizationDetails[i] != nil {
+			if err := m.AuthorizationDetails[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("authorization_details" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("authorization_details" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 
@@ -113,6 +153,23 @@ func (m *GetServerWithScopesDeveloperResponse) validateGrantTypes(formats strfmt
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *GetServerWithScopesDeveloperResponse) validateResponseTypes(formats strfmt.Registry) error {
+	if swag.IsZero(m.ResponseTypes) { // not required
+		return nil
+	}
+
+	if err := m.ResponseTypes.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("response_types")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("response_types")
+		}
+		return err
 	}
 
 	return nil
@@ -220,6 +277,14 @@ func (m *GetServerWithScopesDeveloperResponse) validateSupportedApplicationPurpo
 func (m *GetServerWithScopesDeveloperResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateAuthorizationDetails(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateResponseTypes(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateScopes(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -230,11 +295,55 @@ func (m *GetServerWithScopesDeveloperResponse) ContextValidate(ctx context.Conte
 	return nil
 }
 
+func (m *GetServerWithScopesDeveloperResponse) contextValidateAuthorizationDetails(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.AuthorizationDetails); i++ {
+
+		if m.AuthorizationDetails[i] != nil {
+
+			if swag.IsZero(m.AuthorizationDetails[i]) { // not required
+				return nil
+			}
+
+			if err := m.AuthorizationDetails[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("authorization_details" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("authorization_details" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *GetServerWithScopesDeveloperResponse) contextValidateResponseTypes(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.ResponseTypes.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("response_types")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("response_types")
+		}
+		return err
+	}
+
+	return nil
+}
+
 func (m *GetServerWithScopesDeveloperResponse) contextValidateScopes(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.Scopes); i++ {
 
 		if m.Scopes[i] != nil {
+
+			if swag.IsZero(m.Scopes[i]) { // not required
+				return nil
+			}
+
 			if err := m.Scopes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("scopes" + "." + strconv.Itoa(i))

@@ -122,6 +122,11 @@ func (m *PolicyValidationResult) contextValidateFailure(ctx context.Context, for
 	for i := 0; i < len(m.Failure); i++ {
 
 		if m.Failure[i] != nil {
+
+			if swag.IsZero(m.Failure[i]) { // not required
+				return nil
+			}
+
 			if err := m.Failure[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("failure" + "." + strconv.Itoa(i))
@@ -142,6 +147,11 @@ func (m *PolicyValidationResult) contextValidateRecovery(ctx context.Context, fo
 	for i := 0; i < len(m.Recovery); i++ {
 
 		if m.Recovery[i] != nil {
+
+			if swag.IsZero(m.Recovery[i]) { // not required
+				return nil
+			}
+
 			if err := m.Recovery[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recovery" + "." + strconv.Itoa(i))

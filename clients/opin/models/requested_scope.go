@@ -34,6 +34,9 @@ type RequestedScope struct {
 	// Example: scope-1
 	ID string `json:"id,omitempty"`
 
+	// Request this scope by default for all clients who subscribed to this scope
+	Implicit bool `json:"implicit,omitempty"`
+
 	// metadata
 	Metadata Metadata `json:"metadata,omitempty"`
 

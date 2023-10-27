@@ -42,6 +42,10 @@ type IdentityPoolIDP struct {
 	// discovery settings
 	DiscoverySettings *IDPDiscoverySettings `json:"discovery_settings,omitempty"`
 
+	// Can be used to e.g. modify the order in which the Identity Providers are presented on the login page.
+	// Example: 1
+	DisplayOrder int64 `json:"display_order,omitempty"`
+
 	// If set to `true`, the IDP is not displayed on the login page.
 	//
 	// When an IDP is hidden, it will not be displayed on the login page. It can still be used
@@ -56,19 +60,31 @@ type IdentityPoolIDP struct {
 	// ID of the Identity Pool to which the IDP is connected
 	IdentityPoolID string `json:"identity_pool_id,omitempty"`
 
+	// jit
+	Jit *JITSettings `json:"jit,omitempty"`
+
+	// Logo URI
+	LogoURI string `json:"logo_uri,omitempty"`
+
 	// mappings
 	Mappings Mappings `json:"mappings,omitempty"`
 
 	// Defines the type of an IDP
 	//
-	// ACP is designed to make it possible for you to bring any of your own IDPs and integrate it
-	// with ACP as it delivers enterprise connectors for major Cloud IDPs and a possibility for
+	// Cloudentity is designed to make it possible for you to bring any of your own IDPs and integrate it
+	// with Cloudentity as it delivers enterprise connectors for major Cloud IDPs and a possibility for
 	// custom integration DKS for home-built solutions. You can also use built-in Sandbox IDP, which
 	// is a static IDP, to create an IDP for testing purposes.
 	Method string `json:"method,omitempty"`
 
 	// Display name of your IDP
 	Name string `json:"name,omitempty"`
+
+	// Points to the ID of the custom app, null if not set
+	PostAuthnAppID string `json:"post_authn_app_id,omitempty"`
+
+	// sso settings
+	SsoSettings *IDPSSOSettings `json:"sso_settings,omitempty"`
 
 	// Authentication method reference
 	//
@@ -85,8 +101,12 @@ type IdentityPoolIDP struct {
 	// token exchange settings
 	TokenExchangeSettings *IDPTokenExchangeSettings `json:"token_exchange_settings,omitempty"`
 
-	// transformer
-	Transformer *ScriptTransformer `json:"transformer,omitempty"`
+	// IDP version to track internal changes
+	// version that is currently supported: 3
+	Version int64 `json:"version,omitempty"`
+
+	// ID of the Workspace to which the IDP is connected
+	WorkspaceID string `json:"workspace_id,omitempty"`
 }
 
 // Validate validates this identity pool ID p
@@ -105,15 +125,19 @@ func (m *IdentityPoolIDP) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateJit(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateMappings(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateTokenExchangeSettings(formats); err != nil {
+	if err := m.validateSsoSettings(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateTransformer(formats); err != nil {
+	if err := m.validateTokenExchangeSettings(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -178,6 +202,25 @@ func (m *IdentityPoolIDP) validateDiscoverySettings(formats strfmt.Registry) err
 	return nil
 }
 
+func (m *IdentityPoolIDP) validateJit(formats strfmt.Registry) error {
+	if swag.IsZero(m.Jit) { // not required
+		return nil
+	}
+
+	if m.Jit != nil {
+		if err := m.Jit.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("jit")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("jit")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *IdentityPoolIDP) validateMappings(formats strfmt.Registry) error {
 	if swag.IsZero(m.Mappings) { // not required
 		return nil
@@ -190,6 +233,25 @@ func (m *IdentityPoolIDP) validateMappings(formats strfmt.Registry) error {
 			return ce.ValidateName("mappings")
 		}
 		return err
+	}
+
+	return nil
+}
+
+func (m *IdentityPoolIDP) validateSsoSettings(formats strfmt.Registry) error {
+	if swag.IsZero(m.SsoSettings) { // not required
+		return nil
+	}
+
+	if m.SsoSettings != nil {
+		if err := m.SsoSettings.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("sso_settings")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("sso_settings")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -214,25 +276,6 @@ func (m *IdentityPoolIDP) validateTokenExchangeSettings(formats strfmt.Registry)
 	return nil
 }
 
-func (m *IdentityPoolIDP) validateTransformer(formats strfmt.Registry) error {
-	if swag.IsZero(m.Transformer) { // not required
-		return nil
-	}
-
-	if m.Transformer != nil {
-		if err := m.Transformer.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("transformer")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("transformer")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 // ContextValidate validate this identity pool ID p based on the context it is used
 func (m *IdentityPoolIDP) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
@@ -249,15 +292,19 @@ func (m *IdentityPoolIDP) ContextValidate(ctx context.Context, formats strfmt.Re
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateJit(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateMappings(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateTokenExchangeSettings(ctx, formats); err != nil {
+	if err := m.contextValidateSsoSettings(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateTransformer(ctx, formats); err != nil {
+	if err := m.contextValidateTokenExchangeSettings(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -284,6 +331,11 @@ func (m *IdentityPoolIDP) contextValidateAttributes(ctx context.Context, formats
 func (m *IdentityPoolIDP) contextValidateConfig(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Config != nil {
+
+		if swag.IsZero(m.Config) { // not required
+			return nil
+		}
+
 		if err := m.Config.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("config")
@@ -300,11 +352,37 @@ func (m *IdentityPoolIDP) contextValidateConfig(ctx context.Context, formats str
 func (m *IdentityPoolIDP) contextValidateDiscoverySettings(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.DiscoverySettings != nil {
+
+		if swag.IsZero(m.DiscoverySettings) { // not required
+			return nil
+		}
+
 		if err := m.DiscoverySettings.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("discovery_settings")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("discovery_settings")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *IdentityPoolIDP) contextValidateJit(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Jit != nil {
+
+		if swag.IsZero(m.Jit) { // not required
+			return nil
+		}
+
+		if err := m.Jit.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("jit")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("jit")
 			}
 			return err
 		}
@@ -327,14 +405,19 @@ func (m *IdentityPoolIDP) contextValidateMappings(ctx context.Context, formats s
 	return nil
 }
 
-func (m *IdentityPoolIDP) contextValidateTokenExchangeSettings(ctx context.Context, formats strfmt.Registry) error {
+func (m *IdentityPoolIDP) contextValidateSsoSettings(ctx context.Context, formats strfmt.Registry) error {
 
-	if m.TokenExchangeSettings != nil {
-		if err := m.TokenExchangeSettings.ContextValidate(ctx, formats); err != nil {
+	if m.SsoSettings != nil {
+
+		if swag.IsZero(m.SsoSettings) { // not required
+			return nil
+		}
+
+		if err := m.SsoSettings.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("token_exchange_settings")
+				return ve.ValidateName("sso_settings")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("token_exchange_settings")
+				return ce.ValidateName("sso_settings")
 			}
 			return err
 		}
@@ -343,14 +426,19 @@ func (m *IdentityPoolIDP) contextValidateTokenExchangeSettings(ctx context.Conte
 	return nil
 }
 
-func (m *IdentityPoolIDP) contextValidateTransformer(ctx context.Context, formats strfmt.Registry) error {
+func (m *IdentityPoolIDP) contextValidateTokenExchangeSettings(ctx context.Context, formats strfmt.Registry) error {
 
-	if m.Transformer != nil {
-		if err := m.Transformer.ContextValidate(ctx, formats); err != nil {
+	if m.TokenExchangeSettings != nil {
+
+		if swag.IsZero(m.TokenExchangeSettings) { // not required
+			return nil
+		}
+
+		if err := m.TokenExchangeSettings.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("transformer")
+				return ve.ValidateName("token_exchange_settings")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("transformer")
+				return ce.ValidateName("token_exchange_settings")
 			}
 			return err
 		}

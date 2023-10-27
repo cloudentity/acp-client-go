@@ -69,6 +69,14 @@ type SetServerConsentParams struct {
 	*/
 	ServerConsent *models.ServerConsent
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Wid.
 
 	   Authorization server id
@@ -152,6 +160,17 @@ func (o *SetServerConsentParams) SetServerConsent(serverConsent *models.ServerCo
 	o.ServerConsent = serverConsent
 }
 
+// WithIfMatch adds the ifMatch to the set server consent params
+func (o *SetServerConsentParams) WithIfMatch(ifMatch *string) *SetServerConsentParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the set server consent params
+func (o *SetServerConsentParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithWid adds the wid to the set server consent params
 func (o *SetServerConsentParams) WithWid(wid string) *SetServerConsentParams {
 	o.SetWid(wid)
@@ -172,6 +191,14 @@ func (o *SetServerConsentParams) WriteToRequest(r runtime.ClientRequest, reg str
 	var res []error
 	if o.ServerConsent != nil {
 		if err := r.SetBodyParam(o.ServerConsent); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

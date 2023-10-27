@@ -54,7 +54,7 @@ func (o *ListAuthorizationServersReader) ReadResponse(response runtime.ClientRes
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /servers] listAuthorizationServers", response, response.Code())
 	}
 }
 
@@ -69,6 +69,15 @@ ListAuthorizationServersOK describes a response with status code 200, with defau
 Servers
 */
 type ListAuthorizationServersOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.ServersResponse
 }
 
@@ -97,6 +106,11 @@ func (o *ListAuthorizationServersOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the list authorization servers o k response
+func (o *ListAuthorizationServersOK) Code() int {
+	return 200
+}
+
 func (o *ListAuthorizationServersOK) Error() string {
 	return fmt.Sprintf("[GET /servers][%d] listAuthorizationServersOK  %+v", 200, o.Payload)
 }
@@ -110,6 +124,13 @@ func (o *ListAuthorizationServersOK) GetPayload() *models.ServersResponse {
 }
 
 func (o *ListAuthorizationServersOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.ServersResponse)
 
@@ -129,7 +150,7 @@ func NewListAuthorizationServersUnauthorized() *ListAuthorizationServersUnauthor
 /*
 ListAuthorizationServersUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ListAuthorizationServersUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +179,11 @@ func (o *ListAuthorizationServersUnauthorized) IsServerError() bool {
 // IsCode returns true when this list authorization servers unauthorized response a status code equal to that given
 func (o *ListAuthorizationServersUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the list authorization servers unauthorized response
+func (o *ListAuthorizationServersUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ListAuthorizationServersUnauthorized) Error() string {
@@ -192,7 +218,7 @@ func NewListAuthorizationServersForbidden() *ListAuthorizationServersForbidden {
 /*
 ListAuthorizationServersForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ListAuthorizationServersForbidden struct {
 	Payload *models.Error
@@ -221,6 +247,11 @@ func (o *ListAuthorizationServersForbidden) IsServerError() bool {
 // IsCode returns true when this list authorization servers forbidden response a status code equal to that given
 func (o *ListAuthorizationServersForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the list authorization servers forbidden response
+func (o *ListAuthorizationServersForbidden) Code() int {
+	return 403
 }
 
 func (o *ListAuthorizationServersForbidden) Error() string {
@@ -255,7 +286,7 @@ func NewListAuthorizationServersNotFound() *ListAuthorizationServersNotFound {
 /*
 ListAuthorizationServersNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type ListAuthorizationServersNotFound struct {
 	Payload *models.Error
@@ -284,6 +315,11 @@ func (o *ListAuthorizationServersNotFound) IsServerError() bool {
 // IsCode returns true when this list authorization servers not found response a status code equal to that given
 func (o *ListAuthorizationServersNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the list authorization servers not found response
+func (o *ListAuthorizationServersNotFound) Code() int {
+	return 404
 }
 
 func (o *ListAuthorizationServersNotFound) Error() string {
@@ -318,7 +354,7 @@ func NewListAuthorizationServersTooManyRequests() *ListAuthorizationServersTooMa
 /*
 ListAuthorizationServersTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ListAuthorizationServersTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +383,11 @@ func (o *ListAuthorizationServersTooManyRequests) IsServerError() bool {
 // IsCode returns true when this list authorization servers too many requests response a status code equal to that given
 func (o *ListAuthorizationServersTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the list authorization servers too many requests response
+func (o *ListAuthorizationServersTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ListAuthorizationServersTooManyRequests) Error() string {

@@ -64,7 +64,13 @@ type AuthorizeParams struct {
 	// Claims.
 	Claims *string
 
-	// ClientID.
+	/* ClientID.
+
+	     Client application identifier
+
+
+	You can find the `client_id` value on the Settings page of the required client application.
+	*/
 	ClientID string
 
 	// CodeChallenge.
@@ -72,6 +78,12 @@ type AuthorizeParams struct {
 
 	// CodeChallengeMethod.
 	CodeChallengeMethod *string
+
+	/* DpopJkt.
+
+	   Thumbprint of the DPoP public key
+	*/
+	DpopJkt *string
 
 	// IdpHint.
 	IdpHint *string
@@ -192,6 +204,17 @@ func (o *AuthorizeParams) WithCodeChallengeMethod(codeChallengeMethod *string) *
 // SetCodeChallengeMethod adds the codeChallengeMethod to the authorize params
 func (o *AuthorizeParams) SetCodeChallengeMethod(codeChallengeMethod *string) {
 	o.CodeChallengeMethod = codeChallengeMethod
+}
+
+// WithDpopJkt adds the dpopJkt to the authorize params
+func (o *AuthorizeParams) WithDpopJkt(dpopJkt *string) *AuthorizeParams {
+	o.SetDpopJkt(dpopJkt)
+	return o
+}
+
+// SetDpopJkt adds the dpopJkt to the authorize params
+func (o *AuthorizeParams) SetDpopJkt(dpopJkt *string) {
+	o.DpopJkt = dpopJkt
 }
 
 // WithIdpHint adds the idpHint to the authorize params
@@ -346,6 +369,23 @@ func (o *AuthorizeParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 		if qCodeChallengeMethod != "" {
 
 			if err := r.SetQueryParam("code_challenge_method", qCodeChallengeMethod); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.DpopJkt != nil {
+
+		// query param dpop_jkt
+		var qrDpopJkt string
+
+		if o.DpopJkt != nil {
+			qrDpopJkt = *o.DpopJkt
+		}
+		qDpopJkt := qrDpopJkt
+		if qDpopJkt != "" {
+
+			if err := r.SetQueryParam("dpop_jkt", qDpopJkt); err != nil {
 				return err
 			}
 		}

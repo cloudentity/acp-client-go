@@ -54,7 +54,7 @@ func (o *DeleteScopeReader) ReadResponse(response runtime.ClientResponse, consum
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[DELETE /scopes/{scp}] deleteScope", response, response.Code())
 	}
 }
 
@@ -96,6 +96,11 @@ func (o *DeleteScopeNoContent) IsCode(code int) bool {
 	return code == 204
 }
 
+// Code gets the status code for the delete scope no content response
+func (o *DeleteScopeNoContent) Code() int {
+	return 204
+}
+
 func (o *DeleteScopeNoContent) Error() string {
 	return fmt.Sprintf("[DELETE /scopes/{scp}][%d] deleteScopeNoContent ", 204)
 }
@@ -117,7 +122,7 @@ func NewDeleteScopeUnauthorized() *DeleteScopeUnauthorized {
 /*
 DeleteScopeUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type DeleteScopeUnauthorized struct {
 	Payload *models.Error
@@ -146,6 +151,11 @@ func (o *DeleteScopeUnauthorized) IsServerError() bool {
 // IsCode returns true when this delete scope unauthorized response a status code equal to that given
 func (o *DeleteScopeUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the delete scope unauthorized response
+func (o *DeleteScopeUnauthorized) Code() int {
+	return 401
 }
 
 func (o *DeleteScopeUnauthorized) Error() string {
@@ -180,7 +190,7 @@ func NewDeleteScopeForbidden() *DeleteScopeForbidden {
 /*
 DeleteScopeForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type DeleteScopeForbidden struct {
 	Payload *models.Error
@@ -209,6 +219,11 @@ func (o *DeleteScopeForbidden) IsServerError() bool {
 // IsCode returns true when this delete scope forbidden response a status code equal to that given
 func (o *DeleteScopeForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the delete scope forbidden response
+func (o *DeleteScopeForbidden) Code() int {
+	return 403
 }
 
 func (o *DeleteScopeForbidden) Error() string {
@@ -243,7 +258,7 @@ func NewDeleteScopeNotFound() *DeleteScopeNotFound {
 /*
 DeleteScopeNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type DeleteScopeNotFound struct {
 	Payload *models.Error
@@ -272,6 +287,11 @@ func (o *DeleteScopeNotFound) IsServerError() bool {
 // IsCode returns true when this delete scope not found response a status code equal to that given
 func (o *DeleteScopeNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the delete scope not found response
+func (o *DeleteScopeNotFound) Code() int {
+	return 404
 }
 
 func (o *DeleteScopeNotFound) Error() string {
@@ -306,7 +326,7 @@ func NewDeleteScopeTooManyRequests() *DeleteScopeTooManyRequests {
 /*
 DeleteScopeTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type DeleteScopeTooManyRequests struct {
 	Payload *models.Error
@@ -335,6 +355,11 @@ func (o *DeleteScopeTooManyRequests) IsServerError() bool {
 // IsCode returns true when this delete scope too many requests response a status code equal to that given
 func (o *DeleteScopeTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the delete scope too many requests response
+func (o *DeleteScopeTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *DeleteScopeTooManyRequests) Error() string {

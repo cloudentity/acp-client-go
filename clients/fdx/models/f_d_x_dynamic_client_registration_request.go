@@ -46,6 +46,11 @@ type FDXDynamicClientRegistrationRequest struct {
 	// It is considered a good practice to limit the audience of the token for security purposes.
 	Audience []string `json:"audience"`
 
+	// Authorization details types
+	//
+	// Indicates what authorization details types the client can use.
+	AuthorizationDetailsTypes []AuthorizationDetailType `json:"authorization_details_types"`
+
 	// Algorithm used for encrypting authorization responses.
 	//
 	// If both signing and encryption are requested, the response is first signed, and then encrypted.
@@ -138,8 +143,8 @@ type FDXDynamicClientRegistrationRequest struct {
 	// The rule of consent granting by the end-user to indicate whether they must take action
 	// to revoke access or the consent will be revoked automatically.
 	//
-	// The acceptable values: "ONE_TIME", "PERSISTENT", "TIME_BOUND"
-	// Example: \"ONE_TIME\
+	// One of: `ONE_TIME`, `PERSISTENT`, `TIME_BOUND`
+	// Example: ONE_TIME
 	DurationType []DurationType `json:"duration_type"`
 
 	// An array of allowed OAuth client grant types.
@@ -168,7 +173,7 @@ type FDXDynamicClientRegistrationRequest struct {
 	// An array of the intermediaries for this Data Recipient.
 	Intermediaries []*Intermediary `json:"intermediaries"`
 
-	// An introspection endpoint authentication method configured for the client application.
+	// An introspection endpoint authentication method configured for the client application (read-only).
 	//
 	// If empty, the `token_endpoint_auth_method` is used.
 	//
@@ -206,6 +211,9 @@ type FDXDynamicClientRegistrationRequest struct {
 
 	// Policy URL to read about how the profile data is used.
 	PolicyURI string `json:"policy_uri,omitempty"`
+
+	// Array of URLs to which a relying party may request that the user be redirected after a logout has been performed.
+	PostLogoutRedirectUris []string `json:"post_logout_redirect_uris"`
 
 	// privacy
 	Privacy *ClientPrivacy `json:"privacy,omitempty"`
@@ -245,7 +253,7 @@ type FDXDynamicClientRegistrationRequest struct {
 	// response types
 	ResponseTypes ResponseTypes `json:"response_types,omitempty"`
 
-	// A revocation endpoint authentication method configured for the client application.
+	// A revocation endpoint authentication method configured for the client application (read-only).
 	// If empty, the `token_endpoint_auth_method` is used.
 	//
 	// Cloudentity supports the following client authentication methods:
@@ -362,6 +370,10 @@ func (m *FDXDynamicClientRegistrationRequest) Validate(formats strfmt.Registry) 
 	var res []error
 
 	if err := m.validateApplicationTypes(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateAuthorizationDetailsTypes(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -507,6 +519,27 @@ func (m *FDXDynamicClientRegistrationRequest) validateApplicationTypes(formats s
 
 		// value enum
 		if err := m.validateApplicationTypesItemsEnum("application_types"+"."+strconv.Itoa(i), "body", m.ApplicationTypes[i]); err != nil {
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *FDXDynamicClientRegistrationRequest) validateAuthorizationDetailsTypes(formats strfmt.Registry) error {
+	if swag.IsZero(m.AuthorizationDetailsTypes) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.AuthorizationDetailsTypes); i++ {
+
+		if err := m.AuthorizationDetailsTypes[i].Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("authorization_details_types" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("authorization_details_types" + "." + strconv.Itoa(i))
+			}
 			return err
 		}
 
@@ -1428,6 +1461,10 @@ func (m *FDXDynamicClientRegistrationRequest) ContextValidate(ctx context.Contex
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateAuthorizationDetailsTypes(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateDurationType(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -1475,9 +1512,35 @@ func (m *FDXDynamicClientRegistrationRequest) contextValidateApplicationTypes(ct
 	return nil
 }
 
+func (m *FDXDynamicClientRegistrationRequest) contextValidateAuthorizationDetailsTypes(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.AuthorizationDetailsTypes); i++ {
+
+		if swag.IsZero(m.AuthorizationDetailsTypes[i]) { // not required
+			return nil
+		}
+
+		if err := m.AuthorizationDetailsTypes[i].ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("authorization_details_types" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("authorization_details_types" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
 func (m *FDXDynamicClientRegistrationRequest) contextValidateDurationType(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.DurationType); i++ {
+
+		if swag.IsZero(m.DurationType[i]) { // not required
+			return nil
+		}
 
 		if err := m.DurationType[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
@@ -1498,6 +1561,11 @@ func (m *FDXDynamicClientRegistrationRequest) contextValidateIntermediaries(ctx 
 	for i := 0; i < len(m.Intermediaries); i++ {
 
 		if m.Intermediaries[i] != nil {
+
+			if swag.IsZero(m.Intermediaries[i]) { // not required
+				return nil
+			}
+
 			if err := m.Intermediaries[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("intermediaries" + "." + strconv.Itoa(i))
@@ -1516,6 +1584,11 @@ func (m *FDXDynamicClientRegistrationRequest) contextValidateIntermediaries(ctx 
 func (m *FDXDynamicClientRegistrationRequest) contextValidateJwks(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Jwks != nil {
+
+		if swag.IsZero(m.Jwks) { // not required
+			return nil
+		}
+
 		if err := m.Jwks.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("jwks")
@@ -1532,6 +1605,11 @@ func (m *FDXDynamicClientRegistrationRequest) contextValidateJwks(ctx context.Co
 func (m *FDXDynamicClientRegistrationRequest) contextValidatePrivacy(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Privacy != nil {
+
+		if swag.IsZero(m.Privacy) { // not required
+			return nil
+		}
+
 		if err := m.Privacy.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("privacy")
@@ -1564,6 +1642,11 @@ func (m *FDXDynamicClientRegistrationRequest) contextValidateRegistryReferences(
 	for i := 0; i < len(m.RegistryReferences); i++ {
 
 		if m.RegistryReferences[i] != nil {
+
+			if swag.IsZero(m.RegistryReferences[i]) { // not required
+				return nil
+			}
+
 			if err := m.RegistryReferences[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("registry_references" + "." + strconv.Itoa(i))
@@ -1596,6 +1679,11 @@ func (m *FDXDynamicClientRegistrationRequest) contextValidateResponseTypes(ctx c
 func (m *FDXDynamicClientRegistrationRequest) contextValidateTokenExchange(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.TokenExchange != nil {
+
+		if swag.IsZero(m.TokenExchange) { // not required
+			return nil
+		}
+
 		if err := m.TokenExchange.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("token_exchange")

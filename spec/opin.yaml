@@ -25,6 +25,8 @@ definitions:
     additionalProperties:
       type: object
     type: object
+  AuthorizationDetailType:
+    type: string
   BrazilConsent:
     properties:
       account_ids:
@@ -33,7 +35,7 @@ definitions:
         type: array
         x-nullable: false
       client_id:
-        description: Client identifier
+        description: Client application identifier.
         example: '"cauqo9c9vpbs0aj2b2v0"'
         format: clientID
         type: string
@@ -62,6 +64,8 @@ definitions:
         $ref: '#/definitions/BrazilCustomerPaymentConsent'
       customer_payment_consent_v2:
         $ref: '#/definitions/BrazilCustomerPaymentConsentV2'
+      customer_payment_consent_v3:
+        $ref: '#/definitions/BrazilCustomerPaymentConsentV3'
       idempotency_key:
         type: string
         x-nullable: false
@@ -69,7 +73,7 @@ definitions:
         type: string
         x-nullable: false
       server_id:
-        description: Server / Workspace identifier
+        description: Server / Workspace identifier.
         example: '"server"'
         format: serverID
         type: string
@@ -83,7 +87,7 @@ definitions:
         type: string
         x-nullable: false
       tenant_id:
-        description: Tenant identifier
+        description: Tenant identifier.
         example: '"tenant"'
         format: tenantID
         type: string
@@ -91,10 +95,39 @@ definitions:
       type:
         $ref: '#/definitions/ConsentType'
     type: object
+  BrazilConsentExtension:
+    properties:
+      expiration_time:
+        format: date-time
+        type: string
+        x-nullable: false
+      logged_user:
+        type: string
+        x-nullable: false
+      request_time:
+        format: date-time
+        type: string
+        x-nullable: false
+    type: object
+  BrazilConsentExtensions:
+    items:
+      $ref: '#/definitions/BrazilConsentExtension'
+    type: array
+  BrazilCreateConsentExtensionResponse:
+    properties:
+      data:
+        $ref: '#/definitions/OpenbankingBrasilConsentV2Data3'
+      links:
+        $ref: '#/definitions/OpenbankingBrasilConsentV2Links'
+      meta:
+        $ref: '#/definitions/OpenbankingBrasilConsentV2Meta'
+    required:
+    - data
+    type: object
   BrazilCreateCustomerDataAccessConsentV2Response:
     properties:
       data:
-        $ref: '#/definitions/OpenbankingBrasilConsentV2Data1'
+        $ref: '#/definitions/OpenbankingBrasilConsentV2Data2'
       links:
         $ref: '#/definitions/OpenbankingBrasilConsentV2Links'
       meta:
@@ -129,6 +162,26 @@ definitions:
         x-nullable: false
       data:
         $ref: '#/definitions/OpenbankingBrasilPaymentV2Data'
+      iat:
+        format: int64
+        type: integer
+        x-nullable: false
+      iss:
+        type: string
+        x-nullable: false
+      jti:
+        type: string
+        x-nullable: false
+    required:
+    - data
+    type: object
+  BrazilCustomerCreatePaymentConsentRequestV3:
+    properties:
+      aud:
+        type: string
+        x-nullable: false
+      data:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3Data'
       iat:
         format: int64
         type: integer
@@ -282,27 +335,30 @@ definitions:
         type: string
         x-nullable: false
       document:
-        $ref: '#/definitions/OpenbankingBrasilConsentV2Document1'
+        $ref: '#/definitions/OpenbankingBrasilConsentV2BusinessEntityDocument'
       expirationDateTime:
         description: Data e hora de expirao da permisso. De preenchimento obrigatrio,
           reflete a data limite de validade do consentimento. Uma string com data
           e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
-          UTC(UTC time format).
+          UTC (UTC time format). Para consentimentos com prazo indeterminado,  esperado
+          preenchimento com `2300-01-01T00:00:00Z`.
         example: "2021-05-21T08:30:00Z"
         format: date-time
         type: string
         x-nullable: false
+      extensions:
+        $ref: '#/definitions/BrazilConsentExtensions'
       permissions:
         description: Especifica os tipos de permisses de acesso s APIs no escopo do
-          Open Banking Brasil - Fase 2, de acordo com os blocos de consentimento fornecidos
-          pelo usurio e necessrios ao acesso a cada endpoint das APIs.
+          Open Finance Brasil - Dados cadastrais e transacionais, de acordo com os
+          blocos de consentimento fornecidos pelo usurio e necessrios ao acesso a
+          cada endpoint das APIs. Esse array no deve ter duplicidade de itens.
         example:
         - ACCOUNTS_READ
         - ACCOUNTS_OVERDRAFT_LIMITS_READ
         - RESOURCES_READ
         items:
           $ref: '#/definitions/OpenbankingBrasilConsentV2Permission1'
-        maxItems: 30
         minItems: 1
         type: array
         x-nullable: false
@@ -467,6 +523,32 @@ definitions:
     - links
     - meta
     type: object
+  BrazilCustomerPaymentConsentResponseV3:
+    properties:
+      aud:
+        type: string
+        x-nullable: false
+      data:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3Data1'
+      iat:
+        format: int64
+        type: integer
+        x-nullable: false
+      iss:
+        type: string
+        x-nullable: false
+      jti:
+        type: string
+        x-nullable: false
+      links:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3LinkSingle'
+      meta:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3Meta'
+    required:
+    - data
+    - links
+    - meta
+    type: object
   BrazilCustomerPaymentConsentV2:
     properties:
       businessEntity:
@@ -533,10 +615,100 @@ definitions:
     - status
     - statusUpdateDateTime
     type: object
+  BrazilCustomerPaymentConsentV3:
+    properties:
+      businessEntity:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3BusinessEntity'
+      consentId:
+        description: |-
+          Identificador nico do consentimento criado para a iniciao de pagamento solicitada. Dever ser um URN - Uniform Resource Name.
+          Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141)  um Uniform Resource
+          Identifier - URI - que  atribudo sob o URI scheme "urn" e um namespace URN especfico, com a inteno de que o URN
+          seja um identificador de recurso persistente e independente da localizao.
+          Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+          o namespace(urn)
+          o identificador associado ao namespace da instituio transnmissora (bancoex)
+          o identificador especfico dentro do namespace (C1DD33123).
+          Informaes mais detalhadas sobre a construo de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+        example: urn:bancoex:C1DD33123
+        maxLength: 256
+        pattern: ^urn:[a-zA-Z0-9][a-zA-Z0-9\-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$
+        type: string
+        x-nullable: false
+      creationDateTime:
+        description: Data e hora em que o consentimento foi criado. Uma string com
+          data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
+          UTC(UTC time format).
+        example: "2021-05-21T08:30:00Z"
+        format: date-time
+        type: string
+        x-nullable: false
+      creditor:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3Identification'
+      debtorAccount:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3ConsentsDebtorAccount'
+      expirationDateTime:
+        description: |-
+          Data e hora em que o consentimento da iniciao de pagamento expira, devendo ser sempre o creationDateTime mais 5 minutos. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC (UTC time format).
+          O consentimento  criado com o status AWAITING_AUTHORISATION, e deve assumir o status AUTHORIZED ou REJECTED antes do tempo de expirao - 5 minutos. Caso o tempo seja expirado, o status deve assumir REJECTED.
+          Para o cenrio em que o status assumiu AUTHORISED, o tempo mximo do expirationDateTime do consentimento deve assumir "now + 60 minutos". Este  o tempo para consumir o consentimento autorizado, mudando seu status para CONSUMED. No  possvel prorrogar este tempo e a criao de um novo consentimento ser necessria para os cenrios de insucesso.
+          O tempo do expirationDateTime  garantido com os 15 minutos do access token, sendo possvel utilizar mais trs refresh tokens at totalizar 60 minutos.
+        example: "2021-05-21T08:30:00Z"
+        format: date-time
+        type: string
+        x-nullable: false
+      loggedUser:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3LoggedUser'
+      payment:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3PaymentConsent'
+      rejectionReason:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3ConsentRejectionReason'
+      status:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3EnumAuthorisationStatusType'
+      statusUpdateDateTime:
+        description: Data e hora em que o recurso foi atualizado. Uma string com data
+          e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
+          UTC(UTC time format).
+        example: "2021-05-21T08:30:00Z"
+        format: date-time
+        type: string
+        x-nullable: false
+    required:
+    - consentId
+    - creationDateTime
+    - creditor
+    - expirationDateTime
+    - loggedUser
+    - payment
+    - status
+    - statusUpdateDateTime
+    type: object
+  BrazilExtensionConsentRequest:
+    properties:
+      data:
+        $ref: '#/definitions/OpenbankingBrasilConsentV2Data1'
+    required:
+    - data
+    type: object
+  BrazilGetConsentExtensionsResponse:
+    properties:
+      data:
+        description: data
+        items:
+          $ref: '#/definitions/OpenbankingBrasilConsentV2Data5'
+        type: array
+        x-nullable: false
+      links:
+        $ref: '#/definitions/OpenbankingBrasilConsentV2Links'
+      meta:
+        $ref: '#/definitions/OpenbankingBrasilConsentV2Meta'
+    required:
+    - data
+    type: object
   BrazilGetCustomerDataAccessConsentV2Response:
     properties:
       data:
-        $ref: '#/definitions/OpenbankingBrasilConsentV2Data2'
+        $ref: '#/definitions/OpenbankingBrasilConsentV2Data4'
       links:
         $ref: '#/definitions/OpenbankingBrasilConsentV2Links'
       meta:
@@ -929,6 +1101,15 @@ definitions:
           type: string
         type: array
         x-nullable: false
+      authorization_details_types:
+        description: |-
+          Authorization details types
+
+          Indicates what authorization details types the client can use.
+        items:
+          $ref: '#/definitions/AuthorizationDetailType'
+        type: array
+        x-nullable: false
       authorization_encrypted_response_alg:
         description: |-
           Algorithm used for encrypting authorization responses.
@@ -1100,7 +1281,7 @@ definitions:
       introspection_endpoint_auth_method:
         default: client_secret_basic
         description: |-
-          An introspection endpoint authentication method configured for the client application.
+          An introspection endpoint authentication method configured for the client application (read-only).
 
           If empty, the `token_endpoint_auth_method` is used.
 
@@ -1144,6 +1325,13 @@ definitions:
       policy_uri:
         description: Policy URL to read about how the profile data is used.
         type: string
+        x-nullable: false
+      post_logout_redirect_uris:
+        description: Array of URLs to which a relying party may request that the user
+          be redirected after a logout has been performed.
+        items:
+          type: string
+        type: array
         x-nullable: false
       privacy:
         $ref: '#/definitions/ClientPrivacy'
@@ -1201,7 +1389,7 @@ definitions:
       revocation_endpoint_auth_method:
         default: client_secret_basic
         description: |-
-          A revocation endpoint authentication method configured for the client application.
+          A revocation endpoint authentication method configured for the client application (read-only).
           If empty, the `token_endpoint_auth_method` is used.
 
           Cloudentity supports the following client authentication methods:
@@ -1409,6 +1597,11 @@ definitions:
         example: none
         type: string
         x-nullable: false
+      webhook_uris:
+        items:
+          type: string
+        type: array
+        x-nullable: false
     type: object
   DynamicClientRegistrationResponse:
     properties:
@@ -1463,6 +1656,15 @@ definitions:
           It is considered a good practice to limit the audience of the token for security purposes.
         items:
           type: string
+        type: array
+        x-nullable: false
+      authorization_details_types:
+        description: |-
+          Authorization details types
+
+          Indicates what authorization details types the client can use.
+        items:
+          $ref: '#/definitions/AuthorizationDetailType'
         type: array
         x-nullable: false
       authorization_encrypted_response_alg:
@@ -1669,7 +1871,7 @@ definitions:
       introspection_endpoint_auth_method:
         default: client_secret_basic
         description: |-
-          An introspection endpoint authentication method configured for the client application.
+          An introspection endpoint authentication method configured for the client application (read-only).
 
           If empty, the `token_endpoint_auth_method` is used.
 
@@ -1713,6 +1915,13 @@ definitions:
       policy_uri:
         description: Policy URL to read about how the profile data is used.
         type: string
+        x-nullable: false
+      post_logout_redirect_uris:
+        description: Array of URLs to which a relying party may request that the user
+          be redirected after a logout has been performed.
+        items:
+          type: string
+        type: array
         x-nullable: false
       privacy:
         $ref: '#/definitions/ClientPrivacy'
@@ -1784,7 +1993,7 @@ definitions:
       revocation_endpoint_auth_method:
         default: client_secret_basic
         description: |-
-          A revocation endpoint authentication method configured for the client application.
+          A revocation endpoint authentication method configured for the client application (read-only).
           If empty, the `token_endpoint_auth_method` is used.
 
           Cloudentity supports the following client authentication methods:
@@ -2011,7 +2220,7 @@ definitions:
       authentication_context:
         $ref: '#/definitions/AuthenticationContext'
       client_id:
-        description: Client identifier
+        description: Client application identifier.
         example: '"cauqo9c9vpbs0aj2b2v0"'
         format: clientID
         type: string
@@ -2036,7 +2245,7 @@ definitions:
         type: array
         x-nullable: false
       server_id:
-        description: Server / Workspace identifier
+        description: Server / Workspace identifier.
         example: '"server"'
         format: serverID
         type: string
@@ -2051,7 +2260,7 @@ definitions:
         type: string
         x-nullable: false
       tenant_id:
-        description: Tenant identifier
+        description: Tenant identifier.
         example: '"tenant"'
         format: tenantID
         type: string
@@ -2070,7 +2279,7 @@ definitions:
       authentication_context:
         $ref: '#/definitions/AuthenticationContext'
       client_id:
-        description: Client identifier
+        description: Client application identifier.
         example: '"cauqo9c9vpbs0aj2b2v0"'
         format: clientID
         type: string
@@ -2095,7 +2304,7 @@ definitions:
         type: array
         x-nullable: false
       server_id:
-        description: Server / Workspace identifier
+        description: Server / Workspace identifier.
         example: '"server"'
         format: serverID
         type: string
@@ -2110,7 +2319,7 @@ definitions:
         type: string
         x-nullable: false
       tenant_id:
-        description: Tenant identifier
+        description: Tenant identifier.
         example: '"tenant"'
         format: tenantID
         type: string
@@ -2129,7 +2338,7 @@ definitions:
       authentication_context:
         $ref: '#/definitions/AuthenticationContext'
       client_id:
-        description: Client identifier
+        description: Client application identifier.
         example: '"cauqo9c9vpbs0aj2b2v0"'
         format: clientID
         type: string
@@ -2154,7 +2363,7 @@ definitions:
         type: array
         x-nullable: false
       server_id:
-        description: Server / Workspace identifier
+        description: Server / Workspace identifier.
         example: '"server"'
         format: serverID
         type: string
@@ -2169,7 +2378,66 @@ definitions:
         type: string
         x-nullable: false
       tenant_id:
-        description: Tenant identifier
+        description: Tenant identifier.
+        example: '"tenant"'
+        format: tenantID
+        type: string
+        x-nullable: false
+      type:
+        $ref: '#/definitions/ConsentType'
+    type: object
+  GetOBBRCustomerPaymentConsentResponseV3:
+    properties:
+      account_ids:
+        description: List of account identifiers
+        items:
+          type: string
+        type: array
+        x-nullable: false
+      authentication_context:
+        $ref: '#/definitions/AuthenticationContext'
+      client_id:
+        description: Client application identifier.
+        example: '"cauqo9c9vpbs0aj2b2v0"'
+        format: clientID
+        type: string
+        x-nullable: false
+      client_info:
+        $ref: '#/definitions/ClientInfo'
+      consent_id:
+        format: consentID
+        type: string
+        x-nullable: false
+      created_at:
+        description: Consent creation time
+        format: date-time
+        type: string
+        x-nullable: false
+      customer_payment_consent_v3:
+        $ref: '#/definitions/BrazilCustomerPaymentConsentV3'
+      requested_scopes:
+        description: List of requested scopes
+        items:
+          $ref: '#/definitions/RequestedScope'
+        type: array
+        x-nullable: false
+      server_id:
+        description: Server / Workspace identifier.
+        example: '"server"'
+        format: serverID
+        type: string
+        x-nullable: false
+      status:
+        description: Consent status
+        type: string
+        x-nullable: false
+      subject:
+        description: Subject
+        format: subject
+        type: string
+        x-nullable: false
+      tenant_id:
+        description: Tenant identifier.
         example: '"tenant"'
         format: tenantID
         type: string
@@ -2312,26 +2580,29 @@ definitions:
           format: date-time
           type: string
         document:
-          $ref: '#/definitions/OpenbankingBrasilConsentV2Document1'
+          $ref: '#/definitions/OpenbankingBrasilConsentV2BusinessEntityDocument'
         expirationDateTime:
           description: Data e hora de expirao da permisso. De preenchimento obrigatrio,
             reflete a data limite de validade do consentimento. Uma string com data
             e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
-            UTC(UTC time format).
+            UTC (UTC time format). Para consentimentos com prazo indeterminado,  esperado
+            preenchimento com `2300-01-01T00:00:00Z`.
           example: "2021-05-21T08:30:00Z"
           format: date-time
           type: string
+        extensions:
+          $ref: '#/definitions/BrazilConsentExtensions'
         permissions:
           description: Especifica os tipos de permisses de acesso s APIs no escopo
-            do Open Banking Brasil - Fase 2, de acordo com os blocos de consentimento
-            fornecidos pelo usurio e necessrios ao acesso a cada endpoint das APIs.
+            do Open Finance Brasil - Dados cadastrais e transacionais, de acordo com
+            os blocos de consentimento fornecidos pelo usurio e necessrios ao acesso
+            a cada endpoint das APIs. Esse array no deve ter duplicidade de itens.
           example:
           - ACCOUNTS_READ
           - ACCOUNTS_OVERDRAFT_LIMITS_READ
           - RESOURCES_READ
           items:
             $ref: '#/definitions/OpenbankingBrasilConsentV2Permission1'
-          maxItems: 30
           minItems: 1
           type: array
         rejection:
@@ -2492,6 +2763,76 @@ definitions:
       - status
       - statusUpdateDateTime
       type: object
+  IntrospectOBBRPaymentConsentResponseV3:
+    allOf:
+    - $ref: '#/definitions/IntrospectResponse'
+    - properties:
+        AccountIDs:
+          items:
+            type: string
+          type: array
+        businessEntity:
+          $ref: '#/definitions/OpenbankingBrasilPaymentV3BusinessEntity'
+        consentId:
+          description: |-
+            Identificador nico do consentimento criado para a iniciao de pagamento solicitada. Dever ser um URN - Uniform Resource Name.
+            Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141)  um Uniform Resource
+            Identifier - URI - que  atribudo sob o URI scheme "urn" e um namespace URN especfico, com a inteno de que o URN
+            seja um identificador de recurso persistente e independente da localizao.
+            Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+            o namespace(urn)
+            o identificador associado ao namespace da instituio transnmissora (bancoex)
+            o identificador especfico dentro do namespace (C1DD33123).
+            Informaes mais detalhadas sobre a construo de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+          example: urn:bancoex:C1DD33123
+          maxLength: 256
+          pattern: ^urn:[a-zA-Z0-9][a-zA-Z0-9\-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$
+          type: string
+        creationDateTime:
+          description: Data e hora em que o consentimento foi criado. Uma string com
+            data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
+            UTC(UTC time format).
+          example: "2021-05-21T08:30:00Z"
+          format: date-time
+          type: string
+        creditor:
+          $ref: '#/definitions/OpenbankingBrasilPaymentV3Identification'
+        debtorAccount:
+          $ref: '#/definitions/OpenbankingBrasilPaymentV3ConsentsDebtorAccount'
+        expirationDateTime:
+          description: |-
+            Data e hora em que o consentimento da iniciao de pagamento expira, devendo ser sempre o creationDateTime mais 5 minutos. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC (UTC time format).
+            O consentimento  criado com o status AWAITING_AUTHORISATION, e deve assumir o status AUTHORIZED ou REJECTED antes do tempo de expirao - 5 minutos. Caso o tempo seja expirado, o status deve assumir REJECTED.
+            Para o cenrio em que o status assumiu AUTHORISED, o tempo mximo do expirationDateTime do consentimento deve assumir "now + 60 minutos". Este  o tempo para consumir o consentimento autorizado, mudando seu status para CONSUMED. No  possvel prorrogar este tempo e a criao de um novo consentimento ser necessria para os cenrios de insucesso.
+            O tempo do expirationDateTime  garantido com os 15 minutos do access token, sendo possvel utilizar mais trs refresh tokens at totalizar 60 minutos.
+          example: "2021-05-21T08:30:00Z"
+          format: date-time
+          type: string
+        loggedUser:
+          $ref: '#/definitions/OpenbankingBrasilPaymentV3LoggedUser'
+        payment:
+          $ref: '#/definitions/OpenbankingBrasilPaymentV3PaymentConsent'
+        rejectionReason:
+          $ref: '#/definitions/OpenbankingBrasilPaymentV3ConsentRejectionReason'
+        status:
+          $ref: '#/definitions/OpenbankingBrasilPaymentV3EnumAuthorisationStatusType'
+        statusUpdateDateTime:
+          description: Data e hora em que o recurso foi atualizado. Uma string com
+            data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
+            UTC(UTC time format).
+          example: "2021-05-21T08:30:00Z"
+          format: date-time
+          type: string
+      required:
+      - consentId
+      - creationDateTime
+      - creditor
+      - expirationDateTime
+      - loggedUser
+      - payment
+      - status
+      - statusUpdateDateTime
+      type: object
   IntrospectResponse:
     properties:
       acr:
@@ -2572,20 +2913,17 @@ definitions:
         description: Issuer URL is a string representing the issuer of this token.
         type: string
         x-nullable: false
+      may_act:
+        additionalProperties:
+          type: object
+        description: May act claims used in the Token Exchange flow.s
+        type: object
+        x-nullable: false
       nbf:
         description: |-
           NotBefore is an integer timestamp measured in the number of seconds
           since January 1 1970 UTC. It indicates this token was not
           used before the specified time.
-        format: int64
-        type: integer
-        x-nullable: false
-      refresh_token_expires_at:
-        description: |-
-          Deprecated and can be removed at any time.
-          The integer timestamp measured in the number
-          of seconds since January 1 1970 UTC. It indicates when the issued refresh
-          token will expire.
         format: int64
         type: integer
         x-nullable: false
@@ -2640,7 +2978,7 @@ definitions:
         type: array
         x-nullable: false
       client_id:
-        description: Client identifier
+        description: Client application identifier.
         example: '"cauqo9c9vpbs0aj2b2v0"'
         format: clientID
         type: string
@@ -2669,6 +3007,8 @@ definitions:
         $ref: '#/definitions/BrazilCustomerPaymentConsent'
       customer_payment_consent_v2:
         $ref: '#/definitions/BrazilCustomerPaymentConsentV2'
+      customer_payment_consent_v3:
+        $ref: '#/definitions/BrazilCustomerPaymentConsentV3'
       idempotency_key:
         type: string
         x-nullable: false
@@ -2676,7 +3016,7 @@ definitions:
         type: string
         x-nullable: false
       server_id:
-        description: Server / Workspace identifier
+        description: Server / Workspace identifier.
         example: '"server"'
         format: serverID
         type: string
@@ -2690,7 +3030,7 @@ definitions:
         type: string
         x-nullable: false
       tenant_id:
-        description: Tenant identifier
+        description: Tenant identifier.
         example: '"tenant"'
         format: tenantID
         type: string
@@ -2740,27 +3080,35 @@ definitions:
         type: string
         x-nullable: false
       client_id:
-        description: A client identifier.
+        description: A client application identifier.
         type: string
         x-nullable: false
       cnpj:
         description: |-
-          Optional cnpj
-          cnpj
+          Optional. A
+          [14-digit identification number](https://openbanking-brasil.github.io/specs-seguranca/open-banking-brasil-financial-api-1_ID3.html#section-5.2.2.4)
+          of a company in Cadastro Nacional da Pessoa Jurídica (Brazilian National Registry of Legal Entities).
         type: string
         x-nullable: false
       cpf:
         description: |-
-          Optional cpf
-          cpf
+          Optional. An
+          [11-digit taxpayer identification number](https://openbanking-brasil.github.io/specs-seguranca/open-banking-brasil-financial-api-1_ID3.html#name-requesting-the-cpf-claim)
+          in Cadastro de Pessoas Físicas (Natural Persons Register).
         type: string
         x-nullable: false
       date_from:
-        description: Optional start date for when consent was created
+        description: |-
+          Optional. Consent creation date.
+
+          Sets the start date of the consent retrieval date range.
         type: string
         x-nullable: false
       date_to:
-        description: Optional end date for when consent was created
+        description: |-
+          Optional. Consent creation date.
+
+          Sets the end date of the consent retrieval date range.
         type: string
         x-nullable: false
       limit:
@@ -3383,10 +3731,43 @@ definitions:
       de compartilhamento.
     properties:
       document:
-        $ref: '#/definitions/OpenbankingBrasilConsentV2Document1'
+        $ref: '#/definitions/OpenbankingBrasilConsentV2BusinessEntityDocument'
     required:
     - document
     title: OpenbankingBrasilConsentV2BusinessEntity BusinessEntity
+    type: object
+  OpenbankingBrasilConsentV2BusinessEntityDocument:
+    description: OpenbankingBrasilConsentV2BusinessEntityDocument BusinessEntityDocument
+    properties:
+      identification:
+        description: Nmero do documento de identificao oficial do titular pessoa jurdica.
+        example: "11111111111111"
+        maxLength: 14
+        pattern: ^\d{14}$
+        type: string
+        x-nullable: false
+      rel:
+        description: Tipo do documento de identificao oficial do titular pessoa jurdica.
+        example: CNPJ
+        maxLength: 4
+        pattern: ^[A-Z]{4}$
+        type: string
+        x-nullable: false
+    required:
+    - identification
+    - rel
+    type: object
+  OpenbankingBrasilConsentV2BusinessEntityExtends:
+    description: |-
+      Titular, pessoa jurdica a quem se referem os dados que so objeto de compartilhamento.
+      Deve ser informado apenas para casos de consentimento pessoa jurdica.
+      No precisa ser armazenado separadamente. Para fins de renovao de consentimento, ser utilizado apenas para verificao do consentimento vigente, pois  um atributo imutvel.
+    properties:
+      document:
+        $ref: '#/definitions/OpenbankingBrasilConsentV2BusinessEntityDocument'
+    required:
+    - document
+    title: OpenbankingBrasilConsentV2BusinessEntityExtends BusinessEntityExtends
     type: object
   OpenbankingBrasilConsentV2Data:
     description: OpenbankingBrasilConsentV2Data Data
@@ -3397,7 +3778,7 @@ definitions:
         description: Data e hora de expirao da permisso. De preenchimento obrigatrio,
           reflete a data limite de validade do consentimento. Uma string com data
           e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
-          UTC(UTC time format).
+          UTC (UTC time format).
         example: "2021-05-21T08:30:00Z"
         format: date-time
         type: string
@@ -3412,7 +3793,6 @@ definitions:
         - RESOURCES_READ
         items:
           $ref: '#/definitions/OpenbankingBrasilConsentV2Permission'
-        maxItems: 30
         minItems: 1
         type: array
         x-nullable: false
@@ -3424,70 +3804,24 @@ definitions:
   OpenbankingBrasilConsentV2Data1:
     description: OpenbankingBrasilConsentV2Data1 Data1
     properties:
-      consentId:
-        description: |-
-          O consentId  o identificador nico do consentimento e dever ser um URN - Uniform Resource Name.
-          Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141)  um Uniform Resource
-          Identifier - URI - que  atribudo sob o URI scheme "urn" e um namespace URN especfico, com a inteno de que o URN
-          seja um identificador de recurso persistente e independente da localizao.
-          Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
-          o namespace(urn)
-          o identificador associado ao namespace da instituio transnmissora (bancoex)
-          o identificador especfico dentro do namespace (C1DD33123).
-          Informaes mais detalhadas sobre a construo de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
-        example: urn:bancoex:C1DD33123
-        maxLength: 256
-        pattern: ^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$
-        type: string
-        x-nullable: false
-      creationDateTime:
-        description: Data e hora em que o recurso foi criado. Uma string com data
-          e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
-          UTC(UTC time format).
-        example: "2021-05-21T08:30:00Z"
-        format: date-time
-        type: string
-        x-nullable: false
+      businessEntity:
+        $ref: '#/definitions/OpenbankingBrasilConsentV2BusinessEntityExtends'
       expirationDateTime:
         description: Data e hora de expirao da permisso. De preenchimento obrigatrio,
           reflete a data limite de validade do consentimento. Uma string com data
           e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
-          UTC(UTC time format).
+          UTC(UTC time format). Para consentimentos com prazo indeterminado, preencher
+          com valor '2300-01-01T00:00:00Z'. Esse valor deve ser refletido no expirationDateTime
+          do consentimento relacionado.
         example: "2021-05-21T08:30:00Z"
         format: date-time
         type: string
         x-nullable: false
-      permissions:
-        description: Especifica os tipos de permisses de acesso s APIs no escopo do
-          Open Banking Brasil - Fase 2, de acordo com os blocos de consentimento fornecidos
-          pelo usurio e necessrios ao acesso a cada endpoint das APIs.
-        example:
-        - ACCOUNTS_READ
-        - ACCOUNTS_OVERDRAFT_LIMITS_READ
-        - RESOURCES_READ
-        items:
-          $ref: '#/definitions/OpenbankingBrasilConsentV2Permission1'
-        maxItems: 30
-        minItems: 1
-        type: array
-        x-nullable: false
-      status:
-        $ref: '#/definitions/OpenbankingBrasilConsentV2Status'
-      statusUpdateDateTime:
-        description: Data e hora em que o recurso foi atualizado. Uma string com data
-          e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
-          UTC(UTC time format).
-        example: "2021-05-21T08:30:00Z"
-        format: date-time
-        type: string
-        x-nullable: false
+      loggedUser:
+        $ref: '#/definitions/OpenbankingBrasilConsentV2LoggedUserExtends'
     required:
-    - consentId
-    - creationDateTime
     - expirationDateTime
-    - permissions
-    - status
-    - statusUpdateDateTime
+    - loggedUser
     type: object
   OpenbankingBrasilConsentV2Data2:
     description: OpenbankingBrasilConsentV2Data2 Data2
@@ -3520,22 +3854,158 @@ definitions:
         description: Data e hora de expirao da permisso. De preenchimento obrigatrio,
           reflete a data limite de validade do consentimento. Uma string com data
           e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
-          UTC(UTC time format).
+          UTC (UTC time format).
         example: "2021-05-21T08:30:00Z"
         format: date-time
         type: string
         x-nullable: false
       permissions:
         description: Especifica os tipos de permisses de acesso s APIs no escopo do
-          Open Banking Brasil - Fase 2, de acordo com os blocos de consentimento fornecidos
-          pelo usurio e necessrios ao acesso a cada endpoint das APIs.
+          Open Finance Brasil - Dados cadastrais e transacionais, de acordo com os
+          blocos de consentimento fornecidos pelo usurio e necessrios ao acesso a
+          cada endpoint das APIs. Esse array no deve ter duplicidade de itens.
         example:
         - ACCOUNTS_READ
         - ACCOUNTS_OVERDRAFT_LIMITS_READ
         - RESOURCES_READ
         items:
           $ref: '#/definitions/OpenbankingBrasilConsentV2Permission1'
-        maxItems: 30
+        minItems: 1
+        type: array
+        x-nullable: false
+      status:
+        $ref: '#/definitions/OpenbankingBrasilConsentV2Status'
+      statusUpdateDateTime:
+        description: Data e hora em que o recurso foi atualizado. Uma string com data
+          e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
+          UTC(UTC time format).
+        example: "2021-05-21T08:30:00Z"
+        format: date-time
+        type: string
+        x-nullable: false
+    required:
+    - consentId
+    - creationDateTime
+    - expirationDateTime
+    - permissions
+    - status
+    - statusUpdateDateTime
+    type: object
+  OpenbankingBrasilConsentV2Data3:
+    description: OpenbankingBrasilConsentV2Data3 Data3
+    properties:
+      consentId:
+        description: |-
+          O consentId  o identificador nico do consentimento e dever ser um URN - Uniform Resource Name.
+          Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141)  um Uniform Resource
+          Identifier - URI - que  atribudo sob o URI scheme "urn" e um namespace URN especfico, com a inteno de que o URN
+          seja um identificador de recurso persistente e independente da localizao.
+          Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+          o namespace(urn)
+          o identificador associado ao namespace da instituio transnmissora (bancoex)
+          o identificador especfico dentro do namespace (C1DD33123).
+          Informaes mais detalhadas sobre a construo de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+        example: urn:bancoex:C1DD33123
+        maxLength: 256
+        pattern: ^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$
+        type: string
+        x-nullable: false
+      creationDateTime:
+        description: Data e hora em que o recurso foi criado. Uma string com data
+          e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
+          UTC(UTC time format).
+        example: "2021-05-21T08:30:00Z"
+        format: date-time
+        type: string
+        x-nullable: false
+      expirationDateTime:
+        description: |-
+          Data e hora de expirao da permisso. Deve ser preenchido caso o consentimento tenha data limite de validade. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format).
+
+          [Restrio] Aceitar apenas data no futuro em relao  data de requisio.
+        example: "2021-05-21T08:30:00Z"
+        format: date-time
+        type: string
+        x-nullable: false
+      permissions:
+        description: Especifica os tipos de permisses de acesso s APIs no escopo do
+          Open Finance Brasil - Dados cadastrais e transacionais, de acordo com os
+          blocos de consentimento fornecidos pelo usurio e necessrios ao acesso a
+          cada endpoint das APIs. Esse array no deve ter duplicidade de itens.
+        example:
+        - ACCOUNTS_READ
+        - ACCOUNTS_OVERDRAFT_LIMITS_READ
+        - RESOURCES_READ
+        items:
+          $ref: '#/definitions/OpenbankingBrasilConsentV2Permission1'
+        minItems: 1
+        type: array
+        x-nullable: false
+      status:
+        $ref: '#/definitions/OpenbankingBrasilConsentV2Status'
+      statusUpdateDateTime:
+        description: Data e hora em que o recurso foi atualizado. Uma string com data
+          e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
+          UTC(UTC time format).
+        example: "2021-05-21T08:30:00Z"
+        format: date-time
+        type: string
+        x-nullable: false
+    required:
+    - consentId
+    - creationDateTime
+    - permissions
+    - status
+    - statusUpdateDateTime
+    type: object
+  OpenbankingBrasilConsentV2Data4:
+    description: OpenbankingBrasilConsentV2Data4 Data4
+    properties:
+      consentId:
+        description: |-
+          O consentId  o identificador nico do consentimento e dever ser um URN - Uniform Resource Name.
+          Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141)  um Uniform Resource
+          Identifier - URI - que  atribudo sob o URI scheme "urn" e um namespace URN especfico, com a inteno de que o URN
+          seja um identificador de recurso persistente e independente da localizao.
+          Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+          o namespace(urn)
+          o identificador associado ao namespace da instituio transnmissora (bancoex)
+          o identificador especfico dentro do namespace (C1DD33123).
+          Informaes mais detalhadas sobre a construo de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+        example: urn:bancoex:C1DD33123
+        maxLength: 256
+        pattern: ^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$
+        type: string
+        x-nullable: false
+      creationDateTime:
+        description: Data e hora em que o recurso foi criado. Uma string com data
+          e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
+          UTC(UTC time format).
+        example: "2021-05-21T08:30:00Z"
+        format: date-time
+        type: string
+        x-nullable: false
+      expirationDateTime:
+        description: Data e hora de expirao da permisso. De preenchimento obrigatrio,
+          reflete a data limite de validade do consentimento. Uma string com data
+          e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
+          UTC (UTC time format). Para consentimentos com prazo indeterminado,  esperado
+          preenchimento com `2300-01-01T00:00:00Z`.
+        example: "2021-05-21T08:30:00Z"
+        format: date-time
+        type: string
+        x-nullable: false
+      permissions:
+        description: Especifica os tipos de permisses de acesso s APIs no escopo do
+          Open Finance Brasil - Dados cadastrais e transacionais, de acordo com os
+          blocos de consentimento fornecidos pelo usurio e necessrios ao acesso a
+          cada endpoint das APIs. Esse array no deve ter duplicidade de itens.
+        example:
+        - ACCOUNTS_READ
+        - ACCOUNTS_OVERDRAFT_LIMITS_READ
+        - RESOURCES_READ
+        items:
+          $ref: '#/definitions/OpenbankingBrasilConsentV2Permission1'
         minItems: 1
         type: array
         x-nullable: false
@@ -3559,47 +4029,32 @@ definitions:
     - status
     - statusUpdateDateTime
     type: object
-  OpenbankingBrasilConsentV2Document:
-    description: OpenbankingBrasilConsentV2Document Document
+  OpenbankingBrasilConsentV2Data5:
+    description: OpenbankingBrasilConsentV2Data5 Data5
     properties:
-      identification:
-        description: Nmero do documento de identificao oficial do usurio.
-        example: "11111111111"
-        maxLength: 11
-        pattern: ^\d{11}$
+      expirationDateTime:
+        description: Data e hora de expirao da permisso. De preenchimento obrigatrio,
+          reflete a data limite de validade do consentimento. Uma string com data
+          e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
+          UTC(UTC time format), utilizado apenas para consulta de alteraes histricas
+          de extenso do consentimento.
+        example: "2021-05-21T08:30:00Z"
+        format: date-time
         type: string
         x-nullable: false
-      rel:
-        description: Tipo do documento de identificao oficial do usurio.
-        example: CPF
-        maxLength: 3
-        pattern: ^[A-Z]{3}$
+      loggedUser:
+        $ref: '#/definitions/OpenbankingBrasilConsentV2LoggedUserExtends'
+      requestDateTime:
+        description: Data e hora em que o recurso foi criado. Uma string com data
+          e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
+          UTC(UTC time format).
+        example: "2021-05-21T08:30:00Z"
+        format: date-time
         type: string
         x-nullable: false
     required:
-    - identification
-    - rel
-    type: object
-  OpenbankingBrasilConsentV2Document1:
-    description: OpenbankingBrasilConsentV2Document1 Document1
-    properties:
-      identification:
-        description: Nmero do documento de identificao oficial do titular pessoa jurdica.
-        example: "11111111111111"
-        maxLength: 14
-        pattern: ^\d{14}$
-        type: string
-        x-nullable: false
-      rel:
-        description: Tipo do documento de identificao oficial do titular pessoa jurdica.
-        example: CNPJ
-        maxLength: 4
-        pattern: ^[A-Z]{4}$
-        type: string
-        x-nullable: false
-    required:
-    - identification
-    - rel
+    - loggedUser
+    - requestDateTime
     type: object
   OpenbankingBrasilConsentV2EnumReasonCode:
     description: |-
@@ -3674,10 +4129,42 @@ definitions:
       e que iniciar o processo de consentimento para compartilhamento de dados.
     properties:
       document:
-        $ref: '#/definitions/OpenbankingBrasilConsentV2Document'
+        $ref: '#/definitions/OpenbankingBrasilConsentV2LoggedUserDocument'
     required:
     - document
     title: OpenbankingBrasilConsentV2LoggedUser LoggedUser
+    type: object
+  OpenbankingBrasilConsentV2LoggedUserDocument:
+    description: OpenbankingBrasilConsentV2LoggedUserDocument LoggedUserDocument
+    properties:
+      identification:
+        description: Nmero do documento de identificao oficial do usurio.
+        example: "11111111111"
+        maxLength: 11
+        pattern: ^\d{11}$
+        type: string
+        x-nullable: false
+      rel:
+        description: Tipo do documento de identificao oficial do usurio.
+        example: CPF
+        maxLength: 3
+        pattern: ^[A-Z]{3}$
+        type: string
+        x-nullable: false
+    required:
+    - identification
+    - rel
+    type: object
+  OpenbankingBrasilConsentV2LoggedUserExtends:
+    description: |-
+      Usurio (pessoa natural) que encontra-se logado na instituio receptora e que iniciar o processo de consentimento para compartilhamento de dados.
+      Deve ser armazenado como novo usurio logado responsvel pela renovao do consentimento atual.
+    properties:
+      document:
+        $ref: '#/definitions/OpenbankingBrasilConsentV2LoggedUserDocument'
+    required:
+    - document
+    title: OpenbankingBrasilConsentV2LoggedUserExtends LoggedUserExtends
     type: object
   OpenbankingBrasilConsentV2Meta:
     description: Meta informaes referente  API requisitada.
@@ -3709,8 +4196,9 @@ definitions:
     type: object
   OpenbankingBrasilConsentV2Permission:
     description: Especifica os tipos de permisses de acesso s APIs no escopo do Open
-      Banking Brasil - Fase 2, de acordo com os blocos de consentimento fornecidos
-      pelo usurio e necessrios ao acesso a cada endpoint das APIs.
+      Finance Brasil - Dados cadastrais e transacionais, de acordo com os blocos de
+      consentimento fornecidos pelo usurio e necessrios ao acesso a cada endpoint
+      das APIs. Esse array no deve ter duplicidade de itens.
     title: OpenbankingBrasilConsentV2Permission Permission
     type: string
   OpenbankingBrasilConsentV2Permission1:
@@ -4853,6 +5341,650 @@ definitions:
     - date
     title: OpenbankingBrasilPaymentV2Single Single
     type: object
+  OpenbankingBrasilPaymentV3BusinessEntity:
+    description: Usurio (pessoa jurdica) que encontra-se logado na instituio Iniciadora
+      de Pagamento. [Restrio] Preenchimento obrigatrio se usurio logado na instituio
+      Iniciadora de Pagamento for um CNPJ (pessoa jurdica).
+    properties:
+      document:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3Document'
+    required:
+    - document
+    title: OpenbankingBrasilPaymentV3BusinessEntity BusinessEntity
+    type: object
+  OpenbankingBrasilPaymentV3ConsentRejectionReason:
+    description: Motivo da rejeio do consentimento. Informaes complementares sobre
+      o motivo do status
+    properties:
+      code:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3EnumConsentRejectionReasonType'
+      detail:
+        description: |-
+          Contm informaes adicionais ao consentimento rejeitado.
+          VALOR_INVALIDO: O valor enviado no  vlido para o QR Code informado;
+          NAO_INFORMADO: No informada pela detentora de conta;
+          FALHA_INFRAESTRUTURA: [Descrio de qual falha na infraestrutura inviabilizou o processamento].
+          TEMPO_EXPIRADO_AUTORIZACAO: Consentimento expirou antes que o usurio pudesse confirm-lo.
+          TEMPO_EXPIRADO_CONSUMO: O usurio no finalizou o fluxo de pagamento e o consentimento expirou;
+          REJEITADO_USUARIO: O usurio rejeitou a autorizao do consentimento
+          CONTAS_ORIGEM_DESTINO_IGUAIS: A conta selecionada  igual  conta destino e no permite realizar esse pagamento.
+          CONTA_NAO_PERMITE_PAGAMENTO: A conta selecionada  do tipo [salario/investimento/liquidao/outros] e no permite realizar esse pagamento.
+          SALDO_INSUFICIENTE: A conta selecionada no possui saldo suficiente para realizar o pagamento.
+          VALOR_ACIMA_LIMITE: O valor ultrapassa o limite estabelecido [na instituio/no arranjo/outro] para permitir a realizao de transaes pelo cliente.
+          QRCODE_INVALIDO: O QRCode utilizado para a iniciao de pagamento no  vlido.
+        example: O usurio rejeitou a autorizao do consentimento
+        maxLength: 2048
+        pattern: '[\w\W\s]*'
+        type: string
+        x-nullable: false
+    required:
+    - code
+    - detail
+    title: OpenbankingBrasilPaymentV3ConsentRejectionReason ConsentRejectionReason
+    type: object
+  OpenbankingBrasilPaymentV3ConsentsDebtorAccount:
+    description: |-
+      Objeto que contm a identificao da conta de origem do pagador.
+      As informaes quanto  conta de origem do pagador podero ser trazidas no consentimento para a detentora, caso a iniciadora tenha coletado essas informaes do cliente.
+      No caso em que o cliente no preenche os dados na iniciadora, a detentora dever persistir as informaes da conta selecionada seguindo as condies abaixo.
+
+      [Restrio]
+      AUTHORISED e CONSUMED: Para esses dois status, o preenchimento do campo dever ser obrigatrio.
+      REJECTED: Para este status o preenchimento  condicional, dado que h cenrios em que a detentora tambm no ter conhecimento da conta origem, pois a mesma no foi selecionada pelo usurio. Nos casos em que houver seleo, a conta deve ser preenchida obrigatoriamente.
+    properties:
+      accountType:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3EnumAccountPaymentsType'
+      ispb:
+        description: Deve ser preenchido com o ISPB (Identificador do Sistema de Pagamentos
+          Brasileiros) do participante do SPI (Sistema de pagamentos instantneos)
+          somente com nmeros.
+        example: "12345678"
+        maxLength: 8
+        minLength: 8
+        pattern: ^[0-9]{8}$
+        type: string
+        x-nullable: false
+      issuer:
+        description: |-
+          Cdigo da Agncia emissora da conta sem dgito.
+          (Agncia  a dependncia destinada ao atendimento aos clientes, ao pblico em geral e aos associados de cooperativas de crdito,
+          no exerccio de atividades da instituio, no podendo ser mvel ou transitria).
+
+          [Restrio] Preenchimento obrigatrio para os seguintes tipos de conta: CACC (CONTA_DEPOSITO_A_VISTA) e SVGS (CONTA_POUPANCA).
+        example: "1774"
+        maxLength: 4
+        minLength: 1
+        pattern: ^[0-9]{1,4}$
+        type: string
+        x-nullable: false
+      number:
+        description: |-
+          Deve ser preenchido com o nmero da conta transacional do usurio pagador, com dgito verificador (se este existir),
+          se houver valor alfanumrico, este deve ser convertido para 0.
+        example: "1234567890"
+        maxLength: 20
+        minLength: 1
+        pattern: ^[0-9]{1,20}$
+        type: string
+        x-nullable: false
+    required:
+    - accountType
+    - ispb
+    - number
+    title: OpenbankingBrasilPaymentV3ConsentsDebtorAccount ConsentsDebtorAccount
+    type: object
+  OpenbankingBrasilPaymentV3CreditorAccount:
+    description: Objeto que contm a identificao da conta de destino do beneficirio/recebedor.
+    properties:
+      accountType:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3EnumAccountPaymentsType'
+      ispb:
+        description: Deve ser preenchido com o ISPB (Identificador do Sistema de Pagamentos
+          Brasileiros) do participante do SPI (Sistema de pagamentos instantneos)
+          somente com nmeros.
+        example: "12345678"
+        maxLength: 8
+        minLength: 8
+        pattern: ^[0-9]{8}$
+        type: string
+        x-nullable: false
+      issuer:
+        description: |-
+          Cdigo da Agncia emissora da conta sem dgito.
+          (Agncia  a dependncia destinada ao atendimento aos clientes, ao pblico em geral e aos associados de cooperativas de crdito,
+          no exerccio de atividades da instituio, no podendo ser mvel ou transitria).
+
+          [Restrio] Preenchimento obrigatrio para os seguintes tipos de conta: CACC (CONTA_DEPOSITO_A_VISTA) e SVGS (CONTA_POUPANCA).
+        example: "1774"
+        maxLength: 4
+        minLength: 1
+        pattern: ^[0-9]{1,4}$
+        type: string
+        x-nullable: false
+      number:
+        description: |-
+          Deve ser preenchido com o nmero da conta do usurio recebedor, com dgito verificador (se este existir),
+          se houver valor alfanumrico, este deve ser convertido para 0.
+        example: "1234567890"
+        maxLength: 20
+        minLength: 1
+        pattern: ^[0-9]{1,20}$
+        type: string
+        x-nullable: false
+    required:
+    - accountType
+    - ispb
+    - number
+    title: OpenbankingBrasilPaymentV3CreditorAccount CreditorAccount
+    type: object
+  OpenbankingBrasilPaymentV3Data:
+    description: Objeto contendo as informaes de consentimento para a iniciao de pagamento
+      individual.
+    properties:
+      businessEntity:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3BusinessEntity'
+      creditor:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3Identification'
+      debtorAccount:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3DebtorAccount'
+      loggedUser:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3LoggedUser'
+      payment:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3Payment'
+    required:
+    - creditor
+    - loggedUser
+    - payment
+    title: OpenbankingBrasilPaymentV3Data Data
+    type: object
+  OpenbankingBrasilPaymentV3Data1:
+    description: Objeto contendo as informaes de resposta do consentimento para a
+      iniciao de pagamento individual.
+    properties:
+      businessEntity:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3BusinessEntity'
+      consentId:
+        description: |-
+          Identificador nico do consentimento criado para a iniciao de pagamento solicitada. Dever ser um URN - Uniform Resource Name.
+          Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141)  um Uniform Resource
+          Identifier - URI - que  atribudo sob o URI scheme "urn" e um namespace URN especfico, com a inteno de que o URN
+          seja um identificador de recurso persistente e independente da localizao.
+          Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+          o namespace(urn)
+          o identificador associado ao namespace da instituio transnmissora (bancoex)
+          o identificador especfico dentro do namespace (C1DD33123).
+          Informaes mais detalhadas sobre a construo de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+        example: urn:bancoex:C1DD33123
+        maxLength: 256
+        pattern: ^urn:[a-zA-Z0-9][a-zA-Z0-9\-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$
+        type: string
+        x-nullable: false
+      creationDateTime:
+        description: Data e hora em que o consentimento foi criado. Uma string com
+          data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
+          UTC(UTC time format).
+        example: "2021-05-21T08:30:00Z"
+        format: date-time
+        type: string
+        x-nullable: false
+      creditor:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3Identification'
+      debtorAccount:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3ConsentsDebtorAccount'
+      expirationDateTime:
+        description: |-
+          Data e hora em que o consentimento da iniciao de pagamento expira, devendo ser sempre o creationDateTime mais 5 minutos. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC (UTC time format).
+          O consentimento  criado com o status AWAITING_AUTHORISATION, e deve assumir o status AUTHORIZED ou REJECTED antes do tempo de expirao - 5 minutos. Caso o tempo seja expirado, o status deve assumir REJECTED.
+          Para o cenrio em que o status assumiu AUTHORISED, o tempo mximo do expirationDateTime do consentimento deve assumir "now + 60 minutos". Este  o tempo para consumir o consentimento autorizado, mudando seu status para CONSUMED. No  possvel prorrogar este tempo e a criao de um novo consentimento ser necessria para os cenrios de insucesso.
+          O tempo do expirationDateTime  garantido com os 15 minutos do access token, sendo possvel utilizar mais trs refresh tokens at totalizar 60 minutos.
+        example: "2021-05-21T08:30:00Z"
+        format: date-time
+        type: string
+        x-nullable: false
+      loggedUser:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3LoggedUser'
+      payment:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3PaymentConsent'
+      rejectionReason:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3ConsentRejectionReason'
+      status:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3EnumAuthorisationStatusType'
+      statusUpdateDateTime:
+        description: Data e hora em que o recurso foi atualizado. Uma string com data
+          e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
+          UTC(UTC time format).
+        example: "2021-05-21T08:30:00Z"
+        format: date-time
+        type: string
+        x-nullable: false
+    required:
+    - consentId
+    - creationDateTime
+    - creditor
+    - expirationDateTime
+    - loggedUser
+    - payment
+    - status
+    - statusUpdateDateTime
+    title: OpenbankingBrasilPaymentV3Data1 Data1
+    type: object
+  OpenbankingBrasilPaymentV3DebtorAccount:
+    description: |-
+      Objeto que contm a identificao da conta de origem do pagador.
+      As informaes quanto  conta de origem do pagador podero ser trazidas no consentimento para a detentora, caso a iniciadora tenha coletado essas informaes do cliente. Do contrrio, ser coletada na detentora e trazida para a iniciadora como resposta  criao do pagamento.
+    properties:
+      accountType:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3EnumAccountPaymentsType'
+      ispb:
+        description: Deve ser preenchido com o ISPB (Identificador do Sistema de Pagamentos
+          Brasileiros) do participante do SPI (Sistema de pagamentos instantneos)
+          somente com nmeros.
+        example: "12345678"
+        maxLength: 8
+        minLength: 8
+        pattern: ^[0-9]{8}$
+        type: string
+        x-nullable: false
+      issuer:
+        description: |-
+          Cdigo da Agncia emissora da conta sem dgito.
+          (Agncia  a dependncia destinada ao atendimento aos clientes, ao pblico em geral e aos associados de cooperativas de crdito,
+          no exerccio de atividades da instituio, no podendo ser mvel ou transitria).
+
+          [Restrio] Preenchimento obrigatrio para os seguintes tipos de conta: CACC (CONTA_DEPOSITO_A_VISTA) e SVGS (CONTA_POUPANCA).
+        example: "1774"
+        maxLength: 4
+        minLength: 1
+        pattern: ^[0-9]{1,4}$
+        type: string
+        x-nullable: false
+      number:
+        description: |-
+          Deve ser preenchido com o nmero da conta transacional do usurio pagador, com dgito verificador (se este existir),
+          se houver valor alfanumrico, este deve ser convertido para 0.
+        example: "1234567890"
+        maxLength: 20
+        minLength: 1
+        pattern: ^[0-9]{1,20}$
+        type: string
+        x-nullable: false
+    required:
+    - accountType
+    - ispb
+    - number
+    title: OpenbankingBrasilPaymentV3DebtorAccount DebtorAccount
+    type: object
+  OpenbankingBrasilPaymentV3Details:
+    description: Objeto contendo os detalhes do pagamento.
+    properties:
+      creditorAccount:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3CreditorAccount'
+      localInstrument:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3EnumLocalInstrument'
+      proxy:
+        description: |-
+          Chave cadastrada no DICT pertencente ao recebedor. Os tipos de chaves podem ser: telefone, e-mail, cpf/cnpj ou chave aleatria.
+          No caso de telefone celular deve ser informado no padro E.1641.
+          Para e-mail deve ter o formato xxxxxxxx@xxxxxxx.xxx(.xx) e no mximo 77 caracteres.
+          No caso de CPF dever ser informado com 11 nmeros, sem pontos ou traos.
+          Para o caso de CNPJ dever ser informado com 14 nmeros, sem pontos ou traos.
+          No caso de chave aleatria deve ser informado o UUID gerado pelo DICT, conforme formato especificado na RFC41223.
+          Se informado, a detentora da conta deve validar o proxy no DICT quando localInstrument for igual a DICT, QRDN ou QRES e validar o campo creditorAccount.
+          Esta validao  opcional caso o localInstrument for igual a INIC.
+          [Restrio]
+          Se localInstrument for igual a MANU, o campo proxy no deve ser preenchido.
+          Se localInstrument for igual INIC, DICT, QRDN ou QRES, o campo proxy deve ser sempre preenchido com a chave Pix.
+        example: "12345678901"
+        maxLength: 77
+        pattern: '[\w\W\s]*'
+        type: string
+        x-nullable: false
+      qrCode:
+        description: |-
+          Sequncia de caracteres que corresponde ao QR Code disponibilizado para o pagador.
+
+          a sequncia de caracteres que seria lida pelo leitor de QR Code, e deve propiciar o retorno dos dados do pagador aps consulta na DICT.
+
+          Essa funcionalidade  possvel tanto para QR Code esttico quanto para QR Code dinmico.
+          No arranjo do Pix esta  a mesma sequncia gerada e/ou lida pela funcionalidade Pix Copia e Cola.
+          Este campo dever ser no formato UTF-8.
+          [Restrio] Preenchimento obrigatrio para pagamentos por QR Code, observado o tamanho mximo de 512 bytes.
+        example: 00020104141234567890123426660014BR.GOV.BCB.PIX014466756C616E6F32303139406578616D706C652E636F6D27300012\nBR.COM.OUTRO011001234567895204000053039865406123.455802BR5915NOMEDORECEBEDOR6008BRASILIA61087007490062\n530515RP12345678-201950300017BR.GOV.BCB.BRCODE01051.0.080450014BR.GOV.BCB.PIX0123PADRAO.URL.PIX/0123AB\nCD81390012BR.COM.OUTRO01190123.ABCD.3456.WXYZ6304EB76\n
+        maxLength: 512
+        pattern: '[\w\W\s]*'
+        type: string
+        x-nullable: false
+    required:
+    - creditorAccount
+    - localInstrument
+    title: OpenbankingBrasilPaymentV3Details Details
+    type: object
+  OpenbankingBrasilPaymentV3Document:
+    description: OpenbankingBrasilPaymentV3Document Document
+    properties:
+      identification:
+        description: Nmero do documento de identificao oficial do titular pessoa jurdica.
+        example: "11111111111111"
+        maxLength: 14
+        pattern: ^\d{14}$
+        type: string
+        x-nullable: false
+      rel:
+        description: Tipo do documento de identificao oficial do titular pessoa jurdica.
+        example: CNPJ
+        maxLength: 4
+        pattern: ^[A-Z]{4}$
+        type: string
+        x-nullable: false
+    required:
+    - identification
+    - rel
+    type: object
+  OpenbankingBrasilPaymentV3Document1:
+    description: OpenbankingBrasilPaymentV3Document1 Document1
+    properties:
+      identification:
+        description: Nmero do documento de identificao oficial do usurio.
+        example: "11111111111"
+        maxLength: 11
+        pattern: ^\d{11}$
+        type: string
+        x-nullable: false
+      rel:
+        description: Tipo do documento de identificao oficial do usurio.
+        example: CPF
+        maxLength: 3
+        pattern: ^[A-Z]{3}$
+        type: string
+        x-nullable: false
+    required:
+    - identification
+    - rel
+    type: object
+  OpenbankingBrasilPaymentV3EnumAccountPaymentsType:
+    description: |-
+      Tipos de contas usadas para pagamento.
+      Modalidades tradicionais previstas pela Resoluo 4.753, no contemplando contas vinculadas,
+      conta de domiciliados no exterior, contas em moedas estrangeiras e conta correspondente moeda eletrnica.
+      Segue descrio de cada valor do ENUM.
+
+      CACC - Current - Conta Corrente.
+      SVGS - Savings - Conta de Poupana.
+      TRAN - TransactingAccount - Conta de Pagamento pr-paga.
+      Example: CACC
+    title: OpenbankingBrasilPaymentV3EnumAccountPaymentsType EnumAccountPaymentsType
+    type: string
+  OpenbankingBrasilPaymentV3EnumAuthorisationStatusType:
+    description: |-
+      Retorna o estado do consentimento, o qual no momento de sua criao ser AWAITING_AUTHORISATION.
+      Este estado ser alterado depois da autorizao do consentimento na detentora da conta do pagador (Debtor) para AUTHORISED ou REJECTED.
+      O consentimento fica no estado CONSUMED aps ocorrer a iniciao do pagamento referente ao consentimento.
+      Em caso de consentimento expirado a detentora dever retornar o status REJECTED.
+      Estados possveis:
+      AWAITING_AUTHORISATION - Aguardando autorizao
+      AUTHORISED - Autorizado
+      REJECTED - Rejeitado
+      CONSUMED - Consumido
+      Example: AWAITING_AUTHORISATION
+    title: OpenbankingBrasilPaymentV3EnumAuthorisationStatusType EnumAuthorisationStatusType
+    type: string
+  OpenbankingBrasilPaymentV3EnumConsentRejectionReasonType:
+    description: |-
+      Define o cdigo da razo pela qual o consentimento foi rejeitado
+      VALOR_INVALIDO
+      NAO_INFORMADO
+      FALHA_INFRAESTRUTURA
+      TEMPO_EXPIRADO_AUTORIZACAO
+      TEMPO_EXPIRADO_CONSUMO
+      REJEITADO_USUARIO
+      CONTAS_ORIGEM_DESTINO_IGUAIS
+      CONTA_NAO_PERMITE_PAGAMENTO
+      SALDO_INSUFICIENTE
+      VALOR_ACIMA_LIMITE
+      QRCODE_INVALIDO
+      Example: SALDO_INSUFICIENTE
+    title: OpenbankingBrasilPaymentV3EnumConsentRejectionReasonType EnumConsentRejectionReasonType
+    type: string
+  OpenbankingBrasilPaymentV3EnumLocalInstrument:
+    description: |-
+      Especifica a forma de iniciao do pagamento:
+      MANU - Insero manual de dados da conta transacional
+      DICT - Insero manual de chave Pix
+      QRDN - QR code dinmico
+      QRES - QR code esttico
+      INIC - Indica que o recebedor (creditor) contratou o Iniciador de Pagamentos especificamente para realizar iniciaes de pagamento em que o beneficirio  previamente conhecido.
+      Example: DICT
+    title: OpenbankingBrasilPaymentV3EnumLocalInstrument EnumLocalInstrument
+    type: string
+  OpenbankingBrasilPaymentV3EnumPaymentPersonType:
+    description: Titular, pessoa natural ou juridica a quem se referem os dados de
+      recebedor (creditor).
+    title: OpenbankingBrasilPaymentV3EnumPaymentPersonType EnumPaymentPersonType
+    type: string
+  OpenbankingBrasilPaymentV3Identification:
+    description: Objeto contendo os dados do recebedor (creditor).
+    properties:
+      cpfCnpj:
+        description: |-
+          Identificao da pessoa envolvida na transao.
+          Preencher com o CPF ou CNPJ, de acordo com o valor escolhido no campo type.
+          O CPF ser utilizado com 11 nmeros e dever ser informado sem pontos ou traos.
+          O CNPJ ser utilizado com 14 nmeros e dever ser informado sem pontos ou traos.
+        example: "58764789000137"
+        maxLength: 14
+        minLength: 11
+        pattern: ^\d{11}$|^\d{14}$
+        type: string
+        x-nullable: false
+      name:
+        description: |-
+          Em caso de pessoa natural deve ser informado o nome completo do titular da conta do recebedor.
+          Em caso de pessoa jurdica deve ser informada a razo social ou o nome fantasia da conta do recebedor.
+        example: Marco Antonio de Brito
+        maxLength: 120
+        pattern: ^([A-Za-z---,.@:&*+_<>()!?/\\$%\d' -]+)$
+        type: string
+        x-nullable: false
+      personType:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3EnumPaymentPersonType'
+    required:
+    - cpfCnpj
+    - name
+    - personType
+    title: OpenbankingBrasilPaymentV3Identification Identification
+    type: object
+  OpenbankingBrasilPaymentV3LinkSingle:
+    description: Referncias para outros recusos da API requisitada.
+    properties:
+      self:
+        description: URI completo que gerou a resposta atual.
+        example: https://api.banco.com.br/open-banking/api/v1/resource
+        maxLength: 2000
+        pattern: ^(https:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$
+        type: string
+        x-nullable: false
+    required:
+    - self
+    title: OpenbankingBrasilPaymentV3LinkSingle LinkSingle
+    type: object
+  OpenbankingBrasilPaymentV3LoggedUser:
+    description: Usurio (pessoa natural) que encontra-se logado na instituio Iniciadora
+      de Pagamento.
+    properties:
+      document:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3Document1'
+    required:
+    - document
+    title: OpenbankingBrasilPaymentV3LoggedUser LoggedUser
+    type: object
+  OpenbankingBrasilPaymentV3Meta:
+    description: Meta informao referente a API requisitada.
+    properties:
+      requestDateTime:
+        description: Data e hora da consulta, conforme especificao RFC-3339, formato
+          UTC.
+        example: "2021-05-21T08:30:00Z"
+        format: date-time
+        type: string
+        x-nullable: false
+    required:
+    - requestDateTime
+    title: OpenbankingBrasilPaymentV3Meta Meta
+    type: object
+  OpenbankingBrasilPaymentV3Payment:
+    description: Objeto contendo dados de pagamento para consentimento.
+    properties:
+      amount:
+        description: |-
+          Valor da transao com 2 casas decimais. O valor deve ser o mesmo enviado no consentimento.
+
+          Para QR Code esttico com valor pr-determinado no QR Code ou para QR Code dinmico com indicao de que o valor no pode ser alterado: O campo amount deve ser preenchido com o valor estabelecido no QR Code.
+          Caso seja preenchido com valor divergente do QR Code, deve ser retornado um erro HTTP Status 422.
+        example: "100000.12"
+        maxLength: 19
+        minLength: 4
+        pattern: ^((\d{1,16}\.\d{2}))$
+        type: string
+        x-nullable: false
+      currency:
+        description: |-
+          Cdigo da moeda nacional segundo modelo ISO-4217, ou seja, 'BRL'.
+          Todos os valores monetrios informados esto representados com a moeda vigente do Brasil.
+        example: BRL
+        maxLength: 3
+        pattern: ^([A-Z]{3})$
+        type: string
+        x-nullable: false
+      date:
+        description: |-
+          [Restrio] Mutuamente excludente com o objeto schedule.
+
+          Este campo  obrigatrio no caso de pagamento nico.
+
+          Neste caso, o objeto schedule no deve ser informado.
+        example: "2021-01-01"
+        format: date
+        type: string
+        x-nullable: false
+      details:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3Details'
+      ibgeTownCode:
+        description: |-
+          O campo ibgetowncode no arranjo PIX, tem o mesmo comportamento que o campo codMun descrito no item 1.6.6 do manual do PIX, conforme segue:
+
+          1. Caso a informao referente ao municpio no seja enviada; o PSP do recebedor assumir que no existem feriados estaduais e municipais no perodo em questo;
+        example: "5300108"
+        maxLength: 7
+        minLength: 7
+        pattern: ^\d{7}$
+        type: string
+        x-nullable: false
+      schedule:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3Schedule'
+      type:
+        description: Este campo define o tipo de pagamento que ser iniciado aps a
+          autorizao do consentimento.
+        example: PIX
+        type: string
+        x-nullable: false
+    required:
+    - amount
+    - currency
+    - details
+    - type
+    title: OpenbankingBrasilPaymentV3Payment Payment
+    type: object
+  OpenbankingBrasilPaymentV3PaymentConsent:
+    description: Objeto contendo dados de pagamento para consentimento.
+    properties:
+      amount:
+        description: Valor da transao com 2 casas decimais.
+        example: "100000.12"
+        maxLength: 19
+        minLength: 4
+        pattern: ^((\d{1,16}\.\d{2}))$
+        type: string
+        x-nullable: false
+      currency:
+        description: |-
+          Cdigo da moeda nacional segundo modelo ISO-4217, ou seja, 'BRL'.
+          Todos os valores monetrios informados esto representados com a moeda vigente do Brasil.
+        example: BRL
+        maxLength: 3
+        pattern: ^([A-Z]{3})$
+        type: string
+        x-nullable: false
+      date:
+        description: |-
+          [Restrio] Mutuamente excludente com o objeto schedule.
+
+          Este campo  obrigatrio no caso de pagamento nico.
+
+          Neste caso, o objeto schedule no deve ser informado.
+        example: "2021-01-01"
+        format: date
+        type: string
+        x-nullable: false
+      details:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3Details'
+      ibgeTownCode:
+        description: |-
+          O campo ibgetowncode no arranjo PIX, tem o mesmo comportamento que o campo codMun descrito no item 1.6.6 do manual do PIX, conforme segue:
+
+          1. Caso a informao referente ao municpio no seja enviada; o PSP do recebedor assumir que no existem feriados estaduais e municipais no perodo em questo;
+        example: "5300108"
+        maxLength: 7
+        minLength: 7
+        pattern: ^\d{7}$
+        type: string
+        x-nullable: false
+      schedule:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3Schedule'
+      type:
+        description: Este campo define o tipo de pagamento que ser iniciado aps a
+          autorizao do consentimento.
+        example: PIX
+        type: string
+        x-nullable: false
+    required:
+    - amount
+    - currency
+    - details
+    - type
+    title: OpenbankingBrasilPaymentV3PaymentConsent PaymentConsent
+    type: object
+  OpenbankingBrasilPaymentV3Schedule:
+    description: |-
+      [Restrio] Mutuamente excludente com o campo date.
+
+      Este campo  obrigatrio no caso de agendamento.
+
+      Neste caso, o campo date no deve ser informado.
+    properties:
+      single:
+        $ref: '#/definitions/OpenbankingBrasilPaymentV3Single'
+    required:
+    - single
+    title: OpenbankingBrasilPaymentV3Schedule Schedule
+    type: object
+  OpenbankingBrasilPaymentV3Single:
+    description: Define a poltica de agendamento nico.
+    properties:
+      date:
+        description: |-
+          Define a data alvo da liquidao do pagamento.
+
+          O fuso horrio de Braslia deve ser utilizado para criao e racionalizao sobre os dados deste campo.
+
+          Observao: Esse campo dever sempre ser no mnimo D+1 corrido, ou seja, a data imediatamente posterior em relao a data do consentimento considerando o fuso horrio de Braslia e dever ser no mximo D+365 corridos a partir da data do consentimento considerando o fuso horrio de Braslia
+        example: "2021-01-01"
+        format: date
+        type: string
+        x-nullable: false
+    required:
+    - date
+    title: OpenbankingBrasilPaymentV3Single Single
+    type: object
   OpenbankingClient:
     properties:
       client_uri:
@@ -4946,11 +6078,22 @@ definitions:
         format: loginState
         type: string
         x-nullable: false
+      rejection_reason:
+        $ref: '#/definitions/RejectionReason'
       status_code:
         description: Rejection HTTP status code.
         example: 403
         format: int64
         type: integer
+        x-nullable: false
+    type: object
+  RejectionReason:
+    properties:
+      code:
+        type: string
+        x-nullable: false
+      details:
+        type: string
         x-nullable: false
     type: object
   RequestedScope:
@@ -4976,6 +6119,11 @@ definitions:
         example: scope-1
         format: scopeID
         type: string
+        x-nullable: false
+      implicit:
+        description: Request this scope by default for all clients who subscribed
+          to this scope
+        type: boolean
         x-nullable: false
       metadata:
         $ref: '#/definitions/Metadata'
@@ -5151,14 +6299,27 @@ definitions:
 host: localhost:8443
 info:
   description: |-
-    Cloudentity Open Finance APIs
+    Cloudentity's Brazil [Open Banking](https://cloudentity.com/developers/basics/openfinance/open-banking-brazil-overview/)
+    and [Open Insurance](https://cloudentity.com/developers/basics/openfinance/open-insurance-brazil/) API collections meet
+    the guidelines for products and services operating within the Open Finance ecosystem in Brazil.
 
-    Brazil Open Banking API collection meets
-    the guidelines of the Brazilian Central Bank for products and services operating within the open banking sector
-    in Brazil.
-    With these APIs, you can dynamically register a client application or initiate a payment in compliance with the
-    Brazilian Open Banking specification.
-  title: Cloudentity API
+    These APIs must be called with the `Authorization: Bearer` header with a token as its value.
+    To obtain the token, apply the
+    [Authorization Code](https://cloudentity.com/developers/basics/oauth-grant-types/authorization-code-flow/) grant type
+    for the introspection endpoints and
+    [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) for the
+    rest of the APIs.
+
+    API requests must feature the explicitly defined scopes the client application can access. The required and
+    optional scopes are listed under individual endpoints. To check scopes for an endpoint, unfold the **AUTHORIZATIONS:**
+    block in the endpoint description.
+    [Enable](https://cloudentity.com/developers/howtos/access-control/creating-and-configuring-dynamic-scopes/#add-scope)
+    necessary scopes for your client application in advance.
+
+    Check our
+    [Open Banking Glossary](https://cloudentity.com/developers/basics/openfinance/glossary-ob/) to get familiar with terms and
+    abbreviations.
+  title: Cloudentity Brazil Open Banking and Open Insurance APIs
   version: latest
 paths:
   /open-insurance/consents/v1/:
@@ -5393,9 +6554,13 @@ produces:
 - application/json
 responses:
   BrazilConsent:
-    description: BrazilConsent
+    description: Open Banking Brazil Consent
     schema:
       $ref: '#/definitions/BrazilConsent'
+  BrazilCreateConsentExtensionResponse:
+    description: Create Customer data access v2 consent extension
+    schema:
+      $ref: '#/definitions/BrazilCreateConsentExtensionResponse'
   BrazilCreateCustomerDataAccessConsentV2Response:
     description: Create Customer data access v2 consent
     schema:
@@ -5412,6 +6577,14 @@ responses:
     description: Customer payment consent
     schema:
       $ref: '#/definitions/BrazilCustomerPaymentConsentResponseV2'
+  BrazilCustomerPaymentConsentResponseV3:
+    description: Customer payment consent
+    schema:
+      $ref: '#/definitions/BrazilCustomerPaymentConsentResponseV3'
+  BrazilGetConsentExtensionsResponse:
+    description: Get Customer data access v2 consent extension
+    schema:
+      $ref: '#/definitions/BrazilGetConsentExtensionsResponse'
   BrazilGetCustomerDataAccessConsentV2Response:
     description: Get Customer data access v2 consent
     schema:
@@ -5421,7 +6594,7 @@ responses:
     schema:
       $ref: '#/definitions/BrazilInsuranceCustomerDataAccessConsentResponse'
   ConsentAccepted:
-    description: Consent accepted
+    description: Consent Accepted
     schema:
       $ref: '#/definitions/ConsentAccepted'
   ConsentRejected:
@@ -5429,7 +6602,7 @@ responses:
     schema:
       $ref: '#/definitions/ConsentRejected'
   ConsentsRemovedResponse:
-    description: ConsentsRemovedResponse
+    description: Consents Revoked
     schema:
       $ref: '#/definitions/ConsentsRemovedResponse'
   DynamicClientRegistrationResponse:
@@ -5448,6 +6621,10 @@ responses:
     description: GetOBBRCustomerPaymentConsentResponseV2
     schema:
       $ref: '#/definitions/GetOBBRCustomerPaymentConsentResponseV2'
+  GetOBBRCustomerPaymentConsentResponseV3:
+    description: GetOBBRCustomerPaymentConsentResponseV3
+    schema:
+      $ref: '#/definitions/GetOBBRCustomerPaymentConsentResponseV3'
   IntrospectOBBRDataAccessConsentResponse:
     description: Introspect Openbanking Brazil Data Access Consent Response
     schema:
@@ -5464,8 +6641,12 @@ responses:
     description: Introspect Openbanking Brazil Payment Consent V2 Response
     schema:
       $ref: '#/definitions/IntrospectOBBRPaymentConsentResponseV2'
+  IntrospectOBBRPaymentConsentResponseV3:
+    description: Introspect Openbanking Brazil Payment Consent V3 Response
+    schema:
+      $ref: '#/definitions/IntrospectOBBRPaymentConsentResponseV3'
   OBBRConsents:
-    description: OBBRConsents
+    description: Open Banking Brazil Consents
     schema:
       $ref: '#/definitions/OBBRConsents'
   OBBRErrorResponse:

@@ -183,6 +183,11 @@ func (m *OBRisk1) ContextValidate(ctx context.Context, formats strfmt.Registry) 
 func (m *OBRisk1) contextValidateDeliveryAddress(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.DeliveryAddress != nil {
+
+		if swag.IsZero(m.DeliveryAddress) { // not required
+			return nil
+		}
+
 		if err := m.DeliveryAddress.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("DeliveryAddress")

@@ -29,8 +29,14 @@ type DCRRejectedEventPayload struct {
 	// Error hint
 	ErrorHint string `json:"error_hint,omitempty"`
 
+	// External error
+	ExternalError bool `json:"external_error,omitempty"`
+
 	// Requester IP address obtained from system network socket information.
 	RemoteAddr string `json:"remote_addr,omitempty"`
+
+	// Requester IP address obtained from True-Client-IP header.
+	TrueClientIP string `json:"true_client_ip,omitempty"`
 
 	// A characteristic string that lets servers and network peers identify the application, operating system, vendor, and/or version of the requesting user agent.
 	UserAgent string `json:"user_agent,omitempty"`

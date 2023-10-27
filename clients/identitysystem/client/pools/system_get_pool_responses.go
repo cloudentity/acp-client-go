@@ -69,6 +69,15 @@ SystemGetPoolOK describes a response with status code 200, with default header v
 Identity Pool
 */
 type SystemGetPoolOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.PoolResponse
 }
 
@@ -115,6 +124,13 @@ func (o *SystemGetPoolOK) GetPayload() *models.PoolResponse {
 }
 
 func (o *SystemGetPoolOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.PoolResponse)
 

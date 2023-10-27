@@ -66,7 +66,7 @@ func (o *RevokeCDRCustomerArrangementsReader) ReadResponse(response runtime.Clie
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[DELETE /servers/{wid}/cdr/customer-arrangements] revokeCDRCustomerArrangements", response, response.Code())
 	}
 }
 
@@ -78,7 +78,7 @@ func NewRevokeCDRCustomerArrangementsOK() *RevokeCDRCustomerArrangementsOK {
 /*
 RevokeCDRCustomerArrangementsOK describes a response with status code 200, with default header values.
 
-ConsentsRemovedResponse
+Consents Revoked
 */
 type RevokeCDRCustomerArrangementsOK struct {
 	Payload *models.ConsentsRemovedResponse

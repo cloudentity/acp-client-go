@@ -36,7 +36,7 @@ func (o *JwksReader) ReadResponse(response runtime.ClientResponse, consumer runt
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /.well-known/jwks.json] jwks", response, response.Code())
 	}
 }
 
@@ -77,6 +77,11 @@ func (o *JwksOK) IsServerError() bool {
 // IsCode returns true when this jwks o k response a status code equal to that given
 func (o *JwksOK) IsCode(code int) bool {
 	return code == 200
+}
+
+// Code gets the status code for the jwks o k response
+func (o *JwksOK) Code() int {
+	return 200
 }
 
 func (o *JwksOK) Error() string {
@@ -140,6 +145,11 @@ func (o *JwksNotFound) IsServerError() bool {
 // IsCode returns true when this jwks not found response a status code equal to that given
 func (o *JwksNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the jwks not found response
+func (o *JwksNotFound) Code() int {
+	return 404
 }
 
 func (o *JwksNotFound) Error() string {

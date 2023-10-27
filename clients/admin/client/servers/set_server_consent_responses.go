@@ -54,7 +54,7 @@ func (o *SetServerConsentReader) ReadResponse(response runtime.ClientResponse, c
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /servers/{wid}/server-consent] setServerConsent", response, response.Code())
 	}
 }
 
@@ -97,6 +97,11 @@ func (o *SetServerConsentOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the set server consent o k response
+func (o *SetServerConsentOK) Code() int {
+	return 200
+}
+
 func (o *SetServerConsentOK) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/server-consent][%d] setServerConsentOK  %+v", 200, o.Payload)
 }
@@ -129,7 +134,7 @@ func NewSetServerConsentUnauthorized() *SetServerConsentUnauthorized {
 /*
 SetServerConsentUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type SetServerConsentUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +163,11 @@ func (o *SetServerConsentUnauthorized) IsServerError() bool {
 // IsCode returns true when this set server consent unauthorized response a status code equal to that given
 func (o *SetServerConsentUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the set server consent unauthorized response
+func (o *SetServerConsentUnauthorized) Code() int {
+	return 401
 }
 
 func (o *SetServerConsentUnauthorized) Error() string {
@@ -192,7 +202,7 @@ func NewSetServerConsentForbidden() *SetServerConsentForbidden {
 /*
 SetServerConsentForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type SetServerConsentForbidden struct {
 	Payload *models.Error
@@ -221,6 +231,11 @@ func (o *SetServerConsentForbidden) IsServerError() bool {
 // IsCode returns true when this set server consent forbidden response a status code equal to that given
 func (o *SetServerConsentForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the set server consent forbidden response
+func (o *SetServerConsentForbidden) Code() int {
+	return 403
 }
 
 func (o *SetServerConsentForbidden) Error() string {
@@ -255,7 +270,7 @@ func NewSetServerConsentNotFound() *SetServerConsentNotFound {
 /*
 SetServerConsentNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type SetServerConsentNotFound struct {
 	Payload *models.Error
@@ -284,6 +299,11 @@ func (o *SetServerConsentNotFound) IsServerError() bool {
 // IsCode returns true when this set server consent not found response a status code equal to that given
 func (o *SetServerConsentNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the set server consent not found response
+func (o *SetServerConsentNotFound) Code() int {
+	return 404
 }
 
 func (o *SetServerConsentNotFound) Error() string {
@@ -318,7 +338,7 @@ func NewSetServerConsentTooManyRequests() *SetServerConsentTooManyRequests {
 /*
 SetServerConsentTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type SetServerConsentTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +367,11 @@ func (o *SetServerConsentTooManyRequests) IsServerError() bool {
 // IsCode returns true when this set server consent too many requests response a status code equal to that given
 func (o *SetServerConsentTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the set server consent too many requests response
+func (o *SetServerConsentTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *SetServerConsentTooManyRequests) Error() string {

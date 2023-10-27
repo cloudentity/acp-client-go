@@ -61,6 +61,14 @@ GetServerThemeParams contains all the parameters to send to the API endpoint
 */
 type GetServerThemeParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Wid.
 
 	   Workspace id
@@ -133,6 +141,17 @@ func (o *GetServerThemeParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the get server theme params
+func (o *GetServerThemeParams) WithIfMatch(ifMatch *string) *GetServerThemeParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the get server theme params
+func (o *GetServerThemeParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithWid adds the wid to the get server theme params
 func (o *GetServerThemeParams) WithWid(wid string) *GetServerThemeParams {
 	o.SetWid(wid)
@@ -151,6 +170,14 @@ func (o *GetServerThemeParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	// path param wid
 	if err := r.SetPathParam("wid", o.Wid); err != nil {

@@ -117,6 +117,7 @@ func (m *OBWriteInternationalStandingOrderConsentResponse7DataInitiationInstruct
 func (m *OBWriteInternationalStandingOrderConsentResponse7DataInitiationInstructedAmount) contextValidateAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Amount != nil {
+
 		if err := m.Amount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Amount")
@@ -133,6 +134,7 @@ func (m *OBWriteInternationalStandingOrderConsentResponse7DataInitiationInstruct
 func (m *OBWriteInternationalStandingOrderConsentResponse7DataInitiationInstructedAmount) contextValidateCurrency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Currency != nil {
+
 		if err := m.Currency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Currency")

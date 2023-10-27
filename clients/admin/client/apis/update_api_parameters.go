@@ -75,6 +75,14 @@ type UpdateAPIParams struct {
 	*/
 	API string
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -150,6 +158,17 @@ func (o *UpdateAPIParams) SetAPI(api string) {
 	o.API = api
 }
 
+// WithIfMatch adds the ifMatch to the update API params
+func (o *UpdateAPIParams) WithIfMatch(ifMatch *string) *UpdateAPIParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the update API params
+func (o *UpdateAPIParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *UpdateAPIParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -166,6 +185,14 @@ func (o *UpdateAPIParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 	// path param api
 	if err := r.SetPathParam("api", o.API); err != nil {
 		return err
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

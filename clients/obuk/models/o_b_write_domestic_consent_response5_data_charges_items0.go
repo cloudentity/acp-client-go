@@ -147,6 +147,7 @@ func (m *OBWriteDomesticConsentResponse5DataChargesItems0) ContextValidate(ctx c
 func (m *OBWriteDomesticConsentResponse5DataChargesItems0) contextValidateAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Amount != nil {
+
 		if err := m.Amount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Amount")
@@ -163,6 +164,7 @@ func (m *OBWriteDomesticConsentResponse5DataChargesItems0) contextValidateAmount
 func (m *OBWriteDomesticConsentResponse5DataChargesItems0) contextValidateChargeBearer(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ChargeBearer != nil {
+
 		if err := m.ChargeBearer.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ChargeBearer")
@@ -179,6 +181,7 @@ func (m *OBWriteDomesticConsentResponse5DataChargesItems0) contextValidateCharge
 func (m *OBWriteDomesticConsentResponse5DataChargesItems0) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Type != nil {
+
 		if err := m.Type.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Type")

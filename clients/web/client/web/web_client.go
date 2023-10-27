@@ -46,7 +46,7 @@ func (a *Client) GetStyling(params *GetStylingParams, opts ...ClientOption) (*Ge
 	op := &runtime.ClientOperation{
 		ID:                 "getStyling",
 		Method:             "GET",
-		PathPattern:        "/styling",
+		PathPattern:        "/{aid}/styling",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},

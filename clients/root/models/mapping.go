@@ -45,13 +45,19 @@ type Mapping struct {
 	// Example: false
 	AllowWeakDecoding bool `json:"allow_weak_decoding,omitempty"`
 
+	// mode
+	Mode MappingMode `json:"mode,omitempty"`
+
 	// Source attribute.
 	//
 	// Source path to the attribute(s) which should be copied to the authentication context.
 	// Use '.' to copy everything.
+	// Required for dynamic mode.
 	// Example: access_token
-	// Required: true
-	Source string `json:"source"`
+	Source string `json:"source,omitempty"`
+
+	// When static mode is used, this field contains a value that will be populated into a target attribute.
+	Static interface{} `json:"static,omitempty"`
 
 	// Target attribute.
 	//
@@ -74,7 +80,7 @@ type Mapping struct {
 func (m *Mapping) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateSource(formats); err != nil {
+	if err := m.validateMode(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -92,9 +98,17 @@ func (m *Mapping) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Mapping) validateSource(formats strfmt.Registry) error {
+func (m *Mapping) validateMode(formats strfmt.Registry) error {
+	if swag.IsZero(m.Mode) { // not required
+		return nil
+	}
 
-	if err := validate.RequiredString("source", "body", m.Source); err != nil {
+	if err := m.Mode.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("mode")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("mode")
+		}
 		return err
 	}
 
@@ -119,8 +133,35 @@ func (m *Mapping) validateType(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validates this mapping based on context it is used
+// ContextValidate validate this mapping based on the context it is used
 func (m *Mapping) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateMode(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *Mapping) contextValidateMode(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Mode) { // not required
+		return nil
+	}
+
+	if err := m.Mode.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("mode")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("mode")
+		}
+		return err
+	}
+
 	return nil
 }
 

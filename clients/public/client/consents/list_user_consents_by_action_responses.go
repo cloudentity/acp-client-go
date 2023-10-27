@@ -54,7 +54,7 @@ func (o *ListUserConsentsByActionReader) ReadResponse(response runtime.ClientRes
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /privacy/consents/{action}] listUserConsentsByAction", response, response.Code())
 	}
 }
 
@@ -97,6 +97,11 @@ func (o *ListUserConsentsByActionOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the list user consents by action o k response
+func (o *ListUserConsentsByActionOK) Code() int {
+	return 200
+}
+
 func (o *ListUserConsentsByActionOK) Error() string {
 	return fmt.Sprintf("[GET /privacy/consents/{action}][%d] listUserConsentsByActionOK  %+v", 200, o.Payload)
 }
@@ -129,7 +134,7 @@ func NewListUserConsentsByActionUnauthorized() *ListUserConsentsByActionUnauthor
 /*
 ListUserConsentsByActionUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ListUserConsentsByActionUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +163,11 @@ func (o *ListUserConsentsByActionUnauthorized) IsServerError() bool {
 // IsCode returns true when this list user consents by action unauthorized response a status code equal to that given
 func (o *ListUserConsentsByActionUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the list user consents by action unauthorized response
+func (o *ListUserConsentsByActionUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ListUserConsentsByActionUnauthorized) Error() string {
@@ -192,7 +202,7 @@ func NewListUserConsentsByActionForbidden() *ListUserConsentsByActionForbidden {
 /*
 ListUserConsentsByActionForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ListUserConsentsByActionForbidden struct {
 	Payload *models.Error
@@ -221,6 +231,11 @@ func (o *ListUserConsentsByActionForbidden) IsServerError() bool {
 // IsCode returns true when this list user consents by action forbidden response a status code equal to that given
 func (o *ListUserConsentsByActionForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the list user consents by action forbidden response
+func (o *ListUserConsentsByActionForbidden) Code() int {
+	return 403
 }
 
 func (o *ListUserConsentsByActionForbidden) Error() string {
@@ -255,7 +270,7 @@ func NewListUserConsentsByActionNotFound() *ListUserConsentsByActionNotFound {
 /*
 ListUserConsentsByActionNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type ListUserConsentsByActionNotFound struct {
 	Payload *models.Error
@@ -284,6 +299,11 @@ func (o *ListUserConsentsByActionNotFound) IsServerError() bool {
 // IsCode returns true when this list user consents by action not found response a status code equal to that given
 func (o *ListUserConsentsByActionNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the list user consents by action not found response
+func (o *ListUserConsentsByActionNotFound) Code() int {
+	return 404
 }
 
 func (o *ListUserConsentsByActionNotFound) Error() string {
@@ -318,7 +338,7 @@ func NewListUserConsentsByActionTooManyRequests() *ListUserConsentsByActionTooMa
 /*
 ListUserConsentsByActionTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ListUserConsentsByActionTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +367,11 @@ func (o *ListUserConsentsByActionTooManyRequests) IsServerError() bool {
 // IsCode returns true when this list user consents by action too many requests response a status code equal to that given
 func (o *ListUserConsentsByActionTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the list user consents by action too many requests response
+func (o *ListUserConsentsByActionTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ListUserConsentsByActionTooManyRequests) Error() string {

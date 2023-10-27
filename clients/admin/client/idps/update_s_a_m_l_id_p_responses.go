@@ -66,7 +66,7 @@ func (o *UpdateSAMLIDPReader) ReadResponse(response runtime.ClientResponse, cons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /servers/{wid}/idps/saml/{iid}] updateSAMLIDP", response, response.Code())
 	}
 }
 
@@ -109,6 +109,11 @@ func (o *UpdateSAMLIDPOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the update s a m l Id p o k response
+func (o *UpdateSAMLIDPOK) Code() int {
+	return 200
+}
+
 func (o *UpdateSAMLIDPOK) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/saml/{iid}][%d] updateSAMLIdPOK  %+v", 200, o.Payload)
 }
@@ -141,7 +146,7 @@ func NewUpdateSAMLIDPBadRequest() *UpdateSAMLIDPBadRequest {
 /*
 UpdateSAMLIDPBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type UpdateSAMLIDPBadRequest struct {
 	Payload *models.Error
@@ -170,6 +175,11 @@ func (o *UpdateSAMLIDPBadRequest) IsServerError() bool {
 // IsCode returns true when this update s a m l Id p bad request response a status code equal to that given
 func (o *UpdateSAMLIDPBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the update s a m l Id p bad request response
+func (o *UpdateSAMLIDPBadRequest) Code() int {
+	return 400
 }
 
 func (o *UpdateSAMLIDPBadRequest) Error() string {
@@ -204,7 +214,7 @@ func NewUpdateSAMLIDPUnauthorized() *UpdateSAMLIDPUnauthorized {
 /*
 UpdateSAMLIDPUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type UpdateSAMLIDPUnauthorized struct {
 	Payload *models.Error
@@ -233,6 +243,11 @@ func (o *UpdateSAMLIDPUnauthorized) IsServerError() bool {
 // IsCode returns true when this update s a m l Id p unauthorized response a status code equal to that given
 func (o *UpdateSAMLIDPUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the update s a m l Id p unauthorized response
+func (o *UpdateSAMLIDPUnauthorized) Code() int {
+	return 401
 }
 
 func (o *UpdateSAMLIDPUnauthorized) Error() string {
@@ -267,7 +282,7 @@ func NewUpdateSAMLIDPForbidden() *UpdateSAMLIDPForbidden {
 /*
 UpdateSAMLIDPForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type UpdateSAMLIDPForbidden struct {
 	Payload *models.Error
@@ -296,6 +311,11 @@ func (o *UpdateSAMLIDPForbidden) IsServerError() bool {
 // IsCode returns true when this update s a m l Id p forbidden response a status code equal to that given
 func (o *UpdateSAMLIDPForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the update s a m l Id p forbidden response
+func (o *UpdateSAMLIDPForbidden) Code() int {
+	return 403
 }
 
 func (o *UpdateSAMLIDPForbidden) Error() string {
@@ -330,7 +350,7 @@ func NewUpdateSAMLIDPNotFound() *UpdateSAMLIDPNotFound {
 /*
 UpdateSAMLIDPNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type UpdateSAMLIDPNotFound struct {
 	Payload *models.Error
@@ -359,6 +379,11 @@ func (o *UpdateSAMLIDPNotFound) IsServerError() bool {
 // IsCode returns true when this update s a m l Id p not found response a status code equal to that given
 func (o *UpdateSAMLIDPNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the update s a m l Id p not found response
+func (o *UpdateSAMLIDPNotFound) Code() int {
+	return 404
 }
 
 func (o *UpdateSAMLIDPNotFound) Error() string {
@@ -393,7 +418,7 @@ func NewUpdateSAMLIDPUnprocessableEntity() *UpdateSAMLIDPUnprocessableEntity {
 /*
 UpdateSAMLIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type UpdateSAMLIDPUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +447,11 @@ func (o *UpdateSAMLIDPUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this update s a m l Id p unprocessable entity response a status code equal to that given
 func (o *UpdateSAMLIDPUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the update s a m l Id p unprocessable entity response
+func (o *UpdateSAMLIDPUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *UpdateSAMLIDPUnprocessableEntity) Error() string {
@@ -456,7 +486,7 @@ func NewUpdateSAMLIDPTooManyRequests() *UpdateSAMLIDPTooManyRequests {
 /*
 UpdateSAMLIDPTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type UpdateSAMLIDPTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +515,11 @@ func (o *UpdateSAMLIDPTooManyRequests) IsServerError() bool {
 // IsCode returns true when this update s a m l Id p too many requests response a status code equal to that given
 func (o *UpdateSAMLIDPTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the update s a m l Id p too many requests response
+func (o *UpdateSAMLIDPTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *UpdateSAMLIDPTooManyRequests) Error() string {

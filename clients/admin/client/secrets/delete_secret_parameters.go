@@ -61,6 +61,14 @@ DeleteSecretParams contains all the parameters to send to the API endpoint
 */
 type DeleteSecretParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	// Sid.
 	//
 	// Default: "default"
@@ -141,6 +149,17 @@ func (o *DeleteSecretParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the delete secret params
+func (o *DeleteSecretParams) WithIfMatch(ifMatch *string) *DeleteSecretParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the delete secret params
+func (o *DeleteSecretParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithSid adds the sid to the delete secret params
 func (o *DeleteSecretParams) WithSid(sid string) *DeleteSecretParams {
 	o.SetSid(sid)
@@ -170,6 +189,14 @@ func (o *DeleteSecretParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	// path param sid
 	if err := r.SetPathParam("sid", o.Sid); err != nil {

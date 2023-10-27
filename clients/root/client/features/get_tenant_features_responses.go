@@ -54,7 +54,7 @@ func (o *GetTenantFeaturesReader) ReadResponse(response runtime.ClientResponse, 
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /api/admin/tenants/{tid}/features] getTenantFeatures", response, response.Code())
 	}
 }
 
@@ -69,7 +69,7 @@ GetTenantFeaturesOK describes a response with status code 200, with default head
 Get tenant features
 */
 type GetTenantFeaturesOK struct {
-	Payload *models.Features
+	Payload *models.FeaturesResponse
 }
 
 // IsSuccess returns true when this get tenant features o k response has a 2xx status code
@@ -110,13 +110,13 @@ func (o *GetTenantFeaturesOK) String() string {
 	return fmt.Sprintf("[GET /api/admin/tenants/{tid}/features][%d] getTenantFeaturesOK  %+v", 200, o.Payload)
 }
 
-func (o *GetTenantFeaturesOK) GetPayload() *models.Features {
+func (o *GetTenantFeaturesOK) GetPayload() *models.FeaturesResponse {
 	return o.Payload
 }
 
 func (o *GetTenantFeaturesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Features)
+	o.Payload = new(models.FeaturesResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

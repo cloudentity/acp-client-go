@@ -54,7 +54,7 @@ func (o *DeleteTemplateReader) ReadResponse(response runtime.ClientResponse, con
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[DELETE /theme/{themeID}/template/{fsPath}] deleteTemplate", response, response.Code())
 	}
 }
 
@@ -96,6 +96,11 @@ func (o *DeleteTemplateNoContent) IsCode(code int) bool {
 	return code == 204
 }
 
+// Code gets the status code for the delete template no content response
+func (o *DeleteTemplateNoContent) Code() int {
+	return 204
+}
+
 func (o *DeleteTemplateNoContent) Error() string {
 	return fmt.Sprintf("[DELETE /theme/{themeID}/template/{fsPath}][%d] deleteTemplateNoContent ", 204)
 }
@@ -117,7 +122,7 @@ func NewDeleteTemplateUnauthorized() *DeleteTemplateUnauthorized {
 /*
 DeleteTemplateUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type DeleteTemplateUnauthorized struct {
 	Payload *models.Error
@@ -146,6 +151,11 @@ func (o *DeleteTemplateUnauthorized) IsServerError() bool {
 // IsCode returns true when this delete template unauthorized response a status code equal to that given
 func (o *DeleteTemplateUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the delete template unauthorized response
+func (o *DeleteTemplateUnauthorized) Code() int {
+	return 401
 }
 
 func (o *DeleteTemplateUnauthorized) Error() string {
@@ -180,7 +190,7 @@ func NewDeleteTemplateForbidden() *DeleteTemplateForbidden {
 /*
 DeleteTemplateForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type DeleteTemplateForbidden struct {
 	Payload *models.Error
@@ -209,6 +219,11 @@ func (o *DeleteTemplateForbidden) IsServerError() bool {
 // IsCode returns true when this delete template forbidden response a status code equal to that given
 func (o *DeleteTemplateForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the delete template forbidden response
+func (o *DeleteTemplateForbidden) Code() int {
+	return 403
 }
 
 func (o *DeleteTemplateForbidden) Error() string {
@@ -243,7 +258,7 @@ func NewDeleteTemplateNotFound() *DeleteTemplateNotFound {
 /*
 DeleteTemplateNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type DeleteTemplateNotFound struct {
 	Payload *models.Error
@@ -272,6 +287,11 @@ func (o *DeleteTemplateNotFound) IsServerError() bool {
 // IsCode returns true when this delete template not found response a status code equal to that given
 func (o *DeleteTemplateNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the delete template not found response
+func (o *DeleteTemplateNotFound) Code() int {
+	return 404
 }
 
 func (o *DeleteTemplateNotFound) Error() string {
@@ -306,7 +326,7 @@ func NewDeleteTemplateTooManyRequests() *DeleteTemplateTooManyRequests {
 /*
 DeleteTemplateTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type DeleteTemplateTooManyRequests struct {
 	Payload *models.Error
@@ -335,6 +355,11 @@ func (o *DeleteTemplateTooManyRequests) IsServerError() bool {
 // IsCode returns true when this delete template too many requests response a status code equal to that given
 func (o *DeleteTemplateTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the delete template too many requests response
+func (o *DeleteTemplateTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *DeleteTemplateTooManyRequests) Error() string {

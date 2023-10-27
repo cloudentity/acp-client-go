@@ -66,7 +66,7 @@ func (o *CreateCognitoIDPReader) ReadResponse(response runtime.ClientResponse, c
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /servers/{wid}/idps/cognito] createCognitoIDP", response, response.Code())
 	}
 }
 
@@ -109,6 +109,11 @@ func (o *CreateCognitoIDPCreated) IsCode(code int) bool {
 	return code == 201
 }
 
+// Code gets the status code for the create cognito Id p created response
+func (o *CreateCognitoIDPCreated) Code() int {
+	return 201
+}
+
 func (o *CreateCognitoIDPCreated) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/cognito][%d] createCognitoIdPCreated  %+v", 201, o.Payload)
 }
@@ -141,7 +146,7 @@ func NewCreateCognitoIDPBadRequest() *CreateCognitoIDPBadRequest {
 /*
 CreateCognitoIDPBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type CreateCognitoIDPBadRequest struct {
 	Payload *models.Error
@@ -170,6 +175,11 @@ func (o *CreateCognitoIDPBadRequest) IsServerError() bool {
 // IsCode returns true when this create cognito Id p bad request response a status code equal to that given
 func (o *CreateCognitoIDPBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the create cognito Id p bad request response
+func (o *CreateCognitoIDPBadRequest) Code() int {
+	return 400
 }
 
 func (o *CreateCognitoIDPBadRequest) Error() string {
@@ -204,7 +214,7 @@ func NewCreateCognitoIDPUnauthorized() *CreateCognitoIDPUnauthorized {
 /*
 CreateCognitoIDPUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type CreateCognitoIDPUnauthorized struct {
 	Payload *models.Error
@@ -233,6 +243,11 @@ func (o *CreateCognitoIDPUnauthorized) IsServerError() bool {
 // IsCode returns true when this create cognito Id p unauthorized response a status code equal to that given
 func (o *CreateCognitoIDPUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the create cognito Id p unauthorized response
+func (o *CreateCognitoIDPUnauthorized) Code() int {
+	return 401
 }
 
 func (o *CreateCognitoIDPUnauthorized) Error() string {
@@ -267,7 +282,7 @@ func NewCreateCognitoIDPForbidden() *CreateCognitoIDPForbidden {
 /*
 CreateCognitoIDPForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type CreateCognitoIDPForbidden struct {
 	Payload *models.Error
@@ -296,6 +311,11 @@ func (o *CreateCognitoIDPForbidden) IsServerError() bool {
 // IsCode returns true when this create cognito Id p forbidden response a status code equal to that given
 func (o *CreateCognitoIDPForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the create cognito Id p forbidden response
+func (o *CreateCognitoIDPForbidden) Code() int {
+	return 403
 }
 
 func (o *CreateCognitoIDPForbidden) Error() string {
@@ -330,7 +350,7 @@ func NewCreateCognitoIDPNotFound() *CreateCognitoIDPNotFound {
 /*
 CreateCognitoIDPNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type CreateCognitoIDPNotFound struct {
 	Payload *models.Error
@@ -359,6 +379,11 @@ func (o *CreateCognitoIDPNotFound) IsServerError() bool {
 // IsCode returns true when this create cognito Id p not found response a status code equal to that given
 func (o *CreateCognitoIDPNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the create cognito Id p not found response
+func (o *CreateCognitoIDPNotFound) Code() int {
+	return 404
 }
 
 func (o *CreateCognitoIDPNotFound) Error() string {
@@ -393,7 +418,7 @@ func NewCreateCognitoIDPUnprocessableEntity() *CreateCognitoIDPUnprocessableEnti
 /*
 CreateCognitoIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type CreateCognitoIDPUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +447,11 @@ func (o *CreateCognitoIDPUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this create cognito Id p unprocessable entity response a status code equal to that given
 func (o *CreateCognitoIDPUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the create cognito Id p unprocessable entity response
+func (o *CreateCognitoIDPUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *CreateCognitoIDPUnprocessableEntity) Error() string {
@@ -456,7 +486,7 @@ func NewCreateCognitoIDPTooManyRequests() *CreateCognitoIDPTooManyRequests {
 /*
 CreateCognitoIDPTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type CreateCognitoIDPTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +515,11 @@ func (o *CreateCognitoIDPTooManyRequests) IsServerError() bool {
 // IsCode returns true when this create cognito Id p too many requests response a status code equal to that given
 func (o *CreateCognitoIDPTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the create cognito Id p too many requests response
+func (o *CreateCognitoIDPTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *CreateCognitoIDPTooManyRequests) Error() string {

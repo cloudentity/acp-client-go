@@ -156,6 +156,11 @@ func (m *RemoveServiceConfigurationResult) contextValidateNotRemovedPolicies(ctx
 	for i := 0; i < len(m.NotRemovedPolicies); i++ {
 
 		if m.NotRemovedPolicies[i] != nil {
+
+			if swag.IsZero(m.NotRemovedPolicies[i]) { // not required
+				return nil
+			}
+
 			if err := m.NotRemovedPolicies[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("not_removed_policies" + "." + strconv.Itoa(i))
@@ -176,6 +181,11 @@ func (m *RemoveServiceConfigurationResult) contextValidateRemovedApis(ctx contex
 	for i := 0; i < len(m.RemovedApis); i++ {
 
 		if m.RemovedApis[i] != nil {
+
+			if swag.IsZero(m.RemovedApis[i]) { // not required
+				return nil
+			}
+
 			if err := m.RemovedApis[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("removed_apis" + "." + strconv.Itoa(i))
@@ -196,6 +206,11 @@ func (m *RemoveServiceConfigurationResult) contextValidateRemovedPolicies(ctx co
 	for i := 0; i < len(m.RemovedPolicies); i++ {
 
 		if m.RemovedPolicies[i] != nil {
+
+			if swag.IsZero(m.RemovedPolicies[i]) { // not required
+				return nil
+			}
+
 			if err := m.RemovedPolicies[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("removed_policies" + "." + strconv.Itoa(i))

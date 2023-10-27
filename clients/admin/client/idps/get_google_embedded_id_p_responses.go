@@ -54,7 +54,7 @@ func (o *GetGoogleEmbeddedIDPReader) ReadResponse(response runtime.ClientRespons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /servers/{wid}/idps/google_embedded/{iid}] getGoogleEmbeddedIDP", response, response.Code())
 	}
 }
 
@@ -97,6 +97,11 @@ func (o *GetGoogleEmbeddedIDPOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get google embedded Id p o k response
+func (o *GetGoogleEmbeddedIDPOK) Code() int {
+	return 200
+}
+
 func (o *GetGoogleEmbeddedIDPOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/idps/google_embedded/{iid}][%d] getGoogleEmbeddedIdPOK  %+v", 200, o.Payload)
 }
@@ -129,7 +134,7 @@ func NewGetGoogleEmbeddedIDPUnauthorized() *GetGoogleEmbeddedIDPUnauthorized {
 /*
 GetGoogleEmbeddedIDPUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetGoogleEmbeddedIDPUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +163,11 @@ func (o *GetGoogleEmbeddedIDPUnauthorized) IsServerError() bool {
 // IsCode returns true when this get google embedded Id p unauthorized response a status code equal to that given
 func (o *GetGoogleEmbeddedIDPUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get google embedded Id p unauthorized response
+func (o *GetGoogleEmbeddedIDPUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetGoogleEmbeddedIDPUnauthorized) Error() string {
@@ -192,7 +202,7 @@ func NewGetGoogleEmbeddedIDPForbidden() *GetGoogleEmbeddedIDPForbidden {
 /*
 GetGoogleEmbeddedIDPForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetGoogleEmbeddedIDPForbidden struct {
 	Payload *models.Error
@@ -221,6 +231,11 @@ func (o *GetGoogleEmbeddedIDPForbidden) IsServerError() bool {
 // IsCode returns true when this get google embedded Id p forbidden response a status code equal to that given
 func (o *GetGoogleEmbeddedIDPForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get google embedded Id p forbidden response
+func (o *GetGoogleEmbeddedIDPForbidden) Code() int {
+	return 403
 }
 
 func (o *GetGoogleEmbeddedIDPForbidden) Error() string {
@@ -255,7 +270,7 @@ func NewGetGoogleEmbeddedIDPNotFound() *GetGoogleEmbeddedIDPNotFound {
 /*
 GetGoogleEmbeddedIDPNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetGoogleEmbeddedIDPNotFound struct {
 	Payload *models.Error
@@ -284,6 +299,11 @@ func (o *GetGoogleEmbeddedIDPNotFound) IsServerError() bool {
 // IsCode returns true when this get google embedded Id p not found response a status code equal to that given
 func (o *GetGoogleEmbeddedIDPNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the get google embedded Id p not found response
+func (o *GetGoogleEmbeddedIDPNotFound) Code() int {
+	return 404
 }
 
 func (o *GetGoogleEmbeddedIDPNotFound) Error() string {
@@ -318,7 +338,7 @@ func NewGetGoogleEmbeddedIDPTooManyRequests() *GetGoogleEmbeddedIDPTooManyReques
 /*
 GetGoogleEmbeddedIDPTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetGoogleEmbeddedIDPTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +367,11 @@ func (o *GetGoogleEmbeddedIDPTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get google embedded Id p too many requests response a status code equal to that given
 func (o *GetGoogleEmbeddedIDPTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get google embedded Id p too many requests response
+func (o *GetGoogleEmbeddedIDPTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetGoogleEmbeddedIDPTooManyRequests) Error() string {

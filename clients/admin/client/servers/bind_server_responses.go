@@ -54,7 +54,7 @@ func (o *BindServerReader) ReadResponse(response runtime.ClientResponse, consume
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /servers/{wid}/bind/{rid}] bindServer", response, response.Code())
 	}
 }
 
@@ -69,6 +69,15 @@ BindServerOK describes a response with status code 200, with default header valu
 Server to server binding
 */
 type BindServerOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.ServerToServer
 }
 
@@ -97,6 +106,11 @@ func (o *BindServerOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the bind server o k response
+func (o *BindServerOK) Code() int {
+	return 200
+}
+
 func (o *BindServerOK) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/bind/{rid}][%d] bindServerOK  %+v", 200, o.Payload)
 }
@@ -110,6 +124,13 @@ func (o *BindServerOK) GetPayload() *models.ServerToServer {
 }
 
 func (o *BindServerOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.ServerToServer)
 
@@ -129,7 +150,7 @@ func NewBindServerUnauthorized() *BindServerUnauthorized {
 /*
 BindServerUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type BindServerUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +179,11 @@ func (o *BindServerUnauthorized) IsServerError() bool {
 // IsCode returns true when this bind server unauthorized response a status code equal to that given
 func (o *BindServerUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the bind server unauthorized response
+func (o *BindServerUnauthorized) Code() int {
+	return 401
 }
 
 func (o *BindServerUnauthorized) Error() string {
@@ -192,7 +218,7 @@ func NewBindServerForbidden() *BindServerForbidden {
 /*
 BindServerForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type BindServerForbidden struct {
 	Payload *models.Error
@@ -221,6 +247,11 @@ func (o *BindServerForbidden) IsServerError() bool {
 // IsCode returns true when this bind server forbidden response a status code equal to that given
 func (o *BindServerForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the bind server forbidden response
+func (o *BindServerForbidden) Code() int {
+	return 403
 }
 
 func (o *BindServerForbidden) Error() string {
@@ -255,7 +286,7 @@ func NewBindServerNotFound() *BindServerNotFound {
 /*
 BindServerNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type BindServerNotFound struct {
 	Payload *models.Error
@@ -284,6 +315,11 @@ func (o *BindServerNotFound) IsServerError() bool {
 // IsCode returns true when this bind server not found response a status code equal to that given
 func (o *BindServerNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the bind server not found response
+func (o *BindServerNotFound) Code() int {
+	return 404
 }
 
 func (o *BindServerNotFound) Error() string {
@@ -318,7 +354,7 @@ func NewBindServerTooManyRequests() *BindServerTooManyRequests {
 /*
 BindServerTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type BindServerTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +383,11 @@ func (o *BindServerTooManyRequests) IsServerError() bool {
 // IsCode returns true when this bind server too many requests response a status code equal to that given
 func (o *BindServerTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the bind server too many requests response
+func (o *BindServerTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *BindServerTooManyRequests) Error() string {

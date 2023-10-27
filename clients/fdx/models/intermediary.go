@@ -97,6 +97,11 @@ func (m *Intermediary) contextValidateRegistryReferences(ctx context.Context, fo
 	for i := 0; i < len(m.RegistryReferences); i++ {
 
 		if m.RegistryReferences[i] != nil {
+
+			if swag.IsZero(m.RegistryReferences[i]) { // not required
+				return nil
+			}
+
 			if err := m.RegistryReferences[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("registry_references" + "." + strconv.Itoa(i))

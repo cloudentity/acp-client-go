@@ -288,6 +288,11 @@ func (m *GatewayConfiguration) contextValidateApis(ctx context.Context, formats 
 	for i := 0; i < len(m.Apis); i++ {
 
 		if m.Apis[i] != nil {
+
+			if swag.IsZero(m.Apis[i]) { // not required
+				return nil
+			}
+
 			if err := m.Apis[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("apis" + "." + strconv.Itoa(i))
@@ -308,6 +313,11 @@ func (m *GatewayConfiguration) contextValidateIssuerApis(ctx context.Context, fo
 	for i := 0; i < len(m.IssuerApis); i++ {
 
 		if m.IssuerApis[i] != nil {
+
+			if swag.IsZero(m.IssuerApis[i]) { // not required
+				return nil
+			}
+
 			if err := m.IssuerApis[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("issuer_apis" + "." + strconv.Itoa(i))
@@ -328,6 +338,11 @@ func (m *GatewayConfiguration) contextValidateIssuerPolicies(ctx context.Context
 	for i := 0; i < len(m.IssuerPolicies); i++ {
 
 		if m.IssuerPolicies[i] != nil {
+
+			if swag.IsZero(m.IssuerPolicies[i]) { // not required
+				return nil
+			}
+
 			if err := m.IssuerPolicies[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("issuer_policies" + "." + strconv.Itoa(i))
@@ -348,6 +363,11 @@ func (m *GatewayConfiguration) contextValidatePolicies(ctx context.Context, form
 	for i := 0; i < len(m.Policies); i++ {
 
 		if m.Policies[i] != nil {
+
+			if swag.IsZero(m.Policies[i]) { // not required
+				return nil
+			}
+
 			if err := m.Policies[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("policies" + "." + strconv.Itoa(i))
@@ -368,6 +388,11 @@ func (m *GatewayConfiguration) contextValidateScopes(ctx context.Context, format
 	for i := 0; i < len(m.Scopes); i++ {
 
 		if m.Scopes[i] != nil {
+
+			if swag.IsZero(m.Scopes[i]) { // not required
+				return nil
+			}
+
 			if err := m.Scopes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("scopes" + "." + strconv.Itoa(i))
@@ -388,6 +413,11 @@ func (m *GatewayConfiguration) contextValidateServices(ctx context.Context, form
 	for i := 0; i < len(m.Services); i++ {
 
 		if m.Services[i] != nil {
+
+			if swag.IsZero(m.Services[i]) { // not required
+				return nil
+			}
+
 			if err := m.Services[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("services" + "." + strconv.Itoa(i))

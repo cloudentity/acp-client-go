@@ -82,6 +82,11 @@ func (m *PolicyExecutionPoints) contextValidateExecutionPoints(ctx context.Conte
 	for i := 0; i < len(m.ExecutionPoints); i++ {
 
 		if m.ExecutionPoints[i] != nil {
+
+			if swag.IsZero(m.ExecutionPoints[i]) { // not required
+				return nil
+			}
+
 			if err := m.ExecutionPoints[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("execution_points" + "." + strconv.Itoa(i))

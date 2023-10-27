@@ -102,6 +102,11 @@ func (m *MFAAuth) ContextValidate(ctx context.Context, formats strfmt.Registry) 
 func (m *MFAAuth) contextValidateEmail(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Email != nil {
+
+		if swag.IsZero(m.Email) { // not required
+			return nil
+		}
+
 		if err := m.Email.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("email")
@@ -118,6 +123,11 @@ func (m *MFAAuth) contextValidateEmail(ctx context.Context, formats strfmt.Regis
 func (m *MFAAuth) contextValidateSms(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Sms != nil {
+
+		if swag.IsZero(m.Sms) { // not required
+			return nil
+		}
+
 		if err := m.Sms.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("sms")

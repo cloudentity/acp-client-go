@@ -54,7 +54,7 @@ func (o *ListPrivacyLedgerEventsReader) ReadResponse(response runtime.ClientResp
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /privacy/events] listPrivacyLedgerEvents", response, response.Code())
 	}
 }
 
@@ -97,6 +97,11 @@ func (o *ListPrivacyLedgerEventsOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the list privacy ledger events o k response
+func (o *ListPrivacyLedgerEventsOK) Code() int {
+	return 200
+}
+
 func (o *ListPrivacyLedgerEventsOK) Error() string {
 	return fmt.Sprintf("[GET /privacy/events][%d] listPrivacyLedgerEventsOK  %+v", 200, o.Payload)
 }
@@ -129,7 +134,7 @@ func NewListPrivacyLedgerEventsUnauthorized() *ListPrivacyLedgerEventsUnauthoriz
 /*
 ListPrivacyLedgerEventsUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ListPrivacyLedgerEventsUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +163,11 @@ func (o *ListPrivacyLedgerEventsUnauthorized) IsServerError() bool {
 // IsCode returns true when this list privacy ledger events unauthorized response a status code equal to that given
 func (o *ListPrivacyLedgerEventsUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the list privacy ledger events unauthorized response
+func (o *ListPrivacyLedgerEventsUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ListPrivacyLedgerEventsUnauthorized) Error() string {
@@ -192,7 +202,7 @@ func NewListPrivacyLedgerEventsForbidden() *ListPrivacyLedgerEventsForbidden {
 /*
 ListPrivacyLedgerEventsForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ListPrivacyLedgerEventsForbidden struct {
 	Payload *models.Error
@@ -221,6 +231,11 @@ func (o *ListPrivacyLedgerEventsForbidden) IsServerError() bool {
 // IsCode returns true when this list privacy ledger events forbidden response a status code equal to that given
 func (o *ListPrivacyLedgerEventsForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the list privacy ledger events forbidden response
+func (o *ListPrivacyLedgerEventsForbidden) Code() int {
+	return 403
 }
 
 func (o *ListPrivacyLedgerEventsForbidden) Error() string {
@@ -255,7 +270,7 @@ func NewListPrivacyLedgerEventsNotFound() *ListPrivacyLedgerEventsNotFound {
 /*
 ListPrivacyLedgerEventsNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type ListPrivacyLedgerEventsNotFound struct {
 	Payload *models.Error
@@ -284,6 +299,11 @@ func (o *ListPrivacyLedgerEventsNotFound) IsServerError() bool {
 // IsCode returns true when this list privacy ledger events not found response a status code equal to that given
 func (o *ListPrivacyLedgerEventsNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the list privacy ledger events not found response
+func (o *ListPrivacyLedgerEventsNotFound) Code() int {
+	return 404
 }
 
 func (o *ListPrivacyLedgerEventsNotFound) Error() string {
@@ -318,7 +338,7 @@ func NewListPrivacyLedgerEventsTooManyRequests() *ListPrivacyLedgerEventsTooMany
 /*
 ListPrivacyLedgerEventsTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ListPrivacyLedgerEventsTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +367,11 @@ func (o *ListPrivacyLedgerEventsTooManyRequests) IsServerError() bool {
 // IsCode returns true when this list privacy ledger events too many requests response a status code equal to that given
 func (o *ListPrivacyLedgerEventsTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the list privacy ledger events too many requests response
+func (o *ListPrivacyLedgerEventsTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ListPrivacyLedgerEventsTooManyRequests) Error() string {

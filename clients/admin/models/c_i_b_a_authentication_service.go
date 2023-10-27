@@ -84,6 +84,11 @@ func (m *CIBAAuthenticationService) ContextValidate(ctx context.Context, formats
 func (m *CIBAAuthenticationService) contextValidateExternal(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.External != nil {
+
+		if swag.IsZero(m.External) { // not required
+			return nil
+		}
+
 		if err := m.External.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("external")

@@ -54,7 +54,7 @@ func (o *DynamicClientRegistrationUpdateClientReader) ReadResponse(response runt
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /oauth2/register/{cid}] dynamicClientRegistrationUpdateClient", response, response.Code())
 	}
 }
 
@@ -95,6 +95,11 @@ func (o *DynamicClientRegistrationUpdateClientOK) IsServerError() bool {
 // IsCode returns true when this dynamic client registration update client o k response a status code equal to that given
 func (o *DynamicClientRegistrationUpdateClientOK) IsCode(code int) bool {
 	return code == 200
+}
+
+// Code gets the status code for the dynamic client registration update client o k response
+func (o *DynamicClientRegistrationUpdateClientOK) Code() int {
+	return 200
 }
 
 func (o *DynamicClientRegistrationUpdateClientOK) Error() string {
@@ -160,6 +165,11 @@ func (o *DynamicClientRegistrationUpdateClientBadRequest) IsCode(code int) bool 
 	return code == 400
 }
 
+// Code gets the status code for the dynamic client registration update client bad request response
+func (o *DynamicClientRegistrationUpdateClientBadRequest) Code() int {
+	return 400
+}
+
 func (o *DynamicClientRegistrationUpdateClientBadRequest) Error() string {
 	return fmt.Sprintf("[PUT /oauth2/register/{cid}][%d] dynamicClientRegistrationUpdateClientBadRequest  %+v", 400, o.Payload)
 }
@@ -221,6 +231,11 @@ func (o *DynamicClientRegistrationUpdateClientUnauthorized) IsServerError() bool
 // IsCode returns true when this dynamic client registration update client unauthorized response a status code equal to that given
 func (o *DynamicClientRegistrationUpdateClientUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the dynamic client registration update client unauthorized response
+func (o *DynamicClientRegistrationUpdateClientUnauthorized) Code() int {
+	return 401
 }
 
 func (o *DynamicClientRegistrationUpdateClientUnauthorized) Error() string {
@@ -286,6 +301,11 @@ func (o *DynamicClientRegistrationUpdateClientForbidden) IsCode(code int) bool {
 	return code == 403
 }
 
+// Code gets the status code for the dynamic client registration update client forbidden response
+func (o *DynamicClientRegistrationUpdateClientForbidden) Code() int {
+	return 403
+}
+
 func (o *DynamicClientRegistrationUpdateClientForbidden) Error() string {
 	return fmt.Sprintf("[PUT /oauth2/register/{cid}][%d] dynamicClientRegistrationUpdateClientForbidden  %+v", 403, o.Payload)
 }
@@ -347,6 +367,11 @@ func (o *DynamicClientRegistrationUpdateClientNotFound) IsServerError() bool {
 // IsCode returns true when this dynamic client registration update client not found response a status code equal to that given
 func (o *DynamicClientRegistrationUpdateClientNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the dynamic client registration update client not found response
+func (o *DynamicClientRegistrationUpdateClientNotFound) Code() int {
+	return 404
 }
 
 func (o *DynamicClientRegistrationUpdateClientNotFound) Error() string {

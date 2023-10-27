@@ -61,6 +61,14 @@ ListGatewaysParams contains all the parameters to send to the API endpoint
 */
 type ListGatewaysParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Wid.
 
 	   Authorization server id
@@ -133,6 +141,17 @@ func (o *ListGatewaysParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the list gateways params
+func (o *ListGatewaysParams) WithIfMatch(ifMatch *string) *ListGatewaysParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the list gateways params
+func (o *ListGatewaysParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithWid adds the wid to the list gateways params
 func (o *ListGatewaysParams) WithWid(wid string) *ListGatewaysParams {
 	o.SetWid(wid)
@@ -151,6 +170,14 @@ func (o *ListGatewaysParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	// path param wid
 	if err := r.SetPathParam("wid", o.Wid); err != nil {

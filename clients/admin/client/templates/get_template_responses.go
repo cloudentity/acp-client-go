@@ -54,7 +54,7 @@ func (o *GetTemplateReader) ReadResponse(response runtime.ClientResponse, consum
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /theme/{themeID}/template/{fsPath}] getTemplate", response, response.Code())
 	}
 }
 
@@ -69,6 +69,15 @@ GetTemplateOK describes a response with status code 200, with default header val
 Template
 */
 type GetTemplateOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.Template
 }
 
@@ -97,6 +106,11 @@ func (o *GetTemplateOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get template o k response
+func (o *GetTemplateOK) Code() int {
+	return 200
+}
+
 func (o *GetTemplateOK) Error() string {
 	return fmt.Sprintf("[GET /theme/{themeID}/template/{fsPath}][%d] getTemplateOK  %+v", 200, o.Payload)
 }
@@ -110,6 +124,13 @@ func (o *GetTemplateOK) GetPayload() *models.Template {
 }
 
 func (o *GetTemplateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.Template)
 
@@ -129,7 +150,7 @@ func NewGetTemplateUnauthorized() *GetTemplateUnauthorized {
 /*
 GetTemplateUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetTemplateUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +179,11 @@ func (o *GetTemplateUnauthorized) IsServerError() bool {
 // IsCode returns true when this get template unauthorized response a status code equal to that given
 func (o *GetTemplateUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get template unauthorized response
+func (o *GetTemplateUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetTemplateUnauthorized) Error() string {
@@ -192,7 +218,7 @@ func NewGetTemplateForbidden() *GetTemplateForbidden {
 /*
 GetTemplateForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetTemplateForbidden struct {
 	Payload *models.Error
@@ -221,6 +247,11 @@ func (o *GetTemplateForbidden) IsServerError() bool {
 // IsCode returns true when this get template forbidden response a status code equal to that given
 func (o *GetTemplateForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get template forbidden response
+func (o *GetTemplateForbidden) Code() int {
+	return 403
 }
 
 func (o *GetTemplateForbidden) Error() string {
@@ -255,7 +286,7 @@ func NewGetTemplateNotFound() *GetTemplateNotFound {
 /*
 GetTemplateNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetTemplateNotFound struct {
 	Payload *models.Error
@@ -284,6 +315,11 @@ func (o *GetTemplateNotFound) IsServerError() bool {
 // IsCode returns true when this get template not found response a status code equal to that given
 func (o *GetTemplateNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the get template not found response
+func (o *GetTemplateNotFound) Code() int {
+	return 404
 }
 
 func (o *GetTemplateNotFound) Error() string {
@@ -318,7 +354,7 @@ func NewGetTemplateTooManyRequests() *GetTemplateTooManyRequests {
 /*
 GetTemplateTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetTemplateTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +383,11 @@ func (o *GetTemplateTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get template too many requests response a status code equal to that given
 func (o *GetTemplateTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get template too many requests response
+func (o *GetTemplateTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetTemplateTooManyRequests) Error() string {

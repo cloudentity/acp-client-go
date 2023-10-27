@@ -412,6 +412,10 @@ func (m *CDRArrangement) ContextValidate(ctx context.Context, formats strfmt.Reg
 
 func (m *CDRArrangement) contextValidateAmendingArrangementID(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.AmendingArrangementID) { // not required
+		return nil
+	}
+
 	if err := m.AmendingArrangementID.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("amending_arrangement_id")
@@ -425,6 +429,10 @@ func (m *CDRArrangement) contextValidateAmendingArrangementID(ctx context.Contex
 }
 
 func (m *CDRArrangement) contextValidateCdrArrangementID(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.CdrArrangementID) { // not required
+		return nil
+	}
 
 	if err := m.CdrArrangementID.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -441,6 +449,11 @@ func (m *CDRArrangement) contextValidateCdrArrangementID(ctx context.Context, fo
 func (m *CDRArrangement) contextValidateCdrArrangementMetadata(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.CdrArrangementMetadata != nil {
+
+		if swag.IsZero(m.CdrArrangementMetadata) { // not required
+			return nil
+		}
+
 		if err := m.CdrArrangementMetadata.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cdr_arrangement_metadata")
@@ -455,6 +468,10 @@ func (m *CDRArrangement) contextValidateCdrArrangementMetadata(ctx context.Conte
 }
 
 func (m *CDRArrangement) contextValidateCustomerID(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.CustomerID) { // not required
+		return nil
+	}
 
 	if err := m.CustomerID.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -473,6 +490,11 @@ func (m *CDRArrangement) contextValidateScopeGrants(ctx context.Context, formats
 	for i := 0; i < len(m.ScopeGrants); i++ {
 
 		if m.ScopeGrants[i] != nil {
+
+			if swag.IsZero(m.ScopeGrants[i]) { // not required
+				return nil
+			}
+
 			if err := m.ScopeGrants[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("scope_grants" + "." + strconv.Itoa(i))
@@ -489,6 +511,10 @@ func (m *CDRArrangement) contextValidateScopeGrants(ctx context.Context, formats
 }
 
 func (m *CDRArrangement) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Status) { // not required
+		return nil
+	}
 
 	if err := m.Status.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

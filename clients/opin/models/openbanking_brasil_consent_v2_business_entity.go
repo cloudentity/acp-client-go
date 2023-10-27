@@ -23,7 +23,7 @@ type OpenbankingBrasilConsentV2BusinessEntity struct {
 
 	// document
 	// Required: true
-	Document *OpenbankingBrasilConsentV2Document1 `json:"document"`
+	Document *OpenbankingBrasilConsentV2BusinessEntityDocument `json:"document"`
 }
 
 // Validate validates this openbanking brasil consent v2 business entity

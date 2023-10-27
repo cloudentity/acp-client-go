@@ -54,7 +54,7 @@ func (o *RevokeRotatedClientSecretsAsDeveloperReader) ReadResponse(response runt
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /clients/{cid}/revokeRotatedSecrets] revokeRotatedClientSecretsAsDeveloper", response, response.Code())
 	}
 }
 
@@ -96,6 +96,11 @@ func (o *RevokeRotatedClientSecretsAsDeveloperNoContent) IsCode(code int) bool {
 	return code == 204
 }
 
+// Code gets the status code for the revoke rotated client secrets as developer no content response
+func (o *RevokeRotatedClientSecretsAsDeveloperNoContent) Code() int {
+	return 204
+}
+
 func (o *RevokeRotatedClientSecretsAsDeveloperNoContent) Error() string {
 	return fmt.Sprintf("[POST /clients/{cid}/revokeRotatedSecrets][%d] revokeRotatedClientSecretsAsDeveloperNoContent ", 204)
 }
@@ -117,7 +122,7 @@ func NewRevokeRotatedClientSecretsAsDeveloperUnauthorized() *RevokeRotatedClient
 /*
 RevokeRotatedClientSecretsAsDeveloperUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type RevokeRotatedClientSecretsAsDeveloperUnauthorized struct {
 	Payload *models.Error
@@ -146,6 +151,11 @@ func (o *RevokeRotatedClientSecretsAsDeveloperUnauthorized) IsServerError() bool
 // IsCode returns true when this revoke rotated client secrets as developer unauthorized response a status code equal to that given
 func (o *RevokeRotatedClientSecretsAsDeveloperUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the revoke rotated client secrets as developer unauthorized response
+func (o *RevokeRotatedClientSecretsAsDeveloperUnauthorized) Code() int {
+	return 401
 }
 
 func (o *RevokeRotatedClientSecretsAsDeveloperUnauthorized) Error() string {
@@ -180,7 +190,7 @@ func NewRevokeRotatedClientSecretsAsDeveloperForbidden() *RevokeRotatedClientSec
 /*
 RevokeRotatedClientSecretsAsDeveloperForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type RevokeRotatedClientSecretsAsDeveloperForbidden struct {
 	Payload *models.Error
@@ -209,6 +219,11 @@ func (o *RevokeRotatedClientSecretsAsDeveloperForbidden) IsServerError() bool {
 // IsCode returns true when this revoke rotated client secrets as developer forbidden response a status code equal to that given
 func (o *RevokeRotatedClientSecretsAsDeveloperForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the revoke rotated client secrets as developer forbidden response
+func (o *RevokeRotatedClientSecretsAsDeveloperForbidden) Code() int {
+	return 403
 }
 
 func (o *RevokeRotatedClientSecretsAsDeveloperForbidden) Error() string {
@@ -243,7 +258,7 @@ func NewRevokeRotatedClientSecretsAsDeveloperNotFound() *RevokeRotatedClientSecr
 /*
 RevokeRotatedClientSecretsAsDeveloperNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type RevokeRotatedClientSecretsAsDeveloperNotFound struct {
 	Payload *models.Error
@@ -272,6 +287,11 @@ func (o *RevokeRotatedClientSecretsAsDeveloperNotFound) IsServerError() bool {
 // IsCode returns true when this revoke rotated client secrets as developer not found response a status code equal to that given
 func (o *RevokeRotatedClientSecretsAsDeveloperNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the revoke rotated client secrets as developer not found response
+func (o *RevokeRotatedClientSecretsAsDeveloperNotFound) Code() int {
+	return 404
 }
 
 func (o *RevokeRotatedClientSecretsAsDeveloperNotFound) Error() string {
@@ -306,7 +326,7 @@ func NewRevokeRotatedClientSecretsAsDeveloperTooManyRequests() *RevokeRotatedCli
 /*
 RevokeRotatedClientSecretsAsDeveloperTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type RevokeRotatedClientSecretsAsDeveloperTooManyRequests struct {
 	Payload *models.Error
@@ -335,6 +355,11 @@ func (o *RevokeRotatedClientSecretsAsDeveloperTooManyRequests) IsServerError() b
 // IsCode returns true when this revoke rotated client secrets as developer too many requests response a status code equal to that given
 func (o *RevokeRotatedClientSecretsAsDeveloperTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the revoke rotated client secrets as developer too many requests response
+func (o *RevokeRotatedClientSecretsAsDeveloperTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *RevokeRotatedClientSecretsAsDeveloperTooManyRequests) Error() string {

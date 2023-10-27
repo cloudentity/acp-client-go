@@ -66,7 +66,7 @@ func (o *UpdateSecretReader) ReadResponse(response runtime.ClientResponse, consu
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /servers/{wid}/secrets/{sid}] updateSecret", response, response.Code())
 	}
 }
 
@@ -81,6 +81,15 @@ UpdateSecretCreated describes a response with status code 201, with default head
 Secret
 */
 type UpdateSecretCreated struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.Secret
 }
 
@@ -109,6 +118,11 @@ func (o *UpdateSecretCreated) IsCode(code int) bool {
 	return code == 201
 }
 
+// Code gets the status code for the update secret created response
+func (o *UpdateSecretCreated) Code() int {
+	return 201
+}
+
 func (o *UpdateSecretCreated) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/secrets/{sid}][%d] updateSecretCreated  %+v", 201, o.Payload)
 }
@@ -122,6 +136,13 @@ func (o *UpdateSecretCreated) GetPayload() *models.Secret {
 }
 
 func (o *UpdateSecretCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.Secret)
 
@@ -141,7 +162,7 @@ func NewUpdateSecretBadRequest() *UpdateSecretBadRequest {
 /*
 UpdateSecretBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type UpdateSecretBadRequest struct {
 	Payload *models.Error
@@ -170,6 +191,11 @@ func (o *UpdateSecretBadRequest) IsServerError() bool {
 // IsCode returns true when this update secret bad request response a status code equal to that given
 func (o *UpdateSecretBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the update secret bad request response
+func (o *UpdateSecretBadRequest) Code() int {
+	return 400
 }
 
 func (o *UpdateSecretBadRequest) Error() string {
@@ -204,7 +230,7 @@ func NewUpdateSecretUnauthorized() *UpdateSecretUnauthorized {
 /*
 UpdateSecretUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type UpdateSecretUnauthorized struct {
 	Payload *models.Error
@@ -233,6 +259,11 @@ func (o *UpdateSecretUnauthorized) IsServerError() bool {
 // IsCode returns true when this update secret unauthorized response a status code equal to that given
 func (o *UpdateSecretUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the update secret unauthorized response
+func (o *UpdateSecretUnauthorized) Code() int {
+	return 401
 }
 
 func (o *UpdateSecretUnauthorized) Error() string {
@@ -267,7 +298,7 @@ func NewUpdateSecretForbidden() *UpdateSecretForbidden {
 /*
 UpdateSecretForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type UpdateSecretForbidden struct {
 	Payload *models.Error
@@ -296,6 +327,11 @@ func (o *UpdateSecretForbidden) IsServerError() bool {
 // IsCode returns true when this update secret forbidden response a status code equal to that given
 func (o *UpdateSecretForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the update secret forbidden response
+func (o *UpdateSecretForbidden) Code() int {
+	return 403
 }
 
 func (o *UpdateSecretForbidden) Error() string {
@@ -330,7 +366,7 @@ func NewUpdateSecretNotFound() *UpdateSecretNotFound {
 /*
 UpdateSecretNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type UpdateSecretNotFound struct {
 	Payload *models.Error
@@ -359,6 +395,11 @@ func (o *UpdateSecretNotFound) IsServerError() bool {
 // IsCode returns true when this update secret not found response a status code equal to that given
 func (o *UpdateSecretNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the update secret not found response
+func (o *UpdateSecretNotFound) Code() int {
+	return 404
 }
 
 func (o *UpdateSecretNotFound) Error() string {
@@ -393,7 +434,7 @@ func NewUpdateSecretUnprocessableEntity() *UpdateSecretUnprocessableEntity {
 /*
 UpdateSecretUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type UpdateSecretUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +463,11 @@ func (o *UpdateSecretUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this update secret unprocessable entity response a status code equal to that given
 func (o *UpdateSecretUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the update secret unprocessable entity response
+func (o *UpdateSecretUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *UpdateSecretUnprocessableEntity) Error() string {
@@ -456,7 +502,7 @@ func NewUpdateSecretTooManyRequests() *UpdateSecretTooManyRequests {
 /*
 UpdateSecretTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type UpdateSecretTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +531,11 @@ func (o *UpdateSecretTooManyRequests) IsServerError() bool {
 // IsCode returns true when this update secret too many requests response a status code equal to that given
 func (o *UpdateSecretTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the update secret too many requests response
+func (o *UpdateSecretTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *UpdateSecretTooManyRequests) Error() string {

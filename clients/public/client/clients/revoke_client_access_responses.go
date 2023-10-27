@@ -48,7 +48,7 @@ func (o *RevokeClientAccessReader) ReadResponse(response runtime.ClientResponse,
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[DELETE /clients/{cid}] revokeClientAccess", response, response.Code())
 	}
 }
 
@@ -90,6 +90,11 @@ func (o *RevokeClientAccessNoContent) IsCode(code int) bool {
 	return code == 204
 }
 
+// Code gets the status code for the revoke client access no content response
+func (o *RevokeClientAccessNoContent) Code() int {
+	return 204
+}
+
 func (o *RevokeClientAccessNoContent) Error() string {
 	return fmt.Sprintf("[DELETE /clients/{cid}][%d] revokeClientAccessNoContent ", 204)
 }
@@ -111,7 +116,7 @@ func NewRevokeClientAccessUnauthorized() *RevokeClientAccessUnauthorized {
 /*
 RevokeClientAccessUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type RevokeClientAccessUnauthorized struct {
 	Payload *models.Error
@@ -140,6 +145,11 @@ func (o *RevokeClientAccessUnauthorized) IsServerError() bool {
 // IsCode returns true when this revoke client access unauthorized response a status code equal to that given
 func (o *RevokeClientAccessUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the revoke client access unauthorized response
+func (o *RevokeClientAccessUnauthorized) Code() int {
+	return 401
 }
 
 func (o *RevokeClientAccessUnauthorized) Error() string {
@@ -174,7 +184,7 @@ func NewRevokeClientAccessForbidden() *RevokeClientAccessForbidden {
 /*
 RevokeClientAccessForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type RevokeClientAccessForbidden struct {
 	Payload *models.Error
@@ -203,6 +213,11 @@ func (o *RevokeClientAccessForbidden) IsServerError() bool {
 // IsCode returns true when this revoke client access forbidden response a status code equal to that given
 func (o *RevokeClientAccessForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the revoke client access forbidden response
+func (o *RevokeClientAccessForbidden) Code() int {
+	return 403
 }
 
 func (o *RevokeClientAccessForbidden) Error() string {
@@ -237,7 +252,7 @@ func NewRevokeClientAccessTooManyRequests() *RevokeClientAccessTooManyRequests {
 /*
 RevokeClientAccessTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type RevokeClientAccessTooManyRequests struct {
 	Payload *models.Error
@@ -266,6 +281,11 @@ func (o *RevokeClientAccessTooManyRequests) IsServerError() bool {
 // IsCode returns true when this revoke client access too many requests response a status code equal to that given
 func (o *RevokeClientAccessTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the revoke client access too many requests response
+func (o *RevokeClientAccessTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *RevokeClientAccessTooManyRequests) Error() string {

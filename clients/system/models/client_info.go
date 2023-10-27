@@ -17,29 +17,31 @@ import (
 // swagger:model ClientInfo
 type ClientInfo struct {
 
-	// Human readable name of a client application
+	// Human-readable name of a client application.
 	// Example: My app
 	ClientName string `json:"client_name,omitempty"`
 
-	// URI of a client application
+	// URI of a client application.
 	ClientURI string `json:"client_uri,omitempty"`
 
-	// Description of a client application
+	// Description of the client application.
 	Description string `json:"description,omitempty"`
 
-	// Logo URI
+	// Logo URI.
 	LogoURI string `json:"logo_uri,omitempty"`
 
-	// External organisation ID
+	// External organization identifier. It is a unique string assigned by the CDR Register to identify an Accredited
+	// Data Recipient Brand.
 	//
-	// This field is used as an aud for message signing
+	// The value obtained is used as the `aud` claim for message signing, for example, when a JSON Web Token (JWT) is
+	// required for authorization, and represents the audience(s) the JWT is intended for.
 	// Example: 5647fe90-f6bc-11eb-9a03-0242ac130003
 	OrganisationID string `json:"organisation_id,omitempty"`
 
-	// Policy URL to read about how the profile data is used
+	// Policy URL to read about how the profile data is used.
 	PolicyURI string `json:"policy_uri,omitempty"`
 
-	// Terms of Service URL
+	// Terms of Service URL.
 	TosURI string `json:"tos_uri,omitempty"`
 }
 

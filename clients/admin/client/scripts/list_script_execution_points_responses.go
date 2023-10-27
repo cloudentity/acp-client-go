@@ -48,7 +48,7 @@ func (o *ListScriptExecutionPointsReader) ReadResponse(response runtime.ClientRe
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /servers/{wid}/script-execution-points] listScriptExecutionPoints", response, response.Code())
 	}
 }
 
@@ -63,6 +63,15 @@ ListScriptExecutionPointsOK describes a response with status code 200, with defa
 Script execution points
 */
 type ListScriptExecutionPointsOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.ScriptExecutionPoints
 }
 
@@ -91,6 +100,11 @@ func (o *ListScriptExecutionPointsOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the list script execution points o k response
+func (o *ListScriptExecutionPointsOK) Code() int {
+	return 200
+}
+
 func (o *ListScriptExecutionPointsOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/script-execution-points][%d] listScriptExecutionPointsOK  %+v", 200, o.Payload)
 }
@@ -104,6 +118,13 @@ func (o *ListScriptExecutionPointsOK) GetPayload() *models.ScriptExecutionPoints
 }
 
 func (o *ListScriptExecutionPointsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.ScriptExecutionPoints)
 
@@ -123,7 +144,7 @@ func NewListScriptExecutionPointsUnauthorized() *ListScriptExecutionPointsUnauth
 /*
 ListScriptExecutionPointsUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ListScriptExecutionPointsUnauthorized struct {
 	Payload *models.Error
@@ -152,6 +173,11 @@ func (o *ListScriptExecutionPointsUnauthorized) IsServerError() bool {
 // IsCode returns true when this list script execution points unauthorized response a status code equal to that given
 func (o *ListScriptExecutionPointsUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the list script execution points unauthorized response
+func (o *ListScriptExecutionPointsUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ListScriptExecutionPointsUnauthorized) Error() string {
@@ -186,7 +212,7 @@ func NewListScriptExecutionPointsForbidden() *ListScriptExecutionPointsForbidden
 /*
 ListScriptExecutionPointsForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ListScriptExecutionPointsForbidden struct {
 	Payload *models.Error
@@ -215,6 +241,11 @@ func (o *ListScriptExecutionPointsForbidden) IsServerError() bool {
 // IsCode returns true when this list script execution points forbidden response a status code equal to that given
 func (o *ListScriptExecutionPointsForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the list script execution points forbidden response
+func (o *ListScriptExecutionPointsForbidden) Code() int {
+	return 403
 }
 
 func (o *ListScriptExecutionPointsForbidden) Error() string {
@@ -249,7 +280,7 @@ func NewListScriptExecutionPointsTooManyRequests() *ListScriptExecutionPointsToo
 /*
 ListScriptExecutionPointsTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ListScriptExecutionPointsTooManyRequests struct {
 	Payload *models.Error
@@ -278,6 +309,11 @@ func (o *ListScriptExecutionPointsTooManyRequests) IsServerError() bool {
 // IsCode returns true when this list script execution points too many requests response a status code equal to that given
 func (o *ListScriptExecutionPointsTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the list script execution points too many requests response
+func (o *ListScriptExecutionPointsTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ListScriptExecutionPointsTooManyRequests) Error() string {

@@ -54,7 +54,7 @@ func (o *GetKeysReader) ReadResponse(response runtime.ClientResponse, consumer r
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /servers/{wid}/keys] getKeys", response, response.Code())
 	}
 }
 
@@ -69,6 +69,15 @@ GetKeysOK describes a response with status code 200, with default header values.
 Keys
 */
 type GetKeysOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.KeysResponse
 }
 
@@ -97,6 +106,11 @@ func (o *GetKeysOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get keys o k response
+func (o *GetKeysOK) Code() int {
+	return 200
+}
+
 func (o *GetKeysOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/keys][%d] getKeysOK  %+v", 200, o.Payload)
 }
@@ -110,6 +124,13 @@ func (o *GetKeysOK) GetPayload() *models.KeysResponse {
 }
 
 func (o *GetKeysOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.KeysResponse)
 
@@ -129,7 +150,7 @@ func NewGetKeysUnauthorized() *GetKeysUnauthorized {
 /*
 GetKeysUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetKeysUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +179,11 @@ func (o *GetKeysUnauthorized) IsServerError() bool {
 // IsCode returns true when this get keys unauthorized response a status code equal to that given
 func (o *GetKeysUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get keys unauthorized response
+func (o *GetKeysUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetKeysUnauthorized) Error() string {
@@ -192,7 +218,7 @@ func NewGetKeysForbidden() *GetKeysForbidden {
 /*
 GetKeysForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetKeysForbidden struct {
 	Payload *models.Error
@@ -221,6 +247,11 @@ func (o *GetKeysForbidden) IsServerError() bool {
 // IsCode returns true when this get keys forbidden response a status code equal to that given
 func (o *GetKeysForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get keys forbidden response
+func (o *GetKeysForbidden) Code() int {
+	return 403
 }
 
 func (o *GetKeysForbidden) Error() string {
@@ -255,7 +286,7 @@ func NewGetKeysNotFound() *GetKeysNotFound {
 /*
 GetKeysNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetKeysNotFound struct {
 	Payload *models.Error
@@ -284,6 +315,11 @@ func (o *GetKeysNotFound) IsServerError() bool {
 // IsCode returns true when this get keys not found response a status code equal to that given
 func (o *GetKeysNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the get keys not found response
+func (o *GetKeysNotFound) Code() int {
+	return 404
 }
 
 func (o *GetKeysNotFound) Error() string {
@@ -318,7 +354,7 @@ func NewGetKeysTooManyRequests() *GetKeysTooManyRequests {
 /*
 GetKeysTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetKeysTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +383,11 @@ func (o *GetKeysTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get keys too many requests response a status code equal to that given
 func (o *GetKeysTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get keys too many requests response
+func (o *GetKeysTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetKeysTooManyRequests) Error() string {

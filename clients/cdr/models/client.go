@@ -46,6 +46,11 @@ type Client struct {
 	// It is considered a good practice to limit the audience of the token for security purposes.
 	Audience []string `json:"audience"`
 
+	// Authorization details types
+	//
+	// Indicates what authorization details types the client can use.
+	AuthorizationDetailsTypes []AuthorizationDetailType `json:"authorization_details_types"`
+
 	// Algorithm used for encrypting authorization responses.
 	//
 	// If both signing and encryption are requested, the response is first signed, and then encrypted.
@@ -200,7 +205,7 @@ type Client struct {
 	// Enum: [RS256 ES256 PS256]
 	IDTokenSignedResponseAlg string `json:"id_token_signed_response_alg,omitempty"`
 
-	// An introspection endpoint authentication method configured for the client application.
+	// An introspection endpoint authentication method configured for the client application (read-only).
 	//
 	// If empty, the `token_endpoint_auth_method` is used.
 	//
@@ -225,6 +230,9 @@ type Client struct {
 	// metadata
 	Metadata Metadata `json:"metadata,omitempty"`
 
+	// obbr
+	Obbr *OBBRMetadata `json:"obbr,omitempty"`
+
 	// External organization identifier. It is a unique string assigned by the CDR Register to identify an Accredited
 	// Data Recipient Brand.
 	//
@@ -235,6 +243,9 @@ type Client struct {
 
 	// Policy URL to read about how the profile data is used.
 	PolicyURI string `json:"policy_uri,omitempty"`
+
+	// Array of URLs to which a relying party may request that the user be redirected after a logout has been performed.
+	PostLogoutRedirectUris []string `json:"post_logout_redirect_uris"`
 
 	// privacy
 	Privacy *ClientPrivacy `json:"privacy,omitempty"`
@@ -273,7 +284,7 @@ type Client struct {
 	// response types
 	ResponseTypes ResponseTypes `json:"response_types,omitempty"`
 
-	// A revocation endpoint authentication method configured for the client application.
+	// A revocation endpoint authentication method configured for the client application (read-only).
 	// If empty, the `token_endpoint_auth_method` is used.
 	//
 	// Cloudentity supports the following client authentication methods:
@@ -416,6 +427,9 @@ type Client struct {
 	// token exchange
 	TokenExchange *ClientTokenExchangeConfiguration `json:"token_exchange,omitempty"`
 
+	// token ttls
+	TokenTtls *TokenTTLs `json:"token_ttls,omitempty"`
+
 	// Terms of Service URL.
 	TosURI string `json:"tos_uri,omitempty"`
 
@@ -428,6 +442,9 @@ type Client struct {
 	// Example: 2022-05-08T01:11:51.1262916Z
 	// Format: date-time
 	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty"`
+
+	// If enabled the client application will be able to set its own token TTLs.
+	UseCustomTokenTtls bool `json:"use_custom_token_ttls,omitempty"`
 
 	// JWS alg algorithm REQUIRED for signing UserInfo Responses.
 	//
@@ -445,6 +462,10 @@ func (m *Client) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateApplicationTypes(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateAuthorizationDetailsTypes(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -516,6 +537,10 @@ func (m *Client) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateObbr(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validatePrivacy(formats); err != nil {
 		res = append(res, err)
 	}
@@ -576,6 +601,10 @@ func (m *Client) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateTokenTtls(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateUpdatedAt(formats); err != nil {
 		res = append(res, err)
 	}
@@ -618,6 +647,27 @@ func (m *Client) validateApplicationTypes(formats strfmt.Registry) error {
 
 		// value enum
 		if err := m.validateApplicationTypesItemsEnum("application_types"+"."+strconv.Itoa(i), "body", m.ApplicationTypes[i]); err != nil {
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Client) validateAuthorizationDetailsTypes(formats strfmt.Registry) error {
+	if swag.IsZero(m.AuthorizationDetailsTypes) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.AuthorizationDetailsTypes); i++ {
+
+		if err := m.AuthorizationDetailsTypes[i].Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("authorization_details_types" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("authorization_details_types" + "." + strconv.Itoa(i))
+			}
 			return err
 		}
 
@@ -1144,6 +1194,25 @@ func (m *Client) validateMetadata(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Client) validateObbr(formats strfmt.Registry) error {
+	if swag.IsZero(m.Obbr) { // not required
+		return nil
+	}
+
+	if m.Obbr != nil {
+		if err := m.Obbr.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("obbr")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("obbr")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *Client) validatePrivacy(formats strfmt.Registry) error {
 	if swag.IsZero(m.Privacy) { // not required
 		return nil
@@ -1624,6 +1693,25 @@ func (m *Client) validateTokenExchange(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Client) validateTokenTtls(formats strfmt.Registry) error {
+	if swag.IsZero(m.TokenTtls) { // not required
+		return nil
+	}
+
+	if m.TokenTtls != nil {
+		if err := m.TokenTtls.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("token_ttls")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("token_ttls")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *Client) validateUpdatedAt(formats strfmt.Registry) error {
 	if swag.IsZero(m.UpdatedAt) { // not required
 		return nil
@@ -1689,6 +1777,10 @@ func (m *Client) ContextValidate(ctx context.Context, formats strfmt.Registry) e
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateAuthorizationDetailsTypes(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateConfirmation(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -1706,6 +1798,10 @@ func (m *Client) ContextValidate(ctx context.Context, formats strfmt.Registry) e
 	}
 
 	if err := m.contextValidateMetadata(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateObbr(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1737,6 +1833,10 @@ func (m *Client) ContextValidate(ctx context.Context, formats strfmt.Registry) e
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateTokenTtls(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -1752,9 +1852,36 @@ func (m *Client) contextValidateApplicationTypes(ctx context.Context, formats st
 	return nil
 }
 
+func (m *Client) contextValidateAuthorizationDetailsTypes(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.AuthorizationDetailsTypes); i++ {
+
+		if swag.IsZero(m.AuthorizationDetailsTypes[i]) { // not required
+			return nil
+		}
+
+		if err := m.AuthorizationDetailsTypes[i].ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("authorization_details_types" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("authorization_details_types" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
 func (m *Client) contextValidateConfirmation(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Confirmation != nil {
+
+		if swag.IsZero(m.Confirmation) { // not required
+			return nil
+		}
+
 		if err := m.Confirmation.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("confirmation")
@@ -1769,6 +1896,10 @@ func (m *Client) contextValidateConfirmation(ctx context.Context, formats strfmt
 }
 
 func (m *Client) contextValidateDeveloperMetadata(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.DeveloperMetadata) { // not required
+		return nil
+	}
 
 	if err := m.DeveloperMetadata.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -1785,6 +1916,11 @@ func (m *Client) contextValidateDeveloperMetadata(ctx context.Context, formats s
 func (m *Client) contextValidateFdx(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Fdx != nil {
+
+		if swag.IsZero(m.Fdx) { // not required
+			return nil
+		}
+
 		if err := m.Fdx.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("fdx")
@@ -1801,6 +1937,11 @@ func (m *Client) contextValidateFdx(ctx context.Context, formats strfmt.Registry
 func (m *Client) contextValidateJwks(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Jwks != nil {
+
+		if swag.IsZero(m.Jwks) { // not required
+			return nil
+		}
+
 		if err := m.Jwks.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("jwks")
@@ -1816,6 +1957,10 @@ func (m *Client) contextValidateJwks(ctx context.Context, formats strfmt.Registr
 
 func (m *Client) contextValidateMetadata(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Metadata) { // not required
+		return nil
+	}
+
 	if err := m.Metadata.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("metadata")
@@ -1828,9 +1973,35 @@ func (m *Client) contextValidateMetadata(ctx context.Context, formats strfmt.Reg
 	return nil
 }
 
+func (m *Client) contextValidateObbr(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Obbr != nil {
+
+		if swag.IsZero(m.Obbr) { // not required
+			return nil
+		}
+
+		if err := m.Obbr.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("obbr")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("obbr")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *Client) contextValidatePrivacy(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Privacy != nil {
+
+		if swag.IsZero(m.Privacy) { // not required
+			return nil
+		}
+
 		if err := m.Privacy.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("privacy")
@@ -1861,6 +2032,11 @@ func (m *Client) contextValidateRedirectUris(ctx context.Context, formats strfmt
 func (m *Client) contextValidateRegistrationToken(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.RegistrationToken != nil {
+
+		if swag.IsZero(m.RegistrationToken) { // not required
+			return nil
+		}
+
 		if err := m.RegistrationToken.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("registration_token")
@@ -1891,6 +2067,11 @@ func (m *Client) contextValidateResponseTypes(ctx context.Context, formats strfm
 func (m *Client) contextValidateSamlMetadata(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.SamlMetadata != nil {
+
+		if swag.IsZero(m.SamlMetadata) { // not required
+			return nil
+		}
+
 		if err := m.SamlMetadata.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("saml_metadata")
@@ -1905,6 +2086,10 @@ func (m *Client) contextValidateSamlMetadata(ctx context.Context, formats strfmt
 }
 
 func (m *Client) contextValidateSoftwareStatementPayload(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.SoftwareStatementPayload) { // not required
+		return nil
+	}
 
 	if err := m.SoftwareStatementPayload.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -1921,11 +2106,37 @@ func (m *Client) contextValidateSoftwareStatementPayload(ctx context.Context, fo
 func (m *Client) contextValidateTokenExchange(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.TokenExchange != nil {
+
+		if swag.IsZero(m.TokenExchange) { // not required
+			return nil
+		}
+
 		if err := m.TokenExchange.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("token_exchange")
 			} else if ce, ok := err.(*errors.CompositeError); ok {
 				return ce.ValidateName("token_exchange")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *Client) contextValidateTokenTtls(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.TokenTtls != nil {
+
+		if swag.IsZero(m.TokenTtls) { // not required
+			return nil
+		}
+
+		if err := m.TokenTtls.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("token_ttls")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("token_ttls")
 			}
 			return err
 		}

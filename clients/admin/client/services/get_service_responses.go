@@ -54,7 +54,7 @@ func (o *GetServiceReader) ReadResponse(response runtime.ClientResponse, consume
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /services/{sid}] getService", response, response.Code())
 	}
 }
 
@@ -69,6 +69,15 @@ GetServiceOK describes a response with status code 200, with default header valu
 Service with scopes
 */
 type GetServiceOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.ServiceWithScopesResponse
 }
 
@@ -97,6 +106,11 @@ func (o *GetServiceOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get service o k response
+func (o *GetServiceOK) Code() int {
+	return 200
+}
+
 func (o *GetServiceOK) Error() string {
 	return fmt.Sprintf("[GET /services/{sid}][%d] getServiceOK  %+v", 200, o.Payload)
 }
@@ -110,6 +124,13 @@ func (o *GetServiceOK) GetPayload() *models.ServiceWithScopesResponse {
 }
 
 func (o *GetServiceOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.ServiceWithScopesResponse)
 
@@ -129,7 +150,7 @@ func NewGetServiceUnauthorized() *GetServiceUnauthorized {
 /*
 GetServiceUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetServiceUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +179,11 @@ func (o *GetServiceUnauthorized) IsServerError() bool {
 // IsCode returns true when this get service unauthorized response a status code equal to that given
 func (o *GetServiceUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get service unauthorized response
+func (o *GetServiceUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetServiceUnauthorized) Error() string {
@@ -192,7 +218,7 @@ func NewGetServiceForbidden() *GetServiceForbidden {
 /*
 GetServiceForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetServiceForbidden struct {
 	Payload *models.Error
@@ -221,6 +247,11 @@ func (o *GetServiceForbidden) IsServerError() bool {
 // IsCode returns true when this get service forbidden response a status code equal to that given
 func (o *GetServiceForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get service forbidden response
+func (o *GetServiceForbidden) Code() int {
+	return 403
 }
 
 func (o *GetServiceForbidden) Error() string {
@@ -255,7 +286,7 @@ func NewGetServiceNotFound() *GetServiceNotFound {
 /*
 GetServiceNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetServiceNotFound struct {
 	Payload *models.Error
@@ -284,6 +315,11 @@ func (o *GetServiceNotFound) IsServerError() bool {
 // IsCode returns true when this get service not found response a status code equal to that given
 func (o *GetServiceNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the get service not found response
+func (o *GetServiceNotFound) Code() int {
+	return 404
 }
 
 func (o *GetServiceNotFound) Error() string {
@@ -318,7 +354,7 @@ func NewGetServiceTooManyRequests() *GetServiceTooManyRequests {
 /*
 GetServiceTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetServiceTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +383,11 @@ func (o *GetServiceTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get service too many requests response a status code equal to that given
 func (o *GetServiceTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get service too many requests response
+func (o *GetServiceTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetServiceTooManyRequests) Error() string {

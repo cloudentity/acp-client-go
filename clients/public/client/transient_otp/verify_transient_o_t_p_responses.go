@@ -48,7 +48,7 @@ func (o *VerifyTransientOTPReader) ReadResponse(response runtime.ClientResponse,
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /authn/otp/transient/{otpID}] verifyTransientOTP", response, response.Code())
 	}
 }
 
@@ -90,6 +90,11 @@ func (o *VerifyTransientOTPNoContent) IsCode(code int) bool {
 	return code == 204
 }
 
+// Code gets the status code for the verify transient o t p no content response
+func (o *VerifyTransientOTPNoContent) Code() int {
+	return 204
+}
+
 func (o *VerifyTransientOTPNoContent) Error() string {
 	return fmt.Sprintf("[POST /authn/otp/transient/{otpID}][%d] verifyTransientOTPNoContent ", 204)
 }
@@ -111,7 +116,7 @@ func NewVerifyTransientOTPUnauthorized() *VerifyTransientOTPUnauthorized {
 /*
 VerifyTransientOTPUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type VerifyTransientOTPUnauthorized struct {
 	Payload *models.Error
@@ -140,6 +145,11 @@ func (o *VerifyTransientOTPUnauthorized) IsServerError() bool {
 // IsCode returns true when this verify transient o t p unauthorized response a status code equal to that given
 func (o *VerifyTransientOTPUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the verify transient o t p unauthorized response
+func (o *VerifyTransientOTPUnauthorized) Code() int {
+	return 401
 }
 
 func (o *VerifyTransientOTPUnauthorized) Error() string {
@@ -174,7 +184,7 @@ func NewVerifyTransientOTPForbidden() *VerifyTransientOTPForbidden {
 /*
 VerifyTransientOTPForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type VerifyTransientOTPForbidden struct {
 	Payload *models.Error
@@ -203,6 +213,11 @@ func (o *VerifyTransientOTPForbidden) IsServerError() bool {
 // IsCode returns true when this verify transient o t p forbidden response a status code equal to that given
 func (o *VerifyTransientOTPForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the verify transient o t p forbidden response
+func (o *VerifyTransientOTPForbidden) Code() int {
+	return 403
 }
 
 func (o *VerifyTransientOTPForbidden) Error() string {
@@ -237,7 +252,7 @@ func NewVerifyTransientOTPNotFound() *VerifyTransientOTPNotFound {
 /*
 VerifyTransientOTPNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type VerifyTransientOTPNotFound struct {
 	Payload *models.Error
@@ -266,6 +281,11 @@ func (o *VerifyTransientOTPNotFound) IsServerError() bool {
 // IsCode returns true when this verify transient o t p not found response a status code equal to that given
 func (o *VerifyTransientOTPNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the verify transient o t p not found response
+func (o *VerifyTransientOTPNotFound) Code() int {
+	return 404
 }
 
 func (o *VerifyTransientOTPNotFound) Error() string {

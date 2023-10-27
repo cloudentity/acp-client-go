@@ -66,7 +66,7 @@ func (o *UpdateAdminTenantReader) ReadResponse(response runtime.ClientResponse, 
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /tenant] updateAdminTenant", response, response.Code())
 	}
 }
 
@@ -109,6 +109,11 @@ func (o *UpdateAdminTenantOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the update admin tenant o k response
+func (o *UpdateAdminTenantOK) Code() int {
+	return 200
+}
+
 func (o *UpdateAdminTenantOK) Error() string {
 	return fmt.Sprintf("[PUT /tenant][%d] updateAdminTenantOK  %+v", 200, o.Payload)
 }
@@ -141,7 +146,7 @@ func NewUpdateAdminTenantBadRequest() *UpdateAdminTenantBadRequest {
 /*
 UpdateAdminTenantBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type UpdateAdminTenantBadRequest struct {
 	Payload *models.Error
@@ -170,6 +175,11 @@ func (o *UpdateAdminTenantBadRequest) IsServerError() bool {
 // IsCode returns true when this update admin tenant bad request response a status code equal to that given
 func (o *UpdateAdminTenantBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the update admin tenant bad request response
+func (o *UpdateAdminTenantBadRequest) Code() int {
+	return 400
 }
 
 func (o *UpdateAdminTenantBadRequest) Error() string {
@@ -204,7 +214,7 @@ func NewUpdateAdminTenantUnauthorized() *UpdateAdminTenantUnauthorized {
 /*
 UpdateAdminTenantUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type UpdateAdminTenantUnauthorized struct {
 	Payload *models.Error
@@ -233,6 +243,11 @@ func (o *UpdateAdminTenantUnauthorized) IsServerError() bool {
 // IsCode returns true when this update admin tenant unauthorized response a status code equal to that given
 func (o *UpdateAdminTenantUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the update admin tenant unauthorized response
+func (o *UpdateAdminTenantUnauthorized) Code() int {
+	return 401
 }
 
 func (o *UpdateAdminTenantUnauthorized) Error() string {
@@ -267,7 +282,7 @@ func NewUpdateAdminTenantForbidden() *UpdateAdminTenantForbidden {
 /*
 UpdateAdminTenantForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type UpdateAdminTenantForbidden struct {
 	Payload *models.Error
@@ -296,6 +311,11 @@ func (o *UpdateAdminTenantForbidden) IsServerError() bool {
 // IsCode returns true when this update admin tenant forbidden response a status code equal to that given
 func (o *UpdateAdminTenantForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the update admin tenant forbidden response
+func (o *UpdateAdminTenantForbidden) Code() int {
+	return 403
 }
 
 func (o *UpdateAdminTenantForbidden) Error() string {
@@ -330,7 +350,7 @@ func NewUpdateAdminTenantNotFound() *UpdateAdminTenantNotFound {
 /*
 UpdateAdminTenantNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type UpdateAdminTenantNotFound struct {
 	Payload *models.Error
@@ -359,6 +379,11 @@ func (o *UpdateAdminTenantNotFound) IsServerError() bool {
 // IsCode returns true when this update admin tenant not found response a status code equal to that given
 func (o *UpdateAdminTenantNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the update admin tenant not found response
+func (o *UpdateAdminTenantNotFound) Code() int {
+	return 404
 }
 
 func (o *UpdateAdminTenantNotFound) Error() string {
@@ -393,7 +418,7 @@ func NewUpdateAdminTenantUnprocessableEntity() *UpdateAdminTenantUnprocessableEn
 /*
 UpdateAdminTenantUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type UpdateAdminTenantUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +447,11 @@ func (o *UpdateAdminTenantUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this update admin tenant unprocessable entity response a status code equal to that given
 func (o *UpdateAdminTenantUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the update admin tenant unprocessable entity response
+func (o *UpdateAdminTenantUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *UpdateAdminTenantUnprocessableEntity) Error() string {
@@ -456,7 +486,7 @@ func NewUpdateAdminTenantTooManyRequests() *UpdateAdminTenantTooManyRequests {
 /*
 UpdateAdminTenantTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type UpdateAdminTenantTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +515,11 @@ func (o *UpdateAdminTenantTooManyRequests) IsServerError() bool {
 // IsCode returns true when this update admin tenant too many requests response a status code equal to that given
 func (o *UpdateAdminTenantTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the update admin tenant too many requests response
+func (o *UpdateAdminTenantTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *UpdateAdminTenantTooManyRequests) Error() string {

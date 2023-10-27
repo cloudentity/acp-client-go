@@ -29,6 +29,12 @@ type WellKnown struct {
 	// acr values supported
 	AcrValuesSupported []string `json:"acr_values_supported"`
 
+	// JSON array containing all attachment types supported by the OP.  REQUIRED when OP supports attachments. Possible values are external and embedded.
+	AttachmentsSupported []string `json:"attachments_supported"`
+
+	// List of supported authorization details types
+	AuthorizationDetailsTypesSupported []string `json:"authorization_details_types_supported"`
+
 	// optional JSON array containing a list of the encryption algorithms (alg values) supported by the authorization endpoint to encrypt the response.
 	AuthorizationEncryptionAlgValuesSupported []string `json:"authorization_encryption_alg_values_supported"`
 
@@ -39,6 +45,9 @@ type WellKnown struct {
 	// Example: https://example.com/oauth2/auth
 	// Required: true
 	AuthorizationEndpoint string `json:"authorization_endpoint"`
+
+	// authorization response iss parameter supported
+	AuthorizationResponseIssParameterSupported bool `json:"authorization_response_iss_parameter_supported,omitempty"`
 
 	// optional JSON array containing a list of the signing algorithms supported by the authorization endpoint to sign the response.
 	AuthorizationSigningAlgValuesSupported []string `json:"authorization_signing_alg_values_supported"`
@@ -68,6 +77,10 @@ type WellKnown struct {
 	// Available only for "cdr_australia" workspace profile.
 	CdrArrangementRevocationEndpoint string `json:"cdr_arrangement_revocation_endpoint,omitempty"`
 
+	// JSON array containing all Claims supported within verified_claims.
+	// Claims that are not present in this array MUST NOT be returned within the verified_claims object.
+	ClaimsInVerifiedClaimsSupported []string `json:"claims_in_verified_claims_supported"`
+
 	// Boolean value specifying whether the OP supports use of the claims parameter, with true indicating support.
 	ClaimsParameterSupported bool `json:"claims_parameter_supported,omitempty"`
 
@@ -80,6 +93,31 @@ type WellKnown struct {
 
 	// URL of the authorization server's device authorization endpoint
 	DeviceAuthorizationEndpoint string `json:"device_authorization_endpoint,omitempty"`
+
+	// REQUIRED when OP supports external attachments. JSON array containing all supported digest algorithms which can be used as alg property within
+	// the digest object of external attachments. If the OP supports external attachments, at least the algorithm sha-256 MUST be supported by the OP as well.
+	DigestAlgorithmsSupported []string `json:"digest_algorithms_supported"`
+
+	// JSON array containing the check methods the OP supports for evidences of type "document".
+	DocumentsCheckMethodsSupported []string `json:"documents_check_methods_supported"`
+
+	// JSON array containing the methods the OP supports for evidences of type "document".
+	DocumentsMethodsSupported []string `json:"documents_methods_supported"`
+
+	// JSON array containing all identity document types utilized by the OP for identity verification. REQUIRED when evidence_supported contains "document".
+	DocumentsSupported []string `json:"documents_supported"`
+
+	// JSON array containing a list of the JWS algorithms supported for DPoP proof JWTs
+	DpopSigningAlgValuesSupported []string `json:"dpop_signing_alg_values_supported"`
+
+	// JSON array containing all electronic record types the OP supports. REQUIRED when evidence_supported contains "electronic_record".
+	ElectronicRecordsSupported []string `json:"electronic_records_supported"`
+
+	// URL at the OP to which an RP can perform a redirect to request that the End-User be logged out at the OP.
+	EndSessionEndpoint string `json:"end_session_endpoint,omitempty"`
+
+	// JSON array containing all types of identity evidence the OP uses.
+	EvidenceSupported []string `json:"evidence_supported"`
 
 	// Boolean value specifying whether the OP can pass iss (issuer) and sid (session ID) query parameters to identify
 	// the RP session with the OP when the frontchannel_logout_uri is used. If supported, the sid Claim is also
@@ -109,6 +147,10 @@ type WellKnown struct {
 	// JSON array containing a list of Client Authentication methods supported by Introspection Endpoint. The options are
 	// client_secret_post, client_secret_basic, client_secret_jwt, and private_key_jwt, as described in Section 9 of OpenID Connect Core 1.0
 	IntrospectionEndpointAuthMethodsSupported []string `json:"introspection_endpoint_auth_methods_supported"`
+
+	// JSON array containing a list of the JWS signing algorithms ("alg" values) supported by the introspection endpoint for the signature
+	// on the JWT [JWT] used to authenticate the client at the introspection endpoint for the "private_key_jwt" and "client_secret_jwt" authentication methods.
+	IntrospectionEndpointAuthSigningAlgValuesSupported []string `json:"introspection_endpoint_auth_signing_alg_values_supported"`
 
 	// URL using the https scheme with no query or fragment component that the OP asserts as its IssuerURL Identifier.
 	// If IssuerURL discovery is supported , this value MUST be identical to the issuer value returned
@@ -180,6 +222,10 @@ type WellKnown struct {
 	// client_secret_post, client_secret_basic, client_secret_jwt, and private_key_jwt, as described in Section 9 of OpenID Connect Core 1.0
 	RevocationEndpointAuthMethodsSupported []string `json:"revocation_endpoint_auth_methods_supported"`
 
+	// JSON array containing a list of the JWS signing algorithms ("alg" values) supported by the revocation endpoint for
+	// the signature on the JWT [JWT] used to authenticate the client at the revocation endpoint for the "private_key_jwt" and "client_secret_jwt" authentication methods.
+	RevocationEndpointAuthSigningAlgValuesSupported []string `json:"revocation_endpoint_auth_signing_alg_values_supported"`
+
 	// SON array containing a list of the OAuth 2.0 [RFC6749] scope values that this server supports. The server MUST
 	// support the openid scope value. Servers MAY choose not to advertise some supported scope values even when this parameter is used
 	ScopesSupported []string `json:"scopes_supported"`
@@ -208,11 +254,17 @@ type WellKnown struct {
 	// No default algorithms are implied if this entry is omitted.  Servers SHOULD support "RS256".  The value "none" MUST NOT be used.
 	TokenEndpointAuthSigningAlgValuesSupported []string `json:"token_endpoint_auth_signing_alg_values_supported"`
 
+	// JSON array containing all supported trust frameworks
+	TrustFrameworksSupported []string `json:"trust_frameworks_supported"`
+
 	// URL of the OP's UserInfo Endpoint.
 	UserinfoEndpoint string `json:"userinfo_endpoint,omitempty"`
 
 	// JSON array containing a list of the JWS [JWS] signing algorithms (alg values) [JWA] supported by the UserInfo Endpoint to encode the Claims in a JWT [JWT].
 	UserinfoSigningAlgValuesSupported []string `json:"userinfo_signing_alg_values_supported"`
+
+	// Boolean value indicating support for verified_claims, i.e., the OpenID Connect for Identity Assurance extension.
+	VerifiedClaimsSupported bool `json:"verified_claims_supported,omitempty"`
 }
 
 // Validate validates this well known
@@ -772,6 +824,11 @@ func (m *WellKnown) ContextValidate(ctx context.Context, formats strfmt.Registry
 func (m *WellKnown) contextValidateMtlsEndpointAliases(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.MtlsEndpointAliases != nil {
+
+		if swag.IsZero(m.MtlsEndpointAliases) { // not required
+			return nil
+		}
+
 		if err := m.MtlsEndpointAliases.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("mtls_endpoint_aliases")

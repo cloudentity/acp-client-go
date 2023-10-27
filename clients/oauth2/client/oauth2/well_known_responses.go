@@ -36,7 +36,7 @@ func (o *WellKnownReader) ReadResponse(response runtime.ClientResponse, consumer
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /.well-known/openid-configuration] wellKnown", response, response.Code())
 	}
 }
 
@@ -77,6 +77,11 @@ func (o *WellKnownOK) IsServerError() bool {
 // IsCode returns true when this well known o k response a status code equal to that given
 func (o *WellKnownOK) IsCode(code int) bool {
 	return code == 200
+}
+
+// Code gets the status code for the well known o k response
+func (o *WellKnownOK) Code() int {
+	return 200
 }
 
 func (o *WellKnownOK) Error() string {
@@ -140,6 +145,11 @@ func (o *WellKnownNotFound) IsServerError() bool {
 // IsCode returns true when this well known not found response a status code equal to that given
 func (o *WellKnownNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the well known not found response
+func (o *WellKnownNotFound) Code() int {
+	return 404
 }
 
 func (o *WellKnownNotFound) Error() string {

@@ -90,6 +90,11 @@ func (m *ConsentGrantRequest) ContextValidate(ctx context.Context, formats strfm
 func (m *ConsentGrantRequest) contextValidateContext(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Context != nil {
+
+		if swag.IsZero(m.Context) { // not required
+			return nil
+		}
+
 		if err := m.Context.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("context")

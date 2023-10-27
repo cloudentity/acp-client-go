@@ -117,6 +117,7 @@ func (m *OBWriteInternationalScheduledConsentResponse6DataInitiationInstructedAm
 func (m *OBWriteInternationalScheduledConsentResponse6DataInitiationInstructedAmount) contextValidateAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Amount != nil {
+
 		if err := m.Amount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Amount")
@@ -133,6 +134,7 @@ func (m *OBWriteInternationalScheduledConsentResponse6DataInitiationInstructedAm
 func (m *OBWriteInternationalScheduledConsentResponse6DataInitiationInstructedAmount) contextValidateCurrency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Currency != nil {
+
 		if err := m.Currency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Currency")

@@ -82,6 +82,11 @@ func (m *ConsentsWithGrants) contextValidateConsents(ctx context.Context, format
 	for i := 0; i < len(m.Consents); i++ {
 
 		if m.Consents[i] != nil {
+
+			if swag.IsZero(m.Consents[i]) { // not required
+				return nil
+			}
+
 			if err := m.Consents[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("consents" + "." + strconv.Itoa(i))

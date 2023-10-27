@@ -82,6 +82,11 @@ func (m *MFAMethods) contextValidateMfaMethods(ctx context.Context, formats strf
 	for i := 0; i < len(m.MfaMethods); i++ {
 
 		if m.MfaMethods[i] != nil {
+
+			if swag.IsZero(m.MfaMethods[i]) { // not required
+				return nil
+			}
+
 			if err := m.MfaMethods[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("mfa_methods" + "." + strconv.Itoa(i))

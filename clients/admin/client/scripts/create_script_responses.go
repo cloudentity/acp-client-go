@@ -54,7 +54,7 @@ func (o *CreateScriptReader) ReadResponse(response runtime.ClientResponse, consu
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /servers/{wid}/scripts] createScript", response, response.Code())
 	}
 }
 
@@ -69,6 +69,15 @@ CreateScriptCreated describes a response with status code 201, with default head
 Script
 */
 type CreateScriptCreated struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.Script
 }
 
@@ -97,6 +106,11 @@ func (o *CreateScriptCreated) IsCode(code int) bool {
 	return code == 201
 }
 
+// Code gets the status code for the create script created response
+func (o *CreateScriptCreated) Code() int {
+	return 201
+}
+
 func (o *CreateScriptCreated) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/scripts][%d] createScriptCreated  %+v", 201, o.Payload)
 }
@@ -110,6 +124,13 @@ func (o *CreateScriptCreated) GetPayload() *models.Script {
 }
 
 func (o *CreateScriptCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.Script)
 
@@ -129,7 +150,7 @@ func NewCreateScriptBadRequest() *CreateScriptBadRequest {
 /*
 CreateScriptBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type CreateScriptBadRequest struct {
 	Payload *models.Error
@@ -158,6 +179,11 @@ func (o *CreateScriptBadRequest) IsServerError() bool {
 // IsCode returns true when this create script bad request response a status code equal to that given
 func (o *CreateScriptBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the create script bad request response
+func (o *CreateScriptBadRequest) Code() int {
+	return 400
 }
 
 func (o *CreateScriptBadRequest) Error() string {
@@ -192,7 +218,7 @@ func NewCreateScriptUnauthorized() *CreateScriptUnauthorized {
 /*
 CreateScriptUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type CreateScriptUnauthorized struct {
 	Payload *models.Error
@@ -221,6 +247,11 @@ func (o *CreateScriptUnauthorized) IsServerError() bool {
 // IsCode returns true when this create script unauthorized response a status code equal to that given
 func (o *CreateScriptUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the create script unauthorized response
+func (o *CreateScriptUnauthorized) Code() int {
+	return 401
 }
 
 func (o *CreateScriptUnauthorized) Error() string {
@@ -255,7 +286,7 @@ func NewCreateScriptForbidden() *CreateScriptForbidden {
 /*
 CreateScriptForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type CreateScriptForbidden struct {
 	Payload *models.Error
@@ -284,6 +315,11 @@ func (o *CreateScriptForbidden) IsServerError() bool {
 // IsCode returns true when this create script forbidden response a status code equal to that given
 func (o *CreateScriptForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the create script forbidden response
+func (o *CreateScriptForbidden) Code() int {
+	return 403
 }
 
 func (o *CreateScriptForbidden) Error() string {
@@ -318,7 +354,7 @@ func NewCreateScriptTooManyRequests() *CreateScriptTooManyRequests {
 /*
 CreateScriptTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type CreateScriptTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +383,11 @@ func (o *CreateScriptTooManyRequests) IsServerError() bool {
 // IsCode returns true when this create script too many requests response a status code equal to that given
 func (o *CreateScriptTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the create script too many requests response
+func (o *CreateScriptTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *CreateScriptTooManyRequests) Error() string {

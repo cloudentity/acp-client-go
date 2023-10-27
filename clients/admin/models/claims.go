@@ -82,6 +82,11 @@ func (m *Claims) contextValidateClaims(ctx context.Context, formats strfmt.Regis
 	for i := 0; i < len(m.Claims); i++ {
 
 		if m.Claims[i] != nil {
+
+			if swag.IsZero(m.Claims[i]) { // not required
+				return nil
+			}
+
 			if err := m.Claims[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("claims" + "." + strconv.Itoa(i))

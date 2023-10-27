@@ -66,7 +66,7 @@ func (o *CreateGithubIDPReader) ReadResponse(response runtime.ClientResponse, co
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /servers/{wid}/idps/github] createGithubIDP", response, response.Code())
 	}
 }
 
@@ -109,6 +109,11 @@ func (o *CreateGithubIDPCreated) IsCode(code int) bool {
 	return code == 201
 }
 
+// Code gets the status code for the create github Id p created response
+func (o *CreateGithubIDPCreated) Code() int {
+	return 201
+}
+
 func (o *CreateGithubIDPCreated) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/github][%d] createGithubIdPCreated  %+v", 201, o.Payload)
 }
@@ -141,7 +146,7 @@ func NewCreateGithubIDPBadRequest() *CreateGithubIDPBadRequest {
 /*
 CreateGithubIDPBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type CreateGithubIDPBadRequest struct {
 	Payload *models.Error
@@ -170,6 +175,11 @@ func (o *CreateGithubIDPBadRequest) IsServerError() bool {
 // IsCode returns true when this create github Id p bad request response a status code equal to that given
 func (o *CreateGithubIDPBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the create github Id p bad request response
+func (o *CreateGithubIDPBadRequest) Code() int {
+	return 400
 }
 
 func (o *CreateGithubIDPBadRequest) Error() string {
@@ -204,7 +214,7 @@ func NewCreateGithubIDPUnauthorized() *CreateGithubIDPUnauthorized {
 /*
 CreateGithubIDPUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type CreateGithubIDPUnauthorized struct {
 	Payload *models.Error
@@ -233,6 +243,11 @@ func (o *CreateGithubIDPUnauthorized) IsServerError() bool {
 // IsCode returns true when this create github Id p unauthorized response a status code equal to that given
 func (o *CreateGithubIDPUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the create github Id p unauthorized response
+func (o *CreateGithubIDPUnauthorized) Code() int {
+	return 401
 }
 
 func (o *CreateGithubIDPUnauthorized) Error() string {
@@ -267,7 +282,7 @@ func NewCreateGithubIDPForbidden() *CreateGithubIDPForbidden {
 /*
 CreateGithubIDPForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type CreateGithubIDPForbidden struct {
 	Payload *models.Error
@@ -296,6 +311,11 @@ func (o *CreateGithubIDPForbidden) IsServerError() bool {
 // IsCode returns true when this create github Id p forbidden response a status code equal to that given
 func (o *CreateGithubIDPForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the create github Id p forbidden response
+func (o *CreateGithubIDPForbidden) Code() int {
+	return 403
 }
 
 func (o *CreateGithubIDPForbidden) Error() string {
@@ -330,7 +350,7 @@ func NewCreateGithubIDPNotFound() *CreateGithubIDPNotFound {
 /*
 CreateGithubIDPNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type CreateGithubIDPNotFound struct {
 	Payload *models.Error
@@ -359,6 +379,11 @@ func (o *CreateGithubIDPNotFound) IsServerError() bool {
 // IsCode returns true when this create github Id p not found response a status code equal to that given
 func (o *CreateGithubIDPNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the create github Id p not found response
+func (o *CreateGithubIDPNotFound) Code() int {
+	return 404
 }
 
 func (o *CreateGithubIDPNotFound) Error() string {
@@ -393,7 +418,7 @@ func NewCreateGithubIDPUnprocessableEntity() *CreateGithubIDPUnprocessableEntity
 /*
 CreateGithubIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type CreateGithubIDPUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +447,11 @@ func (o *CreateGithubIDPUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this create github Id p unprocessable entity response a status code equal to that given
 func (o *CreateGithubIDPUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the create github Id p unprocessable entity response
+func (o *CreateGithubIDPUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *CreateGithubIDPUnprocessableEntity) Error() string {
@@ -456,7 +486,7 @@ func NewCreateGithubIDPTooManyRequests() *CreateGithubIDPTooManyRequests {
 /*
 CreateGithubIDPTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type CreateGithubIDPTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +515,11 @@ func (o *CreateGithubIDPTooManyRequests) IsServerError() bool {
 // IsCode returns true when this create github Id p too many requests response a status code equal to that given
 func (o *CreateGithubIDPTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the create github Id p too many requests response
+func (o *CreateGithubIDPTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *CreateGithubIDPTooManyRequests) Error() string {

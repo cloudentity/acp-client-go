@@ -36,7 +36,7 @@ func (o *GetStylingReader) ReadResponse(response runtime.ClientResponse, consume
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /{aid}/styling] getStyling", response, response.Code())
 	}
 }
 
@@ -79,12 +79,17 @@ func (o *GetStylingOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get styling o k response
+func (o *GetStylingOK) Code() int {
+	return 200
+}
+
 func (o *GetStylingOK) Error() string {
-	return fmt.Sprintf("[GET /styling][%d] getStylingOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /{aid}/styling][%d] getStylingOK  %+v", 200, o.Payload)
 }
 
 func (o *GetStylingOK) String() string {
-	return fmt.Sprintf("[GET /styling][%d] getStylingOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /{aid}/styling][%d] getStylingOK  %+v", 200, o.Payload)
 }
 
 func (o *GetStylingOK) GetPayload() *models.Styling {
@@ -111,7 +116,7 @@ func NewGetStylingNotFound() *GetStylingNotFound {
 /*
 GetStylingNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetStylingNotFound struct {
 	Payload *models.Error
@@ -142,12 +147,17 @@ func (o *GetStylingNotFound) IsCode(code int) bool {
 	return code == 404
 }
 
+// Code gets the status code for the get styling not found response
+func (o *GetStylingNotFound) Code() int {
+	return 404
+}
+
 func (o *GetStylingNotFound) Error() string {
-	return fmt.Sprintf("[GET /styling][%d] getStylingNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /{aid}/styling][%d] getStylingNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetStylingNotFound) String() string {
-	return fmt.Sprintf("[GET /styling][%d] getStylingNotFound  %+v", 404, o.Payload)
+	return fmt.Sprintf("[GET /{aid}/styling][%d] getStylingNotFound  %+v", 404, o.Payload)
 }
 
 func (o *GetStylingNotFound) GetPayload() *models.Error {

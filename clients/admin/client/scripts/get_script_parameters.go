@@ -61,6 +61,14 @@ GetScriptParams contains all the parameters to send to the API endpoint
 */
 type GetScriptParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Script.
 
 	   ID of your script
@@ -139,6 +147,17 @@ func (o *GetScriptParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the get script params
+func (o *GetScriptParams) WithIfMatch(ifMatch *string) *GetScriptParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the get script params
+func (o *GetScriptParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithScript adds the script to the get script params
 func (o *GetScriptParams) WithScript(script string) *GetScriptParams {
 	o.SetScript(script)
@@ -168,6 +187,14 @@ func (o *GetScriptParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	// path param script
 	if err := r.SetPathParam("script", o.Script); err != nil {

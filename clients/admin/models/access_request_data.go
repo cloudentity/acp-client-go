@@ -36,6 +36,12 @@ type AccessRequestData struct {
 	// Matches one of allowed OAuth client grant types for a given client.
 	GrantType string `json:"grant_type,omitempty"`
 
+	// ID of the Identity Pool
+	IdentityPoolID string `json:"identity_pool_id,omitempty"`
+
+	// May act claims
+	MayActClaims map[string]interface{} `json:"may_act_claims,omitempty"`
+
 	// Stores information if the client application is a public one.
 	Public bool `json:"public,omitempty"`
 
@@ -63,6 +69,9 @@ type AccessRequestData struct {
 
 	// Token signature
 	TokenSignature string `json:"token_signature,omitempty"`
+
+	// Requester IP address obtained from True-Client-IP header.
+	TrueClientIP string `json:"true_client_ip,omitempty"`
 
 	// A characteristic string that lets servers and network peers identify the application, operating system, vendor, and/or version of the requesting user agent.
 	UserAgent string `json:"user_agent,omitempty"`

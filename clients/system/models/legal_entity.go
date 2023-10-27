@@ -72,6 +72,11 @@ func (m *LegalEntity) ContextValidate(ctx context.Context, formats strfmt.Regist
 func (m *LegalEntity) contextValidateParty(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Party != nil {
+
+		if swag.IsZero(m.Party) { // not required
+			return nil
+		}
+
 		if err := m.Party.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("party")

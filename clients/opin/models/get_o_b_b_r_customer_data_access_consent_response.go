@@ -26,7 +26,7 @@ type GetOBBRCustomerDataAccessConsentResponse struct {
 	// authentication context
 	AuthenticationContext AuthenticationContext `json:"authentication_context,omitempty"`
 
-	// Client identifier
+	// Client application identifier.
 	// Example: \"cauqo9c9vpbs0aj2b2v0\
 	ClientID string `json:"client_id,omitempty"`
 
@@ -46,7 +46,7 @@ type GetOBBRCustomerDataAccessConsentResponse struct {
 	// List of requested scopes
 	RequestedScopes []*RequestedScope `json:"requested_scopes"`
 
-	// Server / Workspace identifier
+	// Server / Workspace identifier.
 	// Example: \"server\
 	ServerID string `json:"server_id,omitempty"`
 
@@ -56,7 +56,7 @@ type GetOBBRCustomerDataAccessConsentResponse struct {
 	// Subject
 	Subject string `json:"subject,omitempty"`
 
-	// Tenant identifier
+	// Tenant identifier.
 	// Example: \"tenant\
 	TenantID string `json:"tenant_id,omitempty"`
 

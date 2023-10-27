@@ -69,6 +69,14 @@ type UpdateSAMLIDPParams struct {
 	*/
 	SAMLIDP *models.SAMLIDP
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Iid.
 
 	   IDP id
@@ -163,6 +171,17 @@ func (o *UpdateSAMLIDPParams) SetSAMLIDP(sAMLIDP *models.SAMLIDP) {
 	o.SAMLIDP = sAMLIDP
 }
 
+// WithIfMatch adds the ifMatch to the update s a m l ID p params
+func (o *UpdateSAMLIDPParams) WithIfMatch(ifMatch *string) *UpdateSAMLIDPParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the update s a m l ID p params
+func (o *UpdateSAMLIDPParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithIid adds the iid to the update s a m l ID p params
 func (o *UpdateSAMLIDPParams) WithIid(iid string) *UpdateSAMLIDPParams {
 	o.SetIid(iid)
@@ -194,6 +213,14 @@ func (o *UpdateSAMLIDPParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	var res []error
 	if o.SAMLIDP != nil {
 		if err := r.SetBodyParam(o.SAMLIDP); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

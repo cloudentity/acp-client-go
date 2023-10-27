@@ -54,7 +54,7 @@ func (o *DeleteMFAMethodReader) ReadResponse(response runtime.ClientResponse, co
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[DELETE /mfa-methods/{mfaID}] deleteMFAMethod", response, response.Code())
 	}
 }
 
@@ -96,6 +96,11 @@ func (o *DeleteMFAMethodNoContent) IsCode(code int) bool {
 	return code == 204
 }
 
+// Code gets the status code for the delete m f a method no content response
+func (o *DeleteMFAMethodNoContent) Code() int {
+	return 204
+}
+
 func (o *DeleteMFAMethodNoContent) Error() string {
 	return fmt.Sprintf("[DELETE /mfa-methods/{mfaID}][%d] deleteMFAMethodNoContent ", 204)
 }
@@ -117,7 +122,7 @@ func NewDeleteMFAMethodUnauthorized() *DeleteMFAMethodUnauthorized {
 /*
 DeleteMFAMethodUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type DeleteMFAMethodUnauthorized struct {
 	Payload *models.Error
@@ -146,6 +151,11 @@ func (o *DeleteMFAMethodUnauthorized) IsServerError() bool {
 // IsCode returns true when this delete m f a method unauthorized response a status code equal to that given
 func (o *DeleteMFAMethodUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the delete m f a method unauthorized response
+func (o *DeleteMFAMethodUnauthorized) Code() int {
+	return 401
 }
 
 func (o *DeleteMFAMethodUnauthorized) Error() string {
@@ -180,7 +190,7 @@ func NewDeleteMFAMethodForbidden() *DeleteMFAMethodForbidden {
 /*
 DeleteMFAMethodForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type DeleteMFAMethodForbidden struct {
 	Payload *models.Error
@@ -209,6 +219,11 @@ func (o *DeleteMFAMethodForbidden) IsServerError() bool {
 // IsCode returns true when this delete m f a method forbidden response a status code equal to that given
 func (o *DeleteMFAMethodForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the delete m f a method forbidden response
+func (o *DeleteMFAMethodForbidden) Code() int {
+	return 403
 }
 
 func (o *DeleteMFAMethodForbidden) Error() string {
@@ -243,7 +258,7 @@ func NewDeleteMFAMethodNotFound() *DeleteMFAMethodNotFound {
 /*
 DeleteMFAMethodNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type DeleteMFAMethodNotFound struct {
 	Payload *models.Error
@@ -272,6 +287,11 @@ func (o *DeleteMFAMethodNotFound) IsServerError() bool {
 // IsCode returns true when this delete m f a method not found response a status code equal to that given
 func (o *DeleteMFAMethodNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the delete m f a method not found response
+func (o *DeleteMFAMethodNotFound) Code() int {
+	return 404
 }
 
 func (o *DeleteMFAMethodNotFound) Error() string {
@@ -306,7 +326,7 @@ func NewDeleteMFAMethodTooManyRequests() *DeleteMFAMethodTooManyRequests {
 /*
 DeleteMFAMethodTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type DeleteMFAMethodTooManyRequests struct {
 	Payload *models.Error
@@ -335,6 +355,11 @@ func (o *DeleteMFAMethodTooManyRequests) IsServerError() bool {
 // IsCode returns true when this delete m f a method too many requests response a status code equal to that given
 func (o *DeleteMFAMethodTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the delete m f a method too many requests response
+func (o *DeleteMFAMethodTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *DeleteMFAMethodTooManyRequests) Error() string {

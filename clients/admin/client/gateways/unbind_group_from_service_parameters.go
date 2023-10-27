@@ -67,6 +67,14 @@ type UnbindGroupFromServiceParams struct {
 	// Gw.
 	Gw string
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -142,6 +150,17 @@ func (o *UnbindGroupFromServiceParams) SetGw(gw string) {
 	o.Gw = gw
 }
 
+// WithIfMatch adds the ifMatch to the unbind group from service params
+func (o *UnbindGroupFromServiceParams) WithIfMatch(ifMatch *string) *UnbindGroupFromServiceParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the unbind group from service params
+func (o *UnbindGroupFromServiceParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *UnbindGroupFromServiceParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -158,6 +177,14 @@ func (o *UnbindGroupFromServiceParams) WriteToRequest(r runtime.ClientRequest, r
 	// path param gw
 	if err := r.SetPathParam("gw", o.Gw); err != nil {
 		return err
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

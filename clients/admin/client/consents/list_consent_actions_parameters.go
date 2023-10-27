@@ -60,6 +60,15 @@ ListConsentActionsParams contains all the parameters to send to the API endpoint
 	Typically these are written to a http.Request.
 */
 type ListConsentActionsParams struct {
+
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -113,6 +122,17 @@ func (o *ListConsentActionsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the list consent actions params
+func (o *ListConsentActionsParams) WithIfMatch(ifMatch *string) *ListConsentActionsParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the list consent actions params
+func (o *ListConsentActionsParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *ListConsentActionsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -120,6 +140,14 @@ func (o *ListConsentActionsParams) WriteToRequest(r runtime.ClientRequest, reg s
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)

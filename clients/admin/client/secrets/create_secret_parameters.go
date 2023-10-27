@@ -66,6 +66,14 @@ type CreateSecretParams struct {
 	// Secret.
 	Secret *models.Secret
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Wid.
 
 	   Authorization server id
@@ -149,6 +157,17 @@ func (o *CreateSecretParams) SetSecret(secret *models.Secret) {
 	o.Secret = secret
 }
 
+// WithIfMatch adds the ifMatch to the create secret params
+func (o *CreateSecretParams) WithIfMatch(ifMatch *string) *CreateSecretParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the create secret params
+func (o *CreateSecretParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithWid adds the wid to the create secret params
 func (o *CreateSecretParams) WithWid(wid string) *CreateSecretParams {
 	o.SetWid(wid)
@@ -169,6 +188,14 @@ func (o *CreateSecretParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 	var res []error
 	if o.Secret != nil {
 		if err := r.SetBodyParam(o.Secret); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

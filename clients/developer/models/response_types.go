@@ -15,7 +15,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// ResponseTypes An array of OAuth client response types configured for a client application
+// ResponseTypes An array of allowed response types
 //
 // The array may consist of the following arguments:
 //

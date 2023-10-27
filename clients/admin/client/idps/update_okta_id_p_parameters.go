@@ -69,6 +69,14 @@ type UpdateOktaIDPParams struct {
 	*/
 	OktaIDP *models.OktaIDP
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Iid.
 
 	   IDP id
@@ -163,6 +171,17 @@ func (o *UpdateOktaIDPParams) SetOktaIDP(oktaIDP *models.OktaIDP) {
 	o.OktaIDP = oktaIDP
 }
 
+// WithIfMatch adds the ifMatch to the update okta ID p params
+func (o *UpdateOktaIDPParams) WithIfMatch(ifMatch *string) *UpdateOktaIDPParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the update okta ID p params
+func (o *UpdateOktaIDPParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithIid adds the iid to the update okta ID p params
 func (o *UpdateOktaIDPParams) WithIid(iid string) *UpdateOktaIDPParams {
 	o.SetIid(iid)
@@ -194,6 +213,14 @@ func (o *UpdateOktaIDPParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	var res []error
 	if o.OktaIDP != nil {
 		if err := r.SetBodyParam(o.OktaIDP); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

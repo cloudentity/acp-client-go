@@ -60,7 +60,7 @@ func (o *SetAutomaticKeyRotationReader) ReadResponse(response runtime.ClientResp
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /servers/{wid}/keys/automatic-key-rotation] setAutomaticKeyRotation", response, response.Code())
 	}
 }
 
@@ -75,6 +75,15 @@ SetAutomaticKeyRotationOK describes a response with status code 200, with defaul
 Automation key rotation
 */
 type SetAutomaticKeyRotationOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.AutomaticKeyRotation
 }
 
@@ -103,6 +112,11 @@ func (o *SetAutomaticKeyRotationOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the set automatic key rotation o k response
+func (o *SetAutomaticKeyRotationOK) Code() int {
+	return 200
+}
+
 func (o *SetAutomaticKeyRotationOK) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/keys/automatic-key-rotation][%d] setAutomaticKeyRotationOK  %+v", 200, o.Payload)
 }
@@ -116,6 +130,13 @@ func (o *SetAutomaticKeyRotationOK) GetPayload() *models.AutomaticKeyRotation {
 }
 
 func (o *SetAutomaticKeyRotationOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.AutomaticKeyRotation)
 
@@ -135,7 +156,7 @@ func NewSetAutomaticKeyRotationBadRequest() *SetAutomaticKeyRotationBadRequest {
 /*
 SetAutomaticKeyRotationBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type SetAutomaticKeyRotationBadRequest struct {
 	Payload *models.Error
@@ -164,6 +185,11 @@ func (o *SetAutomaticKeyRotationBadRequest) IsServerError() bool {
 // IsCode returns true when this set automatic key rotation bad request response a status code equal to that given
 func (o *SetAutomaticKeyRotationBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the set automatic key rotation bad request response
+func (o *SetAutomaticKeyRotationBadRequest) Code() int {
+	return 400
 }
 
 func (o *SetAutomaticKeyRotationBadRequest) Error() string {
@@ -198,7 +224,7 @@ func NewSetAutomaticKeyRotationUnauthorized() *SetAutomaticKeyRotationUnauthoriz
 /*
 SetAutomaticKeyRotationUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type SetAutomaticKeyRotationUnauthorized struct {
 	Payload *models.Error
@@ -227,6 +253,11 @@ func (o *SetAutomaticKeyRotationUnauthorized) IsServerError() bool {
 // IsCode returns true when this set automatic key rotation unauthorized response a status code equal to that given
 func (o *SetAutomaticKeyRotationUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the set automatic key rotation unauthorized response
+func (o *SetAutomaticKeyRotationUnauthorized) Code() int {
+	return 401
 }
 
 func (o *SetAutomaticKeyRotationUnauthorized) Error() string {
@@ -261,7 +292,7 @@ func NewSetAutomaticKeyRotationForbidden() *SetAutomaticKeyRotationForbidden {
 /*
 SetAutomaticKeyRotationForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type SetAutomaticKeyRotationForbidden struct {
 	Payload *models.Error
@@ -290,6 +321,11 @@ func (o *SetAutomaticKeyRotationForbidden) IsServerError() bool {
 // IsCode returns true when this set automatic key rotation forbidden response a status code equal to that given
 func (o *SetAutomaticKeyRotationForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the set automatic key rotation forbidden response
+func (o *SetAutomaticKeyRotationForbidden) Code() int {
+	return 403
 }
 
 func (o *SetAutomaticKeyRotationForbidden) Error() string {
@@ -324,7 +360,7 @@ func NewSetAutomaticKeyRotationNotFound() *SetAutomaticKeyRotationNotFound {
 /*
 SetAutomaticKeyRotationNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type SetAutomaticKeyRotationNotFound struct {
 	Payload *models.Error
@@ -353,6 +389,11 @@ func (o *SetAutomaticKeyRotationNotFound) IsServerError() bool {
 // IsCode returns true when this set automatic key rotation not found response a status code equal to that given
 func (o *SetAutomaticKeyRotationNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the set automatic key rotation not found response
+func (o *SetAutomaticKeyRotationNotFound) Code() int {
+	return 404
 }
 
 func (o *SetAutomaticKeyRotationNotFound) Error() string {
@@ -387,7 +428,7 @@ func NewSetAutomaticKeyRotationTooManyRequests() *SetAutomaticKeyRotationTooMany
 /*
 SetAutomaticKeyRotationTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type SetAutomaticKeyRotationTooManyRequests struct {
 	Payload *models.Error
@@ -416,6 +457,11 @@ func (o *SetAutomaticKeyRotationTooManyRequests) IsServerError() bool {
 // IsCode returns true when this set automatic key rotation too many requests response a status code equal to that given
 func (o *SetAutomaticKeyRotationTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the set automatic key rotation too many requests response
+func (o *SetAutomaticKeyRotationTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *SetAutomaticKeyRotationTooManyRequests) Error() string {

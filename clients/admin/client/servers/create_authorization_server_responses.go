@@ -72,7 +72,7 @@ func (o *CreateAuthorizationServerReader) ReadResponse(response runtime.ClientRe
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /servers] createAuthorizationServer", response, response.Code())
 	}
 }
 
@@ -87,6 +87,15 @@ CreateAuthorizationServerCreated describes a response with status code 201, with
 Server
 */
 type CreateAuthorizationServerCreated struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.ServerResponse
 }
 
@@ -115,6 +124,11 @@ func (o *CreateAuthorizationServerCreated) IsCode(code int) bool {
 	return code == 201
 }
 
+// Code gets the status code for the create authorization server created response
+func (o *CreateAuthorizationServerCreated) Code() int {
+	return 201
+}
+
 func (o *CreateAuthorizationServerCreated) Error() string {
 	return fmt.Sprintf("[POST /servers][%d] createAuthorizationServerCreated  %+v", 201, o.Payload)
 }
@@ -128,6 +142,13 @@ func (o *CreateAuthorizationServerCreated) GetPayload() *models.ServerResponse {
 }
 
 func (o *CreateAuthorizationServerCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.ServerResponse)
 
@@ -147,7 +168,7 @@ func NewCreateAuthorizationServerBadRequest() *CreateAuthorizationServerBadReque
 /*
 CreateAuthorizationServerBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type CreateAuthorizationServerBadRequest struct {
 	Payload *models.Error
@@ -176,6 +197,11 @@ func (o *CreateAuthorizationServerBadRequest) IsServerError() bool {
 // IsCode returns true when this create authorization server bad request response a status code equal to that given
 func (o *CreateAuthorizationServerBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the create authorization server bad request response
+func (o *CreateAuthorizationServerBadRequest) Code() int {
+	return 400
 }
 
 func (o *CreateAuthorizationServerBadRequest) Error() string {
@@ -210,7 +236,7 @@ func NewCreateAuthorizationServerUnauthorized() *CreateAuthorizationServerUnauth
 /*
 CreateAuthorizationServerUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type CreateAuthorizationServerUnauthorized struct {
 	Payload *models.Error
@@ -239,6 +265,11 @@ func (o *CreateAuthorizationServerUnauthorized) IsServerError() bool {
 // IsCode returns true when this create authorization server unauthorized response a status code equal to that given
 func (o *CreateAuthorizationServerUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the create authorization server unauthorized response
+func (o *CreateAuthorizationServerUnauthorized) Code() int {
+	return 401
 }
 
 func (o *CreateAuthorizationServerUnauthorized) Error() string {
@@ -273,7 +304,7 @@ func NewCreateAuthorizationServerForbidden() *CreateAuthorizationServerForbidden
 /*
 CreateAuthorizationServerForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type CreateAuthorizationServerForbidden struct {
 	Payload *models.Error
@@ -302,6 +333,11 @@ func (o *CreateAuthorizationServerForbidden) IsServerError() bool {
 // IsCode returns true when this create authorization server forbidden response a status code equal to that given
 func (o *CreateAuthorizationServerForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the create authorization server forbidden response
+func (o *CreateAuthorizationServerForbidden) Code() int {
+	return 403
 }
 
 func (o *CreateAuthorizationServerForbidden) Error() string {
@@ -336,7 +372,7 @@ func NewCreateAuthorizationServerNotFound() *CreateAuthorizationServerNotFound {
 /*
 CreateAuthorizationServerNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type CreateAuthorizationServerNotFound struct {
 	Payload *models.Error
@@ -365,6 +401,11 @@ func (o *CreateAuthorizationServerNotFound) IsServerError() bool {
 // IsCode returns true when this create authorization server not found response a status code equal to that given
 func (o *CreateAuthorizationServerNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the create authorization server not found response
+func (o *CreateAuthorizationServerNotFound) Code() int {
+	return 404
 }
 
 func (o *CreateAuthorizationServerNotFound) Error() string {
@@ -399,7 +440,7 @@ func NewCreateAuthorizationServerConflict() *CreateAuthorizationServerConflict {
 /*
 CreateAuthorizationServerConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type CreateAuthorizationServerConflict struct {
 	Payload *models.Error
@@ -428,6 +469,11 @@ func (o *CreateAuthorizationServerConflict) IsServerError() bool {
 // IsCode returns true when this create authorization server conflict response a status code equal to that given
 func (o *CreateAuthorizationServerConflict) IsCode(code int) bool {
 	return code == 409
+}
+
+// Code gets the status code for the create authorization server conflict response
+func (o *CreateAuthorizationServerConflict) Code() int {
+	return 409
 }
 
 func (o *CreateAuthorizationServerConflict) Error() string {
@@ -462,7 +508,7 @@ func NewCreateAuthorizationServerUnprocessableEntity() *CreateAuthorizationServe
 /*
 CreateAuthorizationServerUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type CreateAuthorizationServerUnprocessableEntity struct {
 	Payload *models.Error
@@ -491,6 +537,11 @@ func (o *CreateAuthorizationServerUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this create authorization server unprocessable entity response a status code equal to that given
 func (o *CreateAuthorizationServerUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the create authorization server unprocessable entity response
+func (o *CreateAuthorizationServerUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *CreateAuthorizationServerUnprocessableEntity) Error() string {
@@ -525,7 +576,7 @@ func NewCreateAuthorizationServerTooManyRequests() *CreateAuthorizationServerToo
 /*
 CreateAuthorizationServerTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type CreateAuthorizationServerTooManyRequests struct {
 	Payload *models.Error
@@ -554,6 +605,11 @@ func (o *CreateAuthorizationServerTooManyRequests) IsServerError() bool {
 // IsCode returns true when this create authorization server too many requests response a status code equal to that given
 func (o *CreateAuthorizationServerTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the create authorization server too many requests response
+func (o *CreateAuthorizationServerTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *CreateAuthorizationServerTooManyRequests) Error() string {

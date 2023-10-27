@@ -55,6 +55,11 @@ type OpenbankingUKDynamicClientRegistrationRequest struct {
 	// It is considered a good practice to limit the audience of the token for security purposes.
 	Audience []string `json:"audience"`
 
+	// Authorization details types
+	//
+	// Indicates what authorization details types the client can use.
+	AuthorizationDetailsTypes []AuthorizationDetailType `json:"authorization_details_types"`
+
 	// Algorithm used for encrypting authorization responses.
 	//
 	// If both signing and encryption are requested, the response is first signed, and then encrypted.
@@ -168,7 +173,7 @@ type OpenbankingUKDynamicClientRegistrationRequest struct {
 	// Enum: [RS256 ES256 PS256]
 	IDTokenSignedResponseAlg string `json:"id_token_signed_response_alg,omitempty"`
 
-	// An introspection endpoint authentication method configured for the client application.
+	// An introspection endpoint authentication method configured for the client application (read-only).
 	//
 	// If empty, the `token_endpoint_auth_method` is used.
 	//
@@ -212,6 +217,9 @@ type OpenbankingUKDynamicClientRegistrationRequest struct {
 	// Policy URL to read about how the profile data is used.
 	PolicyURI string `json:"policy_uri,omitempty"`
 
+	// Array of URLs to which a relying party may request that the user be redirected after a logout has been performed.
+	PostLogoutRedirectUris []string `json:"post_logout_redirect_uris"`
+
 	// privacy
 	Privacy *ClientPrivacy `json:"privacy,omitempty"`
 
@@ -246,7 +254,7 @@ type OpenbankingUKDynamicClientRegistrationRequest struct {
 	// response types
 	ResponseTypes ResponseTypes `json:"response_types,omitempty"`
 
-	// A revocation endpoint authentication method configured for the client application.
+	// A revocation endpoint authentication method configured for the client application (read-only).
 	// If empty, the `token_endpoint_auth_method` is used.
 	//
 	// Cloudentity supports the following client authentication methods:
@@ -400,6 +408,10 @@ func (m *OpenbankingUKDynamicClientRegistrationRequest) Validate(formats strfmt.
 		res = append(res, err)
 	}
 
+	if err := m.validateAuthorizationDetailsTypes(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateAuthorizationEncryptedResponseAlg(formats); err != nil {
 		res = append(res, err)
 	}
@@ -545,6 +557,27 @@ func (m *OpenbankingUKDynamicClientRegistrationRequest) validateAud(formats strf
 
 	if err := validate.Pattern("aud", "body", m.Aud, `^[0-9a-zA-Z]{1,18}$`); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *OpenbankingUKDynamicClientRegistrationRequest) validateAuthorizationDetailsTypes(formats strfmt.Registry) error {
+	if swag.IsZero(m.AuthorizationDetailsTypes) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.AuthorizationDetailsTypes); i++ {
+
+		if err := m.AuthorizationDetailsTypes[i].Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("authorization_details_types" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("authorization_details_types" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
 	}
 
 	return nil
@@ -1390,6 +1423,10 @@ func (m *OpenbankingUKDynamicClientRegistrationRequest) ContextValidate(ctx cont
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateAuthorizationDetailsTypes(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateJwks(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -1425,9 +1462,36 @@ func (m *OpenbankingUKDynamicClientRegistrationRequest) contextValidateApplicati
 	return nil
 }
 
+func (m *OpenbankingUKDynamicClientRegistrationRequest) contextValidateAuthorizationDetailsTypes(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.AuthorizationDetailsTypes); i++ {
+
+		if swag.IsZero(m.AuthorizationDetailsTypes[i]) { // not required
+			return nil
+		}
+
+		if err := m.AuthorizationDetailsTypes[i].ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("authorization_details_types" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("authorization_details_types" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
 func (m *OpenbankingUKDynamicClientRegistrationRequest) contextValidateJwks(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Jwks != nil {
+
+		if swag.IsZero(m.Jwks) { // not required
+			return nil
+		}
+
 		if err := m.Jwks.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("jwks")
@@ -1444,6 +1508,11 @@ func (m *OpenbankingUKDynamicClientRegistrationRequest) contextValidateJwks(ctx 
 func (m *OpenbankingUKDynamicClientRegistrationRequest) contextValidatePrivacy(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Privacy != nil {
+
+		if swag.IsZero(m.Privacy) { // not required
+			return nil
+		}
+
 		if err := m.Privacy.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("privacy")
@@ -1488,6 +1557,11 @@ func (m *OpenbankingUKDynamicClientRegistrationRequest) contextValidateResponseT
 func (m *OpenbankingUKDynamicClientRegistrationRequest) contextValidateTokenExchange(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.TokenExchange != nil {
+
+		if swag.IsZero(m.TokenExchange) { // not required
+			return nil
+		}
+
 		if err := m.TokenExchange.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("token_exchange")

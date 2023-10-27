@@ -13,7 +13,7 @@ import (
 
 // OpenbankingBrasilConsentV2Permission OpenbankingBrasilConsentV2Permission Permission
 //
-// Especifica os tipos de permisses de acesso s APIs no escopo do Open Banking Brasil - Fase 2, de acordo com os blocos de consentimento fornecidos pelo usurio e necessrios ao acesso a cada endpoint das APIs.
+// Especifica os tipos de permisses de acesso s APIs no escopo do Open Finance Brasil - Dados cadastrais e transacionais, de acordo com os blocos de consentimento fornecidos pelo usurio e necessrios ao acesso a cada endpoint das APIs. Esse array no deve ter duplicidade de itens.
 //
 // swagger:model OpenbankingBrasilConsentV2Permission
 type OpenbankingBrasilConsentV2Permission string

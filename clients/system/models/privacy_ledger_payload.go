@@ -130,6 +130,11 @@ func (m *PrivacyLedgerPayload) ContextValidate(ctx context.Context, formats strf
 func (m *PrivacyLedgerPayload) contextValidateConsentGranted(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ConsentGranted != nil {
+
+		if swag.IsZero(m.ConsentGranted) { // not required
+			return nil
+		}
+
 		if err := m.ConsentGranted.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("consent_granted")
@@ -146,6 +151,11 @@ func (m *PrivacyLedgerPayload) contextValidateConsentGranted(ctx context.Context
 func (m *PrivacyLedgerPayload) contextValidateConsentRevoked(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ConsentRevoked != nil {
+
+		if swag.IsZero(m.ConsentRevoked) { // not required
+			return nil
+		}
+
 		if err := m.ConsentRevoked.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("consent_revoked")
@@ -160,6 +170,10 @@ func (m *PrivacyLedgerPayload) contextValidateConsentRevoked(ctx context.Context
 }
 
 func (m *PrivacyLedgerPayload) contextValidateEventType(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.EventType) { // not required
+		return nil
+	}
 
 	if err := m.EventType.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

@@ -83,6 +83,11 @@ func (m *WebhooksResponse) contextValidateWebhooks(ctx context.Context, formats 
 	for i := 0; i < len(m.Webhooks); i++ {
 
 		if m.Webhooks[i] != nil {
+
+			if swag.IsZero(m.Webhooks[i]) { // not required
+				return nil
+			}
+
 			if err := m.Webhooks[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("webhooks" + "." + strconv.Itoa(i))

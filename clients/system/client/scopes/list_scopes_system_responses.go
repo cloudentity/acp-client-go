@@ -54,7 +54,7 @@ func (o *ListScopesSystemReader) ReadResponse(response runtime.ClientResponse, c
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /scopes/{wid}] listScopesSystem", response, response.Code())
 	}
 }
 
@@ -97,6 +97,11 @@ func (o *ListScopesSystemOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the list scopes system o k response
+func (o *ListScopesSystemOK) Code() int {
+	return 200
+}
+
 func (o *ListScopesSystemOK) Error() string {
 	return fmt.Sprintf("[GET /scopes/{wid}][%d] listScopesSystemOK  %+v", 200, o.Payload)
 }
@@ -129,7 +134,7 @@ func NewListScopesSystemUnauthorized() *ListScopesSystemUnauthorized {
 /*
 ListScopesSystemUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ListScopesSystemUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +163,11 @@ func (o *ListScopesSystemUnauthorized) IsServerError() bool {
 // IsCode returns true when this list scopes system unauthorized response a status code equal to that given
 func (o *ListScopesSystemUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the list scopes system unauthorized response
+func (o *ListScopesSystemUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ListScopesSystemUnauthorized) Error() string {
@@ -192,7 +202,7 @@ func NewListScopesSystemForbidden() *ListScopesSystemForbidden {
 /*
 ListScopesSystemForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ListScopesSystemForbidden struct {
 	Payload *models.Error
@@ -221,6 +231,11 @@ func (o *ListScopesSystemForbidden) IsServerError() bool {
 // IsCode returns true when this list scopes system forbidden response a status code equal to that given
 func (o *ListScopesSystemForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the list scopes system forbidden response
+func (o *ListScopesSystemForbidden) Code() int {
+	return 403
 }
 
 func (o *ListScopesSystemForbidden) Error() string {
@@ -255,7 +270,7 @@ func NewListScopesSystemNotFound() *ListScopesSystemNotFound {
 /*
 ListScopesSystemNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type ListScopesSystemNotFound struct {
 	Payload *models.Error
@@ -284,6 +299,11 @@ func (o *ListScopesSystemNotFound) IsServerError() bool {
 // IsCode returns true when this list scopes system not found response a status code equal to that given
 func (o *ListScopesSystemNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the list scopes system not found response
+func (o *ListScopesSystemNotFound) Code() int {
+	return 404
 }
 
 func (o *ListScopesSystemNotFound) Error() string {
@@ -318,7 +338,7 @@ func NewListScopesSystemTooManyRequests() *ListScopesSystemTooManyRequests {
 /*
 ListScopesSystemTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ListScopesSystemTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +367,11 @@ func (o *ListScopesSystemTooManyRequests) IsServerError() bool {
 // IsCode returns true when this list scopes system too many requests response a status code equal to that given
 func (o *ListScopesSystemTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the list scopes system too many requests response
+func (o *ListScopesSystemTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ListScopesSystemTooManyRequests) Error() string {

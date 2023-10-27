@@ -46,6 +46,8 @@ type ClientService interface {
 
 	ListClients(params *ListClientsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ListClientsOK, error)
 
+	ParseCertificate(params *ParseCertificateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ParseCertificateOK, error)
+
 	RevokeRotatedClientSecrets(params *RevokeRotatedClientSecretsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RevokeRotatedClientSecretsNoContent, error)
 
 	RotateClientSecret(params *RotateClientSecretParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*RotateClientSecretOK, error)
@@ -56,17 +58,18 @@ type ClientService interface {
 }
 
 /*
-	CreateClient creates new o auth s a m l client available values are saml oauth2 if omitted then oauth2 will be used as default
+	CreateClient creates o auth s a m l client
 
-	Client must be created under existing tenant and authorization server.
+	Create an OAuth 2.0 or SAML client application. Specify the required protocol type with the
 
-Authorization server id must be provided in the request body.
+`client_type` request body parameter.
 
-Client id and secret can be provided, otherwise are generated.
+Client must be created under existing tenant and authorization server. Provide the tenant identifier
+as the `{tenantID}` path value, and the authorization server with the `authorization_server_id`
+request body parameter.
 
-If grant type is not set, client will get authorization code grant type assigned with code as response type.
-
-Default token authentication method is client_secret_basic.
+The default values: `client_type`=`oauth2`, `grant_type`=`authorization_code`, `response_type`=`code`,
+`token_endpoint_auth_method`=`client_secret_basic`.
 */
 func (a *Client) CreateClient(params *CreateClientParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateClientCreated, error) {
 	// TODO: Validate the params before sending
@@ -380,6 +383,49 @@ func (a *Client) ListClients(params *ListClientsParams, authInfo runtime.ClientA
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for listClients: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	ParseCertificate parses certificate in p e m format
+
+	Parse certificate in PEM format.
+
+Returns certificate in JWKS format and additional details about subject DN and SAN entries.
+*/
+func (a *Client) ParseCertificate(params *ParseCertificateParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*ParseCertificateOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewParseCertificateParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "parseCertificate",
+		Method:             "POST",
+		PathPattern:        "/clients/parse-certificate",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ParseCertificateReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ParseCertificateOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for parseCertificate: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

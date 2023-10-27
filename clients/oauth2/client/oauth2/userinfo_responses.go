@@ -48,7 +48,7 @@ func (o *UserinfoReader) ReadResponse(response runtime.ClientResponse, consumer 
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /userinfo] userinfo", response, response.Code())
 	}
 }
 
@@ -89,6 +89,11 @@ func (o *UserinfoOK) IsServerError() bool {
 // IsCode returns true when this userinfo o k response a status code equal to that given
 func (o *UserinfoOK) IsCode(code int) bool {
 	return code == 200
+}
+
+// Code gets the status code for the userinfo o k response
+func (o *UserinfoOK) Code() int {
+	return 200
 }
 
 func (o *UserinfoOK) Error() string {
@@ -154,6 +159,11 @@ func (o *UserinfoUnauthorized) IsCode(code int) bool {
 	return code == 401
 }
 
+// Code gets the status code for the userinfo unauthorized response
+func (o *UserinfoUnauthorized) Code() int {
+	return 401
+}
+
 func (o *UserinfoUnauthorized) Error() string {
 	return fmt.Sprintf("[GET /userinfo][%d] userinfoUnauthorized  %+v", 401, o.Payload)
 }
@@ -217,6 +227,11 @@ func (o *UserinfoNotFound) IsCode(code int) bool {
 	return code == 404
 }
 
+// Code gets the status code for the userinfo not found response
+func (o *UserinfoNotFound) Code() int {
+	return 404
+}
+
 func (o *UserinfoNotFound) Error() string {
 	return fmt.Sprintf("[GET /userinfo][%d] userinfoNotFound  %+v", 404, o.Payload)
 }
@@ -278,6 +293,11 @@ func (o *UserinfoTooManyRequests) IsServerError() bool {
 // IsCode returns true when this userinfo too many requests response a status code equal to that given
 func (o *UserinfoTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the userinfo too many requests response
+func (o *UserinfoTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *UserinfoTooManyRequests) Error() string {

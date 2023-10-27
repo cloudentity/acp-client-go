@@ -69,6 +69,14 @@ type CreateSAMLIDPParams struct {
 	*/
 	SAMLIDP *models.SAMLIDP
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Wid.
 
 	   Authorization server id
@@ -152,6 +160,17 @@ func (o *CreateSAMLIDPParams) SetSAMLIDP(sAMLIDP *models.SAMLIDP) {
 	o.SAMLIDP = sAMLIDP
 }
 
+// WithIfMatch adds the ifMatch to the create s a m l ID p params
+func (o *CreateSAMLIDPParams) WithIfMatch(ifMatch *string) *CreateSAMLIDPParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the create s a m l ID p params
+func (o *CreateSAMLIDPParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithWid adds the wid to the create s a m l ID p params
 func (o *CreateSAMLIDPParams) WithWid(wid string) *CreateSAMLIDPParams {
 	o.SetWid(wid)
@@ -172,6 +191,14 @@ func (o *CreateSAMLIDPParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	var res []error
 	if o.SAMLIDP != nil {
 		if err := r.SetBodyParam(o.SAMLIDP); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

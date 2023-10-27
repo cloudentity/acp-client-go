@@ -117,6 +117,11 @@ func (m *ServerConsent) ContextValidate(ctx context.Context, formats strfmt.Regi
 func (m *ServerConsent) contextValidateCustom(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Custom != nil {
+
+		if swag.IsZero(m.Custom) { // not required
+			return nil
+		}
+
 		if err := m.Custom.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("custom")
@@ -133,6 +138,11 @@ func (m *ServerConsent) contextValidateCustom(ctx context.Context, formats strfm
 func (m *ServerConsent) contextValidateOpenbanking(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Openbanking != nil {
+
+		if swag.IsZero(m.Openbanking) { // not required
+			return nil
+		}
+
 		if err := m.Openbanking.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("openbanking")

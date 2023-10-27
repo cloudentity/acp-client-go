@@ -246,6 +246,11 @@ func (m *ConsentWithGrant) contextValidateInternalServices(ctx context.Context, 
 	for i := 0; i < len(m.InternalServices); i++ {
 
 		if m.InternalServices[i] != nil {
+
+			if swag.IsZero(m.InternalServices[i]) { // not required
+				return nil
+			}
+
 			if err := m.InternalServices[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("internal_services" + "." + strconv.Itoa(i))
@@ -266,6 +271,11 @@ func (m *ConsentWithGrant) contextValidatePiiCategories(ctx context.Context, for
 	for i := 0; i < len(m.PiiCategories); i++ {
 
 		if m.PiiCategories[i] != nil {
+
+			if swag.IsZero(m.PiiCategories[i]) { // not required
+				return nil
+			}
+
 			if err := m.PiiCategories[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("pii_categories" + "." + strconv.Itoa(i))
@@ -286,6 +296,11 @@ func (m *ConsentWithGrant) contextValidateThirdPartyServices(ctx context.Context
 	for i := 0; i < len(m.ThirdPartyServices); i++ {
 
 		if m.ThirdPartyServices[i] != nil {
+
+			if swag.IsZero(m.ThirdPartyServices[i]) { // not required
+				return nil
+			}
+
 			if err := m.ThirdPartyServices[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("third_party_services" + "." + strconv.Itoa(i))

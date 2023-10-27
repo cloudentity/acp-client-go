@@ -34,6 +34,8 @@ type ClientService interface {
 
 	CreateDataAccessConsentDeprecated(params *CreateDataAccessConsentDeprecatedParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateDataAccessConsentDeprecatedCreated, error)
 
+	CreateDataAccessConsentExtension(params *CreateDataAccessConsentExtensionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateDataAccessConsentExtensionOK, error)
+
 	CreateDataAccessConsentV2(params *CreateDataAccessConsentV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateDataAccessConsentV2Created, error)
 
 	CreatePaymentConsent(params *CreatePaymentConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreatePaymentConsentCreated, error)
@@ -53,6 +55,8 @@ type ClientService interface {
 	GetDataAccessConsent(params *GetDataAccessConsentParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDataAccessConsentOK, error)
 
 	GetDataAccessConsentDeprecated(params *GetDataAccessConsentDeprecatedParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDataAccessConsentDeprecatedOK, error)
+
+	GetDataAccessConsentExtensions(params *GetDataAccessConsentExtensionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDataAccessConsentExtensionsOK, error)
 
 	GetDataAccessConsentV2(params *GetDataAccessConsentV2Params, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDataAccessConsentV2OK, error)
 
@@ -176,6 +180,57 @@ func (a *Client) CreateDataAccessConsentDeprecated(params *CreateDataAccessConse
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for CreateDataAccessConsentDeprecated: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	CreateDataAccessConsentExtension extends a data access v2 consent
+
+	Extend the expiration time on an already authorised data access v2 consent. Pass the required consent identifier
+
+in the path.
+
+This endpoint is used by a Payment Initiation Service Provider (PISP).
+
+For authorization, pass the `Authorization: Bearer` with a token as a bearer value. To obtain the token and include
+the required scopes, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+Find the scope list in the AUTHORIZATIONS block.
+*/
+func (a *Client) CreateDataAccessConsentExtension(params *CreateDataAccessConsentExtensionParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*CreateDataAccessConsentExtensionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateDataAccessConsentExtensionParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "CreateDataAccessConsentExtension",
+		Method:             "POST",
+		PathPattern:        "/open-banking/consents/v2/consents/{consentID}/extends",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateDataAccessConsentExtensionReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CreateDataAccessConsentExtensionOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for CreateDataAccessConsentExtension: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -671,6 +726,57 @@ func (a *Client) GetDataAccessConsentDeprecated(params *GetDataAccessConsentDepr
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for GetDataAccessConsentDeprecated: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+	GetDataAccessConsentExtensions gets data access consent extensions
+
+	Retrieve the details of consent extension. Pass the required consent identifier
+
+in the path.
+
+This endpoint is used by a Payment Initiation Service Provider (PISP).
+
+For authorization, pass the `Authorization: Bearer` with a token as a bearer value. To obtain the token and include
+the required scopes, apply the
+[Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+Find the scope list in the AUTHORIZATIONS block.
+*/
+func (a *Client) GetDataAccessConsentExtensions(params *GetDataAccessConsentExtensionsParams, authInfo runtime.ClientAuthInfoWriter, opts ...ClientOption) (*GetDataAccessConsentExtensionsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetDataAccessConsentExtensionsParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "GetDataAccessConsentExtensions",
+		Method:             "GET",
+		PathPattern:        "/open-banking/consents/v2/consents/{consentID}/extends",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetDataAccessConsentExtensionsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*GetDataAccessConsentExtensionsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for GetDataAccessConsentExtensions: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

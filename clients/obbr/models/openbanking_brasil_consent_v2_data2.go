@@ -41,7 +41,7 @@ type OpenbankingBrasilConsentV2Data2 struct {
 	// Format: date-time
 	CreationDateTime strfmt.DateTime `json:"creationDateTime"`
 
-	// Data e hora de expirao da permisso. De preenchimento obrigatrio, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format).
+	// Data e hora de expirao da permisso. De preenchimento obrigatrio, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC (UTC time format).
 	// Example: 2021-05-21T08:30:00Z
 	// Required: true
 	// Format: date-time
@@ -52,9 +52,6 @@ type OpenbankingBrasilConsentV2Data2 struct {
 	// Required: true
 	// Min Items: 1
 	Permissions []OpenbankingBrasilConsentV2Permission1 `json:"permissions"`
-
-	// rejection
-	Rejection *OpenbankingBrasilConsentV2Rejection `json:"rejection,omitempty"`
 
 	// status
 	// Required: true
@@ -84,10 +81,6 @@ func (m *OpenbankingBrasilConsentV2Data2) Validate(formats strfmt.Registry) erro
 	}
 
 	if err := m.validatePermissions(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateRejection(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -176,25 +169,6 @@ func (m *OpenbankingBrasilConsentV2Data2) validatePermissions(formats strfmt.Reg
 	return nil
 }
 
-func (m *OpenbankingBrasilConsentV2Data2) validateRejection(formats strfmt.Registry) error {
-	if swag.IsZero(m.Rejection) { // not required
-		return nil
-	}
-
-	if m.Rejection != nil {
-		if err := m.Rejection.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("rejection")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("rejection")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 func (m *OpenbankingBrasilConsentV2Data2) validateStatus(formats strfmt.Registry) error {
 
 	if err := validate.Required("status", "body", m.Status); err != nil {
@@ -240,10 +214,6 @@ func (m *OpenbankingBrasilConsentV2Data2) ContextValidate(ctx context.Context, f
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateRejection(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateStatus(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -271,27 +241,6 @@ func (m *OpenbankingBrasilConsentV2Data2) contextValidatePermissions(ctx context
 			return err
 		}
 
-	}
-
-	return nil
-}
-
-func (m *OpenbankingBrasilConsentV2Data2) contextValidateRejection(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Rejection != nil {
-
-		if swag.IsZero(m.Rejection) { // not required
-			return nil
-		}
-
-		if err := m.Rejection.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("rejection")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("rejection")
-			}
-			return err
-		}
 	}
 
 	return nil

@@ -61,6 +61,14 @@ GetPolicyParams contains all the parameters to send to the API endpoint
 */
 type GetPolicyParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Pid.
 
 	   ID of your policy
@@ -120,6 +128,17 @@ func (o *GetPolicyParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the get policy params
+func (o *GetPolicyParams) WithIfMatch(ifMatch *string) *GetPolicyParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the get policy params
+func (o *GetPolicyParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithPid adds the pid to the get policy params
 func (o *GetPolicyParams) WithPid(pid string) *GetPolicyParams {
 	o.SetPid(pid)
@@ -138,6 +157,14 @@ func (o *GetPolicyParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	// path param pid
 	if err := r.SetPathParam("pid", o.Pid); err != nil {

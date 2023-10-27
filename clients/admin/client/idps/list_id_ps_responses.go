@@ -60,7 +60,7 @@ func (o *ListIDPsReader) ReadResponse(response runtime.ClientResponse, consumer 
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /servers/{wid}/idps] listIDPs", response, response.Code())
 	}
 }
 
@@ -75,6 +75,15 @@ ListIDPsOK describes a response with status code 200, with default header values
 IDP
 */
 type ListIDPsOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.IDPsResponse
 }
 
@@ -103,6 +112,11 @@ func (o *ListIDPsOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the list Id ps o k response
+func (o *ListIDPsOK) Code() int {
+	return 200
+}
+
 func (o *ListIDPsOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/idps][%d] listIdPsOK  %+v", 200, o.Payload)
 }
@@ -116,6 +130,13 @@ func (o *ListIDPsOK) GetPayload() *models.IDPsResponse {
 }
 
 func (o *ListIDPsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.IDPsResponse)
 
@@ -135,7 +156,7 @@ func NewListIDPsBadRequest() *ListIDPsBadRequest {
 /*
 ListIDPsBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type ListIDPsBadRequest struct {
 	Payload *models.Error
@@ -164,6 +185,11 @@ func (o *ListIDPsBadRequest) IsServerError() bool {
 // IsCode returns true when this list Id ps bad request response a status code equal to that given
 func (o *ListIDPsBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the list Id ps bad request response
+func (o *ListIDPsBadRequest) Code() int {
+	return 400
 }
 
 func (o *ListIDPsBadRequest) Error() string {
@@ -198,7 +224,7 @@ func NewListIDPsUnauthorized() *ListIDPsUnauthorized {
 /*
 ListIDPsUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ListIDPsUnauthorized struct {
 	Payload *models.Error
@@ -227,6 +253,11 @@ func (o *ListIDPsUnauthorized) IsServerError() bool {
 // IsCode returns true when this list Id ps unauthorized response a status code equal to that given
 func (o *ListIDPsUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the list Id ps unauthorized response
+func (o *ListIDPsUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ListIDPsUnauthorized) Error() string {
@@ -261,7 +292,7 @@ func NewListIDPsForbidden() *ListIDPsForbidden {
 /*
 ListIDPsForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ListIDPsForbidden struct {
 	Payload *models.Error
@@ -290,6 +321,11 @@ func (o *ListIDPsForbidden) IsServerError() bool {
 // IsCode returns true when this list Id ps forbidden response a status code equal to that given
 func (o *ListIDPsForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the list Id ps forbidden response
+func (o *ListIDPsForbidden) Code() int {
+	return 403
 }
 
 func (o *ListIDPsForbidden) Error() string {
@@ -324,7 +360,7 @@ func NewListIDPsNotFound() *ListIDPsNotFound {
 /*
 ListIDPsNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type ListIDPsNotFound struct {
 	Payload *models.Error
@@ -353,6 +389,11 @@ func (o *ListIDPsNotFound) IsServerError() bool {
 // IsCode returns true when this list Id ps not found response a status code equal to that given
 func (o *ListIDPsNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the list Id ps not found response
+func (o *ListIDPsNotFound) Code() int {
+	return 404
 }
 
 func (o *ListIDPsNotFound) Error() string {
@@ -387,7 +428,7 @@ func NewListIDPsTooManyRequests() *ListIDPsTooManyRequests {
 /*
 ListIDPsTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ListIDPsTooManyRequests struct {
 	Payload *models.Error
@@ -416,6 +457,11 @@ func (o *ListIDPsTooManyRequests) IsServerError() bool {
 // IsCode returns true when this list Id ps too many requests response a status code equal to that given
 func (o *ListIDPsTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the list Id ps too many requests response
+func (o *ListIDPsTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ListIDPsTooManyRequests) Error() string {

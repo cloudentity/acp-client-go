@@ -26,6 +26,17 @@ type IDPDiscoverySettings struct {
 	// instantly redirected to their IDP configured for the user's email domain.
 	Domains []IDPDomain `json:"domains"`
 
+	// When enabled, this provider will appear on the selection list, in case the discovery process
+	// could not find a matching provider. This can be used to limit the username enumeration attacks
+	// and at least one of the providers is recommended to be set as fallback provider.
+	FallbackProvider bool `json:"fallback_provider,omitempty"`
+
+	// When enabled, the system will first attempt to find the identifier in the corresponding user store.
+	//
+	// This function is only applicable for Identity Pools and Identity Providers that have Provisioning
+	// mechanism activated.
+	IdentifierBasedMatching bool `json:"identifier_based_matching,omitempty"`
+
 	// If the intelligent IDP discovery is enabled and the instant redirect flag is on, the user is
 	// instantly redirected to a proper Identity Provider as soon as a match is hit based on the
 	// domain when a user is typing their email in the username field
@@ -84,6 +95,10 @@ func (m *IDPDiscoverySettings) ContextValidate(ctx context.Context, formats strf
 func (m *IDPDiscoverySettings) contextValidateDomains(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.Domains); i++ {
+
+		if swag.IsZero(m.Domains[i]) { // not required
+			return nil
+		}
 
 		if err := m.Domains[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {

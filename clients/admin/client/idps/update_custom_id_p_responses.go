@@ -66,7 +66,7 @@ func (o *UpdateCustomIDPReader) ReadResponse(response runtime.ClientResponse, co
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /servers/{wid}/idps/custom/{iid}] updateCustomIDP", response, response.Code())
 	}
 }
 
@@ -109,6 +109,11 @@ func (o *UpdateCustomIDPOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the update custom Id p o k response
+func (o *UpdateCustomIDPOK) Code() int {
+	return 200
+}
+
 func (o *UpdateCustomIDPOK) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/custom/{iid}][%d] updateCustomIdPOK  %+v", 200, o.Payload)
 }
@@ -141,7 +146,7 @@ func NewUpdateCustomIDPBadRequest() *UpdateCustomIDPBadRequest {
 /*
 UpdateCustomIDPBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type UpdateCustomIDPBadRequest struct {
 	Payload *models.Error
@@ -170,6 +175,11 @@ func (o *UpdateCustomIDPBadRequest) IsServerError() bool {
 // IsCode returns true when this update custom Id p bad request response a status code equal to that given
 func (o *UpdateCustomIDPBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the update custom Id p bad request response
+func (o *UpdateCustomIDPBadRequest) Code() int {
+	return 400
 }
 
 func (o *UpdateCustomIDPBadRequest) Error() string {
@@ -204,7 +214,7 @@ func NewUpdateCustomIDPUnauthorized() *UpdateCustomIDPUnauthorized {
 /*
 UpdateCustomIDPUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type UpdateCustomIDPUnauthorized struct {
 	Payload *models.Error
@@ -233,6 +243,11 @@ func (o *UpdateCustomIDPUnauthorized) IsServerError() bool {
 // IsCode returns true when this update custom Id p unauthorized response a status code equal to that given
 func (o *UpdateCustomIDPUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the update custom Id p unauthorized response
+func (o *UpdateCustomIDPUnauthorized) Code() int {
+	return 401
 }
 
 func (o *UpdateCustomIDPUnauthorized) Error() string {
@@ -267,7 +282,7 @@ func NewUpdateCustomIDPForbidden() *UpdateCustomIDPForbidden {
 /*
 UpdateCustomIDPForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type UpdateCustomIDPForbidden struct {
 	Payload *models.Error
@@ -296,6 +311,11 @@ func (o *UpdateCustomIDPForbidden) IsServerError() bool {
 // IsCode returns true when this update custom Id p forbidden response a status code equal to that given
 func (o *UpdateCustomIDPForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the update custom Id p forbidden response
+func (o *UpdateCustomIDPForbidden) Code() int {
+	return 403
 }
 
 func (o *UpdateCustomIDPForbidden) Error() string {
@@ -330,7 +350,7 @@ func NewUpdateCustomIDPNotFound() *UpdateCustomIDPNotFound {
 /*
 UpdateCustomIDPNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type UpdateCustomIDPNotFound struct {
 	Payload *models.Error
@@ -359,6 +379,11 @@ func (o *UpdateCustomIDPNotFound) IsServerError() bool {
 // IsCode returns true when this update custom Id p not found response a status code equal to that given
 func (o *UpdateCustomIDPNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the update custom Id p not found response
+func (o *UpdateCustomIDPNotFound) Code() int {
+	return 404
 }
 
 func (o *UpdateCustomIDPNotFound) Error() string {
@@ -393,7 +418,7 @@ func NewUpdateCustomIDPUnprocessableEntity() *UpdateCustomIDPUnprocessableEntity
 /*
 UpdateCustomIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type UpdateCustomIDPUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +447,11 @@ func (o *UpdateCustomIDPUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this update custom Id p unprocessable entity response a status code equal to that given
 func (o *UpdateCustomIDPUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the update custom Id p unprocessable entity response
+func (o *UpdateCustomIDPUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *UpdateCustomIDPUnprocessableEntity) Error() string {
@@ -456,7 +486,7 @@ func NewUpdateCustomIDPTooManyRequests() *UpdateCustomIDPTooManyRequests {
 /*
 UpdateCustomIDPTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type UpdateCustomIDPTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +515,11 @@ func (o *UpdateCustomIDPTooManyRequests) IsServerError() bool {
 // IsCode returns true when this update custom Id p too many requests response a status code equal to that given
 func (o *UpdateCustomIDPTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the update custom Id p too many requests response
+func (o *UpdateCustomIDPTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *UpdateCustomIDPTooManyRequests) Error() string {

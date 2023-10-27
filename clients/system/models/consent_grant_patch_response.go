@@ -127,6 +127,11 @@ func (m *ConsentGrantPatchResponse) contextValidateConsents(ctx context.Context,
 	for i := 0; i < len(m.Consents); i++ {
 
 		if m.Consents[i] != nil {
+
+			if swag.IsZero(m.Consents[i]) { // not required
+				return nil
+			}
+
 			if err := m.Consents[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("consents" + "." + strconv.Itoa(i))
@@ -145,6 +150,11 @@ func (m *ConsentGrantPatchResponse) contextValidateConsents(ctx context.Context,
 func (m *ConsentGrantPatchResponse) contextValidateContext(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Context != nil {
+
+		if swag.IsZero(m.Context) { // not required
+			return nil
+		}
+
 		if err := m.Context.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("context")

@@ -60,7 +60,7 @@ func (o *DeleteClientReader) ReadResponse(response runtime.ClientResponse, consu
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[DELETE /clients/{cid}] deleteClient", response, response.Code())
 	}
 }
 
@@ -102,6 +102,11 @@ func (o *DeleteClientNoContent) IsCode(code int) bool {
 	return code == 204
 }
 
+// Code gets the status code for the delete client no content response
+func (o *DeleteClientNoContent) Code() int {
+	return 204
+}
+
 func (o *DeleteClientNoContent) Error() string {
 	return fmt.Sprintf("[DELETE /clients/{cid}][%d] deleteClientNoContent ", 204)
 }
@@ -123,7 +128,7 @@ func NewDeleteClientBadRequest() *DeleteClientBadRequest {
 /*
 DeleteClientBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type DeleteClientBadRequest struct {
 	Payload *models.Error
@@ -152,6 +157,11 @@ func (o *DeleteClientBadRequest) IsServerError() bool {
 // IsCode returns true when this delete client bad request response a status code equal to that given
 func (o *DeleteClientBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the delete client bad request response
+func (o *DeleteClientBadRequest) Code() int {
+	return 400
 }
 
 func (o *DeleteClientBadRequest) Error() string {
@@ -186,7 +196,7 @@ func NewDeleteClientUnauthorized() *DeleteClientUnauthorized {
 /*
 DeleteClientUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type DeleteClientUnauthorized struct {
 	Payload *models.Error
@@ -215,6 +225,11 @@ func (o *DeleteClientUnauthorized) IsServerError() bool {
 // IsCode returns true when this delete client unauthorized response a status code equal to that given
 func (o *DeleteClientUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the delete client unauthorized response
+func (o *DeleteClientUnauthorized) Code() int {
+	return 401
 }
 
 func (o *DeleteClientUnauthorized) Error() string {
@@ -249,7 +264,7 @@ func NewDeleteClientForbidden() *DeleteClientForbidden {
 /*
 DeleteClientForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type DeleteClientForbidden struct {
 	Payload *models.Error
@@ -278,6 +293,11 @@ func (o *DeleteClientForbidden) IsServerError() bool {
 // IsCode returns true when this delete client forbidden response a status code equal to that given
 func (o *DeleteClientForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the delete client forbidden response
+func (o *DeleteClientForbidden) Code() int {
+	return 403
 }
 
 func (o *DeleteClientForbidden) Error() string {
@@ -312,7 +332,7 @@ func NewDeleteClientNotFound() *DeleteClientNotFound {
 /*
 DeleteClientNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type DeleteClientNotFound struct {
 	Payload *models.Error
@@ -341,6 +361,11 @@ func (o *DeleteClientNotFound) IsServerError() bool {
 // IsCode returns true when this delete client not found response a status code equal to that given
 func (o *DeleteClientNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the delete client not found response
+func (o *DeleteClientNotFound) Code() int {
+	return 404
 }
 
 func (o *DeleteClientNotFound) Error() string {
@@ -375,7 +400,7 @@ func NewDeleteClientTooManyRequests() *DeleteClientTooManyRequests {
 /*
 DeleteClientTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type DeleteClientTooManyRequests struct {
 	Payload *models.Error
@@ -404,6 +429,11 @@ func (o *DeleteClientTooManyRequests) IsServerError() bool {
 // IsCode returns true when this delete client too many requests response a status code equal to that given
 func (o *DeleteClientTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the delete client too many requests response
+func (o *DeleteClientTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *DeleteClientTooManyRequests) Error() string {

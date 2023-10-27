@@ -22,7 +22,7 @@ type AuditEvent struct {
 
 	// Name of an action that was performed for a given event subject.
 	// Example: created
-	// Enum: [authenticated authorized unauthorized created updated deleted generated requested confirmed accepted rejected revoked issued denied granted attempted failed succeeded sent not_sent]
+	// Enum: [authenticated authorized unauthorized created updated deleted generated requested confirmed accepted rejected revoked notified issued denied granted attempted failed succeeded sent not_sent executed]
 	Action string `json:"action,omitempty"`
 
 	// Additional audit event context.
@@ -33,7 +33,7 @@ type AuditEvent struct {
 
 	// Resource or entity that is a subject of a given audit event.
 	// Example: client
-	// Enum: [request gateway_request gateway_policy policy client login consent client_consents authorization_code access_token saml_assertion scopes otp user selfuser schema pool password bruteforce dcr]
+	// Enum: [request gateway_request gateway_policy policy client credential login post_authn consent client_consents customer_consents authorization_code access_token saml_assertion scopes otp user selfuser schema pool password bruteforce dcr script role task jit tokens service server]
 	EventSubject string `json:"event_subject,omitempty"`
 
 	// metadata
@@ -87,7 +87,7 @@ var auditEventTypeActionPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["authenticated","authorized","unauthorized","created","updated","deleted","generated","requested","confirmed","accepted","rejected","revoked","issued","denied","granted","attempted","failed","succeeded","sent","not_sent"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["authenticated","authorized","unauthorized","created","updated","deleted","generated","requested","confirmed","accepted","rejected","revoked","notified","issued","denied","granted","attempted","failed","succeeded","sent","not_sent","executed"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -133,6 +133,9 @@ const (
 	// AuditEventActionRevoked captures enum value "revoked"
 	AuditEventActionRevoked string = "revoked"
 
+	// AuditEventActionNotified captures enum value "notified"
+	AuditEventActionNotified string = "notified"
+
 	// AuditEventActionIssued captures enum value "issued"
 	AuditEventActionIssued string = "issued"
 
@@ -156,6 +159,9 @@ const (
 
 	// AuditEventActionNotSent captures enum value "not_sent"
 	AuditEventActionNotSent string = "not_sent"
+
+	// AuditEventActionExecuted captures enum value "executed"
+	AuditEventActionExecuted string = "executed"
 )
 
 // prop value enum
@@ -183,7 +189,7 @@ var auditEventTypeEventSubjectPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["request","gateway_request","gateway_policy","policy","client","login","consent","client_consents","authorization_code","access_token","saml_assertion","scopes","otp","user","selfuser","schema","pool","password","bruteforce","dcr"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["request","gateway_request","gateway_policy","policy","client","credential","login","post_authn","consent","client_consents","customer_consents","authorization_code","access_token","saml_assertion","scopes","otp","user","selfuser","schema","pool","password","bruteforce","dcr","script","role","task","jit","tokens","service","server"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -208,14 +214,23 @@ const (
 	// AuditEventEventSubjectClient captures enum value "client"
 	AuditEventEventSubjectClient string = "client"
 
+	// AuditEventEventSubjectCredential captures enum value "credential"
+	AuditEventEventSubjectCredential string = "credential"
+
 	// AuditEventEventSubjectLogin captures enum value "login"
 	AuditEventEventSubjectLogin string = "login"
+
+	// AuditEventEventSubjectPostAuthn captures enum value "post_authn"
+	AuditEventEventSubjectPostAuthn string = "post_authn"
 
 	// AuditEventEventSubjectConsent captures enum value "consent"
 	AuditEventEventSubjectConsent string = "consent"
 
 	// AuditEventEventSubjectClientConsents captures enum value "client_consents"
 	AuditEventEventSubjectClientConsents string = "client_consents"
+
+	// AuditEventEventSubjectCustomerConsents captures enum value "customer_consents"
+	AuditEventEventSubjectCustomerConsents string = "customer_consents"
 
 	// AuditEventEventSubjectAuthorizationCode captures enum value "authorization_code"
 	AuditEventEventSubjectAuthorizationCode string = "authorization_code"
@@ -252,6 +267,27 @@ const (
 
 	// AuditEventEventSubjectDcr captures enum value "dcr"
 	AuditEventEventSubjectDcr string = "dcr"
+
+	// AuditEventEventSubjectScript captures enum value "script"
+	AuditEventEventSubjectScript string = "script"
+
+	// AuditEventEventSubjectRole captures enum value "role"
+	AuditEventEventSubjectRole string = "role"
+
+	// AuditEventEventSubjectTask captures enum value "task"
+	AuditEventEventSubjectTask string = "task"
+
+	// AuditEventEventSubjectJit captures enum value "jit"
+	AuditEventEventSubjectJit string = "jit"
+
+	// AuditEventEventSubjectTokens captures enum value "tokens"
+	AuditEventEventSubjectTokens string = "tokens"
+
+	// AuditEventEventSubjectService captures enum value "service"
+	AuditEventEventSubjectService string = "service"
+
+	// AuditEventEventSubjectServer captures enum value "server"
+	AuditEventEventSubjectServer string = "server"
 )
 
 // prop value enum
@@ -346,6 +382,11 @@ func (m *AuditEvent) ContextValidate(ctx context.Context, formats strfmt.Registr
 func (m *AuditEvent) contextValidateMetadata(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Metadata != nil {
+
+		if swag.IsZero(m.Metadata) { // not required
+			return nil
+		}
+
 		if err := m.Metadata.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("metadata")
@@ -362,6 +403,11 @@ func (m *AuditEvent) contextValidateMetadata(ctx context.Context, formats strfmt
 func (m *AuditEvent) contextValidatePayload(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Payload != nil {
+
+		if swag.IsZero(m.Payload) { // not required
+			return nil
+		}
+
 		if err := m.Payload.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("payload")

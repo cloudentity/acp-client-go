@@ -61,6 +61,14 @@ ListSystemAPIBindingsParams contains all the parameters to send to the API endpo
 */
 type ListSystemAPIBindingsParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Wid.
 
 	   Server id
@@ -133,6 +141,17 @@ func (o *ListSystemAPIBindingsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the list system API bindings params
+func (o *ListSystemAPIBindingsParams) WithIfMatch(ifMatch *string) *ListSystemAPIBindingsParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the list system API bindings params
+func (o *ListSystemAPIBindingsParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithWid adds the wid to the list system API bindings params
 func (o *ListSystemAPIBindingsParams) WithWid(wid string) *ListSystemAPIBindingsParams {
 	o.SetWid(wid)
@@ -151,6 +170,14 @@ func (o *ListSystemAPIBindingsParams) WriteToRequest(r runtime.ClientRequest, re
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	// path param wid
 	if err := r.SetPathParam("wid", o.Wid); err != nil {

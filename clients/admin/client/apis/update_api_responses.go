@@ -66,7 +66,7 @@ func (o *UpdateAPIReader) ReadResponse(response runtime.ClientResponse, consumer
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /apis/{api}] updateAPI", response, response.Code())
 	}
 }
 
@@ -81,6 +81,15 @@ UpdateAPIOK describes a response with status code 200, with default header value
 API
 */
 type UpdateAPIOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.API
 }
 
@@ -109,6 +118,11 @@ func (o *UpdateAPIOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the update Api o k response
+func (o *UpdateAPIOK) Code() int {
+	return 200
+}
+
 func (o *UpdateAPIOK) Error() string {
 	return fmt.Sprintf("[PUT /apis/{api}][%d] updateApiOK  %+v", 200, o.Payload)
 }
@@ -122,6 +136,13 @@ func (o *UpdateAPIOK) GetPayload() *models.API {
 }
 
 func (o *UpdateAPIOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.API)
 
@@ -141,7 +162,7 @@ func NewUpdateAPIBadRequest() *UpdateAPIBadRequest {
 /*
 UpdateAPIBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type UpdateAPIBadRequest struct {
 	Payload *models.Error
@@ -170,6 +191,11 @@ func (o *UpdateAPIBadRequest) IsServerError() bool {
 // IsCode returns true when this update Api bad request response a status code equal to that given
 func (o *UpdateAPIBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the update Api bad request response
+func (o *UpdateAPIBadRequest) Code() int {
+	return 400
 }
 
 func (o *UpdateAPIBadRequest) Error() string {
@@ -204,7 +230,7 @@ func NewUpdateAPIUnauthorized() *UpdateAPIUnauthorized {
 /*
 UpdateAPIUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type UpdateAPIUnauthorized struct {
 	Payload *models.Error
@@ -233,6 +259,11 @@ func (o *UpdateAPIUnauthorized) IsServerError() bool {
 // IsCode returns true when this update Api unauthorized response a status code equal to that given
 func (o *UpdateAPIUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the update Api unauthorized response
+func (o *UpdateAPIUnauthorized) Code() int {
+	return 401
 }
 
 func (o *UpdateAPIUnauthorized) Error() string {
@@ -267,7 +298,7 @@ func NewUpdateAPIForbidden() *UpdateAPIForbidden {
 /*
 UpdateAPIForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type UpdateAPIForbidden struct {
 	Payload *models.Error
@@ -296,6 +327,11 @@ func (o *UpdateAPIForbidden) IsServerError() bool {
 // IsCode returns true when this update Api forbidden response a status code equal to that given
 func (o *UpdateAPIForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the update Api forbidden response
+func (o *UpdateAPIForbidden) Code() int {
+	return 403
 }
 
 func (o *UpdateAPIForbidden) Error() string {
@@ -330,7 +366,7 @@ func NewUpdateAPINotFound() *UpdateAPINotFound {
 /*
 UpdateAPINotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type UpdateAPINotFound struct {
 	Payload *models.Error
@@ -359,6 +395,11 @@ func (o *UpdateAPINotFound) IsServerError() bool {
 // IsCode returns true when this update Api not found response a status code equal to that given
 func (o *UpdateAPINotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the update Api not found response
+func (o *UpdateAPINotFound) Code() int {
+	return 404
 }
 
 func (o *UpdateAPINotFound) Error() string {
@@ -393,7 +434,7 @@ func NewUpdateAPIUnprocessableEntity() *UpdateAPIUnprocessableEntity {
 /*
 UpdateAPIUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type UpdateAPIUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +463,11 @@ func (o *UpdateAPIUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this update Api unprocessable entity response a status code equal to that given
 func (o *UpdateAPIUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the update Api unprocessable entity response
+func (o *UpdateAPIUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *UpdateAPIUnprocessableEntity) Error() string {
@@ -456,7 +502,7 @@ func NewUpdateAPITooManyRequests() *UpdateAPITooManyRequests {
 /*
 UpdateAPITooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type UpdateAPITooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +531,11 @@ func (o *UpdateAPITooManyRequests) IsServerError() bool {
 // IsCode returns true when this update Api too many requests response a status code equal to that given
 func (o *UpdateAPITooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the update Api too many requests response
+func (o *UpdateAPITooManyRequests) Code() int {
+	return 429
 }
 
 func (o *UpdateAPITooManyRequests) Error() string {

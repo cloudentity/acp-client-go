@@ -66,7 +66,7 @@ func (o *UpdateServiceReader) ReadResponse(response runtime.ClientResponse, cons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /services/{sid}] updateService", response, response.Code())
 	}
 }
 
@@ -81,6 +81,15 @@ UpdateServiceOK describes a response with status code 200, with default header v
 Service
 */
 type UpdateServiceOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.ServiceWithAudience
 }
 
@@ -109,6 +118,11 @@ func (o *UpdateServiceOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the update service o k response
+func (o *UpdateServiceOK) Code() int {
+	return 200
+}
+
 func (o *UpdateServiceOK) Error() string {
 	return fmt.Sprintf("[PUT /services/{sid}][%d] updateServiceOK  %+v", 200, o.Payload)
 }
@@ -122,6 +136,13 @@ func (o *UpdateServiceOK) GetPayload() *models.ServiceWithAudience {
 }
 
 func (o *UpdateServiceOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.ServiceWithAudience)
 
@@ -141,7 +162,7 @@ func NewUpdateServiceBadRequest() *UpdateServiceBadRequest {
 /*
 UpdateServiceBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type UpdateServiceBadRequest struct {
 	Payload *models.Error
@@ -170,6 +191,11 @@ func (o *UpdateServiceBadRequest) IsServerError() bool {
 // IsCode returns true when this update service bad request response a status code equal to that given
 func (o *UpdateServiceBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the update service bad request response
+func (o *UpdateServiceBadRequest) Code() int {
+	return 400
 }
 
 func (o *UpdateServiceBadRequest) Error() string {
@@ -204,7 +230,7 @@ func NewUpdateServiceUnauthorized() *UpdateServiceUnauthorized {
 /*
 UpdateServiceUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type UpdateServiceUnauthorized struct {
 	Payload *models.Error
@@ -233,6 +259,11 @@ func (o *UpdateServiceUnauthorized) IsServerError() bool {
 // IsCode returns true when this update service unauthorized response a status code equal to that given
 func (o *UpdateServiceUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the update service unauthorized response
+func (o *UpdateServiceUnauthorized) Code() int {
+	return 401
 }
 
 func (o *UpdateServiceUnauthorized) Error() string {
@@ -267,7 +298,7 @@ func NewUpdateServiceForbidden() *UpdateServiceForbidden {
 /*
 UpdateServiceForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type UpdateServiceForbidden struct {
 	Payload *models.Error
@@ -296,6 +327,11 @@ func (o *UpdateServiceForbidden) IsServerError() bool {
 // IsCode returns true when this update service forbidden response a status code equal to that given
 func (o *UpdateServiceForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the update service forbidden response
+func (o *UpdateServiceForbidden) Code() int {
+	return 403
 }
 
 func (o *UpdateServiceForbidden) Error() string {
@@ -330,7 +366,7 @@ func NewUpdateServiceNotFound() *UpdateServiceNotFound {
 /*
 UpdateServiceNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type UpdateServiceNotFound struct {
 	Payload *models.Error
@@ -359,6 +395,11 @@ func (o *UpdateServiceNotFound) IsServerError() bool {
 // IsCode returns true when this update service not found response a status code equal to that given
 func (o *UpdateServiceNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the update service not found response
+func (o *UpdateServiceNotFound) Code() int {
+	return 404
 }
 
 func (o *UpdateServiceNotFound) Error() string {
@@ -393,7 +434,7 @@ func NewUpdateServiceUnprocessableEntity() *UpdateServiceUnprocessableEntity {
 /*
 UpdateServiceUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type UpdateServiceUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +463,11 @@ func (o *UpdateServiceUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this update service unprocessable entity response a status code equal to that given
 func (o *UpdateServiceUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the update service unprocessable entity response
+func (o *UpdateServiceUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *UpdateServiceUnprocessableEntity) Error() string {
@@ -456,7 +502,7 @@ func NewUpdateServiceTooManyRequests() *UpdateServiceTooManyRequests {
 /*
 UpdateServiceTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type UpdateServiceTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +531,11 @@ func (o *UpdateServiceTooManyRequests) IsServerError() bool {
 // IsCode returns true when this update service too many requests response a status code equal to that given
 func (o *UpdateServiceTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the update service too many requests response
+func (o *UpdateServiceTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *UpdateServiceTooManyRequests) Error() string {

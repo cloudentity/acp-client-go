@@ -124,6 +124,11 @@ func (m *PayloadSettings) ContextValidate(ctx context.Context, formats strfmt.Re
 func (m *PayloadSettings) contextValidateJwsPayload(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.JwsPayload != nil {
+
+		if swag.IsZero(m.JwsPayload) { // not required
+			return nil
+		}
+
 		if err := m.JwsPayload.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("jws_payload")

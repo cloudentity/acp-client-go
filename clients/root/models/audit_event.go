@@ -31,7 +31,7 @@ type AuditEvent struct {
 	EventPayload interface{} `json:"event_payload,omitempty"`
 
 	// event subject
-	// Enum: [request gateway_request gateway_policy policy client credential login post_authn consent client_consents authorization_code access_token saml_assertion scopes otp user selfuser schema pool password bruteforce dcr script role]
+	// Enum: [request gateway_request gateway_policy policy client credential login post_authn consent client_consents customer_consents authorization_code access_token saml_assertion scopes otp user selfuser schema pool password bruteforce dcr script role task jit tokens service server]
 	EventSubject string `json:"event_subject,omitempty"`
 
 	// event type
@@ -187,7 +187,7 @@ var auditEventTypeEventSubjectPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["request","gateway_request","gateway_policy","policy","client","credential","login","post_authn","consent","client_consents","authorization_code","access_token","saml_assertion","scopes","otp","user","selfuser","schema","pool","password","bruteforce","dcr","script","role"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["request","gateway_request","gateway_policy","policy","client","credential","login","post_authn","consent","client_consents","customer_consents","authorization_code","access_token","saml_assertion","scopes","otp","user","selfuser","schema","pool","password","bruteforce","dcr","script","role","task","jit","tokens","service","server"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -226,6 +226,9 @@ const (
 
 	// AuditEventEventSubjectClientConsents captures enum value "client_consents"
 	AuditEventEventSubjectClientConsents string = "client_consents"
+
+	// AuditEventEventSubjectCustomerConsents captures enum value "customer_consents"
+	AuditEventEventSubjectCustomerConsents string = "customer_consents"
 
 	// AuditEventEventSubjectAuthorizationCode captures enum value "authorization_code"
 	AuditEventEventSubjectAuthorizationCode string = "authorization_code"
@@ -268,6 +271,21 @@ const (
 
 	// AuditEventEventSubjectRole captures enum value "role"
 	AuditEventEventSubjectRole string = "role"
+
+	// AuditEventEventSubjectTask captures enum value "task"
+	AuditEventEventSubjectTask string = "task"
+
+	// AuditEventEventSubjectJit captures enum value "jit"
+	AuditEventEventSubjectJit string = "jit"
+
+	// AuditEventEventSubjectTokens captures enum value "tokens"
+	AuditEventEventSubjectTokens string = "tokens"
+
+	// AuditEventEventSubjectService captures enum value "service"
+	AuditEventEventSubjectService string = "service"
+
+	// AuditEventEventSubjectServer captures enum value "server"
+	AuditEventEventSubjectServer string = "server"
 )
 
 // prop value enum
@@ -359,6 +377,10 @@ func (m *AuditEvent) ContextValidate(ctx context.Context, formats strfmt.Registr
 
 func (m *AuditEvent) contextValidateEventType(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.EventType) { // not required
+		return nil
+	}
+
 	if err := m.EventType.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("event_type")
@@ -374,6 +396,11 @@ func (m *AuditEvent) contextValidateEventType(ctx context.Context, formats strfm
 func (m *AuditEvent) contextValidateMetadata(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Metadata != nil {
+
+		if swag.IsZero(m.Metadata) { // not required
+			return nil
+		}
+
 		if err := m.Metadata.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("metadata")

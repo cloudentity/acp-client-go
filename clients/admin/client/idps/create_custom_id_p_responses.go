@@ -66,7 +66,7 @@ func (o *CreateCustomIDPReader) ReadResponse(response runtime.ClientResponse, co
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /servers/{wid}/idps/custom] createCustomIDP", response, response.Code())
 	}
 }
 
@@ -109,6 +109,11 @@ func (o *CreateCustomIDPCreated) IsCode(code int) bool {
 	return code == 201
 }
 
+// Code gets the status code for the create custom Id p created response
+func (o *CreateCustomIDPCreated) Code() int {
+	return 201
+}
+
 func (o *CreateCustomIDPCreated) Error() string {
 	return fmt.Sprintf("[POST /servers/{wid}/idps/custom][%d] createCustomIdPCreated  %+v", 201, o.Payload)
 }
@@ -141,7 +146,7 @@ func NewCreateCustomIDPBadRequest() *CreateCustomIDPBadRequest {
 /*
 CreateCustomIDPBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type CreateCustomIDPBadRequest struct {
 	Payload *models.Error
@@ -170,6 +175,11 @@ func (o *CreateCustomIDPBadRequest) IsServerError() bool {
 // IsCode returns true when this create custom Id p bad request response a status code equal to that given
 func (o *CreateCustomIDPBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the create custom Id p bad request response
+func (o *CreateCustomIDPBadRequest) Code() int {
+	return 400
 }
 
 func (o *CreateCustomIDPBadRequest) Error() string {
@@ -204,7 +214,7 @@ func NewCreateCustomIDPUnauthorized() *CreateCustomIDPUnauthorized {
 /*
 CreateCustomIDPUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type CreateCustomIDPUnauthorized struct {
 	Payload *models.Error
@@ -233,6 +243,11 @@ func (o *CreateCustomIDPUnauthorized) IsServerError() bool {
 // IsCode returns true when this create custom Id p unauthorized response a status code equal to that given
 func (o *CreateCustomIDPUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the create custom Id p unauthorized response
+func (o *CreateCustomIDPUnauthorized) Code() int {
+	return 401
 }
 
 func (o *CreateCustomIDPUnauthorized) Error() string {
@@ -267,7 +282,7 @@ func NewCreateCustomIDPForbidden() *CreateCustomIDPForbidden {
 /*
 CreateCustomIDPForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type CreateCustomIDPForbidden struct {
 	Payload *models.Error
@@ -296,6 +311,11 @@ func (o *CreateCustomIDPForbidden) IsServerError() bool {
 // IsCode returns true when this create custom Id p forbidden response a status code equal to that given
 func (o *CreateCustomIDPForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the create custom Id p forbidden response
+func (o *CreateCustomIDPForbidden) Code() int {
+	return 403
 }
 
 func (o *CreateCustomIDPForbidden) Error() string {
@@ -330,7 +350,7 @@ func NewCreateCustomIDPNotFound() *CreateCustomIDPNotFound {
 /*
 CreateCustomIDPNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type CreateCustomIDPNotFound struct {
 	Payload *models.Error
@@ -359,6 +379,11 @@ func (o *CreateCustomIDPNotFound) IsServerError() bool {
 // IsCode returns true when this create custom Id p not found response a status code equal to that given
 func (o *CreateCustomIDPNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the create custom Id p not found response
+func (o *CreateCustomIDPNotFound) Code() int {
+	return 404
 }
 
 func (o *CreateCustomIDPNotFound) Error() string {
@@ -393,7 +418,7 @@ func NewCreateCustomIDPUnprocessableEntity() *CreateCustomIDPUnprocessableEntity
 /*
 CreateCustomIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type CreateCustomIDPUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +447,11 @@ func (o *CreateCustomIDPUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this create custom Id p unprocessable entity response a status code equal to that given
 func (o *CreateCustomIDPUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the create custom Id p unprocessable entity response
+func (o *CreateCustomIDPUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *CreateCustomIDPUnprocessableEntity) Error() string {
@@ -456,7 +486,7 @@ func NewCreateCustomIDPTooManyRequests() *CreateCustomIDPTooManyRequests {
 /*
 CreateCustomIDPTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type CreateCustomIDPTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +515,11 @@ func (o *CreateCustomIDPTooManyRequests) IsServerError() bool {
 // IsCode returns true when this create custom Id p too many requests response a status code equal to that given
 func (o *CreateCustomIDPTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the create custom Id p too many requests response
+func (o *CreateCustomIDPTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *CreateCustomIDPTooManyRequests) Error() string {

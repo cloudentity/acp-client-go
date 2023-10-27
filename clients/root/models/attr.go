@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// Attr An Attr represents a key-value attribute of an XML element.
+// Attr An Attr represents a key-value attribute within an XML element.
 //
 // swagger:model Attr
 type Attr struct {

@@ -385,6 +385,11 @@ func (m *AttributeAuthorityDescriptor) contextValidateAssertionIDRequestServices
 	for i := 0; i < len(m.AssertionIDRequestServices); i++ {
 
 		if m.AssertionIDRequestServices[i] != nil {
+
+			if swag.IsZero(m.AssertionIDRequestServices[i]) { // not required
+				return nil
+			}
+
 			if err := m.AssertionIDRequestServices[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AssertionIDRequestServices" + "." + strconv.Itoa(i))
@@ -405,6 +410,11 @@ func (m *AttributeAuthorityDescriptor) contextValidateAttributeServices(ctx cont
 	for i := 0; i < len(m.AttributeServices); i++ {
 
 		if m.AttributeServices[i] != nil {
+
+			if swag.IsZero(m.AttributeServices[i]) { // not required
+				return nil
+			}
+
 			if err := m.AttributeServices[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AttributeServices" + "." + strconv.Itoa(i))
@@ -425,6 +435,11 @@ func (m *AttributeAuthorityDescriptor) contextValidateAttributes(ctx context.Con
 	for i := 0; i < len(m.Attributes); i++ {
 
 		if m.Attributes[i] != nil {
+
+			if swag.IsZero(m.Attributes[i]) { // not required
+				return nil
+			}
+
 			if err := m.Attributes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("Attributes" + "." + strconv.Itoa(i))
@@ -441,6 +456,10 @@ func (m *AttributeAuthorityDescriptor) contextValidateAttributes(ctx context.Con
 }
 
 func (m *AttributeAuthorityDescriptor) contextValidateCacheDuration(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.CacheDuration) { // not required
+		return nil
+	}
 
 	if err := m.CacheDuration.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -459,6 +478,11 @@ func (m *AttributeAuthorityDescriptor) contextValidateContactPeople(ctx context.
 	for i := 0; i < len(m.ContactPeople); i++ {
 
 		if m.ContactPeople[i] != nil {
+
+			if swag.IsZero(m.ContactPeople[i]) { // not required
+				return nil
+			}
+
 			if err := m.ContactPeople[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ContactPeople" + "." + strconv.Itoa(i))
@@ -479,6 +503,11 @@ func (m *AttributeAuthorityDescriptor) contextValidateKeyDescriptors(ctx context
 	for i := 0; i < len(m.KeyDescriptors); i++ {
 
 		if m.KeyDescriptors[i] != nil {
+
+			if swag.IsZero(m.KeyDescriptors[i]) { // not required
+				return nil
+			}
+
 			if err := m.KeyDescriptors[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("KeyDescriptors" + "." + strconv.Itoa(i))
@@ -498,6 +527,10 @@ func (m *AttributeAuthorityDescriptor) contextValidateNameIDFormats(ctx context.
 
 	for i := 0; i < len(m.NameIDFormats); i++ {
 
+		if swag.IsZero(m.NameIDFormats[i]) { // not required
+			return nil
+		}
+
 		if err := m.NameIDFormats[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("NameIDFormats" + "." + strconv.Itoa(i))
@@ -515,6 +548,11 @@ func (m *AttributeAuthorityDescriptor) contextValidateNameIDFormats(ctx context.
 func (m *AttributeAuthorityDescriptor) contextValidateOrganization(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Organization != nil {
+
+		if swag.IsZero(m.Organization) { // not required
+			return nil
+		}
+
 		if err := m.Organization.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Organization")
@@ -531,6 +569,11 @@ func (m *AttributeAuthorityDescriptor) contextValidateOrganization(ctx context.C
 func (m *AttributeAuthorityDescriptor) contextValidateSignature(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Signature != nil {
+
+		if swag.IsZero(m.Signature) { // not required
+			return nil
+		}
+
 		if err := m.Signature.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Signature")

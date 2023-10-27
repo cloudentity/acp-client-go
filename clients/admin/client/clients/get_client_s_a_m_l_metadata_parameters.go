@@ -69,6 +69,14 @@ type GetClientSAMLMetadataParams struct {
 	*/
 	Cid string
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -144,6 +152,17 @@ func (o *GetClientSAMLMetadataParams) SetCid(cid string) {
 	o.Cid = cid
 }
 
+// WithIfMatch adds the ifMatch to the get client s a m l metadata params
+func (o *GetClientSAMLMetadataParams) WithIfMatch(ifMatch *string) *GetClientSAMLMetadataParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the get client s a m l metadata params
+func (o *GetClientSAMLMetadataParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetClientSAMLMetadataParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -155,6 +174,14 @@ func (o *GetClientSAMLMetadataParams) WriteToRequest(r runtime.ClientRequest, re
 	// path param cid
 	if err := r.SetPathParam("cid", o.Cid); err != nil {
 		return err
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

@@ -61,6 +61,14 @@ GetKeysParams contains all the parameters to send to the API endpoint
 */
 type GetKeysParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Use.
 
 	   Key use (sig or enc)
@@ -144,6 +152,17 @@ func (o *GetKeysParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the get keys params
+func (o *GetKeysParams) WithIfMatch(ifMatch *string) *GetKeysParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the get keys params
+func (o *GetKeysParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithUse adds the use to the get keys params
 func (o *GetKeysParams) WithUse(use *string) *GetKeysParams {
 	o.SetUse(use)
@@ -173,6 +192,14 @@ func (o *GetKeysParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regis
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	if o.Use != nil {
 

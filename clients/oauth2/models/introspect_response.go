@@ -18,73 +18,70 @@ import (
 // swagger:model IntrospectResponse
 type IntrospectResponse struct {
 
-	// Authentication Context Class Reference
+	// Authentication context class reference
 	Acr string `json:"acr,omitempty"`
 
-	// actor claims used in token exchange flow
+	// Actor claims used in the Token Exchange flow.
 	Act map[string]interface{} `json:"act,omitempty"`
 
 	// Active is a boolean indicator of whether or not the presented token
-	// is currently active.  The specifics of a token's "active" state
-	// will vary depending on the implementation of the authorization
-	// server and the information it keeps about its tokens, but a "true"
-	// value return for the "active" property will generally indicate
+	// is currently active. The specifics of a token's `active` state
+	// varies depending on the implementation of an authorization
+	// server and the information it keeps about its token. Still, the `true`
+	// value returned for the `active` property generally indicates
 	// that a given token has been issued by this authorization server,
 	// has not been revoked by the resource owner, and is within its
-	// given time window of validity (e.g., after its issuance time and
-	// before its expiration time).
+	// given time window of validity (e.g., between its issuance and
+	// expiration time).
 	Active bool `json:"active,omitempty"`
 
-	// Authentication Method References
+	// Authentication method references
 	Amr []string `json:"amr"`
 
-	// Audience contains a list of the token's intended audiences.
+	// Audience contains the list of the audiences the token is intended for.
 	Aud []string `json:"aud"`
 
-	// ClientID is a client identifier for the OAuth 2.0 client that
+	// A client application identifier for the OAuth 2.0 client that
 	// requested this token.
 	ClientID string `json:"client_id,omitempty"`
 
 	// cnf
 	Cnf *Confirmation `json:"cnf,omitempty"`
 
-	// Expires at is an integer timestamp, measured in the number of seconds
-	// since January 1 1970 UTC, indicating when this token will expire.
+	// ExpiredAt is the integer timestamp measured in the number of seconds
+	// since January 1 1970 UTC (1970-01-01T00:00:00Z). It indicates when this token will expire.
 	Exp int64 `json:"exp,omitempty"`
 
 	// Extra is arbitrary data set by the session.
 	Ext map[string]interface{} `json:"ext,omitempty"`
 
-	// Issued at is an integer timestamp, measured in the number of seconds
-	// since January 1 1970 UTC, indicating when this token was
+	// IssuedAt is the integer timestamp measured in the number of seconds
+	// since January 1 1970 UTC. It indicates when this token was
 	// originally issued.
 	Iat int64 `json:"iat,omitempty"`
 
-	// IDP ID that user authenticated with
+	// The identifier of an identity provider that user authenticated with.
 	Idp string `json:"idp,omitempty"`
 
-	// Idp subject
+	// IDP subject
 	IdpSub string `json:"idp_sub,omitempty"`
 
-	// IssuerURL is a string representing the issuer of this token
+	// Issuer URL is a string representing the issuer of this token.
 	Iss string `json:"iss,omitempty"`
 
-	// NotBefore is an integer timestamp, measured in the number of seconds
-	// since January 1 1970 UTC, indicating when this token is not to be
-	// used before.
-	Nbf int64 `json:"nbf,omitempty"`
+	// May act claims used in the Token Exchange flow.s
+	MayAct map[string]interface{} `json:"may_act,omitempty"`
 
-	// Deprecated and can be removed at any time.
-	// Refresh Token Expires at is an integer timestamp, measured in the number
-	// of seconds since January 1 1970 UTC, indicating when the issued refresh
-	// token witll expire.
-	RefreshTokenExpiresAt int64 `json:"refresh_token_expires_at,omitempty"`
+	// NotBefore is an integer timestamp measured in the number of seconds
+	// since January 1 1970 UTC. It indicates this token was not
+	// used before the specified time.
+	Nbf int64 `json:"nbf,omitempty"`
 
 	// Scope is a JSON string containing a space-separated list of
 	// scopes associated with this token.
 	Scope string `json:"scope,omitempty"`
 
-	// ServerID is OAuth 2.0 authorization server identifier that
+	// The OAuth 2.0 authorization server identifier that
 	// issued this token.
 	ServerID string `json:"server_id,omitempty"`
 
@@ -93,11 +90,11 @@ type IntrospectResponse struct {
 	// authorized this token.
 	Sub string `json:"sub,omitempty"`
 
-	// TenantID identifies tenant where authorization server that
-	// issued this token belongs to.
+	// TenantID identifies a tenant holding the authorization server that
+	// issued this token.
 	TenantID string `json:"tenant_id,omitempty"`
 
-	// TokenType is the introspected token's type, for example `access_token` or `refresh_token`.
+	// TokenType is the type of the introspected token. For example, `access_token` or `refresh_token`.
 	TokenType string `json:"token_type,omitempty"`
 
 	// Username is a human-readable identifier for the resource owner who
@@ -155,6 +152,11 @@ func (m *IntrospectResponse) ContextValidate(ctx context.Context, formats strfmt
 func (m *IntrospectResponse) contextValidateCnf(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Cnf != nil {
+
+		if swag.IsZero(m.Cnf) { // not required
+			return nil
+		}
+
 		if err := m.Cnf.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cnf")

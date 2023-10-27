@@ -60,7 +60,7 @@ func (o *ListAuditEventsReader) ReadResponse(response runtime.ClientResponse, co
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /servers/{wid}/audit-events] listAuditEvents", response, response.Code())
 	}
 }
 
@@ -75,6 +75,15 @@ ListAuditEventsOK describes a response with status code 200, with default header
 AuditEvents
 */
 type ListAuditEventsOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.AuditEvents
 }
 
@@ -103,6 +112,11 @@ func (o *ListAuditEventsOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the list audit events o k response
+func (o *ListAuditEventsOK) Code() int {
+	return 200
+}
+
 func (o *ListAuditEventsOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/audit-events][%d] listAuditEventsOK  %+v", 200, o.Payload)
 }
@@ -116,6 +130,13 @@ func (o *ListAuditEventsOK) GetPayload() *models.AuditEvents {
 }
 
 func (o *ListAuditEventsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.AuditEvents)
 
@@ -135,7 +156,7 @@ func NewListAuditEventsBadRequest() *ListAuditEventsBadRequest {
 /*
 ListAuditEventsBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type ListAuditEventsBadRequest struct {
 	Payload *models.Error
@@ -164,6 +185,11 @@ func (o *ListAuditEventsBadRequest) IsServerError() bool {
 // IsCode returns true when this list audit events bad request response a status code equal to that given
 func (o *ListAuditEventsBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the list audit events bad request response
+func (o *ListAuditEventsBadRequest) Code() int {
+	return 400
 }
 
 func (o *ListAuditEventsBadRequest) Error() string {
@@ -198,7 +224,7 @@ func NewListAuditEventsUnauthorized() *ListAuditEventsUnauthorized {
 /*
 ListAuditEventsUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ListAuditEventsUnauthorized struct {
 	Payload *models.Error
@@ -227,6 +253,11 @@ func (o *ListAuditEventsUnauthorized) IsServerError() bool {
 // IsCode returns true when this list audit events unauthorized response a status code equal to that given
 func (o *ListAuditEventsUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the list audit events unauthorized response
+func (o *ListAuditEventsUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ListAuditEventsUnauthorized) Error() string {
@@ -261,7 +292,7 @@ func NewListAuditEventsForbidden() *ListAuditEventsForbidden {
 /*
 ListAuditEventsForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ListAuditEventsForbidden struct {
 	Payload *models.Error
@@ -290,6 +321,11 @@ func (o *ListAuditEventsForbidden) IsServerError() bool {
 // IsCode returns true when this list audit events forbidden response a status code equal to that given
 func (o *ListAuditEventsForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the list audit events forbidden response
+func (o *ListAuditEventsForbidden) Code() int {
+	return 403
 }
 
 func (o *ListAuditEventsForbidden) Error() string {
@@ -324,7 +360,7 @@ func NewListAuditEventsNotFound() *ListAuditEventsNotFound {
 /*
 ListAuditEventsNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type ListAuditEventsNotFound struct {
 	Payload *models.Error
@@ -353,6 +389,11 @@ func (o *ListAuditEventsNotFound) IsServerError() bool {
 // IsCode returns true when this list audit events not found response a status code equal to that given
 func (o *ListAuditEventsNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the list audit events not found response
+func (o *ListAuditEventsNotFound) Code() int {
+	return 404
 }
 
 func (o *ListAuditEventsNotFound) Error() string {
@@ -387,7 +428,7 @@ func NewListAuditEventsTooManyRequests() *ListAuditEventsTooManyRequests {
 /*
 ListAuditEventsTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ListAuditEventsTooManyRequests struct {
 	Payload *models.Error
@@ -416,6 +457,11 @@ func (o *ListAuditEventsTooManyRequests) IsServerError() bool {
 // IsCode returns true when this list audit events too many requests response a status code equal to that given
 func (o *ListAuditEventsTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the list audit events too many requests response
+func (o *ListAuditEventsTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ListAuditEventsTooManyRequests) Error() string {

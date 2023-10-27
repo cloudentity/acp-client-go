@@ -64,21 +64,22 @@ definitions:
     type: object
 host: localhost:8443
 info:
-  description: Cloudentity Authorization Control Plane Analytics API
-  title: Cloudentity Authorization Control Plane API
+  description: |-
+    Cloudentity Analytics API
+
+    The Cloudentity Analytics APIs provide a robust solution for capturing and analyzing metrics related to various operational aspects including access token minting, policy validations, OTP validations, authorizer validations, and HTTP metrics, among others.
+
+    For organizations using Cloudentity SaaS platform, the metrics are retained for a period of 90 days.
+
+    Customers who choose to deploy Cloudentity on their own infrastructure have the flexibility to configure the metrics retention for up to a year, allowing for a more extensive data analysis and longer-term insights.
+  title: Cloudentity API
   version: latest
 paths:
-  /servers/{wid}/access-tokens:
+  /access-tokens:
     get:
       description: Query access token data points.
-      operationId: singleAccessTokenMetrics
+      operationId: tenantSingleAccessTokenMetrics
       parameters:
-      - default: default
-        description: Workspace ID
-        in: path
-        name: wid
-        required: true
-        type: string
       - default: auto
         description: |-
           Bucket
@@ -147,6 +148,12 @@ paths:
       - description: To
         in: query
         name: to
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
         type: string
       - default: count
         description: |-
@@ -169,29 +176,23 @@ paths:
         "200":
           $ref: '#/responses/DataPoints'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
       summary: Query access tokens
       tags:
       - Metrics
-  /servers/{wid}/access-tokens/{group}:
+  /access-tokens/{group}:
     get:
       description: Query access token data points by group.
-      operationId: aggregatedAccessTokenMetrics
+      operationId: tenantAggregatedAccessTokenMetrics
       parameters:
-      - default: default
-        description: Workspace ID
-        in: path
-        name: wid
-        required: true
-        type: string
       - default: auto
         description: |-
           Bucket
@@ -260,6 +261,12 @@ paths:
       - description: To
         in: query
         name: to
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
         type: string
       - default: count
         description: |-
@@ -293,29 +300,23 @@ paths:
         "200":
           $ref: '#/responses/AggregatedDataPoints'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
       summary: Query access tokens by group
       tags:
       - Metrics
-  /servers/{wid}/gateway-requests:
+  /faas:
     get:
-      description: Query gateway request data points.
-      operationId: singleGatewayRequestMetrics
+      description: Query faas data points.
+      operationId: tenantSingleFaasMetrics
       parameters:
-      - default: default
-        description: Workspace ID
-        in: path
-        name: wid
-        required: true
-        type: string
       - default: auto
         description: |-
           Bucket
@@ -384,6 +385,309 @@ paths:
       - description: To
         in: query
         name: to
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: count
+        description: |-
+          Function
+          count FaasCount
+          sum FaasSum
+          p50 FaasP50
+          p75 FaasP75
+          p95 FaasP95
+          p99 FaasP99
+          le1 FaasLe1
+          le10 FaasLe10
+          le50 FaasLe50
+          le100 FaasLe100
+          le500 FaasLe500
+          le1000 FaasLe1000
+          leinf FaasLeinf
+        enum:
+        - count
+        - sum
+        - p50
+        - p75
+        - p95
+        - p99
+        - le1
+        - le10
+        - le50
+        - le100
+        - le500
+        - le1000
+        - leinf
+        in: query
+        name: function
+        type: string
+        x-go-enum-desc: |-
+          count FaasCount
+          sum FaasSum
+          p50 FaasP50
+          p75 FaasP75
+          p95 FaasP95
+          p99 FaasP99
+          le1 FaasLe1
+          le10 FaasLe10
+          le50 FaasLe50
+          le100 FaasLe100
+          le500 FaasLe500
+          le1000 FaasLe1000
+          leinf FaasLeinf
+      responses:
+        "200":
+          $ref: '#/responses/DataPoints'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Query faas duration
+      tags:
+      - Metrics
+  /faas/{group}:
+    get:
+      description: Query faas data points by group.
+      operationId: tenantAggregatedFaasMetrics
+      parameters:
+      - default: auto
+        description: |-
+          Bucket
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+        enum:
+        - auto
+        - all
+        - 1m
+        - 5m
+        - 15m
+        - 30m
+        - 1h
+        - 3h
+        - 6h
+        - 12h
+        - 1d
+        - 1w
+        - 1M
+        - 3M
+        - 6M
+        - 1Y
+        in: query
+        name: bucket
+        type: string
+        x-go-enum-desc: |-
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+      - description: Origin
+        format: date-time
+        in: query
+        name: origin
+        type: string
+      - description: From
+        in: query
+        name: from
+        type: string
+      - description: To
+        in: query
+        name: to
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: count
+        description: |-
+          Function
+          count FaasCount
+          sum FaasSum
+          p50 FaasP50
+          p75 FaasP75
+          p95 FaasP95
+          p99 FaasP99
+          le1 FaasLe1
+          le10 FaasLe10
+          le50 FaasLe50
+          le100 FaasLe100
+          le500 FaasLe500
+          le1000 FaasLe1000
+          leinf FaasLeinf
+        enum:
+        - count
+        - sum
+        - p50
+        - p75
+        - p95
+        - p99
+        - le1
+        - le10
+        - le50
+        - le100
+        - le500
+        - le1000
+        - leinf
+        in: query
+        name: function
+        type: string
+        x-go-enum-desc: |-
+          count FaasCount
+          sum FaasSum
+          p50 FaasP50
+          p75 FaasP75
+          p95 FaasP95
+          p99 FaasP99
+          le1 FaasLe1
+          le10 FaasLe10
+          le50 FaasLe50
+          le100 FaasLe100
+          le500 FaasLe500
+          le1000 FaasLe1000
+          leinf FaasLeinf
+      - default: function
+        description: |-
+          Group by
+          function FaasByFunction
+        enum:
+        - function
+        in: path
+        name: group
+        required: true
+        type: string
+        x-go-enum-desc: function FaasByFunction
+      responses:
+        "200":
+          $ref: '#/responses/AggregatedDataPoints'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Query faas duration by group
+      tags:
+      - Metrics
+  /gateway-requests:
+    get:
+      description: Query gateway request data points.
+      operationId: tenantSingleGatewayRequestMetrics
+      parameters:
+      - default: auto
+        description: |-
+          Bucket
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+        enum:
+        - auto
+        - all
+        - 1m
+        - 5m
+        - 15m
+        - 30m
+        - 1h
+        - 3h
+        - 6h
+        - 12h
+        - 1d
+        - 1w
+        - 1M
+        - 3M
+        - 6M
+        - 1Y
+        in: query
+        name: bucket
+        type: string
+        x-go-enum-desc: |-
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+      - description: Origin
+        format: date-time
+        in: query
+        name: origin
+        type: string
+      - description: From
+        in: query
+        name: from
+        type: string
+      - description: To
+        in: query
+        name: to
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
         type: string
       - default: count
         description: |-
@@ -415,29 +719,23 @@ paths:
         "200":
           $ref: '#/responses/DataPoints'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
       summary: Query gateway requests
       tags:
       - Metrics
-  /servers/{wid}/gateway-requests/{group}:
+  /gateway-requests/{group}:
     get:
       description: Query gateway request data points by group.
-      operationId: aggregatedGatewayRequestMetrics
+      operationId: tenantAggregatedGatewayRequestMetrics
       parameters:
-      - default: default
-        description: Workspace ID
-        in: path
-        name: wid
-        required: true
-        type: string
       - default: auto
         description: |-
           Bucket
@@ -506,6 +804,12 @@ paths:
       - description: To
         in: query
         name: to
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
         type: string
       - default: count
         description: |-
@@ -548,29 +852,23 @@ paths:
         "200":
           $ref: '#/responses/AggregatedDataPoints'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
       summary: Query gateway requests by group
       tags:
       - Metrics
-  /servers/{wid}/http-requests:
+  /http-requests:
     get:
       description: Query http request data points.
-      operationId: singleHttpRequestMetrics
+      operationId: tenantSingleHttpRequestMetrics
       parameters:
-      - default: default
-        description: Workspace ID
-        in: path
-        name: wid
-        required: true
-        type: string
       - default: auto
         description: |-
           Bucket
@@ -639,6 +937,12 @@ paths:
       - description: To
         in: query
         name: to
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
         type: string
       - default: count
         description: |-
@@ -691,29 +995,23 @@ paths:
         "200":
           $ref: '#/responses/DataPoints'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
       summary: Query http requests
       tags:
       - Metrics
-  /servers/{wid}/http-requests/{group}:
+  /http-requests/{group}:
     get:
       description: Query http request data points by group.
-      operationId: aggregatedHttpRequestMetrics
+      operationId: tenantAggregatedHttpRequestMetrics
       parameters:
-      - default: default
-        description: Workspace ID
-        in: path
-        name: wid
-        required: true
-        type: string
       - default: auto
         description: |-
           Bucket
@@ -782,6 +1080,12 @@ paths:
       - description: To
         in: query
         name: to
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
         type: string
       - default: count
         description: |-
@@ -852,29 +1156,23 @@ paths:
         "200":
           $ref: '#/responses/AggregatedDataPoints'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
       summary: Query http requests by group
       tags:
       - Metrics
-  /servers/{wid}/otp-operations:
+  /otp-operations:
     get:
       description: Query otp operation data points.
-      operationId: singleOTPOperationMetrics
+      operationId: tenantSingleOTPOperationMetrics
       parameters:
-      - default: default
-        description: Workspace ID
-        in: path
-        name: wid
-        required: true
-        type: string
       - default: auto
         description: |-
           Bucket
@@ -943,6 +1241,12 @@ paths:
       - description: To
         in: query
         name: to
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
         type: string
       - default: count
         description: |-
@@ -958,29 +1262,23 @@ paths:
         "200":
           $ref: '#/responses/DataPoints'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
       summary: Query otp operations
       tags:
       - Metrics
-  /servers/{wid}/otp-operations/{group}:
+  /otp-operations/{group}:
     get:
       description: Query otp operation data points by group.
-      operationId: aggregatedOTPOperationMetrics
+      operationId: tenantAggregatedOTPOperationMetrics
       parameters:
-      - default: default
-        description: Workspace ID
-        in: path
-        name: wid
-        required: true
-        type: string
       - default: auto
         description: |-
           Bucket
@@ -1049,6 +1347,12 @@ paths:
       - description: To
         in: query
         name: to
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
         type: string
       - default: count
         description: |-
@@ -1075,29 +1379,23 @@ paths:
         "200":
           $ref: '#/responses/AggregatedDataPoints'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
       summary: Query otp operations by group
       tags:
       - Metrics
-  /servers/{wid}/policy-validations:
+  /policy-validations:
     get:
       description: Query policy validation data points.
-      operationId: singlePolicyValidationMetrics
+      operationId: tenantSinglePolicyValidationMetrics
       parameters:
-      - default: default
-        description: Workspace ID
-        in: path
-        name: wid
-        required: true
-        type: string
       - default: auto
         description: |-
           Bucket
@@ -1166,6 +1464,12 @@ paths:
       - description: To
         in: query
         name: to
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
         type: string
       - default: count
         description: |-
@@ -1181,29 +1485,23 @@ paths:
         "200":
           $ref: '#/responses/DataPoints'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
       summary: Query policy validations
       tags:
       - Metrics
-  /servers/{wid}/policy-validations/{group}:
+  /policy-validations/{group}:
     get:
       description: Query policy validation data points by group.
-      operationId: aggregatedPolicyValidationMetrics
+      operationId: tenantAggregatedPolicyValidationMetrics
       parameters:
-      - default: default
-        description: Workspace ID
-        in: path
-        name: wid
-        required: true
-        type: string
       - default: auto
         description: |-
           Bucket
@@ -1272,6 +1570,12 @@ paths:
       - description: To
         in: query
         name: to
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
         type: string
       - default: count
         description: |-
@@ -1298,16 +1602,2424 @@ paths:
         "200":
           $ref: '#/responses/AggregatedDataPoints'
         "400":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/badRequestHTTPError'
         "401":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/unauthorizedHTTPError'
         "403":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/forbiddenHTTPError'
         "429":
-          $ref: '#/responses/httpError'
+          $ref: '#/responses/tooManyRequestsHTTPError'
       security:
       - admin: []
       summary: Query policy validations by group
+      tags:
+      - Metrics
+  /servers/{wid}/access-tokens:
+    get:
+      description: Query access token data points.
+      operationId: workspaceSingleAccessTokenMetrics
+      parameters:
+      - default: default
+        description: Workspace ID
+        in: path
+        name: wid
+        required: true
+        type: string
+      - default: auto
+        description: |-
+          Bucket
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+        enum:
+        - auto
+        - all
+        - 1m
+        - 5m
+        - 15m
+        - 30m
+        - 1h
+        - 3h
+        - 6h
+        - 12h
+        - 1d
+        - 1w
+        - 1M
+        - 3M
+        - 6M
+        - 1Y
+        in: query
+        name: bucket
+        type: string
+        x-go-enum-desc: |-
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+      - description: Origin
+        format: date-time
+        in: query
+        name: origin
+        type: string
+      - description: From
+        in: query
+        name: from
+        type: string
+      - description: To
+        in: query
+        name: to
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: count
+        description: |-
+          Function
+          count AccessTokensCount
+          unique AccessTokensUnique
+          unique_clients AccessTokensUniqueClients
+        enum:
+        - count
+        - unique
+        - unique_clients
+        in: query
+        name: function
+        type: string
+        x-go-enum-desc: |-
+          count AccessTokensCount
+          unique AccessTokensUnique
+          unique_clients AccessTokensUniqueClients
+      responses:
+        "200":
+          $ref: '#/responses/DataPoints'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Query access tokens
+      tags:
+      - Metrics
+  /servers/{wid}/access-tokens/{group}:
+    get:
+      description: Query access token data points by group.
+      operationId: workspaceAggregatedAccessTokenMetrics
+      parameters:
+      - default: default
+        description: Workspace ID
+        in: path
+        name: wid
+        required: true
+        type: string
+      - default: auto
+        description: |-
+          Bucket
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+        enum:
+        - auto
+        - all
+        - 1m
+        - 5m
+        - 15m
+        - 30m
+        - 1h
+        - 3h
+        - 6h
+        - 12h
+        - 1d
+        - 1w
+        - 1M
+        - 3M
+        - 6M
+        - 1Y
+        in: query
+        name: bucket
+        type: string
+        x-go-enum-desc: |-
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+      - description: Origin
+        format: date-time
+        in: query
+        name: origin
+        type: string
+      - description: From
+        in: query
+        name: from
+        type: string
+      - description: To
+        in: query
+        name: to
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: count
+        description: |-
+          Function
+          count AccessTokensCount
+          unique AccessTokensUnique
+          unique_clients AccessTokensUniqueClients
+        enum:
+        - count
+        - unique
+        - unique_clients
+        in: query
+        name: function
+        type: string
+        x-go-enum-desc: |-
+          count AccessTokensCount
+          unique AccessTokensUnique
+          unique_clients AccessTokensUniqueClients
+      - default: grant_type
+        description: |-
+          Group by
+          grant_type AccessTokensByGrantType
+        enum:
+        - grant_type
+        in: path
+        name: group
+        required: true
+        type: string
+        x-go-enum-desc: grant_type AccessTokensByGrantType
+      responses:
+        "200":
+          $ref: '#/responses/AggregatedDataPoints'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Query access tokens by group
+      tags:
+      - Metrics
+  /servers/{wid}/gateway-requests:
+    get:
+      description: Query gateway request data points.
+      operationId: workspaceSingleGatewayRequestMetrics
+      parameters:
+      - default: default
+        description: Workspace ID
+        in: path
+        name: wid
+        required: true
+        type: string
+      - default: auto
+        description: |-
+          Bucket
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+        enum:
+        - auto
+        - all
+        - 1m
+        - 5m
+        - 15m
+        - 30m
+        - 1h
+        - 3h
+        - 6h
+        - 12h
+        - 1d
+        - 1w
+        - 1M
+        - 3M
+        - 6M
+        - 1Y
+        in: query
+        name: bucket
+        type: string
+        x-go-enum-desc: |-
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+      - description: Origin
+        format: date-time
+        in: query
+        name: origin
+        type: string
+      - description: From
+        in: query
+        name: from
+        type: string
+      - description: To
+        in: query
+        name: to
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: count
+        description: |-
+          Function
+          count GatewayRequestsCount
+          sum GatewayRequestsSum
+          p50 GatewayRequestsP50
+          p75 GatewayRequestsP75
+          p95 GatewayRequestsP95
+          p99 GatewayRequestsP99
+        enum:
+        - count
+        - sum
+        - p50
+        - p75
+        - p95
+        - p99
+        in: query
+        name: function
+        type: string
+        x-go-enum-desc: |-
+          count GatewayRequestsCount
+          sum GatewayRequestsSum
+          p50 GatewayRequestsP50
+          p75 GatewayRequestsP75
+          p95 GatewayRequestsP95
+          p99 GatewayRequestsP99
+      responses:
+        "200":
+          $ref: '#/responses/DataPoints'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Query gateway requests
+      tags:
+      - Metrics
+  /servers/{wid}/gateway-requests/{group}:
+    get:
+      description: Query gateway request data points by group.
+      operationId: workspaceAggregatedGatewayRequestMetrics
+      parameters:
+      - default: default
+        description: Workspace ID
+        in: path
+        name: wid
+        required: true
+        type: string
+      - default: auto
+        description: |-
+          Bucket
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+        enum:
+        - auto
+        - all
+        - 1m
+        - 5m
+        - 15m
+        - 30m
+        - 1h
+        - 3h
+        - 6h
+        - 12h
+        - 1d
+        - 1w
+        - 1M
+        - 3M
+        - 6M
+        - 1Y
+        in: query
+        name: bucket
+        type: string
+        x-go-enum-desc: |-
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+      - description: Origin
+        format: date-time
+        in: query
+        name: origin
+        type: string
+      - description: From
+        in: query
+        name: from
+        type: string
+      - description: To
+        in: query
+        name: to
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: count
+        description: |-
+          Function
+          count GatewayRequestsCount
+          sum GatewayRequestsSum
+          p50 GatewayRequestsP50
+          p75 GatewayRequestsP75
+          p95 GatewayRequestsP95
+          p99 GatewayRequestsP99
+        enum:
+        - count
+        - sum
+        - p50
+        - p75
+        - p95
+        - p99
+        in: query
+        name: function
+        type: string
+        x-go-enum-desc: |-
+          count GatewayRequestsCount
+          sum GatewayRequestsSum
+          p50 GatewayRequestsP50
+          p75 GatewayRequestsP75
+          p95 GatewayRequestsP95
+          p99 GatewayRequestsP99
+      - default: result
+        description: |-
+          Group by
+          result GatewayRequestsByResult
+        enum:
+        - result
+        in: path
+        name: group
+        required: true
+        type: string
+        x-go-enum-desc: result GatewayRequestsByResult
+      responses:
+        "200":
+          $ref: '#/responses/AggregatedDataPoints'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Query gateway requests by group
+      tags:
+      - Metrics
+  /servers/{wid}/http-requests:
+    get:
+      description: Query http request data points.
+      operationId: workspaceSingleHttpRequestMetrics
+      parameters:
+      - default: default
+        description: Workspace ID
+        in: path
+        name: wid
+        required: true
+        type: string
+      - default: auto
+        description: |-
+          Bucket
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+        enum:
+        - auto
+        - all
+        - 1m
+        - 5m
+        - 15m
+        - 30m
+        - 1h
+        - 3h
+        - 6h
+        - 12h
+        - 1d
+        - 1w
+        - 1M
+        - 3M
+        - 6M
+        - 1Y
+        in: query
+        name: bucket
+        type: string
+        x-go-enum-desc: |-
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+      - description: Origin
+        format: date-time
+        in: query
+        name: origin
+        type: string
+      - description: From
+        in: query
+        name: from
+        type: string
+      - description: To
+        in: query
+        name: to
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: count
+        description: |-
+          Function
+          count HTTPRequestsCount
+          sum HTTPRequestsSum
+          p50 HTTPRequestsP50
+          p75 HTTPRequestsP75
+          p95 HTTPRequestsP95
+          p99 HTTPRequestsP99
+          le1 HTTPRequestsLe1
+          le10 HTTPRequestsLe10
+          le50 HTTPRequestsLe50
+          le100 HTTPRequestsLe100
+          le500 HTTPRequestsLe500
+          le1000 HTTPRequestsLe1000
+          leinf HTTPRequestsLeinf
+        enum:
+        - count
+        - sum
+        - p50
+        - p75
+        - p95
+        - p99
+        - le1
+        - le10
+        - le50
+        - le100
+        - le500
+        - le1000
+        - leinf
+        in: query
+        name: function
+        type: string
+        x-go-enum-desc: |-
+          count HTTPRequestsCount
+          sum HTTPRequestsSum
+          p50 HTTPRequestsP50
+          p75 HTTPRequestsP75
+          p95 HTTPRequestsP95
+          p99 HTTPRequestsP99
+          le1 HTTPRequestsLe1
+          le10 HTTPRequestsLe10
+          le50 HTTPRequestsLe50
+          le100 HTTPRequestsLe100
+          le500 HTTPRequestsLe500
+          le1000 HTTPRequestsLe1000
+          leinf HTTPRequestsLeinf
+      responses:
+        "200":
+          $ref: '#/responses/DataPoints'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Query http requests
+      tags:
+      - Metrics
+  /servers/{wid}/http-requests/{group}:
+    get:
+      description: Query http request data points by group.
+      operationId: workspaceAggregatedHttpRequestMetrics
+      parameters:
+      - default: default
+        description: Workspace ID
+        in: path
+        name: wid
+        required: true
+        type: string
+      - default: auto
+        description: |-
+          Bucket
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+        enum:
+        - auto
+        - all
+        - 1m
+        - 5m
+        - 15m
+        - 30m
+        - 1h
+        - 3h
+        - 6h
+        - 12h
+        - 1d
+        - 1w
+        - 1M
+        - 3M
+        - 6M
+        - 1Y
+        in: query
+        name: bucket
+        type: string
+        x-go-enum-desc: |-
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+      - description: Origin
+        format: date-time
+        in: query
+        name: origin
+        type: string
+      - description: From
+        in: query
+        name: from
+        type: string
+      - description: To
+        in: query
+        name: to
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: count
+        description: |-
+          Function
+          count HTTPRequestsCount
+          sum HTTPRequestsSum
+          p50 HTTPRequestsP50
+          p75 HTTPRequestsP75
+          p95 HTTPRequestsP95
+          p99 HTTPRequestsP99
+          le1 HTTPRequestsLe1
+          le10 HTTPRequestsLe10
+          le50 HTTPRequestsLe50
+          le100 HTTPRequestsLe100
+          le500 HTTPRequestsLe500
+          le1000 HTTPRequestsLe1000
+          leinf HTTPRequestsLeinf
+        enum:
+        - count
+        - sum
+        - p50
+        - p75
+        - p95
+        - p99
+        - le1
+        - le10
+        - le50
+        - le100
+        - le500
+        - le1000
+        - leinf
+        in: query
+        name: function
+        type: string
+        x-go-enum-desc: |-
+          count HTTPRequestsCount
+          sum HTTPRequestsSum
+          p50 HTTPRequestsP50
+          p75 HTTPRequestsP75
+          p95 HTTPRequestsP95
+          p99 HTTPRequestsP99
+          le1 HTTPRequestsLe1
+          le10 HTTPRequestsLe10
+          le50 HTTPRequestsLe50
+          le100 HTTPRequestsLe100
+          le500 HTTPRequestsLe500
+          le1000 HTTPRequestsLe1000
+          leinf HTTPRequestsLeinf
+      - default: api
+        description: |-
+          Group by
+          api HTTPRequestsByAPI
+          code HTTPRequestsByCode
+          category HTTPRequestsByCategory
+        enum:
+        - api
+        - code
+        - category
+        in: path
+        name: group
+        required: true
+        type: string
+        x-go-enum-desc: |-
+          api HTTPRequestsByAPI
+          code HTTPRequestsByCode
+          category HTTPRequestsByCategory
+      responses:
+        "200":
+          $ref: '#/responses/AggregatedDataPoints'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Query http requests by group
+      tags:
+      - Metrics
+  /servers/{wid}/otp-operations:
+    get:
+      description: Query otp operation data points.
+      operationId: workspaceSingleOTPOperationMetrics
+      parameters:
+      - default: default
+        description: Workspace ID
+        in: path
+        name: wid
+        required: true
+        type: string
+      - default: auto
+        description: |-
+          Bucket
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+        enum:
+        - auto
+        - all
+        - 1m
+        - 5m
+        - 15m
+        - 30m
+        - 1h
+        - 3h
+        - 6h
+        - 12h
+        - 1d
+        - 1w
+        - 1M
+        - 3M
+        - 6M
+        - 1Y
+        in: query
+        name: bucket
+        type: string
+        x-go-enum-desc: |-
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+      - description: Origin
+        format: date-time
+        in: query
+        name: origin
+        type: string
+      - description: From
+        in: query
+        name: from
+        type: string
+      - description: To
+        in: query
+        name: to
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: count
+        description: |-
+          Function
+          count OTPOperationsCount
+        enum:
+        - count
+        in: query
+        name: function
+        type: string
+        x-go-enum-desc: count OTPOperationsCount
+      responses:
+        "200":
+          $ref: '#/responses/DataPoints'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Query otp operations
+      tags:
+      - Metrics
+  /servers/{wid}/otp-operations/{group}:
+    get:
+      description: Query otp operation data points by group.
+      operationId: workspaceAggregatedOTPOperationMetrics
+      parameters:
+      - default: default
+        description: Workspace ID
+        in: path
+        name: wid
+        required: true
+        type: string
+      - default: auto
+        description: |-
+          Bucket
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+        enum:
+        - auto
+        - all
+        - 1m
+        - 5m
+        - 15m
+        - 30m
+        - 1h
+        - 3h
+        - 6h
+        - 12h
+        - 1d
+        - 1w
+        - 1M
+        - 3M
+        - 6M
+        - 1Y
+        in: query
+        name: bucket
+        type: string
+        x-go-enum-desc: |-
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+      - description: Origin
+        format: date-time
+        in: query
+        name: origin
+        type: string
+      - description: From
+        in: query
+        name: from
+        type: string
+      - description: To
+        in: query
+        name: to
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: count
+        description: |-
+          Function
+          count OTPOperationsCount
+        enum:
+        - count
+        in: query
+        name: function
+        type: string
+        x-go-enum-desc: count OTPOperationsCount
+      - default: operation
+        description: |-
+          Group by
+          operation OTPOperationsByResult
+        enum:
+        - operation
+        in: path
+        name: group
+        required: true
+        type: string
+        x-go-enum-desc: operation OTPOperationsByResult
+      responses:
+        "200":
+          $ref: '#/responses/AggregatedDataPoints'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Query otp operations by group
+      tags:
+      - Metrics
+  /servers/{wid}/policy-validations:
+    get:
+      description: Query policy validation data points.
+      operationId: workspaceSinglePolicyValidationMetrics
+      parameters:
+      - default: default
+        description: Workspace ID
+        in: path
+        name: wid
+        required: true
+        type: string
+      - default: auto
+        description: |-
+          Bucket
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+        enum:
+        - auto
+        - all
+        - 1m
+        - 5m
+        - 15m
+        - 30m
+        - 1h
+        - 3h
+        - 6h
+        - 12h
+        - 1d
+        - 1w
+        - 1M
+        - 3M
+        - 6M
+        - 1Y
+        in: query
+        name: bucket
+        type: string
+        x-go-enum-desc: |-
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+      - description: Origin
+        format: date-time
+        in: query
+        name: origin
+        type: string
+      - description: From
+        in: query
+        name: from
+        type: string
+      - description: To
+        in: query
+        name: to
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: count
+        description: |-
+          Function
+          count PolicyValidationsCount
+        enum:
+        - count
+        in: query
+        name: function
+        type: string
+        x-go-enum-desc: count PolicyValidationsCount
+      responses:
+        "200":
+          $ref: '#/responses/DataPoints'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Query policy validations
+      tags:
+      - Metrics
+  /servers/{wid}/policy-validations/{group}:
+    get:
+      description: Query policy validation data points by group.
+      operationId: workspaceAggregatedPolicyValidationMetrics
+      parameters:
+      - default: default
+        description: Workspace ID
+        in: path
+        name: wid
+        required: true
+        type: string
+      - default: auto
+        description: |-
+          Bucket
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+        enum:
+        - auto
+        - all
+        - 1m
+        - 5m
+        - 15m
+        - 30m
+        - 1h
+        - 3h
+        - 6h
+        - 12h
+        - 1d
+        - 1w
+        - 1M
+        - 3M
+        - 6M
+        - 1Y
+        in: query
+        name: bucket
+        type: string
+        x-go-enum-desc: |-
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+      - description: Origin
+        format: date-time
+        in: query
+        name: origin
+        type: string
+      - description: From
+        in: query
+        name: from
+        type: string
+      - description: To
+        in: query
+        name: to
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: count
+        description: |-
+          Function
+          count PolicyValidationsCount
+        enum:
+        - count
+        in: query
+        name: function
+        type: string
+        x-go-enum-desc: count PolicyValidationsCount
+      - default: result
+        description: |-
+          Group by
+          result PolicyValidationsByResult
+        enum:
+        - result
+        in: path
+        name: group
+        required: true
+        type: string
+        x-go-enum-desc: result PolicyValidationsByResult
+      responses:
+        "200":
+          $ref: '#/responses/AggregatedDataPoints'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Query policy validations by group
+      tags:
+      - Metrics
+  /tenants/{tenantID}/access-tokens:
+    get:
+      description: Query access token data points.
+      operationId: systemTenantSingleAccessTokenMetrics
+      parameters:
+      - default: auto
+        description: |-
+          Bucket
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+        enum:
+        - auto
+        - all
+        - 1m
+        - 5m
+        - 15m
+        - 30m
+        - 1h
+        - 3h
+        - 6h
+        - 12h
+        - 1d
+        - 1w
+        - 1M
+        - 3M
+        - 6M
+        - 1Y
+        in: query
+        name: bucket
+        type: string
+        x-go-enum-desc: |-
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+      - description: Origin
+        format: date-time
+        in: query
+        name: origin
+        type: string
+      - description: From
+        in: query
+        name: from
+        type: string
+      - description: To
+        in: query
+        name: to
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: default
+        description: Tenant ID
+        in: path
+        name: tenantID
+        required: true
+        type: string
+      - default: count
+        description: |-
+          Function
+          count AccessTokensCount
+          unique AccessTokensUnique
+          unique_clients AccessTokensUniqueClients
+        enum:
+        - count
+        - unique
+        - unique_clients
+        in: query
+        name: function
+        type: string
+        x-go-enum-desc: |-
+          count AccessTokensCount
+          unique AccessTokensUnique
+          unique_clients AccessTokensUniqueClients
+      responses:
+        "200":
+          $ref: '#/responses/DataPoints'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - setup: []
+      summary: Query access tokens
+      tags:
+      - Metrics
+  /tenants/{tenantID}/access-tokens/{group}:
+    get:
+      description: Query access token data points by group.
+      operationId: systemTenantAggregatedAccessTokenMetrics
+      parameters:
+      - default: auto
+        description: |-
+          Bucket
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+        enum:
+        - auto
+        - all
+        - 1m
+        - 5m
+        - 15m
+        - 30m
+        - 1h
+        - 3h
+        - 6h
+        - 12h
+        - 1d
+        - 1w
+        - 1M
+        - 3M
+        - 6M
+        - 1Y
+        in: query
+        name: bucket
+        type: string
+        x-go-enum-desc: |-
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+      - description: Origin
+        format: date-time
+        in: query
+        name: origin
+        type: string
+      - description: From
+        in: query
+        name: from
+        type: string
+      - description: To
+        in: query
+        name: to
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: default
+        description: Tenant ID
+        in: path
+        name: tenantID
+        required: true
+        type: string
+      - default: count
+        description: |-
+          Function
+          count AccessTokensCount
+          unique AccessTokensUnique
+          unique_clients AccessTokensUniqueClients
+        enum:
+        - count
+        - unique
+        - unique_clients
+        in: query
+        name: function
+        type: string
+        x-go-enum-desc: |-
+          count AccessTokensCount
+          unique AccessTokensUnique
+          unique_clients AccessTokensUniqueClients
+      - default: grant_type
+        description: |-
+          Group by
+          grant_type AccessTokensByGrantType
+        enum:
+        - grant_type
+        in: path
+        name: group
+        required: true
+        type: string
+        x-go-enum-desc: grant_type AccessTokensByGrantType
+      responses:
+        "200":
+          $ref: '#/responses/AggregatedDataPoints'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - setup: []
+      summary: Query access tokens by group
+      tags:
+      - Metrics
+  /tenants/{tenantID}/faas:
+    get:
+      description: Query faas data points.
+      operationId: systemTenantSingleFaasMetrics
+      parameters:
+      - default: auto
+        description: |-
+          Bucket
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+        enum:
+        - auto
+        - all
+        - 1m
+        - 5m
+        - 15m
+        - 30m
+        - 1h
+        - 3h
+        - 6h
+        - 12h
+        - 1d
+        - 1w
+        - 1M
+        - 3M
+        - 6M
+        - 1Y
+        in: query
+        name: bucket
+        type: string
+        x-go-enum-desc: |-
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+      - description: Origin
+        format: date-time
+        in: query
+        name: origin
+        type: string
+      - description: From
+        in: query
+        name: from
+        type: string
+      - description: To
+        in: query
+        name: to
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: default
+        description: Tenant ID
+        in: path
+        name: tenantID
+        required: true
+        type: string
+      - default: count
+        description: |-
+          Function
+          count FaasCount
+          sum FaasSum
+          p50 FaasP50
+          p75 FaasP75
+          p95 FaasP95
+          p99 FaasP99
+          le1 FaasLe1
+          le10 FaasLe10
+          le50 FaasLe50
+          le100 FaasLe100
+          le500 FaasLe500
+          le1000 FaasLe1000
+          leinf FaasLeinf
+        enum:
+        - count
+        - sum
+        - p50
+        - p75
+        - p95
+        - p99
+        - le1
+        - le10
+        - le50
+        - le100
+        - le500
+        - le1000
+        - leinf
+        in: query
+        name: function
+        type: string
+        x-go-enum-desc: |-
+          count FaasCount
+          sum FaasSum
+          p50 FaasP50
+          p75 FaasP75
+          p95 FaasP95
+          p99 FaasP99
+          le1 FaasLe1
+          le10 FaasLe10
+          le50 FaasLe50
+          le100 FaasLe100
+          le500 FaasLe500
+          le1000 FaasLe1000
+          leinf FaasLeinf
+      responses:
+        "200":
+          $ref: '#/responses/DataPoints'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Query faas duration
+      tags:
+      - Metrics
+  /tenants/{tenantID}/faas/{group}:
+    get:
+      description: Query faas data points by group.
+      operationId: systemTenantAggregatedFaasMetrics
+      parameters:
+      - default: auto
+        description: |-
+          Bucket
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+        enum:
+        - auto
+        - all
+        - 1m
+        - 5m
+        - 15m
+        - 30m
+        - 1h
+        - 3h
+        - 6h
+        - 12h
+        - 1d
+        - 1w
+        - 1M
+        - 3M
+        - 6M
+        - 1Y
+        in: query
+        name: bucket
+        type: string
+        x-go-enum-desc: |-
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+      - description: Origin
+        format: date-time
+        in: query
+        name: origin
+        type: string
+      - description: From
+        in: query
+        name: from
+        type: string
+      - description: To
+        in: query
+        name: to
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: default
+        description: Tenant ID
+        in: path
+        name: tenantID
+        required: true
+        type: string
+      - default: count
+        description: |-
+          Function
+          count FaasCount
+          sum FaasSum
+          p50 FaasP50
+          p75 FaasP75
+          p95 FaasP95
+          p99 FaasP99
+          le1 FaasLe1
+          le10 FaasLe10
+          le50 FaasLe50
+          le100 FaasLe100
+          le500 FaasLe500
+          le1000 FaasLe1000
+          leinf FaasLeinf
+        enum:
+        - count
+        - sum
+        - p50
+        - p75
+        - p95
+        - p99
+        - le1
+        - le10
+        - le50
+        - le100
+        - le500
+        - le1000
+        - leinf
+        in: query
+        name: function
+        type: string
+        x-go-enum-desc: |-
+          count FaasCount
+          sum FaasSum
+          p50 FaasP50
+          p75 FaasP75
+          p95 FaasP95
+          p99 FaasP99
+          le1 FaasLe1
+          le10 FaasLe10
+          le50 FaasLe50
+          le100 FaasLe100
+          le500 FaasLe500
+          le1000 FaasLe1000
+          leinf FaasLeinf
+      - default: function
+        description: |-
+          Group by
+          function FaasByFunction
+        enum:
+        - function
+        in: path
+        name: group
+        required: true
+        type: string
+        x-go-enum-desc: function FaasByFunction
+      responses:
+        "200":
+          $ref: '#/responses/AggregatedDataPoints'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Query faas duration by group
+      tags:
+      - Metrics
+  /tenants/{tenantID}/http-requests:
+    get:
+      description: Query http request data points.
+      operationId: systemTenantSingleHttpRequestMetrics
+      parameters:
+      - default: auto
+        description: |-
+          Bucket
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+        enum:
+        - auto
+        - all
+        - 1m
+        - 5m
+        - 15m
+        - 30m
+        - 1h
+        - 3h
+        - 6h
+        - 12h
+        - 1d
+        - 1w
+        - 1M
+        - 3M
+        - 6M
+        - 1Y
+        in: query
+        name: bucket
+        type: string
+        x-go-enum-desc: |-
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+      - description: Origin
+        format: date-time
+        in: query
+        name: origin
+        type: string
+      - description: From
+        in: query
+        name: from
+        type: string
+      - description: To
+        in: query
+        name: to
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: default
+        description: Tenant ID
+        in: path
+        name: tenantID
+        required: true
+        type: string
+      - default: count
+        description: |-
+          Function
+          count HTTPRequestsCount
+          sum HTTPRequestsSum
+          p50 HTTPRequestsP50
+          p75 HTTPRequestsP75
+          p95 HTTPRequestsP95
+          p99 HTTPRequestsP99
+          le1 HTTPRequestsLe1
+          le10 HTTPRequestsLe10
+          le50 HTTPRequestsLe50
+          le100 HTTPRequestsLe100
+          le500 HTTPRequestsLe500
+          le1000 HTTPRequestsLe1000
+          leinf HTTPRequestsLeinf
+        enum:
+        - count
+        - sum
+        - p50
+        - p75
+        - p95
+        - p99
+        - le1
+        - le10
+        - le50
+        - le100
+        - le500
+        - le1000
+        - leinf
+        in: query
+        name: function
+        type: string
+        x-go-enum-desc: |-
+          count HTTPRequestsCount
+          sum HTTPRequestsSum
+          p50 HTTPRequestsP50
+          p75 HTTPRequestsP75
+          p95 HTTPRequestsP95
+          p99 HTTPRequestsP99
+          le1 HTTPRequestsLe1
+          le10 HTTPRequestsLe10
+          le50 HTTPRequestsLe50
+          le100 HTTPRequestsLe100
+          le500 HTTPRequestsLe500
+          le1000 HTTPRequestsLe1000
+          leinf HTTPRequestsLeinf
+      responses:
+        "200":
+          $ref: '#/responses/DataPoints'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Query http requests
+      tags:
+      - Metrics
+  /tenants/{tenantID}/http-requests/{group}:
+    get:
+      description: Query http request data points by group.
+      operationId: systemTenantAggregatedHttpRequestMetrics
+      parameters:
+      - default: auto
+        description: |-
+          Bucket
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+        enum:
+        - auto
+        - all
+        - 1m
+        - 5m
+        - 15m
+        - 30m
+        - 1h
+        - 3h
+        - 6h
+        - 12h
+        - 1d
+        - 1w
+        - 1M
+        - 3M
+        - 6M
+        - 1Y
+        in: query
+        name: bucket
+        type: string
+        x-go-enum-desc: |-
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+      - description: Origin
+        format: date-time
+        in: query
+        name: origin
+        type: string
+      - description: From
+        in: query
+        name: from
+        type: string
+      - description: To
+        in: query
+        name: to
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: default
+        description: Tenant ID
+        in: path
+        name: tenantID
+        required: true
+        type: string
+      - default: count
+        description: |-
+          Function
+          count HTTPRequestsCount
+          sum HTTPRequestsSum
+          p50 HTTPRequestsP50
+          p75 HTTPRequestsP75
+          p95 HTTPRequestsP95
+          p99 HTTPRequestsP99
+          le1 HTTPRequestsLe1
+          le10 HTTPRequestsLe10
+          le50 HTTPRequestsLe50
+          le100 HTTPRequestsLe100
+          le500 HTTPRequestsLe500
+          le1000 HTTPRequestsLe1000
+          leinf HTTPRequestsLeinf
+        enum:
+        - count
+        - sum
+        - p50
+        - p75
+        - p95
+        - p99
+        - le1
+        - le10
+        - le50
+        - le100
+        - le500
+        - le1000
+        - leinf
+        in: query
+        name: function
+        type: string
+        x-go-enum-desc: |-
+          count HTTPRequestsCount
+          sum HTTPRequestsSum
+          p50 HTTPRequestsP50
+          p75 HTTPRequestsP75
+          p95 HTTPRequestsP95
+          p99 HTTPRequestsP99
+          le1 HTTPRequestsLe1
+          le10 HTTPRequestsLe10
+          le50 HTTPRequestsLe50
+          le100 HTTPRequestsLe100
+          le500 HTTPRequestsLe500
+          le1000 HTTPRequestsLe1000
+          leinf HTTPRequestsLeinf
+      - default: api
+        description: |-
+          Group by
+          api HTTPRequestsByAPI
+          code HTTPRequestsByCode
+          category HTTPRequestsByCategory
+        enum:
+        - api
+        - code
+        - category
+        in: path
+        name: group
+        required: true
+        type: string
+        x-go-enum-desc: |-
+          api HTTPRequestsByAPI
+          code HTTPRequestsByCode
+          category HTTPRequestsByCategory
+      responses:
+        "200":
+          $ref: '#/responses/AggregatedDataPoints'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Query http requests by group
+      tags:
+      - Metrics
+  /tenants/{tenantID}/users:
+    get:
+      description: Query users data points.
+      operationId: systemTenantSingleUsersMetrics
+      parameters:
+      - default: auto
+        description: |-
+          Bucket
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+        enum:
+        - auto
+        - all
+        - 1m
+        - 5m
+        - 15m
+        - 30m
+        - 1h
+        - 3h
+        - 6h
+        - 12h
+        - 1d
+        - 1w
+        - 1M
+        - 3M
+        - 6M
+        - 1Y
+        in: query
+        name: bucket
+        type: string
+        x-go-enum-desc: |-
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+      - description: Origin
+        format: date-time
+        in: query
+        name: origin
+        type: string
+      - description: From
+        in: query
+        name: from
+        type: string
+      - description: To
+        in: query
+        name: to
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: default
+        description: Tenant ID
+        in: path
+        name: tenantID
+        required: true
+        type: string
+      - default: count_all
+        description: |-
+          Function
+          count_all AllUsersCount
+          count_standard StandardUsersCount
+          count_jit JITUsersCount
+        enum:
+        - count_all
+        - count_standard
+        - count_jit
+        in: query
+        name: function
+        type: string
+        x-go-enum-desc: |-
+          count_all AllUsersCount
+          count_standard StandardUsersCount
+          count_jit JITUsersCount
+      responses:
+        "200":
+          $ref: '#/responses/DataPoints'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Query users metrics
+      tags:
+      - Metrics
+  /users:
+    get:
+      description: Query users data points.
+      operationId: tenantSingleUsersMetrics
+      parameters:
+      - default: auto
+        description: |-
+          Bucket
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+        enum:
+        - auto
+        - all
+        - 1m
+        - 5m
+        - 15m
+        - 30m
+        - 1h
+        - 3h
+        - 6h
+        - 12h
+        - 1d
+        - 1w
+        - 1M
+        - 3M
+        - 6M
+        - 1Y
+        in: query
+        name: bucket
+        type: string
+        x-go-enum-desc: |-
+          auto BucketAuto
+          all BucketAll
+          1m Bucket1m
+          5m Bucket5m
+          15m Bucket15m
+          30m Bucket30m
+          1h Bucket1h
+          3h Bucket3h
+          6h Bucket6h
+          12h Bucket12h
+          1d Bucket1d
+          1w Bucket1w
+          1M Bucket1M
+          3M Bucket3M
+          6M Bucket6M
+          1Y Bucket1Y
+      - description: Origin
+        format: date-time
+        in: query
+        name: origin
+        type: string
+      - description: From
+        in: query
+        name: from
+        type: string
+      - description: To
+        in: query
+        name: to
+        type: string
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - default: count_all
+        description: |-
+          Function
+          count_all AllUsersCount
+          count_standard StandardUsersCount
+          count_jit JITUsersCount
+        enum:
+        - count_all
+        - count_standard
+        - count_jit
+        in: query
+        name: function
+        type: string
+        x-go-enum-desc: |-
+          count_all AllUsersCount
+          count_standard StandardUsersCount
+          count_jit JITUsersCount
+      responses:
+        "200":
+          $ref: '#/responses/DataPoints'
+        "400":
+          $ref: '#/responses/badRequestHTTPError'
+        "401":
+          $ref: '#/responses/unauthorizedHTTPError'
+        "403":
+          $ref: '#/responses/forbiddenHTTPError'
+        "429":
+          $ref: '#/responses/tooManyRequestsHTTPError'
+      security:
+      - admin: []
+      summary: Query users metrics
       tags:
       - Metrics
 produces:
@@ -1316,14 +4028,70 @@ produces:
 responses:
   AggregatedDataPoints:
     description: Aggregated data points
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
     schema:
       $ref: '#/definitions/AggregatedDataPoints'
   DataPoints:
     description: Data points
+    headers:
+      etag:
+        description: |-
+          The ETag HTTP header is an identifier for a specific version of a resource
+
+          in:header
+        format: etag
+        type: string
     schema:
       $ref: '#/definitions/DataPoints'
-  httpError:
-    description: HttpError
+  badRequestHTTPError:
+    description: Bad request
+    schema:
+      $ref: '#/definitions/Error'
+  conflictHTTPError:
+    description: Conflict
+    schema:
+      $ref: '#/definitions/Error'
+  forbiddenHTTPError:
+    description: Forbidden
+    schema:
+      $ref: '#/definitions/Error'
+  internalServerErrorHTTPError:
+    description: Internal server error
+    schema:
+      $ref: '#/definitions/Error'
+  methodNotAllowedHTTPError:
+    description: Method not allowed
+    schema:
+      $ref: '#/definitions/Error'
+  notFoundHTTPError:
+    description: Not found
+    schema:
+      $ref: '#/definitions/Error'
+  payloadTooLargeHTTPError:
+    description: Payload too large
+    schema:
+      $ref: '#/definitions/Error'
+  preconditionFailedHTTPError:
+    description: Precondition failed
+    schema:
+      $ref: '#/definitions/Error'
+  tooManyRequestsHTTPError:
+    description: Too many requests
+    schema:
+      $ref: '#/definitions/Error'
+  unauthorizedHTTPError:
+    description: Unauthorized
+    schema:
+      $ref: '#/definitions/Error'
+  unprocessableEntityHTTPError:
+    description: Unprocessable entity
     schema:
       $ref: '#/definitions/Error'
 schemes:

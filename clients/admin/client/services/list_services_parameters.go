@@ -76,6 +76,14 @@ type ListServicesParams struct {
 	*/
 	BeforeServiceID *string
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Limit.
 
 	     optional limit results
@@ -215,6 +223,17 @@ func (o *ListServicesParams) SetBeforeServiceID(beforeServiceID *string) {
 	o.BeforeServiceID = beforeServiceID
 }
 
+// WithIfMatch adds the ifMatch to the list services params
+func (o *ListServicesParams) WithIfMatch(ifMatch *string) *ListServicesParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the list services params
+func (o *ListServicesParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithLimit adds the limit to the list services params
 func (o *ListServicesParams) WithLimit(limit *int64) *ListServicesParams {
 	o.SetLimit(limit)
@@ -320,6 +339,14 @@ func (o *ListServicesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 			if err := r.SetQueryParam("before_service_id", qBeforeServiceID); err != nil {
 				return err
 			}
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
 		}
 	}
 

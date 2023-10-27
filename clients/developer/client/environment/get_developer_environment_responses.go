@@ -48,7 +48,7 @@ func (o *GetDeveloperEnvironmentReader) ReadResponse(response runtime.ClientResp
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /environment] getDeveloperEnvironment", response, response.Code())
 	}
 }
 
@@ -91,6 +91,11 @@ func (o *GetDeveloperEnvironmentOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get developer environment o k response
+func (o *GetDeveloperEnvironmentOK) Code() int {
+	return 200
+}
+
 func (o *GetDeveloperEnvironmentOK) Error() string {
 	return fmt.Sprintf("[GET /environment][%d] getDeveloperEnvironmentOK  %+v", 200, o.Payload)
 }
@@ -123,7 +128,7 @@ func NewGetDeveloperEnvironmentUnauthorized() *GetDeveloperEnvironmentUnauthoriz
 /*
 GetDeveloperEnvironmentUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetDeveloperEnvironmentUnauthorized struct {
 	Payload *models.Error
@@ -152,6 +157,11 @@ func (o *GetDeveloperEnvironmentUnauthorized) IsServerError() bool {
 // IsCode returns true when this get developer environment unauthorized response a status code equal to that given
 func (o *GetDeveloperEnvironmentUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get developer environment unauthorized response
+func (o *GetDeveloperEnvironmentUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetDeveloperEnvironmentUnauthorized) Error() string {
@@ -186,7 +196,7 @@ func NewGetDeveloperEnvironmentForbidden() *GetDeveloperEnvironmentForbidden {
 /*
 GetDeveloperEnvironmentForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetDeveloperEnvironmentForbidden struct {
 	Payload *models.Error
@@ -215,6 +225,11 @@ func (o *GetDeveloperEnvironmentForbidden) IsServerError() bool {
 // IsCode returns true when this get developer environment forbidden response a status code equal to that given
 func (o *GetDeveloperEnvironmentForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get developer environment forbidden response
+func (o *GetDeveloperEnvironmentForbidden) Code() int {
+	return 403
 }
 
 func (o *GetDeveloperEnvironmentForbidden) Error() string {
@@ -249,7 +264,7 @@ func NewGetDeveloperEnvironmentTooManyRequests() *GetDeveloperEnvironmentTooMany
 /*
 GetDeveloperEnvironmentTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetDeveloperEnvironmentTooManyRequests struct {
 	Payload *models.Error
@@ -278,6 +293,11 @@ func (o *GetDeveloperEnvironmentTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get developer environment too many requests response a status code equal to that given
 func (o *GetDeveloperEnvironmentTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get developer environment too many requests response
+func (o *GetDeveloperEnvironmentTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetDeveloperEnvironmentTooManyRequests) Error() string {

@@ -54,7 +54,7 @@ func (o *DeleteAPIReader) ReadResponse(response runtime.ClientResponse, consumer
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[DELETE /apis/{api}] deleteAPI", response, response.Code())
 	}
 }
 
@@ -96,6 +96,11 @@ func (o *DeleteAPINoContent) IsCode(code int) bool {
 	return code == 204
 }
 
+// Code gets the status code for the delete Api no content response
+func (o *DeleteAPINoContent) Code() int {
+	return 204
+}
+
 func (o *DeleteAPINoContent) Error() string {
 	return fmt.Sprintf("[DELETE /apis/{api}][%d] deleteApiNoContent ", 204)
 }
@@ -117,7 +122,7 @@ func NewDeleteAPIUnauthorized() *DeleteAPIUnauthorized {
 /*
 DeleteAPIUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type DeleteAPIUnauthorized struct {
 	Payload *models.Error
@@ -146,6 +151,11 @@ func (o *DeleteAPIUnauthorized) IsServerError() bool {
 // IsCode returns true when this delete Api unauthorized response a status code equal to that given
 func (o *DeleteAPIUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the delete Api unauthorized response
+func (o *DeleteAPIUnauthorized) Code() int {
+	return 401
 }
 
 func (o *DeleteAPIUnauthorized) Error() string {
@@ -180,7 +190,7 @@ func NewDeleteAPIForbidden() *DeleteAPIForbidden {
 /*
 DeleteAPIForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type DeleteAPIForbidden struct {
 	Payload *models.Error
@@ -209,6 +219,11 @@ func (o *DeleteAPIForbidden) IsServerError() bool {
 // IsCode returns true when this delete Api forbidden response a status code equal to that given
 func (o *DeleteAPIForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the delete Api forbidden response
+func (o *DeleteAPIForbidden) Code() int {
+	return 403
 }
 
 func (o *DeleteAPIForbidden) Error() string {
@@ -243,7 +258,7 @@ func NewDeleteAPINotFound() *DeleteAPINotFound {
 /*
 DeleteAPINotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type DeleteAPINotFound struct {
 	Payload *models.Error
@@ -272,6 +287,11 @@ func (o *DeleteAPINotFound) IsServerError() bool {
 // IsCode returns true when this delete Api not found response a status code equal to that given
 func (o *DeleteAPINotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the delete Api not found response
+func (o *DeleteAPINotFound) Code() int {
+	return 404
 }
 
 func (o *DeleteAPINotFound) Error() string {
@@ -306,7 +326,7 @@ func NewDeleteAPITooManyRequests() *DeleteAPITooManyRequests {
 /*
 DeleteAPITooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type DeleteAPITooManyRequests struct {
 	Payload *models.Error
@@ -335,6 +355,11 @@ func (o *DeleteAPITooManyRequests) IsServerError() bool {
 // IsCode returns true when this delete Api too many requests response a status code equal to that given
 func (o *DeleteAPITooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the delete Api too many requests response
+func (o *DeleteAPITooManyRequests) Code() int {
+	return 429
 }
 
 func (o *DeleteAPITooManyRequests) Error() string {

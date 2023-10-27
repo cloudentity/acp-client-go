@@ -54,7 +54,7 @@ func (o *DynamicClientRegistrationDeleteClientReader) ReadResponse(response runt
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[DELETE /oauth2/register/{cid}] dynamicClientRegistrationDeleteClient", response, response.Code())
 	}
 }
 
@@ -94,6 +94,11 @@ func (o *DynamicClientRegistrationDeleteClientNoContent) IsServerError() bool {
 // IsCode returns true when this dynamic client registration delete client no content response a status code equal to that given
 func (o *DynamicClientRegistrationDeleteClientNoContent) IsCode(code int) bool {
 	return code == 204
+}
+
+// Code gets the status code for the dynamic client registration delete client no content response
+func (o *DynamicClientRegistrationDeleteClientNoContent) Code() int {
+	return 204
 }
 
 func (o *DynamicClientRegistrationDeleteClientNoContent) Error() string {
@@ -146,6 +151,11 @@ func (o *DynamicClientRegistrationDeleteClientBadRequest) IsServerError() bool {
 // IsCode returns true when this dynamic client registration delete client bad request response a status code equal to that given
 func (o *DynamicClientRegistrationDeleteClientBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the dynamic client registration delete client bad request response
+func (o *DynamicClientRegistrationDeleteClientBadRequest) Code() int {
+	return 400
 }
 
 func (o *DynamicClientRegistrationDeleteClientBadRequest) Error() string {
@@ -211,6 +221,11 @@ func (o *DynamicClientRegistrationDeleteClientUnauthorized) IsCode(code int) boo
 	return code == 401
 }
 
+// Code gets the status code for the dynamic client registration delete client unauthorized response
+func (o *DynamicClientRegistrationDeleteClientUnauthorized) Code() int {
+	return 401
+}
+
 func (o *DynamicClientRegistrationDeleteClientUnauthorized) Error() string {
 	return fmt.Sprintf("[DELETE /oauth2/register/{cid}][%d] dynamicClientRegistrationDeleteClientUnauthorized  %+v", 401, o.Payload)
 }
@@ -274,6 +289,11 @@ func (o *DynamicClientRegistrationDeleteClientForbidden) IsCode(code int) bool {
 	return code == 403
 }
 
+// Code gets the status code for the dynamic client registration delete client forbidden response
+func (o *DynamicClientRegistrationDeleteClientForbidden) Code() int {
+	return 403
+}
+
 func (o *DynamicClientRegistrationDeleteClientForbidden) Error() string {
 	return fmt.Sprintf("[DELETE /oauth2/register/{cid}][%d] dynamicClientRegistrationDeleteClientForbidden  %+v", 403, o.Payload)
 }
@@ -335,6 +355,11 @@ func (o *DynamicClientRegistrationDeleteClientNotFound) IsServerError() bool {
 // IsCode returns true when this dynamic client registration delete client not found response a status code equal to that given
 func (o *DynamicClientRegistrationDeleteClientNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the dynamic client registration delete client not found response
+func (o *DynamicClientRegistrationDeleteClientNotFound) Code() int {
+	return 404
 }
 
 func (o *DynamicClientRegistrationDeleteClientNotFound) Error() string {

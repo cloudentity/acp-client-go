@@ -67,6 +67,14 @@ type ListGatewayAPIGroupsParams struct {
 	*/
 	Gw string
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -131,6 +139,17 @@ func (o *ListGatewayAPIGroupsParams) SetGw(gw string) {
 	o.Gw = gw
 }
 
+// WithIfMatch adds the ifMatch to the list gateway API groups params
+func (o *ListGatewayAPIGroupsParams) WithIfMatch(ifMatch *string) *ListGatewayAPIGroupsParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the list gateway API groups params
+func (o *ListGatewayAPIGroupsParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *ListGatewayAPIGroupsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -142,6 +161,14 @@ func (o *ListGatewayAPIGroupsParams) WriteToRequest(r runtime.ClientRequest, reg
 	// path param gw
 	if err := r.SetPathParam("gw", o.Gw); err != nil {
 		return err
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {

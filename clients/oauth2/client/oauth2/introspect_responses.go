@@ -48,7 +48,7 @@ func (o *IntrospectReader) ReadResponse(response runtime.ClientResponse, consume
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /oauth2/introspect] introspect", response, response.Code())
 	}
 }
 
@@ -89,6 +89,11 @@ func (o *IntrospectOK) IsServerError() bool {
 // IsCode returns true when this introspect o k response a status code equal to that given
 func (o *IntrospectOK) IsCode(code int) bool {
 	return code == 200
+}
+
+// Code gets the status code for the introspect o k response
+func (o *IntrospectOK) Code() int {
+	return 200
 }
 
 func (o *IntrospectOK) Error() string {
@@ -154,6 +159,11 @@ func (o *IntrospectUnauthorized) IsCode(code int) bool {
 	return code == 401
 }
 
+// Code gets the status code for the introspect unauthorized response
+func (o *IntrospectUnauthorized) Code() int {
+	return 401
+}
+
 func (o *IntrospectUnauthorized) Error() string {
 	return fmt.Sprintf("[POST /oauth2/introspect][%d] introspectUnauthorized  %+v", 401, o.Payload)
 }
@@ -217,6 +227,11 @@ func (o *IntrospectNotFound) IsCode(code int) bool {
 	return code == 404
 }
 
+// Code gets the status code for the introspect not found response
+func (o *IntrospectNotFound) Code() int {
+	return 404
+}
+
 func (o *IntrospectNotFound) Error() string {
 	return fmt.Sprintf("[POST /oauth2/introspect][%d] introspectNotFound  %+v", 404, o.Payload)
 }
@@ -278,6 +293,11 @@ func (o *IntrospectTooManyRequests) IsServerError() bool {
 // IsCode returns true when this introspect too many requests response a status code equal to that given
 func (o *IntrospectTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the introspect too many requests response
+func (o *IntrospectTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *IntrospectTooManyRequests) Error() string {

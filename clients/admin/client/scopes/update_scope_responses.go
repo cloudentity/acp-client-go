@@ -66,7 +66,7 @@ func (o *UpdateScopeReader) ReadResponse(response runtime.ClientResponse, consum
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /scopes/{scp}] updateScope", response, response.Code())
 	}
 }
 
@@ -81,6 +81,15 @@ UpdateScopeOK describes a response with status code 200, with default header val
 Scope
 */
 type UpdateScopeOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.ScopeWithServiceID
 }
 
@@ -109,6 +118,11 @@ func (o *UpdateScopeOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the update scope o k response
+func (o *UpdateScopeOK) Code() int {
+	return 200
+}
+
 func (o *UpdateScopeOK) Error() string {
 	return fmt.Sprintf("[PUT /scopes/{scp}][%d] updateScopeOK  %+v", 200, o.Payload)
 }
@@ -122,6 +136,13 @@ func (o *UpdateScopeOK) GetPayload() *models.ScopeWithServiceID {
 }
 
 func (o *UpdateScopeOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.ScopeWithServiceID)
 
@@ -141,7 +162,7 @@ func NewUpdateScopeBadRequest() *UpdateScopeBadRequest {
 /*
 UpdateScopeBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type UpdateScopeBadRequest struct {
 	Payload *models.Error
@@ -170,6 +191,11 @@ func (o *UpdateScopeBadRequest) IsServerError() bool {
 // IsCode returns true when this update scope bad request response a status code equal to that given
 func (o *UpdateScopeBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the update scope bad request response
+func (o *UpdateScopeBadRequest) Code() int {
+	return 400
 }
 
 func (o *UpdateScopeBadRequest) Error() string {
@@ -204,7 +230,7 @@ func NewUpdateScopeUnauthorized() *UpdateScopeUnauthorized {
 /*
 UpdateScopeUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type UpdateScopeUnauthorized struct {
 	Payload *models.Error
@@ -233,6 +259,11 @@ func (o *UpdateScopeUnauthorized) IsServerError() bool {
 // IsCode returns true when this update scope unauthorized response a status code equal to that given
 func (o *UpdateScopeUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the update scope unauthorized response
+func (o *UpdateScopeUnauthorized) Code() int {
+	return 401
 }
 
 func (o *UpdateScopeUnauthorized) Error() string {
@@ -267,7 +298,7 @@ func NewUpdateScopeForbidden() *UpdateScopeForbidden {
 /*
 UpdateScopeForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type UpdateScopeForbidden struct {
 	Payload *models.Error
@@ -296,6 +327,11 @@ func (o *UpdateScopeForbidden) IsServerError() bool {
 // IsCode returns true when this update scope forbidden response a status code equal to that given
 func (o *UpdateScopeForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the update scope forbidden response
+func (o *UpdateScopeForbidden) Code() int {
+	return 403
 }
 
 func (o *UpdateScopeForbidden) Error() string {
@@ -330,7 +366,7 @@ func NewUpdateScopeNotFound() *UpdateScopeNotFound {
 /*
 UpdateScopeNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type UpdateScopeNotFound struct {
 	Payload *models.Error
@@ -359,6 +395,11 @@ func (o *UpdateScopeNotFound) IsServerError() bool {
 // IsCode returns true when this update scope not found response a status code equal to that given
 func (o *UpdateScopeNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the update scope not found response
+func (o *UpdateScopeNotFound) Code() int {
+	return 404
 }
 
 func (o *UpdateScopeNotFound) Error() string {
@@ -393,7 +434,7 @@ func NewUpdateScopeUnprocessableEntity() *UpdateScopeUnprocessableEntity {
 /*
 UpdateScopeUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type UpdateScopeUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +463,11 @@ func (o *UpdateScopeUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this update scope unprocessable entity response a status code equal to that given
 func (o *UpdateScopeUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the update scope unprocessable entity response
+func (o *UpdateScopeUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *UpdateScopeUnprocessableEntity) Error() string {
@@ -456,7 +502,7 @@ func NewUpdateScopeTooManyRequests() *UpdateScopeTooManyRequests {
 /*
 UpdateScopeTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type UpdateScopeTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +531,11 @@ func (o *UpdateScopeTooManyRequests) IsServerError() bool {
 // IsCode returns true when this update scope too many requests response a status code equal to that given
 func (o *UpdateScopeTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the update scope too many requests response
+func (o *UpdateScopeTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *UpdateScopeTooManyRequests) Error() string {

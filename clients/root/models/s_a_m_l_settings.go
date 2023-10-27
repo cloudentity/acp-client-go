@@ -18,8 +18,6 @@ import (
 type SAMLSettings struct {
 
 	// Unique id of a service provider
-	//
-	// If not provided, a random string is generated.
 	// Example: https://localhost:8443/default/default/login
 	EntityIssuer string `json:"entity_issuer,omitempty"`
 
@@ -37,6 +35,12 @@ type SAMLSettings struct {
 	// Depending on which identifier source you choose, you must define either the
 	// `identifierAttribute` or the `subjectNameIDFormat` parameter.
 	IdentifierSource string `json:"identifier_source,omitempty"`
+
+	// IDP metadata URL
+	MetadataURL string `json:"metadata_url,omitempty"`
+
+	// IDP metadata xml
+	MetadataXML string `json:"metadata_xml,omitempty"`
 
 	// If enabled, the verification, if the `InResponseTo` parameter matches the original ID attribute
 	// sent from ACP, is skipped.

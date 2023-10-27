@@ -66,7 +66,7 @@ func (o *UpsertTemplateReader) ReadResponse(response runtime.ClientResponse, con
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /theme/{themeID}/template/{fsPath}] upsertTemplate", response, response.Code())
 	}
 }
 
@@ -81,6 +81,15 @@ UpsertTemplateOK describes a response with status code 200, with default header 
 Template
 */
 type UpsertTemplateOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.Template
 }
 
@@ -109,6 +118,11 @@ func (o *UpsertTemplateOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the upsert template o k response
+func (o *UpsertTemplateOK) Code() int {
+	return 200
+}
+
 func (o *UpsertTemplateOK) Error() string {
 	return fmt.Sprintf("[PUT /theme/{themeID}/template/{fsPath}][%d] upsertTemplateOK  %+v", 200, o.Payload)
 }
@@ -122,6 +136,13 @@ func (o *UpsertTemplateOK) GetPayload() *models.Template {
 }
 
 func (o *UpsertTemplateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.Template)
 
@@ -141,7 +162,7 @@ func NewUpsertTemplateBadRequest() *UpsertTemplateBadRequest {
 /*
 UpsertTemplateBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type UpsertTemplateBadRequest struct {
 	Payload *models.Error
@@ -170,6 +191,11 @@ func (o *UpsertTemplateBadRequest) IsServerError() bool {
 // IsCode returns true when this upsert template bad request response a status code equal to that given
 func (o *UpsertTemplateBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the upsert template bad request response
+func (o *UpsertTemplateBadRequest) Code() int {
+	return 400
 }
 
 func (o *UpsertTemplateBadRequest) Error() string {
@@ -204,7 +230,7 @@ func NewUpsertTemplateUnauthorized() *UpsertTemplateUnauthorized {
 /*
 UpsertTemplateUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type UpsertTemplateUnauthorized struct {
 	Payload *models.Error
@@ -233,6 +259,11 @@ func (o *UpsertTemplateUnauthorized) IsServerError() bool {
 // IsCode returns true when this upsert template unauthorized response a status code equal to that given
 func (o *UpsertTemplateUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the upsert template unauthorized response
+func (o *UpsertTemplateUnauthorized) Code() int {
+	return 401
 }
 
 func (o *UpsertTemplateUnauthorized) Error() string {
@@ -267,7 +298,7 @@ func NewUpsertTemplateForbidden() *UpsertTemplateForbidden {
 /*
 UpsertTemplateForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type UpsertTemplateForbidden struct {
 	Payload *models.Error
@@ -296,6 +327,11 @@ func (o *UpsertTemplateForbidden) IsServerError() bool {
 // IsCode returns true when this upsert template forbidden response a status code equal to that given
 func (o *UpsertTemplateForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the upsert template forbidden response
+func (o *UpsertTemplateForbidden) Code() int {
+	return 403
 }
 
 func (o *UpsertTemplateForbidden) Error() string {
@@ -330,7 +366,7 @@ func NewUpsertTemplateNotFound() *UpsertTemplateNotFound {
 /*
 UpsertTemplateNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type UpsertTemplateNotFound struct {
 	Payload *models.Error
@@ -359,6 +395,11 @@ func (o *UpsertTemplateNotFound) IsServerError() bool {
 // IsCode returns true when this upsert template not found response a status code equal to that given
 func (o *UpsertTemplateNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the upsert template not found response
+func (o *UpsertTemplateNotFound) Code() int {
+	return 404
 }
 
 func (o *UpsertTemplateNotFound) Error() string {
@@ -393,7 +434,7 @@ func NewUpsertTemplateUnprocessableEntity() *UpsertTemplateUnprocessableEntity {
 /*
 UpsertTemplateUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type UpsertTemplateUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +463,11 @@ func (o *UpsertTemplateUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this upsert template unprocessable entity response a status code equal to that given
 func (o *UpsertTemplateUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the upsert template unprocessable entity response
+func (o *UpsertTemplateUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *UpsertTemplateUnprocessableEntity) Error() string {
@@ -456,7 +502,7 @@ func NewUpsertTemplateTooManyRequests() *UpsertTemplateTooManyRequests {
 /*
 UpsertTemplateTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type UpsertTemplateTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +531,11 @@ func (o *UpsertTemplateTooManyRequests) IsServerError() bool {
 // IsCode returns true when this upsert template too many requests response a status code equal to that given
 func (o *UpsertTemplateTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the upsert template too many requests response
+func (o *UpsertTemplateTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *UpsertTemplateTooManyRequests) Error() string {

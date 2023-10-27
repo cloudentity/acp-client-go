@@ -61,6 +61,14 @@ ImportSpecificationFromTextParams contains all the parameters to send to the API
 */
 type ImportSpecificationFromTextParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	// Sid.
 	Sid string
 
@@ -120,6 +128,17 @@ func (o *ImportSpecificationFromTextParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the import specification from text params
+func (o *ImportSpecificationFromTextParams) WithIfMatch(ifMatch *string) *ImportSpecificationFromTextParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the import specification from text params
+func (o *ImportSpecificationFromTextParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithSid adds the sid to the import specification from text params
 func (o *ImportSpecificationFromTextParams) WithSid(sid string) *ImportSpecificationFromTextParams {
 	o.SetSid(sid)
@@ -149,6 +168,14 @@ func (o *ImportSpecificationFromTextParams) WriteToRequest(r runtime.ClientReque
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	// path param sid
 	if err := r.SetPathParam("sid", o.Sid); err != nil {

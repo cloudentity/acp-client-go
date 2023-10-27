@@ -47,18 +47,20 @@ type IntrospectOBBRDataAccessConsentV2Response struct {
 
 	// document
 	// Required: true
-	Document *OpenbankingBrasilConsentV2Document1 `json:"document"`
+	Document *OpenbankingBrasilConsentV2BusinessEntityDocument `json:"document"`
 
-	// Data e hora de expirao da permisso. De preenchimento obrigatrio, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format).
+	// Data e hora de expirao da permisso. De preenchimento obrigatrio, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC (UTC time format). Para consentimentos com prazo indeterminado,  esperado preenchimento com `2300-01-01T00:00:00Z`.
 	// Example: 2021-05-21T08:30:00Z
 	// Required: true
 	// Format: date-time
 	ExpirationDateTime *strfmt.DateTime `json:"expirationDateTime"`
 
-	// Especifica os tipos de permisses de acesso s APIs no escopo do Open Banking Brasil - Fase 2, de acordo com os blocos de consentimento fornecidos pelo usurio e necessrios ao acesso a cada endpoint das APIs.
+	// extensions
+	Extensions BrazilConsentExtensions `json:"extensions,omitempty"`
+
+	// Especifica os tipos de permisses de acesso s APIs no escopo do Open Finance Brasil - Dados cadastrais e transacionais, de acordo com os blocos de consentimento fornecidos pelo usurio e necessrios ao acesso a cada endpoint das APIs. Esse array no deve ter duplicidade de itens.
 	// Example: ["ACCOUNTS_READ","ACCOUNTS_OVERDRAFT_LIMITS_READ","RESOURCES_READ"]
 	// Required: true
-	// Max Items: 30
 	// Min Items: 1
 	Permissions []OpenbankingBrasilConsentV2Permission1 `json:"permissions"`
 
@@ -93,9 +95,11 @@ func (m *IntrospectOBBRDataAccessConsentV2Response) UnmarshalJSON(raw []byte) er
 
 		CreationDateTime *strfmt.DateTime `json:"creationDateTime"`
 
-		Document *OpenbankingBrasilConsentV2Document1 `json:"document"`
+		Document *OpenbankingBrasilConsentV2BusinessEntityDocument `json:"document"`
 
 		ExpirationDateTime *strfmt.DateTime `json:"expirationDateTime"`
+
+		Extensions BrazilConsentExtensions `json:"extensions,omitempty"`
 
 		Permissions []OpenbankingBrasilConsentV2Permission1 `json:"permissions"`
 
@@ -118,6 +122,8 @@ func (m *IntrospectOBBRDataAccessConsentV2Response) UnmarshalJSON(raw []byte) er
 	m.Document = dataAO1.Document
 
 	m.ExpirationDateTime = dataAO1.ExpirationDateTime
+
+	m.Extensions = dataAO1.Extensions
 
 	m.Permissions = dataAO1.Permissions
 
@@ -146,9 +152,11 @@ func (m IntrospectOBBRDataAccessConsentV2Response) MarshalJSON() ([]byte, error)
 
 		CreationDateTime *strfmt.DateTime `json:"creationDateTime"`
 
-		Document *OpenbankingBrasilConsentV2Document1 `json:"document"`
+		Document *OpenbankingBrasilConsentV2BusinessEntityDocument `json:"document"`
 
 		ExpirationDateTime *strfmt.DateTime `json:"expirationDateTime"`
+
+		Extensions BrazilConsentExtensions `json:"extensions,omitempty"`
 
 		Permissions []OpenbankingBrasilConsentV2Permission1 `json:"permissions"`
 
@@ -168,6 +176,8 @@ func (m IntrospectOBBRDataAccessConsentV2Response) MarshalJSON() ([]byte, error)
 	dataAO1.Document = m.Document
 
 	dataAO1.ExpirationDateTime = m.ExpirationDateTime
+
+	dataAO1.Extensions = m.Extensions
 
 	dataAO1.Permissions = m.Permissions
 
@@ -207,6 +217,10 @@ func (m *IntrospectOBBRDataAccessConsentV2Response) Validate(formats strfmt.Regi
 	}
 
 	if err := m.validateExpirationDateTime(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateExtensions(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -295,6 +309,24 @@ func (m *IntrospectOBBRDataAccessConsentV2Response) validateExpirationDateTime(f
 	return nil
 }
 
+func (m *IntrospectOBBRDataAccessConsentV2Response) validateExtensions(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Extensions) { // not required
+		return nil
+	}
+
+	if err := m.Extensions.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("extensions")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("extensions")
+		}
+		return err
+	}
+
+	return nil
+}
+
 func (m *IntrospectOBBRDataAccessConsentV2Response) validatePermissions(formats strfmt.Registry) error {
 
 	if err := validate.Required("permissions", "body", m.Permissions); err != nil {
@@ -304,10 +336,6 @@ func (m *IntrospectOBBRDataAccessConsentV2Response) validatePermissions(formats 
 	iPermissionsSize := int64(len(m.Permissions))
 
 	if err := validate.MinItems("permissions", "body", iPermissionsSize, 1); err != nil {
-		return err
-	}
-
-	if err := validate.MaxItems("permissions", "body", iPermissionsSize, 30); err != nil {
 		return err
 	}
 
@@ -397,6 +425,10 @@ func (m *IntrospectOBBRDataAccessConsentV2Response) ContextValidate(ctx context.
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateExtensions(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidatePermissions(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -427,6 +459,20 @@ func (m *IntrospectOBBRDataAccessConsentV2Response) contextValidateDocument(ctx 
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *IntrospectOBBRDataAccessConsentV2Response) contextValidateExtensions(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.Extensions.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("extensions")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("extensions")
+		}
+		return err
 	}
 
 	return nil

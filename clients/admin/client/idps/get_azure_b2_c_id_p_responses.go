@@ -54,7 +54,7 @@ func (o *GetAzureB2CIDPReader) ReadResponse(response runtime.ClientResponse, con
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /servers/{wid}/idps/azureb2c/{iid}] getAzureB2CIDP", response, response.Code())
 	}
 }
 
@@ -97,6 +97,11 @@ func (o *GetAzureB2CIDPOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get azure b2 c Id p o k response
+func (o *GetAzureB2CIDPOK) Code() int {
+	return 200
+}
+
 func (o *GetAzureB2CIDPOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/idps/azureb2c/{iid}][%d] getAzureB2CIdPOK  %+v", 200, o.Payload)
 }
@@ -129,7 +134,7 @@ func NewGetAzureB2CIDPUnauthorized() *GetAzureB2CIDPUnauthorized {
 /*
 GetAzureB2CIDPUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetAzureB2CIDPUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +163,11 @@ func (o *GetAzureB2CIDPUnauthorized) IsServerError() bool {
 // IsCode returns true when this get azure b2 c Id p unauthorized response a status code equal to that given
 func (o *GetAzureB2CIDPUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get azure b2 c Id p unauthorized response
+func (o *GetAzureB2CIDPUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetAzureB2CIDPUnauthorized) Error() string {
@@ -192,7 +202,7 @@ func NewGetAzureB2CIDPForbidden() *GetAzureB2CIDPForbidden {
 /*
 GetAzureB2CIDPForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetAzureB2CIDPForbidden struct {
 	Payload *models.Error
@@ -221,6 +231,11 @@ func (o *GetAzureB2CIDPForbidden) IsServerError() bool {
 // IsCode returns true when this get azure b2 c Id p forbidden response a status code equal to that given
 func (o *GetAzureB2CIDPForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get azure b2 c Id p forbidden response
+func (o *GetAzureB2CIDPForbidden) Code() int {
+	return 403
 }
 
 func (o *GetAzureB2CIDPForbidden) Error() string {
@@ -255,7 +270,7 @@ func NewGetAzureB2CIDPNotFound() *GetAzureB2CIDPNotFound {
 /*
 GetAzureB2CIDPNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetAzureB2CIDPNotFound struct {
 	Payload *models.Error
@@ -284,6 +299,11 @@ func (o *GetAzureB2CIDPNotFound) IsServerError() bool {
 // IsCode returns true when this get azure b2 c Id p not found response a status code equal to that given
 func (o *GetAzureB2CIDPNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the get azure b2 c Id p not found response
+func (o *GetAzureB2CIDPNotFound) Code() int {
+	return 404
 }
 
 func (o *GetAzureB2CIDPNotFound) Error() string {
@@ -318,7 +338,7 @@ func NewGetAzureB2CIDPTooManyRequests() *GetAzureB2CIDPTooManyRequests {
 /*
 GetAzureB2CIDPTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetAzureB2CIDPTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +367,11 @@ func (o *GetAzureB2CIDPTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get azure b2 c Id p too many requests response a status code equal to that given
 func (o *GetAzureB2CIDPTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get azure b2 c Id p too many requests response
+func (o *GetAzureB2CIDPTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetAzureB2CIDPTooManyRequests) Error() string {

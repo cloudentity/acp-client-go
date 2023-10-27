@@ -78,6 +78,10 @@ func (m *Styling) ContextValidate(ctx context.Context, formats strfmt.Registry) 
 
 func (m *Styling) contextValidateColors(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Colors) { // not required
+		return nil
+	}
+
 	if err := m.Colors.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("colors")

@@ -26,46 +26,47 @@ type ServiceConnectedToGateway struct {
 	// api group metadata
 	APIGroupMetadata *APIGroupMetadata `json:"api_group_metadata,omitempty"`
 
-	// server id
-	// Example: default
+	// Authorization server identifier
+	// Example: my-server
 	AuthorizationServerID string `json:"authorization_server_id,omitempty"`
 
-	// custom service audience
+	// Custom service audience
 	// Example: https://api.example.com
 	CustomAudience string `json:"custom_audience,omitempty"`
 
-	// service description
+	// Service description
 	// Example: Service description
 	Description string `json:"description,omitempty"`
 
-	// gateway id
+	// Gateway identifier
+	// Example: gateway-1
 	GatewayID string `json:"gateway_id,omitempty"`
 
-	// unique service id
-	// Example: 1
+	// A unique identifier of a service
+	// Example: service-1
 	ID string `json:"id,omitempty"`
 
-	// service name
-	// Example: Sample service
+	// Service name
+	// Example: My service
 	Name string `json:"name,omitempty"`
 
-	// Is service a system service
+	// `true` when the service is a system service
 	// Example: false
 	System bool `json:"system,omitempty"`
 
-	// tenant id
-	// Example: default
+	// Tenant identifier
+	// Example: my-company
 	TenantID string `json:"tenant_id,omitempty"`
 
-	// service type
+	// Service type
 	// Enum: [oauth2 oidc system user openbanking]
 	Type string `json:"type,omitempty"`
 
-	// Updated at date
+	// The date of service update
 	// Format: date-time
 	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty"`
 
-	// true if service has openapi 3 specification
+	// `true` when the service has the OpenAPI 3.0 specification
 	WithSpecification bool `json:"with_specification,omitempty"`
 }
 
@@ -190,6 +191,11 @@ func (m *ServiceConnectedToGateway) ContextValidate(ctx context.Context, formats
 func (m *ServiceConnectedToGateway) contextValidateAPIGroupMetadata(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.APIGroupMetadata != nil {
+
+		if swag.IsZero(m.APIGroupMetadata) { // not required
+			return nil
+		}
+
 		if err := m.APIGroupMetadata.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("api_group_metadata")

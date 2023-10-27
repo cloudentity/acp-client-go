@@ -66,7 +66,7 @@ func (o *UpdateClientForDeveloperReader) ReadResponse(response runtime.ClientRes
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /clients/{cid}] updateClientForDeveloper", response, response.Code())
 	}
 }
 
@@ -109,6 +109,11 @@ func (o *UpdateClientForDeveloperOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the update client for developer o k response
+func (o *UpdateClientForDeveloperOK) Code() int {
+	return 200
+}
+
 func (o *UpdateClientForDeveloperOK) Error() string {
 	return fmt.Sprintf("[PUT /clients/{cid}][%d] updateClientForDeveloperOK  %+v", 200, o.Payload)
 }
@@ -141,7 +146,7 @@ func NewUpdateClientForDeveloperBadRequest() *UpdateClientForDeveloperBadRequest
 /*
 UpdateClientForDeveloperBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type UpdateClientForDeveloperBadRequest struct {
 	Payload *models.Error
@@ -170,6 +175,11 @@ func (o *UpdateClientForDeveloperBadRequest) IsServerError() bool {
 // IsCode returns true when this update client for developer bad request response a status code equal to that given
 func (o *UpdateClientForDeveloperBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the update client for developer bad request response
+func (o *UpdateClientForDeveloperBadRequest) Code() int {
+	return 400
 }
 
 func (o *UpdateClientForDeveloperBadRequest) Error() string {
@@ -204,7 +214,7 @@ func NewUpdateClientForDeveloperUnauthorized() *UpdateClientForDeveloperUnauthor
 /*
 UpdateClientForDeveloperUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type UpdateClientForDeveloperUnauthorized struct {
 	Payload *models.Error
@@ -233,6 +243,11 @@ func (o *UpdateClientForDeveloperUnauthorized) IsServerError() bool {
 // IsCode returns true when this update client for developer unauthorized response a status code equal to that given
 func (o *UpdateClientForDeveloperUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the update client for developer unauthorized response
+func (o *UpdateClientForDeveloperUnauthorized) Code() int {
+	return 401
 }
 
 func (o *UpdateClientForDeveloperUnauthorized) Error() string {
@@ -267,7 +282,7 @@ func NewUpdateClientForDeveloperForbidden() *UpdateClientForDeveloperForbidden {
 /*
 UpdateClientForDeveloperForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type UpdateClientForDeveloperForbidden struct {
 	Payload *models.Error
@@ -296,6 +311,11 @@ func (o *UpdateClientForDeveloperForbidden) IsServerError() bool {
 // IsCode returns true when this update client for developer forbidden response a status code equal to that given
 func (o *UpdateClientForDeveloperForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the update client for developer forbidden response
+func (o *UpdateClientForDeveloperForbidden) Code() int {
+	return 403
 }
 
 func (o *UpdateClientForDeveloperForbidden) Error() string {
@@ -330,7 +350,7 @@ func NewUpdateClientForDeveloperNotFound() *UpdateClientForDeveloperNotFound {
 /*
 UpdateClientForDeveloperNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type UpdateClientForDeveloperNotFound struct {
 	Payload *models.Error
@@ -359,6 +379,11 @@ func (o *UpdateClientForDeveloperNotFound) IsServerError() bool {
 // IsCode returns true when this update client for developer not found response a status code equal to that given
 func (o *UpdateClientForDeveloperNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the update client for developer not found response
+func (o *UpdateClientForDeveloperNotFound) Code() int {
+	return 404
 }
 
 func (o *UpdateClientForDeveloperNotFound) Error() string {
@@ -393,7 +418,7 @@ func NewUpdateClientForDeveloperUnprocessableEntity() *UpdateClientForDeveloperU
 /*
 UpdateClientForDeveloperUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type UpdateClientForDeveloperUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +447,11 @@ func (o *UpdateClientForDeveloperUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this update client for developer unprocessable entity response a status code equal to that given
 func (o *UpdateClientForDeveloperUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the update client for developer unprocessable entity response
+func (o *UpdateClientForDeveloperUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *UpdateClientForDeveloperUnprocessableEntity) Error() string {
@@ -456,7 +486,7 @@ func NewUpdateClientForDeveloperTooManyRequests() *UpdateClientForDeveloperTooMa
 /*
 UpdateClientForDeveloperTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type UpdateClientForDeveloperTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +515,11 @@ func (o *UpdateClientForDeveloperTooManyRequests) IsServerError() bool {
 // IsCode returns true when this update client for developer too many requests response a status code equal to that given
 func (o *UpdateClientForDeveloperTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the update client for developer too many requests response
+func (o *UpdateClientForDeveloperTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *UpdateClientForDeveloperTooManyRequests) Error() string {

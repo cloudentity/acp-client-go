@@ -85,6 +85,11 @@ func (m *ConsentService) contextValidatePurposes(ctx context.Context, formats st
 	for i := 0; i < len(m.Purposes); i++ {
 
 		if m.Purposes[i] != nil {
+
+			if swag.IsZero(m.Purposes[i]) { // not required
+				return nil
+			}
+
 			if err := m.Purposes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("purposes" + "." + strconv.Itoa(i))

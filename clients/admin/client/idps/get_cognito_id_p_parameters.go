@@ -61,6 +61,14 @@ GetCognitoIDPParams contains all the parameters to send to the API endpoint
 */
 type GetCognitoIDPParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Iid.
 
 	   IDP id
@@ -139,6 +147,17 @@ func (o *GetCognitoIDPParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the get cognito ID p params
+func (o *GetCognitoIDPParams) WithIfMatch(ifMatch *string) *GetCognitoIDPParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the get cognito ID p params
+func (o *GetCognitoIDPParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithIid adds the iid to the get cognito ID p params
 func (o *GetCognitoIDPParams) WithIid(iid string) *GetCognitoIDPParams {
 	o.SetIid(iid)
@@ -168,6 +187,14 @@ func (o *GetCognitoIDPParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	// path param iid
 	if err := r.SetPathParam("iid", o.Iid); err != nil {

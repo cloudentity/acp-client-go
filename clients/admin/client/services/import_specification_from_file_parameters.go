@@ -67,6 +67,14 @@ type ImportSpecificationFromFileParams struct {
 	// GatewayType.
 	GatewayType *string
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	// Sid.
 	Sid string
 
@@ -145,6 +153,17 @@ func (o *ImportSpecificationFromFileParams) SetGatewayType(gatewayType *string) 
 	o.GatewayType = gatewayType
 }
 
+// WithIfMatch adds the ifMatch to the import specification from file params
+func (o *ImportSpecificationFromFileParams) WithIfMatch(ifMatch *string) *ImportSpecificationFromFileParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the import specification from file params
+func (o *ImportSpecificationFromFileParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithSid adds the sid to the import specification from file params
 func (o *ImportSpecificationFromFileParams) WithSid(sid string) *ImportSpecificationFromFileParams {
 	o.SetSid(sid)
@@ -188,6 +207,14 @@ func (o *ImportSpecificationFromFileParams) WriteToRequest(r runtime.ClientReque
 			if err := r.SetQueryParam("gateway_type", qGatewayType); err != nil {
 				return err
 			}
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
 		}
 	}
 

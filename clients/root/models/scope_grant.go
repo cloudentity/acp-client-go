@@ -19,7 +19,7 @@ import (
 // swagger:model ScopeGrant
 type ScopeGrant struct {
 
-	// Identifier of a client application that has been granted the scope
+	// Identifier of a client application that is granted with the scope.
 	// Example: bugkgm23g9kregtu051g
 	ClientID string `json:"client_id,omitempty"`
 
@@ -42,14 +42,14 @@ type ScopeGrant struct {
 	// Example: accounts.read.*
 	ScopeName string `json:"scope_name,omitempty"`
 
-	// Server identifier
+	// Identifier of a server where the client app is hosted.
 	// Example: my-server
 	ServerID string `json:"server_id,omitempty"`
 
-	// Identifier of a user that has granted a scope
+	// Identifier of a user who granted the scope.
 	Subject string `json:"subject,omitempty"`
 
-	// Tenant identifier
+	// Identifier of the tenant where the client app is hosted.
 	// Example: my-company
 	TenantID string `json:"tenant_id,omitempty"`
 }

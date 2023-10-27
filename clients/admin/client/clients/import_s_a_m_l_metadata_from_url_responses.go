@@ -72,7 +72,7 @@ func (o *ImportSAMLMetadataFromURLReader) ReadResponse(response runtime.ClientRe
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /clients/{cid}/saml/metadata/import/url] importSAMLMetadataFromURL", response, response.Code())
 	}
 }
 
@@ -114,6 +114,11 @@ func (o *ImportSAMLMetadataFromURLNoContent) IsCode(code int) bool {
 	return code == 204
 }
 
+// Code gets the status code for the import s a m l metadata from Url no content response
+func (o *ImportSAMLMetadataFromURLNoContent) Code() int {
+	return 204
+}
+
 func (o *ImportSAMLMetadataFromURLNoContent) Error() string {
 	return fmt.Sprintf("[POST /clients/{cid}/saml/metadata/import/url][%d] importSAMLMetadataFromUrlNoContent ", 204)
 }
@@ -135,7 +140,7 @@ func NewImportSAMLMetadataFromURLBadRequest() *ImportSAMLMetadataFromURLBadReque
 /*
 ImportSAMLMetadataFromURLBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type ImportSAMLMetadataFromURLBadRequest struct {
 	Payload *models.Error
@@ -164,6 +169,11 @@ func (o *ImportSAMLMetadataFromURLBadRequest) IsServerError() bool {
 // IsCode returns true when this import s a m l metadata from Url bad request response a status code equal to that given
 func (o *ImportSAMLMetadataFromURLBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the import s a m l metadata from Url bad request response
+func (o *ImportSAMLMetadataFromURLBadRequest) Code() int {
+	return 400
 }
 
 func (o *ImportSAMLMetadataFromURLBadRequest) Error() string {
@@ -198,7 +208,7 @@ func NewImportSAMLMetadataFromURLUnauthorized() *ImportSAMLMetadataFromURLUnauth
 /*
 ImportSAMLMetadataFromURLUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ImportSAMLMetadataFromURLUnauthorized struct {
 	Payload *models.Error
@@ -227,6 +237,11 @@ func (o *ImportSAMLMetadataFromURLUnauthorized) IsServerError() bool {
 // IsCode returns true when this import s a m l metadata from Url unauthorized response a status code equal to that given
 func (o *ImportSAMLMetadataFromURLUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the import s a m l metadata from Url unauthorized response
+func (o *ImportSAMLMetadataFromURLUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ImportSAMLMetadataFromURLUnauthorized) Error() string {
@@ -261,7 +276,7 @@ func NewImportSAMLMetadataFromURLForbidden() *ImportSAMLMetadataFromURLForbidden
 /*
 ImportSAMLMetadataFromURLForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ImportSAMLMetadataFromURLForbidden struct {
 	Payload *models.Error
@@ -290,6 +305,11 @@ func (o *ImportSAMLMetadataFromURLForbidden) IsServerError() bool {
 // IsCode returns true when this import s a m l metadata from Url forbidden response a status code equal to that given
 func (o *ImportSAMLMetadataFromURLForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the import s a m l metadata from Url forbidden response
+func (o *ImportSAMLMetadataFromURLForbidden) Code() int {
+	return 403
 }
 
 func (o *ImportSAMLMetadataFromURLForbidden) Error() string {
@@ -324,7 +344,7 @@ func NewImportSAMLMetadataFromURLNotFound() *ImportSAMLMetadataFromURLNotFound {
 /*
 ImportSAMLMetadataFromURLNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type ImportSAMLMetadataFromURLNotFound struct {
 	Payload *models.Error
@@ -353,6 +373,11 @@ func (o *ImportSAMLMetadataFromURLNotFound) IsServerError() bool {
 // IsCode returns true when this import s a m l metadata from Url not found response a status code equal to that given
 func (o *ImportSAMLMetadataFromURLNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the import s a m l metadata from Url not found response
+func (o *ImportSAMLMetadataFromURLNotFound) Code() int {
+	return 404
 }
 
 func (o *ImportSAMLMetadataFromURLNotFound) Error() string {
@@ -387,7 +412,7 @@ func NewImportSAMLMetadataFromURLConflict() *ImportSAMLMetadataFromURLConflict {
 /*
 ImportSAMLMetadataFromURLConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type ImportSAMLMetadataFromURLConflict struct {
 	Payload *models.Error
@@ -416,6 +441,11 @@ func (o *ImportSAMLMetadataFromURLConflict) IsServerError() bool {
 // IsCode returns true when this import s a m l metadata from Url conflict response a status code equal to that given
 func (o *ImportSAMLMetadataFromURLConflict) IsCode(code int) bool {
 	return code == 409
+}
+
+// Code gets the status code for the import s a m l metadata from Url conflict response
+func (o *ImportSAMLMetadataFromURLConflict) Code() int {
+	return 409
 }
 
 func (o *ImportSAMLMetadataFromURLConflict) Error() string {
@@ -450,7 +480,7 @@ func NewImportSAMLMetadataFromURLUnprocessableEntity() *ImportSAMLMetadataFromUR
 /*
 ImportSAMLMetadataFromURLUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type ImportSAMLMetadataFromURLUnprocessableEntity struct {
 	Payload *models.Error
@@ -479,6 +509,11 @@ func (o *ImportSAMLMetadataFromURLUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this import s a m l metadata from Url unprocessable entity response a status code equal to that given
 func (o *ImportSAMLMetadataFromURLUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the import s a m l metadata from Url unprocessable entity response
+func (o *ImportSAMLMetadataFromURLUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *ImportSAMLMetadataFromURLUnprocessableEntity) Error() string {
@@ -513,7 +548,7 @@ func NewImportSAMLMetadataFromURLTooManyRequests() *ImportSAMLMetadataFromURLToo
 /*
 ImportSAMLMetadataFromURLTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ImportSAMLMetadataFromURLTooManyRequests struct {
 	Payload *models.Error
@@ -542,6 +577,11 @@ func (o *ImportSAMLMetadataFromURLTooManyRequests) IsServerError() bool {
 // IsCode returns true when this import s a m l metadata from Url too many requests response a status code equal to that given
 func (o *ImportSAMLMetadataFromURLTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the import s a m l metadata from Url too many requests response
+func (o *ImportSAMLMetadataFromURLTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ImportSAMLMetadataFromURLTooManyRequests) Error() string {

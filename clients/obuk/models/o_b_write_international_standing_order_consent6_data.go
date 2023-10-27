@@ -235,6 +235,11 @@ func (m *OBWriteInternationalStandingOrderConsent6Data) ContextValidate(ctx cont
 func (m *OBWriteInternationalStandingOrderConsent6Data) contextValidateAuthorisation(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Authorisation != nil {
+
+		if swag.IsZero(m.Authorisation) { // not required
+			return nil
+		}
+
 		if err := m.Authorisation.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Authorisation")
@@ -251,6 +256,7 @@ func (m *OBWriteInternationalStandingOrderConsent6Data) contextValidateAuthorisa
 func (m *OBWriteInternationalStandingOrderConsent6Data) contextValidateInitiation(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Initiation != nil {
+
 		if err := m.Initiation.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Initiation")
@@ -267,6 +273,11 @@ func (m *OBWriteInternationalStandingOrderConsent6Data) contextValidateInitiatio
 func (m *OBWriteInternationalStandingOrderConsent6Data) contextValidateSCASupportData(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.SCASupportData != nil {
+
+		if swag.IsZero(m.SCASupportData) { // not required
+			return nil
+		}
+
 		if err := m.SCASupportData.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("SCASupportData")

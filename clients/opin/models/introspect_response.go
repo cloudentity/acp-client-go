@@ -69,16 +69,13 @@ type IntrospectResponse struct {
 	// Issuer URL is a string representing the issuer of this token.
 	Iss string `json:"iss,omitempty"`
 
+	// May act claims used in the Token Exchange flow.s
+	MayAct map[string]interface{} `json:"may_act,omitempty"`
+
 	// NotBefore is an integer timestamp measured in the number of seconds
 	// since January 1 1970 UTC. It indicates this token was not
 	// used before the specified time.
 	Nbf int64 `json:"nbf,omitempty"`
-
-	// Deprecated and can be removed at any time.
-	// The integer timestamp measured in the number
-	// of seconds since January 1 1970 UTC. It indicates when the issued refresh
-	// token will expire.
-	RefreshTokenExpiresAt int64 `json:"refresh_token_expires_at,omitempty"`
 
 	// Scope is a JSON string containing a space-separated list of
 	// scopes associated with this token.

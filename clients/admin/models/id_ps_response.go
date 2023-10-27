@@ -82,6 +82,11 @@ func (m *IDPsResponse) contextValidateIdps(ctx context.Context, formats strfmt.R
 	for i := 0; i < len(m.Idps); i++ {
 
 		if m.Idps[i] != nil {
+
+			if swag.IsZero(m.Idps[i]) { // not required
+				return nil
+			}
+
 			if err := m.Idps[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("idps" + "." + strconv.Itoa(i))

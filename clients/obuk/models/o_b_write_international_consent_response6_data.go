@@ -486,6 +486,11 @@ func (m *OBWriteInternationalConsentResponse6Data) ContextValidate(ctx context.C
 func (m *OBWriteInternationalConsentResponse6Data) contextValidateAuthorisation(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Authorisation != nil {
+
+		if swag.IsZero(m.Authorisation) { // not required
+			return nil
+		}
+
 		if err := m.Authorisation.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Authorisation")
@@ -504,6 +509,11 @@ func (m *OBWriteInternationalConsentResponse6Data) contextValidateCharges(ctx co
 	for i := 0; i < len(m.Charges); i++ {
 
 		if m.Charges[i] != nil {
+
+			if swag.IsZero(m.Charges[i]) { // not required
+				return nil
+			}
+
 			if err := m.Charges[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("Charges" + "." + strconv.Itoa(i))
@@ -522,6 +532,11 @@ func (m *OBWriteInternationalConsentResponse6Data) contextValidateCharges(ctx co
 func (m *OBWriteInternationalConsentResponse6Data) contextValidateDebtor(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Debtor != nil {
+
+		if swag.IsZero(m.Debtor) { // not required
+			return nil
+		}
+
 		if err := m.Debtor.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Debtor")
@@ -538,6 +553,11 @@ func (m *OBWriteInternationalConsentResponse6Data) contextValidateDebtor(ctx con
 func (m *OBWriteInternationalConsentResponse6Data) contextValidateExchangeRateInformation(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ExchangeRateInformation != nil {
+
+		if swag.IsZero(m.ExchangeRateInformation) { // not required
+			return nil
+		}
+
 		if err := m.ExchangeRateInformation.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ExchangeRateInformation")
@@ -554,6 +574,7 @@ func (m *OBWriteInternationalConsentResponse6Data) contextValidateExchangeRateIn
 func (m *OBWriteInternationalConsentResponse6Data) contextValidateInitiation(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Initiation != nil {
+
 		if err := m.Initiation.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Initiation")
@@ -570,6 +591,11 @@ func (m *OBWriteInternationalConsentResponse6Data) contextValidateInitiation(ctx
 func (m *OBWriteInternationalConsentResponse6Data) contextValidateSCASupportData(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.SCASupportData != nil {
+
+		if swag.IsZero(m.SCASupportData) { // not required
+			return nil
+		}
+
 		if err := m.SCASupportData.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("SCASupportData")

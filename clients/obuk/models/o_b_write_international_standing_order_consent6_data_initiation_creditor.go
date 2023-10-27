@@ -98,6 +98,11 @@ func (m *OBWriteInternationalStandingOrderConsent6DataInitiationCreditor) Contex
 func (m *OBWriteInternationalStandingOrderConsent6DataInitiationCreditor) contextValidatePostalAddress(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.PostalAddress != nil {
+
+		if swag.IsZero(m.PostalAddress) { // not required
+			return nil
+		}
+
 		if err := m.PostalAddress.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("PostalAddress")

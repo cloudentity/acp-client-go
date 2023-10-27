@@ -66,7 +66,7 @@ func (o *CreateGatewayReader) ReadResponse(response runtime.ClientResponse, cons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /gateways] createGateway", response, response.Code())
 	}
 }
 
@@ -81,6 +81,15 @@ CreateGatewayCreated describes a response with status code 201, with default hea
 Gateway with client
 */
 type CreateGatewayCreated struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.GatewayWithClient
 }
 
@@ -109,6 +118,11 @@ func (o *CreateGatewayCreated) IsCode(code int) bool {
 	return code == 201
 }
 
+// Code gets the status code for the create gateway created response
+func (o *CreateGatewayCreated) Code() int {
+	return 201
+}
+
 func (o *CreateGatewayCreated) Error() string {
 	return fmt.Sprintf("[POST /gateways][%d] createGatewayCreated  %+v", 201, o.Payload)
 }
@@ -122,6 +136,13 @@ func (o *CreateGatewayCreated) GetPayload() *models.GatewayWithClient {
 }
 
 func (o *CreateGatewayCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.GatewayWithClient)
 
@@ -141,7 +162,7 @@ func NewCreateGatewayUnauthorized() *CreateGatewayUnauthorized {
 /*
 CreateGatewayUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type CreateGatewayUnauthorized struct {
 	Payload *models.Error
@@ -170,6 +191,11 @@ func (o *CreateGatewayUnauthorized) IsServerError() bool {
 // IsCode returns true when this create gateway unauthorized response a status code equal to that given
 func (o *CreateGatewayUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the create gateway unauthorized response
+func (o *CreateGatewayUnauthorized) Code() int {
+	return 401
 }
 
 func (o *CreateGatewayUnauthorized) Error() string {
@@ -204,7 +230,7 @@ func NewCreateGatewayForbidden() *CreateGatewayForbidden {
 /*
 CreateGatewayForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type CreateGatewayForbidden struct {
 	Payload *models.Error
@@ -233,6 +259,11 @@ func (o *CreateGatewayForbidden) IsServerError() bool {
 // IsCode returns true when this create gateway forbidden response a status code equal to that given
 func (o *CreateGatewayForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the create gateway forbidden response
+func (o *CreateGatewayForbidden) Code() int {
+	return 403
 }
 
 func (o *CreateGatewayForbidden) Error() string {
@@ -267,7 +298,7 @@ func NewCreateGatewayNotFound() *CreateGatewayNotFound {
 /*
 CreateGatewayNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type CreateGatewayNotFound struct {
 	Payload *models.Error
@@ -296,6 +327,11 @@ func (o *CreateGatewayNotFound) IsServerError() bool {
 // IsCode returns true when this create gateway not found response a status code equal to that given
 func (o *CreateGatewayNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the create gateway not found response
+func (o *CreateGatewayNotFound) Code() int {
+	return 404
 }
 
 func (o *CreateGatewayNotFound) Error() string {
@@ -330,7 +366,7 @@ func NewCreateGatewayConflict() *CreateGatewayConflict {
 /*
 CreateGatewayConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type CreateGatewayConflict struct {
 	Payload *models.Error
@@ -359,6 +395,11 @@ func (o *CreateGatewayConflict) IsServerError() bool {
 // IsCode returns true when this create gateway conflict response a status code equal to that given
 func (o *CreateGatewayConflict) IsCode(code int) bool {
 	return code == 409
+}
+
+// Code gets the status code for the create gateway conflict response
+func (o *CreateGatewayConflict) Code() int {
+	return 409
 }
 
 func (o *CreateGatewayConflict) Error() string {
@@ -393,7 +434,7 @@ func NewCreateGatewayUnprocessableEntity() *CreateGatewayUnprocessableEntity {
 /*
 CreateGatewayUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type CreateGatewayUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +463,11 @@ func (o *CreateGatewayUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this create gateway unprocessable entity response a status code equal to that given
 func (o *CreateGatewayUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the create gateway unprocessable entity response
+func (o *CreateGatewayUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *CreateGatewayUnprocessableEntity) Error() string {
@@ -456,7 +502,7 @@ func NewCreateGatewayTooManyRequests() *CreateGatewayTooManyRequests {
 /*
 CreateGatewayTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type CreateGatewayTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +531,11 @@ func (o *CreateGatewayTooManyRequests) IsServerError() bool {
 // IsCode returns true when this create gateway too many requests response a status code equal to that given
 func (o *CreateGatewayTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the create gateway too many requests response
+func (o *CreateGatewayTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *CreateGatewayTooManyRequests) Error() string {

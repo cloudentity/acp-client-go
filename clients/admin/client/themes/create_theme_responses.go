@@ -60,7 +60,7 @@ func (o *CreateThemeReader) ReadResponse(response runtime.ClientResponse, consum
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /theme] createTheme", response, response.Code())
 	}
 }
 
@@ -75,6 +75,15 @@ CreateThemeCreated describes a response with status code 201, with default heade
 Theme
 */
 type CreateThemeCreated struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.Theme
 }
 
@@ -103,6 +112,11 @@ func (o *CreateThemeCreated) IsCode(code int) bool {
 	return code == 201
 }
 
+// Code gets the status code for the create theme created response
+func (o *CreateThemeCreated) Code() int {
+	return 201
+}
+
 func (o *CreateThemeCreated) Error() string {
 	return fmt.Sprintf("[POST /theme][%d] createThemeCreated  %+v", 201, o.Payload)
 }
@@ -116,6 +130,13 @@ func (o *CreateThemeCreated) GetPayload() *models.Theme {
 }
 
 func (o *CreateThemeCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.Theme)
 
@@ -135,7 +156,7 @@ func NewCreateThemeBadRequest() *CreateThemeBadRequest {
 /*
 CreateThemeBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type CreateThemeBadRequest struct {
 	Payload *models.Error
@@ -164,6 +185,11 @@ func (o *CreateThemeBadRequest) IsServerError() bool {
 // IsCode returns true when this create theme bad request response a status code equal to that given
 func (o *CreateThemeBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the create theme bad request response
+func (o *CreateThemeBadRequest) Code() int {
+	return 400
 }
 
 func (o *CreateThemeBadRequest) Error() string {
@@ -198,7 +224,7 @@ func NewCreateThemeUnauthorized() *CreateThemeUnauthorized {
 /*
 CreateThemeUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type CreateThemeUnauthorized struct {
 	Payload *models.Error
@@ -227,6 +253,11 @@ func (o *CreateThemeUnauthorized) IsServerError() bool {
 // IsCode returns true when this create theme unauthorized response a status code equal to that given
 func (o *CreateThemeUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the create theme unauthorized response
+func (o *CreateThemeUnauthorized) Code() int {
+	return 401
 }
 
 func (o *CreateThemeUnauthorized) Error() string {
@@ -261,7 +292,7 @@ func NewCreateThemeForbidden() *CreateThemeForbidden {
 /*
 CreateThemeForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type CreateThemeForbidden struct {
 	Payload *models.Error
@@ -290,6 +321,11 @@ func (o *CreateThemeForbidden) IsServerError() bool {
 // IsCode returns true when this create theme forbidden response a status code equal to that given
 func (o *CreateThemeForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the create theme forbidden response
+func (o *CreateThemeForbidden) Code() int {
+	return 403
 }
 
 func (o *CreateThemeForbidden) Error() string {
@@ -324,7 +360,7 @@ func NewCreateThemeUnprocessableEntity() *CreateThemeUnprocessableEntity {
 /*
 CreateThemeUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type CreateThemeUnprocessableEntity struct {
 	Payload *models.Error
@@ -353,6 +389,11 @@ func (o *CreateThemeUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this create theme unprocessable entity response a status code equal to that given
 func (o *CreateThemeUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the create theme unprocessable entity response
+func (o *CreateThemeUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *CreateThemeUnprocessableEntity) Error() string {
@@ -387,7 +428,7 @@ func NewCreateThemeTooManyRequests() *CreateThemeTooManyRequests {
 /*
 CreateThemeTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type CreateThemeTooManyRequests struct {
 	Payload *models.Error
@@ -416,6 +457,11 @@ func (o *CreateThemeTooManyRequests) IsServerError() bool {
 // IsCode returns true when this create theme too many requests response a status code equal to that given
 func (o *CreateThemeTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the create theme too many requests response
+func (o *CreateThemeTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *CreateThemeTooManyRequests) Error() string {

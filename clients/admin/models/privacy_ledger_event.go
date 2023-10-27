@@ -105,6 +105,11 @@ func (m *PrivacyLedgerEvent) ContextValidate(ctx context.Context, formats strfmt
 func (m *PrivacyLedgerEvent) contextValidatePayload(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Payload != nil {
+
+		if swag.IsZero(m.Payload) { // not required
+			return nil
+		}
+
 		if err := m.Payload.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("payload")

@@ -60,7 +60,7 @@ func (o *PushedAuthorizationRequestReader) ReadResponse(response runtime.ClientR
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /par] pushedAuthorizationRequest", response, response.Code())
 	}
 }
 
@@ -103,6 +103,11 @@ func (o *PushedAuthorizationRequestCreated) IsCode(code int) bool {
 	return code == 201
 }
 
+// Code gets the status code for the pushed authorization request created response
+func (o *PushedAuthorizationRequestCreated) Code() int {
+	return 201
+}
+
 func (o *PushedAuthorizationRequestCreated) Error() string {
 	return fmt.Sprintf("[POST /par][%d] pushedAuthorizationRequestCreated  %+v", 201, o.Payload)
 }
@@ -135,7 +140,7 @@ func NewPushedAuthorizationRequestBadRequest() *PushedAuthorizationRequestBadReq
 /*
 PushedAuthorizationRequestBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type PushedAuthorizationRequestBadRequest struct {
 	Payload *models.Error
@@ -164,6 +169,11 @@ func (o *PushedAuthorizationRequestBadRequest) IsServerError() bool {
 // IsCode returns true when this pushed authorization request bad request response a status code equal to that given
 func (o *PushedAuthorizationRequestBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the pushed authorization request bad request response
+func (o *PushedAuthorizationRequestBadRequest) Code() int {
+	return 400
 }
 
 func (o *PushedAuthorizationRequestBadRequest) Error() string {
@@ -198,7 +208,7 @@ func NewPushedAuthorizationRequestUnauthorized() *PushedAuthorizationRequestUnau
 /*
 PushedAuthorizationRequestUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type PushedAuthorizationRequestUnauthorized struct {
 	Payload *models.Error
@@ -227,6 +237,11 @@ func (o *PushedAuthorizationRequestUnauthorized) IsServerError() bool {
 // IsCode returns true when this pushed authorization request unauthorized response a status code equal to that given
 func (o *PushedAuthorizationRequestUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the pushed authorization request unauthorized response
+func (o *PushedAuthorizationRequestUnauthorized) Code() int {
+	return 401
 }
 
 func (o *PushedAuthorizationRequestUnauthorized) Error() string {
@@ -261,7 +276,7 @@ func NewPushedAuthorizationRequestMethodNotAllowed() *PushedAuthorizationRequest
 /*
 PushedAuthorizationRequestMethodNotAllowed describes a response with status code 405, with default header values.
 
-HttpError
+Method not allowed
 */
 type PushedAuthorizationRequestMethodNotAllowed struct {
 	Payload *models.Error
@@ -290,6 +305,11 @@ func (o *PushedAuthorizationRequestMethodNotAllowed) IsServerError() bool {
 // IsCode returns true when this pushed authorization request method not allowed response a status code equal to that given
 func (o *PushedAuthorizationRequestMethodNotAllowed) IsCode(code int) bool {
 	return code == 405
+}
+
+// Code gets the status code for the pushed authorization request method not allowed response
+func (o *PushedAuthorizationRequestMethodNotAllowed) Code() int {
+	return 405
 }
 
 func (o *PushedAuthorizationRequestMethodNotAllowed) Error() string {
@@ -324,7 +344,7 @@ func NewPushedAuthorizationRequestRequestEntityTooLarge() *PushedAuthorizationRe
 /*
 PushedAuthorizationRequestRequestEntityTooLarge describes a response with status code 413, with default header values.
 
-HttpError
+Payload too large
 */
 type PushedAuthorizationRequestRequestEntityTooLarge struct {
 	Payload *models.Error
@@ -353,6 +373,11 @@ func (o *PushedAuthorizationRequestRequestEntityTooLarge) IsServerError() bool {
 // IsCode returns true when this pushed authorization request request entity too large response a status code equal to that given
 func (o *PushedAuthorizationRequestRequestEntityTooLarge) IsCode(code int) bool {
 	return code == 413
+}
+
+// Code gets the status code for the pushed authorization request request entity too large response
+func (o *PushedAuthorizationRequestRequestEntityTooLarge) Code() int {
+	return 413
 }
 
 func (o *PushedAuthorizationRequestRequestEntityTooLarge) Error() string {
@@ -387,7 +412,7 @@ func NewPushedAuthorizationRequestTooManyRequests() *PushedAuthorizationRequestT
 /*
 PushedAuthorizationRequestTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type PushedAuthorizationRequestTooManyRequests struct {
 	Payload *models.Error
@@ -416,6 +441,11 @@ func (o *PushedAuthorizationRequestTooManyRequests) IsServerError() bool {
 // IsCode returns true when this pushed authorization request too many requests response a status code equal to that given
 func (o *PushedAuthorizationRequestTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the pushed authorization request too many requests response
+func (o *PushedAuthorizationRequestTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *PushedAuthorizationRequestTooManyRequests) Error() string {

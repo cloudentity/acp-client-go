@@ -72,7 +72,7 @@ func (o *ImportSpecificationFromFileReader) ReadResponse(response runtime.Client
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /services/{sid}/apis/import/file] importSpecificationFromFile", response, response.Code())
 	}
 }
 
@@ -87,6 +87,15 @@ ImportSpecificationFromFileOK describes a response with status code 200, with de
 Import service configuration result
 */
 type ImportSpecificationFromFileOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.ImportServiceConfigurationResult
 }
 
@@ -115,6 +124,11 @@ func (o *ImportSpecificationFromFileOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the import specification from file o k response
+func (o *ImportSpecificationFromFileOK) Code() int {
+	return 200
+}
+
 func (o *ImportSpecificationFromFileOK) Error() string {
 	return fmt.Sprintf("[POST /services/{sid}/apis/import/file][%d] importSpecificationFromFileOK  %+v", 200, o.Payload)
 }
@@ -128,6 +142,13 @@ func (o *ImportSpecificationFromFileOK) GetPayload() *models.ImportServiceConfig
 }
 
 func (o *ImportSpecificationFromFileOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.ImportServiceConfigurationResult)
 
@@ -147,7 +168,7 @@ func NewImportSpecificationFromFileBadRequest() *ImportSpecificationFromFileBadR
 /*
 ImportSpecificationFromFileBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type ImportSpecificationFromFileBadRequest struct {
 	Payload *models.Error
@@ -176,6 +197,11 @@ func (o *ImportSpecificationFromFileBadRequest) IsServerError() bool {
 // IsCode returns true when this import specification from file bad request response a status code equal to that given
 func (o *ImportSpecificationFromFileBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the import specification from file bad request response
+func (o *ImportSpecificationFromFileBadRequest) Code() int {
+	return 400
 }
 
 func (o *ImportSpecificationFromFileBadRequest) Error() string {
@@ -210,7 +236,7 @@ func NewImportSpecificationFromFileUnauthorized() *ImportSpecificationFromFileUn
 /*
 ImportSpecificationFromFileUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ImportSpecificationFromFileUnauthorized struct {
 	Payload *models.Error
@@ -239,6 +265,11 @@ func (o *ImportSpecificationFromFileUnauthorized) IsServerError() bool {
 // IsCode returns true when this import specification from file unauthorized response a status code equal to that given
 func (o *ImportSpecificationFromFileUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the import specification from file unauthorized response
+func (o *ImportSpecificationFromFileUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ImportSpecificationFromFileUnauthorized) Error() string {
@@ -273,7 +304,7 @@ func NewImportSpecificationFromFileForbidden() *ImportSpecificationFromFileForbi
 /*
 ImportSpecificationFromFileForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ImportSpecificationFromFileForbidden struct {
 	Payload *models.Error
@@ -302,6 +333,11 @@ func (o *ImportSpecificationFromFileForbidden) IsServerError() bool {
 // IsCode returns true when this import specification from file forbidden response a status code equal to that given
 func (o *ImportSpecificationFromFileForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the import specification from file forbidden response
+func (o *ImportSpecificationFromFileForbidden) Code() int {
+	return 403
 }
 
 func (o *ImportSpecificationFromFileForbidden) Error() string {
@@ -336,7 +372,7 @@ func NewImportSpecificationFromFileNotFound() *ImportSpecificationFromFileNotFou
 /*
 ImportSpecificationFromFileNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type ImportSpecificationFromFileNotFound struct {
 	Payload *models.Error
@@ -365,6 +401,11 @@ func (o *ImportSpecificationFromFileNotFound) IsServerError() bool {
 // IsCode returns true when this import specification from file not found response a status code equal to that given
 func (o *ImportSpecificationFromFileNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the import specification from file not found response
+func (o *ImportSpecificationFromFileNotFound) Code() int {
+	return 404
 }
 
 func (o *ImportSpecificationFromFileNotFound) Error() string {
@@ -399,7 +440,7 @@ func NewImportSpecificationFromFileConflict() *ImportSpecificationFromFileConfli
 /*
 ImportSpecificationFromFileConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type ImportSpecificationFromFileConflict struct {
 	Payload *models.Error
@@ -428,6 +469,11 @@ func (o *ImportSpecificationFromFileConflict) IsServerError() bool {
 // IsCode returns true when this import specification from file conflict response a status code equal to that given
 func (o *ImportSpecificationFromFileConflict) IsCode(code int) bool {
 	return code == 409
+}
+
+// Code gets the status code for the import specification from file conflict response
+func (o *ImportSpecificationFromFileConflict) Code() int {
+	return 409
 }
 
 func (o *ImportSpecificationFromFileConflict) Error() string {
@@ -462,7 +508,7 @@ func NewImportSpecificationFromFileUnprocessableEntity() *ImportSpecificationFro
 /*
 ImportSpecificationFromFileUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type ImportSpecificationFromFileUnprocessableEntity struct {
 	Payload *models.Error
@@ -491,6 +537,11 @@ func (o *ImportSpecificationFromFileUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this import specification from file unprocessable entity response a status code equal to that given
 func (o *ImportSpecificationFromFileUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the import specification from file unprocessable entity response
+func (o *ImportSpecificationFromFileUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *ImportSpecificationFromFileUnprocessableEntity) Error() string {
@@ -525,7 +576,7 @@ func NewImportSpecificationFromFileTooManyRequests() *ImportSpecificationFromFil
 /*
 ImportSpecificationFromFileTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ImportSpecificationFromFileTooManyRequests struct {
 	Payload *models.Error
@@ -554,6 +605,11 @@ func (o *ImportSpecificationFromFileTooManyRequests) IsServerError() bool {
 // IsCode returns true when this import specification from file too many requests response a status code equal to that given
 func (o *ImportSpecificationFromFileTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the import specification from file too many requests response
+func (o *ImportSpecificationFromFileTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ImportSpecificationFromFileTooManyRequests) Error() string {

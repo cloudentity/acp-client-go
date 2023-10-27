@@ -82,6 +82,11 @@ func (m *ScopesGrantedPayload) contextValidateNewScopeGrants(ctx context.Context
 	for i := 0; i < len(m.NewScopeGrants); i++ {
 
 		if m.NewScopeGrants[i] != nil {
+
+			if swag.IsZero(m.NewScopeGrants[i]) { // not required
+				return nil
+			}
+
 			if err := m.NewScopeGrants[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("new_scope_grants" + "." + strconv.Itoa(i))

@@ -118,6 +118,11 @@ func (m *APIGroup) contextValidateApis(ctx context.Context, formats strfmt.Regis
 	for i := 0; i < len(m.Apis); i++ {
 
 		if m.Apis[i] != nil {
+
+			if swag.IsZero(m.Apis[i]) { // not required
+				return nil
+			}
+
 			if err := m.Apis[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("apis" + "." + strconv.Itoa(i))
@@ -136,6 +141,11 @@ func (m *APIGroup) contextValidateApis(ctx context.Context, formats strfmt.Regis
 func (m *APIGroup) contextValidateMetadata(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Metadata != nil {
+
+		if swag.IsZero(m.Metadata) { // not required
+			return nil
+		}
+
 		if err := m.Metadata.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("metadata")

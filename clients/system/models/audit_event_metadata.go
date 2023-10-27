@@ -27,10 +27,18 @@ type AuditEventMetadata struct {
 	// May be empty when the access is incorrect or missing.
 	ClientID string `json:"client_id,omitempty"`
 
+	// ID of the Identity Pool
+	IdentityPoolID string `json:"identity_pool_id,omitempty"`
+
 	// Audit event IP address.
 	//
 	// It's first not empty value from: X-Forwaded-For, X-Real-IP or network socket IP address
 	IP string `json:"ip,omitempty"`
+
+	// Access request may act claims.
+	//
+	// It's only populated if the token has been issued token with may_act claim.
+	MayActClaims map[string]interface{} `json:"may_act_claims,omitempty"`
 
 	// Session id
 	//

@@ -42,7 +42,7 @@ func (o *BackchannelAuthenticationReader) ReadResponse(response runtime.ClientRe
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /backchannel/authentication] backchannelAuthentication", response, response.Code())
 	}
 }
 
@@ -83,6 +83,11 @@ func (o *BackchannelAuthenticationOK) IsServerError() bool {
 // IsCode returns true when this backchannel authentication o k response a status code equal to that given
 func (o *BackchannelAuthenticationOK) IsCode(code int) bool {
 	return code == 200
+}
+
+// Code gets the status code for the backchannel authentication o k response
+func (o *BackchannelAuthenticationOK) Code() int {
+	return 200
 }
 
 func (o *BackchannelAuthenticationOK) Error() string {
@@ -148,6 +153,11 @@ func (o *BackchannelAuthenticationBadRequest) IsCode(code int) bool {
 	return code == 400
 }
 
+// Code gets the status code for the backchannel authentication bad request response
+func (o *BackchannelAuthenticationBadRequest) Code() int {
+	return 400
+}
+
 func (o *BackchannelAuthenticationBadRequest) Error() string {
 	return fmt.Sprintf("[POST /backchannel/authentication][%d] backchannelAuthenticationBadRequest  %+v", 400, o.Payload)
 }
@@ -209,6 +219,11 @@ func (o *BackchannelAuthenticationUnauthorized) IsServerError() bool {
 // IsCode returns true when this backchannel authentication unauthorized response a status code equal to that given
 func (o *BackchannelAuthenticationUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the backchannel authentication unauthorized response
+func (o *BackchannelAuthenticationUnauthorized) Code() int {
+	return 401
 }
 
 func (o *BackchannelAuthenticationUnauthorized) Error() string {

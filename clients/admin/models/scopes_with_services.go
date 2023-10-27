@@ -82,6 +82,11 @@ func (m *ScopesWithServices) contextValidateScopes(ctx context.Context, formats 
 	for i := 0; i < len(m.Scopes); i++ {
 
 		if m.Scopes[i] != nil {
+
+			if swag.IsZero(m.Scopes[i]) { // not required
+				return nil
+			}
+
 			if err := m.Scopes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("scopes" + "." + strconv.Itoa(i))

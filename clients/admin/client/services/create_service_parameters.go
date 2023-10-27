@@ -66,6 +66,14 @@ type CreateServiceParams struct {
 	// Service.
 	Service *models.Service
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -130,6 +138,17 @@ func (o *CreateServiceParams) SetService(service *models.Service) {
 	o.Service = service
 }
 
+// WithIfMatch adds the ifMatch to the create service params
+func (o *CreateServiceParams) WithIfMatch(ifMatch *string) *CreateServiceParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the create service params
+func (o *CreateServiceParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *CreateServiceParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -139,6 +158,14 @@ func (o *CreateServiceParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	var res []error
 	if o.Service != nil {
 		if err := r.SetBodyParam(o.Service); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

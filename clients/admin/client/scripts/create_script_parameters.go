@@ -66,6 +66,14 @@ type CreateScriptParams struct {
 	// Script.
 	Script *models.Script
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Wid.
 
 	   ID of your authorization server (workspace)
@@ -149,6 +157,17 @@ func (o *CreateScriptParams) SetScript(script *models.Script) {
 	o.Script = script
 }
 
+// WithIfMatch adds the ifMatch to the create script params
+func (o *CreateScriptParams) WithIfMatch(ifMatch *string) *CreateScriptParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the create script params
+func (o *CreateScriptParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithWid adds the wid to the create script params
 func (o *CreateScriptParams) WithWid(wid string) *CreateScriptParams {
 	o.SetWid(wid)
@@ -169,6 +188,14 @@ func (o *CreateScriptParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 	var res []error
 	if o.Script != nil {
 		if err := r.SetBodyParam(o.Script); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

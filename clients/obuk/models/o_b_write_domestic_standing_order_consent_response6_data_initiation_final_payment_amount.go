@@ -115,6 +115,7 @@ func (m *OBWriteDomesticStandingOrderConsentResponse6DataInitiationFinalPaymentA
 func (m *OBWriteDomesticStandingOrderConsentResponse6DataInitiationFinalPaymentAmount) contextValidateAmount(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Amount != nil {
+
 		if err := m.Amount.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Amount")
@@ -131,6 +132,7 @@ func (m *OBWriteDomesticStandingOrderConsentResponse6DataInitiationFinalPaymentA
 func (m *OBWriteDomesticStandingOrderConsentResponse6DataInitiationFinalPaymentAmount) contextValidateCurrency(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Currency != nil {
+
 		if err := m.Currency.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Currency")

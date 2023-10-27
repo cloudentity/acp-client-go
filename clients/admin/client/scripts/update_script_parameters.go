@@ -66,6 +66,14 @@ type UpdateScriptParams struct {
 	// ScriptBody.
 	ScriptBody *models.Script
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Script.
 
 	   ID of the script to be updated
@@ -155,6 +163,17 @@ func (o *UpdateScriptParams) SetScriptBody(scriptBody *models.Script) {
 	o.ScriptBody = scriptBody
 }
 
+// WithIfMatch adds the ifMatch to the update script params
+func (o *UpdateScriptParams) WithIfMatch(ifMatch *string) *UpdateScriptParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the update script params
+func (o *UpdateScriptParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithScript adds the script to the update script params
 func (o *UpdateScriptParams) WithScript(script string) *UpdateScriptParams {
 	o.SetScript(script)
@@ -186,6 +205,14 @@ func (o *UpdateScriptParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 	var res []error
 	if o.ScriptBody != nil {
 		if err := r.SetBodyParam(o.ScriptBody); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

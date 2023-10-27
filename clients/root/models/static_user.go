@@ -121,6 +121,10 @@ func (m *StaticUser) ContextValidate(ctx context.Context, formats strfmt.Registr
 
 func (m *StaticUser) contextValidateAdditionalAttributes(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.AdditionalAttributes) { // not required
+		return nil
+	}
+
 	if err := m.AdditionalAttributes.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("additional_attributes")
@@ -134,6 +138,10 @@ func (m *StaticUser) contextValidateAdditionalAttributes(ctx context.Context, fo
 }
 
 func (m *StaticUser) contextValidateAuthenticationContext(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.AuthenticationContext) { // not required
+		return nil
+	}
 
 	if err := m.AuthenticationContext.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

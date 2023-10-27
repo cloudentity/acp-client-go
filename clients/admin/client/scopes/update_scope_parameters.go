@@ -66,6 +66,14 @@ type UpdateScopeParams struct {
 	// Scope.
 	Scope *models.Scope
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	// Scp.
 	Scp string
 
@@ -133,6 +141,17 @@ func (o *UpdateScopeParams) SetScope(scope *models.Scope) {
 	o.Scope = scope
 }
 
+// WithIfMatch adds the ifMatch to the update scope params
+func (o *UpdateScopeParams) WithIfMatch(ifMatch *string) *UpdateScopeParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the update scope params
+func (o *UpdateScopeParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithScp adds the scp to the update scope params
 func (o *UpdateScopeParams) WithScp(scp string) *UpdateScopeParams {
 	o.SetScp(scp)
@@ -153,6 +172,14 @@ func (o *UpdateScopeParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 	var res []error
 	if o.Scope != nil {
 		if err := r.SetBodyParam(o.Scope); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

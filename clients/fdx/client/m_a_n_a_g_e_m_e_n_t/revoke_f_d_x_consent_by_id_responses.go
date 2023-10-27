@@ -60,7 +60,7 @@ func (o *RevokeFDXConsentByIDReader) ReadResponse(response runtime.ClientRespons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[DELETE /servers/{wid}/fdx/consents/{consentID}] revokeFDXConsentByID", response, response.Code())
 	}
 }
 
@@ -72,7 +72,7 @@ func NewRevokeFDXConsentByIDNoContent() *RevokeFDXConsentByIDNoContent {
 /*
 RevokeFDXConsentByIDNoContent describes a response with status code 204, with default header values.
 
-	Consnet has been revoked
+	Consent revoked
 */
 type RevokeFDXConsentByIDNoContent struct {
 }

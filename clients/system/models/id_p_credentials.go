@@ -405,6 +405,11 @@ func (m *IDPCredentials) ContextValidate(ctx context.Context, formats strfmt.Reg
 func (m *IDPCredentials) contextValidateAuth0(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Auth0 != nil {
+
+		if swag.IsZero(m.Auth0) { // not required
+			return nil
+		}
+
 		if err := m.Auth0.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("auth0")
@@ -421,6 +426,11 @@ func (m *IDPCredentials) contextValidateAuth0(ctx context.Context, formats strfm
 func (m *IDPCredentials) contextValidateAzure(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Azure != nil {
+
+		if swag.IsZero(m.Azure) { // not required
+			return nil
+		}
+
 		if err := m.Azure.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("azure")
@@ -437,6 +447,11 @@ func (m *IDPCredentials) contextValidateAzure(ctx context.Context, formats strfm
 func (m *IDPCredentials) contextValidateAzureb2c(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Azureb2c != nil {
+
+		if swag.IsZero(m.Azureb2c) { // not required
+			return nil
+		}
+
 		if err := m.Azureb2c.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("azureb2c")
@@ -453,6 +468,11 @@ func (m *IDPCredentials) contextValidateAzureb2c(ctx context.Context, formats st
 func (m *IDPCredentials) contextValidateCognito(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Cognito != nil {
+
+		if swag.IsZero(m.Cognito) { // not required
+			return nil
+		}
+
 		if err := m.Cognito.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("cognito")
@@ -469,6 +489,11 @@ func (m *IDPCredentials) contextValidateCognito(ctx context.Context, formats str
 func (m *IDPCredentials) contextValidateExternal(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.External != nil {
+
+		if swag.IsZero(m.External) { // not required
+			return nil
+		}
+
 		if err := m.External.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("external")
@@ -485,6 +510,11 @@ func (m *IDPCredentials) contextValidateExternal(ctx context.Context, formats st
 func (m *IDPCredentials) contextValidateGithub(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Github != nil {
+
+		if swag.IsZero(m.Github) { // not required
+			return nil
+		}
+
 		if err := m.Github.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("github")
@@ -501,6 +531,11 @@ func (m *IDPCredentials) contextValidateGithub(ctx context.Context, formats strf
 func (m *IDPCredentials) contextValidateGoogle(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Google != nil {
+
+		if swag.IsZero(m.Google) { // not required
+			return nil
+		}
+
 		if err := m.Google.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("google")
@@ -517,6 +552,11 @@ func (m *IDPCredentials) contextValidateGoogle(ctx context.Context, formats strf
 func (m *IDPCredentials) contextValidateIntelliTrust(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.IntelliTrust != nil {
+
+		if swag.IsZero(m.IntelliTrust) { // not required
+			return nil
+		}
+
 		if err := m.IntelliTrust.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("intelli_trust")
@@ -533,6 +573,11 @@ func (m *IDPCredentials) contextValidateIntelliTrust(ctx context.Context, format
 func (m *IDPCredentials) contextValidateOidc(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Oidc != nil {
+
+		if swag.IsZero(m.Oidc) { // not required
+			return nil
+		}
+
 		if err := m.Oidc.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("oidc")
@@ -549,6 +594,11 @@ func (m *IDPCredentials) contextValidateOidc(ctx context.Context, formats strfmt
 func (m *IDPCredentials) contextValidateOkta(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Okta != nil {
+
+		if swag.IsZero(m.Okta) { // not required
+			return nil
+		}
+
 		if err := m.Okta.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("okta")
@@ -565,6 +615,11 @@ func (m *IDPCredentials) contextValidateOkta(ctx context.Context, formats strfmt
 func (m *IDPCredentials) contextValidateSaml(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Saml != nil {
+
+		if swag.IsZero(m.Saml) { // not required
+			return nil
+		}
+
 		if err := m.Saml.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("saml")
@@ -581,6 +636,11 @@ func (m *IDPCredentials) contextValidateSaml(ctx context.Context, formats strfmt
 func (m *IDPCredentials) contextValidateStatic(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Static != nil {
+
+		if swag.IsZero(m.Static) { // not required
+			return nil
+		}
+
 		if err := m.Static.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("static")

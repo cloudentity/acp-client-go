@@ -66,6 +66,14 @@ type UpdateThemeParams struct {
 	// Theme.
 	Theme *models.Theme
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* ThemeID.
 
 	   Theme ID
@@ -136,6 +144,17 @@ func (o *UpdateThemeParams) SetTheme(theme *models.Theme) {
 	o.Theme = theme
 }
 
+// WithIfMatch adds the ifMatch to the update theme params
+func (o *UpdateThemeParams) WithIfMatch(ifMatch *string) *UpdateThemeParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the update theme params
+func (o *UpdateThemeParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithThemeID adds the themeID to the update theme params
 func (o *UpdateThemeParams) WithThemeID(themeID string) *UpdateThemeParams {
 	o.SetThemeID(themeID)
@@ -156,6 +175,14 @@ func (o *UpdateThemeParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 	var res []error
 	if o.Theme != nil {
 		if err := r.SetBodyParam(o.Theme); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

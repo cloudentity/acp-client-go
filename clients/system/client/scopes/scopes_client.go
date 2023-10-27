@@ -36,7 +36,7 @@ type ClientService interface {
 }
 
 /*
-ListScopesSystem lists scopes for authorfzation server
+ListScopesSystem lists scopes for authorization server
 
 This API lists scopes for a given authorization server
 */

@@ -54,7 +54,7 @@ func (o *GetConsentReader) ReadResponse(response runtime.ClientResponse, consume
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /consents/{consent}] getConsent", response, response.Code())
 	}
 }
 
@@ -69,6 +69,15 @@ GetConsentOK describes a response with status code 200, with default header valu
 Consent
 */
 type GetConsentOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.Consent
 }
 
@@ -97,6 +106,11 @@ func (o *GetConsentOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get consent o k response
+func (o *GetConsentOK) Code() int {
+	return 200
+}
+
 func (o *GetConsentOK) Error() string {
 	return fmt.Sprintf("[GET /consents/{consent}][%d] getConsentOK  %+v", 200, o.Payload)
 }
@@ -110,6 +124,13 @@ func (o *GetConsentOK) GetPayload() *models.Consent {
 }
 
 func (o *GetConsentOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.Consent)
 
@@ -129,7 +150,7 @@ func NewGetConsentUnauthorized() *GetConsentUnauthorized {
 /*
 GetConsentUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetConsentUnauthorized struct {
 	Payload *models.Error
@@ -158,6 +179,11 @@ func (o *GetConsentUnauthorized) IsServerError() bool {
 // IsCode returns true when this get consent unauthorized response a status code equal to that given
 func (o *GetConsentUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get consent unauthorized response
+func (o *GetConsentUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetConsentUnauthorized) Error() string {
@@ -192,7 +218,7 @@ func NewGetConsentForbidden() *GetConsentForbidden {
 /*
 GetConsentForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetConsentForbidden struct {
 	Payload *models.Error
@@ -221,6 +247,11 @@ func (o *GetConsentForbidden) IsServerError() bool {
 // IsCode returns true when this get consent forbidden response a status code equal to that given
 func (o *GetConsentForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get consent forbidden response
+func (o *GetConsentForbidden) Code() int {
+	return 403
 }
 
 func (o *GetConsentForbidden) Error() string {
@@ -255,7 +286,7 @@ func NewGetConsentNotFound() *GetConsentNotFound {
 /*
 GetConsentNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type GetConsentNotFound struct {
 	Payload *models.Error
@@ -284,6 +315,11 @@ func (o *GetConsentNotFound) IsServerError() bool {
 // IsCode returns true when this get consent not found response a status code equal to that given
 func (o *GetConsentNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the get consent not found response
+func (o *GetConsentNotFound) Code() int {
+	return 404
 }
 
 func (o *GetConsentNotFound) Error() string {
@@ -318,7 +354,7 @@ func NewGetConsentTooManyRequests() *GetConsentTooManyRequests {
 /*
 GetConsentTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetConsentTooManyRequests struct {
 	Payload *models.Error
@@ -347,6 +383,11 @@ func (o *GetConsentTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get consent too many requests response a status code equal to that given
 func (o *GetConsentTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get consent too many requests response
+func (o *GetConsentTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetConsentTooManyRequests) Error() string {

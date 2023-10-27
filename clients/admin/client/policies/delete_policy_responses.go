@@ -60,7 +60,7 @@ func (o *DeletePolicyReader) ReadResponse(response runtime.ClientResponse, consu
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[DELETE /policies/{pid}] deletePolicy", response, response.Code())
 	}
 }
 
@@ -102,6 +102,11 @@ func (o *DeletePolicyNoContent) IsCode(code int) bool {
 	return code == 204
 }
 
+// Code gets the status code for the delete policy no content response
+func (o *DeletePolicyNoContent) Code() int {
+	return 204
+}
+
 func (o *DeletePolicyNoContent) Error() string {
 	return fmt.Sprintf("[DELETE /policies/{pid}][%d] deletePolicyNoContent ", 204)
 }
@@ -123,7 +128,7 @@ func NewDeletePolicyBadRequest() *DeletePolicyBadRequest {
 /*
 DeletePolicyBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type DeletePolicyBadRequest struct {
 	Payload *models.Error
@@ -152,6 +157,11 @@ func (o *DeletePolicyBadRequest) IsServerError() bool {
 // IsCode returns true when this delete policy bad request response a status code equal to that given
 func (o *DeletePolicyBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the delete policy bad request response
+func (o *DeletePolicyBadRequest) Code() int {
+	return 400
 }
 
 func (o *DeletePolicyBadRequest) Error() string {
@@ -186,7 +196,7 @@ func NewDeletePolicyUnauthorized() *DeletePolicyUnauthorized {
 /*
 DeletePolicyUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type DeletePolicyUnauthorized struct {
 	Payload *models.Error
@@ -215,6 +225,11 @@ func (o *DeletePolicyUnauthorized) IsServerError() bool {
 // IsCode returns true when this delete policy unauthorized response a status code equal to that given
 func (o *DeletePolicyUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the delete policy unauthorized response
+func (o *DeletePolicyUnauthorized) Code() int {
+	return 401
 }
 
 func (o *DeletePolicyUnauthorized) Error() string {
@@ -249,7 +264,7 @@ func NewDeletePolicyForbidden() *DeletePolicyForbidden {
 /*
 DeletePolicyForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type DeletePolicyForbidden struct {
 	Payload *models.Error
@@ -278,6 +293,11 @@ func (o *DeletePolicyForbidden) IsServerError() bool {
 // IsCode returns true when this delete policy forbidden response a status code equal to that given
 func (o *DeletePolicyForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the delete policy forbidden response
+func (o *DeletePolicyForbidden) Code() int {
+	return 403
 }
 
 func (o *DeletePolicyForbidden) Error() string {
@@ -312,7 +332,7 @@ func NewDeletePolicyNotFound() *DeletePolicyNotFound {
 /*
 DeletePolicyNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type DeletePolicyNotFound struct {
 	Payload *models.Error
@@ -341,6 +361,11 @@ func (o *DeletePolicyNotFound) IsServerError() bool {
 // IsCode returns true when this delete policy not found response a status code equal to that given
 func (o *DeletePolicyNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the delete policy not found response
+func (o *DeletePolicyNotFound) Code() int {
+	return 404
 }
 
 func (o *DeletePolicyNotFound) Error() string {
@@ -375,7 +400,7 @@ func NewDeletePolicyTooManyRequests() *DeletePolicyTooManyRequests {
 /*
 DeletePolicyTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type DeletePolicyTooManyRequests struct {
 	Payload *models.Error
@@ -404,6 +429,11 @@ func (o *DeletePolicyTooManyRequests) IsServerError() bool {
 // IsCode returns true when this delete policy too many requests response a status code equal to that given
 func (o *DeletePolicyTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the delete policy too many requests response
+func (o *DeletePolicyTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *DeletePolicyTooManyRequests) Error() string {

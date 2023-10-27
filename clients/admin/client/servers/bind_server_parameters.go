@@ -61,6 +61,14 @@ BindServerParams contains all the parameters to send to the API endpoint
 */
 type BindServerParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Rid.
 
 	   Dependent server id
@@ -144,6 +152,17 @@ func (o *BindServerParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the bind server params
+func (o *BindServerParams) WithIfMatch(ifMatch *string) *BindServerParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the bind server params
+func (o *BindServerParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithRid adds the rid to the bind server params
 func (o *BindServerParams) WithRid(rid string) *BindServerParams {
 	o.SetRid(rid)
@@ -173,6 +192,14 @@ func (o *BindServerParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	// path param rid
 	if err := r.SetPathParam("rid", o.Rid); err != nil {

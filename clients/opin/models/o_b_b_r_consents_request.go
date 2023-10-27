@@ -42,21 +42,27 @@ type OBBRConsentsRequest struct {
 	// isn't included. Also, the response depends on the `sort` and `order` parameters, if any are passed.
 	BeforeConsentID string `json:"before_consent_id,omitempty"`
 
-	// A client identifier.
+	// A client application identifier.
 	ClientID string `json:"client_id,omitempty"`
 
-	// Optional cnpj
-	// cnpj
+	// Optional. A
+	// [14-digit identification number](https://openbanking-brasil.github.io/specs-seguranca/open-banking-brasil-financial-api-1_ID3.html#section-5.2.2.4)
+	// of a company in Cadastro Nacional da Pessoa Jurídica (Brazilian National Registry of Legal Entities).
 	Cnpj string `json:"cnpj,omitempty"`
 
-	// Optional cpf
-	// cpf
+	// Optional. An
+	// [11-digit taxpayer identification number](https://openbanking-brasil.github.io/specs-seguranca/open-banking-brasil-financial-api-1_ID3.html#name-requesting-the-cpf-claim)
+	// in Cadastro de Pessoas Físicas (Natural Persons Register).
 	Cpf string `json:"cpf,omitempty"`
 
-	// Optional start date for when consent was created
+	// Optional. Consent creation date.
+	//
+	// Sets the start date of the consent retrieval date range.
 	DateFrom string `json:"date_from,omitempty"`
 
-	// Optional end date for when consent was created
+	// Optional. Consent creation date.
+	//
+	// Sets the end date of the consent retrieval date range.
 	DateTo string `json:"date_to,omitempty"`
 
 	// Limit the number of results returned in the response.

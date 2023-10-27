@@ -42,7 +42,7 @@ type ScriptExecutionPoint struct {
 	// String representation of the script execution point type
 	// Example: post_authn_ctx
 	// Required: true
-	// Enum: [post_authn_ctx allowed_idp_ids token_minting]
+	// Enum: [post_authn_ctx allowed_idp_ids token_minting client_token_minting]
 	Type string `json:"type"`
 }
 
@@ -103,7 +103,7 @@ var scriptExecutionPointTypeTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["post_authn_ctx","allowed_idp_ids","token_minting"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["post_authn_ctx","allowed_idp_ids","token_minting","client_token_minting"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -121,6 +121,9 @@ const (
 
 	// ScriptExecutionPointTypeTokenMinting captures enum value "token_minting"
 	ScriptExecutionPointTypeTokenMinting string = "token_minting"
+
+	// ScriptExecutionPointTypeClientTokenMinting captures enum value "client_token_minting"
+	ScriptExecutionPointTypeClientTokenMinting string = "client_token_minting"
 )
 
 // prop value enum

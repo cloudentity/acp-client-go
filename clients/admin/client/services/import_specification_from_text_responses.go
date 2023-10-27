@@ -72,7 +72,7 @@ func (o *ImportSpecificationFromTextReader) ReadResponse(response runtime.Client
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /services/{sid}/apis/import/text] importSpecificationFromText", response, response.Code())
 	}
 }
 
@@ -87,6 +87,15 @@ ImportSpecificationFromTextOK describes a response with status code 200, with de
 Import service configuration result
 */
 type ImportSpecificationFromTextOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.ImportServiceConfigurationResult
 }
 
@@ -115,6 +124,11 @@ func (o *ImportSpecificationFromTextOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the import specification from text o k response
+func (o *ImportSpecificationFromTextOK) Code() int {
+	return 200
+}
+
 func (o *ImportSpecificationFromTextOK) Error() string {
 	return fmt.Sprintf("[POST /services/{sid}/apis/import/text][%d] importSpecificationFromTextOK  %+v", 200, o.Payload)
 }
@@ -128,6 +142,13 @@ func (o *ImportSpecificationFromTextOK) GetPayload() *models.ImportServiceConfig
 }
 
 func (o *ImportSpecificationFromTextOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.ImportServiceConfigurationResult)
 
@@ -147,7 +168,7 @@ func NewImportSpecificationFromTextBadRequest() *ImportSpecificationFromTextBadR
 /*
 ImportSpecificationFromTextBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type ImportSpecificationFromTextBadRequest struct {
 	Payload *models.Error
@@ -176,6 +197,11 @@ func (o *ImportSpecificationFromTextBadRequest) IsServerError() bool {
 // IsCode returns true when this import specification from text bad request response a status code equal to that given
 func (o *ImportSpecificationFromTextBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the import specification from text bad request response
+func (o *ImportSpecificationFromTextBadRequest) Code() int {
+	return 400
 }
 
 func (o *ImportSpecificationFromTextBadRequest) Error() string {
@@ -210,7 +236,7 @@ func NewImportSpecificationFromTextUnauthorized() *ImportSpecificationFromTextUn
 /*
 ImportSpecificationFromTextUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ImportSpecificationFromTextUnauthorized struct {
 	Payload *models.Error
@@ -239,6 +265,11 @@ func (o *ImportSpecificationFromTextUnauthorized) IsServerError() bool {
 // IsCode returns true when this import specification from text unauthorized response a status code equal to that given
 func (o *ImportSpecificationFromTextUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the import specification from text unauthorized response
+func (o *ImportSpecificationFromTextUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ImportSpecificationFromTextUnauthorized) Error() string {
@@ -273,7 +304,7 @@ func NewImportSpecificationFromTextForbidden() *ImportSpecificationFromTextForbi
 /*
 ImportSpecificationFromTextForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ImportSpecificationFromTextForbidden struct {
 	Payload *models.Error
@@ -302,6 +333,11 @@ func (o *ImportSpecificationFromTextForbidden) IsServerError() bool {
 // IsCode returns true when this import specification from text forbidden response a status code equal to that given
 func (o *ImportSpecificationFromTextForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the import specification from text forbidden response
+func (o *ImportSpecificationFromTextForbidden) Code() int {
+	return 403
 }
 
 func (o *ImportSpecificationFromTextForbidden) Error() string {
@@ -336,7 +372,7 @@ func NewImportSpecificationFromTextNotFound() *ImportSpecificationFromTextNotFou
 /*
 ImportSpecificationFromTextNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type ImportSpecificationFromTextNotFound struct {
 	Payload *models.Error
@@ -365,6 +401,11 @@ func (o *ImportSpecificationFromTextNotFound) IsServerError() bool {
 // IsCode returns true when this import specification from text not found response a status code equal to that given
 func (o *ImportSpecificationFromTextNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the import specification from text not found response
+func (o *ImportSpecificationFromTextNotFound) Code() int {
+	return 404
 }
 
 func (o *ImportSpecificationFromTextNotFound) Error() string {
@@ -399,7 +440,7 @@ func NewImportSpecificationFromTextConflict() *ImportSpecificationFromTextConfli
 /*
 ImportSpecificationFromTextConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type ImportSpecificationFromTextConflict struct {
 	Payload *models.Error
@@ -428,6 +469,11 @@ func (o *ImportSpecificationFromTextConflict) IsServerError() bool {
 // IsCode returns true when this import specification from text conflict response a status code equal to that given
 func (o *ImportSpecificationFromTextConflict) IsCode(code int) bool {
 	return code == 409
+}
+
+// Code gets the status code for the import specification from text conflict response
+func (o *ImportSpecificationFromTextConflict) Code() int {
+	return 409
 }
 
 func (o *ImportSpecificationFromTextConflict) Error() string {
@@ -462,7 +508,7 @@ func NewImportSpecificationFromTextUnprocessableEntity() *ImportSpecificationFro
 /*
 ImportSpecificationFromTextUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type ImportSpecificationFromTextUnprocessableEntity struct {
 	Payload *models.Error
@@ -491,6 +537,11 @@ func (o *ImportSpecificationFromTextUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this import specification from text unprocessable entity response a status code equal to that given
 func (o *ImportSpecificationFromTextUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the import specification from text unprocessable entity response
+func (o *ImportSpecificationFromTextUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *ImportSpecificationFromTextUnprocessableEntity) Error() string {
@@ -525,7 +576,7 @@ func NewImportSpecificationFromTextTooManyRequests() *ImportSpecificationFromTex
 /*
 ImportSpecificationFromTextTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ImportSpecificationFromTextTooManyRequests struct {
 	Payload *models.Error
@@ -554,6 +605,11 @@ func (o *ImportSpecificationFromTextTooManyRequests) IsServerError() bool {
 // IsCode returns true when this import specification from text too many requests response a status code equal to that given
 func (o *ImportSpecificationFromTextTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the import specification from text too many requests response
+func (o *ImportSpecificationFromTextTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ImportSpecificationFromTextTooManyRequests) Error() string {

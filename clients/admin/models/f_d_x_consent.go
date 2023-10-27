@@ -347,6 +347,10 @@ func (m *FDXConsent) ContextValidate(ctx context.Context, formats strfmt.Registr
 
 func (m *FDXConsent) contextValidateDurationType(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.DurationType) { // not required
+		return nil
+	}
+
 	if err := m.DurationType.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("durationType")
@@ -364,6 +368,11 @@ func (m *FDXConsent) contextValidateGrantedResources(ctx context.Context, format
 	for i := 0; i < len(m.GrantedResources); i++ {
 
 		if m.GrantedResources[i] != nil {
+
+			if swag.IsZero(m.GrantedResources[i]) { // not required
+				return nil
+			}
+
 			if err := m.GrantedResources[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("granted_resources" + "." + strconv.Itoa(i))
@@ -380,6 +389,10 @@ func (m *FDXConsent) contextValidateGrantedResources(ctx context.Context, format
 }
 
 func (m *FDXConsent) contextValidateID(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.ID) { // not required
+		return nil
+	}
 
 	if err := m.ID.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -398,6 +411,11 @@ func (m *FDXConsent) contextValidateParties(ctx context.Context, formats strfmt.
 	for i := 0; i < len(m.Parties); i++ {
 
 		if m.Parties[i] != nil {
+
+			if swag.IsZero(m.Parties[i]) { // not required
+				return nil
+			}
+
 			if err := m.Parties[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("parties" + "." + strconv.Itoa(i))
@@ -418,6 +436,11 @@ func (m *FDXConsent) contextValidateResources(ctx context.Context, formats strfm
 	for i := 0; i < len(m.Resources); i++ {
 
 		if m.Resources[i] != nil {
+
+			if swag.IsZero(m.Resources[i]) { // not required
+				return nil
+			}
+
 			if err := m.Resources[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("resources" + "." + strconv.Itoa(i))
@@ -436,6 +459,11 @@ func (m *FDXConsent) contextValidateResources(ctx context.Context, formats strfm
 func (m *FDXConsent) contextValidateRevocationReason(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.RevocationReason != nil {
+
+		if swag.IsZero(m.RevocationReason) { // not required
+			return nil
+		}
+
 		if err := m.RevocationReason.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("revocationReason")
@@ -450,6 +478,10 @@ func (m *FDXConsent) contextValidateRevocationReason(ctx context.Context, format
 }
 
 func (m *FDXConsent) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Status) { // not required
+		return nil
+	}
 
 	if err := m.Status.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

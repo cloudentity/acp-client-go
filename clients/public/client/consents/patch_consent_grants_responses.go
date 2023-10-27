@@ -66,7 +66,7 @@ func (o *PatchConsentGrantsReader) ReadResponse(response runtime.ClientResponse,
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[PATCH /privacy/consents] patchConsentGrants", response, response.Code())
 	}
 }
 
@@ -109,6 +109,11 @@ func (o *PatchConsentGrantsCreated) IsCode(code int) bool {
 	return code == 201
 }
 
+// Code gets the status code for the patch consent grants created response
+func (o *PatchConsentGrantsCreated) Code() int {
+	return 201
+}
+
 func (o *PatchConsentGrantsCreated) Error() string {
 	return fmt.Sprintf("[PATCH /privacy/consents][%d] patchConsentGrantsCreated  %+v", 201, o.Payload)
 }
@@ -141,7 +146,7 @@ func NewPatchConsentGrantsUnauthorized() *PatchConsentGrantsUnauthorized {
 /*
 PatchConsentGrantsUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type PatchConsentGrantsUnauthorized struct {
 	Payload *models.Error
@@ -170,6 +175,11 @@ func (o *PatchConsentGrantsUnauthorized) IsServerError() bool {
 // IsCode returns true when this patch consent grants unauthorized response a status code equal to that given
 func (o *PatchConsentGrantsUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the patch consent grants unauthorized response
+func (o *PatchConsentGrantsUnauthorized) Code() int {
+	return 401
 }
 
 func (o *PatchConsentGrantsUnauthorized) Error() string {
@@ -204,7 +214,7 @@ func NewPatchConsentGrantsForbidden() *PatchConsentGrantsForbidden {
 /*
 PatchConsentGrantsForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type PatchConsentGrantsForbidden struct {
 	Payload *models.Error
@@ -233,6 +243,11 @@ func (o *PatchConsentGrantsForbidden) IsServerError() bool {
 // IsCode returns true when this patch consent grants forbidden response a status code equal to that given
 func (o *PatchConsentGrantsForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the patch consent grants forbidden response
+func (o *PatchConsentGrantsForbidden) Code() int {
+	return 403
 }
 
 func (o *PatchConsentGrantsForbidden) Error() string {
@@ -267,7 +282,7 @@ func NewPatchConsentGrantsNotFound() *PatchConsentGrantsNotFound {
 /*
 PatchConsentGrantsNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type PatchConsentGrantsNotFound struct {
 	Payload *models.Error
@@ -296,6 +311,11 @@ func (o *PatchConsentGrantsNotFound) IsServerError() bool {
 // IsCode returns true when this patch consent grants not found response a status code equal to that given
 func (o *PatchConsentGrantsNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the patch consent grants not found response
+func (o *PatchConsentGrantsNotFound) Code() int {
+	return 404
 }
 
 func (o *PatchConsentGrantsNotFound) Error() string {
@@ -330,7 +350,7 @@ func NewPatchConsentGrantsConflict() *PatchConsentGrantsConflict {
 /*
 PatchConsentGrantsConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type PatchConsentGrantsConflict struct {
 	Payload *models.Error
@@ -359,6 +379,11 @@ func (o *PatchConsentGrantsConflict) IsServerError() bool {
 // IsCode returns true when this patch consent grants conflict response a status code equal to that given
 func (o *PatchConsentGrantsConflict) IsCode(code int) bool {
 	return code == 409
+}
+
+// Code gets the status code for the patch consent grants conflict response
+func (o *PatchConsentGrantsConflict) Code() int {
+	return 409
 }
 
 func (o *PatchConsentGrantsConflict) Error() string {
@@ -393,7 +418,7 @@ func NewPatchConsentGrantsUnprocessableEntity() *PatchConsentGrantsUnprocessable
 /*
 PatchConsentGrantsUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type PatchConsentGrantsUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +447,11 @@ func (o *PatchConsentGrantsUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this patch consent grants unprocessable entity response a status code equal to that given
 func (o *PatchConsentGrantsUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the patch consent grants unprocessable entity response
+func (o *PatchConsentGrantsUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *PatchConsentGrantsUnprocessableEntity) Error() string {
@@ -456,7 +486,7 @@ func NewPatchConsentGrantsTooManyRequests() *PatchConsentGrantsTooManyRequests {
 /*
 PatchConsentGrantsTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type PatchConsentGrantsTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +515,11 @@ func (o *PatchConsentGrantsTooManyRequests) IsServerError() bool {
 // IsCode returns true when this patch consent grants too many requests response a status code equal to that given
 func (o *PatchConsentGrantsTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the patch consent grants too many requests response
+func (o *PatchConsentGrantsTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *PatchConsentGrantsTooManyRequests) Error() string {

@@ -8,6 +8,7 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -37,6 +38,9 @@ type RejectConsentRequest struct {
 	// Example: cauq8fonbud6q8806bf0
 	LoginState string `json:"login_state,omitempty"`
 
+	// rejection reason
+	RejectionReason *RejectionReason `json:"rejection_reason,omitempty"`
+
 	// Rejection HTTP status code.
 	// Example: 403
 	StatusCode int64 `json:"status_code,omitempty"`
@@ -44,11 +48,69 @@ type RejectConsentRequest struct {
 
 // Validate validates this reject consent request
 func (m *RejectConsentRequest) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateRejectionReason(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 
-// ContextValidate validates this reject consent request based on context it is used
+func (m *RejectConsentRequest) validateRejectionReason(formats strfmt.Registry) error {
+	if swag.IsZero(m.RejectionReason) { // not required
+		return nil
+	}
+
+	if m.RejectionReason != nil {
+		if err := m.RejectionReason.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("rejection_reason")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("rejection_reason")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this reject consent request based on the context it is used
 func (m *RejectConsentRequest) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateRejectionReason(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *RejectConsentRequest) contextValidateRejectionReason(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.RejectionReason != nil {
+
+		if swag.IsZero(m.RejectionReason) { // not required
+			return nil
+		}
+
+		if err := m.RejectionReason.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("rejection_reason")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("rejection_reason")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

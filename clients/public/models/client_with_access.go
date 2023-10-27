@@ -110,6 +110,11 @@ func (m *ClientWithAccess) ContextValidate(ctx context.Context, formats strfmt.R
 func (m *ClientWithAccess) contextValidateClient(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Client != nil {
+
+		if swag.IsZero(m.Client) { // not required
+			return nil
+		}
+
 		if err := m.Client.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("client")
@@ -128,6 +133,11 @@ func (m *ClientWithAccess) contextValidateGrantedScopes(ctx context.Context, for
 	for i := 0; i < len(m.GrantedScopes); i++ {
 
 		if m.GrantedScopes[i] != nil {
+
+			if swag.IsZero(m.GrantedScopes[i]) { // not required
+				return nil
+			}
+
 			if err := m.GrantedScopes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("granted_scopes" + "." + strconv.Itoa(i))

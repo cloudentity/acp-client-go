@@ -54,7 +54,7 @@ func (o *ImportThemeTemplatesReader) ReadResponse(response runtime.ClientRespons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /theme/{themeID}/templates/zip] importThemeTemplates", response, response.Code())
 	}
 }
 
@@ -96,6 +96,11 @@ func (o *ImportThemeTemplatesNoContent) IsCode(code int) bool {
 	return code == 204
 }
 
+// Code gets the status code for the import theme templates no content response
+func (o *ImportThemeTemplatesNoContent) Code() int {
+	return 204
+}
+
 func (o *ImportThemeTemplatesNoContent) Error() string {
 	return fmt.Sprintf("[POST /theme/{themeID}/templates/zip][%d] importThemeTemplatesNoContent ", 204)
 }
@@ -117,7 +122,7 @@ func NewImportThemeTemplatesUnauthorized() *ImportThemeTemplatesUnauthorized {
 /*
 ImportThemeTemplatesUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ImportThemeTemplatesUnauthorized struct {
 	Payload *models.Error
@@ -146,6 +151,11 @@ func (o *ImportThemeTemplatesUnauthorized) IsServerError() bool {
 // IsCode returns true when this import theme templates unauthorized response a status code equal to that given
 func (o *ImportThemeTemplatesUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the import theme templates unauthorized response
+func (o *ImportThemeTemplatesUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ImportThemeTemplatesUnauthorized) Error() string {
@@ -180,7 +190,7 @@ func NewImportThemeTemplatesForbidden() *ImportThemeTemplatesForbidden {
 /*
 ImportThemeTemplatesForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ImportThemeTemplatesForbidden struct {
 	Payload *models.Error
@@ -209,6 +219,11 @@ func (o *ImportThemeTemplatesForbidden) IsServerError() bool {
 // IsCode returns true when this import theme templates forbidden response a status code equal to that given
 func (o *ImportThemeTemplatesForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the import theme templates forbidden response
+func (o *ImportThemeTemplatesForbidden) Code() int {
+	return 403
 }
 
 func (o *ImportThemeTemplatesForbidden) Error() string {
@@ -243,7 +258,7 @@ func NewImportThemeTemplatesNotFound() *ImportThemeTemplatesNotFound {
 /*
 ImportThemeTemplatesNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type ImportThemeTemplatesNotFound struct {
 	Payload *models.Error
@@ -272,6 +287,11 @@ func (o *ImportThemeTemplatesNotFound) IsServerError() bool {
 // IsCode returns true when this import theme templates not found response a status code equal to that given
 func (o *ImportThemeTemplatesNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the import theme templates not found response
+func (o *ImportThemeTemplatesNotFound) Code() int {
+	return 404
 }
 
 func (o *ImportThemeTemplatesNotFound) Error() string {
@@ -306,7 +326,7 @@ func NewImportThemeTemplatesTooManyRequests() *ImportThemeTemplatesTooManyReques
 /*
 ImportThemeTemplatesTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ImportThemeTemplatesTooManyRequests struct {
 	Payload *models.Error
@@ -335,6 +355,11 @@ func (o *ImportThemeTemplatesTooManyRequests) IsServerError() bool {
 // IsCode returns true when this import theme templates too many requests response a status code equal to that given
 func (o *ImportThemeTemplatesTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the import theme templates too many requests response
+func (o *ImportThemeTemplatesTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ImportThemeTemplatesTooManyRequests) Error() string {

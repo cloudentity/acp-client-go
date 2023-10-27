@@ -66,7 +66,7 @@ func (o *PatchConsentGrantsSystemReader) ReadResponse(response runtime.ClientRes
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[PATCH /consents] patchConsentGrantsSystem", response, response.Code())
 	}
 }
 
@@ -109,6 +109,11 @@ func (o *PatchConsentGrantsSystemCreated) IsCode(code int) bool {
 	return code == 201
 }
 
+// Code gets the status code for the patch consent grants system created response
+func (o *PatchConsentGrantsSystemCreated) Code() int {
+	return 201
+}
+
 func (o *PatchConsentGrantsSystemCreated) Error() string {
 	return fmt.Sprintf("[PATCH /consents][%d] patchConsentGrantsSystemCreated  %+v", 201, o.Payload)
 }
@@ -141,7 +146,7 @@ func NewPatchConsentGrantsSystemUnauthorized() *PatchConsentGrantsSystemUnauthor
 /*
 PatchConsentGrantsSystemUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type PatchConsentGrantsSystemUnauthorized struct {
 	Payload *models.Error
@@ -170,6 +175,11 @@ func (o *PatchConsentGrantsSystemUnauthorized) IsServerError() bool {
 // IsCode returns true when this patch consent grants system unauthorized response a status code equal to that given
 func (o *PatchConsentGrantsSystemUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the patch consent grants system unauthorized response
+func (o *PatchConsentGrantsSystemUnauthorized) Code() int {
+	return 401
 }
 
 func (o *PatchConsentGrantsSystemUnauthorized) Error() string {
@@ -204,7 +214,7 @@ func NewPatchConsentGrantsSystemForbidden() *PatchConsentGrantsSystemForbidden {
 /*
 PatchConsentGrantsSystemForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type PatchConsentGrantsSystemForbidden struct {
 	Payload *models.Error
@@ -233,6 +243,11 @@ func (o *PatchConsentGrantsSystemForbidden) IsServerError() bool {
 // IsCode returns true when this patch consent grants system forbidden response a status code equal to that given
 func (o *PatchConsentGrantsSystemForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the patch consent grants system forbidden response
+func (o *PatchConsentGrantsSystemForbidden) Code() int {
+	return 403
 }
 
 func (o *PatchConsentGrantsSystemForbidden) Error() string {
@@ -267,7 +282,7 @@ func NewPatchConsentGrantsSystemNotFound() *PatchConsentGrantsSystemNotFound {
 /*
 PatchConsentGrantsSystemNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type PatchConsentGrantsSystemNotFound struct {
 	Payload *models.Error
@@ -296,6 +311,11 @@ func (o *PatchConsentGrantsSystemNotFound) IsServerError() bool {
 // IsCode returns true when this patch consent grants system not found response a status code equal to that given
 func (o *PatchConsentGrantsSystemNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the patch consent grants system not found response
+func (o *PatchConsentGrantsSystemNotFound) Code() int {
+	return 404
 }
 
 func (o *PatchConsentGrantsSystemNotFound) Error() string {
@@ -330,7 +350,7 @@ func NewPatchConsentGrantsSystemConflict() *PatchConsentGrantsSystemConflict {
 /*
 PatchConsentGrantsSystemConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type PatchConsentGrantsSystemConflict struct {
 	Payload *models.Error
@@ -359,6 +379,11 @@ func (o *PatchConsentGrantsSystemConflict) IsServerError() bool {
 // IsCode returns true when this patch consent grants system conflict response a status code equal to that given
 func (o *PatchConsentGrantsSystemConflict) IsCode(code int) bool {
 	return code == 409
+}
+
+// Code gets the status code for the patch consent grants system conflict response
+func (o *PatchConsentGrantsSystemConflict) Code() int {
+	return 409
 }
 
 func (o *PatchConsentGrantsSystemConflict) Error() string {
@@ -393,7 +418,7 @@ func NewPatchConsentGrantsSystemUnprocessableEntity() *PatchConsentGrantsSystemU
 /*
 PatchConsentGrantsSystemUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type PatchConsentGrantsSystemUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +447,11 @@ func (o *PatchConsentGrantsSystemUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this patch consent grants system unprocessable entity response a status code equal to that given
 func (o *PatchConsentGrantsSystemUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the patch consent grants system unprocessable entity response
+func (o *PatchConsentGrantsSystemUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *PatchConsentGrantsSystemUnprocessableEntity) Error() string {
@@ -456,7 +486,7 @@ func NewPatchConsentGrantsSystemTooManyRequests() *PatchConsentGrantsSystemTooMa
 /*
 PatchConsentGrantsSystemTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type PatchConsentGrantsSystemTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +515,11 @@ func (o *PatchConsentGrantsSystemTooManyRequests) IsServerError() bool {
 // IsCode returns true when this patch consent grants system too many requests response a status code equal to that given
 func (o *PatchConsentGrantsSystemTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the patch consent grants system too many requests response
+func (o *PatchConsentGrantsSystemTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *PatchConsentGrantsSystemTooManyRequests) Error() string {

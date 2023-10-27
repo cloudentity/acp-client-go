@@ -492,6 +492,11 @@ func (m *SPSSODescriptor) contextValidateArtifactResolutionServices(ctx context.
 	for i := 0; i < len(m.ArtifactResolutionServices); i++ {
 
 		if m.ArtifactResolutionServices[i] != nil {
+
+			if swag.IsZero(m.ArtifactResolutionServices[i]) { // not required
+				return nil
+			}
+
 			if err := m.ArtifactResolutionServices[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ArtifactResolutionServices" + "." + strconv.Itoa(i))
@@ -512,6 +517,11 @@ func (m *SPSSODescriptor) contextValidateAssertionConsumerServices(ctx context.C
 	for i := 0; i < len(m.AssertionConsumerServices); i++ {
 
 		if m.AssertionConsumerServices[i] != nil {
+
+			if swag.IsZero(m.AssertionConsumerServices[i]) { // not required
+				return nil
+			}
+
 			if err := m.AssertionConsumerServices[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AssertionConsumerServices" + "." + strconv.Itoa(i))
@@ -532,6 +542,11 @@ func (m *SPSSODescriptor) contextValidateAttributeConsumingServices(ctx context.
 	for i := 0; i < len(m.AttributeConsumingServices); i++ {
 
 		if m.AttributeConsumingServices[i] != nil {
+
+			if swag.IsZero(m.AttributeConsumingServices[i]) { // not required
+				return nil
+			}
+
 			if err := m.AttributeConsumingServices[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("AttributeConsumingServices" + "." + strconv.Itoa(i))
@@ -548,6 +563,10 @@ func (m *SPSSODescriptor) contextValidateAttributeConsumingServices(ctx context.
 }
 
 func (m *SPSSODescriptor) contextValidateCacheDuration(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.CacheDuration) { // not required
+		return nil
+	}
 
 	if err := m.CacheDuration.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
@@ -566,6 +585,11 @@ func (m *SPSSODescriptor) contextValidateContactPeople(ctx context.Context, form
 	for i := 0; i < len(m.ContactPeople); i++ {
 
 		if m.ContactPeople[i] != nil {
+
+			if swag.IsZero(m.ContactPeople[i]) { // not required
+				return nil
+			}
+
 			if err := m.ContactPeople[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ContactPeople" + "." + strconv.Itoa(i))
@@ -586,6 +610,11 @@ func (m *SPSSODescriptor) contextValidateKeyDescriptors(ctx context.Context, for
 	for i := 0; i < len(m.KeyDescriptors); i++ {
 
 		if m.KeyDescriptors[i] != nil {
+
+			if swag.IsZero(m.KeyDescriptors[i]) { // not required
+				return nil
+			}
+
 			if err := m.KeyDescriptors[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("KeyDescriptors" + "." + strconv.Itoa(i))
@@ -606,6 +635,11 @@ func (m *SPSSODescriptor) contextValidateManageNameIDServices(ctx context.Contex
 	for i := 0; i < len(m.ManageNameIDServices); i++ {
 
 		if m.ManageNameIDServices[i] != nil {
+
+			if swag.IsZero(m.ManageNameIDServices[i]) { // not required
+				return nil
+			}
+
 			if err := m.ManageNameIDServices[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ManageNameIDServices" + "." + strconv.Itoa(i))
@@ -625,6 +659,10 @@ func (m *SPSSODescriptor) contextValidateNameIDFormats(ctx context.Context, form
 
 	for i := 0; i < len(m.NameIDFormats); i++ {
 
+		if swag.IsZero(m.NameIDFormats[i]) { // not required
+			return nil
+		}
+
 		if err := m.NameIDFormats[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("NameIDFormats" + "." + strconv.Itoa(i))
@@ -642,6 +680,11 @@ func (m *SPSSODescriptor) contextValidateNameIDFormats(ctx context.Context, form
 func (m *SPSSODescriptor) contextValidateOrganization(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Organization != nil {
+
+		if swag.IsZero(m.Organization) { // not required
+			return nil
+		}
+
 		if err := m.Organization.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Organization")
@@ -658,6 +701,11 @@ func (m *SPSSODescriptor) contextValidateOrganization(ctx context.Context, forma
 func (m *SPSSODescriptor) contextValidateSignature(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Signature != nil {
+
+		if swag.IsZero(m.Signature) { // not required
+			return nil
+		}
+
 		if err := m.Signature.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Signature")
@@ -676,6 +724,11 @@ func (m *SPSSODescriptor) contextValidateSingleLogoutServices(ctx context.Contex
 	for i := 0; i < len(m.SingleLogoutServices); i++ {
 
 		if m.SingleLogoutServices[i] != nil {
+
+			if swag.IsZero(m.SingleLogoutServices[i]) { // not required
+				return nil
+			}
+
 			if err := m.SingleLogoutServices[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("SingleLogoutServices" + "." + strconv.Itoa(i))
@@ -694,6 +747,11 @@ func (m *SPSSODescriptor) contextValidateSingleLogoutServices(ctx context.Contex
 func (m *SPSSODescriptor) contextValidateXMLName(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.XMLName != nil {
+
+		if swag.IsZero(m.XMLName) { // not required
+			return nil
+		}
+
 		if err := m.XMLName.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("XMLName")

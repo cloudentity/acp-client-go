@@ -63,6 +63,9 @@ type AzureB2CSettings struct {
 	// Example: ["email","profile","openid"]
 	Scopes []string `json:"scopes"`
 
+	// Whether to send the identifier as a `login_hint` parameter to the IDP
+	SendLoginHint bool `json:"send_login_hint,omitempty"`
+
 	// Directory ID from your Microsoft Azure B2C application settings
 	// Example: 123-312-123
 	Tenant string `json:"tenant,omitempty"`

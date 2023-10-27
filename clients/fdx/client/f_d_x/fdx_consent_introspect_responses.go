@@ -51,7 +51,7 @@ func (o *FdxConsentIntrospectReader) ReadResponse(response runtime.ClientRespons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /fdx/consents/introspect] fdxConsentIntrospect", response, response.Code())
 	}
 }
 
@@ -444,6 +444,11 @@ func (o *FdxConsentIntrospectOKBody) ContextValidate(ctx context.Context, format
 func (o *FdxConsentIntrospectOKBody) contextValidateFdxConsent(ctx context.Context, formats strfmt.Registry) error {
 
 	if o.FdxConsent != nil {
+
+		if swag.IsZero(o.FdxConsent) { // not required
+			return nil
+		}
+
 		if err := o.FdxConsent.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("fdxConsentIntrospectOK" + "." + "fdx_consent")

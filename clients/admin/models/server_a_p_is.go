@@ -87,6 +87,10 @@ func (m *ServerAPIs) contextValidateApisByServices(ctx context.Context, formats 
 
 		for i := 0; i < len(m.ApisByServices[k]); i++ {
 
+			if swag.IsZero(m.ApisByServices[k][i]) { // not required
+				return nil
+			}
+
 			if err := m.ApisByServices[k][i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("apis_by_services" + "." + k + "." + strconv.Itoa(i))

@@ -54,7 +54,7 @@ func (o *FDXDynamicClientRegistrationPutReader) ReadResponse(response runtime.Cl
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /fdx/dcr/register/{cid}] FDXDynamicClientRegistrationPut", response, response.Code())
 	}
 }
 
@@ -66,7 +66,7 @@ func NewFDXDynamicClientRegistrationPutOK() *FDXDynamicClientRegistrationPutOK {
 /*
 FDXDynamicClientRegistrationPutOK describes a response with status code 200, with default header values.
 
-Update client response
+Client Details Updated Response
 */
 type FDXDynamicClientRegistrationPutOK struct {
 	Payload *models.FDXDynamicClientRegistrationResponse

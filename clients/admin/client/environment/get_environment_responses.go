@@ -48,7 +48,7 @@ func (o *GetEnvironmentReader) ReadResponse(response runtime.ClientResponse, con
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /environment] getEnvironment", response, response.Code())
 	}
 }
 
@@ -63,6 +63,15 @@ GetEnvironmentOK describes a response with status code 200, with default header 
 Environment
 */
 type GetEnvironmentOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.Environment
 }
 
@@ -91,6 +100,11 @@ func (o *GetEnvironmentOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get environment o k response
+func (o *GetEnvironmentOK) Code() int {
+	return 200
+}
+
 func (o *GetEnvironmentOK) Error() string {
 	return fmt.Sprintf("[GET /environment][%d] getEnvironmentOK  %+v", 200, o.Payload)
 }
@@ -104,6 +118,13 @@ func (o *GetEnvironmentOK) GetPayload() *models.Environment {
 }
 
 func (o *GetEnvironmentOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.Environment)
 
@@ -123,7 +144,7 @@ func NewGetEnvironmentUnauthorized() *GetEnvironmentUnauthorized {
 /*
 GetEnvironmentUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetEnvironmentUnauthorized struct {
 	Payload *models.Error
@@ -152,6 +173,11 @@ func (o *GetEnvironmentUnauthorized) IsServerError() bool {
 // IsCode returns true when this get environment unauthorized response a status code equal to that given
 func (o *GetEnvironmentUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get environment unauthorized response
+func (o *GetEnvironmentUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetEnvironmentUnauthorized) Error() string {
@@ -186,7 +212,7 @@ func NewGetEnvironmentForbidden() *GetEnvironmentForbidden {
 /*
 GetEnvironmentForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetEnvironmentForbidden struct {
 	Payload *models.Error
@@ -215,6 +241,11 @@ func (o *GetEnvironmentForbidden) IsServerError() bool {
 // IsCode returns true when this get environment forbidden response a status code equal to that given
 func (o *GetEnvironmentForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get environment forbidden response
+func (o *GetEnvironmentForbidden) Code() int {
+	return 403
 }
 
 func (o *GetEnvironmentForbidden) Error() string {
@@ -249,7 +280,7 @@ func NewGetEnvironmentTooManyRequests() *GetEnvironmentTooManyRequests {
 /*
 GetEnvironmentTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetEnvironmentTooManyRequests struct {
 	Payload *models.Error
@@ -278,6 +309,11 @@ func (o *GetEnvironmentTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get environment too many requests response a status code equal to that given
 func (o *GetEnvironmentTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get environment too many requests response
+func (o *GetEnvironmentTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetEnvironmentTooManyRequests) Error() string {

@@ -21,7 +21,7 @@ type BrazilCreateCustomerDataAccessConsentV2Response struct {
 
 	// data
 	// Required: true
-	Data *OpenbankingBrasilConsentV2Data1 `json:"data"`
+	Data *OpenbankingBrasilConsentV2Data2 `json:"data"`
 
 	// links
 	Links *OpenbankingBrasilConsentV2Links `json:"links,omitempty"`

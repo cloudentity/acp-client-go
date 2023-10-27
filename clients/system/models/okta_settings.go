@@ -35,6 +35,9 @@ type OktaSettings struct {
 	// An array of additional scopes your client requests
 	Scopes []string `json:"scopes"`
 
+	// Whether to send the identifier as a `login_hint` parameter to the IDP
+	SendLoginHint bool `json:"send_login_hint,omitempty"`
+
 	// If set to `true`, the built-in authorization server is used
 	UseOrgAuthorizationServer bool `json:"use_org_authorization_server,omitempty"`
 }

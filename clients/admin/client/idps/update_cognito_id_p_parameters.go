@@ -69,6 +69,14 @@ type UpdateCognitoIDPParams struct {
 	*/
 	CognitoIDP *models.CognitoIDP
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Iid.
 
 	   IDP id
@@ -163,6 +171,17 @@ func (o *UpdateCognitoIDPParams) SetCognitoIDP(cognitoIDP *models.CognitoIDP) {
 	o.CognitoIDP = cognitoIDP
 }
 
+// WithIfMatch adds the ifMatch to the update cognito ID p params
+func (o *UpdateCognitoIDPParams) WithIfMatch(ifMatch *string) *UpdateCognitoIDPParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the update cognito ID p params
+func (o *UpdateCognitoIDPParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithIid adds the iid to the update cognito ID p params
 func (o *UpdateCognitoIDPParams) WithIid(iid string) *UpdateCognitoIDPParams {
 	o.SetIid(iid)
@@ -194,6 +213,14 @@ func (o *UpdateCognitoIDPParams) WriteToRequest(r runtime.ClientRequest, reg str
 	var res []error
 	if o.CognitoIDP != nil {
 		if err := r.SetBodyParam(o.CognitoIDP); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

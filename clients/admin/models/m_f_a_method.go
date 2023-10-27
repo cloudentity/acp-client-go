@@ -195,6 +195,11 @@ func (m *MFAMethod) ContextValidate(ctx context.Context, formats strfmt.Registry
 func (m *MFAMethod) contextValidateAuth(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Auth != nil {
+
+		if swag.IsZero(m.Auth) { // not required
+			return nil
+		}
+
 		if err := m.Auth.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("auth")
@@ -211,6 +216,11 @@ func (m *MFAMethod) contextValidateAuth(ctx context.Context, formats strfmt.Regi
 func (m *MFAMethod) contextValidateSettings(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Settings != nil {
+
+		if swag.IsZero(m.Settings) { // not required
+			return nil
+		}
+
 		if err := m.Settings.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("settings")

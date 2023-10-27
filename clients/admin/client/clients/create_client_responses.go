@@ -66,7 +66,7 @@ func (o *CreateClientReader) ReadResponse(response runtime.ClientResponse, consu
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /clients] createClient", response, response.Code())
 	}
 }
 
@@ -81,6 +81,15 @@ CreateClientCreated describes a response with status code 201, with default head
 Client
 */
 type CreateClientCreated struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.ClientAdminResponse
 }
 
@@ -109,6 +118,11 @@ func (o *CreateClientCreated) IsCode(code int) bool {
 	return code == 201
 }
 
+// Code gets the status code for the create client created response
+func (o *CreateClientCreated) Code() int {
+	return 201
+}
+
 func (o *CreateClientCreated) Error() string {
 	return fmt.Sprintf("[POST /clients][%d] createClientCreated  %+v", 201, o.Payload)
 }
@@ -122,6 +136,13 @@ func (o *CreateClientCreated) GetPayload() *models.ClientAdminResponse {
 }
 
 func (o *CreateClientCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.ClientAdminResponse)
 
@@ -141,7 +162,7 @@ func NewCreateClientUnauthorized() *CreateClientUnauthorized {
 /*
 CreateClientUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type CreateClientUnauthorized struct {
 	Payload *models.Error
@@ -170,6 +191,11 @@ func (o *CreateClientUnauthorized) IsServerError() bool {
 // IsCode returns true when this create client unauthorized response a status code equal to that given
 func (o *CreateClientUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the create client unauthorized response
+func (o *CreateClientUnauthorized) Code() int {
+	return 401
 }
 
 func (o *CreateClientUnauthorized) Error() string {
@@ -204,7 +230,7 @@ func NewCreateClientForbidden() *CreateClientForbidden {
 /*
 CreateClientForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type CreateClientForbidden struct {
 	Payload *models.Error
@@ -233,6 +259,11 @@ func (o *CreateClientForbidden) IsServerError() bool {
 // IsCode returns true when this create client forbidden response a status code equal to that given
 func (o *CreateClientForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the create client forbidden response
+func (o *CreateClientForbidden) Code() int {
+	return 403
 }
 
 func (o *CreateClientForbidden) Error() string {
@@ -267,7 +298,7 @@ func NewCreateClientNotFound() *CreateClientNotFound {
 /*
 CreateClientNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type CreateClientNotFound struct {
 	Payload *models.Error
@@ -296,6 +327,11 @@ func (o *CreateClientNotFound) IsServerError() bool {
 // IsCode returns true when this create client not found response a status code equal to that given
 func (o *CreateClientNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the create client not found response
+func (o *CreateClientNotFound) Code() int {
+	return 404
 }
 
 func (o *CreateClientNotFound) Error() string {
@@ -330,7 +366,7 @@ func NewCreateClientConflict() *CreateClientConflict {
 /*
 CreateClientConflict describes a response with status code 409, with default header values.
 
-HttpError
+Conflict
 */
 type CreateClientConflict struct {
 	Payload *models.Error
@@ -359,6 +395,11 @@ func (o *CreateClientConflict) IsServerError() bool {
 // IsCode returns true when this create client conflict response a status code equal to that given
 func (o *CreateClientConflict) IsCode(code int) bool {
 	return code == 409
+}
+
+// Code gets the status code for the create client conflict response
+func (o *CreateClientConflict) Code() int {
+	return 409
 }
 
 func (o *CreateClientConflict) Error() string {
@@ -393,7 +434,7 @@ func NewCreateClientUnprocessableEntity() *CreateClientUnprocessableEntity {
 /*
 CreateClientUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type CreateClientUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +463,11 @@ func (o *CreateClientUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this create client unprocessable entity response a status code equal to that given
 func (o *CreateClientUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the create client unprocessable entity response
+func (o *CreateClientUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *CreateClientUnprocessableEntity) Error() string {
@@ -456,7 +502,7 @@ func NewCreateClientTooManyRequests() *CreateClientTooManyRequests {
 /*
 CreateClientTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type CreateClientTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +531,11 @@ func (o *CreateClientTooManyRequests) IsServerError() bool {
 // IsCode returns true when this create client too many requests response a status code equal to that given
 func (o *CreateClientTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the create client too many requests response
+func (o *CreateClientTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *CreateClientTooManyRequests) Error() string {

@@ -18,26 +18,29 @@ import (
 // swagger:model RequestedScope
 type RequestedScope struct {
 
-	// server id
-	// Example: default
+	// Authorization server identifier
+	// Example: my-server
 	AuthorizationServerID string `json:"authorization_server_id,omitempty"`
 
-	// scope description which will be displayed as a hint on a consent page
+	// The scope description displayed as a hint on a consent page
 	// Example: This scope value requests offline access using refresh token
 	Description string `json:"description,omitempty"`
 
-	// scope display name which will be displayed on a consent page
+	// The scope name displayed on a consent page
 	// Example: Offline Access
 	DisplayName string `json:"display_name,omitempty"`
 
-	// scope id
-	// Example: 1
+	// Scope identifier
+	// Example: scope-1
 	ID string `json:"id,omitempty"`
+
+	// Request this scope by default for all clients who subscribed to this scope
+	Implicit bool `json:"implicit,omitempty"`
 
 	// metadata
 	Metadata Metadata `json:"metadata,omitempty"`
 
-	// scope name
+	// Scope name
 	// Example: offline_access
 	Name string `json:"name,omitempty"`
 
@@ -50,11 +53,11 @@ type RequestedScope struct {
 	// service
 	Service *Service `json:"service,omitempty"`
 
-	// tenant id
-	// Example: default
+	// Tenant identifier
+	// Example: my-company
 	TenantID string `json:"tenant_id,omitempty"`
 
-	// disable storage of scope grants
+	// Disable storage of scope grants
 	Transient bool `json:"transient,omitempty"`
 
 	// with service
@@ -137,6 +140,10 @@ func (m *RequestedScope) ContextValidate(ctx context.Context, formats strfmt.Reg
 
 func (m *RequestedScope) contextValidateMetadata(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Metadata) { // not required
+		return nil
+	}
+
 	if err := m.Metadata.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("metadata")
@@ -152,6 +159,11 @@ func (m *RequestedScope) contextValidateMetadata(ctx context.Context, formats st
 func (m *RequestedScope) contextValidateService(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Service != nil {
+
+		if swag.IsZero(m.Service) { // not required
+			return nil
+		}
+
 		if err := m.Service.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("service")

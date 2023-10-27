@@ -167,6 +167,7 @@ func (m *InternationalStandingOrderConsentResponse) ContextValidate(ctx context.
 func (m *InternationalStandingOrderConsentResponse) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Data != nil {
+
 		if err := m.Data.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Data")
@@ -183,6 +184,11 @@ func (m *InternationalStandingOrderConsentResponse) contextValidateData(ctx cont
 func (m *InternationalStandingOrderConsentResponse) contextValidateLinks(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Links != nil {
+
+		if swag.IsZero(m.Links) { // not required
+			return nil
+		}
+
 		if err := m.Links.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Links")
@@ -199,6 +205,11 @@ func (m *InternationalStandingOrderConsentResponse) contextValidateLinks(ctx con
 func (m *InternationalStandingOrderConsentResponse) contextValidateMeta(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Meta != nil {
+
+		if swag.IsZero(m.Meta) { // not required
+			return nil
+		}
+
 		if err := m.Meta.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Meta")
@@ -215,6 +226,7 @@ func (m *InternationalStandingOrderConsentResponse) contextValidateMeta(ctx cont
 func (m *InternationalStandingOrderConsentResponse) contextValidateRisk(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Risk != nil {
+
 		if err := m.Risk.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("Risk")

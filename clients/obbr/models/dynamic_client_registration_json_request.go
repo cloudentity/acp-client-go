@@ -188,6 +188,9 @@ type DynamicClientRegistrationJSONRequest struct {
 	// Policy URL to read about how the profile data is used.
 	PolicyURI string `json:"policy_uri,omitempty"`
 
+	// Array of URLs to which a relying party may request that the user be redirected after a logout has been performed.
+	PostLogoutRedirectUris []string `json:"post_logout_redirect_uris"`
+
 	// privacy
 	Privacy *ClientPrivacy `json:"privacy,omitempty"`
 

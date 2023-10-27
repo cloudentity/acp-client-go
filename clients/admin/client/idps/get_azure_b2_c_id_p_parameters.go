@@ -61,6 +61,14 @@ GetAzureB2CIDPParams contains all the parameters to send to the API endpoint
 */
 type GetAzureB2CIDPParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Iid.
 
 	   IDP id
@@ -139,6 +147,17 @@ func (o *GetAzureB2CIDPParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the get azure b2 c ID p params
+func (o *GetAzureB2CIDPParams) WithIfMatch(ifMatch *string) *GetAzureB2CIDPParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the get azure b2 c ID p params
+func (o *GetAzureB2CIDPParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithIid adds the iid to the get azure b2 c ID p params
 func (o *GetAzureB2CIDPParams) WithIid(iid string) *GetAzureB2CIDPParams {
 	o.SetIid(iid)
@@ -168,6 +187,14 @@ func (o *GetAzureB2CIDPParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	// path param iid
 	if err := r.SetPathParam("iid", o.Iid); err != nil {

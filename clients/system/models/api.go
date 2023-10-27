@@ -37,7 +37,7 @@ type API struct {
 	// graphql types
 	GraphqlTypes GraphQLTypes `json:"graphql_types,omitempty"`
 
-	// scope id
+	// API id
 	// Example: 1
 	ID string `json:"id,omitempty"`
 

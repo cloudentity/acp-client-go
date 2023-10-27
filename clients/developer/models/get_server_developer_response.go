@@ -44,6 +44,9 @@ type GetServerDeveloperResponse struct {
 	// Example: ACP
 	Name string `json:"name,omitempty"`
 
+	// response types
+	ResponseTypes ResponseTypes `json:"response_types,omitempty"`
+
 	// supported subject identifier types
 	// Example: ["public","pairwise"]
 	SubjectIdentifierTypes []string `json:"subject_identifier_types"`
@@ -58,6 +61,10 @@ func (m *GetServerDeveloperResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateGrantTypes(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateResponseTypes(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -106,6 +113,23 @@ func (m *GetServerDeveloperResponse) validateGrantTypes(formats strfmt.Registry)
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *GetServerDeveloperResponse) validateResponseTypes(formats strfmt.Registry) error {
+	if swag.IsZero(m.ResponseTypes) { // not required
+		return nil
+	}
+
+	if err := m.ResponseTypes.Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("response_types")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("response_types")
+		}
+		return err
 	}
 
 	return nil
@@ -183,8 +207,31 @@ func (m *GetServerDeveloperResponse) validateSupportedApplicationPurposes(format
 	return nil
 }
 
-// ContextValidate validates this get server developer response based on context it is used
+// ContextValidate validate this get server developer response based on the context it is used
 func (m *GetServerDeveloperResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateResponseTypes(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GetServerDeveloperResponse) contextValidateResponseTypes(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.ResponseTypes.ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("response_types")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("response_types")
+		}
+		return err
+	}
+
 	return nil
 }
 

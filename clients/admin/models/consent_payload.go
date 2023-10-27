@@ -106,6 +106,11 @@ func (m *ConsentPayload) ContextValidate(ctx context.Context, formats strfmt.Reg
 func (m *ConsentPayload) contextValidateDetails(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Details != nil {
+
+		if swag.IsZero(m.Details) { // not required
+			return nil
+		}
+
 		if err := m.Details.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("details")
@@ -120,6 +125,10 @@ func (m *ConsentPayload) contextValidateDetails(ctx context.Context, formats str
 }
 
 func (m *ConsentPayload) contextValidateKind(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Kind) { // not required
+		return nil
+	}
 
 	if err := m.Kind.ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {

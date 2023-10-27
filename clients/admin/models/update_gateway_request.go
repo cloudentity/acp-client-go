@@ -79,6 +79,11 @@ func (m *UpdateGatewayRequest) ContextValidate(ctx context.Context, formats strf
 func (m *UpdateGatewayRequest) contextValidateTokenExchange(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.TokenExchange != nil {
+
+		if swag.IsZero(m.TokenExchange) { // not required
+			return nil
+		}
+
 		if err := m.TokenExchange.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("token_exchange")

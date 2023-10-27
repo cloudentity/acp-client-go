@@ -24,6 +24,9 @@ type DCRCreatedEventPayload struct {
 	// Requester IP address obtained from system network socket information.
 	RemoteAddr string `json:"remote_addr,omitempty"`
 
+	// Requester IP address obtained from True-Client-IP header.
+	TrueClientIP string `json:"true_client_ip,omitempty"`
+
 	// A characteristic string that lets servers and network peers identify the application, operating system, vendor, and/or version of the requesting user agent.
 	UserAgent string `json:"user_agent,omitempty"`
 
@@ -84,6 +87,11 @@ func (m *DCRCreatedEventPayload) ContextValidate(ctx context.Context, formats st
 func (m *DCRCreatedEventPayload) contextValidateClientDetails(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ClientDetails != nil {
+
+		if swag.IsZero(m.ClientDetails) { // not required
+			return nil
+		}
+
 		if err := m.ClientDetails.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("client_details")

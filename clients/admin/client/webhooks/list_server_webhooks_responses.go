@@ -48,7 +48,7 @@ func (o *ListServerWebhooksReader) ReadResponse(response runtime.ClientResponse,
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /servers/{wid}/webhooks] listServerWebhooks", response, response.Code())
 	}
 }
 
@@ -63,6 +63,15 @@ ListServerWebhooksOK describes a response with status code 200, with default hea
 Webhooks response
 */
 type ListServerWebhooksOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.WebhooksResponse
 }
 
@@ -91,6 +100,11 @@ func (o *ListServerWebhooksOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the list server webhooks o k response
+func (o *ListServerWebhooksOK) Code() int {
+	return 200
+}
+
 func (o *ListServerWebhooksOK) Error() string {
 	return fmt.Sprintf("[GET /servers/{wid}/webhooks][%d] listServerWebhooksOK  %+v", 200, o.Payload)
 }
@@ -104,6 +118,13 @@ func (o *ListServerWebhooksOK) GetPayload() *models.WebhooksResponse {
 }
 
 func (o *ListServerWebhooksOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.WebhooksResponse)
 
@@ -123,7 +144,7 @@ func NewListServerWebhooksUnauthorized() *ListServerWebhooksUnauthorized {
 /*
 ListServerWebhooksUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type ListServerWebhooksUnauthorized struct {
 	Payload *models.Error
@@ -152,6 +173,11 @@ func (o *ListServerWebhooksUnauthorized) IsServerError() bool {
 // IsCode returns true when this list server webhooks unauthorized response a status code equal to that given
 func (o *ListServerWebhooksUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the list server webhooks unauthorized response
+func (o *ListServerWebhooksUnauthorized) Code() int {
+	return 401
 }
 
 func (o *ListServerWebhooksUnauthorized) Error() string {
@@ -186,7 +212,7 @@ func NewListServerWebhooksForbidden() *ListServerWebhooksForbidden {
 /*
 ListServerWebhooksForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type ListServerWebhooksForbidden struct {
 	Payload *models.Error
@@ -215,6 +241,11 @@ func (o *ListServerWebhooksForbidden) IsServerError() bool {
 // IsCode returns true when this list server webhooks forbidden response a status code equal to that given
 func (o *ListServerWebhooksForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the list server webhooks forbidden response
+func (o *ListServerWebhooksForbidden) Code() int {
+	return 403
 }
 
 func (o *ListServerWebhooksForbidden) Error() string {
@@ -249,7 +280,7 @@ func NewListServerWebhooksTooManyRequests() *ListServerWebhooksTooManyRequests {
 /*
 ListServerWebhooksTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type ListServerWebhooksTooManyRequests struct {
 	Payload *models.Error
@@ -278,6 +309,11 @@ func (o *ListServerWebhooksTooManyRequests) IsServerError() bool {
 // IsCode returns true when this list server webhooks too many requests response a status code equal to that given
 func (o *ListServerWebhooksTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the list server webhooks too many requests response
+func (o *ListServerWebhooksTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *ListServerWebhooksTooManyRequests) Error() string {

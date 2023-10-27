@@ -48,7 +48,7 @@ func (o *GetRecentActivitiesReader) ReadResponse(response runtime.ClientResponse
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[GET /stats/{wid}/recent-activities] getRecentActivities", response, response.Code())
 	}
 }
 
@@ -63,6 +63,15 @@ GetRecentActivitiesOK describes a response with status code 200, with default he
 Recent activities
 */
 type GetRecentActivitiesOK struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.RecentActivities
 }
 
@@ -91,6 +100,11 @@ func (o *GetRecentActivitiesOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the get recent activities o k response
+func (o *GetRecentActivitiesOK) Code() int {
+	return 200
+}
+
 func (o *GetRecentActivitiesOK) Error() string {
 	return fmt.Sprintf("[GET /stats/{wid}/recent-activities][%d] getRecentActivitiesOK  %+v", 200, o.Payload)
 }
@@ -104,6 +118,13 @@ func (o *GetRecentActivitiesOK) GetPayload() *models.RecentActivities {
 }
 
 func (o *GetRecentActivitiesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.RecentActivities)
 
@@ -123,7 +144,7 @@ func NewGetRecentActivitiesUnauthorized() *GetRecentActivitiesUnauthorized {
 /*
 GetRecentActivitiesUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type GetRecentActivitiesUnauthorized struct {
 	Payload *models.Error
@@ -152,6 +173,11 @@ func (o *GetRecentActivitiesUnauthorized) IsServerError() bool {
 // IsCode returns true when this get recent activities unauthorized response a status code equal to that given
 func (o *GetRecentActivitiesUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the get recent activities unauthorized response
+func (o *GetRecentActivitiesUnauthorized) Code() int {
+	return 401
 }
 
 func (o *GetRecentActivitiesUnauthorized) Error() string {
@@ -186,7 +212,7 @@ func NewGetRecentActivitiesForbidden() *GetRecentActivitiesForbidden {
 /*
 GetRecentActivitiesForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type GetRecentActivitiesForbidden struct {
 	Payload *models.Error
@@ -215,6 +241,11 @@ func (o *GetRecentActivitiesForbidden) IsServerError() bool {
 // IsCode returns true when this get recent activities forbidden response a status code equal to that given
 func (o *GetRecentActivitiesForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the get recent activities forbidden response
+func (o *GetRecentActivitiesForbidden) Code() int {
+	return 403
 }
 
 func (o *GetRecentActivitiesForbidden) Error() string {
@@ -249,7 +280,7 @@ func NewGetRecentActivitiesTooManyRequests() *GetRecentActivitiesTooManyRequests
 /*
 GetRecentActivitiesTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type GetRecentActivitiesTooManyRequests struct {
 	Payload *models.Error
@@ -278,6 +309,11 @@ func (o *GetRecentActivitiesTooManyRequests) IsServerError() bool {
 // IsCode returns true when this get recent activities too many requests response a status code equal to that given
 func (o *GetRecentActivitiesTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the get recent activities too many requests response
+func (o *GetRecentActivitiesTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *GetRecentActivitiesTooManyRequests) Error() string {

@@ -60,7 +60,7 @@ func (o *DeviceAuthorizationReader) ReadResponse(response runtime.ClientResponse
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /device/authorization] deviceAuthorization", response, response.Code())
 	}
 }
 
@@ -103,6 +103,11 @@ func (o *DeviceAuthorizationOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the device authorization o k response
+func (o *DeviceAuthorizationOK) Code() int {
+	return 200
+}
+
 func (o *DeviceAuthorizationOK) Error() string {
 	return fmt.Sprintf("[POST /device/authorization][%d] deviceAuthorizationOK  %+v", 200, o.Payload)
 }
@@ -135,7 +140,7 @@ func NewDeviceAuthorizationBadRequest() *DeviceAuthorizationBadRequest {
 /*
 DeviceAuthorizationBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type DeviceAuthorizationBadRequest struct {
 	Payload *models.Error
@@ -164,6 +169,11 @@ func (o *DeviceAuthorizationBadRequest) IsServerError() bool {
 // IsCode returns true when this device authorization bad request response a status code equal to that given
 func (o *DeviceAuthorizationBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the device authorization bad request response
+func (o *DeviceAuthorizationBadRequest) Code() int {
+	return 400
 }
 
 func (o *DeviceAuthorizationBadRequest) Error() string {
@@ -198,7 +208,7 @@ func NewDeviceAuthorizationUnauthorized() *DeviceAuthorizationUnauthorized {
 /*
 DeviceAuthorizationUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type DeviceAuthorizationUnauthorized struct {
 	Payload *models.Error
@@ -227,6 +237,11 @@ func (o *DeviceAuthorizationUnauthorized) IsServerError() bool {
 // IsCode returns true when this device authorization unauthorized response a status code equal to that given
 func (o *DeviceAuthorizationUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the device authorization unauthorized response
+func (o *DeviceAuthorizationUnauthorized) Code() int {
+	return 401
 }
 
 func (o *DeviceAuthorizationUnauthorized) Error() string {
@@ -261,7 +276,7 @@ func NewDeviceAuthorizationMethodNotAllowed() *DeviceAuthorizationMethodNotAllow
 /*
 DeviceAuthorizationMethodNotAllowed describes a response with status code 405, with default header values.
 
-HttpError
+Method not allowed
 */
 type DeviceAuthorizationMethodNotAllowed struct {
 	Payload *models.Error
@@ -290,6 +305,11 @@ func (o *DeviceAuthorizationMethodNotAllowed) IsServerError() bool {
 // IsCode returns true when this device authorization method not allowed response a status code equal to that given
 func (o *DeviceAuthorizationMethodNotAllowed) IsCode(code int) bool {
 	return code == 405
+}
+
+// Code gets the status code for the device authorization method not allowed response
+func (o *DeviceAuthorizationMethodNotAllowed) Code() int {
+	return 405
 }
 
 func (o *DeviceAuthorizationMethodNotAllowed) Error() string {
@@ -324,7 +344,7 @@ func NewDeviceAuthorizationRequestEntityTooLarge() *DeviceAuthorizationRequestEn
 /*
 DeviceAuthorizationRequestEntityTooLarge describes a response with status code 413, with default header values.
 
-HttpError
+Payload too large
 */
 type DeviceAuthorizationRequestEntityTooLarge struct {
 	Payload *models.Error
@@ -353,6 +373,11 @@ func (o *DeviceAuthorizationRequestEntityTooLarge) IsServerError() bool {
 // IsCode returns true when this device authorization request entity too large response a status code equal to that given
 func (o *DeviceAuthorizationRequestEntityTooLarge) IsCode(code int) bool {
 	return code == 413
+}
+
+// Code gets the status code for the device authorization request entity too large response
+func (o *DeviceAuthorizationRequestEntityTooLarge) Code() int {
+	return 413
 }
 
 func (o *DeviceAuthorizationRequestEntityTooLarge) Error() string {
@@ -387,7 +412,7 @@ func NewDeviceAuthorizationTooManyRequests() *DeviceAuthorizationTooManyRequests
 /*
 DeviceAuthorizationTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type DeviceAuthorizationTooManyRequests struct {
 	Payload *models.Error
@@ -416,6 +441,11 @@ func (o *DeviceAuthorizationTooManyRequests) IsServerError() bool {
 // IsCode returns true when this device authorization too many requests response a status code equal to that given
 func (o *DeviceAuthorizationTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the device authorization too many requests response
+func (o *DeviceAuthorizationTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *DeviceAuthorizationTooManyRequests) Error() string {

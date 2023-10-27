@@ -95,10 +95,39 @@ definitions:
       type:
         $ref: '#/definitions/ConsentType'
     type: object
+  BrazilConsentExtension:
+    properties:
+      expiration_time:
+        format: date-time
+        type: string
+        x-nullable: false
+      logged_user:
+        type: string
+        x-nullable: false
+      request_time:
+        format: date-time
+        type: string
+        x-nullable: false
+    type: object
+  BrazilConsentExtensions:
+    items:
+      $ref: '#/definitions/BrazilConsentExtension'
+    type: array
+  BrazilCreateConsentExtensionResponse:
+    properties:
+      data:
+        $ref: '#/definitions/OpenbankingBrasilConsentV2Data3'
+      links:
+        $ref: '#/definitions/OpenbankingBrasilConsentV2Links'
+      meta:
+        $ref: '#/definitions/OpenbankingBrasilConsentV2Meta'
+    required:
+    - data
+    type: object
   BrazilCreateCustomerDataAccessConsentV2Response:
     properties:
       data:
-        $ref: '#/definitions/OpenbankingBrasilConsentV2Data1'
+        $ref: '#/definitions/OpenbankingBrasilConsentV2Data2'
       links:
         $ref: '#/definitions/OpenbankingBrasilConsentV2Links'
       meta:
@@ -306,16 +335,19 @@ definitions:
         type: string
         x-nullable: false
       document:
-        $ref: '#/definitions/OpenbankingBrasilConsentV2Document1'
+        $ref: '#/definitions/OpenbankingBrasilConsentV2BusinessEntityDocument'
       expirationDateTime:
         description: Data e hora de expirao da permisso. De preenchimento obrigatrio,
           reflete a data limite de validade do consentimento. Uma string com data
           e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
-          UTC(UTC time format).
+          UTC (UTC time format). Para consentimentos com prazo indeterminado,  esperado
+          preenchimento com `2300-01-01T00:00:00Z`.
         example: "2021-05-21T08:30:00Z"
         format: date-time
         type: string
         x-nullable: false
+      extensions:
+        $ref: '#/definitions/BrazilConsentExtensions'
       permissions:
         description: Especifica os tipos de permisses de acesso s APIs no escopo do
           Open Finance Brasil - Dados cadastrais e transacionais, de acordo com os
@@ -651,10 +683,32 @@ definitions:
     - status
     - statusUpdateDateTime
     type: object
+  BrazilExtensionConsentRequest:
+    properties:
+      data:
+        $ref: '#/definitions/OpenbankingBrasilConsentV2Data1'
+    required:
+    - data
+    type: object
+  BrazilGetConsentExtensionsResponse:
+    properties:
+      data:
+        description: data
+        items:
+          $ref: '#/definitions/OpenbankingBrasilConsentV2Data5'
+        type: array
+        x-nullable: false
+      links:
+        $ref: '#/definitions/OpenbankingBrasilConsentV2Links'
+      meta:
+        $ref: '#/definitions/OpenbankingBrasilConsentV2Meta'
+    required:
+    - data
+    type: object
   BrazilGetCustomerDataAccessConsentV2Response:
     properties:
       data:
-        $ref: '#/definitions/OpenbankingBrasilConsentV2Data2'
+        $ref: '#/definitions/OpenbankingBrasilConsentV2Data4'
       links:
         $ref: '#/definitions/OpenbankingBrasilConsentV2Links'
       meta:
@@ -1272,6 +1326,13 @@ definitions:
         description: Policy URL to read about how the profile data is used.
         type: string
         x-nullable: false
+      post_logout_redirect_uris:
+        description: Array of URLs to which a relying party may request that the user
+          be redirected after a logout has been performed.
+        items:
+          type: string
+        type: array
+        x-nullable: false
       privacy:
         $ref: '#/definitions/ClientPrivacy'
       redirect_uris:
@@ -1854,6 +1915,13 @@ definitions:
       policy_uri:
         description: Policy URL to read about how the profile data is used.
         type: string
+        x-nullable: false
+      post_logout_redirect_uris:
+        description: Array of URLs to which a relying party may request that the user
+          be redirected after a logout has been performed.
+        items:
+          type: string
+        type: array
         x-nullable: false
       privacy:
         $ref: '#/definitions/ClientPrivacy'
@@ -2512,15 +2580,18 @@ definitions:
           format: date-time
           type: string
         document:
-          $ref: '#/definitions/OpenbankingBrasilConsentV2Document1'
+          $ref: '#/definitions/OpenbankingBrasilConsentV2BusinessEntityDocument'
         expirationDateTime:
           description: Data e hora de expirao da permisso. De preenchimento obrigatrio,
             reflete a data limite de validade do consentimento. Uma string com data
             e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
-            UTC(UTC time format).
+            UTC (UTC time format). Para consentimentos com prazo indeterminado,  esperado
+            preenchimento com `2300-01-01T00:00:00Z`.
           example: "2021-05-21T08:30:00Z"
           format: date-time
           type: string
+        extensions:
+          $ref: '#/definitions/BrazilConsentExtensions'
         permissions:
           description: Especifica os tipos de permisses de acesso s APIs no escopo
             do Open Finance Brasil - Dados cadastrais e transacionais, de acordo com
@@ -3660,10 +3731,43 @@ definitions:
       de compartilhamento.
     properties:
       document:
-        $ref: '#/definitions/OpenbankingBrasilConsentV2Document1'
+        $ref: '#/definitions/OpenbankingBrasilConsentV2BusinessEntityDocument'
     required:
     - document
     title: OpenbankingBrasilConsentV2BusinessEntity BusinessEntity
+    type: object
+  OpenbankingBrasilConsentV2BusinessEntityDocument:
+    description: OpenbankingBrasilConsentV2BusinessEntityDocument BusinessEntityDocument
+    properties:
+      identification:
+        description: Nmero do documento de identificao oficial do titular pessoa jurdica.
+        example: "11111111111111"
+        maxLength: 14
+        pattern: ^\d{14}$
+        type: string
+        x-nullable: false
+      rel:
+        description: Tipo do documento de identificao oficial do titular pessoa jurdica.
+        example: CNPJ
+        maxLength: 4
+        pattern: ^[A-Z]{4}$
+        type: string
+        x-nullable: false
+    required:
+    - identification
+    - rel
+    type: object
+  OpenbankingBrasilConsentV2BusinessEntityExtends:
+    description: |-
+      Titular, pessoa jurdica a quem se referem os dados que so objeto de compartilhamento.
+      Deve ser informado apenas para casos de consentimento pessoa jurdica.
+      No precisa ser armazenado separadamente. Para fins de renovao de consentimento, ser utilizado apenas para verificao do consentimento vigente, pois  um atributo imutvel.
+    properties:
+      document:
+        $ref: '#/definitions/OpenbankingBrasilConsentV2BusinessEntityDocument'
+    required:
+    - document
+    title: OpenbankingBrasilConsentV2BusinessEntityExtends BusinessEntityExtends
     type: object
   OpenbankingBrasilConsentV2Data:
     description: OpenbankingBrasilConsentV2Data Data
@@ -3674,7 +3778,7 @@ definitions:
         description: Data e hora de expirao da permisso. De preenchimento obrigatrio,
           reflete a data limite de validade do consentimento. Uma string com data
           e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
-          UTC(UTC time format).
+          UTC (UTC time format).
         example: "2021-05-21T08:30:00Z"
         format: date-time
         type: string
@@ -3699,6 +3803,28 @@ definitions:
     type: object
   OpenbankingBrasilConsentV2Data1:
     description: OpenbankingBrasilConsentV2Data1 Data1
+    properties:
+      businessEntity:
+        $ref: '#/definitions/OpenbankingBrasilConsentV2BusinessEntityExtends'
+      expirationDateTime:
+        description: Data e hora de expirao da permisso. De preenchimento obrigatrio,
+          reflete a data limite de validade do consentimento. Uma string com data
+          e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
+          UTC(UTC time format). Para consentimentos com prazo indeterminado, preencher
+          com valor '2300-01-01T00:00:00Z'. Esse valor deve ser refletido no expirationDateTime
+          do consentimento relacionado.
+        example: "2021-05-21T08:30:00Z"
+        format: date-time
+        type: string
+        x-nullable: false
+      loggedUser:
+        $ref: '#/definitions/OpenbankingBrasilConsentV2LoggedUserExtends'
+    required:
+    - expirationDateTime
+    - loggedUser
+    type: object
+  OpenbankingBrasilConsentV2Data2:
+    description: OpenbankingBrasilConsentV2Data2 Data2
     properties:
       consentId:
         description: |-
@@ -3728,7 +3854,7 @@ definitions:
         description: Data e hora de expirao da permisso. De preenchimento obrigatrio,
           reflete a data limite de validade do consentimento. Uma string com data
           e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
-          UTC(UTC time format).
+          UTC (UTC time format).
         example: "2021-05-21T08:30:00Z"
         format: date-time
         type: string
@@ -3765,8 +3891,75 @@ definitions:
     - status
     - statusUpdateDateTime
     type: object
-  OpenbankingBrasilConsentV2Data2:
-    description: OpenbankingBrasilConsentV2Data2 Data2
+  OpenbankingBrasilConsentV2Data3:
+    description: OpenbankingBrasilConsentV2Data3 Data3
+    properties:
+      consentId:
+        description: |-
+          O consentId  o identificador nico do consentimento e dever ser um URN - Uniform Resource Name.
+          Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141)  um Uniform Resource
+          Identifier - URI - que  atribudo sob o URI scheme "urn" e um namespace URN especfico, com a inteno de que o URN
+          seja um identificador de recurso persistente e independente da localizao.
+          Considerando a string urn:bancoex:C1DD33123 como exemplo para consentId temos:
+          o namespace(urn)
+          o identificador associado ao namespace da instituio transnmissora (bancoex)
+          o identificador especfico dentro do namespace (C1DD33123).
+          Informaes mais detalhadas sobre a construo de namespaces devem ser consultadas na [RFC8141](https://tools.ietf.org/html/rfc8141).
+        example: urn:bancoex:C1DD33123
+        maxLength: 256
+        pattern: ^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$
+        type: string
+        x-nullable: false
+      creationDateTime:
+        description: Data e hora em que o recurso foi criado. Uma string com data
+          e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
+          UTC(UTC time format).
+        example: "2021-05-21T08:30:00Z"
+        format: date-time
+        type: string
+        x-nullable: false
+      expirationDateTime:
+        description: |-
+          Data e hora de expirao da permisso. Deve ser preenchido caso o consentimento tenha data limite de validade. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format).
+
+          [Restrio] Aceitar apenas data no futuro em relao  data de requisio.
+        example: "2021-05-21T08:30:00Z"
+        format: date-time
+        type: string
+        x-nullable: false
+      permissions:
+        description: Especifica os tipos de permisses de acesso s APIs no escopo do
+          Open Finance Brasil - Dados cadastrais e transacionais, de acordo com os
+          blocos de consentimento fornecidos pelo usurio e necessrios ao acesso a
+          cada endpoint das APIs. Esse array no deve ter duplicidade de itens.
+        example:
+        - ACCOUNTS_READ
+        - ACCOUNTS_OVERDRAFT_LIMITS_READ
+        - RESOURCES_READ
+        items:
+          $ref: '#/definitions/OpenbankingBrasilConsentV2Permission1'
+        minItems: 1
+        type: array
+        x-nullable: false
+      status:
+        $ref: '#/definitions/OpenbankingBrasilConsentV2Status'
+      statusUpdateDateTime:
+        description: Data e hora em que o recurso foi atualizado. Uma string com data
+          e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
+          UTC(UTC time format).
+        example: "2021-05-21T08:30:00Z"
+        format: date-time
+        type: string
+        x-nullable: false
+    required:
+    - consentId
+    - creationDateTime
+    - permissions
+    - status
+    - statusUpdateDateTime
+    type: object
+  OpenbankingBrasilConsentV2Data4:
+    description: OpenbankingBrasilConsentV2Data4 Data4
     properties:
       consentId:
         description: |-
@@ -3796,7 +3989,8 @@ definitions:
         description: Data e hora de expirao da permisso. De preenchimento obrigatrio,
           reflete a data limite de validade do consentimento. Uma string com data
           e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
-          UTC(UTC time format).
+          UTC (UTC time format). Para consentimentos com prazo indeterminado,  esperado
+          preenchimento com `2300-01-01T00:00:00Z`.
         example: "2021-05-21T08:30:00Z"
         format: date-time
         type: string
@@ -3835,47 +4029,32 @@ definitions:
     - status
     - statusUpdateDateTime
     type: object
-  OpenbankingBrasilConsentV2Document:
-    description: OpenbankingBrasilConsentV2Document Document
+  OpenbankingBrasilConsentV2Data5:
+    description: OpenbankingBrasilConsentV2Data5 Data5
     properties:
-      identification:
-        description: Nmero do documento de identificao oficial do usurio.
-        example: "11111111111"
-        maxLength: 11
-        pattern: ^\d{11}$
+      expirationDateTime:
+        description: Data e hora de expirao da permisso. De preenchimento obrigatrio,
+          reflete a data limite de validade do consentimento. Uma string com data
+          e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
+          UTC(UTC time format), utilizado apenas para consulta de alteraes histricas
+          de extenso do consentimento.
+        example: "2021-05-21T08:30:00Z"
+        format: date-time
         type: string
         x-nullable: false
-      rel:
-        description: Tipo do documento de identificao oficial do usurio.
-        example: CPF
-        maxLength: 3
-        pattern: ^[A-Z]{3}$
+      loggedUser:
+        $ref: '#/definitions/OpenbankingBrasilConsentV2LoggedUserExtends'
+      requestDateTime:
+        description: Data e hora em que o recurso foi criado. Uma string com data
+          e hora conforme especificao RFC-3339, sempre com a utilizao de timezone
+          UTC(UTC time format).
+        example: "2021-05-21T08:30:00Z"
+        format: date-time
         type: string
         x-nullable: false
     required:
-    - identification
-    - rel
-    type: object
-  OpenbankingBrasilConsentV2Document1:
-    description: OpenbankingBrasilConsentV2Document1 Document1
-    properties:
-      identification:
-        description: Nmero do documento de identificao oficial do titular pessoa jurdica.
-        example: "11111111111111"
-        maxLength: 14
-        pattern: ^\d{14}$
-        type: string
-        x-nullable: false
-      rel:
-        description: Tipo do documento de identificao oficial do titular pessoa jurdica.
-        example: CNPJ
-        maxLength: 4
-        pattern: ^[A-Z]{4}$
-        type: string
-        x-nullable: false
-    required:
-    - identification
-    - rel
+    - loggedUser
+    - requestDateTime
     type: object
   OpenbankingBrasilConsentV2EnumReasonCode:
     description: |-
@@ -3950,10 +4129,42 @@ definitions:
       e que iniciar o processo de consentimento para compartilhamento de dados.
     properties:
       document:
-        $ref: '#/definitions/OpenbankingBrasilConsentV2Document'
+        $ref: '#/definitions/OpenbankingBrasilConsentV2LoggedUserDocument'
     required:
     - document
     title: OpenbankingBrasilConsentV2LoggedUser LoggedUser
+    type: object
+  OpenbankingBrasilConsentV2LoggedUserDocument:
+    description: OpenbankingBrasilConsentV2LoggedUserDocument LoggedUserDocument
+    properties:
+      identification:
+        description: Nmero do documento de identificao oficial do usurio.
+        example: "11111111111"
+        maxLength: 11
+        pattern: ^\d{11}$
+        type: string
+        x-nullable: false
+      rel:
+        description: Tipo do documento de identificao oficial do usurio.
+        example: CPF
+        maxLength: 3
+        pattern: ^[A-Z]{3}$
+        type: string
+        x-nullable: false
+    required:
+    - identification
+    - rel
+    type: object
+  OpenbankingBrasilConsentV2LoggedUserExtends:
+    description: |-
+      Usurio (pessoa natural) que encontra-se logado na instituio receptora e que iniciar o processo de consentimento para compartilhamento de dados.
+      Deve ser armazenado como novo usurio logado responsvel pela renovao do consentimento atual.
+    properties:
+      document:
+        $ref: '#/definitions/OpenbankingBrasilConsentV2LoggedUserDocument'
+    required:
+    - document
+    title: OpenbankingBrasilConsentV2LoggedUserExtends LoggedUserExtends
     type: object
   OpenbankingBrasilConsentV2Meta:
     description: Meta informaes referente  API requisitada.
@@ -7639,6 +7850,184 @@ paths:
       summary: Get Data Access Consent v2
       tags:
       - OBBR
+  /open-banking/consents/v2/consents/{consentID}/extends:
+    get:
+      description: |-
+        Retrieve the details of consent extension. Pass the required consent identifier
+        in the path.
+
+        This endpoint is used by a Payment Initiation Service Provider (PISP).
+
+        For authorization, pass the `Authorization: Bearer` with a token as a bearer value. To obtain the token and include
+        the required scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scope list in the AUTHORIZATIONS block.
+      operationId: GetDataAccessConsentExtensions
+      parameters:
+      - description: |-
+          The time when the PSU last logged in with the TPP.
+
+          The value is supplied as a HTTP-date as in section 7.1.1.1 of [RFC7231]
+        in: header
+        name: x-fapi-auth-date
+        type: string
+      - description: The PSU's IP address if the PSU is currently logged in with the
+          TPP.
+        in: header
+        name: x-fapi-customer-ip-address
+        type: string
+      - description: |-
+          An RFC4122 UID used as a correlation Id.
+
+          If provided, the ASPSP must "play back" this value
+          in the x-fapi-interaction-id response header.
+        in: header
+        name: x-fapi-interaction-id
+        type: string
+      - description: |-
+          The header indicates the user-agent that the PSU is using.
+
+          The TPP may populate this field with the user-agent indicated by the PSU.
+          If the PSU is using a TPP mobile app, the TPP must ensure that the user-agent string
+          is different from browser based user-agent strings.
+        in: header
+        name: x-customer-user-agent
+        type: string
+      - description: |-
+          Header containing a detached JWS signature of the body of the payload.
+
+          Refer to resource specific documentation on when this header must be specified.
+        in: header
+        name: x-jws-signature
+        type: string
+      - description: Consent id
+        format: consentID
+        in: path
+        name: consentID
+        required: true
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/BrazilGetConsentExtensionsResponse'
+        "400":
+          $ref: '#/responses/OBBRErrorResponse'
+        "401":
+          $ref: '#/responses/OBBRErrorResponse'
+        "403":
+          $ref: '#/responses/OBBRErrorResponse'
+        "405":
+          $ref: '#/responses/OBBRErrorResponse'
+        "406":
+          $ref: '#/responses/OBBRErrorResponse'
+        "415":
+          $ref: '#/responses/OBBRErrorResponse'
+        "422":
+          $ref: '#/responses/OBBRErrorResponse'
+        "429":
+          $ref: '#/responses/OBBRErrorResponse'
+        "500":
+          $ref: '#/responses/OBBRErrorResponse'
+      security:
+      - defaultcc:
+        - consents
+      summary: Get Data Access Consent Extensions
+      tags:
+      - OBBR
+    post:
+      description: |-
+        Extend the expiration time on an already authorised data access v2 consent. Pass the required consent identifier
+        in the path.
+
+        This endpoint is used by a Payment Initiation Service Provider (PISP).
+
+        For authorization, pass the `Authorization: Bearer` with a token as a bearer value. To obtain the token and include
+        the required scopes, apply the
+        [Client Credentials](https://cloudentity.com/developers/basics/oauth-grant-types/client-credentials-flow/) grant type.
+
+        Find the scope list in the AUTHORIZATIONS block.
+      operationId: CreateDataAccessConsentExtension
+      parameters:
+      - description: |-
+          The time when the PSU last logged in with the TPP.
+
+          The value is supplied as a HTTP-date as in section 7.1.1.1 of [RFC7231]
+        in: header
+        name: x-fapi-auth-date
+        type: string
+      - description: The PSU's IP address if the PSU is currently logged in with the
+          TPP.
+        in: header
+        name: x-fapi-customer-ip-address
+        type: string
+      - description: |-
+          An RFC4122 UID used as a correlation Id.
+
+          If provided, the ASPSP must "play back" this value
+          in the x-fapi-interaction-id response header.
+        in: header
+        name: x-fapi-interaction-id
+        type: string
+      - description: |-
+          The header indicates the user-agent that the PSU is using.
+
+          The TPP may populate this field with the user-agent indicated by the PSU.
+          If the PSU is using a TPP mobile app, the TPP must ensure that the user-agent string
+          is different from browser based user-agent strings.
+        in: header
+        name: x-customer-user-agent
+        type: string
+      - description: |-
+          Header containing a detached JWS signature of the body of the payload.
+
+          Refer to resource specific documentation on when this header must be specified.
+        in: header
+        name: x-jws-signature
+        type: string
+      - description: |-
+          Every request will be processed only once per x-idempotency-key.
+          The Idempotency Key will be valid for 24 hours
+        in: header
+        name: x-idempotency-key
+        type: string
+      - description: Request
+        in: body
+        name: Request
+        schema:
+          $ref: '#/definitions/BrazilExtensionConsentRequest'
+      - description: Consent id
+        format: consentID
+        in: path
+        name: consentID
+        required: true
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/BrazilCreateConsentExtensionResponse'
+        "400":
+          $ref: '#/responses/OBBRErrorResponse'
+        "401":
+          $ref: '#/responses/OBBRErrorResponse'
+        "403":
+          $ref: '#/responses/OBBRErrorResponse'
+        "405":
+          $ref: '#/responses/OBBRErrorResponse'
+        "406":
+          $ref: '#/responses/OBBRErrorResponse'
+        "415":
+          $ref: '#/responses/OBBRErrorResponse'
+        "422":
+          $ref: '#/responses/OBBRErrorResponse'
+        "429":
+          $ref: '#/responses/OBBRErrorResponse'
+        "500":
+          $ref: '#/responses/OBBRErrorResponse'
+      security:
+      - defaultcc:
+        - consents
+      summary: Extend a Data Access V2 Consent
+      tags:
+      - OBBR
   /open-banking/payments/v1/consents:
     post:
       consumes:
@@ -8619,6 +9008,10 @@ responses:
     description: Open Banking Brazil Consent
     schema:
       $ref: '#/definitions/BrazilConsent'
+  BrazilCreateConsentExtensionResponse:
+    description: Create Customer data access v2 consent extension
+    schema:
+      $ref: '#/definitions/BrazilCreateConsentExtensionResponse'
   BrazilCreateCustomerDataAccessConsentV2Response:
     description: Create Customer data access v2 consent
     schema:
@@ -8639,6 +9032,10 @@ responses:
     description: Customer payment consent
     schema:
       $ref: '#/definitions/BrazilCustomerPaymentConsentResponseV3'
+  BrazilGetConsentExtensionsResponse:
+    description: Get Customer data access v2 consent extension
+    schema:
+      $ref: '#/definitions/BrazilGetConsentExtensionsResponse'
   BrazilGetCustomerDataAccessConsentV2Response:
     description: Get Customer data access v2 consent
     schema:

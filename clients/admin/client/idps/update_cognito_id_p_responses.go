@@ -66,7 +66,7 @@ func (o *UpdateCognitoIDPReader) ReadResponse(response runtime.ClientResponse, c
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[PUT /servers/{wid}/idps/cognito/{iid}] updateCognitoIDP", response, response.Code())
 	}
 }
 
@@ -109,6 +109,11 @@ func (o *UpdateCognitoIDPOK) IsCode(code int) bool {
 	return code == 200
 }
 
+// Code gets the status code for the update cognito Id p o k response
+func (o *UpdateCognitoIDPOK) Code() int {
+	return 200
+}
+
 func (o *UpdateCognitoIDPOK) Error() string {
 	return fmt.Sprintf("[PUT /servers/{wid}/idps/cognito/{iid}][%d] updateCognitoIdPOK  %+v", 200, o.Payload)
 }
@@ -141,7 +146,7 @@ func NewUpdateCognitoIDPBadRequest() *UpdateCognitoIDPBadRequest {
 /*
 UpdateCognitoIDPBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type UpdateCognitoIDPBadRequest struct {
 	Payload *models.Error
@@ -170,6 +175,11 @@ func (o *UpdateCognitoIDPBadRequest) IsServerError() bool {
 // IsCode returns true when this update cognito Id p bad request response a status code equal to that given
 func (o *UpdateCognitoIDPBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the update cognito Id p bad request response
+func (o *UpdateCognitoIDPBadRequest) Code() int {
+	return 400
 }
 
 func (o *UpdateCognitoIDPBadRequest) Error() string {
@@ -204,7 +214,7 @@ func NewUpdateCognitoIDPUnauthorized() *UpdateCognitoIDPUnauthorized {
 /*
 UpdateCognitoIDPUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type UpdateCognitoIDPUnauthorized struct {
 	Payload *models.Error
@@ -233,6 +243,11 @@ func (o *UpdateCognitoIDPUnauthorized) IsServerError() bool {
 // IsCode returns true when this update cognito Id p unauthorized response a status code equal to that given
 func (o *UpdateCognitoIDPUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the update cognito Id p unauthorized response
+func (o *UpdateCognitoIDPUnauthorized) Code() int {
+	return 401
 }
 
 func (o *UpdateCognitoIDPUnauthorized) Error() string {
@@ -267,7 +282,7 @@ func NewUpdateCognitoIDPForbidden() *UpdateCognitoIDPForbidden {
 /*
 UpdateCognitoIDPForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type UpdateCognitoIDPForbidden struct {
 	Payload *models.Error
@@ -296,6 +311,11 @@ func (o *UpdateCognitoIDPForbidden) IsServerError() bool {
 // IsCode returns true when this update cognito Id p forbidden response a status code equal to that given
 func (o *UpdateCognitoIDPForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the update cognito Id p forbidden response
+func (o *UpdateCognitoIDPForbidden) Code() int {
+	return 403
 }
 
 func (o *UpdateCognitoIDPForbidden) Error() string {
@@ -330,7 +350,7 @@ func NewUpdateCognitoIDPNotFound() *UpdateCognitoIDPNotFound {
 /*
 UpdateCognitoIDPNotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type UpdateCognitoIDPNotFound struct {
 	Payload *models.Error
@@ -359,6 +379,11 @@ func (o *UpdateCognitoIDPNotFound) IsServerError() bool {
 // IsCode returns true when this update cognito Id p not found response a status code equal to that given
 func (o *UpdateCognitoIDPNotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the update cognito Id p not found response
+func (o *UpdateCognitoIDPNotFound) Code() int {
+	return 404
 }
 
 func (o *UpdateCognitoIDPNotFound) Error() string {
@@ -393,7 +418,7 @@ func NewUpdateCognitoIDPUnprocessableEntity() *UpdateCognitoIDPUnprocessableEnti
 /*
 UpdateCognitoIDPUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type UpdateCognitoIDPUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +447,11 @@ func (o *UpdateCognitoIDPUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this update cognito Id p unprocessable entity response a status code equal to that given
 func (o *UpdateCognitoIDPUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the update cognito Id p unprocessable entity response
+func (o *UpdateCognitoIDPUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *UpdateCognitoIDPUnprocessableEntity) Error() string {
@@ -456,7 +486,7 @@ func NewUpdateCognitoIDPTooManyRequests() *UpdateCognitoIDPTooManyRequests {
 /*
 UpdateCognitoIDPTooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type UpdateCognitoIDPTooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +515,11 @@ func (o *UpdateCognitoIDPTooManyRequests) IsServerError() bool {
 // IsCode returns true when this update cognito Id p too many requests response a status code equal to that given
 func (o *UpdateCognitoIDPTooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the update cognito Id p too many requests response
+func (o *UpdateCognitoIDPTooManyRequests) Code() int {
+	return 429
 }
 
 func (o *UpdateCognitoIDPTooManyRequests) Error() string {

@@ -66,7 +66,7 @@ func (o *CreateAPIReader) ReadResponse(response runtime.ClientResponse, consumer
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /apis] createAPI", response, response.Code())
 	}
 }
 
@@ -81,6 +81,15 @@ CreateAPICreated describes a response with status code 201, with default header 
 API
 */
 type CreateAPICreated struct {
+
+	/* The ETag HTTP header is an identifier for a specific version of a resource
+
+	in:header
+
+	     Format: etag
+	*/
+	Etag string
+
 	Payload *models.API
 }
 
@@ -109,6 +118,11 @@ func (o *CreateAPICreated) IsCode(code int) bool {
 	return code == 201
 }
 
+// Code gets the status code for the create Api created response
+func (o *CreateAPICreated) Code() int {
+	return 201
+}
+
 func (o *CreateAPICreated) Error() string {
 	return fmt.Sprintf("[POST /apis][%d] createApiCreated  %+v", 201, o.Payload)
 }
@@ -122,6 +136,13 @@ func (o *CreateAPICreated) GetPayload() *models.API {
 }
 
 func (o *CreateAPICreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header etag
+	hdrEtag := response.GetHeader("etag")
+
+	if hdrEtag != "" {
+		o.Etag = hdrEtag
+	}
 
 	o.Payload = new(models.API)
 
@@ -141,7 +162,7 @@ func NewCreateAPIBadRequest() *CreateAPIBadRequest {
 /*
 CreateAPIBadRequest describes a response with status code 400, with default header values.
 
-HttpError
+Bad request
 */
 type CreateAPIBadRequest struct {
 	Payload *models.Error
@@ -170,6 +191,11 @@ func (o *CreateAPIBadRequest) IsServerError() bool {
 // IsCode returns true when this create Api bad request response a status code equal to that given
 func (o *CreateAPIBadRequest) IsCode(code int) bool {
 	return code == 400
+}
+
+// Code gets the status code for the create Api bad request response
+func (o *CreateAPIBadRequest) Code() int {
+	return 400
 }
 
 func (o *CreateAPIBadRequest) Error() string {
@@ -204,7 +230,7 @@ func NewCreateAPIUnauthorized() *CreateAPIUnauthorized {
 /*
 CreateAPIUnauthorized describes a response with status code 401, with default header values.
 
-HttpError
+Unauthorized
 */
 type CreateAPIUnauthorized struct {
 	Payload *models.Error
@@ -233,6 +259,11 @@ func (o *CreateAPIUnauthorized) IsServerError() bool {
 // IsCode returns true when this create Api unauthorized response a status code equal to that given
 func (o *CreateAPIUnauthorized) IsCode(code int) bool {
 	return code == 401
+}
+
+// Code gets the status code for the create Api unauthorized response
+func (o *CreateAPIUnauthorized) Code() int {
+	return 401
 }
 
 func (o *CreateAPIUnauthorized) Error() string {
@@ -267,7 +298,7 @@ func NewCreateAPIForbidden() *CreateAPIForbidden {
 /*
 CreateAPIForbidden describes a response with status code 403, with default header values.
 
-HttpError
+Forbidden
 */
 type CreateAPIForbidden struct {
 	Payload *models.Error
@@ -296,6 +327,11 @@ func (o *CreateAPIForbidden) IsServerError() bool {
 // IsCode returns true when this create Api forbidden response a status code equal to that given
 func (o *CreateAPIForbidden) IsCode(code int) bool {
 	return code == 403
+}
+
+// Code gets the status code for the create Api forbidden response
+func (o *CreateAPIForbidden) Code() int {
+	return 403
 }
 
 func (o *CreateAPIForbidden) Error() string {
@@ -330,7 +366,7 @@ func NewCreateAPINotFound() *CreateAPINotFound {
 /*
 CreateAPINotFound describes a response with status code 404, with default header values.
 
-HttpError
+Not found
 */
 type CreateAPINotFound struct {
 	Payload *models.Error
@@ -359,6 +395,11 @@ func (o *CreateAPINotFound) IsServerError() bool {
 // IsCode returns true when this create Api not found response a status code equal to that given
 func (o *CreateAPINotFound) IsCode(code int) bool {
 	return code == 404
+}
+
+// Code gets the status code for the create Api not found response
+func (o *CreateAPINotFound) Code() int {
+	return 404
 }
 
 func (o *CreateAPINotFound) Error() string {
@@ -393,7 +434,7 @@ func NewCreateAPIUnprocessableEntity() *CreateAPIUnprocessableEntity {
 /*
 CreateAPIUnprocessableEntity describes a response with status code 422, with default header values.
 
-HttpError
+Unprocessable entity
 */
 type CreateAPIUnprocessableEntity struct {
 	Payload *models.Error
@@ -422,6 +463,11 @@ func (o *CreateAPIUnprocessableEntity) IsServerError() bool {
 // IsCode returns true when this create Api unprocessable entity response a status code equal to that given
 func (o *CreateAPIUnprocessableEntity) IsCode(code int) bool {
 	return code == 422
+}
+
+// Code gets the status code for the create Api unprocessable entity response
+func (o *CreateAPIUnprocessableEntity) Code() int {
+	return 422
 }
 
 func (o *CreateAPIUnprocessableEntity) Error() string {
@@ -456,7 +502,7 @@ func NewCreateAPITooManyRequests() *CreateAPITooManyRequests {
 /*
 CreateAPITooManyRequests describes a response with status code 429, with default header values.
 
-HttpError
+Too many requests
 */
 type CreateAPITooManyRequests struct {
 	Payload *models.Error
@@ -485,6 +531,11 @@ func (o *CreateAPITooManyRequests) IsServerError() bool {
 // IsCode returns true when this create Api too many requests response a status code equal to that given
 func (o *CreateAPITooManyRequests) IsCode(code int) bool {
 	return code == 429
+}
+
+// Code gets the status code for the create Api too many requests response
+func (o *CreateAPITooManyRequests) Code() int {
+	return 429
 }
 
 func (o *CreateAPITooManyRequests) Error() string {

@@ -61,6 +61,14 @@ DeleteAuthorizationServerParams contains all the parameters to send to the API e
 */
 type DeleteAuthorizationServerParams struct {
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Wid.
 
 	   Workspace id
@@ -133,6 +141,17 @@ func (o *DeleteAuthorizationServerParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithIfMatch adds the ifMatch to the delete authorization server params
+func (o *DeleteAuthorizationServerParams) WithIfMatch(ifMatch *string) *DeleteAuthorizationServerParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the delete authorization server params
+func (o *DeleteAuthorizationServerParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithWid adds the wid to the delete authorization server params
 func (o *DeleteAuthorizationServerParams) WithWid(wid string) *DeleteAuthorizationServerParams {
 	o.SetWid(wid)
@@ -151,6 +170,14 @@ func (o *DeleteAuthorizationServerParams) WriteToRequest(r runtime.ClientRequest
 		return err
 	}
 	var res []error
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
+		}
+	}
 
 	// path param wid
 	if err := r.SetPathParam("wid", o.Wid); err != nil {

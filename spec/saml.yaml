@@ -40,7 +40,7 @@ definitions:
       Value:
         type: string
         x-nullable: false
-    title: An Attr represents a key-value attribute of an XML element.
+    title: An Attr represents a key-value attribute within an XML element.
     type: object
   Attribute:
     description: See http://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf
@@ -759,7 +759,10 @@ definitions:
     title: SPSSODescriptor represents the SAML SPSSODescriptorType object.
     type: object
   Token:
-    description: Comment, Directive, or ProcInst.
+    description: |-
+      A Token is an interface type used to represent XML elements, character
+      data, CDATA sections, XML comments, XML directives, and XML processing
+      instructions.
     properties:
       Index:
         format: int64
@@ -767,7 +770,6 @@ definitions:
         x-nullable: false
       Parent:
         $ref: '#/definitions/Element'
-    title: A Token is an empty interface that represents an Element, CharData,
     type: object
   X509Certificate:
     description: X509Certificate represents the XMLSEC object of the same name
@@ -811,20 +813,44 @@ definitions:
     type: object
 host: localhost:8443
 info:
-  description: Cloudentity Authorization Control Plane SAML API
-  title: Cloudentity Authorization Control Plane API
+  description: Cloudentity SAML API
+  title: Cloudentity API
   version: latest
 paths:
   /saml/metadata:
     get:
       description: Returns SAML metadata.
-      operationId: metadata
+      operationId: idpMetadata
       responses:
         "200":
-          $ref: '#/responses/samlMetadataResponse'
+          $ref: '#/responses/samlIDPMetadataResponse'
         "404":
           $ref: '#/responses/genericError'
       summary: SAML metadata endpoint
+      tags:
+      - saml
+  /saml/sp/{iid}/metadata:
+    get:
+      description: Returns SAML SP metadata.
+      operationId: spMetadata
+      parameters:
+      - description: A server will only return requested resources if the resource
+          matches one of the listed ETag value
+        format: etag
+        in: header
+        name: if-match
+        type: string
+      - description: IDP ID
+        in: path
+        name: iid
+        required: true
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/samlSPMetadataResponse'
+        "404":
+          $ref: '#/responses/genericError'
+      summary: SAML SP metadata endpoint
       tags:
       - saml
   /saml/sso:
@@ -849,20 +875,64 @@ paths:
 produces:
 - application/xml
 responses:
+  badRequestHTTPError:
+    description: Bad request
+    schema:
+      $ref: '#/definitions/Error'
+  conflictHTTPError:
+    description: Conflict
+    schema:
+      $ref: '#/definitions/Error'
   emptyResponse:
     description: Empty response
+  forbiddenHTTPError:
+    description: Forbidden
+    schema:
+      $ref: '#/definitions/Error'
   genericError:
     description: ErrorResponse
     schema:
       $ref: '#/definitions/genericError'
-  httpError:
-    description: HttpError
+  internalServerErrorHTTPError:
+    description: Internal server error
     schema:
       $ref: '#/definitions/Error'
-  samlMetadataResponse:
-    description: Metadata
+  methodNotAllowedHTTPError:
+    description: Method not allowed
+    schema:
+      $ref: '#/definitions/Error'
+  notFoundHTTPError:
+    description: Not found
+    schema:
+      $ref: '#/definitions/Error'
+  payloadTooLargeHTTPError:
+    description: Payload too large
+    schema:
+      $ref: '#/definitions/Error'
+  preconditionFailedHTTPError:
+    description: Precondition failed
+    schema:
+      $ref: '#/definitions/Error'
+  samlIDPMetadataResponse:
+    description: IDP Metadata
     schema:
       $ref: '#/definitions/EntityDescriptor'
+  samlSPMetadataResponse:
+    description: SP Metadata
+    schema:
+      $ref: '#/definitions/EntityDescriptor'
+  tooManyRequestsHTTPError:
+    description: Too many requests
+    schema:
+      $ref: '#/definitions/Error'
+  unauthorizedHTTPError:
+    description: Unauthorized
+    schema:
+      $ref: '#/definitions/Error'
+  unprocessableEntityHTTPError:
+    description: Unprocessable entity
+    schema:
+      $ref: '#/definitions/Error'
 schemes:
 - https
 swagger: "2.0"

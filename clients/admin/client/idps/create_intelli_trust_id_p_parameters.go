@@ -69,6 +69,14 @@ type CreateIntelliTrustIDPParams struct {
 	*/
 	IntelliTrustIDP *models.IntelliTrustIDP
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Wid.
 
 	   Authorization server id
@@ -152,6 +160,17 @@ func (o *CreateIntelliTrustIDPParams) SetIntelliTrustIDP(intelliTrustIDP *models
 	o.IntelliTrustIDP = intelliTrustIDP
 }
 
+// WithIfMatch adds the ifMatch to the create intelli trust ID p params
+func (o *CreateIntelliTrustIDPParams) WithIfMatch(ifMatch *string) *CreateIntelliTrustIDPParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the create intelli trust ID p params
+func (o *CreateIntelliTrustIDPParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithWid adds the wid to the create intelli trust ID p params
 func (o *CreateIntelliTrustIDPParams) WithWid(wid string) *CreateIntelliTrustIDPParams {
 	o.SetWid(wid)
@@ -172,6 +191,14 @@ func (o *CreateIntelliTrustIDPParams) WriteToRequest(r runtime.ClientRequest, re
 	var res []error
 	if o.IntelliTrustIDP != nil {
 		if err := r.SetBodyParam(o.IntelliTrustIDP); err != nil {
+			return err
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
 			return err
 		}
 	}

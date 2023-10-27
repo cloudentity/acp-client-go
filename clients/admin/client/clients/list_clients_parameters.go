@@ -83,6 +83,14 @@ type ListClientsParams struct {
 	*/
 	BeforeClientID *string
 
+	/* IfMatch.
+
+	   A server will only return requested resources if the resource matches one of the listed ETag value
+
+	   Format: etag
+	*/
+	IfMatch *string
+
 	/* Limit.
 
 	     optional limit results
@@ -229,6 +237,17 @@ func (o *ListClientsParams) SetBeforeClientID(beforeClientID *string) {
 	o.BeforeClientID = beforeClientID
 }
 
+// WithIfMatch adds the ifMatch to the list clients params
+func (o *ListClientsParams) WithIfMatch(ifMatch *string) *ListClientsParams {
+	o.SetIfMatch(ifMatch)
+	return o
+}
+
+// SetIfMatch adds the ifMatch to the list clients params
+func (o *ListClientsParams) SetIfMatch(ifMatch *string) {
+	o.IfMatch = ifMatch
+}
+
 // WithLimit adds the limit to the list clients params
 func (o *ListClientsParams) WithLimit(limit *int64) *ListClientsParams {
 	o.SetLimit(limit)
@@ -351,6 +370,14 @@ func (o *ListClientsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 			if err := r.SetQueryParam("before_client_id", qBeforeClientID); err != nil {
 				return err
 			}
+		}
+	}
+
+	if o.IfMatch != nil {
+
+		// header param if-match
+		if err := r.SetHeaderParam("if-match", *o.IfMatch); err != nil {
+			return err
 		}
 	}
 
