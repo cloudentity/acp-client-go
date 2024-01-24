@@ -21,7 +21,7 @@ type BrazilInsuranceCustomerDataAccessConsentRequest struct {
 
 	// data
 	// Required: true
-	Data *OPINData `json:"data"`
+	Data *OPINData `json:"data" yaml:"data"`
 }
 
 // Validate validates this brazil insurance customer data access consent request

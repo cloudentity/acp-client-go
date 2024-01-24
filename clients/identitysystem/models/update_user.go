@@ -21,20 +21,20 @@ import (
 type UpdateUser struct {
 
 	// metadata
-	Metadata map[string]interface{} `json:"metadata,omitempty"`
+	Metadata map[string]interface{} `json:"metadata,omitempty" yaml:"metadata,omitempty"`
 
 	// metadata schema id
-	MetadataSchemaID string `json:"metadata_schema_id,omitempty"`
+	MetadataSchemaID string `json:"metadata_schema_id,omitempty" yaml:"metadata_schema_id,omitempty"`
 
 	// payload
-	Payload map[string]interface{} `json:"payload,omitempty"`
+	Payload map[string]interface{} `json:"payload,omitempty" yaml:"payload,omitempty"`
 
 	// payload schema id
-	PayloadSchemaID string `json:"payload_schema_id,omitempty"`
+	PayloadSchemaID string `json:"payload_schema_id,omitempty" yaml:"payload_schema_id,omitempty"`
 
 	// status
 	// Enum: [active inactive deleted new]
-	Status string `json:"status,omitempty"`
+	Status string `json:"status,omitempty" yaml:"status,omitempty"`
 }
 
 // Validate validates this update user

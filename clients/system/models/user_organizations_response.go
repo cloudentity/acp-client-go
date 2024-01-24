@@ -20,10 +20,10 @@ import (
 type UserOrganizationsResponse struct {
 
 	// cursor
-	Cursor Cursor `json:"cursor,omitempty"`
+	Cursor Cursor `json:"cursor,omitempty" yaml:"cursor,omitempty"`
 
 	// organizations
-	Organizations []*OrganizationResponse `json:"organizations"`
+	Organizations []*OrganizationResponse `json:"organizations" yaml:"organizations"`
 }
 
 // Validate validates this user organizations response

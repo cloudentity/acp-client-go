@@ -22,11 +22,11 @@ type AvailableEvents struct {
 	// The ETag HTTP header is an identifier for a specific version of a resource
 	//
 	// in:header
-	Etag string `json:"etag,omitempty"`
+	Etag string `json:"etag,omitempty" yaml:"etag,omitempty"`
 
 	// List of the events
 	// in:body
-	Subjects []*EventSubject `json:"subjects"`
+	Subjects []*EventSubject `json:"subjects" yaml:"subjects"`
 }
 
 // Validate validates this available events

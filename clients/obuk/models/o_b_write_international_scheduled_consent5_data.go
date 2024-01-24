@@ -21,23 +21,23 @@ import (
 type OBWriteInternationalScheduledConsent5Data struct {
 
 	// authorisation
-	Authorisation *OBWriteInternationalScheduledConsent5DataAuthorisation `json:"Authorisation,omitempty"`
+	Authorisation *OBWriteInternationalScheduledConsent5DataAuthorisation `json:"Authorisation,omitempty" yaml:"Authorisation,omitempty"`
 
 	// initiation
 	// Required: true
-	Initiation *OBWriteInternationalScheduledConsent5DataInitiation `json:"Initiation"`
+	Initiation *OBWriteInternationalScheduledConsent5DataInitiation `json:"Initiation" yaml:"Initiation"`
 
 	// Specifies the Open Banking service request types.
 	// Required: true
 	// Enum: [Create]
-	Permission string `json:"Permission"`
+	Permission string `json:"Permission" yaml:"Permission"`
 
 	// Specifies to share the refund account details with PISP
 	// Enum: [No Yes]
-	ReadRefundAccount string `json:"ReadRefundAccount,omitempty"`
+	ReadRefundAccount string `json:"ReadRefundAccount,omitempty" yaml:"ReadRefundAccount,omitempty"`
 
 	// s c a support data
-	SCASupportData *OBWriteInternationalScheduledConsent5DataSCASupportData `json:"SCASupportData,omitempty"`
+	SCASupportData *OBWriteInternationalScheduledConsent5DataSCASupportData `json:"SCASupportData,omitempty" yaml:"SCASupportData,omitempty"`
 }
 
 // Validate validates this o b write international scheduled consent5 data

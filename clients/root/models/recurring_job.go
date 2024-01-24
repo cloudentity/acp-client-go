@@ -20,30 +20,30 @@ import (
 type RecurringJob struct {
 
 	// cron expression
-	Cron string `json:"cron,omitempty"`
+	Cron string `json:"cron,omitempty" yaml:"cron,omitempty"`
 
 	// id
-	ID JobID `json:"id,omitempty"`
+	ID JobID `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// is paused
-	Paused bool `json:"paused,omitempty"`
+	Paused bool `json:"paused,omitempty" yaml:"paused,omitempty"`
 
 	// payload
-	Payload interface{} `json:"payload,omitempty"`
+	Payload interface{} `json:"payload,omitempty" yaml:"payload,omitempty"`
 
 	// queue
-	Queue QueueName `json:"queue,omitempty"`
+	Queue QueueName `json:"queue,omitempty" yaml:"queue,omitempty"`
 
 	// next execution time
 	// Format: date-time
-	ScheduledAt strfmt.DateTime `json:"scheduled_at,omitempty"`
+	ScheduledAt strfmt.DateTime `json:"scheduled_at,omitempty" yaml:"scheduled_at,omitempty"`
 
 	// job starting from
 	// Format: date-time
-	StartingFrom strfmt.DateTime `json:"starting_from,omitempty"`
+	StartingFrom strfmt.DateTime `json:"starting_from,omitempty" yaml:"starting_from,omitempty"`
 
 	// tenant id
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 }
 
 // Validate validates this recurring job

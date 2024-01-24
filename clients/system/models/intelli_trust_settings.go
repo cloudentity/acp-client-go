@@ -20,27 +20,27 @@ type IntelliTrustSettings struct {
 	// OAuth client application identifier from your Entrust Datacard® IntelliTrust™ Authentication
 	// Service general settings
 	// Example: client
-	ClientID string `json:"client_id,omitempty"`
+	ClientID string `json:"client_id,omitempty" yaml:"client_id,omitempty"`
 
 	// String represented domain of the Entrust Datacard® IntelliTrust™ Authentication Service for your organization
 	// Example: cloudentity-dev.us.trustedauth.com
-	Domain string `json:"domain,omitempty"`
+	Domain string `json:"domain,omitempty" yaml:"domain,omitempty"`
 
 	// If enabled, the groups a user belongs to are collected
 	//
 	// If you want to fetch groups from the IntelliTrust™ IDP, you need to add the `groups` claim
 	// for your application on the IDP side.
-	FetchGroups bool `json:"fetch_groups,omitempty"`
+	FetchGroups bool `json:"fetch_groups,omitempty" yaml:"fetch_groups,omitempty"`
 
 	// If enabled, users' data is collected by calling the `userinfo` IntelliTrust™ endpoint.
-	GetUserInfo bool `json:"get_user_info,omitempty"`
+	GetUserInfo bool `json:"get_user_info,omitempty" yaml:"get_user_info,omitempty"`
 
 	// An array of additional scopes your client requests
 	// Example: ["email","profile","openid"]
-	Scopes []string `json:"scopes"`
+	Scopes []string `json:"scopes" yaml:"scopes"`
 
 	// Whether to send the identifier as a `login_hint` parameter to the IDP
-	SendLoginHint bool `json:"send_login_hint,omitempty"`
+	SendLoginHint bool `json:"send_login_hint,omitempty" yaml:"send_login_hint,omitempty"`
 }
 
 // Validate validates this intelli trust settings

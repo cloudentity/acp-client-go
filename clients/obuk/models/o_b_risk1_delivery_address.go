@@ -21,28 +21,28 @@ type OBRisk1DeliveryAddress struct {
 
 	// address line
 	// Max Items: 2
-	AddressLine []string `json:"AddressLine"`
+	AddressLine []string `json:"AddressLine" yaml:"AddressLine"`
 
 	// building number
-	BuildingNumber BuildingNumber `json:"BuildingNumber,omitempty"`
+	BuildingNumber BuildingNumber `json:"BuildingNumber,omitempty" yaml:"BuildingNumber,omitempty"`
 
 	// Nation with its own government, occupying a particular territory.
 	// Required: true
 	// Pattern: ^[A-Z]{2,2}$
-	Country string `json:"Country"`
+	Country string `json:"Country" yaml:"Country"`
 
 	// country sub division
-	CountrySubDivision CountrySubDivision `json:"CountrySubDivision,omitempty"`
+	CountrySubDivision CountrySubDivision `json:"CountrySubDivision,omitempty" yaml:"CountrySubDivision,omitempty"`
 
 	// post code
-	PostCode PostCode `json:"PostCode,omitempty"`
+	PostCode PostCode `json:"PostCode,omitempty" yaml:"PostCode,omitempty"`
 
 	// street name
-	StreetName StreetName `json:"StreetName,omitempty"`
+	StreetName StreetName `json:"StreetName,omitempty" yaml:"StreetName,omitempty"`
 
 	// town name
 	// Required: true
-	TownName *TownName `json:"TownName"`
+	TownName *TownName `json:"TownName" yaml:"TownName"`
 }
 
 // Validate validates this o b risk1 delivery address

@@ -22,30 +22,30 @@ type WorkspaceResponse struct {
 
 	// Your server's label color in a HEX format.
 	// Example: #007FFF
-	Color string `json:"color,omitempty"`
+	Color string `json:"color,omitempty" yaml:"color,omitempty"`
 
 	// Display description of the workspace
 	// Example: Server description
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
 	// Unique identifier of an workspace
 	// Example: default
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// issuer url
-	IssuerURL string `json:"issuer_url,omitempty"`
+	IssuerURL string `json:"issuer_url,omitempty" yaml:"issuer_url,omitempty"`
 
 	// Logo URI
-	LogoURI string `json:"logo_uri,omitempty"`
+	LogoURI string `json:"logo_uri,omitempty" yaml:"logo_uri,omitempty"`
 
 	// metadata
-	Metadata *ServerMetadata `json:"metadata,omitempty"`
+	Metadata *ServerMetadata `json:"metadata,omitempty" yaml:"metadata,omitempty"`
 
 	// Display name of the workspace
 	//
 	// If not provided, a random ID is generated.
 	// Example: default
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// The profile of a server
 	//
@@ -54,20 +54,20 @@ type WorkspaceResponse struct {
 	// compliant workspace that has all of the required mechanisms and settings already in place.
 	// Example: default
 	// Enum: [default demo workforce consumer partners third_party fapi_advanced fapi_rw fapi_ro openbanking_uk_fapi_advanced openbanking_uk openbanking_br cdr_australia cdr_australia_fapi_rw fdx openbanking_ksa fapi_20_security fapi_20_message_signing connect_id]
-	Profile string `json:"profile,omitempty"`
+	Profile string `json:"profile,omitempty" yaml:"profile,omitempty"`
 
 	// Subject format
 	// Enum: [hash legacy]
-	SubjectFormat string `json:"subject_format,omitempty"`
+	SubjectFormat string `json:"subject_format,omitempty" yaml:"subject_format,omitempty"`
 
 	// Subject identifier algorithm salt
-	SubjectIdentifierAlgorithmSalt string `json:"subject_identifier_algorithm_salt,omitempty"`
+	SubjectIdentifierAlgorithmSalt string `json:"subject_identifier_algorithm_salt,omitempty" yaml:"subject_identifier_algorithm_salt,omitempty"`
 
 	// template
-	Template bool `json:"template,omitempty"`
+	Template bool `json:"template,omitempty" yaml:"template,omitempty"`
 
 	// optional theme id
-	ThemeID string `json:"theme_id,omitempty"`
+	ThemeID string `json:"theme_id,omitempty" yaml:"theme_id,omitempty"`
 
 	// Server type
 	//
@@ -75,7 +75,7 @@ type WorkspaceResponse struct {
 	// a developer portal, or if it is a system or a regular workspace.
 	// Example: regular
 	// Enum: [admin developer system regular organization]
-	Type string `json:"type,omitempty"`
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 }
 
 // Validate validates this workspace response

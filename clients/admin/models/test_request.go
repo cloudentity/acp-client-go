@@ -21,11 +21,11 @@ type TestRequest struct {
 
 	// api
 	// Required: true
-	API *API `json:"api"`
+	API *API `json:"api" yaml:"api"`
 
 	// test request
 	// Required: true
-	TestRequest *HTTPRequest `json:"test_request"`
+	TestRequest *HTTPRequest `json:"test_request" yaml:"test_request"`
 }
 
 // Validate validates this test request

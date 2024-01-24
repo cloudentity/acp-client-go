@@ -19,10 +19,10 @@ import (
 type FDXConfiguration struct {
 
 	// initial client status
-	InitialClientStatus FDXClientStatus `json:"initial_client_status,omitempty"`
+	InitialClientStatus FDXClientStatus `json:"initial_client_status,omitempty" yaml:"initial_client_status,omitempty"`
 
 	// legal entity
-	LegalEntity *LegalEntity `json:"legal_entity,omitempty"`
+	LegalEntity *LegalEntity `json:"legal_entity,omitempty" yaml:"legal_entity,omitempty"`
 }
 
 // Validate validates this f d x configuration

@@ -20,47 +20,47 @@ type AuditEventMetadata struct {
 	// Access request actor claims.
 	//
 	// It's only populated if the token has been issued in token exchange delegation flow.
-	ActorClaims map[string]interface{} `json:"actor_claims,omitempty"`
+	ActorClaims map[string]interface{} `json:"actor_claims,omitempty" yaml:"actor_claims,omitempty"`
 
 	// Access request client ID related to an audit event.
 	//
 	// May be empty when the access is incorrect or missing.
-	ClientID string `json:"client_id,omitempty"`
+	ClientID string `json:"client_id,omitempty" yaml:"client_id,omitempty"`
 
 	// ID of the Identity Pool
-	IdentityPoolID string `json:"identity_pool_id,omitempty"`
+	IdentityPoolID string `json:"identity_pool_id,omitempty" yaml:"identity_pool_id,omitempty"`
 
 	// Audit event IP address.
 	//
 	// It's first not empty value from: X-Forwaded-For, X-Real-IP or network socket IP address
-	IP string `json:"ip,omitempty"`
+	IP string `json:"ip,omitempty" yaml:"ip,omitempty"`
 
 	// Access request may act claims.
 	//
 	// It's only populated if the token has been issued token with may_act claim.
-	MayActClaims map[string]interface{} `json:"may_act_claims,omitempty"`
+	MayActClaims map[string]interface{} `json:"may_act_claims,omitempty" yaml:"may_act_claims,omitempty"`
 
 	// Session id
 	//
 	// Correlation ID in a login process. Returns events related to a particular login process.
 	// It's empty for audit events that have been created outside login process.
-	SessionID string `json:"session_id,omitempty"`
+	SessionID string `json:"session_id,omitempty" yaml:"session_id,omitempty"`
 
 	// Access request subject ID related to a given audit event.
 	//
 	// May be empty when the access is incorrect or missing.
-	Subject string `json:"subject,omitempty"`
+	Subject string `json:"subject,omitempty" yaml:"subject,omitempty"`
 
 	// Token signature
 	//
 	// Signature of a token that was used to perform an action that has published an audit event.
-	TokenSignature string `json:"token_signature,omitempty"`
+	TokenSignature string `json:"token_signature,omitempty" yaml:"token_signature,omitempty"`
 
 	// Trace ID
-	TraceID string `json:"trace_id,omitempty"`
+	TraceID string `json:"trace_id,omitempty" yaml:"trace_id,omitempty"`
 
 	// User-agent that describes a device name that generated the audit event.
-	UserAgent string `json:"user_agent,omitempty"`
+	UserAgent string `json:"user_agent,omitempty" yaml:"user_agent,omitempty"`
 }
 
 // Validate validates this audit event metadata

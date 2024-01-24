@@ -21,18 +21,18 @@ import (
 type OBWriteDomesticConsent4Data struct {
 
 	// authorisation
-	Authorisation *OBWriteDomesticConsent4DataAuthorisation `json:"Authorisation,omitempty"`
+	Authorisation *OBWriteDomesticConsent4DataAuthorisation `json:"Authorisation,omitempty" yaml:"Authorisation,omitempty"`
 
 	// initiation
 	// Required: true
-	Initiation *OBWriteDomesticConsent4DataInitiation `json:"Initiation"`
+	Initiation *OBWriteDomesticConsent4DataInitiation `json:"Initiation" yaml:"Initiation"`
 
 	// Specifies to share the refund account details with PISP
 	// Enum: [No Yes]
-	ReadRefundAccount string `json:"ReadRefundAccount,omitempty"`
+	ReadRefundAccount string `json:"ReadRefundAccount,omitempty" yaml:"ReadRefundAccount,omitempty"`
 
 	// s c a support data
-	SCASupportData *OBWriteDomesticConsent4DataSCASupportData `json:"SCASupportData,omitempty"`
+	SCASupportData *OBWriteDomesticConsent4DataSCASupportData `json:"SCASupportData,omitempty" yaml:"SCASupportData,omitempty"`
 }
 
 // Validate validates this o b write domestic consent4 data

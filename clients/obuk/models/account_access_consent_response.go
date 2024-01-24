@@ -21,17 +21,17 @@ type AccountAccessConsentResponse struct {
 
 	// data
 	// Required: true
-	Data *OBReadConsentResponse1Data `json:"Data"`
+	Data *OBReadConsentResponse1Data `json:"Data" yaml:"Data"`
 
 	// links
-	Links *Links `json:"Links,omitempty"`
+	Links *Links `json:"Links,omitempty" yaml:"Links,omitempty"`
 
 	// meta
-	Meta *Meta `json:"Meta,omitempty"`
+	Meta *Meta `json:"Meta,omitempty" yaml:"Meta,omitempty"`
 
 	// risk
 	// Required: true
-	Risk OBRisk2 `json:"Risk"`
+	Risk OBRisk2 `json:"Risk" yaml:"Risk"`
 }
 
 // Validate validates this account access consent response

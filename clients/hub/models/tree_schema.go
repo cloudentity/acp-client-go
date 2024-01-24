@@ -21,25 +21,25 @@ type TreeSchema struct {
 
 	// created at
 	// Format: date-time
-	CreatedAt strfmt.DateTime `json:"created_at,omitempty"`
+	CreatedAt strfmt.DateTime `json:"created_at,omitempty" yaml:"created_at,omitempty"`
 
 	// description
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
 	// name
 	// Required: true
-	Name string `json:"name"`
+	Name string `json:"name" yaml:"name"`
 
 	// schema
 	// Required: true
-	Schema *SupportedJSONSchema `json:"schema"`
+	Schema *SupportedJSONSchema `json:"schema" yaml:"schema"`
 
 	// system
-	System bool `json:"system,omitempty"`
+	System bool `json:"system,omitempty" yaml:"system,omitempty"`
 
 	// updated at
 	// Format: date-time
-	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty"`
+	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty" yaml:"updated_at,omitempty"`
 }
 
 // Validate validates this tree schema

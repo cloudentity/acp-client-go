@@ -21,29 +21,29 @@ import (
 type OBWriteInternationalConsentResponse6DataInitiation struct {
 
 	// charge bearer
-	ChargeBearer OBChargeBearerType1Code `json:"ChargeBearer,omitempty"`
+	ChargeBearer OBChargeBearerType1Code `json:"ChargeBearer,omitempty" yaml:"ChargeBearer,omitempty"`
 
 	// creditor
-	Creditor *OBWriteInternationalConsentResponse6DataInitiationCreditor `json:"Creditor,omitempty"`
+	Creditor *OBWriteInternationalConsentResponse6DataInitiationCreditor `json:"Creditor,omitempty" yaml:"Creditor,omitempty"`
 
 	// creditor account
 	// Required: true
-	CreditorAccount *OBWriteInternationalConsentResponse6DataInitiationCreditorAccount `json:"CreditorAccount"`
+	CreditorAccount *OBWriteInternationalConsentResponse6DataInitiationCreditorAccount `json:"CreditorAccount" yaml:"CreditorAccount"`
 
 	// creditor agent
-	CreditorAgent *OBWriteInternationalConsentResponse6DataInitiationCreditorAgent `json:"CreditorAgent,omitempty"`
+	CreditorAgent *OBWriteInternationalConsentResponse6DataInitiationCreditorAgent `json:"CreditorAgent,omitempty" yaml:"CreditorAgent,omitempty"`
 
 	// Specifies the currency of the to be transferred amount, which is different from the currency of the debtor's account.
 	// Required: true
 	// Pattern: ^[A-Z]{3,3}$
-	CurrencyOfTransfer string `json:"CurrencyOfTransfer"`
+	CurrencyOfTransfer string `json:"CurrencyOfTransfer" yaml:"CurrencyOfTransfer"`
 
 	// debtor account
-	DebtorAccount *OBWriteInternationalConsentResponse6DataInitiationDebtorAccount `json:"DebtorAccount,omitempty"`
+	DebtorAccount *OBWriteInternationalConsentResponse6DataInitiationDebtorAccount `json:"DebtorAccount,omitempty" yaml:"DebtorAccount,omitempty"`
 
 	// Country in which Credit Account is domiciled. Code to identify a country, a dependency, or another area of particular geopolitical interest, on the basis of country names obtained from the United Nations (ISO 3166, Alpha-2 code).
 	// Pattern: [A-Z]{2,2}
-	DestinationCountryCode string `json:"DestinationCountryCode,omitempty"`
+	DestinationCountryCode string `json:"DestinationCountryCode,omitempty" yaml:"DestinationCountryCode,omitempty"`
 
 	// Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain.
 	// Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction.
@@ -51,46 +51,46 @@ type OBWriteInternationalConsentResponse6DataInitiation struct {
 	// Required: true
 	// Max Length: 35
 	// Min Length: 1
-	EndToEndIdentification string `json:"EndToEndIdentification"`
+	EndToEndIdentification string `json:"EndToEndIdentification" yaml:"EndToEndIdentification"`
 
 	// exchange rate information
-	ExchangeRateInformation *OBWriteInternationalConsentResponse6DataInitiationExchangeRateInformation `json:"ExchangeRateInformation,omitempty"`
+	ExchangeRateInformation *OBWriteInternationalConsentResponse6DataInitiationExchangeRateInformation `json:"ExchangeRateInformation,omitempty" yaml:"ExchangeRateInformation,omitempty"`
 
 	// Specifies the purpose of an international payment, when there is no corresponding 4 character code available in the ISO20022 list of Purpose Codes.
 	// Max Length: 140
 	// Min Length: 1
-	ExtendedPurpose string `json:"ExtendedPurpose,omitempty"`
+	ExtendedPurpose string `json:"ExtendedPurpose,omitempty" yaml:"ExtendedPurpose,omitempty"`
 
 	// instructed amount
 	// Required: true
-	InstructedAmount *OBWriteInternationalConsentResponse6DataInitiationInstructedAmount `json:"InstructedAmount"`
+	InstructedAmount *OBWriteInternationalConsentResponse6DataInitiationInstructedAmount `json:"InstructedAmount" yaml:"InstructedAmount"`
 
 	// Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction.
 	// Usage: the  instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction.
 	// Required: true
 	// Max Length: 35
 	// Min Length: 1
-	InstructionIdentification string `json:"InstructionIdentification"`
+	InstructionIdentification string `json:"InstructionIdentification" yaml:"InstructionIdentification"`
 
 	// Indicator of the urgency or order of importance that the instructing party would like the instructed party to apply to the processing of the instruction.
 	// Enum: [Normal Urgent]
-	InstructionPriority string `json:"InstructionPriority,omitempty"`
+	InstructionPriority string `json:"InstructionPriority,omitempty" yaml:"InstructionPriority,omitempty"`
 
 	// local instrument
-	LocalInstrument OBExternalLocalInstrument1Code `json:"LocalInstrument,omitempty"`
+	LocalInstrument OBExternalLocalInstrument1Code `json:"LocalInstrument,omitempty" yaml:"LocalInstrument,omitempty"`
 
 	// Specifies the external purpose code in the format of character string with a maximum length of 4 characters.
 	// The list of valid codes is an external code list published separately.
 	// External code sets can be downloaded from www.iso20022.org.
 	// Max Length: 4
 	// Min Length: 1
-	Purpose string `json:"Purpose,omitempty"`
+	Purpose string `json:"Purpose,omitempty" yaml:"Purpose,omitempty"`
 
 	// remittance information
-	RemittanceInformation *OBWriteInternationalConsentResponse6DataInitiationRemittanceInformation `json:"RemittanceInformation,omitempty"`
+	RemittanceInformation *OBWriteInternationalConsentResponse6DataInitiationRemittanceInformation `json:"RemittanceInformation,omitempty" yaml:"RemittanceInformation,omitempty"`
 
 	// supplementary data
-	SupplementaryData OBSupplementaryData1 `json:"SupplementaryData,omitempty"`
+	SupplementaryData OBSupplementaryData1 `json:"SupplementaryData,omitempty" yaml:"SupplementaryData,omitempty"`
 }
 
 // Validate validates this o b write international consent response6 data initiation

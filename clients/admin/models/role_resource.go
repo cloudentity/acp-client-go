@@ -21,21 +21,21 @@ import (
 type RoleResource struct {
 
 	// identity pool id
-	IdentityPoolID string `json:"identity_pool_id,omitempty"`
+	IdentityPoolID string `json:"identity_pool_id,omitempty" yaml:"identity_pool_id,omitempty"`
 
 	// role
 	// Enum: [admin business_admin auditor manager user_manager member]
-	Role string `json:"role,omitempty"`
+	Role string `json:"role,omitempty" yaml:"role,omitempty"`
 
 	// tenant id
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
 	// type
 	// Enum: [tenant workspace identity_pool]
-	Type string `json:"type,omitempty"`
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 
 	// workspace id
-	WorkspaceID string `json:"workspace_id,omitempty"`
+	WorkspaceID string `json:"workspace_id,omitempty" yaml:"workspace_id,omitempty"`
 }
 
 // Validate validates this role resource

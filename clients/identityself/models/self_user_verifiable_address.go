@@ -22,42 +22,42 @@ type SelfUserVerifiableAddress struct {
 
 	// address
 	// Required: true
-	Address string `json:"address"`
+	Address string `json:"address" yaml:"address"`
 
 	// created at
 	// Required: true
 	// Format: date-time
-	CreatedAt strfmt.DateTime `json:"created_at"`
+	CreatedAt strfmt.DateTime `json:"created_at" yaml:"created_at"`
 
 	// preferred contact method
 	// Example: sms
 	// Enum: [sms voice]
-	PreferredContactMethod string `json:"preferred_contact_method,omitempty"`
+	PreferredContactMethod string `json:"preferred_contact_method,omitempty" yaml:"preferred_contact_method,omitempty"`
 
 	// status
 	// Example: active
 	// Required: true
 	// Enum: [active inactive]
-	Status string `json:"status"`
+	Status string `json:"status" yaml:"status"`
 
 	// type
 	// Example: mobile
 	// Required: true
 	// Enum: [email mobile]
-	Type string `json:"type"`
+	Type string `json:"type" yaml:"type"`
 
 	// updated at
 	// Required: true
 	// Format: date-time
-	UpdatedAt strfmt.DateTime `json:"updated_at"`
+	UpdatedAt strfmt.DateTime `json:"updated_at" yaml:"updated_at"`
 
 	// verified
 	// Required: true
-	Verified bool `json:"verified"`
+	Verified bool `json:"verified" yaml:"verified"`
 
 	// verified at
 	// Format: date-time
-	VerifiedAt strfmt.DateTime `json:"verified_at,omitempty"`
+	VerifiedAt strfmt.DateTime `json:"verified_at,omitempty" yaml:"verified_at,omitempty"`
 }
 
 // Validate validates this self user verifiable address

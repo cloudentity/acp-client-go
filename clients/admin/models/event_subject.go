@@ -20,13 +20,13 @@ import (
 type EventSubject struct {
 
 	// description
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
 	// events
-	Events []*Event `json:"events"`
+	Events []*Event `json:"events" yaml:"events"`
 
 	// name
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 }
 
 // Validate validates this event subject

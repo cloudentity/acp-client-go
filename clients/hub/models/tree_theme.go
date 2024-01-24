@@ -19,14 +19,14 @@ import (
 type TreeTheme struct {
 
 	// theme logo url
-	LogoURL string `json:"logo_url,omitempty"`
+	LogoURL string `json:"logo_url,omitempty" yaml:"logo_url,omitempty"`
 
 	// Display name of the theme
 	// Example: acme
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// templates
-	Templates TreeTemplates `json:"templates,omitempty"`
+	Templates TreeTemplates `json:"templates,omitempty" yaml:"templates,omitempty"`
 }
 
 // Validate validates this tree theme

@@ -18,7 +18,7 @@ import (
 type EventIdentifier struct {
 
 	// identifier value
-	Value string `json:"value,omitempty"`
+	Value string `json:"value,omitempty" yaml:"value,omitempty"`
 }
 
 // Validate validates this event identifier

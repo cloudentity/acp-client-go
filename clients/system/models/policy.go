@@ -20,30 +20,30 @@ import (
 type Policy struct {
 
 	// The definition of an Open Policy Agent (OPA) policy provided using the REGO language.
-	Definition string `json:"definition,omitempty"`
+	Definition string `json:"definition,omitempty" yaml:"definition,omitempty"`
 
 	// Unique ID of your policy
 	// Example: 1
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// Language of a policy
 	//
 	// ACP supports creating Cloudentity policies (using a visual editor or defined using JSON or
 	// YAML) and policies defined using REGO (language used by Open Policy Agent (OPA)).
 	// Example: cloudentity
-	Language string `json:"language,omitempty"`
+	Language string `json:"language,omitempty" yaml:"language,omitempty"`
 
 	// Display name for your policy
 	// Example: check_consent
-	PolicyName string `json:"policy_name,omitempty"`
+	PolicyName string `json:"policy_name,omitempty" yaml:"policy_name,omitempty"`
 
 	// ID of your authorization server (workspace)
 	// Example: default
-	ServerID string `json:"server_id,omitempty"`
+	ServerID string `json:"server_id,omitempty" yaml:"server_id,omitempty"`
 
 	// ID of your tenant
 	// Example: default
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
 	// Define a type of your policy
 	//
@@ -68,10 +68,10 @@ type Policy struct {
 	//
 	// Each of the policies type has its defined and provided out of the box policy validators.
 	// Example: user
-	Type string `json:"type,omitempty"`
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 
 	// An array of validators for a Cloudentity policy
-	Validators []*ValidatorConfig `json:"validators"`
+	Validators []*ValidatorConfig `json:"validators" yaml:"validators"`
 }
 
 // Validate validates this policy

@@ -22,28 +22,28 @@ type ScriptExecutionPoint struct {
 
 	// Optional script ID
 	// Example: 1
-	ScriptID string `json:"script_id,omitempty"`
+	ScriptID string `json:"script_id,omitempty" yaml:"script_id,omitempty"`
 
 	// The ID of your authorization server (workspace)
 	// Example: default
 	// Required: true
-	ServerID string `json:"server_id"`
+	ServerID string `json:"server_id" yaml:"server_id"`
 
 	// String representation of the target's ID
 	// Example: 1
 	// Required: true
-	TargetFk string `json:"target_fk"`
+	TargetFk string `json:"target_fk" yaml:"target_fk"`
 
 	// The ID of your tenant
 	// Example: default
 	// Required: true
-	TenantID string `json:"tenant_id"`
+	TenantID string `json:"tenant_id" yaml:"tenant_id"`
 
 	// String representation of the script execution point type
 	// Example: post_authn_ctx
 	// Required: true
 	// Enum: [post_authn_ctx allowed_idp_ids token_minting client_token_minting]
-	Type string `json:"type"`
+	Type string `json:"type" yaml:"type"`
 }
 
 // Validate validates this script execution point

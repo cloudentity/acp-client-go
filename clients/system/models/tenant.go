@@ -20,30 +20,30 @@ type Tenant struct {
 
 	// tenant unique identifier
 	// exampe: default
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// jwks
-	Jwks *ServerJWKs `json:"jwks,omitempty"`
+	Jwks *ServerJWKs `json:"jwks,omitempty" yaml:"jwks,omitempty"`
 
 	// license
-	License *License `json:"license,omitempty"`
+	License *License `json:"license,omitempty" yaml:"license,omitempty"`
 
 	// metadata
-	Metadata TenantMetadata `json:"metadata,omitempty"`
+	Metadata TenantMetadata `json:"metadata,omitempty" yaml:"metadata,omitempty"`
 
 	// tenant name
 	// Example: Default
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// settings
-	Settings *TenantSettings `json:"settings,omitempty"`
+	Settings *TenantSettings `json:"settings,omitempty" yaml:"settings,omitempty"`
 
 	// styling
-	Styling *Styling `json:"styling,omitempty"`
+	Styling *Styling `json:"styling,omitempty" yaml:"styling,omitempty"`
 
 	// optional custom tenant url. If not provided the server url is used instead
 	// Example: https://example.com/default
-	URL string `json:"url,omitempty"`
+	URL string `json:"url,omitempty" yaml:"url,omitempty"`
 }
 
 // Validate validates this tenant

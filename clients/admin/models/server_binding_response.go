@@ -22,27 +22,27 @@ type ServerBindingResponse struct {
 
 	// Your server's label color in a HEX format.
 	// Example: #007FFF
-	Color string `json:"color,omitempty"`
+	Color string `json:"color,omitempty" yaml:"color,omitempty"`
 
 	// dependent server id
 	// Example: default
-	Dependent string `json:"dependent,omitempty"`
+	Dependent string `json:"dependent,omitempty" yaml:"dependent,omitempty"`
 
 	// dependent server
-	DependentServer *ServerInfo `json:"dependent_server,omitempty"`
+	DependentServer *ServerInfo `json:"dependent_server,omitempty" yaml:"dependent_server,omitempty"`
 
 	// Display description of the workspace
 	// Example: Server description
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
 	// Logo URI
-	LogoURI string `json:"logo_uri,omitempty"`
+	LogoURI string `json:"logo_uri,omitempty" yaml:"logo_uri,omitempty"`
 
 	// Display name of the workspace
 	//
 	// If not provided, a random ID is generated.
 	// Example: default
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// The profile of a server
 	//
@@ -51,15 +51,15 @@ type ServerBindingResponse struct {
 	// compliant workspace that has all of the required mechanisms and settings already in place.
 	// Example: default
 	// Enum: [default demo workforce consumer partners third_party fapi_advanced fapi_rw fapi_ro openbanking_uk_fapi_advanced openbanking_uk openbanking_br cdr_australia cdr_australia_fapi_rw fdx openbanking_ksa fapi_20_security fapi_20_message_signing connect_id]
-	Profile string `json:"profile,omitempty"`
+	Profile string `json:"profile,omitempty" yaml:"profile,omitempty"`
 
 	// authorization server id
 	// Example: developer
-	ServerID string `json:"server_id,omitempty"`
+	ServerID string `json:"server_id,omitempty" yaml:"server_id,omitempty"`
 
 	// tenant id
 	// Example: default
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
 	// Server type
 	//
@@ -67,7 +67,7 @@ type ServerBindingResponse struct {
 	// a developer portal, or if it is a system or a regular workspace.
 	// Example: regular
 	// Enum: [admin developer system regular organization]
-	Type string `json:"type,omitempty"`
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 }
 
 // Validate validates this server binding response

@@ -18,103 +18,103 @@ import (
 type TenantPermissionsResponse struct {
 
 	// create identity pool
-	CreateIdentityPool bool `json:"create_identity_pool,omitempty"`
+	CreateIdentityPool bool `json:"create_identity_pool,omitempty" yaml:"create_identity_pool,omitempty"`
 
 	// create organization
-	CreateOrganization bool `json:"create_organization,omitempty"`
+	CreateOrganization bool `json:"create_organization,omitempty" yaml:"create_organization,omitempty"`
 
 	// create workspace
-	CreateWorkspace bool `json:"create_workspace,omitempty"`
+	CreateWorkspace bool `json:"create_workspace,omitempty" yaml:"create_workspace,omitempty"`
 
 	// get tenant
-	GetTenant bool `json:"get_tenant,omitempty"`
+	GetTenant bool `json:"get_tenant,omitempty" yaml:"get_tenant,omitempty"`
 
 	// list identity pools
-	ListIdentityPools bool `json:"list_identity_pools,omitempty"`
+	ListIdentityPools bool `json:"list_identity_pools,omitempty" yaml:"list_identity_pools,omitempty"`
 
 	// list organizations
-	ListOrganizations bool `json:"list_organizations,omitempty"`
+	ListOrganizations bool `json:"list_organizations,omitempty" yaml:"list_organizations,omitempty"`
 
 	// list workspaces
-	ListWorkspaces bool `json:"list_workspaces,omitempty"`
+	ListWorkspaces bool `json:"list_workspaces,omitempty" yaml:"list_workspaces,omitempty"`
 
 	// manage admin role
-	ManageAdminRole bool `json:"manage_admin_role,omitempty"`
+	ManageAdminRole bool `json:"manage_admin_role,omitempty" yaml:"manage_admin_role,omitempty"`
 
 	// manage auditor role
-	ManageAuditorRole bool `json:"manage_auditor_role,omitempty"`
+	ManageAuditorRole bool `json:"manage_auditor_role,omitempty" yaml:"manage_auditor_role,omitempty"`
 
 	// manage brute force protection
-	ManageBruteForceProtection bool `json:"manage_brute_force_protection,omitempty"`
+	ManageBruteForceProtection bool `json:"manage_brute_force_protection,omitempty" yaml:"manage_brute_force_protection,omitempty"`
 
 	// manage business admin role
-	ManageBusinessAdminRole bool `json:"manage_business_admin_role,omitempty"`
+	ManageBusinessAdminRole bool `json:"manage_business_admin_role,omitempty" yaml:"manage_business_admin_role,omitempty"`
 
 	// manage member role
-	ManageMemberRole bool `json:"manage_member_role,omitempty"`
+	ManageMemberRole bool `json:"manage_member_role,omitempty" yaml:"manage_member_role,omitempty"`
 
 	// manage mfa methods
-	ManageMfaMethods bool `json:"manage_mfa_methods,omitempty"`
+	ManageMfaMethods bool `json:"manage_mfa_methods,omitempty" yaml:"manage_mfa_methods,omitempty"`
 
 	// manage permission systems
-	ManagePermissionSystems bool `json:"manage_permission_systems,omitempty"`
+	ManagePermissionSystems bool `json:"manage_permission_systems,omitempty" yaml:"manage_permission_systems,omitempty"`
 
 	// manage privacy
-	ManagePrivacy bool `json:"manage_privacy,omitempty"`
+	ManagePrivacy bool `json:"manage_privacy,omitempty" yaml:"manage_privacy,omitempty"`
 
 	// manage server bindings
-	ManageServerBindings bool `json:"manage_server_bindings,omitempty"`
+	ManageServerBindings bool `json:"manage_server_bindings,omitempty" yaml:"manage_server_bindings,omitempty"`
 
 	// manage themes
-	ManageThemes bool `json:"manage_themes,omitempty"`
+	ManageThemes bool `json:"manage_themes,omitempty" yaml:"manage_themes,omitempty"`
 
 	// manage vanity domains
-	ManageVanityDomains bool `json:"manage_vanity_domains,omitempty"`
+	ManageVanityDomains bool `json:"manage_vanity_domains,omitempty" yaml:"manage_vanity_domains,omitempty"`
 
 	// read brute force protection
-	ReadBruteForceProtection bool `json:"read_brute_force_protection,omitempty"`
+	ReadBruteForceProtection bool `json:"read_brute_force_protection,omitempty" yaml:"read_brute_force_protection,omitempty"`
 
 	// read mfa methods
-	ReadMfaMethods bool `json:"read_mfa_methods,omitempty"`
+	ReadMfaMethods bool `json:"read_mfa_methods,omitempty" yaml:"read_mfa_methods,omitempty"`
 
 	// read permission systems
-	ReadPermissionSystems bool `json:"read_permission_systems,omitempty"`
+	ReadPermissionSystems bool `json:"read_permission_systems,omitempty" yaml:"read_permission_systems,omitempty"`
 
 	// read privacy
-	ReadPrivacy bool `json:"read_privacy,omitempty"`
+	ReadPrivacy bool `json:"read_privacy,omitempty" yaml:"read_privacy,omitempty"`
 
 	// read roles
-	ReadRoles bool `json:"read_roles,omitempty"`
+	ReadRoles bool `json:"read_roles,omitempty" yaml:"read_roles,omitempty"`
 
 	// read server bindings
-	ReadServerBindings bool `json:"read_server_bindings,omitempty"`
+	ReadServerBindings bool `json:"read_server_bindings,omitempty" yaml:"read_server_bindings,omitempty"`
 
 	// read system apis
-	ReadSystemApis bool `json:"read_system_apis,omitempty"`
+	ReadSystemApis bool `json:"read_system_apis,omitempty" yaml:"read_system_apis,omitempty"`
 
 	// read system environment
-	ReadSystemEnvironment bool `json:"read_system_environment,omitempty"`
+	ReadSystemEnvironment bool `json:"read_system_environment,omitempty" yaml:"read_system_environment,omitempty"`
 
 	// read system notifications
-	ReadSystemNotifications bool `json:"read_system_notifications,omitempty"`
+	ReadSystemNotifications bool `json:"read_system_notifications,omitempty" yaml:"read_system_notifications,omitempty"`
 
 	// read system services
-	ReadSystemServices bool `json:"read_system_services,omitempty"`
+	ReadSystemServices bool `json:"read_system_services,omitempty" yaml:"read_system_services,omitempty"`
 
 	// read system templates
-	ReadSystemTemplates bool `json:"read_system_templates,omitempty"`
+	ReadSystemTemplates bool `json:"read_system_templates,omitempty" yaml:"read_system_templates,omitempty"`
 
 	// read themes
-	ReadThemes bool `json:"read_themes,omitempty"`
+	ReadThemes bool `json:"read_themes,omitempty" yaml:"read_themes,omitempty"`
 
 	// read vanity domains
-	ReadVanityDomains bool `json:"read_vanity_domains,omitempty"`
+	ReadVanityDomains bool `json:"read_vanity_domains,omitempty" yaml:"read_vanity_domains,omitempty"`
 
 	// tenant read analytics
-	TenantReadAnalytics bool `json:"tenant_read_analytics,omitempty"`
+	TenantReadAnalytics bool `json:"tenant_read_analytics,omitempty" yaml:"tenant_read_analytics,omitempty"`
 
 	// update tenant
-	UpdateTenant bool `json:"update_tenant,omitempty"`
+	UpdateTenant bool `json:"update_tenant,omitempty" yaml:"update_tenant,omitempty"`
 }
 
 // Validate validates this tenant permissions response

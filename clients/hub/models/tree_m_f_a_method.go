@@ -21,20 +21,20 @@ import (
 type TreeMFAMethod struct {
 
 	// auth
-	Auth *MFAAuth `json:"auth,omitempty"`
+	Auth *MFAAuth `json:"auth,omitempty" yaml:"auth,omitempty"`
 
 	// enabled
 	// Required: true
-	Enabled bool `json:"enabled"`
+	Enabled bool `json:"enabled" yaml:"enabled"`
 
 	// mechanism
 	// Example: email
 	// Required: true
 	// Enum: [sms email]
-	Mechanism string `json:"mechanism"`
+	Mechanism string `json:"mechanism" yaml:"mechanism"`
 
 	// settings
-	Settings *MFASettings `json:"settings,omitempty"`
+	Settings *MFASettings `json:"settings,omitempty" yaml:"settings,omitempty"`
 }
 
 // Validate validates this tree m f a method

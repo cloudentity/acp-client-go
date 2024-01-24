@@ -23,7 +23,7 @@ type StaticCredentials struct {
 	//
 	// The `users` parameter accepts a JSON of user data. You can add multiple users, define their
 	// usernames and passwords. You can also enrich their authentication context.
-	Users []*StaticUser `json:"users"`
+	Users []*StaticUser `json:"users" yaml:"users"`
 }
 
 // Validate validates this static credentials

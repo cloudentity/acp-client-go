@@ -22,10 +22,10 @@ type PayloadSettings struct {
 
 	// payload format
 	// Enum: [json jws]
-	Format string `json:"format,omitempty"`
+	Format string `json:"format,omitempty" yaml:"format,omitempty"`
 
 	// jws payload
-	JwsPayload *JWSPayloadSettings `json:"jws_payload,omitempty"`
+	JwsPayload *JWSPayloadSettings `json:"jws_payload,omitempty" yaml:"jws_payload,omitempty"`
 }
 
 // Validate validates this payload settings

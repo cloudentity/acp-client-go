@@ -21,13 +21,13 @@ type OBWriteDomesticConsentResponse5DataInitiation struct {
 
 	// creditor account
 	// Required: true
-	CreditorAccount *OBWriteDomesticConsentResponse5DataInitiationCreditorAccount `json:"CreditorAccount"`
+	CreditorAccount *OBWriteDomesticConsentResponse5DataInitiationCreditorAccount `json:"CreditorAccount" yaml:"CreditorAccount"`
 
 	// creditor postal address
-	CreditorPostalAddress *OBPostalAddress6 `json:"CreditorPostalAddress,omitempty"`
+	CreditorPostalAddress *OBPostalAddress6 `json:"CreditorPostalAddress,omitempty" yaml:"CreditorPostalAddress,omitempty"`
 
 	// debtor account
-	DebtorAccount *OBWriteDomesticConsentResponse5DataInitiationDebtorAccount `json:"DebtorAccount,omitempty"`
+	DebtorAccount *OBWriteDomesticConsentResponse5DataInitiationDebtorAccount `json:"DebtorAccount,omitempty" yaml:"DebtorAccount,omitempty"`
 
 	// Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain.
 	// Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction.
@@ -35,27 +35,27 @@ type OBWriteDomesticConsentResponse5DataInitiation struct {
 	// Required: true
 	// Max Length: 35
 	// Min Length: 1
-	EndToEndIdentification string `json:"EndToEndIdentification"`
+	EndToEndIdentification string `json:"EndToEndIdentification" yaml:"EndToEndIdentification"`
 
 	// instructed amount
 	// Required: true
-	InstructedAmount *OBWriteDomesticConsentResponse5DataInitiationInstructedAmount `json:"InstructedAmount"`
+	InstructedAmount *OBWriteDomesticConsentResponse5DataInitiationInstructedAmount `json:"InstructedAmount" yaml:"InstructedAmount"`
 
 	// Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction.
 	// Usage: the  instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction.
 	// Required: true
 	// Max Length: 35
 	// Min Length: 1
-	InstructionIdentification string `json:"InstructionIdentification"`
+	InstructionIdentification string `json:"InstructionIdentification" yaml:"InstructionIdentification"`
 
 	// local instrument
-	LocalInstrument OBExternalLocalInstrument1Code `json:"LocalInstrument,omitempty"`
+	LocalInstrument OBExternalLocalInstrument1Code `json:"LocalInstrument,omitempty" yaml:"LocalInstrument,omitempty"`
 
 	// remittance information
-	RemittanceInformation *OBWriteDomesticConsentResponse5DataInitiationRemittanceInformation `json:"RemittanceInformation,omitempty"`
+	RemittanceInformation *OBWriteDomesticConsentResponse5DataInitiationRemittanceInformation `json:"RemittanceInformation,omitempty" yaml:"RemittanceInformation,omitempty"`
 
 	// supplementary data
-	SupplementaryData OBSupplementaryData1 `json:"SupplementaryData,omitempty"`
+	SupplementaryData OBSupplementaryData1 `json:"SupplementaryData,omitempty" yaml:"SupplementaryData,omitempty"`
 }
 
 // Validate validates this o b write domestic consent response5 data initiation

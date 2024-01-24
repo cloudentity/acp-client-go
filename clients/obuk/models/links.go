@@ -22,27 +22,27 @@ type Links struct {
 	// first
 	// Format: uri
 	// Format: uri
-	First strfmt.URI `json:"First,omitempty"`
+	First strfmt.URI `json:"First,omitempty" yaml:"First,omitempty"`
 
 	// last
 	// Format: uri
 	// Format: uri
-	Last strfmt.URI `json:"Last,omitempty"`
+	Last strfmt.URI `json:"Last,omitempty" yaml:"Last,omitempty"`
 
 	// next
 	// Format: uri
 	// Format: uri
-	Next strfmt.URI `json:"Next,omitempty"`
+	Next strfmt.URI `json:"Next,omitempty" yaml:"Next,omitempty"`
 
 	// prev
 	// Format: uri
 	// Format: uri
-	Prev strfmt.URI `json:"Prev,omitempty"`
+	Prev strfmt.URI `json:"Prev,omitempty" yaml:"Prev,omitempty"`
 
 	// self
 	// Required: true
 	// Format: uri
-	Self strfmt.URI `json:"Self"`
+	Self strfmt.URI `json:"Self" yaml:"Self"`
 }
 
 // Validate validates this links

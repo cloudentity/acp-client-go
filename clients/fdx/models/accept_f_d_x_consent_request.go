@@ -20,13 +20,13 @@ import (
 type AcceptFDXConsentRequest struct {
 
 	// granted scopes
-	GrantedScopes GrantedScopes `json:"granted_scopes,omitempty"`
+	GrantedScopes GrantedScopes `json:"granted_scopes,omitempty" yaml:"granted_scopes,omitempty"`
 
 	// login state
-	LoginState string `json:"login_state,omitempty"`
+	LoginState string `json:"login_state,omitempty" yaml:"login_state,omitempty"`
 
 	// resources
-	Resources []*FDXResource `json:"resources"`
+	Resources []*FDXResource `json:"resources" yaml:"resources"`
 }
 
 // Validate validates this accept f d x consent request

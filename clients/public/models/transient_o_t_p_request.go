@@ -23,21 +23,21 @@ type TransientOTPRequest struct {
 	// address
 	// Example: 1235555609
 	// Required: true
-	Address string `json:"address"`
+	Address string `json:"address" yaml:"address"`
 
 	// mechanism
 	// Example: email
 	// Required: true
 	// Enum: [sms email]
-	Mechanism string `json:"mechanism"`
+	Mechanism string `json:"mechanism" yaml:"mechanism"`
 
 	// one-time password
 	// Example: 111111
-	Otp string `json:"otp,omitempty"`
+	Otp string `json:"otp,omitempty" yaml:"otp,omitempty"`
 
 	// Optional XSRF state
 	// Example: c44sqtco4g2legl15m2g
-	State string `json:"state,omitempty"`
+	State string `json:"state,omitempty" yaml:"state,omitempty"`
 }
 
 // Validate validates this transient o t p request

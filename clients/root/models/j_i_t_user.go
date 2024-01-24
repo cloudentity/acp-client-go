@@ -20,13 +20,13 @@ import (
 type JITUser struct {
 
 	// addresses
-	Addresses []*JITUserAddress `json:"addresses"`
+	Addresses []*JITUserAddress `json:"addresses" yaml:"addresses"`
 
 	// attributes mapping
-	AttributesMapping UserAttributesMapping `json:"attributes_mapping,omitempty"`
+	AttributesMapping UserAttributesMapping `json:"attributes_mapping,omitempty" yaml:"attributes_mapping,omitempty"`
 
 	// identifiers
-	Identifiers []*JITUserIdentifier `json:"identifiers"`
+	Identifiers []*JITUserIdentifier `json:"identifiers" yaml:"identifiers"`
 }
 
 // Validate validates this j i t user

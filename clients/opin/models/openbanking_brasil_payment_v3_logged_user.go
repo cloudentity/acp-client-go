@@ -23,7 +23,7 @@ type OpenbankingBrasilPaymentV3LoggedUser struct {
 
 	// document
 	// Required: true
-	Document *OpenbankingBrasilPaymentV3Document1 `json:"document"`
+	Document *OpenbankingBrasilPaymentV3Document1 `json:"document" yaml:"document"`
 }
 
 // Validate validates this openbanking brasil payment v3 logged user

@@ -20,7 +20,7 @@ import (
 type ServersBindingsResponse struct {
 
 	// bindings
-	Bindings []*ServerBindingResponse `json:"bindings"`
+	Bindings []*ServerBindingResponse `json:"bindings" yaml:"bindings"`
 }
 
 // Validate validates this servers bindings response

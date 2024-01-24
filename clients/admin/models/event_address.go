@@ -18,7 +18,7 @@ import (
 type EventAddress struct {
 
 	// address value
-	Value string `json:"value,omitempty"`
+	Value string `json:"value,omitempty" yaml:"value,omitempty"`
 }
 
 // Validate validates this event address

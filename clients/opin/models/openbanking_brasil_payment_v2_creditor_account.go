@@ -23,7 +23,7 @@ type OpenbankingBrasilPaymentV2CreditorAccount struct {
 
 	// account type
 	// Required: true
-	AccountType *OpenbankingBrasilPaymentV2EnumAccountPaymentsType `json:"accountType"`
+	AccountType *OpenbankingBrasilPaymentV2EnumAccountPaymentsType `json:"accountType" yaml:"accountType"`
 
 	// Deve ser preenchido com o ISPB (Identificador do Sistema de Pagamentos Brasileiros) do participante do SPI (Sistema de pagamentos instantneos) somente com nmeros.
 	// Example: 12345678
@@ -31,7 +31,7 @@ type OpenbankingBrasilPaymentV2CreditorAccount struct {
 	// Max Length: 8
 	// Min Length: 8
 	// Pattern: ^[0-9]{8}$
-	Ispb string `json:"ispb"`
+	Ispb string `json:"ispb" yaml:"ispb"`
 
 	// Cdigo da Agncia emissora da conta sem dgito.
 	// (Agncia  a dependncia destinada ao atendimento aos clientes, ao pblico em geral e aos associados de cooperativas de crdito,
@@ -41,7 +41,7 @@ type OpenbankingBrasilPaymentV2CreditorAccount struct {
 	// Max Length: 4
 	// Min Length: 1
 	// Pattern: ^[0-9]{1,4}$
-	Issuer string `json:"issuer,omitempty"`
+	Issuer string `json:"issuer,omitempty" yaml:"issuer,omitempty"`
 
 	// Deve ser preenchido com o nmero da conta do usurio recebedor, com dgito verificador (se este existir),
 	// se houver valor alfanumrico, este deve ser convertido para 0.
@@ -50,7 +50,7 @@ type OpenbankingBrasilPaymentV2CreditorAccount struct {
 	// Max Length: 20
 	// Min Length: 1
 	// Pattern: ^[0-9]{1,20}$
-	Number string `json:"number"`
+	Number string `json:"number" yaml:"number"`
 }
 
 // Validate validates this openbanking brasil payment v2 creditor account

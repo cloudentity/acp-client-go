@@ -20,35 +20,35 @@ import (
 type OBWriteFileConsentResponse4DataInitiation struct {
 
 	// Total of all individual amounts included in the group, irrespective of currencies.
-	ControlSum float64 `json:"ControlSum,omitempty"`
+	ControlSum float64 `json:"ControlSum,omitempty" yaml:"ControlSum,omitempty"`
 
 	// debtor account
-	DebtorAccount *OBWriteFileConsentResponse4DataInitiationDebtorAccount `json:"DebtorAccount,omitempty"`
+	DebtorAccount *OBWriteFileConsentResponse4DataInitiationDebtorAccount `json:"DebtorAccount,omitempty" yaml:"DebtorAccount,omitempty"`
 
 	// A base64 encoding of a SHA256 hash of the file to be uploaded.
 	// Required: true
 	// Max Length: 44
 	// Min Length: 1
-	FileHash string `json:"FileHash"`
+	FileHash string `json:"FileHash" yaml:"FileHash"`
 
 	// Reference for the file.
 	// Max Length: 40
 	// Min Length: 1
-	FileReference string `json:"FileReference,omitempty"`
+	FileReference string `json:"FileReference,omitempty" yaml:"FileReference,omitempty"`
 
 	// Specifies the payment file type.
 	// Required: true
-	FileType string `json:"FileType"`
+	FileType string `json:"FileType" yaml:"FileType"`
 
 	// local instrument
-	LocalInstrument OBExternalLocalInstrument1Code `json:"LocalInstrument,omitempty"`
+	LocalInstrument OBExternalLocalInstrument1Code `json:"LocalInstrument,omitempty" yaml:"LocalInstrument,omitempty"`
 
 	// Number of individual transactions contained in the payment information group.
 	// Pattern: [0-9]{1,15}
-	NumberOfTransactions string `json:"NumberOfTransactions,omitempty"`
+	NumberOfTransactions string `json:"NumberOfTransactions,omitempty" yaml:"NumberOfTransactions,omitempty"`
 
 	// remittance information
-	RemittanceInformation *OBWriteFileConsentResponse4DataInitiationRemittanceInformation `json:"RemittanceInformation,omitempty"`
+	RemittanceInformation *OBWriteFileConsentResponse4DataInitiationRemittanceInformation `json:"RemittanceInformation,omitempty" yaml:"RemittanceInformation,omitempty"`
 
 	// Date at which the initiating party requests the clearing agent to process the payment.
 	// Usage: This is the date on which the debtor's account is to be debited.All dates in the JSON payloads are represented in ISO 8601 date-time format.
@@ -56,10 +56,10 @@ type OBWriteFileConsentResponse4DataInitiation struct {
 	// 2017-04-05T10:43:07+00:00
 	// Format: date-time
 	// Format: date-time
-	RequestedExecutionDateTime strfmt.DateTime `json:"RequestedExecutionDateTime,omitempty"`
+	RequestedExecutionDateTime strfmt.DateTime `json:"RequestedExecutionDateTime,omitempty" yaml:"RequestedExecutionDateTime,omitempty"`
 
 	// supplementary data
-	SupplementaryData OBSupplementaryData1 `json:"SupplementaryData,omitempty"`
+	SupplementaryData OBSupplementaryData1 `json:"SupplementaryData,omitempty" yaml:"SupplementaryData,omitempty"`
 }
 
 // Validate validates this o b write file consent response4 data initiation

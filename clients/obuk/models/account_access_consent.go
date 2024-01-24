@@ -24,12 +24,12 @@ type AccountAccessConsent struct {
 	// Required: true
 	// Max Length: 128
 	// Min Length: 1
-	ConsentID string `json:"ConsentId"`
+	ConsentID string `json:"ConsentId" yaml:"ConsentId"`
 
 	// creation date time
 	// Required: true
 	// Format: date-time
-	CreationDateTime *CreationDateTime `json:"CreationDateTime"`
+	CreationDateTime *CreationDateTime `json:"CreationDateTime" yaml:"CreationDateTime"`
 
 	// Specified date and time the permissions will expire.
 	// If this is not populated, the permissions will be open ended.All dates in the JSON payloads are represented in ISO 8601 date-time format.
@@ -37,22 +37,22 @@ type AccountAccessConsent struct {
 	// 2017-04-05T10:43:07+00:00
 	// Format: date-time
 	// Format: date-time
-	ExpirationDateTime strfmt.DateTime `json:"ExpirationDateTime,omitempty"`
+	ExpirationDateTime strfmt.DateTime `json:"ExpirationDateTime,omitempty" yaml:"ExpirationDateTime,omitempty"`
 
 	// permissions
 	// Required: true
 	// Min Items: 1
-	Permissions []string `json:"Permissions"`
+	Permissions []string `json:"Permissions" yaml:"Permissions"`
 
 	// Specifies the status of consent resource in code form.
 	// Required: true
 	// Enum: [Authorised AwaitingAuthorisation Rejected Revoked]
-	Status string `json:"Status"`
+	Status string `json:"Status" yaml:"Status"`
 
 	// status update date time
 	// Required: true
 	// Format: date-time
-	StatusUpdateDateTime *StatusUpdateDateTime `json:"StatusUpdateDateTime"`
+	StatusUpdateDateTime *StatusUpdateDateTime `json:"StatusUpdateDateTime" yaml:"StatusUpdateDateTime"`
 
 	// Specified start date and time for the transaction query period.
 	// If this is not populated, the start date will be open ended, and data will be returned from the earliest available transaction.All dates in the JSON payloads are represented in ISO 8601 date-time format.
@@ -60,7 +60,7 @@ type AccountAccessConsent struct {
 	// 2017-04-05T10:43:07+00:00
 	// Format: date-time
 	// Format: date-time
-	TransactionFromDateTime strfmt.DateTime `json:"TransactionFromDateTime,omitempty"`
+	TransactionFromDateTime strfmt.DateTime `json:"TransactionFromDateTime,omitempty" yaml:"TransactionFromDateTime,omitempty"`
 
 	// Specified end date and time for the transaction query period.
 	// If this is not populated, the end date will be open ended, and data will be returned to the latest available transaction.All dates in the JSON payloads are represented in ISO 8601 date-time format.
@@ -68,7 +68,7 @@ type AccountAccessConsent struct {
 	// 2017-04-05T10:43:07+00:00
 	// Format: date-time
 	// Format: date-time
-	TransactionToDateTime strfmt.DateTime `json:"TransactionToDateTime,omitempty"`
+	TransactionToDateTime strfmt.DateTime `json:"TransactionToDateTime,omitempty" yaml:"TransactionToDateTime,omitempty"`
 }
 
 // Validate validates this account access consent

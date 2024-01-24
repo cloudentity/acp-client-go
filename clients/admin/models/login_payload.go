@@ -19,7 +19,7 @@ import (
 type LoginPayload struct {
 
 	// idp
-	Idp *IDPPayload `json:"idp,omitempty"`
+	Idp *IDPPayload `json:"idp,omitempty" yaml:"idp,omitempty"`
 }
 
 // Validate validates this login payload

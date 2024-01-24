@@ -18,7 +18,7 @@ import (
 type IDPSSOSettings struct {
 
 	// Opt this IDP out of workspace SSO enablement
-	Disabled bool `json:"disabled,omitempty"`
+	Disabled bool `json:"disabled,omitempty" yaml:"disabled,omitempty"`
 }
 
 // Validate validates this ID p s s o settings

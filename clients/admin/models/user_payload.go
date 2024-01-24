@@ -22,32 +22,32 @@ import (
 type UserPayload struct {
 
 	// address
-	Address string `json:"address,omitempty"`
+	Address string `json:"address,omitempty" yaml:"address,omitempty"`
 
 	// identifier
-	Identifier string `json:"identifier,omitempty"`
+	Identifier string `json:"identifier,omitempty" yaml:"identifier,omitempty"`
 
 	// identifiers
-	Identifiers []string `json:"identifiers"`
+	Identifiers []string `json:"identifiers" yaml:"identifiers"`
 
 	// payload
-	Payload map[string]interface{} `json:"payload,omitempty"`
+	Payload map[string]interface{} `json:"payload,omitempty" yaml:"payload,omitempty"`
 
 	// status
 	// Enum: [active inactive deleted new]
-	Status string `json:"status,omitempty"`
+	Status string `json:"status,omitempty" yaml:"status,omitempty"`
 
 	// user update details
-	UpdateDetails string `json:"update_details,omitempty"`
+	UpdateDetails string `json:"update_details,omitempty" yaml:"update_details,omitempty"`
 
 	// user addresses
-	UserAddresses []*EventAddress `json:"user_addresses"`
+	UserAddresses []*EventAddress `json:"user_addresses" yaml:"user_addresses"`
 
 	// user ID
-	UserID string `json:"user_id,omitempty"`
+	UserID string `json:"user_id,omitempty" yaml:"user_id,omitempty"`
 
 	// user identifiers
-	UserIdentifiers []*EventIdentifier `json:"user_identifiers"`
+	UserIdentifiers []*EventIdentifier `json:"user_identifiers" yaml:"user_identifiers"`
 }
 
 // Validate validates this user payload

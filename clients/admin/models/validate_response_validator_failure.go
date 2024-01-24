@@ -18,13 +18,13 @@ import (
 type ValidateResponseValidatorFailure struct {
 
 	// details
-	Details string `json:"details,omitempty"`
+	Details string `json:"details,omitempty" yaml:"details,omitempty"`
 
 	// message
-	Message string `json:"message,omitempty"`
+	Message string `json:"message,omitempty" yaml:"message,omitempty"`
 
 	// validator
-	Validator string `json:"validator,omitempty"`
+	Validator string `json:"validator,omitempty" yaml:"validator,omitempty"`
 }
 
 // Validate validates this validate response validator failure

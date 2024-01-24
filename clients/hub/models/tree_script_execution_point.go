@@ -19,7 +19,7 @@ type TreeScriptExecutionPoint struct {
 
 	// Optional script ID
 	// Example: 1
-	ScriptID string `json:"script_id,omitempty"`
+	ScriptID string `json:"script_id,omitempty" yaml:"script_id,omitempty"`
 }
 
 // Validate validates this tree script execution point

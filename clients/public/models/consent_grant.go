@@ -21,31 +21,31 @@ type ConsentGrant struct {
 
 	// consent grant id
 	// Example: 27fa83a8-d0a6-48da-8529-42105bfa0ede
-	ConsentGrantActID string `json:"consent_grant_act_id,omitempty"`
+	ConsentGrantActID string `json:"consent_grant_act_id,omitempty" yaml:"consent_grant_act_id,omitempty"`
 
 	// consent id
 	// Example: 1
-	ConsentID string `json:"consent_id,omitempty"`
+	ConsentID string `json:"consent_id,omitempty" yaml:"consent_id,omitempty"`
 
 	// given at timestamp
 	// Format: date-time
-	GivenAt strfmt.DateTime `json:"given_at,omitempty"`
+	GivenAt strfmt.DateTime `json:"given_at,omitempty" yaml:"given_at,omitempty"`
 
 	// grant type, one of: implicit, explicit
 	// Example: implicit
-	GrantType string `json:"grant_type,omitempty"`
+	GrantType string `json:"grant_type,omitempty" yaml:"grant_type,omitempty"`
 
 	// subject
 	// Example: peter
-	Subject string `json:"subject,omitempty"`
+	Subject string `json:"subject,omitempty" yaml:"subject,omitempty"`
 
 	// tenant id
 	// Example: default
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
 	// version
 	// Example: 1
-	Version int64 `json:"version,omitempty"`
+	Version int64 `json:"version,omitempty" yaml:"version,omitempty"`
 }
 
 // Validate validates this consent grant

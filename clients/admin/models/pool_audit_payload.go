@@ -19,19 +19,19 @@ import (
 type PoolAuditPayload struct {
 
 	// authentication mechanisms
-	AuthenticationMechanisms AuthenticationMechanisms `json:"authentication_mechanisms,omitempty"`
+	AuthenticationMechanisms AuthenticationMechanisms `json:"authentication_mechanisms,omitempty" yaml:"authentication_mechanisms,omitempty"`
 
 	// description
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
 	// name
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// pool id
-	PoolID string `json:"pool_id,omitempty"`
+	PoolID string `json:"pool_id,omitempty" yaml:"pool_id,omitempty"`
 
 	// public registration allowed
-	PublicRegistrationAllowed bool `json:"public_registration_allowed,omitempty"`
+	PublicRegistrationAllowed bool `json:"public_registration_allowed,omitempty" yaml:"public_registration_allowed,omitempty"`
 }
 
 // Validate validates this pool audit payload

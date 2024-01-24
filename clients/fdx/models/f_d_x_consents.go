@@ -20,7 +20,7 @@ import (
 type FDXConsents struct {
 
 	// consents
-	Consents []*FDXConsent `json:"consents"`
+	Consents []*FDXConsent `json:"consents" yaml:"consents"`
 }
 
 // Validate validates this f d x consents

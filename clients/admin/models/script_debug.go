@@ -21,24 +21,24 @@ type ScriptDebug struct {
 
 	// ID of the authorization server (workspace) where the script is created
 	// Required: true
-	AuthorizationServerID string `json:"authorization_server_id"`
+	AuthorizationServerID string `json:"authorization_server_id" yaml:"authorization_server_id"`
 
 	// Expiration interval
 	// Example: 60s
 	// Format: duration
-	Duration strfmt.Duration `json:"duration,omitempty"`
+	Duration strfmt.Duration `json:"duration,omitempty" yaml:"duration,omitempty"`
 
 	// ID of the script to be debugged
 	// Required: true
-	ScriptID string `json:"script_id"`
+	ScriptID string `json:"script_id" yaml:"script_id"`
 
 	// Time that script debugging was enabled
 	// Format: date-time
-	StartedAt strfmt.DateTime `json:"started_at,omitempty"`
+	StartedAt strfmt.DateTime `json:"started_at,omitempty" yaml:"started_at,omitempty"`
 
 	// ID of the tenant where the script is created
 	// Required: true
-	TenantID string `json:"tenant_id"`
+	TenantID string `json:"tenant_id" yaml:"tenant_id"`
 }
 
 // Validate validates this script debug

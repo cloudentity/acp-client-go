@@ -21,112 +21,112 @@ import (
 type SupportedJSONSchema struct {
 
 	// additional properties
-	AdditionalProperties bool `json:"additionalProperties,omitempty"`
+	AdditionalProperties bool `json:"additionalProperties,omitempty" yaml:"additionalProperties,omitempty"`
 
 	// all of
-	AllOf []*SupportedJSONSchema `json:"allOf"`
+	AllOf []*SupportedJSONSchema `json:"allOf" yaml:"allOf"`
 
 	// any of
-	AnyOf []*SupportedJSONSchema `json:"anyOf"`
+	AnyOf []*SupportedJSONSchema `json:"anyOf" yaml:"anyOf"`
 
 	// const
-	Const string `json:"const,omitempty"`
+	Const string `json:"const,omitempty" yaml:"const,omitempty"`
 
 	// contains
-	Contains *SupportedJSONSchema `json:"contains,omitempty"`
+	Contains *SupportedJSONSchema `json:"contains,omitempty" yaml:"contains,omitempty"`
 
 	// dependent required
-	DependentRequired map[string][]string `json:"dependentRequired,omitempty"`
+	DependentRequired map[string][]string `json:"dependentRequired,omitempty" yaml:"dependentRequired,omitempty"`
 
 	// dependent schemas
-	DependentSchemas map[string]SupportedJSONSchema `json:"dependentSchemas,omitempty"`
+	DependentSchemas map[string]SupportedJSONSchema `json:"dependentSchemas,omitempty" yaml:"dependentSchemas,omitempty"`
 
 	// description
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
 	// else
-	Else *SupportedJSONSchema `json:"else,omitempty"`
+	Else *SupportedJSONSchema `json:"else,omitempty" yaml:"else,omitempty"`
 
 	// enum
-	Enum []string `json:"enum"`
+	Enum []string `json:"enum" yaml:"enum"`
 
 	// exclusive maximum
-	ExclusiveMaximum int64 `json:"exclusiveMaximum,omitempty"`
+	ExclusiveMaximum int64 `json:"exclusiveMaximum,omitempty" yaml:"exclusiveMaximum,omitempty"`
 
 	// exclusive minimum
-	ExclusiveMinimum int64 `json:"exclusiveMinimum,omitempty"`
+	ExclusiveMinimum int64 `json:"exclusiveMinimum,omitempty" yaml:"exclusiveMinimum,omitempty"`
 
 	// hidden
-	Hidden bool `json:"hidden,omitempty"`
+	Hidden bool `json:"hidden,omitempty" yaml:"hidden,omitempty"`
 
 	// if
-	If *SupportedJSONSchema `json:"if,omitempty"`
+	If *SupportedJSONSchema `json:"if,omitempty" yaml:"if,omitempty"`
 
 	// items
-	Items *SupportedJSONSchema `json:"items,omitempty"`
+	Items *SupportedJSONSchema `json:"items,omitempty" yaml:"items,omitempty"`
 
 	// max contains
-	MaxContains int64 `json:"maxContains,omitempty"`
+	MaxContains int64 `json:"maxContains,omitempty" yaml:"maxContains,omitempty"`
 
 	// arrays
-	MaxItems int64 `json:"maxItems,omitempty"`
+	MaxItems int64 `json:"maxItems,omitempty" yaml:"maxItems,omitempty"`
 
 	// strings
-	MaxLength int64 `json:"maxLength,omitempty"`
+	MaxLength int64 `json:"maxLength,omitempty" yaml:"maxLength,omitempty"`
 
 	// objects
-	MaxProperties int64 `json:"maxProperties,omitempty"`
+	MaxProperties int64 `json:"maxProperties,omitempty" yaml:"maxProperties,omitempty"`
 
 	// maximum
-	Maximum int64 `json:"maximum,omitempty"`
+	Maximum int64 `json:"maximum,omitempty" yaml:"maximum,omitempty"`
 
 	// min contains
-	MinContains int64 `json:"minContains,omitempty"`
+	MinContains int64 `json:"minContains,omitempty" yaml:"minContains,omitempty"`
 
 	// min items
-	MinItems int64 `json:"minItems,omitempty"`
+	MinItems int64 `json:"minItems,omitempty" yaml:"minItems,omitempty"`
 
 	// min length
-	MinLength int64 `json:"minLength,omitempty"`
+	MinLength int64 `json:"minLength,omitempty" yaml:"minLength,omitempty"`
 
 	// min properties
-	MinProperties int64 `json:"minProperties,omitempty"`
+	MinProperties int64 `json:"minProperties,omitempty" yaml:"minProperties,omitempty"`
 
 	// minimum
-	Minimum int64 `json:"minimum,omitempty"`
+	Minimum int64 `json:"minimum,omitempty" yaml:"minimum,omitempty"`
 
 	// numeric
-	MultipleOf int64 `json:"multipleOf,omitempty"`
+	MultipleOf int64 `json:"multipleOf,omitempty" yaml:"multipleOf,omitempty"`
 
 	// not
-	Not *SupportedJSONSchema `json:"not,omitempty"`
+	Not *SupportedJSONSchema `json:"not,omitempty" yaml:"not,omitempty"`
 
 	// one of
-	OneOf []*SupportedJSONSchema `json:"oneOf"`
+	OneOf []*SupportedJSONSchema `json:"oneOf" yaml:"oneOf"`
 
 	// pattern
-	Pattern string `json:"pattern,omitempty"`
+	Pattern string `json:"pattern,omitempty" yaml:"pattern,omitempty"`
 
 	// pattern properties
-	PatternProperties map[string]SupportedJSONSchema `json:"patternProperties,omitempty"`
+	PatternProperties map[string]SupportedJSONSchema `json:"patternProperties,omitempty" yaml:"patternProperties,omitempty"`
 
 	// properties
-	Properties map[string]SupportedJSONSchema `json:"properties,omitempty"`
+	Properties map[string]SupportedJSONSchema `json:"properties,omitempty" yaml:"properties,omitempty"`
 
 	// property names
-	PropertyNames *SupportedJSONSchema `json:"propertyNames,omitempty"`
+	PropertyNames *SupportedJSONSchema `json:"propertyNames,omitempty" yaml:"propertyNames,omitempty"`
 
 	// required
-	Required []string `json:"required"`
+	Required []string `json:"required" yaml:"required"`
 
 	// then
-	Then *SupportedJSONSchema `json:"then,omitempty"`
+	Then *SupportedJSONSchema `json:"then,omitempty" yaml:"then,omitempty"`
 
 	// any
-	Type string `json:"type,omitempty"`
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 
 	// unique items
-	UniqueItems bool `json:"uniqueItems,omitempty"`
+	UniqueItems bool `json:"uniqueItems,omitempty" yaml:"uniqueItems,omitempty"`
 }
 
 // Validate validates this supported JSON schema

@@ -23,14 +23,14 @@ type OTPConfiguration struct {
 	// Example: 5m
 	// Required: true
 	// Format: duration
-	Expiration strfmt.Duration `json:"expiration"`
+	Expiration strfmt.Duration `json:"expiration" yaml:"expiration"`
 
 	// The number of characters for one-time code.
 	// Example: 6
 	// Required: true
 	// Maximum: 10
 	// Minimum: 4
-	Length int64 `json:"length"`
+	Length int64 `json:"length" yaml:"length"`
 }
 
 // Validate validates this o t p configuration

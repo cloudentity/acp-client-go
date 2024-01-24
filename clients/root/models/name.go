@@ -22,7 +22,7 @@ import (
 type Name struct {
 
 	// space
-	Space string `json:"Space,omitempty"`
+	Space string `json:"Space,omitempty" yaml:"Space,omitempty"`
 }
 
 // Validate validates this name

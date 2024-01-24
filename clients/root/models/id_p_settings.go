@@ -19,43 +19,43 @@ import (
 type IDPSettings struct {
 
 	// auth0
-	Auth0 *Auth0Settings `json:"auth0,omitempty"`
+	Auth0 *Auth0Settings `json:"auth0,omitempty" yaml:"auth0,omitempty"`
 
 	// azure
-	Azure *AzureSettings `json:"azure,omitempty"`
+	Azure *AzureSettings `json:"azure,omitempty" yaml:"azure,omitempty"`
 
 	// azureb2c
-	Azureb2c *AzureB2CSettings `json:"azureb2c,omitempty"`
+	Azureb2c *AzureB2CSettings `json:"azureb2c,omitempty" yaml:"azureb2c,omitempty"`
 
 	// cognito
-	Cognito *CognitoSettings `json:"cognito,omitempty"`
+	Cognito *CognitoSettings `json:"cognito,omitempty" yaml:"cognito,omitempty"`
 
 	// custom
-	Custom *CustomSettings `json:"custom,omitempty"`
+	Custom *CustomSettings `json:"custom,omitempty" yaml:"custom,omitempty"`
 
 	// external
-	External *ExternalSettings `json:"external,omitempty"`
+	External *ExternalSettings `json:"external,omitempty" yaml:"external,omitempty"`
 
 	// github
-	Github *GithubSettings `json:"github,omitempty"`
+	Github *GithubSettings `json:"github,omitempty" yaml:"github,omitempty"`
 
 	// google
-	Google *GoogleSettings `json:"google,omitempty"`
+	Google *GoogleSettings `json:"google,omitempty" yaml:"google,omitempty"`
 
 	// intelli trust
-	IntelliTrust *IntelliTrustSettings `json:"intelli_trust,omitempty"`
+	IntelliTrust *IntelliTrustSettings `json:"intelli_trust,omitempty" yaml:"intelli_trust,omitempty"`
 
 	// oidc
-	Oidc *OIDCSettings `json:"oidc,omitempty"`
+	Oidc *OIDCSettings `json:"oidc,omitempty" yaml:"oidc,omitempty"`
 
 	// okta
-	Okta *OktaSettings `json:"okta,omitempty"`
+	Okta *OktaSettings `json:"okta,omitempty" yaml:"okta,omitempty"`
 
 	// saml
-	Saml *SAMLSettings `json:"saml,omitempty"`
+	Saml *SAMLSettings `json:"saml,omitempty" yaml:"saml,omitempty"`
 
 	// static
-	Static *StaticSettings `json:"static,omitempty"`
+	Static *StaticSettings `json:"static,omitempty" yaml:"static,omitempty"`
 }
 
 // Validate validates this ID p settings

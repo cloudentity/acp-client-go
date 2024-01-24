@@ -20,7 +20,7 @@ import (
 type GatewayRequestEvents struct {
 
 	// events
-	Events []*GatewayRequestEvent `json:"events"`
+	Events []*GatewayRequestEvent `json:"events" yaml:"events"`
 }
 
 // Validate validates this gateway request events

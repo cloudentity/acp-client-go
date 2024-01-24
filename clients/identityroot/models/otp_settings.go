@@ -19,19 +19,19 @@ import (
 type OtpSettings struct {
 
 	// activation
-	Activation *OtpConfig `json:"activation,omitempty"`
+	Activation *OtpConfig `json:"activation,omitempty" yaml:"activation,omitempty"`
 
 	// authentication
-	Authentication *OtpConfig `json:"authentication,omitempty"`
+	Authentication *OtpConfig `json:"authentication,omitempty" yaml:"authentication,omitempty"`
 
 	// challenge
-	Challenge *OtpConfig `json:"challenge,omitempty"`
+	Challenge *OtpConfig `json:"challenge,omitempty" yaml:"challenge,omitempty"`
 
 	// reset password
-	ResetPassword *OtpConfig `json:"reset_password,omitempty"`
+	ResetPassword *OtpConfig `json:"reset_password,omitempty" yaml:"reset_password,omitempty"`
 
 	// verify address
-	VerifyAddress *OtpConfig `json:"verify_address,omitempty"`
+	VerifyAddress *OtpConfig `json:"verify_address,omitempty" yaml:"verify_address,omitempty"`
 }
 
 // Validate validates this otp settings

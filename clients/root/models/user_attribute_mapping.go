@@ -41,10 +41,10 @@ type UserAttributeMapping struct {
 	//
 	// single values are converted to slices if required. Each element is weakly decoded.
 	// Example: false
-	AllowWeakDecoding bool `json:"allow_weak_decoding,omitempty"`
+	AllowWeakDecoding bool `json:"allow_weak_decoding,omitempty" yaml:"allow_weak_decoding,omitempty"`
 
 	// mode
-	Mode MappingMode `json:"mode,omitempty"`
+	Mode MappingMode `json:"mode,omitempty" yaml:"mode,omitempty"`
 
 	// Source attribute.
 	//
@@ -52,10 +52,10 @@ type UserAttributeMapping struct {
 	// Use '.' to copy everything.
 	// Required for dynamic mode.
 	// Example: access_token
-	Source string `json:"source,omitempty"`
+	Source string `json:"source,omitempty" yaml:"source,omitempty"`
 
 	// When static mode is used, this field contains a value that will be populated into a target attribute.
-	Static interface{} `json:"static,omitempty"`
+	Static interface{} `json:"static,omitempty" yaml:"static,omitempty"`
 
 	// Target attribute.
 	//
@@ -63,7 +63,7 @@ type UserAttributeMapping struct {
 	// Use '.' to paste to the context top level object.
 	// Example: .
 	// Required: true
-	Target string `json:"target"`
+	Target string `json:"target" yaml:"target"`
 
 	// Type of the target attribute
 	//
@@ -71,10 +71,10 @@ type UserAttributeMapping struct {
 	// `number`, `string`, `bool`, `number_array`, `string_array`, `bool_array`, `any`.
 	// Example: string
 	// Required: true
-	Type string `json:"type"`
+	Type string `json:"type" yaml:"type"`
 
 	// update on sign in
-	UpdateOnSignIn bool `json:"update_on_sign_in,omitempty"`
+	UpdateOnSignIn bool `json:"update_on_sign_in,omitempty" yaml:"update_on_sign_in,omitempty"`
 }
 
 // Validate validates this user attribute mapping

@@ -23,59 +23,59 @@ import (
 type SPSSODescriptor struct {
 
 	// artifact resolution services
-	ArtifactResolutionServices []*IndexedEndpoint `json:"ArtifactResolutionServices"`
+	ArtifactResolutionServices []*IndexedEndpoint `json:"ArtifactResolutionServices" yaml:"ArtifactResolutionServices"`
 
 	// assertion consumer services
-	AssertionConsumerServices []*IndexedEndpoint `json:"AssertionConsumerServices"`
+	AssertionConsumerServices []*IndexedEndpoint `json:"AssertionConsumerServices" yaml:"AssertionConsumerServices"`
 
 	// attribute consuming services
-	AttributeConsumingServices []*AttributeConsumingService `json:"AttributeConsumingServices"`
+	AttributeConsumingServices []*AttributeConsumingService `json:"AttributeConsumingServices" yaml:"AttributeConsumingServices"`
 
 	// authn requests signed
-	AuthnRequestsSigned bool `json:"AuthnRequestsSigned,omitempty"`
+	AuthnRequestsSigned bool `json:"AuthnRequestsSigned,omitempty" yaml:"AuthnRequestsSigned,omitempty"`
 
 	// cache duration
-	CacheDuration Duration `json:"CacheDuration,omitempty"`
+	CacheDuration Duration `json:"CacheDuration,omitempty" yaml:"CacheDuration,omitempty"`
 
 	// contact people
-	ContactPeople []*ContactPerson `json:"ContactPeople"`
+	ContactPeople []*ContactPerson `json:"ContactPeople" yaml:"ContactPeople"`
 
 	// error URL
-	ErrorURL string `json:"ErrorURL,omitempty"`
+	ErrorURL string `json:"ErrorURL,omitempty" yaml:"ErrorURL,omitempty"`
 
 	// ID
-	ID string `json:"ID,omitempty"`
+	ID string `json:"ID,omitempty" yaml:"ID,omitempty"`
 
 	// key descriptors
-	KeyDescriptors []*KeyDescriptor `json:"KeyDescriptors"`
+	KeyDescriptors []*KeyDescriptor `json:"KeyDescriptors" yaml:"KeyDescriptors"`
 
 	// manage name ID services
-	ManageNameIDServices []*Endpoint `json:"ManageNameIDServices"`
+	ManageNameIDServices []*Endpoint `json:"ManageNameIDServices" yaml:"ManageNameIDServices"`
 
 	// name ID formats
-	NameIDFormats []NameIDFormat `json:"NameIDFormats"`
+	NameIDFormats []NameIDFormat `json:"NameIDFormats" yaml:"NameIDFormats"`
 
 	// organization
-	Organization *Organization `json:"Organization,omitempty"`
+	Organization *Organization `json:"Organization,omitempty" yaml:"Organization,omitempty"`
 
 	// protocol support enumeration
-	ProtocolSupportEnumeration string `json:"ProtocolSupportEnumeration,omitempty"`
+	ProtocolSupportEnumeration string `json:"ProtocolSupportEnumeration,omitempty" yaml:"ProtocolSupportEnumeration,omitempty"`
 
 	// signature
-	Signature *Element `json:"Signature,omitempty"`
+	Signature *Element `json:"Signature,omitempty" yaml:"Signature,omitempty"`
 
 	// single logout services
-	SingleLogoutServices []*Endpoint `json:"SingleLogoutServices"`
+	SingleLogoutServices []*Endpoint `json:"SingleLogoutServices" yaml:"SingleLogoutServices"`
 
 	// valid until
 	// Format: date-time
-	ValidUntil strfmt.DateTime `json:"ValidUntil,omitempty"`
+	ValidUntil strfmt.DateTime `json:"ValidUntil,omitempty" yaml:"ValidUntil,omitempty"`
 
 	// want assertions signed
-	WantAssertionsSigned bool `json:"WantAssertionsSigned,omitempty"`
+	WantAssertionsSigned bool `json:"WantAssertionsSigned,omitempty" yaml:"WantAssertionsSigned,omitempty"`
 
 	// XML name
-	XMLName *Name `json:"XMLName,omitempty"`
+	XMLName *Name `json:"XMLName,omitempty" yaml:"XMLName,omitempty"`
 }
 
 // Validate validates this s p s s o descriptor

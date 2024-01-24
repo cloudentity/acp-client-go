@@ -22,7 +22,7 @@ type SetPasswordStateRequest struct {
 
 	// state
 	// Enum: [valid must_be_reset must_be_changed]
-	State string `json:"state,omitempty"`
+	State string `json:"state,omitempty" yaml:"state,omitempty"`
 }
 
 // Validate validates this set password state request

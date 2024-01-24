@@ -20,7 +20,7 @@ import (
 type IDPsResponse struct {
 
 	// idps
-	Idps []*IDPBase `json:"idps"`
+	Idps []*IDPBase `json:"idps" yaml:"idps"`
 }
 
 // Validate validates this ID ps response

@@ -21,11 +21,11 @@ type AccountAccessConsentRequest struct {
 
 	// data
 	// Required: true
-	Data *OBReadConsent1Data `json:"Data"`
+	Data *OBReadConsent1Data `json:"Data" yaml:"Data"`
 
 	// risk
 	// Required: true
-	Risk OBRisk2 `json:"Risk"`
+	Risk OBRisk2 `json:"Risk" yaml:"Risk"`
 }
 
 // Validate validates this account access consent request

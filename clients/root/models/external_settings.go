@@ -19,7 +19,7 @@ type ExternalSettings struct {
 
 	// URL to your external datastore service
 	// Example: https://example.com/
-	URL string `json:"url,omitempty"`
+	URL string `json:"url,omitempty" yaml:"url,omitempty"`
 }
 
 // Validate validates this external settings

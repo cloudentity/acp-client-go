@@ -20,14 +20,14 @@ import (
 type PrivateKeyJWTCredentials struct {
 
 	// Algorithm used to sign the client_assertion (see JWS) - default RS256
-	Algorithm string `json:"algorithm,omitempty"`
+	Algorithm string `json:"algorithm,omitempty" yaml:"algorithm,omitempty"`
 
 	// ExpiresIn defines how long client_assertion is valid for - default 30 seconds
 	// Format: duration
-	Exp strfmt.Duration `json:"exp,omitempty"`
+	Exp strfmt.Duration `json:"exp,omitempty" yaml:"exp,omitempty"`
 
 	// Key is a PEM formatted private key used to sign client_assertion
-	Key string `json:"key,omitempty"`
+	Key string `json:"key,omitempty" yaml:"key,omitempty"`
 }
 
 // Validate validates this private key j w t credentials

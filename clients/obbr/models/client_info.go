@@ -19,16 +19,16 @@ type ClientInfo struct {
 
 	// Human-readable name of a client application.
 	// Example: My app
-	ClientName string `json:"client_name,omitempty"`
+	ClientName string `json:"client_name,omitempty" yaml:"client_name,omitempty"`
 
 	// URI of a client application.
-	ClientURI string `json:"client_uri,omitempty"`
+	ClientURI string `json:"client_uri,omitempty" yaml:"client_uri,omitempty"`
 
 	// Description of the client application.
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
 	// Logo URI.
-	LogoURI string `json:"logo_uri,omitempty"`
+	LogoURI string `json:"logo_uri,omitempty" yaml:"logo_uri,omitempty"`
 
 	// External organization identifier. It is a unique string assigned by the CDR Register to identify an Accredited
 	// Data Recipient Brand.
@@ -36,13 +36,13 @@ type ClientInfo struct {
 	// The value obtained is used as the `aud` claim for message signing, for example, when a JSON Web Token (JWT) is
 	// required for authorization, and represents the audience(s) the JWT is intended for.
 	// Example: 5647fe90-f6bc-11eb-9a03-0242ac130003
-	OrganisationID string `json:"organisation_id,omitempty"`
+	OrganisationID string `json:"organisation_id,omitempty" yaml:"organisation_id,omitempty"`
 
 	// Policy URL to read about how the profile data is used.
-	PolicyURI string `json:"policy_uri,omitempty"`
+	PolicyURI string `json:"policy_uri,omitempty" yaml:"policy_uri,omitempty"`
 
 	// Terms of Service URL.
-	TosURI string `json:"tos_uri,omitempty"`
+	TosURI string `json:"tos_uri,omitempty" yaml:"tos_uri,omitempty"`
 }
 
 // Validate validates this client info

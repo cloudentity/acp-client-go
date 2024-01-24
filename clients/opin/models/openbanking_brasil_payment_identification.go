@@ -30,7 +30,7 @@ type OpenbankingBrasilPaymentIdentification struct {
 	// Max Length: 14
 	// Min Length: 11
 	// Pattern: ^\d{11}$|^\d{14}$
-	CpfCnpj string `json:"cpfCnpj"`
+	CpfCnpj string `json:"cpfCnpj" yaml:"cpfCnpj"`
 
 	// Em caso de pessoa natural deve ser informado o nome completo do titular da conta do recebedor.
 	// Em caso de pessoa jurdica deve ser informada a razo social ou o nome fantasia da conta do recebedor.
@@ -38,11 +38,11 @@ type OpenbankingBrasilPaymentIdentification struct {
 	// Required: true
 	// Max Length: 140
 	// Pattern: [\w\W\s]*
-	Name string `json:"name"`
+	Name string `json:"name" yaml:"name"`
 
 	// person type
 	// Required: true
-	PersonType *OpenbankingBrasilPaymentEnumPaymentPersonType `json:"personType"`
+	PersonType *OpenbankingBrasilPaymentEnumPaymentPersonType `json:"personType" yaml:"personType"`
 }
 
 // Validate validates this openbanking brasil payment identification

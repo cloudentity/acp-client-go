@@ -23,36 +23,36 @@ type TransientOTPResponse struct {
 	// address
 	// Example: 8675409
 	// Required: true
-	Address string `json:"address"`
+	Address string `json:"address" yaml:"address"`
 
 	// created at
 	// Format: date-time
-	CreatedAt strfmt.DateTime `json:"created_at,omitempty"`
+	CreatedAt strfmt.DateTime `json:"created_at,omitempty" yaml:"created_at,omitempty"`
 
 	// expires in
 	// Format: duration
-	ExpiresIn strfmt.Duration `json:"expires_in,omitempty"`
+	ExpiresIn strfmt.Duration `json:"expires_in,omitempty" yaml:"expires_in,omitempty"`
 
 	// id
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// mechanism
 	// Example: email
 	// Required: true
 	// Enum: [sms email]
-	Mechanism string `json:"mechanism"`
+	Mechanism string `json:"mechanism" yaml:"mechanism"`
 
 	// tenant id
 	// Example: default
 	// Required: true
-	TenantID string `json:"tenant_id"`
+	TenantID string `json:"tenant_id" yaml:"tenant_id"`
 
 	// updated at
 	// Format: date-time
-	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty"`
+	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty" yaml:"updated_at,omitempty"`
 
 	// verified
-	Verified bool `json:"verified,omitempty"`
+	Verified bool `json:"verified,omitempty" yaml:"verified,omitempty"`
 }
 
 // Validate validates this transient o t p response

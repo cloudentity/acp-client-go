@@ -26,7 +26,7 @@ type OpenbankingBrasilPaymentSingle struct {
 	// Example: 2021-01-01
 	// Required: true
 	// Format: date
-	Date strfmt.Date `json:"date"`
+	Date strfmt.Date `json:"date" yaml:"date"`
 }
 
 // Validate validates this openbanking brasil payment single

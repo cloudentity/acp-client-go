@@ -22,13 +22,13 @@ import (
 type Organization struct {
 
 	// organization display names
-	OrganizationDisplayNames []*LocalizedName `json:"OrganizationDisplayNames"`
+	OrganizationDisplayNames []*LocalizedName `json:"OrganizationDisplayNames" yaml:"OrganizationDisplayNames"`
 
 	// organization names
-	OrganizationNames []*LocalizedName `json:"OrganizationNames"`
+	OrganizationNames []*LocalizedName `json:"OrganizationNames" yaml:"OrganizationNames"`
 
 	// organization u r ls
-	OrganizationURLs []*LocalizedURI `json:"OrganizationURLs"`
+	OrganizationURLs []*LocalizedURI `json:"OrganizationURLs" yaml:"OrganizationURLs"`
 }
 
 // Validate validates this organization

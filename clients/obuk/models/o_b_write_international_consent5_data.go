@@ -21,18 +21,18 @@ import (
 type OBWriteInternationalConsent5Data struct {
 
 	// authorisation
-	Authorisation *OBWriteInternationalConsent5DataAuthorisation `json:"Authorisation,omitempty"`
+	Authorisation *OBWriteInternationalConsent5DataAuthorisation `json:"Authorisation,omitempty" yaml:"Authorisation,omitempty"`
 
 	// initiation
 	// Required: true
-	Initiation *OBWriteInternationalConsent5DataInitiation `json:"Initiation"`
+	Initiation *OBWriteInternationalConsent5DataInitiation `json:"Initiation" yaml:"Initiation"`
 
 	// Specifies to share the refund account details with PISP
 	// Enum: [No Yes]
-	ReadRefundAccount string `json:"ReadRefundAccount,omitempty"`
+	ReadRefundAccount string `json:"ReadRefundAccount,omitempty" yaml:"ReadRefundAccount,omitempty"`
 
 	// s c a support data
-	SCASupportData *OBWriteInternationalConsent5DataSCASupportData `json:"SCASupportData,omitempty"`
+	SCASupportData *OBWriteInternationalConsent5DataSCASupportData `json:"SCASupportData,omitempty" yaml:"SCASupportData,omitempty"`
 }
 
 // Validate validates this o b write international consent5 data

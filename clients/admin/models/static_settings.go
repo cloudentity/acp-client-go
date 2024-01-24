@@ -18,7 +18,7 @@ import (
 type StaticSettings struct {
 
 	// If enabled, a hint message is displayed
-	Hint bool `json:"hint,omitempty"`
+	Hint bool `json:"hint,omitempty" yaml:"hint,omitempty"`
 }
 
 // Validate validates this static settings

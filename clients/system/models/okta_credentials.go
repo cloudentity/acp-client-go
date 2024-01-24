@@ -19,7 +19,7 @@ import (
 type OktaCredentials struct {
 
 	// supervisor client
-	SupervisorClient *OktaSupervisorClient `json:"supervisor_client,omitempty"`
+	SupervisorClient *OktaSupervisorClient `json:"supervisor_client,omitempty" yaml:"supervisor_client,omitempty"`
 }
 
 // Validate validates this okta credentials

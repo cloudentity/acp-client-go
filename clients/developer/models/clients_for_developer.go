@@ -20,7 +20,7 @@ import (
 type ClientsForDeveloper struct {
 
 	// clients
-	Clients []*ClientDeveloperResponse `json:"clients"`
+	Clients []*ClientDeveloperResponse `json:"clients" yaml:"clients"`
 }
 
 // Validate validates this clients for developer

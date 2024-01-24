@@ -19,20 +19,20 @@ type GoogleSettings struct {
 
 	// OAuth client application identifier
 	// Example: client
-	ClientID string `json:"client_id,omitempty"`
+	ClientID string `json:"client_id,omitempty" yaml:"client_id,omitempty"`
 
 	// If enabled, users' data is collected by calling the `userinfo` endpoint.
-	GetUserInfo bool `json:"get_user_info,omitempty"`
+	GetUserInfo bool `json:"get_user_info,omitempty" yaml:"get_user_info,omitempty"`
 
 	// URL used to define the {baseURL} for any OpenID Connect endpoint when authorizing against ACP.
-	IssuerURL string `json:"issuer_url,omitempty"`
+	IssuerURL string `json:"issuer_url,omitempty" yaml:"issuer_url,omitempty"`
 
 	// An array of additional scopes your client requests
 	// Example: ["email","profile","openid"]
-	Scopes []string `json:"scopes"`
+	Scopes []string `json:"scopes" yaml:"scopes"`
 
 	// Whether to send the identifier as a `login_hint` parameter to the IDP
-	SendLoginHint bool `json:"send_login_hint,omitempty"`
+	SendLoginHint bool `json:"send_login_hint,omitempty" yaml:"send_login_hint,omitempty"`
 }
 
 // Validate validates this google settings

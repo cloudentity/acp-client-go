@@ -19,7 +19,7 @@ import (
 type OBBRConfiguration struct {
 
 	// industry
-	Industry OBBRIndustry `json:"industry,omitempty"`
+	Industry OBBRIndustry `json:"industry,omitempty" yaml:"industry,omitempty"`
 }
 
 // Validate validates this o b b r configuration

@@ -20,7 +20,7 @@ import (
 type ClientPrivacy struct {
 
 	// optional privacy information mapping for scopes
-	Scopes map[string]ScopePrivacyInformation `json:"scopes,omitempty"`
+	Scopes map[string]ScopePrivacyInformation `json:"scopes,omitempty" yaml:"scopes,omitempty"`
 }
 
 // Validate validates this client privacy

@@ -20,23 +20,23 @@ type TreeScope struct {
 
 	// The scope description displayed as a hint on a consent page
 	// Example: This scope value requests offline access using refresh token
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
 	// The scope name displayed on a consent page
 	// Example: Offline Access
-	DisplayName string `json:"display_name,omitempty"`
+	DisplayName string `json:"display_name,omitempty" yaml:"display_name,omitempty"`
 
 	// Request this scope by default for all clients who subscribed to this scope
-	Implicit bool `json:"implicit,omitempty"`
+	Implicit bool `json:"implicit,omitempty" yaml:"implicit,omitempty"`
 
 	// metadata
-	Metadata Metadata `json:"metadata,omitempty"`
+	Metadata Metadata `json:"metadata,omitempty" yaml:"metadata,omitempty"`
 
 	// policy execution points
-	PolicyExecutionPoints TreePolicyExecutionPoints `json:"policy_execution_points,omitempty"`
+	PolicyExecutionPoints TreePolicyExecutionPoints `json:"policy_execution_points,omitempty" yaml:"policy_execution_points,omitempty"`
 
 	// Disable storage of scope grants
-	Transient bool `json:"transient,omitempty"`
+	Transient bool `json:"transient,omitempty" yaml:"transient,omitempty"`
 }
 
 // Validate validates this tree scope

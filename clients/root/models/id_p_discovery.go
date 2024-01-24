@@ -22,12 +22,12 @@ type IDPDiscovery struct {
 
 	// discovery mode
 	// Enum: [domain_matching script_execution]
-	DiscoveryMode string `json:"discovery_mode,omitempty"`
+	DiscoveryMode string `json:"discovery_mode,omitempty" yaml:"discovery_mode,omitempty"`
 
 	// If enabled, IDP discovery automatically redirects the user to their own IDP and does not
 	// display IDPs of other users while the users accesses the server/application.
 	// Example: false
-	Enabled bool `json:"enabled,omitempty"`
+	Enabled bool `json:"enabled,omitempty" yaml:"enabled,omitempty"`
 }
 
 // Validate validates this ID p discovery

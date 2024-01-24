@@ -20,7 +20,7 @@ import (
 type Claims struct {
 
 	// list of claims
-	Claims []*Claim `json:"claims"`
+	Claims []*Claim `json:"claims" yaml:"claims"`
 }
 
 // Validate validates this claims

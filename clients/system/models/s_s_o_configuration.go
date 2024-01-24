@@ -20,25 +20,25 @@ import (
 type SSOConfiguration struct {
 
 	// Domain for the SSO cookie
-	Domain string `json:"domain,omitempty"`
+	Domain string `json:"domain,omitempty" yaml:"domain,omitempty"`
 
 	// If enabled, single-sign-on (SSO) is active for all IDPs in this workspace.
 	// Example: false
-	Enabled bool `json:"enabled,omitempty"`
+	Enabled bool `json:"enabled,omitempty" yaml:"enabled,omitempty"`
 
 	// Additional domains permitted in the logout redirect_to parameter
-	LogoutRedirectDomains []string `json:"logout_redirect_domains"`
+	LogoutRedirectDomains []string `json:"logout_redirect_domains" yaml:"logout_redirect_domains"`
 
 	// Active TTL - Active SSO sessions expire after MaxAge nanoseconds.
 	// Format: duration
-	MaxAge strfmt.Duration `json:"max_age,omitempty"`
+	MaxAge strfmt.Duration `json:"max_age,omitempty" yaml:"max_age,omitempty"`
 
 	// Idle TTL - Idle SSO sessions expire after MaxIdle nanoseconds.
 	// Format: duration
-	MaxIdle strfmt.Duration `json:"max_idle,omitempty"`
+	MaxIdle strfmt.Duration `json:"max_idle,omitempty" yaml:"max_idle,omitempty"`
 
 	// Admin-configured target URL after logout, if redirect_to omitted or invalid
-	PostLogoutURL string `json:"post_logout_url,omitempty"`
+	PostLogoutURL string `json:"post_logout_url,omitempty" yaml:"post_logout_url,omitempty"`
 }
 
 // Validate validates this s s o configuration

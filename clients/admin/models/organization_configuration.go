@@ -18,7 +18,7 @@ import (
 type OrganizationConfiguration struct {
 
 	// An array of email domains configured for an organization for the purposes of IDP discovery
-	Domains []string `json:"domains"`
+	Domains []string `json:"domains" yaml:"domains"`
 }
 
 // Validate validates this organization configuration

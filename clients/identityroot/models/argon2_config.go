@@ -18,22 +18,22 @@ import (
 type Argon2Config struct {
 
 	// iterations
-	Iterations int64 `json:"iterations,omitempty"`
+	Iterations int64 `json:"iterations,omitempty" yaml:"iterations,omitempty"`
 
 	// key length
-	KeyLength int64 `json:"key_length,omitempty"`
+	KeyLength int64 `json:"key_length,omitempty" yaml:"key_length,omitempty"`
 
 	// memory in kb
-	MemoryInKb int64 `json:"memory_in_kb,omitempty"`
+	MemoryInKb int64 `json:"memory_in_kb,omitempty" yaml:"memory_in_kb,omitempty"`
 
 	// parallelism
-	Parallelism int64 `json:"parallelism,omitempty"`
+	Parallelism int64 `json:"parallelism,omitempty" yaml:"parallelism,omitempty"`
 
 	// salt
-	Salt string `json:"salt,omitempty"`
+	Salt string `json:"salt,omitempty" yaml:"salt,omitempty"`
 
 	// salt length
-	SaltLength int64 `json:"salt_length,omitempty"`
+	SaltLength int64 `json:"salt_length,omitempty" yaml:"salt_length,omitempty"`
 }
 
 // Validate validates this argon2 config

@@ -19,55 +19,55 @@ import (
 type IDPBase struct {
 
 	// attributes
-	Attributes Attributes `json:"attributes,omitempty"`
+	Attributes Attributes `json:"attributes,omitempty" yaml:"attributes,omitempty"`
 
 	// ID of the authorization server (workspace) to which the IDP is connected
-	AuthorizationServerID string `json:"authorization_server_id,omitempty"`
+	AuthorizationServerID string `json:"authorization_server_id,omitempty" yaml:"authorization_server_id,omitempty"`
 
 	// Client application ID
 	//
 	// It serves as a reference to a client application that is created in the System authorization
 	// server (workspace), when a custom login page is created.
-	ClientID string `json:"client_id,omitempty"`
+	ClientID string `json:"client_id,omitempty" yaml:"client_id,omitempty"`
 
 	// config
-	Config *IDPConfiguration `json:"config,omitempty"`
+	Config *IDPConfiguration `json:"config,omitempty" yaml:"config,omitempty"`
 
 	// If set to `true`, the IDP is disabled
 	//
 	// When an IDP is disabled, it is not available for the users to be used. It is also not
 	// displayed on the login page.
-	Disabled bool `json:"disabled,omitempty"`
+	Disabled bool `json:"disabled,omitempty" yaml:"disabled,omitempty"`
 
 	// discovery settings
-	DiscoverySettings *IDPDiscoverySettings `json:"discovery_settings,omitempty"`
+	DiscoverySettings *IDPDiscoverySettings `json:"discovery_settings,omitempty" yaml:"discovery_settings,omitempty"`
 
 	// Can be used to e.g. modify the order in which the Identity Providers are presented on the login page.
 	// Example: 1
-	DisplayOrder int64 `json:"display_order,omitempty"`
+	DisplayOrder int64 `json:"display_order,omitempty" yaml:"display_order,omitempty"`
 
 	// If set to `true`, the IDP is not displayed on the login page.
 	//
 	// When an IDP is hidden, it will not be displayed on the login page. It can still be used
 	// and script extensions can enabled it.
-	Hidden bool `json:"hidden,omitempty"`
+	Hidden bool `json:"hidden,omitempty" yaml:"hidden,omitempty"`
 
 	// Unique ID of your identity provider
 	//
 	// If not provided, a random ID is generated.
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// ID of the Identity Pool to which the IDP is connected
-	IdentityPoolID string `json:"identity_pool_id,omitempty"`
+	IdentityPoolID string `json:"identity_pool_id,omitempty" yaml:"identity_pool_id,omitempty"`
 
 	// jit
-	Jit *JITSettings `json:"jit,omitempty"`
+	Jit *JITSettings `json:"jit,omitempty" yaml:"jit,omitempty"`
 
 	// Logo URI
-	LogoURI string `json:"logo_uri,omitempty"`
+	LogoURI string `json:"logo_uri,omitempty" yaml:"logo_uri,omitempty"`
 
 	// mappings
-	Mappings Mappings `json:"mappings,omitempty"`
+	Mappings Mappings `json:"mappings,omitempty" yaml:"mappings,omitempty"`
 
 	// Defines the type of an IDP
 	//
@@ -75,16 +75,16 @@ type IDPBase struct {
 	// with Cloudentity as it delivers enterprise connectors for major Cloud IDPs and a possibility for
 	// custom integration DKS for home-built solutions. You can also use built-in Sandbox IDP, which
 	// is a static IDP, to create an IDP for testing purposes.
-	Method string `json:"method,omitempty"`
+	Method string `json:"method,omitempty" yaml:"method,omitempty"`
 
 	// Display name of your IDP
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// Points to the ID of the custom app, null if not set
-	PostAuthnAppID string `json:"post_authn_app_id,omitempty"`
+	PostAuthnAppID string `json:"post_authn_app_id,omitempty" yaml:"post_authn_app_id,omitempty"`
 
 	// sso settings
-	SsoSettings *IDPSSOSettings `json:"sso_settings,omitempty"`
+	SsoSettings *IDPSSOSettings `json:"sso_settings,omitempty" yaml:"sso_settings,omitempty"`
 
 	// Authentication method reference
 	//
@@ -93,20 +93,20 @@ type IDPBase struct {
 	//
 	// For example, an IDP may require the user to provide a biometric authentication using facial
 	// recognition. For that, the value of the authentication method reference is `face`.
-	StaticAmr []string `json:"static_amr"`
+	StaticAmr []string `json:"static_amr" yaml:"static_amr"`
 
 	// ID of the tenant where an IDP is connected
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
 	// token exchange settings
-	TokenExchangeSettings *IDPTokenExchangeSettings `json:"token_exchange_settings,omitempty"`
+	TokenExchangeSettings *IDPTokenExchangeSettings `json:"token_exchange_settings,omitempty" yaml:"token_exchange_settings,omitempty"`
 
 	// IDP version to track internal changes
 	// version that is currently supported: 3
-	Version int64 `json:"version,omitempty"`
+	Version int64 `json:"version,omitempty" yaml:"version,omitempty"`
 
 	// ID of the Workspace to which the IDP is connected
-	WorkspaceID string `json:"workspace_id,omitempty"`
+	WorkspaceID string `json:"workspace_id,omitempty" yaml:"workspace_id,omitempty"`
 }
 
 // Validate validates this ID p base

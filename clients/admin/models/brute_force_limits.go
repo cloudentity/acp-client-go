@@ -20,7 +20,7 @@ import (
 type BruteForceLimits struct {
 
 	// brute force limits
-	BruteForceLimits []*BruteForceLimit `json:"brute_force_limits"`
+	BruteForceLimits []*BruteForceLimit `json:"brute_force_limits" yaml:"brute_force_limits"`
 }
 
 // Validate validates this brute force limits

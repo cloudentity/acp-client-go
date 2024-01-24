@@ -20,7 +20,7 @@ import (
 type ListServersDeveloperResponse struct {
 
 	// list of authorization servers
-	Servers []*GetServerDeveloperResponse `json:"servers"`
+	Servers []*GetServerDeveloperResponse `json:"servers" yaml:"servers"`
 }
 
 // Validate validates this list servers developer response

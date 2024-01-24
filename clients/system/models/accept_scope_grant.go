@@ -19,19 +19,19 @@ import (
 type AcceptScopeGrant struct {
 
 	// optional consent identifier
-	ConsentID string `json:"consent_id,omitempty"`
+	ConsentID string `json:"consent_id,omitempty" yaml:"consent_id,omitempty"`
 
 	// granted claims
-	GrantedClaims GrantedClaims `json:"granted_claims,omitempty"`
+	GrantedClaims GrantedClaims `json:"granted_claims,omitempty" yaml:"granted_claims,omitempty"`
 
 	// granted scopes
-	GrantedScopes GrantedScopes `json:"granted_scopes,omitempty"`
+	GrantedScopes GrantedScopes `json:"granted_scopes,omitempty" yaml:"granted_scopes,omitempty"`
 
 	// login identifier
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// login state
-	LoginState string `json:"login_state,omitempty"`
+	LoginState string `json:"login_state,omitempty" yaml:"login_state,omitempty"`
 }
 
 // Validate validates this accept scope grant

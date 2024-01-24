@@ -22,17 +22,17 @@ type Feature struct {
 	// Feature flag state that overrides global features configuration
 	// Example: true
 	// Required: true
-	Enabled bool `json:"enabled"`
+	Enabled bool `json:"enabled" yaml:"enabled"`
 
 	// Name of the feature flag
 	// Example: visualizer
 	// Required: true
-	Flag string `json:"flag"`
+	Flag string `json:"flag" yaml:"flag"`
 
 	// ID of your tenant
 	// Example: default
 	// Required: true
-	TenantID string `json:"tenant_id"`
+	TenantID string `json:"tenant_id" yaml:"tenant_id"`
 }
 
 // Validate validates this feature

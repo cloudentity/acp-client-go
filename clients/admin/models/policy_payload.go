@@ -18,18 +18,18 @@ import (
 type PolicyPayload struct {
 
 	// String representation of the policy execution point type
-	ExecutionPointType string `json:"execution_point_type,omitempty"`
+	ExecutionPointType string `json:"execution_point_type,omitempty" yaml:"execution_point_type,omitempty"`
 
 	// Unique key, derived from execution point, of protected resource where the policy is assigned.
 	//
 	// Example key for policy in default tenant, default server protecting scope email for machine access.
 	// default/default/scope/email/machine
-	Key string `json:"key,omitempty"`
+	Key string `json:"key,omitempty" yaml:"key,omitempty"`
 
 	// Define a type of your policy
 	//
 	// ACP is provided with the following policy types: user, developer, machine, dcr, api.
-	Type string `json:"type,omitempty"`
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 }
 
 // Validate validates this policy payload

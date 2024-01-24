@@ -21,21 +21,21 @@ import (
 type OBRisk1 struct {
 
 	// delivery address
-	DeliveryAddress *OBRisk1DeliveryAddress `json:"DeliveryAddress,omitempty"`
+	DeliveryAddress *OBRisk1DeliveryAddress `json:"DeliveryAddress,omitempty" yaml:"DeliveryAddress,omitempty"`
 
 	// Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.
 	// Max Length: 4
 	// Min Length: 3
-	MerchantCategoryCode string `json:"MerchantCategoryCode,omitempty"`
+	MerchantCategoryCode string `json:"MerchantCategoryCode,omitempty" yaml:"MerchantCategoryCode,omitempty"`
 
 	// The unique customer identifier of the PSU with the merchant.
 	// Max Length: 70
 	// Min Length: 1
-	MerchantCustomerIdentification string `json:"MerchantCustomerIdentification,omitempty"`
+	MerchantCustomerIdentification string `json:"MerchantCustomerIdentification,omitempty" yaml:"MerchantCustomerIdentification,omitempty"`
 
 	// Specifies the payment context
 	// Enum: [BillPayment EcommerceGoods EcommerceServices Other PartyToParty]
-	PaymentContextCode string `json:"PaymentContextCode,omitempty"`
+	PaymentContextCode string `json:"PaymentContextCode,omitempty" yaml:"PaymentContextCode,omitempty"`
 }
 
 // Validate validates this o b risk1

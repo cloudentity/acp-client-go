@@ -18,19 +18,19 @@ import (
 type WorkspaceRoles struct {
 
 	// admin
-	Admin bool `json:"admin,omitempty"`
+	Admin bool `json:"admin,omitempty" yaml:"admin,omitempty"`
 
 	// auditor
-	Auditor bool `json:"auditor,omitempty"`
+	Auditor bool `json:"auditor,omitempty" yaml:"auditor,omitempty"`
 
 	// manager
-	Manager bool `json:"manager,omitempty"`
+	Manager bool `json:"manager,omitempty" yaml:"manager,omitempty"`
 
 	// member
-	Member bool `json:"member,omitempty"`
+	Member bool `json:"member,omitempty" yaml:"member,omitempty"`
 
 	// user manager
-	UserManager bool `json:"user_manager,omitempty"`
+	UserManager bool `json:"user_manager,omitempty" yaml:"user_manager,omitempty"`
 }
 
 // Validate validates this workspace roles

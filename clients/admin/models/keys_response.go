@@ -20,16 +20,16 @@ import (
 type KeysResponse struct {
 
 	// current key
-	CurrentKey *ServerJWK `json:"current_key,omitempty"`
+	CurrentKey *ServerJWK `json:"current_key,omitempty" yaml:"current_key,omitempty"`
 
 	// next key
-	NextKey *ServerJWK `json:"next_key,omitempty"`
+	NextKey *ServerJWK `json:"next_key,omitempty" yaml:"next_key,omitempty"`
 
 	// revoked keys
-	RevokedKeys []*ServerJWK `json:"revoked_keys"`
+	RevokedKeys []*ServerJWK `json:"revoked_keys" yaml:"revoked_keys"`
 
 	// rotated keys
-	RotatedKeys []*ServerJWK `json:"rotated_keys"`
+	RotatedKeys []*ServerJWK `json:"rotated_keys" yaml:"rotated_keys"`
 }
 
 // Validate validates this keys response

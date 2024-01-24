@@ -21,23 +21,23 @@ type GithubSettings struct {
 	//
 	// You can find your client ID in GitHub > Settings > Developer Settings > OAuth Apps > Your Application
 	// Example: client
-	ClientID string `json:"client_id,omitempty"`
+	ClientID string `json:"client_id,omitempty" yaml:"client_id,omitempty"`
 
 	// If enabled, the groups a user belongs to are collected
 	//
 	// If enabled, the `groups` attribute from the authentication context gets populated with the
 	// user's groups and takes from of `organization_id.group name`
-	FetchGroups bool `json:"fetch_groups,omitempty"`
+	FetchGroups bool `json:"fetch_groups,omitempty" yaml:"fetch_groups,omitempty"`
 
 	// An array of allowed OAuth scopes which the client requests
 	//
 	// The following scopes can be configured for GitHub application:
 	// `phone`, `email`, `openid`, `profile`.
 	// Example: ["email","profile","openid"]
-	Scopes []string `json:"scopes"`
+	Scopes []string `json:"scopes" yaml:"scopes"`
 
 	// Whether to send the identifier as a `login_hint` parameter to the IDP
-	SendLoginHint bool `json:"send_login_hint,omitempty"`
+	SendLoginHint bool `json:"send_login_hint,omitempty" yaml:"send_login_hint,omitempty"`
 }
 
 // Validate validates this github settings

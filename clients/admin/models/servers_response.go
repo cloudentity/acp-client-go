@@ -20,7 +20,7 @@ import (
 type ServersResponse struct {
 
 	// servers
-	Servers []*ServerResponse `json:"servers"`
+	Servers []*ServerResponse `json:"servers" yaml:"servers"`
 }
 
 // Validate validates this servers response

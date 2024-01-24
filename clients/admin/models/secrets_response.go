@@ -20,7 +20,7 @@ import (
 type SecretsResponse struct {
 
 	// secrets
-	Secrets []*Secret `json:"secrets"`
+	Secrets []*Secret `json:"secrets" yaml:"secrets"`
 }
 
 // Validate validates this secrets response

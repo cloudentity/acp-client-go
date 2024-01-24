@@ -21,33 +21,33 @@ type Schema struct {
 
 	// created at
 	// Format: date-time
-	CreatedAt strfmt.DateTime `json:"created_at,omitempty"`
+	CreatedAt strfmt.DateTime `json:"created_at,omitempty" yaml:"created_at,omitempty"`
 
 	// description
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
 	// id
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// name
 	// Required: true
-	Name string `json:"name"`
+	Name string `json:"name" yaml:"name"`
 
 	// schema
 	// Required: true
-	Schema *SupportedJSONSchema `json:"schema"`
+	Schema *SupportedJSONSchema `json:"schema" yaml:"schema"`
 
 	// system
-	System bool `json:"system,omitempty"`
+	System bool `json:"system,omitempty" yaml:"system,omitempty"`
 
 	// tenant id
 	// Example: default
 	// Required: true
-	TenantID string `json:"tenant_id"`
+	TenantID string `json:"tenant_id" yaml:"tenant_id"`
 
 	// updated at
 	// Format: date-time
-	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty"`
+	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty" yaml:"updated_at,omitempty"`
 }
 
 // Validate validates this schema

@@ -19,10 +19,10 @@ import (
 type OktaSupervisorClient struct {
 
 	// client id
-	ClientID string `json:"client_id,omitempty"`
+	ClientID string `json:"client_id,omitempty" yaml:"client_id,omitempty"`
 
 	// client private key
-	PrivateKey string `json:"private_key,omitempty"`
+	PrivateKey string `json:"private_key,omitempty" yaml:"private_key,omitempty"`
 }
 
 // Validate validates this okta supervisor client

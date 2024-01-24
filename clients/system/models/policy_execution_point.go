@@ -19,19 +19,19 @@ type PolicyExecutionPoint struct {
 
 	// Optional policy ID
 	// Example: 1
-	PolicyID string `json:"policy_id,omitempty"`
+	PolicyID string `json:"policy_id,omitempty" yaml:"policy_id,omitempty"`
 
 	// The ID of your authorization server (workspace)
 	// Example: default
-	ServerID string `json:"server_id,omitempty"`
+	ServerID string `json:"server_id,omitempty" yaml:"server_id,omitempty"`
 
 	// String representation of the target's ID
 	// Example: 1
-	TargetFk string `json:"target_fk,omitempty"`
+	TargetFk string `json:"target_fk,omitempty" yaml:"target_fk,omitempty"`
 
 	// The ID of your tenant
 	// Example: default
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
 	// String representation of the policy execution point type
 	//
@@ -41,7 +41,7 @@ type PolicyExecutionPoint struct {
 	// choosing the policies that are applied for API calls, only those with the
 	// `api` type are available.
 	// Example: scope_client_assignment
-	Type string `json:"type,omitempty"`
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 }
 
 // Validate validates this policy execution point

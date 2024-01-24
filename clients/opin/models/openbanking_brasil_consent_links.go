@@ -25,32 +25,32 @@ type OpenbankingBrasilConsentLinks struct {
 	// Example: https://api.banco.com.br/open-banking/api/v1/resource
 	// Max Length: 2000
 	// Pattern: ^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$
-	First string `json:"first,omitempty"`
+	First string `json:"first,omitempty" yaml:"first,omitempty"`
 
 	// URI da ltima pgina dessa lista de resultados. Restrio - Obrigatrio quando no for a ltima pgina da resposta
 	// Example: https://api.banco.com.br/open-banking/api/v1/resource
 	// Max Length: 2000
 	// Pattern: ^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$
-	Last string `json:"last,omitempty"`
+	Last string `json:"last,omitempty" yaml:"last,omitempty"`
 
 	// URI da prxima pgina dessa lista de resultados. Restrio - Obrigatrio quando no for a ltima pgina da resposta
 	// Example: https://api.banco.com.br/open-banking/api/v1/resource
 	// Max Length: 2000
 	// Pattern: ^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$
-	Next string `json:"next,omitempty"`
+	Next string `json:"next,omitempty" yaml:"next,omitempty"`
 
 	// URI da pgina anterior dessa lista de resultados. Restrio - 	Obrigatrio quando no for a primeira pgina da resposta
 	// Example: https://api.banco.com.br/open-banking/api/v1/resource
 	// Max Length: 2000
 	// Pattern: ^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$
-	Prev string `json:"prev,omitempty"`
+	Prev string `json:"prev,omitempty" yaml:"prev,omitempty"`
 
 	// URI completo que gerou a resposta atual.
 	// Example: https://api.banco.com.br/open-banking/api/v1/resource
 	// Required: true
 	// Max Length: 2000
 	// Pattern: ^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$
-	Self string `json:"self"`
+	Self string `json:"self" yaml:"self"`
 }
 
 // Validate validates this openbanking brasil consent links

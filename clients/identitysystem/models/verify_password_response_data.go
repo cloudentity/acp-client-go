@@ -22,12 +22,12 @@ type VerifyPasswordResponseData struct {
 
 	// id
 	// Required: true
-	ID string `json:"id"`
+	ID string `json:"id" yaml:"id"`
 
 	// state
 	// Required: true
 	// Enum: [valid must_be_reset must_be_changed]
-	State string `json:"state"`
+	State string `json:"state" yaml:"state"`
 }
 
 // Validate validates this verify password response data

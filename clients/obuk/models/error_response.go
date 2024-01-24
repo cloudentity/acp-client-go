@@ -24,23 +24,23 @@ type ErrorResponse struct {
 	// Required: true
 	// Max Length: 40
 	// Min Length: 1
-	Code string `json:"Code"`
+	Code string `json:"Code" yaml:"Code"`
 
 	// errors
 	// Required: true
 	// Min Items: 1
-	Errors []*OBError1 `json:"Errors"`
+	Errors []*OBError1 `json:"Errors" yaml:"Errors"`
 
 	// A unique reference for the error instance, for audit purposes, in case of unknown/unclassified errors.
 	// Max Length: 40
 	// Min Length: 1
-	ID string `json:"Id,omitempty"`
+	ID string `json:"Id,omitempty" yaml:"Id,omitempty"`
 
 	// Brief Error message, e.g., 'There is something wrong with the request parameters provided'
 	// Required: true
 	// Max Length: 500
 	// Min Length: 1
-	Message string `json:"Message"`
+	Message string `json:"Message" yaml:"Message"`
 }
 
 // Validate validates this error response

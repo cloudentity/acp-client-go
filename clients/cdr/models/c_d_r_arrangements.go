@@ -20,7 +20,7 @@ import (
 type CDRArrangements struct {
 
 	// arrangements
-	Arrangements []*CDRArrangement `json:"arrangements"`
+	Arrangements []*CDRArrangement `json:"arrangements" yaml:"arrangements"`
 }
 
 // Validate validates this c d r arrangements

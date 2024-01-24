@@ -22,22 +22,22 @@ import (
 type OpenbankingBrasilPaymentData struct {
 
 	// business entity
-	BusinessEntity *OpenbankingBrasilPaymentBusinessEntity `json:"businessEntity,omitempty"`
+	BusinessEntity *OpenbankingBrasilPaymentBusinessEntity `json:"businessEntity,omitempty" yaml:"businessEntity,omitempty"`
 
 	// creditor
 	// Required: true
-	Creditor *OpenbankingBrasilPaymentIdentification `json:"creditor"`
+	Creditor *OpenbankingBrasilPaymentIdentification `json:"creditor" yaml:"creditor"`
 
 	// debtor account
-	DebtorAccount *OpenbankingBrasilPaymentDebtorAccount `json:"debtorAccount,omitempty"`
+	DebtorAccount *OpenbankingBrasilPaymentDebtorAccount `json:"debtorAccount,omitempty" yaml:"debtorAccount,omitempty"`
 
 	// logged user
 	// Required: true
-	LoggedUser *OpenbankingBrasilPaymentLoggedUser `json:"loggedUser"`
+	LoggedUser *OpenbankingBrasilPaymentLoggedUser `json:"loggedUser" yaml:"loggedUser"`
 
 	// payment
 	// Required: true
-	Payment *OpenbankingBrasilPaymentPaymentConsent `json:"payment"`
+	Payment *OpenbankingBrasilPaymentPaymentConsent `json:"payment" yaml:"payment"`
 }
 
 // Validate validates this openbanking brasil payment data

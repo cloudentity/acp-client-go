@@ -20,7 +20,7 @@ import (
 type ConsentsWithGrants struct {
 
 	// list of consents
-	Consents []*ConsentWithGrant `json:"consents"`
+	Consents []*ConsentWithGrant `json:"consents" yaml:"consents"`
 }
 
 // Validate validates this consents with grants

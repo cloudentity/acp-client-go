@@ -18,7 +18,7 @@ import (
 type SAMLClientMetadataResponse struct {
 
 	// in:body
-	RawXML string `json:"raw_xml,omitempty"`
+	RawXML string `json:"raw_xml,omitempty" yaml:"raw_xml,omitempty"`
 }
 
 // Validate validates this s a m l client metadata response

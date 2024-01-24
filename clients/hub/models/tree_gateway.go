@@ -20,34 +20,34 @@ import (
 type TreeGateway struct {
 
 	// client
-	Client *TreeClient `json:"client,omitempty"`
+	Client *TreeClient `json:"client,omitempty" yaml:"client,omitempty"`
 
 	// if true services are created automatically for each new discovered api group
-	CreateAndBindServicesAutomatically bool `json:"create_and_bind_services_automatically,omitempty"`
+	CreateAndBindServicesAutomatically bool `json:"create_and_bind_services_automatically,omitempty" yaml:"create_and_bind_services_automatically,omitempty"`
 
 	// description
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
 	// gateway api groups
-	GatewayAPIGroups TreeGatewayAPIGroups `json:"gateway_api_groups,omitempty"`
+	GatewayAPIGroups TreeGatewayAPIGroups `json:"gateway_api_groups,omitempty" yaml:"gateway_api_groups,omitempty"`
 
 	// last time a client fetched configuration
 	// Format: date-time
-	LastActive strfmt.DateTime `json:"last_active,omitempty"`
+	LastActive strfmt.DateTime `json:"last_active,omitempty" yaml:"last_active,omitempty"`
 
 	// gateway name
 	// Example: Cloudentity Pyron
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// token exchange
-	TokenExchange *GatewayTokenExchangeSettings `json:"token_exchange,omitempty"`
+	TokenExchange *GatewayTokenExchangeSettings `json:"token_exchange,omitempty" yaml:"token_exchange,omitempty"`
 
 	// Token exchange client id
-	TokenExchangeClientID string `json:"token_exchange_client_id,omitempty"`
+	TokenExchangeClientID string `json:"token_exchange_client_id,omitempty" yaml:"token_exchange_client_id,omitempty"`
 
 	// gateway type, one of: pyron, aws
 	// Example: pyron
-	Type string `json:"type,omitempty"`
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 }
 
 // Validate validates this tree gateway

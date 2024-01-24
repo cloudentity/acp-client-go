@@ -22,7 +22,7 @@ type InitialAccessTokenSettings struct {
 	// If enabled, the registration endpoint requires an access token with the dcr_register scope granted.
 	// To issue the access token, you need a separate client with the client credentials grant type.
 	// Upon successful registration, the access token is terminated.
-	Required bool `json:"required,omitempty"`
+	Required bool `json:"required,omitempty" yaml:"required,omitempty"`
 }
 
 // Validate validates this initial access token settings

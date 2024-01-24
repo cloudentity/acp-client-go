@@ -19,10 +19,10 @@ import (
 type ExternalCIBAAuthenticationService struct {
 
 	// credentials
-	Credentials *ExternalServiceCredentials `json:"credentials,omitempty"`
+	Credentials *ExternalServiceCredentials `json:"credentials,omitempty" yaml:"credentials,omitempty"`
 
 	// url to the ciba authenticator service
-	URL string `json:"url,omitempty"`
+	URL string `json:"url,omitempty" yaml:"url,omitempty"`
 }
 
 // Validate validates this external c i b a authentication service

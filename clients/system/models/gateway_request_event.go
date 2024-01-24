@@ -19,31 +19,31 @@ import (
 type GatewayRequestEvent struct {
 
 	// api id
-	APIID string `json:"api_id,omitempty"`
+	APIID string `json:"api_id,omitempty" yaml:"api_id,omitempty"`
 
 	// duration ms
-	DurationMs int64 `json:"duration_ms,omitempty"`
+	DurationMs int64 `json:"duration_ms,omitempty" yaml:"duration_ms,omitempty"`
 
 	// invocation ctx
-	InvocationCtx AuthenticationContext `json:"invocation_ctx,omitempty"`
+	InvocationCtx AuthenticationContext `json:"invocation_ctx,omitempty" yaml:"invocation_ctx,omitempty"`
 
 	// output
-	Output map[string]string `json:"output,omitempty"`
+	Output map[string]string `json:"output,omitempty" yaml:"output,omitempty"`
 
 	// result
-	Result *PolicyValidationResult `json:"result,omitempty"`
+	Result *PolicyValidationResult `json:"result,omitempty" yaml:"result,omitempty"`
 
 	// token
-	Token string `json:"token,omitempty"`
+	Token string `json:"token,omitempty" yaml:"token,omitempty"`
 
 	// user agent
-	UserAgent string `json:"user_agent,omitempty"`
+	UserAgent string `json:"user_agent,omitempty" yaml:"user_agent,omitempty"`
 
 	// x forwarded for
-	XForwardedFor string `json:"x_forwarded_for,omitempty"`
+	XForwardedFor string `json:"x_forwarded_for,omitempty" yaml:"x_forwarded_for,omitempty"`
 
 	// x real ip
-	XRealIP string `json:"x_real_ip,omitempty"`
+	XRealIP string `json:"x_real_ip,omitempty" yaml:"x_real_ip,omitempty"`
 }
 
 // Validate validates this gateway request event

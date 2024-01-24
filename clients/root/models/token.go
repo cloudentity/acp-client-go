@@ -21,10 +21,10 @@ import (
 type Token struct {
 
 	// index
-	Index int64 `json:"Index,omitempty"`
+	Index int64 `json:"Index,omitempty" yaml:"Index,omitempty"`
 
 	// parent
-	Parent *Element `json:"Parent,omitempty"`
+	Parent *Element `json:"Parent,omitempty" yaml:"Parent,omitempty"`
 }
 
 // Validate validates this token

@@ -21,19 +21,19 @@ type RecentActivity struct {
 
 	// date
 	// Format: date-time
-	Date strfmt.DateTime `json:"date,omitempty"`
+	Date strfmt.DateTime `json:"date,omitempty" yaml:"date,omitempty"`
 
 	// id
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// payload
-	Payload *RecentActivityPayload `json:"payload,omitempty"`
+	Payload *RecentActivityPayload `json:"payload,omitempty" yaml:"payload,omitempty"`
 
 	// server id
-	ServerID string `json:"server_id,omitempty"`
+	ServerID string `json:"server_id,omitempty" yaml:"server_id,omitempty"`
 
 	// tenant id
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 }
 
 // Validate validates this recent activity

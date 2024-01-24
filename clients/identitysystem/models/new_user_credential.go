@@ -22,21 +22,21 @@ import (
 type NewUserCredential struct {
 
 	// Indicates if user is required to alter their credentials during their initial authentication. Currently, it is enforced only for password credentials.
-	MustBeChanged bool `json:"must_be_changed,omitempty"`
+	MustBeChanged bool `json:"must_be_changed,omitempty" yaml:"must_be_changed,omitempty"`
 
 	// password
 	// Example: secret
-	Password string `json:"password,omitempty"`
+	Password string `json:"password,omitempty" yaml:"password,omitempty"`
 
 	// type
 	// Example: password
 	// Required: true
 	// Enum: [password webauthn]
-	Type string `json:"type"`
+	Type string `json:"type" yaml:"type"`
 
 	// webauthn credentials
 	// Example: public_key
-	WebauthnCredentials []*Credential `json:"webauthn_credentials"`
+	WebauthnCredentials []*Credential `json:"webauthn_credentials" yaml:"webauthn_credentials"`
 }
 
 // Validate validates this new user credential

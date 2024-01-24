@@ -21,43 +21,43 @@ import (
 type ScriptExecutionAuditPayload struct {
 
 	// caught err
-	CaughtErr string `json:"caught_err,omitempty"`
+	CaughtErr string `json:"caught_err,omitempty" yaml:"caught_err,omitempty"`
 
 	// duration
 	// Format: duration
-	Duration strfmt.Duration `json:"duration,omitempty"`
+	Duration strfmt.Duration `json:"duration,omitempty" yaml:"duration,omitempty"`
 
 	// error
-	Error string `json:"error,omitempty"`
+	Error string `json:"error,omitempty" yaml:"error,omitempty"`
 
 	// executed at
 	// Format: date-time
-	ExecutedAt strfmt.DateTime `json:"executed_at,omitempty"`
+	ExecutedAt strfmt.DateTime `json:"executed_at,omitempty" yaml:"executed_at,omitempty"`
 
 	// execution point
 	// Enum: [post_authn_ctx allowed_idp_ids token_minting client_token_minting]
-	ExecutionPoint string `json:"execution_point,omitempty"`
+	ExecutionPoint string `json:"execution_point,omitempty" yaml:"execution_point,omitempty"`
 
 	// input
-	Input map[string]interface{} `json:"input,omitempty"`
+	Input map[string]interface{} `json:"input,omitempty" yaml:"input,omitempty"`
 
 	// log level
-	LogLevel string `json:"log_level,omitempty"`
+	LogLevel string `json:"log_level,omitempty" yaml:"log_level,omitempty"`
 
 	// output
-	Output map[string]interface{} `json:"output,omitempty"`
+	Output map[string]interface{} `json:"output,omitempty" yaml:"output,omitempty"`
 
 	// script id
-	ScriptID string `json:"script_id,omitempty"`
+	ScriptID string `json:"script_id,omitempty" yaml:"script_id,omitempty"`
 
 	// script name
-	ScriptName string `json:"script_name,omitempty"`
+	ScriptName string `json:"script_name,omitempty" yaml:"script_name,omitempty"`
 
 	// stderr
-	Stderr string `json:"stderr,omitempty"`
+	Stderr string `json:"stderr,omitempty" yaml:"stderr,omitempty"`
 
 	// stdout
-	Stdout string `json:"stdout,omitempty"`
+	Stdout string `json:"stdout,omitempty" yaml:"stdout,omitempty"`
 }
 
 // Validate validates this script execution audit payload

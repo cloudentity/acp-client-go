@@ -18,7 +18,7 @@ import (
 type LoginRejected struct {
 
 	// url where user should be redirected
-	RedirectTo string `json:"redirect_to,omitempty"`
+	RedirectTo string `json:"redirect_to,omitempty" yaml:"redirect_to,omitempty"`
 }
 
 // Validate validates this login rejected

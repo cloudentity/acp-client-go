@@ -19,13 +19,13 @@ import (
 type TreeCIBAAuthenticationService struct {
 
 	// client
-	Client *TreeClient `json:"client,omitempty"`
+	Client *TreeClient `json:"client,omitempty" yaml:"client,omitempty"`
 
 	// external
-	External *ExternalCIBAAuthenticationService `json:"external,omitempty"`
+	External *ExternalCIBAAuthenticationService `json:"external,omitempty" yaml:"external,omitempty"`
 
 	// type
-	Type string `json:"type,omitempty"`
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 }
 
 // Validate validates this tree c i b a authentication service

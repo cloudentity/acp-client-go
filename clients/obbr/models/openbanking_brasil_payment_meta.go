@@ -25,17 +25,17 @@ type OpenbankingBrasilPaymentMeta struct {
 	// Example: 2021-05-21T08:30:00Z
 	// Required: true
 	// Format: date-time
-	RequestDateTime strfmt.DateTime `json:"requestDateTime"`
+	RequestDateTime strfmt.DateTime `json:"requestDateTime" yaml:"requestDateTime"`
 
 	// Nmero total de pginas no resultado
 	// Example: 1
 	// Required: true
-	TotalPages int32 `json:"totalPages"`
+	TotalPages int32 `json:"totalPages" yaml:"totalPages"`
 
 	// Nmero total de registros no resultado
 	// Example: 1
 	// Required: true
-	TotalRecords int32 `json:"totalRecords"`
+	TotalRecords int32 `json:"totalRecords" yaml:"totalRecords"`
 }
 
 // Validate validates this openbanking brasil payment meta

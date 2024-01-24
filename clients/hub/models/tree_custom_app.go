@@ -21,19 +21,19 @@ import (
 type TreeCustomApp struct {
 
 	// client
-	Client *TreeClient `json:"client,omitempty"`
+	Client *TreeClient `json:"client,omitempty" yaml:"client,omitempty"`
 
 	// Name of the CustomApp
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// Type of the custom app
 	// Example: post-authn
 	// Enum: [post-authn]
-	Type string `json:"type,omitempty"`
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 
 	// url of the CustomApp
 	// Required: true
-	URL string `json:"url"`
+	URL string `json:"url" yaml:"url"`
 }
 
 // Validate validates this tree custom app

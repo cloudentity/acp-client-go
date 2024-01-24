@@ -22,15 +22,15 @@ type GenericError struct {
 	// error
 	// Example: The requested resource could not be found
 	// Required: true
-	Error string `json:"error"`
+	Error string `json:"error" yaml:"error"`
 
 	// Code represents the error status code (404, 403, 401, ...).
 	// Example: 404
-	ErrorCode int64 `json:"error_code,omitempty"`
+	ErrorCode int64 `json:"error_code,omitempty" yaml:"error_code,omitempty"`
 
 	// error hint
 	// Example: Object with ID 12345 does not exist
-	ErrorHint string `json:"error_hint,omitempty"`
+	ErrorHint string `json:"error_hint,omitempty" yaml:"error_hint,omitempty"`
 }
 
 // Validate validates this generic error

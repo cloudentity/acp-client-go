@@ -18,7 +18,7 @@ import (
 type TemplatePaths struct {
 
 	// list of template paths
-	FsPaths []string `json:"fs_paths"`
+	FsPaths []string `json:"fs_paths" yaml:"fs_paths"`
 }
 
 // Validate validates this template paths

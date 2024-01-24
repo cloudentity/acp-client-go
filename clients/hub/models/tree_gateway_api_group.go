@@ -20,16 +20,16 @@ import (
 type TreeGatewayAPIGroup struct {
 
 	// List of APIs
-	Apis []*GatewayAPI `json:"apis"`
+	Apis []*GatewayAPI `json:"apis" yaml:"apis"`
 
 	// metadata
-	Metadata *APIGroupMetadata `json:"metadata,omitempty"`
+	Metadata *APIGroupMetadata `json:"metadata,omitempty" yaml:"metadata,omitempty"`
 
 	// API group name
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// service id
-	ServiceID string `json:"service_id,omitempty"`
+	ServiceID string `json:"service_id,omitempty" yaml:"service_id,omitempty"`
 }
 
 // Validate validates this tree gateway API group

@@ -18,19 +18,19 @@ import (
 type ExternalServiceCredentials struct {
 
 	// query or header
-	APIKeyIn string `json:"api_key_in,omitempty"`
+	APIKeyIn string `json:"api_key_in,omitempty" yaml:"api_key_in,omitempty"`
 
 	// api key name
-	APIKeyName string `json:"api_key_name,omitempty"`
+	APIKeyName string `json:"api_key_name,omitempty" yaml:"api_key_name,omitempty"`
 
 	// api key value
-	APIKeyValue string `json:"api_key_value,omitempty"`
+	APIKeyValue string `json:"api_key_value,omitempty" yaml:"api_key_value,omitempty"`
 
 	// http basic auth password
-	Password string `json:"password,omitempty"`
+	Password string `json:"password,omitempty" yaml:"password,omitempty"`
 
 	// http basic auth username
-	Username string `json:"username,omitempty"`
+	Username string `json:"username,omitempty" yaml:"username,omitempty"`
 }
 
 // Validate validates this external service credentials

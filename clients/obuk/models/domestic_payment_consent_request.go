@@ -21,11 +21,11 @@ type DomesticPaymentConsentRequest struct {
 
 	// data
 	// Required: true
-	Data *OBWriteDomesticConsent4Data `json:"Data"`
+	Data *OBWriteDomesticConsent4Data `json:"Data" yaml:"Data"`
 
 	// risk
 	// Required: true
-	Risk *OBRisk1 `json:"Risk"`
+	Risk *OBRisk1 `json:"Risk" yaml:"Risk"`
 }
 
 // Validate validates this domestic payment consent request

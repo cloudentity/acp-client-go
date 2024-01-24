@@ -23,20 +23,20 @@ type SMSSettings struct {
 	// Custom message template.
 	//
 	// If not set, the default is used.
-	CustomMessageTemplate string `json:"custom_message_template,omitempty"`
+	CustomMessageTemplate string `json:"custom_message_template,omitempty" yaml:"custom_message_template,omitempty"`
 
 	// Custom SMS From phone number.
 	//
 	// If not set, the default is used.
-	CustomSource string `json:"custom_source,omitempty"`
+	CustomSource string `json:"custom_source,omitempty" yaml:"custom_source,omitempty"`
 
 	// otp
-	Otp *OTPConfiguration `json:"otp,omitempty"`
+	Otp *OTPConfiguration `json:"otp,omitempty" yaml:"otp,omitempty"`
 
 	// SMS provider.
 	// Example: embedded
 	// Enum: [twilio embedded]
-	Provider string `json:"provider,omitempty"`
+	Provider string `json:"provider,omitempty" yaml:"provider,omitempty"`
 }
 
 // Validate validates this s m s settings

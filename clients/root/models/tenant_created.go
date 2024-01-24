@@ -20,16 +20,16 @@ import (
 type TenantCreated struct {
 
 	// list of clients created in tenant
-	Clients []*Client `json:"clients"`
+	Clients []*Client `json:"clients" yaml:"clients"`
 
 	// list of identity providers
-	Idps []*IDP `json:"idps"`
+	Idps []*IDP `json:"idps" yaml:"idps"`
 
 	// list of servers created in tenant
-	Servers []*Server `json:"servers"`
+	Servers []*Server `json:"servers" yaml:"servers"`
 
 	// tenant
-	Tenant *Tenant `json:"tenant,omitempty"`
+	Tenant *Tenant `json:"tenant,omitempty" yaml:"tenant,omitempty"`
 }
 
 // Validate validates this tenant created

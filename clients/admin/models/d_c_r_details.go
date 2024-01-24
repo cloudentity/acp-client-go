@@ -22,26 +22,26 @@ import (
 type DCRDetails struct {
 
 	// certificate bound access token
-	CertificateBoundAccessToken bool `json:"certificate_bound_access_token,omitempty"`
+	CertificateBoundAccessToken bool `json:"certificate_bound_access_token,omitempty" yaml:"certificate_bound_access_token,omitempty"`
 
 	// client id
-	ClientID string `json:"client_id,omitempty"`
+	ClientID string `json:"client_id,omitempty" yaml:"client_id,omitempty"`
 
 	// client name
-	ClientName string `json:"client_name,omitempty"`
+	ClientName string `json:"client_name,omitempty" yaml:"client_name,omitempty"`
 
 	// grant types
-	GrantTypes []string `json:"grant_types"`
+	GrantTypes []string `json:"grant_types" yaml:"grant_types"`
 
 	// scopes
-	Scopes []string `json:"scopes"`
+	Scopes []string `json:"scopes" yaml:"scopes"`
 
 	// software statement provided
-	SoftwareStatementProvided bool `json:"software_statement_provided,omitempty"`
+	SoftwareStatementProvided bool `json:"software_statement_provided,omitempty" yaml:"software_statement_provided,omitempty"`
 
 	// token endpoint auth method
 	// Enum: [client_secret_basic client_secret_post client_secret_jwt private_key_jwt self_signed_tls_client_auth tls_client_auth none]
-	TokenEndpointAuthMethod string `json:"token_endpoint_auth_method,omitempty"`
+	TokenEndpointAuthMethod string `json:"token_endpoint_auth_method,omitempty" yaml:"token_endpoint_auth_method,omitempty"`
 }
 
 // Validate validates this d c r details

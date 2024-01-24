@@ -20,28 +20,28 @@ import (
 type SelfUserWithDataV2 struct {
 
 	// credentials
-	Credentials []*SelfUserCredentials `json:"credentials"`
+	Credentials []*SelfUserCredentials `json:"credentials" yaml:"credentials"`
 
 	// federated accounts
-	FederatedAccounts []*FederatedAccount `json:"federated_accounts"`
+	FederatedAccounts []*FederatedAccount `json:"federated_accounts" yaml:"federated_accounts"`
 
 	// id
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// identifiers
-	Identifiers []*SelfUserIdentifier `json:"identifiers"`
+	Identifiers []*SelfUserIdentifier `json:"identifiers" yaml:"identifiers"`
 
 	// metadata
-	Metadata map[string]interface{} `json:"metadata,omitempty"`
+	Metadata map[string]interface{} `json:"metadata,omitempty" yaml:"metadata,omitempty"`
 
 	// payload
-	Payload map[string]interface{} `json:"payload,omitempty"`
+	Payload map[string]interface{} `json:"payload,omitempty" yaml:"payload,omitempty"`
 
 	// payload schema
-	PayloadSchema *SupportedJSONSchema `json:"payload_schema,omitempty"`
+	PayloadSchema *SupportedJSONSchema `json:"payload_schema,omitempty" yaml:"payload_schema,omitempty"`
 
 	// verifiable addresses
-	VerifiableAddresses []*SelfUserVerifiableAddress `json:"verifiable_addresses"`
+	VerifiableAddresses []*SelfUserVerifiableAddress `json:"verifiable_addresses" yaml:"verifiable_addresses"`
 }
 
 // Validate validates this self user with data v2

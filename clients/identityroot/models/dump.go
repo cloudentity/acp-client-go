@@ -20,25 +20,25 @@ import (
 type Dump struct {
 
 	// codes
-	Codes []*Code `json:"codes"`
+	Codes []*Code `json:"codes" yaml:"codes"`
 
 	// pools
-	Pools []*Pool `json:"pools"`
+	Pools []*Pool `json:"pools" yaml:"pools"`
 
 	// schemas
-	Schemas []*Schema `json:"schemas"`
+	Schemas []*Schema `json:"schemas" yaml:"schemas"`
 
 	// user credentials
-	UserCredentials []*UserCredential `json:"user_credentials"`
+	UserCredentials []*UserCredential `json:"user_credentials" yaml:"user_credentials"`
 
 	// user identifiers
-	UserIdentifiers []*UserIdentifier `json:"user_identifiers"`
+	UserIdentifiers []*UserIdentifier `json:"user_identifiers" yaml:"user_identifiers"`
 
 	// user verifiable addresses
-	UserVerifiableAddresses []*UserVerifiableAddress `json:"user_verifiable_addresses"`
+	UserVerifiableAddresses []*UserVerifiableAddress `json:"user_verifiable_addresses" yaml:"user_verifiable_addresses"`
 
 	// users
-	Users []*User `json:"users"`
+	Users []*User `json:"users" yaml:"users"`
 }
 
 // Validate validates this dump

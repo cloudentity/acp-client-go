@@ -23,35 +23,35 @@ type TreeAPI struct {
 	// api type
 	// Example: rest
 	// Enum: [rest graphql]
-	APIType string `json:"api_type,omitempty"`
+	APIType string `json:"api_type,omitempty" yaml:"api_type,omitempty"`
 
 	// if false it is not possible to assign a policy
-	CanHavePolicy bool `json:"can_have_policy,omitempty"`
+	CanHavePolicy bool `json:"can_have_policy,omitempty" yaml:"can_have_policy,omitempty"`
 
 	// Data classifications
-	DataClassifications []string `json:"data_classifications"`
+	DataClassifications []string `json:"data_classifications" yaml:"data_classifications"`
 
 	// graphql schema
-	GraphqlSchema string `json:"graphql_schema,omitempty"`
+	GraphqlSchema string `json:"graphql_schema,omitempty" yaml:"graphql_schema,omitempty"`
 
 	// graphql types
-	GraphqlTypes GraphQLTypes `json:"graphql_types,omitempty"`
+	GraphqlTypes GraphQLTypes `json:"graphql_types,omitempty" yaml:"graphql_types,omitempty"`
 
 	// HTTP request method
 	// Example: GET
-	Method string `json:"method,omitempty"`
+	Method string `json:"method,omitempty" yaml:"method,omitempty"`
 
 	// HTTP request path
 	// Example: /pets
-	Path string `json:"path,omitempty"`
+	Path string `json:"path,omitempty" yaml:"path,omitempty"`
 
 	// optional id of a policy
 	// Example: block
-	PolicyID string `json:"policy_id,omitempty"`
+	PolicyID string `json:"policy_id,omitempty" yaml:"policy_id,omitempty"`
 
 	// position of the api in the apis list
 	// Example: 1
-	Position int64 `json:"position,omitempty"`
+	Position int64 `json:"position,omitempty" yaml:"position,omitempty"`
 }
 
 // Validate validates this tree API

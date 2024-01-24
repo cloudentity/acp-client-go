@@ -18,10 +18,10 @@ import (
 type AzureMetadata struct {
 
 	// apim id
-	ApimID string `json:"apim_id,omitempty"`
+	ApimID string `json:"apim_id,omitempty" yaml:"apim_id,omitempty"`
 
 	// apim name
-	ApimName string `json:"apim_name,omitempty"`
+	ApimName string `json:"apim_name,omitempty" yaml:"apim_name,omitempty"`
 }
 
 // Validate validates this azure metadata

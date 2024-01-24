@@ -21,11 +21,11 @@ type SMSAuth struct {
 
 	// The Twilio Auth Token.
 	// Required: true
-	AuthToken string `json:"auth_token"`
+	AuthToken string `json:"auth_token" yaml:"auth_token"`
 
 	// The Twilio Account SID.
 	// Required: true
-	Sid string `json:"sid"`
+	Sid string `json:"sid" yaml:"sid"`
 }
 
 // Validate validates this s m s auth

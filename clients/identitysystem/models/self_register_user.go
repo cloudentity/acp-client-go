@@ -22,16 +22,16 @@ type SelfRegisterUser struct {
 
 	// identifier
 	// Required: true
-	Identifier string `json:"identifier"`
+	Identifier string `json:"identifier" yaml:"identifier"`
 
 	// password
-	Password string `json:"password,omitempty"`
+	Password string `json:"password,omitempty" yaml:"password,omitempty"`
 
 	// payload
-	Payload map[string]interface{} `json:"payload,omitempty"`
+	Payload map[string]interface{} `json:"payload,omitempty" yaml:"payload,omitempty"`
 
 	// webauthn credentials
-	WebauthnCredentials []*Credential `json:"webauthn_credentials"`
+	WebauthnCredentials []*Credential `json:"webauthn_credentials" yaml:"webauthn_credentials"`
 }
 
 // Validate validates this self register user

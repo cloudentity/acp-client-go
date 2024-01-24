@@ -18,19 +18,19 @@ import (
 type TreeWebhook struct {
 
 	// Active
-	Active bool `json:"active,omitempty"`
+	Active bool `json:"active,omitempty" yaml:"active,omitempty"`
 
 	// API Key
-	APIKey string `json:"api_key,omitempty"`
+	APIKey string `json:"api_key,omitempty" yaml:"api_key,omitempty"`
 
 	// events
-	Events map[string][]string `json:"events,omitempty"`
+	Events map[string][]string `json:"events,omitempty" yaml:"events,omitempty"`
 
 	// Insecure
-	Insecure bool `json:"insecure,omitempty"`
+	Insecure bool `json:"insecure,omitempty" yaml:"insecure,omitempty"`
 
 	// url of the Webhook
-	URL string `json:"url,omitempty"`
+	URL string `json:"url,omitempty" yaml:"url,omitempty"`
 }
 
 // Validate validates this tree webhook

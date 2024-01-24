@@ -20,32 +20,32 @@ import (
 type Webhook struct {
 
 	// Active
-	Active bool `json:"active,omitempty"`
+	Active bool `json:"active,omitempty" yaml:"active,omitempty"`
 
 	// API Key
-	APIKey string `json:"api_key,omitempty"`
+	APIKey string `json:"api_key,omitempty" yaml:"api_key,omitempty"`
 
 	// events
-	Events map[string][]string `json:"events,omitempty"`
+	Events map[string][]string `json:"events,omitempty" yaml:"events,omitempty"`
 
 	// Insecure
-	Insecure bool `json:"insecure,omitempty"`
+	Insecure bool `json:"insecure,omitempty" yaml:"insecure,omitempty"`
 
 	// ID of the server
 	// Required: true
-	ServerID string `json:"server_id"`
+	ServerID string `json:"server_id" yaml:"server_id"`
 
 	// ID of the tenant
 	// Example: default
 	// Required: true
-	TenantID string `json:"tenant_id"`
+	TenantID string `json:"tenant_id" yaml:"tenant_id"`
 
 	// url of the Webhook
-	URL string `json:"url,omitempty"`
+	URL string `json:"url,omitempty" yaml:"url,omitempty"`
 
 	// ID to the Webhook
 	// Required: true
-	WebhookID string `json:"webhook_id"`
+	WebhookID string `json:"webhook_id" yaml:"webhook_id"`
 }
 
 // Validate validates this webhook

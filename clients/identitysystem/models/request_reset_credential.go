@@ -21,13 +21,13 @@ type RequestResetCredential struct {
 
 	// address
 	// Required: true
-	Address string `json:"address"`
+	Address string `json:"address" yaml:"address"`
 
 	// identifier
-	Identifier string `json:"identifier,omitempty"`
+	Identifier string `json:"identifier,omitempty" yaml:"identifier,omitempty"`
 
 	// user ID
-	UserID string `json:"userID,omitempty"`
+	UserID string `json:"userID,omitempty" yaml:"userID,omitempty"`
 }
 
 // Validate validates this request reset credential

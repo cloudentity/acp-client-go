@@ -18,19 +18,19 @@ import (
 type RFC6749Error struct {
 
 	// cause
-	Cause string `json:"cause,omitempty"`
+	Cause string `json:"cause,omitempty" yaml:"cause,omitempty"`
 
 	// error
-	Error string `json:"error,omitempty"`
+	Error string `json:"error,omitempty" yaml:"error,omitempty"`
 
 	// error description
-	ErrorDescription string `json:"error_description,omitempty"`
+	ErrorDescription string `json:"error_description,omitempty" yaml:"error_description,omitempty"`
 
 	// error hint
-	ErrorHint string `json:"error_hint,omitempty"`
+	ErrorHint string `json:"error_hint,omitempty" yaml:"error_hint,omitempty"`
 
 	// status code
-	StatusCode int64 `json:"status_code,omitempty"`
+	StatusCode int64 `json:"status_code,omitempty" yaml:"status_code,omitempty"`
 }
 
 // Validate validates this r f c6749 error

@@ -19,58 +19,58 @@ import (
 type DefaultBruteForceLimits struct {
 
 	// client authentication
-	ClientAuthentication *DefaultBruteForceLimit `json:"client_authentication,omitempty"`
+	ClientAuthentication *DefaultBruteForceLimit `json:"client_authentication,omitempty" yaml:"client_authentication,omitempty"`
 
 	// device handling
-	DeviceHandling *DefaultBruteForceLimit `json:"device_handling,omitempty"`
+	DeviceHandling *DefaultBruteForceLimit `json:"device_handling,omitempty" yaml:"device_handling,omitempty"`
 
 	// enabled
-	Enabled bool `json:"enabled,omitempty"`
+	Enabled bool `json:"enabled,omitempty" yaml:"enabled,omitempty"`
 
 	// identity activate self registered
-	IdentityActivateSelfRegistered *DefaultBruteForceLimit `json:"identity_activate_self_registered,omitempty"`
+	IdentityActivateSelfRegistered *DefaultBruteForceLimit `json:"identity_activate_self_registered,omitempty" yaml:"identity_activate_self_registered,omitempty"`
 
 	// identity activate with extended code
-	IdentityActivateWithExtendedCode *DefaultBruteForceLimit `json:"identity_activate_with_extended_code,omitempty"`
+	IdentityActivateWithExtendedCode *DefaultBruteForceLimit `json:"identity_activate_with_extended_code,omitempty" yaml:"identity_activate_with_extended_code,omitempty"`
 
 	// identity address verification
-	IdentityAddressVerification *DefaultBruteForceLimit `json:"identity_address_verification,omitempty"`
+	IdentityAddressVerification *DefaultBruteForceLimit `json:"identity_address_verification,omitempty" yaml:"identity_address_verification,omitempty"`
 
 	// identity authentication
-	IdentityAuthentication *DefaultBruteForceLimit `json:"identity_authentication,omitempty"`
+	IdentityAuthentication *DefaultBruteForceLimit `json:"identity_authentication,omitempty" yaml:"identity_authentication,omitempty"`
 
 	// identity change password
-	IdentityChangePassword *DefaultBruteForceLimit `json:"identity_change_password,omitempty"`
+	IdentityChangePassword *DefaultBruteForceLimit `json:"identity_change_password,omitempty" yaml:"identity_change_password,omitempty"`
 
 	// identity code inspect
-	IdentityCodeInspect *DefaultBruteForceLimit `json:"identity_code_inspect,omitempty"`
+	IdentityCodeInspect *DefaultBruteForceLimit `json:"identity_code_inspect,omitempty" yaml:"identity_code_inspect,omitempty"`
 
 	// identity code verify
-	IdentityCodeVerify *DefaultBruteForceLimit `json:"identity_code_verify,omitempty"`
+	IdentityCodeVerify *DefaultBruteForceLimit `json:"identity_code_verify,omitempty" yaml:"identity_code_verify,omitempty"`
 
 	// identity confirm password
-	IdentityConfirmPassword *DefaultBruteForceLimit `json:"identity_confirm_password,omitempty"`
+	IdentityConfirmPassword *DefaultBruteForceLimit `json:"identity_confirm_password,omitempty" yaml:"identity_confirm_password,omitempty"`
 
 	// identity registration
-	IdentityRegistration *DefaultBruteForceLimit `json:"identity_registration,omitempty"`
+	IdentityRegistration *DefaultBruteForceLimit `json:"identity_registration,omitempty" yaml:"identity_registration,omitempty"`
 
 	// identity self activation
-	IdentitySelfActivation *DefaultBruteForceLimit `json:"identity_self_activation,omitempty"`
+	IdentitySelfActivation *DefaultBruteForceLimit `json:"identity_self_activation,omitempty" yaml:"identity_self_activation,omitempty"`
 
 	// identity self change password
-	IdentitySelfChangePassword *DefaultBruteForceLimit `json:"identity_self_change_password,omitempty"`
+	IdentitySelfChangePassword *DefaultBruteForceLimit `json:"identity_self_change_password,omitempty" yaml:"identity_self_change_password,omitempty"`
 
 	// identity self register
-	IdentitySelfRegister *DefaultBruteForceLimit `json:"identity_self_register,omitempty"`
+	IdentitySelfRegister *DefaultBruteForceLimit `json:"identity_self_register,omitempty" yaml:"identity_self_register,omitempty"`
 
 	// identity set credential
-	IdentitySetCredential *DefaultBruteForceLimit `json:"identity_set_credential,omitempty"`
+	IdentitySetCredential *DefaultBruteForceLimit `json:"identity_set_credential,omitempty" yaml:"identity_set_credential,omitempty"`
 
 	// identity verify password
-	IdentityVerifyPassword *DefaultBruteForceLimit `json:"identity_verify_password,omitempty"`
+	IdentityVerifyPassword *DefaultBruteForceLimit `json:"identity_verify_password,omitempty" yaml:"identity_verify_password,omitempty"`
 
 	// mfa
-	Mfa *DefaultBruteForceLimit `json:"mfa,omitempty"`
+	Mfa *DefaultBruteForceLimit `json:"mfa,omitempty" yaml:"mfa,omitempty"`
 }
 
 // Validate validates this default brute force limits

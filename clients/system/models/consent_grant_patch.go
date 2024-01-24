@@ -19,15 +19,15 @@ type ConsentGrantPatch struct {
 
 	// consent id
 	// Example: 1
-	ConsentID string `json:"consent_id,omitempty"`
+	ConsentID string `json:"consent_id,omitempty" yaml:"consent_id,omitempty"`
 
 	// one of: implicit, explicit (explicit is the default value)
 	// Example: implicit
-	GrantType string `json:"grant_type,omitempty"`
+	GrantType string `json:"grant_type,omitempty" yaml:"grant_type,omitempty"`
 
 	// boolean flag marking if the user granted or revoked the consent
 	// Example: false
-	Granted bool `json:"granted,omitempty"`
+	Granted bool `json:"granted,omitempty" yaml:"granted,omitempty"`
 }
 
 // Validate validates this consent grant patch

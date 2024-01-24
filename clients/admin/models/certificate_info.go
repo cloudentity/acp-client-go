@@ -19,22 +19,22 @@ import (
 type CertificateInfo struct {
 
 	// jwks
-	Jwks *ClientJWKs `json:"jwks,omitempty"`
+	Jwks *ClientJWKs `json:"jwks,omitempty" yaml:"jwks,omitempty"`
 
 	// SAN DNS entries from the certificate.
-	SanDNS []string `json:"san_dns"`
+	SanDNS []string `json:"san_dns" yaml:"san_dns"`
 
 	// SAN emails entries from the certificate.
-	SanEmails []string `json:"san_emails"`
+	SanEmails []string `json:"san_emails" yaml:"san_emails"`
 
 	// SAN IP addresses entry from the certificate.
-	SanIps []string `json:"san_ips"`
+	SanIps []string `json:"san_ips" yaml:"san_ips"`
 
 	// SAN uniformResourceIdentifier entries from the certificate.
-	SanUris []string `json:"san_uris"`
+	SanUris []string `json:"san_uris" yaml:"san_uris"`
 
 	// Certificate subject DN
-	SubjectDn string `json:"subject_dn,omitempty"`
+	SubjectDn string `json:"subject_dn,omitempty" yaml:"subject_dn,omitempty"`
 }
 
 // Validate validates this certificate info

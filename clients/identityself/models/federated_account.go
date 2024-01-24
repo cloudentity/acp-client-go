@@ -18,22 +18,22 @@ import (
 type FederatedAccount struct {
 
 	// federated idp id
-	FederatedIdpID string `json:"federated_idp_id,omitempty"`
+	FederatedIdpID string `json:"federated_idp_id,omitempty" yaml:"federated_idp_id,omitempty"`
 
 	// federated idp method
-	FederatedIdpMethod string `json:"federated_idp_method,omitempty"`
+	FederatedIdpMethod string `json:"federated_idp_method,omitempty" yaml:"federated_idp_method,omitempty"`
 
 	// federated idp name
-	FederatedIdpName string `json:"federated_idp_name,omitempty"`
+	FederatedIdpName string `json:"federated_idp_name,omitempty" yaml:"federated_idp_name,omitempty"`
 
 	// federated sub
-	FederatedSub string `json:"federated_sub,omitempty"`
+	FederatedSub string `json:"federated_sub,omitempty" yaml:"federated_sub,omitempty"`
 
 	// identifier id
-	IdentifierID string `json:"identifier_id,omitempty"`
+	IdentifierID string `json:"identifier_id,omitempty" yaml:"identifier_id,omitempty"`
 
 	// workspace id
-	WorkspaceID string `json:"workspace_id,omitempty"`
+	WorkspaceID string `json:"workspace_id,omitempty" yaml:"workspace_id,omitempty"`
 }
 
 // Validate validates this federated account

@@ -20,28 +20,28 @@ import (
 type AcceptSession struct {
 
 	// authentication context class reference
-	Acr string `json:"acr,omitempty"`
+	Acr string `json:"acr,omitempty" yaml:"acr,omitempty"`
 
 	// authentication methods references
-	Amr []string `json:"amr"`
+	Amr []string `json:"amr" yaml:"amr"`
 
 	// time when user authenticated
 	// Format: date-time
-	AuthTime strfmt.DateTime `json:"auth_time,omitempty"`
+	AuthTime strfmt.DateTime `json:"auth_time,omitempty" yaml:"auth_time,omitempty"`
 
 	// authentication context
-	AuthenticationContext AuthenticationContext `json:"authentication_context,omitempty"`
+	AuthenticationContext AuthenticationContext `json:"authentication_context,omitempty" yaml:"authentication_context,omitempty"`
 
 	// login identifier
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// login state
-	LoginState string `json:"login_state,omitempty"`
+	LoginState string `json:"login_state,omitempty" yaml:"login_state,omitempty"`
 
 	// user identifier
 	// Example: user
 	// Required: true
-	Subject string `json:"subject"`
+	Subject string `json:"subject" yaml:"subject"`
 }
 
 // Validate validates this accept session

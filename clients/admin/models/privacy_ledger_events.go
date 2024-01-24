@@ -20,7 +20,7 @@ import (
 type PrivacyLedgerEvents struct {
 
 	// events
-	Events []*PrivacyLedgerEvent `json:"events"`
+	Events []*PrivacyLedgerEvent `json:"events" yaml:"events"`
 }
 
 // Validate validates this privacy ledger events

@@ -21,41 +21,41 @@ import (
 type TreeService struct {
 
 	// apis
-	Apis TreeAPIs `json:"apis,omitempty"`
+	Apis TreeAPIs `json:"apis,omitempty" yaml:"apis,omitempty"`
 
 	// Custom service audience
 	// Example: https://api.example.com
-	CustomAudience string `json:"custom_audience,omitempty"`
+	CustomAudience string `json:"custom_audience,omitempty" yaml:"custom_audience,omitempty"`
 
 	// Service description
 	// Example: Service description
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
 	// Gateway identifier
 	// Example: gateway-1
-	GatewayID string `json:"gateway_id,omitempty"`
+	GatewayID string `json:"gateway_id,omitempty" yaml:"gateway_id,omitempty"`
 
 	// Service name
 	// Example: My service
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// scopes
-	Scopes TreeScopes `json:"scopes,omitempty"`
+	Scopes TreeScopes `json:"scopes,omitempty" yaml:"scopes,omitempty"`
 
 	// `true` when the service is a system service
 	// Example: false
-	System bool `json:"system,omitempty"`
+	System bool `json:"system,omitempty" yaml:"system,omitempty"`
 
 	// Service type
 	// Enum: [oauth2 oidc system user openbanking]
-	Type string `json:"type,omitempty"`
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 
 	// The date of service update
 	// Format: date-time
-	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty"`
+	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty" yaml:"updated_at,omitempty"`
 
 	// `true` when the service has the OpenAPI 3.0 specification
-	WithSpecification bool `json:"with_specification,omitempty"`
+	WithSpecification bool `json:"with_specification,omitempty" yaml:"with_specification,omitempty"`
 }
 
 // Validate validates this tree service

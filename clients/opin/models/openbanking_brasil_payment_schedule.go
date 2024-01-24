@@ -23,7 +23,7 @@ type OpenbankingBrasilPaymentSchedule struct {
 
 	// single
 	// Required: true
-	Single *OpenbankingBrasilPaymentSingle `json:"single"`
+	Single *OpenbankingBrasilPaymentSingle `json:"single" yaml:"single"`
 }
 
 // Validate validates this openbanking brasil payment schedule

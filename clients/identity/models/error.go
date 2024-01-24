@@ -18,13 +18,13 @@ import (
 type Error struct {
 
 	// details
-	Details interface{} `json:"details,omitempty"`
+	Details interface{} `json:"details,omitempty" yaml:"details,omitempty"`
 
 	// error
-	Error string `json:"error,omitempty"`
+	Error string `json:"error,omitempty" yaml:"error,omitempty"`
 
 	// status code
-	StatusCode int64 `json:"status_code,omitempty"`
+	StatusCode int64 `json:"status_code,omitempty" yaml:"status_code,omitempty"`
 }
 
 // Validate validates this error

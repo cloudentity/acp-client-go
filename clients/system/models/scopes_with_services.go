@@ -20,7 +20,7 @@ import (
 type ScopesWithServices struct {
 
 	// scopes
-	Scopes []*ScopeWithService `json:"scopes"`
+	Scopes []*ScopeWithService `json:"scopes" yaml:"scopes"`
 }
 
 // Validate validates this scopes with services

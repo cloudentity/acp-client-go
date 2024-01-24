@@ -22,37 +22,37 @@ type AuthorizationDetailWithServiceID struct {
 	// An authorization server (workspace) identifier holding the client application.
 	// Example: default
 	// Required: true
-	AuthorizationServerID string `json:"authorization_server_id"`
+	AuthorizationServerID string `json:"authorization_server_id" yaml:"authorization_server_id"`
 
 	// Description
 	// Example: Authorization detail for payment initiation
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
 	// Authorization detail unique identifier
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// General purpose metadata
-	Metadata map[string]interface{} `json:"metadata,omitempty"`
+	Metadata map[string]interface{} `json:"metadata,omitempty" yaml:"metadata,omitempty"`
 
 	// Display name
 	// Example: Payment Initiation
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// schema
-	Schema *SupportedJSONSchema `json:"schema,omitempty"`
+	Schema *SupportedJSONSchema `json:"schema,omitempty" yaml:"schema,omitempty"`
 
 	// Service id
 	// Required: true
-	ServiceID string `json:"service_id"`
+	ServiceID string `json:"service_id" yaml:"service_id"`
 
 	// ID of the tenant
 	// Example: default
 	// Required: true
-	TenantID string `json:"tenant_id"`
+	TenantID string `json:"tenant_id" yaml:"tenant_id"`
 
 	// type
 	// Required: true
-	Type *AuthorizationDetailType `json:"type"`
+	Type *AuthorizationDetailType `json:"type" yaml:"type"`
 }
 
 // Validate validates this authorization detail with service ID

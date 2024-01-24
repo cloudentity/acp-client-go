@@ -22,7 +22,7 @@ type CDRConsentsRequest struct {
 	// List of accounts.
 	//
 	// It can refer to user bank accounts the client application is allowed to access.
-	Accounts []string `json:"accounts"`
+	Accounts []string `json:"accounts" yaml:"accounts"`
 
 	// A consent identifier.
 	//
@@ -31,7 +31,7 @@ type CDRConsentsRequest struct {
 	//
 	// With `after_consent_id`, the list you obtain starts from the subsequent consent after the specified one. Also,
 	// the response depends on the `sort` and `order` parameters, if any are passed.
-	AfterConsentID string `json:"after_consent_id,omitempty"`
+	AfterConsentID string `json:"after_consent_id,omitempty" yaml:"after_consent_id,omitempty"`
 
 	// A consent identifier.
 	//
@@ -40,43 +40,43 @@ type CDRConsentsRequest struct {
 	//
 	// With `before_consent_id`, the list you obtain comprises consents up to the specified one. The specified consent
 	// isn't included. Also, the response depends on the `sort` and `order` parameters, if any are passed.
-	BeforeConsentID string `json:"before_consent_id,omitempty"`
+	BeforeConsentID string `json:"before_consent_id,omitempty" yaml:"before_consent_id,omitempty"`
 
 	// A client identifier.
-	ClientID string `json:"client_id,omitempty"`
+	ClientID string `json:"client_id,omitempty" yaml:"client_id,omitempty"`
 
 	// Customer identifier. It represents an organization. The customer identifier can cover several
 	// user identifiers as organization members.
 	//
 	// When you pass a `customer_id` with your request, the response contains results related to the specified
 	// organization, including the allowed information about its users and their arrangements.
-	CustomerID string `json:"customer_id,omitempty"`
+	CustomerID string `json:"customer_id,omitempty" yaml:"customer_id,omitempty"`
 
 	// Limit the number of results returned in the response.
 	// Maximum: 100
 	// Minimum: 1
-	Limit int64 `json:"limit,omitempty"`
+	Limit int64 `json:"limit,omitempty" yaml:"limit,omitempty"`
 
 	// Input: `acs` or `desc`.
 	//
 	// Set the order of results returned in the response.
-	Order string `json:"order,omitempty"`
+	Order string `json:"order,omitempty" yaml:"order,omitempty"`
 
 	// Sort results returned in the response.
-	Sort string `json:"sort,omitempty"`
+	Sort string `json:"sort,omitempty" yaml:"sort,omitempty"`
 
 	// List of the consent statuses.
-	Status []string `json:"status"`
+	Status []string `json:"status" yaml:"status"`
 
 	// Consent types.
 	//
 	// in:query
-	Types []string `json:"types"`
+	Types []string `json:"types" yaml:"types"`
 
 	// User identifier. It represents an end-user.
 	//
 	// When you pass a `user_id` with your request, the endpoint returns the details relating to the specified user.
-	UserID string `json:"user_id,omitempty"`
+	UserID string `json:"user_id,omitempty" yaml:"user_id,omitempty"`
 }
 
 // Validate validates this c d r consents request

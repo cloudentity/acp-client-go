@@ -19,16 +19,16 @@ import (
 type JITUpdatedPayload struct {
 
 	// idp
-	Idp *IDPPayload `json:"idp,omitempty"`
+	Idp *IDPPayload `json:"idp,omitempty" yaml:"idp,omitempty"`
 
 	// new account linked
-	NewAccountLinked bool `json:"new_account_linked,omitempty"`
+	NewAccountLinked bool `json:"new_account_linked,omitempty" yaml:"new_account_linked,omitempty"`
 
 	// pool id
-	PoolID string `json:"pool_id,omitempty"`
+	PoolID string `json:"pool_id,omitempty" yaml:"pool_id,omitempty"`
 
 	// user id
-	UserID string `json:"user_id,omitempty"`
+	UserID string `json:"user_id,omitempty" yaml:"user_id,omitempty"`
 }
 
 // Validate validates this j i t updated payload

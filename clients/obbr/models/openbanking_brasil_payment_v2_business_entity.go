@@ -23,7 +23,7 @@ type OpenbankingBrasilPaymentV2BusinessEntity struct {
 
 	// document
 	// Required: true
-	Document *OpenbankingBrasilPaymentV2Document `json:"document"`
+	Document *OpenbankingBrasilPaymentV2Document `json:"document" yaml:"document"`
 }
 
 // Validate validates this openbanking brasil payment v2 business entity

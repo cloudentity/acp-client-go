@@ -19,208 +19,208 @@ import (
 type AuditEventPayloads struct {
 
 	// access token denied
-	AccessTokenDenied *AccessRequestDataWithError `json:"access_token_denied,omitempty"`
+	AccessTokenDenied *AccessRequestDataWithError `json:"access_token_denied,omitempty" yaml:"access_token_denied,omitempty"`
 
 	// access token issued
-	AccessTokenIssued *AccessRequestData `json:"access_token_issued,omitempty"`
+	AccessTokenIssued *AccessRequestData `json:"access_token_issued,omitempty" yaml:"access_token_issued,omitempty"`
 
 	// authorization code denied
-	AuthorizationCodeDenied *AccessRequestDataWithError `json:"authorization_code_denied,omitempty"`
+	AuthorizationCodeDenied *AccessRequestDataWithError `json:"authorization_code_denied,omitempty" yaml:"authorization_code_denied,omitempty"`
 
 	// authorization code issued
-	AuthorizationCodeIssued *AccessRequestData `json:"authorization_code_issued,omitempty"`
+	AuthorizationCodeIssued *AccessRequestData `json:"authorization_code_issued,omitempty" yaml:"authorization_code_issued,omitempty"`
 
 	// bruteforce deleted
-	BruteforceDeleted *BruteForcePayload `json:"bruteforce_deleted,omitempty"`
+	BruteforceDeleted *BruteForcePayload `json:"bruteforce_deleted,omitempty" yaml:"bruteforce_deleted,omitempty"`
 
 	// bruteforce updated
-	BruteforceUpdated *BruteForcePayload `json:"bruteforce_updated,omitempty"`
+	BruteforceUpdated *BruteForcePayload `json:"bruteforce_updated,omitempty" yaml:"bruteforce_updated,omitempty"`
 
 	// client consents revoked
-	ClientConsentsRevoked *ClientConsentsAuditEventPayload `json:"client_consents_revoked,omitempty"`
+	ClientConsentsRevoked *ClientConsentsAuditEventPayload `json:"client_consents_revoked,omitempty" yaml:"client_consents_revoked,omitempty"`
 
 	// client created
-	ClientCreated *ClientAuditPayload `json:"client_created,omitempty"`
+	ClientCreated *ClientAuditPayload `json:"client_created,omitempty" yaml:"client_created,omitempty"`
 
 	// client deleted
-	ClientDeleted *ClientAuditPayload `json:"client_deleted,omitempty"`
+	ClientDeleted *ClientAuditPayload `json:"client_deleted,omitempty" yaml:"client_deleted,omitempty"`
 
 	// client updated
-	ClientUpdated *ClientAuditPayload `json:"client_updated,omitempty"`
+	ClientUpdated *ClientAuditPayload `json:"client_updated,omitempty" yaml:"client_updated,omitempty"`
 
 	// consent accepted
-	ConsentAccepted *ConsentAuditEventPayload `json:"consent_accepted,omitempty"`
+	ConsentAccepted *ConsentAuditEventPayload `json:"consent_accepted,omitempty" yaml:"consent_accepted,omitempty"`
 
 	// consent created
-	ConsentCreated *ConsentAuditEventPayload `json:"consent_created,omitempty"`
+	ConsentCreated *ConsentAuditEventPayload `json:"consent_created,omitempty" yaml:"consent_created,omitempty"`
 
 	// consent notified
-	ConsentNotified *ConsentNotifiedPayload `json:"consent_notified,omitempty"`
+	ConsentNotified *ConsentNotifiedPayload `json:"consent_notified,omitempty" yaml:"consent_notified,omitempty"`
 
 	// consent rejected
-	ConsentRejected *ConsentAuditEventPayload `json:"consent_rejected,omitempty"`
+	ConsentRejected *ConsentAuditEventPayload `json:"consent_rejected,omitempty" yaml:"consent_rejected,omitempty"`
 
 	// consent revoked
-	ConsentRevoked *ConsentAuditEventPayload `json:"consent_revoked,omitempty"`
+	ConsentRevoked *ConsentAuditEventPayload `json:"consent_revoked,omitempty" yaml:"consent_revoked,omitempty"`
 
 	// consent updated
-	ConsentUpdated *ConsentAuditEventPayload `json:"consent_updated,omitempty"`
+	ConsentUpdated *ConsentAuditEventPayload `json:"consent_updated,omitempty" yaml:"consent_updated,omitempty"`
 
 	// credential created
-	CredentialCreated *CredentialPayload `json:"credential_created,omitempty"`
+	CredentialCreated *CredentialPayload `json:"credential_created,omitempty" yaml:"credential_created,omitempty"`
 
 	// credential updated
-	CredentialUpdated *CredentialPayload `json:"credential_updated,omitempty"`
+	CredentialUpdated *CredentialPayload `json:"credential_updated,omitempty" yaml:"credential_updated,omitempty"`
 
 	// customer consents revoked
-	CustomerConsentsRevoked *CustomerConsentsAuditEventPayload `json:"customer_consents_revoked,omitempty"`
+	CustomerConsentsRevoked *CustomerConsentsAuditEventPayload `json:"customer_consents_revoked,omitempty" yaml:"customer_consents_revoked,omitempty"`
 
 	// dcr created
-	DcrCreated *DCRCreatedEventPayload `json:"dcr_created,omitempty"`
+	DcrCreated *DCRCreatedEventPayload `json:"dcr_created,omitempty" yaml:"dcr_created,omitempty"`
 
 	// dcr rejected
-	DcrRejected *DCRRejectedEventPayload `json:"dcr_rejected,omitempty"`
+	DcrRejected *DCRRejectedEventPayload `json:"dcr_rejected,omitempty" yaml:"dcr_rejected,omitempty"`
 
 	// gateway policy authorized
-	GatewayPolicyAuthorized *RequestValidatedPayload `json:"gateway_policy_authorized,omitempty"`
+	GatewayPolicyAuthorized *RequestValidatedPayload `json:"gateway_policy_authorized,omitempty" yaml:"gateway_policy_authorized,omitempty"`
 
 	// gateway policy unauthorized
-	GatewayPolicyUnauthorized *RequestValidatedPayload `json:"gateway_policy_unauthorized,omitempty"`
+	GatewayPolicyUnauthorized *RequestValidatedPayload `json:"gateway_policy_unauthorized,omitempty" yaml:"gateway_policy_unauthorized,omitempty"`
 
 	// gateway request authorized
-	GatewayRequestAuthorized *RequestValidatedPayload `json:"gateway_request_authorized,omitempty"`
+	GatewayRequestAuthorized *RequestValidatedPayload `json:"gateway_request_authorized,omitempty" yaml:"gateway_request_authorized,omitempty"`
 
 	// gateway request unauthorized
-	GatewayRequestUnauthorized *RequestValidatedPayload `json:"gateway_request_unauthorized,omitempty"`
+	GatewayRequestUnauthorized *RequestValidatedPayload `json:"gateway_request_unauthorized,omitempty" yaml:"gateway_request_unauthorized,omitempty"`
 
 	// jit created
-	JitCreated *JITCreatedPayload `json:"jit_created,omitempty"`
+	JitCreated *JITCreatedPayload `json:"jit_created,omitempty" yaml:"jit_created,omitempty"`
 
 	// jit failed
-	JitFailed *JITFailedPayload `json:"jit_failed,omitempty"`
+	JitFailed *JITFailedPayload `json:"jit_failed,omitempty" yaml:"jit_failed,omitempty"`
 
 	// jit updated
-	JitUpdated *JITUpdatedPayload `json:"jit_updated,omitempty"`
+	JitUpdated *JITUpdatedPayload `json:"jit_updated,omitempty" yaml:"jit_updated,omitempty"`
 
 	// login accepted
-	LoginAccepted *LoginPayload `json:"login_accepted,omitempty"`
+	LoginAccepted *LoginPayload `json:"login_accepted,omitempty" yaml:"login_accepted,omitempty"`
 
 	// login attempted
-	LoginAttempted *LoginPayload `json:"login_attempted,omitempty"`
+	LoginAttempted *LoginPayload `json:"login_attempted,omitempty" yaml:"login_attempted,omitempty"`
 
 	// login failed
-	LoginFailed *LoginFailedPayload `json:"login_failed,omitempty"`
+	LoginFailed *LoginFailedPayload `json:"login_failed,omitempty" yaml:"login_failed,omitempty"`
 
 	// otp accepted
-	OtpAccepted *OTPPayload `json:"otp_accepted,omitempty"`
+	OtpAccepted *OTPPayload `json:"otp_accepted,omitempty" yaml:"otp_accepted,omitempty"`
 
 	// otp not sent
-	OtpNotSent *OTPPayload `json:"otp_not_sent,omitempty"`
+	OtpNotSent *OTPPayload `json:"otp_not_sent,omitempty" yaml:"otp_not_sent,omitempty"`
 
 	// otp rejected
-	OtpRejected *OTPPayload `json:"otp_rejected,omitempty"`
+	OtpRejected *OTPPayload `json:"otp_rejected,omitempty" yaml:"otp_rejected,omitempty"`
 
 	// otp requested
-	OtpRequested *OTPPayload `json:"otp_requested,omitempty"`
+	OtpRequested *OTPPayload `json:"otp_requested,omitempty" yaml:"otp_requested,omitempty"`
 
 	// otp sent
-	OtpSent *OTPPayload `json:"otp_sent,omitempty"`
+	OtpSent *OTPPayload `json:"otp_sent,omitempty" yaml:"otp_sent,omitempty"`
 
 	// password accepted
-	PasswordAccepted *PasswordPayload `json:"password_accepted,omitempty"`
+	PasswordAccepted *PasswordPayload `json:"password_accepted,omitempty" yaml:"password_accepted,omitempty"`
 
 	// password confirmed
-	PasswordConfirmed *PasswordPayload `json:"password_confirmed,omitempty"`
+	PasswordConfirmed *PasswordPayload `json:"password_confirmed,omitempty" yaml:"password_confirmed,omitempty"`
 
 	// password rejected
-	PasswordRejected *PasswordPayload `json:"password_rejected,omitempty"`
+	PasswordRejected *PasswordPayload `json:"password_rejected,omitempty" yaml:"password_rejected,omitempty"`
 
 	// password requested
-	PasswordRequested *PasswordPayload `json:"password_requested,omitempty"`
+	PasswordRequested *PasswordPayload `json:"password_requested,omitempty" yaml:"password_requested,omitempty"`
 
 	// password updated
-	PasswordUpdated *PasswordPayload `json:"password_updated,omitempty"`
+	PasswordUpdated *PasswordPayload `json:"password_updated,omitempty" yaml:"password_updated,omitempty"`
 
 	// policy authorized
-	PolicyAuthorized *PolicyEvaluatedPayload `json:"policy_authorized,omitempty"`
+	PolicyAuthorized *PolicyEvaluatedPayload `json:"policy_authorized,omitempty" yaml:"policy_authorized,omitempty"`
 
 	// policy unauthorized
-	PolicyUnauthorized *PolicyEvaluatedPayload `json:"policy_unauthorized,omitempty"`
+	PolicyUnauthorized *PolicyEvaluatedPayload `json:"policy_unauthorized,omitempty" yaml:"policy_unauthorized,omitempty"`
 
 	// pool created
-	PoolCreated *PoolAuditPayload `json:"pool_created,omitempty"`
+	PoolCreated *PoolAuditPayload `json:"pool_created,omitempty" yaml:"pool_created,omitempty"`
 
 	// pool deleted
-	PoolDeleted *PoolAuditPayload `json:"pool_deleted,omitempty"`
+	PoolDeleted *PoolAuditPayload `json:"pool_deleted,omitempty" yaml:"pool_deleted,omitempty"`
 
 	// pool updated
-	PoolUpdated *PoolAuditPayload `json:"pool_updated,omitempty"`
+	PoolUpdated *PoolAuditPayload `json:"pool_updated,omitempty" yaml:"pool_updated,omitempty"`
 
 	// role granted
-	RoleGranted *RoleGrantAuditPayload `json:"role_granted,omitempty"`
+	RoleGranted *RoleGrantAuditPayload `json:"role_granted,omitempty" yaml:"role_granted,omitempty"`
 
 	// role revoked
-	RoleRevoked *RoleGrantAuditPayload `json:"role_revoked,omitempty"`
+	RoleRevoked *RoleGrantAuditPayload `json:"role_revoked,omitempty" yaml:"role_revoked,omitempty"`
 
 	// saml assertion denied
-	SamlAssertionDenied *AccessRequestDataWithError `json:"saml_assertion_denied,omitempty"`
+	SamlAssertionDenied *AccessRequestDataWithError `json:"saml_assertion_denied,omitempty" yaml:"saml_assertion_denied,omitempty"`
 
 	// saml assertion issued
-	SamlAssertionIssued *AccessRequestData `json:"saml_assertion_issued,omitempty"`
+	SamlAssertionIssued *AccessRequestData `json:"saml_assertion_issued,omitempty" yaml:"saml_assertion_issued,omitempty"`
 
 	// schema created
-	SchemaCreated *SchemaAuditPayload `json:"schema_created,omitempty"`
+	SchemaCreated *SchemaAuditPayload `json:"schema_created,omitempty" yaml:"schema_created,omitempty"`
 
 	// schema deleted
-	SchemaDeleted *SchemaAuditPayload `json:"schema_deleted,omitempty"`
+	SchemaDeleted *SchemaAuditPayload `json:"schema_deleted,omitempty" yaml:"schema_deleted,omitempty"`
 
 	// schema updated
-	SchemaUpdated *SchemaAuditPayload `json:"schema_updated,omitempty"`
+	SchemaUpdated *SchemaAuditPayload `json:"schema_updated,omitempty" yaml:"schema_updated,omitempty"`
 
 	// scopes granted
-	ScopesGranted *ScopesGrantedPayload `json:"scopes_granted,omitempty"`
+	ScopesGranted *ScopesGrantedPayload `json:"scopes_granted,omitempty" yaml:"scopes_granted,omitempty"`
 
 	// script executed
-	ScriptExecuted *ScriptExecutionAuditPayload `json:"script_executed,omitempty"`
+	ScriptExecuted *ScriptExecutionAuditPayload `json:"script_executed,omitempty" yaml:"script_executed,omitempty"`
 
 	// server created
-	ServerCreated *ServerAuditPayload `json:"server_created,omitempty"`
+	ServerCreated *ServerAuditPayload `json:"server_created,omitempty" yaml:"server_created,omitempty"`
 
 	// server deleted
-	ServerDeleted *ServerAuditPayload `json:"server_deleted,omitempty"`
+	ServerDeleted *ServerAuditPayload `json:"server_deleted,omitempty" yaml:"server_deleted,omitempty"`
 
 	// server updated
-	ServerUpdated *ServerAuditPayload `json:"server_updated,omitempty"`
+	ServerUpdated *ServerAuditPayload `json:"server_updated,omitempty" yaml:"server_updated,omitempty"`
 
 	// service created
-	ServiceCreated *ServiceAuditPayload `json:"service_created,omitempty"`
+	ServiceCreated *ServiceAuditPayload `json:"service_created,omitempty" yaml:"service_created,omitempty"`
 
 	// service deleted
-	ServiceDeleted *ServiceAuditPayload `json:"service_deleted,omitempty"`
+	ServiceDeleted *ServiceAuditPayload `json:"service_deleted,omitempty" yaml:"service_deleted,omitempty"`
 
 	// service updated
-	ServiceUpdated *ServiceAuditPayload `json:"service_updated,omitempty"`
+	ServiceUpdated *ServiceAuditPayload `json:"service_updated,omitempty" yaml:"service_updated,omitempty"`
 
 	// task failed
-	TaskFailed *TaskAuditPayload `json:"task_failed,omitempty"`
+	TaskFailed *TaskAuditPayload `json:"task_failed,omitempty" yaml:"task_failed,omitempty"`
 
 	// task succeeded
-	TaskSucceeded *TaskAuditPayload `json:"task_succeeded,omitempty"`
+	TaskSucceeded *TaskAuditPayload `json:"task_succeeded,omitempty" yaml:"task_succeeded,omitempty"`
 
 	// tokens revoked
-	TokensRevoked *TokensRevokedPayload `json:"tokens_revoked,omitempty"`
+	TokensRevoked *TokensRevokedPayload `json:"tokens_revoked,omitempty" yaml:"tokens_revoked,omitempty"`
 
 	// user authenticated
-	UserAuthenticated *UserAuthenticatedPayload `json:"user_authenticated,omitempty"`
+	UserAuthenticated *UserAuthenticatedPayload `json:"user_authenticated,omitempty" yaml:"user_authenticated,omitempty"`
 
 	// user created
-	UserCreated *UserPayload `json:"user_created,omitempty"`
+	UserCreated *UserPayload `json:"user_created,omitempty" yaml:"user_created,omitempty"`
 
 	// user deleted
-	UserDeleted *UserPayload `json:"user_deleted,omitempty"`
+	UserDeleted *UserPayload `json:"user_deleted,omitempty" yaml:"user_deleted,omitempty"`
 
 	// user updated
-	UserUpdated *UserPayload `json:"user_updated,omitempty"`
+	UserUpdated *UserPayload `json:"user_updated,omitempty" yaml:"user_updated,omitempty"`
 }
 
 // Validate validates this audit event payloads

@@ -20,7 +20,7 @@ import (
 type Images struct {
 
 	// images
-	Images []*Image `json:"images"`
+	Images []*Image `json:"images" yaml:"images"`
 }
 
 // Validate validates this images

@@ -21,32 +21,32 @@ type AuthorizationDetailWithServiceDeveloperResponse struct {
 
 	// Description
 	// Example: Authorization detail for payment initiation
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
 	// Display name
 	// Example: Payment Initiation
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// schema
-	Schema *SupportedJSONSchema `json:"schema,omitempty"`
+	Schema *SupportedJSONSchema `json:"schema,omitempty" yaml:"schema,omitempty"`
 
 	// service description
 	// Example: service description
-	ServiceDescription string `json:"service_description,omitempty"`
+	ServiceDescription string `json:"service_description,omitempty" yaml:"service_description,omitempty"`
 
 	// service id
 	// Example: 1
-	ServiceID string `json:"service_id,omitempty"`
+	ServiceID string `json:"service_id,omitempty" yaml:"service_id,omitempty"`
 
 	// service name
 	// Example: service
-	ServiceName string `json:"service_name,omitempty"`
+	ServiceName string `json:"service_name,omitempty" yaml:"service_name,omitempty"`
 
 	// Authorization detail type as defined in RFC: https://datatracker.ietf.org/doc/html/rfc9396
 	// Must be unique within the authorization server.
 	// Example: payment_initiation
 	// Required: true
-	Type string `json:"type"`
+	Type string `json:"type" yaml:"type"`
 }
 
 // Validate validates this authorization detail with service developer response

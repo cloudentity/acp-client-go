@@ -20,10 +20,10 @@ import (
 type ListClientsWithAccess struct {
 
 	// clients
-	Clients []*ClientWithAccess `json:"clients"`
+	Clients []*ClientWithAccess `json:"clients" yaml:"clients"`
 
 	// scopes
-	Scopes []*ScopeWithServicePublicResponse `json:"scopes"`
+	Scopes []*ScopeWithServicePublicResponse `json:"scopes" yaml:"scopes"`
 }
 
 // Validate validates this list clients with access

@@ -20,17 +20,17 @@ import (
 type OpenbankingBrasilConsentV2Data1 struct {
 
 	// business entity
-	BusinessEntity *OpenbankingBrasilConsentV2BusinessEntityExtends `json:"businessEntity,omitempty"`
+	BusinessEntity *OpenbankingBrasilConsentV2BusinessEntityExtends `json:"businessEntity,omitempty" yaml:"businessEntity,omitempty"`
 
 	// Data e hora de expirao da permisso. De preenchimento obrigatrio, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format). Para consentimentos com prazo indeterminado, preencher com valor '2300-01-01T00:00:00Z'. Esse valor deve ser refletido no expirationDateTime do consentimento relacionado.
 	// Example: 2021-05-21T08:30:00Z
 	// Required: true
 	// Format: date-time
-	ExpirationDateTime strfmt.DateTime `json:"expirationDateTime"`
+	ExpirationDateTime strfmt.DateTime `json:"expirationDateTime" yaml:"expirationDateTime"`
 
 	// logged user
 	// Required: true
-	LoggedUser *OpenbankingBrasilConsentV2LoggedUserExtends `json:"loggedUser"`
+	LoggedUser *OpenbankingBrasilConsentV2LoggedUserExtends `json:"loggedUser" yaml:"loggedUser"`
 }
 
 // Validate validates this openbanking brasil consent v2 data1

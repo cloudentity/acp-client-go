@@ -19,17 +19,17 @@ import (
 type UpdateAPIRequest struct {
 
 	// Data classifications
-	DataClassifications []string `json:"data_classifications"`
+	DataClassifications []string `json:"data_classifications" yaml:"data_classifications"`
 
 	// optional graphql schema
-	GraphqlSchema string `json:"graphql_schema,omitempty"`
+	GraphqlSchema string `json:"graphql_schema,omitempty" yaml:"graphql_schema,omitempty"`
 
 	// graphql types
-	GraphqlTypes GraphQLTypes `json:"graphql_types,omitempty"`
+	GraphqlTypes GraphQLTypes `json:"graphql_types,omitempty" yaml:"graphql_types,omitempty"`
 
 	// optional id of a policy
 	// Example: block
-	PolicyID string `json:"policy_id,omitempty"`
+	PolicyID string `json:"policy_id,omitempty" yaml:"policy_id,omitempty"`
 }
 
 // Validate validates this update API request

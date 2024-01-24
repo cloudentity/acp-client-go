@@ -27,11 +27,11 @@ type OpenbankingBrasilPaymentReason struct {
 	// Example: No quero mais o servio
 	// Max Length: 140
 	// Pattern: [\w\W\s]*
-	AdditionalInformation string `json:"additionalInformation,omitempty"`
+	AdditionalInformation string `json:"additionalInformation,omitempty" yaml:"additionalInformation,omitempty"`
 
 	// code
 	// Required: true
-	Code *OpenbankingBrasilPaymentEnumRevocationReason `json:"code"`
+	Code *OpenbankingBrasilPaymentEnumRevocationReason `json:"code" yaml:"code"`
 }
 
 // Validate validates this openbanking brasil payment reason

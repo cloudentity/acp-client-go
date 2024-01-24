@@ -21,15 +21,15 @@ import (
 type RequestCode struct {
 
 	// address
-	Address string `json:"address,omitempty"`
+	Address string `json:"address,omitempty" yaml:"address,omitempty"`
 
 	// identifier
-	Identifier string `json:"identifier,omitempty"`
+	Identifier string `json:"identifier,omitempty" yaml:"identifier,omitempty"`
 
 	// type
 	// Required: true
 	// Enum: [activation reset_password challenge verify_address authentication]
-	Type string `json:"type"`
+	Type string `json:"type" yaml:"type"`
 }
 
 // Validate validates this request code

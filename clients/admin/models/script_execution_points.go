@@ -20,7 +20,7 @@ import (
 type ScriptExecutionPoints struct {
 
 	// list of script executions
-	ExecutionPoints []*ScriptExecutionPoint `json:"execution_points"`
+	ExecutionPoints []*ScriptExecutionPoint `json:"execution_points" yaml:"execution_points"`
 }
 
 // Validate validates this script execution points

@@ -20,7 +20,7 @@ import (
 type Schemas struct {
 
 	// schemas
-	Schemas []*Schema `json:"schemas"`
+	Schemas []*Schema `json:"schemas" yaml:"schemas"`
 }
 
 // Validate validates this schemas

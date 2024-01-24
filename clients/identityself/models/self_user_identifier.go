@@ -23,17 +23,17 @@ type SelfUserIdentifier struct {
 	// created at
 	// Required: true
 	// Format: date-time
-	CreatedAt strfmt.DateTime `json:"created_at"`
+	CreatedAt strfmt.DateTime `json:"created_at" yaml:"created_at"`
 
 	// identifier
 	// Required: true
-	Identifier string `json:"identifier"`
+	Identifier string `json:"identifier" yaml:"identifier"`
 
 	// type
 	// Example: email
 	// Required: true
 	// Enum: [email mobile uid external federated]
-	Type string `json:"type"`
+	Type string `json:"type" yaml:"type"`
 }
 
 // Validate validates this self user identifier

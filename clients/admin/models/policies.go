@@ -20,7 +20,7 @@ import (
 type Policies struct {
 
 	// list of policies
-	Policies []*Policy `json:"policies"`
+	Policies []*Policy `json:"policies" yaml:"policies"`
 }
 
 // Validate validates this policies

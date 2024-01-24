@@ -18,10 +18,10 @@ import (
 type RejectionReason struct {
 
 	// code
-	Code string `json:"code,omitempty"`
+	Code string `json:"code,omitempty" yaml:"code,omitempty"`
 
 	// details
-	Details string `json:"details,omitempty"`
+	Details string `json:"details,omitempty" yaml:"details,omitempty"`
 }
 
 // Validate validates this rejection reason

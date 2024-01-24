@@ -20,7 +20,7 @@ import (
 type GatewayAPIGroups struct {
 
 	// groups
-	Groups []*GatewayAPIGroup `json:"groups"`
+	Groups []*GatewayAPIGroup `json:"groups" yaml:"groups"`
 }
 
 // Validate validates this gateway API groups

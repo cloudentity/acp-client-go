@@ -19,16 +19,16 @@ import (
 type APIGroupMetadata struct {
 
 	// apigee
-	Apigee *ApigeeMetadata `json:"apigee,omitempty"`
+	Apigee *ApigeeMetadata `json:"apigee,omitempty" yaml:"apigee,omitempty"`
 
 	// aws
-	Aws *AWSMetadata `json:"aws,omitempty"`
+	Aws *AWSMetadata `json:"aws,omitempty" yaml:"aws,omitempty"`
 
 	// azure
-	Azure *AzureMetadata `json:"azure,omitempty"`
+	Azure *AzureMetadata `json:"azure,omitempty" yaml:"azure,omitempty"`
 
 	// Gateway type
-	Type string `json:"type,omitempty"`
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 }
 
 // Validate validates this API group metadata

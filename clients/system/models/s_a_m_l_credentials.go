@@ -20,7 +20,7 @@ type SAMLCredentials struct {
 	// The certificate of your IDP
 	//
 	// The certificate must start with `-----BEGIN CERTIFICATE-----` and end with `-----END CERTIFICATE-----`.
-	IdpCertificate string `json:"idp_certificate,omitempty"`
+	IdpCertificate string `json:"idp_certificate,omitempty" yaml:"idp_certificate,omitempty"`
 }
 
 // Validate validates this s a m l credentials

@@ -20,7 +20,7 @@ import (
 type WorkspacesResponse struct {
 
 	// workspaces
-	Workspaces []*WorkspaceResponse `json:"workspaces"`
+	Workspaces []*WorkspaceResponse `json:"workspaces" yaml:"workspaces"`
 }
 
 // Validate validates this workspaces response

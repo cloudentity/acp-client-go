@@ -18,7 +18,7 @@ import (
 type WorkspaceMetadata struct {
 
 	// payload
-	Payload map[string]interface{} `json:"payload,omitempty"`
+	Payload map[string]interface{} `json:"payload,omitempty" yaml:"payload,omitempty"`
 }
 
 // Validate validates this workspace metadata

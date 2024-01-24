@@ -21,7 +21,7 @@ type WebhooksResponse struct {
 
 	// list of Webhooks
 	// in:body
-	Webhooks []*WebhookResponse `json:"webhooks"`
+	Webhooks []*WebhookResponse `json:"webhooks" yaml:"webhooks"`
 }
 
 // Validate validates this webhooks response

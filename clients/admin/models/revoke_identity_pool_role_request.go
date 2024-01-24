@@ -21,28 +21,28 @@ import (
 type RevokeIdentityPoolRoleRequest struct {
 
 	// identity pool user pool id
-	IdentityPoolID string `json:"identity_pool_id,omitempty"`
+	IdentityPoolID string `json:"identity_pool_id,omitempty" yaml:"identity_pool_id,omitempty"`
 
 	// identity pool user id
-	IdentityPoolUserID string `json:"identity_pool_user_id,omitempty"`
+	IdentityPoolUserID string `json:"identity_pool_user_id,omitempty" yaml:"identity_pool_user_id,omitempty"`
 
 	// idp user idp id
-	IdpID string `json:"idp_id,omitempty"`
+	IdpID string `json:"idp_id,omitempty" yaml:"idp_id,omitempty"`
 
 	// role
 	// Example: user_manager
 	// Enum: [user_manager]
-	Role string `json:"role,omitempty"`
+	Role string `json:"role,omitempty" yaml:"role,omitempty"`
 
 	// tenant id
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
 	// type
 	// Enum: [identity_pool_user idp]
-	Type string `json:"type,omitempty"`
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 
 	// idp user workspace id
-	WorkspaceID string `json:"workspace_id,omitempty"`
+	WorkspaceID string `json:"workspace_id,omitempty" yaml:"workspace_id,omitempty"`
 }
 
 // Validate validates this revoke identity pool role request

@@ -19,16 +19,16 @@ import (
 type ConsentDetails struct {
 
 	// br
-	Br *BRConsentPayload `json:"br,omitempty"`
+	Br *BRConsentPayload `json:"br,omitempty" yaml:"br,omitempty"`
 
 	// cdr
-	Cdr *CDRArrangement `json:"cdr,omitempty"`
+	Cdr *CDRArrangement `json:"cdr,omitempty" yaml:"cdr,omitempty"`
 
 	// fdx
-	Fdx *FDXConsent `json:"fdx,omitempty"`
+	Fdx *FDXConsent `json:"fdx,omitempty" yaml:"fdx,omitempty"`
 
 	// uk
-	Uk *UKConsentPayload `json:"uk,omitempty"`
+	Uk *UKConsentPayload `json:"uk,omitempty" yaml:"uk,omitempty"`
 }
 
 // Validate validates this consent details

@@ -22,10 +22,10 @@ type OBWriteInternationalStandingOrderConsent6DataInitiationCreditor struct {
 	// Name by which a party is known and which is usually used to identify that party.
 	// Max Length: 350
 	// Min Length: 1
-	Name string `json:"Name,omitempty"`
+	Name string `json:"Name,omitempty" yaml:"Name,omitempty"`
 
 	// postal address
-	PostalAddress *OBPostalAddress6 `json:"PostalAddress,omitempty"`
+	PostalAddress *OBPostalAddress6 `json:"PostalAddress,omitempty" yaml:"PostalAddress,omitempty"`
 }
 
 // Validate validates this o b write international standing order consent6 data initiation creditor

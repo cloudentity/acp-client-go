@@ -20,7 +20,7 @@ import (
 type CDRErrorResponse struct {
 
 	// errors
-	Errors []*CDRError `json:"errors"`
+	Errors []*CDRError `json:"errors" yaml:"errors"`
 }
 
 // Validate validates this c d r error response

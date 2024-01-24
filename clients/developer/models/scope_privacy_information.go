@@ -20,10 +20,10 @@ import (
 type ScopePrivacyInformation struct {
 
 	// pii categories
-	PiiCategories []*PIICategory `json:"pii_categories"`
+	PiiCategories []*PIICategory `json:"pii_categories" yaml:"pii_categories"`
 
 	// purpose
-	Purpose string `json:"purpose,omitempty"`
+	Purpose string `json:"purpose,omitempty" yaml:"purpose,omitempty"`
 }
 
 // Validate validates this scope privacy information

@@ -20,7 +20,7 @@ import (
 type Themes struct {
 
 	// list of themes
-	Themes []*Theme `json:"themes"`
+	Themes []*Theme `json:"themes" yaml:"themes"`
 }
 
 // Validate validates this themes

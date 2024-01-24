@@ -20,10 +20,10 @@ import (
 type UserWorkspacesResponse struct {
 
 	// cursor
-	Cursor Cursor `json:"cursor,omitempty"`
+	Cursor Cursor `json:"cursor,omitempty" yaml:"cursor,omitempty"`
 
 	// workspaces
-	Workspaces []*WorkspaceResponse `json:"workspaces"`
+	Workspaces []*WorkspaceResponse `json:"workspaces" yaml:"workspaces"`
 }
 
 // Validate validates this user workspaces response

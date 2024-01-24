@@ -21,52 +21,52 @@ import (
 type TreePool struct {
 
 	// authentication mechanisms
-	AuthenticationMechanisms AuthenticationMechanisms `json:"authentication_mechanisms,omitempty"`
+	AuthenticationMechanisms AuthenticationMechanisms `json:"authentication_mechanisms,omitempty" yaml:"authentication_mechanisms,omitempty"`
 
 	// badge color
-	BadgeColor string `json:"badge_color,omitempty"`
+	BadgeColor string `json:"badge_color,omitempty" yaml:"badge_color,omitempty"`
 
 	// deleted
-	Deleted bool `json:"deleted,omitempty"`
+	Deleted bool `json:"deleted,omitempty" yaml:"deleted,omitempty"`
 
 	// description
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
 	// identifier case insensitive
-	IdentifierCaseInsensitive bool `json:"identifier_case_insensitive,omitempty"`
+	IdentifierCaseInsensitive bool `json:"identifier_case_insensitive,omitempty" yaml:"identifier_case_insensitive,omitempty"`
 
 	// metadata
-	Metadata map[string]interface{} `json:"metadata,omitempty"`
+	Metadata map[string]interface{} `json:"metadata,omitempty" yaml:"metadata,omitempty"`
 
 	// metadata schema id
-	MetadataSchemaID string `json:"metadata_schema_id,omitempty"`
+	MetadataSchemaID string `json:"metadata_schema_id,omitempty" yaml:"metadata_schema_id,omitempty"`
 
 	// name
 	// Required: true
-	Name string `json:"name"`
+	Name string `json:"name" yaml:"name"`
 
 	// otp settings
-	OtpSettings *OtpSettings `json:"otp_settings,omitempty"`
+	OtpSettings *OtpSettings `json:"otp_settings,omitempty" yaml:"otp_settings,omitempty"`
 
 	// password policy
-	PasswordPolicy *PasswordPolicy `json:"password_policy,omitempty"`
+	PasswordPolicy *PasswordPolicy `json:"password_policy,omitempty" yaml:"password_policy,omitempty"`
 
 	// password settings
-	PasswordSettings *PasswordSettings `json:"password_settings,omitempty"`
+	PasswordSettings *PasswordSettings `json:"password_settings,omitempty" yaml:"password_settings,omitempty"`
 
 	// payload schema id
-	PayloadSchemaID string `json:"payload_schema_id,omitempty"`
+	PayloadSchemaID string `json:"payload_schema_id,omitempty" yaml:"payload_schema_id,omitempty"`
 
 	// preferred authentication mechanism
 	// Example: password
 	// Enum: [password otp webauthn]
-	PreferredAuthenticationMechanism string `json:"preferred_authentication_mechanism,omitempty"`
+	PreferredAuthenticationMechanism string `json:"preferred_authentication_mechanism,omitempty" yaml:"preferred_authentication_mechanism,omitempty"`
 
 	// public registration allowed
-	PublicRegistrationAllowed bool `json:"public_registration_allowed,omitempty"`
+	PublicRegistrationAllowed bool `json:"public_registration_allowed,omitempty" yaml:"public_registration_allowed,omitempty"`
 
 	// system
-	System bool `json:"system,omitempty"`
+	System bool `json:"system,omitempty" yaml:"system,omitempty"`
 }
 
 // Validate validates this tree pool

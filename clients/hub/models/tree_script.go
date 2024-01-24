@@ -18,13 +18,13 @@ import (
 type TreeScript struct {
 
 	// Script body
-	Body string `json:"body,omitempty"`
+	Body string `json:"body,omitempty" yaml:"body,omitempty"`
 
 	// Display name of your script
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// Input data for testing this script
-	TestInput string `json:"test_input,omitempty"`
+	TestInput string `json:"test_input,omitempty" yaml:"test_input,omitempty"`
 }
 
 // Validate validates this tree script

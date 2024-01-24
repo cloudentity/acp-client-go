@@ -18,7 +18,7 @@ import (
 type GoogleCredentials struct {
 
 	// OAuth client application secret
-	ClientSecret string `json:"client_secret,omitempty"`
+	ClientSecret string `json:"client_secret,omitempty" yaml:"client_secret,omitempty"`
 }
 
 // Validate validates this google credentials

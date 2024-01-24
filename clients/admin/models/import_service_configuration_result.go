@@ -23,64 +23,64 @@ type ImportServiceConfigurationResult struct {
 
 	// Authorization server identifier
 	// Example: my-server
-	AuthorizationServerID string `json:"authorization_server_id,omitempty"`
+	AuthorizationServerID string `json:"authorization_server_id,omitempty" yaml:"authorization_server_id,omitempty"`
 
 	// created apis
-	CreatedApis []*API `json:"created_apis"`
+	CreatedApis []*API `json:"created_apis" yaml:"created_apis"`
 
 	// created policies
-	CreatedPolicies []*Policy `json:"created_policies"`
+	CreatedPolicies []*Policy `json:"created_policies" yaml:"created_policies"`
 
 	// created scopes
-	CreatedScopes []*Scope `json:"created_scopes"`
+	CreatedScopes []*Scope `json:"created_scopes" yaml:"created_scopes"`
 
 	// Custom service audience
 	// Example: https://api.example.com
-	CustomAudience string `json:"custom_audience,omitempty"`
+	CustomAudience string `json:"custom_audience,omitempty" yaml:"custom_audience,omitempty"`
 
 	// Service description
 	// Example: Service description
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
 	// Gateway identifier
 	// Example: gateway-1
-	GatewayID string `json:"gateway_id,omitempty"`
+	GatewayID string `json:"gateway_id,omitempty" yaml:"gateway_id,omitempty"`
 
 	// A unique identifier of a service
 	// Example: service-1
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// Service name
 	// Example: My service
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// not removed policies
-	NotRemovedPolicies []*Policy `json:"not_removed_policies"`
+	NotRemovedPolicies []*Policy `json:"not_removed_policies" yaml:"not_removed_policies"`
 
 	// removed apis
-	RemovedApis []*API `json:"removed_apis"`
+	RemovedApis []*API `json:"removed_apis" yaml:"removed_apis"`
 
 	// removed policies
-	RemovedPolicies []*Policy `json:"removed_policies"`
+	RemovedPolicies []*Policy `json:"removed_policies" yaml:"removed_policies"`
 
 	// `true` when the service is a system service
 	// Example: false
-	System bool `json:"system,omitempty"`
+	System bool `json:"system,omitempty" yaml:"system,omitempty"`
 
 	// Tenant identifier
 	// Example: my-company
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
 	// Service type
 	// Enum: [oauth2 oidc system user openbanking]
-	Type string `json:"type,omitempty"`
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 
 	// The date of service update
 	// Format: date-time
-	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty"`
+	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty" yaml:"updated_at,omitempty"`
 
 	// `true` when the service has the OpenAPI 3.0 specification
-	WithSpecification bool `json:"with_specification,omitempty"`
+	WithSpecification bool `json:"with_specification,omitempty" yaml:"with_specification,omitempty"`
 }
 
 // Validate validates this import service configuration result

@@ -18,7 +18,7 @@ import (
 type OBBRMetadata struct {
 
 	// An array of hosts subscribed to Open Finance Webhook Notifications
-	WebhookUris []string `json:"webhook_uris"`
+	WebhookUris []string `json:"webhook_uris" yaml:"webhook_uris"`
 }
 
 // Validate validates this o b b r metadata

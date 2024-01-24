@@ -25,7 +25,7 @@ type TokenTTLs struct {
 	// authenticate the client application.
 	// Example: 1h10m30s
 	// Format: duration
-	AccessTokenTTL strfmt.Duration `json:"access_token_ttl,omitempty"`
+	AccessTokenTTL strfmt.Duration `json:"access_token_ttl,omitempty" yaml:"access_token_ttl,omitempty"`
 
 	// Authorization code time to live
 	//
@@ -33,7 +33,7 @@ type TokenTTLs struct {
 	// authorize the request to the `/token` endpoint.
 	// Example: 10m0s
 	// Format: duration
-	AuthorizationCodeTTL strfmt.Duration `json:"authorization_code_ttl,omitempty"`
+	AuthorizationCodeTTL strfmt.Duration `json:"authorization_code_ttl,omitempty" yaml:"authorization_code_ttl,omitempty"`
 
 	// ID token time to live
 	//
@@ -41,7 +41,7 @@ type TokenTTLs struct {
 	// user profile information to a client application.
 	// Example: 1h10m30s
 	// Format: duration
-	IDTokenTTL strfmt.Duration `json:"id_token_ttl,omitempty"`
+	IDTokenTTL strfmt.Duration `json:"id_token_ttl,omitempty" yaml:"id_token_ttl,omitempty"`
 
 	// Refresh token time to live
 	//
@@ -49,7 +49,7 @@ type TokenTTLs struct {
 	// new access tokens for a client application.
 	// Example: 720h0m0s
 	// Format: duration
-	RefreshTokenTTL strfmt.Duration `json:"refresh_token_ttl,omitempty"`
+	RefreshTokenTTL strfmt.Duration `json:"refresh_token_ttl,omitempty" yaml:"refresh_token_ttl,omitempty"`
 }
 
 // Validate validates this token t t ls

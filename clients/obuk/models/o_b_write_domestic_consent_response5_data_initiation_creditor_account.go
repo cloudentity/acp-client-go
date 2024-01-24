@@ -21,7 +21,7 @@ type OBWriteDomesticConsentResponse5DataInitiationCreditorAccount struct {
 
 	// identification
 	// Required: true
-	Identification *Identification0 `json:"Identification"`
+	Identification *Identification0 `json:"Identification" yaml:"Identification"`
 
 	// The account name is the name or names of the account owner(s) represented at an account level.
 	// Note, the account name is not the product name or the nickname of the account.
@@ -29,14 +29,14 @@ type OBWriteDomesticConsentResponse5DataInitiationCreditorAccount struct {
 	// Required: true
 	// Max Length: 350
 	// Min Length: 1
-	Name string `json:"Name"`
+	Name string `json:"Name" yaml:"Name"`
 
 	// scheme name
 	// Required: true
-	SchemeName *OBExternalAccountIdentification4Code `json:"SchemeName"`
+	SchemeName *OBExternalAccountIdentification4Code `json:"SchemeName" yaml:"SchemeName"`
 
 	// secondary identification
-	SecondaryIdentification SecondaryIdentification `json:"SecondaryIdentification,omitempty"`
+	SecondaryIdentification SecondaryIdentification `json:"SecondaryIdentification,omitempty" yaml:"SecondaryIdentification,omitempty"`
 }
 
 // Validate validates this o b write domestic consent response5 data initiation creditor account

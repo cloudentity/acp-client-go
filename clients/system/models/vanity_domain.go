@@ -20,36 +20,36 @@ import (
 type VanityDomain struct {
 
 	// api key
-	APIKey string `json:"api_key,omitempty"`
+	APIKey string `json:"api_key,omitempty" yaml:"api_key,omitempty"`
 
 	// base path to use with a configured vanity domain
 	// Example: /prefix
-	BasePath string `json:"base_path,omitempty"`
+	BasePath string `json:"base_path,omitempty" yaml:"base_path,omitempty"`
 
 	// domain cerificate
-	Cert string `json:"cert,omitempty"`
+	Cert string `json:"cert,omitempty" yaml:"cert,omitempty"`
 
 	// vanity domain
 	// Example: example.com
 	// Required: true
-	Domain string `json:"domain"`
+	Domain string `json:"domain" yaml:"domain"`
 
 	// ID
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// domain private key
-	Key string `json:"key,omitempty"`
+	Key string `json:"key,omitempty" yaml:"key,omitempty"`
 
 	// Unique identifier of an authorization server (workspace)
 	// Example: default
-	ServerID string `json:"server_id,omitempty"`
+	ServerID string `json:"server_id,omitempty" yaml:"server_id,omitempty"`
 
 	// ID of a tenant
 	// Example: default
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
 	// type
-	Type VanityDomainType `json:"type,omitempty"`
+	Type VanityDomainType `json:"type,omitempty" yaml:"type,omitempty"`
 }
 
 // Validate validates this vanity domain

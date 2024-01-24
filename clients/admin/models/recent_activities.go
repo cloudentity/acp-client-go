@@ -20,7 +20,7 @@ import (
 type RecentActivities struct {
 
 	// activities
-	Activities []*RecentActivity `json:"activities"`
+	Activities []*RecentActivity `json:"activities" yaml:"activities"`
 }
 
 // Validate validates this recent activities

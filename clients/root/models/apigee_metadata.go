@@ -22,17 +22,17 @@ type ApigeeMetadata struct {
 	// Apigee environment name. It's a uniqe, immutable name of an environment for a given proxy name.
 	// Example: my-default-proxy
 	// Required: true
-	EnvironmentName string `json:"environment_name"`
+	EnvironmentName string `json:"environment_name" yaml:"environment_name"`
 
 	// Apigee organization name. It's a uniqe, immutable name of an Apigee organization.
 	// Example: apigee-x-905913
 	// Required: true
-	OrganizationName string `json:"organization_name"`
+	OrganizationName string `json:"organization_name" yaml:"organization_name"`
 
 	// Apigee proxy name. It's a uniqe, immutable name of a proxy for a given organization id.
 	// Example: my-default-proxy
 	// Required: true
-	ProxyName string `json:"proxy_name"`
+	ProxyName string `json:"proxy_name" yaml:"proxy_name"`
 }
 
 // Validate validates this apigee metadata

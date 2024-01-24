@@ -18,10 +18,10 @@ import (
 type TenantSettings struct {
 
 	// default template id
-	DefaultTemplateID string `json:"default_template_id,omitempty"`
+	DefaultTemplateID string `json:"default_template_id,omitempty" yaml:"default_template_id,omitempty"`
 
 	// default workspace id
-	DefaultWorkspaceID string `json:"default_workspace_id,omitempty"`
+	DefaultWorkspaceID string `json:"default_workspace_id,omitempty" yaml:"default_workspace_id,omitempty"`
 }
 
 // Validate validates this tenant settings

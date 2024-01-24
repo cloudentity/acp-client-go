@@ -20,7 +20,7 @@ import (
 type FeaturesResponse struct {
 
 	// features
-	Features []*FeatureResponse `json:"features"`
+	Features []*FeatureResponse `json:"features" yaml:"features"`
 }
 
 // Validate validates this features response

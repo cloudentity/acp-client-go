@@ -21,11 +21,11 @@ type InternationalStandingOrderConsentRequest struct {
 
 	// data
 	// Required: true
-	Data *OBWriteInternationalStandingOrderConsent6Data `json:"Data"`
+	Data *OBWriteInternationalStandingOrderConsent6Data `json:"Data" yaml:"Data"`
 
 	// risk
 	// Required: true
-	Risk *OBRisk1 `json:"Risk"`
+	Risk *OBRisk1 `json:"Risk" yaml:"Risk"`
 }
 
 // Validate validates this international standing order consent request

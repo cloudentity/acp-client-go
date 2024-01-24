@@ -23,53 +23,53 @@ import (
 type EntityDescriptor struct {
 
 	// additional metadata locations
-	AdditionalMetadataLocations []string `json:"AdditionalMetadataLocations"`
+	AdditionalMetadataLocations []string `json:"AdditionalMetadataLocations" yaml:"AdditionalMetadataLocations"`
 
 	// affiliation descriptor
-	AffiliationDescriptor *AffiliationDescriptor `json:"AffiliationDescriptor,omitempty"`
+	AffiliationDescriptor *AffiliationDescriptor `json:"AffiliationDescriptor,omitempty" yaml:"AffiliationDescriptor,omitempty"`
 
 	// attribute authority descriptors
-	AttributeAuthorityDescriptors []*AttributeAuthorityDescriptor `json:"AttributeAuthorityDescriptors"`
+	AttributeAuthorityDescriptors []*AttributeAuthorityDescriptor `json:"AttributeAuthorityDescriptors" yaml:"AttributeAuthorityDescriptors"`
 
 	// authn authority descriptors
-	AuthnAuthorityDescriptors []*AuthnAuthorityDescriptor `json:"AuthnAuthorityDescriptors"`
+	AuthnAuthorityDescriptors []*AuthnAuthorityDescriptor `json:"AuthnAuthorityDescriptors" yaml:"AuthnAuthorityDescriptors"`
 
 	// cache duration
-	CacheDuration Duration `json:"CacheDuration,omitempty"`
+	CacheDuration Duration `json:"CacheDuration,omitempty" yaml:"CacheDuration,omitempty"`
 
 	// contact person
-	ContactPerson *ContactPerson `json:"ContactPerson,omitempty"`
+	ContactPerson *ContactPerson `json:"ContactPerson,omitempty" yaml:"ContactPerson,omitempty"`
 
 	// entity ID
-	EntityID string `json:"EntityID,omitempty"`
+	EntityID string `json:"EntityID,omitempty" yaml:"EntityID,omitempty"`
 
 	// ID
-	ID string `json:"ID,omitempty"`
+	ID string `json:"ID,omitempty" yaml:"ID,omitempty"`
 
 	// ID p s s o descriptors
-	IDPSSODescriptors []*IDPSSODescriptor `json:"IDPSSODescriptors"`
+	IDPSSODescriptors []*IDPSSODescriptor `json:"IDPSSODescriptors" yaml:"IDPSSODescriptors"`
 
 	// organization
-	Organization *Organization `json:"Organization,omitempty"`
+	Organization *Organization `json:"Organization,omitempty" yaml:"Organization,omitempty"`
 
 	// p d p descriptors
-	PDPDescriptors []*PDPDescriptor `json:"PDPDescriptors"`
+	PDPDescriptors []*PDPDescriptor `json:"PDPDescriptors" yaml:"PDPDescriptors"`
 
 	// role descriptors
-	RoleDescriptors []*RoleDescriptor `json:"RoleDescriptors"`
+	RoleDescriptors []*RoleDescriptor `json:"RoleDescriptors" yaml:"RoleDescriptors"`
 
 	// s p s s o descriptors
-	SPSSODescriptors []*SPSSODescriptor `json:"SPSSODescriptors"`
+	SPSSODescriptors []*SPSSODescriptor `json:"SPSSODescriptors" yaml:"SPSSODescriptors"`
 
 	// signature
-	Signature *Element `json:"Signature,omitempty"`
+	Signature *Element `json:"Signature,omitempty" yaml:"Signature,omitempty"`
 
 	// valid until
 	// Format: date-time
-	ValidUntil strfmt.DateTime `json:"ValidUntil,omitempty"`
+	ValidUntil strfmt.DateTime `json:"ValidUntil,omitempty" yaml:"ValidUntil,omitempty"`
 
 	// XML name
-	XMLName *Name `json:"XMLName,omitempty"`
+	XMLName *Name `json:"XMLName,omitempty" yaml:"XMLName,omitempty"`
 }
 
 // Validate validates this entity descriptor

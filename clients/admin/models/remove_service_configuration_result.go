@@ -20,13 +20,13 @@ import (
 type RemoveServiceConfigurationResult struct {
 
 	// not removed policies
-	NotRemovedPolicies []*Policy `json:"not_removed_policies"`
+	NotRemovedPolicies []*Policy `json:"not_removed_policies" yaml:"not_removed_policies"`
 
 	// removed apis
-	RemovedApis []*API `json:"removed_apis"`
+	RemovedApis []*API `json:"removed_apis" yaml:"removed_apis"`
 
 	// removed policies
-	RemovedPolicies []*Policy `json:"removed_policies"`
+	RemovedPolicies []*Policy `json:"removed_policies" yaml:"removed_policies"`
 }
 
 // Validate validates this remove service configuration result

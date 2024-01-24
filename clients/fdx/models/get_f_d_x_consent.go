@@ -22,35 +22,35 @@ type GetFDXConsent struct {
 
 	// Time of consent creation
 	// Format: date-time
-	CreatedTime strfmt.DateTime `json:"createdTime,omitempty"`
+	CreatedTime strfmt.DateTime `json:"createdTime,omitempty" yaml:"createdTime,omitempty"`
 
 	// Consent duration, in days, from day of original grant.
-	DurationPeriod int64 `json:"durationPeriod,omitempty"`
+	DurationPeriod int64 `json:"durationPeriod,omitempty" yaml:"durationPeriod,omitempty"`
 
 	// duration type
-	DurationType DurationType `json:"durationType,omitempty"`
+	DurationType DurationType `json:"durationType,omitempty" yaml:"durationType,omitempty"`
 
 	// Time of consent expiration
 	// Format: date-time
-	ExpirationTime strfmt.DateTime `json:"expirationTime,omitempty"`
+	ExpirationTime strfmt.DateTime `json:"expirationTime,omitempty" yaml:"expirationTime,omitempty"`
 
 	// id
-	ID FDXConsentID `json:"id,omitempty"`
+	ID FDXConsentID `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// Period, in days, for which historical data may be requested; period is measured from request time, not grant time
-	LookbackPeriod int64 `json:"lookbackPeriod,omitempty"`
+	LookbackPeriod int64 `json:"lookbackPeriod,omitempty" yaml:"lookbackPeriod,omitempty"`
 
 	// A collection of parameters identifying the Parties (including the legal entity operating branded products or services)
 	// in the data sharing chain. Descriptive information is collected during Data Recipient registration at Data Provider,
 	// and populated during issuance by DataProvider from its registry;
-	Parties []*FDXConsentGrantParty `json:"parties"`
+	Parties []*FDXConsentGrantParty `json:"parties" yaml:"parties"`
 
 	// Enumeration of the Clusters of granted data elements permissioned by this Consent Grant.
 	// Data Clusters are described in FDX RFC 0167.
-	Resources []*FDXGrantedResource `json:"resources"`
+	Resources []*FDXGrantedResource `json:"resources" yaml:"resources"`
 
 	// status
-	Status FDXConsentGrantStatus `json:"status,omitempty"`
+	Status FDXConsentGrantStatus `json:"status,omitempty" yaml:"status,omitempty"`
 }
 
 // Validate validates this get f d x consent

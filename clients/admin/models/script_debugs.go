@@ -20,7 +20,7 @@ import (
 type ScriptDebugs struct {
 
 	// list of script debug triggers
-	ScriptDebugs []*ScriptDebug `json:"script_debugs"`
+	ScriptDebugs []*ScriptDebug `json:"script_debugs" yaml:"script_debugs"`
 }
 
 // Validate validates this script debugs

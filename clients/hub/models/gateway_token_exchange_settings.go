@@ -18,10 +18,10 @@ import (
 type GatewayTokenExchangeSettings struct {
 
 	// enabled
-	Enabled bool `json:"enabled,omitempty"`
+	Enabled bool `json:"enabled,omitempty" yaml:"enabled,omitempty"`
 
 	// trusted idp ids
-	TrustedIdpIds []string `json:"trusted_idp_ids"`
+	TrustedIdpIds []string `json:"trusted_idp_ids" yaml:"trusted_idp_ids"`
 }
 
 // Validate validates this gateway token exchange settings

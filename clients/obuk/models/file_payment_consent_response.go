@@ -21,13 +21,13 @@ type FilePaymentConsentResponse struct {
 
 	// data
 	// Required: true
-	Data *OBWriteFileConsentResponse4Data `json:"Data"`
+	Data *OBWriteFileConsentResponse4Data `json:"Data" yaml:"Data"`
 
 	// links
-	Links *Links `json:"Links,omitempty"`
+	Links *Links `json:"Links,omitempty" yaml:"Links,omitempty"`
 
 	// meta
-	Meta *Meta `json:"Meta,omitempty"`
+	Meta *Meta `json:"Meta,omitempty" yaml:"Meta,omitempty"`
 }
 
 // Validate validates this file payment consent response

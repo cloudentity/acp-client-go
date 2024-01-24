@@ -20,15 +20,15 @@ import (
 type TreeTemplate struct {
 
 	// content of the template
-	Content string `json:"content,omitempty"`
+	Content string `json:"content,omitempty" yaml:"content,omitempty"`
 
 	// timestamp when the template was created
 	// Format: date-time
-	CreatedAt strfmt.DateTime `json:"created_at,omitempty"`
+	CreatedAt strfmt.DateTime `json:"created_at,omitempty" yaml:"created_at,omitempty"`
 
 	// timestamp when the template was last updated
 	// Format: date-time
-	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty"`
+	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty" yaml:"updated_at,omitempty"`
 }
 
 // Validate validates this tree template

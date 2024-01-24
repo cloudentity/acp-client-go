@@ -18,10 +18,10 @@ import (
 type TestScriptRequest struct {
 
 	// Contains the script source for testing
-	Body string `json:"body,omitempty"`
+	Body string `json:"body,omitempty" yaml:"body,omitempty"`
 
 	// Contains the input for the script
-	Input map[string]interface{} `json:"input,omitempty"`
+	Input map[string]interface{} `json:"input,omitempty" yaml:"input,omitempty"`
 }
 
 // Validate validates this test script request

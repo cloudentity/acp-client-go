@@ -20,10 +20,10 @@ import (
 type UserPools struct {
 
 	// cursor
-	Cursor Cursor `json:"cursor,omitempty"`
+	Cursor Cursor `json:"cursor,omitempty" yaml:"cursor,omitempty"`
 
 	// pools
-	Pools []*PoolResponse `json:"pools"`
+	Pools []*PoolResponse `json:"pools" yaml:"pools"`
 }
 
 // Validate validates this user pools

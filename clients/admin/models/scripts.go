@@ -20,7 +20,7 @@ import (
 type Scripts struct {
 
 	// list of scripts
-	Scripts []*Script `json:"scripts"`
+	Scripts []*Script `json:"scripts" yaml:"scripts"`
 }
 
 // Validate validates this scripts

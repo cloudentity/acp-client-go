@@ -22,53 +22,53 @@ import (
 type ServiceWithScopesResponse struct {
 
 	// audience
-	Audience string `json:"audience,omitempty"`
+	Audience string `json:"audience,omitempty" yaml:"audience,omitempty"`
 
 	// Authorization server identifier
 	// Example: my-server
-	AuthorizationServerID string `json:"authorization_server_id,omitempty"`
+	AuthorizationServerID string `json:"authorization_server_id,omitempty" yaml:"authorization_server_id,omitempty"`
 
 	// Custom service audience
 	// Example: https://api.example.com
-	CustomAudience string `json:"custom_audience,omitempty"`
+	CustomAudience string `json:"custom_audience,omitempty" yaml:"custom_audience,omitempty"`
 
 	// Service description
 	// Example: Service description
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
 	// Gateway identifier
 	// Example: gateway-1
-	GatewayID string `json:"gateway_id,omitempty"`
+	GatewayID string `json:"gateway_id,omitempty" yaml:"gateway_id,omitempty"`
 
 	// A unique identifier of a service
 	// Example: service-1
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// Service name
 	// Example: My service
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// list of scopes
-	Scopes []*Scope `json:"scopes"`
+	Scopes []*Scope `json:"scopes" yaml:"scopes"`
 
 	// `true` when the service is a system service
 	// Example: false
-	System bool `json:"system,omitempty"`
+	System bool `json:"system,omitempty" yaml:"system,omitempty"`
 
 	// Tenant identifier
 	// Example: my-company
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
 	// Service type
 	// Enum: [oauth2 oidc system user openbanking]
-	Type string `json:"type,omitempty"`
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 
 	// The date of service update
 	// Format: date-time
-	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty"`
+	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty" yaml:"updated_at,omitempty"`
 
 	// `true` when the service has the OpenAPI 3.0 specification
-	WithSpecification bool `json:"with_specification,omitempty"`
+	WithSpecification bool `json:"with_specification,omitempty" yaml:"with_specification,omitempty"`
 }
 
 // Validate validates this service with scopes response

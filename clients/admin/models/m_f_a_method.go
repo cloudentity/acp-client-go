@@ -21,28 +21,28 @@ import (
 type MFAMethod struct {
 
 	// auth
-	Auth *MFAAuth `json:"auth,omitempty"`
+	Auth *MFAAuth `json:"auth,omitempty" yaml:"auth,omitempty"`
 
 	// enabled
 	// Required: true
-	Enabled bool `json:"enabled"`
+	Enabled bool `json:"enabled" yaml:"enabled"`
 
 	// id
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// mechanism
 	// Example: email
 	// Required: true
 	// Enum: [sms email]
-	Mechanism string `json:"mechanism"`
+	Mechanism string `json:"mechanism" yaml:"mechanism"`
 
 	// settings
-	Settings *MFASettings `json:"settings,omitempty"`
+	Settings *MFASettings `json:"settings,omitempty" yaml:"settings,omitempty"`
 
 	// tenant id
 	// Example: default
 	// Required: true
-	TenantID string `json:"tenant_id"`
+	TenantID string `json:"tenant_id" yaml:"tenant_id"`
 }
 
 // Validate validates this m f a method

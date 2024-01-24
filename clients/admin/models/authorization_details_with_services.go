@@ -20,7 +20,7 @@ import (
 type AuthorizationDetailsWithServices struct {
 
 	// list of authorization details
-	AuthorizationDetails []*AuthorizationDetailWithService `json:"authorization_details"`
+	AuthorizationDetails []*AuthorizationDetailWithService `json:"authorization_details" yaml:"authorization_details"`
 }
 
 // Validate validates this authorization details with services

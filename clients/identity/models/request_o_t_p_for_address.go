@@ -21,7 +21,7 @@ type RequestOTPForAddress struct {
 
 	// address
 	// Required: true
-	Address string `json:"address"`
+	Address string `json:"address" yaml:"address"`
 }
 
 // Validate validates this request o t p for address

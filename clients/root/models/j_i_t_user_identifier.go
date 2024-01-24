@@ -19,10 +19,10 @@ import (
 type JITUserIdentifier struct {
 
 	// source
-	Source string `json:"source,omitempty"`
+	Source string `json:"source,omitempty" yaml:"source,omitempty"`
 
 	// type
-	Type IdentifierType `json:"type,omitempty"`
+	Type IdentifierType `json:"type,omitempty" yaml:"type,omitempty"`
 }
 
 // Validate validates this j i t user identifier

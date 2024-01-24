@@ -20,7 +20,7 @@ import (
 type AuditEvents struct {
 
 	// audit events
-	AuditEvents []*AuditEvent `json:"audit_events"`
+	AuditEvents []*AuditEvent `json:"audit_events" yaml:"audit_events"`
 }
 
 // Validate validates this audit events

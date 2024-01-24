@@ -19,10 +19,10 @@ import (
 type ServerMetadata struct {
 
 	// metadata payload
-	Payload map[string]interface{} `json:"payload,omitempty"`
+	Payload map[string]interface{} `json:"payload,omitempty" yaml:"payload,omitempty"`
 
 	// schema
-	Schema *SupportedJSONSchema `json:"schema,omitempty"`
+	Schema *SupportedJSONSchema `json:"schema,omitempty" yaml:"schema,omitempty"`
 }
 
 // Validate validates this server metadata

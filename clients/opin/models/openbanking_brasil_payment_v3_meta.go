@@ -25,7 +25,7 @@ type OpenbankingBrasilPaymentV3Meta struct {
 	// Example: 2021-05-21T08:30:00Z
 	// Required: true
 	// Format: date-time
-	RequestDateTime strfmt.DateTime `json:"requestDateTime"`
+	RequestDateTime strfmt.DateTime `json:"requestDateTime" yaml:"requestDateTime"`
 }
 
 // Validate validates this openbanking brasil payment v3 meta

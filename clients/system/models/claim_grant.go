@@ -21,29 +21,29 @@ type ClaimGrant struct {
 
 	// The claim name as it's set initially.
 	// Example: email
-	ClaimName string `json:"claim_name,omitempty"`
+	ClaimName string `json:"claim_name,omitempty" yaml:"claim_name,omitempty"`
 
 	// Identifier of a client application that is granted with the claim.
 	// Example: bugkgm23g9kregtu051g
-	ClientID string `json:"client_id,omitempty"`
+	ClientID string `json:"client_id,omitempty" yaml:"client_id,omitempty"`
 
 	// Time when the claim was granted
 	// Format: date-time
-	GivenAt strfmt.DateTime `json:"given_at,omitempty"`
+	GivenAt strfmt.DateTime `json:"given_at,omitempty" yaml:"given_at,omitempty"`
 
 	// Language
-	Language string `json:"language,omitempty"`
+	Language string `json:"language,omitempty" yaml:"language,omitempty"`
 
 	// Identifier of a server where the client app is hosted.
 	// Example: my-server
-	ServerID string `json:"server_id,omitempty"`
+	ServerID string `json:"server_id,omitempty" yaml:"server_id,omitempty"`
 
 	// Identifier of a user who granted the claim.
-	Subject string `json:"subject,omitempty"`
+	Subject string `json:"subject,omitempty" yaml:"subject,omitempty"`
 
 	// Identifier of the tenant where the client app is hosted.
 	// Example: my-company
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 }
 
 // Validate validates this claim grant

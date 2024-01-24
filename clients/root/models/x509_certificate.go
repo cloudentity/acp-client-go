@@ -19,10 +19,10 @@ import (
 type X509Certificate struct {
 
 	// data
-	Data string `json:"Data,omitempty"`
+	Data string `json:"Data,omitempty" yaml:"Data,omitempty"`
 
 	// XML name
-	XMLName *Name `json:"XMLName,omitempty"`
+	XMLName *Name `json:"XMLName,omitempty" yaml:"XMLName,omitempty"`
 }
 
 // Validate validates this x509 certificate

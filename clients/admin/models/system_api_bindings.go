@@ -20,7 +20,7 @@ import (
 type SystemAPIBindings struct {
 
 	// bindings
-	Bindings []*CrossTenantAPIPolicyBinding `json:"bindings"`
+	Bindings []*CrossTenantAPIPolicyBinding `json:"bindings" yaml:"bindings"`
 }
 
 // Validate validates this system API bindings

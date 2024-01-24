@@ -22,19 +22,19 @@ import (
 type AttributeConsumingService struct {
 
 	// index
-	Index int64 `json:"Index,omitempty"`
+	Index int64 `json:"Index,omitempty" yaml:"Index,omitempty"`
 
 	// is default
-	IsDefault bool `json:"IsDefault,omitempty"`
+	IsDefault bool `json:"IsDefault,omitempty" yaml:"IsDefault,omitempty"`
 
 	// requested attributes
-	RequestedAttributes []*RequestedAttribute `json:"RequestedAttributes"`
+	RequestedAttributes []*RequestedAttribute `json:"RequestedAttributes" yaml:"RequestedAttributes"`
 
 	// service descriptions
-	ServiceDescriptions []*LocalizedName `json:"ServiceDescriptions"`
+	ServiceDescriptions []*LocalizedName `json:"ServiceDescriptions" yaml:"ServiceDescriptions"`
 
 	// service names
-	ServiceNames []*LocalizedName `json:"ServiceNames"`
+	ServiceNames []*LocalizedName `json:"ServiceNames" yaml:"ServiceNames"`
 }
 
 // Validate validates this attribute consuming service

@@ -22,24 +22,24 @@ type EmailAuth struct {
 	// SMTP auth mechanism: crammd5 or plain
 	// Example: plain
 	// Required: true
-	Auth string `json:"auth"`
+	Auth string `json:"auth" yaml:"auth"`
 
 	// The host of the SMTP server.
 	// Required: true
-	Host string `json:"host"`
+	Host string `json:"host" yaml:"host"`
 
 	// Password which is used to authenticate to the SMTP server.
 	// Required: true
-	Password string `json:"password"`
+	Password string `json:"password" yaml:"password"`
 
 	// The port of the SMTP server.
 	// Example: 25
 	// Required: true
-	Port int64 `json:"port"`
+	Port int64 `json:"port" yaml:"port"`
 
 	// Username which is used to authenticate to the SMTP server.
 	// Required: true
-	Username string `json:"username"`
+	Username string `json:"username" yaml:"username"`
 }
 
 // Validate validates this email auth

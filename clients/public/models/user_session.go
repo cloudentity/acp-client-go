@@ -21,27 +21,27 @@ type UserSession struct {
 
 	// Time when the session was last used
 	// Format: date-time
-	ActiveTime strfmt.DateTime `json:"active_time,omitempty"`
+	ActiveTime strfmt.DateTime `json:"active_time,omitempty" yaml:"active_time,omitempty"`
 
 	// time when user authenticated
 	// Format: date-time
-	AuthTime strfmt.DateTime `json:"auth_time,omitempty"`
+	AuthTime strfmt.DateTime `json:"auth_time,omitempty" yaml:"auth_time,omitempty"`
 
 	// Session id
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// IP address of the user who created the session
-	IPAddress string `json:"ip_address,omitempty"`
+	IPAddress string `json:"ip_address,omitempty" yaml:"ip_address,omitempty"`
 
 	// Time when the session was issued
 	// Format: date-time
-	IssueTime strfmt.DateTime `json:"issue_time,omitempty"`
+	IssueTime strfmt.DateTime `json:"issue_time,omitempty" yaml:"issue_time,omitempty"`
 
 	// Session type
-	Type string `json:"type,omitempty"`
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 
 	// User agent of the user who created the session
-	UserAgent string `json:"user_agent,omitempty"`
+	UserAgent string `json:"user_agent,omitempty" yaml:"user_agent,omitempty"`
 }
 
 // Validate validates this user session

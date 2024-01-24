@@ -21,42 +21,42 @@ type Gateway struct {
 
 	// authorization server id
 	// Example: default
-	AuthorizationServerID string `json:"authorization_server_id,omitempty"`
+	AuthorizationServerID string `json:"authorization_server_id,omitempty" yaml:"authorization_server_id,omitempty"`
 
 	// id of a client created for this gateway for authentication
-	ClientID string `json:"client_id,omitempty"`
+	ClientID string `json:"client_id,omitempty" yaml:"client_id,omitempty"`
 
 	// if true services are created automatically for each new discovered api group
-	CreateAndBindServicesAutomatically bool `json:"create_and_bind_services_automatically,omitempty"`
+	CreateAndBindServicesAutomatically bool `json:"create_and_bind_services_automatically,omitempty" yaml:"create_and_bind_services_automatically,omitempty"`
 
 	// description
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
 	// unique gateway id
 	// Example: 1
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// last time a client fetched configuration
 	// Format: date-time
-	LastActive strfmt.DateTime `json:"last_active,omitempty"`
+	LastActive strfmt.DateTime `json:"last_active,omitempty" yaml:"last_active,omitempty"`
 
 	// gateway name
 	// Example: Cloudentity Pyron
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// tenant id
 	// Example: default
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
 	// token exchange
-	TokenExchange *GatewayTokenExchangeSettings `json:"token_exchange,omitempty"`
+	TokenExchange *GatewayTokenExchangeSettings `json:"token_exchange,omitempty" yaml:"token_exchange,omitempty"`
 
 	// Token exchange client id
-	TokenExchangeClientID string `json:"token_exchange_client_id,omitempty"`
+	TokenExchangeClientID string `json:"token_exchange_client_id,omitempty" yaml:"token_exchange_client_id,omitempty"`
 
 	// gateway type, one of: pyron, aws
 	// Example: pyron
-	Type string `json:"type,omitempty"`
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 }
 
 // Validate validates this gateway

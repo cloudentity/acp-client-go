@@ -20,7 +20,7 @@ import (
 type APIs struct {
 
 	// apis
-	Apis []*API `json:"apis"`
+	Apis []*API `json:"apis" yaml:"apis"`
 }
 
 // Validate validates this a p is

@@ -20,10 +20,10 @@ import (
 type ClientWithAccess struct {
 
 	// client
-	Client *ClientDetails `json:"client,omitempty"`
+	Client *ClientDetails `json:"client,omitempty" yaml:"client,omitempty"`
 
 	// Scopes granted to client
-	GrantedScopes []*GrantedScope `json:"granted_scopes"`
+	GrantedScopes []*GrantedScope `json:"granted_scopes" yaml:"granted_scopes"`
 }
 
 // Validate validates this client with access

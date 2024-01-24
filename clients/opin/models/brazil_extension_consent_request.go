@@ -21,7 +21,7 @@ type BrazilExtensionConsentRequest struct {
 
 	// data
 	// Required: true
-	Data *OpenbankingBrasilConsentV2Data1 `json:"data"`
+	Data *OpenbankingBrasilConsentV2Data1 `json:"data" yaml:"data"`
 }
 
 // Validate validates this brazil extension consent request

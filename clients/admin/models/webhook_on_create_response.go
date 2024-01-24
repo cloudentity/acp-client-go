@@ -18,22 +18,22 @@ import (
 type WebhookOnCreateResponse struct {
 
 	// Active
-	Active bool `json:"active,omitempty"`
+	Active bool `json:"active,omitempty" yaml:"active,omitempty"`
 
 	// API Key
-	APIKey string `json:"api_key,omitempty"`
+	APIKey string `json:"api_key,omitempty" yaml:"api_key,omitempty"`
 
 	// events
-	Events map[string][]string `json:"events,omitempty"`
+	Events map[string][]string `json:"events,omitempty" yaml:"events,omitempty"`
 
 	// Insecure
-	Insecure bool `json:"insecure,omitempty"`
+	Insecure bool `json:"insecure,omitempty" yaml:"insecure,omitempty"`
 
 	// url of the Webhook
-	URL string `json:"url,omitempty"`
+	URL string `json:"url,omitempty" yaml:"url,omitempty"`
 
 	// ID to the Webhook
-	WebhookID string `json:"webhook_id,omitempty"`
+	WebhookID string `json:"webhook_id,omitempty" yaml:"webhook_id,omitempty"`
 }
 
 // Validate validates this webhook on create response

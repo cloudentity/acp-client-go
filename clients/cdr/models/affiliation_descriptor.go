@@ -23,26 +23,26 @@ import (
 type AffiliationDescriptor struct {
 
 	// affiliate members
-	AffiliateMembers []string `json:"AffiliateMembers"`
+	AffiliateMembers []string `json:"AffiliateMembers" yaml:"AffiliateMembers"`
 
 	// affiliation owner ID
-	AffiliationOwnerID string `json:"AffiliationOwnerID,omitempty"`
+	AffiliationOwnerID string `json:"AffiliationOwnerID,omitempty" yaml:"AffiliationOwnerID,omitempty"`
 
 	// cache duration
-	CacheDuration Duration `json:"CacheDuration,omitempty"`
+	CacheDuration Duration `json:"CacheDuration,omitempty" yaml:"CacheDuration,omitempty"`
 
 	// ID
-	ID string `json:"ID,omitempty"`
+	ID string `json:"ID,omitempty" yaml:"ID,omitempty"`
 
 	// key descriptors
-	KeyDescriptors []*KeyDescriptor `json:"KeyDescriptors"`
+	KeyDescriptors []*KeyDescriptor `json:"KeyDescriptors" yaml:"KeyDescriptors"`
 
 	// signature
-	Signature *Element `json:"Signature,omitempty"`
+	Signature *Element `json:"Signature,omitempty" yaml:"Signature,omitempty"`
 
 	// valid until
 	// Format: date-time
-	ValidUntil strfmt.DateTime `json:"ValidUntil,omitempty"`
+	ValidUntil strfmt.DateTime `json:"ValidUntil,omitempty" yaml:"ValidUntil,omitempty"`
 }
 
 // Validate validates this affiliation descriptor

@@ -23,17 +23,17 @@ type OBWriteDomesticStandingOrderConsentResponse6DataSCASupportData struct {
 	// Specifies a character string with a maximum length of 40 characters.
 	// Usage: This field indicates whether the PSU was subject to SCA performed by the TPP
 	// Enum: [CA SCA]
-	AppliedAuthenticationApproach string `json:"AppliedAuthenticationApproach,omitempty"`
+	AppliedAuthenticationApproach string `json:"AppliedAuthenticationApproach,omitempty" yaml:"AppliedAuthenticationApproach,omitempty"`
 
 	// Specifies a character string with a maximum length of 140 characters.
 	// Usage: If the payment is recurring then the transaction identifier of the previous payment occurrence so that the ASPSP can verify that the PISP, amount and the payee are the same as the previous occurrence.
 	// Max Length: 128
 	// Min Length: 1
-	ReferencePaymentOrderID string `json:"ReferencePaymentOrderId,omitempty"`
+	ReferencePaymentOrderID string `json:"ReferencePaymentOrderId,omitempty" yaml:"ReferencePaymentOrderId,omitempty"`
 
 	// This field allows a PISP to request specific SCA Exemption for a Payment Initiation
 	// Enum: [BillPayment ContactlessTravel EcommerceGoods EcommerceServices Kiosk Parking PartyToParty]
-	RequestedSCAExemptionType string `json:"RequestedSCAExemptionType,omitempty"`
+	RequestedSCAExemptionType string `json:"RequestedSCAExemptionType,omitempty" yaml:"RequestedSCAExemptionType,omitempty"`
 }
 
 // Validate validates this o b write domestic standing order consent response6 data s c a support data

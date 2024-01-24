@@ -18,10 +18,10 @@ import (
 type CredentialPayload struct {
 
 	// credential id
-	CredentialID string `json:"credential_id,omitempty"`
+	CredentialID string `json:"credential_id,omitempty" yaml:"credential_id,omitempty"`
 
 	// user id
-	UserID string `json:"user_id,omitempty"`
+	UserID string `json:"user_id,omitempty" yaml:"user_id,omitempty"`
 }
 
 // Validate validates this credential payload

@@ -22,23 +22,23 @@ type UpdateUserVerifiableAddress struct {
 
 	// address
 	// Required: true
-	Address string `json:"address"`
+	Address string `json:"address" yaml:"address"`
 
 	// preferred contact method
 	// Example: sms
 	// Enum: [sms voice]
-	PreferredContactMethod string `json:"preferred_contact_method,omitempty"`
+	PreferredContactMethod string `json:"preferred_contact_method,omitempty" yaml:"preferred_contact_method,omitempty"`
 
 	// status
 	// Example: active
 	// Required: true
 	// Enum: [active inactive]
-	Status string `json:"status"`
+	Status string `json:"status" yaml:"status"`
 
 	// verified
 	// Example: false
 	// Required: true
-	Verified bool `json:"verified"`
+	Verified bool `json:"verified" yaml:"verified"`
 }
 
 // Validate validates this update user verifiable address

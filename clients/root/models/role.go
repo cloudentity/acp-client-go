@@ -21,14 +21,14 @@ import (
 type Role struct {
 
 	// resource
-	Resource *RoleResource `json:"resource,omitempty"`
+	Resource *RoleResource `json:"resource,omitempty" yaml:"resource,omitempty"`
 
 	// role
 	// Enum: [admin business_admin auditor manager user_manager member]
-	Role string `json:"role,omitempty"`
+	Role string `json:"role,omitempty" yaml:"role,omitempty"`
 
 	// subject
-	Subject *RoleSubject `json:"subject,omitempty"`
+	Subject *RoleSubject `json:"subject,omitempty" yaml:"subject,omitempty"`
 }
 
 // Validate validates this role

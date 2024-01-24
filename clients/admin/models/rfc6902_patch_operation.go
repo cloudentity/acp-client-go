@@ -25,16 +25,16 @@ type Rfc6902PatchOperation struct {
 	// For a detailed description of available operations,
 	// see the [Operations #4 section of the RFC6902 specification](https://datatracker.ietf.org/doc/html/rfc6902#section-4).
 	// Enum: [add remove replace move copy test]
-	Op string `json:"op,omitempty"`
+	Op string `json:"op,omitempty" yaml:"op,omitempty"`
 
 	// String containing a JSON-Pointer value ([RFC6901](https://datatracker.ietf.org/doc/html/rfc6901))
 	// that references a location within the target configuration where the operation is performed.
 	//
 	// For available paths, reference the exported configuration.
-	Path string `json:"path,omitempty"`
+	Path string `json:"path,omitempty" yaml:"path,omitempty"`
 
 	// New object value applied to the patched (target) configuration.
-	Value interface{} `json:"value,omitempty"`
+	Value interface{} `json:"value,omitempty" yaml:"value,omitempty"`
 }
 
 // Validate validates this rfc6902 patch operation

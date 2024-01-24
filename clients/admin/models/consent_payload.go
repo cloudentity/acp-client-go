@@ -19,16 +19,16 @@ import (
 type ConsentPayload struct {
 
 	// details
-	Details *ConsentDetails `json:"details,omitempty"`
+	Details *ConsentDetails `json:"details,omitempty" yaml:"details,omitempty"`
 
 	// consent id
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// kind
-	Kind AuditConsentKind `json:"kind,omitempty"`
+	Kind AuditConsentKind `json:"kind,omitempty" yaml:"kind,omitempty"`
 
 	// Type of a consent, specifies the subject of consent, e.g.: domestic_payment
-	Type string `json:"type,omitempty"`
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 }
 
 // Validate validates this consent payload

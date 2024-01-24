@@ -21,11 +21,11 @@ type InternationalScheduledPaymentConsentRequest struct {
 
 	// data
 	// Required: true
-	Data *OBWriteInternationalScheduledConsent5Data `json:"Data"`
+	Data *OBWriteInternationalScheduledConsent5Data `json:"Data" yaml:"Data"`
 
 	// risk
 	// Required: true
-	Risk *OBRisk1 `json:"Risk"`
+	Risk *OBRisk1 `json:"Risk" yaml:"Risk"`
 }
 
 // Validate validates this international scheduled payment consent request

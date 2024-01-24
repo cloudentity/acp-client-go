@@ -21,14 +21,14 @@ import (
 type OTPPayload struct {
 
 	// address
-	Address string `json:"address,omitempty"`
+	Address string `json:"address,omitempty" yaml:"address,omitempty"`
 
 	// purpose
-	Purpose string `json:"purpose,omitempty"`
+	Purpose string `json:"purpose,omitempty" yaml:"purpose,omitempty"`
 
 	// type
 	// Enum: [sms email]
-	Type string `json:"type,omitempty"`
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 }
 
 // Validate validates this o t p payload

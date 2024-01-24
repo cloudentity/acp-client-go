@@ -20,7 +20,7 @@ type IDPConfiguration struct {
 	// If set to `true`, the claims are reloaded while issuing an access token.
 	//
 	// Currently it is only available for Identity Pool IDP.
-	ReloadClaimsAtRefreshToken bool `json:"reload_claims_at_refresh_token,omitempty"`
+	ReloadClaimsAtRefreshToken bool `json:"reload_claims_at_refresh_token,omitempty" yaml:"reload_claims_at_refresh_token,omitempty"`
 }
 
 // Validate validates this ID p configuration

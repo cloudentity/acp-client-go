@@ -19,7 +19,7 @@ type PIICategory struct {
 
 	// name
 	// Example: HIPAA
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 }
 
 // Validate validates this p i i category

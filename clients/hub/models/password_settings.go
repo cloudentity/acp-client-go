@@ -22,11 +22,11 @@ type PasswordSettings struct {
 
 	// expires after
 	// Format: duration
-	ExpiresAfter strfmt.Duration `json:"expires_after,omitempty"`
+	ExpiresAfter strfmt.Duration `json:"expires_after,omitempty" yaml:"expires_after,omitempty"`
 
 	// hashing method
 	// Enum: [bcrypt pbkdf2 argon2 sha]
-	HashingMethod string `json:"hashing_method,omitempty"`
+	HashingMethod string `json:"hashing_method,omitempty" yaml:"hashing_method,omitempty"`
 }
 
 // Validate validates this password settings

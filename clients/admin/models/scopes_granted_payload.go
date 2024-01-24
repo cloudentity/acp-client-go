@@ -20,7 +20,7 @@ import (
 type ScopesGrantedPayload struct {
 
 	// List of scopes to grant.
-	NewScopeGrants []*ScopeGrant `json:"new_scope_grants"`
+	NewScopeGrants []*ScopeGrant `json:"new_scope_grants" yaml:"new_scope_grants"`
 }
 
 // Validate validates this scopes granted payload

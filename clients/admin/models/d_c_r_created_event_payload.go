@@ -19,22 +19,22 @@ import (
 type DCRCreatedEventPayload struct {
 
 	// client details
-	ClientDetails *DCRDetails `json:"client_details,omitempty"`
+	ClientDetails *DCRDetails `json:"client_details,omitempty" yaml:"client_details,omitempty"`
 
 	// Requester IP address obtained from system network socket information.
-	RemoteAddr string `json:"remote_addr,omitempty"`
+	RemoteAddr string `json:"remote_addr,omitempty" yaml:"remote_addr,omitempty"`
 
 	// Requester IP address obtained from True-Client-IP header.
-	TrueClientIP string `json:"true_client_ip,omitempty"`
+	TrueClientIP string `json:"true_client_ip,omitempty" yaml:"true_client_ip,omitempty"`
 
 	// A characteristic string that lets servers and network peers identify the application, operating system, vendor, and/or version of the requesting user agent.
-	UserAgent string `json:"user_agent,omitempty"`
+	UserAgent string `json:"user_agent,omitempty" yaml:"user_agent,omitempty"`
 
 	// Requester IP address obtained from X-Forwarded-For header.
-	XForwardedFor string `json:"x_forwarded_for,omitempty"`
+	XForwardedFor string `json:"x_forwarded_for,omitempty" yaml:"x_forwarded_for,omitempty"`
 
 	// Requester IP address obtained from X-Real-IP header.
-	XRealIP string `json:"x_real_ip,omitempty"`
+	XRealIP string `json:"x_real_ip,omitempty" yaml:"x_real_ip,omitempty"`
 }
 
 // Validate validates this d c r created event payload

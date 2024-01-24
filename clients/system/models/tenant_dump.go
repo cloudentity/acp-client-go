@@ -20,133 +20,133 @@ import (
 type TenantDump struct {
 
 	// apis
-	Apis []*API `json:"apis"`
+	Apis []*API `json:"apis" yaml:"apis"`
 
 	// audit events
-	AuditEvents []*AuditEvent `json:"audit_events"`
+	AuditEvents []*AuditEvent `json:"audit_events" yaml:"audit_events"`
 
 	// authorization details
-	AuthorizationDetails []*AuthorizationDetail `json:"authorization_details"`
+	AuthorizationDetails []*AuthorizationDetail `json:"authorization_details" yaml:"authorization_details"`
 
 	// brute force limits
-	BruteForceLimits []*BruteForceLimit `json:"brute_force_limits"`
+	BruteForceLimits []*BruteForceLimit `json:"brute_force_limits" yaml:"brute_force_limits"`
 
 	// cdr arrangements
-	CdrArrangements []*CDRArrangement `json:"cdr_arrangements"`
+	CdrArrangements []*CDRArrangement `json:"cdr_arrangements" yaml:"cdr_arrangements"`
 
 	// ciba authentication services
-	CibaAuthenticationServices []*CIBAAuthenticationService `json:"ciba_authentication_services"`
+	CibaAuthenticationServices []*CIBAAuthenticationService `json:"ciba_authentication_services" yaml:"ciba_authentication_services"`
 
 	// claim grants
-	ClaimGrants []*ClaimGrant `json:"claim_grants"`
+	ClaimGrants []*ClaimGrant `json:"claim_grants" yaml:"claim_grants"`
 
 	// claims
-	Claims []*Claim `json:"claims"`
+	Claims []*Claim `json:"claims" yaml:"claims"`
 
 	// clients
-	Clients []*Client `json:"clients"`
+	Clients []*Client `json:"clients" yaml:"clients"`
 
 	// consent actions
-	ConsentActions []*ConsentActionWithConsents `json:"consent_actions"`
+	ConsentActions []*ConsentActionWithConsents `json:"consent_actions" yaml:"consent_actions"`
 
 	// consent grants
-	ConsentGrants []*ConsentGrant `json:"consent_grants"`
+	ConsentGrants []*ConsentGrant `json:"consent_grants" yaml:"consent_grants"`
 
 	// consents
-	Consents []*Consent `json:"consents"`
+	Consents []*Consent `json:"consents" yaml:"consents"`
 
 	// cross tenant api policy bindings
-	CrossTenantAPIPolicyBindings []*CrossTenantAPIPolicyBinding `json:"cross_tenant_api_policy_bindings"`
+	CrossTenantAPIPolicyBindings []*CrossTenantAPIPolicyBinding `json:"cross_tenant_api_policy_bindings" yaml:"cross_tenant_api_policy_bindings"`
 
 	// custom apps
-	CustomApps []*CustomApp `json:"custom_apps"`
+	CustomApps []*CustomApp `json:"custom_apps" yaml:"custom_apps"`
 
 	// gateway api groups
-	GatewayAPIGroups []*GatewayAPIGroup `json:"gateway_api_groups"`
+	GatewayAPIGroups []*GatewayAPIGroup `json:"gateway_api_groups" yaml:"gateway_api_groups"`
 
 	// gateways
-	Gateways []*Gateway `json:"gateways"`
+	Gateways []*Gateway `json:"gateways" yaml:"gateways"`
 
 	// idps
-	Idps IDPs `json:"idps,omitempty"`
+	Idps IDPs `json:"idps,omitempty" yaml:"idps,omitempty"`
 
 	// mfa methods
-	MfaMethods []*MFAMethod `json:"mfa_methods"`
+	MfaMethods []*MFAMethod `json:"mfa_methods" yaml:"mfa_methods"`
 
 	// openbanking br consents
-	OpenbankingBrConsents []*OBConsent `json:"openbanking_br_consents"`
+	OpenbankingBrConsents []*OBConsent `json:"openbanking_br_consents" yaml:"openbanking_br_consents"`
 
 	// openbanking fdx consents
-	OpenbankingFdxConsents []*FDXConsent `json:"openbanking_fdx_consents"`
+	OpenbankingFdxConsents []*FDXConsent `json:"openbanking_fdx_consents" yaml:"openbanking_fdx_consents"`
 
 	// openbanking file payment consent file resources
-	OpenbankingFilePaymentConsentFileResources []*FilePaymentConsentFileResource `json:"openbanking_file_payment_consent_file_resources"`
+	OpenbankingFilePaymentConsentFileResources []*FilePaymentConsentFileResource `json:"openbanking_file_payment_consent_file_resources" yaml:"openbanking_file_payment_consent_file_resources"`
 
 	// openbanking ksa consents
-	OpenbankingKsaConsents []*KSAConsent `json:"openbanking_ksa_consents"`
+	OpenbankingKsaConsents []*KSAConsent `json:"openbanking_ksa_consents" yaml:"openbanking_ksa_consents"`
 
 	// openbanking uk consents
-	OpenbankingUkConsents []*OBConsent `json:"openbanking_uk_consents"`
+	OpenbankingUkConsents []*OBConsent `json:"openbanking_uk_consents" yaml:"openbanking_uk_consents"`
 
 	// policies
-	Policies []*Policy `json:"policies"`
+	Policies []*Policy `json:"policies" yaml:"policies"`
 
 	// policy execution points
-	PolicyExecutionPoints []*PolicyExecutionPoint `json:"policy_execution_points"`
+	PolicyExecutionPoints []*PolicyExecutionPoint `json:"policy_execution_points" yaml:"policy_execution_points"`
 
 	// privacy ledger events
-	PrivacyLedgerEvents []*PrivacyLedgerEvent `json:"privacy_ledger_events"`
+	PrivacyLedgerEvents []*PrivacyLedgerEvent `json:"privacy_ledger_events" yaml:"privacy_ledger_events"`
 
 	// recurring jobs
-	RecurringJobs []*RecurringJob `json:"recurring_jobs"`
+	RecurringJobs []*RecurringJob `json:"recurring_jobs" yaml:"recurring_jobs"`
 
 	// roles
-	Roles []*Role `json:"roles"`
+	Roles []*Role `json:"roles" yaml:"roles"`
 
 	// scope grants
-	ScopeGrants []*ScopeGrant `json:"scope_grants"`
+	ScopeGrants []*ScopeGrant `json:"scope_grants" yaml:"scope_grants"`
 
 	// scopes without service
-	ScopesWithoutService []*Scope `json:"scopes_without_service"`
+	ScopesWithoutService []*Scope `json:"scopes_without_service" yaml:"scopes_without_service"`
 
 	// script execution points
-	ScriptExecutionPoints []*ScriptExecutionPoint `json:"script_execution_points"`
+	ScriptExecutionPoints []*ScriptExecutionPoint `json:"script_execution_points" yaml:"script_execution_points"`
 
 	// scripts
-	Scripts []*Script `json:"scripts"`
+	Scripts []*Script `json:"scripts" yaml:"scripts"`
 
 	// secrets
-	Secrets []*Secret `json:"secrets"`
+	Secrets []*Secret `json:"secrets" yaml:"secrets"`
 
 	// server consents
-	ServerConsents []*ServerConsent `json:"server_consents"`
+	ServerConsents []*ServerConsent `json:"server_consents" yaml:"server_consents"`
 
 	// servers
-	Servers []*ServerDump `json:"servers"`
+	Servers []*ServerDump `json:"servers" yaml:"servers"`
 
 	// servers bindings
-	ServersBindings []*ServerToServer `json:"servers_bindings"`
+	ServersBindings []*ServerToServer `json:"servers_bindings" yaml:"servers_bindings"`
 
 	// services
-	Services []*ServiceWithScopesAndAPIsAndAuthorizationDetails `json:"services"`
+	Services []*ServiceWithScopesAndAPIsAndAuthorizationDetails `json:"services" yaml:"services"`
 
 	// templates
-	Templates []*Template `json:"templates"`
+	Templates []*Template `json:"templates" yaml:"templates"`
 
 	// tenant
-	Tenant *Tenant `json:"tenant,omitempty"`
+	Tenant *Tenant `json:"tenant,omitempty" yaml:"tenant,omitempty"`
 
 	// theme bindings
-	ThemeBindings []*ServerToTheme `json:"theme_bindings"`
+	ThemeBindings []*ServerToTheme `json:"theme_bindings" yaml:"theme_bindings"`
 
 	// themes
-	Themes []*Theme `json:"themes"`
+	Themes []*Theme `json:"themes" yaml:"themes"`
 
 	// vanity domains
-	VanityDomains []*VanityDomain `json:"vanity_domains"`
+	VanityDomains []*VanityDomain `json:"vanity_domains" yaml:"vanity_domains"`
 
 	// webhooks
-	Webhooks []*Webhook `json:"webhooks"`
+	Webhooks []*Webhook `json:"webhooks" yaml:"webhooks"`
 }
 
 // Validate validates this tenant dump

@@ -19,13 +19,13 @@ import (
 type JITUserAddress struct {
 
 	// source
-	Source string `json:"source,omitempty"`
+	Source string `json:"source,omitempty" yaml:"source,omitempty"`
 
 	// type
-	Type IdentifierType `json:"type,omitempty"`
+	Type IdentifierType `json:"type,omitempty" yaml:"type,omitempty"`
 
 	// verification mode
-	VerificationMode JITAdressVerificationMode `json:"verification_mode,omitempty"`
+	VerificationMode JITAdressVerificationMode `json:"verification_mode,omitempty" yaml:"verification_mode,omitempty"`
 }
 
 // Validate validates this j i t user address

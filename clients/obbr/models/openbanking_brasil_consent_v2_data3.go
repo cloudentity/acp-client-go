@@ -33,36 +33,36 @@ type OpenbankingBrasilConsentV2Data3 struct {
 	// Required: true
 	// Max Length: 256
 	// Pattern: ^urn:[a-zA-Z0-9][a-zA-Z0-9-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$
-	ConsentID string `json:"consentId"`
+	ConsentID string `json:"consentId" yaml:"consentId"`
 
 	// Data e hora em que o recurso foi criado. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format).
 	// Example: 2021-05-21T08:30:00Z
 	// Required: true
 	// Format: date-time
-	CreationDateTime strfmt.DateTime `json:"creationDateTime"`
+	CreationDateTime strfmt.DateTime `json:"creationDateTime" yaml:"creationDateTime"`
 
 	// Data e hora de expirao da permisso. Deve ser preenchido caso o consentimento tenha data limite de validade. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format).
 	//
 	// [Restrio] Aceitar apenas data no futuro em relao  data de requisio.
 	// Example: 2021-05-21T08:30:00Z
 	// Format: date-time
-	ExpirationDateTime strfmt.DateTime `json:"expirationDateTime,omitempty"`
+	ExpirationDateTime strfmt.DateTime `json:"expirationDateTime,omitempty" yaml:"expirationDateTime,omitempty"`
 
 	// Especifica os tipos de permisses de acesso s APIs no escopo do Open Finance Brasil - Dados cadastrais e transacionais, de acordo com os blocos de consentimento fornecidos pelo usurio e necessrios ao acesso a cada endpoint das APIs. Esse array no deve ter duplicidade de itens.
 	// Example: ["ACCOUNTS_READ","ACCOUNTS_OVERDRAFT_LIMITS_READ","RESOURCES_READ"]
 	// Required: true
 	// Min Items: 1
-	Permissions []OpenbankingBrasilConsentV2Permission1 `json:"permissions"`
+	Permissions []OpenbankingBrasilConsentV2Permission1 `json:"permissions" yaml:"permissions"`
 
 	// status
 	// Required: true
-	Status *OpenbankingBrasilConsentV2Status `json:"status"`
+	Status *OpenbankingBrasilConsentV2Status `json:"status" yaml:"status"`
 
 	// Data e hora em que o recurso foi atualizado. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format).
 	// Example: 2021-05-21T08:30:00Z
 	// Required: true
 	// Format: date-time
-	StatusUpdateDateTime strfmt.DateTime `json:"statusUpdateDateTime"`
+	StatusUpdateDateTime strfmt.DateTime `json:"statusUpdateDateTime" yaml:"statusUpdateDateTime"`
 }
 
 // Validate validates this openbanking brasil consent v2 data3

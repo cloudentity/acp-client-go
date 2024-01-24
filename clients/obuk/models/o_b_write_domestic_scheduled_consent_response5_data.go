@@ -22,75 +22,75 @@ import (
 type OBWriteDomesticScheduledConsentResponse5Data struct {
 
 	// authorisation
-	Authorisation *OBWriteDomesticScheduledConsentResponse5DataAuthorisation `json:"Authorisation,omitempty"`
+	Authorisation *OBWriteDomesticScheduledConsentResponse5DataAuthorisation `json:"Authorisation,omitempty" yaml:"Authorisation,omitempty"`
 
 	// charges
-	Charges []*OBWriteDomesticScheduledConsentResponse5DataChargesItems0 `json:"Charges"`
+	Charges []*OBWriteDomesticScheduledConsentResponse5DataChargesItems0 `json:"Charges" yaml:"Charges"`
 
 	// OB: Unique identification as assigned by the ASPSP to uniquely identify the consent resource.
 	// Required: true
 	// Max Length: 128
 	// Min Length: 1
-	ConsentID string `json:"ConsentId"`
+	ConsentID string `json:"ConsentId" yaml:"ConsentId"`
 
 	// Date and time at which the resource was created.All dates in the JSON payloads are represented in ISO 8601 date-time format.
 	// All date-time fields in responses must include the timezone. An example is below:
 	// 2017-04-05T10:43:07+00:00
 	// Required: true
 	// Format: date-time
-	CreationDateTime strfmt.DateTime `json:"CreationDateTime"`
+	CreationDateTime strfmt.DateTime `json:"CreationDateTime" yaml:"CreationDateTime"`
 
 	// Specified cut-off date and time for the payment consent.All dates in the JSON payloads are represented in ISO 8601 date-time format.
 	// All date-time fields in responses must include the timezone. An example is below:
 	// 2017-04-05T10:43:07+00:00
 	// Format: date-time
 	// Format: date-time
-	CutOffDateTime strfmt.DateTime `json:"CutOffDateTime,omitempty"`
+	CutOffDateTime strfmt.DateTime `json:"CutOffDateTime,omitempty" yaml:"CutOffDateTime,omitempty"`
 
 	// debtor
-	Debtor *OBDebtorIdentification1 `json:"Debtor,omitempty"`
+	Debtor *OBDebtorIdentification1 `json:"Debtor,omitempty" yaml:"Debtor,omitempty"`
 
 	// Expected execution date and time for the payment resource.All dates in the JSON payloads are represented in ISO 8601 date-time format.
 	// All date-time fields in responses must include the timezone. An example is below:
 	// 2017-04-05T10:43:07+00:00
 	// Format: date-time
 	// Format: date-time
-	ExpectedExecutionDateTime strfmt.DateTime `json:"ExpectedExecutionDateTime,omitempty"`
+	ExpectedExecutionDateTime strfmt.DateTime `json:"ExpectedExecutionDateTime,omitempty" yaml:"ExpectedExecutionDateTime,omitempty"`
 
 	// Expected settlement date and time for the payment resource.All dates in the JSON payloads are represented in ISO 8601 date-time format.
 	// All date-time fields in responses must include the timezone. An example is below:
 	// 2017-04-05T10:43:07+00:00
 	// Format: date-time
 	// Format: date-time
-	ExpectedSettlementDateTime strfmt.DateTime `json:"ExpectedSettlementDateTime,omitempty"`
+	ExpectedSettlementDateTime strfmt.DateTime `json:"ExpectedSettlementDateTime,omitempty" yaml:"ExpectedSettlementDateTime,omitempty"`
 
 	// initiation
 	// Required: true
-	Initiation *OBWriteDomesticScheduledConsentResponse5DataInitiation `json:"Initiation"`
+	Initiation *OBWriteDomesticScheduledConsentResponse5DataInitiation `json:"Initiation" yaml:"Initiation"`
 
 	// Specifies the Open Banking service request types.
 	// Required: true
 	// Enum: [Create]
-	Permission string `json:"Permission"`
+	Permission string `json:"Permission" yaml:"Permission"`
 
 	// Specifies to share the refund account details with PISP
 	// Enum: [No Yes]
-	ReadRefundAccount string `json:"ReadRefundAccount,omitempty"`
+	ReadRefundAccount string `json:"ReadRefundAccount,omitempty" yaml:"ReadRefundAccount,omitempty"`
 
 	// s c a support data
-	SCASupportData *OBWriteDomesticScheduledConsentResponse5DataSCASupportData `json:"SCASupportData,omitempty"`
+	SCASupportData *OBWriteDomesticScheduledConsentResponse5DataSCASupportData `json:"SCASupportData,omitempty" yaml:"SCASupportData,omitempty"`
 
 	// Specifies the status of consent resource in code form.
 	// Required: true
 	// Enum: [Authorised AwaitingAuthorisation Consumed Rejected]
-	Status string `json:"Status"`
+	Status string `json:"Status" yaml:"Status"`
 
 	// Date and time at which the consent resource status was updated.All dates in the JSON payloads are represented in ISO 8601 date-time format.
 	// All date-time fields in responses must include the timezone. An example is below:
 	// 2017-04-05T10:43:07+00:00
 	// Required: true
 	// Format: date-time
-	StatusUpdateDateTime strfmt.DateTime `json:"StatusUpdateDateTime"`
+	StatusUpdateDateTime strfmt.DateTime `json:"StatusUpdateDateTime" yaml:"StatusUpdateDateTime"`
 }
 
 // Validate validates this o b write domestic scheduled consent response5 data

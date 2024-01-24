@@ -19,16 +19,16 @@ import (
 type PolicyEvaluatedPayload struct {
 
 	// Policy output
-	Output map[string]string `json:"output,omitempty"`
+	Output map[string]string `json:"output,omitempty" yaml:"output,omitempty"`
 
 	// policy
-	Policy *PolicyPayload `json:"policy,omitempty"`
+	Policy *PolicyPayload `json:"policy,omitempty" yaml:"policy,omitempty"`
 
 	// An array of recovery methods that take place when a policy validation fails.
-	Recovery []interface{} `json:"recovery"`
+	Recovery []interface{} `json:"recovery" yaml:"recovery"`
 
 	// The result of policy validation.
-	Result string `json:"result,omitempty"`
+	Result string `json:"result,omitempty" yaml:"result,omitempty"`
 }
 
 // Validate validates this policy evaluated payload

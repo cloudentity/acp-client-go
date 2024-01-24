@@ -20,22 +20,22 @@ import (
 type Intermediary struct {
 
 	// Array of strings representing ways to contact people responsible for this intermediary
-	Contacts []string `json:"contacts"`
+	Contacts []string `json:"contacts" yaml:"contacts"`
 
 	// A short description of the intermediary
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
 	// A URL string that references a logo for this intermediary
-	LogoURI string `json:"logo_uri,omitempty"`
+	LogoURI string `json:"logo_uri,omitempty" yaml:"logo_uri,omitempty"`
 
 	// Name of intermediary party
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// Registry references for this intermediary
-	RegistryReferences []*RegistryReference `json:"registry_references"`
+	RegistryReferences []*RegistryReference `json:"registry_references" yaml:"registry_references"`
 
 	// A URL string of a web page providing information about the intermediary
-	URI string `json:"uri,omitempty"`
+	URI string `json:"uri,omitempty" yaml:"uri,omitempty"`
 }
 
 // Validate validates this intermediary

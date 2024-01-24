@@ -20,13 +20,13 @@ import (
 type Element struct {
 
 	// attr
-	Attr []*Attr `json:"Attr"`
+	Attr []*Attr `json:"Attr" yaml:"Attr"`
 
 	// child
-	Child []*Token `json:"Child"`
+	Child []*Token `json:"Child" yaml:"Child"`
 
 	// space
-	Space string `json:"Space,omitempty"`
+	Space string `json:"Space,omitempty" yaml:"Space,omitempty"`
 }
 
 // Validate validates this element

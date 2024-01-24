@@ -33,7 +33,7 @@ type ServerDump struct {
 	// issued the token.
 	// Example: jwt
 	// Enum: [jwt opaque]
-	AccessTokenStrategy string `json:"access_token_strategy,omitempty"`
+	AccessTokenStrategy string `json:"access_token_strategy,omitempty" yaml:"access_token_strategy,omitempty"`
 
 	// Access token time to live
 	//
@@ -41,13 +41,13 @@ type ServerDump struct {
 	// authenticate the client application.
 	// Example: 1h10m30s
 	// Format: duration
-	AccessTokenTTL strfmt.Duration `json:"access_token_ttl,omitempty"`
+	AccessTokenTTL strfmt.Duration `json:"access_token_ttl,omitempty" yaml:"access_token_ttl,omitempty"`
 
 	// advanced
-	Advanced *AdvancedConfiguration `json:"advanced,omitempty"`
+	Advanced *AdvancedConfiguration `json:"advanced,omitempty" yaml:"advanced,omitempty"`
 
 	// authentication context settings
-	AuthenticationContextSettings *AuthenticationContextSettings `json:"authentication_context_settings,omitempty"`
+	AuthenticationContextSettings *AuthenticationContextSettings `json:"authentication_context_settings,omitempty" yaml:"authentication_context_settings,omitempty"`
 
 	// Authorization code time to live
 	//
@@ -55,53 +55,53 @@ type ServerDump struct {
 	// authorize the request to the `/token` endpoint.
 	// Example: 10m0s
 	// Format: duration
-	AuthorizationCodeTTL strfmt.Duration `json:"authorization_code_ttl,omitempty"`
+	AuthorizationCodeTTL strfmt.Duration `json:"authorization_code_ttl,omitempty" yaml:"authorization_code_ttl,omitempty"`
 
 	// backchannel token delivery modes supported
-	BackchannelTokenDeliveryModesSupported []string `json:"backchannel_token_delivery_modes_supported"`
+	BackchannelTokenDeliveryModesSupported []string `json:"backchannel_token_delivery_modes_supported" yaml:"backchannel_token_delivery_modes_supported"`
 
 	// backchannel user code parameter supported
-	BackchannelUserCodeParameterSupported bool `json:"backchannel_user_code_parameter_supported,omitempty"`
+	BackchannelUserCodeParameterSupported bool `json:"backchannel_user_code_parameter_supported,omitempty" yaml:"backchannel_user_code_parameter_supported,omitempty"`
 
 	// cdr
-	Cdr *CDRConfiguration `json:"cdr,omitempty"`
+	Cdr *CDRConfiguration `json:"cdr,omitempty" yaml:"cdr,omitempty"`
 
 	// Your server's label color in a HEX format.
 	// Example: #007FFF
-	Color string `json:"color,omitempty"`
+	Color string `json:"color,omitempty" yaml:"color,omitempty"`
 
 	// Namespace used when creating Open Banking Brasil consent IDs
 	//
 	// Consent IDs will have the form of urn:<consent_id_namespace>:<uid> when this is set.
 	// If this is empty, the tenant id is used by default
-	ConsentIDNamespace string `json:"consent_id_namespace,omitempty"`
+	ConsentIDNamespace string `json:"consent_id_namespace,omitempty" yaml:"consent_id_namespace,omitempty"`
 
 	// Cookie max age
 	//
 	// Defines how long a cookie can live until it expires.
 	// Example: 1h10m30s
 	// Format: duration
-	CookieMaxAge strfmt.Duration `json:"cookie_max_age,omitempty"`
+	CookieMaxAge strfmt.Duration `json:"cookie_max_age,omitempty" yaml:"cookie_max_age,omitempty"`
 
 	// Defines a custom issuer URL that can be used as the value of the `iss` claim in an access
 	// token.
 	//
 	// If not provided, it is built dynamically based on the server's URL.
 	// Example: http://example.com/default/default
-	CustomIssuerURL string `json:"custom_issuer_url,omitempty"`
+	CustomIssuerURL string `json:"custom_issuer_url,omitempty" yaml:"custom_issuer_url,omitempty"`
 
 	// Display description of the workspace
 	// Example: Server description
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
 	// device authorization
-	DeviceAuthorization *DeviceAuthorizationConfiguration `json:"device_authorization,omitempty"`
+	DeviceAuthorization *DeviceAuthorizationConfiguration `json:"device_authorization,omitempty" yaml:"device_authorization,omitempty"`
 
 	// flag to skip default claims creation (applicable only if server does not exist)
-	DoNotCreateDefaultClaims bool `json:"do_not_create_default_claims,omitempty"`
+	DoNotCreateDefaultClaims bool `json:"do_not_create_default_claims,omitempty" yaml:"do_not_create_default_claims,omitempty"`
 
 	// dynamic client registration
-	DynamicClientRegistration *DynamicClientRegistrationSettings `json:"dynamic_client_registration,omitempty"`
+	DynamicClientRegistration *DynamicClientRegistrationSettings `json:"dynamic_client_registration,omitempty" yaml:"dynamic_client_registration,omitempty"`
 
 	// You can use this property to define a separator that is used for dynamic scopes.
 	//
@@ -109,14 +109,14 @@ type ServerDump struct {
 	// `users.*`.
 	//
 	// For Open Banking Brazil compliant servers, the `:` separator should be used.
-	DynamicScopeSeparator string `json:"dynamic_scope_separator,omitempty"`
+	DynamicScopeSeparator string `json:"dynamic_scope_separator,omitempty" yaml:"dynamic_scope_separator,omitempty"`
 
 	// Deprecated: Use IDPDiscovery instead
 	//
 	// If enabled, IDP discovery automatically redirects the user to their own IDP and does not
 	// display IDPs of other users while the users accesses the server/application.
 	// Example: false
-	EnableIdpDiscovery bool `json:"enable_idp_discovery,omitempty"`
+	EnableIdpDiscovery bool `json:"enable_idp_discovery,omitempty" yaml:"enable_idp_discovery,omitempty"`
 
 	// Deprecated
 	//
@@ -125,10 +125,10 @@ type ServerDump struct {
 	//
 	// This flag is enabled, when the `enable_trust_anchor` flag is set to `false`. You can disable
 	// it using API, but it cannot be manually enabled.
-	EnableLegacyClientsWithNoSoftwareStatement bool `json:"enable_legacy_clients_with_no_software_statement,omitempty"`
+	EnableLegacyClientsWithNoSoftwareStatement bool `json:"enable_legacy_clients_with_no_software_statement,omitempty" yaml:"enable_legacy_clients_with_no_software_statement,omitempty"`
 
 	// If enabled, the server is visible on the Quick Access tab on the login page.
-	EnableQuickAccess bool `json:"enable_quick_access,omitempty"`
+	EnableQuickAccess bool `json:"enable_quick_access,omitempty" yaml:"enable_quick_access,omitempty"`
 
 	// If enabled, it makes it obligatory to provide a software statement signed by a trusted certificate authority
 	//
@@ -137,10 +137,10 @@ type ServerDump struct {
 	// In public key infrastructure (PKI), trust anchors are certification authorities. They are
 	// represented by a certificate that is used to verify the signature of a certificate issued by
 	// a particular trust anchor.
-	EnableTrustAnchor bool `json:"enable_trust_anchor,omitempty"`
+	EnableTrustAnchor bool `json:"enable_trust_anchor,omitempty" yaml:"enable_trust_anchor,omitempty"`
 
 	// When enabled, the authorization server will enforce encrypted id tokens it issues
-	EnforceIDTokenEncryption bool `json:"enforce_id_token_encryption,omitempty"`
+	EnforceIDTokenEncryption bool `json:"enforce_id_token_encryption,omitempty" yaml:"enforce_id_token_encryption,omitempty"`
 
 	// Define whether you want to enforce using the Proof Key of Code Exchange (PKCE) for both
 	// private and public clients.
@@ -148,7 +148,7 @@ type ServerDump struct {
 	// PKCE is an OAuth security extension that prevents malicious applications or codes that
 	// intercepted authorization code from exchanging it for an access token.
 	// Example: false
-	EnforcePkce bool `json:"enforce_pkce,omitempty"`
+	EnforcePkce bool `json:"enforce_pkce,omitempty" yaml:"enforce_pkce,omitempty"`
 
 	// Define whether you want to enforce using the Proof Key of Code Exchange (PKCE) for
 	// public clients.
@@ -162,20 +162,20 @@ type ServerDump struct {
 	// For those reasons, ACP supports the use of PKCE as an addition to the authorization code
 	// grant flow to provide a secure alternative to the implicit grant flow.
 	// Example: false
-	EnforcePkceForPublicClients bool `json:"enforce_pkce_for_public_clients,omitempty"`
+	EnforcePkceForPublicClients bool `json:"enforce_pkce_for_public_clients,omitempty" yaml:"enforce_pkce_for_public_clients,omitempty"`
 
 	// fdx
-	Fdx *FDXConfiguration `json:"fdx,omitempty"`
+	Fdx *FDXConfiguration `json:"fdx,omitempty" yaml:"fdx,omitempty"`
 
 	// An array that defines which of the OAuth 2.0 grant types are enabled for the authorization server.
 	// Example: ["authorization_code","implicit","refresh_token","client_credentials"]
-	GrantTypes []string `json:"grant_types"`
+	GrantTypes []string `json:"grant_types" yaml:"grant_types"`
 
 	// Unique identifier of an authorization server (workspace)
 	//
 	// If not provided, a random ID is generated.
 	// Example: default
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// ID token time to live
 	//
@@ -183,25 +183,25 @@ type ServerDump struct {
 	// user profile information to a client application.
 	// Example: 1h10m30s
 	// Format: duration
-	IDTokenTTL strfmt.Duration `json:"id_token_ttl,omitempty"`
+	IDTokenTTL strfmt.Duration `json:"id_token_ttl,omitempty" yaml:"id_token_ttl,omitempty"`
 
 	// identity assurance
-	IdentityAssurance *IdentityAssuranceConfiguration `json:"identity_assurance,omitempty"`
+	IdentityAssurance *IdentityAssuranceConfiguration `json:"identity_assurance,omitempty" yaml:"identity_assurance,omitempty"`
 
 	// idp discovery
-	IdpDiscovery *IDPDiscovery `json:"idp_discovery,omitempty"`
+	IdpDiscovery *IDPDiscovery `json:"idp_discovery,omitempty" yaml:"idp_discovery,omitempty"`
 
 	// flag to initialize server default configuration (applicable only if server does not exist)
-	Initialize bool `json:"initialize,omitempty"`
+	Initialize bool `json:"initialize,omitempty" yaml:"initialize,omitempty"`
 
 	// Issuer ID that will be used to set `iss` claim on signed messages
 	//
 	// If issuer_id is not set then default issuer_url will be used
 	// Example: 5647fe90-f6bc-11eb-9a03-0242ac130003
-	IssuerID string `json:"issuer_id,omitempty"`
+	IssuerID string `json:"issuer_id,omitempty" yaml:"issuer_id,omitempty"`
 
 	// jwks
-	Jwks *ServerJWKs `json:"jwks,omitempty"`
+	Jwks *ServerJWKs `json:"jwks,omitempty" yaml:"jwks,omitempty"`
 
 	// Determines which type of asymmetric algorithms (RSA or ECDSA) is used to generate keys for signing access and
 	// ID tokens.
@@ -209,31 +209,31 @@ type ServerDump struct {
 	// It is used only as an input parameter for the Create Authorization Server API.
 	// Example: rsa
 	// Enum: [rsa ecdsa ps]
-	KeyType string `json:"key_type,omitempty"`
+	KeyType string `json:"key_type,omitempty" yaml:"key_type,omitempty"`
 
 	// legal entity
-	LegalEntity *LegalEntity `json:"legal_entity,omitempty"`
+	LegalEntity *LegalEntity `json:"legal_entity,omitempty" yaml:"legal_entity,omitempty"`
 
 	// Logo URI
-	LogoURI string `json:"logo_uri,omitempty"`
+	LogoURI string `json:"logo_uri,omitempty" yaml:"logo_uri,omitempty"`
 
 	// metadata
-	Metadata *ServerMetadata `json:"metadata,omitempty"`
+	Metadata *ServerMetadata `json:"metadata,omitempty" yaml:"metadata,omitempty"`
 
 	// Display name of the workspace
 	//
 	// If not provided, a random ID is generated.
 	// Example: default
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// obbr
-	Obbr *OBBRConfiguration `json:"obbr,omitempty"`
+	Obbr *OBBRConfiguration `json:"obbr,omitempty" yaml:"obbr,omitempty"`
 
 	// organization
-	Organization *OrganizationConfiguration `json:"organization,omitempty"`
+	Organization *OrganizationConfiguration `json:"organization,omitempty" yaml:"organization,omitempty"`
 
 	// Optional ID of a parent server
-	ParentID string `json:"parent_id,omitempty"`
+	ParentID string `json:"parent_id,omitempty" yaml:"parent_id,omitempty"`
 
 	// The profile of a server
 	//
@@ -242,12 +242,12 @@ type ServerDump struct {
 	// compliant workspace that has all of the required mechanisms and settings already in place.
 	// Example: default
 	// Enum: [default demo workforce consumer partners third_party fapi_advanced fapi_rw fapi_ro openbanking_uk_fapi_advanced openbanking_uk openbanking_br cdr_australia cdr_australia_fapi_rw fdx openbanking_ksa fapi_20_security fapi_20_message_signing connect_id]
-	Profile string `json:"profile,omitempty"`
+	Profile string `json:"profile,omitempty" yaml:"profile,omitempty"`
 
 	// Custom pushed authentication request TTL
 	// If not provided, TTL is set to 60 seconds.
 	// Format: duration
-	PushedAuthorizationRequestTTL strfmt.Duration `json:"pushed_authorization_request_ttl,omitempty"`
+	PushedAuthorizationRequestTTL strfmt.Duration `json:"pushed_authorization_request_ttl,omitempty" yaml:"pushed_authorization_request_ttl,omitempty"`
 
 	// Refresh token time to live
 	//
@@ -255,13 +255,13 @@ type ServerDump struct {
 	// new access tokens for a client application.
 	// Example: 720h0m0s
 	// Format: duration
-	RefreshTokenTTL strfmt.Duration `json:"refresh_token_ttl,omitempty"`
+	RefreshTokenTTL strfmt.Duration `json:"refresh_token_ttl,omitempty" yaml:"refresh_token_ttl,omitempty"`
 
 	// Boolean parameter indicating whether the authorization server accepts authorization request data only via PAR.
-	RequirePushedAuthorizationRequests bool `json:"require_pushed_authorization_requests,omitempty"`
+	RequirePushedAuthorizationRequests bool `json:"require_pushed_authorization_requests,omitempty" yaml:"require_pushed_authorization_requests,omitempty"`
 
 	// response types
-	ResponseTypes ResponseTypes `json:"response_types,omitempty"`
+	ResponseTypes ResponseTypes `json:"response_types,omitempty" yaml:"response_types,omitempty"`
 
 	// You can provide root Certificate Authority (CA) certificates encoded to the Privacy-Enhanced
 	// Mail (PEM) file format which are used for the `tls_client_auth` and the
@@ -269,31 +269,31 @@ type ServerDump struct {
 	// Transport Layer Security (mTLS).
 	//
 	// If not set, the system root CA certifiates are used instead.
-	RootCas string `json:"root_cas,omitempty"`
+	RootCas string `json:"root_cas,omitempty" yaml:"root_cas,omitempty"`
 
 	// An array of rotated secrets that are still used to validate tokens
 	// Example: ["jFpwIvuKJP46J71WqszPv1SrzoUr-cSILP9EPdlClB4"]
-	RotatedSecrets []string `json:"rotated_secrets"`
+	RotatedSecrets []string `json:"rotated_secrets" yaml:"rotated_secrets"`
 
 	// saml
-	Saml *SAMLConfiguration `json:"saml,omitempty"`
+	Saml *SAMLConfiguration `json:"saml,omitempty" yaml:"saml,omitempty"`
 
 	// Secret used for hashing
 	//
 	// It must have at least 32 characters. If not provided, it is generated.
 	// Example: hW5WhKX_7w7BLwUQ6mn7Cp70_OoKI_F1y1hLS5U8lIU
-	Secret string `json:"secret,omitempty"`
+	Secret string `json:"secret,omitempty" yaml:"secret,omitempty"`
 
 	// sso
-	Sso *SSOConfiguration `json:"sso,omitempty"`
+	Sso *SSOConfiguration `json:"sso,omitempty" yaml:"sso,omitempty"`
 
 	// styling
-	Styling *Styling `json:"styling,omitempty"`
+	Styling *Styling `json:"styling,omitempty" yaml:"styling,omitempty"`
 
 	// Define the format of a subject
 	// When set to hash sub value is a one way hash of idp id and idp sub
 	// Enum: [hash legacy]
-	SubjectFormat string `json:"subject_format,omitempty"`
+	SubjectFormat string `json:"subject_format,omitempty" yaml:"subject_format,omitempty"`
 
 	// Salt used to hash `subject` when the `pairwise` subject type is used.
 	//
@@ -304,7 +304,7 @@ type ServerDump struct {
 	// value should be at least the same length as the output of the hash.
 	//
 	// If not provided, it is generated.
-	SubjectIdentifierAlgorithmSalt string `json:"subject_identifier_algorithm_salt,omitempty"`
+	SubjectIdentifierAlgorithmSalt string `json:"subject_identifier_algorithm_salt,omitempty" yaml:"subject_identifier_algorithm_salt,omitempty"`
 
 	// An array that defines supported subject identifier types.
 	//
@@ -317,19 +317,19 @@ type ServerDump struct {
 	// this approach, it makes it impossible for client applications to correlate the end-user's
 	// activity without their permission.
 	// Example: ["public","pairwise"]
-	SubjectIdentifierTypes []string `json:"subject_identifier_types"`
+	SubjectIdentifierTypes []string `json:"subject_identifier_types" yaml:"subject_identifier_types"`
 
 	// If true this workspace can be used as a template when creating a new ones.
-	Template bool `json:"template,omitempty"`
+	Template bool `json:"template,omitempty" yaml:"template,omitempty"`
 
 	// ID of a tenant
 	// Example: default
 	// Required: true
-	TenantID string `json:"tenant_id"`
+	TenantID string `json:"tenant_id" yaml:"tenant_id"`
 
 	// An array that lists all of the supported token endpoint authentication methods for the
 	// authorization server.
-	TokenEndpointAuthMethods []string `json:"token_endpoint_auth_methods"`
+	TokenEndpointAuthMethods []string `json:"token_endpoint_auth_methods" yaml:"token_endpoint_auth_methods"`
 
 	// Token endpoint auth signing supported alg values
 	//
@@ -338,13 +338,13 @@ type ServerDump struct {
 	// At least one algorithm must be set.
 	//
 	// The default values depends on the server security profile.
-	TokenEndpointAuthSigningAlgValues []string `json:"token_endpoint_auth_signing_alg_values"`
+	TokenEndpointAuthSigningAlgValues []string `json:"token_endpoint_auth_signing_alg_values" yaml:"token_endpoint_auth_signing_alg_values"`
 
 	// Deprecated: Use TokenEndpointAuthMethods instead
-	TokenEndpointAuthnMethods []string `json:"token_endpoint_authn_methods"`
+	TokenEndpointAuthnMethods []string `json:"token_endpoint_authn_methods" yaml:"token_endpoint_authn_methods"`
 
 	// trust anchor configuration
-	TrustAnchorConfiguration *TrustAnchorConfiguration `json:"trust_anchor_configuration,omitempty"`
+	TrustAnchorConfiguration *TrustAnchorConfiguration `json:"trust_anchor_configuration,omitempty" yaml:"trust_anchor_configuration,omitempty"`
 
 	// Server type
 	//
@@ -352,11 +352,11 @@ type ServerDump struct {
 	// a developer portal, or if it is a system or a regular workspace.
 	// Example: regular
 	// Enum: [admin developer system regular organization]
-	Type string `json:"type,omitempty"`
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 
 	// server version to track internal changes
 	// version that is currently the latest: 3
-	Version int64 `json:"version,omitempty"`
+	Version int64 `json:"version,omitempty" yaml:"version,omitempty"`
 }
 
 // Validate validates this server dump

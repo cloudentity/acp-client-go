@@ -20,7 +20,7 @@ import (
 type ListUserSessions struct {
 
 	// sessions
-	Sessions []*UserSession `json:"sessions"`
+	Sessions []*UserSession `json:"sessions" yaml:"sessions"`
 }
 
 // Validate validates this list user sessions

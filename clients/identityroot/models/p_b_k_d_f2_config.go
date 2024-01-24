@@ -18,19 +18,19 @@ import (
 type PBKDF2Config struct {
 
 	// function
-	Function string `json:"function,omitempty"`
+	Function string `json:"function,omitempty" yaml:"function,omitempty"`
 
 	// key length
-	KeyLength int64 `json:"key_length,omitempty"`
+	KeyLength int64 `json:"key_length,omitempty" yaml:"key_length,omitempty"`
 
 	// number of iterations
-	NumberOfIterations int64 `json:"number_of_iterations,omitempty"`
+	NumberOfIterations int64 `json:"number_of_iterations,omitempty" yaml:"number_of_iterations,omitempty"`
 
 	// salt
-	Salt string `json:"salt,omitempty"`
+	Salt string `json:"salt,omitempty" yaml:"salt,omitempty"`
 
 	// salt length
-	SaltLength int64 `json:"salt_length,omitempty"`
+	SaltLength int64 `json:"salt_length,omitempty" yaml:"salt_length,omitempty"`
 }
 
 // Validate validates this p b k d f2 config

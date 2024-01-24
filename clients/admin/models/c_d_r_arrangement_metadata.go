@@ -19,13 +19,13 @@ import (
 type CDRArrangementMetadata struct {
 
 	// personal details
-	PersonalDetails *PersonalDetails `json:"personal_details,omitempty"`
+	PersonalDetails *PersonalDetails `json:"personal_details,omitempty" yaml:"personal_details,omitempty"`
 
 	// revocation channel
-	RevocationChannel RevocationChannel `json:"revocation_channel,omitempty"`
+	RevocationChannel RevocationChannel `json:"revocation_channel,omitempty" yaml:"revocation_channel,omitempty"`
 
 	// revocation reason
-	RevocationReason RevocationReason `json:"revocation_reason,omitempty"`
+	RevocationReason RevocationReason `json:"revocation_reason,omitempty" yaml:"revocation_reason,omitempty"`
 }
 
 // Validate validates this c d r arrangement metadata

@@ -20,7 +20,7 @@ import (
 type WorkspaceRolesResponse struct {
 
 	// subjects
-	Subjects []*WorkspaceRoleSubject `json:"subjects"`
+	Subjects []*WorkspaceRoleSubject `json:"subjects" yaml:"subjects"`
 }
 
 // Validate validates this workspace roles response

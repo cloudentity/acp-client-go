@@ -18,16 +18,16 @@ import (
 type BackchannelAuthenticationResponse struct {
 
 	// Unique identifier to identify the authentication request made by the Client
-	AuthReqID string `json:"auth_req_id,omitempty"`
+	AuthReqID string `json:"auth_req_id,omitempty" yaml:"auth_req_id,omitempty"`
 
 	// A JSON number with a positive integer value indicating the expiration time of the "auth_req_id" in seconds since the authentication request was received
-	ExpiresIn int64 `json:"expires_in,omitempty"`
+	ExpiresIn int64 `json:"expires_in,omitempty" yaml:"expires_in,omitempty"`
 
 	// OPTIONAL. A JSON number with a positive integer value indicating the minimum amount of time in seconds
 	// that the Client MUST wait between polling requests to the token endpoint.
 	// This parameter will only be present if the Client is registered to use the Poll or Ping modes.
 	// If no value is provided, clients MUST use 5 as the default value.
-	Interval int64 `json:"interval,omitempty"`
+	Interval int64 `json:"interval,omitempty" yaml:"interval,omitempty"`
 }
 
 // Validate validates this backchannel authentication response

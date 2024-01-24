@@ -19,10 +19,10 @@ import (
 type Hash struct {
 
 	// config
-	Config *HashConfig `json:"config,omitempty"`
+	Config *HashConfig `json:"config,omitempty" yaml:"config,omitempty"`
 
 	// value
-	Value string `json:"value,omitempty"`
+	Value string `json:"value,omitempty" yaml:"value,omitempty"`
 }
 
 // Validate validates this hash

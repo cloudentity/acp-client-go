@@ -23,34 +23,34 @@ type AuditEvent struct {
 	// Name of an action that was performed for a given event subject.
 	// Example: created
 	// Enum: [authenticated authorized unauthorized created updated deleted generated requested confirmed accepted rejected revoked notified issued denied granted attempted failed succeeded sent not_sent executed]
-	Action string `json:"action,omitempty"`
+	Action string `json:"action,omitempty" yaml:"action,omitempty"`
 
 	// Additional audit event context.
-	Context map[string]string `json:"context,omitempty"`
+	Context map[string]string `json:"context,omitempty" yaml:"context,omitempty"`
 
 	// Event ID - unique audit event identifier.
-	EventID string `json:"event_id,omitempty"`
+	EventID string `json:"event_id,omitempty" yaml:"event_id,omitempty"`
 
 	// Resource or entity that is a subject of a given audit event.
 	// Example: client
 	// Enum: [request gateway_request gateway_policy policy client credential login post_authn consent client_consents customer_consents authorization_code access_token saml_assertion scopes otp user selfuser schema pool password bruteforce dcr script role task jit tokens service server]
-	EventSubject string `json:"event_subject,omitempty"`
+	EventSubject string `json:"event_subject,omitempty" yaml:"event_subject,omitempty"`
 
 	// metadata
-	Metadata *AuditEventMetadata `json:"metadata,omitempty"`
+	Metadata *AuditEventMetadata `json:"metadata,omitempty" yaml:"metadata,omitempty"`
 
 	// payload
-	Payload *AuditEventPayloads `json:"payload,omitempty"`
+	Payload *AuditEventPayloads `json:"payload,omitempty" yaml:"payload,omitempty"`
 
 	// Server ID.
-	ServerID string `json:"server_id,omitempty"`
+	ServerID string `json:"server_id,omitempty" yaml:"server_id,omitempty"`
 
 	// Tenant ID.
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
 	// Time when the event took place.
 	// Format: date-time
-	Timestamp strfmt.DateTime `json:"timestamp,omitempty"`
+	Timestamp strfmt.DateTime `json:"timestamp,omitempty" yaml:"timestamp,omitempty"`
 }
 
 // Validate validates this audit event

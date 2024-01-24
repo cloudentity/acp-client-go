@@ -19,7 +19,7 @@ type CustomSettings struct {
 
 	// URL to your custom login page
 	// Example: https://example.com/login
-	LoginURL string `json:"login_url,omitempty"`
+	LoginURL string `json:"login_url,omitempty" yaml:"login_url,omitempty"`
 
 	// Type metadata
 	//
@@ -28,7 +28,7 @@ type CustomSettings struct {
 	// Cloudentity Cloud Identity Plane (CIP).
 	//
 	// If not provided, the `generic` type is set.
-	Type string `json:"type,omitempty"`
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 }
 
 // Validate validates this custom settings

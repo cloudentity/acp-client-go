@@ -20,10 +20,10 @@ import (
 type X509Data struct {
 
 	// x509 certificates
-	X509Certificates []*X509Certificate `json:"X509Certificates"`
+	X509Certificates []*X509Certificate `json:"X509Certificates" yaml:"X509Certificates"`
 
 	// XML name
-	XMLName *Name `json:"XMLName,omitempty"`
+	XMLName *Name `json:"XMLName,omitempty" yaml:"XMLName,omitempty"`
 }
 
 // Validate validates this x509 data

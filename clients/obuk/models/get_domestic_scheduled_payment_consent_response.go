@@ -21,47 +21,47 @@ import (
 type GetDomesticScheduledPaymentConsentResponse struct {
 
 	// List of account identifiers
-	AccountIds []string `json:"account_ids"`
+	AccountIds []string `json:"account_ids" yaml:"account_ids"`
 
 	// authentication context
-	AuthenticationContext AuthenticationContext `json:"authentication_context,omitempty"`
+	AuthenticationContext AuthenticationContext `json:"authentication_context,omitempty" yaml:"authentication_context,omitempty"`
 
 	// Client application identifier.
 	// Example: \"cauqo9c9vpbs0aj2b2v0\
-	ClientID string `json:"client_id,omitempty"`
+	ClientID string `json:"client_id,omitempty" yaml:"client_id,omitempty"`
 
 	// client info
-	ClientInfo *ClientInfo `json:"client_info,omitempty"`
+	ClientInfo *ClientInfo `json:"client_info,omitempty" yaml:"client_info,omitempty"`
 
 	// consent id
-	ConsentID string `json:"consent_id,omitempty"`
+	ConsentID string `json:"consent_id,omitempty" yaml:"consent_id,omitempty"`
 
 	// Consent creation time
 	// Format: date-time
-	CreatedAt strfmt.DateTime `json:"created_at,omitempty"`
+	CreatedAt strfmt.DateTime `json:"created_at,omitempty" yaml:"created_at,omitempty"`
 
 	// domestic scheduled payment consent
-	DomesticScheduledPaymentConsent *DomesticScheduledPaymentConsent `json:"domestic_scheduled_payment_consent,omitempty"`
+	DomesticScheduledPaymentConsent *DomesticScheduledPaymentConsent `json:"domestic_scheduled_payment_consent,omitempty" yaml:"domestic_scheduled_payment_consent,omitempty"`
 
 	// List of requested scopes
-	RequestedScopes []*RequestedScope `json:"requested_scopes"`
+	RequestedScopes []*RequestedScope `json:"requested_scopes" yaml:"requested_scopes"`
 
 	// Server / Workspace identifier.
 	// Example: \"server\
-	ServerID string `json:"server_id,omitempty"`
+	ServerID string `json:"server_id,omitempty" yaml:"server_id,omitempty"`
 
 	// Consent status
-	Status string `json:"status,omitempty"`
+	Status string `json:"status,omitempty" yaml:"status,omitempty"`
 
 	// Subject
-	Subject string `json:"subject,omitempty"`
+	Subject string `json:"subject,omitempty" yaml:"subject,omitempty"`
 
 	// Tenant identifier.
 	// Example: \"tenant\
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
 	// type
-	Type ConsentType `json:"type,omitempty"`
+	Type ConsentType `json:"type,omitempty" yaml:"type,omitempty"`
 }
 
 // Validate validates this get domestic scheduled payment consent response

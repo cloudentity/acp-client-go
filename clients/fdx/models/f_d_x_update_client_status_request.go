@@ -19,7 +19,7 @@ type FDXUpdateClientStatusRequest struct {
 
 	// New Status
 	// Example: Approved
-	NewStatus string `json:"new_status,omitempty"`
+	NewStatus string `json:"new_status,omitempty" yaml:"new_status,omitempty"`
 }
 
 // Validate validates this f d x update client status request

@@ -20,31 +20,31 @@ import (
 type FDXMetadata struct {
 
 	// Contact information of individuals responsible for the Data Recipient application.
-	Contacts []string `json:"contacts"`
+	Contacts []string `json:"contacts" yaml:"contacts"`
 
 	// The time window the end-user grants the consent for. Used when `duration_type`=`TIME_BOUND`.
-	DurationPeriod int64 `json:"duration_period,omitempty"`
+	DurationPeriod int64 `json:"duration_period,omitempty" yaml:"duration_period,omitempty"`
 
 	// The rule of consent granting by the end-user to indicate whether they must take action
 	// to revoke access or the consent will be revoked automatically.
 	//
 	// One of: `ONE_TIME`, `PERSISTENT`, `TIME_BOUND`
 	// Example: ONE_TIME
-	DurationType []DurationType `json:"duration_type"`
+	DurationType []DurationType `json:"duration_type" yaml:"duration_type"`
 
 	// An array of the intermediaries for this Data Recipient.
-	Intermediaries []*Intermediary `json:"intermediaries"`
+	Intermediaries []*Intermediary `json:"intermediaries" yaml:"intermediaries"`
 
 	// The maximum number of days allowed for Data Recipient consumers to obtain in transaction history, effective from
 	// the current date
-	LookbackPeriod int64 `json:"lookback_period,omitempty"`
+	LookbackPeriod int64 `json:"lookback_period,omitempty" yaml:"lookback_period,omitempty"`
 
 	// The list of external registries where the Data Recipient is registered. It comprises the following details:
 	// name, identifier, and the `registry` string with any additional info.
-	RegistryReferences []*RegistryReference `json:"registry_references"`
+	RegistryReferences []*RegistryReference `json:"registry_references" yaml:"registry_references"`
 
 	// status
-	Status FDXClientStatus `json:"status,omitempty"`
+	Status FDXClientStatus `json:"status,omitempty" yaml:"status,omitempty"`
 }
 
 // Validate validates this f d x metadata

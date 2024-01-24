@@ -20,7 +20,7 @@ import (
 type MFAMethods struct {
 
 	// mfa methods
-	MfaMethods []*MFAMethod `json:"mfa_methods"`
+	MfaMethods []*MFAMethod `json:"mfa_methods" yaml:"mfa_methods"`
 }
 
 // Validate validates this m f a methods

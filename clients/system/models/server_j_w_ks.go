@@ -21,31 +21,31 @@ type ServerJWKs struct {
 
 	// keys
 	// Example: []
-	Keys []*ServerJWK `json:"keys"`
+	Keys []*ServerJWK `json:"keys" yaml:"keys"`
 
 	// next encryption key
-	NextEncryptionKey *ServerJWK `json:"next_encryption_key,omitempty"`
+	NextEncryptionKey *ServerJWK `json:"next_encryption_key,omitempty" yaml:"next_encryption_key,omitempty"`
 
 	// next signing key
-	NextSigningKey *ServerJWK `json:"next_signing_key,omitempty"`
+	NextSigningKey *ServerJWK `json:"next_signing_key,omitempty" yaml:"next_signing_key,omitempty"`
 
 	// An array of revoked encryption keys
 	//
 	// Revoked encryption keys cannot be used to encrypt payloads between servers and client applications
-	RevokedEncryptionKeys []*ServerJWK `json:"revoked_encryption_keys"`
+	RevokedEncryptionKeys []*ServerJWK `json:"revoked_encryption_keys" yaml:"revoked_encryption_keys"`
 
 	// The maximum number of revoked keys that ACP stores.
-	RevokedKeysLimit int64 `json:"revoked_keys_limit,omitempty"`
+	RevokedKeysLimit int64 `json:"revoked_keys_limit,omitempty" yaml:"revoked_keys_limit,omitempty"`
 
 	// An array of revoked sigining keys
 	//
 	// Revoked signing keys cannot be used to sign any tokens.
 	// Any attempt to authenticate using a token signed with a revoked signing key results
 	// in failed authentication.
-	RevokedSigningKeys []*ServerJWK `json:"revoked_signing_keys"`
+	RevokedSigningKeys []*ServerJWK `json:"revoked_signing_keys" yaml:"revoked_signing_keys"`
 
 	// The maximum number of rotated keys that ACP stores.
-	RotatedKeysLimit int64 `json:"rotated_keys_limit,omitempty"`
+	RotatedKeysLimit int64 `json:"rotated_keys_limit,omitempty" yaml:"rotated_keys_limit,omitempty"`
 }
 
 // Validate validates this server j w ks

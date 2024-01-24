@@ -20,7 +20,7 @@ import (
 type IdentityPoolRolesResponse struct {
 
 	// subjects
-	Subjects []*IdentityPoolRoleSubject `json:"subjects"`
+	Subjects []*IdentityPoolRoleSubject `json:"subjects" yaml:"subjects"`
 }
 
 // Validate validates this identity pool roles response

@@ -20,21 +20,21 @@ import (
 type CompleteResetPassword struct {
 
 	// address
-	Address string `json:"address,omitempty"`
+	Address string `json:"address,omitempty" yaml:"address,omitempty"`
 
 	// code
 	// Required: true
-	Code string `json:"code"`
+	Code string `json:"code" yaml:"code"`
 
 	// identifier
-	Identifier string `json:"identifier,omitempty"`
+	Identifier string `json:"identifier,omitempty" yaml:"identifier,omitempty"`
 
 	// new password
 	// Required: true
-	NewPassword string `json:"new_password"`
+	NewPassword string `json:"new_password" yaml:"new_password"`
 
 	// user ID
-	UserID string `json:"userID,omitempty"`
+	UserID string `json:"userID,omitempty" yaml:"userID,omitempty"`
 }
 
 // Validate validates this complete reset password

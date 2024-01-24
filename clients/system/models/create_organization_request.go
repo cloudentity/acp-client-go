@@ -20,36 +20,36 @@ type CreateOrganizationRequest struct {
 
 	// Your organization's label color in a HEX format.
 	// Example: #007FFF
-	Color string `json:"color,omitempty"`
+	Color string `json:"color,omitempty" yaml:"color,omitempty"`
 
 	// Display description of the organization
 	// Example: Organization description
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
 	// An array of email domains configured for an organization for the purposes of IDP discovery
-	Domains []string `json:"domains"`
+	Domains []string `json:"domains" yaml:"domains"`
 
 	// Unique identifier of an organization
 	//
 	// If not provided, a random ID is generated.
 	// Example: default
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// metadata
-	Metadata *ServerMetadata `json:"metadata,omitempty"`
+	Metadata *ServerMetadata `json:"metadata,omitempty" yaml:"metadata,omitempty"`
 
 	// Display name of the organization
 	// Example: default
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// The id of the parent workspace / organization
-	ParentID string `json:"parent_id,omitempty"`
+	ParentID string `json:"parent_id,omitempty" yaml:"parent_id,omitempty"`
 
 	// If true this organization can be used as a template when creating a new ones.
-	Template bool `json:"template,omitempty"`
+	Template bool `json:"template,omitempty" yaml:"template,omitempty"`
 
 	// The id of the organization template that should be used to create the new organization
-	TemplateID string `json:"template_id,omitempty"`
+	TemplateID string `json:"template_id,omitempty" yaml:"template_id,omitempty"`
 }
 
 // Validate validates this create organization request

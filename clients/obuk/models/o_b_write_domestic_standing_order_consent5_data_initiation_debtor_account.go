@@ -21,20 +21,20 @@ type OBWriteDomesticStandingOrderConsent5DataInitiationDebtorAccount struct {
 
 	// identification
 	// Required: true
-	Identification *Identification0 `json:"Identification"`
+	Identification *Identification0 `json:"Identification" yaml:"Identification"`
 
 	// The account name is the name or names of the account owner(s) represented at an account level, as displayed by the ASPSP's online channels.
 	// Note, the account name is not the product name or the nickname of the account.
 	// Max Length: 350
 	// Min Length: 1
-	Name string `json:"Name,omitempty"`
+	Name string `json:"Name,omitempty" yaml:"Name,omitempty"`
 
 	// scheme name
 	// Required: true
-	SchemeName *OBExternalAccountIdentification4Code `json:"SchemeName"`
+	SchemeName *OBExternalAccountIdentification4Code `json:"SchemeName" yaml:"SchemeName"`
 
 	// secondary identification
-	SecondaryIdentification SecondaryIdentification `json:"SecondaryIdentification,omitempty"`
+	SecondaryIdentification SecondaryIdentification `json:"SecondaryIdentification,omitempty" yaml:"SecondaryIdentification,omitempty"`
 }
 
 // Validate validates this o b write domestic standing order consent5 data initiation debtor account

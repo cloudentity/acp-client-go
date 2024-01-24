@@ -18,11 +18,11 @@ import (
 type Resource struct {
 
 	// Resource identifiers/values.
-	Ids []string `json:"ids"`
+	Ids []string `json:"ids" yaml:"ids"`
 
 	// The type of the resource.
 	// Example: ACCOUNT
-	ResourceType string `json:"resourceType,omitempty"`
+	ResourceType string `json:"resourceType,omitempty" yaml:"resourceType,omitempty"`
 }
 
 // Validate validates this resource

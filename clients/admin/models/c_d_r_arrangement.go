@@ -25,68 +25,68 @@ type CDRArrangement struct {
 	//
 	// It can refer to user's bank accounts that can be accessed by your client application in order to provide consumer
 	// services.
-	AccountIds []string `json:"account_ids"`
+	AccountIds []string `json:"account_ids" yaml:"account_ids"`
 
 	// amending arrangement id
-	AmendingArrangementID CDRArrangementID `json:"amending_arrangement_id,omitempty"`
+	AmendingArrangementID CDRArrangementID `json:"amending_arrangement_id,omitempty" yaml:"amending_arrangement_id,omitempty"`
 
 	// Workspace identifier
 	// Example: server
-	AuthorizationServerID string `json:"authorization_server_id,omitempty"`
+	AuthorizationServerID string `json:"authorization_server_id,omitempty" yaml:"authorization_server_id,omitempty"`
 
 	// cdr arrangement id
-	CdrArrangementID CDRArrangementID `json:"cdr_arrangement_id,omitempty"`
+	CdrArrangementID CDRArrangementID `json:"cdr_arrangement_id,omitempty" yaml:"cdr_arrangement_id,omitempty"`
 
 	// cdr arrangement metadata
-	CdrArrangementMetadata *CDRArrangementMetadata `json:"cdr_arrangement_metadata,omitempty"`
+	CdrArrangementMetadata *CDRArrangementMetadata `json:"cdr_arrangement_metadata,omitempty" yaml:"cdr_arrangement_metadata,omitempty"`
 
 	// Client application identifier
 	// Example: bugkgm23g9kregtu051g
-	ClientID string `json:"client_id,omitempty"`
+	ClientID string `json:"client_id,omitempty" yaml:"client_id,omitempty"`
 
 	// Arrangement creation date
 	// Example: 2022-07-01T08:52:27.127932Z
 	// Format: date-time
-	CreatedAt strfmt.DateTime `json:"created_at,omitempty"`
+	CreatedAt strfmt.DateTime `json:"created_at,omitempty" yaml:"created_at,omitempty"`
 
 	// customer id
-	CustomerID CDRCustomerID `json:"customer_id,omitempty"`
+	CustomerID CDRCustomerID `json:"customer_id,omitempty" yaml:"customer_id,omitempty"`
 
 	// Arrangement expiration date
 	// Example: 2023-03-01T09:02:27.127932Z
 	// Format: date-time
-	Expiry strfmt.DateTime `json:"expiry,omitempty"`
+	Expiry strfmt.DateTime `json:"expiry,omitempty" yaml:"expiry,omitempty"`
 
 	// The detailed list of scopes voluntarily granted by the user for the client application to access user data.
-	ScopeGrants []*ScopeGrant `json:"scope_grants"`
+	ScopeGrants []*ScopeGrant `json:"scope_grants" yaml:"scope_grants"`
 
 	// The rule on how a user shares their data: reuse with a token or without it, or the user allows one-time access.
 	// Example: one_time
 	// Enum: [one_time one_time_with_refresh_token reusable]
-	SharingType string `json:"sharing_type,omitempty"`
+	SharingType string `json:"sharing_type,omitempty" yaml:"sharing_type,omitempty"`
 
 	// Arrangement version.
 	// Currently, the version parameter is not used.
 	// Example: v1
 	// Enum: [v1]
-	SpecVersion string `json:"spec_version,omitempty"`
+	SpecVersion string `json:"spec_version,omitempty" yaml:"spec_version,omitempty"`
 
 	// status
-	Status ConsentStatus `json:"status,omitempty"`
+	Status ConsentStatus `json:"status,omitempty" yaml:"status,omitempty"`
 
 	// Subject identifies an authenticated user.
 	// Depending on the workspace configuration, the value can be hashed.
 	// Example: 377eb000a87a471291b5a9869930a2422c670b7b6a06f74143eb74a01ed2fbe1
-	Subject string `json:"subject,omitempty"`
+	Subject string `json:"subject,omitempty" yaml:"subject,omitempty"`
 
 	// Tenant identifier
 	// Example: my-company
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
 	// Arrangement last update date
 	// Example: 2022-10-01T08:52:27.127932Z
 	// Format: date-time
-	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty"`
+	UpdatedAt strfmt.DateTime `json:"updated_at,omitempty" yaml:"updated_at,omitempty"`
 }
 
 // Validate validates this c d r arrangement

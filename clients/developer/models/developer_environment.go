@@ -18,10 +18,10 @@ import (
 type DeveloperEnvironment struct {
 
 	// store client secrets as a one way hash
-	ClientSecretsStoredAsOneWayHash bool `json:"client_secrets_stored_as_one_way_hash,omitempty"`
+	ClientSecretsStoredAsOneWayHash bool `json:"client_secrets_stored_as_one_way_hash,omitempty" yaml:"client_secrets_stored_as_one_way_hash,omitempty"`
 
 	// Rich Authorization Requests (RAR)
-	Rar bool `json:"rar,omitempty"`
+	Rar bool `json:"rar,omitempty" yaml:"rar,omitempty"`
 }
 
 // Validate validates this developer environment

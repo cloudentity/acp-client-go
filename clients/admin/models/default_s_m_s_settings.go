@@ -18,10 +18,10 @@ import (
 type DefaultSMSSettings struct {
 
 	// message template
-	MessageTemplate string `json:"message_template,omitempty"`
+	MessageTemplate string `json:"message_template,omitempty" yaml:"message_template,omitempty"`
 
 	// source
-	Source string `json:"source,omitempty"`
+	Source string `json:"source,omitempty" yaml:"source,omitempty"`
 }
 
 // Validate validates this default s m s settings

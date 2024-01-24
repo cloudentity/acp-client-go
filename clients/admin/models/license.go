@@ -23,17 +23,17 @@ type License struct {
 	// License expiration date
 	// Example: 2023-03-01T09:02:27.127932Z
 	// Format: date-time
-	ExpirationDate strfmt.DateTime `json:"expiration_date,omitempty"`
+	ExpirationDate strfmt.DateTime `json:"expiration_date,omitempty" yaml:"expiration_date,omitempty"`
 
 	// Type of license
 	// Example: trial
 	// Enum: [trial enterprise]
-	LicenseType string `json:"license_type,omitempty"`
+	LicenseType string `json:"license_type,omitempty" yaml:"license_type,omitempty"`
 
 	// License start date
 	// Example: 2023-03-01T09:02:27.127932Z
 	// Format: date-time
-	StartTime strfmt.DateTime `json:"start_time,omitempty"`
+	StartTime strfmt.DateTime `json:"start_time,omitempty" yaml:"start_time,omitempty"`
 }
 
 // Validate validates this license

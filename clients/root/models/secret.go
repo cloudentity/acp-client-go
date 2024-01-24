@@ -21,30 +21,30 @@ type Secret struct {
 
 	// Time when the secret was created
 	// Format: date-time
-	CreatedAt strfmt.DateTime `json:"created_at,omitempty"`
+	CreatedAt strfmt.DateTime `json:"created_at,omitempty" yaml:"created_at,omitempty"`
 
 	// Unique ID of your secret
 	// Example: secret-pet
 	// Required: true
-	ID string `json:"id"`
+	ID string `json:"id" yaml:"id"`
 
 	// Value of a secret
 	// Example: cat
 	// Required: true
-	Secret string `json:"secret"`
+	Secret string `json:"secret" yaml:"secret"`
 
 	// ID of your authorization server (workspace)
 	// Example: default
 	// Required: true
-	ServerID string `json:"server_id"`
+	ServerID string `json:"server_id" yaml:"server_id"`
 
 	// ID of your tenant
 	// Example: default
 	// Required: true
-	TenantID string `json:"tenant_id"`
+	TenantID string `json:"tenant_id" yaml:"tenant_id"`
 
 	// value
-	Value string `json:"value,omitempty"`
+	Value string `json:"value,omitempty" yaml:"value,omitempty"`
 }
 
 // Validate validates this secret

@@ -24,16 +24,16 @@ type OBWriteInternationalStandingOrderConsent6DataInitiationCreditorAgent struct
 	// Unique and unambiguous identification of the servicing institution.
 	// Max Length: 35
 	// Min Length: 1
-	Identification string `json:"Identification,omitempty"`
+	Identification string `json:"Identification,omitempty" yaml:"Identification,omitempty"`
 
 	// name
-	Name Name `json:"Name,omitempty"`
+	Name Name `json:"Name,omitempty" yaml:"Name,omitempty"`
 
 	// postal address
-	PostalAddress *OBPostalAddress6 `json:"PostalAddress,omitempty"`
+	PostalAddress *OBPostalAddress6 `json:"PostalAddress,omitempty" yaml:"PostalAddress,omitempty"`
 
 	// scheme name
-	SchemeName OBExternalFinancialInstitutionIdentification4Code `json:"SchemeName,omitempty"`
+	SchemeName OBExternalFinancialInstitutionIdentification4Code `json:"SchemeName,omitempty" yaml:"SchemeName,omitempty"`
 }
 
 // Validate validates this o b write international standing order consent6 data initiation creditor agent

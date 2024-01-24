@@ -22,33 +22,33 @@ type AuditEvent struct {
 
 	// action
 	// Enum: [authenticated authorized unauthorized created updated deleted generated requested confirmed accepted rejected revoked notified issued denied granted attempted failed succeeded sent not_sent executed]
-	Action string `json:"action,omitempty"`
+	Action string `json:"action,omitempty" yaml:"action,omitempty"`
 
 	// event id
-	EventID string `json:"event_id,omitempty"`
+	EventID string `json:"event_id,omitempty" yaml:"event_id,omitempty"`
 
 	// event payload
-	EventPayload interface{} `json:"event_payload,omitempty"`
+	EventPayload interface{} `json:"event_payload,omitempty" yaml:"event_payload,omitempty"`
 
 	// event subject
 	// Enum: [request gateway_request gateway_policy policy client credential login post_authn consent client_consents customer_consents authorization_code access_token saml_assertion scopes otp user selfuser schema pool password bruteforce dcr script role task jit tokens service server]
-	EventSubject string `json:"event_subject,omitempty"`
+	EventSubject string `json:"event_subject,omitempty" yaml:"event_subject,omitempty"`
 
 	// event type
-	EventType AuditEventType `json:"event_type,omitempty"`
+	EventType AuditEventType `json:"event_type,omitempty" yaml:"event_type,omitempty"`
 
 	// metadata
-	Metadata *AuditEventMetadata `json:"metadata,omitempty"`
+	Metadata *AuditEventMetadata `json:"metadata,omitempty" yaml:"metadata,omitempty"`
 
 	// server id
-	ServerID string `json:"server_id,omitempty"`
+	ServerID string `json:"server_id,omitempty" yaml:"server_id,omitempty"`
 
 	// tenant id
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
 	// timestamp
 	// Format: date-time
-	Timestamp strfmt.DateTime `json:"timestamp,omitempty"`
+	Timestamp strfmt.DateTime `json:"timestamp,omitempty" yaml:"timestamp,omitempty"`
 }
 
 // Validate validates this audit event

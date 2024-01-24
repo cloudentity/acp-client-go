@@ -18,7 +18,7 @@ import (
 type PublicEnvironment struct {
 
 	// If self-service is enabled
-	SelfService bool `json:"self_service,omitempty"`
+	SelfService bool `json:"self_service,omitempty" yaml:"self_service,omitempty"`
 }
 
 // Validate validates this public environment

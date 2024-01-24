@@ -19,10 +19,10 @@ import (
 type MFASettings struct {
 
 	// email
-	Email *EmailSettings `json:"email,omitempty"`
+	Email *EmailSettings `json:"email,omitempty" yaml:"email,omitempty"`
 
 	// sms
-	Sms *SMSSettings `json:"sms,omitempty"`
+	Sms *SMSSettings `json:"sms,omitempty" yaml:"sms,omitempty"`
 }
 
 // Validate validates this m f a settings

@@ -25,7 +25,7 @@ type OpenbankingBrasilConsentV2BusinessEntityExtends struct {
 
 	// document
 	// Required: true
-	Document *OpenbankingBrasilConsentV2BusinessEntityDocument `json:"document"`
+	Document *OpenbankingBrasilConsentV2BusinessEntityDocument `json:"document" yaml:"document"`
 }
 
 // Validate validates this openbanking brasil consent v2 business entity extends

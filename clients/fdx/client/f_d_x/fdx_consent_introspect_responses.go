@@ -335,7 +335,7 @@ type FdxConsentIntrospectOKBody struct {
 	models.IntrospectResponse
 
 	// fdx consent
-	FdxConsent *models.GetFDXConsent `json:"fdx_consent,omitempty"`
+	FdxConsent *models.GetFDXConsent `json:"fdx_consent,omitempty" yaml:"fdx_consent,omitempty"`
 }
 
 // UnmarshalJSON unmarshals this object from a JSON structure

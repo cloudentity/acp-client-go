@@ -19,42 +19,42 @@ import (
 type TreeTenant struct {
 
 	// jwks
-	Jwks *ServerJWKs `json:"jwks,omitempty"`
+	Jwks *ServerJWKs `json:"jwks,omitempty" yaml:"jwks,omitempty"`
 
 	// license
-	License *License `json:"license,omitempty"`
+	License *License `json:"license,omitempty" yaml:"license,omitempty"`
 
 	// metadata
-	Metadata TenantMetadata `json:"metadata,omitempty"`
+	Metadata TenantMetadata `json:"metadata,omitempty" yaml:"metadata,omitempty"`
 
 	// mfa methods
-	MfaMethods TreeMFAMethods `json:"mfa_methods,omitempty"`
+	MfaMethods TreeMFAMethods `json:"mfa_methods,omitempty" yaml:"mfa_methods,omitempty"`
 
 	// tenant name
 	// Example: Default
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// pools
-	Pools TreePools `json:"pools,omitempty"`
+	Pools TreePools `json:"pools,omitempty" yaml:"pools,omitempty"`
 
 	// schemas
-	Schemas TreeSchemas `json:"schemas,omitempty"`
+	Schemas TreeSchemas `json:"schemas,omitempty" yaml:"schemas,omitempty"`
 
 	// servers
-	Servers TreeServers `json:"servers,omitempty"`
+	Servers TreeServers `json:"servers,omitempty" yaml:"servers,omitempty"`
 
 	// settings
-	Settings *TenantSettings `json:"settings,omitempty"`
+	Settings *TenantSettings `json:"settings,omitempty" yaml:"settings,omitempty"`
 
 	// styling
-	Styling *Styling `json:"styling,omitempty"`
+	Styling *Styling `json:"styling,omitempty" yaml:"styling,omitempty"`
 
 	// themes
-	Themes TreeThemes `json:"themes,omitempty"`
+	Themes TreeThemes `json:"themes,omitempty" yaml:"themes,omitempty"`
 
 	// optional custom tenant url. If not provided the server url is used instead
 	// Example: https://example.com/default
-	URL string `json:"url,omitempty"`
+	URL string `json:"url,omitempty" yaml:"url,omitempty"`
 }
 
 // Validate validates this tree tenant

@@ -18,13 +18,13 @@ import (
 type FDXResource struct {
 
 	// The names of clusters with data elements permitted.
-	DataClusters []string `json:"dataClusters"`
+	DataClusters []string `json:"dataClusters" yaml:"dataClusters"`
 
 	// Resource identifier.
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// A type of resource that holds the permitted data elements. This parameter can be extended to support additional resource types.
-	ResouceType string `json:"resouceType,omitempty"`
+	ResouceType string `json:"resouceType,omitempty" yaml:"resouceType,omitempty"`
 }
 
 // Validate validates this f d x resource

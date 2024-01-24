@@ -21,13 +21,13 @@ import (
 type AttributeValue struct {
 
 	// name ID
-	NameID *NameID `json:"NameID,omitempty"`
+	NameID *NameID `json:"NameID,omitempty" yaml:"NameID,omitempty"`
 
 	// type
-	Type string `json:"Type,omitempty"`
+	Type string `json:"Type,omitempty" yaml:"Type,omitempty"`
 
 	// value
-	Value string `json:"Value,omitempty"`
+	Value string `json:"Value,omitempty" yaml:"Value,omitempty"`
 }
 
 // Validate validates this attribute value

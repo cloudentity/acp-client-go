@@ -19,7 +19,7 @@ import (
 type ConsentAuditEventPayload struct {
 
 	// consent
-	Consent *ConsentPayload `json:"consent,omitempty"`
+	Consent *ConsentPayload `json:"consent,omitempty" yaml:"consent,omitempty"`
 }
 
 // Validate validates this consent audit event payload

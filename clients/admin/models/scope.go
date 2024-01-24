@@ -20,36 +20,36 @@ type Scope struct {
 
 	// Authorization server identifier
 	// Example: my-server
-	AuthorizationServerID string `json:"authorization_server_id,omitempty"`
+	AuthorizationServerID string `json:"authorization_server_id,omitempty" yaml:"authorization_server_id,omitempty"`
 
 	// The scope description displayed as a hint on a consent page
 	// Example: This scope value requests offline access using refresh token
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
 	// The scope name displayed on a consent page
 	// Example: Offline Access
-	DisplayName string `json:"display_name,omitempty"`
+	DisplayName string `json:"display_name,omitempty" yaml:"display_name,omitempty"`
 
 	// Scope identifier
 	// Example: scope-1
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// Request this scope by default for all clients who subscribed to this scope
-	Implicit bool `json:"implicit,omitempty"`
+	Implicit bool `json:"implicit,omitempty" yaml:"implicit,omitempty"`
 
 	// metadata
-	Metadata Metadata `json:"metadata,omitempty"`
+	Metadata Metadata `json:"metadata,omitempty" yaml:"metadata,omitempty"`
 
 	// Scope name
 	// Example: offline_access
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// Tenant identifier
 	// Example: my-company
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
 	// Disable storage of scope grants
-	Transient bool `json:"transient,omitempty"`
+	Transient bool `json:"transient,omitempty" yaml:"transient,omitempty"`
 }
 
 // Validate validates this scope

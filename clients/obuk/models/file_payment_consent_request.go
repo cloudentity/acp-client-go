@@ -21,7 +21,7 @@ type FilePaymentConsentRequest struct {
 
 	// data
 	// Required: true
-	Data *OBWriteFileConsent3Data `json:"Data"`
+	Data *OBWriteFileConsent3Data `json:"Data" yaml:"Data"`
 }
 
 // Validate validates this file payment consent request

@@ -18,11 +18,11 @@ import (
 type TokensRevokedPayload struct {
 
 	// consent ID for which the token has been revoked (populated only if type equals consent)
-	ConsentID string `json:"consent_id,omitempty"`
+	ConsentID string `json:"consent_id,omitempty" yaml:"consent_id,omitempty"`
 
 	// entity type for which token has been revoked
 	// Example: consent
-	Type string `json:"type,omitempty"`
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 }
 
 // Validate validates this tokens revoked payload

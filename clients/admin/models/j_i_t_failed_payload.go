@@ -19,22 +19,22 @@ import (
 type JITFailedPayload struct {
 
 	// error
-	Error string `json:"error,omitempty"`
+	Error string `json:"error,omitempty" yaml:"error,omitempty"`
 
 	// idp
-	Idp *IDPPayload `json:"idp,omitempty"`
+	Idp *IDPPayload `json:"idp,omitempty" yaml:"idp,omitempty"`
 
 	// idp sub
-	IdpSub string `json:"idp_sub,omitempty"`
+	IdpSub string `json:"idp_sub,omitempty" yaml:"idp_sub,omitempty"`
 
 	// pool id
-	PoolID string `json:"pool_id,omitempty"`
+	PoolID string `json:"pool_id,omitempty" yaml:"pool_id,omitempty"`
 
 	// user mapping
-	UserMapping *JITUser `json:"user_mapping,omitempty"`
+	UserMapping *JITUser `json:"user_mapping,omitempty" yaml:"user_mapping,omitempty"`
 
 	// user to provision
-	UserToProvision map[string]interface{} `json:"user_to_provision,omitempty"`
+	UserToProvision map[string]interface{} `json:"user_to_provision,omitempty" yaml:"user_to_provision,omitempty"`
 }
 
 // Validate validates this j i t failed payload

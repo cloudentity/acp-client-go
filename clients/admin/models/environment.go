@@ -21,156 +21,156 @@ import (
 type Environment struct {
 
 	// add fake tenantUrl to query params for routing other than default (needed for backward compatibility with CIP for vanity domains)
-	AddFakeTenantURLToLoginRequestForNonDefaultRouting bool `json:"add_fake_tenant_url_to_login_request_for_non_default_routing,omitempty"`
+	AddFakeTenantURLToLoginRequestForNonDefaultRouting bool `json:"add_fake_tenant_url_to_login_request_for_non_default_routing,omitempty" yaml:"add_fake_tenant_url_to_login_request_for_non_default_routing,omitempty"`
 
 	// admin issuer url
-	AdminIssuerURL string `json:"admin_issuer_url,omitempty"`
+	AdminIssuerURL string `json:"admin_issuer_url,omitempty" yaml:"admin_issuer_url,omitempty"`
 
 	// admin portal face lifting
-	AdminPortalFaceLifting bool `json:"admin_portal_face_lifting,omitempty"`
+	AdminPortalFaceLifting bool `json:"admin_portal_face_lifting,omitempty" yaml:"admin_portal_face_lifting,omitempty"`
 
 	// admin workspace access
-	AdminWorkspaceAccess bool `json:"admin_workspace_access,omitempty"`
+	AdminWorkspaceAccess bool `json:"admin_workspace_access,omitempty" yaml:"admin_workspace_access,omitempty"`
 
 	// analytics duration
 	// Format: duration
-	AnalyticsDuration strfmt.Duration `json:"analytics_duration,omitempty"`
+	AnalyticsDuration strfmt.Duration `json:"analytics_duration,omitempty" yaml:"analytics_duration,omitempty"`
 
 	// audit events duration
 	// Format: duration
-	AuditEventsDuration strfmt.Duration `json:"audit_events_duration,omitempty"`
+	AuditEventsDuration strfmt.Duration `json:"audit_events_duration,omitempty" yaml:"audit_events_duration,omitempty"`
 
 	// block access to a tenant's resources from traffic not originating from the tenant's vanity domain
-	BlockNonVanityDomainAccess bool `json:"block_non_vanity_domain_access,omitempty"`
+	BlockNonVanityDomainAccess bool `json:"block_non_vanity_domain_access,omitempty" yaml:"block_non_vanity_domain_access,omitempty"`
 
 	// brute force limits
-	BruteForceLimits *DefaultBruteForceLimits `json:"brute_force_limits,omitempty"`
+	BruteForceLimits *DefaultBruteForceLimits `json:"brute_force_limits,omitempty" yaml:"brute_force_limits,omitempty"`
 
 	// cache access tokens
-	CacheAccessTokens bool `json:"cache_access_tokens,omitempty"`
+	CacheAccessTokens bool `json:"cache_access_tokens,omitempty" yaml:"cache_access_tokens,omitempty"`
 
 	// arrangement cache for CDR
-	CdrArrangementCache bool `json:"cdr_arrangement_cache,omitempty"`
+	CdrArrangementCache bool `json:"cdr_arrangement_cache,omitempty" yaml:"cdr_arrangement_cache,omitempty"`
 
 	// disable unique software id for CDR
-	CdrDisableUniqueSoftwareID bool `json:"cdr_disable_unique_software_id,omitempty"`
+	CdrDisableUniqueSoftwareID bool `json:"cdr_disable_unique_software_id,omitempty" yaml:"cdr_disable_unique_software_id,omitempty"`
 
 	// stores client secrets as one-way hashes
-	ClientSecretsStoredAsOneWayHash bool `json:"client_secrets_stored_as_one_way_hash,omitempty"`
+	ClientSecretsStoredAsOneWayHash bool `json:"client_secrets_stored_as_one_way_hash,omitempty" yaml:"client_secrets_stored_as_one_way_hash,omitempty"`
 
 	// Cloudentity IDP
-	CloudentityIdp bool `json:"cloudentity_idp,omitempty"`
+	CloudentityIdp bool `json:"cloudentity_idp,omitempty" yaml:"cloudentity_idp,omitempty"`
 
 	// commit
-	Commit string `json:"commit,omitempty"`
+	Commit string `json:"commit,omitempty" yaml:"commit,omitempty"`
 
 	// connectID profile
-	ConnectID bool `json:"connect_id,omitempty"`
+	ConnectID bool `json:"connect_id,omitempty" yaml:"connect_id,omitempty"`
 
 	// enable additional debug logs
-	Debug bool `json:"debug,omitempty"`
+	Debug bool `json:"debug,omitempty" yaml:"debug,omitempty"`
 
 	// allow the usage of dedicated FaaS Rego/JS environments
-	DedicatedFaas bool `json:"dedicated_faas,omitempty"`
+	DedicatedFaas bool `json:"dedicated_faas,omitempty" yaml:"dedicated_faas,omitempty"`
 
 	// demo app
-	DemoApp bool `json:"demo_app,omitempty"`
+	DemoApp bool `json:"demo_app,omitempty" yaml:"demo_app,omitempty"`
 
 	// hot reloading of templates
-	DevMode bool `json:"dev_mode,omitempty"`
+	DevMode bool `json:"dev_mode,omitempty" yaml:"dev_mode,omitempty"`
 
 	// disable audit events
-	DisableAuditEvents bool `json:"disable_audit_events,omitempty"`
+	DisableAuditEvents bool `json:"disable_audit_events,omitempty" yaml:"disable_audit_events,omitempty"`
 
 	// display workspace wizard
-	DisplayWorkspaceWizard bool `json:"display_workspace_wizard,omitempty"`
+	DisplayWorkspaceWizard bool `json:"display_workspace_wizard,omitempty" yaml:"display_workspace_wizard,omitempty"`
 
 	// do not validate cert for private key jwt
-	DoNotValidateCertForPrivateKeyJwt bool `json:"do_not_validate_cert_for_private_key_jwt,omitempty"`
+	DoNotValidateCertForPrivateKeyJwt bool `json:"do_not_validate_cert_for_private_key_jwt,omitempty" yaml:"do_not_validate_cert_for_private_key_jwt,omitempty"`
 
 	// drop tokens on password reset
-	DropTokensOnPasswordReset bool `json:"drop_tokens_on_password_reset,omitempty"`
+	DropTokensOnPasswordReset bool `json:"drop_tokens_on_password_reset,omitempty" yaml:"drop_tokens_on_password_reset,omitempty"`
 
 	// grpc url
-	GrpcURL string `json:"grpc_url,omitempty"`
+	GrpcURL string `json:"grpc_url,omitempty" yaml:"grpc_url,omitempty"`
 
 	// has google image search
-	HasGoogleImageSearch bool `json:"has_google_image_search,omitempty"`
+	HasGoogleImageSearch bool `json:"has_google_image_search,omitempty" yaml:"has_google_image_search,omitempty"`
 
 	// identifier-based discovery
-	IdentifierBasedDiscovery bool `json:"identifier_based_discovery,omitempty"`
+	IdentifierBasedDiscovery bool `json:"identifier_based_discovery,omitempty" yaml:"identifier_based_discovery,omitempty"`
 
 	// identity assurance
-	IdentityAssurance bool `json:"identity_assurance,omitempty"`
+	IdentityAssurance bool `json:"identity_assurance,omitempty" yaml:"identity_assurance,omitempty"`
 
 	// image proxy url
-	ImageProxyURL string `json:"image_proxy_url,omitempty"`
+	ImageProxyURL string `json:"image_proxy_url,omitempty" yaml:"image_proxy_url,omitempty"`
 
 	// when enabled and the display_workspace_wizard feature flag is set to true, a demo workspace with a set of preconfigured IDPs is created and no welcome screen is displayed
-	InitializeDemoWorkspace bool `json:"initialize_demo_workspace,omitempty"`
+	InitializeDemoWorkspace bool `json:"initialize_demo_workspace,omitempty" yaml:"initialize_demo_workspace,omitempty"`
 
 	// disable csrf
-	InsecureDisableCsrf bool `json:"insecure_disable_csrf,omitempty"`
+	InsecureDisableCsrf bool `json:"insecure_disable_csrf,omitempty" yaml:"insecure_disable_csrf,omitempty"`
 
 	// insecure token exchange public clients
-	InsecureTokenExchangePublicClients bool `json:"insecure_token_exchange_public_clients,omitempty"`
+	InsecureTokenExchangePublicClients bool `json:"insecure_token_exchange_public_clients,omitempty" yaml:"insecure_token_exchange_public_clients,omitempty"`
 
 	// openbanking ksa workspace and security profile
-	OpenbankingKsa bool `json:"openbanking_ksa,omitempty"`
+	OpenbankingKsa bool `json:"openbanking_ksa,omitempty" yaml:"openbanking_ksa,omitempty"`
 
 	// organizations
-	Organizations bool `json:"organizations,omitempty"`
+	Organizations bool `json:"organizations,omitempty" yaml:"organizations,omitempty"`
 
 	// permissions
-	Permissions bool `json:"permissions,omitempty"`
+	Permissions bool `json:"permissions,omitempty" yaml:"permissions,omitempty"`
 
 	// rich authorization requests
-	Rar bool `json:"rar,omitempty"`
+	Rar bool `json:"rar,omitempty" yaml:"rar,omitempty"`
 
 	// roles
-	Roles bool `json:"roles,omitempty"`
+	Roles bool `json:"roles,omitempty" yaml:"roles,omitempty"`
 
 	// scope transient_otp
-	ScopeTransientOtp bool `json:"scope_transient_otp,omitempty"`
+	ScopeTransientOtp bool `json:"scope_transient_otp,omitempty" yaml:"scope_transient_otp,omitempty"`
 
 	// script runtimes
-	ScriptRuntimes []*ScriptRuntime `json:"script_runtimes"`
+	ScriptRuntimes []*ScriptRuntime `json:"script_runtimes" yaml:"script_runtimes"`
 
 	// self-service
-	SelfService bool `json:"self_service,omitempty"`
+	SelfService bool `json:"self_service,omitempty" yaml:"self_service,omitempty"`
 
 	// simple api integration
-	SimpleAPIIntegration bool `json:"simple_api_integration,omitempty"`
+	SimpleAPIIntegration bool `json:"simple_api_integration,omitempty" yaml:"simple_api_integration,omitempty"`
 
 	// swagger ui
-	SwaggerUI bool `json:"swagger_ui,omitempty"`
+	SwaggerUI bool `json:"swagger_ui,omitempty" yaml:"swagger_ui,omitempty"`
 
 	// system flags
-	SystemFlags []string `json:"system_flags"`
+	SystemFlags []string `json:"system_flags" yaml:"system_flags"`
 
 	// system workspace access
-	SystemWorkspaceAccess bool `json:"system_workspace_access,omitempty"`
+	SystemWorkspaceAccess bool `json:"system_workspace_access,omitempty" yaml:"system_workspace_access,omitempty"`
 
 	// tenant flags
-	TenantFlags []string `json:"tenant_flags"`
+	TenantFlags []string `json:"tenant_flags" yaml:"tenant_flags"`
 
 	// tenant settings
-	TenantSettings *TenantSettings `json:"tenant_settings,omitempty"`
+	TenantSettings *TenantSettings `json:"tenant_settings,omitempty" yaml:"tenant_settings,omitempty"`
 
 	// hierarchical dumps tenant APIs
-	TreeDumpTenant bool `json:"tree_dump_tenant,omitempty"`
+	TreeDumpTenant bool `json:"tree_dump_tenant,omitempty" yaml:"tree_dump_tenant,omitempty"`
 
 	// version
-	Version string `json:"version,omitempty"`
+	Version string `json:"version,omitempty" yaml:"version,omitempty"`
 
 	// with analytics
-	WithAnalytics bool `json:"with_analytics,omitempty"`
+	WithAnalytics bool `json:"with_analytics,omitempty" yaml:"with_analytics,omitempty"`
 
 	// with permissions
-	WithPermissions bool `json:"with_permissions,omitempty"`
+	WithPermissions bool `json:"with_permissions,omitempty" yaml:"with_permissions,omitempty"`
 
 	// with roles
-	WithRoles bool `json:"with_roles,omitempty"`
+	WithRoles bool `json:"with_roles,omitempty" yaml:"with_roles,omitempty"`
 }
 
 // Validate validates this environment

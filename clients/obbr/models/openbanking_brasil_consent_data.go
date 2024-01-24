@@ -21,34 +21,34 @@ import (
 type OpenbankingBrasilConsentData struct {
 
 	// business entity
-	BusinessEntity *OpenbankingBrasilConsentBusinessEntity `json:"businessEntity,omitempty"`
+	BusinessEntity *OpenbankingBrasilConsentBusinessEntity `json:"businessEntity,omitempty" yaml:"businessEntity,omitempty"`
 
 	// Data e hora de expirao da permisso. De preenchimento obrigatrio, reflete a data limite de validade do consentimento. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format).
 	// Example: 2021-05-21T08:30:00Z
 	// Required: true
 	// Format: date-time
-	ExpirationDateTime strfmt.DateTime `json:"expirationDateTime"`
+	ExpirationDateTime strfmt.DateTime `json:"expirationDateTime" yaml:"expirationDateTime"`
 
 	// logged user
 	// Required: true
-	LoggedUser *OpenbankingBrasilConsentLoggedUser `json:"loggedUser"`
+	LoggedUser *OpenbankingBrasilConsentLoggedUser `json:"loggedUser" yaml:"loggedUser"`
 
 	// permissions
 	// Example: ["ACCOUNTS_READ","ACCOUNTS_OVERDRAFT_LIMITS_READ","RESOURCES_READ"]
 	// Required: true
 	// Max Items: 30
 	// Min Items: 1
-	Permissions []OpenbankingBrasilConsentPermission `json:"permissions"`
+	Permissions []OpenbankingBrasilConsentPermission `json:"permissions" yaml:"permissions"`
 
 	// Data e hora da transao inicial. Se no for preenchido, a transao ter a data aberta e a data ser retornada com a primeira transao disponvel. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format).
 	// Example: 2021-01-01T00:00:00Z
 	// Format: date-time
-	TransactionFromDateTime strfmt.DateTime `json:"transactionFromDateTime,omitempty"`
+	TransactionFromDateTime strfmt.DateTime `json:"transactionFromDateTime,omitempty" yaml:"transactionFromDateTime,omitempty"`
 
 	// Data e hora final da transao. Se no for preenchido, a transao ter a data aberta e a data ser retornada com a ultima transao disponvel. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format).
 	// Example: 2021-02-01T23:59:59Z
 	// Format: date-time
-	TransactionToDateTime strfmt.DateTime `json:"transactionToDateTime,omitempty"`
+	TransactionToDateTime strfmt.DateTime `json:"transactionToDateTime,omitempty" yaml:"transactionToDateTime,omitempty"`
 }
 
 // Validate validates this openbanking brasil consent data

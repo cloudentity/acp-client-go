@@ -23,47 +23,47 @@ import (
 type AttributeAuthorityDescriptor struct {
 
 	// assertion ID request services
-	AssertionIDRequestServices []*Endpoint `json:"AssertionIDRequestServices"`
+	AssertionIDRequestServices []*Endpoint `json:"AssertionIDRequestServices" yaml:"AssertionIDRequestServices"`
 
 	// attribute profiles
-	AttributeProfiles []string `json:"AttributeProfiles"`
+	AttributeProfiles []string `json:"AttributeProfiles" yaml:"AttributeProfiles"`
 
 	// attribute services
-	AttributeServices []*Endpoint `json:"AttributeServices"`
+	AttributeServices []*Endpoint `json:"AttributeServices" yaml:"AttributeServices"`
 
 	// attributes
-	Attributes []*Attribute `json:"Attributes"`
+	Attributes []*Attribute `json:"Attributes" yaml:"Attributes"`
 
 	// cache duration
-	CacheDuration Duration `json:"CacheDuration,omitempty"`
+	CacheDuration Duration `json:"CacheDuration,omitempty" yaml:"CacheDuration,omitempty"`
 
 	// contact people
-	ContactPeople []*ContactPerson `json:"ContactPeople"`
+	ContactPeople []*ContactPerson `json:"ContactPeople" yaml:"ContactPeople"`
 
 	// error URL
-	ErrorURL string `json:"ErrorURL,omitempty"`
+	ErrorURL string `json:"ErrorURL,omitempty" yaml:"ErrorURL,omitempty"`
 
 	// ID
-	ID string `json:"ID,omitempty"`
+	ID string `json:"ID,omitempty" yaml:"ID,omitempty"`
 
 	// key descriptors
-	KeyDescriptors []*KeyDescriptor `json:"KeyDescriptors"`
+	KeyDescriptors []*KeyDescriptor `json:"KeyDescriptors" yaml:"KeyDescriptors"`
 
 	// name ID formats
-	NameIDFormats []NameIDFormat `json:"NameIDFormats"`
+	NameIDFormats []NameIDFormat `json:"NameIDFormats" yaml:"NameIDFormats"`
 
 	// organization
-	Organization *Organization `json:"Organization,omitempty"`
+	Organization *Organization `json:"Organization,omitempty" yaml:"Organization,omitempty"`
 
 	// protocol support enumeration
-	ProtocolSupportEnumeration string `json:"ProtocolSupportEnumeration,omitempty"`
+	ProtocolSupportEnumeration string `json:"ProtocolSupportEnumeration,omitempty" yaml:"ProtocolSupportEnumeration,omitempty"`
 
 	// signature
-	Signature *Element `json:"Signature,omitempty"`
+	Signature *Element `json:"Signature,omitempty" yaml:"Signature,omitempty"`
 
 	// valid until
 	// Format: date-time
-	ValidUntil strfmt.DateTime `json:"ValidUntil,omitempty"`
+	ValidUntil strfmt.DateTime `json:"ValidUntil,omitempty" yaml:"ValidUntil,omitempty"`
 }
 
 // Validate validates this attribute authority descriptor

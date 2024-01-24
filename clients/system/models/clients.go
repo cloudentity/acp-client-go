@@ -20,7 +20,7 @@ import (
 type Clients struct {
 
 	// clients
-	Clients []*Client `json:"clients"`
+	Clients []*Client `json:"clients" yaml:"clients"`
 }
 
 // Validate validates this clients

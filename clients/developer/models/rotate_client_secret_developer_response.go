@@ -18,7 +18,7 @@ import (
 type RotateClientSecretDeveloperResponse struct {
 
 	// secret
-	Secret string `json:"secret,omitempty"`
+	Secret string `json:"secret,omitempty" yaml:"secret,omitempty"`
 }
 
 // Validate validates this rotate client secret developer response

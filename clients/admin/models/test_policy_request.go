@@ -19,13 +19,13 @@ import (
 type TestPolicyRequest struct {
 
 	// input
-	Input *TestPolicyInput `json:"input,omitempty"`
+	Input *TestPolicyInput `json:"input,omitempty" yaml:"input,omitempty"`
 
 	// policy
-	Policy *TestPolicyDefinition `json:"policy,omitempty"`
+	Policy *TestPolicyDefinition `json:"policy,omitempty" yaml:"policy,omitempty"`
 
 	// Authorization server (workspace) ID
-	ServerID string `json:"server_id,omitempty"`
+	ServerID string `json:"server_id,omitempty" yaml:"server_id,omitempty"`
 }
 
 // Validate validates this test policy request

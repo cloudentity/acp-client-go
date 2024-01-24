@@ -19,13 +19,13 @@ import (
 type PrivacyLedgerPayload struct {
 
 	// consent granted
-	ConsentGranted *ConsentGrantedEvent `json:"consent_granted,omitempty"`
+	ConsentGranted *ConsentGrantedEvent `json:"consent_granted,omitempty" yaml:"consent_granted,omitempty"`
 
 	// consent revoked
-	ConsentRevoked *ConsentRevokedEvent `json:"consent_revoked,omitempty"`
+	ConsentRevoked *ConsentRevokedEvent `json:"consent_revoked,omitempty" yaml:"consent_revoked,omitempty"`
 
 	// event type
-	EventType PrivacyLedgerEventType `json:"event_type,omitempty"`
+	EventType PrivacyLedgerEventType `json:"event_type,omitempty" yaml:"event_type,omitempty"`
 }
 
 // Validate validates this privacy ledger payload

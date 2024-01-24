@@ -21,25 +21,25 @@ type Script struct {
 
 	// ID of the authorization server (workspace) where the script is created
 	// Required: true
-	AuthorizationServerID string `json:"authorization_server_id"`
+	AuthorizationServerID string `json:"authorization_server_id" yaml:"authorization_server_id"`
 
 	// Script body
-	Body string `json:"body,omitempty"`
+	Body string `json:"body,omitempty" yaml:"body,omitempty"`
 
 	// Unique ID of your script
 	//
 	// If not provided, a random ID is generated.
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// Display name of your script
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// ID of the tenant where the script is created
 	// Required: true
-	TenantID string `json:"tenant_id"`
+	TenantID string `json:"tenant_id" yaml:"tenant_id"`
 
 	// Input data for testing this script
-	TestInput string `json:"test_input,omitempty"`
+	TestInput string `json:"test_input,omitempty" yaml:"test_input,omitempty"`
 }
 
 // Validate validates this script

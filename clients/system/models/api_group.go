@@ -20,16 +20,16 @@ import (
 type APIGroup struct {
 
 	// List of APIs
-	Apis []*GatewayAPI `json:"apis"`
+	Apis []*GatewayAPI `json:"apis" yaml:"apis"`
 
 	// API group ID
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// metadata
-	Metadata *APIGroupMetadata `json:"metadata,omitempty"`
+	Metadata *APIGroupMetadata `json:"metadata,omitempty" yaml:"metadata,omitempty"`
 
 	// API group name
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 }
 
 // Validate validates this API group

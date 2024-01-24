@@ -20,13 +20,13 @@ import (
 type KeyDescriptor struct {
 
 	// encryption methods
-	EncryptionMethods []*EncryptionMethod `json:"EncryptionMethods"`
+	EncryptionMethods []*EncryptionMethod `json:"EncryptionMethods" yaml:"EncryptionMethods"`
 
 	// key info
-	KeyInfo *KeyInfo `json:"KeyInfo,omitempty"`
+	KeyInfo *KeyInfo `json:"KeyInfo,omitempty" yaml:"KeyInfo,omitempty"`
 
 	// use
-	Use string `json:"Use,omitempty"`
+	Use string `json:"Use,omitempty" yaml:"Use,omitempty"`
 }
 
 // Validate validates this key descriptor

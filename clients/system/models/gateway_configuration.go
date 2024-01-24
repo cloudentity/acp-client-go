@@ -20,43 +20,43 @@ import (
 type GatewayConfiguration struct {
 
 	// List of APIs that this gateway should protect.
-	Apis []*API `json:"apis"`
+	Apis []*API `json:"apis" yaml:"apis"`
 
 	// Used to define how to split dynamic scopes
-	DynamicScopeSeparator string `json:"dynamic_scope_separator,omitempty"`
+	DynamicScopeSeparator string `json:"dynamic_scope_separator,omitempty" yaml:"dynamic_scope_separator,omitempty"`
 
 	// events per second limit
-	EventsPerSecond int64 `json:"events_per_second,omitempty"`
+	EventsPerSecond int64 `json:"events_per_second,omitempty" yaml:"events_per_second,omitempty"`
 
 	// issuer apis
-	IssuerApis []*API `json:"issuer_apis"`
+	IssuerApis []*API `json:"issuer_apis" yaml:"issuer_apis"`
 
 	// issuer policies
-	IssuerPolicies []*Policy `json:"issuer_policies"`
+	IssuerPolicies []*Policy `json:"issuer_policies" yaml:"issuer_policies"`
 
 	// Authorization server issuer url.
-	IssuerURL string `json:"issuer_url,omitempty"`
+	IssuerURL string `json:"issuer_url,omitempty" yaml:"issuer_url,omitempty"`
 
 	// Authorization server JWKs url.
-	JwksURL string `json:"jwks_url,omitempty"`
+	JwksURL string `json:"jwks_url,omitempty" yaml:"jwks_url,omitempty"`
 
 	// List of policies that can be used to protect APIs.
-	Policies []*Policy `json:"policies"`
+	Policies []*Policy `json:"policies" yaml:"policies"`
 
 	// List of scopes available in the server.
-	Scopes []*ScopeWithService `json:"scopes"`
+	Scopes []*ScopeWithService `json:"scopes" yaml:"scopes"`
 
 	// ServerID that this gateway belongs to.
-	ServerID string `json:"server_id,omitempty"`
+	ServerID string `json:"server_id,omitempty" yaml:"server_id,omitempty"`
 
 	// List of services that belongs to the server.
-	Services []*ServiceConnectedToGateway `json:"services"`
+	Services []*ServiceConnectedToGateway `json:"services" yaml:"services"`
 
 	// TenantID that this gateway belongs to.
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
 	// Is token exchange enabled
-	TokenExchangeEnabled bool `json:"token_exchange_enabled,omitempty"`
+	TokenExchangeEnabled bool `json:"token_exchange_enabled,omitempty" yaml:"token_exchange_enabled,omitempty"`
 }
 
 // Validate validates this gateway configuration

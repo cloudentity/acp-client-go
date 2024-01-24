@@ -20,26 +20,26 @@ import (
 type ScriptExecutionResult struct {
 
 	// name of the error
-	CaughtErr string `json:"caught_err,omitempty"`
+	CaughtErr string `json:"caught_err,omitempty" yaml:"caught_err,omitempty"`
 
 	// script execution time
 	// Format: duration
-	Duration strfmt.Duration `json:"duration,omitempty"`
+	Duration strfmt.Duration `json:"duration,omitempty" yaml:"duration,omitempty"`
 
 	// script id
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// script input
-	Input map[string]interface{} `json:"input,omitempty"`
+	Input map[string]interface{} `json:"input,omitempty" yaml:"input,omitempty"`
 
 	// script output
-	Output map[string]interface{} `json:"output,omitempty"`
+	Output map[string]interface{} `json:"output,omitempty" yaml:"output,omitempty"`
 
 	// script standard error, e.g. console.error()
-	Stderr string `json:"stderr,omitempty"`
+	Stderr string `json:"stderr,omitempty" yaml:"stderr,omitempty"`
 
 	// script standard output, e.g. console.log()
-	Stdout string `json:"stdout,omitempty"`
+	Stdout string `json:"stdout,omitempty" yaml:"stdout,omitempty"`
 }
 
 // Validate validates this script execution result

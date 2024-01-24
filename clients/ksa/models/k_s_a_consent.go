@@ -21,32 +21,32 @@ type KSAConsent struct {
 
 	// Client application identifier
 	// Example: bugkgm23g9kregtu051g
-	ClientID string `json:"client_id,omitempty"`
+	ClientID string `json:"client_id,omitempty" yaml:"client_id,omitempty"`
 
 	// Consent identifier
 	// Example: cavbbioiagh6fla7koig
-	ConsentID string `json:"consent_id,omitempty"`
+	ConsentID string `json:"consent_id,omitempty" yaml:"consent_id,omitempty"`
 
 	// Consent creation date
 	// Example: 2022-07-01T08:52:27.127932Z
 	// Format: date-time
-	CreatedAt strfmt.DateTime `json:"created_at,omitempty"`
+	CreatedAt strfmt.DateTime `json:"created_at,omitempty" yaml:"created_at,omitempty"`
 
 	// Consent expiration date
 	// Example: 2023-03-01T09:02:27.127932Z
 	// Format: date-time
-	Expiry strfmt.DateTime `json:"expiry,omitempty"`
+	Expiry strfmt.DateTime `json:"expiry,omitempty" yaml:"expiry,omitempty"`
 
 	// Workspace identifier
 	// Example: server
-	ServerID string `json:"server_id,omitempty"`
+	ServerID string `json:"server_id,omitempty" yaml:"server_id,omitempty"`
 
 	// status
-	Status ConsentStatus `json:"status,omitempty"`
+	Status ConsentStatus `json:"status,omitempty" yaml:"status,omitempty"`
 
 	// Tenant identifier
 	// Example: my-company
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 }
 
 // Validate validates this k s a consent

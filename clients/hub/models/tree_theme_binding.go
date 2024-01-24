@@ -18,7 +18,7 @@ import (
 type TreeThemeBinding struct {
 
 	// theme id
-	ThemeID string `json:"theme_id,omitempty"`
+	ThemeID string `json:"theme_id,omitempty" yaml:"theme_id,omitempty"`
 }
 
 // Validate validates this tree theme binding

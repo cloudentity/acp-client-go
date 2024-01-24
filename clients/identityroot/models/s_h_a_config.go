@@ -18,16 +18,16 @@ import (
 type SHAConfig struct {
 
 	// function
-	Function string `json:"function,omitempty"`
+	Function string `json:"function,omitempty" yaml:"function,omitempty"`
 
 	// salt
-	Salt string `json:"salt,omitempty"`
+	Salt string `json:"salt,omitempty" yaml:"salt,omitempty"`
 
 	// salt after digest in hash
-	SaltAfterDigestInHash bool `json:"salt_after_digest_in_hash,omitempty"`
+	SaltAfterDigestInHash bool `json:"salt_after_digest_in_hash,omitempty" yaml:"salt_after_digest_in_hash,omitempty"`
 
 	// salt length
-	SaltLength int64 `json:"salt_length,omitempty"`
+	SaltLength int64 `json:"salt_length,omitempty" yaml:"salt_length,omitempty"`
 }
 
 // Validate validates this s h a config

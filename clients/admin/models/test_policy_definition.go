@@ -20,7 +20,7 @@ import (
 type TestPolicyDefinition struct {
 
 	// The definition of an Open Policy Agent (OPA) policy provided using the REGO language.
-	Definition string `json:"definition,omitempty"`
+	Definition string `json:"definition,omitempty" yaml:"definition,omitempty"`
 
 	// Language of a policy
 	//
@@ -31,10 +31,10 @@ type TestPolicyDefinition struct {
 	// language (REGO) that lets you specify policies as code. REGO supports referencing nested
 	// documents and ensures that your queries are correct and unambiguous.
 	// Example: cloudentity
-	Language string `json:"language,omitempty"`
+	Language string `json:"language,omitempty" yaml:"language,omitempty"`
 
 	// An array of validators for a Cloudentity policy
-	Validators []*ValidatorConfig `json:"validators"`
+	Validators []*ValidatorConfig `json:"validators" yaml:"validators"`
 }
 
 // Validate validates this test policy definition

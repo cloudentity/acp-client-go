@@ -18,13 +18,13 @@ import (
 type TaskAuditPayload struct {
 
 	// attributes
-	Attributes interface{} `json:"attributes,omitempty"`
+	Attributes interface{} `json:"attributes,omitempty" yaml:"attributes,omitempty"`
 
 	// error
-	Error string `json:"error,omitempty"`
+	Error string `json:"error,omitempty" yaml:"error,omitempty"`
 
 	// name
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 }
 
 // Validate validates this task audit payload

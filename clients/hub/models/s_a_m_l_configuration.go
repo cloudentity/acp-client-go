@@ -19,7 +19,7 @@ type SAMLConfiguration struct {
 
 	// Allows to change default subject name id.
 	// The default one will be 'uid', even if the value is empty.
-	SubjectNameID string `json:"subject_name_id,omitempty"`
+	SubjectNameID string `json:"subject_name_id,omitempty" yaml:"subject_name_id,omitempty"`
 }
 
 // Validate validates this s a m l configuration

@@ -19,16 +19,16 @@ import (
 type JITProvisioning struct {
 
 	// identifier salt
-	IdentifierSalt string `json:"identifier_salt,omitempty"`
+	IdentifierSalt string `json:"identifier_salt,omitempty" yaml:"identifier_salt,omitempty"`
 
 	// mode
-	Mode ProvisioningMode `json:"mode,omitempty"`
+	Mode ProvisioningMode `json:"mode,omitempty" yaml:"mode,omitempty"`
 
 	// pool id
-	PoolID string `json:"pool_id,omitempty"`
+	PoolID string `json:"pool_id,omitempty" yaml:"pool_id,omitempty"`
 
 	// user
-	User *JITUser `json:"user,omitempty"`
+	User *JITUser `json:"user,omitempty" yaml:"user,omitempty"`
 }
 
 // Validate validates this j i t provisioning

@@ -18,10 +18,10 @@ import (
 type CustomServerConsent struct {
 
 	// Deprecetad scope_grant_url. Use server_consent_url instead
-	ScopeGrantURL string `json:"scope_grant_url,omitempty"`
+	ScopeGrantURL string `json:"scope_grant_url,omitempty" yaml:"scope_grant_url,omitempty"`
 
 	// server consent url
-	ServerConsentURL string `json:"server_consent_url,omitempty"`
+	ServerConsentURL string `json:"server_consent_url,omitempty" yaml:"server_consent_url,omitempty"`
 }
 
 // Validate validates this custom server consent

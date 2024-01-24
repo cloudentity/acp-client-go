@@ -18,7 +18,7 @@ import (
 type PersonalDetails struct {
 
 	// user id
-	UserID string `json:"user_id,omitempty"`
+	UserID string `json:"user_id,omitempty" yaml:"user_id,omitempty"`
 }
 
 // Validate validates this personal details

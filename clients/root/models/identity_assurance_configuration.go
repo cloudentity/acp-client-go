@@ -18,35 +18,35 @@ import (
 type IdentityAssuranceConfiguration struct {
 
 	// JSON array containing all attachment types supported by the OP.  REQUIRED when OP supports attachments. Possible values are external and embedded.
-	Attachments []string `json:"attachments"`
+	Attachments []string `json:"attachments" yaml:"attachments"`
 
 	// claims in verified claims
-	ClaimsInVerifiedClaims []string `json:"claims_in_verified_claims"`
+	ClaimsInVerifiedClaims []string `json:"claims_in_verified_claims" yaml:"claims_in_verified_claims"`
 
 	// REQUIRED when OP supports external attachments. JSON array containing all supported digest algorithms which can be used as alg property within
 	// the digest object of external attachments. If the OP supports external attachments, at least the algorithm sha-256 MUST be supported by the OP as well.
-	DigestAlgorithms []string `json:"digest_algorithms"`
+	DigestAlgorithms []string `json:"digest_algorithms" yaml:"digest_algorithms"`
 
 	// JSON array containing all identity document types utilized by the OP for identity verification. REQUIRED when evidence_supported contains "document".
-	Documents []string `json:"documents"`
+	Documents []string `json:"documents" yaml:"documents"`
 
 	// JSON array containing the check methods the OP supports for evidences of type "document".
-	DocumentsCheckMethods []string `json:"documents_check_methods"`
+	DocumentsCheckMethods []string `json:"documents_check_methods" yaml:"documents_check_methods"`
 
 	// JSON array containing the methods the OP supports for evidences of type "document".
-	DocumentsMethods []string `json:"documents_methods"`
+	DocumentsMethods []string `json:"documents_methods" yaml:"documents_methods"`
 
 	// JSON array containing all electronic record types the OP supports. REQUIRED when evidence_supported contains "electronic_record".
-	ElectronicRecords []string `json:"electronic_records"`
+	ElectronicRecords []string `json:"electronic_records" yaml:"electronic_records"`
 
 	// Boolean value indicating support for verified_claims, i.e., the OpenID Connect for Identity Assurance extension.
-	EnableVerifiedClaims bool `json:"enable_verified_claims,omitempty"`
+	EnableVerifiedClaims bool `json:"enable_verified_claims,omitempty" yaml:"enable_verified_claims,omitempty"`
 
 	// JSON array containing all types of identity evidence the OP uses.
-	Evidence []string `json:"evidence"`
+	Evidence []string `json:"evidence" yaml:"evidence"`
 
 	// JSON array containing all supported trust frameworks.
-	TrustFrameworks []string `json:"trust_frameworks"`
+	TrustFrameworks []string `json:"trust_frameworks" yaml:"trust_frameworks"`
 }
 
 // Validate validates this identity assurance configuration

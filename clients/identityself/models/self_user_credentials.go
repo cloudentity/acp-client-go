@@ -22,26 +22,26 @@ type SelfUserCredentials struct {
 
 	// expires after
 	// Format: duration
-	ExpiresAfter strfmt.Duration `json:"expires_after,omitempty"`
+	ExpiresAfter strfmt.Duration `json:"expires_after,omitempty" yaml:"expires_after,omitempty"`
 
 	// expires at
 	// Format: date-time
-	ExpiresAt strfmt.DateTime `json:"expires_at,omitempty"`
+	ExpiresAt strfmt.DateTime `json:"expires_at,omitempty" yaml:"expires_at,omitempty"`
 
 	// state
 	// Enum: [valid must_be_reset must_be_changed]
-	State string `json:"state,omitempty"`
+	State string `json:"state,omitempty" yaml:"state,omitempty"`
 
 	// type
 	// Example: password
 	// Required: true
 	// Enum: [password webauthn]
-	Type string `json:"type"`
+	Type string `json:"type" yaml:"type"`
 
 	// updated at
 	// Required: true
 	// Format: date-time
-	UpdatedAt strfmt.DateTime `json:"updated_at"`
+	UpdatedAt strfmt.DateTime `json:"updated_at" yaml:"updated_at"`
 }
 
 // Validate validates this self user credentials

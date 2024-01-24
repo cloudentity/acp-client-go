@@ -18,7 +18,7 @@ import (
 type AzureSettings struct {
 
 	// Application ID from your Microsoft Azure application settings
-	ClientID string `json:"client_id,omitempty"`
+	ClientID string `json:"client_id,omitempty" yaml:"client_id,omitempty"`
 
 	// If enabled, the groups a user belongs to are collected
 	//
@@ -27,32 +27,32 @@ type AzureSettings struct {
 	// and manage different types of groups and group functionality according to your scenario.
 	//
 	// You can only get groups data if you are entitled to call the Microsoft Graph API.
-	FetchGroups bool `json:"fetch_groups,omitempty"`
+	FetchGroups bool `json:"fetch_groups,omitempty" yaml:"fetch_groups,omitempty"`
 
 	// If enabled, users' data is collected from the Microsoft Graph API
 	//
 	// You can only get user's data if you are entitled to call the Microsoft Graph API.
-	GetUser bool `json:"get_user,omitempty"`
+	GetUser bool `json:"get_user,omitempty" yaml:"get_user,omitempty"`
 
 	// An array of user attributes fetched from the Microsoft Graph API
-	GraphUserAttributes []string `json:"graph_user_attributes"`
+	GraphUserAttributes []string `json:"graph_user_attributes" yaml:"graph_user_attributes"`
 
 	// String represented group name format used for fetching groups
 	//
 	// It's value can be either `id` or `name`.
-	GroupNameFormat string `json:"group_name_format,omitempty"`
+	GroupNameFormat string `json:"group_name_format,omitempty" yaml:"group_name_format,omitempty"`
 
 	// If enabled, only security groups a user belongs to are collected.
-	OnlySecurityGroups bool `json:"only_security_groups,omitempty"`
+	OnlySecurityGroups bool `json:"only_security_groups,omitempty" yaml:"only_security_groups,omitempty"`
 
 	// An array of additional scopes your client requests
-	Scopes []string `json:"scopes"`
+	Scopes []string `json:"scopes" yaml:"scopes"`
 
 	// Whether to send the identifier as a `login_hint` parameter to the IDP
-	SendLoginHint bool `json:"send_login_hint,omitempty"`
+	SendLoginHint bool `json:"send_login_hint,omitempty" yaml:"send_login_hint,omitempty"`
 
 	// Directory ID from your Microsoft Azure application settings
-	Tenant string `json:"tenant,omitempty"`
+	Tenant string `json:"tenant,omitempty" yaml:"tenant,omitempty"`
 }
 
 // Validate validates this azure settings

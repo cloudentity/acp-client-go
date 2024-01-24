@@ -19,10 +19,10 @@ import (
 type MFAAuth struct {
 
 	// email
-	Email *EmailAuth `json:"email,omitempty"`
+	Email *EmailAuth `json:"email,omitempty" yaml:"email,omitempty"`
 
 	// sms
-	Sms *SMSAuth `json:"sms,omitempty"`
+	Sms *SMSAuth `json:"sms,omitempty" yaml:"sms,omitempty"`
 }
 
 // Validate validates this m f a auth

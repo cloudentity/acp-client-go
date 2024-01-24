@@ -21,17 +21,17 @@ type DomesticStandingOrderConsentResponse struct {
 
 	// data
 	// Required: true
-	Data *OBWriteDomesticStandingOrderConsentResponse6Data `json:"Data"`
+	Data *OBWriteDomesticStandingOrderConsentResponse6Data `json:"Data" yaml:"Data"`
 
 	// links
-	Links *Links `json:"Links,omitempty"`
+	Links *Links `json:"Links,omitempty" yaml:"Links,omitempty"`
 
 	// meta
-	Meta *Meta `json:"Meta,omitempty"`
+	Meta *Meta `json:"Meta,omitempty" yaml:"Meta,omitempty"`
 
 	// risk
 	// Required: true
-	Risk *OBRisk1 `json:"Risk"`
+	Risk *OBRisk1 `json:"Risk" yaml:"Risk"`
 }
 
 // Validate validates this domestic standing order consent response

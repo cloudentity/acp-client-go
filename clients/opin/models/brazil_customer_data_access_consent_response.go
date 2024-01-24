@@ -21,13 +21,13 @@ type BrazilCustomerDataAccessConsentResponse struct {
 
 	// data
 	// Required: true
-	Data *OpenbankingBrasilConsentData1 `json:"data"`
+	Data *OpenbankingBrasilConsentData1 `json:"data" yaml:"data"`
 
 	// links
-	Links *OpenbankingBrasilConsentLinks `json:"links,omitempty"`
+	Links *OpenbankingBrasilConsentLinks `json:"links,omitempty" yaml:"links,omitempty"`
 
 	// meta
-	Meta *OpenbankingBrasilConsentMeta `json:"meta,omitempty"`
+	Meta *OpenbankingBrasilConsentMeta `json:"meta,omitempty" yaml:"meta,omitempty"`
 }
 
 // Validate validates this brazil customer data access consent response

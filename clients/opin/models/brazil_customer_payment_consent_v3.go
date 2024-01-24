@@ -20,7 +20,7 @@ import (
 type BrazilCustomerPaymentConsentV3 struct {
 
 	// business entity
-	BusinessEntity *OpenbankingBrasilPaymentV3BusinessEntity `json:"businessEntity,omitempty"`
+	BusinessEntity *OpenbankingBrasilPaymentV3BusinessEntity `json:"businessEntity,omitempty" yaml:"businessEntity,omitempty"`
 
 	// Identificador nico do consentimento criado para a iniciao de pagamento solicitada. Dever ser um URN - Uniform Resource Name.
 	// Um URN, conforme definido na [RFC8141](https://tools.ietf.org/html/rfc8141)  um Uniform Resource
@@ -35,20 +35,20 @@ type BrazilCustomerPaymentConsentV3 struct {
 	// Required: true
 	// Max Length: 256
 	// Pattern: ^urn:[a-zA-Z0-9][a-zA-Z0-9\-]{0,31}:[a-zA-Z0-9()+,\-.:=@;$_!*'%\/?#]+$
-	ConsentID string `json:"consentId"`
+	ConsentID string `json:"consentId" yaml:"consentId"`
 
 	// Data e hora em que o consentimento foi criado. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format).
 	// Example: 2021-05-21T08:30:00Z
 	// Required: true
 	// Format: date-time
-	CreationDateTime strfmt.DateTime `json:"creationDateTime"`
+	CreationDateTime strfmt.DateTime `json:"creationDateTime" yaml:"creationDateTime"`
 
 	// creditor
 	// Required: true
-	Creditor *OpenbankingBrasilPaymentV3Identification `json:"creditor"`
+	Creditor *OpenbankingBrasilPaymentV3Identification `json:"creditor" yaml:"creditor"`
 
 	// debtor account
-	DebtorAccount *OpenbankingBrasilPaymentV3ConsentsDebtorAccount `json:"debtorAccount,omitempty"`
+	DebtorAccount *OpenbankingBrasilPaymentV3ConsentsDebtorAccount `json:"debtorAccount,omitempty" yaml:"debtorAccount,omitempty"`
 
 	// Data e hora em que o consentimento da iniciao de pagamento expira, devendo ser sempre o creationDateTime mais 5 minutos. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC (UTC time format).
 	// O consentimento  criado com o status AWAITING_AUTHORISATION, e deve assumir o status AUTHORIZED ou REJECTED antes do tempo de expirao - 5 minutos. Caso o tempo seja expirado, o status deve assumir REJECTED.
@@ -57,28 +57,28 @@ type BrazilCustomerPaymentConsentV3 struct {
 	// Example: 2021-05-21T08:30:00Z
 	// Required: true
 	// Format: date-time
-	ExpirationDateTime strfmt.DateTime `json:"expirationDateTime"`
+	ExpirationDateTime strfmt.DateTime `json:"expirationDateTime" yaml:"expirationDateTime"`
 
 	// logged user
 	// Required: true
-	LoggedUser *OpenbankingBrasilPaymentV3LoggedUser `json:"loggedUser"`
+	LoggedUser *OpenbankingBrasilPaymentV3LoggedUser `json:"loggedUser" yaml:"loggedUser"`
 
 	// payment
 	// Required: true
-	Payment *OpenbankingBrasilPaymentV3PaymentConsent `json:"payment"`
+	Payment *OpenbankingBrasilPaymentV3PaymentConsent `json:"payment" yaml:"payment"`
 
 	// rejection reason
-	RejectionReason *OpenbankingBrasilPaymentV3ConsentRejectionReason `json:"rejectionReason,omitempty"`
+	RejectionReason *OpenbankingBrasilPaymentV3ConsentRejectionReason `json:"rejectionReason,omitempty" yaml:"rejectionReason,omitempty"`
 
 	// status
 	// Required: true
-	Status *OpenbankingBrasilPaymentV3EnumAuthorisationStatusType `json:"status"`
+	Status *OpenbankingBrasilPaymentV3EnumAuthorisationStatusType `json:"status" yaml:"status"`
 
 	// Data e hora em que o recurso foi atualizado. Uma string com data e hora conforme especificao RFC-3339, sempre com a utilizao de timezone UTC(UTC time format).
 	// Example: 2021-05-21T08:30:00Z
 	// Required: true
 	// Format: date-time
-	StatusUpdateDateTime strfmt.DateTime `json:"statusUpdateDateTime"`
+	StatusUpdateDateTime strfmt.DateTime `json:"statusUpdateDateTime" yaml:"statusUpdateDateTime"`
 }
 
 // Validate validates this brazil customer payment consent v3

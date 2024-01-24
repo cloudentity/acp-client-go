@@ -19,11 +19,11 @@ type FDXRequestedResource struct {
 
 	// The names of clusters with data elements permitted.
 	// Example: ["ACCOUNT_DETAILED","TRANSACTIONS","STATEMENTS"]
-	DataClusters []string `json:"dataClusters"`
+	DataClusters []string `json:"dataClusters" yaml:"dataClusters"`
 
 	// A type of resource that holds the permitted data elements. This parameter can be extended to support additional resource types.
 	// Example: ACCOUNT
-	ResourceType string `json:"resourceType,omitempty"`
+	ResourceType string `json:"resourceType,omitempty" yaml:"resourceType,omitempty"`
 }
 
 // Validate validates this f d x requested resource

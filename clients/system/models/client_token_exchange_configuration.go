@@ -22,7 +22,7 @@ type ClientTokenExchangeConfiguration struct {
 	// Claims from the actor token that will be injected into the exchanged token under the `act` claim.
 	//
 	// Applies for the token exchange delegation flow only.
-	ActorClaims []string `json:"actor_claims"`
+	ActorClaims []string `json:"actor_claims" yaml:"actor_claims"`
 }
 
 // Validate validates this client token exchange configuration

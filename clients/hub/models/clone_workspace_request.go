@@ -21,10 +21,10 @@ type CloneWorkspaceRequest struct {
 
 	// The `destination_id` parameter is an ID of cloned workspace.
 	// Required: true
-	DestinationID string `json:"destination_id"`
+	DestinationID string `json:"destination_id" yaml:"destination_id"`
 
 	// patch
-	Patch Rfc7396PatchOperation `json:"patch,omitempty"`
+	Patch Rfc7396PatchOperation `json:"patch,omitempty" yaml:"patch,omitempty"`
 }
 
 // Validate validates this clone workspace request

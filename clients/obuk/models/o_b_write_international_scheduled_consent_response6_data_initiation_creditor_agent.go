@@ -19,16 +19,16 @@ import (
 type OBWriteInternationalScheduledConsentResponse6DataInitiationCreditorAgent struct {
 
 	// identification
-	Identification Identification1 `json:"Identification,omitempty"`
+	Identification Identification1 `json:"Identification,omitempty" yaml:"Identification,omitempty"`
 
 	// name
-	Name Name `json:"Name,omitempty"`
+	Name Name `json:"Name,omitempty" yaml:"Name,omitempty"`
 
 	// postal address
-	PostalAddress *OBPostalAddress6 `json:"PostalAddress,omitempty"`
+	PostalAddress *OBPostalAddress6 `json:"PostalAddress,omitempty" yaml:"PostalAddress,omitempty"`
 
 	// scheme name
-	SchemeName OBExternalFinancialInstitutionIdentification4Code `json:"SchemeName,omitempty"`
+	SchemeName OBExternalFinancialInstitutionIdentification4Code `json:"SchemeName,omitempty" yaml:"SchemeName,omitempty"`
 }
 
 // Validate validates this o b write international scheduled consent response6 data initiation creditor agent

@@ -22,14 +22,14 @@ type Meta struct {
 
 	// first available date time
 	// Format: date-time
-	FirstAvailableDateTime ISODateTime `json:"FirstAvailableDateTime,omitempty"`
+	FirstAvailableDateTime ISODateTime `json:"FirstAvailableDateTime,omitempty" yaml:"FirstAvailableDateTime,omitempty"`
 
 	// last available date time
 	// Format: date-time
-	LastAvailableDateTime ISODateTime `json:"LastAvailableDateTime,omitempty"`
+	LastAvailableDateTime ISODateTime `json:"LastAvailableDateTime,omitempty" yaml:"LastAvailableDateTime,omitempty"`
 
 	// total pages
-	TotalPages int32 `json:"TotalPages,omitempty"`
+	TotalPages int32 `json:"TotalPages,omitempty" yaml:"TotalPages,omitempty"`
 }
 
 // Validate validates this meta

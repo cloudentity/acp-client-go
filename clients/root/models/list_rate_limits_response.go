@@ -20,10 +20,10 @@ import (
 type ListRateLimitsResponse struct {
 
 	// global
-	Global map[string]RateLimitModel `json:"global,omitempty"`
+	Global map[string]RateLimitModel `json:"global,omitempty" yaml:"global,omitempty"`
 
 	// tenant
-	Tenant map[string]RateLimitModel `json:"tenant,omitempty"`
+	Tenant map[string]RateLimitModel `json:"tenant,omitempty" yaml:"tenant,omitempty"`
 }
 
 // Validate validates this list rate limits response

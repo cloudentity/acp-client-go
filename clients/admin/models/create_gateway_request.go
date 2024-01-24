@@ -18,21 +18,21 @@ import (
 type CreateGatewayRequest struct {
 
 	// if true a services is created automatically for each new discovered api group
-	CreateAndBindServicesAutomatically bool `json:"create_and_bind_services_automatically,omitempty"`
+	CreateAndBindServicesAutomatically bool `json:"create_and_bind_services_automatically,omitempty" yaml:"create_and_bind_services_automatically,omitempty"`
 
 	// description
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
 	// gateway name
 	// Example: Cloudentity Pyron
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// ServerID that this gateway should protect
-	ServerID string `json:"server_id,omitempty"`
+	ServerID string `json:"server_id,omitempty" yaml:"server_id,omitempty"`
 
 	// gateway type, one of: pyron, aws, azure, istio, kong, apigeex, apigeeedge, standalone
 	// Example: pyron
-	Type string `json:"type,omitempty"`
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 }
 
 // Validate validates this create gateway request

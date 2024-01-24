@@ -335,16 +335,16 @@ type CdrConsentIntrospectOKBody struct {
 	models.IntrospectResponse
 
 	// Deprecated list of account ids, use `account_ids` from `cdr_arrangement`
-	AccountIDs []string `json:"AccountIDs"`
+	AccountIDs []string `json:"AccountIDs" yaml:"AccountIDs"`
 
 	// cdr arrangement
-	CdrArrangement *models.CDRArrangement `json:"cdr_arrangement,omitempty"`
+	CdrArrangement *models.CDRArrangement `json:"cdr_arrangement,omitempty" yaml:"cdr_arrangement,omitempty"`
 
 	// CDR arrangement ID
-	CdrArrangementID string `json:"cdr_arrangement_id,omitempty"`
+	CdrArrangementID string `json:"cdr_arrangement_id,omitempty" yaml:"cdr_arrangement_id,omitempty"`
 
 	// cdr register client metadata
-	CdrRegisterClientMetadata *models.CDRRegisterClientMetadata `json:"cdr_register_client_metadata,omitempty"`
+	CdrRegisterClientMetadata *models.CDRRegisterClientMetadata `json:"cdr_register_client_metadata,omitempty" yaml:"cdr_register_client_metadata,omitempty"`
 }
 
 // UnmarshalJSON unmarshals this object from a JSON structure

@@ -19,10 +19,10 @@ import (
 type JITSettings struct {
 
 	// enabled
-	Enabled bool `json:"enabled,omitempty"`
+	Enabled bool `json:"enabled,omitempty" yaml:"enabled,omitempty"`
 
 	// provisioning
-	Provisioning *JITProvisioning `json:"provisioning,omitempty"`
+	Provisioning *JITProvisioning `json:"provisioning,omitempty" yaml:"provisioning,omitempty"`
 }
 
 // Validate validates this j i t settings

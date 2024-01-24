@@ -19,7 +19,7 @@ import (
 type LegalEntity struct {
 
 	// party
-	Party *FDXParty `json:"party,omitempty"`
+	Party *FDXParty `json:"party,omitempty" yaml:"party,omitempty"`
 }
 
 // Validate validates this legal entity

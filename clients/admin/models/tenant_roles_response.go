@@ -20,7 +20,7 @@ import (
 type TenantRolesResponse struct {
 
 	// subjects
-	Subjects []*TenantRoleSubject `json:"subjects"`
+	Subjects []*TenantRoleSubject `json:"subjects" yaml:"subjects"`
 }
 
 // Validate validates this tenant roles response

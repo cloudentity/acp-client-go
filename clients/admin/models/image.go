@@ -18,7 +18,7 @@ import (
 type Image struct {
 
 	// url
-	URL string `json:"url,omitempty"`
+	URL string `json:"url,omitempty" yaml:"url,omitempty"`
 }
 
 // Validate validates this image

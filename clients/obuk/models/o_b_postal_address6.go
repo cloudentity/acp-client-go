@@ -21,34 +21,34 @@ type OBPostalAddress6 struct {
 
 	// address line
 	// Max Items: 7
-	AddressLine []string `json:"AddressLine"`
+	AddressLine []string `json:"AddressLine" yaml:"AddressLine"`
 
 	// address type
-	AddressType OBAddressTypeCode `json:"AddressType,omitempty"`
+	AddressType OBAddressTypeCode `json:"AddressType,omitempty" yaml:"AddressType,omitempty"`
 
 	// building number
-	BuildingNumber BuildingNumber `json:"BuildingNumber,omitempty"`
+	BuildingNumber BuildingNumber `json:"BuildingNumber,omitempty" yaml:"BuildingNumber,omitempty"`
 
 	// country
-	Country CountryCode `json:"Country,omitempty"`
+	Country CountryCode `json:"Country,omitempty" yaml:"Country,omitempty"`
 
 	// country sub division
-	CountrySubDivision CountrySubDivision `json:"CountrySubDivision,omitempty"`
+	CountrySubDivision CountrySubDivision `json:"CountrySubDivision,omitempty" yaml:"CountrySubDivision,omitempty"`
 
 	// department
-	Department Department `json:"Department,omitempty"`
+	Department Department `json:"Department,omitempty" yaml:"Department,omitempty"`
 
 	// post code
-	PostCode PostCode `json:"PostCode,omitempty"`
+	PostCode PostCode `json:"PostCode,omitempty" yaml:"PostCode,omitempty"`
 
 	// street name
-	StreetName StreetName `json:"StreetName,omitempty"`
+	StreetName StreetName `json:"StreetName,omitempty" yaml:"StreetName,omitempty"`
 
 	// sub department
-	SubDepartment SubDepartment `json:"SubDepartment,omitempty"`
+	SubDepartment SubDepartment `json:"SubDepartment,omitempty" yaml:"SubDepartment,omitempty"`
 
 	// town name
-	TownName TownName `json:"TownName,omitempty"`
+	TownName TownName `json:"TownName,omitempty" yaml:"TownName,omitempty"`
 }
 
 // Validate validates this o b postal address6

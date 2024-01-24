@@ -19,43 +19,43 @@ import (
 type IDPCredentials struct {
 
 	// auth0
-	Auth0 *Auth0Credentials `json:"auth0,omitempty"`
+	Auth0 *Auth0Credentials `json:"auth0,omitempty" yaml:"auth0,omitempty"`
 
 	// azure
-	Azure *AzureCredentials `json:"azure,omitempty"`
+	Azure *AzureCredentials `json:"azure,omitempty" yaml:"azure,omitempty"`
 
 	// azureb2c
-	Azureb2c *AzureB2CCredentials `json:"azureb2c,omitempty"`
+	Azureb2c *AzureB2CCredentials `json:"azureb2c,omitempty" yaml:"azureb2c,omitempty"`
 
 	// cognito
-	Cognito *CognitoCredentials `json:"cognito,omitempty"`
+	Cognito *CognitoCredentials `json:"cognito,omitempty" yaml:"cognito,omitempty"`
 
 	// custom
-	Custom CustomCredentials `json:"custom,omitempty"`
+	Custom CustomCredentials `json:"custom,omitempty" yaml:"custom,omitempty"`
 
 	// external
-	External *ExternalCredentials `json:"external,omitempty"`
+	External *ExternalCredentials `json:"external,omitempty" yaml:"external,omitempty"`
 
 	// github
-	Github *GithubCredentials `json:"github,omitempty"`
+	Github *GithubCredentials `json:"github,omitempty" yaml:"github,omitempty"`
 
 	// google
-	Google *GoogleCredentials `json:"google,omitempty"`
+	Google *GoogleCredentials `json:"google,omitempty" yaml:"google,omitempty"`
 
 	// intelli trust
-	IntelliTrust *IntelliTrustCredentials `json:"intelli_trust,omitempty"`
+	IntelliTrust *IntelliTrustCredentials `json:"intelli_trust,omitempty" yaml:"intelli_trust,omitempty"`
 
 	// oidc
-	Oidc *OIDCCredentials `json:"oidc,omitempty"`
+	Oidc *OIDCCredentials `json:"oidc,omitempty" yaml:"oidc,omitempty"`
 
 	// okta
-	Okta *OktaCredentials `json:"okta,omitempty"`
+	Okta *OktaCredentials `json:"okta,omitempty" yaml:"okta,omitempty"`
 
 	// saml
-	Saml *SAMLCredentials `json:"saml,omitempty"`
+	Saml *SAMLCredentials `json:"saml,omitempty" yaml:"saml,omitempty"`
 
 	// static
-	Static *StaticCredentials `json:"static,omitempty"`
+	Static *StaticCredentials `json:"static,omitempty" yaml:"static,omitempty"`
 }
 
 // Validate validates this ID p credentials

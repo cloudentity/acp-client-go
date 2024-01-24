@@ -21,35 +21,35 @@ import (
 type CustomAppResponse struct {
 
 	// client
-	Client *ClientAdminResponse `json:"client,omitempty"`
+	Client *ClientAdminResponse `json:"client,omitempty" yaml:"client,omitempty"`
 
 	// ClientID used for the CustomApp
-	ClientID string `json:"client_id,omitempty"`
+	ClientID string `json:"client_id,omitempty" yaml:"client_id,omitempty"`
 
 	// ID of the CustomApp
 	// Required: true
-	ID string `json:"id"`
+	ID string `json:"id" yaml:"id"`
 
 	// Name of the CustomApp
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// ID of the server
 	// Required: true
-	ServerID string `json:"server_id"`
+	ServerID string `json:"server_id" yaml:"server_id"`
 
 	// ID of the tenant
 	// Example: default
 	// Required: true
-	TenantID string `json:"tenant_id"`
+	TenantID string `json:"tenant_id" yaml:"tenant_id"`
 
 	// Type of the custom app
 	// Example: post-authn
 	// Enum: [post-authn]
-	Type string `json:"type,omitempty"`
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 
 	// url of the CustomApp
 	// Required: true
-	URL string `json:"url"`
+	URL string `json:"url" yaml:"url"`
 }
 
 // Validate validates this custom app response

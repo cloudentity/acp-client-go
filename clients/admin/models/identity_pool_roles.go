@@ -18,7 +18,7 @@ import (
 type IdentityPoolRoles struct {
 
 	// user manager
-	UserManager bool `json:"user_manager,omitempty"`
+	UserManager bool `json:"user_manager,omitempty" yaml:"user_manager,omitempty"`
 }
 
 // Validate validates this identity pool roles

@@ -19,7 +19,7 @@ import (
 type FDXErrorResponse struct {
 
 	// error
-	Error *FDXError `json:"error,omitempty"`
+	Error *FDXError `json:"error,omitempty" yaml:"error,omitempty"`
 }
 
 // Validate validates this f d x error response

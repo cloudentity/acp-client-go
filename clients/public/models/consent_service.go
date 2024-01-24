@@ -20,10 +20,10 @@ import (
 type ConsentService struct {
 
 	// name
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// purpose
-	Purposes []*Purpose `json:"purposes"`
+	Purposes []*Purpose `json:"purposes" yaml:"purposes"`
 }
 
 // Validate validates this consent service

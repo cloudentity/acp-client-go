@@ -19,10 +19,10 @@ import (
 type KeyInfo struct {
 
 	// x509 data
-	X509Data *X509Data `json:"X509Data,omitempty"`
+	X509Data *X509Data `json:"X509Data,omitempty" yaml:"X509Data,omitempty"`
 
 	// XML name
-	XMLName *Name `json:"XMLName,omitempty"`
+	XMLName *Name `json:"XMLName,omitempty" yaml:"XMLName,omitempty"`
 }
 
 // Validate validates this key info

@@ -22,46 +22,46 @@ type OrganizationResponse struct {
 
 	// Your organization's label color in a HEX format.
 	// Example: #007FFF
-	Color string `json:"color,omitempty"`
+	Color string `json:"color,omitempty" yaml:"color,omitempty"`
 
 	// Display description of the organization
 	// Example: Organization description
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
 	// An array of email domains configured for an organization for the purposes of IDP discovery
-	Domains []string `json:"domains"`
+	Domains []string `json:"domains" yaml:"domains"`
 
 	// Unique identifier of an organization
 	//
 	// If not provided, a random ID is generated.
 	// Example: default
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// issuer url
-	IssuerURL string `json:"issuer_url,omitempty"`
+	IssuerURL string `json:"issuer_url,omitempty" yaml:"issuer_url,omitempty"`
 
 	// metadata
-	Metadata *ServerMetadata `json:"metadata,omitempty"`
+	Metadata *ServerMetadata `json:"metadata,omitempty" yaml:"metadata,omitempty"`
 
 	// Display name of the organization
 	// Example: default
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// number of child organizations
-	NumberOfChildOrganizations int64 `json:"number_of_child_organizations,omitempty"`
+	NumberOfChildOrganizations int64 `json:"number_of_child_organizations,omitempty" yaml:"number_of_child_organizations,omitempty"`
 
 	// subject format
 	// Enum: [hash legacy]
-	SubjectFormat string `json:"subject_format,omitempty"`
+	SubjectFormat string `json:"subject_format,omitempty" yaml:"subject_format,omitempty"`
 
 	// subject identifier algorithm salt
-	SubjectIdentifierAlgorithmSalt string `json:"subject_identifier_algorithm_salt,omitempty"`
+	SubjectIdentifierAlgorithmSalt string `json:"subject_identifier_algorithm_salt,omitempty" yaml:"subject_identifier_algorithm_salt,omitempty"`
 
 	// If true this organization can be used as a template when creating a new ones.
-	Template bool `json:"template,omitempty"`
+	Template bool `json:"template,omitempty" yaml:"template,omitempty"`
 
 	// theme id
-	ThemeID string `json:"theme_id,omitempty"`
+	ThemeID string `json:"theme_id,omitempty" yaml:"theme_id,omitempty"`
 }
 
 // Validate validates this organization response

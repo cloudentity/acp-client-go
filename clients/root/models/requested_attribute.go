@@ -22,19 +22,19 @@ import (
 type RequestedAttribute struct {
 
 	// friendly name
-	FriendlyName string `json:"FriendlyName,omitempty"`
+	FriendlyName string `json:"FriendlyName,omitempty" yaml:"FriendlyName,omitempty"`
 
 	// is required
-	IsRequired bool `json:"IsRequired,omitempty"`
+	IsRequired bool `json:"IsRequired,omitempty" yaml:"IsRequired,omitempty"`
 
 	// name
-	Name string `json:"Name,omitempty"`
+	Name string `json:"Name,omitempty" yaml:"Name,omitempty"`
 
 	// name format
-	NameFormat string `json:"NameFormat,omitempty"`
+	NameFormat string `json:"NameFormat,omitempty" yaml:"NameFormat,omitempty"`
 
 	// values
-	Values []*AttributeValue `json:"Values"`
+	Values []*AttributeValue `json:"Values" yaml:"Values"`
 }
 
 // Validate validates this requested attribute

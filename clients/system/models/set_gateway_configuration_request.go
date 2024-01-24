@@ -20,7 +20,7 @@ import (
 type SetGatewayConfigurationRequest struct {
 
 	// List of api groups
-	APIGroups []*APIGroup `json:"api_groups"`
+	APIGroups []*APIGroup `json:"api_groups" yaml:"api_groups"`
 }
 
 // Validate validates this set gateway configuration request

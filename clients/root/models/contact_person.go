@@ -20,22 +20,22 @@ import (
 type ContactPerson struct {
 
 	// company
-	Company string `json:"Company,omitempty"`
+	Company string `json:"Company,omitempty" yaml:"Company,omitempty"`
 
 	// contact type
-	ContactType string `json:"ContactType,omitempty"`
+	ContactType string `json:"ContactType,omitempty" yaml:"ContactType,omitempty"`
 
 	// email addresses
-	EmailAddresses []string `json:"EmailAddresses"`
+	EmailAddresses []string `json:"EmailAddresses" yaml:"EmailAddresses"`
 
 	// given name
-	GivenName string `json:"GivenName,omitempty"`
+	GivenName string `json:"GivenName,omitempty" yaml:"GivenName,omitempty"`
 
 	// sur name
-	SurName string `json:"SurName,omitempty"`
+	SurName string `json:"SurName,omitempty" yaml:"SurName,omitempty"`
 
 	// telephone numbers
-	TelephoneNumbers []string `json:"TelephoneNumbers"`
+	TelephoneNumbers []string `json:"TelephoneNumbers" yaml:"TelephoneNumbers"`
 }
 
 // Validate validates this contact person

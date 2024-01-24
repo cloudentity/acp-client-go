@@ -18,7 +18,7 @@ import (
 type IDPTokenExchangeSettings struct {
 
 	// If enabled token issued by this IDP can be used for token exchange
-	Enabled bool `json:"enabled,omitempty"`
+	Enabled bool `json:"enabled,omitempty" yaml:"enabled,omitempty"`
 }
 
 // Validate validates this ID p token exchange settings

@@ -18,7 +18,7 @@ import (
 type OpenbankingServerConsent struct {
 
 	// If empty it defaults to demo bank embedded in acp
-	BankURL string `json:"bank_url,omitempty"`
+	BankURL string `json:"bank_url,omitempty" yaml:"bank_url,omitempty"`
 }
 
 // Validate validates this openbanking server consent

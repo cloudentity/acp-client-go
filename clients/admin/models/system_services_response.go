@@ -20,7 +20,7 @@ import (
 type SystemServicesResponse struct {
 
 	// services
-	Services []*Service `json:"services"`
+	Services []*Service `json:"services" yaml:"services"`
 }
 
 // Validate validates this system services response

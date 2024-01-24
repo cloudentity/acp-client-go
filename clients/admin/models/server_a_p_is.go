@@ -21,7 +21,7 @@ import (
 type ServerAPIs struct {
 
 	// apis by services
-	ApisByServices map[string][]API `json:"apis_by_services,omitempty"`
+	ApisByServices map[string][]API `json:"apis_by_services,omitempty" yaml:"apis_by_services,omitempty"`
 }
 
 // Validate validates this server a p is

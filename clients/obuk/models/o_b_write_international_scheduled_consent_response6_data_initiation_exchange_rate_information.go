@@ -23,20 +23,20 @@ type OBWriteInternationalScheduledConsentResponse6DataInitiationExchangeRateInfo
 	// Unique and unambiguous reference to the foreign exchange contract agreed between the initiating party/creditor and the debtor agent.
 	// Max Length: 256
 	// Min Length: 1
-	ContractIdentification string `json:"ContractIdentification,omitempty"`
+	ContractIdentification string `json:"ContractIdentification,omitempty" yaml:"ContractIdentification,omitempty"`
 
 	// The factor used for conversion of an amount from one currency to another. This reflects the price at which one currency was bought with another currency.
-	ExchangeRate float64 `json:"ExchangeRate,omitempty"`
+	ExchangeRate float64 `json:"ExchangeRate,omitempty" yaml:"ExchangeRate,omitempty"`
 
 	// Specifies the type used to complete the currency exchange.
 	// Required: true
 	// Enum: [Actual Agreed Indicative]
-	RateType string `json:"RateType"`
+	RateType string `json:"RateType" yaml:"RateType"`
 
 	// Currency in which the rate of exchange is expressed in a currency exchange. In the example 1GBP = xxxCUR, the unit currency is GBP.
 	// Required: true
 	// Pattern: ^[A-Z]{3,3}$
-	UnitCurrency string `json:"UnitCurrency"`
+	UnitCurrency string `json:"UnitCurrency" yaml:"UnitCurrency"`
 }
 
 // Validate validates this o b write international scheduled consent response6 data initiation exchange rate information

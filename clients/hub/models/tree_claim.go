@@ -21,29 +21,29 @@ type TreeClaim struct {
 	// DeprecatedMapping use SourceType and SourcePath instead
 	// claim mapping - path to attribute in authentication context from where claim value should be picked
 	// Example: email
-	Mapping string `json:"mapping,omitempty"`
+	Mapping string `json:"mapping,omitempty" yaml:"mapping,omitempty"`
 
 	// included in userinfo/introspect endpoints only
-	Opaque bool `json:"opaque,omitempty"`
+	Opaque bool `json:"opaque,omitempty" yaml:"opaque,omitempty"`
 
 	// saml name
 	// Example: email
-	SamlName string `json:"saml_name,omitempty"`
+	SamlName string `json:"saml_name,omitempty" yaml:"saml_name,omitempty"`
 
 	// saml name format
 	// Example: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
-	SamlNameFormat string `json:"saml_name_format,omitempty"`
+	SamlNameFormat string `json:"saml_name_format,omitempty" yaml:"saml_name_format,omitempty"`
 
 	// list of scopes - when at least one of listed scopes has been granted to a client, then claim will be added to id / access token.
 	// In case of empty array claim is always added.
 	// Example: ["email","email_verified"]
-	Scopes []string `json:"scopes"`
+	Scopes []string `json:"scopes" yaml:"scopes"`
 
 	// path to the attribute in source type context where claim value should be picked from
-	SourcePath string `json:"source_path,omitempty"`
+	SourcePath string `json:"source_path,omitempty" yaml:"source_path,omitempty"`
 
 	// source type
-	SourceType ClaimSourceType `json:"source_type,omitempty"`
+	SourceType ClaimSourceType `json:"source_type,omitempty" yaml:"source_type,omitempty"`
 }
 
 // Validate validates this tree claim

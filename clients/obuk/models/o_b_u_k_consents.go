@@ -20,7 +20,7 @@ import (
 type OBUKConsents struct {
 
 	// consents
-	Consents []*OBUKConsentWithClient `json:"Consents"`
+	Consents []*OBUKConsentWithClient `json:"Consents" yaml:"Consents"`
 }
 
 // Validate validates this o b u k consents

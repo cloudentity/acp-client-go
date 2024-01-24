@@ -23,21 +23,21 @@ type BruteForceLimit struct {
 	// Example: 1m0s
 	// Required: true
 	// Format: duration
-	BlockDuration strfmt.Duration `json:"block_duration"`
+	BlockDuration strfmt.Duration `json:"block_duration" yaml:"block_duration"`
 
 	// Max number of attempts
 	// Example: 5
 	// Required: true
-	MaxAttempts int64 `json:"max_attempts"`
+	MaxAttempts int64 `json:"max_attempts" yaml:"max_attempts"`
 
 	// protected type
 	// Required: true
-	ProtectedType *ProtectedType `json:"protected_type"`
+	ProtectedType *ProtectedType `json:"protected_type" yaml:"protected_type"`
 
 	// tenant id
 	// Example: default
 	// Required: true
-	TenantID string `json:"tenant_id"`
+	TenantID string `json:"tenant_id" yaml:"tenant_id"`
 }
 
 // Validate validates this brute force limit

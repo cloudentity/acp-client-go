@@ -21,11 +21,11 @@ type ChangePassword struct {
 
 	// new password
 	// Required: true
-	NewPassword string `json:"new_password"`
+	NewPassword string `json:"new_password" yaml:"new_password"`
 
 	// old password
 	// Required: true
-	OldPassword string `json:"old_password"`
+	OldPassword string `json:"old_password" yaml:"old_password"`
 }
 
 // Validate validates this change password

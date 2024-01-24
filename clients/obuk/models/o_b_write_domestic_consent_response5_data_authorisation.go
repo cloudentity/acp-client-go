@@ -23,14 +23,14 @@ type OBWriteDomesticConsentResponse5DataAuthorisation struct {
 	// Type of authorisation flow requested.
 	// Required: true
 	// Enum: [Any Single]
-	AuthorisationType string `json:"AuthorisationType"`
+	AuthorisationType string `json:"AuthorisationType" yaml:"AuthorisationType"`
 
 	// Date and time at which the requested authorisation flow must be completed.All dates in the JSON payloads are represented in ISO 8601 date-time format.
 	// All date-time fields in responses must include the timezone. An example is below:
 	// 2017-04-05T10:43:07+00:00
 	// Format: date-time
 	// Format: date-time
-	CompletionDateTime strfmt.DateTime `json:"CompletionDateTime,omitempty"`
+	CompletionDateTime strfmt.DateTime `json:"CompletionDateTime,omitempty" yaml:"CompletionDateTime,omitempty"`
 }
 
 // Validate validates this o b write domestic consent response5 data authorisation

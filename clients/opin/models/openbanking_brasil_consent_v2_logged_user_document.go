@@ -24,14 +24,14 @@ type OpenbankingBrasilConsentV2LoggedUserDocument struct {
 	// Required: true
 	// Max Length: 11
 	// Pattern: ^\d{11}$
-	Identification string `json:"identification"`
+	Identification string `json:"identification" yaml:"identification"`
 
 	// Tipo do documento de identificao oficial do usurio.
 	// Example: CPF
 	// Required: true
 	// Max Length: 3
 	// Pattern: ^[A-Z]{3}$
-	Rel string `json:"rel"`
+	Rel string `json:"rel" yaml:"rel"`
 }
 
 // Validate validates this openbanking brasil consent v2 logged user document

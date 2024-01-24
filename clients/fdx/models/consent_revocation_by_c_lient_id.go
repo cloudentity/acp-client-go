@@ -19,10 +19,10 @@ import (
 type ConsentRevocationByCLientID struct {
 
 	// revocation details
-	RevocationDetails *FDXConsentRevocation `json:"RevocationDetails,omitempty"`
+	RevocationDetails *FDXConsentRevocation `json:"RevocationDetails,omitempty" yaml:"RevocationDetails,omitempty"`
 
 	// Client ID
-	ClientID string `json:"client_id,omitempty"`
+	ClientID string `json:"client_id,omitempty" yaml:"client_id,omitempty"`
 }
 
 // Validate validates this consent revocation by c lient ID

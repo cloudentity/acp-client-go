@@ -20,34 +20,34 @@ import (
 type DynamicClientRegistrationSettings struct {
 
 	// Binds registration token to the certificate used to register client
-	CertBoundRegistrationToken bool `json:"cert_bound_registration_token,omitempty"`
+	CertBoundRegistrationToken bool `json:"cert_bound_registration_token,omitempty" yaml:"cert_bound_registration_token,omitempty"`
 
 	// An optional list of scopes to be granted to a client when no scopes are provided in the DCR registration request
 	//
 	// If not provided, the following default scopes are granted for the client application: openid, address, email, phone, profile.
-	DefaultScopes []string `json:"default_scopes"`
+	DefaultScopes []string `json:"default_scopes" yaml:"default_scopes"`
 
 	// Disable registration access token expiry
 	//
 	// If is flag is on, the registration access token will never expire.
-	DisableRegistrationAccessTokenExpiry bool `json:"disable_registration_access_token_expiry,omitempty"`
+	DisableRegistrationAccessTokenExpiry bool `json:"disable_registration_access_token_expiry,omitempty" yaml:"disable_registration_access_token_expiry,omitempty"`
 
 	// Disables client management using registration token
 	//
 	// If disabled, client can manage itself using access token issued by client credentials flow.
-	DisableRegistrationTokenManagement bool `json:"disable_registration_token_management,omitempty"`
+	DisableRegistrationTokenManagement bool `json:"disable_registration_token_management,omitempty" yaml:"disable_registration_token_management,omitempty"`
 
 	// Disables registration token rotation
-	DisableRegistrationTokenRotation bool `json:"disable_registration_token_rotation,omitempty"`
+	DisableRegistrationTokenRotation bool `json:"disable_registration_token_rotation,omitempty" yaml:"disable_registration_token_rotation,omitempty"`
 
 	// Enables dynamic client registration
-	Enabled bool `json:"enabled,omitempty"`
+	Enabled bool `json:"enabled,omitempty" yaml:"enabled,omitempty"`
 
 	// initial access token
-	InitialAccessToken *InitialAccessTokenSettings `json:"initial_access_token,omitempty"`
+	InitialAccessToken *InitialAccessTokenSettings `json:"initial_access_token,omitempty" yaml:"initial_access_token,omitempty"`
 
 	// payload
-	Payload *PayloadSettings `json:"payload,omitempty"`
+	Payload *PayloadSettings `json:"payload,omitempty" yaml:"payload,omitempty"`
 
 	// Registration access token TTL
 	//
@@ -55,7 +55,7 @@ type DynamicClientRegistrationSettings struct {
 	// The minimum value is 24 hours.
 	// Example: 720h0m0s
 	// Format: duration
-	RegistrationAccessTokenTTL strfmt.Duration `json:"registration_access_token_ttl,omitempty"`
+	RegistrationAccessTokenTTL strfmt.Duration `json:"registration_access_token_ttl,omitempty" yaml:"registration_access_token_ttl,omitempty"`
 }
 
 // Validate validates this dynamic client registration settings

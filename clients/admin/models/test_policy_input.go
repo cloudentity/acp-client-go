@@ -19,13 +19,13 @@ import (
 type TestPolicyInput struct {
 
 	// authn ctx
-	AuthnCtx AuthenticationContext `json:"authn_ctx,omitempty"`
+	AuthnCtx AuthenticationContext `json:"authn_ctx,omitempty" yaml:"authn_ctx,omitempty"`
 
 	// Contexts for your policy validation
-	Contexts map[string]interface{} `json:"contexts,omitempty"`
+	Contexts map[string]interface{} `json:"contexts,omitempty" yaml:"contexts,omitempty"`
 
 	// request
-	Request *TestPolicyInputRequest `json:"request,omitempty"`
+	Request *TestPolicyInputRequest `json:"request,omitempty" yaml:"request,omitempty"`
 }
 
 // Validate validates this test policy input

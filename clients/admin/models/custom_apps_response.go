@@ -21,12 +21,12 @@ type CustomAppsResponse struct {
 
 	// list of CustomApps
 	// in:body
-	CustomApps []*CustomApp `json:"custom_apps"`
+	CustomApps []*CustomApp `json:"custom_apps" yaml:"custom_apps"`
 
 	// The ETag HTTP header is an identifier for a specific version of a resource
 	//
 	// in:header
-	Etag string `json:"etag,omitempty"`
+	Etag string `json:"etag,omitempty" yaml:"etag,omitempty"`
 }
 
 // Validate validates this custom apps response

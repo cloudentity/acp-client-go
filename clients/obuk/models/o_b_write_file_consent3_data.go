@@ -20,14 +20,14 @@ import (
 type OBWriteFileConsent3Data struct {
 
 	// authorisation
-	Authorisation *OBWriteFileConsent3DataAuthorisation `json:"Authorisation,omitempty"`
+	Authorisation *OBWriteFileConsent3DataAuthorisation `json:"Authorisation,omitempty" yaml:"Authorisation,omitempty"`
 
 	// initiation
 	// Required: true
-	Initiation *OBWriteFileConsent3DataInitiation `json:"Initiation"`
+	Initiation *OBWriteFileConsent3DataInitiation `json:"Initiation" yaml:"Initiation"`
 
 	// s c a support data
-	SCASupportData *OBWriteFileConsent3DataSCASupportData `json:"SCASupportData,omitempty"`
+	SCASupportData *OBWriteFileConsent3DataSCASupportData `json:"SCASupportData,omitempty" yaml:"SCASupportData,omitempty"`
 }
 
 // Validate validates this o b write file consent3 data

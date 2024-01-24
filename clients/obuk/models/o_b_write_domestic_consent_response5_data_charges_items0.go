@@ -21,15 +21,15 @@ type OBWriteDomesticConsentResponse5DataChargesItems0 struct {
 
 	// amount
 	// Required: true
-	Amount *OBActiveOrHistoricCurrencyAndAmount `json:"Amount"`
+	Amount *OBActiveOrHistoricCurrencyAndAmount `json:"Amount" yaml:"Amount"`
 
 	// charge bearer
 	// Required: true
-	ChargeBearer *OBChargeBearerType1Code `json:"ChargeBearer"`
+	ChargeBearer *OBChargeBearerType1Code `json:"ChargeBearer" yaml:"ChargeBearer"`
 
 	// type
 	// Required: true
-	Type *OBExternalPaymentChargeType1Code `json:"Type"`
+	Type *OBExternalPaymentChargeType1Code `json:"Type" yaml:"Type"`
 }
 
 // Validate validates this o b write domestic consent response5 data charges items0

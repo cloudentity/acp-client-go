@@ -22,16 +22,16 @@ type NewUserIdentifier struct {
 
 	// identifier
 	// Required: true
-	Identifier string `json:"identifier"`
+	Identifier string `json:"identifier" yaml:"identifier"`
 
 	// identifier metadata
-	Metadata map[string]interface{} `json:"metadata,omitempty"`
+	Metadata map[string]interface{} `json:"metadata,omitempty" yaml:"metadata,omitempty"`
 
 	// type
 	// Example: email
 	// Required: true
 	// Enum: [email mobile uid external federated]
-	Type string `json:"type"`
+	Type string `json:"type" yaml:"type"`
 }
 
 // Validate validates this new user identifier

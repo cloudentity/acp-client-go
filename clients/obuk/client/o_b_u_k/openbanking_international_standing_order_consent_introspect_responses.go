@@ -337,7 +337,7 @@ type OpenbankingInternationalStandingOrderConsentIntrospectOKBody struct {
 	models.InternationalStandingOrderConsent
 
 	// account i ds
-	AccountIDs []string `json:"AccountIDs"`
+	AccountIDs []string `json:"AccountIDs" yaml:"AccountIDs"`
 }
 
 // UnmarshalJSON unmarshals this object from a JSON structure

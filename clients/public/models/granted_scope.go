@@ -18,13 +18,13 @@ import (
 type GrantedScope struct {
 
 	// granted scope name
-	GrantedScopeName string `json:"granted_scope_name,omitempty"`
+	GrantedScopeName string `json:"granted_scope_name,omitempty" yaml:"granted_scope_name,omitempty"`
 
 	// is dynamic
-	IsDynamic bool `json:"is_dynamic,omitempty"`
+	IsDynamic bool `json:"is_dynamic,omitempty" yaml:"is_dynamic,omitempty"`
 
 	// scope name
-	ScopeName string `json:"scope_name,omitempty"`
+	ScopeName string `json:"scope_name,omitempty" yaml:"scope_name,omitempty"`
 }
 
 // Validate validates this granted scope

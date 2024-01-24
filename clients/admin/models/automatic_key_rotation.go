@@ -21,20 +21,20 @@ type AutomaticKeyRotation struct {
 
 	// cron
 	// Required: true
-	Cron string `json:"cron"`
+	Cron string `json:"cron" yaml:"cron"`
 
 	// enabled
 	// Required: true
-	Enabled bool `json:"enabled"`
+	Enabled bool `json:"enabled" yaml:"enabled"`
 
 	// scheduled at
 	// Read Only: true
 	// Format: date-time
-	ScheduledAt strfmt.DateTime `json:"scheduled_at,omitempty"`
+	ScheduledAt strfmt.DateTime `json:"scheduled_at,omitempty" yaml:"scheduled_at,omitempty"`
 
 	// starting from
 	// Format: date-time
-	StartingFrom strfmt.DateTime `json:"starting_from,omitempty"`
+	StartingFrom strfmt.DateTime `json:"starting_from,omitempty" yaml:"starting_from,omitempty"`
 }
 
 // Validate validates this automatic key rotation

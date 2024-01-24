@@ -23,7 +23,7 @@ type OpenbankingBrasilPaymentV3ConsentRejectionReason struct {
 
 	// code
 	// Required: true
-	Code *OpenbankingBrasilPaymentV3EnumConsentRejectionReasonType `json:"code"`
+	Code *OpenbankingBrasilPaymentV3EnumConsentRejectionReasonType `json:"code" yaml:"code"`
 
 	// Contm informaes adicionais ao consentimento rejeitado.
 	// VALOR_INVALIDO: O valor enviado no  vlido para o QR Code informado;
@@ -41,7 +41,7 @@ type OpenbankingBrasilPaymentV3ConsentRejectionReason struct {
 	// Required: true
 	// Max Length: 2048
 	// Pattern: [\w\W\s]*
-	Detail string `json:"detail"`
+	Detail string `json:"detail" yaml:"detail"`
 }
 
 // Validate validates this openbanking brasil payment v3 consent rejection reason

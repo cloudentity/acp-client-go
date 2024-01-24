@@ -18,25 +18,25 @@ import (
 type PoolPermissionsResponse struct {
 
 	// delete identity pool
-	DeleteIdentityPool bool `json:"delete_identity_pool,omitempty"`
+	DeleteIdentityPool bool `json:"delete_identity_pool,omitempty" yaml:"delete_identity_pool,omitempty"`
 
 	// get identity pool
-	GetIdentityPool bool `json:"get_identity_pool,omitempty"`
+	GetIdentityPool bool `json:"get_identity_pool,omitempty" yaml:"get_identity_pool,omitempty"`
 
 	// manage identity pool users
-	ManageIdentityPoolUsers bool `json:"manage_identity_pool_users,omitempty"`
+	ManageIdentityPoolUsers bool `json:"manage_identity_pool_users,omitempty" yaml:"manage_identity_pool_users,omitempty"`
 
 	// manage user manager role
-	ManageUserManagerRole bool `json:"manage_user_manager_role,omitempty"`
+	ManageUserManagerRole bool `json:"manage_user_manager_role,omitempty" yaml:"manage_user_manager_role,omitempty"`
 
 	// read identity pool users
-	ReadIdentityPoolUsers bool `json:"read_identity_pool_users,omitempty"`
+	ReadIdentityPoolUsers bool `json:"read_identity_pool_users,omitempty" yaml:"read_identity_pool_users,omitempty"`
 
 	// read roles
-	ReadRoles bool `json:"read_roles,omitempty"`
+	ReadRoles bool `json:"read_roles,omitempty" yaml:"read_roles,omitempty"`
 
 	// update identity pool
-	UpdateIdentityPool bool `json:"update_identity_pool,omitempty"`
+	UpdateIdentityPool bool `json:"update_identity_pool,omitempty" yaml:"update_identity_pool,omitempty"`
 }
 
 // Validate validates this pool permissions response

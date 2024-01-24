@@ -19,19 +19,19 @@ import (
 type TreeServerConsent struct {
 
 	// client
-	Client *TreeClient `json:"client,omitempty"`
+	Client *TreeClient `json:"client,omitempty" yaml:"client,omitempty"`
 
 	// custom
-	Custom *CustomServerConsent `json:"custom,omitempty"`
+	Custom *CustomServerConsent `json:"custom,omitempty" yaml:"custom,omitempty"`
 
 	// oidc
-	Oidc OIDCServerConsent `json:"oidc,omitempty"`
+	Oidc OIDCServerConsent `json:"oidc,omitempty" yaml:"oidc,omitempty"`
 
 	// openbanking
-	Openbanking *OpenbankingServerConsent `json:"openbanking,omitempty"`
+	Openbanking *OpenbankingServerConsent `json:"openbanking,omitempty" yaml:"openbanking,omitempty"`
 
 	// type
-	Type string `json:"type,omitempty"`
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 }
 
 // Validate validates this tree server consent

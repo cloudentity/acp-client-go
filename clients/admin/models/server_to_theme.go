@@ -19,15 +19,15 @@ type ServerToTheme struct {
 
 	// authorization server id
 	// Example: developer
-	ServerID string `json:"server_id,omitempty"`
+	ServerID string `json:"server_id,omitempty" yaml:"server_id,omitempty"`
 
 	// tenant id
 	// Example: default
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
 	// theme id
 	// Example: acme
-	ThemeID string `json:"theme_id,omitempty"`
+	ThemeID string `json:"theme_id,omitempty" yaml:"theme_id,omitempty"`
 }
 
 // Validate validates this server to theme

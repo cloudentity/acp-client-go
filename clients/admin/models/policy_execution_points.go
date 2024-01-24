@@ -20,7 +20,7 @@ import (
 type PolicyExecutionPoints struct {
 
 	// list of policy executions
-	ExecutionPoints []*PolicyExecutionPoint `json:"execution_points"`
+	ExecutionPoints []*PolicyExecutionPoint `json:"execution_points" yaml:"execution_points"`
 }
 
 // Validate validates this policy execution points

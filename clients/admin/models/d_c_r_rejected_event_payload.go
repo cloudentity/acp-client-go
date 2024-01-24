@@ -18,34 +18,34 @@ import (
 type DCRRejectedEventPayload struct {
 
 	// High level error name (request_forbidden, access_denied, invalid_request).
-	Error string `json:"error,omitempty"`
+	Error string `json:"error,omitempty" yaml:"error,omitempty"`
 
 	// Error root cause (invalid_pkce, invalid_state, user_policy_failed).
-	ErrorCause string `json:"error_cause,omitempty"`
+	ErrorCause string `json:"error_cause,omitempty" yaml:"error_cause,omitempty"`
 
 	// Human readable error description
-	ErrorDescription string `json:"error_description,omitempty"`
+	ErrorDescription string `json:"error_description,omitempty" yaml:"error_description,omitempty"`
 
 	// Error hint
-	ErrorHint string `json:"error_hint,omitempty"`
+	ErrorHint string `json:"error_hint,omitempty" yaml:"error_hint,omitempty"`
 
 	// External error
-	ExternalError bool `json:"external_error,omitempty"`
+	ExternalError bool `json:"external_error,omitempty" yaml:"external_error,omitempty"`
 
 	// Requester IP address obtained from system network socket information.
-	RemoteAddr string `json:"remote_addr,omitempty"`
+	RemoteAddr string `json:"remote_addr,omitempty" yaml:"remote_addr,omitempty"`
 
 	// Requester IP address obtained from True-Client-IP header.
-	TrueClientIP string `json:"true_client_ip,omitempty"`
+	TrueClientIP string `json:"true_client_ip,omitempty" yaml:"true_client_ip,omitempty"`
 
 	// A characteristic string that lets servers and network peers identify the application, operating system, vendor, and/or version of the requesting user agent.
-	UserAgent string `json:"user_agent,omitempty"`
+	UserAgent string `json:"user_agent,omitempty" yaml:"user_agent,omitempty"`
 
 	// Requester IP address obtained from X-Forwarded-For header.
-	XForwardedFor string `json:"x_forwarded_for,omitempty"`
+	XForwardedFor string `json:"x_forwarded_for,omitempty" yaml:"x_forwarded_for,omitempty"`
 
 	// Requester IP address obtained from X-Real-IP header.
-	XRealIP string `json:"x_real_ip,omitempty"`
+	XRealIP string `json:"x_real_ip,omitempty" yaml:"x_real_ip,omitempty"`
 }
 
 // Validate validates this d c r rejected event payload

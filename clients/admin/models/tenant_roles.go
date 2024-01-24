@@ -18,16 +18,16 @@ import (
 type TenantRoles struct {
 
 	// admin
-	Admin bool `json:"admin,omitempty"`
+	Admin bool `json:"admin,omitempty" yaml:"admin,omitempty"`
 
 	// auditor
-	Auditor bool `json:"auditor,omitempty"`
+	Auditor bool `json:"auditor,omitempty" yaml:"auditor,omitempty"`
 
 	// business admin
-	BusinessAdmin bool `json:"business_admin,omitempty"`
+	BusinessAdmin bool `json:"business_admin,omitempty" yaml:"business_admin,omitempty"`
 
 	// member
-	Member bool `json:"member,omitempty"`
+	Member bool `json:"member,omitempty" yaml:"member,omitempty"`
 }
 
 // Validate validates this tenant roles

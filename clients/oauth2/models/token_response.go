@@ -18,31 +18,31 @@ import (
 type TokenResponse struct {
 
 	// access token
-	AccessToken string `json:"access_token,omitempty"`
+	AccessToken string `json:"access_token,omitempty" yaml:"access_token,omitempty"`
 
 	// cdr arrangement id
-	CdrArrangementID string `json:"cdr_arrangement_id,omitempty"`
+	CdrArrangementID string `json:"cdr_arrangement_id,omitempty" yaml:"cdr_arrangement_id,omitempty"`
 
 	// expires in
-	ExpiresIn int64 `json:"expires_in,omitempty"`
+	ExpiresIn int64 `json:"expires_in,omitempty" yaml:"expires_in,omitempty"`
 
 	// grant id
-	GrantID string `json:"grant_id,omitempty"`
+	GrantID string `json:"grant_id,omitempty" yaml:"grant_id,omitempty"`
 
 	// id token
-	IDToken string `json:"id_token,omitempty"`
+	IDToken string `json:"id_token,omitempty" yaml:"id_token,omitempty"`
 
 	// issued token type
-	IssuedTokenType string `json:"issued_token_type,omitempty"`
+	IssuedTokenType string `json:"issued_token_type,omitempty" yaml:"issued_token_type,omitempty"`
 
 	// refresh token
-	RefreshToken string `json:"refresh_token,omitempty"`
+	RefreshToken string `json:"refresh_token,omitempty" yaml:"refresh_token,omitempty"`
 
 	// scope
-	Scope string `json:"scope,omitempty"`
+	Scope string `json:"scope,omitempty" yaml:"scope,omitempty"`
 
 	// Token type: Bearer or DPoP
-	TokenType string `json:"token_type,omitempty"`
+	TokenType string `json:"token_type,omitempty" yaml:"token_type,omitempty"`
 }
 
 // Validate validates this token response

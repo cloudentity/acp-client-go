@@ -18,13 +18,13 @@ import (
 type DefaultEmailSettings struct {
 
 	// from
-	From string `json:"from,omitempty"`
+	From string `json:"from,omitempty" yaml:"from,omitempty"`
 
 	// message subject
-	MessageSubject string `json:"message_subject,omitempty"`
+	MessageSubject string `json:"message_subject,omitempty" yaml:"message_subject,omitempty"`
 
 	// message template
-	MessageTemplate string `json:"message_template,omitempty"`
+	MessageTemplate string `json:"message_template,omitempty" yaml:"message_template,omitempty"`
 }
 
 // Validate validates this default email settings

@@ -21,23 +21,23 @@ import (
 type OBWriteDomesticScheduledConsent4Data struct {
 
 	// authorisation
-	Authorisation *OBWriteDomesticScheduledConsent4DataAuthorisation `json:"Authorisation,omitempty"`
+	Authorisation *OBWriteDomesticScheduledConsent4DataAuthorisation `json:"Authorisation,omitempty" yaml:"Authorisation,omitempty"`
 
 	// initiation
 	// Required: true
-	Initiation *OBWriteDomesticScheduledConsent4DataInitiation `json:"Initiation"`
+	Initiation *OBWriteDomesticScheduledConsent4DataInitiation `json:"Initiation" yaml:"Initiation"`
 
 	// Specifies the Open Banking service request types.
 	// Required: true
 	// Enum: [Create]
-	Permission string `json:"Permission"`
+	Permission string `json:"Permission" yaml:"Permission"`
 
 	// Specifies to share the refund account details with PISP
 	// Enum: [No Yes]
-	ReadRefundAccount string `json:"ReadRefundAccount,omitempty"`
+	ReadRefundAccount string `json:"ReadRefundAccount,omitempty" yaml:"ReadRefundAccount,omitempty"`
 
 	// s c a support data
-	SCASupportData *OBWriteDomesticScheduledConsent4DataSCASupportData `json:"SCASupportData,omitempty"`
+	SCASupportData *OBWriteDomesticScheduledConsent4DataSCASupportData `json:"SCASupportData,omitempty" yaml:"SCASupportData,omitempty"`
 }
 
 // Validate validates this o b write domestic scheduled consent4 data

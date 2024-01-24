@@ -18,13 +18,13 @@ import (
 type ClaimRequest struct {
 
 	// essential
-	Essential bool `json:"essential,omitempty"`
+	Essential bool `json:"essential,omitempty" yaml:"essential,omitempty"`
 
 	// value
-	Value interface{} `json:"value,omitempty"`
+	Value interface{} `json:"value,omitempty" yaml:"value,omitempty"`
 
 	// values
-	Values []interface{} `json:"values"`
+	Values []interface{} `json:"values" yaml:"values"`
 }
 
 // Validate validates this claim request

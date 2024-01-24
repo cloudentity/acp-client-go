@@ -20,7 +20,7 @@ import (
 type ConsentActions struct {
 
 	// consent actions
-	ConsentActions []*ConsentAction `json:"consent_actions"`
+	ConsentActions []*ConsentAction `json:"consent_actions" yaml:"consent_actions"`
 }
 
 // Validate validates this consent actions

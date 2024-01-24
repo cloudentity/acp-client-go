@@ -21,13 +21,13 @@ type BrazilCreateConsentExtensionResponse struct {
 
 	// data
 	// Required: true
-	Data *OpenbankingBrasilConsentV2Data3 `json:"data"`
+	Data *OpenbankingBrasilConsentV2Data3 `json:"data" yaml:"data"`
 
 	// links
-	Links *OpenbankingBrasilConsentV2Links `json:"links,omitempty"`
+	Links *OpenbankingBrasilConsentV2Links `json:"links,omitempty" yaml:"links,omitempty"`
 
 	// meta
-	Meta *OpenbankingBrasilConsentV2Meta `json:"meta,omitempty"`
+	Meta *OpenbankingBrasilConsentV2Meta `json:"meta,omitempty" yaml:"meta,omitempty"`
 }
 
 // Validate validates this brazil create consent extension response

@@ -21,23 +21,23 @@ import (
 type OBWriteInternationalStandingOrderConsent6Data struct {
 
 	// authorisation
-	Authorisation *OBWriteInternationalStandingOrderConsent6DataAuthorisation `json:"Authorisation,omitempty"`
+	Authorisation *OBWriteInternationalStandingOrderConsent6DataAuthorisation `json:"Authorisation,omitempty" yaml:"Authorisation,omitempty"`
 
 	// initiation
 	// Required: true
-	Initiation *OBWriteInternationalStandingOrderConsent6DataInitiation `json:"Initiation"`
+	Initiation *OBWriteInternationalStandingOrderConsent6DataInitiation `json:"Initiation" yaml:"Initiation"`
 
 	// Specifies the Open Banking service request types.
 	// Required: true
 	// Enum: [Create]
-	Permission string `json:"Permission"`
+	Permission string `json:"Permission" yaml:"Permission"`
 
 	// Specifies to share the refund account details with PISP
 	// Enum: [No Yes]
-	ReadRefundAccount string `json:"ReadRefundAccount,omitempty"`
+	ReadRefundAccount string `json:"ReadRefundAccount,omitempty" yaml:"ReadRefundAccount,omitempty"`
 
 	// s c a support data
-	SCASupportData *OBWriteInternationalStandingOrderConsent6DataSCASupportData `json:"SCASupportData,omitempty"`
+	SCASupportData *OBWriteInternationalStandingOrderConsent6DataSCASupportData `json:"SCASupportData,omitempty" yaml:"SCASupportData,omitempty"`
 }
 
 // Validate validates this o b write international standing order consent6 data

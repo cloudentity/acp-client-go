@@ -18,7 +18,7 @@ import (
 type SetGatewayConfigurationResponse struct {
 
 	// number of added api groups
-	NumberOfAddedAPIGroups int64 `json:"number_of_added_api_groups,omitempty"`
+	NumberOfAddedAPIGroups int64 `json:"number_of_added_api_groups,omitempty" yaml:"number_of_added_api_groups,omitempty"`
 }
 
 // Validate validates this set gateway configuration response

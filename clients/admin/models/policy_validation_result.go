@@ -20,13 +20,13 @@ import (
 type PolicyValidationResult struct {
 
 	// An array of failures that took place during the policy validation process
-	Failure []*PolicyValidationFailure `json:"failure"`
+	Failure []*PolicyValidationFailure `json:"failure" yaml:"failure"`
 
 	// An array of recovery methods that take place when a policy validation fails
-	Recovery []*PolicyValidationRecovery `json:"recovery"`
+	Recovery []*PolicyValidationRecovery `json:"recovery" yaml:"recovery"`
 
 	// String representation of the policy validation result
-	Result string `json:"result,omitempty"`
+	Result string `json:"result,omitempty" yaml:"result,omitempty"`
 }
 
 // Validate validates this policy validation result

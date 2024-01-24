@@ -18,13 +18,13 @@ import (
 type RegistryReference struct {
 
 	// An identifier of the intermediary that can be looked up from a legal identity registry source.
-	RegisteredEntityID string `json:"registered_entity_id,omitempty"`
+	RegisteredEntityID string `json:"registered_entity_id,omitempty" yaml:"registered_entity_id,omitempty"`
 
 	// The legal company name for the intermediary.
-	RegisteredEntityName string `json:"registered_entity_name,omitempty"`
+	RegisteredEntityName string `json:"registered_entity_name,omitempty" yaml:"registered_entity_name,omitempty"`
 
 	// registry
-	Registry string `json:"registry,omitempty"`
+	Registry string `json:"registry,omitempty" yaml:"registry,omitempty"`
 }
 
 // Validate validates this registry reference

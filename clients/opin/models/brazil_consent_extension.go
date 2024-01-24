@@ -21,14 +21,14 @@ type BrazilConsentExtension struct {
 
 	// expiration time
 	// Format: date-time
-	ExpirationTime strfmt.DateTime `json:"expiration_time,omitempty"`
+	ExpirationTime strfmt.DateTime `json:"expiration_time,omitempty" yaml:"expiration_time,omitempty"`
 
 	// logged user
-	LoggedUser string `json:"logged_user,omitempty"`
+	LoggedUser string `json:"logged_user,omitempty" yaml:"logged_user,omitempty"`
 
 	// request time
 	// Format: date-time
-	RequestTime strfmt.DateTime `json:"request_time,omitempty"`
+	RequestTime strfmt.DateTime `json:"request_time,omitempty" yaml:"request_time,omitempty"`
 }
 
 // Validate validates this brazil consent extension

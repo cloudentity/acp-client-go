@@ -23,51 +23,51 @@ type API struct {
 	// api type
 	// Example: rest
 	// Enum: [rest graphql]
-	APIType string `json:"api_type,omitempty"`
+	APIType string `json:"api_type,omitempty" yaml:"api_type,omitempty"`
 
 	// if false it is not possible to assign a policy
-	CanHavePolicy bool `json:"can_have_policy,omitempty"`
+	CanHavePolicy bool `json:"can_have_policy,omitempty" yaml:"can_have_policy,omitempty"`
 
 	// Data classifications
-	DataClassifications []string `json:"data_classifications"`
+	DataClassifications []string `json:"data_classifications" yaml:"data_classifications"`
 
 	// graphql schema
-	GraphqlSchema string `json:"graphql_schema,omitempty"`
+	GraphqlSchema string `json:"graphql_schema,omitempty" yaml:"graphql_schema,omitempty"`
 
 	// graphql types
-	GraphqlTypes GraphQLTypes `json:"graphql_types,omitempty"`
+	GraphqlTypes GraphQLTypes `json:"graphql_types,omitempty" yaml:"graphql_types,omitempty"`
 
 	// API id
 	// Example: 1
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// HTTP request method
 	// Example: GET
-	Method string `json:"method,omitempty"`
+	Method string `json:"method,omitempty" yaml:"method,omitempty"`
 
 	// HTTP request path
 	// Example: /pets
-	Path string `json:"path,omitempty"`
+	Path string `json:"path,omitempty" yaml:"path,omitempty"`
 
 	// optional id of a policy
 	// Example: block
-	PolicyID string `json:"policy_id,omitempty"`
+	PolicyID string `json:"policy_id,omitempty" yaml:"policy_id,omitempty"`
 
 	// position of the api in the apis list
 	// Example: 1
-	Position int64 `json:"position,omitempty"`
+	Position int64 `json:"position,omitempty" yaml:"position,omitempty"`
 
 	// server id
 	// Example: default
-	ServerID string `json:"server_id,omitempty"`
+	ServerID string `json:"server_id,omitempty" yaml:"server_id,omitempty"`
 
 	// service id
 	// Example: 1
-	ServiceID string `json:"service_id,omitempty"`
+	ServiceID string `json:"service_id,omitempty" yaml:"service_id,omitempty"`
 
 	// tenant id
 	// Example: default
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 }
 
 // Validate validates this API

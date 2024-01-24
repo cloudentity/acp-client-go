@@ -20,13 +20,13 @@ import (
 type Endpoint struct {
 
 	// binding
-	Binding string `json:"Binding,omitempty"`
+	Binding string `json:"Binding,omitempty" yaml:"Binding,omitempty"`
 
 	// location
-	Location string `json:"Location,omitempty"`
+	Location string `json:"Location,omitempty" yaml:"Location,omitempty"`
 
 	// response location
-	ResponseLocation string `json:"ResponseLocation,omitempty"`
+	ResponseLocation string `json:"ResponseLocation,omitempty" yaml:"ResponseLocation,omitempty"`
 }
 
 // Validate validates this endpoint

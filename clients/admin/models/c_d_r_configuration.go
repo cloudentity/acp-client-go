@@ -20,29 +20,29 @@ type CDRConfiguration struct {
 
 	// Flag to enable / disable ADR validation
 	// If enabled, register URL must be provided and point to a existing registry
-	AdrValidationEnabled bool `json:"adr_validation_enabled,omitempty"`
+	AdrValidationEnabled bool `json:"adr_validation_enabled,omitempty" yaml:"adr_validation_enabled,omitempty"`
 
 	// brand id
-	BrandID string `json:"brand_id,omitempty"`
+	BrandID string `json:"brand_id,omitempty" yaml:"brand_id,omitempty"`
 
 	// Do not cache trust anchor data, fetch it from registry every time
 	// This is useful for testing purposes when the registry might not be fully up when the test is run
-	DontCacheTrustAnchorData bool `json:"dont_cache_trust_anchor_data,omitempty"`
+	DontCacheTrustAnchorData bool `json:"dont_cache_trust_anchor_data,omitempty" yaml:"dont_cache_trust_anchor_data,omitempty"`
 
 	// industry
-	Industry CDRIndustry `json:"industry,omitempty"`
+	Industry CDRIndustry `json:"industry,omitempty" yaml:"industry,omitempty"`
 
 	// register api version
-	RegisterAPIVersion CDRRegisterAPIVersion `json:"register_api_version,omitempty"`
+	RegisterAPIVersion CDRRegisterAPIVersion `json:"register_api_version,omitempty" yaml:"register_api_version,omitempty"`
 
 	// register url
-	RegisterURL CDRRegisterURL `json:"register_url,omitempty"`
+	RegisterURL CDRRegisterURL `json:"register_url,omitempty" yaml:"register_url,omitempty"`
 
 	// Flag to disable register URL validation
 	// If enabled, there will be no error message
 	// if data from provided register URL can not be fetched
 	// It is highly not recommended to use this flag if it is not required
-	SkipRegisterURLValidation bool `json:"skip_register_url_validation,omitempty"`
+	SkipRegisterURLValidation bool `json:"skip_register_url_validation,omitempty" yaml:"skip_register_url_validation,omitempty"`
 }
 
 // Validate validates this c d r configuration

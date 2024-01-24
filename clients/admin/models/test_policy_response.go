@@ -20,19 +20,19 @@ import (
 type TestPolicyResponse struct {
 
 	// failures
-	Failures []*ValidateResponseValidatorFailure `json:"failures"`
+	Failures []*ValidateResponseValidatorFailure `json:"failures" yaml:"failures"`
 
 	// output
-	Output map[string]interface{} `json:"output,omitempty"`
+	Output map[string]interface{} `json:"output,omitempty" yaml:"output,omitempty"`
 
 	// recovery
-	Recovery []interface{} `json:"recovery"`
+	Recovery []interface{} `json:"recovery" yaml:"recovery"`
 
 	// result
-	Result string `json:"result,omitempty"`
+	Result string `json:"result,omitempty" yaml:"result,omitempty"`
 
 	// status
-	Status bool `json:"status,omitempty"`
+	Status bool `json:"status,omitempty" yaml:"status,omitempty"`
 }
 
 // Validate validates this test policy response

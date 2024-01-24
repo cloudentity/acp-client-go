@@ -19,25 +19,25 @@ import (
 type ServerConsent struct {
 
 	// client id
-	ClientID string `json:"client_id,omitempty"`
+	ClientID string `json:"client_id,omitempty" yaml:"client_id,omitempty"`
 
 	// custom
-	Custom *CustomServerConsent `json:"custom,omitempty"`
+	Custom *CustomServerConsent `json:"custom,omitempty" yaml:"custom,omitempty"`
 
 	// oidc
-	Oidc OIDCServerConsent `json:"oidc,omitempty"`
+	Oidc OIDCServerConsent `json:"oidc,omitempty" yaml:"oidc,omitempty"`
 
 	// openbanking
-	Openbanking *OpenbankingServerConsent `json:"openbanking,omitempty"`
+	Openbanking *OpenbankingServerConsent `json:"openbanking,omitempty" yaml:"openbanking,omitempty"`
 
 	// server id
-	ServerID string `json:"server_id,omitempty"`
+	ServerID string `json:"server_id,omitempty" yaml:"server_id,omitempty"`
 
 	// tenant id
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 
 	// type
-	Type string `json:"type,omitempty"`
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 }
 
 // Validate validates this server consent

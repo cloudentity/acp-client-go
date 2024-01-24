@@ -18,22 +18,22 @@ import (
 type FDXParty struct {
 
 	// home uri
-	HomeURI string `json:"home_uri,omitempty"`
+	HomeURI string `json:"home_uri,omitempty" yaml:"home_uri,omitempty"`
 
 	// logo uri
-	LogoURI string `json:"logo_uri,omitempty"`
+	LogoURI string `json:"logo_uri,omitempty" yaml:"logo_uri,omitempty"`
 
 	// name
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	// registered entity identifier
-	RegisteredEntityIdentifier string `json:"registered_entity_identifier,omitempty"`
+	RegisteredEntityIdentifier string `json:"registered_entity_identifier,omitempty" yaml:"registered_entity_identifier,omitempty"`
 
 	// registered entity name
-	RegisteredEntityName string `json:"registered_entity_name,omitempty"`
+	RegisteredEntityName string `json:"registered_entity_name,omitempty" yaml:"registered_entity_name,omitempty"`
 
 	// registry name
-	RegistryName string `json:"registry_name,omitempty"`
+	RegistryName string `json:"registry_name,omitempty" yaml:"registry_name,omitempty"`
 }
 
 // Validate validates this f d x party

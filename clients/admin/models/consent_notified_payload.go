@@ -18,13 +18,13 @@ import (
 type ConsentNotifiedPayload struct {
 
 	// Type of notification, specifies what the client was notified of , e.g.: revocation
-	NotificationType string `json:"notification_type,omitempty"`
+	NotificationType string `json:"notification_type,omitempty" yaml:"notification_type,omitempty"`
 
 	// payload of the request sent to the notification endpoint
-	Payload string `json:"payload,omitempty"`
+	Payload string `json:"payload,omitempty" yaml:"payload,omitempty"`
 
 	// uri that was notified of the revocation
-	URI string `json:"uri,omitempty"`
+	URI string `json:"uri,omitempty" yaml:"uri,omitempty"`
 }
 
 // Validate validates this consent notified payload

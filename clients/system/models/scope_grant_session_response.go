@@ -21,108 +21,108 @@ import (
 type ScopeGrantSessionResponse struct {
 
 	// authentication context class reference
-	Acr string `json:"acr,omitempty"`
+	Acr string `json:"acr,omitempty" yaml:"acr,omitempty"`
 
 	// scopes that passed policy validation
-	AllowedScopes map[string]bool `json:"allowed_scopes,omitempty"`
+	AllowedScopes map[string]bool `json:"allowed_scopes,omitempty" yaml:"allowed_scopes,omitempty"`
 
 	// authentication methods references
-	Amr []string `json:"amr"`
+	Amr []string `json:"amr" yaml:"amr"`
 
 	// time when user authenticated
 	// Format: date-time
-	AuthTime strfmt.DateTime `json:"auth_time,omitempty"`
+	AuthTime strfmt.DateTime `json:"auth_time,omitempty" yaml:"auth_time,omitempty"`
 
 	// authentication context
-	AuthenticationContext AuthenticationContext `json:"authentication_context,omitempty"`
+	AuthenticationContext AuthenticationContext `json:"authentication_context,omitempty" yaml:"authentication_context,omitempty"`
 
 	// authorization details
-	AuthorizationDetails []map[string]interface{} `json:"authorization_details"`
+	AuthorizationDetails []map[string]interface{} `json:"authorization_details" yaml:"authorization_details"`
 
 	// OAuth client identifier
 	// Example: default
-	ClientID string `json:"client_id,omitempty"`
+	ClientID string `json:"client_id,omitempty" yaml:"client_id,omitempty"`
 
 	// client info
-	ClientInfo *ClientInfo `json:"client_info,omitempty"`
+	ClientInfo *ClientInfo `json:"client_info,omitempty" yaml:"client_info,omitempty"`
 
 	// error
-	Error *RFC6749Error `json:"error,omitempty"`
+	Error *RFC6749Error `json:"error,omitempty" yaml:"error,omitempty"`
 
 	// list of granted audience
-	GrantedAudience []string `json:"granted_audience"`
+	GrantedAudience []string `json:"granted_audience" yaml:"granted_audience"`
 
 	// list of granted scopes
 	// Example: ["email","profile","openid"]
-	GrantedScopes []string `json:"granted_scopes"`
+	GrantedScopes []string `json:"granted_scopes" yaml:"granted_scopes"`
 
 	// unique id of login session
-	ID string `json:"id,omitempty"`
+	ID string `json:"id,omitempty" yaml:"id,omitempty"`
 
 	// idp identifier
-	IdpID string `json:"idp_id,omitempty"`
+	IdpID string `json:"idp_id,omitempty" yaml:"idp_id,omitempty"`
 
 	// idp subject
-	IdpSubject string `json:"idp_subject,omitempty"`
+	IdpSubject string `json:"idp_subject,omitempty" yaml:"idp_subject,omitempty"`
 
 	// is login approved
 	// Example: false
-	LoginApproved bool `json:"login_approved,omitempty"`
+	LoginApproved bool `json:"login_approved,omitempty" yaml:"login_approved,omitempty"`
 
 	// is login rejected
 	// Example: false
-	LoginRejected bool `json:"login_rejected,omitempty"`
+	LoginRejected bool `json:"login_rejected,omitempty" yaml:"login_rejected,omitempty"`
 
 	// max age for a session to live
 	// Format: duration
-	MaxAge strfmt.Duration `json:"max_age,omitempty"`
+	MaxAge strfmt.Duration `json:"max_age,omitempty" yaml:"max_age,omitempty"`
 
 	// request query params
-	RequestQueryParams Values `json:"request_query_params,omitempty"`
+	RequestQueryParams Values `json:"request_query_params,omitempty" yaml:"request_query_params,omitempty"`
 
 	// original url requested by oauth client
-	RequestURL string `json:"request_url,omitempty"`
+	RequestURL string `json:"request_url,omitempty" yaml:"request_url,omitempty"`
 
 	// requested acr
-	RequestedAcr []string `json:"requested_acr"`
+	RequestedAcr []string `json:"requested_acr" yaml:"requested_acr"`
 
 	// time when oauth client made a request
 	// Format: date-time
-	RequestedAt strfmt.DateTime `json:"requested_at,omitempty"`
+	RequestedAt strfmt.DateTime `json:"requested_at,omitempty" yaml:"requested_at,omitempty"`
 
 	// list of requested audiences
-	RequestedAudience []string `json:"requested_audience"`
+	RequestedAudience []string `json:"requested_audience" yaml:"requested_audience"`
 
 	// requested claims
-	RequestedClaims *ClaimsRequests `json:"requested_claims,omitempty"`
+	RequestedClaims *ClaimsRequests `json:"requested_claims,omitempty" yaml:"requested_claims,omitempty"`
 
 	// requested grant type
-	RequestedGrantType string `json:"requested_grant_type,omitempty"`
+	RequestedGrantType string `json:"requested_grant_type,omitempty" yaml:"requested_grant_type,omitempty"`
 
 	// requested redirect uri
-	RequestedRedirectURI string `json:"requested_redirect_uri,omitempty"`
+	RequestedRedirectURI string `json:"requested_redirect_uri,omitempty" yaml:"requested_redirect_uri,omitempty"`
 
 	// list of requested scopes
-	RequestedScopes []*RequestedScope `json:"requested_scopes"`
+	RequestedScopes []*RequestedScope `json:"requested_scopes" yaml:"requested_scopes"`
 
 	// is scope grant approved
 	// Example: true
-	ScopeGrantApproved bool `json:"scope_grant_approved,omitempty"`
+	ScopeGrantApproved bool `json:"scope_grant_approved,omitempty" yaml:"scope_grant_approved,omitempty"`
 
 	// is scope grant rejected
 	// Example: false
-	ScopeGrantRejected bool `json:"scope_grant_rejected,omitempty"`
+	ScopeGrantRejected bool `json:"scope_grant_rejected,omitempty" yaml:"scope_grant_rejected,omitempty"`
 
 	// authorization server identifier
 	// Example: default
-	ServerID string `json:"server_id,omitempty"`
+	ServerID string `json:"server_id,omitempty" yaml:"server_id,omitempty"`
 
 	// user identifier
-	Subject string `json:"subject,omitempty"`
+	Subject string `json:"subject,omitempty" yaml:"subject,omitempty"`
 
 	// tenant identifier
 	// Example: default
-	TenantID string `json:"tenant_id,omitempty"`
+	TenantID string `json:"tenant_id,omitempty" yaml:"tenant_id,omitempty"`
 }
 
 // Validate validates this scope grant session response

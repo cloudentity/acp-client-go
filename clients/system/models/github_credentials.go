@@ -18,7 +18,7 @@ import (
 type GithubCredentials struct {
 
 	// OAuth client application secret from your GitHub Oauth application settings
-	ClientSecret string `json:"client_secret,omitempty"`
+	ClientSecret string `json:"client_secret,omitempty" yaml:"client_secret,omitempty"`
 }
 
 // Validate validates this github credentials

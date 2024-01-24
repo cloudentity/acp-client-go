@@ -18,7 +18,7 @@ import (
 type CognitoCredentials struct {
 
 	// Cognito app client secret from your application settings
-	ClientSecret string `json:"client_secret,omitempty"`
+	ClientSecret string `json:"client_secret,omitempty" yaml:"client_secret,omitempty"`
 }
 
 // Validate validates this cognito credentials
